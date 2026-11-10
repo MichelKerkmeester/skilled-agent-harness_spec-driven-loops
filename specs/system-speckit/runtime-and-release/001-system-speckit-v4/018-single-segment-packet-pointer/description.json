@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/018-single-segment-packet-pointer",
+  "description": "`SPECDOCFRONTMATTER004` accepts a `packetpointer` with one safe segment as well as two-or-more, so a flattened `specs/` layout can pass validation",
+  "keywords": [
+    "specdocfrontmatter004",
+    "accepts",
+    "packetpointer",
+    "one",
+    "safe",
+    "segment",
+    "well",
+    "two-or-more",
+    "flattened",
+    "specs",
+    "layout",
+    "pass",
+    "validation"
+  ],
+  "lastUpdated": "2026-09-08T18:23:18.769Z",
+  "specId": "018",
+  "folderSlug": "single-segment-packet-pointer",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

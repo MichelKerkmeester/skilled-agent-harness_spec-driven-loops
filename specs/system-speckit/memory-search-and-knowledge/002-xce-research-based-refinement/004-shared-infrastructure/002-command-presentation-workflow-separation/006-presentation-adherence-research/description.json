@@ -1,0 +1,35 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research",
+  "description": "Live bare-command tests showed mixed presentation-contract adherence: the doctor router menu and Gate-3 blocks rendered verbatim while /memory:search",
+  "keywords": [
+    "live",
+    "bare-command",
+    "tests",
+    "showed",
+    "mixed",
+    "presentation-contract",
+    "adherence",
+    "doctor",
+    "router",
+    "menu",
+    "gate-3",
+    "blocks",
+    "rendered",
+    "verbatim",
+    "while",
+    "memory",
+    "search"
+  ],
+  "lastUpdated": "2026-09-07T16:14:52.752Z",
+  "specId": "006",
+  "folderSlug": "presentation-adherence-research",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "002-command-presentation-workflow-separation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/006-commands",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/006-commands",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 release cleanup commands",
+      "command docs mirror cleanup phase",
+      "028 release cleanup commands plan",
+      "commands cleanup plan",
+      "028 release cleanup commands tasks",
+      "commands cleanup tasks",
+      "006-commands implementation summary",
+      "028 release cleanup 006-commands"
+    ],
+    "key_topics": [
+      "release",
+      "cleanup",
+      "commands",
+      "command",
+      "docs",
+      "mirror",
+      "phase",
+      "plan",
+      "tasks",
+      "006-commands",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/commands/doctor/speckit.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Documentation Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Command",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The every command doc in .opencode plus the .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits begin",
+    "created_at": "2026-06-19T00:00:00Z",
+    "last_save_at": "2026-11-10T05:47:30.480Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5b7d4a000b9d185d475e85dc4c32897daf021055181159da16f3d2b8dd0dabd0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "daa2647ee53442b8d46fbbaaba0ff3af4bb87d3028e42df9a1c93db3fb1a503e",
+      "plan.md": "3dca921352fdee48c58c988b66c14ae08a30afbbcca545e12c09994209c65065",
+      "tasks.md": "f97ed50de44c4dcbd773f7a4f16b33f1d5e9e7942e3c2e38b626f8c436923f24",
+      "implementation-summary.md": "54f2e680c9b65cf138bc1540b8b8ce041e1b87273e3f79058eb8c0eba2280982"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

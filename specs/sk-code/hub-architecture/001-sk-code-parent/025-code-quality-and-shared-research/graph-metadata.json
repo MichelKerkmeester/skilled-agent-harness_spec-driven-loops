@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The sk-code `code-quality` sub-skill carries one of the highest-leverage jobs in the coding lifecycle — judging whether code is correct, clean, and safe — yet it has grown independently and its real usefulness is unproven",
     "created_at": "2026-07-07T00:00:00.000Z",
-    "last_save_at": "2026-11-10T05:20:10.007Z",
+    "last_save_at": "2026-11-10T06:05:53.641Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:7b023ea090c47e574ae3f2f7d4f14d6d09509a63d531bbf4a52ea5320782fb3e",
+    "source_fingerprint": "sha256:f165552944c0c01a7489826cf0e2d166b8e4e9993e914db12b7eca36931dc7e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "34210e7663a5e67d6edcbf3d05d03f053a71aa73897ef5cc7794e3fe0dd6ab96",
+      "spec.md": "f7e1af66f51a28fd72fb1b1b468ef010a16e8d8abb745bae7d172aa722bb6be6",
       "plan.md": "0397eb760ba651d3643bad9037b3e1e1c0c4d0e0c93b02b311b424083b3231f5",
       "tasks.md": "7ff727f4c96f2760ba727d2069a6dc3526ff835c9a8201e4a369b647dbffd9bc",
       "implementation-summary.md": "a0f5b687dd35616b59b473a82ca0f98fb5563f872256b1506166dfcdb700c574",

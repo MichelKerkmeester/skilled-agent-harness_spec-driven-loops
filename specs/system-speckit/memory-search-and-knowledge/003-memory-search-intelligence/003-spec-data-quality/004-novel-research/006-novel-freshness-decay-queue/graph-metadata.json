@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research/006-novel-freshness-decay-queue",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research/006-novel-freshness-decay-queue",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "freshness decay queue",
+      "fsrs retrievability",
+      "auto-refresh queue",
+      "staleness maintenance queue",
+      "report-only freshness"
+    ],
+    "key_topics": [
+      "freshness",
+      "decay",
+      "queue",
+      "fsrs",
+      "retrievability",
+      "auto-refresh",
+      "staleness",
+      "maintenance",
+      "report-only",
+      "number",
+      "shipped",
+      "computed"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Freshness Decay Auto",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Refresh Queue",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Freshness Decay Auto",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed No",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The FSRS retrievability number is SHIPPED and computed live on every read",
+    "created_at": "2026-06-27T17:15:39.015Z",
+    "last_save_at": "2026-11-10T05:47:45.402Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:041c4af9254282ec56cd4f79bbda652b537e50b1209a3db18e4846be03787f2a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0c3efab4cb8f9f5214484bbc8df69b862c4953caede32df765eb9561ff5d507d",
+      "plan.md": "9cbe47b751b1acfd7b8c7ed0d8d8436f30cbc1ad0198818a28647597374fbf9d",
+      "tasks.md": "aa549a87f4aafc54ba2a3d69eccec9966c72d6da897cf2e94f9e22d806a6ee94",
+      "implementation-summary.md": "6a57ca288808c71877db07c0dd790d214e2409e1b66dd5a4cc054b8a1725768c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

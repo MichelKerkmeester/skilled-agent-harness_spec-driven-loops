@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "004-memory-save-rewrite",
+      "014-memory-save-rewrite",
+      "memory save planner first",
+      "planner-first memory save",
+      "full-auto fallback",
+      "speckit_save_planner_mode",
+      "memory folder retirement",
+      "content-router scoped exception",
+      "refreshgraphmetadata reindexspecdocs runenrichmentbackfill",
+      "v3.4.1.0 save flow",
+      "026-graph-and-context-optimization",
+      "planner-first memory save plan"
+    ],
+    "key_topics": [
+      "004-memory-save-rewrite",
+      "014-memory-save-rewrite",
+      "memory",
+      "save",
+      "planner",
+      "first",
+      "planner-first",
+      "full-auto",
+      "fallback",
+      "folder",
+      "retirement",
+      "content-router"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "First Default",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Release Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Surface",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Delivery Summary",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retirement Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Finding Families Preserved",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Relevance Research Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Questions",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Verdict",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Writer Core",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/memory:save` mutated by default, did work that had nothing to do with the caller's intent, and still honored an artifact family that had supposedly been retired",
+    "created_at": "2026-04-15T10:00:01Z",
+    "last_save_at": "2026-11-10T05:46:17.212Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cfcbbfd57eeb05db66fe7a36b1288d5653f1f45c8d4019745baf67988fa42c79",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "309870f909ab6fca1a3a9f051707f3ac5af13df31de681732595a202fc1a37e7",
+      "plan.md": "71e5e5515f66891934873e1796f0d299df969684bf7daa6d008b0c2db8b5c35a",
+      "tasks.md": "c3ceb3398e8d12664bd3c299c2476f7c121b0217e285ba54064e7d2250b88cc5",
+      "decision-record.md": "b515d0f362bd7aa74415d74b026da448743d7ca79b6793a3bd37d28696d279c2",
+      "implementation-summary.md": "3ec0cf804502ec4f6ad60c9032f1dd081ce778dc14a9d627c89b1a4a38caa31a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

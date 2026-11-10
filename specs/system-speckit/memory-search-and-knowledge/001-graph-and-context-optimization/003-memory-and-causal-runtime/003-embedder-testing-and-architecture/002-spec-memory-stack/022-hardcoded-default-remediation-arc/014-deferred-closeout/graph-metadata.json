@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/014-deferred-closeout",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/014-deferred-closeout",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022/014 deferred closeout",
+      "skill-advisor dist json copy",
+      "advisory pre-commit hook",
+      "022/014 plan",
+      "022/014 tasks",
+      "022/014 summary",
+      "deferred closeout complete"
+    ],
+    "key_topics": [
+      "deferred",
+      "closeout",
+      "skill-advisor",
+      "dist",
+      "json",
+      "copy",
+      "advisory",
+      "pre-commit",
+      "hook",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/scripts/git-hooks/pre-commit",
+      ".opencode/scripts/install-git-hooks.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit",
+        "kind": "file",
+        "path": ".opencode/scripts/git-hooks/pre-commit",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Deferred Closeout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "informational",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Small",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "in-flight",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SPECKIT_SKIP_DOC_MODEL_VALIDATE",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisory",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Closes 3 of 4 deferred follow-ons from the 022 arc: tracked dist/data JSON-copy script + install-guide note, advisory pre-commit hook + install script for validate-doc-model-refs.js, Z_SCORE_THRESHOLD comment update reflecting post-013 state. node-llama-cpp dep prune resolved-by-discovery (no live package.json dep).",
+    "created_at": "2026-05-23T22:00:00.000000Z",
+    "last_save_at": "2026-11-10T05:46:31.508Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c65ea1ca383953466ab6e05a54def474f7190e5ae100aff9133c13a7fe600cf4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8f3c19a2146913e72f59299caae081d21a476db59163636d21c1d87725f6fc1b",
+      "plan.md": "e74409591010d3ec39702140d718623fd672d8b909bc2b70e26639c36f3fbcd7",
+      "tasks.md": "8a0945f6154ee8e94a9840f7a66e71d07a96c952c063294e29828941c8149f5d",
+      "implementation-summary.md": "86dbfabc36440f706b66a1395d4b680a01c68a575988fd83e26e677c8ca78814"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

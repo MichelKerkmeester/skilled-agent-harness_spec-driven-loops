@@ -1,0 +1,34 @@
+{
+  "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing",
+  "description": "The hook contract docs and adapter scaffolding describe how Claude Code, Codex CLI, GitHub Copilot CLI, Gemini CLI, and OpenCode should receive Spec",
+  "keywords": [
+    "hook",
+    "contract",
+    "docs",
+    "adapter",
+    "scaffolding",
+    "describe",
+    "claude",
+    "code",
+    "codex",
+    "cli",
+    "github",
+    "copilot",
+    "gemini",
+    "opencode",
+    "receive",
+    "spec"
+  ],
+  "lastUpdated": "2026-08-15T14:41:08.645Z",
+  "specId": "016",
+  "folderSlug": "runtime-hook-plugin-testing",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "003-cross-cutting-cleanup-pass"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [],
+  "level": 2
+}

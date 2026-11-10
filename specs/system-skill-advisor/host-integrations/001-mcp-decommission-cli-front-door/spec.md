@@ -197,5 +197,5 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
 - **Packet goal**: See `goal.md` for the durable directive and the completion criteria
-- **Pattern reference**: `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/` removed the sibling MCP subsystem and replaced it with a CLI plus committed index
+- **Pattern reference**: `specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/` removed the sibling MCP subsystem and replaced it with a CLI plus committed index
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

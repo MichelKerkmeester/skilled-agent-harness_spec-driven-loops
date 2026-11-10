@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/017-findings-remediation/001-findings-triage-and-verification",
+  "description": "Eighty of the audit's 88 findings were path-checked but never claim-tested",
+  "keywords": [
+    "eighty",
+    "audit",
+    "findings",
+    "path-checked",
+    "never",
+    "claim-tested"
+  ],
+  "lastUpdated": "2026-09-07T16:18:05.154Z",
+  "specId": "001",
+  "folderSlug": "findings-triage-and-verification",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-release-cleanup",
+    "017-findings-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

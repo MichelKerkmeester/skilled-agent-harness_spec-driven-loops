@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/001-research-and-baseline/003-contextador",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/001-research-and-baseline/003-contextador",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/001-research-and-baseline",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "contextador research phase",
+      "mcp query interface",
+      "self-healing context",
+      "mainframe shared cache",
+      "token efficient navigation",
+      "contextador research plan",
+      "deep research loop",
+      "cli-codex delegation",
+      "contextador tasks",
+      "deep research tasks",
+      "phase 003 tasks",
+      "contextador adr"
+    ],
+    "key_topics": [
+      "contextador",
+      "research",
+      "phase",
+      "mcp",
+      "query",
+      "interface",
+      "self-healing",
+      "context",
+      "mainframe",
+      "shared",
+      "cache",
+      "token"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/phase-research-prompt.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-research-prompt.md",
+        "kind": "doc",
+        "path": "scratch/phase-research-prompt.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specificatio",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Contextador",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contextador Research Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Iterative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Loop",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Michel Kerkmeester",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`CodeEnvironment/Public` already operates CocoIndex, Code Graph MCP, and Spec Kit Memory",
+    "created_at": "2026-04-12T09:02:53.447Z",
+    "last_save_at": "2026-11-10T05:46:13.897Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:78385feea8b65b8e73b4cf3a94c55f58ed9348dfed0b8a444b7635c482b5dc07",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "74bfcea5d3ccb468772e33573bfe323bd6abcaebdf37099b0ca02c4505ed0e03",
+      "plan.md": "b9fd075a1bc5edc7a5a7ae92569bfc78aa7d42cca5225a0032dbcd89a33a894e",
+      "tasks.md": "1a8589a7e4be5d80ecd84fb1586b804df79533d990aeb0fc6ac021a3c7f99e00",
+      "decision-record.md": "c090b5aafe99433cac118a92620065cfeea5116a372e8980876cb4960be33c8e",
+      "implementation-summary.md": "f7a171cd0332a76dde2e3816617d7e29d935ad23f56d3e65a5fd330761f502ae"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

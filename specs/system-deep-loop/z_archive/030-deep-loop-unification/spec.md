@@ -45,7 +45,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Planned |
 | **Created** | 2026-07-08 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | None (top-level packet in the system-deep-loop track) |
 | **Parent Packet** | system-deep-loop |
 | **Predecessor** | `051-deep-loop-parent-skill-alignment` (aligned `deep-loop-workflows` as an Option-E invokable hub but deliberately kept `deep-loop-runtime` separate) |

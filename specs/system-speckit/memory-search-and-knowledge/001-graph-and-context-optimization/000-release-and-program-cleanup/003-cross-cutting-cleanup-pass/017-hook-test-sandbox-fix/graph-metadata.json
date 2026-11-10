@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/017-hook-test-sandbox-fix",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/017-hook-test-sandbox-fix",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "017-hook-test-sandbox-fix",
+      "hook test methodology",
+      "sandbox detection",
+      "BLOCKED_BY_TEST_SANDBOX",
+      "operator-run-outside-sandbox",
+      "resource map",
+      "017-hook-test-sandbox-fix resource map",
+      "path catalog 017-hook-test-sandbox-fix"
+    ],
+    "key_topics": [
+      "017-hook-test-sandbox-fix",
+      "hook",
+      "test",
+      "methodology",
+      "sandbox",
+      "detection",
+      "operator-run-outside-sandbox",
+      "resource",
+      "map",
+      "path",
+      "catalog",
+      "prior"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Test Sandbox Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The prior runtime hook matrix ran live runtime CLIs from inside a sandboxed",
+    "created_at": "2026-04-29T21:45:00.000Z",
+    "last_save_at": "2026-11-10T05:45:58.764Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:e36a63b00efd5050e3a593a9bbe40b9bd130bcad2c4196d94c1a3e2f2dfbe760",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b9433a9a1e0bb3cc96d83f7a104192c8da791f59f75b064ee94b4115c22f8b48",
+      "plan.md": "dea107cae34dda3818a59ffdf78d34a0873c6410a8ed1c2adf623340af947b12",
+      "tasks.md": "a982f130764199dbd632095f356ee0a3508f1312901a6f492fa4eb9c10c3d898",
+      "implementation-summary.md": "ef9942a611b04221b2432aa44b732a920c1e9cb726ec1dc47cb40d1ec9d7763f",
+      "resource-map.md": "d3f428bbfdd189095938931ec9a9084468acadc04c77789d640935c14dd174a2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

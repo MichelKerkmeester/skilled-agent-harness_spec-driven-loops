@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "003-skill-advisor-routing-engine-consolidation",
+      "doctor router phase 1",
+      "/doctor router",
+      "_routes.yaml",
+      "route-validate.sh",
+      "argv-positional routing",
+      "manifest-driven doctor",
+      "013/004 router phase plan",
+      "doctor router implementation plan",
+      "_routes.yaml plan",
+      "013/004 router phase tasks",
+      "doctor router task graph"
+    ],
+    "key_topics": [
+      "003-skill-advisor-routing-engine-consolidation",
+      "doctor",
+      "router",
+      "phase",
+      "yaml",
+      "route-validate",
+      "argv-positional",
+      "routing",
+      "manifest-driven",
+      "plan",
+      "implementation",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/commands/doctor/mcp.md",
+      ".opencode/commands/doctor/_routes.yaml",
+      ".opencode/commands/doctor/scripts/route-validate.sh",
+      ".opencode/commands/doctor/scripts/route-validate.py",
+      ".claude/commands/doctor/mcp.md",
+      ".opencode/commands/doctor/update.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/route-validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doctor Router Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Expected Result",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read First When",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dependency Graph",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Related Docs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 10 `/doctor:` markdown commands in `.opencode/commands/doctor/` share ~50 lines of duplicated boilerplate per file",
+    "created_at": "2026-05-11T16:00:00.000Z",
+    "last_save_at": "2026-11-10T05:46:55.718Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:708d12e4457eb110ddb240a2e9a00d9fdf574bfdebfcb2694801ca119ae749ea",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c33baf6da5a8cd7aea633c5cd45c209f6d96a29d31d333640b24990adf073f12",
+      "plan.md": "d8e3ceed2da0cec461567ec0036852de2171b594adc5561a081fd771d841ce48",
+      "tasks.md": "bf41055c11b8e636e8d272ae838fe8ba545bf562c22718badfa7cc8e0be59fce",
+      "decision-record.md": "2d1feaacf013f77ca9262afdf3aeba48fb87909ab4f68de935445aac7a980fcf",
+      "implementation-summary.md": "3dc8960bb4d1436b0c87527112e2396b818cf4b19e6df9411b3901cb9bc4f988"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

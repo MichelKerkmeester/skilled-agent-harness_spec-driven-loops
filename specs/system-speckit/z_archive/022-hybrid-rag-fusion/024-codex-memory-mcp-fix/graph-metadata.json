@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Codex could fail to initialize `speckitmemory` because the MCP server assumed it could create a SQLite database under the workspace and because startup-time structured logs could leak onto stdout during background memory scans",
     "created_at": "2026-04-12T09:02:50.313Z",
-    "last_save_at": "2026-10-07T19:24:33.565Z",
+    "last_save_at": "2026-11-10T05:49:16.716Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d35ffe3450a9bc86a134a3a5e05005cb85ed3adce67bb4a63d224309019d68b",
+    "source_fingerprint": "sha256:b1144a76165baeb758a051d70e07c305f39c5cf0127df0035a1b13f584c80315",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4851aacc32ab39f36cd8d2f4263138fe4fceb0e02f123b37b449806d8c62e14b",
-      "plan.md": "ad6a2bb28e7706e38a9ad303be9fbe662a396e46dc81417f94d00e6f50390860",
+      "plan.md": "feb9679199d20a8bbc45a8629e15f83887c28d29000b6e01519a6e7012ba394e",
       "tasks.md": "b49b472c0a9409f0b92192eff5119991bdfe669f1c2f3598ce2893006808b75e",
       "decision-record.md": "f0f31cffff5725a60a8f599f98aa09d4259a7c5dded2614ec157f0db6b1088c9",
-      "implementation-summary.md": "c399732ad9806b68fe895d06345fc03ce3cdb70d3c456c0552459badbed9533d"
+      "implementation-summary.md": "a66c6374fb90486fb4417929d1518bdd0cc0dc11c7fef5dc8d7407ba787854d9"
     },
     "last_active_child_id": null,
     "last_active_at": null

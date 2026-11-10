@@ -44,7 +44,7 @@ This is **Phase 11** of the Owner fixes and follow-ups found during the classifi
 
 **Dependencies**:
 - None on other phases. 010 and 012 touch no file in this phase's Files to Change table
-- The completed packet `specs/system-speckit/031-system-speckit-v4/032-recorded-findings-closure/015-criteria-file-line-enforcement`, whose cutoff, lifecycle activation and floor this phase keeps unchanged
+- The completed packet `specs/system-speckit/runtime-and-release/001-system-speckit-v4/032-recorded-findings-closure/015-criteria-file-line-enforcement`, whose cutoff, lifecycle activation and floor this phase keeps unchanged
 - Phase 006 (`../006-goal-criteria-lint`) plans a check that `check-goal.cjs` is unchanged by its own build. See Risks
 
 **Deliverables**:
@@ -161,7 +161,7 @@ A reader of `validate.sh` output can see which cited `file:line` does not resolv
 |------|------|--------|------------|
 | Dependency | `015-criteria-file-line-enforcement` (Complete) owns the floor, cutoff, enforce switch and lifecycle activation | A change to any of them would reopen that packet's closure | REQ-003 keeps all of them. The existing 25 cases are the regression guard |
 | Dependency | Phase 006 plans `git diff --quiet -- .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs` after its build and copies the parser at `check-goal.cjs:135-144`, `:162-201` and `:207-212` | An uncommitted 011 edit would fail 006's check. A line shift would move 006's citations | The 011 edit sits in `main()`, below every copied line, so none of them shift. Commit 011 before 006's check runs, or run 006's check before 011 starts. The orchestrator chooses the order |
-| Risk | Many real citations do not resolve under this rule. 455 of 1,112 name no file, often skill-relative paths such as `runtime/cli/rules/check-ac-coverage.sh:381` in `specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/010-template-contract-alignment/acceptance-criteria.md:61` | The detail line is long on older packets | Report only. The counting change waits for the owner (REQ-008) |
+| Risk | Many real citations do not resolve under this rule. 455 of 1,112 name no file, often skill-relative paths such as `runtime/cli/rules/check-ac-coverage.sh:381` in `specs/system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research/010-template-contract-alignment/acceptance-criteria.md:61` | The detail line is long on older packets | Report only. The counting change waits for the owner (REQ-008) |
 | Risk | `read` with a tab `IFS` merges empty fields, so an empty malformed-id field followed by a new field shifts the read at `check-ac-coverage.sh:430` | The unresolved list lands in the wrong variable | Write `-` for an empty id list and treat `-` as empty when reading |
 | Risk | A folder prefix with a leading zero, such as `008`, read as octal by bash arithmetic | `$((008))` is an error in bash | Read it as `$((10#${_child_folder%%-*}))`, and cover `008` or higher in the test if the fixture reaches it |
 | Risk | awk `getline` behaves differently on a directory across BSD awk and gawk | macOS awk aborts the whole program with `i/o error` and exit 2, which would stop the rule | Resolved in the build: awk only carries the citations out, and bash builtins in `run_check` resolve them, so a directory is reported unresolved and the rule exits 0 |

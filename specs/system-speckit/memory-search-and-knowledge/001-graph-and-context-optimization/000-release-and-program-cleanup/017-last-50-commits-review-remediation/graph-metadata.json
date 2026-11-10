@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/017-last-50-commits-review-remediation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/017-last-50-commits-review-remediation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016 review remediation",
+      "last 50 commits remediation",
+      "ingest worker shutdown fence fix",
+      "unified SIGTERM shutdown path",
+      "socket fresh-bind symlink reject fix",
+      "016 remediation plan",
+      "4 stream remediation partition",
+      "shutdown unification keystone",
+      "socket fresh-bind hardening plan",
+      "016 remediation tasks",
+      "remediation task list per finding",
+      "shipped fixes with evidence"
+    ],
+    "key_topics": [
+      "review",
+      "remediation",
+      "last",
+      "commits",
+      "ingest",
+      "worker",
+      "shutdown",
+      "fence",
+      "unified",
+      "sigterm",
+      "path",
+      "socket"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "shared/ipc/socket-server.ts",
+      "lib/validation/orchestrator.ts",
+      ".codex/config.toml",
+      ".devin/config.json",
+      ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": "shared/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "config.json",
+        "kind": "config",
+        "path": ".devin/config.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commits Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Drive",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sibling deep-review packet `016-last-50-commits-deep-review` returned a CONDITIONAL verdict over the last 50 commits: 0 active P0, 3 actionable P1 (ingest-worker shutdown fence, compound concurrent-SIGTERM failure, runtime-fork drift guard), and ~17 P2 advisories spanning IPC/socket hardening, validator DoS, memory-write guards, MCP contract gaps, config-note drift, and test-integrity gaps",
+    "created_at": "2026-06-05T12:47:33.243Z",
+    "last_save_at": "2026-11-10T05:46:13.991Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:194ff48eaecf4a8989d43a94792e6a3d6fe069aa88d31efc5b59099cc28d6ce7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7622158b54cb11a3e8d2f45211180731574483d1377dd15d292914a37e9c059c",
+      "plan.md": "e0a30fd07b7e06126ec252600616da3f1cb46da5ffcb99f10f430203c6b411d8",
+      "tasks.md": "a9851c90042211725954ebcf43e6aa0cec3a473b46e2e27301955ab022b085f5",
+      "decision-record.md": "797b136828716dc492bc99d7c7640932a0c3e4c17487b9f57c2098e91b45436c",
+      "implementation-summary.md": "a4e8d0918046506be9869bcec925bd626fa07ff4e3151e2c5e3fc855f5a93a7b",
+      "resource-map.md": "7e069bd32258df35cdf6b7ac0a7d3443e1e0a024c9f4c31b9f65541273ceabb2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

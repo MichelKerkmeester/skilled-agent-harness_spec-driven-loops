@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/012-remove-llama-cpp-residue",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/012-remove-llama-cpp-residue",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022/012 remove llama-cpp",
+      "llama-cpp purge residue",
+      "remove llama-cpp references",
+      "022/012 plan",
+      "022/012 tasks",
+      "022/012 summary",
+      "llama-cpp removal complete"
+    ],
+    "key_topics": [
+      "remove",
+      "llama-cpp",
+      "purge",
+      "residue",
+      "references",
+      "plan",
+      "tasks",
+      "summary",
+      "removal",
+      "complete",
+      "operator",
+      "directive"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/commands/doctor/update.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/types.ts",
+      "shared/embeddings/providers/hf-local.ts",
+      "shared/embeddings/types.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Live Surface",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "rg",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "concise",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "in-flight",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Operator directive: remove all live references to llama-cpp. Runtime code was already purged in arc 016 phases 003/006/007; this packet sweeps the remaining narrative + doc/config residue (11 live files, ~26 line-level edits) so the codebase no longer mentions llama-cpp as a supported provider.",
+    "created_at": "2026-05-23T20:00:00.000000Z",
+    "last_save_at": "2026-11-10T05:46:29.740Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:86efe5faaa21fa2ceb69408055079e619b7d75a4306da7a31749c41480ac9c98",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "028eff97bf635ef85b6fdc96bd046378b45a31e049987e2a903c98d693668bfa",
+      "plan.md": "940004ff79586c7ffb6b77013a41e6a1fd711d635e41cc4cca21ea7f9cedd400",
+      "tasks.md": "b047ae48f69e77283056d26386f4f5a6c233304974460570f14e4e7b76163f11",
+      "implementation-summary.md": "17efcb3faca694f93a27507ed8499949c16e5063853eca5bb6d2956a099f2152"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

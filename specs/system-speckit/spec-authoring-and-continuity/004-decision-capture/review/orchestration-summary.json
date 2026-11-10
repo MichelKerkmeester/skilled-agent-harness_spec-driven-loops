@@ -1,0 +1,27 @@
+{
+  "run_id": "1793649602423-v8rh6g",
+  "loop_type": "review",
+  "spec_folder": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture",
+  "base_artifact_dir": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0
+  }
+}

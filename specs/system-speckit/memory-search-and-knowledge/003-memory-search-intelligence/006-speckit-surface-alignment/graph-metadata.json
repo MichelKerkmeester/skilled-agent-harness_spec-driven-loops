@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence",
+  "children_ids": [
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment/001-false-now-doc-corrections",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment/002-fix-stress-docs",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment/003-stress-and-skillmd-audit",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment/004-recorded-failure-closure",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment/005-manual-test-verification-and-fixes",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment/006-presentation-layer-fixes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "speckit surface alignment",
+      "surface-alignment audit",
+      "Fable review synthesis",
+      "code graph doc audit",
+      "stress and skillmd audit",
+      "recorded failure closure"
+    ],
+    "key_topics": [
+      "speckit",
+      "surface",
+      "alignment",
+      "surface-alignment",
+      "audit",
+      "fable",
+      "review",
+      "synthesis",
+      "code",
+      "graph",
+      "doc",
+      "stress"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Surface Alignment Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Surface Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "recent",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase-parent packet for the 028 surface-alignment audit, Fable review narrowing, audit remediation phases, inert-novelty detector, and recorded-failure closure.",
+    "created_at": "2026-07-05T13:17:54.481Z",
+    "last_save_at": "2026-11-10T05:47:52.623Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b9f3f23fc3296ecd44259ed4abcf3dd4d626b7c3f8dc286afab31b751714d93a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "176aeeb370ec8df17e754d51e1f88cdbcbf7ac54e7a24207870ecff4bebe0a1f"
+    },
+    "last_active_child_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment/006-presentation-layer-fixes",
+    "last_active_at": null
+  }
+}

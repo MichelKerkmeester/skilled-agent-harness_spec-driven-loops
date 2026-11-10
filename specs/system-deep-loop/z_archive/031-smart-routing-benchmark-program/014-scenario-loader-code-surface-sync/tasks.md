@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm packet-038 scope and branch [small] — spec.md fixes the existing `system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync` packet on branch `system-speckit/028-memory-search-intelligence`
+- [x] T001 Confirm packet-038 scope and branch [small] — spec.md fixes the existing `system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync` packet on branch `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence`
 - [x] T002 Diagnose Lane-C scenario loader path truncation [medium] — loader and live-result parser recognized only `references/`, `assets/`, and `../shared/` prefixes after sk-code moved surface resources under `code-*` packet folders
 - [x] T003 Confirm concrete truncation symptom [small] — a gold entry like `code-animation/references/decision_matrix.md` was parsed as `references/decision_matrix.md`, which neither exists nor matches the corrected router output
 - [x] T004 Capture baseline harness Vitest state [small] — baseline was 1 failed / 104 passed across 105 tests in 7 files, with the known `res.intents` expectation failure

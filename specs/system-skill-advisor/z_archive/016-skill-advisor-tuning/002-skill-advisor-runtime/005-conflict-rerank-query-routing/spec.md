@@ -45,7 +45,7 @@ _memory:
 | **Priority** | P2 |
 | **Status** | complete |
 | **Created** | 2026-06-19 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Packet** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime |
 | **Candidates** | C1 (split-conflict re-rank), QCR (query-class lane-weight router), C6 (cross-lane semantic exact-rerank) |
 | **Status (all)** | Default-off scorer seams implemented in this phase. Packet 030 remains untouched. Live/default promotion remains gated on C1 conflict-edge evidence, QCR held-out routing-quality evidence and benchmark acceptance for any ranking flip |

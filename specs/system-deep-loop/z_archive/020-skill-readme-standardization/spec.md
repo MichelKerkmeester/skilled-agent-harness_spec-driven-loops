@@ -31,7 +31,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-06-07 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | `system-deep-loop` |
 | **Parent Packet** | `system-deep-loop` |
 | **Handoff Criteria** | Each child phase remains complete and validates independently; this parent validates under recursive phase-parent policy |

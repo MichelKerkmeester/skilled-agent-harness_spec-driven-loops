@@ -58,7 +58,7 @@ Phase 003 cleans up places that advertise standalone `deep-context` after phase 
 | **Priority** | P1 |
 | **Status** | Validated |
 | **Created** | 2026-07-04 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 3 of 4 |
 | **Predecessor** | `../002-public-redirect-and-replacement-contracts/spec.md` |

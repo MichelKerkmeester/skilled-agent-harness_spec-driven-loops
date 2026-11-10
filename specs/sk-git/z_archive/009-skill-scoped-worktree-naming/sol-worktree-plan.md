@@ -68,7 +68,7 @@ These six are ancestors of `origin/skilled/v4.0.0.0` and are not checked out in 
 ```text
 system-speckit/023-esm-module-compliance
 system-speckit/024-compact-code-graph
-system-speckit/026-graph-and-context-optimization
+system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization
 wt/0030-underscore-migration
 wt/0031-sk-doc-foundation
 wt/0032-skills-group2
@@ -144,7 +144,7 @@ Each is active/uncertain until its HEAD containment, dirty state, and owner are 
 | `backup/primary-v4-97c3a7b330` | 14 | no worktree; no upstream | Highest orphan risk: local safety reachability for 14 commits |
 | `backup/primary-working-97c3a7b330` | 15 | no worktree; no upstream | Highest orphan risk: local safety reachability for 15 commits |
 | `fix/create-benchmark-audit-remediation` | 1 | primary checkout; remote upstream | Current dirty/concurrent work plus one commit |
-| `system-speckit/027-xce-research-based-refinement` | 1 | no worktree; remote upstream | One commit; remote containment must be verified |
+| `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` | 1 | no worktree; remote upstream | One commit; remote containment must be verified |
 | `wip/stage1-goal-hardening` | 2 | no worktree; no upstream | Local reachability for two commits |
 | `work/opencode/20260710-092819-30688` | 2 | wrapper worktree; no upstream | Two session commits |
 | `wt/0001-mcp-front-proxy` | 4 | registered worktree; remote upstream | Four commits plus any uncommitted work |
@@ -474,7 +474,7 @@ Candidates:
 candidates=(
   system-speckit/023-esm-module-compliance
   system-speckit/024-compact-code-graph
-  system-speckit/026-graph-and-context-optimization
+  system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization
   wt/0030-underscore-migration
   wt/0031-sk-doc-foundation
   wt/0032-skills-group2

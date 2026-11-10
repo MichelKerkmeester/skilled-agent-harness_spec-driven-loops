@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence",
+  "parent_id": "system-speckit/memory-search-and-knowledge",
+  "children_ids": [
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/004-review-remediation",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 memory search intelligence",
+      "028 phase parent topology",
+      "memory retrieval improvements",
+      "028 topology aliases",
+      "028 continuation state",
+      "028 topology handover",
+      "028 six parent topology",
+      "resume 028 root governance",
+      "028 alias recovery"
+    ],
+    "key_topics": [
+      "memory",
+      "search",
+      "intelligence",
+      "phase",
+      "parent",
+      "topology",
+      "retrieval",
+      "improvements",
+      "aliases",
+      "continuation",
+      "state",
+      "handover"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "handover.md",
+      "context-index.md",
+      "scratch/topology-migration-manifest.json",
+      "001-release-cleanup/spec.md",
+      "002-speckit-memory/spec.md",
+      "003-spec-data-quality/spec.md",
+      "004-review-remediation/spec.md",
+      "005-dark-flag-graduation/spec.md",
+      "006-speckit-surface-alignment/spec.md",
+      "scratch/topology-migration-log.md",
+      "003-spec-data-quality/implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.md",
+        "kind": "doc",
+        "path": "context-index.md",
+        "source": "derived"
+      },
+      {
+        "name": "topology-migration-manifest.json",
+        "kind": "config",
+        "path": "scratch/topology-migration-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "topology-migration-log.md",
+        "kind": "doc",
+        "path": "scratch/topology-migration-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Search Intelligence Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Speckit Alignment Audit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Status Converged",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Added",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Threads",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Handover",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Applied Six",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Topology",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Transfer",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "For Next Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 028 accumulated memory-search, data-quality, release, review, flag-governance and surface-alignment work at the root",
+    "created_at": "2026-06-16T14:27:21.650Z",
+    "last_save_at": "2026-11-10T05:47:30.016Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:666d5418572b35fdadde23f61851979c8e154012a6a71215d66b01193513e881",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f8e19ff4a6703980e54665b3a0e0917ffdad84e241a9408fbc0caf48aacc2915",
+      "research/research.md": "da8def41bc584ead7571cd74ba3878c4fccf33d3a2eeb296a077210411601c0a",
+      "handover.md": "67fa0d46d80516c800c38b55a03b5db3f3ac86ce5096e9c296c3e8ae6dfa1823"
+    },
+    "last_active_child_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup",
+    "last_active_at": "2026-07-12T12:17:45.676Z"
+  }
+}

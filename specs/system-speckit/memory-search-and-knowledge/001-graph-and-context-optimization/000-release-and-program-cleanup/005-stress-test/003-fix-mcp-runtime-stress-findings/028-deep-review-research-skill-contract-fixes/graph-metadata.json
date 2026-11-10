@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/028-deep-review-research-skill-contract-fixes",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/028-deep-review-research-skill-contract-fixes",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028-deep-review-research-skill-contract-fixes",
+      "deep-review iteration commit",
+      "deep-review pt-01 branching",
+      "resolveArtifactRoot flat first",
+      "028-deep-review-research-skill-contract-fixes plan",
+      "028-deep-review-research-skill-contract-fixes tasks",
+      "028-deep-review-research-skill-contract-fixes complete",
+      "028-deep-review-research-skill-contract-fixes resource map"
+    ],
+    "key_topics": [
+      "028-deep-review-research-skill-contract-fixes",
+      "deep-review",
+      "iteration",
+      "commit",
+      "pt-01",
+      "branching",
+      "resolveartifactroot",
+      "flat",
+      "first",
+      "plan",
+      "tasks",
+      "complete"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+      "shared/review-research-paths.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-research-paths.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Research Skill Contract Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Configuration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two contract violations in the deep-review/deep-research skill output:",
+    "created_at": "2026-04-29T09:50:00.000Z",
+    "last_save_at": "2026-11-10T05:46:07.524Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:2f6cb114723b6baea1236234748ccb2988fa0a180eed50f57c1b2916bd45739c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "df080d7e60aa72379756611e3acf8235b1ddd078ba04d1bca9446e3d6011d91b",
+      "plan.md": "972d4034e2c4a240392a6374cf2a9077140a6d7e4da44acdc07edc49ccc16ac2",
+      "tasks.md": "51095253d08af2a7d5608a87b97ddd2ea37f776234ca7a104c0df40957ded997",
+      "implementation-summary.md": "fdafa45d30a9be2d4579066f0cdc9f92fa39681e2617b84e6ef14dacd3ceb0c1",
+      "resource-map.md": "e474a23bc092079ae0beb28d53c51d2087bfa3812cf5767d76d5d47e6ad7d566"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

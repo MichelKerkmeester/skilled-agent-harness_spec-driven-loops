@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The codebase had blurred ownership between build-time and CLI tooling in root `scripts/` and runtime concerns in `mcpserver/`",
     "created_at": "2026-04-12T09:02:50.240Z",
-    "last_save_at": "2026-10-07T20:33:10.640Z",
+    "last_save_at": "2026-11-10T05:49:04.317Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:1f8d341b4a50235a8d83c8e3dbe9dd154e0c09b7dbfa16e84d8431775e9cee25",
+    "source_fingerprint": "sha256:67010a9577bfa5d1216f13cf7b8499970027c2634f46e35c600542cfcda64b03",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8d3fa499262b790c72443609399262e138a3b1a049928de55555258b33b58e5d",
@@ -219,7 +219,7 @@
       "tasks.md": "f3a1d8ecee16b7378c1d8fe8d40ad5b90ebcca656e6112dd025be10263a8c723",
       "decision-record.md": "ed21c41fa5b63b37dd881b97baaad66f0f68bd0df574138f970929107ab27dae",
       "implementation-summary.md": "1c3cb7c2128baa7ca10e935283977f7c0eab7ae4a8a2c4dcd1b3a1de4b043514",
-      "research/research.md": "b3a62bb66b9b6c3cdfc69eab25ca7e6717467098e16d5c8c7d9c941a01b07c45"
+      "research/research.md": "9d6782e16229783a67d483d71f72359beede7786f0f529a91c29ec31eed5c6be"
     },
     "last_active_child_id": null,
     "last_active_at": null

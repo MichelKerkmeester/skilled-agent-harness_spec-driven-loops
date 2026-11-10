@@ -46,7 +46,7 @@ _memory:
 | **Level** | 2 |
 | **Status** | Complete |
 | **Completed** | 2026-06-24 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory db SQLITE_CONSTRAINT_PRIMARYKEY corruption",
+      "graph-metadata last_save_at churn 634 files",
+      "spec-memory MCP write failure investigation",
+      "infra fix plan memory db graph churn",
+      "infra fix tasks memory db graph churn",
+      "infra investigation summary memory db graph churn"
+    ],
+    "key_topics": [
+      "memory",
+      "corruption",
+      "graph-metadata",
+      "churn",
+      "files",
+      "spec-memory",
+      "mcp",
+      "write",
+      "failure",
+      "investigation",
+      "infra",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Idempotent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Save",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two live-infra issues degrade the spec-memory subsystem",
+    "created_at": "2026-06-08T11:22:12.712Z",
+    "last_save_at": "2026-11-10T05:47:01.849Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:d8f8ef3c976a128c9aa2f402b0e0f2d9f0a7e8c61f237a9aec63f2f6a386c90e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f0c7bac48c1dfcbd739e99f0f878b364eeca6396a3c272fda91f10903ed1726e",
+      "plan.md": "dd49011d7a50ef19b1198302695670327c56aab406b68966550eba0bb7d80a59",
+      "tasks.md": "c339348911e0542a1d5b537a07ce8c3e4f98011eb422227d4aa02da54e8122c4",
+      "implementation-summary.md": "541c7e86ee4b01412e145f3eacf477d87dd1500dfed3e28acaa4382cf7c667c4",
+      "research/research.md": "431c5627a96858e9188fa6312204c4f3d82c9a86db5ee4900cf747ff58a2d30c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

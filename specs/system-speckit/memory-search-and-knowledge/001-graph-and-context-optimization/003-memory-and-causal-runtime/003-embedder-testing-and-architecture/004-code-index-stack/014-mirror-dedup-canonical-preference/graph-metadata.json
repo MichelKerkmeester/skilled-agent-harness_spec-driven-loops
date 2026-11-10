@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/014-mirror-dedup-canonical-preference",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/004/014 mirror dedup",
+      "canonical mirror preference",
+      "cocoindex mirror collapse",
+      "rerank window mirror pollution",
+      "COCOINDEX_CANONICAL_MIRROR",
+      "016/004/014 plan",
+      "mirror dedup plan",
+      "canonical mirror preference plan",
+      "016/004/014 tasks",
+      "mirror dedup tasks",
+      "canonical mirror tasks",
+      "016/004/014 summary"
+    ],
+    "key_topics": [
+      "mirror",
+      "dedup",
+      "canonical",
+      "preference",
+      "cocoindex",
+      "collapse",
+      "rerank",
+      "window",
+      "pollution",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "evidence/phase2-comparison-014-dedup.md",
+      "evidence/phase2-comparison-013-vs-014-delta.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-014-dedup.md",
+        "kind": "doc",
+        "path": "evidence/phase2-comparison-014-dedup.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-013-vs-014-delta.md",
+        "kind": "doc",
+        "path": "evidence/phase2-comparison-013-vs-014-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mirror Dedup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Preference",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "COCOINDEX_CANONICAL_MIRROR",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "same",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Config And Helpers",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Query Integration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bench Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Docs And Validation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Pass",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Preserve Pass",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "defaults",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff No",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Hardens CocoIndex's _dedup_and_rank_hybrid_rows() so the 4 runtime mirrors (.opencode/.codex/.gemini/.claude) collapse to ONE canonical representative before the rerank window is selected. Operator-configurable canonical mirror via COCOINDEX_CANONICAL_MIRROR (default .opencode). Eliminates redundant rerank slots, gives every embedder + reranker a cleaner candidate set, addresses the mirror-pollution failure mode documented in 011/research iter 2 + iter 5. Embedder-agnostic, reranker-agnostic, future-proof for any new mirror that gets added.",
+    "created_at": "2026-05-19T13:10:00.000Z",
+    "last_save_at": "2026-11-10T05:46:32.764Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8996221697fc70c341e887bcd2820de937227984f573cbddbe14beec85866c53",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e44961a3ca84341948f2244f424b9d5423cb27b3236c1df5da3ea5267d404d79",
+      "plan.md": "5fbc23ae80515d1bc1f9b0675b3160985a8559e26bea195bed9eecc377934fa6",
+      "tasks.md": "88907e86f823d789aaba34e175a47381b68e397a3433af0bec545593d1c4ffa0",
+      "implementation-summary.md": "da515e29d3865e44de1e755b831a19462fb4608f4927c47e90beb01ffe91427f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

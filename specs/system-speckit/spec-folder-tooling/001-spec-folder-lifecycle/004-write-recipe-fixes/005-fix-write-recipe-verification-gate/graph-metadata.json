@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/005-fix-write-recipe-verification-gate",
+  "spec_folder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/005-fix-write-recipe-verification-gate",
+  "parent_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fix write recipe verification gate",
+      "the gate told the author to confirm",
+      "fix write recipe verification gate plan",
+      "fix write recipe verification gate tasks",
+      "fix write recipe verification gate implementation summary"
+    ],
+    "key_topics": [
+      "write",
+      "recipe",
+      "verification",
+      "gate",
+      "told",
+      "author",
+      "confirm",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "last"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-write-recipe.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The last line of Step 7 in the spec folder write recipe said to confirm that `git status --short` only includes the intended packet files before commit",
+    "created_at": "2026-09-29T07:19:57Z",
+    "last_save_at": "2026-11-10T05:48:45.221Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:987e7729488c4130ec8cf3becf1c2c8d093a44dc423da0764b04c4795c19b2bd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3fe9a8012147e9a35adf8c704dad946c441e656bc08f22ade6e01bb9bc328bec",
+      "plan.md": "d759f71cb9e3a99543b2707280795071cf286559d6ecae02042fae81e61a84b8",
+      "tasks.md": "5186ef5dbd6834d8e2efe41cc60d579905862262c2b150c5f142a2fda94d9915",
+      "implementation-summary.md": "a1af4316cda03109f9e43558188101a79a075201956b08f94d94ede81bb06f16"
+    },
+    "last_active_at": null
+  }
+}

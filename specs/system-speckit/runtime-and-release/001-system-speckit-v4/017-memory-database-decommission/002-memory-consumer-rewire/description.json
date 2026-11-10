@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire",
+  "description": "427 files reference the memory MCP surface",
+  "keywords": [
+    "files",
+    "reference",
+    "memory",
+    "mcp",
+    "surface"
+  ],
+  "lastUpdated": "2026-09-06T07:09:10.121Z",
+  "specId": "002",
+  "folderSlug": "memory-consumer-rewire",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4",
+    "017-memory-database-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

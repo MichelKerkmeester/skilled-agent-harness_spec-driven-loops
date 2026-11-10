@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/017-phase-reorg-and-renumber",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/017-phase-reorg-and-renumber",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026 wave-4 reorg",
+      "026 phase renumber",
+      "026 close reorganization",
+      "017 phase reorg and renumber",
+      "026 wave-4 reorg plan",
+      "026 phase renumber execution",
+      "026 close reorganization stages",
+      "026 wave-4 reorg tasks",
+      "026 renumber task list",
+      "026 close reorganization checklist"
+    ],
+    "key_topics": [
+      "wave-4",
+      "reorg",
+      "phase",
+      "renumber",
+      "close",
+      "reorganization",
+      "plan",
+      "execution",
+      "stages",
+      "tasks",
+      "task",
+      "list"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "scratch/rename-plan.json",
+      "scratch/baselines/validate-strict-baseline-main.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "rename-plan.json",
+        "kind": "config",
+        "path": "scratch/rename-plan.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate-strict-baseline-main.txt",
+        "kind": "file",
+        "path": "scratch/baselines/validate-strict-baseline-main.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Reorg",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reorganize",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Final",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Preflight",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Execution",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "026 accumulated 17 flat top-level phases through repeated ad-hoc restructures",
+    "created_at": "2026-05-26T16:51:06.296Z",
+    "last_save_at": "2026-11-10T05:47:08.399Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:0fe365f696500a7dd529fc43d80264e7dcb0303f15f21114ed9c41aababad22d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7d1b2202ee61715b77e8f58e820a9d0422b212802f6f0a9d24f18ddc0c36891d",
+      "plan.md": "60a699b89ce143362ea06b2848e139c54e2e94dd295b50c092d8409ee2ec2d5a",
+      "tasks.md": "174940248a7ff56bcb6a6a8b2d998803fb0c499c315bf8203717013945ea5a19"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

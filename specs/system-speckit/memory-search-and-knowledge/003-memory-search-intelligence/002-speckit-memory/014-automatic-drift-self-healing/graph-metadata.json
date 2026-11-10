@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/014-automatic-drift-self-healing",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/014-automatic-drift-self-healing",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "automatic drift self-healing",
+      "query-time existence filtering",
+      "post-commit dirty-paths marker",
+      "orphan sweep backstop",
+      "memory index drift never re-accumulates",
+      "automatic drift self-healing plan",
+      "query-time existence filtering plan",
+      "post-commit dirty-paths marker plan",
+      "orphan sweep backstop plan"
+    ],
+    "key_topics": [
+      "automatic",
+      "drift",
+      "self-healing",
+      "query-time",
+      "existence",
+      "filtering",
+      "post-commit",
+      "dirty-paths",
+      "marker",
+      "orphan",
+      "sweep",
+      "backstop"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/scripts/install-git-hooks.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Automatic Drift Self",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graduate Layer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview All",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Time Existence Filtering",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Git Hook",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status In Progress",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nobody wired any of this machinery to run without a human typing a command, so drift silently",
+    "created_at": "2026-07-09T06:52:38.317Z",
+    "last_save_at": "2026-11-10T05:47:35.909Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:30ebe0ee4cb89c37573f15e24700673a74ad838bea38d59f53be35d3000b0018",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "332cfeb114fe3ecedf99f0925a89cf5cc2787e8d2fe5fbf877897ab8a8bc6e45",
+      "plan.md": "af3193c2a96373bc38073294ddb58500ce5dc69b631bc840a044ae003d08e6d6",
+      "tasks.md": "8319c28918c63f70763f5fa8f2b5077b4b576f03eedd7a6e6e2e3655248477c2",
+      "implementation-summary.md": "376840f309a68afbdff3c7e7185e105b7d42e18805ca7b64c2a855297a9f02af"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

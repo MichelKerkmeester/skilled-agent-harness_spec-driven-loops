@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "manifest goal template",
+      "goal manifest entry",
+      "goal template",
+      "lazy add-on goal",
+      "goal.md.tmpl",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "goal template shipped"
+    ],
+    "key_topics": [
+      "manifest",
+      "goal",
+      "template",
+      "entry",
+      "lazy",
+      "add-on",
+      "tmpl",
+      "packet",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+      "templates/addons/goal.md.tmpl",
+      "templates/spec-kit-docs.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md.tmpl",
+        "kind": "file",
+        "path": "templates/addons/goal.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manifest Entry",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Template",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement There",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "There is no goal document anywhere in the documentation-level contract",
+    "created_at": "2026-08-29T18:09:17Z",
+    "last_save_at": "2026-11-10T05:48:04.341Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:34d90fbdc4026b855d62823c32422178854f08973fa3a105d6871f561ad1cbeb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "54c3c4b6df8e970db45665bd12a5ef661b6c613099a999bce954ea1ea303224b",
+      "plan.md": "3baeba3d5be9c54a937b2863e544b764b432d38fb59671368b9040b591d5f855",
+      "tasks.md": "0bfd695448f4e52237e636b9fa9e7c765618baf99aae251b92592a2d35ed37c4",
+      "implementation-summary.md": "3785e995457c8cdda4dff63cf564a4d295539d87e083eb5bf74d7e12b8f0a37b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

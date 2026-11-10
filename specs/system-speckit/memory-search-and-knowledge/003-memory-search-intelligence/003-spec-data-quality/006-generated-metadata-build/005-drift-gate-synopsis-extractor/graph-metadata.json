@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/005-drift-gate-synopsis-extractor",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/005-drift-gate-synopsis-extractor",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "generated metadata drift gate",
+      "shared synopsis extractor",
+      "derive packet synopsis",
+      "check generated metadata drift",
+      "source doc hashes"
+    ],
+    "key_topics": [
+      "metadata",
+      "drift",
+      "gate",
+      "shared",
+      "synopsis",
+      "extractor",
+      "derive",
+      "packet",
+      "check",
+      "source",
+      "doc",
+      "hashes"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Synopsis Extractor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-kit generated metadata can silently fall out of sync with the docs it summarizes, and nothing proves otherwise",
+    "created_at": "2026-06-27T17:15:42.529Z",
+    "last_save_at": "2026-11-10T05:47:47.037Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b0ecf60420d1225028f289dcafc00d8cf7be81cf8e73c7025f5ca9994769e849",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e5863739b0df35cf583af43b1a3e742ea10ac86005fe889aac09c7e66c9718c0",
+      "plan.md": "cca5ff0369d6c712637994eaf42ff6e486cb700b170867470e8d3f4c49726321",
+      "tasks.md": "14bca120c867d3e4382df4d58575efb0353574514dae727cc478e939717c0433",
+      "implementation-summary.md": "f532946f8b735678d1dcf1016cf87eb5322ff827225654d2172d961556792cd8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

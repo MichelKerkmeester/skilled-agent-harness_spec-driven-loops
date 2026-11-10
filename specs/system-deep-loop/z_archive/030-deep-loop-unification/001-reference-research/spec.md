@@ -41,7 +41,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete (15/20 replicas real; 5/20 substituted per below) |
 | **Created** | 2026-07-08 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 1 of 5 |
 | **Predecessor** | None |

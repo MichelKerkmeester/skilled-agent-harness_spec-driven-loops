@@ -7,7 +7,7 @@ trigger_phrases:
   - "goal objective failures"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Goal Exemplars
@@ -40,7 +40,7 @@ Rubric outcome: FAIL. This is an instruction placeholder, not a sentence that st
 
 ## 3. CRITERION DEPENDS ON OTHER FILES
 
-Excerpt: "Every phase reports its acceptance criteria closeable" (`specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/goal.md:89`)
+Excerpt: "Every phase reports its acceptance criteria closeable" (`specs/system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/goal.md:89`)
 
 Standard: Completion criteria.
 

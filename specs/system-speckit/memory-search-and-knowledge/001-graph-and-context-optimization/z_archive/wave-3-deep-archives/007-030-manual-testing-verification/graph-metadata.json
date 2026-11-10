@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-030-manual-testing-verification",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-030-manual-testing-verification",
+  "parent_id": null,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016 manual testing verification",
+      "code-graph manual testing",
+      "mk-code-index verification",
+      "016 plan",
+      "manual testing verification plan",
+      "016 tasks",
+      "manual testing verification tasks",
+      "016 implementation summary",
+      "manual testing verification results"
+    ],
+    "key_topics": [
+      "manual",
+      "testing",
+      "verification",
+      "code-graph",
+      "mk-code-index",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "results",
+      "packet",
+      "rename"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".claude/mcp.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Layer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rename Smoke Probes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smoke Probe Creation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Production",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Layer",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "co-author",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Playbook Scenarios",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "New Post",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Manual testing verification packet for the mk-code-index rename and post-014 work. Layer-1 execution of every scenario in the manual_testing_playbook plus Layer-2 smoke probes.",
+    "created_at": "2026-05-18T08:15:28.162Z",
+    "last_save_at": "2026-11-10T05:47:07.782Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6995de6994a2b8a40af10ce1c2af6ea9df8d25692223ae800c2f2e0a06bb836c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "777f775442f37aa4a587cbbb559f6e4c9ba5934b6b4fd0d596888d3184cc449a",
+      "plan.md": "9e19480e44588d0708045e4892886c520450ab80b328d57bad79c3206aa147b5",
+      "tasks.md": "47d756f9897a8454c471e14cc26448ecc7ad7f697f9c0bfe8fffd36c9e66f891",
+      "implementation-summary.md": "b27caa85186be8253f19ef67b2cc00fd43dbea40a25a4f4da8230b3ac068e846"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

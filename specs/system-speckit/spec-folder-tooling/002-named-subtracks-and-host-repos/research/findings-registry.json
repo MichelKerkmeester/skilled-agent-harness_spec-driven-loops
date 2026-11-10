@@ -1,0 +1,353 @@
+{
+  "sessionId": "2026-11-07T12:13:10.014Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-which-spec-kit-sites-code-hooks-generators-gates-docs-assume-a-track-sits-dir",
+      "inboxId": null,
+      "text": "Q1: Which spec-kit sites (code, hooks, generators, gates, docs) assume a track sits directly under specs/, beyond the seven already known, and what does each do with a packet inside a sub-track today?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-how-should-a-named-sub-track-be-defined-its-detection-rule-its-own-graph-meta",
+      "inboxId": null,
+      "text": "Q2: How should a named sub-track be defined: its detection rule, its own graph-metadata.json and description.json, parent_id and children_ids on the track and the sub-track, and how ids and numbering work, with flat tracks unchanged?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-what-failing-first-test-plan-proves-sub-track-support-track-roots-refresh-cre",
+      "inboxId": null,
+      "text": "Q3: What failing-first test plan proves sub-track support (track roots, refresh, create, validate, recursive validate, archive, pre-push sweep, repair-derived on move) and proves flat tracks unchanged?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-how-should-a-project-owned-doctor-manifest-entry-for-env-example-work-upstrea",
+      "inboxId": null,
+      "text": "Q4: How should a project-owned doctor manifest entry for .env.example work upstream: the manifest flag, the engine's project-owned status and the setup post-check, compared with Barter's overlay?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-how-should-the-dangling-skilled-specs-link-in-a-vendored-copy-be-fixed-and-ho",
+      "inboxId": null,
+      "text": "Q5: How should the dangling .skilled/specs link in a vendored copy be fixed, and how should a host-repository trigger index be documented, including how the Gate 1 lookup finds it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-which-spec-kit-sites-code-hooks-generators-gates-docs-assume-a-track-sits-dir",
+      "inboxId": null,
+      "text": "Q1: Which spec-kit sites (code, hooks, generators, gates, docs) assume a track sits directly under specs/, beyond the seven already known, and what does each do with a packet inside a sub-track today?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q2-how-should-a-named-sub-track-be-defined-its-detection-rule-its-own-graph-meta",
+      "inboxId": null,
+      "text": "Q2: How should a named sub-track be defined: its detection rule, its own graph-metadata.json and description.json, parent_id and children_ids on the track and the sub-track, and how ids and numbering work, with flat tracks unchanged?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-q3-what-failing-first-test-plan-proves-sub-track-support-track-roots-refresh-cre",
+      "inboxId": null,
+      "text": "Q3: What failing-first test plan proves sub-track support (track roots, refresh, create, validate, recursive validate, archive, pre-push sweep, repair-derived on move) and proves flat tracks unchanged?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-q4-how-should-a-project-owned-doctor-manifest-entry-for-env-example-work-upstrea",
+      "inboxId": null,
+      "text": "Q4: How should a project-owned doctor manifest entry for .env.example work upstream: the manifest flag, the engine's project-owned status and the setup post-check, compared with Barter's overlay?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-5-q5-how-should-the-dangling-skilled-specs-link-in-a-vendored-copy-be-fixed-and-ho",
+      "inboxId": null,
+      "text": "Q5: How should the dangling .skilled/specs link in a vendored copy be fixed, and how should a host-repository trigger index be documented, including how the Gate 1 lookup finds it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q5: How should the dangling .skilled/specs link in a vendored copy be fixed, and how should a host-repository trigger index be documented, including how the Gate 1 lookup finds it?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: How should a project-owned doctor manifest entry for .env.example work upstream: the manifest flag, the engine's project-owned status and the setup post-check, compared with Barter's overlay?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: How should a named sub-track be defined: its detection rule, its own graph-metadata.json and description.json, parent_id and children_ids on the track and the sub-track, and how ids and numbering work, with flat tracks unchanged?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: What failing-first test plan proves sub-track support (track roots, refresh, create, validate, recursive validate, archive, pre-push sweep, repair-derived on move) and proves flat tracks unchanged?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "No strategy key question remains. The no-adjacent-specs vendoring case remains a reported condition rather than a reproduced failure in the mounted trees.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-additional-runtime-assumption-found-in-the-retrofit-reporting-path-trackof-retur",
+      "text": "**Additional runtime assumption found in the retrofit reporting path.** `trackOf` returns the first two path segments [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs:296] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs:298]. A nested packet is consequently grouped as `specs/<outer-track>` in the `byTrack` counters [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs:372]. Its `--track` prefix filter can select a nested sub-track path, but planning and write counts still aggregate under the outer track [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs:318] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs:563] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs:658].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-docs-describe-only-direct-tracks-and-numeric-phase-nesting-search-examples-list-",
+      "text": "**Docs describe only direct tracks and numeric phase nesting.** Search examples list a track, packet and numeric phase-child path, without a named intermediate level [SOURCE: .skilled/commands/speckit/search.md:108]. The implement asset's recursive phase grammar requires numeric slug segments at every phase level [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:116]. The README describes `specs/<track>/<packet>` and puts packet IDs in the track root's `children_ids` [SOURCE: .skilled/skills/system-spec-kit/README.md:227] [SOURCE: .skilled/skills/system-spec-kit/README.md:241]. Those are docs/model gaps for a nonnumeric named sub-track, not evidence that the general document scanner rejects it.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-recursive-discovery-is-already-depth-aware-spec-document-and-graph-metadata-disc",
+      "text": "**Recursive discovery is already depth-aware.** Spec-document and graph-metadata discovery walk child directories recursively until the configured depth guard, so these paths should not be treated as direct-child blockers [SOURCE: .skilled/skills/system-spec-kit/runtime/handlers/spec-doc-discovery.ts:161] [SOURCE: .skilled/skills/system-spec-kit/runtime/handlers/spec-doc-discovery.ts:172] [SOURCE: .skilled/skills/system-spec-kit/runtime/handlers/spec-doc-discovery.ts:183] [SOURCE: .skilled/skills/system-spec-kit/runtime/handlers/spec-doc-discovery.ts:290] [SOURCE: .skilled/skills/system-spec-kit/runtime/handlers/spec-doc-discovery.ts:312].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-track-root-support-is-rooted-at-one-level-the-shared-reader-describes-track-root",
+      "text": "**Track-root support is rooted at one level.** The shared reader describes track roots as direct children of `specs/`, enumerates that directory and includes only immediate numbered children in each track's packet set [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:4] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:38] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:56] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:104] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:125]. Refresh and the pre-push sweep use that reader [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs:72] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs:37] [SOURCE: .skilled/scripts/git-hooks/pre-push:577]. The create helper also skips refresh for a track value containing a slash [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1008] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1012]. A packet beneath `specs/<track>/<sub-track>/` therefore has no independently discovered or refreshed sub-track root today.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-validation-and-archive-traversal-do-not-cross-a-named-segment-the-validation-she",
+      "text": "**Validation and archive traversal do not cross a named segment.** The validation shell loops match only direct `NNN-*` directories [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:183] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:273] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:315]. From the outer track, a nonnumeric sub-track is skipped; validating the sub-track path itself can still see its numbered packet children. The orchestrator exempts only a spec-less directory directly under `specs/`, so a named sub-track is not classified as a track root [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:215] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:221] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1340]. Archive accepts numbered path segments below a top-level track and rejects a named segment; its track lookup also recognizes only the packet directly under the track [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:186] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:194] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:207] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:219]. Thus archive or restore of a nested packet fails the home-path check before the move.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-failing-first-test-plan-start-with-one-fixture-containing-a-flat-packet-a-named-",
+      "text": "**Failing-first test plan.** Start with one fixture containing a flat packet, a named sub-track with a numbered packet, and an empty named directory. Add red assertions that track-root readers omit the nested container, refresh rejects track/sub, create skips refresh for slash-containing track names, the sub-track folder fails the validation exemption, recursive validation omits its packet, and archive/restore rejects its named path segment. Add a commit-view pre-push case that detects nested child drift. Add a repair-derived move case proving parent_id changes when a packet moves into or between sub-tracks. Then prove the empty named directory is not promoted, both metadata levels list only immediate children, archive/restore refreshes the correct containers, and existing flat-track behavior remains byte-for-byte and behaviorally unchanged. The current direct-child boundaries and existing test seams are visible in the reader, refresh, create, validator, recursive validator, archive path checks, and track-root test fixture [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:38] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:104] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs:76] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1012] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:221] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:315] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:219] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts:15] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts:92] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts:334] [SOURCE: barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/005-skilled-harness-support/handover.md:107].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-host-trigger-index-the-generator-already-accepts-repo-root-and-out-and-lookup-ac",
+      "text": "**Host trigger index.** The generator already accepts --repo-root and --out, and lookup accepts --index. Without --index, lookup reads the packaged runtime/data/trigger-index.json. Gate 1 currently omits --index, and /doctor:setup checks freshness against the packaged index. Document host mode using the handover's .speckit-index/trigger-index.json path, have the host repository's Gate 1 invocation pass that path explicitly when enabled, and point the freshness check at the same index. Keep the packaged index as the documented default when host mode is not enabled. Test with a phrase present only in host content, verify the host Gate 1 command finds it, and verify the host --check detects a stale index [SOURCE: barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/005-skilled-harness-support/handover.md:115] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:30] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:31] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:18] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:51] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:267] [SOURCE: AGENTS.md:51] [SOURCE: .skilled/commands/doctor/assets/doctor-setup.yaml:55] [SOURCE: .skilled/skills/system-spec-kit/runtime/data/README.md:13].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-project-owned-doctor-entry-barter-s-overlay-provides-the-requested-pattern-the-e",
+      "text": "**Project-owned doctor entry.** Barter's overlay provides the requested pattern: the .env.example manifest entry has project_owned=true, inspection reports project-owned, planning keeps the host's real file without a link action, and a test verifies the file bytes remain unchanged. Upstream's symlink manifest does not define that entry; its engine reports a real file as local and refuses a real path where a link is required. Add the manifest flag and status/keep behavior upstream, then make the setup or install post-check accept project-owned as a successful state. The current /doctor:setup has five checks but no symlink-engine check, while /doctor:install invokes the symlink check, so the accepting post-check must be added at the actual symlink validation boundary [SOURCE: barter/ai-speckit/skilled/barter-overlays/doctor/symlink-manifest.json:5] [SOURCE: barter/ai-speckit/skilled/barter-overlays/doctor/scripts/symlink-engine.cjs:662] [SOURCE: barter/ai-speckit/skilled/barter-overlays/doctor/scripts/symlink-engine.cjs:874] [SOURCE: barter/ai-speckit/skilled/barter-overlays/doctor/scripts/tests/symlink-engine.test.cjs:416] [SOURCE: .skilled/commands/doctor/assets/symlink-manifest.json:3] [SOURCE: .skilled/commands/doctor/scripts/symlink-engine.cjs:664] [SOURCE: .skilled/commands/doctor/scripts/symlink-engine.cjs:874] [SOURCE: .skilled/commands/doctor/assets/doctor-setup.yaml:53] [SOURCE: .skilled/commands/doctor/assets/doctor-setup.yaml:60] [SOURCE: .skilled/commands/doctor/install.md:74].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-recommended-sub-track-contract-recognize-a-sub-track-only-as-one-named-directory",
+      "text": "**Recommended sub-track contract.** Recognize a sub-track only as one named directory directly under a recognized track root, without its own spec.md, and with at least one immediate numbered packet directory. Do not infer arbitrary named nesting. Give the sub-track both graph-metadata.json and description.json with a distinct sub-track container level. Use its specs-root-relative path, such as track/sub-track, as its stable identity. The parent track lists only its direct numbered packets and sub-track containers in children_ids. A sub-track lists only its direct packets, and its parent_id points to the track. Packets under it use the sub-track path as parent_id. Keep direct flat packets on their existing identity and parent rules. Continue NNN-slug numbering inside the selected track or sub-track directory. This is a design recommendation: the current path identity includes every segment, while parent derivation recognizes only a numbered parent [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:21] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:51] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:56] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts:342] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts:346] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-schema.ts:141] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-schema.ts:152] [SOURCE: barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/005-skilled-harness-support/handover.md:48] [SOURCE: barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/005-skilled-harness-support/handover.md:99] [SOURCE: barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/004-priority-numbering-subtracks/scratch/nested-tracks.md:11] [SOURCE: barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/004-priority-numbering-subtracks/scratch/nested-tracks.md:13]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-recursive-spec-discovery-is-already-depth-aware-spec-document-discovery-descends",
+      "text": "**Recursive spec discovery is already depth-aware.** Spec document discovery descends recursively and warns only when it reaches maxDepth=20. Graph-metadata discovery follows the same recursive guard. These scanners should remain covered as compatible behavior, not be treated as direct-child blockers for named sub-tracks [SOURCE: .skilled/skills/system-spec-kit/runtime/handlers/spec-doc-discovery.ts:31] [SOURCE: .skilled/skills/system-spec-kit/runtime/handlers/spec-doc-discovery.ts:173] [SOURCE: .skilled/skills/system-spec-kit/runtime/handlers/spec-doc-discovery.ts:183] [SOURCE: .skilled/skills/system-spec-kit/runtime/handlers/spec-doc-discovery.ts:302] [SOURCE: .skilled/skills/system-spec-kit/runtime/handlers/spec-doc-discovery.ts:312].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-vendored-specs-link-the-handover-reports-that-the-tracked-skilled-specs-specs-li",
+      "text": "**Vendored specs link.** The handover reports that the tracked .skilled/specs -> ../specs link dangles when a vendor copy omits the host specs directory. In this workspace the link resolves, so the vendor-only failure was not reproduced here. Keep the source checkout's link only where specs is present, and have the vendor export or install step omit or create the alias conditionally. Add a fixture with no host specs directory and one with a real specs directory, and require setup to pass without leaving a broken link in either case. The graph parser also explicitly distinguishes .skilled/specs from a canonical specs root [SOURCE: barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/005-skilled-harness-support/handover.md:114] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts:929].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-a-host-trigger-index-is-not-auto-selected-by-gate-1-the-generator-accepts-repo-r",
+      "text": "**A host trigger index is not auto-selected by Gate 1.** The generator accepts --repo-root and --out, the lookup accepts --index, but its default index path is anchored to the vendored script and the standard Gate 1 instruction supplies no --index. Document host mode with generation into the host's .speckit-index/trigger-index.json and an explicit --index in that host's Gate 1 command. The recursive corpus already covers nested sub-track docs, so this is an index selection/documentation issue, not a sub-track crawl gap. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:30] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:33] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:18] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:51] [SOURCE: AGENTS.md:51] [SOURCE: barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/005-skilled-harness-support/handover.md:115] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:314]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-do-not-assume-repair-derived-recomputes-a-moved-packet-s-parent-resolveparentid-",
+      "text": "**Do not assume repair-derived recomputes a moved packet's parent.** resolveParentId only derives a parent from a numbered segment. When a refreshed parent is null, the merge preserves an existing non-null parent and marks it for review; repair-derived's explicit parent clear handles the archive case only. The move probe in the Barter note is therefore still a required red test, especially moving from a numbered phase parent into a sub-track and between two sub-tracks. The new path's parent_id must be recomputed or the move must fail closed for review; a stale pointer must not pass as repaired. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts:847] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts:853] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts:1736] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts:1739] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:439] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:452] [SOURCE: barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/004-priority-numbering-subtracks/scratch/nested-tracks.md:42]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-make-sub-track-identity-explicit-and-report-unregistered-folders-the-directory-n",
+      "text": "**Make sub-track identity explicit and report unregistered folders.** The directory name plus numbered children is not enough to distinguish an intended sub-track from an accidental folder. The earlier detection proposal needs a declaration rule: require a direct child of a recognized track, no spec.md, a paired description.json and graph-metadata.json, description.json level set to sub-track, and registration in the parent track's children_ids. The current description schema accepts a string level, while graph-metadata has packet-shaped identity fields and no container discriminator. The sub-track identity should be track/sub-track; its description and graph spec folder fields should use that identity; its parent_id should point to the track; and its children_ids should list only immediate numbered packet roots. The track should list its direct packets and declared sub-track containers. Packets inside a sub-track keep their full path identity. Existing parent derivation only recognizes a numbered parent, so packet identity and parent derivation must be extended together. A stray non-numbered folder without the declaration must be diagnosed rather than silently ignored or promoted. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/description/description-schema.ts:31] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/description/description-schema.ts:77] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-schema.ts:136] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-schema.ts:152] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts:342] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/config/spec-doc-paths.ts:345] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts:847] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:56]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-make-symlink-behavior-consistent-in-working-tree-and-commit-views-readworkingtre",
+      "text": "**Make symlink behavior consistent in working-tree and commit views.** readWorkingTreeTracks follows a symlinked track with statSync and marks it symlinked; readCommitTracks skips mode 120000 entries. The pre-push sweep uses the commit view. A nested symlinked sub-track must not be followed or included in one view while absent from the other. Add an explicit skip/diagnostic policy and test both working-tree and commit-view results. Existing tests cover only a symlinked top-level track in the commit view. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:38] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:47] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:65] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:104] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:111] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs:69] [SOURCE: .skilled/scripts/git-hooks/pre-push:576] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts:103]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-the-dangling-skilled-specs-case-remains-a-vendor-only-condition-git-reports-the-",
+      "text": "**The dangling .skilled/specs case remains a vendor-only condition.** git reports the tracked link target as ../specs; both the Skilled checkout and mounted Barter tree currently have the adjacent specs directory, so the no-specs failure was not reproduced. Keep the alias where a host specs root exists, and have vendoring/setup omit or tolerate the link when it does not. Removing the link from the canonical tree without preserving its accepted legacy alias would conflict with the spec-gate root list and repo-root sentinel handling. [SOURCE: barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/005-skilled-harness-support/handover.md:114] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1386] [SOURCE: .skilled/skills/system-spec-kit/shared/workspace/repo-root.mjs:45]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-the-doctor-overlay-behavior-is-concrete-upstream-has-neither-the-entry-nor-post-",
+      "text": "**The doctor overlay behavior is concrete; upstream has neither the entry nor post-install acceptance.** Barter marks .env.example project_owned, reports project-owned, keeps the host file without a link action, and tests that its bytes are preserved. Upstream's manifest lacks the entry, its engine reports a real file as local and refuses it where a link is required. The current doctor install path performs a preflight check and prints write steps for the operator; doctor setup has no symlink-engine leg. Put the flag and keep behavior in the upstream engine, then make the post-install validation accept project-owned as success rather than requiring a link. The expected check can assert status and unchanged bytes without opening any .env file. [SOURCE: .skilled/commands/doctor/assets/symlink-manifest.json:13] [SOURCE: .skilled/commands/doctor/scripts/symlink-engine.cjs:664] [SOURCE: .skilled/commands/doctor/scripts/symlink-engine.cjs:874] [SOURCE: barter/ai-speckit/skilled/barter-overlays/doctor/symlink-manifest.json:5] [SOURCE: barter/ai-speckit/skilled/barter-overlays/doctor/scripts/symlink-engine.cjs:662] [SOURCE: barter/ai-speckit/skilled/barter-overlays/doctor/scripts/symlink-engine.cjs:875] [SOURCE: barter/ai-speckit/skilled/barter-overlays/doctor/scripts/tests/symlink-engine.test.cjs:416] [SOURCE: .skilled/commands/doctor/assets/doctor-setup.yaml:53] [SOURCE: .skilled/commands/doctor/install.md:74]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-the-remaining-direct-path-assumptions-are-prompt-and-documentation-surfaces-not-",
+      "text": "**The remaining direct-path assumptions are prompt and documentation surfaces, not new recursive discovery blockers.** The spec-gate examples and Pi placeholder show only specs/<track>/<NNN-name>; search guidance and the README likewise omit a named intermediate level. retrofit-convention still groups a nested path by its first two segments, so its per-track reporting remains under the outer track. By contrast, spec-document discovery and graph-metadata discovery recurse to the configured depth, and the trigger-index corpus walks directories recursively; those should stay compatibility checks rather than be changed as blockers. The pre-push hook has no separate track parser: it delegates to sweep-track-roots. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:159] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts:12] [SOURCE: .skilled/commands/speckit/search.md:108] [SOURCE: .skilled/skills/system-spec-kit/README.md:241] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs:296] [SOURCE: .skilled/skills/system-spec-kit/runtime/handlers/spec-doc-discovery.ts:161] [SOURCE: .skilled/skills/system-spec-kit/runtime/handlers/spec-doc-discovery.ts:183] [SOURCE: .skilled/skills/system-spec-kit/runtime/handlers/spec-doc-discovery.ts:290] [SOURCE: .skilled/skills/system-spec-kit/runtime/handlers/spec-doc-discovery.ts:312] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:257] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:314] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs:69]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-treat-a-sub-track-as-one-extra-container-level-in-validation-refresh-create-and-",
+      "text": "**Treat a sub-track as one extra container level in validation, refresh, create, and archive.** Recursive validation and track discovery currently enumerate only immediate numbered directories; the validator exempts a root only when its parent is named specs. Archive accepts numbered descendants beneath a track but rejects a named segment, and track_of only recognizes a packet directly under specs/<track>. A sub-track z_archive must be excluded from sub-track discovery and treated as that sub-track's archive. A numbered phase parent inside a sub-track remains one direct packet root in the sub-track's children_ids, with its numbered phases still owned by that parent. create.sh already chooses the next number from the selected SPECS_DIR, so per-sub-track numbering is supported by the current path selection; the slash-containing track value skips metadata refresh, which is the gap to close. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:186] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:315] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:219] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:221] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1340] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:189] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:207] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:219] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1012] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1306] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1463] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1474] [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:80]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-13-add-host-tests-project-owned-env-example-returns-an-accepted-status-and-leaves-b",
+      "text": "Add host tests: project-owned .env.example returns an accepted status and leaves bytes unchanged; vendor fixtures with and without host specs roots leave no dangling .skilled/specs link; a phrase present only in host content is found through the host Gate 1 --index and the default command still selects the packaged index.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-12-add-red-archive-repair-tests-archive-and-restore-a-packet-and-a-numbered-phase-p",
+      "text": "Add red archive/repair tests: archive and restore a packet and a numbered phase parent under the sub-track's z_archive, keep archive directories out of discovery, refresh the correct metadata levels, and repair parent_id when moving into or between sub-tracks.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-11-add-red-create-validation-tests-create-track-track-sub-numbers-from-that-directo",
+      "text": "Add red create/validation tests: create --track track/sub numbers from that directory and refreshes both levels; recursive validation from the outer track reaches the nested phase; validating the sub-track root passes; flat-track numbering and validation remain unchanged.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-10-add-red-track-root-refresh-sweep-tests-outer-metadata-includes-the-sub-track-onc",
+      "text": "Add red track-root/refresh/sweep tests: outer metadata includes the sub-track once, sub-track metadata includes only its immediate numbered packet roots, refresh accepts track/sub, the undeclared folder is reported, and working-tree and commit views treat the symlink the same.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-9-build-one-isolated-fixture-with-an-outer-track-a-flat-packet-a-declared-sub-trac",
+      "text": "Build one isolated fixture with an outer track, a flat packet, a declared sub-track, a numbered phase parent inside that sub-track, its numbered phase child, a sub-track z_archive, an empty undeclared folder, and a symlinked sub-track to an outside fixture.",
+      "addedAtIteration": 3,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 5,
+    "keyFindings": 24,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.55,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

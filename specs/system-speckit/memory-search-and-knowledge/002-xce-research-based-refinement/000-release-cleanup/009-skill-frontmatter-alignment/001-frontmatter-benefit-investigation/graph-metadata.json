@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "frontmatter benefit investigation",
+      "who consumes trigger_phrases",
+      "skill reference frontmatter audit",
+      "frontmatter investigation plan",
+      "consumer audit approach",
+      "frontmatter inventory sweep",
+      "frontmatter investigation tasks",
+      "consumer audit tasks",
+      "frontmatter investigation findings",
+      "no consumer for reference trigger_phrases",
+      "frontmatter contract decision",
+      "frontmatter benefit research"
+    ],
+    "key_topics": [
+      "frontmatter",
+      "benefit",
+      "investigation",
+      "consumes",
+      "skill",
+      "reference",
+      "audit",
+      "plan",
+      "consumer",
+      "approach",
+      "inventory",
+      "sweep"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frontmatter Benefit Investigation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "detailed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Some skill reference and asset docs carry a detailed memory-style frontmatter block (`triggerphrases`, `importancetier`, `contextType`) while most carry only `title` + `description`, and nobody has established whether the detailed block does anything",
+    "created_at": "2026-06-11T05:47:21Z",
+    "last_save_at": "2026-11-10T05:47:09.411Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "source_fingerprint": "sha256:3e98e1cfbcb19e7975e45d46525b550834b730338a79ecd0e217f203b7857d6c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6d827a10ee785e35ece608a9a93b10df65410ecd1bf1758495c185f998681d76",
+      "plan.md": "c9d5c70b801fb12d9b87e3f799402e027042346085707078b8334aa7d11da615",
+      "tasks.md": "d868101fefbc2b30e3e5d62ff53f23b29efeb4d748baab50f88d53a9fe7ea7a1",
+      "implementation-summary.md": "0acd14437807e84e9a45c293cf3a6c5bed371c2f31cf55804b6f81d3f9afa315",
+      "research.md": "8ae73dcb084648780825d965b61d6b1882197e4221beaf88e4722a1bbec262f7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

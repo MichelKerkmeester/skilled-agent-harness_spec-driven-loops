@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/repo-operations",
+  "spec_folder": "system-speckit/repo-operations",
+  "parent_id": "system-speckit",
+  "children_ids": [
+    "system-speckit/repo-operations/001-plugin-scanner-readiness",
+    "system-speckit/repo-operations/002-ci-workflow-efficiency",
+    "system-speckit/repo-operations/003-orphan-sweep-temp-processes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "system-speckit/repo-operations"
+    ],
+    "causal_summary": "Container folder for system-speckit/repo-operations."
+  }
+}

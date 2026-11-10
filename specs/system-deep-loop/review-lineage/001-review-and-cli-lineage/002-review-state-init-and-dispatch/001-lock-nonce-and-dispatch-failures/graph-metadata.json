@@ -55,7 +55,7 @@
       ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-event-dir-binding.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts",
-      "specs/system-speckit/036-open-knowledge-format-adoption/review/review-report.md"
+      "specs/system-speckit/memory-search-and-knowledge/006-open-knowledge-format-adoption/review/review-report.md"
     ],
     "entities": [
       {
@@ -145,7 +145,7 @@
       {
         "name": "review-report.md",
         "kind": "doc",
-        "path": "specs/system-speckit/036-open-knowledge-format-adoption/review/review-report.md",
+        "path": "specs/system-speckit/memory-search-and-knowledge/006-open-knowledge-format-adoption/review/review-report.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "`stepreleaselock` in the review and ai-council workflows passes only `--owner-pid`, but `acquire` stamps a nonce and `release` refuses without it, so the run ends with `released:false` and the lock left on disk",
     "created_at": "2026-10-05T17:03:23Z",
-    "last_save_at": "2026-11-10T05:41:04.466Z",
+    "last_save_at": "2026-11-10T06:05:57.534Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c28341fc474f0535e5b49df1cb9c4738f006cddf3048e99b9ed40435a801d74c",
+    "source_fingerprint": "sha256:347102df180f50441063968d4d76d376ab7b8911bcb5fd337b08f94f8281a2d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cf96dc6075707acef5ce9108e40e45d818cf9a0af794e68d8fd7f62d1055b076",
+      "spec.md": "e46faaf010c105035c9a991163bca1ad03ce2d1f69f88d5d4c515bcc67f23198",
       "plan.md": "2d53d26d2539a887b8edb946cbd844c51796acb97eaa11c1b9ee543305351f3b",
-      "tasks.md": "2795b85845da35b06ccc119559037d4e18a64c7892ee1c4d2bb113f7a509ed71",
+      "tasks.md": "812bfd849e2d19e911fb6b67723f18b4d95c0c7e6926db08f3aed1623e24bc1e",
       "implementation-summary.md": "f4b89c0a1c00b56fb1f9ffd015a307e88efb1c4aa163b7505c045d4ec9ff518e"
     },
     "last_active_at": null

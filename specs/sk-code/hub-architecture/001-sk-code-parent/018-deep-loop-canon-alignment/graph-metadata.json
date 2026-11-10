@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The deep-loop parent hub fails the parent-hub canon with 8 P0 findings and 26 strict invariant failures",
     "created_at": "2026-07-05T05:46:26.719Z",
-    "last_save_at": "2026-11-10T05:20:09.921Z",
+    "last_save_at": "2026-11-10T06:05:53.613Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6285ec7f64a37bcb25da61416247f50b031c228d868788c5c742afb8644fc9c9",
+    "source_fingerprint": "sha256:b4912680cec364dccfe1936f94c5e486201e0a1a0a90eb7549b249059c8cda96",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c91333db23f79aaed2299deecabd03358464835d43a8520241c1f203604d13a3",
+      "spec.md": "88003f56f43649783861e5cb9a0c25a5d418fcaeba534c0612fe47c56f57c422",
       "plan.md": "2ead853b95ab3631f3f45fd4a7025c6593a7eedf7d998db151aa204df4fcb87a",
       "tasks.md": "f0f908ee1eab9e1ad8a7316c8c86665c833f2b7ecb6920c1259923f41a8fd593",
       "implementation-summary.md": "9117ab22bf5a3098cd99d9acdcdbdf6abb20dd0527d0630be30f78913684ebe2"

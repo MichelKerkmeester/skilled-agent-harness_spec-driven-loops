@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/011-z-archive-memory-indexing",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/011-z-archive-memory-indexing",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026/003/011 spec",
+      "z_archive indexing",
+      "memory exclusion fix",
+      "026/003/011 plan",
+      "026/003/011 tasks",
+      "026/003/011 summary",
+      "026/003/011 research",
+      "z_archive propagation audit"
+    ],
+    "key_topics": [
+      "spec",
+      "indexing",
+      "memory",
+      "exclusion",
+      "plan",
+      "tasks",
+      "summary",
+      "research",
+      "propagation",
+      "audit",
+      "un-exclude",
+      "index"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "lib/utils/index-scope.ts",
+      "lib/utils/README.md",
+      "research/deep-research-state.jsonl"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": "lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "lib/utils/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "multiplier",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "stats",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Scan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "W1 — Source fix",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Un-exclude z_archive from memory index. ARCHIVE_MULTIPLIERS already penalizes z_archive content with multiplier 0.1 in scoring; the redundant EXCLUDED_FOR_MEMORY block contradicts that decay design by removing archived content from the index entirely.",
+    "created_at": "2026-05-16T13:35:00Z",
+    "last_save_at": "2026-11-10T05:46:19.541Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:c2697daae8a4367153da0ee9c96c80ab9bb1def68aeaf3424ae8c698bc39d02e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "337e99503296ae4c040d853d3b3074c724ca714b05ae60c3033c4e183dc19f09",
+      "plan.md": "1f870cb69aeb3b3defec52a667aeaafd23d8311d953b62c0e01a2d4307d7a231",
+      "tasks.md": "fdef140e4085674241e5694952d398aa0c429dd4067b6ee23fe7713b8aadd08f",
+      "implementation-summary.md": "b457df97df06aae0108ea5943894a63baf03178b56cf5bc68ac29910b6b4d29b",
+      "research/research.md": "38111184826104ba4941fed45ad757874c131bbc12f0835dcc2179d18bcd691f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

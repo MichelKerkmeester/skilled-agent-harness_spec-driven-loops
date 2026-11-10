@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026/012 resource map template",
+      "resource map template",
+      "path catalog template",
+      "files touched summary",
+      "lean path ledger",
+      "026/012 resource map plan",
+      "resource map plan",
+      "template wiring plan",
+      "026/012 tasks",
+      "resource map tasks",
+      "026/012 implementation summary",
+      "resource map implementation"
+    ],
+    "key_topics": [
+      "resource",
+      "map",
+      "template",
+      "path",
+      "catalog",
+      "files",
+      "touched",
+      "summary",
+      "lean",
+      "ledger",
+      "plan",
+      "wiring"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      ".opencode/skills/system-spec-kit/templates/README.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/templates/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map Template",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Cross",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Workflow Notes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Reviewers, auditors, and successor phases have no quick way to answer \"what files did this packet touch\" without reading implementation-summary end-to-end or diffing git",
+    "created_at": "2026-04-24T00:00:00.000Z",
+    "last_save_at": "2026-11-10T05:46:14.327Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:1ccd81d4aae038f2ce625b81c402cc11e21c714bfc2e757e0a081a06da0113c2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e5c52a121285f8ba0397de2b981e63e908718a4ac48088e16255e1997c07aa76",
+      "plan.md": "49465e50344a9c06c9552af92c8ab75a3f995fde10787661445e4bcdf6e09911",
+      "tasks.md": "ed35593bbf2309d82436f87d82cc88cc4f574e83e9664e3819f95c95bf71d814",
+      "implementation-summary.md": "328754dc6c608db5167a0b5643214798d9b8dcaed188434dbdd41e56e1a30a36",
+      "resource-map.md": "6e81fcafece1ad2af71ab49509b483b056db7bbbccfc4b97c5e81aa224f24c90"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

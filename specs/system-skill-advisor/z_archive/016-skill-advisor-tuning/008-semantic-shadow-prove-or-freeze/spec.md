@@ -50,7 +50,7 @@ This does not change the FREEZE verdict; it hardens it. A net-negative is direct
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-07-07 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Estimated LOC** | ~350 (one additive vitest harness + this spec folder) |
 | **Verdict** | FREEZE (weight 0.05 unchanged; no production code edit) |
 <!-- /ANCHOR:metadata -->

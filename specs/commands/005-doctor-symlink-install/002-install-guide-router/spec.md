@@ -107,7 +107,7 @@ On 2026-10-31 the probe printed no match and `exit=1`. No `/doctor:install` rout
 - The `_routes.yaml` install route, the `/doctor:setup` row, the advisor bridge and the command index. Phase 003 registers the family.
 - The symlink engine and the `/doctor:symlink` router. Phase 001 builds them.
 - Running any printed command. The operator runs each one under its own plan and its own yes.
-- The project-root defect for linked repositories. Packet `system-speckit/037-symlinked-runtime-root` owns it, and the guide prints a fixed caveat instead.
+- The project-root defect for linked repositories. Packet `system-speckit/runtime-and-release/003-symlinked-runtime-root` owns it, and the guide prints a fixed caveat instead.
 
 ### Files to Change
 

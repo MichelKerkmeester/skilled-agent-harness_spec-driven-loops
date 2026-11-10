@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/017-over-engineering-cuts",
+  "description": "Phase 17: over-engineering-cuts",
+  "keywords": [
+    "phase",
+    "over-engineering-cuts"
+  ],
+  "lastUpdated": "2026-11-08T23:39:07.054Z",
+  "specId": "017",
+  "folderSlug": "over-engineering-cuts",
+  "parentChain": [
+    "system-speckit",
+    "047-v4-release-line-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

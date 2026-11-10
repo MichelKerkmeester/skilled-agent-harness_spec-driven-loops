@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "a1 extend quality loop authored",
+      "computeMemoryQualityScore authored docs",
+      "content quality validate rule",
+      "reviewPostSaveQuality spec docs",
+      "authored write surface quality",
+      "a1 extend quality loop authored plan",
+      "computeMemoryQualityScore authored seam",
+      "content quality validate rule plan",
+      "reviewPostSaveQuality workflow seam",
+      "authored write surface quality plan",
+      "a1 extend quality loop authored tasks",
+      "computeMemoryQualityScore seam tasks"
+    ],
+    "key_topics": [
+      "extend",
+      "quality",
+      "loop",
+      "authored",
+      "computememoryqualityscore",
+      "docs",
+      "content",
+      "validate",
+      "rule",
+      "reviewpostsavequality",
+      "spec",
+      "write"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Quality Machinery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Specs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reuse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed No",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A verify-fix-verify quality loop already runs LIVE and default-ON on the memory-save path",
+    "created_at": "2026-06-27T17:15:32.763Z",
+    "last_save_at": "2026-11-10T05:47:41.328Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:99fdc404c375974340e9903804ac9d1384e2becafa96c28b7ce5cd62727fb781",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "29721ac321247d589bc558e74ab09e31a8310a5d8be36d601c6eefbd76045902",
+      "plan.md": "1a02a8731ff125d30e3c368fe4cbf29ff3de140a45389357bbe276193b607e29",
+      "tasks.md": "eb2a492bd4944e452787b5a2fffe3f41525211baf5510b48830dbe97d41b5286",
+      "implementation-summary.md": "ef51ee6ac92446edd1dcebdb05ef4b281619796f220ecc8936e192e6dca189eb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

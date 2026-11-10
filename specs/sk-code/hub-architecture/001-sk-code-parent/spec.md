@@ -157,7 +157,7 @@ All resolved during execution and bound in the phase children:
 - **Review-mode folder naming** — the clean `code-review` form (folder == packetSkillName, no grandfather), matching sk-design. Bound in 002; folded in 005.
 - **Two-axis mapping** — hub-shared surface detection with per-mode activity packets; realized in the 013 two-axis restructure.
 - **`sk-code-review` advisor identity** — retired into the single hub identity (legacy alias kept through 009). Bound in 002; landed in 007.
-- **Dedicated feature branch** — work landed on `system-speckit/028-memory-search-intelligence` per operator direction.
+- **Dedicated feature branch** — work landed on `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` per operator direction.
 <!-- /ANCHOR:questions -->
 
 ---

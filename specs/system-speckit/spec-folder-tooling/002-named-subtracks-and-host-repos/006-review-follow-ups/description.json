@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/006-review-follow-ups",
+  "description": "Phase 6: review-follow-ups",
+  "keywords": [
+    "phase",
+    "review-follow-ups"
+  ],
+  "lastUpdated": "2026-11-08T05:33:40.825Z",
+  "specId": "006",
+  "folderSlug": "review-follow-ups",
+  "parentChain": [
+    "system-speckit",
+    "044-named-subtracks-and-host-repos"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "08-11-26_06-33__closed-the-round-3-and-round-4-review-follow-ups.md"
+  ]
+}

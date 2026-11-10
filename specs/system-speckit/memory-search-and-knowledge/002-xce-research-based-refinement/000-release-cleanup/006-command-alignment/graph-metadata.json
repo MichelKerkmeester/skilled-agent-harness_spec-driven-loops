@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/006-command-alignment",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/006-command-alignment",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command alignment",
+      "027 release cleanup 006-command-alignment",
+      "shipped 027 alignment",
+      "command alignment plan",
+      "027 release cleanup plan",
+      "command alignment tasks",
+      "027 release cleanup tasks",
+      "command alignment implementation summary",
+      "planned release cleanup scaffold"
+    ],
+    "key_topics": [
+      "command",
+      "alignment",
+      "release",
+      "cleanup",
+      "006-command-alignment",
+      "shipped",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "planned",
+      "scaffold"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/commands/speckit/complete.md",
+      ".opencode/commands/speckit/implement.md",
+      ".opencode/commands/speckit/resume.md",
+      ".opencode/commands/doctor/speckit.md",
+      ".opencode/commands/doctor/mcp.md",
+      ".opencode/commands/doctor/update.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "resume.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/resume.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Align",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Inventory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Align",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Align command-doc content accuracy for flags, behavior, and CLI front doors without changing structural router or presentation ownership",
+    "created_at": "2026-06-10T00:00:00Z",
+    "last_save_at": "2026-11-10T05:47:09.179Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1d5f10c90dc2696186b5b8e8e81e814371c3c3b7bb4c8691179bfa8f0b2b5def",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7b5298a9221cfa1c66d07167f805df91a953c248d5bbdc5e2e1007d860ae471a",
+      "plan.md": "742c09706900b679ce14fa698c0707ddcb65f99215ba1862c1a78cce95974d79",
+      "tasks.md": "7804c3c3c36245f6049fa9115146161ea37e150f641ce1e23807ceca586a7d61",
+      "implementation-summary.md": "ee8c7db3bc9c3184ac0f6b6b6e77e8d3f903f344fc209fe404a4b33ff9871880"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

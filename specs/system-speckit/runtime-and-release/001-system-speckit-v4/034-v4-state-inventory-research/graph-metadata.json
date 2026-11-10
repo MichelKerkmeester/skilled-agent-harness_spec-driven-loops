@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/034-v4-state-inventory-research",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/034-v4-state-inventory-research",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4 state inventory research",
+      "changelog draft drift",
+      "what does v4 actually ship",
+      "skill inventory luna deepseek",
+      "release notes evidence",
+      "v4.0.0.0 changelog rewrite",
+      "research lane execution plan",
+      "fanout run two lineages",
+      "luna and deepseek research",
+      "v4 state inventory tasks",
+      "research lane task list",
+      "luna deepseek lane checklist"
+    ],
+    "key_topics": [
+      "state",
+      "inventory",
+      "research",
+      "changelog",
+      "draft",
+      "drift",
+      "actually",
+      "ship",
+      "skill",
+      "luna",
+      "deepseek",
+      "release"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "scratch/launch-research.sh",
+      "scratch/topic.txt",
+      "research/lineages/luna/research.md",
+      "research/lineages/deepseek/research.md",
+      "research/confirmed-drift.md",
+      ".codex/SYNC.md",
+      ".cursor/SYNC.md",
+      ".devin/SYNC.md",
+      "runtime/data/trigger-index.json",
+      ".opencode/bin/skill-advisor.cjs",
+      ".codex/config.toml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "launch-research.sh",
+        "kind": "script",
+        "path": "scratch/launch-research.sh",
+        "source": "derived"
+      },
+      {
+        "name": "topic.txt",
+        "kind": "file",
+        "path": "scratch/topic.txt",
+        "source": "derived"
+      },
+      {
+        "name": "confirmed-drift.md",
+        "kind": "doc",
+        "path": "research/confirmed-drift.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".codex/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Charter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`CHANGELOG-v4.0.0.0.md` in the parent folder was drafted before the memory-database decommission, the runtime rename, the simplification program, the recorded-findings closure and the CI hardening landed",
+    "created_at": "2026-09-08T16:16:33.826Z",
+    "last_save_at": "2026-11-10T05:48:17.124Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:4679d0af0f0cb6fece59d7a0f0afdb4faf33e78ed9c70d057919f0c19336465f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "83d520169cab432f87532a2f279029e6db20dae4e98fb10db9c8cb7f5670191c",
+      "plan.md": "eb7172c74466adff66e6ef191ce03d41609d0ff15da4d2dacc6c01ecea91a42a",
+      "tasks.md": "b3a4b2b441ae593d165a1324ca907c1d81f24c2a5bf346c74a21808ded282ec5",
+      "implementation-summary.md": "19014d51bbdd3755737f533f0df07aa836fc9e8a0866a0b09f9aff80633e1bd8",
+      "research/research.md": "c70be136fefe0d37d457579cd0bfaf69ec6550c04271fe2e3bf0cc9cc7b8f1f3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

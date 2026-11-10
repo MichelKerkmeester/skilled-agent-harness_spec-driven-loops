@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-remaining-priority-findings",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-remaining-priority-findings",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "005-fix-remaining-priority-findings",
+      "P1 P2 backlog",
+      "release polish",
+      "conservative defaults pass",
+      "Tier gamma defaults",
+      "resource map",
+      "005-fix-remaining-priority-findings resource map",
+      "path catalog 005-fix-remaining-priority-findings"
+    ],
+    "key_topics": [
+      "005-fix-remaining-priority-findings",
+      "backlog",
+      "release",
+      "polish",
+      "conservative",
+      "defaults",
+      "pass",
+      "tier",
+      "gamma",
+      "resource",
+      "map",
+      "path"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "remediation-log.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "remediation-log.md",
+        "kind": "doc",
+        "path": "remediation-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Apply",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Surgical Tier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apply Tier",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 046 fixed the release-blocking P0s and a small Tier beta set, but 24 P1",
+    "created_at": "2026-05-18T08:15:52.987Z",
+    "last_save_at": "2026-11-10T05:45:55.533Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:5300511c52c44e770ef9527b0b2b6fc23487c03dc88f5a124a1951440ae3aefb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e456716bd66c1dd66e2dbc2dce3f405fb3d18d11210f2c6931dc9f34d6b16645",
+      "plan.md": "be139f7bd91c58e3419cbc38037d215dca36d2a014af351fb28368c8c415ded8",
+      "tasks.md": "197fb6ed6f922804002a45e7a20f5c5ec5f7f24d59a832b78e619dd2f53093f4",
+      "decision-record.md": "860fa77a9fb2723624d7dd999387fb1cd674d456610392d2687af886a4007069",
+      "implementation-summary.md": "6ae9fcd45d104acea2bf64fe6e72c493cdf3f05efbaecfaf466fab925eb69700",
+      "resource-map.md": "52c89e90a320116dd365701bbcd8f6b5bbfa30c99ef07cd94ecf918901008ccf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

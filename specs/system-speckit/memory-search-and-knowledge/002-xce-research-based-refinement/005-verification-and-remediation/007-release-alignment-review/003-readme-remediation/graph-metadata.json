@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "readme currency remediation",
+      "027 readme drift fix",
+      "track A doc remediation",
+      "readme remediation plan",
+      "track A doc remediation plan",
+      "readme remediation tasks",
+      "track A doc remediation tasks",
+      "readme remediation implementation summary"
+    ],
+    "key_topics": [
+      "readme",
+      "currency",
+      "remediation",
+      "drift",
+      "track",
+      "doc",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "release-alignment",
+      "review"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Currency Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Track",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Restore",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Bring",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Brief Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Accuracy Audit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Track A release-alignment review (`../001-readmes-vs-027/review/findings-all.json`) surfaced confirmed README / code-README staleness: the READMEs lag the code 027 shipped — stale tool counts, removed/renamed features described as present, dead links, and old defaults",
+    "created_at": "2026-06-18T12:41:12.384Z",
+    "last_save_at": "2026-11-10T05:47:29.568Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3ed3f964777cb718df68f5fcb75a4925b9597b1a6927ee2079e459437978c500",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "68be4a898990eaf15dd06e1a57cd1a872edd73c84bda71c944f61fa7a3f98cff",
+      "plan.md": "c767a064ffd8fe447af55b0795cb24986ced8a78152a2c63261b92476a8ce7ae",
+      "tasks.md": "6e0f56abe73bd25bf6dbf88c3f691f33f10c89cc8dc02c4a2d3ef2fb94afc41a",
+      "implementation-summary.md": "83d7514b65e8f8280ba989ed483b0fb7e96aee38ed4e27754582f947435b762a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/004-advisor-hooks-relaunch",
+  "description": "Phase 4: advisor-hooks-relaunch",
+  "keywords": [
+    "phase",
+    "advisor-hooks-relaunch"
+  ],
+  "lastUpdated": "2026-11-08T22:33:49.727Z",
+  "specId": "004",
+  "folderSlug": "advisor-hooks-relaunch",
+  "parentChain": [
+    "system-speckit",
+    "047-v4-release-line-research"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "08-11-26_23-02__deep-research-on-the-advisor-hooks-relaunch.md",
+    "08-11-26_23-33__reopened-under-the-depth-rule-and-cleared-it-at.md"
+  ]
+}

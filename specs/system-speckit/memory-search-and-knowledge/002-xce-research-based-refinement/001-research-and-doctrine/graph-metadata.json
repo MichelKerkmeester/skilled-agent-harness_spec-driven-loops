@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/001-research-and-doctrine",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/001-research-and-doctrine",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement",
+  "children_ids": [
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 research and doctrine",
+      "peck teachings adoption",
+      "gem team agent io contract",
+      "self-check templates",
+      "reviewer benchmark substrate"
+    ],
+    "key_topics": [
+      "research",
+      "doctrine",
+      "peck",
+      "teachings",
+      "adoption",
+      "gem",
+      "team",
+      "agent",
+      "contract",
+      "self-check",
+      "templates",
+      "reviewer"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 027 program drew on external research sources whose doctrine had to be adopted into Spec Kit process and agent surfaces",
+    "created_at": "2026-06-14T00:00:00Z",
+    "last_save_at": "2026-11-10T05:47:11.808Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a938fe9c9c882664e2132d51cbb6fe1cc2a501367f01a752959a8191ac8b4a98",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3992301858fcec4d64318599e4f4b4f470a9b4d06c6c004bb5225ab985b78610"
+    },
+    "last_active_child_id": "001-peck-teachings-adoption",
+    "last_active_at": "2026-06-15T09:09:34.752Z"
+  }
+}

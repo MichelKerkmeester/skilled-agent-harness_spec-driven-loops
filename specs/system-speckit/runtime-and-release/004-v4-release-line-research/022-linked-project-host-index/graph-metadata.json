@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/004-v4-release-line-research/022-linked-project-host-index",
+  "spec_folder": "system-speckit/runtime-and-release/004-v4-release-line-research/022-linked-project-host-index",
+  "parent_id": "system-speckit/runtime-and-release/004-v4-release-line-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "linked project host index",
+      "phase 22 linked project host index",
+      "linked project host index plan",
+      "linked project host index tasks",
+      "linked project host index acceptance criteria",
+      "linked project host index decisions",
+      "linked project host index implementation summary"
+    ],
+    "key_topics": [
+      "linked",
+      "project",
+      "host",
+      "index",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decisions",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "runtime/cli/tests/host-trigger-index.vitest.ts",
+      "runtime/data/README.md",
+      "runtime/cli/retrieval/README.md",
+      "references/retrieval/retrieval-conventions.md",
+      "runtime/cli/retrieval/lib/host-index.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/host-index.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/host-trigger-index.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/data/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "host-trigger-index.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/host-trigger-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/data/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": "references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "host-index.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/lib/host-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "lookup-trigger-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Barter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`defaultIndexPath()` checks only `<caller root>/.speckit-index/`",
+    "created_at": "2026-11-09T13:16:52Z",
+    "last_save_at": "2026-11-10T05:48:29.933Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b08d1c2b4c4be388d7f38465f8e511efc96214252244ea9dde0c375cb6b9358b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0afed6b7ef6e61e59e0f28089bb2baeea7edbd8f94a23c1bc438010b48185d3d",
+      "plan.md": "809cc7abfef9bc3f66224626b7a2c2d48d4f456fa3760d5f0043c4be5b759514",
+      "tasks.md": "140617681076e1473f1a65bf4f0d77215ba7c5d8eecee4eefcb3af44ee9ccc55",
+      "decision-record.md": "a83de8c8473e67286e3ba8692d8d22775e0a6f3a59603c693575e8d9636bc174",
+      "implementation-summary.md": "2f974b224ae00eb77217c003aa615ca89d1bed729ff1265a2071a02d51336550"
+    },
+    "last_active_at": null
+  }
+}

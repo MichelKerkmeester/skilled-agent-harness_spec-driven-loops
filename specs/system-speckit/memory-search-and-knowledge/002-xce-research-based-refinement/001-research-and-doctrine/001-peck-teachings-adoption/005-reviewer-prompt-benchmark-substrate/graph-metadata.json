@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 010",
+      "reviewer prompt benchmark substrate",
+      "reviewer fixture",
+      "reviewer scorer lane b",
+      "SPECKIT_REVIEWER_BENCHMARKS"
+    ],
+    "key_topics": [
+      "phase",
+      "reviewer",
+      "prompt",
+      "benchmark",
+      "substrate",
+      "fixture",
+      "scorer",
+      "lane",
+      "spec-kit",
+      "ships",
+      "verification-discipline",
+      "rules"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".github/workflows/prompt-card-sync.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-card-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/prompt-card-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Prompt Benchmark Substrate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Verdict",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "spec-kit ships verification-discipline rules and gates (the 009 freshness/anti-softening/read-budget rules, the 011 AC-coverage gate) onto reviewer agents and the completion gate, but it has no regression harness that answers \"does this reviewer prompt still catch this known bug class.\" The deep-improvement benchmark Lanes do not cover the reviewer-prompt-vs-expected-verdict shape: Lane B fixtures are function/code-task oracles (`code-task-scorer.cjs` returns a correctness pass-rate, zero verdict lexicon; fixtures carry `{name,args,expect}`, no `expectedVerdict`), and Lane C gold is",
+    "created_at": "2026-06-06T10:22:05.630Z",
+    "last_save_at": "2026-11-10T05:47:12.635Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6cfdca1879baebb8933171449550a209975e5e4b1c59f2bb8a15506398ef3c77",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f9f361350c609f01eabcc59745cd50082a682322bb077f35ffb9713f5cdb09f6",
+      "plan.md": "0f119c4d106ac174e3b406a5a7148cebe9eaaf036cdea158583ecc7e3a74695d",
+      "tasks.md": "9af1ddd90b5d92f8a086c14c6f7857975e0f1778e431a2167fe817bb0be38d8d",
+      "implementation-summary.md": "9bd49d30ec988c991f88fc42dd6538a3606967a9c7448651063eb4ac71356a00"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

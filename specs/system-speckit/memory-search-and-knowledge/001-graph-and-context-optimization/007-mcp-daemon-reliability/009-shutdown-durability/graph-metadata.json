@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shutdown durability",
+      "forwarded launcher signals",
+      "SIGHUP SIGQUIT fatalShutdown",
+      "daemon WAL checkpoint before SIGKILL",
+      "026 007 009 shutdown durability",
+      "shutdown durability plan",
+      "forwarded signal grace plan",
+      "vectorIndex close ordering plan",
+      "shutdown durability tasks",
+      "forwarded signal shutdown tasks",
+      "shutdown durability summary",
+      "SIGHUP SIGQUIT fatalShutdown summary"
+    ],
+    "key_topics": [
+      "shutdown",
+      "durability",
+      "forwarded",
+      "launcher",
+      "signals",
+      "sighup",
+      "sigquit",
+      "fatalshutdown",
+      "daemon",
+      "wal",
+      "checkpoint",
+      "sigkill"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shutdown Durability",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Forwarded Launcher Signals",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ensure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sibling Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 008 made `closedb()` run `PRAGMA walcheckpoint(TRUNCATE)` on graceful close, but the daemon shutdown path still allowed two durability gaps",
+    "created_at": "2026-05-29T13:03:59.425Z",
+    "last_save_at": "2026-11-10T05:46:59.376Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e8310fd767f4cd79335c42775b16b779680a0d34cc42a7906478d263bb526b8d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1114b9fa98067a4fcbf81b0b6e4f8d2db20e6e56b73f7db9e895f17bcdf34bcd",
+      "plan.md": "ec5a94b7d0be009e6c053aaed1a05f5859d9fcbef8e12d1320dd49686cd82e55",
+      "tasks.md": "6d35ea21e265389274743a1403effcf0832f7476abdbdbeba84bce1f4e37bd21",
+      "implementation-summary.md": "d381b2d3783bf5886b863ac2377cfa29877038bbda55c6a0d51de67b6a61b3a1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

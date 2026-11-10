@@ -4,7 +4,7 @@ description: "This scenario validates that the decision-capture kill switch leav
 trigger_phrases:
   - "decision capture kill switch conversation"
   - "decision capture disabled live test"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # decision-capture-kill-switch-conversation -- Decision capture kill-switch conversation
@@ -141,8 +141,8 @@ The check copies any queue JSONL files, consumed.jsonl, nudge files and decision
 
 | File | Role |
 |---|---|
-| specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md section 3 | Kill-switch stage and expected queue and nudge signals |
-| specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md REQ-008 | Kill-switch requirement |
+| specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/plan.md section 3 | Kill-switch stage and expected queue and nudge signals |
+| specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/spec.md REQ-008 | Kill-switch requirement |
 | .skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md | JSON conversation schema and exit outcomes |
 | .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts | Stop nudge text and behavior |
 

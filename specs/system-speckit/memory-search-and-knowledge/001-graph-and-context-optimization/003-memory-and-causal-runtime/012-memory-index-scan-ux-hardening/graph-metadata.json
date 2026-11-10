@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory index scan ux hardening",
+      "memory_index_scan async scan job design",
+      "memory index self-healing orphan reconciliation",
+      "012 memory index scan research packet",
+      "memory index scan ux hardening plan",
+      "012 deep research plan",
+      "memory index scan ux hardening tasks",
+      "012 deep research tasks",
+      "memory index scan ux hardening outcome",
+      "memory_index_scan async scan job recommendation",
+      "012 deep research summary",
+      "memory index scan ux hardening research"
+    ],
+    "key_topics": [
+      "memory",
+      "index",
+      "scan",
+      "hardening",
+      "async",
+      "job",
+      "design",
+      "self-healing",
+      "orphan",
+      "reconciliation",
+      "research",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/resource-map.md",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-state.jsonl",
+      "shared/config.ts",
+      "research/deltas/iter-001.jsonl",
+      "core/config.ts",
+      "research/deep-research-strategy.md",
+      "research/deep-research-dashboard.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "shared/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Design Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Convergence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`memoryindexscan` couples scope discovery, lexical indexing, and synchronous vector embedding inside one MCP request under a global lease",
+    "created_at": "2026-05-31T14:05:03.746Z",
+    "last_save_at": "2026-11-10T05:46:52.355Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:07fd89ba34bbc6c3d947aa5ab80b599ed171ecb7c90e66ea5ed3934b0dea50d9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7d2409879d489ca3e300764fe48323f1558acf6615acfb680464ce8215bfe120",
+      "plan.md": "4a307802413336ae697e08f6785864daa3445faa7f8900a7955ac90e06088cea",
+      "tasks.md": "fd608026ea354c7b81ca6db145ac09119a26f69c25f5bce1f56b1fa07a38cdb2",
+      "implementation-summary.md": "65d5c702bc8e369d789fcbae081385c7507c81afd48bbabcd8e6279f1d062ebc",
+      "research/research.md": "7822a2f29bcb56d3c1a4b82215f0da88a2f3505aea548b75c6a0108899c9c343"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

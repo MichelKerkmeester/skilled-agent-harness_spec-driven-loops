@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/003-router-rewire",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/003-router-rewire",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "003-create-commands 003-router-rewire",
+      "create commands router rewire",
+      "command presentation markdown",
+      "create commands router rewire plan",
+      "command presentation workflow plan",
+      "create commands router rewire tasks",
+      "command presentation tasks",
+      "create commands router rewire complete",
+      "create command thin routers"
+    ],
+    "key_topics": [
+      "003-create-commands",
+      "003-router-rewire",
+      "commands",
+      "router",
+      "rewire",
+      "command",
+      "presentation",
+      "markdown",
+      "plan",
+      "workflow",
+      "tasks",
+      "complete"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Commands",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Router Rewire",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Create Commands",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rewrite",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prepared Planned",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Family Parent",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routers Rewired",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Presentation Asset",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Create Commands needs a scoped router rewire phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
+    "created_at": "2026-06-10T00:00:00Z",
+    "last_save_at": "2026-11-10T05:47:23.991Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:598f4c0ad8fbfaf96fdfcc3c0705d9ca890a0eb01d2659deaa9ff8fec41199dc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "adecdd608e1686c19012f0b3898362dffc596a326d8c6e5f02e84523f8139785",
+      "plan.md": "3f33c166b3ec9949c4a3a73cf3d94840d096778905a5c5fd00aaae3ec6d083b1",
+      "tasks.md": "edc904b6b0faeda2de86207f22afa968d3d19925b84d171c19d2daa867f1964e",
+      "implementation-summary.md": "32f4cadc371b64485df604160e09fa9a302727f797dc72c8e7c895b188f9905d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

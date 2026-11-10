@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "overengineering simplification",
+      "overengineering simplification research lane",
+      "glm research lane spec kit",
+      "overengineering simplification findings",
+      "research lane execution plan",
+      "overengineering simplification lane plan",
+      "reproduction before remediation",
+      "research lane tasks",
+      "lane launch and monitoring",
+      "overengineering simplification lane tasks",
+      "overengineering simplification lane closure",
+      "packet goal"
+    ],
+    "key_topics": [
+      "overengineering",
+      "simplification",
+      "research",
+      "lane",
+      "glm",
+      "spec",
+      "kit",
+      "findings",
+      "execution",
+      "plan",
+      "reproduction",
+      "remediation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/lineages/glm-5-3-flash-overengineering/research.md",
+      "research/confirmed-findings.md",
+      "research/lineages/deepseek-v4-flash-overengineering/research.md",
+      "research/lineages/deepseek-v4-flash-overengineering-r3/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "confirmed-findings.md",
+        "kind": "doc",
+        "path": "research/confirmed-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Thirty",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Charter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Thirty-nine validator rules, a six-runtime hook matrix, hundreds of reference and catalog documents, and root documents that carry spec-kit procedure: the skill has grown by accretion, and the cost in reads, steps and maintenance has never been weighed against what each piece protects",
+    "created_at": "2026-09-06T14:29:33Z",
+    "last_save_at": "2026-11-10T05:48:11.019Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:55a41fe3a75897875a88610614556e0dda1d538b0f8237078a0194dd92ff7389",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7a605cebd28e9836b2e0f08c59d8bef3e7751d4266d4028435fbd5d131701fd1",
+      "plan.md": "7ca0f3a1d4156673b15ecc305a3901093ed0780b5ab109520680a66d675c024c",
+      "tasks.md": "5969b1e0415cf46ae61e58ef17ffb4ed82178cdd5d00797f00b28ccfa8ea72c1",
+      "implementation-summary.md": "ad380d365b72d571d1c1818417f6e4b713e3f36da483da354605ae5915a0bd62"
+    },
+    "last_active_at": null
+  }
+}

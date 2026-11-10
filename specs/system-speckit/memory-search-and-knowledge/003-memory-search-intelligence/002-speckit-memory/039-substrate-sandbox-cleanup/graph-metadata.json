@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/039-substrate-sandbox-cleanup",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/039-substrate-sandbox-cleanup",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "substrate sandbox cleanup",
+      "substrate stress harness",
+      "hermetic code graph db cleanup",
+      "sandbox clean flag",
+      "vitest afterall sandbox reap"
+    ],
+    "key_topics": [
+      "substrate",
+      "sandbox",
+      "cleanup",
+      "stress",
+      "harness",
+      "hermetic",
+      "code",
+      "graph",
+      "clean",
+      "flag",
+      "vitest",
+      "afterall"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Substrate Stress Harness Sandbox Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Best",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The substrate stress harness `run-substrate-stress-harness.mjs` writes its evidence and scratch into `sandbox/24--local-llm-query-intelligence/` at the REPOSITORY ROOT, and nothing cleans it, so every harness run leaves that folder at the repo root",
+    "created_at": "2026-06-23T00:00:00Z",
+    "last_save_at": "2026-11-10T05:47:40.077Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:316e2f3adaefc8492fe9d1fe61f992117dbd1f44ba3853980074e55a7eab728d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c1cf4ba87feeb0713936d69214dee1f930c234ad9af9258743489c175ec58949",
+      "plan.md": "24a572eceff33ebac4138fae7d0cea5cf1d5798fa0a9177d2e02b50e16dcab91",
+      "tasks.md": "2dccf5fab28ed55f6ce7a8aa0a59e1299af587d4d800ae41204f653c62e3b3ea",
+      "implementation-summary.md": "23aa12d5909d2bd25f67a1ecf64442c42980675ac58039d1f52695f3a3021770"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

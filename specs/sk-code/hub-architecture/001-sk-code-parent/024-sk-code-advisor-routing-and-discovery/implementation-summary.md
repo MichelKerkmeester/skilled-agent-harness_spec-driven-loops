@@ -83,7 +83,7 @@ Phase 024 shipped the sk-code-local, advisor-scorer-independent Layer 1 routing 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The packet shipped in commit `cdc51fc894` on branch `system-speckit/028-memory-search-intelligence`. The sk-code smart-routing block was updated first so CWV and accessibility vocabulary fired existing RESOURCE_MAP references rather than inventing new resource paths. Router replay then received word-boundary matching for `lcp`, `inp`, and `cls`, and the skill benchmark scorer was updated so D3 is null/not-applicable when positive-resource gold is empty.
+The packet shipped in commit `cdc51fc894` on branch `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence`. The sk-code smart-routing block was updated first so CWV and accessibility vocabulary fired existing RESOURCE_MAP references rather than inventing new resource paths. Router replay then received word-boundary matching for `lcp`, `inp`, and `cls`, and the skill benchmark scorer was updated so D3 is null/not-applicable when positive-resource gold is empty.
 
 The documentation and artifact layer was reconciled in the same increment. The sk-doc parent-hub schema example was refreshed to the current sk-code surface-primary model, two cross-stack playbooks were repaired to point at real expected-asset paths, sk-code `benchmark/2026-06-01--router-final--router` was regenerated as its README-documented current folder, and sk-design plus deep-loop-workflows wrote `after-d3-proxy/` sibling reports instead of overwriting frozen baselines.
 

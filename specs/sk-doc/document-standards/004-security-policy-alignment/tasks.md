@@ -34,7 +34,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read commit `b0f89ee5f0` and its packet `system-speckit/035-plugin-scanner-readiness` and record the history (spec.md)
+- [x] T001 Read commit `b0f89ee5f0` and its packet `system-speckit/repo-operations/001-plugin-scanner-readiness` and record the history (spec.md)
 - [x] T002 Route through sk-doc, resolve the README rule set as the closest standard and read the Human Voice Rules (SECURITY.md)
 - [x] T003 [P] Capture the baseline: validator exit 1, DQI 86, HVR ceiling 99 (SECURITY.md)
 <!-- /ANCHOR:phase-1 -->

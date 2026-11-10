@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Two sk-code discovery scenarios failed because the references they needed already existed in `sk-code/shared/references/smartrouting.md` RESOURCEMAP, but the prompts did not fire the intents that map to those references",
     "created_at": "2026-07-06T09:31:15.780Z",
-    "last_save_at": "2026-11-10T05:20:10.038Z",
+    "last_save_at": "2026-11-10T06:05:53.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df53a078e1a57b312032dd1d79d8365b038b3cb3241e385a2b673d1ba374f790",
+    "source_fingerprint": "sha256:c759ec2e9ac8900046259a12f890ca784d1e1c9e16930cb8201568dbd99b3626",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7bd6efbc31c1e893024b8ce5a75e0e482c9cf8eb501659381376077be6288832",
+      "spec.md": "c3105b11ee960d0b7205ccfe19c033d9bb3c181554de7382b4bbb0354f8e6f09",
       "plan.md": "e739c03a34e2f7be780eb42122f11ace7b7c4916c655b8f95c85445b5b3d3a34",
       "tasks.md": "30cda2b41fa25c5a900e463aae18f3e121a2a9a1d13bf75ad58ee922b5da8e2e",
-      "implementation-summary.md": "34e0b0efb501c59104557df7a9bc3a73a652ae766766598a9dcb378a005b9e30"
+      "implementation-summary.md": "f5e042444f50f98c3c0a234514ae7b0185667df008e5161843458552f4ebe5a3"
     },
     "last_active_child_id": null,
     "last_active_at": null

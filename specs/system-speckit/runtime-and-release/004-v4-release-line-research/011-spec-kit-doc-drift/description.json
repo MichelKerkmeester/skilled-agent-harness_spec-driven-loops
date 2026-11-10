@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/011-spec-kit-doc-drift",
+  "description": "Phase 11: spec-kit-doc-drift",
+  "keywords": [
+    "phase",
+    "spec-kit-doc-drift"
+  ],
+  "lastUpdated": "2026-11-08T23:39:02.828Z",
+  "specId": "011",
+  "folderSlug": "spec-kit-doc-drift",
+  "parentChain": [
+    "system-speckit",
+    "047-v4-release-line-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

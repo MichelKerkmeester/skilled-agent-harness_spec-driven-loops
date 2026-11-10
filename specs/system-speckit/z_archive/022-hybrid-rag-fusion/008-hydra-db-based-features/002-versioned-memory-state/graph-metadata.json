@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The current Memory MCP server stores valuable history and conflict information, but it does not expose a first-class lineage model that guarantees immutable state transitions and deterministic temporal reads",
     "created_at": "2026-04-12T09:02:50.260Z",
-    "last_save_at": "2026-10-07T20:25:25.827Z",
+    "last_save_at": "2026-11-10T05:49:07.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85159b3303d0bda2d95bce014e35fc6d3f2593b341b9ce965082d21e4c9063bf",
+    "source_fingerprint": "sha256:843d28cf34c69ea4db4e4836622499acd9a0ad3e2acb74328a67b15769e2029b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e1c5fc1cac3c2811e0e5bcf2b9f90b5a17a2ecb9fd9c999d5064adb2e9702f95",
+      "spec.md": "7e29618d79c65a78956433c4dd92711011f5dcd8b1814035876443d54b534207",
       "plan.md": "7c55654467c99e29906a569508791abe8fa2b5b25df7bfe7c370c0f95518635a",
       "tasks.md": "bf3a168059ed28348b8374622612e59123834208483fc3e70dc4e8e9dd61179c",
       "decision-record.md": "f1bd3bcfd55698925e974829f380fca5eee5c4db07810f0d221148e90ba90f6c",

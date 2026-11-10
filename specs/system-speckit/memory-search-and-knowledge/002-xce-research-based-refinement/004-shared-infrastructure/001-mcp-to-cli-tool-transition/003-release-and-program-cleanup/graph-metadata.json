@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-release-and-program-cleanup",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-release-and-program-cleanup",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 release and program cleanup",
+      "004 release-and-program-cleanup",
+      "cli transition doc cleanup",
+      "post-release alignment 028",
+      "028 release cleanup plan",
+      "004 release-and-program-cleanup plan",
+      "cli transition doc cleanup plan",
+      "028 release cleanup tasks",
+      "004 release-and-program-cleanup tasks",
+      "cli transition doc cleanup tasks",
+      "028 release cleanup result",
+      "004 release-and-program-cleanup result"
+    ],
+    "key_topics": [
+      "release",
+      "program",
+      "cleanup",
+      "release-and-program-cleanup",
+      "cli",
+      "transition",
+      "doc",
+      "post-release",
+      "alignment",
+      "plan",
+      "tasks",
+      "result"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/bin/README.md",
+      ".opencode/bin/lib/README.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-skill-advisor/SKILL.md",
+      ".opencode/skills/system-skill-advisor/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Program Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Sweep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Verification",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "any",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "operator",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 028 program shipped three dual-stack CLIs (`spec-memory`, `code-index`, `skill-advisor`) over the existing daemons, warm-only hook fallbacks for Claude Code and Codex, OpenCode plugins (including the previously missing `mk-spec-memory.js` and the CLI-backed `mk-code-graph.js` bridge repair), and a family of new environment variables",
+    "created_at": "2026-06-10T00:00:00Z",
+    "last_save_at": "2026-11-10T05:47:21.644Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:28c624dce786cb723bf13b42c8e138b37c90c657e7b5a0d15b7a6236675c168b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7674bc328ae0f76d96522545d9a8192269b75ed886447a3249b117a8ec48d350",
+      "plan.md": "d10746965fcd8162d5926136d173d0cee6731974168741ad0ca942a54ca42f57",
+      "tasks.md": "dfc2e9bbbcdb4092fd624d8efef30bc8f9b6cf61af4848f184a050a8e067ac16",
+      "implementation-summary.md": "e5724a87fb1f1d0655d3f1fc9854958e2e26bab64ab2c6fcfcf8f07ae2d384cf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

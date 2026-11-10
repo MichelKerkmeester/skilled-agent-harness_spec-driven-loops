@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/007-019-doc-and-runtime-migration",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/007-019-doc-and-runtime-migration",
+  "parent_id": null,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph doc migration",
+      "category 22 split",
+      "system-code-graph docs",
+      "phase 005 doc and runtime migration",
+      "code graph doc migration plan",
+      "code graph doc migration tasks",
+      "code graph extraction 005-doc-and-runtime-migration summary"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "doc",
+      "migration",
+      "category",
+      "split",
+      "system-code-graph",
+      "docs",
+      "phase",
+      "runtime",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Split",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reference Updates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cross-skill",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Doc",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 003 and 004 moved the code-graph source and rewired imports, but the authored documentation and runtime guidance still describe code graph as part of `system-spec-kit`",
+    "created_at": "2026-05-14T08:21:27Z",
+    "last_save_at": "2026-11-10T05:47:05.515Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-14T08:21:27Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:031d8816e03bd3a8657edbae4dc2a1ff22102c49cf1387574c88b576798533f6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5263ee1c2d7f3ca9e22a56d26d4bbe77c3b67ddb38dd51650b3b0e2ba8f65b42",
+      "plan.md": "8d5771d62966a4dfe26d9cbb8bb322c699dcf041c30e07c08537670877c55764",
+      "tasks.md": "c2237800db4ec1bb87074739d1e72825388610ab811d7027940a5537b4791c06",
+      "implementation-summary.md": "494db646e52eef40fb07ae65eca3ae73d2419df7aae42482d32f58e46c23ed80"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

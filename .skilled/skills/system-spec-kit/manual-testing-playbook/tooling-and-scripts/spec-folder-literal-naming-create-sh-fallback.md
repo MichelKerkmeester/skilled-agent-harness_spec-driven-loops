@@ -1,7 +1,7 @@
 ---
 title: "PHASE-006 -- Spec-folder literal naming (create.sh fallback)"
 description: "Validate that create.sh emits a PROVIDE-DESCRIPTIVE-SLUG placeholder and a stderr warning for each phase child when --phase-names is omitted, per Packet 012 REQ-003 and REQ-004."
-version: 1.6.0.4
+version: 1.6.1.0
 id: tooling-and-scripts-spec-folder-literal-naming-create-sh-fallback
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -144,7 +144,7 @@ Exit code from step 1: `0`
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Originating spec packet: [Spec-folder naming guard](../../../../specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard/)
+- Originating spec packet: [Spec-folder naming guard](../../../../specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard/)
 
 Provenance: manual only - /tmp/speckit-stderr-$$.log
 

@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-024-mcp-tool-rename-mk-code-index",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-024-mcp-tool-rename-mk-code-index",
+  "parent_id": null,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "010 mcp tool rename mk code index",
+      "rename system code graph mcp to mk code index",
+      "mcp__mk_code_index code graph namespace",
+      "mk-code-index launcher",
+      "010 mcp tool rename mk code index plan",
+      "mk-code-index rename plan",
+      "010 mcp tool rename mk code index tasks",
+      "mk-code-index rename tasks",
+      "010 mcp tool rename mk code index summary",
+      "mk-code-index rename complete"
+    ],
+    "key_topics": [
+      "mcp",
+      "tool",
+      "rename",
+      "code",
+      "index",
+      "system",
+      "graph",
+      "namespace",
+      "mk-code-index",
+      "launcher",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".claude/mcp.json",
+      "opencode.json",
+      ".opencode/commands/doctor/_routes.yaml",
+      ".opencode/commands/doctor/update.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "opencode.json",
+        "kind": "config",
+        "path": "opencode.json",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tool Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Configs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The extracted code-graph MCP server was registered as `systemcodegraph`",
+    "created_at": "2026-05-14T17:29:04Z",
+    "last_save_at": "2026-11-10T05:47:06.151Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7e987a9e0edba90bf38cbc6c3b7456b3ef5da2d168015a0945e08fe2b47c080d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2eb1d5c9b062e939a58de71ec1aa41561e5e36b8802b59a77c709a878cdc7303",
+      "plan.md": "0ab47568eeb597786f861107d6faac074444c059f0156b6cb8e8253c2d987819",
+      "tasks.md": "f34a8a8b8096cce3c28a53eee488c62db806e7d56757600c2c163d3da40a3e5c",
+      "implementation-summary.md": "c0cb2b0825ff0a823c2948cecce6475bdfaa6e916d5f89dd9d1b0da285cc4dfa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "arc 010 003 003 sidecar-client p1",
+      "F18 F20 F25 F57 F62 F73 F91 remediation",
+      "arc 010 003 003 plan",
+      "sidecar-client p1 constructor helpers plan",
+      "arc 010 003 003 tasks",
+      "sidecar-client p1 constructor helpers tasks",
+      "arc 010 003 003 decision record",
+      "arc 010 003 003 summary",
+      "sidecar-client p1 implementation summary"
+    ],
+    "key_topics": [
+      "arc",
+      "sidecar-client",
+      "f18",
+      "f20",
+      "f25",
+      "f57",
+      "f62",
+      "f73",
+      "f91",
+      "remediation",
+      "plan",
+      "constructor"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Client Constructor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Invariants Enforced",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Scaffold",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Registry",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Helper Fixes",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Constructor Option Split",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sidecar-client.ts` retained several P1 issues from arc 010/001 deep research: production constructor options still blurred into test-only knobs (F18), `EmbedOptions` existed twice (F20), trivial single-call helper indirection hid the flow (F25), termination still split signal/exit sequencing across duplicate paths (F57), response handling used unsafe post-parse assertions instead of discriminator narrowing (F62), `ready()` had no production role in the sidecar execution path (F73), and `embed()` validation was a nested cascade (F91)",
+    "created_at": "2026-05-26T16:49:55.587Z",
+    "last_save_at": "2026-11-10T05:46:45.702Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4344453e6d5fb2607216a847eecd5fa39e28dbde1bdb3cc0b5e94fe88cbd38df",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "67e1d41a6abdf317b189bbc291c20142fb5a8be8f7d9df88e422589c60885ca8",
+      "plan.md": "ee1ddbc5626841d00d8eef3d30af63cbcb118a9098c7e28070e11d34b4f69913",
+      "tasks.md": "cc915c697f4b4767c77877819ecbb7141e05490bfa189de908d13538e306876e",
+      "decision-record.md": "6bea48bea8590ae702939118a1bd2c35c28e73a5bbe1fda9df436ac143ca808a",
+      "implementation-summary.md": "45de3702420d352608106350546910678e04aaf79cc62258bbbd7fbcaeab8e2e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -40,7 +40,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Planned |
 | **Created** | 2026-07-08 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 5 of 5 |
 | **Predecessor** | 004-fallback-router-wiring (optional phase; logical predecessor is 003-external-reference-migration) |

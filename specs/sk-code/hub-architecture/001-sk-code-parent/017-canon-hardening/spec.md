@@ -44,7 +44,7 @@ Phase 017 executed the shared parent-hub canon hardening pass before downstream 
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-07-05 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent** | `sk-code/hub-architecture/001-sk-code-parent` |
 | **Phase** | 017 |
 

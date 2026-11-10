@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/006-speckit-command-integration",
+  "description": "No speckit command reads or updates goal.md",
+  "keywords": [
+    "speckit",
+    "command",
+    "reads",
+    "goal"
+  ],
+  "lastUpdated": "2026-09-11T08:58:43.122Z",
+  "specId": "006",
+  "folderSlug": "speckit-command-integration",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4",
+    "038-goal-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

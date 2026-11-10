@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "provider dispose native ONNX",
+      "invalidateProviderSingleton leak F2",
+      "embedding provider use-after-free gate",
+      "sidecar provider dispose on swap",
+      "provider dispose plan F2",
+      "native run gate dispose plan",
+      "provider dispose tasks F2",
+      "provider dispose summary F2 implemented"
+    ],
+    "key_topics": [
+      "provider",
+      "dispose",
+      "native",
+      "onnx",
+      "invalidateprovidersingleton",
+      "leak",
+      "embedding",
+      "use-after-free",
+      "gate",
+      "sidecar",
+      "swap",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "shared/embeddings/providers/hf-local.ts",
+      "shared/types.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Swap",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`invalidateProviderSingleton()` (`shared/embeddings.ts`) nulls `providerInstance` without calling any dispose, so the outgoing `HfLocalProvider`'s native ONNX/ORT session (held transitively via `extractor.model.sessions[].handler`) is orphaned on every provider swap — the native memory the GC cannot reclaim and `--max-old-space-size` cannot bound (RC-1)",
+    "created_at": "2026-05-28T18:43:48Z",
+    "last_save_at": "2026-11-10T05:46:59.078Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5e181d819a97142996a144b3a93365b92ea561fa934ac8f01610c3ea25b03ebb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "88ffe9f1136f3a39fbb81a258896b4e3f5e6ac7979a3119c35c9cde7456d13f8",
+      "plan.md": "b8bacc11e870b481d3a182aa6d5be0148cdd9ae36e6a0fe07715ee5f4618f0e7",
+      "tasks.md": "2706bf7a6cb7d3c014eca837abc1f4c31985e31263befef6fb505d6847abdd9a",
+      "implementation-summary.md": "af756fbe21459bb3a49c3052e1144926655b3db5a7a9d10d8b76c4502326732f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -199,7 +199,7 @@
     },
     {
       "id": "finding-1-9-part-of-the-diff-is-packet-renumbering-not-format-and-must-be-held-apart-from-th",
-      "text": "**Part of the diff is packet renumbering, not format, and must be held apart from the format rules.** The long spec line names `specs/sk-doc/072-skill-routing-and-clarity`, `specs/agents/021-doctor-agents-md` and `specs/system-speckit/042-decision-capture`; the short one names `specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity`, `specs/agents-md/instruction-surface-integrity/004-doctor-agents-md` and no `042`. Both name `specs/system-speckit/043-decision-capture` and `specs/commands/005-doctor-symlink-install` unchanged, which proves the rest of the difference is a renumber pass. [SOURCE: .skilled/changelog/skilled/v4.0.1.0.md:27]",
+      "text": "**Part of the diff is packet renumbering, not format, and must be held apart from the format rules.** The long spec line names `specs/sk-doc/072-skill-routing-and-clarity`, `specs/agents/021-doctor-agents-md` and `specs/system-speckit/042-decision-capture`; the short one names `specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity`, `specs/agents-md/instruction-surface-integrity/004-doctor-agents-md` and no `042`. Both name `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture` and `specs/commands/005-doctor-symlink-install` unchanged, which proves the rest of the difference is a renumber pass. [SOURCE: .skilled/changelog/skilled/v4.0.1.0.md:27]",
       "addedAtIteration": 1,
       "sources": [
         "`.skilled/changelog/skilled/v4.0.1.0.md:1-196` (short entry at HEAD, `6a93a2cfeb`)",

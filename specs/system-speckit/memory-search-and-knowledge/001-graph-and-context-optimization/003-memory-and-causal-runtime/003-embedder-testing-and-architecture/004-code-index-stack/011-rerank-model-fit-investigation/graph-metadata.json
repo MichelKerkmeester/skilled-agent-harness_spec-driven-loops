@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rerank model fit",
+      "cross-encoder code retrieval",
+      "BGE-reranker v2 m3 fit",
+      "code-tuned reranker investigation",
+      "lexical density rerank failure",
+      "016/004/011 reranker swap research",
+      "016/004/011 plan",
+      "016/004/011 tasks",
+      "016/004/011 summary",
+      "rerank model fit research",
+      "code-aware reranker candidates",
+      "COCOINDEX_RERANK_MODEL candidate survey"
+    ],
+    "key_topics": [
+      "rerank",
+      "model",
+      "fit",
+      "cross-encoder",
+      "code",
+      "retrieval",
+      "bge-reranker",
+      "code-tuned",
+      "reranker",
+      "investigation",
+      "lexical",
+      "density"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rerank Model Fit Investigation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The May",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cohere Rerank",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apple Silicon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "full",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "rationale",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "optional",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "verdict",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Git",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sentence Transformers",
+        "kind": "proper_noun",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hugging Face",
+        "kind": "proper_noun",
+        "path": "research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Investigate whether BAAI/bge-reranker-v2-m3 is the right cross-encoder for code-retrieval queries on a 4-mirror codebase. The May 18 evening instrumented bench surfaced a structural failure mode: the reranker demotes implementations below tests/refs on paraphrase-heavy queries (lexical-cue density rewarded over semantic role).",
+    "created_at": "2026-05-18T19:21:19.316Z",
+    "last_save_at": "2026-11-10T05:46:32.695Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "source_fingerprint": "sha256:e29806f9e84401cea37f50fe2d1047d5e5a8d21c143d52323e395344dbe1d9b0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9cdc2eea8ad659f0e64ca1a632794fa6934e867dc2fcfd02970e17264825c33c",
+      "plan.md": "88bd6503eb138a30d9d2785954d17eb5a0e8d2e91ecd0bc6f691c47ea50f2aee",
+      "tasks.md": "0c6b57582414e7dde294f78e7db291f4b5f9775e60c221fcd84b26e6ec927c0f",
+      "implementation-summary.md": "7a99e6ad4aad0de81279f4059eae3e9b22d9b9f8fb483299432f1e2cd332f7fc",
+      "research.md": "a9c4374f702a4ff79546d5933c42238e84878a68e818c900b16f2c12eb89eb0c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

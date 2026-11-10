@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The chart packet numbered its releases from `v1.0.0.0` and reached `v2.5.0.0`, which reads as two public major versions with a breaking change between them",
     "created_at": "2026-09-10T19:01:41Z",
-    "last_save_at": "2026-10-31T14:04:36.059Z",
+    "last_save_at": "2026-11-10T06:05:57.355Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5105ba8ad2b0e13005beed96285782296637e7c9000fcb49ab584154b079c33a",
+    "source_fingerprint": "sha256:d1495ac519220d20e7cc7c5352cd80d858f5d234934652bb81cad745971bf715",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "88b99c8999b848bcb8cde888bfe5de9819742a3c43abda5d092288d4692d2d5d",
+      "spec.md": "fa61c9d875cb21e9fd68ab6cb0d28efeb73b6f82e5cdbc372999150b7d07ea6c",
       "plan.md": "d2cb8e047b9aedecd575b05857d8475b2949991413373be5d19e355866445a60",
       "tasks.md": "9a26998f28e020c35eaa09872e2355ded714bed381dc4f1b59dcdd7674fab93a",
       "implementation-summary.md": "ba3b0b61133de6617f5cd4ab55353b55bfab0be17186c7cf9f74a8256292b65e"

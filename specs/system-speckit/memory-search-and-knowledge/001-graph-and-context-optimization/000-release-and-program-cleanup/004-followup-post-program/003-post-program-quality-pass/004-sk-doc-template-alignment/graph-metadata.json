@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "037-004-sk-doc-template-alignment",
+      "sk-doc audit",
+      "template alignment 031-036",
+      "DQI compliance",
+      "037/004-sk-doc-template-alignment resource map",
+      "sk-doc template alignment file ledger"
+    ],
+    "key_topics": [
+      "037-004-sk-doc-template-alignment",
+      "sk-doc",
+      "audit",
+      "template",
+      "alignment",
+      "dqi",
+      "compliance",
+      "004-sk-doc-template-alignment",
+      "resource",
+      "map",
+      "file",
+      "ledger"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "audit-target-list.md",
+      "audit-findings.md",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/skills/sk-doc/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-target-list.md",
+        "kind": "doc",
+        "path": "audit-target-list.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-findings.md",
+        "kind": "doc",
+        "path": "audit-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Document",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packets 031 through 036 changed operator documentation, runtime references, matrix-runner README files, matrix prompt templates and packet-local spec docs",
+    "created_at": "2026-04-29T15:41:50.000Z",
+    "last_save_at": "2026-11-10T05:46:02.080Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:4c3f87641e3f3d53f9dd352bd814cf4d6396e256ca5b0bd77f1e29c3e356de92",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cea474c9a3a54b410d7203c925f7149d043592d3702c6da5ce3846346ea9f6db",
+      "plan.md": "45ff95790902f3e6b37af330c32c05487df1931b39547c82228c92cd6c872540",
+      "tasks.md": "918fb215410e43eec7568acb37370f30ead7bd4d15296bcf042b9285111146e1",
+      "implementation-summary.md": "5e757f4bcea0b9c86c3aadd9bca6e84ec940e3a3dd39c233da52be5dfa9f8941",
+      "resource-map.md": "dbd023232955e0ce952ad70902abd75883cfd89981beb37aa4c073df4f09a55b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

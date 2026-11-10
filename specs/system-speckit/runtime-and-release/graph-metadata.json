@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release",
+  "spec_folder": "system-speckit/runtime-and-release",
+  "parent_id": "system-speckit",
+  "children_ids": [
+    "system-speckit/runtime-and-release/001-system-speckit-v4",
+    "system-speckit/runtime-and-release/002-align-runtime-code-with-sk-code-skilled",
+    "system-speckit/runtime-and-release/003-symlinked-runtime-root",
+    "system-speckit/runtime-and-release/004-v4-release-line-research"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "system-speckit/runtime-and-release"
+    ],
+    "causal_summary": "Container folder for system-speckit/runtime-and-release."
+  }
+}

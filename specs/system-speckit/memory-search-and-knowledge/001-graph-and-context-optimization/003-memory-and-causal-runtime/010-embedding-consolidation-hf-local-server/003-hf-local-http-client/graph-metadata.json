@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hf-local HTTP client",
+      "ollama shaped hf-local",
+      "HF_EMBED_SERVER_READY_TIMEOUT_MS",
+      "hf-local HTTP client plan",
+      "hf-local HTTP client implementation plan",
+      "hf-local HTTP client tasks",
+      "hf-local HTTP client rewrite implementation summary"
+    ],
+    "key_topics": [
+      "hf-local",
+      "http",
+      "client",
+      "ollama",
+      "shaped",
+      "plan",
+      "implementation",
+      "tasks",
+      "rewrite",
+      "summary",
+      "currently",
+      "owns"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "shared/embeddings/providers/hf-local.ts",
+      "shared/embeddings/providers/ollama.ts",
+      "shared/embeddings/factory.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Adapter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Adapter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Caller",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "hf-local.ts currently owns in-process transformers execution",
+    "created_at": "2026-05-29T05:06:24.638Z",
+    "last_save_at": "2026-11-10T05:46:49.305Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:df5d53ace9365dd6a193b3b0a37eede04dd2ea70cb8d1fc6f0a8089502858ea4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "affcf98e7790ba3f347df0b3b067d414e810a99c091bbb770f9c8ec81bcdfb61",
+      "plan.md": "7ef1f991f5c6c993267ca2fb3d20c5a0d254e43616b24e1c045ef739efa59895",
+      "tasks.md": "235a807a649a93b0fc0b34b90818d9126a462209b2800594b72a6891f6718501",
+      "implementation-summary.md": "774727ede9fb152d5468e583d4e4750ee722db8fd0570d8764bb833cff35ff63"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

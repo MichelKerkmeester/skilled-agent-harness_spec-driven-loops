@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The current retrieval system can collect useful signals, but it does not turn them into disciplined improvement loops",
     "created_at": "2026-04-12T09:02:50.261Z",
-    "last_save_at": "2026-10-07T20:26:34.674Z",
+    "last_save_at": "2026-11-10T05:49:07.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:960709753e6634a99b11e9d84102aa950a70e2791168bf48d7d5651ff2c37527",
+    "source_fingerprint": "sha256:ae41145dcfd24a3bb62dd7b00981275606e025a941ec7e55e887f5a3225a88b7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ed0460ba355fe25635ea52cb241801e8aa908ddad2773c8d61259ab65b2a4d78",
+      "spec.md": "a44c7ee03b1969f6b173dd20c725aff27673c3d1dd46310e4ec517312d78d992",
       "plan.md": "ac7d6711250ab8feeecfb7d3a9c0ceda22289de0a0dc902b09a0e025958025b9",
       "tasks.md": "8c34485835fdaebccdee802f2089f8f959d7cee22a4dfdf7dae2b4cb621411ab",
       "decision-record.md": "7331c137f3d17b35c642146f0ea328db8cab2c6c8fd0460d565747457a3f25d9",

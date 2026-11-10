@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/002-template-levels",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template greenfield impl",
+      "manifest-driven implementation",
+      "level-contract resolver",
+      "kill level dirs",
+      "012 plan",
+      "template impl phases",
+      "manifest impl plan",
+      "012 tasks",
+      "template impl tasks",
+      "012 ADR",
+      "template impl decisions",
+      "012 outcome"
+    ],
+    "key_topics": [
+      "template",
+      "greenfield",
+      "impl",
+      "manifest-driven",
+      "implementation",
+      "level-contract",
+      "resolver",
+      "kill",
+      "level",
+      "dirs",
+      "plan",
+      "phases"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/agents/orchestrate.md",
+      ".opencode/agents/context.md",
+      ".opencode/agents/debug.md",
+      ".opencode/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/agents/review.md",
+      "review/audit-D-response.md",
+      "review/audit-A-response.md",
+      "review/audit-B-response.md",
+      "review/audit-C-response.md",
+      ".opencode/skills/system-spec-kit/templates/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "debug.md",
+        "kind": "doc",
+        "path": ".opencode/agents/debug.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-D-response.md",
+        "kind": "doc",
+        "path": "review/audit-D-response.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-A-response.md",
+        "kind": "doc",
+        "path": "review/audit-A-response.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-B-response.md",
+        "kind": "doc",
+        "path": "review/audit-B-response.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-C-response.md",
+        "kind": "doc",
+        "path": "review/audit-C-response.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Greenfield Implementation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hybrid Manifest",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Today's spec-kit template system has 86 files / ~13K LOC split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, four materialized `levelN/` outputs, `phaseparent/`, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
+    "created_at": "2026-05-01T12:37:22Z",
+    "last_save_at": "2026-11-10T05:46:16.812Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:a19f42382846f1b61d36f26028a2fd6d797477bfef29baefc6a78e2c5a12d208",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7dda5fc404a9a99c2924cd9c04129765dcf864bfb4d8ffc55e828fa55ec5861b",
+      "plan.md": "3332f46e9911b11f7dc053f6a2adf049cd95e80a1bd797188efa6c37f4292c2a",
+      "tasks.md": "b4c73eab7246c4612d0b81706954a99e1d359f492e975626562b8f9b44032682",
+      "decision-record.md": "fba821f5331c2a8088fdb529d4f208d72131d65f1eaceb0f29f5747c9ecdfbc7",
+      "implementation-summary.md": "f4922e5ce2a3736d314b68f214eb13ad4c2f677335a35bf6be59d6b62c997d20",
+      "resource-map.md": "236928ec17c9a44fc313044a90ffff5fec18fb6fdbc4e2ddab9ce3aa99af89d8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

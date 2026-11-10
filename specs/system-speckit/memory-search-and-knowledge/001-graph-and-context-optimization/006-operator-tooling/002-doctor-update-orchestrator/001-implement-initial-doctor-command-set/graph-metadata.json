@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "010-doctor-update-orchestrator",
+      "doctor update command",
+      "spec kit version migration",
+      "rebuild all databases",
+      "doctor memory",
+      "doctor causal-graph",
+      "doctor deep-loop",
+      "doctor cocoindex",
+      "cross-subsystem health dashboard",
+      "010-doctor-update-orchestrator plan",
+      "doctor command authoring plan",
+      "council 10-line spec"
+    ],
+    "key_topics": [
+      "010-doctor-update-orchestrator",
+      "doctor",
+      "command",
+      "spec",
+      "kit",
+      "version",
+      "migration",
+      "rebuild",
+      "databases",
+      "memory",
+      "causal-graph",
+      "deep-loop"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
+      "resource-map.md",
+      ".opencode/commands/doctor/skill-advisor.md",
+      ".opencode/commands/doctor/deep-loop.md",
+      ".opencode/commands/doctor/update.md",
+      "ai-council/council-report.md",
+      ".opencode/commands/doctor/scripts/audit_descriptions.py",
+      ".opencode/commands/doctor/scripts/mcp-doctor.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/skill-advisor.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/deep-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit_descriptions.py",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/audit_descriptions.py",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doctor Update Orchestrator",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Superseded By",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Opus",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A user at spec-kit `v3.3.0.0` (or any version older than `v3.4.1.0`) has 6+ databases that drift out of alignment with their codebase: `context-index.sqlite` (memory FTS+vector, 134M+362M), `code-graph.sqlite` (51M structural index), `skill-graph.sqlite` (148K), `deep-loop-graph.sqlite` (84K coverage graphs), `speckit-eval.db` (16M ablation results), and `causaledges` table (in context-index, lazy-init)",
+    "created_at": "2026-05-09T12:15:31.296Z",
+    "last_save_at": "2026-11-10T05:46:55.914Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:f8034f5d35979722e1a622649714a5b88da0b5f18be9504502f68f819c21d427",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "54710ba660fdce96bb463e9b119d769512ace5c920f0c4aacd2364a4acd5cbb8",
+      "plan.md": "3c56a3e66d7773b2c5f7b6d4a9c38b5c4a0a954d4205fc8a97bfb4701c8207ba",
+      "tasks.md": "f1b1415b8eca2860ae7859fad2b622852bc4f76af467e8d865bb72a2a3c4e446",
+      "decision-record.md": "4f4be3c6be9109b9f2d863217ed942c1887857a4aed77869be0328d3ad1f93f0",
+      "implementation-summary.md": "9f6e7248b7d06d8fb68a6d202cccc0877de233b07170cbe958ec3122282ef15e",
+      "handover.md": "31ca49b62965f48ea99289d7ab0c3dea088368a8bf1b9c485397be29ad7f5bf2",
+      "resource-map.md": "c6d47ec80e5cbf90781960fd5b622e727335e9fc62cfefabb0033641df1477a6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

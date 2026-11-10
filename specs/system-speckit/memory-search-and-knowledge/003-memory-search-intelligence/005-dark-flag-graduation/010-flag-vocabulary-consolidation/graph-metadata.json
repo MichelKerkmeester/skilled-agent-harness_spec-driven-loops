@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/010-flag-vocabulary-consolidation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/010-flag-vocabulary-consolidation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "flag vocabulary consolidation",
+      "parseFlagTristate shared helper",
+      "SPECKIT_MEMORY_GRAPH_UNIFIED off ignored",
+      "STATUS_COMPLETION_CONSISTENCY_GATE on ignored",
+      "hand-rolled env flag parsing"
+    ],
+    "key_topics": [
+      "flag",
+      "vocabulary",
+      "consolidation",
+      "parseflagtristate",
+      "shared",
+      "helper",
+      "ignored",
+      "hand-rolled",
+      "env",
+      "parsing",
+      "opencode",
+      "skills"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "dist/lib/config/capability-flags.js",
+      "tests/generated-metadata-integrity.vitest.ts",
+      "lib/search/folder-discovery.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.js",
+        "kind": "code",
+        "path": "dist/lib/config/capability-flags.js",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-integrity.vitest.ts",
+        "kind": "test",
+        "path": "tests/generated-metadata-integrity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": "lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flag Vocabulary Consolidation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Refinement Note",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/skills/system-spec-kit/mcpserver/lib/config/capability-flags.ts` and a set of consuming modules each hand-roll their own `process.env[...]?.trim().toLowerCase()` comparison instead of delegating to a shared parser, and the accepted vocabulary differs flag-to-flag with no operator-visible signal when a value falls outside it",
+    "created_at": "2026-07-09T20:29:02.118Z",
+    "last_save_at": "2026-11-10T05:47:52.590Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1fffa6028a56e441fd8260fcc74082b3b727815fbf65933f5af9de3cd26c93ad",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d87f41853efea496c16897261f60c1d30917c87143a6cd57f177d3fd793c272e",
+      "plan.md": "624f4be8719539b34c5cea6edb150c56539d99f0f30e70547f40a77695e5b942",
+      "tasks.md": "e761bfac5db98ed196f456cfae61abecbac665845b3626be8eb1f9bc7c9256ec",
+      "implementation-summary.md": "51f16343f5dd67b9a5dfab826598d2cb763f72215398f77667b2a4b56adc5d04"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

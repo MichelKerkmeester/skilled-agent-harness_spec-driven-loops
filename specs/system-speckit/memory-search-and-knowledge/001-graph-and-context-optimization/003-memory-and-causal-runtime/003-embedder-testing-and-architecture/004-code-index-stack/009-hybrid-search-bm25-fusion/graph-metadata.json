@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/011/003",
+      "hybrid search (bm25 + semantic fusion) research",
+      "hybrid search (bm25 + semantic fusion) hybrid",
+      "016/011/003 plan",
+      "hybrid search (bm25 + semantic fusion) plan",
+      "016/011/003 tasks",
+      "016/011/003 summary",
+      "cocoindex hybrid search",
+      "SQLite FTS5 RRF fusion"
+    ],
+    "key_topics": [
+      "hybrid",
+      "search",
+      "bm25",
+      "semantic",
+      "fusion",
+      "research",
+      "plan",
+      "tasks",
+      "summary",
+      "cocoindex",
+      "sqlite",
+      "fts5"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Hybrid Search",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Fusion",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reciprocal Rank Fusion",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "estimated",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Implementation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implementation",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implemented default-on SQLite FTS5 + RRF fusion for CocoIndex retrieval.",
+    "created_at": "2026-05-18T05:13:46.575Z",
+    "last_save_at": "2026-11-10T05:46:32.744Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:611a80fb797dcd366460389199a825193ab09fc7ffccb5e9a591b23ccada987c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4c8352f61b2589c38ac4b3308c4af626703e7a079b289cff04932da9f9347cc6",
+      "plan.md": "9986d1a2444113f89ac00802e60f5dbcdb939ded32d9d1a464fef58daa0a54f4",
+      "tasks.md": "0eda61be0fbba00ccd156ecbe82003d45a587bb63d1b1f18e276526b66c972ba",
+      "implementation-summary.md": "8e8f5cec1a8a98c2aa691fc7e162559ecef990833dbd418883f8fcd479e8abef",
+      "research/research.md": "030c001e24c4d5bb3400d941cdad4e0eab3bacb21ac660a25b078c6e4df68d9a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

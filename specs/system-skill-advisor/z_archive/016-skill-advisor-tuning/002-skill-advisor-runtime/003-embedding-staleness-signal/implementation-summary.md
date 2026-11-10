@@ -45,7 +45,7 @@ _memory:
 | **Level** | 2 |
 | **Status** | complete |
 | **Scope** | Advisor SA8 embedding-staleness: the staleness signal (signature capture + compare-on-load + `semantic_shadow` lane degrade) implemented, Memory-010 idempotent-async rebuild reuse pending |
-| **Branch** | system-speckit/027-xce-research-based-refinement |
+| **Branch** | system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement |
 | **Shipped via** | Commit `d1a1a5ee41` in `system-skill-advisor/mcp_server` (projection + semantic-shadow lane + staleness vitest). Packet 030 untouched |
 <!-- /ANCHOR:metadata -->
 

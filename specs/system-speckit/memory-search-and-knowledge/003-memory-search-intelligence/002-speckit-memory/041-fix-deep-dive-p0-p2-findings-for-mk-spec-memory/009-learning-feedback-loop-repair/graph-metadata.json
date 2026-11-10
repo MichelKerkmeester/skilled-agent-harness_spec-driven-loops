@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/009-learning-feedback-loop-repair",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/009-learning-feedback-loop-repair",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "learning feedback loop repair",
+      "track access cache hits",
+      "auto promotion demotion hysteresis",
+      "learned feedback expiry cap",
+      "batch learning reformulation negative",
+      "retention spare-only stale snapshot",
+      "learning feedback loop repair plan",
+      "feedback ledger retention sweep",
+      "batch learning idempotency",
+      "learning feedback loop repair tasks",
+      "feedback ledger sweep tasks",
+      "learning feedback loop repair decision"
+    ],
+    "key_topics": [
+      "learning",
+      "feedback",
+      "loop",
+      "repair",
+      "track",
+      "access",
+      "cache",
+      "hits",
+      "auto",
+      "promotion",
+      "demotion",
+      "hysteresis"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Learning Feedback Loop Repair",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Repair",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Existing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Track Access Production Enablement",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Deferred",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The memory learning loop is starved of usage signal: only 65 of 33,101 index rows have ever recorded an access, and `trackAccess` is default-off (`memory-search.ts:909`) with zero production enablers, so the loop receives almost no fuel today",
+    "created_at": "2026-07-03T09:44:23Z",
+    "last_save_at": "2026-11-10T05:47:41.034Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6f3b4affc4ed84a76491f0d3ce84b7d0d8a236f4e40b1a70db6a0bafc9a9f2eb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9f34929998cf167b2501bf61e8482b864ea486b52348dfb37458eedbd6669033",
+      "plan.md": "591bf36b4d919fe75ab6457a7621482a4d8e1fabb4897bd8f69751d76736ce3e",
+      "tasks.md": "a08b990bccfe047497c9ba3e3cba70827bda9e0fd21e68b9dcafb03915cc61f2",
+      "decision-record.md": "ee587ae5dce2e008d9d6b102f2f4cacbd8b627704b6400b54953876780ca9a08",
+      "implementation-summary.md": "9d2c99d806b0f07326ee3771b6fb4457d8c733624da02807d05adbf5480ebe9c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

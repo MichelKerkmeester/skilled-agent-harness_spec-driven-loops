@@ -156,17 +156,17 @@
     ],
     "causal_summary": "`code-skilled` is not a generic docs packet — it is the playbook for writing and modifying code in this repository's own `.opencode/` tree: skills, agents, commands, plugins, MCP servers, hooks, and descriptor/config",
     "created_at": "2026-07-08T14:11:39.742Z",
-    "last_save_at": "2026-11-10T05:20:10.058Z",
+    "last_save_at": "2026-11-10T06:05:53.180Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:40df0622f33f0a6c1fd9103f636bd771db163bb137147d962508a39d7dc96cf8",
+    "source_fingerprint": "sha256:e099644bb6ff179a6d60c46f11807eea3757ffa689aafd5d509dae6a66f10d6c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "07d1533ce32d2ddfd37dc0b00b4684e825754ba8ccab982fab4cb5dac85625c0",
+      "spec.md": "074d439c5ff94c17e8b71455ab7a0279f926b7ea1bc9ac269ea1a2fbb5d44c0d",
       "research/research.md": "6420de0f9ae91f32a280ca74adbe62d554964e795362f17f3d689b0c1cbd7ea7"
     },
     "last_active_child_id": null,

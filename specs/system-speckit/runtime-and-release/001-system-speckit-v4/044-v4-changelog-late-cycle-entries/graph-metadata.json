@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/044-v4-changelog-late-cycle-entries",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/044-v4-changelog-late-cycle-entries",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4 changelog late cycle entries",
+      "cli-jev changelog entry",
+      "cli-orca changelog entry",
+      "after this draft update",
+      "v4 changelog late cycle plan",
+      "v4 changelog late cycle tasks",
+      "v4 changelog late cycle summary",
+      "cli-jev changelog evidence"
+    ],
+    "key_topics": [
+      "changelog",
+      "late",
+      "cycle",
+      "entries",
+      "cli-jev",
+      "entry",
+      "cli-orca",
+      "draft",
+      "plan",
+      "tasks",
+      "summary",
+      "evidence"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/mcp-tooling/mode-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "After This Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "anchor-asserting",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks: v4 changelog late-cycle entries",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shipped As",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`../CHANGELOG-v4.0.0.0.md` was last edited 2026-09-16, and the two late-cycle skill moves that landed 2026-09-20 are absent from it: `cli-jev` becoming its own transport hub, and `mcp-orca-cli` being promoted to the standalone `cli-orca` class-S skill",
+    "created_at": "2026-09-20T20:52:56.613Z",
+    "last_save_at": "2026-11-10T05:48:23.244Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1b13aabb32719a40f40de2fad079b46b1409367ab068a5e245ea6793f164881b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9d0af7040b5556bab95992f8fb8d41a4f00f4023e6a0eb575098b07bbbc00d33",
+      "plan.md": "91f8832f5c33ab45a36ab8c2215192609ee15e02527d31d10de922e5fa3c0527",
+      "tasks.md": "92269e81544fba2ad00079af2f7c80559ff2ebd3fa39eee30170dd60758f9cf7",
+      "implementation-summary.md": "4a39288f14fa570d8ef168fe2db9a046ac5f0826e10e08f70f5ed5e72486ca09"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memoization dependency dag",
+      "chunk fingerprint",
+      "incremental memory_index_scan",
+      "canonical fingerprint",
+      "skip re-embedding unchanged chunks",
+      "027 phase 003",
+      "incremental memory index",
+      "chunk fingerprints",
+      "027 phase 003 tasks",
+      "memoization dependency dag tasks",
+      "implementation",
+      "summary"
+    ],
+    "key_topics": [
+      "memoization",
+      "dependency",
+      "dag",
+      "chunk",
+      "fingerprint",
+      "incremental",
+      "canonical",
+      "skip",
+      "re-embedding",
+      "unchanged",
+      "chunks",
+      "phase"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Incremental Index Foundation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Evidence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "memo CRUD",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`memoryindexscan` currently reconsiders all discovered files every run, then uses file-level categorization to decide index, update, skip, or delete",
+    "created_at": "2026-05-13T09:00:45Z",
+    "last_save_at": "2026-11-10T05:47:14.524Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d43b224b829f6cec5ae8155d0cf0613d21cd1a2ccd53440ecbd6fc7e62e25fbf",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "69f80b009233cf626bb0978a64efae730a43070700058af9ca0a54100bcb1b7b",
+      "plan.md": "8ae3b50269fc34e3c52eb80c8185e87ee56461b48c22c7f890a547fe5559a1c1",
+      "tasks.md": "9248b2c008b47a07e7ac2d9826d22159efad656ee4cfb0185de55227b043d5a9",
+      "implementation-summary.md": "82c3c08c439ac0567c0fc439e59b1356e7f88530db04b9b0ca05e56bfed67d2d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

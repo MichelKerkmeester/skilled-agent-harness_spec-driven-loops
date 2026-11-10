@@ -40,7 +40,7 @@ _memory:
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-06-17 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Parent Packet** | cli-external-orchestration/023-kimi-k2-7-code-support |
 <!-- /ANCHOR:metadata -->
 

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling",
+  "spec_folder": "system-speckit/spec-folder-tooling",
+  "parent_id": "system-speckit",
+  "children_ids": [
+    "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle",
+    "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos",
+    "system-speckit/spec-folder-tooling/003-upgrade-level-anchor-insert",
+    "system-speckit/spec-folder-tooling/004-create-path-track-refresh"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "system-speckit/spec-folder-tooling"
+    ],
+    "causal_summary": "Container folder for system-speckit/spec-folder-tooling."
+  }
+}

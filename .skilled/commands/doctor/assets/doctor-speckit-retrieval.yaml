@@ -34,7 +34,7 @@ upstream_assets:
   citation_drift_command: "node .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs --corpus <all|skills> --moved"  # zero model calls, writes nothing; reads committed docs and the worktree line counts of their targets
   citation_drift_classes: "moved = moved_in_range + moved_past_end (the path was renamed; the line is checked in the new file), gone = unresolved + missing (no file and no recorded rename), past_end = the file exists but is shorter than the cited line. basename_only and ambiguous are guesses by file name and are reported, never counted as moved"
   files:
-    acceptance: "specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md"  # the bar the index and lookup were accepted against
+    acceptance: "specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md"  # the bar the index and lookup were accepted against
     latency_report: ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/latency-report.json"  # cold-lookup budget evidence
   pass_policy:
     lookup_exit_class: "0 or 1 on the probe prompt and on every prompt in fixtures/prompt-set.json; 2 or higher fails"  # the lookup contract, never a result count

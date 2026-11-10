@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 6 continuity refactor gates",
+      "continuity refactor gates",
+      "gates a-f",
+      "026 graph and context optimization",
+      "six gates",
+      "phase 6 plan",
+      "continuity refactor gates plan",
+      "gates a-f plan",
+      "root coordination",
+      "phase 6 tasks",
+      "continuity refactor gates tasks",
+      "root gate packet tasks"
+    ],
+    "key_topics": [
+      "phase",
+      "continuity",
+      "refactor",
+      "gates",
+      "a-f",
+      "graph",
+      "context",
+      "optimization",
+      "six",
+      "plan",
+      "root",
+      "coordination"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md",
+      "resource-map.md",
+      "lib/resume/resume-ladder.ts",
+      "scratch/verify-phases-review.md",
+      "scratch/phase-017-rerun-seed.md",
+      "prompts/research-prompt-impact.md",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/skills/system-spec-kit/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "resume-ladder.ts",
+        "kind": "code",
+        "path": "lib/resume/resume-ladder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "verify-phases-review.md",
+        "kind": "doc",
+        "path": "scratch/verify-phases-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-017-rerun-seed.md",
+        "kind": "doc",
+        "path": "scratch/phase-017-rerun-seed.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-prompt-impact.md",
+        "kind": "doc",
+        "path": "prompts/research-prompt-impact.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coordinate Gates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Continuity Refactor Gates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`006-continuity-refactor-gates/` now owns only the six execution gates that remain after the reorganization promoted former follow-on work into sibling top-level phases `007` through `010`",
+    "created_at": "2026-04-12T09:02:53.476Z",
+    "last_save_at": "2026-11-10T05:46:17.363Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:874be1f1bb93a8fa20cc4565a516b370c2ec948b4d12adb56827b05f3fb082cd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "edb0204afddcb371d444b7d92451bcdc6bdfc6a8c010a25bb3940555be43d09e",
+      "plan.md": "fad73c13cbf8fc02cc377b1cdeb26a032328d5c3196697dcf0cadd2e15b0b272",
+      "tasks.md": "604101e2e2e9a0ab263ae94ac81033a8266ab879395a450209846451c40fe514",
+      "implementation-summary.md": "b14e631b95526efd33d6a4dab614e67a0cb3b75a27ea8a0da3f4e2cc477c13b8",
+      "research/research.md": "2c40e98a07d538b790fc6e2abfcab3ca5ee28daf023bc08288fa81ae8b5a2046",
+      "handover.md": "7d6d0255b6c568a5ddd4f2bb38588afee6834a3dd5f8ad9d278c0aea65ea8c8c",
+      "resource-map.md": "00bd3ba0a96015ffaed487160ec55602b232ed1976b78689e5558f3f069313ba"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

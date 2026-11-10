@@ -76,7 +76,7 @@ contextType: "implementation"
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Source run**: See `specs/system-speckit/036-open-knowledge-format-adoption/review/review-report.md` §10
+- **Source run**: See `specs/system-speckit/memory-search-and-knowledge/006-open-knowledge-format-adoption/review/review-report.md` §10
 <!-- /ANCHOR:cross-refs -->
 
 ---

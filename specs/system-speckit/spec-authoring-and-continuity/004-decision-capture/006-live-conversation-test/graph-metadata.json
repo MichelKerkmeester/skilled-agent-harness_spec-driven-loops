@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/004-decision-capture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "live conversation test",
+      "phase 6 live conversation test",
+      "decision capture live conversation scenario",
+      "decision capture runtime matrix",
+      "live conversation test plan",
+      "decision capture conversation stages",
+      "live conversation test tasks",
+      "live conversation test acceptance criteria",
+      "live conversation test goal",
+      "live conversation test decision record",
+      "live conversation test implementation summary"
+    ],
+    "key_topics": [
+      "live",
+      "conversation",
+      "test",
+      "phase",
+      "decision",
+      "capture",
+      "scenario",
+      "runtime",
+      "matrix",
+      "plan",
+      "stages",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md",
+      "scratch/live-runs/claude-run1/runner/main/claude-code/result.json",
+      "scratch/live-runs/codex-run1/attempts/README.md",
+      "scratch/live-runs/preconditions.txt",
+      ".claude/settings.json",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      "scratch/live-runs/opencode-run1/checkpoints.tsv",
+      "scratch/live-runs/pi-run1/checkpoints.tsv",
+      "scratch/live-runs/devin-run1/checkpoints.tsv",
+      "scratch/live-runs/claude-run1/pane-S1.txt",
+      "scratch/live-runs/claude-run1/nudge-sequence.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-capture-live-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-capture-kill-switch-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-capture-sibling-reproof-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "result.json",
+        "kind": "config",
+        "path": "scratch/live-runs/claude-run1/runner/main/claude-code/result.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scratch/live-runs/codex-run1/attempts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "preconditions.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/preconditions.txt",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoints.tsv",
+        "kind": "file",
+        "path": "scratch/live-runs/opencode-run1/checkpoints.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "pane-S1.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/claude-run1/pane-S1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "nudge-sequence.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/claude-run1/nudge-sequence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The three decision-capture playbook scenarios feed a redacted fixture payload to the hook, run a sweep over a fixture transcript or hand the save one fixed JSON payload, and none of them starts a live session (Measured Behavior below)",
+    "created_at": "2026-11-01T20:57:43Z",
+    "last_save_at": "2026-11-10T05:48:36.913Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e20f8b78425a316fd432afcd6a7387f565830148c136612c5ce24d5fee9a7da9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5f0c329dbe7c88e471ce9877589402090bbbd261f4d22c80a3bc490d87af032c",
+      "plan.md": "f950a8427d781bfd1728b0d9934971348260410758c108a91eed9bfe56758ebe",
+      "tasks.md": "b8cc1028b9bb658e221048888bc3a40a2b427510e42254bdd2bc275280204e0f",
+      "decision-record.md": "234fa6ff9451ce1411c96ea3d81e58d3f27a59387867384843ce68f60b69ce58",
+      "implementation-summary.md": "86d1a4db88a66d8ab348e9244c05e0b8c06d9f4b0914c7cafa3401304a33bb24"
+    },
+    "last_active_at": null
+  }
+}

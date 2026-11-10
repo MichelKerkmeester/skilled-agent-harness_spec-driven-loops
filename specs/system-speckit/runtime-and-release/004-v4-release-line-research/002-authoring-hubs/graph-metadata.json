@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/004-v4-release-line-research/002-authoring-hubs",
+  "spec_folder": "system-speckit/runtime-and-release/004-v4-release-line-research/002-authoring-hubs",
+  "parent_id": "system-speckit/runtime-and-release/004-v4-release-line-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "authoring hubs",
+      "phase 2 authoring hubs",
+      "authoring hubs plan",
+      "authoring hubs tasks",
+      "authoring hubs decision record",
+      "authoring hubs implementation summary",
+      "authoring hubs v4 research findings"
+    ],
+    "key_topics": [
+      "authoring",
+      "hubs",
+      "phase",
+      "plan",
+      "tasks",
+      "decision",
+      "record",
+      "implementation",
+      "summary",
+      "research",
+      "findings",
+      "every"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-strategy.md",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      "research/deep-research-config.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Iterative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every v4 release from v4.0.0.0 to v4.0.2.0 changed the authoring hubs: `.skilled/skills/sk-doc/`, `sk-code/`, `sk-design/`, `sk-prompt/` and the `/create:`, `/design:` and `/prompt:` commands, and no pass has read the release notes, the code and the docs against each other",
+    "created_at": "2026-11-08T19:49:05Z",
+    "last_save_at": "2026-11-10T05:48:31.269Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:534f897df96ef6da87c8c49b8b9c6e730675ba13ad0d870c726a262e248a318b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5d38319d23efc81170b9a80ec1881c5f0a9a19d466ad34d91de749844b780eaf",
+      "plan.md": "77621174fcfb4c24fc779e0e33f2d1ae724ed49f5086559261831658ec2a163a",
+      "tasks.md": "4367e0ec33208f12cd8581449afa3a68a5d104b15c5ab1307330809a2543d49b",
+      "decision-record.md": "a461449c79c2bf15bd2c9bf181b0a10e7757cfe70059a957991a35c5428009fd",
+      "implementation-summary.md": "6d4488f33fcae85fb576d29320f44953bd273ca77914276a34834010385dc4a3",
+      "research/research.md": "470c9b47dcc0ca0fe05882494995eebb9b821234c6214ac2a5aa889f3314fb03"
+    },
+    "last_active_at": null
+  }
+}

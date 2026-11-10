@@ -65,7 +65,7 @@ This sub-phase carries that genuine follow-on plus two supporting candidates: `S
 | **Priority** | P2 |
 | **Status** | complete |
 | **Created** | 2026-06-19 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Parent Packet** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime |
 | **Candidates** | SA-outcome-weighted-ranking, SA-scheduler-ambient-tick, ADV-bm25-calibration |
 | **Status detail (all)** | Shadow-only build SHIPPED (not promoted to live, verified typecheck 0 + scorer suite green, live fused sort byte-identical). **ADV-bm25-calibration** = IMPLEMENTED (query-length-bucketed midpoint behind a default-off flag, byte-identical default, lane stays shadow-only/zeroed-weight, telemetry-only, benchmark/promotion out of scope). **SA-scheduler-ambient-tick** = IMPLEMENTED (idempotent out-of-process fold-tick core + `.mjs` runner, double-tick no-op, never prompt-time). **SA-outcome-weighted-ranking** = IMPLEMENTED shadow-only (execution-success record + durable store + replay-safe fold + query-scored failure-mode recall + shadow re-rank `similarity x reliability x penalty`, fresh = 0.5). Two gates remain PENDING, the emitter runtime seam (Q-001 undecided) and the shared Beta-posterior reliability math (owned by sibling 004, not landed, adapter seam built + neutral until then). Live re-rank / BM25 promotion remain NO-GO (needs real execution-success data + a benchmark). |

@@ -129,7 +129,7 @@ $ pi list | grep ask-user
 - Add the running, per-runtime and multi-runtime live-test sections to `references/conversation-scenarios.md`.
 
 ### Out of Scope
-- The decision-capture scenario. `specs/system-speckit/043-decision-capture/006-live-conversation-test` writes it and runs it here.
+- The decision-capture scenario. `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test` writes it and runs it here.
 - Cursor and Hermes adapters. No scenario needs them today.
 - Writing `benchmark/reports/` files. The skill's results contract keeps that a hand step.
 - Live runs in CI. They need logged-in CLIs and spend model quota.

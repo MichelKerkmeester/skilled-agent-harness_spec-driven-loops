@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "system-speckit/runtime-and-release",
+  "description": "Runtime code standards, symlinked runtime roots, the v4 release consolidation, and the audit of that release line.",
+  "keywords": [
+    "runtime",
+    "and",
+    "release"
+  ],
+  "lastUpdated": "2026-11-10T05:45:50.005Z",
+  "specId": "system-speckit/runtime-and-release",
+  "folderSlug": "runtime-and-release",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

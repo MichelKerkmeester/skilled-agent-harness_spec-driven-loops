@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/009-validation-rule-reduction/004-stop-grading-prose-shape",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/009-validation-rule-reduction/004-stop-grading-prose-shape",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/009-validation-rule-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stop grading prose shape",
+      "template conformance removed",
+      "heading shape grading removed",
+      "anchors checked integrity",
+      "documents diffed against templates",
+      "anchors read by code",
+      "template moving target",
+      "anchor integrity unique ids",
+      "heading shape grading gone",
+      "section count rule removed",
+      "delete unreachable rule scripts",
+      "anchor integrity checks"
+    ],
+    "key_topics": [
+      "stop",
+      "grading",
+      "prose",
+      "shape",
+      "template",
+      "conformance",
+      "removed",
+      "heading",
+      "anchors",
+      "checked",
+      "integrity",
+      "documents"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stop Grading Prose Against",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Moving Target",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "anchor",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Heading",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered By",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Documents stop being diffed against templates that change weekly; anchors are checked for what actually reads them.",
+    "created_at": "2026-08-29T18:27:06.222Z",
+    "last_save_at": "2026-11-10T05:48:03.948Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2d6d0b6c8e18ed6e9f9a557bb9f12adaa7d1109b32f3982040a9c6a1a4e10bf8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "90bdedd5abe48eb2d2b637a879ed580976d347575b609587aeae756a5780b02b",
+      "plan.md": "f3178405514f9220cada11e8ac0388e4f6e22a3978857160ab7ea9a650461f3b",
+      "tasks.md": "892e64428baed5c2474c605c3954c91c3ed01606e113df13719c536268db932d",
+      "implementation-summary.md": "944f4034df83ff2e03e2182ceb1c4070466b9275dd05d819159cf7d4787581e4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

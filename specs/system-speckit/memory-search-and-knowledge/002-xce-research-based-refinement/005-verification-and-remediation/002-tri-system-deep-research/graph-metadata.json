@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "tri-system deep research",
+      "50 research angles",
+      "027 investigation program",
+      "tri-system deep research plan",
+      "research iteration plan",
+      "50 angle execution",
+      "tri-system research tasks",
+      "research iteration ledger",
+      "50 angle tasks",
+      "tri-system research summary",
+      "research program delivery",
+      "50 angle results"
+    ],
+    "key_topics": [
+      "tri-system",
+      "deep",
+      "research",
+      "angles",
+      "investigation",
+      "program",
+      "plan",
+      "iteration",
+      "angle",
+      "execution",
+      "tasks",
+      "ledger"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-strategy.md",
+      "research/deep-research-config.json",
+      "research/deep-research-state.jsonl"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Deep Research Program",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fifty",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Angle",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "parseable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 027 epic shipped twenty-four phases, a finding-remediation program, and a database recovery — but every review so far was scoped to shipped diffs",
+    "created_at": "2026-06-12T04:40:47.948Z",
+    "last_save_at": "2026-11-10T05:47:27.653Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:339eeb365063bc6ba47521c54c089ba8cac267d7c64159cd5050df82b3472b11",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6489e528af7cfdde1d3575853c7c8f5878c2c456a626d4620c68b10f77ce9d54",
+      "plan.md": "4596663a6a5873d15b1d525962dc2d05cda2b35ef17425c50cc623a1c674898f",
+      "tasks.md": "fa9c52bf59fad0b0f881c8715272952b4e03009e4a8197e15e594ad4eea137f3",
+      "implementation-summary.md": "521c43b28bf2e2cb1271f6d4333e67cdbfb1146724a500499adf67889e9deac1",
+      "research/research.md": "884b9eed45915b67bbcd10f57b54004c9d61255e57d4662c873cddb87c230595"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "embedder default drift fix",
+      "getCanonicalFallback helper",
+      "embedder hardcoded default removal",
+      "registry-derived embedder fallback",
+      "016/002/020 default drift",
+      "ADR-013 ADR-014 implementation cleanup",
+      "020 plan registry-derived helper",
+      "020 tasks helper + refactors",
+      "020 adr architectural shape",
+      "020 shipped summary"
+    ],
+    "key_topics": [
+      "embedder",
+      "default",
+      "drift",
+      "getcanonicalfallback",
+      "helper",
+      "hardcoded",
+      "removal",
+      "registry-derived",
+      "fallback",
+      "adr-013",
+      "adr-014",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/ollama.ts",
+      "shared/embeddings/registry.ts",
+      "shared/embeddings/providers/hf-local.ts",
+      "shared/embeddings/providers/ollama.ts",
+      "shared/embeddings/factory.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Embedder Default Drift Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "registry-derived",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "strong",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Resolution",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Helper authoring",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "ADR-013/014 migrated the canonical spec-memory embedder to nomic-ai/nomic-embed-text-v1.5 but 5 hardcoded TS defaults survived (4 BAAI + 1 jina). When the resolution chain fell through to those stale strings the runtime loaded a model not in the registry — triggering circuit-breaker flapping, 1978 failed records, 786 null-embedding errors, 754 stuck pending. This packet adds getCanonicalFallback(provider) in registry.ts as the single source of truth, refactors all 5 sites, and locks the contract with 23 invariant assertions in registry.test.ts.",
+    "created_at": "2026-05-23T11:24:22.644243Z",
+    "last_save_at": "2026-11-10T05:46:29.508Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:af91183f5f384389fd25caa69b700a90c407663c6b23f5ca4b8d68f59d61f80b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d31cd4ead34cfc60de7b05b19ecf567430664bffd91e1938a08b97b47fcb24c8",
+      "plan.md": "a42cb38c2e83d793d9530ef8cd9d84b81bb2ba0504b929833a4f2be772db9269",
+      "tasks.md": "d055ad8fce5d5ea5e82e9747981c7e29aa5d8f9c49eae7a53d65824ecbde559a",
+      "decision-record.md": "1677e07f7bf51282cc5af00ebd874c512d2a2ea830fb21dfb90b8b23f20fcd17",
+      "implementation-summary.md": "907575b63ee293ae642b77055d3cc6e2556909231e0c01aa4dac225be4890f4a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/011-daemon-freshness-and-health-truthfulness",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/011-daemon-freshness-and-health-truthfulness",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dist freshness deadlock",
+      "stale dist exit 75",
+      "memory health truthfulness",
+      "sigbus crash loop",
+      "cli fallback skipped",
+      "finalize-dist hash cache",
+      "daemon freshness tasks",
+      "daemon freshness deadlock fixed",
+      "dist freshness cache prime",
+      "health content_text exclusion audit",
+      "spec-memory cli argv exempt"
+    ],
+    "key_topics": [
+      "dist",
+      "freshness",
+      "deadlock",
+      "stale",
+      "exit",
+      "memory",
+      "health",
+      "truthfulness",
+      "sigbus",
+      "crash",
+      "loop",
+      "cli"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/bin/skill-advisor.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Break",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Suppress Node",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "finding-ID",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "receipts",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The entire memory surface was down at session start on 2026-07-03 and the loss was silent: a dist-freshness bootstrap deadlock that `npm run build` (exit 0) cannot clear blocked the CLI shim (live-reproduced twice, deep-dive Chain C), the stale condition was misclassified as retryable exit 75 while hooks fail open, and the daemon's context-server had been crash-looping with SIGBUS earlier that morning (launcher log 05:52-06:07)",
+    "created_at": "2026-07-03T09:44:25Z",
+    "last_save_at": "2026-11-10T05:47:40.883Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1dfeab592f68b50904ee5bb2a2b1cc4fd345576b23b1ba0509fd6ed701255b6d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e3a4b63ca5aebba66cc9b7ed6c6f8799f229929567f5fa20a4f27b940f64d8d1",
+      "plan.md": "1e1dc0cdae47c0e016c8a2c3c401ae85f1c68ef63e3f925118f8352dbc940732",
+      "tasks.md": "7c04e9cc5ab6f27274da7c15e9f14b4b43b6c82e8a2957e0b990eb853a8465bf",
+      "implementation-summary.md": "67ec9339d3c8d55a6bd5441a384cf64b355516f1725ed56c423f79512e9a1ed9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

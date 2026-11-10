@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "statediff reconciliation",
+      "desired prior diff actions",
+      "memory_index_scan action plan",
+      "post mutation subscribers",
+      "target state reconciliation",
+      "027 phase 006",
+      "write path reconciliation",
+      "027 phase 006 tasks",
+      "statediff reconciliation tasks",
+      "statediff action batches shipped",
+      "write path reconciliation implementation",
+      "subscriber based mutation hooks"
+    ],
+    "key_topics": [
+      "statediff",
+      "reconciliation",
+      "desired",
+      "prior",
+      "diff",
+      "actions",
+      "action",
+      "plan",
+      "post",
+      "mutation",
+      "subscribers",
+      "target"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Reconciliation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Basis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Path Reconciliation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Explicit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Evidence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`memoryindexscan` and `memorysave` currently reconcile state through scattered handler branches and post-mutation hooks",
+    "created_at": "2026-05-13T09:00:48Z",
+    "last_save_at": "2026-11-10T05:47:14.458Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2e342f5b973c283aa52ce3a12d5eecce7db88e6e4eccaa4068eee6346cde186a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fe562076d2e9c4896c1b164a0a82c7f35f27d72b98e4beb4c88a10c55ce2e4aa",
+      "plan.md": "a94d48dc602b13e3dea6a49592cb00ffdc3fba2d7468159f18516fe33c7137e0",
+      "tasks.md": "22f8b9ac6ce6a0a38619b25308cf8ec287e4e6ab66a15a57fbfa943605489080",
+      "implementation-summary.md": "fc6e8aed30847206ae161668570db89bc5ba94c6e32352f130b389736f632c98"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

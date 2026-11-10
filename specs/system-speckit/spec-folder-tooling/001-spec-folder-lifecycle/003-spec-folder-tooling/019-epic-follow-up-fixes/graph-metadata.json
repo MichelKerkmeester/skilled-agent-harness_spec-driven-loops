@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/019-epic-follow-up-fixes",
+  "spec_folder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/019-epic-follow-up-fixes",
+  "parent_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "epic follow up fixes",
+      "doctor env duplicate variable",
+      "compat resume dirty check",
+      "cli tests write into specs",
+      "epic follow up fixes plan",
+      "epic follow up fixes tasks",
+      "epic follow up fixes acceptance criteria",
+      "epic follow up fixes implementation summary"
+    ],
+    "key_topics": [
+      "epic",
+      "follow",
+      "doctor",
+      "env",
+      "duplicate",
+      "variable",
+      "compat",
+      "resume",
+      "dirty",
+      "check",
+      "cli",
+      "tests"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/commands/doctor/assets/doctor-env.yaml",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/sweep/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/test-fixtures/README.md",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/README.md",
+      ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs",
+      ".skilled/commands/create/assets/create-agent-presentation.txt",
+      ".skilled/commands/create/assets/create-command-presentation.txt",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-env.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-env.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-compat-action.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-compat-action.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-compat.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-compat.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-compat-integration.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-compat-integration.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-menu-parity.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "create-agent-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/create/assets/create-agent-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "create-command-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/create/assets/create-command-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The epic's builds and reviews left eleven loose ends",
+    "created_at": "2026-10-09T18:36:35Z",
+    "last_save_at": "2026-11-10T05:48:43.937Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fc2a7964aa711cf0b4b5dfeb54fcd766b6b9482e7951a936bc81861612cd4734",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "55cfebb27d109038899e94bf57eab99683ddf731e360d786cae55f2a04e0c7df",
+      "plan.md": "325fa45d5399b49f65fe6ead9717e0b4614adb9df5af7ec27e90382ff3340b04",
+      "tasks.md": "ccdc4c3efa2e6f0f6eea591eeee6751d4749541f58a4bc4e43be31012be14c2d",
+      "implementation-summary.md": "bc0ab872cd04a959403d3adf8bb036dd581a89c74592cde615016e4bcc90f3fb"
+    },
+    "last_active_at": null
+  }
+}

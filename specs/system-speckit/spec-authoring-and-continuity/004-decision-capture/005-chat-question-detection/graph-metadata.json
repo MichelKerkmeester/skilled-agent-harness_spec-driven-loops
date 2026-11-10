@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/004-decision-capture/005-chat-question-detection",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/005-chat-question-detection",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/004-decision-capture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chat question detection",
+      "phase 5 chat question detection",
+      "chat question detection plan",
+      "chat question detection tasks",
+      "chat question detection acceptance criteria",
+      "chat question detection goal",
+      "chat question detection decision record",
+      "chat question detection implementation summary"
+    ],
+    "key_topics": [
+      "chat",
+      "question",
+      "detection",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "decision",
+      "record",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+      ".skilled/hooks/decision-capture/lib/capture-core.test.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs",
+      ".skilled/hooks/decision-capture/bin/fixtures/claude-chat-questions.jsonl",
+      ".skilled/hooks/decision-capture/bin/fixtures/claude-chat-questions.labels.json",
+      ".skilled/commands/speckit/save.md",
+      ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+      ".skilled/hooks/decision-capture/lib/chat-questions.test.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+      ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+      "scratch/measure-chat-questions.mjs",
+      ".opencode/commands/speckit/save.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "capture-core.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "capture-core.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/lib/capture-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-transcript.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-transcript.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-chat-questions.jsonl",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/fixtures/claude-chat-questions.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "claude-chat-questions.labels.json",
+        "kind": "config",
+        "path": ".skilled/hooks/decision-capture/bin/fixtures/claude-chat-questions.labels.json",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "chat-questions.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "chat-questions.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/lib/chat-questions.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-pi.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "operator-decision-capture.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        "source": "derived"
+      },
+      {
+        "name": "measure-chat-questions.mjs",
+        "kind": "file",
+        "path": "scratch/measure-chat-questions.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`chatCandidate` in `sweep-transcript.mjs` reads only the last paragraph of an assistant message and returns null unless that paragraph contains `?`",
+    "created_at": "2026-11-01T20:53:18Z",
+    "last_save_at": "2026-11-10T05:48:36.814Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:62415166e0da547cadcff4e304f5fe231f1bfbb99da513eaf698a22395bdc832",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b7773bc319df8fb22f7c00fb749872f11c28083b2a96a8f7c6705a5e7a994ee3",
+      "plan.md": "3725445fdb3cb93e255ca9dd149cc199918987474170850218fa6384574d9e4a",
+      "tasks.md": "db211fe75339c41f00b245fd1186e5cb4e34d6e227fa62b611468a8541be7668",
+      "decision-record.md": "36f0ec63d2b793c694ecf008efbda082b876bac51c11d30ee65b6ef881d39f35",
+      "implementation-summary.md": "a310e3f94d4a0939b63c06fa5c73a42dae6b8b284122bfbbabcdfd5e2124719e"
+    },
+    "last_active_at": null
+  }
+}

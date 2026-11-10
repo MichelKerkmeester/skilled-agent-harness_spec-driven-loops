@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-054-code-folder-readmes",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-054-code-folder-readmes",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "054 spec",
+      "system-spec-kit code-folder readmes",
+      "Phase C code readme scoped",
+      "054 plan",
+      "phase C plan",
+      "054 tasks",
+      "054 implementation",
+      "phase C summary",
+      "054 resource map"
+    ],
+    "key_topics": [
+      "spec",
+      "system-spec-kit",
+      "code-folder",
+      "readmes",
+      "phase",
+      "code",
+      "readme",
+      "scoped",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "tests/advisor-fixtures/README.md",
+      "tests/description/fixtures/README.md",
+      "tests/validation/fixtures/README.md",
+      "research/bundle-verification.md",
+      ".opencode/skills/sk-doc/scripts/validate_document.py",
+      ".opencode/skills/sk-doc/scripts/audit_readmes.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "tests/advisor-fixtures/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "bundle-verification.md",
+        "kind": "doc",
+        "path": "research/bundle-verification.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "audit_readmes.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/audit_readmes.py",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Discovery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Pass",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Same",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compose Pass",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Close the gap using the proven 2-pass cli-devin + cli-opencode pipeline with the new 3-check verification gate (`feedbackbundlegatesmokerun`)",
+    "created_at": "2026-05-15T12:30:00Z",
+    "last_save_at": "2026-11-10T05:47:05.772Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:761c6101c63161e4990407daf6424ea97d8db9222f03a56ef39c3f279aa8c91d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "99f06d0076d076d7cb76154b96f45814d5d68c0f3e6f9d6c38f557615bec86ce",
+      "plan.md": "87fdb709366843e0934245f82bea309b233b2542d2984d853c5fc3954651e893",
+      "tasks.md": "416cf54c954b50a50c6c5fb000145af2ec9be75c2d8d59cab9eee0bdfec3cbe0",
+      "implementation-summary.md": "bf16701a0714ae60e724058f9f7512f19735180eff17731abe46f994cc572514",
+      "resource-map.md": "c0b6c9840d99500e2d96ae48b692c5dca5b1a292d7956dd357f8621e8880af72"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

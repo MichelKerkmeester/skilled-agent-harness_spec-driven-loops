@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/009-harden-deep-review-iteration-prompts",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/009-harden-deep-review-iteration-prompts",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/002-template-levels",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rm-8",
+      "deep-review scope violation",
+      "prompt hardening",
+      "destructive scope violation",
+      "deepseek deleted files",
+      "deep-review safety",
+      "rm-8 plan",
+      "prompt hardening plan",
+      "deep-review prompt template edit",
+      "rm-8 tasks",
+      "prompt hardening tasks",
+      "implementation"
+    ],
+    "key_topics": [
+      "rm-8",
+      "deep-review",
+      "scope",
+      "violation",
+      "prompt",
+      "hardening",
+      "destructive",
+      "deepseek",
+      "deleted",
+      "files",
+      "safety",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Insert",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "smoke",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-review iteration dispatch hands the executor unrestricted filesystem write access (`opencode run --dangerously-skip-permissions --dir {reporoot}`) but the only safeguard against the model is the single prose line \"Review target is READ-ONLY",
+    "created_at": "2026-05-11T05:45:03Z",
+    "last_save_at": "2026-11-10T05:46:16.807Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:466073936bc7d6892a14bfd276fa41f8bfb0a2c4d9fbb8f9e0ab85fca8e61f1b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c32d2371460728945c6d483a80b80e6b7aa27773d1dbb0bb59558737765612fa",
+      "plan.md": "ce432b336fe3c8032cd4a58b8831c674b119cc92597e0205c822c7f644cd6cf0",
+      "tasks.md": "c67f88be1c254f6559c888813509f4b14388a112b7950d09b576c0bcf1046b02",
+      "implementation-summary.md": "4be5ca78bfdcb4ff28f31f3c3a0abec8a6fb6e725761a6d4416e3448beba250c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

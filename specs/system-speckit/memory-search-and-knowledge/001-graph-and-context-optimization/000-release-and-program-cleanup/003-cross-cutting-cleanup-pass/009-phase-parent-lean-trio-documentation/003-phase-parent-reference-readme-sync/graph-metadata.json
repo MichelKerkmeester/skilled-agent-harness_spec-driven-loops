@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase parent doc sync",
+      "references readme lean trio",
+      "phase definitions lean",
+      "save workflow phase parent",
+      "phase parent doc sync plan",
+      "references readme sync plan",
+      "phase parent doc sync tasks",
+      "phase parent doc sync shipped",
+      "references readme lean trio shipped"
+    ],
+    "key_topics": [
+      "phase",
+      "parent",
+      "doc",
+      "sync",
+      "references",
+      "readme",
+      "lean",
+      "trio",
+      "definitions",
+      "save",
+      "workflow",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "templates/README.md",
+      "scratch/regression-baseline-pre-003.txt",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/templates/README.md",
+      ".opencode/skills/system-spec-kit/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "templates/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "regression-baseline-pre-003.txt",
+        "kind": "file",
+        "path": "scratch/regression-baseline-pre-003.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trio Sync",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Sources To Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Contradictions",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Output Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent Save Routing",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 001 and 002 shipped the lean-trio policy end-to-end: validator phase-parent branches across five rules, the new content-discipline validator, the generator pointer-write and bubble-up, the resume pointer-first redirect, the lean phase-parent template, and base documentation in CLAUDE.md, AGENTS.md, AGENTSBarter.md, AGENTSexamplefsenterprises.md, and the system-spec-kit `SKILL.md`",
+    "created_at": "2026-04-27T13:30:00Z",
+    "last_save_at": "2026-11-10T05:45:58.472Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:33cc55890e0829fd6f846573a1090cbc55f741363f4bb7c3505ec2f33c4a8f1b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "718dfb18d0fcdedfa4f834da94a3c56d3ed9ce8d439c9635b0748f5692190797",
+      "plan.md": "ac2a895bb75665d5e5fd31f2c9a704cadf6ab0755f9ebdb16668f6c6fc53728c",
+      "tasks.md": "c3fbdc6729013a63338fbab1c924b560cf78e03fc186f1fa0fbf76d932acc1c2",
+      "implementation-summary.md": "ff45bf4f1838b3ad0ddb83606dc6f655e880b254a1b397d416a38fe458026937"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

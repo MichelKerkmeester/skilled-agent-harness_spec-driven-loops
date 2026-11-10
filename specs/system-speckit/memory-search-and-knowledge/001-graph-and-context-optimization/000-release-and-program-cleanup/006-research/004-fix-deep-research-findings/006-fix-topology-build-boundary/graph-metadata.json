@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/006-fix-topology-build-boundary",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/006-fix-topology-build-boundary",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "F-019-D4-02",
+      "F-019-D4-03",
+      "F-020-D5-01",
+      "F-020-D5-02",
+      "F-020-D5-03",
+      "F-020-D5-04",
+      "topology and build dist boundary remediation",
+      "phase path grammar",
+      "phase parent health",
+      "advisor source path snake case",
+      "source dist alignment checker",
+      "orphan harness dist"
+    ],
+    "key_topics": [
+      "f-019-d4-02",
+      "f-019-d4-03",
+      "f-020-d5-01",
+      "f-020-d5-02",
+      "f-020-d5-03",
+      "f-020-d5-04",
+      "topology",
+      "dist",
+      "boundary",
+      "remediation",
+      "phase",
+      "path"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Topology And Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dist Boundary Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Six",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "allowlisted",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "dist CLI",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "finding IDs",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Six",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Six P2 findings from packet 046's deep research (D4 phase-topology, D5 build/dist boundary) leak topology drift, cache-signature drift, and stale dist artifacts the existing tooling cannot see:",
+    "created_at": "2026-05-01T05:18:48Z",
+    "last_save_at": "2026-11-10T05:46:07.898Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:da25488b4b5cbe6a15687cabdb7d3ec920dda7e8f0ef3160aed1eca196c850d2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2eedf9121d7a9d253563b92304f3a7ab922b1be652d27fde55bf85fdacdf33b4",
+      "plan.md": "8a8e0d2ca22ca4d2189e7e6b438f07f9bf5ae09921428145fdb8d7c629525b93",
+      "tasks.md": "d68b4c40526416389c68418ab530a9d29af617791576ff4bb3299b89c46f4132",
+      "implementation-summary.md": "25610182a1755d93795af5efc4d4e2a3a97630b82628dc6b74f2bf4e2e92ca42"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

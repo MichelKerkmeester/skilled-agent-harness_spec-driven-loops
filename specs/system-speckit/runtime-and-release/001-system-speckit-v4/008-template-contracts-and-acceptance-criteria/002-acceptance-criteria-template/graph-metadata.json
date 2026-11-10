@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/008-template-contracts-and-acceptance-criteria/002-acceptance-criteria-template",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/008-template-contracts-and-acceptance-criteria/002-acceptance-criteria-template",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "acceptance criteria template",
+      "acceptance criteria closure gate",
+      "ac waiver adr",
+      "level 2 3 3+ required docs",
+      "ac closure validator",
+      "acceptance criteria plan",
+      "ac closure rollout",
+      "closure gate implementation",
+      "acceptance criteria tasks",
+      "ac closure task list",
+      "closure gate tasks",
+      "acceptance criteria template acceptance criteria"
+    ],
+    "key_topics": [
+      "acceptance",
+      "criteria",
+      "template",
+      "closure",
+      "gate",
+      "waiver",
+      "adr",
+      "level",
+      "required",
+      "docs",
+      "validator",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+      "templates/addons/acceptance-criteria.md.tmpl",
+      "templates/spec-kit-docs.json",
+      "templates/core/spec.md.tmpl",
+      "references/validation/validation-rules.md",
+      "templates/README.md",
+      "templates/CONTRACT.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      "shared/parsing/spec-doc-health.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md.tmpl",
+        "kind": "file",
+        "path": "templates/addons/acceptance-criteria.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/core/spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": "references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "templates/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "CONTRACT.md",
+        "kind": "doc",
+        "path": "templates/CONTRACT.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-health.ts",
+        "kind": "code",
+        "path": "shared/parsing/spec-doc-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria Template",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Closure Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Acceptance criteria are split across two documents and owned by neither",
+    "created_at": "2026-08-29T12:08:53Z",
+    "last_save_at": "2026-11-10T05:48:02.999Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f49574c36a89daf4cfd7fb17ab02fa12e3c4b94ab23dc1b256506a471b2ca3e7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4fafc3a4565008318c95990b7ef13d500102bccba34f9e43ffa4dab5520c4a86",
+      "plan.md": "95dd63895ce5e14cf7a21a4029a37de6709af7c5e3b3afa9ab438b401b100020",
+      "tasks.md": "b8a577f8a51c0646e462c4fd7b822565670fb4c3cb561627a0d214d949db6e24",
+      "decision-record.md": "d099a03e679579dea906d8774892f533cc98819c81f5cad1624230910895f017",
+      "implementation-summary.md": "ec07a20d07d47bb2aa28b8714d8c8ce34ab0a5897bfc91787f8ac68e9edc1c43"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

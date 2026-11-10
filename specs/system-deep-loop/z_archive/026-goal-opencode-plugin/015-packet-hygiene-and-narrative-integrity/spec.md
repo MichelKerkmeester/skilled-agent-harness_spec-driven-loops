@@ -50,7 +50,7 @@ FAILURE MODES:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-07-03 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 15 |
 | **Predecessor** | 014-goal-state-cleanup-and-archive |
@@ -219,7 +219,7 @@ Packet 032's phase 010-014 spec-folder metadata, phase-count labels, rename narr
 ## Cross-References
 
 - **Finding source**: `../scratch/2026-07-03-four-reviewer-audit-findings.md` (sections C, D, and the Validator findings; PKT-1 through PKT-15, DOC-1, DOC-2, VAL-1, VAL-2)
-- **Style/quality model**: `.opencode/specs/system-speckit/028-memory-search-intelligence/011-create-sh-parent-corruption-fix/` (spec.md, plan.md, tasks.md)
+- **Style/quality model**: `.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/011-create-sh-parent-corruption-fix/` (spec.md, plan.md, tasks.md)
 - **Fingerprint mechanism precedent**: `../013-design-fidelity-and-polish/implementation-summary.md` (direct-edit recomputation of `session_dedup.fingerprint`, applied to phases 001-008; this phase extends it to 009-014)
 <!-- /ANCHOR:cross-refs -->
 

@@ -1,0 +1,2842 @@
+{
+  "sessionId": "2026-11-08T19:57:09.370Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-does-each-doctor-command-in-skilled-commands-doctor-route-to-a-system-skilled-do",
+      "inboxId": null,
+      "text": "Does each /doctor:* command in .skilled/commands/doctor/ route to a system-skilled-doctor mode or script that exists, and do the checks it lists actually run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-does-the-skilled-in-your-project-and-vendored-overlay-flow-from-v4-0-2-0-doctor-",
+      "inboxId": null,
+      "text": "Does the Skilled in Your Project and vendored overlay flow from v4.0.2.0 (/doctor:install, /doctor:symlink, /doctor:overlay) hold up when read end to end and run only in check or plan modes, and which step would fail?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-3-do-the-runtime-mirrors-in-claude-opencode-codex-cursor-pi-devin-dsh-match-their-",
+      "inboxId": null,
+      "text": "Do the runtime mirrors in .claude .opencode .codex .cursor .pi .devin .dsh match their .skilled sources, and does /doctor:runtime-mirrors detect the drift that exists?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-do-the-sk-git-hooks-behave-as-the-v4-0-0-3-commit-message-rules-hook-safety-v4-0",
+      "inboxId": null,
+      "text": "Do the sk-git hooks behave as the v4.0.0.3 (commit message rules, hook safety), v4.0.0.10 (commit-id) and v4.0.0.15/v4.0.0.16 (worktrees) notes say, with a repro for any wrong accept or reject?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-do-the-workflows-in-github-workflows-match-the-v4-0-0-16-ci-and-github-actions-n",
+      "inboxId": null,
+      "text": "Do the workflows in .github/workflows match the v4.0.0.16 CI and GitHub Actions note and /doctor:ci switch state, and does any workflow call a missing script?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-6-does-agents-md-match-repo-rules-md-and-the-skilled-repo-rules-files-it-routes-an",
+      "inboxId": null,
+      "text": "Does AGENTS.md match REPO RULES.md and the .skilled/repo-rules files it routes, and does any runtime limit (such as Devin's 16,384-byte rule cut) truncate a binding rule?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-7-do-the-skilled-agents-definitions-match-agents-md-section-9-and-the-agent-counts",
+      "inboxId": null,
+      "text": "Do the .skilled/agents definitions match AGENTS.md section 9 and the agent counts the cli-* skills claim?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-8-which-claims-in-the-v4-0-0-3-doctor-commands-v4-0-0-8-install-and-first-use-and-",
+      "inboxId": null,
+      "text": "Which claims in the v4.0.0.3 Doctor Commands, v4.0.0.8 Install and First Use and Symlink Safety, and v4.0.1.0 Doctor Commands sections are true in code?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-9-which-doctor-checks-hooks-workflows-or-mirror-files-have-no-caller-or-duplicate-",
+      "inboxId": null,
+      "text": "Which doctor checks, hooks, workflows or mirror files have no caller or duplicate another, and what breaks if each is removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 11,
+      "resolved": true
+    },
+    {
+      "id": "question-10-what-friction-do-the-operator-and-the-ai-user-hit-in-doctor-output-hook-rejectio",
+      "inboxId": null,
+      "text": "What friction do the operator and the AI user hit in doctor output, hook rejections and CI failures?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 19,
+      "resolved": true
+    },
+    {
+      "id": "question-11-where-do-these-surfaces-depart-from-sk-code-sk-doc-and-skilled-canon-for-command",
+      "inboxId": null,
+      "text": "Where do these surfaces depart from sk-code, sk-doc and Skilled canon for command format, skill format and hub routing?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    },
+    {
+      "id": "question-12-what-concrete-extensions-to-doctor-checks-hooks-ci-and-mirror-sync-would-close-a",
+      "inboxId": null,
+      "text": "What concrete extensions to doctor checks, hooks, CI and mirror sync would close a gap found in this run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-4-do-the-sk-git-hooks-behave-as-the-v4-0-0-3-commit-message-rules-hook-safety-v4-0",
+      "inboxId": null,
+      "text": "Do the sk-git hooks behave as the v4.0.0.3 (commit message rules, hook safety), v4.0.0.10 (commit-id) and v4.0.0.15/v4.0.0.16 (worktrees) notes say, with a repro for any wrong accept or reject?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-does-each-doctor-command-in-skilled-commands-doctor-route-to-a-system-skilled-do",
+      "inboxId": null,
+      "text": "Does each /doctor:* command in .skilled/commands/doctor/ route to a system-skilled-doctor mode or script that exists, and do the checks it lists actually run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-does-the-skilled-in-your-project-and-vendored-overlay-flow-from-v4-0-2-0-doctor-",
+      "inboxId": null,
+      "text": "Does the Skilled in Your Project and vendored overlay flow from v4.0.2.0 (/doctor:install, /doctor:symlink, /doctor:overlay) hold up when read end to end and run only in check or plan modes, and which step would fail?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-3-do-the-runtime-mirrors-in-claude-opencode-codex-cursor-pi-devin-dsh-match-their-",
+      "inboxId": null,
+      "text": "Do the runtime mirrors in .claude .opencode .codex .cursor .pi .devin .dsh match their .skilled sources, and does /doctor:runtime-mirrors detect the drift that exists?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-5-do-the-workflows-in-github-workflows-match-the-v4-0-0-16-ci-and-github-actions-n",
+      "inboxId": null,
+      "text": "Do the workflows in .github/workflows match the v4.0.0.16 CI and GitHub Actions note and /doctor:ci switch state, and does any workflow call a missing script?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-6-does-agents-md-match-repo-rules-md-and-the-skilled-repo-rules-files-it-routes-an",
+      "inboxId": null,
+      "text": "Does AGENTS.md match REPO RULES.md and the .skilled/repo-rules files it routes, and does any runtime limit (such as Devin's 16,384-byte rule cut) truncate a binding rule?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-7-do-the-skilled-agents-definitions-match-agents-md-section-9-and-the-agent-counts",
+      "inboxId": null,
+      "text": "Do the .skilled/agents definitions match AGENTS.md section 9 and the agent counts the cli-* skills claim?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-8-which-claims-in-the-v4-0-0-3-doctor-commands-v4-0-0-8-install-and-first-use-and-",
+      "inboxId": null,
+      "text": "Which claims in the v4.0.0.3 Doctor Commands, v4.0.0.8 Install and First Use and Symlink Safety, and v4.0.1.0 Doctor Commands sections are true in code?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-9-which-doctor-checks-hooks-workflows-or-mirror-files-have-no-caller-or-duplicate-",
+      "inboxId": null,
+      "text": "Which doctor checks, hooks, workflows or mirror files have no caller or duplicate another, and what breaks if each is removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 11
+    },
+    {
+      "id": "question-10-what-friction-do-the-operator-and-the-ai-user-hit-in-doctor-output-hook-rejectio",
+      "inboxId": null,
+      "text": "What friction do the operator and the AI user hit in doctor output, hook rejections and CI failures?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 19
+    },
+    {
+      "id": "question-11-where-do-these-surfaces-depart-from-sk-code-sk-doc-and-skilled-canon-for-command",
+      "inboxId": null,
+      "text": "Where do these surfaces depart from sk-code, sk-doc and Skilled canon for command format, skill format and hub routing?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9
+    },
+    {
+      "id": "question-12-what-concrete-extensions-to-doctor-checks-hooks-ci-and-mirror-sync-would-close-a",
+      "inboxId": null,
+      "text": "What concrete extensions to doctor checks, hooks, CI and mirror sync would close a gap found in this run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Does the `hook_adapter_fallback_health_checks` battery in `doctor-runtime-mirrors.yaml` resolve every listed path, and does the full workflow report a degraded adapter when one is missing? The workflow YAML says it does; this iteration ran the checker scripts, not the full workflow.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the v4.0.0.15/v4.0.0.16 worktree behaviors (private `local-*` command links, fsmonitor reaper, merged-worktree sweep, `SPECKIT_WORKTREE_AUTOREAP=0`, `SPECKIT_WORKTREE_BASE`) match their notes? This is the open half of Q4.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `AGENTS.md` match `REPO RULES.md` and the `.skilled/repo-rules` files it routes, and does Devin's 16,384-byte rule cut truncate a binding rule? (Q6, next iteration.)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the `.github/workflows` match the v4.0.0.16 CI note and `/doctor:ci` switch state, and does any workflow call a missing script? (Q5, next iteration.)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does a message carrying both `Commit-Id: 0000000` and a valid id get refused? `cip_message_has_id` returns true when any line is non-zero, so the zero line is ignored when a valid line is also present. The stamper strips duplicate trailers, so this needs a deliberate hand-written message to trigger.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `pre-push` refuse a pushed non-merge commit without a Commit-Id, and does a wedged git call block with `BLOCKED [gate:git-timeout]` after 20 seconds? The code path is present in `pre-push` and the bounded-git helper; no live timeout was induced.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `pre-push` refuse a pushed non-merge commit without a Commit-Id, and does a wedged git call block with `BLOCKED [gate:git-timeout]` after 20 seconds? Code path present; no live timeout induced.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the v4.0.0.15/v4.0.0.16 worktree behaviors (private `local-*` links, fsmonitor reaper, merged-worktree sweep, `SPECKIT_WORKTREE_AUTOREAP=0`, `SPECKIT_WORKTREE_BASE`) match their notes? (Q4, still open.)",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which of the 32 workflows would fail if `/doctor:ci` flipped its group switch, and does any workflow read a group variable its README row does not name?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the `hook_adapter_fallback_health_checks` battery resolve every listed path, and does the full workflow report a degraded adapter when one is missing?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What concrete extensions to doctor checks, hooks, CI and mirror sync would close a gap found in this run?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What friction do the operator and the AI user hit in doctor output, hook rejections and CI failures?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward: do the v4.0.0.15/v4.0.0.16 worktree behaviors (`local-*` links, fsmonitor reaper, merged-worktree sweep, `SPECKIT_WORKTREE_AUTOREAP=0`, `SPECKIT_WORKTREE_BASE`) match their notes?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward: does `AGENTS.md` match `REPO RULES.md` and the `.skilled/repo-rules` files it routes, and does Devin's 16,384-byte rule cut truncate a binding rule?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the `sk-git` hooks behave as the v4.0.0.3, v4.0.0.10 and v4.0.0.15/v4.0.0.16 notes say, with a repro for any wrong accept or reject?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Where do these surfaces depart from sk-code, sk-doc and Skilled canon for command format, skill format and hub routing?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the Skilled in Your Project and vendored overlay flow from v4.0.2.0 (`/doctor:install`, `/doctor:symlink`, `/doctor:overlay`) hold up read end to end in check or plan mode, and which step would fail?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward: does `pre-push` refuse a pushed non-merge commit without a Commit-Id, and does a wedged git call block with `BLOCKED [gate:git-timeout]` after 20 seconds?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which doctor checks, hooks, workflows or mirror files have no caller or duplicate another, and what breaks if each is removed?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward: does the `hook_adapter_fallback_health_checks` battery resolve every listed path, and does the full workflow report a degraded adapter when one is missing?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward: does a message carrying both `Commit-Id: 0000000` and a valid id get refused?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do `.github/workflows` match the v4.0.0.16 CI note, and would any fail when `/doctor:ci` flips a group switch? (still open)",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does a message carrying both `Commit-Id: 0000000` and a valid id get refused? (carried, still open)",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `pre-push` refuse a pushed non-merge commit without a Commit-Id (repo side), and does a wedged git call really block with `BLOCKED [gate:git-timeout]` at 20 s? (carried, still open)",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the v4.0.0.15/v4.0.0.16 worktree behaviors (`local-*` links, fsmonitor reaper, merged-worktree sweep, `SPECKIT_WORKTREE_AUTOREAP=0`, `SPECKIT_WORKTREE_BASE`) match their notes? (carried, still open — half of Q2)",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `AGENTS.md` match `REPO RULES.md`, and does Devin's 16,384-byte rule cut truncate a binding rule? (still open)",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11: where do these surfaces depart from sk-code, sk-doc and Skilled canon for command format, skill format and hub routing?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: do the sk-git hooks behave as the v4.0.0.3 (commit rules, hook safety), v4.0.0.10 (Commit-Id) and v4.0.0.15/v4.0.0.16",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10: what friction do the operator and the AI user hit in doctor output, hook rejections and CI failures?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q12: what concrete extensions to doctor checks, hooks, CI and mirror sync would close a gap found in this run?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q9: which doctor checks, hooks, workflows or mirror files have no caller or duplicate another, and what breaks if each is",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the sk-git hook suites pass at HEAD, and would wiring them into CI fail today? Running them writes throwaway repos, which is outside this iteration's read-only bound.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the runtime-mirrors workflow report a degraded adapter when one battery path is missing? (aggregation branch, not path resolution)",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the message gate accept a push whose `Commit-Id` trailer carries both `0000000` and a valid id?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `AGENTS.md` match `REPO RULES.md`, and does Devin's 16,384-byte rule cut truncate a binding rule?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q11** — the canon comparison (sk-code / sk-doc / hub routing) is still open; this iteration only reached the CI-wiring and test-harness contrast, not command or skill *format*.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The remaining v4.0.0.15/v4.0.0.16 worktree behaviours (`local-*` links, fsmonitor reaper, merged-worktree sweep, `SPECKIT_WORKTREE_AUTOREAP=0`, `SPECKIT_WORKTREE_BASE`).",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does Devin's 16,384-byte rule cut truncate a binding rule? The rule directory is reachable and ordered by the trigger table, but the concatenated byte size against the cut was not measured.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the remaining v4.0.0.15/v4.0.0.16 worktree behaviours (`local-*` links, fsmonitor reaper, merged-worktree sweep, `SPECKIT_WORKTREE_AUTOREAP=0`, `SPECKIT_WORKTREE_BASE`) match their notes?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does a message carrying both `Commit-Id: 0000000` and a valid id get refused? Still open, still needs a deliberate hand-written message.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What would a bridge generator actually consume if `skill_agent` became machine-read — `_routes.yaml` `trigger_phrases`, or `command-metadata.json` `skillId`? The tag duplicates identity that already exists in two other places (F9-01), so any consumer design has to pick one of three.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `pre-push` refuse a pushed non-merge commit without a Commit-Id, and does a wedged git call block with `BLOCKED [gate:git-timeout]` at 20 s? The read-only bound has blocked inducing a live timeout across four iterations.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the `sk-git` hook suites pass at HEAD, and would wiring them into CI fail today? Running them writes throwaway repos, outside the read-only bound.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether `.github/workflows` runs the doctor suites (F10-10's gap).",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q4 (hooks half)** — the fail-open repro still needs a scratch repo; open since iteration 2.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The v4.0.0.15/v4.0.0.16 worktree behaviours (`local-*` links, fsmonitor reaper, merged-worktree",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q10** — narrowed, not closed. Doctor-output friction is now measured on four engines",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`Commit-Id: 0000000` plus a valid id; `pre-push` without a `Commit-Id`; the 20 s",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q4 (hooks half)** — the fail-open repro and the v4.0.0.15/v4.0.0.16 worktree behaviours",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether Devin's 16,384-byte rule cut truncates a binding rule; the concatenated size was",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q9 (hooks and workflows half)** — 11 checks now measured, but which *hooks* and *workflow",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the `.github/workflows` set matches the v4.0.0.16 CI note, and whether any workflow",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q10** — doctor-output friction is now measured on five engines; the hook-rejection and",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The v4.0.0.15/v4.0.0.16 worktree behaviours (`local-*` links, fsmonitor reaper,",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`Commit-Id: 0000000` plus a valid id; a pushed commit with no `Commit-Id`; the 20 s",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The v4.0.0.12 sk-git claim is not covered: the diff's fourth file is a new",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether Devin's 16,384-byte rule cut truncates a binding rule; still unmeasured.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether Devin's rule cut truncates a binding rule *after* the delivery anchors are",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3 / Q4 (hooks half)** — still the dominant open question. `pre-push` without a",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11 (canon comparison for command and skill *format*) remains unmeasured.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q10 (friction)** — F14-01, F14-02 and F14-03 are all friction inputs (a gate that",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3/Q4 (hooks)** — `pre-push` without a `Commit-Id`, the 20 s `gate:git-timeout`,",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is `.skilled/agents/README.txt` (2,029 B) meant to describe 11 agents to a reader who",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `.dsh/agents/*.patch.yml` overlay a body that the parity gate could ever see, or",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3 (hooks half)** — still open, and now the dominant one. F15-02 shows the *doctor* verdict on",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Open from earlier: Devin's 16,384-byte rule cut; the 20 s `gate:git-timeout`; a pushed commit",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q10 (friction)** — narrowed again. Doctor-output friction now has a hard example (a check that",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6** — does `AGENTS.md` match `REPO RULES.md`, and does Devin's 16,384-byte rule cut truncate a binding rule?",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New and cheap: whether the same ancestor-symlink trap voids any other registry entry. f-iter015-005 survives (it counts a literal list), f-iter015-006 survives (`.claude/agents` is a real directory and `Explore.md` a real file), but the registry has 255 entries and only the copy/duplicate family has been re-tested. A single pass over every finding whose text contains \"duplicate\", \"copy\" or \"same size\" would settle it.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1 (hooks half) — the dominant open question, open since iteration 2.** A hook accept/reject repro and the 20 s `gate:git-timeout` both need a scratch repository; the read-only bound has now blocked this across five iterations. This is the single most valuable thing the next pass could do, and it needs a run whose write authority includes `/tmp`.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried, unreproduced: `Commit-Id: 0000000` alongside a valid id; a pushed commit with no `Commit-Id`.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: the v4.0.0.15/v4.0.0.16 worktree behaviours (`local-*` links, fsmonitor reaper, merged-worktree sweep, `SPECKIT_WORKTREE_AUTOREAP=0`, `SPECKIT_WORKTREE_BASE`).",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q11** — command and skill *format* against sk-code / sk-doc canon (the CI-wiring half was reached in iteration 8; the format half never was).",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q11** — command and skill *format* against sk-code / sk-doc canon.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3/Q4 hooks half** — unchanged and still the dominant gap: no scratch repo, so `pre-push`",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: whether `SKILLED_LOOP_*` belongs in the `/doctor:env` inventory at all. If the answer is \"no,",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: does the router enforce `gate3_location` and `allowed_flags` for positionals at dispatch?",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6** — Devin's 16,384-byte rule cut against the concatenated repo-rules size.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does any other `*.test.*` suite in the tree share F18-01's state? The four found are `sk-git`'s; the generalisation (F18-04's `suite-unwired` flag) was designed but not run across the tree.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: the v4.0.0.15/v4.0.0.16 worktree behaviours; `Commit-Id: 0000000` plus a valid id; a pushed commit with no `Commit-Id`; Devin's 16,384-byte rule cut.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3/Q4 (hooks), still dominant.** F18-01 relocates it: the repro exists on disk. The next pass that has `/tmp` write authority should run `bash .skilled/skills/sk-git/scripts/tests/validate-message-git-timeout.test.mjs` and `commit-id-naming.test.sh` and report whether they pass at HEAD — that answers the timeout question without inducing it by hand, and it is the cheapest remaining P1.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q10 (friction).** F18-05 is friction input: a green check whose name overstates it. F18-02 is friction of the opposite kind, a rule stated as absolute that the repository does not obey.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q11** — command and skill format against sk-code / sk-doc canon. Untouched again.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q11** — command and skill format against sk-code / sk-doc canon. Untouched for a fourth iteration.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3/Q4 hooks half — still dominant, and now cheaper to answer.** `--status` is answerable without a scratch repo; accept/reject behaviour is not. `validate-message-git-timeout.test.mjs` and `commit-id-naming.test.sh` remain the cheapest route and still need `/tmp` write authority.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `isHostRelativeLink` (F20-04) ever see a link text that traverses a symlinked",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Devin's 16,384-byte rule cut against the concatenated repo-rules size; still",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which release introduced `worktree-status.sh`'s separator-less strip (F20-03)? The",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q11** — command and skill format against sk-code / sk-doc canon. Untouched for a",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1 (hooks half), dominant and unchanged.** `pre-push` without a `Commit-Id`, the 20 s",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**The hooks accept/reject repro** — open since iteration 2, closed by nothing in 21 iterations. It needs a scratch repository with a `skgit.contractDir`, which every iteration's write bound excluded. The cheapest route remains the suites already on disk (`validate-message-git-timeout.test.mjs`, `commit-id-naming.test.sh`), not a hand-built repo.",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The v4.0.0.15/v4.0.0.16 worktree behaviours (`local-*` links, fsmonitor reaper, merged-worktree sweep, `SPECKIT_WORKTREE_AUTOREAP=0`, `SPECKIT_WORKTREE_BASE`).",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Devin's 16,384-byte rule cut against the concatenated repo-rules size.",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q11** — command and skill *format* against sk-code / sk-doc canon. Unmeasured for a fifth iteration.",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The `Commit-Id: 0000000` plus valid-id case; a pushed commit with no `Commit-Id`; the 20 s `gate:git-timeout`.",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New from this iteration: does `dist-freshness.cjs` expose a non-refreshing mode, and if not, is the probe's dist write the only in-repo write among the \"read-only\" doctor routes? F22-08 found one; the other check-form routes (`skill-graph-freshness.cjs`, `agents-md-check.cjs`, `sk-skill-check.cjs`, `git-setup-check.cjs`) were only partially read for writes.",
+      "addedAtIteration": 22,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1 (hooks half), dominant and unchanged since iteration 2.** `pre-push` without a `Commit-Id`, the 20 s `gate:git-timeout`, `Commit-Id: 0000000` alongside a valid id — all three still need a scratch repository with `skgit.contractDir`. Nothing in 22 iterations has closed it.",
+      "addedAtIteration": 22,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q11 — command and skill *format* against sk-code / sk-doc canon.** Untouched for a sixth iteration.",
+      "addedAtIteration": 22,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: which other doctor scripts emit a `--json` trailer (the grep counts 12 files containing `STATUS=`), and does any route asset instruct a JSON parse of the whole stream? F22-01 measured two; the family is larger.",
+      "addedAtIteration": 22,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Do the sk-git hooks behave as the v4.0.0.3 (commit message rules, hook safety), v4.0.0.10 (commit-id) and v4.0.0.15/v4.0.0.16 (worktrees) notes say, with a repro for any wrong accept or reject?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-19-claim-unlink-undoes-one-run-exactly-source-skilled-changelog-skilled-v4-0-1-0-md",
+      "text": "**Claim:** \"`unlink` undoes one run exactly.\" [SOURCE: .skilled/changelog/skilled/v4.0.1.0.md:94]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-claim-first-use-names-all-seven-runtimes-and-how-each-one-spells-speckit-complet",
+      "text": "**Claim:** \"First Use names all seven runtimes and how each one spells `/speckit:complete`.\" [SOURCE: .skilled/changelog/skilled/v4.0.0.8.md:49]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-12-claim-it-now-checks-spec-kit-search-only-the-trigger-index-its-lookup-and-the-se",
+      "text": "**Claim:** \"It now checks spec-kit search only: the trigger index, its lookup and the search recipes.\" [SOURCE: .skilled/changelog/skilled/v4.0.0.3.md:142]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-38-code-doctor-install-lists-claude-opencode-codex-cursor-devin-pi-source-skilled-c",
+      "text": "**Code:** `/doctor:install` lists `claude, opencode, codex, cursor, devin, pi` [SOURCE: .skilled/commands/doctor/install.md:37]; `/doctor:symlink` repeats the same six [SOURCE: .skilled/commands/doctor/symlink.md:57]; the engine's manifest defines the same six keys [SOURCE: .skilled/commands/doctor/assets/symlink-manifest.json:5]. Six is correct because `.dsh` reads no project folder by itself and must not be linked. But adding or renaming a linkable runtime needs three synchronized edits, and no validator compares the router lists to the manifest keys.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-32-code-check-yaml-assets-iterates-routes-and-reports-d1-only-for-those-source-skil",
+      "text": "**Code:** `check_yaml_assets()` iterates `routes` and reports D1 only for those. [SOURCE: .skilled/commands/doctor/scripts/route-validate.py:414] The seven `standalone:` YAML references (`/doctor:update`'s six action assets and `/doctor:env`'s one) and the `mcp_subroutes` assets are never checked for existence. [SOURCE: .skilled/commands/doctor/_routes.yaml:719] All seven exist today, so nothing is broken now; deleting one would leave CI green until the command actually runs.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-26-code-route-validate-sh-is-a-ci-assertion-whose-contract-is-exit-0-valid-source-s",
+      "text": "**Code:** `route-validate.sh` is a CI assertion whose contract is exit 0 = valid. [SOURCE: .skilled/commands/doctor/scripts/route-validate.sh:1] A healthy manifest emits 11 `WARN: H1` lines for duplicate flag names across targets (`--dry-run` in `tune`/`rebuild`, `--root` in `check`/`link`, and so on). The warnings are informational by design, but a passing run never looks clean, which trains operators to skim the one output that is supposed to be authoritative.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-code-the-readme-has-no-first-use-heading-the-equivalent-section-is-first-task-it",
+      "text": "**Code:** The README has no \"First Use\" heading; the equivalent section is \"First Task\". It names only `/speckit:complete` and then four runtimes: \"Codex, Cursor and Pi spell commands with a hyphen, as in `/speckit-complete`. Devin reaches the same workflow through its `/system-spec-kit` skill.\" [SOURCE: README.md:208] The install guide repeats the same four. [SOURCE: INSTALL-SKILLED.md:65] Claude, OpenCode and dsh get no spelling line, so the note's \"all seven\" is not what a reader finds.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-13-code-the-route-declares-a-fourth-invocation-the-citation-drift-census-alongside-",
+      "text": "**Code:** The route declares a fourth invocation, the citation-drift census, alongside the three search checks. [SOURCE: .skilled/commands/doctor/_routes.yaml:76] The router presents it as an offered diagnostic. [SOURCE: .skilled/commands/doctor/speckit.md:75] Citation drift is a sk-doc documentation check, not a spec-kit search check, so the note and the shipped route disagree about the command's scope.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-44-code-the-router-documents-four-engine-targets-check-link-unlink-and-the-plan-app",
+      "text": "**Code:** The router documents four engine targets (`check`, `link`, `unlink`, and the plan/apply pair behind `link`). [SOURCE: .skilled/commands/doctor/symlink.md:49] Running the engine with `--help` prints `ERROR: unknown flag: --help` and exits 2, with no usage line and no pointer to the valid modes. This satisfies the release's \"Every Script Refuses Unknown Options\" rule, but the refusal path is also the only feedback an operator gets.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-20-code-the-router-states-that-a-recorded-path-whose-state-no-longer-matches-the-re",
+      "text": "**Code:** The router states that a recorded path whose state no longer matches the record is skipped as `changed since apply`. [SOURCE: .skilled/commands/doctor/symlink.md:92] Unlink is therefore a safe best-effort reversal, not an exact one; a file changed after the link is deliberately left alone.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-confidence-high-0-9",
+      "text": "**Confidence:** high (0.9)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-18-confidence-high-0-9",
+      "text": "**Confidence:** high (0.9)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-11-confidence-high-0-95",
+      "text": "**Confidence:** high (0.95)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-31-confidence-high-0-95",
+      "text": "**Confidence:** high (0.95)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-25-confidence-high-1-0-observed",
+      "text": "**Confidence:** high (1.0, observed)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-43-confidence-high-1-0-observed",
+      "text": "**Confidence:** high (1.0, observed)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-37-confidence-medium-high-0-85",
+      "text": "**Confidence:** medium-high (0.85)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-release-v4-0-0-3",
+      "text": "**Release:** v4.0.0.3",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-30-release-v4-0-0-3",
+      "text": "**Release:** v4.0.0.3",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-24-release-v4-0-0-3-the-release-that-put-every-doctor-script-suite-on-ci",
+      "text": "**Release:** v4.0.0.3 (the release that put every doctor script suite on CI)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-release-v4-0-0-8",
+      "text": "**Release:** v4.0.0.8",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-42-release-v4-0-0-8",
+      "text": "**Release:** v4.0.0.8",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-17-release-v4-0-1-0",
+      "text": "**Release:** v4.0.1.0",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-36-release-v4-0-1-0",
+      "text": "**Release:** v4.0.1.0",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-16-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-23-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-29-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-35-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-41-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-type-drift",
+      "text": "**Type:** drift",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-type-drift",
+      "text": "**Type:** drift",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-15-type-drift",
+      "text": "**Type:** drift",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-28-type-extension",
+      "text": "**Type:** extension",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-34-type-extension",
+      "text": "**Type:** extension",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-22-type-ux",
+      "text": "**Type:** ux",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-40-type-ux",
+      "text": "**Type:** ux",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-27-verify-bash-skilled-commands-doctor-scripts-route-validate-sh-2-1-rg-c-warn-11-e",
+      "text": "**Verify:** `bash .skilled/commands/doctor/scripts/route-validate.sh 2>&1 | rg -c '^WARN'` → 11; exit code 0.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-45-verify-node-skilled-commands-doctor-scripts-symlink-engine-cjs-help-echo-error-u",
+      "text": "**Verify:** `node .skilled/commands/doctor/scripts/symlink-engine.cjs --help; echo $?` → `ERROR: unknown flag: --help`, exit 2.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-39-verify-rg-n-pi-skilled-commands-doctor-assets-symlink-manifest-json-the-last-of-",
+      "text": "**Verify:** `rg -n '\"pi\"' .skilled/commands/doctor/assets/symlink-manifest.json` → the last of six runtime keys; `rg -n 'opencode,codex,cursor,devin,pi' .skilled/commands/doctor/install.md .skilled/commands/doctor/symlink.md` → both router lists.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-21-verify-rg-n-changed-since-apply-skilled-commands-doctor-symlink-md-one-match",
+      "text": "**Verify:** `rg -n 'changed since apply' .skilled/commands/doctor/symlink.md` → one match.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-14-verify-rg-n-cite-drift-scan-skilled-commands-doctor-routes-yaml-skilled-commands",
+      "text": "**Verify:** `rg -n 'cite-drift-scan' .skilled/commands/doctor/_routes.yaml .skilled/commands/doctor/speckit.md` → one match in each.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-33-verify-rg-n-def-check-yaml-assets-for-route-in-routes-skilled-commands-doctor-sc",
+      "text": "**Verify:** `rg -n 'def check_yaml_assets|for route in routes' .skilled/commands/doctor/scripts/route-validate.py` → the function takes `routes` only.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-verify-rg-n-speckit-complete-readme-md-install-skilled-md-1-match-in-each-naming",
+      "text": "**Verify:** `rg -n 'speckit-complete' README.md INSTALL-SKILLED.md` → 1 match in each, naming four runtimes total.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-14-claim-six-runtime-trees-ship-the-same-twelve-agents-source-skilled-bin-agent-mir",
+      "text": "**Claim:** \"Six runtime trees ship the same twelve agents.\" [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:16]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-claim-the-command-s-own-description-says-it-checks-that-the-agent-command-prompt",
+      "text": "**Claim:** The command's own description says it checks that \"the agent, command, prompt and hook mirrors in each runtime directory match `.skilled`.\" [SOURCE: .skilled/commands/doctor/runtime-mirrors.md:6]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-22-claim-the-three-dsh-script-invocations-carry-n-a-not-run-while-dsh-is-absent-sou",
+      "text": "**Claim:** The three DSH script invocations carry `# n/a, not run, while .dsh/ is absent`. [SOURCE: .skilled/commands/doctor/_routes.yaml:237]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-23-code-dsh-exists-and-all-three-checks-run-and-pass-sync-skills-dsh-cjs-check-55-s",
+      "text": "**Code:** `.dsh/` exists and all three checks run and pass: `sync-skills-dsh.cjs --check` → 55 skill links in sync; `sync-prompts-dsh.cjs --check` → 45 prompt stubs in sync; `sync-agents-dsh.cjs --check` → 11 agent patches in sync. The workflow YAML is conditional and correct (\"When `.dsh/` is absent, report the row as n/a...\") [SOURCE: .skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml:146], so the stale text is in the route manifest's comments, not in the behavior. An operator reading `_routes.yaml` sees the opposite of what the command does.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-15-code-the-roster-is-11-the-skilled-agents-readme-txt-lists-11-agents-source-skill",
+      "text": "**Code:** The roster is 11. The `.skilled/agents/README.txt` lists 11 agents. [SOURCE: .skilled/agents/README.txt:19] The `.claude/agents/README.txt` lists the same 11 plus the Claude-only `Explore.md`, and says \"Explore is not a roster agent\" and \"has no mirror in the other runtimes.\" [SOURCE: .claude/agents/README.txt:18] Both checkers report 11: `check-agent-mirror-sync.cjs --all` → \"11 agent(s) checked\"; `agent-roster-mirror-check.cjs` → \"canonical: .claude/agents (11 agents)\". The crosswalk's own §1 table lists the same six trees, so the count is the only wrong number.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-code-the-workflow-s-upstream-assets-list-and-execution-steps-run-sync-runtime-mi",
+      "text": "**Code:** The workflow's `upstream_assets` list and execution steps run `sync-runtime-mirrors.cjs --check` (symlink trees), the Codex and Pi generators, `agent-roster-mirror-check.cjs` (roster coverage), `command-catalog-mirror-check.cjs` (catalog) and the Codex hook installer. [SOURCE: .skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml:34] [SOURCE: .skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml:138] The crosswalk says `.claude` \"is itself kept in step with `.skilled` by hand\" and names `node .skilled/bin/check-agent-mirror-sync.cjs --all` as the check that \"compares every agent body and declared tool surface from `.skilled` to `.claude` and `.codex`.\" [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:49] [SOURCE: .skilled/bin/agent-mirror-crosswalk.md:64] That script is not in the doctor battery: `rg -n 'check-agent-mirror-sync'` over `doctor-runtime-mirrors.yaml` and `_routes.yaml` returns no match. The roster checker's own output names `.claude/agents` as its canonical and reports coverage only (`cursor 11/11 symlinked`, `opencode 11/11 present`), so a body or tool-surface edit in `.claude/agents` that never reached `.skilled/agents` leaves every doctor row green.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-confidence-high-0-95",
+      "text": "**Confidence:** high (0.95)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-13-confidence-high-1-0-counted",
+      "text": "**Confidence:** high (1.0, counted)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-21-confidence-high-1-0-observed",
+      "text": "**Confidence:** high (1.0, observed)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-fix-direction-add-an-upstream-assets-agent-body-parity-row-and-an-execution-step",
+      "text": "**Fix direction:** Add an `upstream_assets.agent_body_parity` row and an execution step, and report its exit 0/1/2 as the agent-parity surface.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-17-fix-direction-change-twelve-to-eleven-and-name-explore-as-the-claude-only-except",
+      "text": "**Fix direction:** Change \"twelve\" to \"eleven\" and name Explore as the Claude-only exception, or say \"eleven roster agents plus Claude's Explore.\"",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-25-fix-direction-drop-the-trailing-comment-or-make-it-conditional-n-a-only-when-dsh",
+      "text": "**Fix direction:** Drop the trailing comment, or make it conditional (\"n/a only when `.dsh/` is absent\").",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-observed-node-skilled-bin-check-agent-mirror-sync-cjs-all-11-agent-s-checked-all",
+      "text": "**Observed:** `node .skilled/bin/check-agent-mirror-sync.cjs --all` → `11 agent(s) checked — all mirrors in sync — OK`, exit 0. The gap is latent today, not a current mismatch.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-12-release-baseline-crosswalk-last-touched-f8f6156c2d-on-2026-10-18-unchanged-throu",
+      "text": "**Release:** baseline (crosswalk last touched f8f6156c2d on 2026-10-18; unchanged through v4.0.2.0)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-release-v4-0-0-3-the-release-that-gave-the-runtime-mirrors-their-own-doctor-comm",
+      "text": "**Release:** v4.0.0.3 (the release that gave the runtime mirrors their own doctor command)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-20-release-v4-0-2-0-route-manifest-last-touched-c29f26ded8-on-2026-11-07",
+      "text": "**Release:** v4.0.2.0 (route manifest last touched c29f26ded8 on 2026-11-07)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-severity-p1",
+      "text": "**Severity:** P1",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-19-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-type-drift",
+      "text": "**Type:** drift",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-type-drift",
+      "text": "**Type:** drift",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-18-type-drift",
+      "text": "**Type:** drift",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-verify-rg-n-check-agent-mirror-sync-skilled-commands-doctor-assets-doctor-runtim",
+      "text": "**Verify:** `rg -n 'check-agent-mirror-sync' .skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml .skilled/commands/doctor/_routes.yaml` → no output; `node .skilled/bin/check-agent-mirror-sync.cjs --all` → OK.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-24-verify-rg-n-n-a-not-run-while-skilled-commands-doctor-routes-yaml-three-hits-ls-",
+      "text": "**Verify:** `rg -n 'n/a, not run, while' .skilled/commands/doctor/_routes.yaml` → three hits; `ls -d .dsh` → present; `node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check` → exit 0.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-16-verify-rg-n-twelve-agents-skilled-bin-agent-mirror-crosswalk-md-one-hit-node-ski",
+      "text": "**Verify:** `rg -n 'twelve agents' .skilled/bin/agent-mirror-crosswalk.md` → one hit; `node .skilled/bin/check-agent-mirror-sync.cjs --all` → 11.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-confidence-high-1-0-observed-in-the-live-rule-injection-and-in-the-byte-scan",
+      "text": "**Confidence:** high (1.0, observed in the live rule injection and in the byte scan)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-16-confidence-high-1-0-read",
+      "text": "**Confidence:** high (1.0, read)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-14-evidence-4-verification-completion-is-at-source-agents-md-117-3-execution-qualit",
+      "text": "**Evidence:** `## 4. ✅ VERIFICATION & COMPLETION` is at [SOURCE: AGENTS.md:117]; `## 3. 🛠️ EXECUTION & QUALITY` is at [SOURCE: AGENTS.md:173]. The sequence runs 1, 2, 4, 3, 5, 6, 7, 8, 9, 10.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-evidence-agents-md-is-27-587-bytes-source-agents-md-180-is-the-line-that-the-16-",
+      "text": "**Evidence:** `AGENTS.md` is 27,587 bytes. [SOURCE: AGENTS.md:180] is the line that the 16,384-byte boundary falls inside: `head -c 16384 AGENTS.md | wc -l` returns 179 newlines and the truncated tail ends at `#### `, the heading `#### Execution Behavior` on line 180. In this session the injected rule block ended at exactly that point and carried `[Rule content truncated to 16384 bytes]`, so the loss is observed, not inferred.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-10-impact-a-devin-session-receives-2-but-not-the-section-that-explains-the-spec-fol",
+      "text": "**Impact:** a Devin session receives §2 but not the section that explains the spec-folder workflow, the escalation ladder, agent routing or this repository's own instructions. The cut is byte-based, so the misplaced §4 (F-003-2) survives while §3's remaining rules do not.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-18-impact-the-runtime-cut-at-16-384-bytes-lands-inside-3-so-the-file-order-decides-",
+      "text": "**Impact:** the runtime cut at 16,384 bytes lands inside §3, so the file order decides which sections survive: the out-of-order §4 is delivered and the correctly numbered §3 is mostly lost. A reader following section numbers also jumps backward at line 173.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-15-release-current-head-introduced-or-left-in-place-by-the-latest-agents-md-edit-9d",
+      "text": "**Release:** current HEAD; introduced or left in place by the latest `AGENTS.md` edit `9d4edcbd3b` (2026-11-08).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-release-pre-existing-at-the-baseline-still-present-at-head-after-the-latest-agen",
+      "text": "**Release:** pre-existing at the baseline; still present at HEAD after the latest `AGENTS.md` edit `9d4edcbd3b` (2026-11-08), so no release in v4.0.0.0–v4.0.2.0 fixed it.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-sections-cut-the-remainder-of-3-from-line-180-execution-behavior-quality-restrai",
+      "text": "**Sections cut:** the remainder of §3 from line 180 (`#### Execution Behavior`, `### Quality & Restraint` at line 192), §5 `TOOLS, SEARCH & MCP ROUTING` [SOURCE: AGENTS.md:212], §6 `SPEC FOLDER DOCUMENTATION` [SOURCE: AGENTS.md:243], §7 `ESCALATION & CONFLICT` [SOURCE: AGENTS.md:261], §8 `COMMUNICATION QUALITY` [SOURCE: AGENTS.md:273], §9 `AGENT ROUTING` [SOURCE: AGENTS.md:279], §10 `QUICK REFERENCE` [SOURCE: AGENTS.md:285], and `REPOSITORY-SPECIFIC INSTRUCTIONS` [SOURCE: AGENTS.md:297].",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-severity-p1",
+      "text": "**Severity:** P1",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-13-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-type-bug-runtime-rule-truncation",
+      "text": "**Type:** bug (runtime rule truncation)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-12-type-drift-document-structure",
+      "text": "**Type:** drift (document structure)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-17-verify-rg-n-agents-md-117-4-precedes-173-3",
+      "text": "**Verify:** `rg -n '^## ' AGENTS.md` → `117:## 4.` precedes `173:## 3.`.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-9-verify-wc-c-agents-md-27587-agents-md-head-c-16384-agents-md-tail-c-45-ends-with",
+      "text": "**Verify:** `wc -c AGENTS.md` → `27587 AGENTS.md`; `head -c 16384 AGENTS.md | tail -c 45` → ends with `A §2 bound child is exempt.` then `#### `.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-visible-portion-1-2-all-gates-including-gate-3-4-and-only-the-heading-plus-blast",
+      "text": "**Visible portion:** §1, §2 (all gates, including Gate 3), §4, and only the heading plus Blast-Radius Management of §3.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-f-003-1-devin-s-16-384-byte-rule-cut-silently-drops-40-percent-of-agents-md-incl",
+      "text": "F-003-1 — Devin's 16,384-byte rule cut silently drops 40 percent of AGENTS.md, including all of §5 through §10 and the repository-specific block",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-11-f-003-2-agents-md-numbers-4-before-3-so-the-file-s-order-contradicts-its-own-sec",
+      "text": "F-003-2 — AGENTS.md numbers §4 before §3, so the file's order contradicts its own section numbers",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-25-confidence-0-7",
+      "text": "**Confidence:** 0.7",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-20-confidence-0-8",
+      "text": "**Confidence:** 0.8",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-confidence-0-85",
+      "text": "**Confidence:** 0.85",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-15-confidence-0-85",
+      "text": "**Confidence:** 0.85",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-10-confidence-0-9",
+      "text": "**Confidence:** 0.9",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-19-release-v4-0-0-0-section-unchanged-through-v4-0-2-0-last-agents-md-commit-9d4edc",
+      "text": "**Release:** v4.0.0.0 (section unchanged through v4.0.2.0; last `AGENTS.md` commit `9d4edcbd3b`, 2026-11-08, touched a different section)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-24-release-v4-0-0-16-ci-doctor-introduced",
+      "text": "**Release:** v4.0.0.16 (CI doctor introduced)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-release-v4-0-1-0-file-last-touched-2026-11-04-commit-6b61a02c13-the-stale-roster",
+      "text": "**Release:** v4.0.1.0 (file last touched 2026-11-04, commit `6b61a02c13`; the stale roster predates that edit)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-14-release-v4-0-1-0-playbook-last-changed-2026-11-03-commit-8eb55b7844",
+      "text": "**Release:** v4.0.1.0 (playbook last changed 2026-11-03, commit `8eb55b7844`)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-9-release-v4-0-1-0-same-2026-11-04-doc-pass",
+      "text": "**Release:** v4.0.1.0 (same 2026-11-04 doc pass)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-7-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-12-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-17-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-22-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-8-source-source-skilled-skills-cli-external-orchestration-cli-claude-code-referenc",
+      "text": "**Source:** [SOURCE: .skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md:3]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-source-source-skilled-skills-cli-external-orchestration-cli-claude-code-referenc",
+      "text": "**Source:** [SOURCE: .skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:247]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-13-source-source-skilled-skills-cli-external-orchestration-cli-devin-manual-testing",
+      "text": "**Source:** [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/manual-testing-playbook.md:66]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-23-source-source-skilled-skills-sk-code-sk-code-ci-repository-ci-json-20",
+      "text": "**Source:** [SOURCE: .skilled/skills/sk-code/sk-code-ci/repository/ci.json:20]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-18-source-source-agents-md-279",
+      "text": "**Source:** [SOURCE: AGENTS.md:279]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-type-drift",
+      "text": "**Type:** drift",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-11-type-drift",
+      "text": "**Type:** drift",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-type-drift-note-vs-code-vs-docs-disagree",
+      "text": "**Type:** drift (note vs code vs docs disagree)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-16-type-misalignment-with-skilled-canon",
+      "text": "**Type:** misalignment with Skilled canon",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-21-type-ux-for-the-operator",
+      "text": "**Type:** UX for the operator",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-repro-ran-tmp-dr6-git-m0c6yj-git-init-core-hookspath-skilled-scripts-git-hooks-g",
+      "text": "**Repro (ran):** `/tmp/dr6-git.M0c6YJ`, `git init`, `core.hooksPath` = `.skilled/scripts/git-hooks`, `git commit -m \"added a file\"` → `[main (root-commit) ff53b22] added a file`, **exit 0**. A message with no type, no scope and no body passes, which is exactly what v4.0.0.3 says the hook refuses (\"Every commit needs a body\").",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-12-repro-ran-bash-skilled-scripts-git-hooks-commit-msg-tmp-dr6-msg-txt-from-the-ski",
+      "text": "**Repro (ran):** `bash .skilled/scripts/git-hooks/commit-msg /tmp/dr6-msg.txt` from the Skilled root, with `added a file` in the file → `BLOCKED: this repository requires a Commit-Id trailer`. It blocked for the **trailer**, never for the invalid format, so the v4.0.0.10 rule is live and the v4.0.0.3 rules are not.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-10-type-1-drift-release-v4-0-0-3-v4-0-2-0-confidence-high",
+      "text": "**Type:** 1 drift · **Release:** v4.0.0.3 → v4.0.2.0 · **Confidence:** high",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-type-1-drift-5-ux-release-v4-0-2-0-confidence-high",
+      "text": "**Type:** 1 drift + 5 ux · **Release:** v4.0.2.0 · **Confidence:** high",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-25-type-1-drift-5-ux-release-v4-0-2-0-confidence-medium",
+      "text": "**Type:** 1 drift + 5 ux · **Release:** v4.0.2.0 · **Confidence:** medium",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-17-type-6-over-engineering-1-drift-release-v4-0-x-hook-move-to-skilled-scripts-conf",
+      "text": "**Type:** 6 over-engineering + 1 drift · **Release:** v4.0.x (hook move to `.skilled/scripts/`) · **Confidence:** high on duplication, medium on the move",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-8-verify-bash-skilled-scripts-git-hooks-commit-msg-printf-added-a-file-n-inside-a-",
+      "text": "**Verify:** `bash .skilled/scripts/git-hooks/commit-msg <(printf 'added a file\\n')` inside a fresh `git init` repo with no `.sk-git/` → exit 0.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-23-verify-diff-rq-skilled-scripts-git-hooks-opencode-scripts-git-hooks-echo-identic",
+      "text": "**Verify:** `diff -rq .skilled/scripts/git-hooks .opencode/scripts/git-hooks && echo identical`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-28-verify-node-skilled-commands-doctor-scripts-symlink-engine-cjs-check-root-fresh-",
+      "text": "**Verify:** `node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root <fresh git repo>; echo $?` → 0 with a `missing` line; `node …/overlay-engine.cjs status --root <same>; echo $?` → 2.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-15-verify-printf-added-a-file-n-node-skilled-skills-sk-git-scripts-validate-message",
+      "text": "**Verify:** `printf 'added a file\\n' | node .skilled/skills/sk-git/scripts/validate-message.mjs --explain; echo $?` → 0, no verdict; then `bash .skilled/scripts/git-hooks/commit-msg` with the same text → 1 for the trailer only.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-22-what-breaks-if-the-duplicate-is-removed-the-printed-remediation-in-commit-msg-an",
+      "text": "**What breaks if the duplicate is removed:** the printed remediation in `commit-msg` and its two helper-missing branches break unless retargeted to `.skilled/scripts/install-git-hooks.sh`; nothing else does. That is a small edit, which is why this is P2 and not a blocker.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-26-routes-yaml-documents-overlay-status-as-exit-0-in-sync-1-something-out-of-sync-2",
+      "text": "`_routes.yaml` documents `overlay status` as \"exit 0 = in sync, 1 = something out of sync, 2 = a failed precondition\" and I measured exactly that (`ERROR` + exit 2 on a tree with no overlay manifest). `symlink-engine.cjs check` on a repo with **nothing installed** printed `missing core .skilled` and still exited **0**. Two sibling read-only diagnostics of the same family, so a CI wrapper cannot key on the exit code for the symlink side.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-21-doctor-runtime-mirrors-compares-runtime-mirrors-agents-prompts-agent-roster-comm",
+      "text": "`/doctor:runtime-mirrors` compares runtime mirrors, agents/prompts, agent roster, command catalog and `install-codex-hooks.mjs --check` — it has **no** git-hooks parity check, so this pair can drift with nothing to catch it.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-18-diff-rq-skilled-scripts-git-hooks-opencode-scripts-git-hooks-produced-no-output-",
+      "text": "`diff -rq .skilled/scripts/git-hooks .opencode/scripts/git-hooks` produced **no output**: `.opencode/scripts/git-hooks` is a real directory (12 entries, not a symlink) holding a second byte-identical copy of the same scripts, and `.opencode/scripts/install-git-hooks.sh` is a third real file.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-27-symlink-engine-cjs-plan-on-a-project-without-specs-emits-no-line-for-skilled-spe",
+      "text": "`symlink-engine.cjs plan` on a project without `specs/` emits no line for `.skilled/specs` at all, while the same plan on a project **with** `specs/001-x` emits `link .skilled/specs -> ../specs`. The omission is correct per the guide (\"When your project has its own `specs/` folder…\") but has no `skip`/`n-a` line, so the operator sees an unexplained gap between the two reports. `[SOURCE: INSTALL-SKILLED.md:151]`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-contract-discovery-looks-only-at-skgit-contractdir-then-the-first-of-sk-git-sour",
+      "text": "Contract discovery looks only at `skgit.contractDir`, then the first of `.sk-git/…`. `[SOURCE: .skilled/scripts/git-hooks/lib/message-contract-gate.sh:60]`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-20-every-remediation-string-still-names-the-opencode-path-source-skilled-scripts-gi",
+      "text": "Every remediation string still names the `.opencode` path: `[SOURCE: .skilled/scripts/git-hooks/commit-msg:19]` (`# Install: bash .opencode/scripts/install-git-hooks.sh`) and the `BLOCKED: commit-msg helpers are missing … re-run: bash .opencode/scripts/install-git-hooks.sh` messages.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-f-iter006-001-p1-the-install-checklist-omits-the-one-command-that-makes-commit-r",
+      "text": "F-iter006-001 — P1 — The install checklist omits the one command that makes commit rules non-inert",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-9-f-iter006-002-p1-two-contract-resolutions-disagree-so-skilled-s-own-commits-enfo",
+      "text": "F-iter006-002 — P1 — Two contract resolutions disagree, so Skilled's own commits enforce only the Commit-Id rule",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-16-f-iter006-003-p2-two-identical-hook-trees-ship-the-stale-one-is-what-every-block",
+      "text": "F-iter006-003 — P2 — Two identical hook trees ship, the stale one is what every BLOCKED message names, and no doctor check compares them",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-24-f-iter006-004-p2-sibling-engines-use-opposite-exit-code-conventions-and-one-drop",
+      "text": "F-iter006-004 — P2 — Sibling engines use opposite exit-code conventions, and one drops a plan entry silently",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-11-in-the-skilled-checkout-git-config-get-all-skgit-contractdir-returns-nothing-and",
+      "text": "In the Skilled checkout, `git config --get-all skgit.contractDir` returns nothing and there is no `.sk-git/` at the root, so the hook's contract probe finds no rules block and the format/body/scope/length rules never run.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-the-commit-msg-hook-is-built-to-pass-silently-when-a-repository-declares-no-rule",
+      "text": "The `commit-msg` hook is built to pass silently when a repository declares no rules block: its own header states \"A repository whose templates declare no rules block is not checked\", and exit 0 means \"message passes, **or the repository declares no commit rules**\". `[SOURCE: .skilled/scripts/git-hooks/commit-msg:14]` `[SOURCE: .skilled/scripts/git-hooks/commit-msg:23]`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-19-the-live-machine-wide-hook-points-at-the-skilled-copy-config-git-hooks-commit-ms",
+      "text": "The live machine-wide hook points at the `.skilled` copy: `~/.config/git/hooks/commit-msg -> …/Skilled/.skilled/scripts/git-hooks/commit-msg`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-the-only-route-that-closes-the-gap-is-mutating-doctor-git-standards-target-stand",
+      "text": "The only route that closes the gap is mutating (`/doctor:git standards`, target `standards`, `mutating: mutates`, gate3_location `.sk-git/`), and it is absent from the checklist.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-the-ordered-install-table-in-install-skilled-md-ends-at-a-read-only-step-4-docto",
+      "text": "The ordered install table in `INSTALL-SKILLED.md` ends at a **read-only** step 4 (`/doctor:git setup`) and never names `/doctor:git standards init`. `[SOURCE: INSTALL-SKILLED.md:117]`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-14-the-same-run-exposes-a-second-gap-explain-fed-a-message-on-stdin-printed-the-res",
+      "text": "The same run exposes a second gap: `--explain` fed a message on stdin printed the resolution block and **exited 0 without any verdict line** (`validate-message: usage error: unknown argument: --file` for the file form), so the documented invocation cannot demonstrate a pass or a fail to an operator.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-13-the-validator-resolves-a-different-contract-when-run-directly-validate-message-m",
+      "text": "The validator resolves a *different* contract when run directly: `validate-message.mjs --explain` prints `Contract directory: .skilled/skills/sk-git/assets/` and `commit enforced from …/assets/commit-message-template.md`, i.e. it reports the rules as enforced while the hook path enforces none of them. The `/doctor:git standards` route (target `standards`, `script_invocations`) names this exact invocation `node .skilled/skills/sk-git/scripts/validate-message.mjs --explain` as its diagnostic, so the doctor surface inherits the resolution that disagrees with the hook.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-13-the-v4-0-0-15-era-readme-symlink-target-was-already-corrected-at-head-the-releas",
+      "text": "**The v4.0.0.15-era README symlink target was already corrected at HEAD.** The release diff changed the message-gate tree",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-12-v4-0-0-15-private-commands-reach-every-worktree-holds-for-this-checkout-the-func",
+      "text": "**v4.0.0.15 \"Private Commands Reach Every Worktree\" holds for this checkout.** The function's pattern",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-14-v4-0-0-2-s-bypass-hint-work-landed-as-described-then-was-superseded-by-design-pr",
+      "text": "**v4.0.0.2's bypass-hint work landed as described, then was superseded by design.** `pre-commit` carries 44 gate block",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-11-a-dry-run-that-lists-the-source-and-target-of-each-link-matching-the-rest-of-the",
+      "text": "A `--dry-run` that lists the source and target of each link, matching the rest of the doctor surface's read-only modes.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-9-append-the-linked-count-to-the-provisioned-summary-line-so-a-tree-with-no-privat",
+      "text": "Append the linked count to the `provisioned:` summary line, so a tree with no private commands and a tree whose matching",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-f-iter007-001-opencode-plugin-import-line-in-the-hooks-readme-is-not-a-resolvabl",
+      "text": "f-iter007-001 — OpenCode plugin import line in the hooks README is not a resolvable specifier",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-f-iter007-002-speckit-skip-validation-1-in-the-environment-is-ignored-when-hook-",
+      "text": "f-iter007-002 — `SPECKIT_SKIP_VALIDATION=1` in the environment is ignored when `hook-flags.env` is unreadable",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-f-iter007-003-env-example-skips-section-15-and-doctor-env-now-parses-that-number",
+      "text": "f-iter007-003 — `.env.example` skips section 15, and `/doctor:env` now parses that numbering as a heading path",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-7-f-iter007-004-worktree-local-linking-is-silent-about-what-it-skipped-and-reports",
+      "text": "f-iter007-004 — Worktree `local-*` linking is silent about what it skipped and reports its count outside the summary",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-10-print-the-runtimes-it-found-no-ignore-rule-for-today-the-pattern-covers-commands",
+      "text": "Print the runtimes it found no ignore rule for. Today the pattern covers `.*/(commands|commands/assets|prompts)/local-*`;",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-type-drift-severity-p2-release-v4-0-0-15-confidence-high-repro-ran",
+      "text": "type: drift · severity: **P2** · release: **v4.0.0.15** · confidence: **high** (repro ran)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-type-drift-severity-p2-release-v4-0-0-2-confidence-medium-code-read-no-live-repr",
+      "text": "type: drift · severity: **P2** · release: **v4.0.0.2** · confidence: **medium** (code read; no live repro without a tree that lacks the file)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-6-type-drift-ux-severity-p2-release-v4-0-0-13-confidence-high",
+      "text": "type: drift / UX · severity: **P2** · release: **v4.0.0.13** · confidence: **high**",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-8-type-extension-severity-p2-release-v4-0-0-15-confidence-high",
+      "text": "type: extension · severity: **P2** · release: **v4.0.0.15** · confidence: **high**",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-12-confidence-confirmed-tmp-run-plus-a-directory-listing-of-the-repo-root",
+      "text": "**confidence:** confirmed — `/tmp` run plus a directory listing of the repo root",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-16-confidence-confirmed-by-a-run-with-no-gh",
+      "text": "**confidence:** confirmed by a run with `--no-gh`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-8-confidence-confirmed-by-a-run-not-inference-the-engine-produced-the-exact-state-",
+      "text": "**confidence:** confirmed by a run, not inference — the engine produced the exact state the two lines disagree about",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-confidence-high-directory-listing-and-single-run-line-both-read-directly",
+      "text": "**confidence:** high — directory listing and single `run:` line both read directly",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-release-step-introduced-in-v4-0-0-13-ca571debab-the-unwired-node-suite-arrived-i",
+      "text": "**release:** step introduced in v4.0.0.13 (`ca571debab`); the unwired node suite arrived in v4.0.0.16 (`c15f0842dc`)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-15-release-v4-0-0-x-ci-doctor-line-route-is-in-the-current-tree-ci-toggle-cjs-heade",
+      "text": "**release:** v4.0.0.x CI doctor line (route is in the current tree; `ci-toggle.cjs` header states the rule)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-11-release-v4-0-2-0",
+      "text": "**release:** v4.0.2.0",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-7-release-v4-0-2-0-both-overlay-docs-land-with-the-engine-git-tag-contains-f965c65",
+      "text": "**release:** v4.0.2.0 (both overlay docs land with the engine, `git tag --contains f965c658d4` → v4.0.2.0)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-severity-p1",
+      "text": "**severity:** P1",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-6-severity-p2",
+      "text": "**severity:** P2",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-10-severity-p2",
+      "text": "**severity:** P2",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-14-severity-p2",
+      "text": "**severity:** P2",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-type-drift-presentation-contract-vs-workflow-step-ux-for-the-ai-user",
+      "text": "**type:** drift (presentation contract vs workflow step), **ux** for the AI user",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-type-improvement-ci-coverage-gap-adjacent-drift-in-the-tests-readme",
+      "text": "**type:** improvement (CI coverage gap); adjacent **drift** in the tests README",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-9-type-ux-operator-drift-documented-default-route-is-a-guaranteed-error-in-the-tre",
+      "text": "**type:** ux (operator), **drift** (documented default route is a guaranteed error in the tree that ships the command)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-13-type-ux-operator-improvement-the-safety-property-is-stated-as-unconditional",
+      "text": "**type:** ux (operator), **improvement** (the safety property is stated as unconditional)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-confidence-high-on-no-consumer-in-code-repo-wide-code-grep-zero-hits-high-on-the",
+      "text": "Confidence: high on \"no consumer in code\" (repo-wide code grep, zero hits), high on the sk-doc side (template read), medium on \"never consumed by an external tool\" — only this repository was searched.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-14-confidence-high-on-the-absence-of-any-specificity-field-13-13-frontmatter-blocks",
+      "text": "Confidence: high on the absence of any specificity field (13/13 frontmatter blocks read), high on the table's single level-3 row.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-8-confidence-high-on-the-count-medium-on-drift-being-the-right-label-versus-stale-",
+      "text": "Confidence: high on the count, medium on \"drift\" being the right label versus stale prose — either way the sentence is wrong at HEAD.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-11-confidence-high-on-the-index-containing-no-rule-path-direct-grep-high-on-the-fie",
+      "text": "Confidence: high on the index containing no rule path (direct grep), high on the field presence (13/13 counted), medium on \"no other reader\" — a reader outside `.skilled/skills/system-spec-kit/runtime/` was not exhaustively searched.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-17-confidence-high-on-the-numeric-skip-diff-read-high-on-no-reader-same-evidence-as",
+      "text": "Confidence: high on the numeric skip (diff read), high on \"no reader\" (same evidence as F9-04), medium on whether a changelog elsewhere tracks these per-file versions.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-5-confidence-high-the-one-hit-grep-is-decisive-within-the-file-the-residual-uncert",
+      "text": "Confidence: high. The one-hit grep is decisive within the file; the residual uncertainty is whether a skill-level instruction acts on the grant outside the router, which no file read this iteration showed.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-13-release-introduced-predates-the-release-line-unchanged-by-the-v4-0-0-1-repo-rule",
+      "text": "Release introduced: predates the release line; unchanged by the v4.0.0.1 repo-rules edit.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-release-introduced-present-at-v4-0-0-14-when-doctor-ci-shipped-with-the-tag-the-",
+      "text": "Release introduced: present at v4.0.0.14 when `/doctor:ci` shipped with the tag; the tag predates it in the other doctor commands.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-10-release-introduced-the-frontmatter-predates-v4-0-0-0-the-indexing-gap-is-structu",
+      "text": "Release introduced: the frontmatter predates v4.0.0.0; the indexing gap is structural and was never closed through v4.0.2.0.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-7-release-introduced-unknown-precisely-4-text-is-present-at-head-and-was-not-touch",
+      "text": "Release introduced: unknown precisely; §4 text is present at HEAD and was not touched by the v4.0.0.1 diff, which means it predates the release line opened by this audit and survived it.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-16-release-introduced-v4-0-0-1-bcb775402e",
+      "text": "Release introduced: v4.0.0.1 (bcb775402e).",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-4-release-introduced-v4-0-0-14-the-commit-that-added-ci-md-84-lines",
+      "text": "Release introduced: v4.0.0.14 (the commit that added `ci.md`, 84 lines).",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-18-verify-git-diff-3fed08373e-bcb775402e-skilled-repo-rules-blast-radius-md-grep-ve",
+      "text": "Verify: `git diff 3fed08373e..bcb775402e -- .skilled/repo-rules/blast-radius.md | grep '^[-+]version'` → `-version: 1.0.1.0` / `+version: 1.0.1.2`.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-9-verify-grep-c-end-a-turn-write-any-substantive-reply-draft-or-edit-any-sentence-",
+      "text": "Verify: `grep -c \"End a turn\\|Write any substantive reply\\|Draft or edit any sentence\\|Present a recommendation\" \"REPO RULES.md\"` → 4.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-15-verify-grep-n-more-specific-wins-repo-rules-md-1-hit-grep-c-specificity-preceden",
+      "text": "Verify: `grep -n 'more specific wins' \"REPO RULES.md\"` → 1 hit; `grep -c 'specificity\\|precedence_rank' .skilled/repo-rules/*.md` → 0 for each.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-6-verify-grep-n-write-skilled-commands-doctor-ci-md-line-4-only",
+      "text": "Verify: `grep -n \"Write\" .skilled/commands/doctor/ci.md` → line 4 only.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-12-verify-grep-o-repo-rules-a-z-md-skilled-skills-system-spec-kit-runtime-data-trig",
+      "text": "Verify: `grep -o \"repo-rules/[a-z-]*\\.md\" .skilled/skills/system-spec-kit/runtime/data/trigger-index.json | sort -u | wc -l` → 0; `grep -c '^trigger_phrases:' .skilled/repo-rules/*.md` → 1 for each of 13 files.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-verify-grep-rl-skill-agent-skilled-commands-include-md-wc-l-17-against-ls-skille",
+      "text": "Verify: `grep -rl \"skill_agent:\" .skilled/commands --include=*.md | wc -l` → 17 against `ls .skilled/commands/*/*.md | wc -l` → 44; `grep -rn \"skill_agent\" --include=*.cjs --include=*.mjs --include=*.ts --include=*.py . | grep -v deep-review | wc -l` → 0.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-33-answer-to-q9-for-hooks-not-duplication-the-six-live-git-hooks-commit-msg",
+      "text": "**Answer to Q9 for hooks: not duplication.** The six live `.git/hooks/*` (`commit-msg`,",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-29-consequence-a-repo-with-the-global-hooks-installed-and-none-of-the-three-dirs-ac",
+      "text": "**Consequence:** a repo with the global hooks installed and none of the three dirs accepts a",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-25-extension-concrete-a-doctor-runtime-mirrors-body-parity-row-type-with-an-explici",
+      "text": "**Extension (concrete):** a `/doctor:runtime-mirrors` `body_parity` row type with an explicit",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-21-extension-add-a-hook-degraded-count-and-a-non-zero-exit-to-the-workflow-and-give",
+      "text": "**Extension:** add a `hook_degraded` count and a non-zero exit to the workflow, and give the",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-fix-direction-the-refusal-should-name-the-escape-source-outside-dir-or-the-workf",
+      "text": "**Fix direction:** the refusal should name the escape (`--source <outside-dir>`) or the workflow",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-38-gap-in-this-finding-whether-github-workflows-already-runs-them-was-not-re-verifi",
+      "text": "**Gap in this finding:** whether `.github/workflows` already runs them was *not* re-verified this",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-30-partial-live-evidence-ran-bash-opencode-scripts-git-hooks-commit-msg-printf-garb",
+      "text": "**Partial live evidence (ran):** `bash .opencode/scripts/git-hooks/commit-msg <(printf 'garbage message\\n')`",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-repro-ran-node-skilled-commands-doctor-scripts-symlink-engine-cjs-check-root-ins",
+      "text": "**Repro (ran):** `node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root .` inside the",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-34-the-gap-is-discoverability-the-git-hook-resolution-text-sk-git-contractdir-fail-",
+      "text": "**The gap is discoverability:** the git-hook resolution text (`.sk-git` / `contractDir` / fail-open)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-type-bug-severity-p1-release-v4-0-0-8-install-and-symlink-safety-confidence-high",
+      "text": "**type** bug · **severity P1** · **release** v4.0.0.8 (install and symlink safety) · **confidence** high",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-27-type-drift-docs-vs-behaviour-severity-p1-release-v4-0-0-3-hook-safety-confidence",
+      "text": "**type** drift (docs vs behaviour) · **severity P1** · **release** v4.0.0.3 (hook safety) · **confidence** high (code) / none (repro)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-19-type-extension-severity-p1-release-v4-0-0-1-era-mirrors-layer-confidence-high",
+      "text": "**type** extension · **severity P1** · **release** v4.0.0.1-era mirrors layer · **confidence** high",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-22-type-extension-severity-p1-release-v4-0-0-1-mirrors-confidence-high",
+      "text": "**type** extension · **severity P1** · **release** v4.0.0.1+ mirrors · **confidence** high",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-36-type-extension-severity-p2-release-n-a-gap-confidence-medium",
+      "text": "**type** extension · **severity** P2 · **release** n/a (gap) · **confidence** medium",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-type-improvement-also-ux-severity-p1-release-v4-0-2-0-release-update-ship-confid",
+      "text": "**type** improvement (also UX) · **severity P1** · **release** v4.0.2.0 (release-update ship) · **confidence** high",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-10-type-ux-severity-p1-release-v4-0-1-0-doctor-commands-confidence-high",
+      "text": "**type** UX · **severity P1** · **release** v4.0.1.0 (doctor commands) · **confidence** high",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-32-type-ux-severity-p2-release-v4-0-0-3-confidence-high",
+      "text": "**type** UX · **severity P2** · **release** v4.0.0.3 · **confidence** high",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-16-type-ux-severity-p2-release-v4-0-0-3-doctor-commands-confidence-high",
+      "text": "**type** UX · **severity P2** · **release** v4.0.0.3 (doctor commands) · **confidence** high",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-13-type-ux-improvement-severity-p2-release-v4-0-3-0-era-runner-confidence-high",
+      "text": "**type** UX (improvement) · **severity P2** · **release** v4.0.3.0-era runner · **confidence** high",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-31-verify-needs-a-scratch-repo-blocked-git-init-tmp-x-cd-tmp-x-printf-garbage-n-m-g",
+      "text": "**verify (needs a scratch repo, blocked):** `git init /tmp/x && cd /tmp/x && printf 'garbage\\n' > m && git commit --allow-empty -F m; echo $?` → expect 0 (accept).",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-15-verify-bash-skilled-commands-doctor-scripts-route-validate-sh-head-6-echo-exit",
+      "text": "**verify:** `bash .skilled/commands/doctor/scripts/route-validate.sh | head -6; echo \"exit=$?\"`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-26-verify-for-f-in-find-pi-codex-dsh-opencode-name-md-do-size-compare-11-pi",
+      "text": "**verify:** `for f in $(find .pi .codex .dsh .opencode -name '*.md'); do …` size compare — 11 `.pi`",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-18-verify-for-s-in-symlink-engine-ci-toggle-sk-skill-check-parent-skill-check-do-no",
+      "text": "**verify:** `for s in symlink-engine ci-toggle sk-skill-check parent-skill-check; do node .skilled/commands/doctor/scripts/$s.cjs --help; echo \"$s exit=$?\"; done` → four `exit=2`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-39-verify-ls-skilled-commands-doctor-scripts-tests-wc-l-grep-rl-doctor-scripts-test",
+      "text": "**verify:** `ls .skilled/commands/doctor/scripts/tests/ | wc -l`; `grep -rl 'doctor/scripts/tests' .github/workflows/`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-12-verify-node-skilled-commands-doctor-scripts-parent-skill-check-cjs-skilled-skill",
+      "text": "**verify:** `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code | head -4` → the `FAIL` line; then `… | tail -2` → `OK … 0 warnings`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-verify-node-skilled-commands-doctor-scripts-release-update-cjs-check-offline-ech",
+      "text": "**verify:** `node .skilled/commands/doctor/scripts/release-update.cjs check --offline; echo \"exit=$?\"` → 20 `unknown (ancestry)` lines, `exit=0`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-verify-node-skilled-commands-doctor-scripts-symlink-engine-cjs-check-root-echo-e",
+      "text": "**verify:** `node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root .; echo \"exit=$?\"` → `exit=2`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-35-verify-readlink-git-hooks-commit-msg-opencode-scripts-git-hooks-commit-msg-grep-",
+      "text": "**verify:** `readlink .git/hooks/commit-msg` → `.opencode/scripts/git-hooks/commit-msg`; `grep -n 'sk-git/' .skilled/skills/sk-git/scripts/hooks/README.md` → no match.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-why-it-matters-ci-and-the-ai-user-cannot-gate-on-release-position-a-machine-chec",
+      "text": "**Why it matters:** CI and the AI user cannot gate on release position. A machine check that",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-doctor-install-step-3-runs-the-engine-in-place-and-read-only-source-skilled-comm",
+      "text": "`/doctor:install` step 3 runs the engine \"in place and read-only\" [SOURCE: .skilled/commands/doctor/install.md:74], and the asset spells the command as `check --root <dir>` [SOURCE: .skilled/commands/doctor/assets/doctor-install.yaml:59]. Step 2 binds only `--root` and `--runtimes` [SOURCE: .skilled/commands/doctor/install.md:73] — never a source. The engine then refuses when root and source contain one another [SOURCE: .skilled/commands/doctor/scripts/symlink-engine.cjs:289] with a bare message [SOURCE: .skilled/commands/doctor/scripts/symlink-engine.cjs:290].",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-17-doctor-overlay-apply-yaml-promises-overlay-engine-cjs-help-prints-its-usage-bloc",
+      "text": "`doctor-overlay-apply.yaml` promises `overlay-engine.cjs --help` \"prints its usage block and exits",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-route-validate-sh-publishes-a-four-value-taxonomy-0-manifest-valid-1-assertion-f",
+      "text": "`route-validate.sh` publishes a four-value taxonomy — `0` manifest valid, `1` assertion failure,",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-20-66-rows-every-one-type-file-exists-e-g-the-claude-pretooluse-rows",
+      "text": "66 rows, every one `type: file_exists`, e.g. the Claude `PreToolUse` rows",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-23-census-over-markdown-files-per-host-pi-400-files-0-symlinks-codex-48-0",
+      "text": "Census over markdown files per host: `.pi` 400 files / **0** symlinks, `.codex` 48 / **0**,",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-37-every-engine-has-a-test-file-beside-it-ci-toggle-overlay-engine-5-parent-skill-c",
+      "text": "Every engine has a test file beside it: `ci-toggle`, `overlay-engine` ×5, `parent-skill-check` ×5,",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-14-exit-0-2-901-bytes-and-the-first-six-lines-are-warn-h1-flag-appears-in-multiple-",
+      "text": "Exit 0, 2,901 bytes, and the first six lines are `WARN: H1: flag '…' appears in multiple /doctor:…",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-24-the-discriminating-evidence-cuts-both-ways-which-is-the-point-codex-hooks-readme",
+      "text": "The discriminating evidence cuts both ways, which is the point: `.codex/hooks/README.md` is",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-28-the-hook-documents-its-own-fail-open-exit-0-means-message-passes-or-the-reposito",
+      "text": "The hook documents its own fail-open: exit `0` means \"message passes, **or the repository declares",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-11-the-run-that-ends-ok-parent-skill-check-all-hard-invariants-passed-0-warnings-an",
+      "text": "The run that ends `OK: parent-skill-check — all hard invariants passed, 0 warnings` and exits 0",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-11-1-source-skilled-commands-doctor-scripts-git-setup-check-cjs-1624-prints-repair-on",
+      "text": "`[SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:1624]` prints `repair:` only",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-2-doctor-setup-compensates-by-passing-tool-explicitly",
+      "text": "`/doctor:setup` compensates by passing `--tool` explicitly",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-13-4-cause-9d4edcbd3b-2026-11-08-docs-repo-rules-require-the-runtime-s-question",
+      "text": "**Cause:** `9d4edcbd3b` (2026-11-08, \"docs(repo-rules): require the runtime's question",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-10-contrast-that-makes-the-gap-sharp-agent-mirror-sync-yml-runs",
+      "text": "**Contrast that makes the gap sharp:** `agent-mirror-sync.yml` runs",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-20-correction-f-iter002-001-said-doctor-runtime-mirrors-never-runs",
+      "text": "**Correction:** f-iter002-001 said `/doctor:runtime-mirrors` \"never runs",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-9-evidence-grep-rn-agents-md-manifest-agents-md-check-github-workflows-returns",
+      "text": "**Evidence:** `grep -rn 'agents-md-manifest\\|agents-md-check' .github/workflows/` returns",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-25-f-iter002-003-the-stale-dsh-n-a-not-run-comments-at",
+      "text": "**f-iter002-003** — the stale `.dsh` \"n/a, not run\" comments at",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-22-f-iter003-002-the-4-before-3-ordering-was-introduced-by-e2118b818c",
+      "text": "**f-iter003-002** — the §4-before-§3 ordering was introduced by `e2118b818c`",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-24-f-iter008-005-resolves-cleanly-to-v4-0-0-16-ci-toggle-cjs-and-the",
+      "text": "**f-iter008-005** — resolves cleanly to **v4.0.0.16**: `ci-toggle.cjs` and the",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-23-f-iter009-003-f-iter009-005-both-are-pre-v4-0-0-0-rule-corpus-text",
+      "text": "**f-iter009-003 / f-iter009-005** — both are pre-v4.0.0.0 rule-corpus text",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-3-repro-ran",
+      "text": "**Repro (ran):**",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-15-so-the-drift-is-not-the-file-is-too-long-it-is-that-the-mechanism-built-to-make",
+      "text": "**So the drift is not \"the file is too long\".** It is that the mechanism built to make",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-19-source-source-github-workflows-agent-mirror-sync-yml-57-sets",
+      "text": "**Source:** [SOURCE: .github/workflows/agent-mirror-sync.yml:57] sets",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-2-source-source-skilled-commands-doctor-assets-agents-md-manifest-json-13-declares",
+      "text": "**Source:** [SOURCE: .skilled/commands/doctor/assets/agents-md-manifest.json:13] declares the budget the canary enforces; [SOURCE: .skilled/commands/doctor/scripts/agents-md-manifest.cjs:377] compares the stored history hashes against the shipped bodies; [SOURCE: .skilled/commands/doctor/scripts/agents-md-manifest.cjs:586] sets the exit code from `main`.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-8-source-source-skilled-commands-doctor-scripts-agents-md-manifest-cjs-590-is-the-",
+      "text": "**Source:** [SOURCE: .skilled/commands/doctor/scripts/agents-md-manifest.cjs:590] is the only other exit path, so a failing run is unambiguous; [SOURCE: .github/workflows/agent-mirror-sync.yml:57] shows the sibling checker *is* wired, which is the contrast.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-16-the-cut-itself-is-where-iter-003-measured-it-awk-over-the-file-places-the",
+      "text": "**The cut itself is where iter-003 measured it.** `awk` over the file places the",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-14-this-corrects-f-iter003-001-s-mechanism-that-finding-framed-the-devin-16-384-byt",
+      "text": "**This corrects f-iter003-001's mechanism.** That finding framed the Devin 16,384-byte",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-1-type-bug-severity-p1-release-v4-0-2-0-confidence-0-97",
+      "text": "**Type:** bug · **Severity:** P1 · **Release:** v4.0.2.0 · **Confidence:** 0.97",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-13-type-drift-severity-p2-release-v4-0-0-0-constraint-v4-0-2-0-proof-broken-confide",
+      "text": "**Type:** drift · **Severity:** P2 · **Release:** v4.0.0.0 (constraint), v4.0.2.0 (proof broken) · **Confidence:** 0.9",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-18-type-drift-finding-vs-evidence-severity-p2-release-v4-0-0-3-confidence-0-9",
+      "text": "**Type:** drift (finding-vs-evidence) · **Severity:** P2 · **Release:** v4.0.0.3 · **Confidence:** 0.9",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-7-type-improvement-ci-gap-severity-p1-release-v4-0-1-0-confidence-0-95",
+      "text": "**Type:** improvement (CI gap) · **Severity:** P1 · **Release:** v4.0.1.0 · **Confidence:** 0.95",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-21-verify-grep-n-checker-base-sha-github-workflows-agent-mirror-sync-yml",
+      "text": "**Verify:** `grep -n 'CHECKER=\\|BASE_SHA' .github/workflows/agent-mirror-sync.yml`",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-11-verify-grep-rln-agents-md-manifest-github-workflows-echo-exit-expect-no-files",
+      "text": "**Verify:** `grep -rln agents-md-manifest .github/workflows/ ; echo \"exit=$?\"` (expect no files).",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-6-verify-node-skilled-commands-doctor-scripts-agents-md-manifest-cjs-check-echo",
+      "text": "**Verify:** `node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check; echo $?`",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-17-verify-node-skilled-commands-doctor-scripts-agents-md-manifest-cjs-check-echo",
+      "text": "**Verify:** `node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check; echo $?`",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-12-what-breaks-if-the-engine-were-removed-the-agents-md-delivery-budget-becomes",
+      "text": "**What breaks if the engine were removed:** the `AGENTS.md` delivery budget becomes",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-5-why-this-matters-more-than-the-message-suggests-the-fix-the-tool-prints",
+      "text": "**Why this matters more than the message suggests:** the fix the tool prints",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-17-7-confidence-high-reproduced",
+      "text": "Confidence: high (reproduced).",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-3-confidence-high-on-the-mismatch-medium-on-operator-impact-the-agent-must-additio",
+      "text": "Confidence: high on the mismatch, medium on operator impact (the agent must additionally ignore",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-11-confidence-high-on-the-parse-outcome-medium-on-severity-because-every-dropped-na",
+      "text": "Confidence: high on the parse outcome; medium on severity, because every dropped name is",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-17-confidence-high-on-the-textual-mismatch-medium-on-runtime-effect-unproven-router",
+      "text": "Confidence: high on the textual mismatch; medium on runtime effect (unproven router behaviour).",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-21-confidence-high-on-the-two-roots-existing-medium-on-how-often-a-run-starts-outsi",
+      "text": "Confidence: high on the two roots existing; medium on how often a run starts outside the checkout.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-14-confidence-high-that-the-two-keys-are-absent-from-the-entry-lines-757-770-read-i",
+      "text": "Confidence: high that the two keys are absent from the entry (lines 757-770 read in full); medium",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-24-confidence-medium-code-path-read-not-induced",
+      "text": "Confidence: medium (code path read, not induced).",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-10-release-pre-v4-baseline-the-reference-table-predates-the-v4-line",
+      "text": "Release: pre-v4 baseline (the reference table predates the v4 line).",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-16-release-pre-v4-baseline-for-the-entry-shape-the-list-menu-positional-and-the-def",
+      "text": "Release: pre-v4 baseline for the entry shape; the `list`/`?`/`menu` positional and the default",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-13-release-pre-v4-baseline-mutating-and-runnable-were-added-at-different-times-unve",
+      "text": "Release: pre-v4 baseline; `mutating:` and `runnable:` were added at different times, unverified.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-6-release-pre-v4-baseline-unverified-last-touch",
+      "text": "Release: pre-v4 baseline; unverified last touch",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-20-release-pre-v4-baseline",
+      "text": "Release: pre-v4 baseline.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-23-release-pre-v4-baseline",
+      "text": "Release: pre-v4 baseline.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-2-release-present-at-the-v4-0-0-0-baseline-last-touch-date-unverified-this-iterati",
+      "text": "Release: present at the v4.0.0.0 baseline; last-touch date unverified this iteration",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-19-repro-root-sensitivity-no-write-from-tmp-test-d-skilled-skills-system-spec-kit-r",
+      "text": "Repro (root sensitivity, no write): from `/tmp`, `test -d .skilled/skills/system-spec-kit/runtime/dist`",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-9-repro-grep-c-skilled-loop-id-skilled-skills-system-spec-kit-runtime-env-referenc",
+      "text": "Repro: `grep -c 'SKILLED_LOOP_ID' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` → 1,",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-5-repro-node-skilled-commands-doctor-scripts-ci-report-cjs-sha-51f70a03175d9e249ba",
+      "text": "Repro: `node .skilled/commands/doctor/scripts/ci-report.cjs --sha=51F70A03175D9E249BAF4B26AD43158232859E77 --no-gh`",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-1-repro-node-skilled-commands-doctor-scripts-release-update-cjs-check-repo-tmp-jso",
+      "text": "Repro: `node .skilled/commands/doctor/scripts/release-update.cjs check --repo /tmp --json`",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-12-verify-awk-nr-129-nr-140-skilled-skills-system-spec-kit-runtime-env-reference-md",
+      "text": "Verify: `awk 'NR>=129 && NR<=140' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`;",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-15-verify-awk-nr-757-nr-770-skilled-commands-doctor-routes-yaml",
+      "text": "Verify: `awk 'NR>=757 && NR<=770' .skilled/commands/doctor/_routes.yaml`.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-18-verify-grep-n-list-or-menu-skilled-commands-doctor-assets-doctor-install-yaml",
+      "text": "Verify: `grep -n 'list, ? or menu' .skilled/commands/doctor/assets/doctor-install.yaml`;",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-25-verify-node-e-require-skilled-commands-doctor-scripts-ci-report-cjs-then-read",
+      "text": "Verify: `node -e \"require('./.skilled/commands/doctor/scripts/ci-report.cjs')\"`; then read",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-22-verify-node-skilled-commands-doctor-scripts-symlink-engine-cjs-check-root-from-t",
+      "text": "Verify: `node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root .` from the repo",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-8-verify-the-repro-above-sed-n-80p-skilled-commands-doctor-scripts-ci-report-cjs-s",
+      "text": "Verify: the repro above; `sed -n '80p' .skilled/commands/doctor/scripts/ci-report.cjs` shows the",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-4-verify-the-repro-above-then-grep-n-exit-policy-skilled-commands-doctor-assets-do",
+      "text": "Verify: the repro above; then `grep -n 'exit_policy' .skilled/commands/doctor/assets/doctor-update-check.yaml`.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-18-1-commit-id-naming-test-sh-148-lines-executable-tracked-exercises-the-seven-digit-",
+      "text": "`commit-id-naming.test.sh` (148 lines, executable, tracked) — \"Exercises the seven-digit validator, the history-derived scan, locked allocation (including concurrent), the deleted-cache rebuild path, the ceiling and rebuild-highwater\" [SOURCE: .skilled/skills/sk-git/scripts/tests/commit-id-naming.test.sh:3]",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-3-migrate-legacy-branch-names-test-sh-69-lines-the-colliding-name-refusal-in-the-d",
+      "text": "`migrate-legacy-branch-names.test.sh` (69 lines) — the colliding-name refusal in the dry-run plan [SOURCE: .skilled/skills/sk-git/scripts/tests/migrate-legacy-branch-names.test.sh:3]",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-2-stamp-branch-test-sh-119-lines-the-dirty-worktree-and-non-ancestor-refusals-and-",
+      "text": "`stamp-branch.test.sh` (119 lines) — the dirty-worktree and non-ancestor refusals and a dry run that mints nothing [SOURCE: .skilled/skills/sk-git/scripts/tests/stamp-branch.test.sh:3]",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-4-validate-message-git-timeout-test-mjs-137-lines-this-suite-wedges-one-call-and-p",
+      "text": "`validate-message-git-timeout.test.mjs` (137 lines) — \"This suite wedges one call and proves the validator gives up on its own: a stub `git` sleeps on `rev-list`, and the run must end in the block path instead of hanging\" [SOURCE: .skilled/skills/sk-git/scripts/tests/validate-message-git-timeout.test.mjs:7]",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-20-14-ishostrelativelink-asks-whether-a-relative-link-leaves-its-manifest-folder-and-a",
+      "text": "`isHostRelativeLink` asks whether a relative link leaves its manifest folder and answers",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-13-pointsintosource-canonicalizes-the-longest-existing-prefix-of-the-link-text-and-",
+      "text": "`pointsIntoSource` canonicalizes the longest existing prefix of the link text and then",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-7-confidence-high-git-ls-files-s-and-ls-ld-both-read-this-iteration",
+      "text": "Confidence: high — `git ls-files -s` and `ls -ld` both read this iteration.",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-25-confidence-high-all-nine-sites-read-this-iteration",
+      "text": "Confidence: high — all nine sites read this iteration.",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-3-confidence-high-reproduced-this-iteration-three-independent-spellings",
+      "text": "Confidence: high — reproduced this iteration, three independent spellings.",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-11-confidence-high-for-the-string-behaviour-medium-for-the-release-attribution",
+      "text": "Confidence: high for the string behaviour, medium for the release attribution.",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-17-confidence-medium-the-asymmetry-is-proven-by-reading-a-triggering-link-text-is-n",
+      "text": "Confidence: medium — the asymmetry is proven by reading; a triggering link text is not",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-21-confidence-medium-for-the-display-consequence-high-for-the-mixed-physicality-rea",
+      "text": "Confidence: medium for the display consequence, high for the mixed-physicality reading.",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-24-release-n-a-survey",
+      "text": "Release: n/a (survey)",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-20-release-unattributed-the-script-predates-the-tags-examined-not-tag-diffed-this",
+      "text": "Release: unattributed — the script predates the tags examined; not tag-diffed this",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-10-release-v4-0-0-15-worktree-surface-attribution-not-tag-diffed-this-iteration",
+      "text": "Release: v4.0.0.15 (worktree surface; attribution not tag-diffed this iteration)",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-6-release-v4-0-1-0",
+      "text": "Release: v4.0.1.0",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-16-release-v4-0-1-0",
+      "text": "Release: v4.0.1.0",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-2-release-v4-0-1-0-engine-introduced-by-28b388e81b-an-ancestor-of-the-tag",
+      "text": "Release: v4.0.1.0 (engine introduced by 28b388e81b, an ancestor of the tag)",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-9-sources-source-skilled-bin-worktree-status-sh-72",
+      "text": "Sources: [SOURCE: .skilled/bin/worktree-status.sh:72],",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-19-sources-source-skilled-commands-doctor-scripts-check-mcp-mutation-class-sh-82",
+      "text": "Sources: [SOURCE: .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh:82],",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-23-sources-source-skilled-commands-doctor-scripts-git-setup-check-cjs-1697",
+      "text": "Sources: [SOURCE: .skilled/commands/doctor/scripts/git-setup-check.cjs:1697],",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-1-sources-source-skilled-commands-doctor-scripts-symlink-engine-cjs-197",
+      "text": "Sources: [SOURCE: .skilled/commands/doctor/scripts/symlink-engine.cjs:197],",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-15-sources-source-skilled-commands-doctor-scripts-symlink-engine-cjs-516",
+      "text": "Sources: [SOURCE: .skilled/commands/doctor/scripts/symlink-engine.cjs:516],",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-5-sources-source-skilled-commands-doctor-scripts-symlink-engine-cjs-627",
+      "text": "Sources: [SOURCE: .skilled/commands/doctor/scripts/symlink-engine.cjs:627],",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-12-verify-bash-c-m-users-dev-skilled-for-w-in-m-work-a-m-old-work-b-do-echo-w-m-don",
+      "text": "Verify: `bash -c 'M=/Users/dev/Skilled; for w in $M/work/a $M-old/work/b; do echo \"=${w#\"$M\"}\"; done'` then confirm attribution with `git log -S 'short_path=\"${wt_path#\"' --oneline -- .skilled/bin/worktree-status.sh`",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-22-verify-bash-skilled-commands-doctor-scripts-check-mcp-mutation-class-sh-help-2-1",
+      "text": "Verify: `bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh --help 2>&1 | head -5` with `ROOT` forced to a logical spelling via `--root`, then observe whether the reported paths are relative.",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-8-verify-git-ls-files-s-opencode-agents-opencode-scripts-opencode-bin-opencode-com",
+      "text": "Verify: `git ls-files -s .opencode/agents .opencode/scripts .opencode/bin .opencode/commands; ls -ld .opencode/commands`",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-4-verify-node-e-const-fs-require-fs-p-require-path-const-x-opencode-agents-readme-",
+      "text": "Verify: `node -e 'const fs=require(\"fs\"),p=require(\"path\");const x=\".opencode/agents/README.txt\";console.log(p.resolve(x), fs.realpathSync(x), p.resolve(x)===fs.realpathSync(x))'`",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-18-verify-node-e-const-fs-require-fs-for-const-f-of-skilled-commands-doctor-scripts",
+      "text": "Verify: `node -e 'const fs=require(\"fs\");for(const f of [\".skilled/commands/doctor/scripts/symlink-engine.cjs\"]){const t=fs.readFileSync(f,\"utf8\").split(\"\\n\");console.log(t[515].trim());console.log(t[568].trim())}'`",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-21-9-four-named-suite-steps-in-the-sk-git-job-closes-4-findings-4-p1-f-iter008-001-f-",
+      "text": "**Four named suite steps in the sk-git job — closes 4 findings (4 P1).** f-iter008-001, f-iter012-004, f-iter015-003, f-iter018-001 are four statements of one defect; all four close on the same edit. Touch `.github/workflows/sk-git-script-tests.yml:51`, replacing the single `run:` with one `run:` per suite in `.skilled/skills/sk-git/scripts/tests/`. Four lines of YAML for four P1s is the best ratio in this child, and it needs no code change.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-11-give-the-symlink-engine-an-exit-code-closes-2-findings-2-p1-f-iter015-001-and-f-",
+      "text": "**Give the symlink engine an exit code — closes 2 findings (2 P1).** f-iter015-001 and f-iter012-003 are one defect: `return 0` at `.skilled/commands/doctor/scripts/symlink-engine.cjs:1801`. Return non-zero when any runtime status is not `ok`, with an explicit escape flag so the documented read-only inspection keeps working.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-1-type-bug-severity-p1-release-v4-0-2-0-confidence-high",
+      "text": "**type** bug · **severity** P1 · **release** v4.0.2.0 · **confidence** high",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-5-type-bug-severity-p2-release-local-state-at-head-not-a-release-delta-confidence-",
+      "text": "**type** bug · **severity** P2 · **release** local state at HEAD (not a release delta) · **confidence** high",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-12-type-drift-severity-p2-release-v4-0-0-5-v4-0-0-6-v4-0-0-7-confidence-high",
+      "text": "**type** drift · **severity** P2 · **release** v4.0.0.5, v4.0.0.6, v4.0.0.7 · **confidence** high",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-17-type-improvement-severity-p2-release-v4-0-0-0-confidence-high",
+      "text": "**type** improvement · **severity** P2 · **release** v4.0.0.0 · **confidence** high",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-16-verify-git-rev-parse-v4-0-0-4-v4-0-0-7-sort-u-grep-c-v4-0-0-5-over-the-delta-fil",
+      "text": "**verify** `git rev-parse v4.0.0.4^{} v4.0.0.7^{} | sort -u` ; `grep -c v4.0.0.5` over the delta files → 0",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-4-verify-git-config-global-dev-null-bash-skilled-scripts-install-git-hooks-sh-stat",
+      "text": "**verify** `GIT_CONFIG_GLOBAL=/dev/null bash .skilled/scripts/install-git-hooks.sh --status | grep -c SHADOWED` → 6, exit 0; `readlink .git/hooks/commit-msg`",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-20-verify-grep-h-severity-p3-specs-system-speckit-047-v4-release-line-research-005-",
+      "text": "**verify** `grep -h '\"severity\":\"P3\"' specs/system-speckit/runtime-and-release/004-v4-release-line-research/005-doctor-git-ci-runtime/research/deltas/*.jsonl`",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-8-verify-ls-la-git-hooks-prepare-commit-msg-no-such-file-ls-la-skilled-scripts-git",
+      "text": "**verify** `ls -la .git/hooks/prepare-commit-msg` → No such file; `ls -la .skilled/scripts/git-hooks/prepare-commit-msg` → file present",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-10-widen-the-mirror-roster-closes-3-findings-3-p1-f-iter014-001-pi-agents-has-no-bo",
+      "text": "**Widen the mirror roster — closes 3 findings (3 P1).** f-iter014-001 (`.pi/agents` has no body-parity check), f-iter015-005 (3 of 7 trees), f-iter016-002 (the opencode row is inert) all close by editing the three rows at `.skilled/bin/lib/mirror-sync-verify.cjs:51`–`:53`: add `pi` as required, add `cursor` and `devin` (their files are symlinks into `.claude/agents`, so they cost one row each), and either drop opencode to `required:false` or label it presence-only. f-iter015-006 (a mirror-only `Explore.md`) and f-iter014-004 (a normaliser that folds four trees into one token) survive this edit — the roster is not the whole mirror gap.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-6-skilled-scripts-git-hooks-prepare-commit-msg-exists-and-is-15-240-b-git-hooks-pr",
+      "text": "`.skilled/scripts/git-hooks/prepare-commit-msg` exists and is 15,240 B; `.git/hooks/prepare-commit-msg` does not exist. The installer's copy loop would install it from that directory [SOURCE: .skilled/scripts/install-git-hooks.sh:169], and the header documents exactly what it does — stamp the Commit-Id trailer and strip runtime attribution keys [SOURCE: .skilled/scripts/install-git-hooks.sh:10]. The consequence is operational, not cosmetic: the `commit-msg` gate in this checkout enforces the Commit-Id trailer (recorded as f-iter006-002), and with the stamper absent every commit here needs the trailer written by hand. This is the concrete reason the hook accept/reject question returns the same answer on every attempt.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-13-git-rev-parse-v4-0-0-4-5-6-7-8-returns-the-single-commit-4d8f403355-so-no-tag-di",
+      "text": "`git rev-parse v4.0.0.{4,5,6,7,8}^{}` returns the single commit `4d8f403355`, so no tag diff separates them and attribution had to come from note text and dates. Every other v4.0.x.y release carries at least two findings; these three carry zero, and none is even named inside a finding label.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-19-consequence-for-this-run-s-own-output-the-p1-count-this-child-reports-is-a-lower",
+      "text": "Consequence for this run's own output: the P1 count this child reports is a lower bound only if a P3 exists that should have been P1 or P2. Reading the label, its impact is P2. This is a record-hygiene defect in the research artifact, not in the repository under audit — recorded so the child's own numbers are not read as exact.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-18-f-iter014-004-is-recorded-at-severity-p3-the-run-contract-allows-p0-p1-and-p2-on",
+      "text": "f-iter014-004 is recorded at `severity: \"P3\"`. The run contract allows P0, P1 and P2 only, so any consumer that buckets by severity silently drops or mis-orders it. The finding itself is sound — three copies of \"use only `<tree>/agents/*.md` as the canonical runtime path reference\" with three different referents, invisible to a normaliser that folds `.skilled|opencode|claude|pi` into one token before comparing.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-7-it-is-not-a-shipped-defect-the-roster-is-complete-in-skilled-scripts-git-hooks-i",
+      "text": "It is not a shipped defect: the roster is complete in `.skilled/scripts/git-hooks/`. It is a stale local link set relative to the shipped roster, which the `--status` command correctly reports — the one place in this cluster where the status output is accurate and the install is not.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-15-the-honest-statement-is-therefore-unattributed-not-verified-unchanged-the-one-co",
+      "text": "The honest statement is therefore \"unattributed\", not \"verified unchanged\": the one-commit alias makes per-release attribution impossible by diff, and this child spent its 21 iterations on surfaces those notes do not name. Treating the absence of findings as evidence of cleanliness would be the error this finding exists to prevent.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-2-the-installed-hooks-are-absolute-symlinks-git-hooks-commit-msg-users-skilled-ope",
+      "text": "The installed hooks are absolute symlinks: `.git/hooks/commit-msg -> /Users/.../Skilled/.opencode/scripts/git-hooks/commit-msg`. `resolve_target` tests `-L`, takes `readlink`, and because the value is absolute it skips the `dirname` branch entirely, returning the recorded spelling unchanged [SOURCE: .skilled/scripts/install-git-hooks.sh:99]. The comparison at [SOURCE: .skilled/scripts/install-git-hooks.sh:136] therefore compares two spellings of one file, and the message it prints — `resolves outside this checkout` — is false. The finding stands, but its stated mechanism (\"follows one symlink hop without canonicalising\") describes the relative-target branch only; for the links actually installed this is **zero** hops, so a fix aimed at hop-following would not close it. `.opencode/scripts` is itself a symlink to `../.skilled/scripts`, which is why the two spellings meet.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-3-the-status-output-also-shows-6-shadowed-not-7-prepare-commit-msg-prints-not-inst",
+      "text": "The status output also shows **6** SHADOWED, not 7: `prepare-commit-msg` prints `(not installed)`. Earlier iterations recorded 7; that count depended on a link set that has since changed. The false-verdict claim holds for all six installed hooks.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-14-they-are-not-clean-v4-0-0-5-adds-doctor-update-check-a-read-only-layout-report-i",
+      "text": "They are not clean. v4.0.0.5 adds `/doctor:update check` — a read-only layout report inside the doctor command this child audits [SOURCE: .skilled/changelog/skilled/v4.0.0.5.md:36]. v4.0.0.6 changes the code agents' reporting and the repository rules [SOURCE: .skilled/changelog/skilled/v4.0.0.6.md:16], which is `.skilled/agents/**`, the runtime mirrors and `.skilled/repo-rules/**`. v4.0.0.7 adds the CI routing-drift gate [SOURCE: .skilled/changelog/skilled/v4.0.0.7.md:40] and removes two retired deep-loop modes from every runtime's agent directory — `.github/workflows` and the mirrors, both in scope.",
+      "addedAtIteration": 21,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-a3127800321a",
+      "text": "**33 vs 32 workflows is drift.** The note describes the pre-release count and the same release merged two workflows into one; no post-tag deletion.",
+      "contentHash": "a3127800321a",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-b559d976123f",
+      "text": "**Root `repo-rules/` duplicate is over-engineering.** Removal would break the \"read either layout\" compatibility introduced by `7a948d79b4` (2026-09-20). It is byte-identical today, so it is a maintenance watch item, not a defect.",
+      "contentHash": "b559d976123f",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-da401973a414",
+      "text": "**Workflow calls a missing script.** False positive from a root-relative scan; all four paths resolve after their `cd`/`working-directory`.",
+      "contentHash": "da401973a414",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-5835df6937a7",
+      "text": "**Zero-plus-valid Commit-Id is a bug.** The policy's intent is that a real id satisfies the gate; the placeholder is a sentinel for \"no id\", not a contradiction. Accepting the pair is consistent with that intent.",
+      "contentHash": "5835df6937a7",
+      "addedAtIteration": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 22,
+    "openQuestions": 1,
+    "resolvedQuestions": 11,
+    "carriedForwardOpenQuestions": 99,
+    "keyFindings": 329,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.45,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/004-v4-release-line-research/005-doctor-git-ci-runtime/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

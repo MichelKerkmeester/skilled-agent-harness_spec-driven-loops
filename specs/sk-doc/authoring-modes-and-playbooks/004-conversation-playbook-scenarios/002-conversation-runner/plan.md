@@ -126,7 +126,7 @@ Every start command bypasses permission prompts, because a permission prompt wou
 | `validate-playbook-package.cjs` exports | Phase 001 parser | unchanged, imported | The runner's load-time adapter check |
 | The skill's own playbook root | Six scenarios, MTP-001 to MTP-006 | update: add MTP-007 | `validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook` exits 0 |
 | `.github/workflows/playbook-operator-contract.yml` | Fleet validator in CI | unchanged, never runs the runner | The fleet run still passes for this package |
-| `specs/system-speckit/043-decision-capture/006-live-conversation-test` | First consumer | not changed by this phase | Its scenario validates against the phase 001 rules |
+| `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test` | First consumer | not changed by this phase | Its scenario validates against the phase 001 rules |
 
 Required inventories:
 - Same-class producers: `rg -n "tmux|send-keys|capture-pane" .skilled --glob '*.cjs' --glob '*.mjs' --glob '*.sh'` confirms no other driver exists to reuse.

@@ -50,7 +50,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Validated |
 | **Created** | 2026-07-04 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Spec Folder** | `.opencode/specs/system-deep-loop/028-deprecate-deep-context-integrate-capabilities/` |
 <!-- /ANCHOR:metadata -->
 

@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/032-boot-integrity-rebuild-maintenance-marker",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/032-boot-integrity-rebuild-maintenance-marker",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "boot fts integrity rebuild maintenance marker",
+      "shouldAdoptDespiteProbe boot rebuild",
+      "unclean shutdown marker sigkill loop",
+      "runBootFtsIntegrityCheck reap",
+      "maintenance marker boot integrity gap",
+      "boot fts integrity rebuild maintenance marker plan",
+      "beginMaintenance boot rebuild plan",
+      "unclean shutdown sigkill loop fix plan",
+      "boot fts integrity rebuild maintenance marker tasks",
+      "beginMaintenance boot rebuild tasks",
+      "boot fts integrity rebuild status",
+      "032 complete"
+    ],
+    "key_topics": [
+      "boot",
+      "fts",
+      "integrity",
+      "rebuild",
+      "maintenance",
+      "marker",
+      "shouldadoptdespiteprobe",
+      "unclean",
+      "shutdown",
+      "sigkill",
+      "loop",
+      "runbootftsintegritycheck"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Boot Integrity Rebuild Maintenance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Marker Gap",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reuse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Strategy",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`scheduleBootFtsIntegrityCheck()` fires (`context-server.ts:2467`, right before the daemon",
+    "created_at": "2026-07-08T08:42:38.915Z",
+    "last_save_at": "2026-11-10T05:47:04.703Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:512b46adc0826cf4960d7a6812ce534cb953d8670e19f4a685a4753d3cffef18",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "41240b236ee55c969b1ad0d4c6744d08546db43d8c5dfbb46fd4ce7fa613090e",
+      "plan.md": "51d3313e7f70fd14c77b1f15f7f42f8486e996ba94e06d459ee61980db82b465",
+      "tasks.md": "09d41ea8245858108325e6374fe3007ff010ec36c8227364f4a1d213eef06687",
+      "implementation-summary.md": "0b5272c96d6b5657587e5d9a4e09204307c7d712f041aa43a5ec126aa6b0fda9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

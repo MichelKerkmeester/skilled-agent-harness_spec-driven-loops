@@ -20,7 +20,7 @@ contextType: "research"
 
 | Field | Value |
 |-------|-------|
-| **Topic** | Review the conversation-scenario plan before building it: skill reuse, phase 001 and 002 changes, per-runtime feasibility, and fit with `specs/system-speckit/043-decision-capture/006-live-conversation-test` |
+| **Topic** | Review the conversation-scenario plan before building it: skill reuse, phase 001 and 002 changes, per-runtime feasibility, and fit with `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test` |
 | **Packet** | `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios` |
 | **Executor** | cli-pi, `llmgateway/deepseek-v4.1-flash-1017`, `--thinking max`, single executor |
 | **Iterations** | 3 of 3, stop reason `maxIterationsReached` (stop policy `max-iterations`) |
@@ -102,7 +102,7 @@ Iteration 3's focus text named several of the orchestrator's own hypotheses for 
 | Pi | `--session-id`, `--approve`, `--tui-mode` | **[verified]** all present | see below |
 | Devin | `--permission-mode dangerous`, `--resume <id>`, `devin list` | **[verified]** `dangerous` mode, `-r/--resume [id]` and `list` present | the resume flow needs the probe |
 
-**[verified] A scratch project outside the repository loses repo-local runtime configuration.** `.pi/models.json` declares the `llmgateway` provider and `.pi/settings.json` sets it as default, so Pi in a scratch folder falls back to its global settings; the decision-capture hooks live in `.claude/`, `.opencode/`, `.codex/` and `.devin/`. 043/006's plan builds `.claude/settings.json`, hook links and an `.opencode/` folder in its scratch project, and names nothing for `.pi/`, `.codex/` or `.devin/`. REQ-013's guidance should say that each runtime's project config must be carried into the scratch project by `setup`, and MTP-007 should state which model each runtime uses there. [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:63] **[iteration]** Pi's question package is installed user-globally as well as repo-locally, so Pi keeps its question tool in scratch. [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:113]
+**[verified] A scratch project outside the repository loses repo-local runtime configuration.** `.pi/models.json` declares the `llmgateway` provider and `.pi/settings.json` sets it as default, so Pi in a scratch folder falls back to its global settings; the decision-capture hooks live in `.claude/`, `.opencode/`, `.codex/` and `.devin/`. 043/006's plan builds `.claude/settings.json`, hook links and an `.opencode/` folder in its scratch project, and names nothing for `.pi/`, `.codex/` or `.devin/`. REQ-013's guidance should say that each runtime's project config must be carried into the scratch project by `setup`, and MTP-007 should state which model each runtime uses there. [SOURCE: specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/plan.md:63] **[iteration]** Pi's question package is installed user-globally as well as repo-locally, so Pi keeps its question tool in scratch. [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:113]
 
 ---
 
@@ -111,13 +111,13 @@ Iteration 3's focus text named several of the orchestrator's own hypotheses for 
 | 043/006 need | 002 contract | Fit |
 |--------------|--------------|-----|
 | Stage marks PASS, FAIL, DEVIATION, N/A | Verdicts PASS, FAIL, SKIP only, and SKIP is a runtime-level blocker | **[verified]** no carrier for DEVIATION or N/A. Mapping N/A to SKIP would make a passing runtime look skipped |
-| Retry a stage once on subject DEVIATION | First failed turn ends the runtime's run | **[verified]** contradiction. 043/006 NFR-R02 is unimplementable unless turns become attempt-aware [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:199] |
-| Later stages marked SKIPPED after a failure | Matrix records "first failure" only | **[verified]** partial; no per-turn rows for unrun turns [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:209] |
+| Retry a stage once on subject DEVIATION | First failed turn ends the runtime's run | **[verified]** contradiction. 043/006 NFR-R02 is unimplementable unless turns become attempt-aware [SOURCE: specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/spec.md:199] |
+| Later stages marked SKIPPED after a failure | Matrix records "first failure" only | **[verified]** partial; no per-turn rows for unrun turns [SOURCE: specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/spec.md:209] |
 | S0: baselines, no human turn, with a checkpoint | First turn must be a `send`; checks run after turns | **[verified]** no check-only turn |
 | S8: `/compact`, then a send, with a sha before and after | One action per turn | **[verified]** must become two turns, so stages and turns stop being one-to-one |
 | S9: `/exit`, relaunch with `claude --continue` | `restart` relaunches into the same session id | **[verified]** different mechanism; 043/006 keeps it as an open question |
-| S12: kill switch in a new scratch project, row 13 of one `checkpoints.tsv` | Guidance says a second scenario with `env`; a second block in one file is invalid | **[verified]** contradiction [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:84] [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:112] |
-| Think time 5 to 15 s after a turn, 3 to 8 s after a widget, from a recorded seed | Fixed `delay_ms` per turn | **[verified]** not expressible [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:68] |
+| S12: kill switch in a new scratch project, row 13 of one `checkpoints.tsv` | Guidance says a second scenario with `env`; a second block in one file is invalid | **[verified]** contradiction [SOURCE: specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/plan.md:84] [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:112] |
+| Think time 5 to 15 s after a turn, 3 to 8 s after a widget, from a recorded seed | Fixed `delay_ms` per turn | **[verified]** not expressible [SOURCE: specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/plan.md:68] |
 | Nudge lines counted per turn's pane | `screen.txt` of the settled screen plus one whole-run `raw-pane.log` | **[iteration]** a nudge printed earlier in the turn can scroll off; give each turn its `raw-pane.log` slice |
 | No writes into the real queue | REQ-008 `git status` snapshot | **[verified]** cannot see appends (section 7.2) |
 | "Observed value" column | `check.txt` holds whatever the check prints | **[iteration]** fits if the reference tells checks to print the observed value |
@@ -198,7 +198,7 @@ This map documents breadth. The run stopped at its iteration cap, not because th
 - Resource map: `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/research/resource-map.md`
 - `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/` (SKILL.md, scripts, assets)
 - `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/`, `002-conversation-runner/`, `decision-record.md`
-- `specs/system-speckit/043-decision-capture/006-live-conversation-test/` (read only)
+- `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/` (read only)
 - `.skilled/skills/cli-external-orchestration/cli-*/`
 
 ---

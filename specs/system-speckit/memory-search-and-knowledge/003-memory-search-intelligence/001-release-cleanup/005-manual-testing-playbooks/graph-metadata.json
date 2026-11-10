@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/005-manual-testing-playbooks",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/005-manual-testing-playbooks",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 release cleanup manual testing",
+      "manual testing playbook cleanup phase",
+      "028 release cleanup manual testing plan",
+      "manual-testing-playbooks cleanup plan",
+      "028 release cleanup manual testing tasks",
+      "manual-testing-playbooks cleanup tasks",
+      "005-manual-testing-playbooks implementation summary",
+      "028 release cleanup 005-manual-testing-playbooks"
+    ],
+    "key_topics": [
+      "release",
+      "cleanup",
+      "manual",
+      "testing",
+      "playbook",
+      "phase",
+      "plan",
+      "manual-testing-playbooks",
+      "tasks",
+      "005-manual-testing-playbooks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Discovery Discovery",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The every manual testing playbook document across skills and repo-level packages needs a release-readiness cleanup contract before any document edits begin",
+    "created_at": "2026-06-19T00:00:00Z",
+    "last_save_at": "2026-11-10T05:47:30.201Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:911bec6cb71a90144c5a46d7111fbfdbf602e4984efa66adab304da29596be5b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d6f8f3a3efa3333f3fde79faff2fe2a2942a513ddc4779fac038e61bf98e0221",
+      "plan.md": "499dba95ea4fea098fa205af39b8e1e8f0f4ddaf3c44a09ad444a0abd3cd44ce",
+      "tasks.md": "2e3f77406d867373e56931d6ff86a16909c99d43149057dfcbd14ecbf67aa943",
+      "implementation-summary.md": "fce57cc216df64f8048e2f71b66f3af7b4cf2ce3bbc8a36540fe76357d02fb0f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

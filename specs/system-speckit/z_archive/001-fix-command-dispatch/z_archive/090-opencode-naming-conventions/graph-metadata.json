@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `sk-code-skilled` skill enforces `snakecase` for JavaScript functions, parameters, and exports",
     "created_at": "2026-04-12T09:02:53.560Z",
-    "last_save_at": "2026-10-07T20:42:36.882Z",
+    "last_save_at": "2026-11-10T05:48:57.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9e0bc1ba8abcd167aa8a462a5abbe702cb98221f9fee6b1c4ec4dc956a0df47",
+    "source_fingerprint": "sha256:30ab98d39915fac2bd89ad5ec8a04f33b017e0d8ba57d8faf6062c8d419d9233",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e0585ad6765e45f38ff09d957538c18eef4b63e1b0a0d3017ef3282aab2cc37c",
-      "plan.md": "0ef7888b7ddd6d4518047181fee67b361273d37e43667a72ee6700386eb45fdf",
+      "spec.md": "2da9aa0cdb62ae076f7771e759daca968367815ff2ee8163c7a3cd0fc1fabcef",
+      "plan.md": "7a470e6dcbac3553aa5537a3df7045b7dba4da5784a15c87c3d874d4a504911d",
       "tasks.md": "fc95b9c33b0809da2b3eb117ed30fa49e47a30fb8a0e4e9c7b2b03c125e00c49",
-      "decision-record.md": "b4a2dbfc41b5a20fbcc2c614f1913f0724adc76802121307e3f3eb4c96f6c9cd",
-      "implementation-summary.md": "ec6f347c46cef97ca09e503dbdb89b6f136dfd5b0d3b4647f9643df705a2c27a"
+      "decision-record.md": "c153c92f46681c25085e4a0a83d87ebba51e38175fab6830653e445a7e30345c",
+      "implementation-summary.md": "62a0ed1d60feb83ae83d8c39ac18826c45c052bac0526c4ae2b07f4474ab5198"
     },
     "last_active_child_id": null,
     "last_active_at": null

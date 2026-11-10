@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/020-enterprise-readiness-verification-expansion-research",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/020-enterprise-readiness-verification-expansion-research",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "020-enterprise-readiness-verification-expansion-research",
+      "W3-W7 verification research",
+      "enterprise readiness search RAG",
+      "trust tree rerank shadow weights cocoindex degraded research",
+      "empty folder audit system-spec-kit mcp_server",
+      "W3-W7 verification plan",
+      "deep research plan",
+      "W3-W7 verification tasks",
+      "W3-W7 verification implementation summary"
+    ],
+    "key_topics": [
+      "020-enterprise-readiness-verification-expansion-research",
+      "w3-w7",
+      "verification",
+      "research",
+      "enterprise",
+      "readiness",
+      "search",
+      "rag",
+      "trust",
+      "tree",
+      "rerank",
+      "shadow"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-strategy.md",
+      "research/research-report.md",
+      "research/deep-research-config.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-report.md",
+        "kind": "doc",
+        "path": "research/research-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "Research Charter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Readiness Expansion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planning Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Expansion Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Execute",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases C–E delivered W3 (composed RAG trust tree), W4 (conditional rerank, now default-on), W5 (advisor shadow learned weights), W6 (CocoIndex adaptive overfetch, opt-in), W7 (degraded-readiness stress cells)",
+    "created_at": "2026-04-29T06:00:00.000Z",
+    "last_save_at": "2026-11-10T05:46:04.899Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:70e8f614ac7e400ce47f513d2d44157ce72992ba92aac23941c46211249c758f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ece343cb352b4a313d3131ecf2e2a6b68fb656396ebd6992777f561b6c14bb15",
+      "plan.md": "8e1633566450f0dbb1978d3e4659734a400f36633693f7dc041769d3713edfac",
+      "tasks.md": "ae9fb9e1ec3be40e1ac2b026b1ec7b6a2a998b2a45b929e08a4d3a60d7744552",
+      "implementation-summary.md": "1f8f35ab327901080839d759c8eb07b414a590e844d7069dba6fa77808610e4f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

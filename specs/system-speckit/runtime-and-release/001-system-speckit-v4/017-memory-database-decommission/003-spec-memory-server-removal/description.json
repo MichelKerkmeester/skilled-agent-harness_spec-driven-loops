@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal",
+  "description": "The subsystem's cost is structural, not incidental: a background service that flaps, 41 tools loaded",
+  "keywords": [
+    "subsystem",
+    "cost",
+    "structural",
+    "incidental",
+    "background",
+    "service",
+    "flaps",
+    "tools",
+    "loaded"
+  ],
+  "lastUpdated": "2026-09-06T07:09:10.121Z",
+  "specId": "003",
+  "folderSlug": "spec-memory-server-removal",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4",
+    "017-memory-database-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

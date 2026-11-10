@@ -196,7 +196,7 @@
     ],
     "causal_summary": "After completing 7 phases of ESM migration, the spec and memory ecosystem has accumulated document drift, template non-compliance, and memory quality degradation across 186 spec folders (66 active top-level + 65 archived + 55 phase children)",
     "created_at": "2026-04-12T09:02:50.321Z",
-    "last_save_at": "2026-08-30T15:39:39.501Z",
+    "last_save_at": "2026-11-10T05:49:16.957Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:83032b2f3bb4f005cada14487c9d5fed70c59d08818863b085f5f6dea3e3fabd",
+    "source_fingerprint": "sha256:3e903e2031137433039b4fab522ed5d633cc2ec3cc6490f7e2331217d578e230",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "62f237f737f9037bbdfeb657f99b6ca1802dc66bbd51a28e43b4aac6397d70c4",
-      "plan.md": "8cf8253638fa43fae8085d23a8d031d8b48c1fa54792c08b22e984a568c46898",
-      "tasks.md": "012c48b3ecaaee295a182c3a0dceeaa8d3097135f0e3081459d6c1d711adf43b",
+      "spec.md": "4ce38a6f28a4d66cef8c4561fe86e8820d8536c9fd6e4cec36cec9fe2b92b421",
+      "plan.md": "59a20a9ffafdebd83142a170a169affbce52523301cacd9161ad8cb338b23e8e",
+      "tasks.md": "5018fe48e0c058adb9a05dc5c04107cf1142b647d11ab203aebafebb874ab1a6",
       "implementation-summary.md": "e50d8d06c84ad9ab3cf6fff9aabbb9759535a1db26ecf3f2d9db31c149fa2d67"
     },
     "last_active_child_id": null,

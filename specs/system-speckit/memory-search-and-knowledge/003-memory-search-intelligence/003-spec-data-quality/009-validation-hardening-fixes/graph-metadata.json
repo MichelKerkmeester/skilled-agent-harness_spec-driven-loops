@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/009-validation-hardening-fixes",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/009-validation-hardening-fixes",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validation hardening tooling fixes",
+      "evidence substance checker loophole",
+      "status classifier implemented blind spot",
+      "duplicated status enum drift",
+      "freshness sweep first run regression",
+      "validation hardening fixes plan",
+      "evidence substance checker fix plan",
+      "status classifier implemented plan",
+      "freshness sweep baseline fix plan",
+      "validation hardening fixes tasks",
+      "evidence substance checker tasks",
+      "status classifier tasks"
+    ],
+    "key_topics": [
+      "validation",
+      "hardening",
+      "tooling",
+      "evidence",
+      "substance",
+      "checker",
+      "loophole",
+      "status",
+      "classifier",
+      "implemented",
+      "blind",
+      "spot"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hardening Tooling Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Substance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Classifier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Freshness Baseline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "F6 — the evidence \"substance\" checker has two live defects, a false-negative loophole and a false-positive regression, both in `evidenceitemhassubstance()` (`check-evidence.sh:30-68`)",
+    "created_at": "2026-07-09T15:10:28.777Z",
+    "last_save_at": "2026-11-10T05:47:48.842Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cc5032f14dc4439048b58311c0c74414f0d837f30cd5ef5f300cbea02083861a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bdfc42ab998c027cff47247166ec3a9923304b18d662244801922e055d201a00",
+      "plan.md": "75677671fc21f1ce8c555326634f0b9db28ffdcd59e89ec81e17b40d499f5c55",
+      "tasks.md": "816d8ac7ae807709b24f8d4e8b9ca06c2565d89041af9b7b7f7d817a129732c1",
+      "implementation-summary.md": "2b6c3114e18e1719462c7f284d411bf287bd25766dac25e748d78ef08d565654"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026 changelog backfill",
+      "changelog audit 026",
+      "phase changelog coverage",
+      "nested changelog backfill",
+      "026 work audit",
+      "026 changelog backfill plan",
+      "changelog swarm plan",
+      "nested changelog enrichment",
+      "026 changelog tasks",
+      "changelog backfill tasks",
+      "tasks core",
+      "026 changelog decisions"
+    ],
+    "key_topics": [
+      "changelog",
+      "backfill",
+      "audit",
+      "phase",
+      "coverage",
+      "nested",
+      "work",
+      "plan",
+      "swarm",
+      "enrichment",
+      "tasks",
+      "core"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "references/stage-b-enrichment-contract.md",
+      "references/verification-gate.md",
+      "references/recon-coverage-matrix.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage-b-enrichment-contract.md",
+        "kind": "doc",
+        "path": "references/stage-b-enrichment-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification-gate.md",
+        "kind": "doc",
+        "path": "references/verification-gate.md",
+        "source": "derived"
+      },
+      {
+        "name": "recon-coverage-matrix.md",
+        "kind": "doc",
+        "path": "references/recon-coverage-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Changelog Backfill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Work Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pipeline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Records",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec 026 shipped hundreds of phases across 8 tracks over months of work, but the packet-local changelog history is roughly 16 percent complete (103 of about 553 shipped phases)",
+    "created_at": "2026-05-31T19:00:00.000Z",
+    "last_save_at": "2026-11-10T05:46:10.725Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c1b56e06eccc4895097c640d0aa9c6befa008bafbcd9c15407f0a47ab13f04c4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "09b735d0d3ad285254c83b72c24f9817a297c1d6e50737e572c9cdf323d689b4",
+      "plan.md": "0038d08ea607a6a901592bf4868e9d19bae02ae19087179f4aea85b0c3427b5d",
+      "tasks.md": "e6a75c092015f55383f69d7d35cc4f8a24c3d787eb48f1c50a62a51ca210e0c6",
+      "decision-record.md": "b219cb2688ac704f85ddae36d9a42e6e7248553f83961ca1aa99fbbedf1e7173",
+      "implementation-summary.md": "c211fb0eaed3a49cc103abaaf8ec2dc467552f5322fcbb38662bd3e95e412a5e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

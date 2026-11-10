@@ -1,0 +1,1738 @@
+{
+  "sessionId": "2026-11-08T19:57:06.773Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-does-every-mode-listed-in-the-router-md-and-mode-registry-json-of-sk-doc-sk-code",
+      "inboxId": null,
+      "text": "Does every mode listed in the ROUTER.md and mode-registry.json of sk-doc, sk-code, sk-design and sk-prompt resolve to a file that exists, as the parent-hub canon requires?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-does-each-hub-s-skill-md-and-readme-match-what-the-v4-0-0-0-and-v4-0-1-0-notes-s",
+      "inboxId": null,
+      "text": "Does each hub's SKILL.md and README match what the v4.0.0.0 and v4.0.1.0 notes say it ships, including the sk-design consolidation and the Retired Surfaces section?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-do-the-sk-doc-authoring-validators-from-v4-0-0-9-pass-when-run-on-sk-code-sk-des",
+      "inboxId": null,
+      "text": "Do the sk-doc authoring validators from v4.0.0.9 pass when run on sk-code, sk-design and sk-prompt themselves, and which check fails?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-does-the-sk-code-quality-config-and-review-flow-from-v4-0-0-6-and-v4-0-0-16-code",
+      "inboxId": null,
+      "text": "Does the sk-code quality-config and review flow from v4.0.0.6 and v4.0.0.16 (Code Quality in Any Repository) work from its documented commands, and what part is untested?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-5-do-the-create-commands-match-the-sk-doc-mode-contracts-they-route-to-including-f",
+      "inboxId": null,
+      "text": "Do the /create:* commands match the sk-doc mode contracts they route to, including flags, defaults and outputs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-6-do-the-design-commands-and-sk-design-modes-match-their-stated-counts-29-chart-fo",
+      "inboxId": null,
+      "text": "Do the /design:* commands and sk-design modes match their stated counts (29 chart forms, 27 diagram types) and catalog files?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-7-does-sk-prompt-match-its-v4-0-0-0-note-and-do-the-cli-skills-consume-sk-prompt-a",
+      "inboxId": null,
+      "text": "Does sk-prompt match its v4.0.0.0 note, and do the cli-* skills consume sk-prompt/assets/cli-prompt-quality-card.md the same way?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-8-did-the-v4-0-0-16-move-changelogs-live-in-skills-only-leave-stale-changelog-path",
+      "inboxId": null,
+      "text": "Did the v4.0.0.16 move Changelogs Live in Skills Only leave stale changelog paths or references in these four hubs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-9-do-the-manual-testing-playbooks-touched-in-v4-0-1-0-point-at-files-commands-and-",
+      "inboxId": null,
+      "text": "Do the manual testing playbooks touched in v4.0.1.0 point at files, commands and scenarios that exist?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-10-which-templates-references-assets-or-modes-across-the-four-hubs-have-no-inbound-",
+      "inboxId": null,
+      "text": "Which templates, references, assets or modes across the four hubs have no inbound route or duplicate another, and what breaks if each is removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-11-what-friction-do-the-operator-and-the-ai-user-hit-in-these-hubs-ambiguous-mode-c",
+      "inboxId": null,
+      "text": "What friction do the operator and the AI user hit in these hubs: ambiguous mode choice, unclear validator errors, large mandatory loads?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-12-what-concrete-extensions-would-let-the-four-hubs-share-validators-routing-tests-",
+      "inboxId": null,
+      "text": "What concrete extensions would let the four hubs share validators, routing tests or templates, based on gaps found in this run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-does-every-mode-listed-in-the-router-md-and-mode-registry-json-of-sk-doc-sk-code",
+      "inboxId": null,
+      "text": "Does every mode listed in the ROUTER.md and mode-registry.json of sk-doc, sk-code, sk-design and sk-prompt resolve to a file that exists, as the parent-hub canon requires?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-does-each-hub-s-skill-md-and-readme-match-what-the-v4-0-0-0-and-v4-0-1-0-notes-s",
+      "inboxId": null,
+      "text": "Does each hub's SKILL.md and README match what the v4.0.0.0 and v4.0.1.0 notes say it ships, including the sk-design consolidation and the Retired Surfaces section?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-do-the-sk-doc-authoring-validators-from-v4-0-0-9-pass-when-run-on-sk-code-sk-des",
+      "inboxId": null,
+      "text": "Do the sk-doc authoring validators from v4.0.0.9 pass when run on sk-code, sk-design and sk-prompt themselves, and which check fails?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-does-the-sk-code-quality-config-and-review-flow-from-v4-0-0-6-and-v4-0-0-16-code",
+      "inboxId": null,
+      "text": "Does the sk-code quality-config and review flow from v4.0.0.6 and v4.0.0.16 (Code Quality in Any Repository) work from its documented commands, and what part is untested?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-5-do-the-create-commands-match-the-sk-doc-mode-contracts-they-route-to-including-f",
+      "inboxId": null,
+      "text": "Do the /create:* commands match the sk-doc mode contracts they route to, including flags, defaults and outputs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-6-do-the-design-commands-and-sk-design-modes-match-their-stated-counts-29-chart-fo",
+      "inboxId": null,
+      "text": "Do the /design:* commands and sk-design modes match their stated counts (29 chart forms, 27 diagram types) and catalog files?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-7-does-sk-prompt-match-its-v4-0-0-0-note-and-do-the-cli-skills-consume-sk-prompt-a",
+      "inboxId": null,
+      "text": "Does sk-prompt match its v4.0.0.0 note, and do the cli-* skills consume sk-prompt/assets/cli-prompt-quality-card.md the same way?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-8-did-the-v4-0-0-16-move-changelogs-live-in-skills-only-leave-stale-changelog-path",
+      "inboxId": null,
+      "text": "Did the v4.0.0.16 move Changelogs Live in Skills Only leave stale changelog paths or references in these four hubs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-9-do-the-manual-testing-playbooks-touched-in-v4-0-1-0-point-at-files-commands-and-",
+      "inboxId": null,
+      "text": "Do the manual testing playbooks touched in v4.0.1.0 point at files, commands and scenarios that exist?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-10-which-templates-references-assets-or-modes-across-the-four-hubs-have-no-inbound-",
+      "inboxId": null,
+      "text": "Which templates, references, assets or modes across the four hubs have no inbound route or duplicate another, and what breaks if each is removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "question-11-what-friction-do-the-operator-and-the-ai-user-hit-in-these-hubs-ambiguous-mode-c",
+      "inboxId": null,
+      "text": "What friction do the operator and the AI user hit in these hubs: ambiguous mode choice, unclear validator errors, large mandatory loads?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    },
+    {
+      "id": "question-12-what-concrete-extensions-would-let-the-four-hubs-share-validators-routing-tests-",
+      "inboxId": null,
+      "text": "What concrete extensions would let the four hubs share validators, routing tests or templates, based on gaps found in this run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q9: Do the v4.0.1.0 manual-testing playbooks point at existing files and commands?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6: Do the `/design:*` commands and sk-design modes match the stated 29 chart forms and 27 diagram types?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: Do the `/create:*` commands match the sk-doc mode contracts (flags, defaults, outputs)?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: Does the sk-code quality-config and review flow from v4.0.0.6 and v4.0.0.16 work from its documented commands?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10: Which templates, references, assets or modes have no inbound route or duplicate another?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q12: What concrete extensions would let the hubs share validators, routing tests or templates?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7: Does sk-prompt match its v4.0.0.0 note, and do the cli-* skills consume `cli-prompt-quality-card.md` consistently?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11: What friction do the operator and AI user hit?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q8: Did the v4.0.0.16 changelog move leave stale changelog paths in these hubs?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: Do the sk-doc authoring validators from v4.0.0.9 pass on sk-code, sk-design and sk-prompt themselves?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q12: What concrete extensions would let the four hubs share validators, routing tests or templates?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q9: Do the manual testing playbooks touched in v4.0.1.0 point at files, commands and scenarios that exist?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q8: Did the v4.0.0.16 move Changelogs Live in Skills Only leave stale changelog paths or references in these four hubs?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10: Which templates, references, assets or modes across the four hubs have no inbound route or duplicate another?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11: What friction do the operator and the AI user hit?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11: What friction do the operator and the AI user hit in these hubs: ambiguous mode choice, unclear validator errors, large mandatory loads? (Partly addressed by F4 and O4.)",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10: Which templates, references, assets or modes across the four hubs have no inbound route or duplicate another, and what breaks if each is removed?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q12: What concrete extensions would let the four hubs share validators, routing tests or templates, based on gaps found in this run?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q11: what friction do the operator and the AI user hit — ambiguous mode choice, unclear validator",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10 (open half): which **templates / references / assets / scripts** in the four hubs have no",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether `none` in sk-design's outcomes was authored deliberately or left from an earlier schema (F2's release row stays \"present at v4.0.2.0\" until a path-limited `git log` on `hub-router.json` settles it).",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q11** — \"What friction do the operator and the AI user hit in these hubs: ambiguous mode choice, unclear validator errors, large mandatory loads?\" Only the mandatory-load half is unexamined.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Whether `check-review-findings.js`'s exit 0 is a vacuous pass** (F6) — needs the checker read at the branch that handles a missing findings heading.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Whether any comma-form marker is still emitted** — the emitter is absent from the tree, so F1's blast radius stays archived-mirror-only until someone regenerates a mirror.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q10 (open half)** — which templates, references, assets or scripts have no inbound route: still open. This iteration added two candidates (the dead marker exemption, F4) but did not sweep.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Whether sk-prompt's missing metadata trio is deliberate** (F5) — no doc states it; the shape differs from its three peers without a stated reason.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q10 (open half)** — which templates, references, assets or scripts in the four hubs have no inbound route. Unchanged from iteration 10; candidate count still two (`palette-sheet-ordered.html`, `palette-sheet-categorical.html`, now attributed to `5dbd8c9480`/`v4.0.0.0`) plus the dead marker exemption.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**F4's consumer** — which script concatenates `leaf-manifest.json`'s `packet` with its `leaves`. Not found in the budget; until it is, f-iter001-001's blast radius is a hypothesis.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Whether any v4-line note claim can be trusted without a code probe** — F2 found one claim (sk-prompt DEPTH) that was true at the tag while the packet changelog was premature, and F1 found a claim (`--apply`) that was never made at all but was recorded in the registry as made. Both suggest the registry's note-versus-code rows should all carry a `git show` of the tag, not a read of the note.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**F3's audit lesson is stated, not yet tested** — no iteration ran a `-S --follow` sweep of the whole hub tree to quantify how much survived the `.opencode` rename unchanged. The probe count here (13 of 30) is a sample from the registry, not a measured population.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-6-source-skilled-skills-sk-doc-leaf-manifest-json-125-assets-llmstxt-templates-md",
+      "text": "[SOURCE: .skilled/skills/sk-doc/leaf-manifest.json:125] `\"assets/llmstxt-templates.md\"`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-source-skilled-skills-sk-doc-leaf-manifest-json-127-references-core-standards-md",
+      "text": "[SOURCE: .skilled/skills/sk-doc/leaf-manifest.json:127] `\"references/core-standards.md\"`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-source-skilled-skills-sk-doc-leaf-manifest-json-128-references-evergreen-packet-",
+      "text": "[SOURCE: .skilled/skills/sk-doc/leaf-manifest.json:128] `\"references/evergreen-packet-id-rule.md\"`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-source-skilled-skills-sk-doc-leaf-manifest-json-129-references-hvr-rules-md",
+      "text": "[SOURCE: .skilled/skills/sk-doc/leaf-manifest.json:129] `\"references/hvr-rules.md\"`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-source-skilled-skills-sk-doc-leaf-manifest-json-133-references-validation-md",
+      "text": "[SOURCE: .skilled/skills/sk-doc/leaf-manifest.json:133] `\"references/validation.md\"`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-11-source-skilled-skills-sk-doc-router-md-194-shared-references-validation-md",
+      "text": "[SOURCE: .skilled/skills/sk-doc/ROUTER.md:194] `\"shared/references/validation.md\"`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-12-source-skilled-skills-sk-doc-router-md-196-shared-references-core-standards-md",
+      "text": "[SOURCE: .skilled/skills/sk-doc/ROUTER.md:196] `\"shared/references/core-standards.md\"`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-13-source-skilled-skills-sk-doc-router-md-197-shared-references-evergreen-packet-id",
+      "text": "[SOURCE: .skilled/skills/sk-doc/ROUTER.md:197] `\"shared/references/evergreen-packet-id-rule.md\"`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-14-source-skilled-skills-sk-doc-router-md-201-shared-assets-llmstxt-templates-md",
+      "text": "[SOURCE: .skilled/skills/sk-doc/ROUTER.md:201] `\"shared/assets/llmstxt-templates.md\"`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-19-confidence-high",
+      "text": "Confidence: high",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-31-confidence-high-for-the-absence-the-canon-reading-is-at-source-skilled-skills-sk",
+      "text": "Confidence: high for the absence; the canon reading is at [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:327]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-confidence-high-that-the-five-paths-are-missing-medium-that-v4-0-0-0-is-the-exac",
+      "text": "Confidence: high that the five paths are missing; medium that v4.0.0.0 is the exact introducing release",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-25-confidence-high-that-the-links-dangle-medium-that-a-gate-consumes-the-fixture",
+      "text": "Confidence: high that the links dangle; medium that a gate consumes the fixture",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-evidence",
+      "text": "Evidence:",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-20-evidence-source-skilled-changelog-skilled-v4-0-0-0-md-278-read-only-surface-pack",
+      "text": "Evidence: [SOURCE: .skilled/changelog/skilled/v4.0.0.0.md:278] `- **read-only surface packets that inform:** sk-code-webflow, sk-code-skilled and sk-code-obsidian`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-26-evidence-source-skilled-skills-sk-doc-scripts-tests-render-web-markup-and-css-md",
+      "text": "Evidence: [SOURCE: .skilled/skills/sk-doc/scripts/tests/render/web-markup-and-css.md:25] links `../../../sk-design/sk-design-fundamentals/SKILL.md`; the same target appears at lines 26, 29, 51, 97, 124 and 180.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-18-release-v4-0-0-0",
+      "text": "Release: v4.0.0.0",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-30-release-v4-0-0-0-hub-creation-never-added-through-v4-0-2-0",
+      "text": "Release: v4.0.0.0 (hub creation; never added through v4.0.2.0)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-release-v4-0-0-0-hub-shared-backbone-split-still-present-at-v4-0-2-0",
+      "text": "Release: v4.0.0.0 (hub/shared-backbone split; still present at v4.0.2.0)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-24-release-v4-0-1-0-retired-surfaces",
+      "text": "Release: v4.0.1.0 (Retired Surfaces)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-severity-p1",
+      "text": "Severity: P1",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-17-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-23-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-29-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-type-bug",
+      "text": "Type: bug",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-16-type-drift",
+      "text": "Type: drift",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-22-type-drift",
+      "text": "Type: drift",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-28-type-improvement",
+      "text": "Type: improvement",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-15-verify",
+      "text": "Verify:",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-21-verify",
+      "text": "Verify:",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-27-verify",
+      "text": "Verify:",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-32-verify",
+      "text": "Verify:",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-14-source-skilled-changelog-skilled-v4-0-0-16-md-122-doctor-sk-code-quality-plans-t",
+      "text": "[SOURCE: .skilled/changelog/skilled/v4.0.0.16.md:122] \"`/doctor:sk-code quality` plans the file from the repository's own scripts, writes it on `--apply`, refuses to overwrite one that exists and checks it.\"",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-23-source-skilled-changelog-skilled-v4-0-0-9-md-105-the-check-now-reads-each-packag",
+      "text": "[SOURCE: .skilled/changelog/skilled/v4.0.0.9.md:105] \"The check now reads each package's top-level `manual-testing-playbook.md` as well.\"",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-source-skilled-changelog-skilled-v4-0-0-9-md-105-the-playbook-validator-warns-ab",
+      "text": "[SOURCE: .skilled/changelog/skilled/v4.0.0.9.md:105] \"The playbook validator warns about a backticked path that no longer resolves, without failing the run\"",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-15-source-skilled-commands-doctor-sk-code-md-3-argument-hint-setup-quality-prompt-t",
+      "text": "[SOURCE: .skilled/commands/doctor/sk-code.md:3] `argument-hint: \"[setup|quality] [--prompt=<text>] [--dry-run] | list | ?\"`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-16-source-skilled-commands-doctor-sk-code-md-35-dry-run-belongs-to-quality-and-it-s",
+      "text": "[SOURCE: .skilled/commands/doctor/sk-code.md:35] \"`--dry-run` belongs to `quality`, and it shows the init plan and stops before the write.\"",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-source-skilled-skills-sk-prompt-manual-testing-playbook-clear-scoring-forty-of-f",
+      "text": "[SOURCE: .skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/forty-of-fifty-threshold.md:82] `| \\`../../manual-testing-playbook.md\\` | Root directory page and scenario summary |`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-confidence-high",
+      "text": "Confidence: high",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-21-confidence-high-for-the-observed-skip-medium-that-a-zero-operator-package-is-uni",
+      "text": "Confidence: high for the observed skip; medium that a zero-operator package is unintended rather than an accepted tier",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-12-confidence-high-that-the-flag-is-absent-from-the-contract-medium-that-no-alias-p",
+      "text": "Confidence: high that the flag is absent from the contract; medium that no alias path accepts it (the route manifest was not read)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-evidence",
+      "text": "Evidence:",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-13-evidence",
+      "text": "Evidence:",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-22-evidence",
+      "text": "Evidence:",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-release-v4-0-0-16",
+      "text": "Release: v4.0.0.16",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-20-release-v4-0-0-9",
+      "text": "Release: v4.0.0.9",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-release-v4-0-0-9-the-file-table-path-check-was-added-there-the-bad-path-itself-p",
+      "text": "Release: v4.0.0.9 (the File-table path check was added there; the bad path itself predates it)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-19-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-type-bug",
+      "text": "Type: bug",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-type-drift",
+      "text": "Type: drift",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-18-type-improvement",
+      "text": "Type: improvement",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-verify",
+      "text": "Verify:",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-17-verify",
+      "text": "Verify:",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-24-verify",
+      "text": "Verify:",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-33-source-skilled-commands-create-assets-create-benchmark-presentation-txt-60-the-r",
+      "text": "[SOURCE: .skilled/commands/create/assets/create-benchmark-presentation.txt:60] the resolution table starts at `benchmark_family`; no `benchmark_id` row exists",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-42-source-skilled-commands-create-assets-create-changelog-auto-yaml-139-validation-",
+      "text": "[SOURCE: .skilled/commands/create/assets/create-changelog-auto.yaml:139] `validation: \"must be one of: major, minor, patch, build, auto\"`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-25-source-skilled-commands-create-assets-create-readme-presentation-txt-66-the-reso",
+      "text": "[SOURCE: .skilled/commands/create/assets/create-readme-presentation.txt:66] the resolution table ends at `execution_mode`; no output row follows",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-32-source-skilled-commands-create-benchmark-md-3-argument-hint-skill-or-mode-spec-p",
+      "text": "[SOURCE: .skilled/commands/create/benchmark.md:3] `argument-hint: \"<skill-or-mode> <spec-packet> [create|update] --family=<family> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto|:confirm]\"`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-50-source-skilled-commands-create-benchmark-md-3-the-unread-benchmark-id-flag",
+      "text": "[SOURCE: .skilled/commands/create/benchmark.md:3] the unread `--benchmark-id` flag",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-40-source-skilled-commands-create-changelog-md-3-argument-hint-spec-folder-or-compo",
+      "text": "[SOURCE: .skilled/commands/create/changelog.md:3] `argument-hint: \"<spec-folder-or-component> [--bump <major|minor|patch|build>] [--release] [:auto|:confirm]\"`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-51-source-skilled-commands-create-changelog-md-3-the-narrowed-bump-value-set",
+      "text": "[SOURCE: .skilled/commands/create/changelog.md:3] the narrowed `--bump` value set",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-24-source-skilled-commands-create-readme-md-3-argument-hint-target-type-project-com",
+      "text": "[SOURCE: .skilled/commands/create/readme.md:3] `argument-hint: \"<target> [--type <project|component|feature|skill>] [--output <path>] [:auto|:confirm]\"`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-49-source-skilled-commands-create-readme-md-3-the-unread-output-flag",
+      "text": "[SOURCE: .skilled/commands/create/readme.md:3] the unread `--output` flag",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-17-source-skilled-commands-create-readme-txt-26-the-table-in-section-3-lists-every-",
+      "text": "[SOURCE: .skilled/commands/create/README.txt:26] \"The table in section 3 lists every command in this folder.\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-source-skilled-commands-create-readme-txt-50-author-a-standalone-html-chart-from",
+      "text": "[SOURCE: .skilled/commands/create/README.txt:50] \"Author a standalone HTML chart from a catalog of 21 forms, one per reader question\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-15-source-skilled-commands-create-readme-txt-83-chart-md-design-chart-command",
+      "text": "[SOURCE: .skilled/commands/create/README.txt:83] \"├── chart.md # /design:chart command\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-16-source-skilled-commands-create-readme-txt-85-diagram-md-design-diagram-command",
+      "text": "[SOURCE: .skilled/commands/create/README.txt:85] \"├── diagram.md # /design:diagram command\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-source-skilled-skills-sk-design-sk-design-chart-references-catalog-md-48-the-cha",
+      "text": "[SOURCE: .skilled/skills/sk-design/sk-design-chart/references/catalog.md:48] the `CHART_CATALOG:BEGIN` sentinel; the table runs to line 82 with 29 data rows",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-source-skilled-skills-sk-design-sk-design-chart-skill-md-114-the-corpus-contains",
+      "text": "[SOURCE: .skilled/skills/sk-design/sk-design-chart/SKILL.md:114] \"The corpus contains twenty-nine chart forms across six question families\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-41-source-skilled-skills-sk-doc-sk-create-changelog-skill-md-64-major-minor-patch-b",
+      "text": "[SOURCE: .skilled/skills/sk-doc/sk-create-changelog/SKILL.md:64] \"`major`, `minor`, `patch`, `build` or `auto`\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-confidence-high",
+      "text": "Confidence: high",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-13-confidence-high",
+      "text": "Confidence: high",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-22-confidence-high",
+      "text": "Confidence: high",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-30-confidence-high",
+      "text": "Confidence: high",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-38-confidence-high",
+      "text": "Confidence: high",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-47-confidence-high-that-the-gap-exists-medium-that-a-token-presence-lint-is-the-rig",
+      "text": "Confidence: high that the gap exists; medium that a token-presence lint is the right strictness (a presentation contract could legitimately mention a flag only in prose)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-evidence",
+      "text": "Evidence:",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-14-evidence",
+      "text": "Evidence:",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-23-evidence",
+      "text": "Evidence:",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-31-evidence",
+      "text": "Evidence:",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-39-evidence",
+      "text": "Evidence:",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-48-evidence",
+      "text": "Evidence:",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-12-release-v4-0-0-0-baseline",
+      "text": "Release: v4.0.0.0 baseline",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-29-release-v4-0-0-0-baseline",
+      "text": "Release: v4.0.0.0 baseline",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-37-release-v4-0-0-0-baseline",
+      "text": "Release: v4.0.0.0 baseline",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-release-v4-0-0-0-baseline-present-at-the-tag-still-live-at-v4-0-2-0",
+      "text": "Release: v4.0.0.0 baseline (present at the tag; still live at v4.0.2.0)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-21-release-v4-0-0-0-baseline-the-flag-is-in-the-v4-0-0-0-command-file",
+      "text": "Release: v4.0.0.0 baseline (the flag is in the `v4.0.0.0` command file)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-46-release-v4-0-2-0-gap-observable-at-the-current-tag",
+      "text": "Release: v4.0.2.0 (gap observable at the current tag)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-11-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-20-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-28-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-36-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-45-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-type-drift",
+      "text": "Type: drift",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-10-type-drift",
+      "text": "Type: drift",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-19-type-drift",
+      "text": "Type: drift",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-27-type-drift",
+      "text": "Type: drift",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-35-type-drift",
+      "text": "Type: drift",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-44-type-extension",
+      "text": "Type: extension",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-9-verify",
+      "text": "Verify:",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-18-verify",
+      "text": "Verify:",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-26-verify",
+      "text": "Verify:",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-34-verify",
+      "text": "Verify:",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-43-verify",
+      "text": "Verify:",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-52-verify",
+      "text": "Verify:",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-source-skilled-changelog-skilled-v4-0-0-0-md-400-sk-prompt-is-the-single-home-fo",
+      "text": "[SOURCE: .skilled/changelog/skilled/v4.0.0.0.md:400] \"`sk-prompt` is the single home for prompt work: seven frameworks, DEPTH thinking and CLEAR scoring behind `/prompt:improve`\"",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-34-source-skilled-skills-sk-doc-sk-create-manual-testing-playbook-assets-manual-tes",
+      "text": "[SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md:182] the template carries `<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-32-source-skilled-skills-sk-doc-sk-create-manual-testing-playbook-scripts-validate-",
+      "text": "[SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:749] `if (!text.includes(RESULT_PERSISTENCE_MARKER)) {`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-33-source-skilled-skills-sk-doc-sk-create-manual-testing-playbook-scripts-validate-",
+      "text": "[SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:751] `'RESULT_PERSISTENCE_MARKER_MISSING',`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-15-source-skilled-skills-sk-prompt-assets-cli-prompt-quality-card-md-192-all-three-",
+      "text": "[SOURCE: .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:192] \"All three cli-* cards (`cli-claude-code`, `cli-opencode`, `cli-opencode`) are THIN DELEGATING mirrors\"",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-16-source-skilled-skills-sk-prompt-assets-cli-prompt-quality-card-md-197-names-the-",
+      "text": "[SOURCE: .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:197] names the duplication guard at `.skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-24-source-skilled-skills-sk-prompt-assets-cli-prompt-quality-card-md-211-cli-claude",
+      "text": "[SOURCE: .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:211] \"- `../../../cli-claude-code/assets/prompt-quality-card.md`\"",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-25-source-skilled-skills-sk-prompt-assets-cli-prompt-quality-card-md-212-cli-extern",
+      "text": "[SOURCE: .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:212] \"- `../../../cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md`\"",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-7-source-skilled-skills-sk-prompt-changelog-v4-0-0-0-md-13-the-depth-thinking-fram",
+      "text": "[SOURCE: .skilled/skills/sk-prompt/changelog/v4.0.0.0.md:13] \"The DEPTH thinking framework is removed, and `references/depth-framework.md` became `references/improvement-checklist.md`\"",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-8-source-skilled-skills-sk-prompt-skill-md-38-lists-rcaf-costar-race-cidi-tidd-ec-",
+      "text": "[SOURCE: .skilled/skills/sk-prompt/SKILL.md:38] lists RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE and CRAFT as optional presets with CLEAR screening; no DEPTH mention",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-confidence-high",
+      "text": "Confidence: high",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-13-confidence-high",
+      "text": "Confidence: high",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-22-confidence-high",
+      "text": "Confidence: high",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-30-confidence-high-for-the-behavior-medium-that-the-warning-is-unintended-for-routi",
+      "text": "Confidence: high for the behavior; medium that the warning is unintended for routing-gold packages",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-evidence",
+      "text": "Evidence:",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-14-evidence",
+      "text": "Evidence:",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-23-evidence",
+      "text": "Evidence:",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-31-evidence",
+      "text": "Evidence:",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-release-v4-0-0-0",
+      "text": "Release: v4.0.0.0",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-12-release-v4-0-0-0-baseline-present-at-the-tag-still-live-at-v4-0-2-0",
+      "text": "Release: v4.0.0.0 baseline (present at the tag; still live at v4.0.2.0)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-21-release-v4-0-0-0-baseline-present-at-the-tag-still-live-at-v4-0-2-0",
+      "text": "Release: v4.0.0.0 baseline (present at the tag; still live at v4.0.2.0)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-29-release-v4-0-0-0-baseline-the-check-is-in-the-initial-commit-330427cf30-2026-09-",
+      "text": "Release: v4.0.0.0 baseline (the check is in the initial commit `330427cf30`, 2026-09-17; observable at v4.0.2.0)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-26-repro",
+      "text": "Repro:",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-11-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-20-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-28-severity-p2",
+      "text": "Severity: P2",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-17-the-guard-s-check-1-prints-seven-pass-rows-claude-code-codex-cursor-deepseek-har",
+      "text": "The guard's CHECK 1 prints seven PASS rows (claude-code, codex, cursor, deepseek-harness, devin, opencode, pi) and ends `GUARD PASS`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-19-type-bug",
+      "text": "Type: bug",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-type-drift",
+      "text": "Type: drift",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-10-type-drift",
+      "text": "Type: drift",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-27-type-improvement",
+      "text": "Type: improvement",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-9-verify",
+      "text": "Verify:",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-18-verify",
+      "text": "Verify:",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-35-verify",
+      "text": "Verify:",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-claim-ci-skill-root-metadata-cjs-describes-itself-as-the-fleet-gate-for-root-lev",
+      "text": "**Claim:** `ci-skill-root-metadata.cjs` describes itself as the \"fleet gate for root-level skill",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-claim-v4-0-0-13-renamed-the-surface-precisely-to-stop-sharing-a-name-with-the-op",
+      "text": "**Claim:** v4.0.0.13 renamed the surface precisely to stop sharing a name with the OpenCode",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-concrete-extension-add-three-assertions-to-the-same-gate-all-of-which-pass-today",
+      "text": "**Concrete extension:** add three assertions to the same gate, all of which pass today for",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-12-d1-the-schema-doc-forgot-the-new-sk-code-frontend-surface-false-at-v4-0-2-0-the",
+      "text": "**D1 — \"the schema doc forgot the new `sk-code-frontend` surface\".** False. At v4.0.2.0 the",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-13-d2-sk-prompt-s-model-table-still-admits-the-removed-cli-hermes-false-at-v4-0-2-0",
+      "text": "**D2 — \"sk-prompt's model table still admits the removed `cli-hermes`\".** False. At v4.0.2.0",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-14-d3-sk-prompt-still-advertises-the-removed-depth-framework-false-the-description-",
+      "text": "**D3 — \"sk-prompt still advertises the removed DEPTH framework\".** False. The description is",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-15-d4-the-sk-prompt-benchmark-reports-are-unmarked-stale-artifacts-over-engineering",
+      "text": "**D4 — \"the sk-prompt benchmark reports are unmarked stale artifacts (over-engineering)\".**",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-16-d5-sk-code-never-got-a-compiled-router-unlike-sk-doc-sk-design-false",
+      "text": "**D5 — \"sk-code never got a compiled router, unlike sk-doc/sk-design\".** False.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-9-i1-routing-identity-holds-across-all-three-hubs-sk-code-5-modes-sk-design-3",
+      "text": "**I1 — Routing identity holds across all three hubs.** sk-code 5 modes, sk-design 3,",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-10-i2-no-orphan-vocabulary-classes-declared-vs-referenced-classes-sk-code-15-declar",
+      "text": "**I2 — No orphan vocabulary classes.** Declared vs referenced classes: sk-code 15 declared /",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-11-i3-the-v4-0-0-15-root-metadata-contract-is-satisfied-by-all-four-hubs",
+      "text": "**I3 — The v4.0.0.15 root-metadata contract is satisfied** by all four hubs",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-type-drift-1-severity-p2-release-v4-0-0-13-confidence-high-that-the",
+      "text": "**Type:** drift (1) · **Severity:** P2 · **Release:** v4.0.0.13 · **Confidence:** high that the",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-type-extension-7-severity-p2-release-v4-0-0-15-gate-added-confidence-high",
+      "text": "**Type:** extension (7) · **Severity:** P2 · **Release:** v4.0.0.15 (gate added) · **Confidence:** high",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-verify",
+      "text": "**Verify:**",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-8-verify",
+      "text": "**Verify:**",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-why-it-matters-a-sibling-hub-claims-the-same-bare-token-at-the-same-weight",
+      "text": "**Why it matters:** a sibling hub claims the same bare token at the same weight —",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-8-6-source-skilled-skills-sk-doc-sk-create-changelog-scripts-check-changelog-shape-p",
+      "text": "[SOURCE: .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py:1] (added 2026-11-05, commit `089c2e7f61` — after the promise)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-source-skilled-skills-sk-doc-sk-create-diff-scripts-validate-report-py-1",
+      "text": "[SOURCE: .skilled/skills/sk-doc/sk-create-diff/scripts/validate_report.py:1]",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-source-skilled-skills-sk-doc-sk-create-readme-scripts-audit-readmes-py-1",
+      "text": "[SOURCE: .skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py:1]",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-13-compiled-route-cjs-exits-0-on-an-unknown-option-withdrawn-that-reading-came-from",
+      "text": "**`compiled-route.cjs` exits 0 on an unknown option** — withdrawn. That reading came from `head` in a pipeline. Unpiped it exits `2`.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-12-v4-0-0-3-s-version-renumbering-left-sk-code-on-v2-false-as-drift-the-note-says-s",
+      "text": "**v4.0.0.3's version renumbering left sk-code on v2** — false as drift. The note says sk-code went from v4 to v2 [SOURCE: .skilled/changelog/skilled/v4.0.0.3.md:311]; the hub now reads `3.11.4.0`, i.e. it advanced normally afterwards.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-10-v4-0-0-6-script-rename-left-stale-underscore-names-false-router-replay-lib-cjs-v",
+      "text": "**v4.0.0.6 script rename left stale `_underscore` names** — false. `router-replay-lib.cjs`, `verify-doc-claims.cjs` and `verify-router-sync.cjs` all exist under `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/`; the `_underscore` names survive only inside historical changelog prose, which should keep them.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-11-v4-0-0-9-s-retired-sk-doc-template-comment-survived-false-every-remaining-mentio",
+      "text": "**v4.0.0.9's retired `sk-doc-template` comment survived** — false. Every remaining mention sits in a `changelog/*.md` entry; no live catalog, template or SKILL.md carries it.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-8-prompt-chart-this-data-as-a-bar-chart-route-sk-design-chart",
+      "text": "`--prompt \"chart this data as a bar chart\"` → `route [\"sk-design-chart\"]`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-9-prompt-diagram-the-auth-flow-as-a-sequence-route-sk-design-diagram",
+      "text": "`--prompt \"diagram the auth flow as a sequence\"` → `route [\"sk-design-diagram\"]`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-7-prompt-make-me-a-chart-for-monthly-revenue-defer",
+      "text": "`--prompt \"make me a chart for monthly revenue\"` → `defer []`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-sk-code-single-orderedbundle-surfacebundle-defer",
+      "text": "`sk-code`: `single,orderedBundle,surfaceBundle,defer`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-sk-design-single-orderedbundle-defer-none",
+      "text": "`sk-design`: `single,orderedBundle,defer,none`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-sk-doc-single-orderedbundle-defer",
+      "text": "`sk-doc`: `single,orderedBundle,defer`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-one-routing-test-harness-grounded-in-the-registry-rows-that-observed-hub-routes",
+      "text": "**One routing test harness.** Grounded in the registry rows that observed hub routes",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-one-template-lint-shared-grounded-in-the-playbook-marker-pair-the-registry-recor",
+      "text": "**One template lint, shared.** Grounded in the playbook marker pair the registry recorded",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-one-validator-exit-code-contract-0-pass-1-findings-2-could-not-check",
+      "text": "**One validator exit-code contract (0 = pass, 1 = findings, 2 = could-not-check).**",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-v4-0-0-11-line-113-generated-by-do-not-edit",
+      "text": "`v4.0.0.11` line 113: `<!-- generated by [^,>]+, do not edit -->`",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-v4-0-0-9-v4-0-0-10-line-113-generated-by-do-not-edit",
+      "text": "`v4.0.0.9` / `v4.0.0.10` line 113: `<!-- generated by [^;>]+; do not edit -->`",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-confidence-high-the-stat-and-the-note-were-both-read-this-iteration",
+      "text": "Confidence: high (the stat and the note were both read this iteration).",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-21-confidence-high-on-both-exit-codes-unknown-on-whether-exit-0-is-deliberate-unkno",
+      "text": "Confidence: high on both exit codes, unknown on whether exit 0 is deliberate. **Unknown:** whether `check-review-findings.js` intends a vacuous pass; the file-level condition that produced it was not read this iteration.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-confidence-high-on-the-fact-medium-on-today-s-blast-radius",
+      "text": "Confidence: high on the fact, medium on today's blast radius.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-18-confidence-high-on-the-file-facts-medium-on-whether-a-leaf-is-the-intended-shape",
+      "text": "Confidence: high on the file facts, medium on whether a leaf is the intended shape (nothing states it either way).",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-12-confidence-high-on-the-h3-before-h2-fact-read-from-the-diff-hunk-medium-on-which",
+      "text": "Confidence: high on the h3-before-h2 fact (read from the diff hunk); medium on which canon clause should own it.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-15-confidence-medium-high",
+      "text": "Confidence: medium-high.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-direction-not-implemented-accept-the-two-spellings-are-the-same-exemption",
+      "text": "Direction (not implemented): accept `[;,],` — the two spellings are the same exemption.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-release-v4-0-0-11-first-tag-containing-the-comma-form-introduced-by-144d0bdeb6-2",
+      "text": "Release: **v4.0.0.11** (first tag containing the comma form; introduced by `144d0bdeb6 2026-10-16 fix(sk-git): clear the defects found outside the remediation scope`, a sk-git commit that edited a sk-code asset).",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-release-v4-0-0-11",
+      "text": "Release: **v4.0.0.11**.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-11-release-v4-0-0-11",
+      "text": "Release: **v4.0.0.11**.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-17-release-v4-0-0-11",
+      "text": "Release: **v4.0.0.11**.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-20-release-v4-0-0-6",
+      "text": "Release: **v4.0.0.6**.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-14-release-the-helper-s-docstring-rewrite-is-v4-0-0-12-the-regex-is-v4-0-0-11",
+      "text": "Release: the helper's docstring rewrite is **v4.0.0.12**; the regex is **v4.0.0.11**.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-sources-skilled-skills-sk-code-sk-code-skilled-assets-scripts-verify-alignment-d",
+      "text": "Sources: `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py`, `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/containment/quarantine/1/content/.hermes/skills/system-spec-kit/SKILL.md`",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-10-verify-git-diff-stat-v4-0-0-4-v4-0-0-11-skilled-skills-sk-doc-skilled-skills-sk-",
+      "text": "Verify: `git diff --stat v4.0.0.4..v4.0.0.11 -- .skilled/skills/sk-doc .skilled/skills/sk-code .skilled/skills/sk-design .skilled/skills/sk-prompt .skilled/commands` and compare against the headings of `.skilled/changelog/skilled/v4.0.0.11.md`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-verify-git-show-v4-0-0-11-skilled-skills-sk-code-sk-code-opencode-assets-scripts",
+      "text": "Verify: `git show v4.0.0.11:.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py | sed -n '113p'` then `python3 -c \"import re;print(bool(re.search(r'<!-- generated by [^,>]+, do not edit -->','<!-- generated by sync-skills-hermes.cjs; do not edit -->')))\"` → `False`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-16-verify-grep-c-is-unscanned-record-path-skilled-skills-sk-code-sk-code-skilled-as",
+      "text": "Verify: `grep -c 'is_unscanned_record_path' .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` → 3 (definition plus two call sites); `ls .hermes` → no such file.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-13-verify-grep-n-1-3-skilled-commands-prompt-improve-md-head-4-first-heading-is-man",
+      "text": "Verify: `grep -n '^#\\{1,3\\} ' .skilled/commands/prompt/improve.md | head -4` → first heading is `### MANDATORY INPUT GATE`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-19-verify-the-matrix-for-h-in-sk-doc-sk-code-sk-design-sk-prompt-do-node-e-try-cons",
+      "text": "Verify: the matrix `for h in sk-doc sk-code sk-design sk-prompt; do node -e \"try{console.log(require('./.skilled/skills/'+process.argv[1]+'/hub-router.json').version)}catch(e){console.log('-')}\" $h; done` → three versions, then `-`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-22-verify-the-two-commands-above-each-with-echo-read-directly-from-the-checker-rath",
+      "text": "Verify: the two commands above, each with `echo $?` read directly from the checker rather than through a pipe.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-11-2-disposition-the-registry-should-drop-f-iter002-002-or-restate-it-as-the-quality-",
+      "text": "Disposition: the registry should drop f-iter002-002 or restate it as \"the quality target has no write flag and no note documents that\" with release = pre-v4.0.0.0.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-7-fix-shape-carry-the-enum-s-allowed-values-into-the-refusal-text-the-rule-already",
+      "text": "Fix shape: carry the enum's allowed values into the refusal text (the rule already holds `values`), or emit `PAYLOAD_VALIDATION_FAILED` with `{field:'status', expected: values}`.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-6-repro-build-a-record-with-status-attribution-and-run-node-skilled-skills-system-",
+      "text": "Repro: build a record with `status:\"attribution\"` and run `node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode research --run-directory <run> --event-json <file>` → exit 1, message above.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-4-verify-git-log-follow-s-21-forms-skilled-commands-create-readme-txt-cdc8e7192d-2",
+      "text": "Verify: `git log --follow -S'21 forms' -- .skilled/commands/create/README.txt` → `cdc8e7192d 2026-09-04` while `git log --follow -S'--benchmark-id' -- .skilled/commands/create/benchmark.md` → `27e91daa10 2026-07-15`, i.e. both spellings survived the rename `330427cf30 2026-09-17` unchanged.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-3-verify-git-show-0628c398a4-skilled-skills-sk-prompt-skill-md-grep-c-depth-18-git",
+      "text": "Verify: `git show 0628c398a4 -- .skilled/skills/sk-prompt/SKILL.md | grep -c '^-.*DEPTH'` → `18`; `git log --format='%h %cs %s' -1 0628c398a4` → `0628c398a4 2026-10-30 …`.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-1-verify-grep-c-apply-skilled-changelog-skilled-v4-0-0-16-md-0-git-log-follow-s-ap",
+      "text": "Verify: `grep -c -- '--apply' .skilled/changelog/skilled/v4.0.0.16.md` → `0`; `git log --follow -S'--apply' -- .skilled/commands/doctor/sk-code.md` → empty.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-5-verify-grep-n-sk-create-quality-control-skilled-skills-sk-doc-leaf-manifest-json",
+      "text": "Verify: `grep -n 'sk-create-quality-control' .skilled/skills/sk-doc/leaf-manifest.json` → 2 lines, both metadata fields; `git log --follow -S'sk-create-quality-control/scripts/' -- .skilled/skills/sk-doc/leaf-manifest.json` → empty.",
+      "addedAtIteration": 11,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-2aec2b074953",
+      "text": "**\"The legacy `SKDOC_CITE_DRIFT_CHECK` opt-out no longer works, so the READMEs are stale.\"**",
+      "contentHash": "2aec2b074953",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-46278ebdc984",
+      "text": "**\"v4.0.0.1's canary fix left a stale `CLAUDE.md` reference.\"** False. The diff shows all",
+      "contentHash": "46278ebdc984",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-b40931077e97",
+      "text": "**\"v4.0.0.14's fsmonitor fix missed the classifier half of the citation scan.\"** False.",
+      "contentHash": "b40931077e97",
+      "addedAtIteration": 9
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 11,
+    "openQuestions": 0,
+    "resolvedQuestions": 12,
+    "carriedForwardOpenQuestions": 30,
+    "keyFindings": 204,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.35,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/004-v4-release-line-research/002-authoring-hubs/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

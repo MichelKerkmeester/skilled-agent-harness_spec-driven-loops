@@ -136,16 +136,16 @@
     ],
     "causal_summary": "Code capability is split across two mature-but-uncoordinated skills",
     "created_at": "2026-07-03T00:00:00Z",
-    "last_save_at": "2026-11-10T05:20:06.630Z",
+    "last_save_at": "2026-11-10T06:05:53.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:97d6de29afb2fb10af29afb7c7a91ffc45b0fd4465ce1f53eedb01de930b3fec",
+    "source_fingerprint": "sha256:5754bab4ec85c8ed1c9a681a6c50f74fd209203acbe39d368595a4c0dc7596bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "edebb7aae366780135d55b907ab8ce3ac5844bf3f7e33e383ad0f9eff8358e3c"
+      "spec.md": "1982023f775d8fa70d29e20fe5b7f99d3f3fff1a3b0c3dcdba6e0211d3e7b5ed"
     },
     "last_active_child_id": "sk-code/hub-architecture/001-sk-code-parent/028-code-skilled-refinement-implementation",
     "last_active_at": "2026-07-07T00:00:00.000Z"

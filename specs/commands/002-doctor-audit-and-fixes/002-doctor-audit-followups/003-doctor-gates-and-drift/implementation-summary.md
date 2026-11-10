@@ -75,7 +75,7 @@ The guard reads its own manifest, `.skilled/commands/doctor/assets/mcp-mutation-
 | `specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/013-speckit-retrieval/implementation-summary.md` | Modified | Limitation 2 drops the dead pattern claim; limitation 5 names `/doctor:rebuild` |
 | `.skilled/scripts/git-hooks/pre-commit` | Modified (handoff sweep) | Mutation-class trigger also matches `mcp-mutation-class-manifest.yaml`; "Fix:" line names that manifest |
 | `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` | Modified (handoff sweep) | Case 29b: staging only the manifest reaches the guard |
-| `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md` | Modified (handoff sweep) | Two continuity `key_files` paths point at the live `.skilled` runtime |
+| `specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md` | Modified (handoff sweep) | Two continuity `key_files` paths point at the live `.skilled` runtime |
 | 32 command, skill and README files (list in `git diff --stat`) | Modified (handoff sweep) | Retired `/doctor` forms replaced with the canonical command names, with stale target lists, counts and packet labels fixed in the same sentences |
 | `.skilled/commands/deep/assets/compiled/{deep-ai-council,deep-review,deep-research}.contract.md` | Regenerated (handoff sweep) | Source digests only |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/{mcp-tooling,sk-doc}/manifest.json` and their authored copies | Re-minted (handoff sweep) | Policy hash matches current routing inputs |

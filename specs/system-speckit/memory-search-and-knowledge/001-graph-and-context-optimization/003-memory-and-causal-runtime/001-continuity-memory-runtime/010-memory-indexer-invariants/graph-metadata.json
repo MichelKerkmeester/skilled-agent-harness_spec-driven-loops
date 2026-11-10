@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026/010 memory indexer invariants",
+      "026/005 memory indexer invariants",
+      "memory indexer lineage fix",
+      "constitutional tier pollution fix",
+      "index scope invariants",
+      "indexer correctness",
+      "fromScan recheck bypass",
+      "e_lineage fix",
+      "candidate_changed fix",
+      "z_future indexing exclusion",
+      "constitutional path gate",
+      "026/010 plan"
+    ],
+    "key_topics": [
+      "memory",
+      "indexer",
+      "invariants",
+      "lineage",
+      "constitutional",
+      "tier",
+      "pollution",
+      "index",
+      "scope",
+      "correctness",
+      "fromscan",
+      "recheck"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "lib/utils/index-scope.ts",
+      "lib/utils/canonical-path.ts",
+      "lib/config/spec-doc-paths.ts",
+      "tests/index-scope.vitest.ts",
+      "tests/exclusion-ssot-unification.vitest.ts",
+      "api/index.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": "lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "canonical-path.ts",
+        "kind": "code",
+        "path": "lib/utils/canonical-path.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-paths.ts",
+        "kind": "code",
+        "path": "lib/config/spec-doc-paths.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.vitest.ts",
+        "kind": "test",
+        "path": "tests/index-scope.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "exclusion-ssot-unification.vitest.ts",
+        "kind": "test",
+        "path": "tests/exclusion-ssot-unification.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "api/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Indexer Invariants",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unified Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Index Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Constitutional Tier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Merged Track",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two distinct invariant failures showed up simultaneously in the memory indexer:",
+    "created_at": "2026-04-24T17:21:38.685Z",
+    "last_save_at": "2026-11-10T05:46:19.552Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a44f5532e0c6b54b7c31469d866b83b674cd0bd3f3e01a9efcbc82aeb163e50c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6cbaa06ec3ab6cbdd545645b7137397d6e7fb4102992049ab8f2154fd37fc6be",
+      "plan.md": "6d87ab5595b116cd25347d1a129f3723503389162ff2252ef1b4a592e532442c",
+      "tasks.md": "5f26a4988bb59a6644151fb3101bda83ac50640281991c5e1d9284e651372997",
+      "decision-record.md": "e48319f30b94ca9ad6812f701adba3abc661556f2e3f2a9fd474254255530d40",
+      "implementation-summary.md": "f037249b14bec65863524beb7d056dee895e71f13c369928baadbf707df259db"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

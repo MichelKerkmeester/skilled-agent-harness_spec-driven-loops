@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/004/018 rerank matrix",
+      "rerank fairness re-bench",
+      "final reranker verdict",
+      "BGE vs jina-v3 corrected pipeline",
+      "COCOINDEX_RERANK_MODEL final",
+      "016/004/018 plan",
+      "rerank matrix plan",
+      "final reranker verdict plan",
+      "016/004/018 tasks",
+      "rerank matrix tasks",
+      "final reranker verdict tasks",
+      "016/004/018 summary"
+    ],
+    "key_topics": [
+      "rerank",
+      "matrix",
+      "fairness",
+      "re-bench",
+      "final",
+      "reranker",
+      "verdict",
+      "bge",
+      "jina-v3",
+      "corrected",
+      "pipeline",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "evidence/phase2-comparison-018-final.md",
+      "evidence/rerank-matrix-results.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-018-final.md",
+        "kind": "doc",
+        "path": "evidence/phase2-comparison-018-final.md",
+        "source": "derived"
+      },
+      {
+        "name": "rerank-matrix-results.md",
+        "kind": "doc",
+        "path": "evidence/rerank-matrix-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rerank Matrix Re",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final Reranker Fairness Verdict",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "rigorous",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "env",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ADR-021",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Production Default Lock",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "And Arc Closure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Before Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "After Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "A-D",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "summary",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "multi-run",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optional Lane",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Issues Lane",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Re-benchmarks ALL reranker candidates (BGE-baseline, BGE+path-class, jina-reranker-v3, no-rerank ablation) under the FULLY-FIXED candidate-set pipeline produced by 013/014/015/016/017. Closes the loop on '011 deep-research said jina-v3 won' — but that measurement was made on the BROKEN pipeline. After all upstream pipeline defects are fixed, who actually wins? Embedder fixed (bge-code-v1). Hybrid fixed (017 recalibrated). Chunking fixed (015). Dedup fixed (014). Queries fixed (016). The only variable is the reranker.",
+    "created_at": "2026-05-19T15:29:56.011Z",
+    "last_save_at": "2026-11-10T05:46:32.978Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:505f17328ee347367394979bd48b853ae86eabbc388d8104dd5de05040335d8d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3816194a29650c3b055e5499537895fee78c6600ca9a3b98d648312d18788ae6",
+      "plan.md": "4b0163006d74515841aa82ef6d1c0302942642f1e983476d9b1a8307d6a79207",
+      "tasks.md": "7717adb714ed373519149b75a538705a23750d974e5822a4ff4b7cafaa117131",
+      "implementation-summary.md": "0993ea69f09972249580531190d46f3200e565545829a15b4cf6f52c7b87adcc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

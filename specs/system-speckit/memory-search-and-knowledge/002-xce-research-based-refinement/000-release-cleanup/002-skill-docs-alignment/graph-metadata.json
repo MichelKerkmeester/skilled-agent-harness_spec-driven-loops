@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill docs alignment",
+      "027 release cleanup 002-skill-docs-alignment",
+      "shipped 027 alignment",
+      "skill docs alignment plan",
+      "027 release cleanup plan",
+      "skill docs alignment tasks",
+      "027 release cleanup tasks",
+      "skill docs alignment implementation summary",
+      "027 release cleanup skill docs aligned"
+    ],
+    "key_topics": [
+      "skill",
+      "docs",
+      "alignment",
+      "release",
+      "cleanup",
+      "002-skill-docs-alignment",
+      "shipped",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "aligned"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Docs Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Align",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Inventory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Align",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "release-cleanup",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "approval",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Align every skill SKILL.md, README, assets, and references with shipped flags and behaviors while preserving the narrative house voice",
+    "created_at": "2026-06-10T00:00:00Z",
+    "last_save_at": "2026-11-10T05:47:08.737Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6822e52bfa7749a4b1d5d273bde069da53ead4480e363a6a533837602f1bea60",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e28c3e2ba0f611b6e6d62e6116d4b2723d6933eff5bc890d0b1c6a69ca434096",
+      "plan.md": "669b9a5b127995197dfcaa877cb418a9d5db42a9bd9fe1d19b6a611fe657edaa",
+      "tasks.md": "f3004f1569dc6f3dd3c2f80f5a26308ec44863d513a46ebf236eb6469853e29c",
+      "implementation-summary.md": "49f13fca63de15050f877ecad1b4b3b80cbc0bef4a82a27afd29ea6de884d981"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

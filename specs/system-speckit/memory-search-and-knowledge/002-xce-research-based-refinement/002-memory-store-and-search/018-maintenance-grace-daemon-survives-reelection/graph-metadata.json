@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/018-maintenance-grace-daemon-survives-reelection",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/018-maintenance-grace-daemon-survives-reelection",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "maintenance grace daemon survives re-election",
+      "maintenance-active marker launcher adopt",
+      "reindex daemon reaped mid-scan re-election",
+      "027 002/019",
+      "maintenance grace daemon survives re-election plan",
+      "maintenance-active marker adopt guard plan",
+      "027 002/019 plan",
+      "maintenance grace daemon survives re-election tasks",
+      "027 002/019 tasks",
+      "maintenance grace daemon survives re-election summary",
+      "maintenance-active marker launcher adopt shipped",
+      "027 002/019 shipped"
+    ],
+    "key_topics": [
+      "maintenance",
+      "grace",
+      "daemon",
+      "survives",
+      "re-election",
+      "maintenance-active",
+      "marker",
+      "launcher",
+      "adopt",
+      "reindex",
+      "reaped",
+      "mid-scan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/bin/lib/model-server-supervision.cjs",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Uses Node",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "injectable",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "adopt",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After 018 made the background scan cooperative, a full reindex still could not complete",
+    "created_at": "2026-06-17T12:47:01.644Z",
+    "last_save_at": "2026-11-10T05:47:18.855Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ba25c57a7024dc5bec68d501c9f74304bee37e9220dce10a2ad0f501c8ddd298",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "279a30314f62030dc1d68e7da4c6d59a926957ecd91bd58c34af0307ac939296",
+      "plan.md": "95c537864c3841cb64f76595fd2c63400675b892b421507ae32d292fe0c0bfee",
+      "tasks.md": "6e553e8b137c891ac2a2d33e21b8f71abd8ed5f47a54bf79054f225ae3912526",
+      "implementation-summary.md": "f96138600523a733a0115f318999a3756b1479505ea822f0a455b81cd22add65"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

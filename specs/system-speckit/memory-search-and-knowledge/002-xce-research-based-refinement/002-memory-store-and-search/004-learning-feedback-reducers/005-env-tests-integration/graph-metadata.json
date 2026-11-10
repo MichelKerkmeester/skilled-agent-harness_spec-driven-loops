@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "009 env tests integration",
+      "005 env tests",
+      "feedback reducer integration",
+      "ENV_REFERENCE feedback flags",
+      "009 env tests plan",
+      "009 env tests tasks",
+      "009 env tests implementation summary"
+    ],
+    "key_topics": [
+      "env",
+      "tests",
+      "integration",
+      "feedback",
+      "reducer",
+      "flags",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "level",
+      "closeout"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Env Tests Integration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feedback Reducer Env",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Integration Closeout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Docs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flag Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Level 2 closeout child for ENV_REFERENCE flags and integration tests across feedback reducer consumers.",
+    "created_at": "2026-05-12T07:20:00.000Z",
+    "last_save_at": "2026-11-10T05:47:15.673Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cdd5e45ca36327cebdac89d02299a51fb81dad1072ef10257185505babd75e89",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3768abd2b6eb16377adaa98d3fc962bb35e99ca94cabd9b792967d15a8c959d9",
+      "plan.md": "d5e976c20d410d69607d3889a57bfa6f213d0a21b586bf126abd9dcce7c53914",
+      "tasks.md": "8e2c6d126740c5fa0ee62cf246311165f41c9041bf5e0bf6be8415a5f3e11096",
+      "implementation-summary.md": "5387585270f316005eec0bc3f65f1fed94758fdc5f9e58fd4c534d220705df4b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

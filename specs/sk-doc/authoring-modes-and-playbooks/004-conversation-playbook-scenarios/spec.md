@@ -61,7 +61,7 @@ _memory:
 | **Parent Spec** | None, this is a top-level packet in the `sk-doc` track |
 | **Parent Packet** | sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios |
 | **Predecessor** | None |
-| **Successor** | None. `specs/system-speckit/043-decision-capture/006-live-conversation-test` is the first consumer |
+| **Successor** | None. `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test` is the first consumer |
 | **Handoff Criteria** | Both children pass `validate.sh --strict`, and the runner has a passing MTP-007 run on Claude Code |
 <!-- /ANCHOR:metadata -->
 
@@ -92,7 +92,7 @@ Give the skill a conversation scenario kind and one shared runner. A scenario th
 - Add one conversation scenario to the skill's own playbook and the guidance the decision-capture live test uses.
 
 ### Out of Scope
-- The decision-capture conversation scenario itself. `specs/system-speckit/043-decision-capture/006-live-conversation-test` owns it and uses this runner.
+- The decision-capture conversation scenario itself. `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test` owns it and uses this runner.
 - Adapters for Cursor and Hermes. No scenario needs them today, and adding one later is one adapter entry.
 - Writing benchmark reports from a run. The skill's results contract keeps that a hand step, and the runner writes its evidence folder only.
 - Running live runtimes in CI. A live run needs logged-in CLIs and spends model quota.
@@ -178,5 +178,5 @@ The findings above are folded into the children: 001 REQ-003 and REQ-010, 002 RE
 
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
 - **Decision record**: See `decision-record.md` for the operator's answers and the cross-phase format decision
-- **First consumer**: `specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md`
+- **First consumer**: `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/spec.md`
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

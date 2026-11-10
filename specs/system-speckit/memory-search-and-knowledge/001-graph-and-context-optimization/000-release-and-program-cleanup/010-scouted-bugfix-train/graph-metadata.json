@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup",
+  "children_ids": [
+    "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1",
+    "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2",
+    "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3",
+    "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4",
+    "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/005-scouted-bugfix-batch-5"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scouted bugfix train",
+      "verify-first bugfix batches",
+      "scouted bugfix batch",
+      "026 scouted bugfix"
+    ],
+    "key_topics": [
+      "scouted",
+      "bugfix",
+      "train",
+      "verify-first",
+      "batches",
+      "batch",
+      "program",
+      "subsystems",
+      "memory",
+      "mcp",
+      "code-graph",
+      "skill-advisor"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scouted Bugfix Train",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 026 program subsystems (memory MCP, code-graph, skill-advisor, deep-loop runtime, and the cli executors) accumulate latent drift, small correctness defects, and refinement opportunities that no single feature packet owns",
+    "created_at": "2026-06-03T00:00:00.000Z",
+    "last_save_at": "2026-11-10T05:46:10.265Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b0c866b0cb1806e76b811718d2fe1de43e8e621dc06ef5e42231c41bf05d50bc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6c3edcff5ae68c1bae62023d0e2ac9aad1994e1f50a80a413c0cf1430ac3b482"
+    },
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/005-scouted-bugfix-batch-5",
+    "last_active_at": "2026-06-03T00:00:00.000Z"
+  }
+}

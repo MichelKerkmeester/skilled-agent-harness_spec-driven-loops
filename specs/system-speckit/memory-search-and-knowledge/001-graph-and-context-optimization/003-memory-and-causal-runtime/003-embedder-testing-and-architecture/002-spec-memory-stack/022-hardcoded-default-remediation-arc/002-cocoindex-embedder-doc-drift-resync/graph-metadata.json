@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/002-cocoindex-embedder-doc-drift-resync",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/002-cocoindex-embedder-doc-drift-resync",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022/002 embedder doc drift",
+      "embeddinggemma doc resync",
+      "embedder-pluggability historical annotation",
+      "022/002 plan",
+      "022/002 tasks",
+      "022/002 shipped"
+    ],
+    "key_topics": [
+      "embedder",
+      "doc",
+      "drift",
+      "embeddinggemma",
+      "resync",
+      "embedder-pluggability",
+      "historical",
+      "annotation",
+      "plan",
+      "tasks",
+      "shipped",
+      "edits"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embedder Doc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Resync",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "prose",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "supersession",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Mechanical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "lower",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff Suggested",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "4 doc edits closing the embedder-side P0 doc drift from packet 021: config_templates.md _NOTE_2 (3 sites) + embedder-pluggability.md historical annotation + ENV_REFERENCE.md date refresh + SKILL.md keywords. Reranker-side doc edits (BAAI/bge-reranker-v2-m3 → Qwen/Qwen3-Reranker-0.6B prose) deferred to follow-on packet because they need Qwen3 disk-footprint + daemon-log behavior verification beyond the mechanical-edit threshold.",
+    "created_at": "2026-05-23T16:15:00.000000Z",
+    "last_save_at": "2026-11-10T05:46:29.504Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b48ec2adbbb423651ace7baf104020a87c3b712ea95823e99d05819fdf74e775",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "25a107f746803dea58c79ac756bdcfd95e815b9b4d3514ccd1bd0e5833ae7920",
+      "plan.md": "fe65300287b20914e1fcf37a03cf433ecc4ffe8e1099c89da3e330d14ed6cba7",
+      "tasks.md": "f8b2ad334d022e3c2bcf8d39082859c48e70e3e0e063de2f94d49b86709ba28a",
+      "implementation-summary.md": "3a49e7eb521b441b319a80ca4d80248e318473d35572aef87522eecc45574a0e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

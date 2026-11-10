@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "grep convention doc retrofit",
+      "grep convention",
+      "spec doc convention",
+      "doc retrofit",
+      "greppable spec docs",
+      "frontmatter normalization",
+      "spec doc retrofit",
+      "grep convention doc retrofit acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "grep",
+      "convention",
+      "doc",
+      "retrofit",
+      "spec",
+      "greppable",
+      "docs",
+      "frontmatter",
+      "normalization",
+      "acceptance",
+      "criteria",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/references/structure/grep-convention.md",
+      "scratch/baseline.json",
+      "scratch/manifest.json",
+      "scratch/variant-inventory.json",
+      "scratch/preimage-manifest.json",
+      "scratch/exception-inventory.json",
+      "scratch/diagnostics.json",
+      "scratch/plan.diff",
+      "scratch/dry-run-report.json",
+      "scratch/residue-report.json",
+      "scratch/preimage-verification.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep-convention.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/structure/grep-convention.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.json",
+        "kind": "config",
+        "path": "scratch/baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": "scratch/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "variant-inventory.json",
+        "kind": "config",
+        "path": "scratch/variant-inventory.json",
+        "source": "derived"
+      },
+      {
+        "name": "preimage-manifest.json",
+        "kind": "config",
+        "path": "scratch/preimage-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "exception-inventory.json",
+        "kind": "config",
+        "path": "scratch/exception-inventory.json",
+        "source": "derived"
+      },
+      {
+        "name": "diagnostics.json",
+        "kind": "config",
+        "path": "scratch/diagnostics.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.diff",
+        "kind": "file",
+        "path": "scratch/plan.diff",
+        "source": "derived"
+      },
+      {
+        "name": "dry-run-report.json",
+        "kind": "config",
+        "path": "scratch/dry-run-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "residue-report.json",
+        "kind": "config",
+        "path": "scratch/residue-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "preimage-verification.json",
+        "kind": "config",
+        "path": "scratch/preimage-verification.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Once retrieval is ripgrep, retrieval quality is a property of the corpus rather than of a ranking",
+    "created_at": "2026-09-02T11:04:54Z",
+    "last_save_at": "2026-11-10T05:48:07.477Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4cbbf291b882d745b682271f28cb0082654925b1009b880bcfe4f5af7ad66303",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8d044e6538c35cfb6bb2f90b88f8cdd4756aa426f7e1ab7b991843463f81f5f8",
+      "plan.md": "eebdc4867616104dc41f2ddc7b34c22177b7977c867b28d7bf92d7e294f6c341",
+      "tasks.md": "452b055b44331d12307bdf098a91fff299a14c34beb0fa381b292cf24dee2eac",
+      "implementation-summary.md": "02c06c6304121c460d57beff0b5da20cf632153e693f003ca3243cc0349f1ef6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

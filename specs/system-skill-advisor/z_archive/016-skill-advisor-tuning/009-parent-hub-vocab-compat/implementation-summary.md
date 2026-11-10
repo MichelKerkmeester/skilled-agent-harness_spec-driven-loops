@@ -30,7 +30,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Status** | Complete |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Type** | Read-only measurement assets (no code, no vocab change) |
 <!-- /ANCHOR:metadata -->
 

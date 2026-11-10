@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "009-causal-graph-channel-routing",
+      "graph channel skipped",
+      "causal graph underutilized",
+      "complexity router graph",
+      "shouldPreserveGraph",
+      "graph channel intent driven",
+      "009-causal-graph-channel-routing plan",
+      "shouldPreserveGraph plan",
+      "entity density routing plan",
+      "009-causal-graph-channel-routing tasks",
+      "009-causal-graph-channel-routing implementation",
+      "shouldPreserveGraph delivery"
+    ],
+    "key_topics": [
+      "009-causal-graph-channel-routing",
+      "graph",
+      "channel",
+      "skipped",
+      "causal",
+      "underutilized",
+      "complexity",
+      "router",
+      "shouldpreservegraph",
+      "intent",
+      "driven",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md",
+      "resource-map.md",
+      "scratch/post-change.md",
+      "scratch/live-smoke-results.md",
+      "scratch/stress-test-results.md",
+      "scratch/baseline.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-change.md",
+        "kind": "doc",
+        "path": "scratch/post-change.md",
+        "source": "derived"
+      },
+      {
+        "name": "live-smoke-results.md",
+        "kind": "doc",
+        "path": "scratch/live-smoke-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "stress-test-results.md",
+        "kind": "doc",
+        "path": "scratch/stress-test-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.md",
+        "kind": "doc",
+        "path": "scratch/baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Causal Graph Channel Routing Utilization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Done Note",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Override",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "rolling-window",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The query complexity router (`query-router.ts:75-79`) only includes the `graph` channel for queries classified as `complex` (`>8 terms` per `query-classifier.ts:29`)",
+    "created_at": "2026-05-19T15:28:02.708Z",
+    "last_save_at": "2026-11-10T05:46:19.638Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:307090719fe41627c182e94b8fba14351a95102cb78b95d52c145d6eaca202df",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b1f08269832b97599661dd49001b082167f6197ae22281815acdf82d9585db71",
+      "plan.md": "c3a73a931a9d859a0bb1e3c2d3aeca686b0144da7f36de82076e34c47f156d2e",
+      "tasks.md": "d5cea52546557c7bfe298aa698b2c46550cd8cadb13904d0d2d1b85e7a3b2317",
+      "implementation-summary.md": "c96d63657091e3f73114ae10651c8cb984880410553b25484899ef5451a4fb0f",
+      "handover.md": "8a282fa90d675096b5349e5d1c746013193fcc0b09f93ce69c8f563abc752e22",
+      "resource-map.md": "438d3da398bf3e052ae7e935ef5eb0b0cb261954f6f67ea137dd87eca9d28390"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

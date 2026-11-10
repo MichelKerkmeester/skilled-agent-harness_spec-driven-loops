@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge",
+  "description": "`tasks.md` and `checklist.md` are two separately required documents whose completion signals overlap: research confirmed task rows duplicate checklist",
+  "keywords": [
+    "tasks",
+    "checklist",
+    "two",
+    "separately",
+    "required",
+    "documents",
+    "whose",
+    "completion",
+    "signals",
+    "overlap",
+    "research",
+    "confirmed",
+    "task",
+    "rows",
+    "duplicate"
+  ],
+  "lastUpdated": "2026-09-06T06:44:45.959Z",
+  "specId": "002",
+  "folderSlug": "tasks-checklist-merge",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4",
+    "003-spec-doc-template-reduction"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-08-26_21-20__scaffold-smoke-proves-the-generator-fix.md"
+  ]
+}

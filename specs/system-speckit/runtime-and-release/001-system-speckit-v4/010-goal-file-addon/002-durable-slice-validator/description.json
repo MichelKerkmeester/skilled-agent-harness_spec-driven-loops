@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator",
+  "description": "Nothing checks a goal document",
+  "keywords": [
+    "nothing",
+    "checks",
+    "goal",
+    "document"
+  ],
+  "lastUpdated": "2026-09-06T07:09:10.122Z",
+  "specId": "002",
+  "folderSlug": "durable-slice-validator",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4",
+    "010-goal-file-addon"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

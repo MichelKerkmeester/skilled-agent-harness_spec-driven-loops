@@ -44,7 +44,7 @@ _memory:
 | **Priority** | P2 |
 | **Status** | Draft |
 | **Created** | 2026-07-07 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Packet** | `skilled-agent-orchestration/125-sk-doc-parent` |
 | **Depends On** | `019-create-command-alignment/` |
 | **Predecessor** | `019-create-command-alignment/` |

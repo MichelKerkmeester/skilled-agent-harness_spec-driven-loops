@@ -9,7 +9,7 @@ trigger_phrases:
   - "launchagent mcp template"
   - "sweep temp path orphans"
   - "orphan temp process cleanup"
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Orphan MCP Sweeper and LaunchAgent Template
@@ -63,7 +63,7 @@ On macOS the sweeper builds the session tree from `pgrep -a`, because macOS `pgr
 |---|---|---|
 | `runtime/tests/orphan-sweeper-temp-path.vitest.ts` | Automated test | Temp-path classification matrix, the listener exception, the Darwin and Linux `pgrep` flag, and the advisor preserve rules |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md` | Manual playbook | Dry-run, preservation, plist lint, cleanup script syntax, and no-mutation checks. |
-| `specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md` | Manual playbook | Packet-level implementation and verification evidence. |
+| `specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md` | Manual playbook | Packet-level implementation and verification evidence. |
 
 ---
 

@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/005-fix-architecture-cleanup-followups",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/005-fix-architecture-cleanup-followups",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "F-016-D1",
+      "F-017-D2",
+      "F-018-D3",
+      "architecture cleanup remediation",
+      "boundary discipline",
+      "dependency graph cycle",
+      "schema duplication",
+      "watcher orchestrator split",
+      "trust state vocabulary",
+      "lifecycle status vocabulary",
+      "F-016-D1 plan",
+      "F-017-D2 plan"
+    ],
+    "key_topics": [
+      "f-016-d1",
+      "f-017-d2",
+      "f-018-d3",
+      "architecture",
+      "cleanup",
+      "remediation",
+      "boundary",
+      "discipline",
+      "dependency",
+      "graph",
+      "cycle",
+      "schema"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "lib/context/shared-payload.ts",
+      "lib/utils/skill-label-sanitizer.ts",
+      "lib/resume/resume-ladder.ts",
+      "lib/discovery/spec-document-finder.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared-payload.ts",
+        "kind": "code",
+        "path": "lib/context/shared-payload.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-label-sanitizer.ts",
+        "kind": "code",
+        "path": "lib/utils/skill-label-sanitizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resume-ladder.ts",
+        "kind": "code",
+        "path": "lib/resume/resume-ladder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-document-finder.ts",
+        "kind": "code",
+        "path": "lib/discovery/spec-document-finder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Cleanup Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Fifteen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Schema Duplication",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Low Risk",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dependency Graph Cycles",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Fifteen architectural findings across the advisor, memory, freshness, and graph subsystems leak boundary violations, value-level dependency cycles, dead exports, and schema duplication identified by packet 046's deep research:",
+    "created_at": "2026-05-01T05:18:48Z",
+    "last_save_at": "2026-11-10T05:46:08.049Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9cac93a2fb61b160a225204c801b60d1817a0bdca8cf29ef476a224f2057e679",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b0213849bef3c83f2ffb5558f160a77ebfc7031f75f67de5d79f25a3a6819895",
+      "plan.md": "6ab7a7714e0aa2e9a94c60f0c10e76d28bef4565b283eb67f1bd7fc15e82a890",
+      "tasks.md": "00c964e9639052f2e65d5249ae79cd2e9da33f8346901cce3fecc948c931b955",
+      "implementation-summary.md": "702a8b01d58e571aa004439c6fa0a0f0a0cf3f5856e7db56987129341031758d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

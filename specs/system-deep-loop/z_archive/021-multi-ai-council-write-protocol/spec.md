@@ -31,7 +31,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Archived; mixed child states (`DONE`, completed, blocked, code-complete awaiting smoke) |
 | **Created** | 2026-05-06 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | `system-deep-loop` |
 | **Parent Packet** | `system-deep-loop` |
 | **Handoff Criteria** | Each child phase retains its own completion evidence; parent validates under recursive phase-parent policy |

@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/025-memory-search-degraded-readiness-wiring",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/025-memory-search-degraded-readiness-wiring",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "025-memory-search-degraded-readiness-wiring",
+      "memory_search degradedReadiness",
+      "graph readiness snapshot envelope",
+      "DegradedReadinessTelemetry mapper",
+      "memory_search degradedReadiness plan",
+      "graph readiness telemetry mapper",
+      "memory_search degradedReadiness tasks",
+      "graph readiness mapper tasks",
+      "memory_search degradedReadiness implementation",
+      "SearchDecisionEnvelope degradedReadiness",
+      "025-memory-search-degraded-readiness-wiring resource map"
+    ],
+    "key_topics": [
+      "025-memory-search-degraded-readiness-wiring",
+      "degradedreadiness",
+      "graph",
+      "readiness",
+      "snapshot",
+      "envelope",
+      "degradedreadinesstelemetry",
+      "mapper",
+      "plan",
+      "telemetry",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "getGraphReadinessSnapshot",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Handler",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Focused Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "handler-side",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`SearchDecisionEnvelope.degradedReadiness` (defined in `mcpserver/lib/search/search-decision-envelope.ts:31-42`) is currently always undefined when emitted by `memorysearch`",
+    "created_at": "2026-04-29T09:30:00.000Z",
+    "last_save_at": "2026-11-10T05:46:07.386Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:5270e5e77bb04b110cbf8b9ce2f965e7f722f2b1d74f36e476f40cb4c711e251",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0e638678ff539c5e673fad87d66ec79eeab502a9f81d11525f1765037bfce981",
+      "plan.md": "7ab9645f78762884e6f804e900a2d60f38a6693fabce46fe13d6a9c4984a0341",
+      "tasks.md": "d2eee532879228b5d1502af0fb5ece1d5ecaa38ca93e7bfb3d81ea94253a830e",
+      "implementation-summary.md": "7443dec312044f2dcd3a1e612fab08fdd97785248d28e54525a5f31a6a3b939c",
+      "resource-map.md": "8a0139f6533c60c0bddbc21c50f2b1477efbef09a39377cdc02b4407d9066d11"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

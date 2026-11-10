@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
+        "reason": "032 left 002 + 004 children blocked pending embedding-worker health; 037 resolves the root cause",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation",
+        "reason": "022 surfaced the H4 governance-decouple but missed the embedding-worker root cause; 037 closes that gap",
+        "source": "manual"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "037 llama-cpp embedding worker deep-dive",
+      "post-032 embedding worker context size",
+      "llama-cpp contextSize 512 bug",
+      "embedding null return GGUF Q8",
+      "037 plan",
+      "llama-cpp embedding worker plan",
+      "embedding worker deep-dive plan",
+      "037 tasks",
+      "llama-cpp embedding worker tasks",
+      "ADR-003",
+      "llama-cpp context size decision",
+      "037 decision record"
+    ],
+    "key_topics": [
+      "llama-cpp",
+      "embedding",
+      "worker",
+      "deep-dive",
+      "post-032",
+      "context",
+      "size",
+      "contextsize",
+      "bug",
+      "null",
+      "return",
+      "gguf"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/chunking.ts",
+      "shared/chunking.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "chunking.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/chunking.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embedding Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Reproduce",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Maps",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Maps",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "032 surfaced a persistent root issue in the local llama-cpp embedding worker: `node-llama-cpp`'s `getEmbeddingFor()` returns `null` on substantive content",
+    "created_at": "2026-05-14T14:09:05Z",
+    "last_save_at": "2026-11-10T05:46:23.471Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:28c9629b920b93fdb2477751a082d842f1025d2a1a41f173ae7f69c9438b00a7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "50d55442c9cb369861139c865b5e17827601461de4d4b5984f0a4e825eaffcb3",
+      "plan.md": "7ec19748fd26b7f4cdf369241a2cf6b32718951c16c311f6db07b9622907e0fd",
+      "tasks.md": "adb97c7298152481d4181feed81e40ff7430337bfd63505989051346af4d2c53",
+      "decision-record.md": "e447bb9a37761798e9f7bd106d26fe10d38744d0c8badf10aa770c4d1856c64b",
+      "implementation-summary.md": "7c2f6293968f102f1ce1a8d3b7bb08799f5fddd1b72044ff86e2143d6b03b42d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

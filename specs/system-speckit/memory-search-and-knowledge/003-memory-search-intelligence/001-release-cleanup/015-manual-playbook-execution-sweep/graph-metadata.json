@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/015-manual-playbook-execution-sweep",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/015-manual-playbook-execution-sweep",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup",
+  "children_ids": [
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "manual playbook execution sweep",
+      "run all manual testing playbooks",
+      "gpt-5.5 medium playbook run",
+      "manual playbook execution sweep plan",
+      "manual playbook execution sweep tasks",
+      "manual playbook execution sweep decisions"
+    ],
+    "key_topics": [
+      "manual",
+      "playbook",
+      "execution",
+      "sweep",
+      "run",
+      "testing",
+      "playbooks",
+      "gpt-5",
+      "medium",
+      "plan",
+      "tasks",
+      "decisions"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "manifest.tsv",
+      "001-findings-remediation/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.tsv",
+        "kind": "file",
+        "path": "manifest.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook Execution Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Wave",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Sonnet",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Automated stress tests confirm code-level behavior under load, but manual testing playbooks exist specifically to validate operator-facing, end-to-end scenarios (MCP tool call sequences, CLI invocations, degraded-mode behavior) that stress tests don't cover",
+    "created_at": "2026-07-02T04:40:48.870Z",
+    "last_save_at": "2026-11-10T05:47:32.035Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:2ae2f1ab2cf8f8d5d0dbb7012794fcd2027b5ab0e21e2a4730f24c5fffa94c17",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b8aa4b2e284ef4a0b56780fd8285b10a579dd1ebfcf424a46730767cb67d7270",
+      "plan.md": "9e75dc2f053bd5579cea8364ee5504cdc3b3571da22efd5188e51e76631faa8f",
+      "tasks.md": "eb9566b5c4a512e8812399c50ca99cafbbfb6709e7efd5e6f289847d519e4d5a",
+      "decision-record.md": "7937dc03aabbd61ae8df707379048ec7065a4b2ee40025913ec14cc993f51de3"
+    },
+    "last_active_child_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation",
+    "last_active_at": "2026-07-03T13:39:59.230Z"
+  }
+}

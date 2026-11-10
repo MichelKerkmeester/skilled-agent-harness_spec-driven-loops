@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parent set string playbook",
+      "set string playbook",
+      "goal pointer",
+      "completion criteria copied",
+      "stop evaluator",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "goal dispatch",
+      "goal set string playbook",
+      "parent goal set string"
+    ],
+    "key_topics": [
+      "parent",
+      "set",
+      "string",
+      "playbook",
+      "goal",
+      "pointer",
+      "completion",
+      "criteria",
+      "copied",
+      "stop",
+      "evaluator",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "references/workflows/goal-set-string-playbook.md",
+      "references/workflows/quick-reference.md",
+      ".opencode/hooks/goal/lib/goal-core.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-set-string-playbook.md",
+        "kind": "doc",
+        "path": "references/workflows/goal-set-string-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": "references/workflows/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Set",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "String Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Nothing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nothing dereferences a path inside a goal string",
+    "created_at": "2026-08-29T18:09:19Z",
+    "last_save_at": "2026-11-10T05:48:04.609Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2d79faec93474af76db7ecf8e90bc0d68b7c8b7cd91dd99347b0fd6aba5e3740",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "86804a7c31a7808c63456d3a90047414188eac4719601270af605bd1cbeb5f66",
+      "plan.md": "e260b17d3dc1e36dc13d469e3699f230f8c7cc513e029f4ad5700a3a174cfe8a",
+      "tasks.md": "0959c0a8be99c2d971bf61b514bd1bb82f766b98f484103d38ebb4acc49adafe",
+      "implementation-summary.md": "26aa446062926effb4793873eb2331849a0e353ccb8bf3f9344ef79762c3e155"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

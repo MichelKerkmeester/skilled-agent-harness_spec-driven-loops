@@ -52,7 +52,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete — transport proven (REQ-004); capability recorded in glm-5.2.md / model_profiles.json / cli-opencode |
 | **Created** | 2026-06-28 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 6 |
 | **Predecessor** | 001-model-registration (the profile/surfaces this extends), 005-operational-caveats (sibling caveat phase) |

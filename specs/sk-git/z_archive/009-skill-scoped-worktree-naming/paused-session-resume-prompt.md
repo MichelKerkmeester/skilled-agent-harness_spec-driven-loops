@@ -35,7 +35,7 @@ Run `git worktree list` and `git branch`.
 ## Preserved unmerged branches (real work not yet on v4)
 
 `backup/primary-v4-97c3a7b330`, `backup/primary-working-97c3a7b330`, `main`,
-`system-speckit/027-xce-research-based-refinement`, `wip/stage1-goal-hardening`,
+`system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement`, `wip/stage1-goal-hardening`,
 `work/opencode/20260710-092819-30688`, `wt/0001-mcp-front-proxy`, `wt/0006-deep-review-audit`,
 `wt/0014-sk-code-parent`, `wt/0038-codex-hook-parity`, `wt/0039-017-hyphen-naming`.
 

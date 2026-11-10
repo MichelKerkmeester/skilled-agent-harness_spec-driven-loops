@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/008-runtime-defect-fixes",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/008-runtime-defect-fixes",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime defect fixes",
+      "code graph bridge repair",
+      "codex hooks rewiring",
+      "026 008 fixes",
+      "runtime defect fixes plan",
+      "bridge repair plan",
+      "runtime defect fixes tasks",
+      "026 008 tasks",
+      "runtime defect fixes result",
+      "bridge repair complete",
+      "026 008 summary"
+    ],
+    "key_topics": [
+      "runtime",
+      "defect",
+      "code",
+      "graph",
+      "bridge",
+      "repair",
+      "codex",
+      "hooks",
+      "rewiring",
+      "plan",
+      "tasks",
+      "result"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".codex/config.toml",
+      ".codex/hooks.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Defect Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Minimal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "smoke",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 028 CLI-transition research and gap audits surfaced four live defects in the three MCP systems' integration surfaces: the OpenCode code-graph plugin bridge crashed on import (three paths pointing at files that moved during skill extraction), Codex sessions ran Claude's hook scripts instead of the purpose-built Codex adapters, the Codex config carried a backwards DB-path note (calling the real default \"legacy\"), and the Gemini hook catalog pointed at the shim instead of the active implementation",
+    "created_at": "2026-06-06T16:45:00Z",
+    "last_save_at": "2026-11-10T05:47:05.483Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e3955a04a362da314d1c239fafefd64ae98a9afb8f42c54b826dee2f652bc763",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "afb3e466f81231de14c0412cfe17cf9e960c76ab3b8fab3137ba4a4f38402c3a",
+      "plan.md": "fa2840805b4316229b2dc2f0ec8520cbe1e6553cd35ab74e0eb5a02c163427f0",
+      "tasks.md": "a4a7414f86ece17f9197afe149eeb371085fa91d5408b9bb7b6011e71f3f54be",
+      "implementation-summary.md": "9902b50822711e166185f1741125c2ccf7b3091136c30752b83934309630fd0d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

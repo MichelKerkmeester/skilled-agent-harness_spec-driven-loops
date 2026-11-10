@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4",
+  "children_ids": [
+    "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/003-runtime-neutral-goal-dispatch",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal file addon",
+      "nested goal template addon",
+      "nested goal addon",
+      "goal.md template",
+      "parent goal child phases",
+      "durable slice cap",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "nested goal lineage resource map",
+      "goal addon research resources"
+    ],
+    "key_topics": [
+      "goal",
+      "file",
+      "addon",
+      "nested",
+      "template",
+      "parent",
+      "child",
+      "phases",
+      "durable",
+      "slice",
+      "cap",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "research/research.md",
+      "resource-map.md",
+      "templates/spec-kit-docs.json",
+      "templates/addons/goal.md.tmpl",
+      ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+      "001-manifest-and-goal-template/goal.md",
+      "002-durable-slice-validator/goal.md",
+      "003-runtime-neutral-goal-dispatch/goal.md",
+      "004-parent-set-string-playbook/goal.md",
+      ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+      ".opencode/skills/system-spec-kit/templates/EXTENSION-GUIDE.md",
+      ".opencode/skills/system-spec-kit/references/structure/phase-definitions.md",
+      ".opencode/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+      ".opencode/hooks/goal/README.md",
+      ".opencode/hooks/goal/goal-plugin.md",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".opencode/hooks/goal/cursor/goal-inject.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": "templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md.tmpl",
+        "kind": "file",
+        "path": "templates/addons/goal.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-goal-offer-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "EXTENSION-GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/templates/EXTENSION-GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-definitions.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/structure/phase-definitions.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-parent.spec.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Nested Goal Addon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An operator sets one session objective, and whatever they set is frozen at that moment",
+    "created_at": "2026-08-29T17:39:40Z",
+    "last_save_at": "2026-11-10T05:48:04.204Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md",
+      "research/research.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:0a0ada169fdc029718702607c299a9c8aa98688b10c6a9df552d71d8bd3565cc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ea33f3d40ffac7672e628e08d1e60f2316ca58c536ce6556c44d87758ade0fed",
+      "research/research.md": "6537e685b82de8bf8ac5ad818b8b3bb7bcd718f7cee6a715347123dfb9bbdb71",
+      "resource-map.md": "8f657cdae7cd3ce9070eadf33393bc407eb61bd14ac9a0b274c5c49e1f070543"
+    },
+    "last_active_child_id": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook",
+    "last_active_at": null
+  }
+}

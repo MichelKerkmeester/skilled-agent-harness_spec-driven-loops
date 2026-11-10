@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/004-review-remediation/006-review-record-packet-type",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/004-review-remediation/006-review-record-packet-type",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/004-review-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review record packet type",
+      "SPECKIT_LEVEL review marker",
+      "lean review spec validator",
+      "review-report.md validation",
+      "deep-review packet retrofit",
+      "review packet type plan",
+      "SPECKIT_LEVEL review path plan",
+      "additive validator change plan",
+      "lean review template plan",
+      "review packet type tasks",
+      "review path validator tasks",
+      "review-record fixture tasks"
+    ],
+    "key_topics": [
+      "review",
+      "record",
+      "packet",
+      "type",
+      "marker",
+      "lean",
+      "spec",
+      "validator",
+      "review-report",
+      "validation",
+      "deep-review",
+      "retrofit"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gated Review Packet Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Lean",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Marker",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Demonstration Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Lean review-record spec packets carry a spec.md plus a review report under `review/review-report.md` and nothing else: no plan, no tasks, no checklist, no implementation-summary",
+    "created_at": "2026-06-24T15:54:41.278Z",
+    "last_save_at": "2026-11-10T05:47:51.333Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:79414cb0154a82e71cffc60dffac8f2ac402ab478a7a34f220cf2dbc2b512c37",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0762952d4c81b5d9866cb3b73c90b2ad71103c8b4ae754673ae61a1527f21920",
+      "plan.md": "a570dbc40dd273b1b3c7464188099f489c4f8071a8b4b58a6719c6d1581407b3",
+      "tasks.md": "550238a8a5bd8200ffd702fbe7b035c78c27e927f39084370c9922f27b62757e",
+      "implementation-summary.md": "e94235928f3746ffebcee531634215c69d727cbff868738ff1d7af936c3d9233"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

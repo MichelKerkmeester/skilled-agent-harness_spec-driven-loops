@@ -45,7 +45,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-06-18 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 
 
 <!-- /ANCHOR:metadata -->

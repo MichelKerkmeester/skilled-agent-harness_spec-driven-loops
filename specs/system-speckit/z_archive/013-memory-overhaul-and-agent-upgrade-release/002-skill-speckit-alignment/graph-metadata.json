@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Audit all SKILL.md files (9 total) and system-spec-kit reference files to ensure version numbers, feature descriptions, and cross-references reflect the post-implementation state of specs 014–016 and 122–129",
     "created_at": "2026-05-26T19:43:14.235Z",
-    "last_save_at": "2026-10-07T20:49:08.794Z",
+    "last_save_at": "2026-11-10T05:48:59.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbf051da802edc2d3810434c6fea2de075b54e77fded69ece4a5179b8e3103d5",
+    "source_fingerprint": "sha256:bd51dcd6a762eb58c3748e89803f4ecba5ef79710c88c118e49ccd0053334da4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "897ec51ca6a6e750c07d56cf00c0e78207f397fe1a45b07074ae2ac508ee551f",
+      "spec.md": "dcba27ac9cca71e032d9a4bdb5d3a9b040be0a8336a7be3ed531b95dcd7ce03a",
       "plan.md": "bffa64095a22f00f549a510282241cba9ffd2096cf9cd399c06ea79d3d234860",
       "tasks.md": "23b6f451eda7fe94393930f26e4fa402da26ff60d032b75a3febd0d30c61f562",
       "decision-record.md": "590c7b66b43ee662a0cffadd826902420e9164fd36759d3eda092314b7d338a9",

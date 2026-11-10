@@ -64,7 +64,7 @@ The `cli-deepseek-harness` mode shipped in commits `602309b436` to `8df2e4c343`,
 | Env template | `.env.example` | Six `DSH_*_DIR` lines |
 | Packet | `085-.../goal.md`, `graph-metadata.json`, `handover.md`, `014-.../evidence/final-gate-2026-11-06-r4.txt`, `-r5.txt`, and the 8 `.dsh-home` deletions | LOG rows, evidence |
 
-**Leave out** (other sessions' work, not this packet): everything under `specs/system-speckit/040-weak-model-spec-authoring/` and `specs/system-speckit/043-decision-capture/`.
+**Leave out** (other sessions' work, not this packet): everything under `specs/system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/` and `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/`.
 
 ### 2.4 Traps & Scar Tissue
 | Trap / blast site | Activation condition | Load-bearing or defensive? | How to avoid re-paying it |

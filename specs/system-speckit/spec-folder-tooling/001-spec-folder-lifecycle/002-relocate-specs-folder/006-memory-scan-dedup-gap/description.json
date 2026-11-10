@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/002-relocate-specs-folder/006-memory-scan-dedup-gap",
+  "description": "Revised twice after real evidence",
+  "keywords": [
+    "revised",
+    "twice",
+    "real",
+    "evidence"
+  ],
+  "lastUpdated": "2026-08-15T14:41:14.683Z",
+  "specId": "006",
+  "folderSlug": "memory-scan-dedup-gap",
+  "parentChain": [
+    "system-speckit",
+    "029-spec-folder-lifecycle",
+    "002-relocate-specs-folder"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

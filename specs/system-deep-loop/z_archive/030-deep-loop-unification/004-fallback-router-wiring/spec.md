@@ -41,7 +41,7 @@ _memory:
 | **Priority** | P2 |
 | **Status** | Planned — optional, operator-gated |
 | **Created** | 2026-07-08 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 4 of 5 (optional; may run parallel to 003 or be deferred entirely) |
 | **Predecessor** | 003-external-reference-migration (no strict dependency — independent of 002/003's file moves once they've landed) |

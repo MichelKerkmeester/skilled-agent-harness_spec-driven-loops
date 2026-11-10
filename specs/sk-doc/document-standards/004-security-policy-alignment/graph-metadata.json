@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Commit `b0f89ee5f0` (2026-10-01, `chore(repo): stop tracking vendored packet context and add a security policy`) created `SECURITY.md` as a 35-line file",
     "created_at": "2026-10-02T10:36:56Z",
-    "last_save_at": "2026-11-10T05:26:26.794Z",
+    "last_save_at": "2026-11-10T06:05:57.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc82e110dbb32593454550a78c362502b78653689dfb647a95fc93502f349429",
+    "source_fingerprint": "sha256:ad7db0fac9953683924ebbce00a9d33cdec8f74e101c7521769f85ef5a3b84cf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e6a6afa4d546b795ce03f01a69d2f7b38aefd6b62ecb3db0f8d65444cef108f",
+      "spec.md": "584852e0a741ff2d7cbe3d3d66b61f699884b35b90883a148e71abe47d5fbb50",
       "plan.md": "5f31c3ac76d553d98eb3a0f707bd519118b721502ba4bccfb7642aa352ef0dee",
-      "tasks.md": "71d2e8785a475fde057b29ccf556db74cb6a9e7937e9cdfbaea1f7907f06a565",
+      "tasks.md": "3570c30290d5ea646f89cee1431ca8073b32c6739df90ab0315ba5c7fb19d363",
       "implementation-summary.md": "8a6e881e948e029b7abbdd55bc67bfdcb346bc4280a0248d1280b609a681967c"
     },
     "last_active_at": null

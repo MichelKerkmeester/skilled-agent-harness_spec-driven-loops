@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp front proxy",
+      "launcher reconnecting frame proxy",
+      "in-place daemon recycle",
+      "transparent mcp reconnect rss recycle",
+      "mcp front proxy plan",
+      "in-place recycle phases",
+      "launcher session proxy phases",
+      "transparent reconnect idempotency classifier",
+      "mcp front proxy tasks",
+      "in-place recycle tasks",
+      "launcher session proxy tasks",
+      "transparent reconnect tasks"
+    ],
+    "key_topics": [
+      "mcp",
+      "front",
+      "proxy",
+      "launcher",
+      "reconnecting",
+      "frame",
+      "in-place",
+      "daemon",
+      "recycle",
+      "transparent",
+      "reconnect",
+      "rss"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/bin/lib/launcher-session-proxy.cjs",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      ".claude/mcp.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-session-proxy.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Place Daemon Recycle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Under",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Stop",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Session",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Records",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Under memory pressure the daemon recycles by exiting the launcher process",
+    "created_at": "2026-06-01T00:00:00.000Z",
+    "last_save_at": "2026-11-10T05:46:52.574Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:ee8101955565f34815b1788f89c748b236775a5900e0d3c1fd2aec56ddd98dae",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2283fb5448e2663fd9a0d7902cb1e8a7da01dc911815420eb5fefe502687a6ea",
+      "plan.md": "a64afcbe98b5833f48509b33a2bf9e8ab748bc8b9790b34fc97e9098c0815a3d",
+      "tasks.md": "89b08a876b6eafeb665baadb38274f3d0c2d4854bd23e4e01a61cab484e0583e",
+      "decision-record.md": "33fc597525862b7094d4e18100baff534fb9ecb9dd12662d82a457ceea160133",
+      "implementation-summary.md": "1d76b489ba3085e8307bafd71a3d0934ba8cd780fb75db561b0421c974fb360d",
+      "research/research.md": "57d2694b3d2c482b512539e64db58fde54be5e01381604c7a9fc4d03a5bf18d7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

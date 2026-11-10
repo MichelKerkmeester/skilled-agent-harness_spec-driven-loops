@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
+  "description": "Only `shared/README.md` has both an ASCII box-art architecture diagram and a directory topology tree",
+  "keywords": [
+    "only",
+    "shared",
+    "readme",
+    "ascii",
+    "box-art",
+    "architecture",
+    "diagram",
+    "directory",
+    "topology",
+    "tree"
+  ],
+  "lastUpdated": "2026-08-15T14:41:08.705Z",
+  "specId": "025",
+  "folderSlug": "readme-architecture-diagrams-topology",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "003-cross-cutting-cleanup-pass"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -10,7 +10,7 @@ CONFIRMED EVIDENCE (verify, then go beyond it):
 - 40 nested `.opencode/` dirs exist below the repo root, e.g.
   `.opencode/skills/system-spec-kit/.opencode/`, `.opencode/skills/sk-doc/create-diff/.opencode/`,
   `.opencode/skills/cli-external-orchestration/cli-opencode/.opencode/`,
-  `.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode/`
+  `.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/.opencode/`
 - 160 files inside them are TRACKED by git — they are committed, not just local litter
 - Their contents are runtime state: `skills/.advisor-state/skill-graph-generation.json`,
   `skills/.spec-gate-state/*.json` and `spec-gate-warnings.log`, `logs/cli-dispatch-audit.log`

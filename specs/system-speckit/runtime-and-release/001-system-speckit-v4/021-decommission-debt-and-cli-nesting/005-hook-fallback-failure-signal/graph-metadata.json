@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/021-decommission-debt-and-cli-nesting/005-hook-fallback-failure-signal",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/021-decommission-debt-and-cli-nesting/005-hook-fallback-failure-signal",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/021-decommission-debt-and-cli-nesting",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook fallback failure signal",
+      "hook fallback signal spec",
+      "codex devin adapter crash",
+      "mkHookDrift machine detectable",
+      "stop cleanup unreachable branch",
+      "doctor degraded adapters route",
+      "registrations resolve on disk",
+      "hook fallback signal plan",
+      "mkHookDrift JSON field",
+      "node adapter printf fallback chain",
+      "codex stop cleanup diagnostic",
+      "copilot wrapper question"
+    ],
+    "key_topics": [
+      "hook",
+      "fallback",
+      "failure",
+      "signal",
+      "spec",
+      "codex",
+      "devin",
+      "adapter",
+      "crash",
+      "mkhookdrift",
+      "machine",
+      "detectable"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".codex/hooks.json",
+      ".devin/hooks.v1.json",
+      ".opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+      ".opencode/skills/system-spec-kit/runtime/hooks/codex/README.md",
+      "runtime/hooks/devin/README.md",
+      ".opencode/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts",
+      ".opencode/bin/install-codex-hooks.mjs",
+      "runtime/tests/copilot-user-prompt-submit-hook.vitest.ts",
+      "runtime/tests/hooks-reexport-parity.vitest.ts",
+      ".claude/settings.json",
+      ".cursor/hooks.json",
+      "runtime/tests/hook-adapter-path-parity.vitest.ts",
+      "runtime/hooks/codex/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-mirrors.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/codex/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-path-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "install-codex-hooks.mjs",
+        "kind": "file",
+        "path": ".opencode/bin/install-codex-hooks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "copilot-user-prompt-submit-hook.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/copilot-user-prompt-submit-hook.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hooks-reexport-parity.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/hooks-reexport-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Codex Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Codex Stop",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.codex/hooks.json` wraps every registered adapter as `node <adapter> || printf %s '{\"hookSpecificOutput\":{...,\"additionalContext\":\"mk codex hook could not resolve; re-run the codex hooks installer with --check\"}}'` (for example lines 8, 13, 18, 27, 33, 40, 48, 56, 64, 72)",
+    "created_at": "2026-09-05T06:13:07Z",
+    "last_save_at": "2026-11-10T05:48:08.212Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:27925c96bb37c5e2a4d1df08d540659fbff7fea84b2349671f87ce69a0f56749",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5ae2bee815dfe3d19a62497af3523f8282cba1d5e55b81c56cf6db5dfc8f01f8",
+      "plan.md": "815a39a86e73fdd8b2cedb8e0cb7e07ce6bdbf4b9b3060e7319e52586f14871a",
+      "tasks.md": "1c692bbe2369d90907ad1af21b866d44b0bc39a8bf158889b40abc9b9b13812b",
+      "implementation-summary.md": "91f952b5a22f15bd1b11a2e285b7a5ba3c7ddaa21ed77fe2251f546859917bdb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

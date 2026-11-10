@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/015-root-readme-refresh",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/015-root-readme-refresh",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015-root-readme-refresh",
+      "root readme update",
+      "framework readme refresh",
+      "tool count refresh",
+      "resource map",
+      "015-root-readme-refresh resource map",
+      "path catalog 015-root-readme-refresh"
+    ],
+    "key_topics": [
+      "015-root-readme-refresh",
+      "root",
+      "readme",
+      "framework",
+      "refresh",
+      "tool",
+      "count",
+      "resource",
+      "map",
+      "path",
+      "catalog",
+      "described"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "README.md",
+      "verification-notes.md",
+      "audit-findings.md",
+      ".opencode/agents/README.txt",
+      ".claude/agents/README.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "README.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification-notes.md",
+        "kind": "doc",
+        "path": "verification-notes.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-findings.md",
+        "kind": "doc",
+        "path": "audit-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Update",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Verify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Canonical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The root `README.md` described stale runtime counts and omitted several recently added MCP server capabilities",
+    "created_at": "2026-04-29T18:48:57.000Z",
+    "last_save_at": "2026-11-10T05:45:58.773Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:97e4dfd1b66a0cc4661565749b32f396d68b2af6cd804b5525332fbfe9a76de6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ee5c1650ea1bbe799dc7bd57a32d3c70bdaf6d17a6fdab975792e8ac3313cd13",
+      "plan.md": "243b26cf99765c53f2feae80a19215275aa8cf70b94539e1622611c9a32a38b4",
+      "tasks.md": "4302dfee6b19923895eb76f0d3672a31d612ce8b3329d1d2c68aa4088a22e459",
+      "implementation-summary.md": "c1dfa2d2429c0d5a25ed71cd39ab284be79c54ddcd6c0399f5969e83a9e32a8e",
+      "resource-map.md": "764bc3b2637c1295ead20fc291be47f6b349f038d06d7ff449c3a9a321b79701"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

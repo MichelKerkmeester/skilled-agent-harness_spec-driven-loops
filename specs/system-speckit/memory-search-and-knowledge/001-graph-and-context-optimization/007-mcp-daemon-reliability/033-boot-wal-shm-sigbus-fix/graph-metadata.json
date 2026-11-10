@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/033-boot-wal-shm-sigbus-fix",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/033-boot-wal-shm-sigbus-fix",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/034-rebuild-sentinel-corruption-handling",
+        "reason": "Sibling packet opened from the same test pass, independent root cause",
+        "source": "manual"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "boot wal shm sigbus fix",
+      "journal_mode force wal regression",
+      "walIndexReadHdr sigbus",
+      "journal_mode was not WAL forcing WAL mode",
+      "post-crash integrity probe sigbus",
+      "boot wal shm sigbus fix plan",
+      "journal_mode force wal regression plan",
+      "delete-aware journal mode check",
+      "boot wal shm sigbus fix tasks",
+      "journal_mode force wal regression tasks",
+      "boot wal shm sigbus fix status",
+      "033 complete"
+    ],
+    "key_topics": [
+      "boot",
+      "wal",
+      "shm",
+      "sigbus",
+      "force",
+      "regression",
+      "walindexreadhdr",
+      "forcing",
+      "mode",
+      "post-crash",
+      "integrity",
+      "probe"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Narrow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open   Questions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a DELETE-aware",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A boot-time health check in context-server.ts silently reverts the deliberate journal-mode-DELETE fix back to WAL on every daemon restart, re-exposing the WAL/mmap'd -shm SIGBUS class that fix was written to close",
+    "created_at": "2026-07-08T16:02:23Z",
+    "last_save_at": "2026-11-10T05:47:05.071Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9bd8fa0c9cff99fe74379227f694fb2ed4101cc3271af9f9da8c17bf66ce5ff5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4cfad62c762df5233f3bf430fd323d0537b23d2c072c6137e46aab228b9f5683",
+      "plan.md": "684a25050757fa24a41244590a2cdba0422ed00320ce39a37bb0d982f7101de5",
+      "tasks.md": "3941a6080b5608fc26bbc09d15a071c4d20343385412a98328fa800ac96c1e10",
+      "implementation-summary.md": "db17ad3fcf4568a2d4383e6cd40fd1be128ddc6381973943135ccdad0af87f7c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/003-search-and-triggers",
+  "description": "The epic deep-review sweep left this lane with 7 unverified P1 claims and 13 P2 clusters",
+  "keywords": [
+    "epic",
+    "deep-review",
+    "sweep",
+    "left",
+    "lane",
+    "unverified",
+    "claims",
+    "clusters"
+  ],
+  "lastUpdated": "2026-08-15T14:41:12.527Z",
+  "specId": "003",
+  "folderSlug": "search-and-triggers",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "001-finding-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 1
+}

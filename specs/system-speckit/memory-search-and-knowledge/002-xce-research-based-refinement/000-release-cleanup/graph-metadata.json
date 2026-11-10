@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement",
+  "children_ids": [
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation",
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/001-public-root-readme",
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment",
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook",
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests",
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/006-command-alignment",
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/007-agent-alignment",
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment",
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 release cleanup",
+      "shipped 027 surface alignment",
+      "schema v37 release docs"
+    ],
+    "key_topics": [
+      "release",
+      "cleanup",
+      "shipped",
+      "surface",
+      "alignment",
+      "schema",
+      "v37",
+      "docs",
+      "reality",
+      "spans",
+      "default-off",
+      "feature"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Release Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shipped 027 reality spans schema v37, default-off feature flags, new CLI front doors, constitutional rules, memory behaviors, and doctrine from peck, gem, memclaw, and openltm",
+    "created_at": "2026-06-10T00:00:00Z",
+    "last_save_at": "2026-11-10T05:47:08.513Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:888608065fb6608a47d419580d4a8d4b83e99b1bf530bcee11c72d8718f9276d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5d94f6f4a8aa0f3422e2c6b5c2fc36bc15fc03e5d8ce92e89b32c141b247b5f4"
+    },
+    "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+    "last_active_at": null
+  }
+}

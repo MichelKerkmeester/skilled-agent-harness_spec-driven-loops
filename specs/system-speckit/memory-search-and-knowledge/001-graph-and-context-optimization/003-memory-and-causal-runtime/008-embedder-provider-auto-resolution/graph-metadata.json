@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/008-embedder-provider-auto-resolution",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/008-embedder-provider-auto-resolution",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "embedder provider auto resolution",
+      "embeddings provider auto cascade ollama",
+      "auto resolves hf-local not ollama",
+      "embedder provider auto resolution plan",
+      "factory better-sqlite3 probe fix plan",
+      "active embedder provider generic resolution",
+      "embedder provider auto resolution tasks",
+      "research tasks deferred implementation tasks embedder",
+      "factory probe better-sqlite3 regression task",
+      "embedder provider auto resolution implementation summary",
+      "research complete code fix deferred embedder",
+      "auto resolves hf-local root cause summary"
+    ],
+    "key_topics": [
+      "embedder",
+      "provider",
+      "auto",
+      "resolution",
+      "embeddings",
+      "cascade",
+      "ollama",
+      "resolves",
+      "hf-local",
+      "plan",
+      "factory",
+      "better-sqlite3"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      "shared/dist/embeddings/factory.js",
+      "shared/embeddings/factory.ts",
+      "shared/embeddings/providers/ollama.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.js",
+        "kind": "code",
+        "path": "shared/dist/embeddings/factory.js",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement With",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Root",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Local",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "With `EMBEDDINGSPROVIDER=auto` (the committed MCP-config default, documented as a local-first cascade `ollama → hf-local → openai → voyage`), the mk-spec-memory daemon silently resolves to `hf-local` — which is unhealthy on this host (no running backend) — instead of the active, working `ollama` embedder",
+    "created_at": "2026-05-27T12:33:58.373Z",
+    "last_save_at": "2026-11-10T05:46:49.311Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:5b8fcad28976b4b73de566491da3de24fa18780d7cd5bd67418ca7777f1db729",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0e44eb9c639b17af9994ce55171337a0a21373b409846ae21eb6d8cad7e0af0a",
+      "plan.md": "208fb803b524c5c1c8d5bbdba7668cd9c0eb5ced35aff4ad8663df716b7bb6af",
+      "tasks.md": "0304a73ce9f6ecfc843783f48c59398919c894f5d2c88bb91fa581a3df663efc",
+      "implementation-summary.md": "42aae3dfad9a043efa1307356ae30dbaad265ea13f000c6ce3d70225f3097fd4",
+      "research/research.md": "347cfc2c15eecef1e9b6f64540d88c511e2b29e2b51fac18e31eb07fb1cba09b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

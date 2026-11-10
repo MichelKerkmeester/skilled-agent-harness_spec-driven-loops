@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/013-retention-forgetting",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/013-retention-forgetting",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory retention forgetting impl",
+      "forget allowlist dominance cap",
+      "spare only forget eligibility",
+      "trust gated quarantine",
+      "erasure cascade namespace authorize writer signing",
+      "memory retention forgetting plan",
+      "c7-a dominance cap plan",
+      "spare only eligibility sequencing",
+      "trust gated quarantine plan",
+      "erasure surface deferral",
+      "memory retention forgetting tasks",
+      "c7-a dominance cap tasks"
+    ],
+    "key_topics": [
+      "memory",
+      "retention",
+      "forgetting",
+      "impl",
+      "forget",
+      "allowlist",
+      "dominance",
+      "cap",
+      "spare",
+      "only",
+      "eligibility",
+      "trust"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Retention",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Diversity Result",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "CONTRADICTS",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec-Kit Memory MCP retains and recalls memories with no diversity or eligibility shaping at the result-set boundary",
+    "created_at": "2026-06-19T05:40:37.446Z",
+    "last_save_at": "2026-11-10T05:47:36.149Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e4db09881be02ff3c315b71e98416b8fc38c7b4a0a1f4783638b40de902f4e26",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1a6cdb5aec5cd2e17c004c8f37290d5d952db328c60396a83140e4050acd7d97",
+      "plan.md": "6888efe9b0d724a0225afff39b3d036de245595245a183ecbba4845e010418a5",
+      "tasks.md": "0bf883c347eb6bca1caef94b8293dbada2b952e05af9d17465d29a4b1307c2d6",
+      "implementation-summary.md": "ba5e3974b7de3cabce76628219e18077cddaf54f5209168e93a1d17e91f4d4a1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

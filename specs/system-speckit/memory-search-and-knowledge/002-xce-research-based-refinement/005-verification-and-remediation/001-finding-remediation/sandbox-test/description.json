@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/sandbox-test",
+  "description": "title: \"Sandbox Mutation Test Doc\"",
+  "keywords": [
+    "title",
+    "sandbox",
+    "mutation",
+    "test",
+    "doc"
+  ],
+  "lastUpdated": "2026-08-30T08:03:56.362Z",
+  "specId": "",
+  "folderSlug": "sandbox-test",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "001-finding-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

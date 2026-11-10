@@ -32,7 +32,7 @@ parent: "sk-code/hub-architecture/001-sk-code-parent"
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-07-08 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Executor** | GLM-5.2 (`zai-coding-plan/glm-5.2`) via cli-opencode, 10 iterations |
 | **Seed** | Fable-5 AI-council review of sk-code (67 raised / 52 confirmed findings, 0 refuted) |
 

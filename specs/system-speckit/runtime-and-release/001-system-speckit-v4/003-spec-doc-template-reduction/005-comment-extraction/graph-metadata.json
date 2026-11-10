@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/005-comment-extraction",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/005-comment-extraction",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "comment extraction",
+      "instructional comment leakage",
+      "sidecar guidance",
+      "byte budget",
+      "spec core",
+      "comment extraction plan",
+      "template guidance sidecar",
+      "rendered byte budget",
+      "comment extraction tasks",
+      "instructional comment sidecars",
+      "template byte budget",
+      "marker preservation"
+    ],
+    "key_topics": [
+      "comment",
+      "extraction",
+      "instructional",
+      "leakage",
+      "sidecar",
+      "guidance",
+      "byte",
+      "budget",
+      "spec",
+      "core",
+      "plan",
+      "template"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/templates/core/spec.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/core/plan.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+      ".opencode/skills/system-spec-kit/references/templates/template-guide.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "template-guide.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/templates/template-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Move",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sidecar",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Authoring",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The inline-gate renderer strips only IF gates, not plain HTML comments, so SELF-CHECK blocks, per-field voice guides, and footer size notes survive into every scaffolded doc's bytes — measured at 15.5% of packet bytes (implementation-summary 43.6%)",
+    "created_at": "2026-08-26T05:33:58Z",
+    "last_save_at": "2026-11-10T05:47:59.715Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9e077544a99e9cedb81cbaaf8b8f28883a127a07ceeb95e8a475155f9b55c3d5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f6dd01e820ee1982dbd508d805bed669bd9b87eef237eddbf984cd4f23bbb822",
+      "plan.md": "b0de61a87b6bdc17b2e66de5557938fdd1b409179f2dfaa709b268f0642e6b75",
+      "tasks.md": "6b45ac9cf3753ab17bfb102aecb754852ea936a27b52d2e65b19b7e192e42435",
+      "implementation-summary.md": "dfe34101ec47a807953cc15007b886f5d4c377914b446c5cf996678c06317dd8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

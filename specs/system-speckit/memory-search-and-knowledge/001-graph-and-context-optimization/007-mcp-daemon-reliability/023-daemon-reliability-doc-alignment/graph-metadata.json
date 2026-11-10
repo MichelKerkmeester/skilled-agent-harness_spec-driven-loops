@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/023-daemon-reliability-doc-alignment",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/023-daemon-reliability-doc-alignment",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "daemon reliability doc alignment",
+      "018-022 feature catalog playbook",
+      "ENV_REFERENCE launcher flags",
+      "daemon hardening docs aligned",
+      "daemon reliability doc alignment plan",
+      "daemon reliability doc alignment tasks",
+      "daemon reliability doc alignment done",
+      "018-022 docs aligned"
+    ],
+    "key_topics": [
+      "daemon",
+      "reliability",
+      "doc",
+      "alignment",
+      "feature",
+      "catalog",
+      "playbook",
+      "launcher",
+      "flags",
+      "hardening",
+      "docs",
+      "aligned"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scripts/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five daemon-reliability features (018 persistent log, 019 reap hardening, 020 code-index reconnecting proxy, 021 orphan-sweep activation, 022 RC-2 re-election) shipped as code + spec packets, but a gpt-5.5 doc-alignment audit plus a grep pre-scan confirmed they were absent from every operator-facing surface: 0 of 8 new env flags in ENVREFERENCE, no featurecatalog entries, no playbook scenarios, and no README/SKILL mentions",
+    "created_at": "2026-06-07T18:10:00Z",
+    "last_save_at": "2026-11-10T05:47:02.515Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c951900b6740506964ec8363f53c6e68d3849baf5bde7442d6d5cb66aba781cf",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "623c03598fd381bef418537b45568906aecc9ac31a1ab9d7eb568dc7fceb5ab4",
+      "plan.md": "aeb08507251c2f0d1e453f7acaec24230dccd7aea2bca59b4456cc5e24f5c161",
+      "tasks.md": "2be52370e2f9a4e0fd55c6cd60cad97fd2f45049f517da8600b1c41fb86a04cf",
+      "implementation-summary.md": "706cc136d115b3d14546dea5ca0badd5c4c4055abdbda50fb3985c468719e4e2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

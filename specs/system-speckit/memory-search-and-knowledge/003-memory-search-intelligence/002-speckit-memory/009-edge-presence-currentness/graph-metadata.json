@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/009-edge-presence-currentness",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/009-edge-presence-currentness",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "edge presence currentness",
+      "temporal mode recall",
+      "memory history as-of tool",
+      "temporal query extraction",
+      "unforget channel disjointness",
+      "edge presence currentness plan",
+      "temporal recall implementation plan",
+      "memory history tool plan",
+      "temporal query extraction plan",
+      "unforget disjointness plan",
+      "tasks edge presence currentness",
+      "temporal recall task breakdown"
+    ],
+    "key_topics": [
+      "edge",
+      "presence",
+      "currentness",
+      "temporal",
+      "mode",
+      "recall",
+      "memory",
+      "history",
+      "as-of",
+      "tool",
+      "query",
+      "extraction"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "tests/flag-ceiling.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": "tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Presence Currentness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Temporal Recall",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Memory",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Pass",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Memory MCP already ships the machinery for bi-temporal, edge-presence currentness, but it is build-side only and unwired on the read path",
+    "created_at": "2026-06-19T05:40:37.444Z",
+    "last_save_at": "2026-11-10T05:47:34.471Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8f7e886a4a56a13aa9e5cbecc52fc66d06f8d34d2827e64a76198ab42e554986",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d5ceb67bc06477a02f54a0efcd1258e8b20268597af1db1e485469fd71ff543e",
+      "plan.md": "102a9140f1a6e596364f0c53c7e371e0d5eafbf774926412f1eb4cb80bf82b0d",
+      "tasks.md": "b7651797bfdf42c075632f08d25dd978d4e13fe9d1727242d8f48c4612d0c8e6",
+      "decision-record.md": "cb9d8be6868f952d1dc19b8dbdb23c5dce95562ee6f7b4831c68cd6bcaeffb27",
+      "implementation-summary.md": "f2db7d75871e92a18290bfaf36da034ec5ffd3df238acb2b2f845f8d1d238c69"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

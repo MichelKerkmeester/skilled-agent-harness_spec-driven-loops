@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment",
+  "description": "On 2026-08-30 three vitest trees were killed after 2h35m, 3h41m and 4h12m, each holding roughly 96% of a core",
+  "keywords": [
+    "three",
+    "vitest",
+    "trees",
+    "killed",
+    "2h35m",
+    "3h41m",
+    "4h12m",
+    "holding",
+    "roughly",
+    "core"
+  ],
+  "lastUpdated": "2026-09-07T16:14:53.881Z",
+  "specId": "003",
+  "folderSlug": "test-hang-containment",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4",
+    "014-daemon-and-test-harness-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

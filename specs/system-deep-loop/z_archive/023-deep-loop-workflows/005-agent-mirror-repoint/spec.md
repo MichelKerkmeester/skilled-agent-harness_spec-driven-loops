@@ -40,7 +40,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete (shipped as part of the deep-loop merge; per-phase checklist gate not independently run) |
 | **Created** | 2026-06-14 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Phase** | 005 of 009 (parent: `147-deep-loop-workflows`) |
 | **Depends on** | 004 |
 

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "foundational runtime remediation",
+      "phase 017 remediation",
+      "017 review findings",
+      "h-56-1 canonical save fix",
+      "cluster d code-graph asymmetry",
+      "cluster e copilot observability",
+      "50-iter foundational research",
+      "017 phase 017 plan",
+      "wave a infrastructure",
+      "wave b consumers",
+      "wave c rollout",
+      "phase 017 implementation plan"
+    ],
+    "key_topics": [
+      "foundational",
+      "runtime",
+      "remediation",
+      "phase",
+      "review",
+      "findings",
+      "h-56-1",
+      "canonical",
+      "save",
+      "cluster",
+      "code-graph",
+      "asymmetry"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "hooks/shared-provenance.ts",
+      "hooks/claude/shared.ts",
+      "lib/utils/exhaustiveness.ts",
+      "shared/gate-3-classifier.ts",
+      "shared/predicates/boolean-expr.ts",
+      ".opencode/skills/system-spec-kit/README.md",
+      "hooks/claude/session-stop.ts",
+      "hooks/claude/hook-state.ts",
+      "lib/graph/graph-metadata-parser.ts",
+      "tests/hook-state.vitest.ts",
+      "tests/hook-session-stop.vitest.ts",
+      "tests/hook-session-stop-replay.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared-provenance.ts",
+        "kind": "code",
+        "path": "hooks/shared-provenance.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shared.ts",
+        "kind": "code",
+        "path": "hooks/claude/shared.ts",
+        "source": "derived"
+      },
+      {
+        "name": "exhaustiveness.ts",
+        "kind": "code",
+        "path": "lib/utils/exhaustiveness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.ts",
+        "kind": "code",
+        "path": "shared/gate-3-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "boolean-expr.ts",
+        "kind": "code",
+        "path": "shared/predicates/boolean-expr.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop.ts",
+        "kind": "code",
+        "path": "hooks/claude/session-stop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-state.ts",
+        "kind": "code",
+        "path": "hooks/claude/hook-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": "lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-state.vitest.ts",
+        "kind": "test",
+        "path": "tests/hook-state.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-session-stop.vitest.ts",
+        "kind": "test",
+        "path": "tests/hook-session-stop.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-session-stop-replay.vitest.ts",
+        "kind": "test",
+        "path": "tests/hook-session-stop-replay.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Foundational Runtime",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Ready",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Awaiting Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Approval",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Wave",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 017 (27 `fix(016)` commits landing P0-A/B/C/D, S1-S7 structural refactors, M3-M13 medium refactors, 21 quick wins, 34 test migrations) completed the remediation scoped from the 50-iteration Phase 016 research",
+    "created_at": "2026-04-18T14:40:19.024Z",
+    "last_save_at": "2026-11-10T05:46:17.925Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:0527724ebcd8fea4c2ed72970ade8172c029603168381e9e4409a9d7246d040b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2286391da4473ce757870b5791769d0659aafb90392391cbe5c2bb00a2ada9d5",
+      "plan.md": "f3ab09472306e5a23140e7de347cb35c987f502c646219f3e9b66a44d1cf608c",
+      "tasks.md": "7d13387af562ecf277bd1954195aedc3cf450afd7feb87373b857e738878299c",
+      "implementation-summary.md": "00ee587a82b1795b417e5ab90c1b297a889cb8122469540058d7e0d745418064",
+      "research/research.md": "443e3ef10317bdcd7761ca2784279677d708ba442f434e14d3b22625775a4dec"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

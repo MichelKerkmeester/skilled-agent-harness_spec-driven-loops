@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ement",
+      "005",
+      "verification",
+      "and",
+      "remediation",
+      "spec",
+      "plan",
+      "ment",
+      "tasks",
+      "tion",
+      "fresh"
+    ],
+    "key_topics": [
+      "ement",
+      "verification",
+      "remediation",
+      "spec",
+      "plan",
+      "ment",
+      "tasks",
+      "tion",
+      "fresh",
+      "sub-phase",
+      "regression",
+      "deep-review"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Folder Control",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Reconciliation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Sub",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation One",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Per",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 8 findings (5 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied.",
+    "created_at": "2026-07-10T06:24:26.644Z",
+    "last_save_at": "2026-11-10T05:47:28.001Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a307d23c3eda95e2b0dc8bd5c1df5e8bd1ed186829399c6a9ba389b15fab612b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d5cfe9314213442f54da7d2ce8db8971e9160adf6563b4226de5962a54f9d04a",
+      "plan.md": "651d2b8bf2e86006e91bdcab68c2d0338be79d9fcca5f7525e96b0f876f95cb9",
+      "tasks.md": "377bce9e9614877cc7695f62db293e20cf47a1150bc32a0155daa5be71f9e59b",
+      "implementation-summary.md": "d1d4a5eab2dd3af0d8e02cac96dda4b4530264649be4366385501d151ca3831c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

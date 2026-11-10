@@ -47,7 +47,7 @@ _memory:
 | **Level** | 3 |
 | **Status** | complete (CHK-120 rollback satisfied by store deletion at 6b99eb68d2) |
 | **Scope** | Advisor reliability-weighted learning: C4-seam + Beta posterior + aionforge promotion-gate family + Phase-0 foundation, shipped shadow-only and default-off |
-| **Branch** | system-speckit/027-xce-research-based-refinement |
+| **Branch** | system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement |
 | **Shipped via** | Commit `7cd16f70fa` (default-off shadow). T006 daemon reload and T010 D2 coordination remain pending |
 <!-- /ANCHOR:metadata -->
 

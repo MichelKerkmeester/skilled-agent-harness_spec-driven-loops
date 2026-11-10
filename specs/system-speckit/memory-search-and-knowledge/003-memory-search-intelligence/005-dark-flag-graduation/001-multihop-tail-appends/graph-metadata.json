@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/001-multihop-tail-appends",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/001-multihop-tail-appends",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "multihop tail appends benchmark",
+      "deterministic multihop recall",
+      "lane champion backfill recall",
+      "three result floor blocker",
+      "tail append prod path reach",
+      "completeRecall at K append flags",
+      "prod path vs legacy enrichFusedResults",
+      "token budget truncation floor",
+      "tail append harness plan",
+      "tail append harness tasks",
+      "prod path byte identity check",
+      "multihop tail appends rewire"
+    ],
+    "key_topics": [
+      "multihop",
+      "tail",
+      "appends",
+      "benchmark",
+      "deterministic",
+      "recall",
+      "lane",
+      "champion",
+      "backfill",
+      "three",
+      "result",
+      "floor"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scripts/multihop-tail-appends-benchmark.mjs",
+      "results/metrics.json",
+      "benchmark-results.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "multihop-tail-appends-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/multihop-tail-appends-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.json",
+        "kind": "config",
+        "path": "results/metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark-results.md",
+        "kind": "doc",
+        "path": "benchmark-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hop Tail",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Appends Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Measure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two finished search features ship dark behind default-off flags with no measured verdict",
+    "created_at": "2026-06-24T04:55:43.757Z",
+    "last_save_at": "2026-11-10T05:47:51.698Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7b21d3cae464a107ff0be781b610a118985f01d2d799b089bfa130cba7188e4c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "09a6e37ee02b2cd6572a3eb8437f7cfd7d1d2d28b71ed29f94d7d9d3d8ec93db",
+      "plan.md": "7276ea496979c28574fa95243bb83a863f86ecdb2452467c3bdad16f08654506",
+      "tasks.md": "d537618f38d6790bd753d9a94e858754ea2cdeb25a6208b858743c18d17863c7",
+      "implementation-summary.md": "97a1107c187ab64400d1593d21f1614105f7f45c3b21f3e485e278e422b1cf04"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

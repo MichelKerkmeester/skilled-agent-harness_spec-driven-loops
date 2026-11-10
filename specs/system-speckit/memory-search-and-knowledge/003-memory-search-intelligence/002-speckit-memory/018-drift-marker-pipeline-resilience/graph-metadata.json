@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/018-drift-marker-pipeline-resilience",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/018-drift-marker-pipeline-resilience",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "drift marker pipeline resilience",
+      "stale lock breaking git hook",
+      "memory drift marker path divergence",
+      "git hook lock directory recovery",
+      "drift marker pipeline resilience plan",
+      "stale lock breaking git hook plan",
+      "memory drift marker path divergence plan",
+      "drift marker pipeline resilience tasks",
+      "stale lock breaking tasks",
+      "marker path resolution tasks"
+    ],
+    "key_topics": [
+      "drift",
+      "marker",
+      "pipeline",
+      "resilience",
+      "stale",
+      "lock",
+      "breaking",
+      "git",
+      "hook",
+      "memory",
+      "path",
+      "divergence"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "core/config.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Marker Producer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Consumer Resilience",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Layer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Both",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lock Breaking",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resolved Questions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "F3 — Git-hook lock directory has no stale-lock recovery",
+    "created_at": "2026-07-09T15:11:33.252Z",
+    "last_save_at": "2026-11-10T05:47:37.031Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f90aeeeeef6063f12a7dc478649f30af721be8dfc2ab9862fcc0447a84ac948f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cff031c017d9f77a712843ee242f97be97e0d45172ef4945dc9967a2de58d8bf",
+      "plan.md": "ff86377383f163ec50cd710c031c6a627027daad114e7a63faeca0ba1beb21c8",
+      "tasks.md": "b7b2869435806b34f9053c518c97f5ae852dd52283c729bda44c0f4677b777c7",
+      "implementation-summary.md": "69d935d60e5ac0806ad93b7dc93ba674e94bdfe3efebeb6cb2430fade812a9ff"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

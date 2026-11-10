@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/007/003 4-candidate re-baseline",
+      "corrected pipeline rebench",
+      "post install-hygiene re-baseline",
+      "cocoindex default re-evaluation",
+      "rerank-firing baseline",
+      "bge-code-v1 supersession plan",
+      "bge-code-v1 supersession tasks",
+      "bge-code-v1 supersession ADR",
+      "016/007/003 decision record",
+      "bge-code-v1 confirmation superseded",
+      "016/007/003 implementation summary"
+    ],
+    "key_topics": [
+      "4-candidate",
+      "re-baseline",
+      "corrected",
+      "pipeline",
+      "rebench",
+      "post",
+      "install-hygiene",
+      "cocoindex",
+      "default",
+      "re-evaluation",
+      "rerank-firing",
+      "baseline"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "pre-confirmation-margin-analysis.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-confirmation-margin-analysis.md",
+        "kind": "doc",
+        "path": "pre-confirmation-margin-analysis.md",
+        "source": "derived"
+      },
+      {
+        "name": "Candidate Re",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corrected Pipeline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promote Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The May",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "margins",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "missing-evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "ADR-001",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Scope changed 2026-05-18 evening. Original plan: corrected single-run or later 018 bge-code-v1-only confirmation. Replaced with: full 4-candidate re-baseline against the corrected pipeline (pipx editable + harness CCC-pinned + rerank actually firing per 016/005/005 hygiene fix). The May 18 morning 11/18 = 61.1% baseline was invalidated — that bench ran with the reranker module missing from pipx. Re-run all 4 candidates (jina-code, gemma, nomic-CodeRankEmbed, bge-code-v1) end-to-end; produce new ranking; promote (or hold) based on rigorous comparison.",
+    "created_at": "2026-05-18T16:52:17.343Z",
+    "last_save_at": "2026-11-10T05:46:39.746Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:90ac3a62528bb61313f91e2f78c4d80bb2f135c5eff51644f5565856cc5c0da6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "057d4ac76fd7d555639470d32fe42293bc23f1a9592177ddc296285b8c84ccaa",
+      "plan.md": "2229daae8aabb8fddf29ef770e2f88834ca3963f9731f79a36ba0b1c9a043ddb",
+      "tasks.md": "0864a82af60689e354ad8c130a3933ad0dcf3207b29ef8dcbb9d4021e9d2f90b",
+      "decision-record.md": "fd8b798fea86477df1db7e7f4c57547d427522ec6ac28fddf866f22d085b8a10",
+      "implementation-summary.md": "c8567721e468f5caa00619d9eb5846f9a10e987f350c3f7795a9b047a94d96e0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

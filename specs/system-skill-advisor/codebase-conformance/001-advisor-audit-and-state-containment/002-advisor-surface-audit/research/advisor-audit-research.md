@@ -1069,11 +1069,11 @@ AssertionError: fixture missing: /Users/michelkerkmeester/MEGA/Development/Code_
 ./.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts
 ./.opencode/specs/system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/gpt55/iterations/iteration-002.md
 ./.opencode/specs/system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/011-mcp-server-package-extraction/research/multi-ai-council-deliberation.md
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B09.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/001-readmes-vs-027/review/seats/A08.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/audit/AUD08.out.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/fixers/AF12.out.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/fixers/AF13.out.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B09.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/001-readmes-vs-027/review/seats/A08.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/audit/AUD08.out.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/fixers/AF12.out.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/fixers/AF13.out.json
 ./.opencode/specs/system-code-graph/z_archive/034-code-graph-scatter-from-027/001-code-graph-code-only-indexing/review/deltas/iter-005-raw.json
 ./.opencode/specs/system-code-graph/z_archive/034-code-graph-scatter-from-027/001-code-graph-code-only-indexing/review/deltas/iter-004-raw.json
 [0m
@@ -1084,28 +1084,28 @@ AssertionError: fixture missing: /Users/michelkerkmeester/MEGA/Development/Code_
 ./.opencode/specs/system-code-graph/z_archive/034-code-graph-scatter-from-027/001-code-graph-code-only-indexing/review/deltas/iter-005-raw.json
 ./.opencode/specs/system-code-graph/z_archive/034-code-graph-scatter-from-027/001-code-graph-code-only-indexing/review/deltas/iter-004-raw.json
 ./.opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/005-resilience-and-advisor/001-code-graph-advisor-refinement/research/001-code-graph-advisor-refinement-roadmap/iterations/iteration-004.md
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research/research/iterations/iteration-044.md
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research/research/findings-registry.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation/backlog/remediation-backlog.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation/verify/l5-still-real-partA.md
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/risk-resolution/lineages/mimo-risk/iterations/iteration-003.md
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B09.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B15.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B10.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/audit/AUD11.out.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/004-code-remediation/fixers/BF10.out.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/audit/AUD10.out.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/fixers/AF16.out.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/fixers/AF18.out.json
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/scratch/manual-test-prompts-029-hooks/skill-advisor-hooks.md
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation/spec.md
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation/plan.md
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation/checklist.md
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation/tasks.md
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation/implementation-summary.md
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip/scratch/probe-1k-corpus.json
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/changelog/006-operator-tooling/changelog-008-docs-impact-remediation.md
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing/runners/test-codex-hooks.ts
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research/research/iterations/iteration-044.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research/research/findings-registry.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation/backlog/remediation-backlog.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation/verify/l5-still-real-partA.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/risk-resolution/lineages/mimo-risk/iterations/iteration-003.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B09.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B15.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B10.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/audit/AUD11.out.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/004-code-remediation/fixers/BF10.out.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/audit/AUD10.out.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/fixers/AF16.out.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/fixers/AF18.out.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/scratch/manual-test-prompts-029-hooks/skill-advisor-hooks.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation/spec.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation/plan.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation/checklist.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation/tasks.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation/implementation-summary.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip/scratch/probe-1k-corpus.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/changelog/006-operator-tooling/changelog-008-docs-impact-remediation.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing/runners/test-codex-hooks.ts
 [0m
 [0m$ [0mrg -l 'runSearchQualityHarness|stress-test/search-quality/harness' . --glob '*.{ts,js,cjs,mjs,md,yaml,yml,json,sh}' --glob '!.git/**'
 ./.opencode/skills/system-skill-advisor/mcp-server/stress-test/search-quality/harness.ts
@@ -1114,14 +1114,14 @@ AssertionError: fixture missing: /Users/michelkerkmeester/MEGA/Development/Code_
 ./.opencode/skills/system-spec-kit/mcp-server/stress-test/search-quality/harness-telemetry-export.vitest.ts
 ./.opencode/skills/system-spec-kit/mcp-server/stress-test/search-quality/baseline.vitest.ts
 ./.opencode/skills/system-spec-kit/mcp-server/stress-test/search-quality/measurement-fixtures.ts
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-003-024-harness-telemetry-export-mode.md
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip/scratch/probe-1k-corpus.json
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/003-system-bug-improvement-research/research/iterations/iteration-020.md
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/029-clean-infrastructure-stress-test/measurements/phase-k-v1-0-4-stress.test.ts
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/029-clean-infrastructure-stress-test/measurements/v1-0-4-summary.json
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/029-clean-infrastructure-stress-test/plan.md
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/022-stress-test-results-deep-research/research/iterations/iteration-002.md
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/024-harness-telemetry-export-mode/implementation-summary.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-003-024-harness-telemetry-export-mode.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip/scratch/probe-1k-corpus.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research/003-system-bug-improvement-research/research/iterations/iteration-020.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/029-clean-infrastructure-stress-test/measurements/phase-k-v1-0-4-stress.test.ts
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/029-clean-infrastructure-stress-test/measurements/v1-0-4-summary.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/029-clean-infrastructure-stress-test/plan.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/022-stress-test-results-deep-research/research/iterations/iteration-002.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/024-harness-telemetry-export-mode/implementation-summary.md
 [0m
 [0m$ [0mrg -l 'semantic-shadow-cosine\.vitest\.ts' . --glob '*.{ts,js,cjs,mjs,md,yaml,yml,json,sh}' --glob '!.git/**'
 ./.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/__tests__/README.md
@@ -1129,10 +1129,10 @@ AssertionError: fixture missing: /Users/michelkerkmeester/MEGA/Development/Code_
 ./.opencode/specs/sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census/baseline/census/symlink-mode-manifest.json
 ./.opencode/specs/system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/gpt55/iterations/iteration-002.md
 ./.opencode/specs/system-deep-loop/z_archive/009-deep-loop-parallel-fanout/008-deep-review/review/iterations/iteration-003.md
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B09.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B10.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/fixers/AF14.out.json
-./.opencode/specs/system-speckit/026-graph-and-context-optimization/changelog/002-spec-kit-internals/changelog-002-003-embedding-cache-cosine-wiring.md
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B09.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B10.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/fixers/AF14.out.json
+./.opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/changelog/002-spec-kit-internals/changelog-002-003-embedding-cache-cosine-wiring.md
 ./.opencode/specs/system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync/spec.md
 ./.opencode/specs/system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync/plan.md
 ./.opencode/specs/system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync/tasks.md
@@ -1147,9 +1147,9 @@ AssertionError: fixture missing: /Users/michelkerkmeester/MEGA/Development/Code_
 ./.opencode/specs/system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/001-pluggable-architecture/plan.md
 ./.opencode/specs/system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/001-pluggable-architecture/review/iterations/iteration-004.md
 [0m
-[0m→ [0mRead .opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing/runners/test-codex-hooks.ts[90m [offset=1, limit=80][0m
-[0m✱ [0mGrep "SPECKIT_CODEX_HOOK_TIMEOUT_MS"[90m in .opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing/runners/test-codex-hooks.ts · 1 match[0m
-[0m✱ [0mGrep "CODEX_HOOK_TIMEOUT|timeoutMs|timeout"[90m in .opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing/runners/test-codex-hooks.ts · 7 matches[0m
+[0m→ [0mRead .opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing/runners/test-codex-hooks.ts[90m [offset=1, limit=80][0m
+[0m✱ [0mGrep "SPECKIT_CODEX_HOOK_TIMEOUT_MS"[90m in .opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing/runners/test-codex-hooks.ts · 1 match[0m
+[0m✱ [0mGrep "CODEX_HOOK_TIMEOUT|timeoutMs|timeout"[90m in .opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing/runners/test-codex-hooks.ts · 7 matches[0m
 [0m
 [0m$ [0mnode node_modules/vitest/vitest.mjs list --config vitest.config.ts
 ...output truncated...
@@ -1699,8 +1699,8 @@ RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.o
 [0m$ [0mgit diff --name-only
 .opencode/plugins/tests/mk-skill-advisor.test.cjs
 .opencode/specs/sk-doc/graph-metadata.json
-.opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/description.json
-.opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/graph-metadata.json
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/017-findings-remediation/description.json
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/017-findings-remediation/graph-metadata.json
 [0m
 [0m$ [0mgit status --short
 M  .claude/agents/README.txt
@@ -1724,8 +1724,8 @@ M  .opencode/commands/doctor/speckit.md
  M .opencode/plugins/tests/mk-skill-advisor.test.cjs
 A  .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs
  M .opencode/specs/sk-doc/graph-metadata.json
- M .opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/description.json
- M .opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/graph-metadata.json
+ M .opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/017-findings-remediation/description.json
+ M .opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/017-findings-remediation/graph-metadata.json
 ?? .opencode/specs/cli-external-orchestration/031-cli-pi-creation/
 ?? .opencode/specs/sk-design/014-template-conformance/009-aesthetics-retirement/
 ?? .opencode/specs/system-code-graph/036-code-graph-decommission/

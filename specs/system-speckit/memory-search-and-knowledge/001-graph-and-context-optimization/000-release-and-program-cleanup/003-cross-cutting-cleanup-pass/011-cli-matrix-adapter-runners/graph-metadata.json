@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/011-cli-matrix-adapter-runners",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/011-cli-matrix-adapter-runners",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "011-cli-matrix-adapter-runners",
+      "CLI matrix adapter",
+      "matrix runner adapters",
+      "cli-codex adapter",
+      "cli-copilot adapter",
+      "cli-gemini adapter",
+      "011-cli-matrix-adapter-runners resource map",
+      "cli matrix adapter runners file ledger"
+    ],
+    "key_topics": [
+      "011-cli-matrix-adapter-runners",
+      "cli",
+      "matrix",
+      "adapter",
+      "runner",
+      "adapters",
+      "cli-codex",
+      "cli-copilot",
+      "cli-gemini",
+      "resource",
+      "map",
+      "runners"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Matrix Adapter Runners",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Manifest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Packet",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 035 signed off a CONDITIONAL baseline because the full Option C design was not executable: 42 cells were `RUNNERMISSING`, and no complete `matrix-manifest.json`, feature x executor runner tree, or packet-030 meta-aggregator existed (`006-runtime-matrix-execution-validation/findings.md:5`, `:15`, `:73`, `:75`)",
+    "created_at": "2026-04-29T17:16:00Z",
+    "last_save_at": "2026-11-10T05:45:58.481Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:2678900d31c3961d82b28a7368d89c53624e5801368e6de298c5759aaf2272a0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b3e0c9bba7a1f60b3365ddf54ce7c855e6476734cc72aabd5dd6c869bd7c0e5f",
+      "plan.md": "cc5ed8deb0cf7ce75568ba8dd01574eaf169606829d6135f78e41701511e2e5a",
+      "tasks.md": "5ae2963cd01d5fe2a97170236b60bd15b734e448bf1b8cb3bb853d2ffd26f67a",
+      "implementation-summary.md": "e2c9c3eca51376210dae22fd8efffb64f1dede6275aea53409d01e3b0e3a3227",
+      "resource-map.md": "192b5f361794de12c53ffcf0dc1a3fd22ef621a7ac306614657a55b4325b0625"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -33,7 +33,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Closed — WS1 saturation thesis empirically falsified & re-scoped (superseded by workstreams 002–008 + audit-phrase calibration, commit 875884b80a) |
 | **Created** | 2026-07-06 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 
 <!-- /ANCHOR:metadata -->
 ---

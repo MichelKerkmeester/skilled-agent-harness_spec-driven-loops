@@ -41,7 +41,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete — R1 superseded by decision-record.md; per-mode trees intentional |
 | **Created** | 2026-06-14 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Phase** | 007 of 009 (parent: `147-deep-loop-workflows`) |
 | **Depends on** | 006 |
 <!-- /ANCHOR:metadata -->

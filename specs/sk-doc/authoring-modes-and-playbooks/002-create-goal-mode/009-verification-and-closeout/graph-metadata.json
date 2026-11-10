@@ -50,7 +50,7 @@
       ".skilled/skills/sk-doc/sk-create-goal/README.md",
       ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.0.0.0.md",
       ".skilled/skills/sk-doc/benchmark/reports/README.md",
-      "specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md",
+      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/goal.md",
       "scratch/routing-final.txt",
       "scratch/accept-path/goal-packet.txt",
       "specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/changelog/changelog-060-009-verification-and-closeout.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 008's outgoing check verifies command mirrors and playbook package conformance, but it does not execute the scenarios against the mode or prove an accept path against a real packet (specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/008-command-and-playbook/spec.md:24-33, 82-89, 105-113)",
     "created_at": "2026-09-25T18:48:52Z",
-    "last_save_at": "2026-11-10T05:26:00.776Z",
+    "last_save_at": "2026-11-10T06:05:57.564Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:358ff3a1227d64828faa47e526581c3a9102d80d5948470a68aab04e60a7c5ff",
+    "source_fingerprint": "sha256:b66635d792e545450bb6d0c137cefb6a5c694081e3c26a984385448f8908109d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80423382109c32d07026d05c285a223fa04d85f0e0ae46cc0e1eb907d33a6166",
-      "plan.md": "ebe5a93fec14eae42779680f56a2998608e858d2ebbda835aad635676fdad76f",
-      "tasks.md": "29a2524949054c9d1ed7ea16e808f59550d04fc4b82c82f0b285a573890db894",
-      "implementation-summary.md": "e659651a30cade9aa9cd940ba1c843fe50bad8a552e7853b0fdacb8263256165"
+      "spec.md": "5df0a7218dcbd31a2d6488c7dbce5d5249580ed865acf3ad85a25be6c8d4d8bd",
+      "plan.md": "212daad10336642a1638b559fbcf60b3e935223f6b2eb1cafb5c68b1597e772f",
+      "tasks.md": "cdcc4147aa477c21b45aeb12bf75d26da7d9d2ff73f5c24d6772f33ec8b4b4dd",
+      "implementation-summary.md": "89511e524324b4a8ddca72e38c995d3cdb3af5840f64728668aa67217c0f83da"
     },
     "last_active_at": null
   }

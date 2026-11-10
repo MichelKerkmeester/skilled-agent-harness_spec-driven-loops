@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon",
+  "description": "An operator sets one session objective, and whatever they set is frozen at that moment",
+  "keywords": [
+    "operator",
+    "sets",
+    "one",
+    "session",
+    "objective",
+    "whatever",
+    "set",
+    "frozen",
+    "moment"
+  ],
+  "lastUpdated": "2026-09-06T07:45:43.954Z",
+  "specId": "010",
+  "folderSlug": "goal-file-addon",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/004-v4-release-line-research/023-configurable-host-index-folder",
+  "spec_folder": "system-speckit/runtime-and-release/004-v4-release-line-research/023-configurable-host-index-folder",
+  "parent_id": "system-speckit/runtime-and-release/004-v4-release-line-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "configurable host index folder",
+      "let a host repository name its trigger index",
+      "configurable host index folder plan",
+      "configurable host index folder tasks",
+      "configurable host index folder acceptance criteria",
+      "configurable host index folder implementation summary"
+    ],
+    "key_topics": [
+      "configurable",
+      "host",
+      "index",
+      "folder",
+      "let",
+      "repository",
+      "name",
+      "trigger",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/host-index.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/host-trigger-index.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/data/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/README.md",
+      ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+      ".skilled/commands/speckit/search.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/commands/speckit/README.txt",
+      ".skilled/changelog/skilled/v4.0.2.0.md",
+      "spec/upgrade-legacy.mjs",
+      "runtime/data/README.md",
+      "lib/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "host-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/host-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "lookup-trigger-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "host-trigger-index.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/host-trigger-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder-structure.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The host trigger index folder is fixed at `.speckit-index/`",
+    "created_at": "2026-11-09T18:06:54Z",
+    "last_save_at": "2026-11-10T05:48:30.095Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a5b7f252567aa5622bdbe50cef10f2b197ac35fb6d22684d9c3e3a5f1baf02f6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b3047aa3660c4ec28def591d33e80da64f03e416f1fe7e2dcf15e71d6375ae53",
+      "plan.md": "72c4bb0f1fa1c9c135bce186e3745375a35c79a49eb0318bc0a987b58b6279b9",
+      "tasks.md": "dd552927115ba1b09ac92ca61354a6c7e78dcb106a962705a3065ffb080270ad",
+      "implementation-summary.md": "6d5ffccb11ed6270a6d417bafbf0fd8738ec30474a22621929a521d761e6e179"
+    },
+    "last_active_at": null
+  }
+}

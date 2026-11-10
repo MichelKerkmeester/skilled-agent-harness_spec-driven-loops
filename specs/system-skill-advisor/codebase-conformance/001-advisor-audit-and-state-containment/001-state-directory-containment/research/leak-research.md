@@ -310,8 +310,8 @@ M .opencode/plugins/tests/mk-skill-advisor.test.cjs
  M .opencode/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md
  M .opencode/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json
  M .opencode/specs/sk-doc/graph-metadata.json
- M .opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/description.json
- M .opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/graph-metadata.json
+ M .opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/017-findings-remediation/description.json
+ M .opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/017-findings-remediation/graph-metadata.json
 ?? .opencode/specs/system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment/
 ?? .opencode/specs/system-skill-advisor/spec.md
 [0m
@@ -1012,8 +1012,8 @@ TOTAL_ROOTS	17
 .opencode/specs/system-deep-loop/z_archive/026-goal-opencode-plugin/review_archive/2026-07-04-documentation-staleness-audit/.opencode
 .opencode/specs/system-deep-loop/z_archive/024-deep-loop-improved/external/loop-cli-main/.opencode
 .opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/external/ponytail-main/.opencode
-.opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/.opencode
-.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/.opencode
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/.opencode
 .opencode/specs/sk-doc/016-create-diff-mode/009-create-diff-command/.opencode
 .opencode/specs/sk-doc/016-create-diff-mode/scratch/.opencode
 .opencode/specs/sk-doc/016-create-diff-mode/006-opencode-skill-and-accessibility/scratch/create-diff-demo/.opencode
@@ -1077,10 +1077,10 @@ TOTAL_ROOTS	17
 .opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-deep-loop-market-research/research/.opencode/skills/.advisor-state/skill-graph-generation.json
 .opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-deep-loop-market-research/scratch/.opencode/skills/.advisor-state/skill-graph-generation.json
 .opencode/specs/system-deep-loop/z_archive/026-goal-opencode-plugin/review_archive/2026-07-04-documentation-staleness-audit/.opencode/skills/.advisor-state/skill-graph-generation.json
-.opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/.opencode/skills/.advisor-state/skill-graph-generation.json
-.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode/skills/.spec-gate-state/spec-gate-warnings.log
-.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode/skills/.spec-gate-state/61316638663861392d383762662d346434372d383962642d626435663765343237613335.json
-.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode/skills/.advisor-state/skill-graph-generation.json
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/.opencode/skills/.advisor-state/skill-graph-generation.json
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/.opencode/skills/.spec-gate-state/spec-gate-warnings.log
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/.opencode/skills/.spec-gate-state/61316638663861392d383762662d346434372d383962642d626435663765343237613335.json
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/.opencode/skills/.advisor-state/skill-graph-generation.json
 .opencode/specs/sk-doc/016-create-diff-mode/009-create-diff-command/.opencode/skills/.spec-gate-state/34386137343836622d636339312d343532352d623531322d613333646562303634633431.json
 .opencode/specs/sk-doc/016-create-diff-mode/009-create-diff-command/.opencode/skills/.spec-gate-state/spec-gate-warnings.log
 .opencode/specs/sk-doc/016-create-diff-mode/009-create-diff-command/.opencode/skills/.advisor-state/skill-graph-generation.json
@@ -1204,8 +1204,8 @@ Node.js v22.23.1
 .opencode/specs/system-deep-loop/z_archive/026-goal-opencode-plugin/review_archive/2026-07-04-documentation-staleness-audit/.opencode	1	0	1	0
 .opencode/specs/system-deep-loop/z_archive/024-deep-loop-improved/external/loop-cli-main/.opencode	24	0	0	24
 .opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/external/ponytail-main/.opencode	3	0	0	3
-.opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/.opencode	1	0	1	0
-.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode	3	0	3	0
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/.opencode	1	0	1	0
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/.opencode	3	0	3	0
 .opencode/specs/sk-doc/016-create-diff-mode/009-create-diff-command/.opencode	3	0	3	0
 .opencode/specs/sk-doc/016-create-diff-mode/scratch/.opencode	3	0	3	0
 .opencode/specs/sk-doc/016-create-diff-mode/006-opencode-skill-and-accessibility/scratch/create-diff-demo/.opencode	1	0	1	0
@@ -1321,7 +1321,7 @@ all=160 runtime=0
 [0m$ [0mgit log -5 --date=iso-strict --format='%h %ad %s' -- '.opencode/skills/system-skill-advisor/mcp-server/lib/utils/workspace-root.ts' '.opencode/skills/system-skill-advisor/mcp-server/tests/utils/workspace-root.vitest.ts'
 b052f329a73 2026-07-19T06:02:44+02:00 refactor(sk-doc): migrate filesystem names to kebab-case (020, squashed)
 [0m
-[0m$ [0mgit log --all --oneline -- '.opencode/skills/system-spec-kit/.opencode' '.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode' '.opencode/skills/cli-external-orchestration/cli-opencode/.opencode'
+[0m$ [0mgit log --all --oneline -- '.opencode/skills/system-spec-kit/.opencode' '.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/.opencode' '.opencode/skills/cli-external-orchestration/cli-opencode/.opencode'
 859e9dc9b22 fix(spec-kit): 028 Phase R audit remediation — 72 tasks swarm-implemented, adversarially verified
 dc7ae595eb2 chore(deep-loops/036): prep 003 generalization-probe scenario cells (WIP)
 fe706ded25d feat(deep-loops/030): land phase 011, deep-review remediation, and dist-freshness enforcement
@@ -1349,8 +1349,8 @@ f14c8c591d0 refactor(opencode): rename .opencode/{skill,agent,command}/ to plura
 1	2026-07-17T13:19:43.908Z	2026-07-17T13:19:43.908Z	.opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/.opencode
 43	2026-07-17T13:19:43.854Z	2026-07-17T13:19:43.908Z	.opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/.opencode
 1	2026-07-04T06:26:22.705Z	2026-07-04T06:26:22.705Z	.opencode/specs/system-deep-loop/z_archive/026-goal-opencode-plugin/review_archive/2026-07-04-documentation-staleness-audit/.opencode
-3	2026-07-27T05:19:27.477Z	2026-07-27T05:19:34.870Z	.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode
-1	2026-07-27T05:27:38.817Z	2026-07-27T05:27:38.817Z	.opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/.opencode
+3	2026-07-27T05:19:27.477Z	2026-07-27T05:19:34.870Z	.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/.opencode
+1	2026-07-27T05:27:38.817Z	2026-07-27T05:27:38.817Z	.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/.opencode
 [0m
 [0m$ [0mgit show --stat --oneline b052f329a73 -- '.opencode/skills/system-skill-advisor/mcp-server/lib/utils/workspace-root.ts' '.opencode/skills/system-skill-advisor/mcp-server/tests/utils/workspace-root.vitest.ts'
 b052f329a73 refactor(sk-doc): migrate filesystem names to kebab-case (020, squashed)
@@ -1419,7 +1419,7 @@ Full output saved to: /Users/michelkerkmeester/.local/share/opencode/tool-output
 .opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/.opencode/skills/.spec-gate-state/spec-gate-warnings.log:7:2026-07-15T08:02:35.129Z [mk-spec-gate] claude | 1bea0366-23ce-45fb-bdf2-e8f87e3e1e21 | bash | - | advise
 .opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/.opencode/skills/.spec-gate-state/spec-gate-warnings.log:8:2026-07-15T08:07:09.684Z [mk-spec-gate] claude | 1bea0366-23ce-45fb-bdf2-e8f87e3e1e21 | bash | - | advise
 .opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/.opencode/skills/.spec-gate-state/spec-gate-warnings.log:9:2026-07-15T11:29:39.256Z [mk-spec-gate] claude | 1bea0366-23ce-45fb-bdf2-e8f87e3e1e21 | bash | - | advise
-.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode/skills/.spec-gate-state/spec-gate-warnings.log:1:2026-07-27T05:19:34.868Z [mk-spec-gate] claude | a1f8f8a9-87bf-4d47-89bd-bd5f7e427a35 | bash | - | advise
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/.opencode/skills/.spec-gate-state/spec-gate-warnings.log:1:2026-07-27T05:19:34.868Z [mk-spec-gate] claude | a1f8f8a9-87bf-4d47-89bd-bd5f7e427a35 | bash | - | advise
 [0m
 [0m$ [0mrg -n -uu '"runtime"' .opencode -g '**/.opencode/logs/cli-dispatch-audit.log'
 ...output truncated...
@@ -1437,8 +1437,8 @@ Full output saved to: /Users/michelkerkmeester/.local/share/opencode/tool-output
 2026-07-15T00:16:59.711Z	LEGACY_ADVISOR_GENERATION_BUMP	.opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-deep-loop-market-research/research/.opencode/skills/.advisor-state/skill-graph-generation.json
 2026-07-14T21:17:34.738Z	LEGACY_ADVISOR_GENERATION_BUMP	.opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-deep-loop-market-research/scratch/.opencode/skills/.advisor-state/skill-graph-generation.json
 2026-07-04T06:26:22.704Z	LEGACY_ADVISOR_GENERATION_BUMP	.opencode/specs/system-deep-loop/z_archive/026-goal-opencode-plugin/review_archive/2026-07-04-documentation-staleness-audit/.opencode/skills/.advisor-state/skill-graph-generation.json
-2026-07-27T05:27:38.816Z	LEGACY_ADVISOR_GENERATION_BUMP	.opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/.opencode/skills/.advisor-state/skill-graph-generation.json
-2026-07-27T05:19:27.518Z	LEGACY_ADVISOR_GENERATION_BUMP	.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode/skills/.advisor-state/skill-graph-generation.json
+2026-07-27T05:27:38.816Z	LEGACY_ADVISOR_GENERATION_BUMP	.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/.opencode/skills/.advisor-state/skill-graph-generation.json
+2026-07-27T05:19:27.518Z	LEGACY_ADVISOR_GENERATION_BUMP	.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/.opencode/skills/.advisor-state/skill-graph-generation.json
 2026-07-15T19:01:17.264Z	LEGACY_ADVISOR_GENERATION_BUMP	.opencode/specs/sk-doc/016-create-diff-mode/009-create-diff-command/.opencode/skills/.advisor-state/skill-graph-generation.json
 2026-07-15T18:39:55.935Z	LEGACY_ADVISOR_GENERATION_BUMP	.opencode/specs/sk-doc/016-create-diff-mode/scratch/.opencode/skills/.advisor-state/skill-graph-generation.json
 2026-07-15T13:05:35.639Z	LEGACY_ADVISOR_GENERATION_BUMP	.opencode/specs/sk-doc/016-create-diff-mode/006-opencode-skill-and-accessibility/scratch/create-diff-demo/.opencode/skills/.advisor-state/skill-graph-generation.json
@@ -1659,8 +1659,8 @@ M .opencode/plugins/tests/mk-skill-advisor.test.cjs
  M .opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs
  M .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
  M .opencode/specs/sk-doc/graph-metadata.json
- M .opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/description.json
- M .opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/graph-metadata.json
+ M .opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/017-findings-remediation/description.json
+ M .opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/017-findings-remediation/graph-metadata.json
 ?? .opencode/skills/system-deep-loop/runtime/tests/unit/trustworthy-state-records.vitest.ts
 ?? .opencode/specs/system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment/
 ?? .opencode/specs/system-skill-advisor/spec.md
@@ -1756,7 +1756,7 @@ Post-fix recurrence is confirmed by leaked files dated July 24 and July 27, incl
 
 - `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/.opencode`
 - `.opencode/skills/system-spec-kit/.opencode`
-- `.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode`
+- `.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/.opencode`
 
 Re-run:
 
@@ -2001,8 +2001,8 @@ The following 19 directories currently contain only runtime state and zero track
 .opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-deep-loop-market-research/research/.opencode
 .opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-deep-loop-market-research/scratch/.opencode
 .opencode/specs/system-deep-loop/z_archive/026-goal-opencode-plugin/review_archive/2026-07-04-documentation-staleness-audit/.opencode
-.opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/.opencode
-.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/.opencode
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/.opencode
 .opencode/specs/sk-doc/016-create-diff-mode/009-create-diff-command/.opencode
 .opencode/specs/sk-doc/016-create-diff-mode/scratch/.opencode
 .opencode/specs/sk-doc/016-create-diff-mode/006-opencode-skill-and-accessibility/scratch/create-diff-demo/.opencode

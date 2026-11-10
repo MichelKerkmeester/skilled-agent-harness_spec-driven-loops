@@ -1,0 +1,42 @@
+{
+  "topic": "Close every known gap in the operator decision-capture feature and find changes that make it more maintainable and prevent overengineering. Known gaps: (1) answers reach a decision record only when /speckit:save runs; (2) the pending-answer nudge shows only on Claude and OpenCode, not Devin, Codex or Pi; (3) Codex captures only at save time from its rollout, because a live hook needs hook trust; (4) Cursor is marked unverified and Hermes is absent from the runtime matrix; (5) chat-answer pairing depends on the saving model's judgment; (6) process questions (Gate 3, spec folder, branch) are filtered by keyword; (7) a Claude nudge emitted at session exit is lost; (8) the Codex and Pi sweeps exit 0 silently on an unreadable transcript while the Claude and Devin sweeps report an error. Maintainability: five live adapters and five save-time readers each parse a storage format another tool owns (OpenCode SQLite, Codex rollout, Devin and Pi session files, Claude transcript). For each gap say whether it is worth closing, the smallest change that closes it, and what to delete or merge rather than add. Code: .skilled/hooks/decision-capture/, .opencode/plugins/decision-capture.js, .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts and decision-table-matcher.ts, runtime/cli/continuity/match-decision-table.ts, .skilled/commands/speckit/save.md. Read-only research: do not edit code.",
+  "researchTopic": "Close every known gap in the operator decision-capture feature and find changes that make it more maintainable and prevent overengineering. Known gaps: (1) answers reach a decision record only when /speckit:save runs; (2) the pending-answer nudge shows only on Claude and OpenCode, not Devin, Codex or Pi; (3) Codex captures only at save time from its rollout, because a live hook needs hook trust; (4) Cursor is marked unverified and Hermes is absent from the runtime matrix; (5) chat-answer pairing depends on the saving model's judgment; (6) process questions (Gate 3, spec folder, branch) are filtered by keyword; (7) a Claude nudge emitted at session exit is lost; (8) the Codex and Pi sweeps exit 0 silently on an unreadable transcript while the Claude and Devin sweeps report an error. Maintainability: five live adapters and five save-time readers each parse a storage format another tool owns (OpenCode SQLite, Codex rollout, Devin and Pi session files, Claude transcript). For each gap say whether it is worth closing, the smallest change that closes it, and what to delete or merge rather than add. Code: .skilled/hooks/decision-capture/, .opencode/plugins/decision-capture.js, .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts and decision-table-matcher.ts, runtime/cli/continuity/match-decision-table.ts, .skilled/commands/speckit/save.md. Read-only research: do not edit code.",
+  "specFolder": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture",
+  "maxIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "deepseek-v4.1-flash-1017",
+        "reasoningEffort": "max",
+        "label": "deepseek",
+        "count": 1,
+        "iterations": 3,
+        "timeoutSeconds": 1800
+      },
+      {
+        "kind": "cli-codex",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "xhigh",
+        "serviceTier": "fast",
+        "label": "luna",
+        "count": 1,
+        "iterations": 2,
+        "timeoutSeconds": 1800
+      }
+    ],
+    "concurrency": 2
+  },
+  "createdAt": "2026-11-02T17:18:26.000Z",
+  "status": "complete"
+}

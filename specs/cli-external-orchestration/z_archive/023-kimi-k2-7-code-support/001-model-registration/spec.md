@@ -51,7 +51,7 @@ FAILURE MODES:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-06-15 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 1 of 3 |
 | **Predecessor** | None |

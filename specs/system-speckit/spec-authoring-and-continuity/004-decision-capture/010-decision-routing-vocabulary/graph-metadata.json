@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/004-decision-capture/010-decision-routing-vocabulary",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/010-decision-routing-vocabulary",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/004-decision-capture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "decision routing vocabulary",
+      "phase 10 decision routing vocabulary",
+      "record this as a decision routing",
+      "decision routing vocabulary plan",
+      "decision routing vocabulary tasks",
+      "decision routing vocabulary acceptance criteria",
+      "decision routing vocabulary goal",
+      "decision routing vocabulary implementation summary"
+    ],
+    "key_topics": [
+      "decision",
+      "routing",
+      "vocabulary",
+      "phase",
+      "record",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "references/memory/save-workflow.md",
+      "references/validation/decision-format.md",
+      ".skilled/skills/system-spec-kit/graph-metadata.json",
+      ".skilled/skills/system-spec-kit/ROUTER.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/route-gates.vitest.ts",
+      ".skilled/skills/sk-doc/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "save-workflow.md",
+        "kind": "doc",
+        "path": "references/memory/save-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-format.md",
+        "kind": "doc",
+        "path": "references/validation/decision-format.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.sqlite",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "route-gates.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/route-gates.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Metadata",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An operator who types \"record this as a decision\" or \"Record my chat reply as a decision\" gets no skill recommendation, so the session never loads the save workflow that writes operator decisions",
+    "created_at": "2026-11-03T09:15:10Z",
+    "last_save_at": "2026-11-10T05:48:37.783Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:08c1e83fa633da8016a6e6086da7bd36be9b214fa43829ddf9f1896a846483ff",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "58903330036c7e765797b80af9bf3fe858eeec72b77db3b810e5a4130ad209ef",
+      "plan.md": "4e6bd5772a42490fde15c918478ef55bdb7a1d5ca411624ed3b4f5fb08e829dc",
+      "tasks.md": "85b626f29c969d17576033d7c6867318d5ba919c817018a00812bd701716a6c8",
+      "implementation-summary.md": "5bf8034c0d12872569c4b1654620b73c7e3806d84332d0675c430a55a629f48a"
+    },
+    "last_active_at": null
+  }
+}

@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A parent goal can omit a phase folder that exists on disk: the 017-memory-database-decommission binding table ends at 006, while the 007-decommission-review-p1-p2-fixes directory exists with no goal.md (specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:44; specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md:66-73; test ! -f specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/goal.md)",
+    "causal_summary": "A parent goal can omit a phase folder that exists on disk: the 017-memory-database-decommission binding table ends at 006, while the 007-decommission-review-p1-p2-fixes directory exists with no goal.md (specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:44; specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/goal.md:66-73; test !",
     "created_at": "2026-09-25T18:48:48Z",
-    "last_save_at": "2026-11-10T05:26:00.334Z",
+    "last_save_at": "2026-11-10T06:05:57.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:67fc6a50be033571ce9b5e132794b96d5adedc1bdf65df1baa12152ac900ad68",
+    "source_fingerprint": "sha256:035994fe1b47dafdf7e732b904665ca3e6c1b2fcaade10d8c8460b81322ae88a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3e6cce12786c6da05987a7329f8226fea33ca3c4f3b04ebd044f0f9fd77e1c27",
+      "spec.md": "44d32d67eefa0e63dabc4ff131cfb7bf70a4fb8d0ed3cb5c4de5024d88053a2d",
       "plan.md": "1d5023df1e3bea994d6c145375f710a7c25c67927603a7ae2124224cd5398e4e",
       "tasks.md": "9fcf4c29dc3a3e4e4a55ffb3aac9a0e761c74414dc5f723d9d6eb18f063d85e2",
       "implementation-summary.md": "0067d1ca715dc2a775f3037cad02bd519ce13a03c054d5bbb27dddde51b0cc52"

@@ -63,7 +63,7 @@ FAILURE MODES:
 | **Priority** | P1 |
 | **Status** | In progress — core shipped (Wave D + A′ + B2, both acceptance tests met); B1 + burn-in follow-up |
 | **Created** | 2026-07-05 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Phase kind** | Implementation — design shipped on-branch (commits in implementation-summary.md) |
 | **Deliverable** | `plan.md` (design) + `decision-record.md` (decision + open questions) |
 | **Source** | Two-thread Sonnet-5 (max-effort) deep research + synthesis, 2026-07-05 |

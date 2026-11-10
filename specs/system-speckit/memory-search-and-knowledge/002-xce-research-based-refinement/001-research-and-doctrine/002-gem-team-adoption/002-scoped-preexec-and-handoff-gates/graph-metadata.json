@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 006/002",
+      "scoped preexec gates",
+      "debug handoff schema",
+      "boundary contract-first",
+      "pre-mortem field",
+      "scoped preexec handoff gates"
+    ],
+    "key_topics": [
+      "phase",
+      "scoped",
+      "preexec",
+      "gates",
+      "debug",
+      "handoff",
+      "schema",
+      "boundary",
+      "contract-first",
+      "pre-mortem",
+      "field",
+      "spec-kit"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+      ".opencode/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md",
+      ".codex/agents/orchestrate.toml",
+      ".opencode/agents/debug.md",
+      ".claude/agents/debug.md",
+      ".codex/agents/debug.toml",
+      ".opencode/agents/code.md",
+      ".claude/agents/code.md",
+      ".codex/agents/code.toml",
+      ".opencode/skills/sk-code/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-io-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
+        "name": "debug.md",
+        "kind": "doc",
+        "path": ".opencode/agents/debug.md",
+        "source": "derived"
+      },
+      {
+        "name": "debug.toml",
+        "kind": "file",
+        "path": ".codex/agents/debug.toml",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".opencode/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.toml",
+        "kind": "file",
+        "path": ".codex/agents/code.toml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scoped Pre",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Gates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Predicate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-kit's highest-risk agent transitions are governed by prose, not machine-checkable discipline",
+    "created_at": "2026-06-06T10:11:07.809Z",
+    "last_save_at": "2026-11-10T05:47:12.740Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7aac39836ca54c459db00a39904f9db02dc68f69ec7b837648b9b672fa6fb3c5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b6079667de4f51c929707c50391a5201bd696097925bf929492bf5a277b35520",
+      "plan.md": "99ff184b6e011dea6d3fa22949c28852fd78c2c57958eafad489e1cfe6e06d55",
+      "tasks.md": "1d28b2bb99b7858dd82c75c738e5d9c1e0409c9773bd41b1981535fa56ce6a49",
+      "implementation-summary.md": "8b1f2a43a4211303fce21afc272856fdc92b3f362d4c3d6cb1075f00e61a7005"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

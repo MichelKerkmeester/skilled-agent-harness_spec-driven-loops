@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/012-relevance-aware-evidence-gap",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/012-relevance-aware-evidence-gap",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relevance aware evidence gap",
+      "fix the gap detector over-capping",
+      "SPECKIT_RELEVANCE_AWARE_GAP flag",
+      "evidence gap aligns with verdict",
+      "noise floor subtracted relevance gap",
+      "gated relevance aware detector path",
+      "embedder seam stage4 detector",
+      "relevance aware gap verdict",
+      "SPECKIT_RELEVANCE_AWARE_GAP graduation"
+    ],
+    "key_topics": [
+      "relevance",
+      "aware",
+      "evidence",
+      "gap",
+      "detector",
+      "over-capping",
+      "flag",
+      "aligns",
+      "verdict",
+      "noise",
+      "floor",
+      "subtracted"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scripts/gap-relevance-rebenchmark.mjs",
+      "results/metrics.json",
+      "benchmark-results.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "gap-relevance-rebenchmark.mjs",
+        "kind": "file",
+        "path": "scripts/gap-relevance-rebenchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.json",
+        "kind": "config",
+        "path": "results/metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark-results.md",
+        "kind": "doc",
+        "path": "benchmark-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "Aware Evidence Gap",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Replace",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 043 benchmark proved the Z-score evidence-gap detector measures peakedness, not relevance",
+    "created_at": "2026-06-27T17:15:44.445Z",
+    "last_save_at": "2026-11-10T05:47:48.201Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f8e2de9fe65ce4b81e298bf9d0c0721bd56c2098c42619b04841d9e9487d84f0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "476c776754caf20f7284ea27de3c1a059ea2527ba9143e32ae321acf50790768",
+      "plan.md": "3ab653a5eba29adf1352c829fe6bc914985f4862a4b4078753187313595442a2",
+      "tasks.md": "cc97acf9a5517e64f64cf0a21ae9cfd391848240c99306bef26d5bd8587822a4",
+      "implementation-summary.md": "234641156f825eb9ba04bdaf2a5f3a1eda93c76f37af96c25db8fa06d6ca8355"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

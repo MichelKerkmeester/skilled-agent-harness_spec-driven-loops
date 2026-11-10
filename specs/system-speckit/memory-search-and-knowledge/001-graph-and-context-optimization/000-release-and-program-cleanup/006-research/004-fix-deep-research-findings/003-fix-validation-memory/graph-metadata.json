@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/003-fix-validation-memory",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/003-fix-validation-memory",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "F-005-A5",
+      "F-008-B3",
+      "F-009-B4",
+      "validation and memory remediation",
+      "advisor schema bounding",
+      "causal links parser",
+      "check-spec-doc-integrity",
+      "check-evidence rule",
+      "check-template-headers",
+      "F-005-A5 plan",
+      "F-008-B3 plan",
+      "F-009-B4 plan"
+    ],
+    "key_topics": [
+      "f-005-a5",
+      "f-008-b3",
+      "f-009-b4",
+      "validation",
+      "memory",
+      "remediation",
+      "advisor",
+      "schema",
+      "bounding",
+      "causal",
+      "links",
+      "parser"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "lib/description/description-schema.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description-schema.ts",
+        "kind": "code",
+        "path": "lib/description/description-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validation And Memory Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Thirteen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validate Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "realpath",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Thirteen",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Thirteen validators and parsers across the advisor, memory, and spec-validation subsystems leak loose-typing, generic-parse, and false-positive bugs identified by packet 046's deep research:",
+    "created_at": "2026-05-01T05:18:48Z",
+    "last_save_at": "2026-11-10T05:46:07.926Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:770640def1f890a56436ab06f5dea4cc3de6158856ac2e2a889db5227e3241f2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e66fd0234b654114f8e73260d026dddc2c3a04aa3f6cdad3e4a3e682108baf4d",
+      "plan.md": "a1880fe7a160ce912335430a928d368cf46e3441be3148e8fab3959a59ae1c06",
+      "tasks.md": "f08a0bb125e72e864413433506864f4a4d5051764d0cb782239096c76645e235",
+      "implementation-summary.md": "acb0474ede36cce5f95a5f995b4622cf4c29b78904a07fa7b8dc9d2775e5651f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

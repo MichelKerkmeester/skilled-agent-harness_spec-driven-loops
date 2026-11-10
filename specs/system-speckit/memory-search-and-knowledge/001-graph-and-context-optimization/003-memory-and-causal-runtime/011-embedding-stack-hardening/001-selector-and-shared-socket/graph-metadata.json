@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hf-local selector probe fix",
+      "shared HF_EMBED_SERVER_URL socket",
+      "ECONNRESET EPIPE readiness retry",
+      "selector shared socket plan",
+      "hf-local selector fix implementation plan",
+      "selector shared socket tasks",
+      "selector shared socket implementation summary"
+    ],
+    "key_topics": [
+      "hf-local",
+      "selector",
+      "probe",
+      "shared",
+      "socket",
+      "econnreset",
+      "epipe",
+      "readiness",
+      "retry",
+      "plan",
+      "implementation",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "shared/embeddings/auto-select.ts",
+      "shared/embeddings/providers/hf-local.ts",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      "tests/embedders/hf-local-client.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": "shared/embeddings/auto-select.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local-client.vitest.ts",
+        "kind": "test",
+        "path": "tests/embedders/hf-local-client.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Foundation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Probe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The zero-install fallback is silently broken: `probeHfLocal` (`auto-select.ts:435-449`) still gates hf-local selection on a Python `import sentencetransformers` probe, but the post-029 server is pure-Node with zero Python, so a normal Node-only machine fails the probe, rejects hf-local, and falls through to an error or silent cloud egress",
+    "created_at": "2026-05-29T11:22:57.372Z",
+    "last_save_at": "2026-11-10T05:46:49.639Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2aa779d3e37fd19fb41d1c04e08c28cc4e2252f5925bbce654140b7f6d47d31c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6728ee07e71e18fca6a9de6e74fc84d3c330a3b0a01177aac106aa8fec780ff9",
+      "plan.md": "59b88a40ec6f81b56ce9e155712e715947009513535cb05c4877277b17b376e7",
+      "tasks.md": "afdba97eea71379b9cd88ed86b0195ff1e2758857a355f55232f65c9ec020620",
+      "implementation-summary.md": "db657f7e007f06872bcaa5693131d3509d3b5032760eb3b5538fb5830fd83665"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

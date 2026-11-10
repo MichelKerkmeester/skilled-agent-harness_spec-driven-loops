@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/005-retire-memory-era-tests",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/005-retire-memory-era-tests",
+  "parent_id": "system-speckit/memory-search-and-knowledge",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retire memory-era tests",
+      "dead spec-kit test files",
+      "test-phase-validation cannot load",
+      "manual playbook runner retired",
+      "memory-quality test never collected",
+      "phase map rows never filled",
+      "empty phase child skipped",
+      "no-tsx template fallback",
+      "level contract fallback"
+    ],
+    "key_topics": [
+      "retire",
+      "memory-era",
+      "tests",
+      "dead",
+      "spec-kit",
+      "test",
+      "files",
+      "test-phase-validation",
+      "cannot",
+      "load",
+      "manual",
+      "playbook"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "runtime/cli/spec/create.sh",
+      "runtime/cli/spec/validate.sh",
+      "runtime/cli/tests/test-phase-validation.js",
+      "runtime/cli/tests/memory-quality-phase2-pr3.vitest.ts",
+      "runtime/cli/package.json",
+      "runtime/vitest.config.ts",
+      "runtime/cli/evals/check-source-dist-alignment.ts",
+      "runtime/cli/tests/fixtures/README.md",
+      "runtime/cli/tests/test-phase-system.js",
+      "runtime/cli/templates/inline-gate-renderer.sh",
+      "runtime/cli/lib/template-utils.sh",
+      "runtime/cli/tests/inline-gate-renderer-fallback.vitest.ts",
+      "runtime/cli/tests/inline-gate-renderer.vitest.ts",
+      "runtime/cli/tests/create-without-build.vitest.ts",
+      "specs/sk-design/020-chart-and-diagram-review/spec.md",
+      "feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-validation.js",
+        "kind": "code",
+        "path": "runtime/cli/tests/test-phase-validation.js",
+        "source": "derived"
+      },
+      {
+        "name": "memory-quality-phase2-pr3.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/memory-quality-phase2-pr3.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "runtime/cli/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-source-dist-alignment.ts",
+        "kind": "code",
+        "path": "runtime/cli/evals/check-source-dist-alignment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/tests/fixtures/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-system.js",
+        "kind": "code",
+        "path": "runtime/cli/tests/test-phase-system.js",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer.sh",
+        "kind": "script",
+        "path": "runtime/cli/templates/inline-gate-renderer.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-utils.sh",
+        "kind": "script",
+        "path": "runtime/cli/lib/template-utils.sh",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer-fallback.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/inline-gate-renderer-fallback.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/inline-gate-renderer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create-without-build.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/create-without-build.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-capturing-pipeline-quality.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec-kit dropped its embedding-backed memory database",
+    "created_at": "2026-09-23T20:09:53Z",
+    "last_save_at": "2026-11-10T05:47:54.836Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5e92c7116d2b027ce13ef0ab54d6dc6fbd1a14b99fcedc75609e147d7a278182",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2b60297fbd35bb33ea03a88d06ceb891bc574a391450db9a153f3c4659ae1c80",
+      "plan.md": "91c5eb3b292cb6643d6932026ecf332859850a83fd13e07635da52baafd6b26d",
+      "tasks.md": "6683d1a2df73418e2709a533e7d445a1e9d35e3b2a4950b3e94885f3456db165",
+      "implementation-summary.md": "637dbf1241e1d2367a100c88cdeee4c079081cde2a2c6261191d1d38d9d2cf03"
+    },
+    "last_active_at": null
+  }
+}

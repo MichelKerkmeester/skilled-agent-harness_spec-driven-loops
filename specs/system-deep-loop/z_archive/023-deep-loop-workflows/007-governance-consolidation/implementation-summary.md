@@ -43,7 +43,7 @@ _memory:
 | **Phase** | 007 of 009 (governance consolidation) |
 | **Status** | Complete — R1 superseded |
 | **Date** | 2026-06-16 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Depends on** | 006 |
 
 <!-- /ANCHOR:metadata -->

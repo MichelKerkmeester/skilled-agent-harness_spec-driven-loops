@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/010-catalog-playbook-coverage-audit",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/010-catalog-playbook-coverage-audit",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "catalog playbook coverage audit",
+      "028 feature catalog gap",
+      "code-graph skill-advisor coverage",
+      "catalog playbook coverage audit plan",
+      "028 coverage audit approach",
+      "read-only audit iterations plan",
+      "catalog playbook coverage audit tasks",
+      "028 coverage audit task list",
+      "read-only audit iterations tasks",
+      "catalog playbook coverage audit summary",
+      "028 coverage audit complete",
+      "code-graph skill-advisor coverage result"
+    ],
+    "key_topics": [
+      "catalog",
+      "playbook",
+      "coverage",
+      "audit",
+      "feature",
+      "gap",
+      "code-graph",
+      "skill-advisor",
+      "plan",
+      "approach",
+      "read-only",
+      "iterations"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Coverage Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 028 shipped many features into three daemon-backed system skills (system-spec-kit, system-code-graph and system-skill-advisor), but the release-cleanup that aligned feature catalogs and testing playbooks only ever touched system-spec-kit, and even there it ran edits-only",
+    "created_at": "2026-06-22T04:40:16.647Z",
+    "last_save_at": "2026-11-10T05:47:30.853Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:e6c3a12d0fea306bc28b53ae6c0cd52d754929ecda8dc416c072c67e1357c76f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1ab1fb4fd1b149d8b0db0fdd92d5d3af1281ccc2c35cd8780fc83b761be2de8b",
+      "plan.md": "f5919fc08b0f27dff05a5440e2b2791ae6278ebe66f0b1aee4229b4d364f2465",
+      "tasks.md": "35798d57ed34c2a92f2684aff58b71427a736a805022389f084387c9b16ec85e",
+      "implementation-summary.md": "6cbecbf3805ccd5c7d1b8ddcc6c7c64709c343f953a77ed43a5ecde6f76c4cad",
+      "research/research.md": "79015f75d6bdfbbc715b7ef705be928ed5ac100c2009082af68256fc01a3a437"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -139,10 +139,10 @@ The 60-second fetch cadence: consecutive entries like `1782366421`, `1782366479`
 A single `git rebase` emits multiple reflog entries. Sampled from the primary reflog:
 
 ```
-rebase (start): checkout origin/system-speckit/028-memory-search-intelligence
+rebase (start): checkout origin/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence
 rebase (pick): feat(deep-loops/037): ...
 rebase (continue): chore(028/016): checkpoint generated metadata regen
-rebase (finish): returning to refs/heads/system-speckit/028-memory-search-intelligence
+rebase (finish): returning to refs/heads/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence
 ```
 
 So 44 primary rebase entries ≈ **11 rebase operations**. Worktree `rebase (start)` count = **52**, so ≈ **52 rebase operations** in worktrees. Clone-wide ≈ **63 rebase operations** over 34 days (~1.9/day).

@@ -12,7 +12,7 @@ trigger_phrases:
   - "coverage and exclusion policy"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Ripgrep Retrieval Conventions
@@ -160,7 +160,7 @@ Worked example, the packet scope:
 ```text
 rg --no-config --hidden --fixed-strings --ignore-case \
   --files-with-matches --max-count 1 --glob '*.md' \
-  -- 'trigger index generator' specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement
+  -- 'trigger index generator' specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement
 ```
 
 Packet directories are `NNN-short-descriptive-name`, lowercase and hyphen-separated, which is what makes them usable as deterministic path inputs. Keep the document basename as a separate document-type field rather than folding it into the path scope.
@@ -318,7 +318,7 @@ The lookup applies its own two limits to the prompt, not to declared phrases: a 
 
 ### Research
 
-- [research.md](../../../../../specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md) - Evidence and source citations behind every rule in this document
+- [research.md](../../../../../specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md) - Evidence and source citations behind every rule in this document
 
 ### Reference Files
 

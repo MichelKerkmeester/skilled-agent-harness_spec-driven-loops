@@ -61,7 +61,7 @@ The one mandatory caveat the port MUST carry is the **graph_causal signed-score 
 | **Priority** | P1 |
 | **Status** | in-progress |
 | **Created** | 2026-06-19 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Parent Packet** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime |
 | **Source research** | `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` |
 | **Shipped record** | Wave-0 record (Wave-0 commits `61fe63b24d..5ed284319b`), the dependency `84c532114d` (cand 5) ships the `fuseResultsMulti` API this import consumes. No advisor candidate shipped |

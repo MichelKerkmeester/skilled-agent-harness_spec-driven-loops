@@ -1,0 +1,36 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture",
+  "description": "The artifact this series changes is the automatic operator decision capture pipeline: the capture core and runtime adapters under",
+  "keywords": [
+    "artifact",
+    "series",
+    "changes",
+    "automatic",
+    "operator",
+    "decision",
+    "capture",
+    "pipeline",
+    "core",
+    "runtime",
+    "adapters"
+  ],
+  "lastUpdated": "2026-11-03T09:27:36.912Z",
+  "specId": "043",
+  "folderSlug": "decision-capture",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 9,
+  "memoryNameHistory": [
+    "01-11-26_23-00__deep-research-3-iterations-cli-pi-deepseek-v4-1.md",
+    "02-11-26_10-44__recorded-the-operator-decision-on-006-run-timing.md",
+    "02-11-26_15-14__refreshed-generated-metadata-after-the-decision.md",
+    "02-11-26_15-35__refreshed-generated-metadata-after-002-closed-on.md",
+    "02-11-26_17-33__refreshed-generated-metadata-after-the-codex-run.md",
+    "02-11-26_18-38__ran-a-five-iteration-fan-out-deep-research.md",
+    "02-11-26_19-14__amended-003-nfr-r02-so-the-codex-and-pi-sweeps.md",
+    "02-11-26_21-58__deep-review-of-the-series-luna-five-iterations.md",
+    "03-11-26_10-27__planned-children-008-010-from-the-gap-research.md"
+  ]
+}

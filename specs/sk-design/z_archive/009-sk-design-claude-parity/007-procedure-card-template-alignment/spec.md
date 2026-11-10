@@ -44,7 +44,7 @@ Phase 007 audited the fourteen existing `sk-design` procedure cards and `shared/
 | **Status** | Complete |
 | **Created** | 2026-07-06 |
 | **Completed** | 2026-07-06 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Estimated LOC** | Documentation-only: one schema doc plus fourteen procedure cards, structural edits (frontmatter, section numbering) only |
 <!-- /ANCHOR:metadata -->
 

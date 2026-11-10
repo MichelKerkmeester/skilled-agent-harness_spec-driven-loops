@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/012-envelope-presentation-and-command-doc-alignment",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "envelope double emission",
+      "token budget breach",
+      "command doc drift",
+      "progressive disclosure cursor",
+      "single casing envelope",
+      "dual command tree parity",
+      "command doc drift battery",
+      "format text renderer",
+      "envelope presentation",
+      "command doc alignment",
+      "envelope single casing",
+      "cursor scope tenant leak"
+    ],
+    "key_topics": [
+      "envelope",
+      "double",
+      "emission",
+      "token",
+      "budget",
+      "breach",
+      "command",
+      "doc",
+      "drift",
+      "progressive",
+      "disclosure",
+      "cursor"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Envelope Presentation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doc Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Baseline",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Progressive Disclosure",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Live-measured (deep-dive report §5, ledger L7 🟢): a 5-result `memorysearch` returns a 17.6KB envelope because every telemetry block is double-emitted in camelCase AND snakecase (`artifactRouting`/`artifactrouting`, `graphContribution`/`graphcontribution`, `searchDecisionEnvelope`/`searchdecisionenvelope`, `appliedBoosts`/`appliedboosts`), while the token budget is enforced BEFORE graphContext/routing/envelope attach — so results get compacted to empty snippets while metadata survives, and `meta.tokenCount` reports 6,455 against an \"enforced\" budget of 3,500",
+    "created_at": "2026-07-03T09:44:26Z",
+    "last_save_at": "2026-11-10T05:47:41.031Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7948b5a6438df90b34db804525d8975c320145e5e58b32b4941a801d238d4d4b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f6fbf3cd5030251d52c9930d190c17d0a6f4d08542836c589f4f98c5cebbc60c",
+      "plan.md": "c04be1d3fa1ec79f29166ed14b790e0b18b44c4eecad8af2c7f65b70c8b2bc2c",
+      "tasks.md": "8713770647d1cc0da76acddcfa2565095e4c9cbf889cf4615557b488b788d423",
+      "implementation-summary.md": "176a2d089681e9b2bc7d7b69a82783b300cf1646907104b5cd3650803ba185f7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

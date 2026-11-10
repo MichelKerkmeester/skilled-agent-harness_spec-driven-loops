@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction",
+  "description": "This phased decomposition tracks Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and",
+  "keywords": [
+    "phased",
+    "decomposition",
+    "tracks",
+    "reduce",
+    "optimize",
+    "spec-kit",
+    "doc",
+    "templates",
+    "merge",
+    "tasks",
+    "checklist",
+    "less",
+    "bloat",
+    "better",
+    "historic",
+    "context"
+  ],
+  "lastUpdated": "2026-09-06T06:56:48.847Z",
+  "specId": "003",
+  "folderSlug": "spec-doc-template-reduction",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-08-26_21-20__scaffold-smoke-proves-the-generator-fix.md"
+  ]
+}

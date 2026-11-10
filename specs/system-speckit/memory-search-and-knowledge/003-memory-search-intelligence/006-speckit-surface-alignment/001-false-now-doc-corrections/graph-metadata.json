@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment/001-false-now-doc-corrections",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment/001-false-now-doc-corrections",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "false-now doc corrections",
+      "retention forgetting flag",
+      "Track C supersession",
+      "soft delete tombstones",
+      "envelope fidelity comment",
+      "tasks",
+      "spec-kit tasks",
+      "retention forgetting"
+    ],
+    "key_topics": [
+      "false-now",
+      "doc",
+      "corrections",
+      "retention",
+      "forgetting",
+      "flag",
+      "track",
+      "supersession",
+      "soft",
+      "delete",
+      "tombstones",
+      "envelope"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Now Documentation Corrections",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Align",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Track",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Before And After Evidence",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four false-now surfaces could mislead readers about current packet 028 behavior: a stale retention flag suffix, an earlier Track-C proposed-only snapshot, a soft-delete recall-filter contradiction, and a stale envelope-fidelity default comment",
+    "created_at": "2026-07-05T08:50:45.332Z",
+    "last_save_at": "2026-11-10T05:47:52.855Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fe0ee33bd1068003c01a96d6f7e47a9c70e50a142dac234c7454adb3d71b0978",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fe3a73dd3b141cc29cdfaa6fc696646cecf1f87f5e58b166a47a539194509ddd",
+      "plan.md": "1062b00be0bf92ce4c9f965b89ef5b5cd18a927ae0c0f2e9f2a79fc804e9db91",
+      "tasks.md": "b5cdc83f8273aa2dd4eb6681ad95bc073d54e7f658a09c9de8e0a043cb113000",
+      "implementation-summary.md": "8321d5408992aaf6ed0dfd61a86bb94b44d7d2a2bf719d93dcdbdaefe6feb8c4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

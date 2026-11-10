@@ -44,7 +44,7 @@ _memory:
 | **Completed** | 2026-06-15 |
 | **Level** | 2 |
 | **Type** | Read-only deep review (delivers a report + remediation plan) |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 
 <!-- /ANCHOR:metadata -->
 ---

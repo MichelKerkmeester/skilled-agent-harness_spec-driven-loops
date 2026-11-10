@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment/002-fix-stress-docs",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment/002-fix-stress-docs",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stress test docs fix",
+      "automated stress harness documentation",
+      "substrate cleanup README",
+      "durability stress README",
+      "search quality stress README",
+      "stress docs implementation plan",
+      "stress harness doc repair plan",
+      "substrate cleanup documentation plan",
+      "stress docs tasks",
+      "stress harness doc tasks",
+      "substrate README cleanup task",
+      "stress docs implementation summary"
+    ],
+    "key_topics": [
+      "stress",
+      "test",
+      "docs",
+      "automated",
+      "harness",
+      "documentation",
+      "substrate",
+      "cleanup",
+      "readme",
+      "durability",
+      "search",
+      "quality"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Stress Docs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Automated Harness Awareness Before",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The stress-test documentation had five confirmed drifts from the shipped `mcpserver/stresstest/` harness",
+    "created_at": "2026-07-05T09:43:38Z",
+    "last_save_at": "2026-11-10T05:47:52.917Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:19f886a83693e2dcc6e5d81ae91b8dc0752023fded74f36c598f57a295ed7736",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a59da7c612de0033d5c66916c6ff74119d147d00147aca931a45f4e4d5795905",
+      "plan.md": "641fdaf69192e60257a3283a49bd3dd649e27b1ea9706264c64ccfa6f4b4b983",
+      "tasks.md": "cf4ad38825d372b443f0ab7b842282a5fb61422facef25aa2aa71a1399416b07",
+      "implementation-summary.md": "fe511ce9a03fc06845d15a76f64cb4b31f481dc7b93d964bd92a09fa0ed0e429"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/001-hook-parity/004-fix-opencode-plugin-loader-bridge",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/001-hook-parity/004-fix-opencode-plugin-loader-bridge",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/001-hook-parity",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode plugin loader",
+      "opencode plugin crash",
+      "opencode plugin auth null",
+      "opencode bridge isolation",
+      "opencode plugin discovery",
+      "opencode tui worker plugin2",
+      "026/009/007",
+      "026/009/007 plan",
+      "opencode plugin loader plan",
+      "026/009/007 tasks",
+      "opencode plugin loader tasks",
+      "026/009/007 adr"
+    ],
+    "key_topics": [
+      "opencode",
+      "plugin",
+      "loader",
+      "crash",
+      "auth",
+      "null",
+      "bridge",
+      "isolation",
+      "discovery",
+      "tui",
+      "worker",
+      "plugin2"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "tests/opencode-plugins-folder-purity.vitest.ts",
+      ".opencode/node_modules/@opencode-ai/plugin/dist/index.d.ts",
+      ".opencode/plugins/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugins-folder-purity.vitest.ts",
+        "kind": "test",
+        "path": "tests/opencode-plugins-folder-purity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.d.ts",
+        "kind": "code",
+        "path": ".opencode/node_modules/@opencode-ai/plugin/dist/index.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Loader Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Restore",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pass Criteria",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Layout",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Layout",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Built",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "How Delivered",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenCode 1.3.17 fails to start the TUI in any directory whose `.opencode/plugins/` resolves through the symlink at `/Users/michelkerkmeester/MEGA/Development/CodeEnvironment/Public/.opencode/plugins/`",
+    "created_at": "2026-04-22T13:32:00.000Z",
+    "last_save_at": "2026-11-10T05:46:55.862Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:26de33d6827d562417c5ad233cf5366ea8a2ad79f634dd895223cc33413db19a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "319539bfbae2abdb04d8f0f70fc92254e3df024ba1c1eb5aa196dfa5cfe37268",
+      "plan.md": "ba35f185951ebdd54e19bb2e12f0e247e0cb320d05f7bca158772d5c8b74f2f2",
+      "tasks.md": "1fc9c46e2d60a40dea7b05496aaeab8286613556f4ae1e9ee42d1fcea0c10654",
+      "decision-record.md": "275bfaaf9ababab2ac1f4dcd20dba2bb0e5caa2477b143b6b071b418880cb314",
+      "implementation-summary.md": "12879191b611faa041b25a711934e6a7cfb0766dc1743ae8a94bb64e1d3542d9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

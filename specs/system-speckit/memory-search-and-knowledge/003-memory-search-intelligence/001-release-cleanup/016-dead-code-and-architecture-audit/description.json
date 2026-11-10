@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/016-dead-code-and-architecture-audit",
+  "description": "The repository has grown across dozens of packets, several migrations (spec re-nesting, hyphen-case renaming, parent-hub merges), and multiple",
+  "keywords": [
+    "repository",
+    "grown",
+    "across",
+    "dozens",
+    "packets",
+    "several",
+    "migrations",
+    "spec",
+    "re-nesting",
+    "hyphen-case",
+    "renaming",
+    "parent-hub",
+    "merges",
+    "multiple"
+  ],
+  "lastUpdated": "2026-08-15T14:41:13.686Z",
+  "specId": "016",
+  "folderSlug": "dead-code-and-architecture-audit",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

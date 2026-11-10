@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/004/015 tree-sitter chunking",
+      "code-aware chunker stage b",
+      "ast-aware code chunking",
+      "cocoindex code splitter",
+      "RecursiveSplitter replacement",
+      "016/004/015 plan",
+      "code-aware chunking plan",
+      "tree-sitter chunking plan",
+      "016/004/015 tasks",
+      "code-aware chunking tasks",
+      "tree-sitter chunking tasks",
+      "016/004/015 summary"
+    ],
+    "key_topics": [
+      "tree-sitter",
+      "chunking",
+      "code-aware",
+      "chunker",
+      "stage",
+      "ast-aware",
+      "code",
+      "cocoindex",
+      "splitter",
+      "recursivesplitter",
+      "replacement",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "evidence/phase2-comparison-015-treesitter.md",
+      "evidence/phase2-comparison-014-vs-015-delta.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-015-treesitter.md",
+        "kind": "doc",
+        "path": "evidence/phase2-comparison-015-treesitter.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase2-comparison-014-vs-015-delta.md",
+        "kind": "doc",
+        "path": "evidence/phase2-comparison-014-vs-015-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "Include Javadoc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edge Case",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "AST-aware",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "full",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "RecursiveSplitter",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "TypeScript",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Aware Tree",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dependencies And Grammar Smoke",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Splitter And Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Indexer Dispatch And Tests",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "And Bench",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Docs And Validation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "definition",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "matching",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "env",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Chunker Module",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Replaces RecursiveSplitter's blind line-windowing with AST-aware chunking that respects class/function/interface/method boundaries. Uses tree-sitter grammars for TypeScript, Python, JavaScript, Go, Rust, Java, and falls back to RecursiveSplitter for unsupported languages. Each top-level definition becomes its own chunk (with full body + JSDoc/docstring), so the highest-ranked chunk for a query has rich semantic content instead of a 9-line import header. Future-proof: new languages drop in by adding a grammar. Embedder-agnostic, reranker-agnostic.",
+    "created_at": "2026-05-19T12:33:28.231Z",
+    "last_save_at": "2026-11-10T05:46:32.869Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dd4abae6b52275395b7dd9bf2d3e1f8d80f361d8fdf08a5216d6df3d46fc0ef5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c506aa862e2c0fcb5ec806743273f8a700d856031fe30fd8ab6ba471fe9d2ee8",
+      "plan.md": "b67250ec5dac216a59eee8efa8246334e2c7b504c590e55107d0ebffc3519965",
+      "tasks.md": "b281cc834b6ff4f00d12ada8862a82f3be1da53ff36d06dbd17225c3fee600e9",
+      "implementation-summary.md": "0636f054e0cbc599f10ab0b3679b796a5428ce1d0c21c5598f5eadf5cfa586cb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

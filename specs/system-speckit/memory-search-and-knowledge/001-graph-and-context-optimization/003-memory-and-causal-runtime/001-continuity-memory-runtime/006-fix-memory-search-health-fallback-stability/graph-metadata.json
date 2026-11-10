@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs",
+        "reason": "Predecessor packet (migrated from legacy string-array; original reason not preserved)",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory search clusters 4-7 remediation",
+      "causal-stats output hygiene fix",
+      "memory state hygiene",
+      "folder discovery weak signal",
+      "quality fallback fts5 bm25 grep",
+      "intent classifier stability corpus",
+      "cocoindex daemon health probe",
+      "026/003/006 packet",
+      "memory search clusters 4-7 remediation plan",
+      "causal-stats output hygiene plan",
+      "memory search state hygiene plan",
+      "quality fallback fts5 bm25 grep plan"
+    ],
+    "key_topics": [
+      "memory",
+      "search",
+      "clusters",
+      "remediation",
+      "causal-stats",
+      "output",
+      "hygiene",
+      "state",
+      "folder",
+      "discovery",
+      "weak",
+      "signal"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "lib/search/folder-discovery.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": "lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Three Cluster",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scoped",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implemented Clusters",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 005 audited `/memory:search` against the indexed-continuity runtime and catalogued 17 defects spanning retrieval, output rendering, and the causal-graph subcommand",
+    "created_at": "2026-05-08T21:00:00Z",
+    "last_save_at": "2026-11-10T05:46:17.202Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:b99c01a2162eafc4b0e702c27d8091c38afc70d09902519f93ea12791b374505",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "be2c380c1f6451a9af5a2a132e8129e9cbd1cc587b6fc21406c748742fd447f2",
+      "plan.md": "262a8a1e5196da5540ec5d51dd5efd87e8e42202d1ed945a9dba049aa77bf266",
+      "tasks.md": "d0f3f73dc72508123505515f90389fea89126835d1a9760208f6a2088443b4e4",
+      "implementation-summary.md": "eae7a97a65ed179b5b81247885a92f281a920b9087a7d64317dcb5b19de32f66",
+      "resource-map.md": "9c781d9947b7a7a4a93e4441d8eb004b2818ca04a37190d1ed9a16028d58a832"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

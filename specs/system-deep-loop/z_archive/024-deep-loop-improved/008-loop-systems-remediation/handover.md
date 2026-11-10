@@ -4,7 +4,7 @@
 
 ## 1. Where things stand
 
-- **Branch:** `system-speckit/028-memory-search-intelligence`. A **concurrent session is also committing** to this branch (mcp-open-design / skill-benchmark / design-token-lint, "D5-*"). HEAD moves on its own; rebase/pull-then-push if a push is rejected. The `skill-benchmark/tests/design-token-lint.vitest.ts` failure in the deep-improvement suite is **theirs, not ours — ignore it.**
+- **Branch:** `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence`. A **concurrent session is also committing** to this branch (mcp-open-design / skill-benchmark / design-token-lint, "D5-*"). HEAD moves on its own; rebase/pull-then-push if a push is rejected. The `skill-benchmark/tests/design-token-lint.vitest.ts` failure in the deep-improvement suite is **theirs, not ours — ignore it.**
 - **Parent packet:** `.opencode/specs/system-deep-loop/024-deep-loop-improved/` (the `002-implementation` parent was ungrouped earlier this arc; its children are now 156 root phases `002`–`008`; the whole 156 tree validates 63/63).
 - **This phase parent:** `024-deep-loop-improved/008-loop-systems-remediation/` with 6 children (below).
 

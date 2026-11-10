@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system/002-active-decisions-design",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system/002-active-decisions-design",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "active decisions design",
+      "active decisions decision",
+      "no replacement surface",
+      "constitutional layer deprecation",
+      "keep rules as docs",
+      "spec core",
+      "phase two active decisions design",
+      "active decisions schema design",
+      "decisions and notes system",
+      "constitutional memory replacement",
+      "active decisions design plan",
+      "phase two design tasks"
+    ],
+    "key_topics": [
+      "active",
+      "decisions",
+      "design",
+      "decision",
+      "replacement",
+      "surface",
+      "constitutional",
+      "layer",
+      "deprecation",
+      "keep",
+      "rules",
+      "docs"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "AGENTS.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The constitutional DB tier is decorative: its rules are already inlined in the root instruction files, it surfaces only when the model chooses to call `memorysearch`, and its cold-start injection is dead code",
+    "created_at": "2026-08-26T05:34:11Z",
+    "last_save_at": "2026-11-10T05:48:00.985Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9f92613de599f19251002550f891e4b14c04aaeee34256de66bfd543bbd6ad5e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8accd5cdce90c199c0b2c6335205141bb591e80cb409812fa699b39f39341d15",
+      "plan.md": "2b39857f82503fa084755c39a6d0ea504480f3d0fbc598b1dd68b047c2da9f69",
+      "tasks.md": "39ab922f9df8b5150d7732e66dd01e081a958ebd8a5d692984b82722ac0654ac",
+      "implementation-summary.md": "75abadb2145e7287584cbdf13ced84ed1d72a51a7352f8e09b021a487708aaa2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

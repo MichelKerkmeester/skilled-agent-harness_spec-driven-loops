@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/004-nondestructive-build",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/004-nondestructive-build",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "non-destructive mcp build",
+      "prebuild clean wipes dist",
+      "rebuild crashes daemon RC-4",
+      "tsc incremental build dist",
+      "non-destructive mcp build plan",
+      "prebuild clean removal plan",
+      "non-destructive mcp build tasks",
+      "prebuild clean removal tasks",
+      "non-destructive mcp build summary",
+      "rebuild no longer crashes daemon",
+      "prebuild clean removed incremental"
+    ],
+    "key_topics": [
+      "non-destructive",
+      "mcp",
+      "prebuild",
+      "clean",
+      "wipes",
+      "dist",
+      "rebuild",
+      "crashes",
+      "daemon",
+      "rc-4",
+      "tsc",
+      "incremental"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "dist/tsconfig.tsbuildinfo"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.tsbuildinfo",
+        "kind": "file",
+        "path": "dist/tsconfig.tsbuildinfo",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rebuilding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `@spec-kit/mcp-server` build runs `prebuild` → `clean` → `rmSync('dist', {recursive,force})`, deleting the live `dist/` before `tsc --build` repopulates it over several seconds",
+    "created_at": "2026-05-28T18:15:02Z",
+    "last_save_at": "2026-11-10T05:46:59.013Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f78c10304fb79e242c7e6573873fe1afe5a0c26552001f88a60c0a77f8ac300b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "337515593e17a1124e98c2d353edb9dbb3c949fdd74812dda61a8b051cae8d9d",
+      "plan.md": "9bf6d2d19899367dbf4bc5dfe6418a7e70630501d88256cd47e7a34e39d79684",
+      "tasks.md": "05f631bfa48ca52b8596c7ce84488341cc32c213e5e302cbb5eeb8c4416024df",
+      "implementation-summary.md": "cbb09930acd74d19ee022521663cf21671d5048038d40bac5d9c970d48d005df"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

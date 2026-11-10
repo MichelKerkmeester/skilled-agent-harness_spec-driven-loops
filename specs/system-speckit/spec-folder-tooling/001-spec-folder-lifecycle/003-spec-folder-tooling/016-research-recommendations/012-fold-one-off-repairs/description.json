@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/012-fold-one-off-repairs",
+  "description": "Phase 12: fold-one-off-repairs",
+  "keywords": [
+    "phase",
+    "fold-one-off-repairs"
+  ],
+  "lastUpdated": "2026-10-11T19:55:45.260Z",
+  "specId": "012",
+  "folderSlug": "fold-one-off-repairs",
+  "parentChain": [
+    "system-speckit",
+    "029-spec-folder-lifecycle",
+    "003-spec-folder-tooling",
+    "016-research-recommendations"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-10-26_20-55__the-full-tree-apply-ran-first-on-a-clone-and-then.md"
+  ]
+}

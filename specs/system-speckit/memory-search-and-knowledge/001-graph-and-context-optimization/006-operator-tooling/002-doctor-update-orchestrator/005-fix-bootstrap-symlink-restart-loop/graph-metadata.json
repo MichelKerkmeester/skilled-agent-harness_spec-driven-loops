@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor bootstrap symlink restart loop",
+      "doctor update restart required",
+      "legacy skill compatibility symlink",
+      "doctor bootstrap symlink fix",
+      "doctor restart loop plan",
+      "legacy directory migration branches",
+      "doctor bootstrap task list",
+      "symlink branch removal checklist",
+      "doctor runtime bootstrap verification",
+      "doctor bootstrap symlink summary",
+      "restart loop fix shipped",
+      "bootstrap restart required removed"
+    ],
+    "key_topics": [
+      "doctor",
+      "bootstrap",
+      "symlink",
+      "restart",
+      "loop",
+      "required",
+      "legacy",
+      "skill",
+      "compatibility",
+      "plan",
+      "directory",
+      "migration"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Doctor Bootstrap Symlink Restart Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Cause",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. Problem",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Edit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Touched",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Low",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks: Fix Doctor Bootstrap Symlink Restart Loop",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "-",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "importance_tier:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "contextType:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Before Three",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "After Branch",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Remove the doctor bootstrap branch that recreated the legacy singular skill symlink and forced a restart loop, while keeping the genuine legacy-directory migration and the post-build restart.",
+    "created_at": "2026-07-10T06:24:11.204Z",
+    "last_save_at": "2026-10-07T20:36:11.904Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fa7db3a12b56ca6369dbdf46285fec7d43ec10cb8f15bb44354e415482c89a1c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7f90c067ba8c484bd1bd1c5861bc08173408995f3b49aa0c76d58ced5c2efda6",
+      "plan.md": "ddb0739f60935a708e13afd3b623a6832a720426cc12b53d3c94db7a8c50f7b2",
+      "tasks.md": "eed4c7a6f705b6dc3b79588c2b26bba452e4e64c2189e88b00f98f1aeeb004e0",
+      "implementation-summary.md": "7448e5952451d6ae8da651f8610711b3fa4d3174f5596b2bc6a8c3890e01a73d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -45,7 +45,7 @@ _memory:
 | **Priority** | P2 |
 | **Status** | in-progress |
 | **Created** | 2026-06-19 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Packet** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime |
 | **Candidates** | SA-author-self-boost-guard (provenance-contamination), SA-attested-baseline-drift-sweep (temporal-drift), SA-skip-never-fabricate (skip-reason taxonomy) |
 | **Status (current)** | SA-author-self-boost-guard DONE (default-off behind `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD`), SA-attested-baseline-drift-sweep PENDING (`shared-infra-dep`), SA-skip-never-fabricate PENDING (`shared-infra-dep`) |

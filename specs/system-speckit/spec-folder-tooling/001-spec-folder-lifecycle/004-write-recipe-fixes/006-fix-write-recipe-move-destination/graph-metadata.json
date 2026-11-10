@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination",
+  "spec_folder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination",
+  "parent_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fix write recipe move destination",
+      "phase 6 fix write recipe move destination",
+      "spec folder move destination",
+      "fix write recipe move destination plan",
+      "known row move destination",
+      "exactly once applier",
+      "fix write recipe move destination tasks",
+      "applier verify commands",
+      "fix write recipe move destination acceptance criteria",
+      "fix write recipe move destination goal",
+      "fix write recipe move destination implementation summary"
+    ],
+    "key_topics": [
+      "write",
+      "recipe",
+      "move",
+      "destination",
+      "phase",
+      "spec",
+      "folder",
+      "plan",
+      "known",
+      "row",
+      "exactly",
+      "applier"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/applied.txt",
+      "scratch/census.txt",
+      ".skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md",
+      "scratch/changed-files.txt",
+      "references/debugging/troubleshooting.md",
+      "scratch/review/T009.txt",
+      "scratch/known-rows.jsonl",
+      "scratch/recheck.txt",
+      "scratch/review/T009.err",
+      "scratch/status-start.txt",
+      "scratch/suite-end.txt",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      "scratch/briefs/T009.txt",
+      "scratch/suite-start.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "applied.txt",
+        "kind": "file",
+        "path": "scratch/applied.txt",
+        "source": "derived"
+      },
+      {
+        "name": "census.txt",
+        "kind": "file",
+        "path": "scratch/census.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-write-recipe.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md",
+        "source": "derived"
+      },
+      {
+        "name": "changed-files.txt",
+        "kind": "file",
+        "path": "scratch/changed-files.txt",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting.md",
+        "kind": "doc",
+        "path": "references/debugging/troubleshooting.md",
+        "source": "derived"
+      },
+      {
+        "name": "T009.txt",
+        "kind": "file",
+        "path": "scratch/review/T009.txt",
+        "source": "derived"
+      },
+      {
+        "name": "known-rows.jsonl",
+        "kind": "file",
+        "path": "scratch/known-rows.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "recheck.txt",
+        "kind": "file",
+        "path": "scratch/recheck.txt",
+        "source": "derived"
+      },
+      {
+        "name": "T009.err",
+        "kind": "file",
+        "path": "scratch/review/T009.err",
+        "source": "derived"
+      },
+      {
+        "name": "status-start.txt",
+        "kind": "file",
+        "path": "scratch/status-start.txt",
+        "source": "derived"
+      },
+      {
+        "name": "suite-end.txt",
+        "kind": "file",
+        "path": "scratch/suite-end.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "suite-start.txt",
+        "kind": "file",
+        "path": "scratch/suite-start.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Step 2 of `.skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` moves the scaffold into the selected track",
+    "created_at": "2026-10-23T11:48:59Z",
+    "last_save_at": "2026-11-10T05:48:45.542Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5c3097521b85c3c27f314714180b923454e34ff251a4cca92a69aba95a9c2a90",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "60c94fa200d81a76b2ab4beae491b7bac86a0fec22338ad45ef8e12dc4c191cf",
+      "plan.md": "cda2fbb2095675a37ca57268c172d65730ce3352c1048912a853fc7f386afd20",
+      "tasks.md": "82bc915475eebb5e62cde14db9b435e0b4e6a062d845eabcf9dbb34e38c6436f",
+      "implementation-summary.md": "230ca2f57dd910d27c199d774caf6b1fd4cfd31f49beacea2a41d4297eeeae2f"
+    },
+    "last_active_at": null
+  }
+}

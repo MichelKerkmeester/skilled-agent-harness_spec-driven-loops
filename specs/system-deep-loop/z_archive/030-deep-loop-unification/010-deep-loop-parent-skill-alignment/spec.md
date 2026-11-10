@@ -71,7 +71,7 @@ FAILURE MODES:
 | **Priority** | P1 |
 | **Status** | Complete (~95%; optional live-loop e2e not run) |
 | **Created** | 2026-06-26 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 <!-- /ANCHOR:metadata -->
 
 ---

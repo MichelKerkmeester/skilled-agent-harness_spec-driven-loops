@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4",
+  "children_ids": [
+    "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/003-template-dedup",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/004-continuity-single-source",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/005-comment-extraction",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/006-template-reduction-verification",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/007-lazy-addon-docs",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/008-plan-and-contract-optimization",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/010-checklist-full-retirement",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/011-checklist-reference-cleanup",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/012-fingerprint-docset-enforcement",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/013-retirement-read-path-closure"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec doc template reduction",
+      "merge tasks and checklist",
+      "small-model legibility",
+      "reduce spec-kit doc templates",
+      "less doc-template bloat",
+      "historic context preservation"
+    ],
+    "key_topics": [
+      "spec",
+      "doc",
+      "template",
+      "reduction",
+      "merge",
+      "tasks",
+      "checklist",
+      "small-model",
+      "legibility",
+      "reduce",
+      "spec-kit",
+      "templates"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phased decomposition tracks Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility across independently executable child phase folders",
+    "created_at": "2026-08-26T05:33:55Z",
+    "last_save_at": "2026-11-10T05:47:58.352Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b0c5a8f3d007f8d5171781418c2e82b0602613d6077abf8d9123202dc258e0a2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ff87ca87d2f16c9b601070035baac7831cb6154257c86170ec5afbd130b06a5a"
+    },
+    "last_active_child_id": "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure",
+    "last_active_at": "2026-08-27T20:21:06.358Z"
+  }
+}

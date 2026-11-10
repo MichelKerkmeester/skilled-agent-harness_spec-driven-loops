@@ -49,7 +49,7 @@ _memory:
 | **Priority** | P2 |
 | **Status** | complete |
 | **Created** | 2026-06-19 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Parent research phase** | `system-deep-loop/029-deep-loop-runtime` (Deep Loop, convergence/fan-out/council intelligence) |
 | **Source research** | `../research/research.md` (Q5), `../../research/roadmap.md` (MEMORY-SYSTEMS ADDENDUM), `../../research/synthesis/06-memory-systems-findings.md` (#15) |
 

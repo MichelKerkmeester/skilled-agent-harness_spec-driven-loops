@@ -53,7 +53,7 @@ FAILURE MODES:
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-07-03 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 18 |
 | **Predecessor** | 017-hot-path-optimization |

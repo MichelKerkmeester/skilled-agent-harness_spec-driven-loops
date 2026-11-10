@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/014-057-root-readme-deeper-rewrite",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/014-057-root-readme-deeper-rewrite",
+  "parent_id": null,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "057 spec",
+      "deeper rewrite root readme",
+      "sonnet markdown second pass",
+      "057 plan",
+      "deeper rewrite plan",
+      "057 tasks",
+      "057 implementation",
+      "deeper rewrite summary",
+      "057 resource map"
+    ],
+    "key_topics": [
+      "spec",
+      "deeper",
+      "rewrite",
+      "root",
+      "readme",
+      "sonnet",
+      "markdown",
+      "second",
+      "pass",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "README.md",
+      "research/edit-evidence-v2.md",
+      "research/uncovered-findings.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "README.md",
+        "source": "derived"
+      },
+      {
+        "name": "edit-evidence-v2.md",
+        "kind": "doc",
+        "path": "research/edit-evidence-v2.md",
+        "source": "derived"
+      },
+      {
+        "name": "uncovered-findings.md",
+        "kind": "doc",
+        "path": "research/uncovered-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quick Start",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Sonnet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compose Task",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Sonnet @markdown second-pass that revisits the raw iter findings (not just the bucket delta) and applies surgical edits to any finding Phase 4 missed",
+    "created_at": "2026-05-15T14:30:00Z",
+    "last_save_at": "2026-11-10T05:47:05.654Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:d0a32b6cfcb7ad6ac594e88b742c2eaac028b87b33480e313934320b14929b82",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9c41abaf25fd264e9a0452e91287fc80f8073138b15fb993aa1bf26896325ebb",
+      "plan.md": "70c5b14c93bdd1e6aade005af777113df69c8e3488412f99203c8ed0512dc53d",
+      "tasks.md": "08c0b906887cd80c0e0f03d5cf4b93ec6004dd5e6c6aa1d5c9031ab5dd83be93",
+      "implementation-summary.md": "12d3607535a08582a18f1134c104674ba8405a31c6b373f62d95bbbf71d46dbc",
+      "resource-map.md": "0332652d3d6ae44a5413dd3283268e31616736e2bcb42af4a6bfb47b5153bd00"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

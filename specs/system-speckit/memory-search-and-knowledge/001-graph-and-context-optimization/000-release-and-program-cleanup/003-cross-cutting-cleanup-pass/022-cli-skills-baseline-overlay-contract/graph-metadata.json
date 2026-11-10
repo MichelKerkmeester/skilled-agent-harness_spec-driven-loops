@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/022-cli-skills-baseline-overlay-contract",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/022-cli-skills-baseline-overlay-contract",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022-cli-skills-baseline-overlay-contract spec",
+      "022-cli-skills-baseline-overlay-contract plan",
+      "022-cli-skills-baseline-overlay-contract tasks",
+      "022-cli-skills-baseline-overlay-contract implementation"
+    ],
+    "key_topics": [
+      "022-cli-skills-baseline-overlay-contract",
+      "spec",
+      "plan",
+      "tasks",
+      "implementation",
+      "cli",
+      "orchestrator",
+      "skills",
+      "mirror",
+      "review",
+      "baseline",
+      "overlay"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/agents/review.md",
+      ".opencode/skills/sk-doc/scripts/validate_document.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "Skills Codebase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agnostic Standards Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Standards Loading",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Integration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-existing",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Update 5 CLI orchestrator skills to mirror review.md's baseline+overlay code-standards contract instead of hardcoded sk-code-review / sk-code-skilled references.",
+    "created_at": "2026-05-18T08:15:53.147Z",
+    "last_save_at": "2026-11-10T05:46:00.643Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1d75817acad4a55f8314e33448e2c5714060ef41a037f4a2087ce30a408c597a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3bedd977447fd80c02b1bbc37e501088c949e2c8d22da19a1ba5f085bed3be18",
+      "plan.md": "6c3cf6e61ac2af36dd5c51683aef1a8ee4fa40d4175695bbfad70d52abccf528",
+      "tasks.md": "538f88f85c37df06151c25b297c71cd79e278d0f7380e4cb8a02916674796499",
+      "implementation-summary.md": "d61255d039b00e03af0e36633f1e8ab2f246e44fa9e0ce395604048a455b71d1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

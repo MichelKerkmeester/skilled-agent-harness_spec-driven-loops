@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding",
+  "spec_folder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/005-healer-phrase-seeding",
+  "parent_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "healer phrase seeding",
+      "phase 5 healer phrase seeding",
+      "stop healer writing rejected phrases",
+      "healer phrase seeding plan",
+      "heal-spec-docs phrase refill policy",
+      "healer phrase seeding tasks",
+      "heal-spec-docs refill tasks",
+      "healer phrase seeding acceptance criteria",
+      "phase 5 healer phrase seeding goal",
+      "packet goal",
+      "healer phrase seeding implementation summary"
+    ],
+    "key_topics": [
+      "healer",
+      "phrase",
+      "seeding",
+      "phase",
+      "stop",
+      "writing",
+      "rejected",
+      "phrases",
+      "plan",
+      "heal-spec-docs",
+      "refill",
+      "policy"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts",
+      ".skilled/skills/system-spec-kit/runtime/package.json",
+      "cli/retrieval/lib/phrase-judge.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.d.mts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+      "runtime/package.json",
+      "dist/lib/frontmatter-migration.js",
+      "runtime/cli/package.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "heal-spec-docs.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "template-phrase-cleanup.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-migration.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-judge.mjs",
+        "kind": "file",
+        "path": "cli/retrieval/lib/phrase-judge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-judge.d.mts",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.d.mts",
+        "source": "derived"
+      },
+      {
+        "name": "create-root-numbering.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-migration.js",
+        "kind": "code",
+        "path": "dist/lib/frontmatter-migration.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ensure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`heal-spec-docs.cjs` at line 45 defines `TEMPLATEDEFAULTS`, placeholder trigger phrases from the plan.md, tasks.md and implementation-summary.md templates per document class",
+    "created_at": "2026-10-08T04:22:42Z",
+    "last_save_at": "2026-11-10T05:48:42.142Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:35099c1bbcfa277d730be5eac7822801ce910069668d03b6c37be93d46e35a82",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6de4fcb78a7f1e51ebc3547cb335634d59d443928e1a9967c095a0fe131ef15b",
+      "plan.md": "a448e69d888168499365d2de694afc87bbc43cd5857e33211051f42cc7e172ea",
+      "tasks.md": "6cac03d49a4cc51a5f020ab0cb64011582c569cbe14a8f9c75dc2b1740ad7ed4",
+      "implementation-summary.md": "b6cf1e3574cab2c0f8671464ad4acb3734ab37d76f26934974a4602f5a798f91"
+    },
+    "last_active_at": null
+  }
+}

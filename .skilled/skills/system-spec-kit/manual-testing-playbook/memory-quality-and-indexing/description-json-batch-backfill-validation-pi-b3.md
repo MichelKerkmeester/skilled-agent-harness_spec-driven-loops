@@ -2,7 +2,7 @@
 title: "131 -- Description.json batch backfill validation (PI-B3)"
 description: "This scenario validates Description.json batch backfill validation (PI-B3) for `131`. It focuses on Confirm batch-generated folder descriptions exist and conform to schema."
 audited_post_018: true
-version: 1.6.0.17
+version: 1.6.1.0
 id: memory-quality-and-indexing-description-json-batch-backfill-validation-pi-b3
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -180,18 +180,18 @@ Command output for missing `description.json` paths and depth inventory:
       "specFolders": 306,
       "withDescription": 306,
       "examples": [
-        ".opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/001-workflow-correctness-audit",
-        ".opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/002-memory-data-integrity-audit",
-        ".opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/003-skill-advisor-freshness-audit"
+        ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/001-workflow-correctness-audit",
+        ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/002-memory-data-integrity-audit",
+        ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/003-skill-advisor-freshness-audit"
       ]
     },
     "7": {
       "specFolders": 127,
       "withDescription": 127,
       "examples": [
-        ".opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-stress-playbook-foundation",
-        ".opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/002-search-scenario-design",
-        ".opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/003-search-scenario-execution"
+        ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/001-stress-playbook-foundation",
+        ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/002-search-scenario-design",
+        ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/003-search-scenario-execution"
       ]
     },
     "8": {
@@ -207,8 +207,8 @@ Command output for missing `description.json` paths and depth inventory:
       "specFolders": 2,
       "withDescription": 2,
       "examples": [
-        ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research/packet-docs",
-        ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/packet-docs"
+        ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research/packet-docs",
+        ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/packet-docs"
       ]
     }
   }

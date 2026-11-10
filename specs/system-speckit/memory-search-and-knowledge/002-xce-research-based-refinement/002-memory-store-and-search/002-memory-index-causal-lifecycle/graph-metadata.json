@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search",
+  "children_ids": [
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation",
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones",
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter",
+    "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 003",
+      "memory index causal lifecycle",
+      "incremental memory index",
+      "causal graph tombstones",
+      "frontmatter causal edge promoter",
+      "statediff reconciliation layer"
+    ],
+    "key_topics": [
+      "phase",
+      "memory",
+      "index",
+      "causal",
+      "lifecycle",
+      "incremental",
+      "graph",
+      "tombstones",
+      "frontmatter",
+      "edge",
+      "promoter",
+      "statediff"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "description.json",
+      "graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Index",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Causal Write Lifecycle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Soft Dependency",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase-parent control packet grouping the memory store's incremental-index and causal-graph write lifecycle: incremental index foundation, causal-edge tombstones, deterministic metadata-edge promotion, and desired/prior write-path reconciliation.",
+    "created_at": "2026-06-06T00:00:00Z",
+    "last_save_at": "2026-11-10T05:47:14.019Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:d7a531b4708c479d81d2b053da79669f1c5f0f48b3c60dae81ff13df3c2854af",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0031eeef5f2e8feabd2a934696a08639826ab9de2d4dd24ce0c966f30e4bf37d"
+    },
+    "last_active_child_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation",
+    "last_active_at": null
+  }
+}

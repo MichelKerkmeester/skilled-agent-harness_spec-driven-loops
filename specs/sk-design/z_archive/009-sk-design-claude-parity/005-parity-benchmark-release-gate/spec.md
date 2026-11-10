@@ -46,7 +46,7 @@ Phase 005 defines the final release gate for proving the refactored `sk-design` 
 | **Priority** | P0 |
 | **Status** | Complete / Conditional Release Gate |
 | **Created** | 2026-07-05 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Estimated LOC** | Documentation and benchmark artifact updates only; no sk-design runtime code authored in this phase pass |
 <!-- /ANCHOR:metadata -->
 

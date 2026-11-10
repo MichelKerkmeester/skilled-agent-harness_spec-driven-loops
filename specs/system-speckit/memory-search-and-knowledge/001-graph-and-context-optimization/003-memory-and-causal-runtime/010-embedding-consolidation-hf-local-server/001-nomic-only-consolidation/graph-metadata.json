@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "nomic only embedding consolidation",
+      "local embedding model menu cleanup",
+      "graceful unknown model dimensions",
+      "embeddinggemma docs cleanup",
+      "nomic only embedding plan",
+      "unknown model dimension guard plan",
+      "nomic only embedding tasks",
+      "nomic-only local embedding consolidation implementation summary"
+    ],
+    "key_topics": [
+      "nomic",
+      "only",
+      "embedding",
+      "consolidation",
+      "local",
+      "model",
+      "menu",
+      "cleanup",
+      "graceful",
+      "unknown",
+      "dimensions",
+      "embeddinggemma"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "shared/embeddings/registry.ts",
+      "shared/embeddings/factory.ts",
+      "shared/embeddings/providers/hf-local.ts",
+      "shared/embeddings/providers/README.md",
+      "tests/local-llm-features/prefix-system.vitest.ts",
+      "shared/embeddings/providers/ollama.ts",
+      "shared/embeddings/profile.ts",
+      "shared/types.ts",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": "shared/embeddings/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/embeddings/providers/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "prefix-system.vitest.ts",
+        "kind": "test",
+        "path": "tests/local-llm-features/prefix-system.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "profile.ts",
+        "kind": "code",
+        "path": "shared/embeddings/profile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Trim",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Static",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The local embedding model menu is scattered and inconsistent: `registry.ts` MANIFESTS list seven models; `factory.ts` keeps separate hardcoded `VALIDPROVIDERDIMENSIONS` maps for `hf-local` and `ollama`; provider/profile/type files mention multiple local choices; docs still name older alternatives such as `embeddinggemma-300m`",
+    "created_at": "2026-05-29T05:06:24.627Z",
+    "last_save_at": "2026-11-10T05:46:49.327Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ab80a9717b830ba085d49d3e3ee180799b739f4d8c739e4d584e04ff0756532b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e31aedd9901c2b6d8b80715307df5bf962d41c5f0f39dff1783399f296883344",
+      "plan.md": "20f04706e2d49156cc011282daa166b5bb4092b764387699fd60b4836d0d399c",
+      "tasks.md": "e49da3cbd5a47a4d5ac57b120cc7372c247c08b84ab8f01e6cbbcee00d9b01eb",
+      "implementation-summary.md": "3f014e4556a4b78f541377d315949ca6eecb855beed15f749a10b075b7ab56bc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

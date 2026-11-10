@@ -43,7 +43,7 @@ _memory:
 | **Priority** | P2 |
 | **Status** | Draft |
 | **Created** | 2026-07-07 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Packet** | `sk-doc/014-sk-doc-parent` |
 | **Depends On** | none |
 | **Predecessor** | `021-flatten-asset-subfolders/` |

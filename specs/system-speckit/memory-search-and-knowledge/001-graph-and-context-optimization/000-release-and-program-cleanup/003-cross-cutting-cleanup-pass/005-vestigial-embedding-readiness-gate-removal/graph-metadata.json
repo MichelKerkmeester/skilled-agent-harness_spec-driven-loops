@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/005-vestigial-embedding-readiness-gate-removal",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/005-vestigial-embedding-readiness-gate-removal",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "005-vestigial-embedding-readiness-gate-removal",
+      "embedding readiness gate removal",
+      "memory-search readiness gate",
+      "vestigial embedding gate",
+      "005-vestigial-embedding-readiness-gate-removal plan",
+      "005-vestigial-embedding-readiness-gate-removal tasks",
+      "005-vestigial-embedding-readiness-gate-removal complete",
+      "embedding readiness gate deleted",
+      "005-vestigial-embedding-readiness-gate-removal resource map"
+    ],
+    "key_topics": [
+      "005-vestigial-embedding-readiness-gate-removal",
+      "embedding",
+      "readiness",
+      "gate",
+      "removal",
+      "memory-search",
+      "vestigial",
+      "plan",
+      "tasks",
+      "complete",
+      "deleted",
+      "resource"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Delete Vestigial Embedding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Readiness Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Delete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Vestigial Embedding",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Readiness Gate Removal",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v1.0.3 stress test (Phase H) failed to capture full live-handler envelopes because the direct `handleMemorySearch` probe hit `Embedding model not ready after 30s timeout` at `memory-search.ts:930`",
+    "created_at": "2026-04-29T08:30:00.000Z",
+    "last_save_at": "2026-11-10T05:45:58.427Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:6fac6c9d97ddaa66880a1a17b3e7299bab7a232ef72df815c20b54f3d2fcf6aa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c47533376d737c02bee512b20692a7006665d6b9e7afd33de3af2c0a00698548",
+      "plan.md": "34ab54b31a1f446f43b40b5e993f81846d092c4b4bc92ea217a532c5902b18fd",
+      "tasks.md": "6cc0b35137e4bfb2116e6a6c7b23b15a91ad3b2d3afc2ec3edfad0e0a1348b42",
+      "implementation-summary.md": "4dcfcd6194a403a1af259b8c93a6d8083544691290d8f9c6228415716a174617",
+      "resource-map.md": "c29442e67b1478422ecafd949da6b81dad0db99f567ff5432103ba1c8d231b9d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

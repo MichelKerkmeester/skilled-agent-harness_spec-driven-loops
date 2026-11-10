@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle",
+  "spec_folder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle",
+  "parent_id": "system-speckit/spec-folder-tooling",
+  "children_ids": [
+    "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening",
+    "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/002-relocate-specs-folder",
+    "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling",
+    "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "canonical spec root resolution",
+      "spec folder location policy",
+      "spec packet numbering and archive tooling",
+      "spec write recipe checks",
+      "track root packet listings"
+    ],
+    "key_topics": [
+      "canonical",
+      "spec",
+      "root",
+      "resolution",
+      "folder",
+      "location",
+      "policy",
+      "packet",
+      "numbering",
+      "archive",
+      "tooling",
+      "write"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec folders relied on inconsistent roots, resolution rules, numbering, track indexes, archive behavior, and authoring guidance",
+    "created_at": "2026-10-31T13:41:29.862Z",
+    "last_save_at": "2026-11-10T05:48:37.146Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:e54a62c07988f9120ba42338b4d18734538c9d2d5fd9cab74f2b8218d1e3b59e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9b967c8e5a6e6ca65e71a0809c93ba7cbacc2f6eba44ae740f69f846474a569b"
+    },
+    "last_active_child_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/002-relocate-specs-folder",
+    "last_active_at": null
+  }
+}

@@ -98,7 +98,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | `.skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml` | Modify | 001 | Evidence-backed staleness probe; byte-identical proof owner |
 | `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` | Modify | 001 | Root-coverage row and ripgrep version pin |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md` | Modify | 001 | Remove the deleted-symlink claim |
-| `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md` | Modify | 001 | Continuity paths point at the live tree |
+| `specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md` | Modify | 001 | Continuity paths point at the live tree |
 | `.skilled/commands/doctor/scripts/release-update.cjs` | Modify | 002 | Generated-file class, base recording, prerelease policy, apply without align |
 | `.skilled/commands/doctor/scripts/tests/release-update.test.cjs` | Modify | 002 | Cases for each engine change |
 | `.skilled/commands/doctor/{update.md,assets/doctor-update-*.yaml}` | Modify | 002 | First-run base recording and policy text |

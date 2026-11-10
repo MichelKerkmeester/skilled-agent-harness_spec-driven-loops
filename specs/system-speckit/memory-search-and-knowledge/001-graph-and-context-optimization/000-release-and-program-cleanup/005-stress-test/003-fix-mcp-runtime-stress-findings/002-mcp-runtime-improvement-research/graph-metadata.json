@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/002-mcp-runtime-improvement-research",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/002-mcp-runtime-improvement-research",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "002-mcp-runtime-improvement-research",
+      "mcp runtime improvement deep research",
+      "memory layer remediation research",
+      "code graph remediation research",
+      "cocoindex mirror duplicates research",
+      "phantom fix verification research",
+      "deep research 10 iter mcp",
+      "007 deep research plan",
+      "mcp runtime improvement plan",
+      "10 iteration deep research workflow",
+      "cli-codex executor deep research",
+      "007 deep research tasks"
+    ],
+    "key_topics": [
+      "002-mcp-runtime-improvement-research",
+      "mcp",
+      "runtime",
+      "improvement",
+      "deep",
+      "research",
+      "memory",
+      "layer",
+      "remediation",
+      "code",
+      "graph",
+      "cocoindex"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Improvement Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sibling Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iteration Count",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iteration Cap",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iteration Agenda",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convergence Criteria",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Deep Research Loop",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Synthesis",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "outcome",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two recent investigation packets (005 defects catalog and 006 cross-AI stress-test) surfaced a coherent set of MCP runtime defects spanning the memory layer, code graph, cocoindex mirror handling, intent classifier, and a new model-side hallucination class on weak retrieval signals",
+    "created_at": "2026-04-27T06:26:49.654Z",
+    "last_save_at": "2026-11-10T05:46:04.538Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:e3bf03172eb0cd186ba2c27a5a70d1ae4ecd5827ba7893e877d72f8e036a147a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "36d2f545722c1a2431b2838431766feb7622f9acbc788da9e04f0ba19f6e3499",
+      "plan.md": "78bc20c5e8ab220b3a1eebdb16208c4092e1eec2f0ed67fd5010a072bcc40f39",
+      "tasks.md": "5eefd8aebb8fa88576e14a23e223a9ed8db725bc24cd969072445f452d857398",
+      "implementation-summary.md": "4c07707d3cfa2e800e2fc960fc1e07388ac48ab975d3b7b29b4dbe5e161c284b",
+      "research/research.md": "5dfc71c6150d2da9660db65d7d53bf4427337327e24f58127f5fd0be17a309a4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

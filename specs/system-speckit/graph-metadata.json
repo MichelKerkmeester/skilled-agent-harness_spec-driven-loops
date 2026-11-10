@@ -4,27 +4,11 @@
   "spec_folder": "system-speckit",
   "parent_id": null,
   "children_ids": [
-    "system-speckit/026-graph-and-context-optimization",
-    "system-speckit/027-xce-research-based-refinement",
-    "system-speckit/028-memory-search-intelligence",
-    "system-speckit/029-spec-folder-lifecycle",
-    "system-speckit/030-memory-reindex-embed-performance",
-    "system-speckit/031-system-speckit-v4",
-    "system-speckit/032-retire-memory-era-tests",
-    "system-speckit/033-goal-parent-single-limit",
-    "system-speckit/034-align-runtime-code-with-sk-code-skilled",
-    "system-speckit/035-plugin-scanner-readiness",
-    "system-speckit/036-open-knowledge-format-adoption",
-    "system-speckit/037-symlinked-runtime-root",
-    "system-speckit/038-research-folder-continuity",
-    "system-speckit/039-ci-workflow-efficiency",
-    "system-speckit/040-weak-model-spec-authoring",
-    "system-speckit/041-orphan-sweep-temp-processes",
-    "system-speckit/043-decision-capture",
-    "system-speckit/044-named-subtracks-and-host-repos",
-    "system-speckit/045-upgrade-level-anchor-insert",
-    "system-speckit/046-create-path-track-refresh",
-    "system-speckit/047-v4-release-line-research"
+    "system-speckit/memory-search-and-knowledge",
+    "system-speckit/repo-operations",
+    "system-speckit/runtime-and-release",
+    "system-speckit/spec-authoring-and-continuity",
+    "system-speckit/spec-folder-tooling"
   ],
   "manual": {
     "depends_on": [],
@@ -68,7 +52,7 @@
     "source_doc_hashes": {
       "spec.md": "cc72330c4923eba5a256235dbdde15f9de1783ce1e4aa1eda31ad22876b3ec7f"
     },
-    "last_active_child_id": "system-speckit/031-system-speckit-v4",
+    "last_active_child_id": "system-speckit/runtime-and-release/001-system-speckit-v4",
     "last_active_at": "2026-09-24T05:55:05.863Z"
   }
 }

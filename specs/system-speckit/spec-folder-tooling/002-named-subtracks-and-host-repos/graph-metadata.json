@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos",
+  "spec_folder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos",
+  "parent_id": "system-speckit/spec-folder-tooling",
+  "children_ids": [
+    "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/001-create-track-fixes",
+    "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/002-subtrack-predicate",
+    "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/003-metadata-write-safety",
+    "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/004-doctor-symlink-gaps",
+    "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/005-docs-and-tests",
+    "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/006-review-follow-ups",
+    "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/007-children-list-duplicates",
+    "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "named subtracks and host repos",
+      "named sub track support in spec kit plus",
+      "declared sub-track container",
+      "host repository trigger index mode",
+      "named subtracks and host repos plan",
+      "sub-track implementation plan",
+      "named subtracks and host repos tasks",
+      "sub-track acceptance criteria",
+      "named subtracks closure gate",
+      "044-named-subtracks-and-host-repos operator decisions",
+      "named subtracks and host repos implementation summary",
+      "named sub-track research"
+    ],
+    "key_topics": [
+      "named",
+      "subtracks",
+      "host",
+      "repos",
+      "sub",
+      "track",
+      "support",
+      "spec",
+      "kit",
+      "plus",
+      "declared",
+      "sub-track"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "runtime/cli/lib/track-roots.mjs",
+      "runtime/cli/spec/refresh-track-roots.mjs",
+      "runtime/cli/spec/sweep-track-roots.mjs",
+      "runtime/cli/spec/create.sh",
+      "runtime/lib/validation/orchestrator.ts",
+      "runtime/cli/spec/validate.sh",
+      "runtime/lib/graph/graph-metadata-parser.ts",
+      "runtime/cli/spec/repair-derived.cjs",
+      "runtime/cli/spec/archive.sh",
+      ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+      ".skilled/commands/doctor/assets/symlink-manifest.json",
+      "runtime/cli/tests/fixtures/subtrack-tree.mjs",
+      "references/structure/folder-structure.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.mjs",
+        "kind": "file",
+        "path": "runtime/cli/lib/track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "refresh-track-roots.mjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/refresh-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-track-roots.mjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/sweep-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": "runtime/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "archive.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/archive.sh",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/symlink-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "subtrack-tree.mjs",
+        "kind": "file",
+        "path": "runtime/cli/tests/fixtures/subtrack-tree.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "folder-structure.md",
+        "kind": "doc",
+        "path": "references/structure/folder-structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A repository built on Skilled can file packets as `specs/<track>/<sub-track>/<NNN>-<slug>/`, and such a packet works on its own, but every tool that treats a track as a unit looks only one level below `specs/`",
+    "created_at": "2026-11-07T12:11:59Z",
+    "last_save_at": "2026-11-10T05:48:51.337Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:214ef18ad4fe0d9412177973a661845dcaed9ac857889e5c58fca80be08c096f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "48bbc4ffac0991cf7bbc998a069bff7d20a61f5a1f07dad481b55ff98853e131",
+      "plan.md": "922f5f592c2ffe8955f154fe4a16a827aba1c482fac6d823065d6d835a2d8596",
+      "tasks.md": "1802664bfc30d6ff81073e89c67e30ee8d78075b69c543f88adf458bd9dd83ec",
+      "decision-record.md": "6dd424ef1aed4c7bc45a6ce8616e198d74956ca90c8019ef0fd283fc29ea389e",
+      "implementation-summary.md": "a4e5d3961d112bebd71a4d0a8186deb648580df992aa3131e6d568e66f261228",
+      "research/research.md": "ce37a5d6e51b8279dd28b78133c5802fc4365ad77aee78184250cffabe59fb71"
+    },
+    "last_active_child_id": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/007-children-list-duplicates",
+    "last_active_at": "2026-11-09T20:38:20.641Z"
+  }
+}

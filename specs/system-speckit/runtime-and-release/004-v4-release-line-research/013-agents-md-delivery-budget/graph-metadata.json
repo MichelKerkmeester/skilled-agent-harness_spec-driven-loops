@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/004-v4-release-line-research/013-agents-md-delivery-budget",
+  "spec_folder": "system-speckit/runtime-and-release/004-v4-release-line-research/013-agents-md-delivery-budget",
+  "parent_id": "system-speckit/runtime-and-release/004-v4-release-line-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agents md delivery budget",
+      "phase 13 agents md delivery budget",
+      "agents md delivery budget plan",
+      "agents md delivery budget tasks",
+      "agents md delivery budget acceptance criteria",
+      "agents md delivery budget decisions",
+      "agents md delivery budget implementation summary"
+    ],
+    "key_topics": [
+      "agents",
+      "delivery",
+      "budget",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decisions",
+      "implementation",
+      "summary",
+      "agents-md-manifest"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".devin/SYNC.md",
+      ".skilled/commands/doctor/scripts/agents-md-manifest.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".devin/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/agents-md-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Devin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`agents-md-manifest.cjs --check` fails because the recorded history body `865f058927ed` is no longer released, and its only remedy is `--write`, which records the current unreleased AGENTS.md body as released",
+    "created_at": "2026-11-08T23:39:03Z",
+    "last_save_at": "2026-11-10T05:48:28.411Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7a4f213c6cc4f9d0e12d87077c666e38f44149f388f890f528d0bc03dc10275f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ea769e37b9669cff5bda108e2cd8bf9949a16522457acbff90af3d1e9938b8be",
+      "plan.md": "316a6315e2de2233f3c0901594e03bece8b39ae24b637f470516cb9fa21ec5fd",
+      "tasks.md": "a00b2dd696131567ff4a245548971b2e1edee4c340e9c55d49b87adf90111259",
+      "decision-record.md": "34db0a5baae678591bbe323dd2782fcc7c78aa1adc40423557f879e12f933b05",
+      "implementation-summary.md": "8d4f22fc612bb1c7dea4da8e02f8dcbc19caa5abedf91ef221eeba6958729bd1"
+    },
+    "last_active_at": null
+  }
+}

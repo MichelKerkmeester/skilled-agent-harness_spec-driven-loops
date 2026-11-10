@@ -55,7 +55,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Commit `b0f89ee5f0` (2026-10-01, `chore(repo): stop tracking vendored packet context and add a security policy`) created `SECURITY.md` as a 35-line file. That commit belonged to the `system-speckit/035-plugin-scanner-readiness` packet. The HOL plugin scanner that gates the `awesome-ai-plugins` listing scored the repository 76 with 75 high findings. Most of those came from 32,372 vendored files under `specs/**/context/`, and the repository had no vulnerability reporting policy. The commit untracked the vendored files, rebuilt the sk-doc README verdict baseline and added `SECURITY.md` to point reporters at GitHub private vulnerability reporting.
+Commit `b0f89ee5f0` (2026-10-01, `chore(repo): stop tracking vendored packet context and add a security policy`) created `SECURITY.md` as a 35-line file. That commit belonged to the `system-speckit/repo-operations/001-plugin-scanner-readiness` packet. The HOL plugin scanner that gates the `awesome-ai-plugins` listing scored the repository 76 with 75 high findings. Most of those came from 32,372 vendored files under `specs/**/context/`, and the repository had no vulnerability reporting policy. The commit untracked the vendored files, rebuilt the sk-doc README verdict baseline and added `SECURITY.md` to point reporters at GitHub private vulnerability reporting.
 
 The file did that one job. It fails `validate_document.py`, which applies the README rule set and requires an overview section. It also says nothing about what Skilled runs on a user's machine: hooks on every tool call, permissive shipped permission modes, CLI dispatches with approval switched off, npm installs on first use and MCP servers fetched at launch.
 

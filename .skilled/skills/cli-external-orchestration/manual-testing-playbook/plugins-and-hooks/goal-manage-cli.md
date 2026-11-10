@@ -11,7 +11,7 @@ stage: routing
 expected_intent: UNKNOWN
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Goal Manage CLI: Session Isolation And Legacy Cutover
@@ -147,7 +147,7 @@ Expected: CLI management fails with `PLUGIN_DISABLED`; Cursor returns only `{"pe
 ```bash
 GOAL_PACKET_ROOT="$(mktemp -d /tmp/goal-packet.XXXXXX)"
 export OPENCODE_GOAL_STATE_DIR="$GOAL_PACKET_ROOT"
-PACKET=specs/system-speckit/031-system-speckit-v4/038-goal-unification
+PACKET=specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification
 
 node "$GOAL_CLI" packet "$PACKET" --runtime pi --session session-c --workspace "$WORKSPACE"
 node "$GOAL_CLI" bind "$PACKET" --runtime pi --session session-c --workspace "$WORKSPACE"

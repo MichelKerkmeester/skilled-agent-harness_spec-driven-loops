@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/015-procedural-reliability-benchmark",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/015-procedural-reliability-benchmark",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "procedural reliability memory",
+      "beta posterior reliability recall",
+      "bad pattern negative memory",
+      "skill induction from repetition",
+      "procedural version reset",
+      "procedural reliability plan",
+      "outcome emitter prerequisite",
+      "beta posterior procedural adapter",
+      "procedural micro benchmark gate",
+      "procedural reliability tasks",
+      "outcome emitter task",
+      "procedural benchmark gate task"
+    ],
+    "key_topics": [
+      "procedural",
+      "reliability",
+      "memory",
+      "beta",
+      "posterior",
+      "recall",
+      "bad",
+      "pattern",
+      "negative",
+      "skill",
+      "induction",
+      "repetition"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "tests/flag-ceiling.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": "tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Procedural Reliability Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Internal Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why Chosen",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec-Kit Memory MCP treats `procedural` as a decay-only classification label, there is no track-record machinery on a stored procedure [CONFIRMED: `memory-types.ts:93-98` (decay-only label, no success/failure counters), `research/iterations/iteration-015.md:9`]",
+    "created_at": "2026-06-19T05:40:37.447Z",
+    "last_save_at": "2026-11-10T05:47:36.757Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7d0d8c79d579cc9d88b78993d7bb95665ab65502990af2d29cfef0d7da496943",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9fa5e72d49573a2f9dcebc6c8284df3d063fbed65c8561a45d337d042c1ae973",
+      "plan.md": "013477e59fb97a0c4f23525a981d5064e2d45e16e6264a8e98932eca920ecaea",
+      "tasks.md": "ba0661c48ee602d1954e3d09e39808a1caac6808fa1ea851a51e97d96c1d3a10",
+      "decision-record.md": "e9023fd0ca4ac8910ebe38d5695b88f2dc742948c5c912eb9890c48419575158",
+      "implementation-summary.md": "a2a322703793388ba26507eb58b8866ac81332224a7dac73cf77ebcc991b587b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

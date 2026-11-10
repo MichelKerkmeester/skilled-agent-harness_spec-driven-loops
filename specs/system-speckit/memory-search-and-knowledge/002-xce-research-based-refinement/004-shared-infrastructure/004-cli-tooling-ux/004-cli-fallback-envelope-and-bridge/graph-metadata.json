@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli fallback envelope normalization",
+      "warm fallback reason codes",
+      "spec-memory bridge allowlist",
+      "hook helper skipped fail_open",
+      "004-cli-fallback-envelope-and-bridge plan",
+      "004-cli-fallback-envelope-and-bridge tasks",
+      "004-cli-fallback-envelope-and-bridge summary"
+    ],
+    "key_topics": [
+      "cli",
+      "fallback",
+      "envelope",
+      "normalization",
+      "warm",
+      "reason",
+      "codes",
+      "spec-memory",
+      "bridge",
+      "allowlist",
+      "hook",
+      "helper"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-fallback.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fallback Envelope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bridge Allowlist",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Define",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The three hook fallback helpers return inconsistent result envelopes, so agents and plugins handle `skipped`, `failopen`, `exitCode`, and retryability differently per helper: spec (`hooks/spec-memory-cli-fallback.ts:148-220`), code (`hooks/code-index-cli-fallback.ts:151-220`), advisor (`hooks/lib/skill-advisor-cli-fallback.ts:158-187`)",
+    "created_at": "2026-06-10T20:46:28.786Z",
+    "last_save_at": "2026-11-10T05:47:24.840Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fcb124e2679d65ecb49215c691e7920a07084b36029ff989e9a88a03bee8dbb8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1fb160e8dcbbff65673da7555da2ecfafe7826b634ef801f5cef29076c19aaad",
+      "plan.md": "31e26bf9e14db6279702d71326ba325d552de6f3fbbe054d8252dcbb7f5c0319",
+      "tasks.md": "d46aff8a5d703814201c291d9f529a036483fd4c2568bce12da885e4f6dc87bd",
+      "implementation-summary.md": "ea1f032477b6810d5efc6bede79d52fbc695c48ecc0d070a5a73038bf58cc069"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

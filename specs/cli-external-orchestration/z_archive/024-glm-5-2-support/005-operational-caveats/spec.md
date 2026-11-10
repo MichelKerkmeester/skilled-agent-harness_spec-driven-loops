@@ -42,7 +42,7 @@ _memory:
 | **Priority** | P2 (contingency) |
 | **Status** | Complete (contingency triggered) |
 | **Created** | 2026-06-28 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 5 (contingency) |
 | **Predecessor** | 001-model-registration (the surfaces this updates) |

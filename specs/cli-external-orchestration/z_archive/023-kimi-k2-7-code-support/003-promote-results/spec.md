@@ -53,7 +53,7 @@ FAILURE MODES:
 | **Priority** | P1 |
 | **Status** | Complete (promoted the TIE finding; kept default-unverified + RCAF) |
 | **Created** | 2026-06-15 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 3 |
 | **Predecessor** | 002-framework-bakeoff |

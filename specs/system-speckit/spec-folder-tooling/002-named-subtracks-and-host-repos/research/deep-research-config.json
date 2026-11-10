@@ -1,0 +1,105 @@
+{
+  "topic": "Design first-class named sub-tracks in spec-kit (specs/<track>/<sub-track>/<NNN>-<slug>/) and the three smaller host-repository fixes, from the Barter handover barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/005-skilled-harness-support/handover.md and its research note 004-priority-numbering-subtracks/scratch/nested-tracks.md (both read-only). Item 1: every site that assumes a track sits directly under specs/ — known: runtime/cli/lib/track-roots.mjs:38-66,104-130; refresh-track-roots.mjs:76-79; create.sh:1012; lib/validation/orchestrator.ts:219-223,1340; validate.sh:186,273,315; repair-derived.cjs parent_id on move; archive.sh is_packet_home:207 and track_of:189; sweep-track-roots.mjs and the pre-push gate via track-roots. Find any others, define the sub-track level and its metadata, keep flat tracks unchanged, and give a failing-first test plan. Item 3: project_owned .env.example doctor manifest entry (Barter overlay at barter/ai-speckit/skilled/barter-overlays/doctor/). Item 4: the tracked .skilled/specs -> ../specs link dangling in a vendored copy. Item 5: a documented host-repository trigger index and how the Gate 1 lookup finds it. Item 2 (linked specs root writes) is out of scope: packet specs/system-speckit/runtime-and-release/003-symlinked-runtime-root owns it. Read-only outside the spec folder; never open any .env file. Cite file:line for every finding.",
+  "maxIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos",
+  "createdAt": "2026-11-07T12:13:10.014Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 2400
+  },
+  "lineage": {
+    "sessionId": "2026-11-07T12:13:10.014Z",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "minIterations": 3,
+  "stopPolicy": "max-iterations",
+  "minIdeaObservations": 2,
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

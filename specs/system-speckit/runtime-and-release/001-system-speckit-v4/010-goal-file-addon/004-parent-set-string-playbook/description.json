@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook",
+  "description": "Nothing dereferences a path inside a goal string",
+  "keywords": [
+    "nothing",
+    "dereferences",
+    "path",
+    "inside",
+    "goal",
+    "string"
+  ],
+  "lastUpdated": "2026-09-06T07:09:10.122Z",
+  "specId": "004",
+  "folderSlug": "parent-set-string-playbook",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4",
+    "010-goal-file-addon"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

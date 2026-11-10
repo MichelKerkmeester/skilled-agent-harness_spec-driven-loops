@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/010-adr-writing-and-doc-validator",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/010-adr-writing-and-doc-validator",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "022/010 ADR writing",
+      "ADR-A skill-advisor calibration",
+      "ADR-B verification clause",
+      "ADR-C profile.ts scope",
+      "ADR-D doc cross-checking",
+      "validate-doc-model-refs.js",
+      "022/010 plan",
+      "022/010 tasks",
+      "022/010 ADR",
+      "022/010 shipped"
+    ],
+    "key_topics": [
+      "adr",
+      "writing",
+      "adr-a",
+      "skill-advisor",
+      "calibration",
+      "adr-b",
+      "verification",
+      "clause",
+      "adr-c",
+      "profile",
+      "scope",
+      "adr-d"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/scripts/validate-doc-model-refs.js",
+      ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/profile.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-doc-model-refs.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-doc/scripts/validate-doc-model-refs.js",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+        "source": "derived"
+      },
+      {
+        "name": "profile.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/profile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Doc Validator",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Calibration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contractual Constants",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Clause Amendment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Close",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Doc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-devin SWE-1.6",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "proper",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "drift",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Closing the 022 hardcoded-default-remediation arc by authoring 4 ADRs governing what was implemented across packets 022/001, 022/004a, and 022/004b, plus a sk-doc validator that catches future doc-implementation drift early. ADR-A: skill-advisor calibration as contractual constants. ADR-B: verification clause amendment for ADR-013 + ADR-014. ADR-C: profile.ts scope coverage (parallel resolution chains). ADR-D: doc-implementation cross-checking mandate with validate-doc-model-refs.js script.",
+    "created_at": "2026-05-23T15:17:00.000000Z",
+    "last_save_at": "2026-11-10T05:46:30.087Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b2373786734147941bb8ff243ff48be85b3022b75bffd08d2a89dbe932df5998",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b5fd37f04c5ac5087b8b9daca2d4aa718c6e7debdb8250eb8750f5b2410585e0",
+      "plan.md": "80730f59d895fa53a38efb95c27b756e6a5cf507fe19945a9f708cf38d443304",
+      "tasks.md": "11797567cb2d0d2e381f5b38d1f9d48b95c0751e97f73b062b26650ec06d62a9",
+      "decision-record.md": "14514075416f84e30cc2b2e8257f35d98971f9e19a92708c842ec4d82d7242cc",
+      "implementation-summary.md": "b6789804d25a079f06df41683464b0b3a402bea09851cc1b7c9617ca092aa2fa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/004-decision-capture",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/004-decision-capture",
+  "parent_id": "system-speckit/spec-authoring-and-continuity",
+  "children_ids": [
+    "system-speckit/spec-authoring-and-continuity/004-decision-capture/001-decision-capture-build",
+    "system-speckit/spec-authoring-and-continuity/004-decision-capture/002-table-row-matching",
+    "system-speckit/spec-authoring-and-continuity/004-decision-capture/003-codex-and-pi-capture",
+    "system-speckit/spec-authoring-and-continuity/004-decision-capture/004-opencode-devin-live-capture",
+    "system-speckit/spec-authoring-and-continuity/004-decision-capture/005-chat-question-detection",
+    "system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test",
+    "system-speckit/spec-authoring-and-continuity/004-decision-capture/007-gap-closure",
+    "system-speckit/spec-authoring-and-continuity/004-decision-capture/008-project-scoped-state",
+    "system-speckit/spec-authoring-and-continuity/004-decision-capture/009-chat-answer-evidence",
+    "system-speckit/spec-authoring-and-continuity/004-decision-capture/010-decision-routing-vocabulary"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "decision capture phase parent spec",
+      "decision capture series",
+      "decision capture follow-up",
+      "decision capture goal",
+      "043-decision-capture operator decisions",
+      "decision capture open gaps research",
+      "record my chat reply as a decision routing",
+      "linked projects share decision capture state",
+      "chat answer judgment decision capture",
+      "decision capture handover",
+      "043 handover",
+      "decision record upgrade continuation"
+    ],
+    "key_topics": [
+      "decision",
+      "capture",
+      "phase",
+      "parent",
+      "spec",
+      "series",
+      "follow-up",
+      "goal",
+      "043-decision-capture",
+      "operator",
+      "decisions",
+      "open"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "decision-record.md",
+      "research/research.md",
+      "handover.md",
+      ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+      ".skilled/hooks/README.md",
+      ".skilled/skills/.state/decision-capture/README.md",
+      "research/synthesis-review.md",
+      "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md",
+      "001-decision-capture-build/goal.md",
+      "002-table-row-matching/goal.md",
+      "003-codex-and-pi-capture/goal.md",
+      "004-opencode-devin-live-capture/goal.md",
+      "005-chat-question-detection/goal.md",
+      "006-live-conversation-test/goal.md",
+      "007-gap-closure/goal.md",
+      "008-project-scoped-state/goal.md",
+      "009-chat-answer-evidence/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record-writer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-review.md",
+        "kind": "doc",
+        "path": "research/synthesis-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The artifact this series changes is the automatic operator decision capture pipeline: the capture core and runtime adapters under `.skilled/hooks/decision-capture/`, the save-time sweeps in its `bin/`, and the decision-record writer at `.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts` that a full-auto `/speckit:save` calls",
+    "created_at": "2026-11-01T20:52:24Z",
+    "last_save_at": "2026-11-10T06:00:12.198Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md",
+      "decision-record.md",
+      "research/research.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:fc89cfac2b07b3a82a3c748d3c085216aa0a0b050ffb9be279ecf03c8bac9b3c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "02a2761e729826ef8962cb32f9c11aafb8ae0fd910a91f20a4a1319c8a9cca27",
+      "decision-record.md": "526adedd0df3853269c94c52810311d8548d223773636c6f634d91ba824f9334",
+      "research/research.md": "5b9fb713e365ea463ee7dfc8ffc1bcccee7eb676d240bf5d9242b11712b30d34",
+      "handover.md": "fd3a20e28ac2d96d6695226c38e0e88303eb3fbd2035b82f8d3b2622772d50cb"
+    },
+    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/004-decision-capture/007-gap-closure",
+    "last_active_at": "2026-11-03T08:11:03.728Z"
+  }
+}

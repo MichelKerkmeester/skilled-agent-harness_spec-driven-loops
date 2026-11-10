@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The Hydra roadmap cannot safely progress while the baseline runtime and documentation disagree about what exists",
     "created_at": "2026-04-12T09:02:50.259Z",
-    "last_save_at": "2026-10-07T20:25:24.233Z",
+    "last_save_at": "2026-11-10T05:49:07.789Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7cc7ce871459f57be5d7f17d4e7b3747fa09916e740337b7fcd2a424d502ea8",
+    "source_fingerprint": "sha256:11b77bd9db7e5ae96e51af387a3109bc64f5472b7c4d65dd3c9b883b7c91f84f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "951b734ba54009302be51aa9e7541c28af43c6492ca505fe81150242bfb00e29",
+      "spec.md": "3fdcf369aea758de8fb75b32746af1c5547eb8a0d74607984b4cde103aeae3ef",
       "plan.md": "1d8e08609e6810aab4f98961cd3372635969b727ad777304b2d44d9156cdfe3f",
       "tasks.md": "4e7692384b6b5871bc0c48f1bd7678afc991720bda97108f05b7e9df65c26373",
       "decision-record.md": "bd667316ea9bc86990d468159240de1aaa78c778d97eff7801f15fc047a13c4e",

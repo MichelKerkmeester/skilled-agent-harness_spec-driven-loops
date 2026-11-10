@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The three AGENTS.md governance framework files reference outdated Quick Reference workflow tables that show 5 memory commands instead of the current 4-command memory surface",
     "created_at": "2026-04-12T09:02:50.287Z",
-    "last_save_at": "2026-08-30T15:39:38.983Z",
+    "last_save_at": "2026-11-10T05:49:12.071Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d06ebd62ffa8426527fbb7892f88f764425576d00b5d7e5373e2ae75142c44dc",
+    "source_fingerprint": "sha256:63d0998b20b193a42e2ddbf0f0f428d00eedef452c1fd303baf8346f4d07c054",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8dc8ac4b68228b2b6fa2d28004ce3d575289457fe53a4d0bbff0e8cc2d5d25c2",
+      "spec.md": "1acf5e3147b0f4309e63d36dd20e9cc8fc2b82c01046648f371387121c6afa8b",
       "plan.md": "ff1739cb722954729b5a54161d62317bddcfbff0f008b0d759e1c97657e8734b",
-      "tasks.md": "db3cf5726e88299595a4de81daa88a282367b5382eda6cf3868d49b4325df072",
-      "implementation-summary.md": "0884a63ed29e6ab2f67a51ff8e09ccc1c8c6f901fb050d9c2760ad91745f6390"
+      "tasks.md": "f2232ee4c5333685c19688fb83171a8d26ec6c05230c6448aec13e65ead67204",
+      "implementation-summary.md": "9d90bfff4f52ecd5c95ec6671beb4b033bb3ab05fb1f7ed81b4b2d5a53a4ac82"
     },
     "last_active_child_id": null,
     "last_active_at": null

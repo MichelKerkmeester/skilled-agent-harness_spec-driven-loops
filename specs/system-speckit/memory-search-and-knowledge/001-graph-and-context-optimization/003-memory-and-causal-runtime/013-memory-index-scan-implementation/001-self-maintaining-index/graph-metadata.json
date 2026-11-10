@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory index scan implementation",
+      "memory_index_scan async scan job implementation",
+      "memory index coalescing E429 fix",
+      "memory_health index freshness surface",
+      "memory index orphan sweep move reconciliation",
+      "013 memory index implementation packet",
+      "memory index scan implementation plan",
+      "013 memory index implementation plan",
+      "memory index phased async scan job plan",
+      "memory index scan implementation tasks",
+      "013 memory index tasks",
+      "memory index scan implementation decisions"
+    ],
+    "key_topics": [
+      "memory",
+      "index",
+      "scan",
+      "implementation",
+      "async",
+      "job",
+      "coalescing",
+      "e429",
+      "freshness",
+      "surface",
+      "orphan",
+      "sweep"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
+      "ai-council/council-report-followups-mcp-stability.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-report-followups-mcp-stability.md",
+        "kind": "doc",
+        "path": "ai-council/council-report-followups-mcp-stability.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Maintaining Index Implementation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Maintaining Index",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Eventually",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coalescing Contract",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Orphan Sweep",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phased Async Execution",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`memoryindexscan` couples scope discovery, lexical indexing, and synchronous vector embedding inside one MCP request under a global lease",
+    "created_at": "2026-05-31T15:00:00.000Z",
+    "last_save_at": "2026-11-10T05:46:52.515Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:6a5cc832521b62519bd3ee934c8e3d02a562f1519322b0ebab1078bbba321def",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8ed2ded3e297397a54d4fafd75892e1ac1bfc34d846a7c639342f0d7a32098e5",
+      "plan.md": "305c19316f4bd8118b838ae802de760199c242480c4bbe0753c481e52a9cad3f",
+      "tasks.md": "bec122c744b985acae1f49f15945ce084213c023f27081ba65194d1460f78d08",
+      "decision-record.md": "1626ec0c556c27cfd71617171a2683290c620aeca2cb053f0590921ff9c404b5",
+      "implementation-summary.md": "bafb2f9ec0cdaae48e611e62b27bd1161102bfbed7c1cb1f8274dd337737e897",
+      "handover.md": "12b5feec8d9e9d8578afc9c19682ed9125020a17190f3fccf9ca56165d00edeb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

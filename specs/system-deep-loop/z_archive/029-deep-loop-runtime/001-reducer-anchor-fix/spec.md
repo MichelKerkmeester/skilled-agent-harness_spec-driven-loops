@@ -49,7 +49,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-06-19 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Parent research phase** | `system-deep-loop/029-deep-loop-runtime` (Deep Loop, convergence/fan-out/council intelligence) |
 | **Source research** | `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03` + `04` |
 | **Shipped-record cross-ref** | Wave-0 record (commit `61fe63b24d`) |

@@ -1,0 +1,2326 @@
+{
+  "sessionId": "2026-11-08T20:14:35.000Z",
+  "parentSessionId": "2026-11-08T20:14:35.000Z",
+  "lineageMode": "restart",
+  "generation": 2,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-fan-out-parity-v4-0-0-0-v4-0-0-16-for-each-executor-kind-do-lineage-command-adap",
+      "inboxId": null,
+      "text": "Fan-out parity (v4.0.0.0, v4.0.0.16): for each executor kind, do LINEAGE_COMMAND_ADAPTERS in fanout-run.cjs, EXECUTOR_KINDS, EXECUTOR_KIND_FLAG_SUPPORT and the model allowlists in runtime/lib/deep-loop/executor-config.ts, and each cli-*/SKILL.md agree?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-single-executor-dispatch-which-if-cli-branches-in-skilled-commands-deep-assets-d",
+      "inboxId": null,
+      "text": "Single-executor dispatch: which if_cli_* branches in .skilled/commands/deep/assets/deep-research-auto.yaml and deep-review-auto.yaml carry placeholder, field-name or ordering defects that would break or mislabel a run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    },
+    {
+      "id": "question-3-mode-retirement-v4-0-0-7-which-remnants-of-agent-improvement-or-model-benchmark-",
+      "inboxId": null,
+      "text": "Mode retirement (v4.0.0.7): which remnants of agent-improvement or model-benchmark survive in system-deep-loop runtime code, mode-registry.json, /deep:* commands or tests?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-convergence-v4-0-0-3-v4-0-0-16-do-runtime-scripts-convergence-cjs-and-deep-resea",
+      "inboxId": null,
+      "text": "Convergence (v4.0.0.3, v4.0.0.16): do runtime/scripts/convergence.cjs and deep-research/scripts/reduce-state.cjs honor stopPolicy, minIterations and the four convergence modes as deep-research/references/convergence/convergence.md documents?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-write-containment-and-lane-resume-v4-0-0-16-does-runtime-lib-deep-loop-write-con",
+      "inboxId": null,
+      "text": "Write containment and lane resume (v4.0.0.16): does runtime/lib/deep-loop/write-containment.ts and the fan-out resume path do what the v4.0.0.16 note claims?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-6-cli-classifier-and-cli-jev-v4-0-0-2-v4-0-0-3-v4-0-1-0-do-the-router-phrases-jev-",
+      "inboxId": null,
+      "text": "cli-classifier and cli-jev (v4.0.0.2, v4.0.0.3, v4.0.1.0): do the router phrases, Jev feature switches and stored-key behavior in .skilled/skills/cli-classifier/** match the notes and their own hub-router.json, mode-registry.json and ROUTER.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-7-hub-canon-v4-0-1-0-do-the-cli-external-orchestration-and-cli-classifier-hubs-and",
+      "inboxId": null,
+      "text": "Hub canon (v4.0.1.0): do the cli-external-orchestration and cli-classifier hubs and every mode follow the parent-hub canon and the rule that each skill routes from its own ROUTER.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-8-over-engineering-which-system-deep-loop-runtime-surfaces-divergent-pivot-legacy-",
+      "inboxId": null,
+      "text": "Over-engineering: which system-deep-loop runtime surfaces (divergent pivot, legacy projection, idea lifecycle, observability, wave planner) have no live caller or test, and what would break if each were removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-9-ux-which-steps-of-deep-research-auto-yaml-deep-research-presentation-txt-or-the-",
+      "inboxId": null,
+      "text": "UX: which steps of deep-research-auto.yaml, deep-research-presentation.txt or the cli-*/SKILL.md dispatch rules are unclear, contradictory or impossible to execute for the operator or an AI user?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 25,
+      "resolved": true
+    },
+    {
+      "id": "question-10-extension-which-concrete-extensions-of-the-fan-out-runner-the-executor-registry-",
+      "inboxId": null,
+      "text": "Extension: which concrete extensions of the fan-out runner, the executor registry or ai-council would remove the manual steps and defects found in this cluster?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-11-executor-failure-handling-v4-0-0-3-v4-0-0-16-when-a-cli-executor-returns-a-quota",
+      "inboxId": null,
+      "text": "Executor failure handling (v4.0.0.3, v4.0.0.16): when a CLI executor returns a quota error (devin resource_exhausted) or a builder throws, what does the single-executor workflow record, and can a run change executor without archiving its research tree?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-7-hub-canon-v4-0-1-0-do-the-cli-external-orchestration-and-cli-classifier-hubs-and",
+      "inboxId": null,
+      "text": "Hub canon (v4.0.1.0): do the cli-external-orchestration and cli-classifier hubs and every mode follow the parent-hub canon and the rule that each skill routes from its own ROUTER.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-11-executor-failure-handling-v4-0-0-3-v4-0-0-16-when-a-cli-executor-returns-a-quota",
+      "inboxId": null,
+      "text": "Executor failure handling (v4.0.0.3, v4.0.0.16): when a CLI executor returns a quota error (devin resource_exhausted) or a builder throws, what does the single-executor workflow record, and can a run change executor without archiving its research tree?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-fan-out-parity-v4-0-0-0-v4-0-0-16-for-each-executor-kind-do-lineage-command-adap",
+      "inboxId": null,
+      "text": "Fan-out parity (v4.0.0.0, v4.0.0.16): for each executor kind, do LINEAGE_COMMAND_ADAPTERS in fanout-run.cjs, EXECUTOR_KINDS, EXECUTOR_KIND_FLAG_SUPPORT and the model allowlists in runtime/lib/deep-loop/executor-config.ts, and each cli-*/SKILL.md agree?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-single-executor-dispatch-which-if-cli-branches-in-skilled-commands-deep-assets-d",
+      "inboxId": null,
+      "text": "Single-executor dispatch: which if_cli_* branches in .skilled/commands/deep/assets/deep-research-auto.yaml and deep-review-auto.yaml carry placeholder, field-name or ordering defects that would break or mislabel a run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9
+    },
+    {
+      "id": "question-3-mode-retirement-v4-0-0-7-which-remnants-of-agent-improvement-or-model-benchmark-",
+      "inboxId": null,
+      "text": "Mode retirement (v4.0.0.7): which remnants of agent-improvement or model-benchmark survive in system-deep-loop runtime code, mode-registry.json, /deep:* commands or tests?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-convergence-v4-0-0-3-v4-0-0-16-do-runtime-scripts-convergence-cjs-and-deep-resea",
+      "inboxId": null,
+      "text": "Convergence (v4.0.0.3, v4.0.0.16): do runtime/scripts/convergence.cjs and deep-research/scripts/reduce-state.cjs honor stopPolicy, minIterations and the four convergence modes as deep-research/references/convergence/convergence.md documents?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-write-containment-and-lane-resume-v4-0-0-16-does-runtime-lib-deep-loop-write-con",
+      "inboxId": null,
+      "text": "Write containment and lane resume (v4.0.0.16): does runtime/lib/deep-loop/write-containment.ts and the fan-out resume path do what the v4.0.0.16 note claims?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-6-cli-classifier-and-cli-jev-v4-0-0-2-v4-0-0-3-v4-0-1-0-do-the-router-phrases-jev-",
+      "inboxId": null,
+      "text": "cli-classifier and cli-jev (v4.0.0.2, v4.0.0.3, v4.0.1.0): do the router phrases, Jev feature switches and stored-key behavior in .skilled/skills/cli-classifier/** match the notes and their own hub-router.json, mode-registry.json and ROUTER.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-8-over-engineering-which-system-deep-loop-runtime-surfaces-divergent-pivot-legacy-",
+      "inboxId": null,
+      "text": "Over-engineering: which system-deep-loop runtime surfaces (divergent pivot, legacy projection, idea lifecycle, observability, wave planner) have no live caller or test, and what would break if each were removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "question-9-ux-which-steps-of-deep-research-auto-yaml-deep-research-presentation-txt-or-the-",
+      "inboxId": null,
+      "text": "UX: which steps of deep-research-auto.yaml, deep-research-presentation.txt or the cli-*/SKILL.md dispatch rules are unclear, contradictory or impossible to execute for the operator or an AI user?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 25
+    },
+    {
+      "id": "question-10-extension-which-concrete-extensions-of-the-fan-out-runner-the-executor-registry-",
+      "inboxId": null,
+      "text": "Extension: which concrete extensions of the fan-out runner, the executor registry or ai-council would remove the manual steps and defects found in this cluster?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Single-executor dispatch: the *ordering* and *missing-branch* defects are now evidenced, but the",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Convergence, write containment, cli-classifier/cli-jev, hub canon, over-engineering beyond the",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Mode retirement (v4.0.0.7): not started.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Convergence (`convergence.cjs`, `reduce-state.cjs` vs `convergence.md`), write containment/lane resume, `cli-classifier`/`cli-jev`, hub canon, over-engineering beyond the census case — all still open.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Single-executor dispatch: which `if_cli_*` branches in `deep-research-auto.yaml` and `deep-review-auto.yaml` carry placeholder, field-name or ordering defects? (deferred from iteration 1)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Where does `check-review-findings.js` / `check-review-final-line.js` live (v4.0.0.6 names them in \"the review mode's `scripts/` folder\"), and does it enforce the `Case:` line on saved reviews? Not found at two guessed `sk-code/scripts` and `sk-code/assets/scripts` paths.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Executor failure handling: quota errors and builder throws under the single-executor workflow.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Executor failure handling (v4.0.0.3, v4.0.0.16): quota errors and builder throws under the",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "NEW — Does anything test `convergence.cjs`'s research composite against the documented",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Over-engineering: which runtime surfaces (divergent pivot, legacy projection, idea lifecycle,",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Single-executor dispatch: which `if_cli_*` branches in `deep-research-auto.yaml` and",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Write containment and lane resume (v4.0.0.16): does `runtime/lib/deep-loop/write-containment.ts`",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "NEW — `stopPolicy: max-iterations` makes convergence telemetry-only. Is there a config value or",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Extension: what would remove the manual steps and defects found in this cluster.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`cli-classifier` and `cli-jev` (v4.0.0.2, v4.0.0.3, v4.0.1.0): router phrases, Jev feature",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hub canon (v4.0.1.0): parent-hub canon across `cli-external-orchestration` and `cli-classifier`.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "UX: which steps of `deep-research-auto.yaml` are unclear, contradictory or impossible.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`cli-classifier` / `cli-jev`: router phrases, Jev feature switches, stored-key behaviour.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "UX: which steps of `deep-research-auto.yaml` / `deep-research-presentation.txt` are unclear,",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "NEW — does anything validate the `containment.mode` value in `deep-research-config.json` for",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Executor failure handling: quota errors (devin `resource_exhausted`) and builder throws under",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hub canon (v4.0.1.0): parent-hub canon and per-skill `ROUTER.md` routing.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Extension: what concrete change removes the manual steps and defects in this cluster.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "NEW — F5's class: is there any validator that compares `ROUTER.md` frontmatter version and the",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "UX: which steps of `deep-research-auto.yaml`, `deep-research-presentation.txt` or the",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hub canon beyond the classifier: do `cli-external-orchestration` and its seven modes follow the",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Extension: what removes the manual steps and defects in this cluster? F1 and F3 now suggest one:",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Over-engineering: which system-deep-loop runtime surfaces have no live caller or test?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Over-engineering:** unresolved in the other direction — this iteration *falsified* one removal candidate (`mode-registry` `aliases` is live, F3) but the divergent pivot, legacy projection, idea lifecycle, observability and wave planner surfaces remain uncensused.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Executor failure handling:** still unexamined (quota errors, builder throws, executor swap).",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Hub canon (narrowed):** run `package_skill.py --strict` across the hub and its seven modes. Structure is present; conformance is unproven.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Single-executor dispatch:** the `if_cli_*` branch defects remain unexamined.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX:** F6 adds a second UX instance (ambiguous multi-recommendation). `deep-research-auto.yaml` steps still unexamined.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Extension:** F1 and F3 now point at one concrete extension rather than several — generate `hub-router.json` `vocabularyClasses` and `mode-registry.json` `aliases` from `ROUTER.md` §3, so one edit updates all three and the drift class closes at the source.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is the idea-lifecycle suppression step ever expected to fire in the auto variant, or is F5 a",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does any external consumer (operator habit, tail, dashboard) read `orchestration-status.log`? Blocks",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hub canon conformance (`package_skill.py --strict` across hub + seven modes), single-executor",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`deep-ai-council`: which of its scripts (`advise-council-completion`, `orchestrate-topic`,",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`deep-research-presentation.txt` and `deep-review-auto.yaml` UX: unexamined.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What *is* the unknown-token policy of the `{...}` substitution engine — literal passthrough, empty",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Persona vs `agentPersona` policy: which is canonical — hub §189/217 or the executor schema?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the reducer treat `status:\"error\"` iterations as counting toward `maxIterations`, or only the",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is there any normalisation that maps `executor.kind` onto `executor.type` before the YAML renders?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Over-engineering**: F5 is a removal case (one roster, imported twice) but its blast radius needs a check for consumers outside the three files read.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX (narrowed, second instance)**: the branch's own `notes` block instructs `input: ''` citing the skill's §4 ALWAYS rule while the same argv passes a flag §266 forbids — an operator reading the notes gets a self-contradicting instruction. `deep-research-presentation.txt` still unexamined.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Single-executor dispatch (narrowed)**: does `deep-review-auto.yaml`'s `if_cli_opencode` carry the same four defects? A twin comparison is the cheapest close.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Hub canon**: `package_skill.py --strict` conformance across the hub and its seven modes — structure present, conformance unproven.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Extension**: F1 + F2 + F4 now point at one change — make the single-executor branches consume the same resolver and argv builder as `fanout-run.cjs`, so a version rule is stated once.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Executor failure handling** (v4.0.0.3, v4.0.0.16): quota errors and builder throws under the single-executor workflow — still open after four iterations of deferral.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Carried forward, unresolved**: the substitution engine's unknown-token policy; persona vs `agentPersona`; idea-lifecycle suppression in the auto variant; the `orchestration-status.log` external-consumer question.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX**: all three `*-presentation.txt` assets are unexamined.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Executor failure handling** (v4.0.0.3, v4.0.0.16): the switch half is now closed negatively — no switch surface exists in fan-out or the auto branches — but what a single-executor run *records* for a devin quota error is still unread after six iterations of deferral.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Hub canon** (v4.0.1.0): `package_skill.py --strict` conformance across the hub and its seven modes remains unproven.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Over-engineering**: F3 exposes a removal candidate — `runtime-capabilities.json` plus the un-called `dispatchSeat` seam — whose blast radius was not checked.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Executor failure handling** (v4.0.0.3, v4.0.0.16): what a single-executor run records for a devin `resource_exhausted` — deferred again; still unread after seven iterations.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Over-engineering**: `runtime-capabilities.json` plus the un-called `dispatchSeat` seam — blast radius unchecked.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Hub canon** (v4.0.1.0): `package_skill.py --strict` conformance across the hub and its seven modes remains unproven; F6 now adds a second, concrete hub-resolution question (what `defer` means).",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Drift method**: F1 and F5 both derive from \"feature landed, note silent\". A `git log --name-only` pass per tag, diffed against the note's headline list, would close that class for the whole release line in one action.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX**: two of the three `*-presentation.txt` assets are still unexamined; F2 and F4 are `deep-review-*` instances and the `deep-research-*` twin has not been compared against them.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Shell-hop class**: does the same raw-interpolation pattern exist in `deep-research-auto.yaml` and in the `if_cli_*` branches? F2 gives the search key (`\"{...}\"` inside a `--flag` in a YAML `command`/`run` step).",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Over-engineering** — `runtime-capabilities.json` plus the un-called `dispatchSeat` seam, blast radius still unchecked.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Hub canon, narrowed twice.** New evidence: 9 of 9 hub packets (7 cli modes + both hubs) ship a `ROUTER.md`, and every `SKILL.md` references it (1–13 references each), so the \"each skill routes from its own `ROUTER.md`\" rule holds structurally. Still unproven: parent-hub canon under `package_skill.py --strict` for the hub and its seven modes. That is now the only unexplained half.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX** — two of three `*-presentation.txt` assets unread; the `deep-research-*` twin never compared against the `deep-review-*` instances in F2/F4 of earlier iterations.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Drift method** — F1 is a second instance of \"release note claims a sweep, tree shows a partial sweep\". A `git log --name-only` pass per tag against each note's headline list would close the class in one action.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Executor failure handling** — eighth iteration carried. Unread: what a single-executor run records for a devin `resource_exhausted` or a builder throw.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**F1's runtime repro** needs write authority the leaf does not have: confirm that `--bogus-flag` returns exit 0 through the gateway.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX** — two of three `*-presentation.txt` assets remain unread; the `deep-research-*` twin has never been compared against the `deep-review-*` instances.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**F1's runtime repro** — confirming `--bogus-flag` returns exit 0 through the gateway needs write authority the leaf does not have.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Hub canon** (v4.0.1.0) — `package_skill.py --strict` conformance across the hub and its seven modes. Structural routing is proven; the parent-hub check is not.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**v4.0.0.16 fast-mode half** — \"Pi's fast mode also sends GPT-6.1 Terra on the priority service tier\". A `priority` grep over `.pi/extensions/pi-fast-mode-w-subagent-support` matched only benchmark fixtures, no source, so the claim is neither confirmed nor refuted. Needs the tier map read directly.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Executor failure handling** (v4.0.0.3, v4.0.0.16) — ninth iteration carried. Still unread: what a single-executor run records for a devin `resource_exhausted`, or a builder throw.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Executor failure handling** (v4.0.0.3, v4.0.0.16) — tenth iteration carried, still unread: what a single-executor run records for a devin `resource_exhausted` or a builder throw.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Hub canon, mode half:** `package_skill.py --check --strict` across the seven `cli-external-orchestration` modes and the three `system-deep-loop` modes. Two of nine packets proven.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**`v4.0.0.12` doctor routing for deep-loop:** the note claims deep-loop prompts suggest `/doctor:deep-loop`; no cluster commit corroborates it, so the fix must live in the doctor/advisor trees. One read of `.skilled/commands/doctor/deep-loop.md` and the advisor hint map closes it.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**F1's runtime repro** needs write authority the leaf does not have: `--bogus-flag` exiting 0 through the gateway is still unconfirmed.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**`/doctor:setup` \"lists all 17 doctor commands\"** — uncounted in this iteration; cheap to verify against `.skilled/commands/doctor/`.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**v4.0.0.16 fast-mode half** — \"Pi's fast mode also sends GPT-6.1 Terra on the priority service tier\": a `priority` grep over `.pi/extensions/pi-fast-mode-w-subagent-support` matched only fixtures, so the tier map still needs a direct read.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX:** two of three `*-presentation.txt` assets remain unread; the `deep-research-*` twin has never been compared with the `deep-review-*` instances.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "package_skill.py --strict conformance across the cli-external-orchestration hub, the cli-classifier hub and the deep-loop modes. Structural routing is proven; conformance is not.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which token map binds {generation} versus {config.lineage.generation}? The spelling split is proven; the binding is not.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "f-iter015-010 — drift, P2. The append gateway strips the fields the leaf contract requires.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Item 9 above: does append-mode-event.cjs parseArgs reject unknown options? Body unread; parseArgs at line 58 is the entry point.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Executor failure handling, eleventh carry: what a single-executor run records for a devin resource_exhausted, or when a builder throws. Still unread in the whole run.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Two of the three *-presentation.txt assets remain unread, and the deep-research twin has never been compared with the deep-review instances.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether any normaliser maps executor.kind onto executor.type before the YAML evaluates branch_on. f-iter015-001 rests on the absence of one; this iteration found no such step, but a renderer-side map would overturn it.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hub canon (v4.0.1.0): `package_skill.py --strict` conformance across the hub and its modes — still unproven.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "UX: the three `*-presentation.txt` assets, two of them still unread.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: is any model-executed step contractually required to supply an in-cli `dispatchSeat`, or does `in-cli` silently become an external spawn? f-iter016-002 leaves this open.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Executor failure handling (v4.0.0.3, v4.0.0.16): what a single-executor run records for a devin `resource_exhausted` or a builder throw — twelfth carry.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Drift method**: f-iter017-004 is a third instance of \"the citation, not the code, is wrong\". A",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX**: two of the three `*-presentation.txt` assets remain unread.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Executor failure handling** (v4.0.0.3, v4.0.0.16) — thirteenth carry: what a single-executor run",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**`--pure` validity** (f-iter017-001): does the installed OpenCode accept `--pure`, and does it",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Hub canon** (v4.0.1.0): `package_skill.py --strict` conformance across the hub and its modes —",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Unknown-token rendering policy**: f-iter017-002 records the defect under all three candidate",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Hub canon** (v4.0.1.0): `package_skill.py --strict` conformance across the hub and",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Carried**: whether the installed OpenCode accepts `--pure` (f-iter018-003).",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Executor failure handling** (v4.0.0.3, v4.0.0.16) — fourteenth carry. Still unread:",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New**: `deep-review-confirm.yaml` has ~18 bare `{generation}` tokens and no",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New**: does the branch engine resolve `branch_on` to `if_<value>`, and what does it",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Staleness signal**: both confirm assets are dated Oct 28 and both auto assets Nov 7.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: `mergeVerdicts` — the no-adjudicator fallback in `orchestrate-topic.cjs` — was read only at its call site;",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: does `council-graph-db.ts` / `council-graph-query.ts` (1,156 lines, two modules) have a live caller in the",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "UX: two of three `*-presentation.txt` assets remain unread; `deep-research-presentation.txt` never compared with",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Executor failure handling (v4.0.0.3, v4.0.0.16): what a single-executor run records for a devin",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hub canon (v4.0.1.0): `package_skill.py --strict` conformance across hub + seven modes — still unproven.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: `--pure` validity for the installed OpenCode (f-iter018-003); unknown-token `{...}` rendering policy;",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The three `*-presentation.txt` assets: two still unread.",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Mid-run quota handling (devin `resource_exhausted`) and builder throws: still unread across the whole run; only the pre-spawn refusal path is evidenced.",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`--pure` validity for the installed OpenCode (f-iter018-003); unknown-token `{...}` render policy.",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hub canon (v4.0.1.0) `package_skill.py --strict` conformance for the hub and its seven modes — carried to the ceiling, unresolved.",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A third confirmation of the \"documented surface absent from the tree\" class** (f-iter021-002",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Hub canon** (`package_skill.py --strict` across the hub and its seven modes): still unproven,",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Mid-run executor failure** (devin `resource_exhausted`, a builder throw): still unread across",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**`--pure` validity** for the installed OpenCode (f-iter018-003) and the unknown-token `{...}`",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Whether `spawnCli`'s `code: null` timeout outcome reaches a caller as exit 0.** `spawnCli`",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`divergence.overrides` is still summarised by `step_read_state` on both sides, but the auto",
+      "addedAtIteration": 22,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `validateSessionStateHierarchy` in `runtime/lib/council/session-state-hierarchy.cjs`",
+      "addedAtIteration": 22,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: hub canon `package_skill.py --strict`; mid-run executor failure (devin",
+      "addedAtIteration": 22,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Why do the review twins differ by 496 lines while the council twins differ by 11? The council",
+      "addedAtIteration": 22,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hub canon `package_skill.py --strict` conformance; mid-run executor failure under the single-executor workflow; `--pure` validity — all carried, all untouched.",
+      "addedAtIteration": 23,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is the delta-corruption fail-open path reachable in practice, or does the gateway's projection refresh refuse first (f-iter023-001)?",
+      "addedAtIteration": 23,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the resource-map extractor dereference delta rows without a null guard (f-iter023-006)? One fixture run with `--emit-resource-map` settles it.",
+      "addedAtIteration": 23,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is `resolvedFindings` emitted by any live leaf or YAML step, or is it reducer-internal only? A",
+      "addedAtIteration": 24,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: executor failure handling (devin `resource_exhausted`, builder throws) — fifteenth",
+      "addedAtIteration": 24,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `buildDimensionCoverage` read `config.reviewDimensions` plus `crossReference.core`, or is",
+      "addedAtIteration": 24,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does anything read the **dashboard** verdict as a release decision, or is `review-report.md` the",
+      "addedAtIteration": 24,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`--pure` validity for the installed OpenCode; unknown-token `{...}` render policy.",
+      "addedAtIteration": 25,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The three `*-presentation.txt` assets: `deep-research-presentation.txt` was spot-read",
+      "addedAtIteration": 25,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`--executors=<json>` is named by `research.md:122`, `review.md:94` and",
+      "addedAtIteration": 25,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Mid-run executor failure (devin `resource_exhausted`, builder throw) — still unread",
+      "addedAtIteration": 25,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hub canon under `package_skill.py --strict` across the hub and its three modes — carried",
+      "addedAtIteration": 25,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Mid-run executor failure (devin `resource_exhausted`, a builder throw): still unread. This iteration read only builders, never the failure path.",
+      "addedAtIteration": 26,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: is `deep-loop-cursor-neutral-workspace` deliberately outside documented config? The env override exists (`DEEP_LOOP_CURSOR_NEUTRAL_WORKSPACE`) but no packet or config documents it.",
+      "addedAtIteration": 26,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`--pure` validity for the installed OpenCode; unknown-token `{...}` render policy — both carried.",
+      "addedAtIteration": 26,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hub canon under `package_skill.py --strict` across the hub and its seven modes — carried again.",
+      "addedAtIteration": 26,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: does any test exercise the Flash pin? `pinReasoningEffortForModel` is described as mirroring `executor-config.ts`, so a divergence between the two copies would be silent.",
+      "addedAtIteration": 26,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Hub canon (v4.0.1.0): do the cli-external-orchestration and cli-classifier hubs and every mode follow the parent-hub canon and the rule that each skill routes from its own ROUTER.md?",
+    "Executor failure handling (v4.0.0.3, v4.0.0.16): when a CLI executor returns a quota error (devin resource_exhausted) or a builder throws, what does the single-executor workflow record, and can a run change executor without archiving its research tree?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-f-iter001-001-cli-deepseek-harness-has-no-single-executor-branch-and-a-note-clai",
+      "text": "f-iter001-001 — `cli-deepseek-harness` has no single-executor branch, and a note claims it does",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-f-iter001-002-the-drift-test-that-guards-runner-vs-packet-fallbacks-skips-dsh",
+      "text": "f-iter001-002 — the drift test that guards runner-vs-packet fallbacks skips DSH",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-f-iter001-003-if-cli-copilot-is-unreachable-and-its-presence-makes-the-branch-co",
+      "text": "f-iter001-003 — `if_cli_copilot` is unreachable, and its presence makes the branch count look correct",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-f-iter001-004-the-shared-branch-body-is-triplicated-and-its-comment-is-false-in-",
+      "text": "f-iter001-004 — the shared branch body is triplicated, and its comment is false in two of the three copies",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-f-iter001-005-record-executor-audit-runs-at-a-different-point-for-different-exec",
+      "text": "f-iter001-005 — `record_executor_audit` runs at a different point for different executors",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-f-iter001-006-two-packets-publish-two-different-defaults-and-never-reconcile-the",
+      "text": "f-iter001-006 — two packets publish two different \"defaults\" and never reconcile them",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-f-iter001-007-v4-0-0-0-roster-counts-are-stale-and-are-the-only-roster-summary-i",
+      "text": "f-iter001-007 — v4.0.0.0 roster counts are stale and are the only roster summary in the notes",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-f-iter001-008-seven-bridges-stayed-true-while-the-seven-changed-members",
+      "text": "f-iter001-008 — \"seven bridges\" stayed true while the seven changed members",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-f-iter001-009-the-canonical-state-log-row-drops-the-identity-and-answer-fields-t",
+      "text": "f-iter001-009 — the canonical state-log row drops the identity and answer fields the contract makes mandatory",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-a-resumed-lane-runs-its-executor-again-the-logical-effect-id-now-appends",
+      "text": "*\"A resumed lane runs its executor again.\"* The logical effect id now appends",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-an-operator-s-own-edit-is-no-longer-quarantined-in-fan-out-or-single-lineage-run",
+      "text": "*\"An operator's own edit is no longer quarantined in fan-out or single-lineage runs.\"*",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-enforcement-after-every-lineage-exits-findmaxiterationspolicyviolation-runs-and-",
+      "text": "Enforcement — after every lineage exits, `findMaxIterationsPolicyViolation` runs and its",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-native-dispatch-stop-policy-mode-plus-stop-policy-in-the-pre-bound-setup-answers",
+      "text": "Native dispatch — `--stop-policy=<mode>` plus `stop_policy:` in the pre-bound setup answers",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-prompting-the-leaf-contract-s-stop-clause-is-until-config-maxiterations-is-reach",
+      "text": "Prompting — the leaf contract's stop clause is `'until config.maxIterations is reached; treat",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-validation-normalizestoppolicy-accepts-exactly-convergence-max-iterations-and",
+      "text": "Validation — `normalizeStopPolicy` accepts exactly `convergence | max-iterations` and",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-caveat-stated-rather-than-buried-the-probe-carried-the-word-task-which-plausibly",
+      "text": "Caveat (stated rather than buried): the probe carried the word `task`, which plausibly favours `sk-code`; the finding is that a hub-owned route phrase loses the top slot, not that it routes wrong. [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:251]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-confidence-high-on-the-counts-scripted-diff-high-on-the-2-3-contradiction-both-l",
+      "text": "Confidence: high on the counts (scripted diff); high on the §2/§3 contradiction (both lines read this iteration).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-13-release-introduced-not-a-v4-regression-the-raw-hub-gain-in-1-8-0-0-widens-it-con",
+      "text": "Release introduced: not a v4 regression; the raw hub gain in 1.8.0.0 widens it. Confidence: high on the observation.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-release-introduced-v1-8-0-0-51f70a0317-era-the-7th-mode-was-appended-to-3-and-to",
+      "text": "Release introduced: v1.8.0.0 (`51f70a0317` era — the 7th mode was appended to §3 and to `vocabularyClasses` by different hands); the three-surface pattern predates it. [SOURCE: .skilled/skills/cli-external-orchestration/ROUTER.md:100] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:245]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-release-introduced-v1-8-0-0-deepseek-alias-set-added-at-4-while-its-hub-class-go",
+      "text": "Release introduced: v1.8.0.0 (deepseek alias set added at 4 while its hub class got 5 and its doc got 16). Confidence: high.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-release-introduced-v1-8-0-0-confidence-high-on-the-observed-ranking-medium-on-th",
+      "text": "Release introduced: v1.8.0.0. Confidence: high on the observed ranking, medium on the \"task\" contribution.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-11-release-introduced-v1-8-0-0-confidence-high",
+      "text": "Release introduced: v1.8.0.0. Confidence: high.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-9-release-introduced-with-the-reference-doc-the-code-moved-after-it-confidence-hig",
+      "text": "Release introduced: with the reference doc; the code moved after it. Confidence: high on the broken citation, medium on whether the cap exists elsewhere in the file (not searched to exhaustion).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-12-verify-grep-n-version-skilled-skills-cli-external-orchestration-router-md-skille",
+      "text": "Verify: `grep -n '^version' .skilled/skills/cli-external-orchestration/ROUTER.md .skilled/skills/cli-external-orchestration/SKILL.md`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-8-verify-sed-n-212p-skilled-skills-system-skill-advisor-runtime-lib-scorer-executo",
+      "text": "Verify: `sed -n '212p' .skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-10-verify-sed-n-2390p-skilled-skills-system-deep-loop-runtime-scripts-fanout-run-cj",
+      "text": "Verify: `sed -n '2390p' .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-verify-sed-n-88-89p-119p-skilled-skills-cli-external-orchestration-router-md",
+      "text": "Verify: `sed -n '88,89p;119p' .skilled/skills/cli-external-orchestration/ROUTER.md`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-verify-rerun-the-command-above-then-rerun-with-prompt-opencode-go-route-and-comp",
+      "text": "Verify: rerun the command above, then rerun with `{\"prompt\":\"opencode go route\"}` and compare.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-14-verify-the-command-above-note-the-second-recommendation-s-confidence-field",
+      "text": "Verify: the command above; note the second recommendation's `confidence` field.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-divergent-pivot-is-live-and-load-bearing-26-production-import-sites-across-the-f",
+      "text": "**Divergent pivot is live and load-bearing.** 26 production import sites across the four deep assets",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-legacy-projections-and-the-legacy-watermark-path-are-live-4-559-loc-imported-in-",
+      "text": "**Legacy projections and the legacy watermark path are live.** 4,559 LOC, imported in production by",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-source-skilled-commands-deep-assets-deep-research-confirm-yaml-1190",
+      "text": "`[SOURCE: .skilled/commands/deep/assets/deep-research-confirm.yaml:1190]`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-source-skilled-commands-deep-assets-deep-review-auto-yaml-1239",
+      "text": "`[SOURCE: .skilled/commands/deep/assets/deep-review-auto.yaml:1239]`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-source-skilled-commands-deep-assets-deep-review-confirm-yaml-1317",
+      "text": "`[SOURCE: .skilled/commands/deep/assets/deep-review-confirm.yaml:1317]`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-6-rg-rn-legacy-projection-watermarks-printed-n-for-every-match-r-is-ripgrep-s-repl",
+      "text": "`rg -rn \"legacy-projection-watermarks\"` printed `.n` for every match. `-r` is ripgrep's **replace**",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-7-an-earlier-rg-if-cli-copilot-cli-copilot-copilot-head-25-returned-nothing-about-",
+      "text": "An earlier `rg \"if_cli_copilot|cli_copilot|copilot\" | head -25` returned nothing about the deep",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-19-confidence-high-observed-in-the-prompt-i-was-given-plus-zero-code-paths-producin",
+      "text": "**Confidence:** high — observed in the prompt I was given, plus zero code paths producing the field.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-14-confidence-high-three-copies-of-a-literal-zero-references-to-the-config-field",
+      "text": "**Confidence:** high — three copies of a literal, zero references to the config field.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-24-confidence-high-on-both-mechanisms-records-and-modes-are-explicit-medium-that-no",
+      "text": "**Confidence:** high on both mechanisms (records and modes are explicit); medium that no",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-confidence-high-on-the-drift-three-lines-vs-one-medium-on-which-of-the-two-failu",
+      "text": "**Confidence:** high on the drift (three lines vs one); medium on which of the two failure modes",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-29-confidence-high-on-the-three-way-contradiction-medium-that-cli-pi-attaches-perso",
+      "text": "**Confidence:** high on the three-way contradiction; medium that `cli-pi` attaches persona",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-9-confidence-high-that-the-field-name-disagrees-with-the-schema-medium-that-the-en",
+      "text": "**Confidence:** high that the field name disagrees with the schema; medium that the engine does not",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-12-operator-cost-a-leaf-that-obeys-its-harness-under-researches-by-2-a-leaf-that-ob",
+      "text": "**Operator cost:** a leaf that obeys its harness under-researches by 2×; a leaf that obeys the",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-27-operator-cost-not-a-crash-a-silent-quality-floor-three-sources-disagree-and-each",
+      "text": "**Operator cost:** not a crash — a silent quality floor. Three sources disagree and each is",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-operator-cost-the-dispatch-receipt-the-fencing-label-and-the-validator-disagree-",
+      "text": "**Operator cost:** the dispatch receipt, the fencing label and the validator disagree on the",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-17-operator-cost-the-focus-line-is-the-operator-s-only-what-is-this-run-doing-right",
+      "text": "**Operator cost:** the focus line is the operator's only \"what is this run doing right now\" signal,",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-7-operator-cost-this-is-the-branching-input-if-config-executor-type-resolves-to-no",
+      "text": "**Operator cost:** this is the *branching* input. If `config.executor.type` resolves to nothing,",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-22-operator-cost-worst-case-combination-is-real-for-this-audit-a-run-that-hits-quot",
+      "text": "**Operator cost:** worst-case combination is real for this audit: a run that hits quota three times",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-release-refuted-attribution-to-v4-git-log-s-g-generation-on-this-file-bottoms-ou",
+      "text": "**Release:** **refuted attribution to v4.** `git log -S\"g{generation}\"` on this file bottoms out at",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-8-release-git-log-s-config-executor-type-bottoms-out-at-7a2dd5401a-2026-10-03-also",
+      "text": "**Release:** `git log -S\"config.executor.type\"` bottoms out at `7a2dd5401a` (2026-10-03) — also",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-13-release-pre-v4-330427cf30-inherited",
+      "text": "**Release:** pre-v4 (`330427cf30`), inherited.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-28-release-the-persona-clause-and-the-agentpersona-policy-both-landed-in-the-v4-lin",
+      "text": "**Release:** the persona clause and the `agentPersona` policy both landed in the v4 line; which one",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-23-release-the-single-executor-workflow-is-v4-v4-0-0-3-v4-0-0-16-per-the-release-no",
+      "text": "**Release:** the single-executor workflow is v4 (`v4.0.0.3`, `v4.0.0.16` per the release notes);",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-18-release-unknown-in-v4-the-instruction-predates-the-line-numbers-i-can-attribute-",
+      "text": "**Release:** unknown-in-v4; the instruction predates the line numbers I can attribute cheaply.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-verify-grep-n-g-generation-skilled-commands-deep-assets-deep-research-auto-yaml-",
+      "text": "**Verify:** `grep -n 'g{generation}' .skilled/commands/deep/assets/deep-research-auto.yaml` and",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-15-verify-grep-rn-maxtoolcallsperiteration-skilled-skills-system-deep-loop-deep-res",
+      "text": "**Verify:** `grep -rn 'maxToolCallsPerIteration' .skilled/skills/system-deep-loop/deep-research/ .skilled/commands/deep/ | wc -l` → 0.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-10-verify-node-e-const-c-require-specs-system-speckit-047-v4-release-line-research-",
+      "text": "**Verify:** `node -e \"const c=require('./specs/system-speckit/runtime-and-release/004-v4-release-line-research/003-cli-and-deep-loop/research/deep-research-config.json');console.log(c.executor.type, c.executor.kind)\"`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-25-verify-rg-n-status-error-skilled-commands-deep-assets-deep-research-auto-yaml-an",
+      "text": "**Verify:** `rg -n '\"status\":\"error\"' .skilled/commands/deep/assets/deep-research-auto.yaml` and",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-20-verify-rg-n-last-3-summaries-last-focus-skilled-glob-node-modules-all-hits-are",
+      "text": "**Verify:** `rg -n 'last_3_summaries|last_focus' .skilled --glob '!node_modules'` (all hits are",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-30-verify-rg-n-persona-skilled-commands-deep-assets-deep-research-auto-yaml-wc-l-0",
+      "text": "**Verify:** `rg -n 'persona' .skilled/commands/deep/assets/deep-research-auto.yaml | wc -l` → 0.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-f-iter008-001-p0-dispatchid-is-built-from-generation-in-three-of-six-branches-wh",
+      "text": "f-iter008-001 — P0 — `dispatchId` is built from `{generation}` in three of six branches, while `post_dispatch_validate` requires `{config.lineage.generation}`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-6-f-iter008-002-p0-every-executor-gate-reads-config-executor-type-the-schema-key-i",
+      "text": "f-iter008-002 — P0 — every executor gate reads `config.executor.type`; the schema key is `kind`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-11-f-iter008-003-p1-the-leaf-is-told-12-tool-calls-while-the-config-says-24-with-no",
+      "text": "f-iter008-003 — P1 — the leaf is told 12 tool calls while the config says 24, with no way for either side to see the other",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-16-f-iter008-004-p1-the-projected-state-summary-has-no-field-contract-so-focus-rend",
+      "text": "f-iter008-004 — P1 — the projected state summary has no field contract, so focus renders `undefined` — visibly, in my own prompt",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-21-f-iter008-005-p1-an-executor-quota-error-burns-an-iteration-slot-and-changing-ex",
+      "text": "f-iter008-005 — P1 — an executor quota error burns an iteration slot, and changing executor costs the research tree",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-26-f-iter008-006-p1-canon-contradiction-persona-injection-is-required-by-the-hub-im",
+      "text": "f-iter008-006 — P1 (canon contradiction) — persona injection is required by the hub, impossible in the pack, and rejected by the executor policy",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-9-20-v4-0-0-13-fan-out-half-prefers-opencode-2-is-real-in-fanout-run-cjs-resolver-ver",
+      "text": "**v4.0.0.13 fan-out half**: \"prefers OpenCode 2\" is real in `fanout-run.cjs` (resolver, version branch, effort folded into the model id as `model#effort` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2523]). The release note is accurate about fan-out; it is silent that the single-executor branch is exempt.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-19-v4-0-0-2-grok-4-7-the-eight-ids-in-the-release-note-grok-4-7-low-medium-high-xhi",
+      "text": "**v4.0.0.2 Grok 4.7**: the eight ids in the release note — `grok-4.7-{low,medium,high,xhigh}` each with a `-fast` twin — match both rosters exactly, prefix quirk documented at the roster. The claim holds.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-14-confidence-high-for-duplication-medium-for-no-equality-test-not-exhaustively-gre",
+      "text": "Confidence: high for duplication, medium for \"no equality test\" (not exhaustively grepped).",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-5-confidence-high-for-the-contradiction-high-for-v2-rejection-given-the-skill-s-tw",
+      "text": "Confidence: high for the contradiction; high for v2 rejection given the skill's two independent statements.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-confidence-high",
+      "text": "Confidence: high.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-17-confidence-medium-one-iteration-of-grep-the-pi-builder-argv-was-not-read",
+      "text": "Confidence: medium (one iteration of grep; the pi builder argv was not read).",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-8-confidence-medium-high-guard-asymmetry-confirmed-the-literal-null-outcome-depend",
+      "text": "Confidence: medium-high (guard asymmetry confirmed; the literal-`null` outcome depends on the substitution engine's unknown-token policy, still open from iteration 8).",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-11-confidence-medium-high",
+      "text": "Confidence: medium-high.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-13-introduced-by-pre-v4-teeth-last-edited-by-v4-0-0-2",
+      "text": "Introduced by: pre-v4 teeth; last edited by v4.0.0.2.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-7-introduced-by-pre-v4-0-0-13-branch-unfixed-by-it",
+      "text": "Introduced by: pre-v4.0.0.13 branch, unfixed by it.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-4-introduced-by-v4-0-0-13-the-flag-predates-it-the-contradiction-it-creates-does-n",
+      "text": "Introduced by: v4.0.0.13 (the flag predates it; the contradiction it creates does not).",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-introduced-by-v4-0-0-13",
+      "text": "Introduced by: v4.0.0.13.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-10-introduced-by-v4-0-0-13",
+      "text": "Introduced by: v4.0.0.13.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-16-introduced-by-v4-0-0-16",
+      "text": "Introduced by: v4.0.0.16.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-15-verify-diff-sed-n-353-383p-skilled-skills-system-deep-loop-runtime-lib-deep-loop",
+      "text": "Verify: `diff <(sed -n '353,383p' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts | grep -o \"'[^']*'\") <(sed -n '2562,2592p' .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs | grep -o \"'[^']*'\")` → no output.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-verify-grep-c-resolveopencodebinary-skilled-commands-deep-assets-deep-research-a",
+      "text": "Verify: `grep -c \"resolveOpencodeBinary\" .skilled/commands/deep/assets/deep-research-auto.yaml` → `0`; `grep -rn \"require('./opencode-version.cjs')\" .skilled/skills/system-deep-loop/runtime/scripts/` → one hit, `fanout-run.cjs`.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-6-verify-grep-n-pure-skilled-commands-deep-assets-deep-research-auto-yaml-opencode",
+      "text": "Verify: `grep -n \"'--pure'\" .skilled/commands/deep/assets/deep-research-auto.yaml`; `opencode2 run --help | grep -c -- --pure` → `0`.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-12-verify-grep-n-pwd-skilled-skills-system-deep-loop-runtime-scripts-fanout-run-cjs",
+      "text": "Verify: `grep -n \"PWD\" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` (the fan-out sets it) versus `grep -n \"PWD\" .skilled/commands/deep/assets/deep-research-auto.yaml` (no hit).",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-18-verify-grep-n-servicetier-skilled-skills-system-deep-loop-runtime-scripts-fanout",
+      "text": "Verify: `grep -n \"serviceTier\" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs | grep -i pi` and read the `cli-pi` builder's argv construction; then `grep -rn \"fast\" .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md`.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-9-verify-sed-n-1597-1607p-1698-1712p-skilled-commands-deep-assets-deep-research-au",
+      "text": "Verify: `sed -n '1597,1607p;1698,1712p' .skilled/commands/deep/assets/deep-research-auto.yaml` and compare the two placeholder treatments.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-confidence-high-four-exact-lines-plus-the-guarded-form-asymmetry-visible-in-the-",
+      "text": "Confidence: high (four exact lines, plus the guarded-form asymmetry visible in the same file).",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-confidence-high-for-no-dispatch-branch-exists-medium-for-the-operator-visible-co",
+      "text": "Confidence: high for \"no dispatch branch exists\"; medium for the operator-visible consequence, which depends on whether the executing agent follows the prose.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-confidence-high-for-the-code-path-high-for-the-60-minute-window-ttl-is-passed-ex",
+      "text": "Confidence: high for the code path; high for the 60-minute window (TTL is passed explicitly as 1800000).",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-11-confidence-medium-high-one-function-read-callers-not-enumerated",
+      "text": "Confidence: medium-high (one function read; callers not enumerated).",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-10-introduced-by-pre-v4-fan-out-unaffected-by-v4-0-0-3",
+      "text": "Introduced by: pre-v4 fan-out; unaffected by v4.0.0.3.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-introduced-by-v4-0-0-0-council-routing-and-unchanged-by-v4-0-0-7-s-three-mode-fr",
+      "text": "Introduced by: v4.0.0.0 (council routing) and unchanged by v4.0.0.7's three-mode framing.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-introduced-by-v4-0-0-13-for-the-version-rule-this-branch-ignores-the-pure-flag-p",
+      "text": "Introduced by: v4.0.0.13 for the version rule this branch ignores; the `--pure` flag predates it.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-introduced-by-v4-0-0-3-the-lock-steps-and-the-transient-marking-land-together",
+      "text": "Introduced by: v4.0.0.3 (the lock steps and the transient marking land together).",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-verify-grep-n-pure-command-opencode-config-executor-model-skilled-commands-deep-",
+      "text": "Verify: `grep -n \"\\-\\-pure\\|command: 'opencode'\\|config.executor.model\" .skilled/commands/deep/assets/deep-review-auto.yaml | sed -n '1,12p'`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-verify-grep-rn-dispatchseat-include-cjs-skilled-skills-system-deep-loop-grep-v-t",
+      "text": "Verify: `grep -rn \"dispatchSeat\" --include=*.cjs .skilled/skills/system-deep-loop/ | grep -v tests` → no output; `grep -c \"if_cli\" .skilled/commands/deep/assets/deep-ai-council-auto.yaml` → 0.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-12-verify-node-e-const-m-require-skilled-skills-system-deep-loop-runtime-scripts-fa",
+      "text": "Verify: `node -e \"const m=require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');\" ` is not the test — instead `grep -n \"summarizeSnapshots\" -A 12 .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` and read the returned object.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-verify-node-skilled-skills-system-deep-loop-runtime-scripts-loop-lock-cjs-acquir",
+      "text": "Verify: `node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path /tmp/probe.lock --packet-id probe --ttl-ms 1800000 && cat /tmp/probe.lock | grep owner_kind` → `\"owner_kind\": \"transient\"`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-11-3-review-focus-is-not-dead-code-it-is-parsed-guard-railed-threaded-through-both-pr",
+      "text": "`--review-focus` is **not** dead code: it is parsed, guard-railed, threaded through both prompt builders and the native command. The defect is documentation and shell-ordering (F1, F2), not wiring.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-2-retired-templates-no-dead-reference-in-the-three-cluster-skill-trees-the-loops-k",
+      "text": "Retired templates: **no dead reference** in the three cluster skill trees; the loops keep emitting their own `resource-map.md` (`[SOURCE: .skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md:140]`).",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-1-v4-0-0-15-advisor-claim-holds-for-both-typed-prompts",
+      "text": "v4.0.0.15 advisor claim: **holds** for both typed prompts.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-12-4-v4-0-0-1-model-rosters-no-gpt-5-6-luna-gpt-5-6-sol-mimo-v2-5-mimo-v2-6-pro-ultra",
+      "text": "**v4.0.0.1, model rosters** — no `gpt-5.6-luna`, `gpt-5.6-sol`, `mimo-v2.5`, `mimo-v2.6-pro-ultraspeed` or `claude-opus-5-4` on any live dispatch surface in the four cluster paths. The only hits are frozen evidence under `cli-external-orchestration/benchmark/reports/compiled-routing/2026-07-21--*`, which record what a past run actually dispatched. Correctly left as history, not stale config.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-3-v4-0-0-1-routing-keyword-claim-a-skill-that-answers-judgment-questions-carried-t",
+      "text": "**v4.0.0.1, routing keyword claim** — \"a skill that answers judgment questions carried the bare word `run` among its keywords … the keyword is gone.\" Confirmed: `cli-classifier/description.json` keywords are `cli-classifier, cli-jev, cli-usage, jev, typed judgment, jev-mcp, jev noul, jev choice, jev score, hosted classifier` — no bare `run`.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-2-v4-0-0-10-no-cluster-claim-in-the-four-paths-sk-code-surfaces-git-hook-trust-com",
+      "text": "**v4.0.0.10** — no cluster claim in the four paths (sk-code surfaces, git hook trust, Commit-Id, Pi Fast Mode). Verified-empty.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-1-v4-0-0-11-no-cluster-claim-at-all-sk-git-setup-command-hook-install-commit-stand",
+      "text": "**v4.0.0.11** — no cluster claim at all (sk-git `setup` command, hook install, commit standards). Verified-empty for this cluster.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-5-v4-0-0-9-hub-integrity-claims-7-mode-folders-with-skill-md-7-modes-entries-7-rou",
+      "text": "**v4.0.0.9, hub-integrity claims** — 7 mode folders with `SKILL.md` = 7 `modes[]` entries = 7 `routerSignals` keys, zero orphans in either direction; every `aliases[]` entry of all 7 modes appears verbatim in a `vocabularyClasses` keyword list (0 misses), matching \"every mode alias is lowercase and listed among its router keywords\"; all 85 changelog entries across the three audited skills carry a `version:` key (28 + 17 + 40, 0 missing).",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-13-12-v4-0-0-0-pi-runs-a-closed-roster-with-deepseek-v4-1-flash-as-its-default-pi-defa",
+      "text": "**v4.0.0.0, \"Pi runs a closed ... roster with DeepSeek V4.1 Flash as its default.\"** `PI_DEFAULT_MODEL` is `deepseek-v4.1-flash-1017`; the roster is a `readonly` const tuple behind `isPiModelAllowed`. Verified. The note's \"six-provider\" arithmetic was not independently confirmed, because bare literals such as `minimax-m3` resolve their provider outside this file.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-11-v4-0-0-0-the-second-stage-router-moved-to-a-root-router-md-router-md-exists-at-t",
+      "text": "**v4.0.0.0, \"the second-stage router ... moved to a root `ROUTER.md`.\"** `ROUTER.md` exists at the hub root and names its own provenance. [SOURCE: .skilled/skills/system-deep-loop/ROUTER.md:3] Every remaining `smart-routing` reference is in a historical changelog, which the move's own entry explicitly permits. [SOURCE: .skilled/skills/system-deep-loop/changelog/v1.4.3.0.md:15] Verified.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-10-v4-0-0-0-there-is-no-router-agent-left-to-call-skilled-agents-holds-twelve-entri",
+      "text": "**v4.0.0.0, \"there is no router agent left to call.\"** `.skilled/agents` holds twelve entries and `.opencode/agents` holds the deep pair only; no `deep.md` or `deep-loop.md` router persona survives, and the `@deep-loop` grep hits only the runtime package name `@deep-loop/runtime`. Verified.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-13-v4-0-0-16-pi-runs-gpt-6-1-terra-in-deep-loops-present-in-the-allowlist-and-the-f",
+      "text": "**v4.0.0.16, \"pi runs GPT-6.1 Terra in deep loops.\"** Present in the allowlist and the fan-out accepts it; the cli-pi reference marks it dispatch-verified. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:65] Verified.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-3-confidence-high-both-texts-were-read-this-iteration",
+      "text": "Confidence: high. Both texts were read this iteration.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-8-confidence-medium-the-overlap-and-the-gap-are-measured-the-token-cost-of-maintai",
+      "text": "Confidence: medium. The overlap and the gap are measured; the token cost of maintaining it is a judgment.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-1-release-introduced-v4-0-0-0-the-comment-and-the-retraction-landed-in-the-same-re",
+      "text": "Release introduced: v4.0.0.0 (the comment and the retraction landed in the same release; the comment was never revisited).",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-5-release-introduced-v4-0-0-16-whose-083-gpt-6-1-terra-roster-entry-appended-terra",
+      "text": "Release introduced: v4.0.0.16, whose `083-gpt-6-1-terra-roster` entry appended terra and moved the roster from six ids to ten. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.16.0.md:24]",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-6-status-latent-not-active-the-range-still-covers-the-list-today-so-the-row-passes",
+      "text": "Status: latent, not active. The range still covers the list today, so the row passes; it fails silently the first time anyone edits above line 210.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-4-verify-grep-n-flat-price-skilled-skills-system-deep-loop-runtime-lib-deep-loop-e",
+      "text": "Verify: `grep -n \"flat-price\" .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` against the release note's \"What the Caching Is Actually Worth\" section.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-9-verify-sed-n-228-251p-skilled-skills-system-deep-loop-runtime-lib-deep-loop-exec",
+      "text": "Verify: `sed -n '228,251p' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts | grep -c \"^ '\"` — counts the ids actually in the list; compare with the row's literal list.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-7-why-it-matters-the-check-a-human-runs-to-confirm-the-roster-is-the-check-that-ro",
+      "text": "Why it matters: the check a human runs to confirm the roster is the check that rots first, and it rots without an error. The ten literals also have to be edited by hand on every roster change, which is the same duplication the release line's own routing findings keep recording.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-2-why-it-matters-the-comment-is-the-durable-why-for-a-provider-choice-a-maintainer",
+      "text": "Why it matters: the comment is the durable WHY for a provider choice. A maintainer re-ranking fan-out cost reads a false premise and can move the slot on it. It is also a comment-hygiene miss by this repository's own standard, since the surviving comment states a claim rather than the fact that justifies it.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-14-8-v4-0-0-12-its-only-near-cluster-claim-is-doctor-routing-for-deep-loop-problems-t",
+      "text": "**v4.0.0.12** — its only near-cluster claim is doctor routing for deep-loop problems; the commits in `v4.0.0.11..v4.0.0.12` touching the cluster are **zero**, and the doctor commands and advisor hint map live outside these four paths. Verified-empty with respect to the cluster, but note that the note *mentions* deep-loop routing: worth one confirming read of `.skilled/commands/doctor/deep-loop.md` in a future iteration, out of cluster scope here.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-6-v4-0-0-4-names-create-sh-series-parents-the-settled-conclusion-rule-bundled-lock",
+      "text": "**v4.0.0.4** — names `create.sh` series parents, the settled-conclusion rule, bundled lockfiles, Devin rule loading and removed healer/upgrade flags. No path under the four cluster trees; `git log v4.0.0.3..v4.0.0.10` shows only doc/version/path maintenance inside them, matching none of the note's headlines. Verified-empty.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-7-v4-0-0-5-spec-repair-lanes-upgrade-before-images-nested-anchors-pr-gate-no-clust",
+      "text": "**v4.0.0.5** — spec-repair lanes, upgrade before-images, nested anchors, PR gate. No cluster claim; `v4.0.0.11..v4.0.0.12` and `.3..10` show no cluster commit corresponding to any claim. Verified-empty.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-5-v4-0-0-11-v4-0-0-12-0-cluster-commits",
+      "text": "`v4.0.0.11..v4.0.0.12` → **0** cluster commits",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-4-v4-0-0-16-v4-0-1-0-11-cluster-commits-readability-rewrites-a37fed8910-chore-skil",
+      "text": "`v4.0.0.16..v4.0.1.0` → ≥11 cluster commits (readability rewrites, `a37fed8910 chore(skills): seed intent-signal provenance on every hub and recompile the skill graph`)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-3-v4-0-0-3-v4-0-0-10-14-cluster-commits-doc-version-path-repairs-incl-5c8e05590e-d",
+      "text": "`v4.0.0.3..v4.0.0.10` → ≥14 cluster commits (doc/version/path repairs, incl. `5c8e05590e docs(sk-doc): stop telling authors a hub ROUTER.md carries the release version`)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-1-v4-0-0-4-4d8f403355-chore-system-spec-kit-rebuild-the-trigger-index",
+      "text": "`v4.0.0.4` → `4d8f403355` \"chore(system-spec-kit): rebuild the trigger index\"",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-2-v4-0-1-0-6a93a2cfeb-chore-system-spec-kit-rebuild-the-trigger-index",
+      "text": "`v4.0.1.0` → `6a93a2cfeb` \"chore(system-spec-kit): rebuild the trigger index\"",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-15-1-f-iter015-001-drift-p1-executor-field-name-is-split-across-gate-payload-and-temp",
+      "text": "f-iter015-001 — drift, P1. Executor field name is split across gate, payload and template.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-2-f-iter015-002-bug-p1-a-valid-executor-kind-dispatches-nothing-and-says-nothing",
+      "text": "f-iter015-002 — bug, P1. A valid executor kind dispatches nothing and says nothing.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-3-f-iter015-003-drift-p1-one-value-two-token-spellings",
+      "text": "f-iter015-003 — drift, P1. One value, two token spellings.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-4-f-iter015-004-drift-doc-vs-code-p2-the-lock-note-promises-a-reclaim-the-transien",
+      "text": "f-iter015-004 — drift (doc vs code), P2. The lock note promises a reclaim the transient path cannot perform.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-5-f-iter015-005-over-engineering-p2-if-cli-copilot-is-unreachable",
+      "text": "f-iter015-005 — over-engineering, P2. if_cli_copilot is unreachable.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-6-f-iter015-006-misalignment-p1-the-anti-convergence-floor-is-prose-only",
+      "text": "f-iter015-006 — misalignment, P1. The anti-convergence floor is prose-only.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-7-f-iter015-007-over-engineering-p2-branch-leases-waves-has-no-runtime-consumer",
+      "text": "f-iter015-007 — over-engineering, P2. branch-leases-waves has no runtime consumer.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-8-f-iter015-008-drift-p2-the-classifier-hub-routes-only-jev",
+      "text": "f-iter015-008 — drift, P2. The classifier hub routes only Jev.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-9-f-iter015-009-bug-p1-new-this-iteration-the-containment-baseline-is-repo-wide-so",
+      "text": "f-iter015-009 — bug, P1 (new this iteration). The containment baseline is repo-wide, so concurrent lanes quarantine each other's files.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-16-4-dispatchcouncilseats-itself-refuses-to-run-without-such-a-function-source-skille",
+      "text": "`dispatchCouncilSeats` itself refuses to run without such a function [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/council/multi-seat-dispatch.cjs:140].",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-2-dispatchseat-is-defined-and-spawns-a-seat-subprocess-with-the-resolved-executor-",
+      "text": "`dispatchSeat` is defined and spawns a seat subprocess with the resolved executor kind and model [SOURCE: .skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:359].",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-1-f-iter016-001-the-ai-council-external-cli-has-no-dispatch-runtime-finding-is-fal",
+      "text": "f-iter016-001 — The \"ai-council external-cli has no dispatch runtime\" finding is FALSIFIED (P2, correction)",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-5-f-iter016-002-narrowed-replacement-executor-mode-is-inert-and-in-cli-is-the-unim",
+      "text": "f-iter016-002 — NARROWED replacement: `executor.mode` is inert, and `in-cli` is the unimplemented side (P2, drift)",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-6-f-iter016-003-confirmed-a-missing-per-lineage-cap-is-rejected-only-after-the-lin",
+      "text": "f-iter016-003 — CONFIRMED: a missing per-lineage cap is rejected only after the lineage has run (P1, bug)",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-7-f-iter016-004-coverage-exists-but-is-unit-only-ordering-is-untested-p2-test-gap",
+      "text": "f-iter016-004 — Coverage exists but is unit-only; ordering is untested (P2, test gap)",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-3-the-session-injects-it-into-the-executor-config-before-topic-orchestration-runti",
+      "text": "The session injects it into the executor config before topic orchestration: `runtimeExecutorConfig.dispatchSeat = options.dispatchSeat || ((seatInput, dispatchContext) => dispatchSeat(...))` [SOURCE: .skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:791].",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-17-2-source-skilled-commands-deep-assets-deep-research-auto-yaml-1619",
+      "text": "[SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:1619]",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-3-source-skilled-commands-deep-assets-deep-review-auto-yaml-1547",
+      "text": "[SOURCE: .skilled/commands/deep/assets/deep-review-auto.yaml:1547]",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-8-a-prompt-whose-verbs-are-route-and-whose-noun-is-opencode-is-answered-first-by-s",
+      "text": "A prompt whose verbs are *route* and whose noun is *opencode* is answered first by `sk-code`, the",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-1-f-iter017-001-b3-is-narrowed-the-flag-is-in-both-twins-its-validity-is-untested-",
+      "text": "f-iter017-001 — B3 is **NARROWED**: the flag is in both twins; its validity is untested | bug | P2",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-4-f-iter017-002-new-p1-bug-the-research-family-branches-on-a-config-key-the-schema",
+      "text": "f-iter017-002 — NEW P1 bug: the research family branches on a config key the schema does not have",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-5-f-iter017-003-answered-carried-across-four-iterations-there-is-no-normaliser-bef",
+      "text": "f-iter017-003 — ANSWERED (carried across four iterations): there is no normaliser before YAML evaluation",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-6-f-iter017-004-drift-the-citation-path-earlier-iterations-used-does-not-exist-dri",
+      "text": "f-iter017-004 — Drift: the citation path earlier iterations used does not exist | drift | P2",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-7-f-iter017-005-advisor-routing-a-phrase-naming-one-cli-vendor-resolves-to-another",
+      "text": "f-iter017-005 — Advisor routing: a phrase naming one CLI vendor resolves to another vendor's packet | UX | P2",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-10-f-iter017-006-improvement-one-argv-builder-and-one-dispatch-facts-builder-for-al",
+      "text": "f-iter017-006 — Improvement: one argv builder and one dispatch-facts builder for all six branches | improvement | P1",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-13-f-iter017-007-extension-a-static-token-vs-schema-contract-test-over-every-if-cli",
+      "text": "f-iter017-007 — Extension: a static token-vs-schema contract test over every `if_cli_*` branch | extension | P2",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-14-f-iter017-008-ux-a-failed-dispatch-cannot-be-attributed-to-a-branch-from-the-log",
+      "text": "f-iter017-008 — UX: a failed dispatch cannot be attributed to a branch from the log | UX | P2",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-11-the-config-key-for-executor-identity-type-vs-kind-f-iter017-002",
+      "text": "the **config key** for executor identity (`type` vs `kind`, f-iter017-002);",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-12-the-generation-token-spelling-research-builds-generation-number-config-lineage-g",
+      "text": "the **generation token** spelling — research builds `generation: Number('{config.lineage.generation}')`",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-9-the-cli-hub-does-match-but-its-compiledroute-selects-packet-cli-deepseek-harness",
+      "text": "The CLI hub does match — but its `compiledRoute` selects packet **`cli-deepseek-harness`** for a",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-18-9-hardcoded-binary-runauditedexecutorcommand-command-opencode-at",
+      "text": "**Hardcoded binary.** `runAuditedExecutorCommand({ command: 'opencode', ... })` at",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-8-unguarded-model-line-1244-guards-the-null-literal-for-reasoningeffort",
+      "text": "**Unguarded model.** Line 1244 guards the `'null'` literal for `reasoningEffort`",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-14-1735-appends-spec-synthesis-deferred-with-reason-confirm-mode-deferred-writeback",
+      "text": "`:1735` appends `spec_synthesis_deferred` with `reason:\"confirm_mode_deferred_writeback\"`",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-15-1757-appends-the-ordinary-spec-mutation-with-diff-summary-replaced-generated",
+      "text": "`:1757` appends the ordinary `spec_mutation` with `diff_summary:\"Replaced generated",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-12-acquire-then-sets-lockdata-ownerkind-transient-185-187-with-the-comment-a",
+      "text": "`acquire` then sets `lockData.ownerKind = 'transient'` (185–187) with the comment \"A",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-5-branch-on-config-executor-type-at-1183-resolves-to-undefined-the-branch-keys",
+      "text": "`branch_on: \"config.executor.type\"` at 1183 resolves to `undefined`. The branch keys",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-2-deep-research-confirm-yaml-type-at-1177-1183-1362-1366",
+      "text": "`deep-research-confirm.yaml` — `.type` at 1177, 1183, 1362, 1366",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-3-deep-review-confirm-yaml-kind-at-1304-1310-1499-1503",
+      "text": "`deep-review-confirm.yaml` — `.kind` at 1304, 1310, 1499, 1503",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-11-resolveownerpid-92-101-returns-process-pid-when-the-flag-is-absent-so-the",
+      "text": "`resolveOwnerPid` (92–101) returns `process.pid` when the flag is absent — so the",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-4-skip-when-config-executor-type-native-or-dry-run-true-at-1177-is-never",
+      "text": "`skip_when: \"config.executor.type == 'native' or dry_run == true\"` at 1177 is never",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-1-f-iter018-001-deep-research-confirm-yaml-gates-on-a-field-the-config-does-not-ca",
+      "text": "f-iter018-001 — `deep-research-confirm.yaml` gates on a field the config does not carry (P0, bug)",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-6-f-iter018-002-no-if-cli-kind-branch-exists-for-the-kind-the-run-config-selects-p",
+      "text": "f-iter018-002 — no `if_cli_<kind>` branch exists for the kind the run config selects (P1, bug)",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-7-f-iter018-003-pure-on-a-hardcoded-opencode-with-an-unguarded-model-byte-identica",
+      "text": "f-iter018-003 — `--pure` on a hardcoded `opencode` with an unguarded model, byte-identical in both confirm files (P1, bug)",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-10-f-iter018-004-the-carried-owner-pid-defect-is-refuted-the-real-defect-is-the-ttl",
+      "text": "f-iter018-004 — the carried `--owner-pid` defect is **refuted**; the real defect is the TTL against interactive gates (P1, bug + UX)",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-13-f-iter018-005-confirm-mode-both-defers-and-performs-the-spec-writeback-p2-drift",
+      "text": "f-iter018-005 — confirm mode both defers and performs the spec writeback (P2, drift)",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-16-f-iter018-006-the-bare-generation-token-is-present-in-both-confirm-files-and-dee",
+      "text": "f-iter018-006 — the bare `{generation}` token is present in both confirm files, and `deep-research-confirm.yaml` uses both spellings (P2, drift)",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-17-f-iter018-007-confirm-parity-is-genuinely-good-design-and-it-is-unenforced-p2-im",
+      "text": "f-iter018-007 — `confirm_parity` is genuinely good design, and it is unenforced (P2, improvement → extension)",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-21-1-f-iter021-001-bug-p1-the-pi-classifier-route-is-gated-on-an-exact-pi-version-and",
+      "text": "f-iter021-001 — bug, P1. The Pi classifier route is gated on an exact Pi version, and the real install fails that gate.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-2-f-iter021-002-drift-p1-v4-0-0-3-documents-four-jev-features-and-four-off-switche",
+      "text": "f-iter021-002 — drift, P1. v4.0.0.3 documents four Jev features and four off-switches; two of each do not exist.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-3-f-iter021-003-bug-diagnostics-p2-a-hung-or-failed-jev-auth-status-is-reported-as",
+      "text": "f-iter021-003 — bug (diagnostics), P2. A hung or failed `jev auth status` is reported as \"no stored credential\".",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-4-f-iter021-004-improvement-test-blind-spot-p2-the-version-gate-is-tested-only-aga",
+      "text": "f-iter021-004 — improvement (test blind spot), P2. The version gate is tested only against its own constant.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-5-f-iter021-005-over-engineering-p2-which-is-copied-verbatim-into-two-sibling-modu",
+      "text": "f-iter021-005 — over-engineering, P2. `which()` is copied verbatim into two sibling modules of the same directory.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-6-f-iter021-006-improvement-p2-criteria-parity-with-the-cli-rests-on-a-comment-nob",
+      "text": "f-iter021-006 — improvement, P2. Criteria parity with the CLI rests on a comment nobody verified.",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-7-key-storage-no-finding-neither-module-reads-holds-or-prints-a-key-pi-credentials",
+      "text": "Key storage: no finding. Neither module reads, holds or prints a key; Pi credentials stay in",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-9-router-phrasing-v4-0-0-2-190-not-re-audited-the-registry-level-phrase-findings-a",
+      "text": "Router phrasing (`v4.0.0.2:190`): not re-audited — the registry-level phrase findings are out of",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-8-timeout-arithmetic-no-finding-spawncliwithinbudget-recomputes-the-remaining-budg",
+      "text": "Timeout arithmetic: no finding. `spawnCliWithinBudget` recomputes the remaining budget before the",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-22-2-the-auto-twin-deleted-the-gates-so-it-must-have-deleted-work-the-gates-are",
+      "text": "**\"The auto twin deleted the gates, so it must have deleted work.\"** The gates are",
+      "addedAtIteration": 22,
+      "sources": []
+    },
+    {
+      "id": "finding-22-1-auto-resume-counter-loss-appeared-to-be-a-defect-confirm-s-on-a-restores",
+      "text": "**Auto-resume counter loss** — appeared to be a defect (confirm's `on_A` restores",
+      "addedAtIteration": 22,
+      "sources": []
+    },
+    {
+      "id": "finding-22-3-step-derive-verdict-is-identical-in-both-twins-same-three-branch-algorithm-same",
+      "text": "`step_derive_verdict` is **identical** in both twins (same three-branch algorithm, same",
+      "addedAtIteration": 22,
+      "sources": []
+    },
+    {
+      "id": "finding-24-1-f-iter024-001-p1-bug-the-reducer-ignores-config-reviewdimensions",
+      "text": "f-iter024-001 — P1, bug: the reducer ignores `config.reviewDimensions`",
+      "addedAtIteration": 24,
+      "sources": []
+    },
+    {
+      "id": "finding-24-2-f-iter024-002-p1-drift-finding-resolution-depends-on-an-undocumented-field",
+      "text": "f-iter024-002 — P1, drift: finding resolution depends on an undocumented field",
+      "addedAtIteration": 24,
+      "sources": []
+    },
+    {
+      "id": "finding-24-3-f-iter024-003-p2-drift-two-contracts-for-one-field-discriminated-by-a-guess",
+      "text": "f-iter024-003 — P2, drift: two contracts for one field, discriminated by a guess",
+      "addedAtIteration": 24,
+      "sources": []
+    },
+    {
+      "id": "finding-24-4-f-iter024-004-p2-drift-the-dashboard-verdict-is-gate-blind",
+      "text": "f-iter024-004 — P2, drift: the dashboard verdict is gate-blind",
+      "addedAtIteration": 24,
+      "sources": []
+    },
+    {
+      "id": "finding-24-5-f-iter024-005-p2-drift-the-packet-points-at-a-reducer-file-that-does-not-exist",
+      "text": "f-iter024-005 — P2, drift: the packet points at a reducer file that does not exist",
+      "addedAtIteration": 24,
+      "sources": []
+    },
+    {
+      "id": "finding-24-6-f-iter024-006-p2-over-engineering-a-second-unreachable-severity-model",
+      "text": "f-iter024-006 — P2, over-engineering: a second, unreachable severity model",
+      "addedAtIteration": 24,
+      "sources": []
+    },
+    {
+      "id": "finding-25-25-source-skilled-commands-deep-assets-deep-ai-council-auto-yaml-25",
+      "text": "[SOURCE: .skilled/commands/deep/assets/deep-ai-council-auto.yaml:25]",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-5-source-skilled-commands-deep-research-md-97-source-skilled-commands-deep-researc",
+      "text": "[SOURCE: .skilled/commands/deep/research.md:97] [SOURCE: .skilled/commands/deep/research.md:116]",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-20-source-skilled-skills-system-deep-loop-router-md-65",
+      "text": "[SOURCE: .skilled/skills/system-deep-loop/ROUTER.md:65]",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-15-source-skilled-skills-system-deep-loop-router-md-8",
+      "text": "[SOURCE: .skilled/skills/system-deep-loop/ROUTER.md:8]",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-10-source-skilled-skills-system-deep-loop-runtime-scripts-fanout-run-cjs-3330",
+      "text": "[SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3330]",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-8-confidence-high-absence-evidenced-by-grep-over-both-auto-assets-plus-the-read-ar",
+      "text": "Confidence: high — absence evidenced by grep over both auto assets plus the read argv",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-18-confidence-high-three-files-read-in-full-compared-set-wise",
+      "text": "Confidence: high (three files read in full, compared set-wise).",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-13-confidence-high-on-the-numbers-unknown-whether-any-consumer-reads-the-frontmatte",
+      "text": "Confidence: high on the numbers; unknown whether any consumer reads the frontmatter",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-3-confidence-high-on-the-omission-three-docs-both-sides-read-medium-on-the-operato",
+      "text": "Confidence: high on the omission (three docs, both sides read); medium on the operator",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-23-confidence-medium-high-absence-is-grep-proven-in-the-asset-a-consumer-could-exis",
+      "text": "Confidence: medium-high — absence is grep-proven in the asset; a consumer could exist in",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-1-f-iter025-001-drift-p2-the-flags-table-and-the-workflow-inputs-list-disagree-in-",
+      "text": "f-iter025-001 — drift, P2: the flags table and the \"workflow inputs\" list disagree in all three command docs",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-6-f-iter025-002-drift-p1-lineage-timeout-hours-is-documented-and-implemented-but-n",
+      "text": "f-iter025-002 — drift, P1: `--lineage-timeout-hours` is documented and implemented, but no auto flow ever passes it",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-11-f-iter025-003-drift-p2-router-md-is-16-minor-versions-behind-the-two-json-router",
+      "text": "f-iter025-003 — drift, P2: `ROUTER.md` is 16 minor versions behind the two JSON routers it documents",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-16-f-iter025-004-drift-p2-mode-registry-json-aliases-is-a-strict-subset-of-the-rout",
+      "text": "f-iter025-004 — drift, P2: `mode-registry.json` `aliases` is a strict subset of the router vocabulary — 18 of 36 keys missing",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-21-f-iter025-005-improvement-p2-the-council-auto-variant-declares-executor-mode-and",
+      "text": "f-iter025-005 — improvement, P2: the council auto variant declares `executor.mode` and never reads it",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-12-release-carried-from-the-router-relocation-last-touched-before-1-6-8-0",
+      "text": "Release: carried from the ROUTER relocation; last touched before 1.6.8.0.",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-2-release-v4-0-0-x-convergence-mode-per-deep-review-confirm-yaml-752",
+      "text": "Release: v4.0.0.x (`--convergence-mode` per `deep-review-confirm.yaml:752`).",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-7-release-v4-0-0-x-ceiling-assertion-path",
+      "text": "Release: v4.0.0.x (ceiling assertion path).",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-22-release-v4-0-1-0-council-mode",
+      "text": "Release: v4.0.1.0 (council mode).",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-17-release-v4-0-1-0-hub-canon",
+      "text": "Release: v4.0.1.0 hub canon.",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-4-verify-rg-n-convergence-mode-skilled-commands-deep-research-md-hits-at",
+      "text": "Verify: `rg -n -- '--convergence-mode' .skilled/commands/deep/research.md` → hits at",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-14-verify-rg-n-version-skilled-skills-system-deep-loop-router-md-1-6-7-0",
+      "text": "Verify: `rg -n '^version:' .skilled/skills/system-deep-loop/ROUTER.md` → 1.6.7.0;",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-24-verify-rg-n-executor-mode-in-cli-skilled-commands-deep-assets-deep-ai-council-au",
+      "text": "Verify: `rg -n 'executor\\.mode|in-cli' .skilled/commands/deep/assets/deep-ai-council-auto.yaml`",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-9-verify-rg-n-lineage-tt-imeout-skilled-commands-deep-assets-auto-yaml-0",
+      "text": "Verify: `rg -n 'lineage[-_]?[Tt]imeout' .skilled/commands/deep/assets/*-auto.yaml` → 0.",
+      "addedAtIteration": 25,
+      "sources": []
+    },
+    {
+      "id": "finding-25-19-verify-diff-the-three-keyword-arrays-programmatically-expect-18-registry-side-mi",
+      "text": "Verify: diff the three keyword arrays programmatically; expect 18 registry-side misses",
+      "addedAtIteration": 25,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-0d810df4555b",
+      "text": "**\"`defaultMode: null` is a misconfiguration.\"** It is documented fail-closed design: `hub-router.json:5` plus the `discoveryClassesContract` at `:27-31` state that a prompt carrying only hub-identity vocabulary scores zero modes and takes the defer outcome. Both advisor probes returned a single named executors, consistent with the contract.",
+      "contentHash": "0d810df4555b",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-65f21219bbf9",
+      "text": "**\"Mode `aliases` are dead code.\"** Falsified — `executor-delegation.ts:212` reads them.",
+      "contentHash": "65f21219bbf9",
+      "addedAtIteration": 6
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 26,
+    "openQuestions": 2,
+    "resolvedQuestions": 9,
+    "carriedForwardOpenQuestions": 137,
+    "keyFindings": 217,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.54,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/004-v4-release-line-research/003-cli-and-deep-loop/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

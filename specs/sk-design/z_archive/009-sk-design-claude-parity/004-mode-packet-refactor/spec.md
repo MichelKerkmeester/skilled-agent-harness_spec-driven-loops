@@ -46,7 +46,7 @@ Phase 004 plans the refactor that will apply the approved Claude-like parent/pro
 | **Priority** | P0 |
 | **Status** | Complete - mode-packet refactor implemented and independently verified against the live repo |
 | **Created** | 2026-07-05 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Estimated LOC** | Documentation packet plus five mode-packet edits, one registry version bump, one README update, and one changelog entry |
 <!-- /ANCHOR:metadata -->
 

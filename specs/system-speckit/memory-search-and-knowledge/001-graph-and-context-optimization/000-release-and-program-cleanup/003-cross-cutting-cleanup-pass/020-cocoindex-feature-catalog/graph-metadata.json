@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "020-cocoindex-feature-catalog",
+      "mcp-coco-index feature catalog",
+      "cocoindex catalog",
+      "semantic search catalog",
+      "resource map",
+      "020-cocoindex-feature-catalog resource map",
+      "path catalog 020-cocoindex-feature-catalog"
+    ],
+    "key_topics": [
+      "020-cocoindex-feature-catalog",
+      "mcp-coco-index",
+      "feature",
+      "catalog",
+      "cocoindex",
+      "semantic",
+      "search",
+      "resource",
+      "map",
+      "path",
+      "skill",
+      "broad"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "audit-findings.md",
+      "remediation-log.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-findings.md",
+        "kind": "doc",
+        "path": "audit-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "remediation-log.md",
+        "kind": "doc",
+        "path": "remediation-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Catalog",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Current",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `mcp-coco-index` skill had a broad runtime and documentation surface but no `featurecatalog/` inventory",
+    "created_at": "2026-05-18T08:15:53.138Z",
+    "last_save_at": "2026-11-10T05:45:59.063Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:f4f2a6e4f3a51b838ba1f6e31c94a1476a8f53e5721568afae41bb3e654ca8ae",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "309c40a37cc30a1f699413cc111545ae7e0b28f59cfd3c3ed7a2c881ece7e47f",
+      "plan.md": "6c01f25392bfb2bf024801379d4fed4e912252ad556c9f7559a7ce8a52e6d3e2",
+      "tasks.md": "4c39da27463d3ea7c8f0f3742ac46e42d6fc4b99ad58c564eadd75b0434e6c87",
+      "decision-record.md": "3e8d83009c06a212a0e2731ff9becb8781cd048fe0c0ae53e3fc6d7c308af9eb",
+      "implementation-summary.md": "dcfe55624fc822646698daff861945288c59ce0f38603123c8c1e224c6701cf3",
+      "resource-map.md": "896fa218cf5e1f8024712d96d5e6f3e1d2f2641f04e349d5a8540c5b2027788d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

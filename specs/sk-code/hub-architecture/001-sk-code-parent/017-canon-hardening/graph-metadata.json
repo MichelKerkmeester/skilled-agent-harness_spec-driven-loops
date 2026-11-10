@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The parent-hub canon is defined, but its live router template, schema reference, and validator do not speak one `bundleRules` vocabulary",
     "created_at": "2026-07-05T05:46:26.440Z",
-    "last_save_at": "2026-11-10T05:20:10.204Z",
+    "last_save_at": "2026-11-10T06:05:53.633Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1804d982f9c199d3807a18a22344f638fb60ec9d0af0c4102804499c41be048a",
+    "source_fingerprint": "sha256:cabd36df019a2b9f289b80b226d59ba4e5bc6c54842f428452282d44b5e5b257",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6d807aee982c3d1d7ed5b7675fd2e63fd4cb3aa25c2631c139d1dac6604412df",
+      "spec.md": "7c277f65f1cbc174d026871cec86cfdec820632d8a6428cf8ee75ac8943f6890",
       "plan.md": "8da825daff837cdc4a202e0573e5c21aae5a622225237ccd66670dbb4061b5f5",
       "tasks.md": "b8da7a84bdaaf802625731230e35f4cd8294a0954a2651d454f2e3632f24c7fb",
       "decision-record.md": "42fbaf63dab2e7885c19da0af52f7f3d9c484c611a5937df8068570abde503d6",

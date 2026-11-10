@@ -1,0 +1,627 @@
+{
+  "sessionId": "2026-11-08T19:57:04.000Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-router-files-v4-0-1-0-does-every-skill-and-mode-under-skilled-skills-have-a-rout",
+      "inboxId": null,
+      "text": "Router files (v4.0.1.0): does every skill and mode under .skilled/skills/** have a ROUTER.md linked from SKILL.md in one line, and do each hub's hub-router.json and mode-registry.json agree with its ROUTER.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-advisor-scoring-v4-0-0-7-v4-0-0-15-v4-0-0-16-do-the-path-mention-rule-the-confid",
+      "inboxId": null,
+      "text": "Advisor scoring (v4.0.0.7, v4.0.0.15, v4.0.0.16): do the path-mention rule, the confidence-floor tie rule and the typed-command owner rule in .skilled/skills/system-skill-advisor/** behave as the notes say when run through node .skilled/bin/skill-advisor.cjs advisor_recommend?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-advisor-transport-v4-0-0-0-v4-0-0-16-is-the-mcp-transport-fully-gone-and-do-degr",
+      "inboxId": null,
+      "text": "Advisor transport (v4.0.0.0, v4.0.0.16): is the MCP transport fully gone, and do degraded local scoring and the shared daemon behave as documented in system-skill-advisor/SKILL.md and ARCHITECTURE.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-advisor-parity-v4-0-0-7-is-the-python-vs-node-advisor-parity-check-still-wired-i",
+      "inboxId": null,
+      "text": "Advisor parity (v4.0.0.7): is the Python vs Node advisor parity check still wired into CI, and do the two advisors disagree on any prompt today?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-advisor-prompt-hook-v4-0-0-1-v4-0-0-2-v4-0-2-0-does-every-runtime-adapter-claude",
+      "inboxId": null,
+      "text": "Advisor prompt hook (v4.0.0.1, v4.0.0.2, v4.0.2.0): does every runtime adapter (.claude/hooks, .codex/hooks, .cursor/hooks, .devin/hooks, .opencode/plugins, .pi/extensions, .dsh/plugins) deliver the advisor brief from the single source in .skilled/hooks/skill-advisor, within its time limit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-6-hermes-removal-v4-0-2-0-which-hook-plugin-advisor-or-routing-files-still-referen",
+      "inboxId": null,
+      "text": "Hermes removal (v4.0.2.0): which hook, plugin, advisor or routing files still reference Hermes, .hermes/ or a hermes runtime flag?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-7-session-relaunch-v4-0-0-13-v4-0-0-14-do-skilled-hooks-session-relaunch-and-its-r",
+      "inboxId": null,
+      "text": "Session relaunch (v4.0.0.13, v4.0.0.14): do .skilled/hooks/session-relaunch and its runtime adapters implement the per-runtime SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED flags, the 80 percent trigger and the model, effort and goal carry-over as the notes claim?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-8-history-after-compaction-v4-0-2-0-does-the-session-history-lookup-opencode-plugi",
+      "inboxId": null,
+      "text": "History after compaction (v4.0.2.0): does the session history lookup (.opencode/plugins/session-history-lookup.js and its counterparts) stay read-only and work on each runtime the note names?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-9-question-tool-capture-v4-0-2-0-do-skilled-hooks-ask-surface-guard-and-skilled-ho",
+      "inboxId": null,
+      "text": "Question-tool capture (v4.0.2.0): do .skilled/hooks/ask-surface-guard and .skilled/hooks/decision-capture detect typed option menus as the fixtures claim, and where do they false-positive or false-negative?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-10-hook-safety-v4-0-0-8-v4-0-0-16-do-all-hook-entry-points-honor-the-three-second-s",
+      "inboxId": null,
+      "text": "Hook safety (v4.0.0.8, v4.0.0.16): do all hook entry points honor the three-second stdin deadline and the git-call time limit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-11-over-engineering-which-per-runtime-hook-copies-mirrors-and-generated-artifacts-c",
+      "inboxId": null,
+      "text": "Over-engineering: which per-runtime hook copies, mirrors and generated artifacts could collapse into one source, and what would break if each were removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-12-ux-and-extension-what-blocks-the-operator-or-ai-user-when-enabling-relaunch-read",
+      "inboxId": null,
+      "text": "UX and extension: what blocks the operator or AI user when enabling relaunch, reading the advisor brief or recovering history, and which concrete extensions would remove those blocks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-3-advisor-transport-v4-0-0-0-v4-0-0-16-is-the-mcp-transport-fully-gone-and-do-degr",
+      "inboxId": null,
+      "text": "Advisor transport (v4.0.0.0, v4.0.0.16): is the MCP transport fully gone, and do degraded local scoring and the shared daemon behave as documented in system-skill-advisor/SKILL.md and ARCHITECTURE.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-advisor-parity-v4-0-0-7-is-the-python-vs-node-advisor-parity-check-still-wired-i",
+      "inboxId": null,
+      "text": "Advisor parity (v4.0.0.7): is the Python vs Node advisor parity check still wired into CI, and do the two advisors disagree on any prompt today?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-advisor-prompt-hook-v4-0-0-1-v4-0-0-2-v4-0-2-0-does-every-runtime-adapter-claude",
+      "inboxId": null,
+      "text": "Advisor prompt hook (v4.0.0.1, v4.0.0.2, v4.0.2.0): does every runtime adapter (.claude/hooks, .codex/hooks, .cursor/hooks, .devin/hooks, .opencode/plugins, .pi/extensions, .dsh/plugins) deliver the advisor brief from the single source in .skilled/hooks/skill-advisor, within its time limit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-hermes-removal-v4-0-2-0-which-hook-plugin-advisor-or-routing-files-still-referen",
+      "inboxId": null,
+      "text": "Hermes removal (v4.0.2.0): which hook, plugin, advisor or routing files still reference Hermes, .hermes/ or a hermes runtime flag?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-session-relaunch-v4-0-0-13-v4-0-0-14-do-skilled-hooks-session-relaunch-and-its-r",
+      "inboxId": null,
+      "text": "Session relaunch (v4.0.0.13, v4.0.0.14): do .skilled/hooks/session-relaunch and its runtime adapters implement the per-runtime SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED flags, the 80 percent trigger and the model, effort and goal carry-over as the notes claim?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-8-history-after-compaction-v4-0-2-0-does-the-session-history-lookup-opencode-plugi",
+      "inboxId": null,
+      "text": "History after compaction (v4.0.2.0): does the session history lookup (.opencode/plugins/session-history-lookup.js and its counterparts) stay read-only and work on each runtime the note names?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-9-question-tool-capture-v4-0-2-0-do-skilled-hooks-ask-surface-guard-and-skilled-ho",
+      "inboxId": null,
+      "text": "Question-tool capture (v4.0.2.0): do .skilled/hooks/ask-surface-guard and .skilled/hooks/decision-capture detect typed option menus as the fixtures claim, and where do they false-positive or false-negative?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-10-hook-safety-v4-0-0-8-v4-0-0-16-do-all-hook-entry-points-honor-the-three-second-s",
+      "inboxId": null,
+      "text": "Hook safety (v4.0.0.8, v4.0.0.16): do all hook entry points honor the three-second stdin deadline and the git-call time limit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-11-over-engineering-which-per-runtime-hook-copies-mirrors-and-generated-artifacts-c",
+      "inboxId": null,
+      "text": "Over-engineering: which per-runtime hook copies, mirrors and generated artifacts could collapse into one source, and what would break if each were removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-12-ux-and-extension-what-blocks-the-operator-or-ai-user-when-enabling-relaunch-read",
+      "inboxId": null,
+      "text": "UX and extension: what blocks the operator or AI user when enabling relaunch, reading the advisor brief or recovering history, and which concrete extensions would remove those blocks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-router-files-v4-0-1-0-does-every-skill-and-mode-under-skilled-skills-have-a-rout",
+      "inboxId": null,
+      "text": "Router files (v4.0.1.0): does every skill and mode under .skilled/skills/** have a ROUTER.md linked from SKILL.md in one line, and do each hub's hub-router.json and mode-registry.json agree with its ROUTER.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-advisor-scoring-v4-0-0-7-v4-0-0-15-v4-0-0-16-do-the-path-mention-rule-the-confid",
+      "inboxId": null,
+      "text": "Advisor scoring (v4.0.0.7, v4.0.0.15, v4.0.0.16): do the path-mention rule, the confidence-floor tie rule and the typed-command owner rule in .skilled/skills/system-skill-advisor/** behave as the notes say when run through node .skilled/bin/skill-advisor.cjs advisor_recommend?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Advisor scoring, transport and parity questions from the strategy (not touched this iteration).",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether any consumer outside the doctor and packaging tooling resolves `workflowMode` as a folder.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hermes removal references, relaunch and hook questions.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Advisor transport (v4.0.0.0, v4.0.0.16), the prompt hook adapters, Hermes removal, session relaunch, history after compaction, question-tool capture and hook safety were not touched this iteration.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Advisor parity (v4.0.0.7): does the Python fallback reproduce the five routes, and does it share F-iter002-001? The loop-owner floor is hard-coded at 0.82 [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4187] and applied at [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4540], but the fallback was not executed this iteration.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does F-iter002-001 reproduce on other prompts whose top recommendation is confidence-floored, such as a doctor prompt with a single floored winner?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Advisor transport (v4.0.0.0, v4.0.0.16): is the MCP transport fully gone, and do degraded local scoring and the shared daemon behave as documented in system-skill-advisor/SKILL.md and ARCHITECTURE.md?",
+    "Advisor parity (v4.0.0.7): is the Python vs Node advisor parity check still wired into CI, and do the two advisors disagree on any prompt today?",
+    "Advisor prompt hook (v4.0.0.1, v4.0.0.2, v4.0.2.0): does every runtime adapter (.claude/hooks, .codex/hooks, .cursor/hooks, .devin/hooks, .opencode/plugins, .pi/extensions, .dsh/plugins) deliver the advisor brief from the single source in .skilled/hooks/skill-advisor, within its time limit?",
+    "Hermes removal (v4.0.2.0): which hook, plugin, advisor or routing files still reference Hermes, .hermes/ or a hermes runtime flag?",
+    "Session relaunch (v4.0.0.13, v4.0.0.14): do .skilled/hooks/session-relaunch and its runtime adapters implement the per-runtime SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED flags, the 80 percent trigger and the model, effort and goal carry-over as the notes claim?",
+    "History after compaction (v4.0.2.0): does the session history lookup (.opencode/plugins/session-history-lookup.js and its counterparts) stay read-only and work on each runtime the note names?",
+    "Question-tool capture (v4.0.2.0): do .skilled/hooks/ask-surface-guard and .skilled/hooks/decision-capture detect typed option menus as the fixtures claim, and where do they false-positive or false-negative?",
+    "Hook safety (v4.0.0.8, v4.0.0.16): do all hook entry points honor the three-second stdin deadline and the git-call time limit?",
+    "Over-engineering: which per-runtime hook copies, mirrors and generated artifacts could collapse into one source, and what would break if each were removed?",
+    "UX and extension: what blocks the operator or AI user when enabling relaunch, reading the advisor brief or recovering history, and which concrete extensions would remove those blocks?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-6-confidence-high-counted-and-read-both-paths",
+      "text": "Confidence: high (counted and read both paths).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-19-confidence-high-entry-read-no-folder-on-disk",
+      "text": "Confidence: high (entry read; no folder on disk).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-12-confidence-high-hash-equality",
+      "text": "Confidence: high (hash equality).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-constraint-both-files-are-live-test-fixtures-referenced-by-source-skilled-skills",
+      "text": "Constraint: both files are live test fixtures referenced by `[SOURCE: .skilled/skills/sk-doc/scripts/tests/test_validator.py:128]` and `[SOURCE: .skilled/skills/sk-doc/scripts/tests/test_validator.py:136]`, so deleting them breaks the validator tests. The fix is an explicit `scripts/tests/**` exclusion or moving fixtures outside `.skilled/skills/**`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-15-evidence-source-skilled-skills-sk-doc-mode-registry-json-53-declares-workflowmod",
+      "text": "Evidence: `[SOURCE: .skilled/skills/sk-doc/mode-registry.json:53]` declares `workflowMode: sk-create-skill-parent`, but no `sk-create-skill-parent/` directory exists; the entry's `packet` is `sk-create-skill`. The doctor invariant compares the folder leaf to `packetSkillName`, not to `workflowMode` (`[SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:586]`), so it passes.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-evidence-source-skilled-skills-sk-doc-scripts-package-skill-py-1279-and-source-s",
+      "text": "Evidence: `[SOURCE: .skilled/skills/sk-doc/scripts/package_skill.py:1279]` and `[SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:1279]` are both 83,560 bytes with SHA-256 prefix `69a5f164a4a65e8d`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-evidence-source-skilled-skills-sk-doc-scripts-tests-skill-router-router-md-1-and",
+      "text": "Evidence: `[SOURCE: .skilled/skills/sk-doc/scripts/tests/skill-router/ROUTER.md:1]` and `[SOURCE: .skilled/skills/sk-doc/scripts/tests/skill-router-no-machine/ROUTER.md:1]` have no sibling `SKILL.md`. The head tree holds 55 `SKILL.md` files and 57 `ROUTER.md` files.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-17-fix-state-in-the-registry-that-packet-is-authoritative-for-resolution-or-add-a-s",
+      "text": "Fix: state in the registry that `packet` is authoritative for resolution, or add a schema check that every `modes[]` entry resolves through `packet`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-18-release-introduced-documented-in-v4-0-1-0-source-skilled-changelog-skilled-v4-0-",
+      "text": "Release introduced: documented in v4.0.1.0 (`[SOURCE: .skilled/changelog/skilled/v4.0.1.0.md:60]`); the registry entry is present at head.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-release-introduced-present-at-tag-v4-0-1-0-the-invariant-it-violates-is-the-one-",
+      "text": "Release introduced: present at tag `v4.0.1.0`; the invariant it violates is the one that release introduced.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-11-release-introduced-unknown-the-duplication-is-present-at-the-v4-0-2-0-head-it-wa",
+      "text": "Release introduced: UNKNOWN. The duplication is present at the `v4.0.2.0` head; it was not bisected to a release.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-14-type-improvement-extension-footgun",
+      "text": "Type: improvement / extension footgun",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-type-operator-and-ai-user-ux",
+      "text": "Type: operator and AI-user UX",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-type-over-engineering",
+      "text": "Type: over-engineering",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-verify-find-skilled-skills-name-skill-md-not-path-node-modules-wc-l-vs-find-skil",
+      "text": "Verify: `find .skilled/skills -name SKILL.md -not -path '*/node_modules/*' | wc -l` vs `find .skilled/skills -name ROUTER.md -not -path '*/node_modules/*' | wc -l`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-13-verify-shasum-a-256-skilled-skills-sk-doc-scripts-package-skill-py-skilled-skill",
+      "text": "Verify: `shasum -a 256 .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-20-verify-test-d-skilled-skills-sk-doc-sk-create-skill-parent-echo-missing",
+      "text": "Verify: `test -d .skilled/skills/sk-doc/sk-create-skill-parent || echo missing`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-what-breaks-if-one-is-removed-the-hub-validator-tests-and-the-sk-create-skill-wo",
+      "text": "What breaks if one is removed: the hub validator tests and the `sk-create-skill` workflow each invoke their local path, so removing one without repointing breaks that caller. A symlink or one shared script with two entry points keeps both callers working.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-16-why-it-matters-a-resolver-that-maps-workflowmode-to-a-folder-as-this-audit-first",
+      "text": "Why it matters: a resolver that maps `workflowMode` to a folder (as this audit first did) reports a false missing packet. The registry's `packet` field is the only disambiguator.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-why-it-matters-any-operator-or-audit-that-asserts-the-inverse-of-the-release-pro",
+      "text": "Why it matters: any operator or audit that asserts the inverse of the release promise (\"every `ROUTER.md` belongs to a skill\") gets two false failures inside the skills tree. This audit hit exactly that before resolving it.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-14-gap-the-serialized-recommendation-carries-no-field-that-marks-the-rank-override-",
+      "text": "**Gap:** the serialized recommendation carries no field that marks the rank override (no workflow-owner or rank-reason field). A consumer that sorts recommendations by `score`, or that shows scores beside ranks, inverts the documented order. The `ambiguous: true` flag on P4 is consistent with the two passing skills but does not explain the inversion.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-impact-this-is-the-direct-input-to-f-iter002-001-s-false-ambiguity-flag-the-top-",
+      "text": "**Impact:** this is the direct input to F-iter002-001's false ambiguity flag. The top route is unchanged.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-19-interpretation-a-doc-review-request-arguably-belongs-to-sk-doc-s-audit-surface-n",
+      "text": "**Interpretation:** a doc-review request arguably belongs to sk-doc's audit surface, not sk-code's code-review mode. This is recorded as an improvement candidate, not a confirmed release-note contradiction.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-observed-p3-returns-ambiguous-true-with-top-score-0-535201-and-third-score-0-150",
+      "text": "**Observed:** P3 returns `ambiguous: true` with top score 0.535201 and third score 0.150083 — a 0.385 gap, far outside the 0.05 ambiguity margin — because all three recommendations carry confidence 0.82. The top pick is unaffected; the flag is the defect.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-type-bug-severity-p2-release-unknown-present-at-v4-0-0-16-confidence-high",
+      "text": "**Type:** bug | **Severity:** P2 | **Release:** UNKNOWN (present at v4.0.0.16) | **Confidence:** high",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-type-drift-release-note-vs-code-severity-p2-release-v4-0-0-15-confidence-high",
+      "text": "**Type:** drift (release note vs code) | **Severity:** P2 | **Release:** v4.0.0.15 | **Confidence:** high",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-17-type-improvement-ux-severity-p2-release-path-rule-from-v4-0-0-7-observed-at-v4-0",
+      "text": "**Type:** improvement (UX) | **Severity:** P2 | **Release:** path rule from v4.0.0.7; observed at v4.0.0.16 | **Confidence:** medium",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-12-type-operator-and-ai-user-ux-severity-p2-release-v4-0-0-16-confidence-medium-hig",
+      "text": "**Type:** operator and AI-user UX | **Severity:** P2 | **Release:** v4.0.0.16 | **Confidence:** medium-high",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-verify-node-skilled-bin-skill-advisor-cjs-advisor-recommend-json-prompt-do-not-w",
+      "text": "**Verify:** `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"do not write anything, just explain how the advisor scores a prompt\"}' --format json`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-20-verify-run-the-p1-command-and-inspect-data-recommendations-1-compiledroute",
+      "text": "**Verify:** run the P1 command and inspect `data.recommendations[1].compiledRoute`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-verify-run-the-p3-command-and-inspect-the-recommendation-list-compare-the-regex-",
+      "text": "**Verify:** run the P3 command and inspect the recommendation list; compare the regex at `fusion.ts:675` with the prompt text.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-15-verify-run-the-p4-command-and-compare-data-recommendations-0-score-with-data-rec",
+      "text": "**Verify:** run the P4 command and compare `data.recommendations[0].score` with `data.recommendations[1].score`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-readonlyrouteallowed-matches-do-not-change-edit-modify-touch-but-not-write-sourc",
+      "text": "`readOnlyRouteAllowed` matches `do not (change|edit|modify|touch)` but not `write` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:675]. A prompt whose only read-only marker is \"do not write anything\" is therefore scored as write-capable, the explainer floor never fires, and `system-spec-kit` remains in the candidate set at 0.150083 on P3 [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:673].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-f-iter002-001-the-confidence-floor-tie-exception-fails-when-the-top-is-itself-fl",
+      "text": "F-iter002-001 — The confidence-floor tie exception fails when the top is itself floored",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-f-iter002-002-the-read-only-guard-does-not-recognize-do-not-write-anything",
+      "text": "F-iter002-002 — The read-only guard does not recognize \"do not write anything\"",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-f-iter002-003-workflow-over-executor-rank-is-not-represented-in-the-payload",
+      "text": "F-iter002-003 — Workflow-over-executor rank is not represented in the payload",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-16-f-iter002-004-a-skill-doc-review-routes-to-sk-code-and-sk-doc-s-compiled-route-d",
+      "text": "F-iter002-004 — A skill-doc review routes to sk-code, and sk-doc's compiled route defers",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-18-p1-names-only-skilled-skills-sk-doc-skill-md-the-path-no-longer-pulls-sk-doc-to-",
+      "text": "P1 names only `.skilled/skills/sk-doc/SKILL.md`. The path no longer pulls sk-doc to first, which matches v4.0.0.7's promise, but the request \"review ... for outdated guidance\" lands on `sk-code`'s review mode at 0.753218 while `sk-doc` sits second at 0.333278 with `compiledRoute.action: \"defer\"` and zero targets. Even if an operator selected sk-doc, the compiled route offers nothing to execute.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-v4-0-0-15-promises-a-skill-that-only-reached-that-floor-now-counts-as-tied-only-",
+      "text": "v4.0.0.15 promises: \"A skill that only reached that floor now counts as tied only when its score is also close.\" The implementation applies that floor exception only when the top did **not** itself reach the floor: `floorOnlyMember = applyFloorException && recommendation.confidenceFloored === true && top.confidenceFloored !== true` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:42]. When the top is floored too, control falls through to the confidence-gap branch, and every floored skill shares confidence 0.82, so it ties regardless of score distance [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:46]. The flag is produced from the confidence result [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1151], serialized on the recommendation [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1168], and consumed by the ambiguity verdict [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1395].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-13-v4-0-0-16-promises-the-named-workflow-stays-first-and-the-executor-sits-just-bel",
+      "text": "v4.0.0.16 promises the named workflow \"stays first and the executor sits just below it.\" P4 confirms the ordering: `system-deep-loop` is rank 1 at score 0.642453 while `cli-external-orchestration` is rank 2 at the higher score 0.737707. The lift and workflow-owner handling lives in [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts:572], with the code hub capped so it cannot out-rank or tie the executor [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts:592].",
+      "addedAtIteration": 2,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 10,
+    "resolvedQuestions": 2,
+    "carriedForwardOpenQuestions": 6,
+    "keyFindings": 40,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/004-v4-release-line-research/004-advisor-hooks-relaunch/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

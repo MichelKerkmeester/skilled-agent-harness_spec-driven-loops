@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/010-deterministic-ranking-benchmark",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/010-deterministic-ranking-benchmark",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deterministic ranking benchmark",
+      "should the determinism flag graduate",
+      "recency load-bearing ranking",
+      "SPECKIT_DETERMINISTIC_RANKING graduation",
+      "flag graduation benchmark",
+      "executePipeline flag toggle harness",
+      "embed once reuse ranking",
+      "off vs on divergence harness",
+      "deterministic ranking verdict"
+    ],
+    "key_topics": [
+      "deterministic",
+      "ranking",
+      "benchmark",
+      "determinism",
+      "flag",
+      "graduate",
+      "recency",
+      "load-bearing",
+      "graduation",
+      "executepipeline",
+      "toggle",
+      "harness"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scripts/deterministic-ranking-benchmark.mjs",
+      "results/metrics.json",
+      "benchmark-results.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic-ranking-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/deterministic-ranking-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.json",
+        "kind": "config",
+        "path": "results/metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark-results.md",
+        "kind": "doc",
+        "path": "benchmark-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ranking Flag Graduation Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Decide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "populated",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Fix 5 flag `SPECKITDETERMINISTICRANKING` ships default-off",
+    "created_at": "2026-06-27T17:15:43.899Z",
+    "last_save_at": "2026-11-10T05:47:48.033Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a3e29fac58d5fc259afd49818303d3dc6d63abbf600f3963a23256294577608b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "15feacd3e79bb52d1e78876af2e145cc8d2c627293f7d93c4621bc1ede040359",
+      "plan.md": "d58cc5bee5a4e2f03575b76e96b4b5cc5c4520197cbc0e1498d8aa102cc92b3d",
+      "tasks.md": "52fbea979c4c3ed6adbf6b5b3f05c693dace9a9845ef7df989e9dc8c187fb131",
+      "implementation-summary.md": "b73a8f952c82316299d52b7dab96455fe3ce93dcc3cfe9e38c4dd5bdcec0e3a2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

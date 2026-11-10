@@ -55,7 +55,7 @@ This packet addresses the deeper pattern those incidents exposed: **canon enforc
 | **Priority** | P1 |
 | **Status** | Draft (plan; DO-NOW ready, gate-adjacent tranche deferred) |
 | **Created** | 2026-07-07 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Packet** | `sk-doc/014-sk-doc-parent` |
 | **Depends On** | `022-parent-skill-logic-review/`, `023-parent-hub-remediation/` |
 | **Predecessor** | `023-parent-hub-remediation/` |

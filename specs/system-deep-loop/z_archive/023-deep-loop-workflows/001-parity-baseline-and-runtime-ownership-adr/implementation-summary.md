@@ -43,7 +43,7 @@ _memory:
 | **Phase** | 001 of 009 (foundation) |
 | **Status** | Complete |
 | **Date** | 2026-06-15 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Depends on** | none (first phase) |
 
 <!-- /ANCHOR:metadata -->

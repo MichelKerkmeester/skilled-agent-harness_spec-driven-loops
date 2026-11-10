@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/005-doctor-git-ci-runtime",
+  "description": "Phase 5: doctor-git-ci-runtime",
+  "keywords": [
+    "phase",
+    "doctor-git-ci-runtime"
+  ],
+  "lastUpdated": "2026-11-08T22:35:40.437Z",
+  "specId": "005",
+  "folderSlug": "doctor-git-ci-runtime",
+  "parentChain": [
+    "system-speckit",
+    "047-v4-release-line-research"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "08-11-26_23-32__deep-research-completed-for-005-doctor-git-ci.md",
+    "08-11-26_23-34__deep-research-completed-for-005-doctor-git-ci.md",
+    "08-11-26_23-35__deep-research-completed-for-005-doctor-git-ci.md"
+  ]
+}

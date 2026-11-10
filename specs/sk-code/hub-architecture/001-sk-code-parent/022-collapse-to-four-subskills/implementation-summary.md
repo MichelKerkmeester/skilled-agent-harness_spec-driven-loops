@@ -85,7 +85,7 @@ Phase 022 completed the sk-code parent hub collapse from eight sub-skills to exa
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The packet shipped in two pushed stages on branch `system-speckit/028-memory-search-intelligence`. Stage A (`531cf1a0c8`) performed the structural collapse: dissolved `code-implement`, `code-debug`, and `code-verify`; consolidated shared workflow doctrine; symlinked doctrine into both surviving surfaces; relocated verify scripts and preserved checklists; folded animation into `code-webflow`; reconciled hub routing and smart-routing maps; repointed external references; restored the verify Iron Law; and repointed rule-copy and verify-script references.
+The packet shipped in two pushed stages on branch `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence`. Stage A (`531cf1a0c8`) performed the structural collapse: dissolved `code-implement`, `code-debug`, and `code-verify`; consolidated shared workflow doctrine; symlinked doctrine into both surviving surfaces; relocated verify scripts and preserved checklists; folded animation into `code-webflow`; reconciled hub routing and smart-routing maps; repointed external references; restored the verify Iron Law; and repointed rule-copy and verify-script references.
 
 Stage B (`3a6fae70e1`) re-baselined the benchmark layer against the new hub shape. The manual testing playbook gold was re-translated across 17 files, the router-replay surface-slicer was updated so Motion.dev animation is a cross-stack MOTION overlay rather than a Webflow surface leak, three benchmark harness vitests were repointed off dissolved modes, and `benchmark/2026-06-01--router-final--router/` was regenerated. The result held the prior deterministic gate at CONDITIONAL 71.
 

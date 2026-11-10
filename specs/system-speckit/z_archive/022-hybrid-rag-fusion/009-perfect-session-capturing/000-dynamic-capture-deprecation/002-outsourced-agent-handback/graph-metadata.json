@@ -194,7 +194,7 @@
     ],
     "causal_summary": "When an external CLI (Codex, Copilot, Gemini, Claude Code) completes delegated work and returns session context, the data must flow through 010's `generate-context.js` pipeline to produce a memory file",
     "created_at": "2026-04-12T09:02:50.265Z",
-    "last_save_at": "2026-10-07T19:24:35.233Z",
+    "last_save_at": "2026-11-10T05:49:08.208Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:687b6eb6a1a860c01245ad7930e8e7a399cf34e996eac5022390f4cc32d70af5",
+    "source_fingerprint": "sha256:e36c8c2af4c91dd8126f8dd0025f068242ae81e1a6e7b5105530b38ece742492",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b673e4c4228854b69caa19fe3c54a5753cc3c6842344d6d98cfb7d23dae7a1db",
-      "plan.md": "5f2ddfd6c00d9d9a7d1560ec3b0a81b52e14ebb6afba700a94c99261d92c0bec",
-      "tasks.md": "3a4c893ef250c9a8344411a466565032ef5c1164bd0af7061cf52d0d25fb5958",
+      "plan.md": "e225f5b54ae90ec65c901ff1748084f0e12c4c9df76de0e95a9a559a9653854e",
+      "tasks.md": "7e57448d3f7150004563cc7054518bc2d4de9ee38cfa54dfb45c8d4c2a531da4",
       "implementation-summary.md": "e4e55d3ad59c21698e9ca1afe1fba8c2ef80c085bc130c464b081199f199c5be"
     },
     "last_active_child_id": null,

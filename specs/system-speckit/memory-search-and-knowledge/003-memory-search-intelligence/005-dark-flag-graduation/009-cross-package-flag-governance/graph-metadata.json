@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/009-cross-package-flag-governance",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/009-cross-package-flag-governance",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross-package flag governance",
+      "flag default polarity reconciliation",
+      "capability-flags formatting fix",
+      "content-rich short-query graph preservation graduation",
+      "query-time existence filter helper migration",
+      "flag governance plan",
+      "shared opt-in helper migration",
+      "capability-flags reorder plan",
+      "content-rich short-query benchmark branch",
+      "flag governance tasks",
+      "capability-flags reorder task",
+      "opt-in helper migration task"
+    ],
+    "key_topics": [
+      "cross-package",
+      "flag",
+      "governance",
+      "default",
+      "polarity",
+      "reconciliation",
+      "capability-flags",
+      "formatting",
+      "content-rich",
+      "short-query",
+      "graph",
+      "preservation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "dist/lib/config/capability-flags.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.js",
+        "kind": "code",
+        "path": "dist/lib/config/capability-flags.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Package Flag Governance Reconciliation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Remediation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "F5 — RESOLVED: two different homes for new feature flags, with opposite default-polarity",
+    "created_at": "2026-07-09T15:11:30.263Z",
+    "last_save_at": "2026-11-10T05:47:52.703Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0f4cf1693e7a6958f80d749ecc06278d415d372476860fe6d4072de809d2ed4b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1d5cf44b00f8e4339f4d3b6b99cc57cc672aa1413e0a993d1d6f2a5fe418467e",
+      "plan.md": "829cd218fb41728dc6772c76e922239736b0d98993971a6b5b06dfb9bfedb5c7",
+      "tasks.md": "3433b96d94235fd668a45cca5b07ff34d2182de8674d265061cc10e34baa217d",
+      "implementation-summary.md": "0d66ed210935cb2d3c0ffdf54a504273904a5134840c2a25d9dab28241cf7797"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled machine cutover",
+      "global git hooks reinstall",
+      "home config cutover",
+      "consumer project skilled links",
+      "hook bridge window",
+      "skilled machine cutover plan",
+      "hook bridge landing bracket",
+      "codex hooks reinstall duplicates",
+      "consumer skilled link plan",
+      "other machine cutover checklist",
+      "skilled machine cutover tasks",
+      "hook bridge task order"
+    ],
+    "key_topics": [
+      "skilled",
+      "machine",
+      "cutover",
+      "global",
+      "git",
+      "hooks",
+      "reinstall",
+      "home",
+      "config",
+      "consumer",
+      "project",
+      "links"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/scripts/install-git-hooks.sh",
+      ".codex/hooks.json",
+      "scratch/consumer-links-classified.tsv",
+      ".opencode/bin/mcp-code-mode-launcher.cjs",
+      ".opencode/skills/system-spec-kit/runtime/cli/pi/README.md",
+      ".opencode/bin/system-skill-advisor-launcher.cjs",
+      ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js",
+      ".opencode/skills/system-deep-loop/runtime/database/council-graph.sqlite",
+      ".skilled/bin/mcp-code-mode-launcher.cjs",
+      "runtime/cli/pi/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/pi/README.md",
+      "scratch/home-census-raw.tsv",
+      "scratch/home-census-classified.tsv",
+      "scratch/consumer-links-raw.tsv"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "consumer-links-classified.tsv",
+        "kind": "file",
+        "path": "scratch/consumer-links-classified.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-code-mode-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mcp-code-mode-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/pi/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "index.js",
+        "kind": "code",
+        "path": ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js",
+        "source": "derived"
+      },
+      {
+        "name": "council-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/database/council-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "home-census-raw.tsv",
+        "kind": "file",
+        "path": "scratch/home-census-raw.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "home-census-classified.tsv",
+        "kind": "file",
+        "path": "scratch/home-census-classified.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "consumer-links-raw.tsv",
+        "kind": "file",
+        "path": "scratch/consumer-links-raw.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Git",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Git cannot move what lives outside it",
+    "created_at": "2026-09-16T17:54:10Z",
+    "last_save_at": "2026-11-10T05:48:20.725Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8a571026361984b9232ce62255acb8af5798762ca5dc9def4913ad247de3e1d3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2dcd932863e88eb54c6f478000505efc72e1a3d3cd5850080fdca3353df4d70a",
+      "plan.md": "fb7d7c705d8de7f6ad5e3d79a0d75b4b389da5f059158c84642cd50de562c3aa",
+      "tasks.md": "d0233a2683e07f525d893b7968c4046a2da3ac8ab04f4e24d124f91b24be2094",
+      "implementation-summary.md": "626aa2c8c83cb458ae2d9967b9222f7a173b23627b74bceafb0d19ec9e115819"
+    },
+    "last_active_at": null
+  }
+}

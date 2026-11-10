@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Without explicit hierarchical boundaries and lifecycle controls, the roadmap cannot safely support broader collaboration or enterprise-style governance requirements",
     "created_at": "2026-04-12T09:02:50.261Z",
-    "last_save_at": "2026-10-07T20:26:36.191Z",
+    "last_save_at": "2026-11-10T05:49:07.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:39bc081e192e21c27b952b2bbb119d09a91c7da5b7e9e32a2b6359af9b31ea98",
+    "source_fingerprint": "sha256:17f145f5a6b8a5b71566af61c1c9677d844d70ffa00f16df96cb3d33f19ce175",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eda601e96d1048ed0edea9db83ee9110cdd18577a291ac3538077b7c8fb142dd",
+      "spec.md": "3b904dc81cfdf7a19301061bc563f4fffa25dbfe966e63014c7f04f8fef2b2e9",
       "plan.md": "c9bc43e7d0c1ce9d8d74ce1bf21593c137d099921c496375ead8f36f0bdcfd74",
       "tasks.md": "b991ab604efaa18a2886e36345254d768b0df76a1df3cbf5e90417566688875e",
       "decision-record.md": "cb213f538d748e1acf741107edbf325d56e0eae1423fd19609265c34b50417ec",

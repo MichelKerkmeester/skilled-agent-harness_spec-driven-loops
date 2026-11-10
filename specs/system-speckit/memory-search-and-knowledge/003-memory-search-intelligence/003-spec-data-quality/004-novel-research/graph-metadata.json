@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality",
+  "children_ids": [
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research/001-novel-contradiction-detection",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research/002-novel-embedding-drift-monitor",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research/003-novel-example-test-generation",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research/004-novel-context-budget-assembler",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research/005-novel-typed-relation-kg",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research/006-novel-freshness-decay-queue",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research/007-novel-per-doc-quality-slas"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "novel research",
+      "spec data quality novel research",
+      "novel research phase parent"
+    ],
+    "key_topics": [
+      "novel",
+      "research",
+      "spec",
+      "data",
+      "quality",
+      "phase",
+      "parent",
+      "subgroup",
+      "spec-data-quality",
+      "track",
+      "data-quality",
+      "ideas"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Research Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Research Groups",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Contradiction Detection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Novel Research subgroup of the spec-data-quality track: novel data-quality research ideas.",
+    "created_at": "2026-06-27T17:25:47.076Z",
+    "last_save_at": "2026-11-10T05:47:44.078Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:e082bfdc5a0737919992508ea5bce3320395933089b49f239e8ec39afaff6a2d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bad99ba7a86e6456a4433b95cbbcd2fed258863bc75dc0183be9e638cecd4b29"
+    },
+    "last_active_child_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research/001-novel-contradiction-detection",
+    "last_active_at": null
+  }
+}

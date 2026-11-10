@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Code under `.skilled/skills/system-deep-loop/runtime/` does not follow the sk-code-skilled comment and structure rules in `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md` §2 and §4",
     "created_at": "2026-09-30T05:43:46Z",
-    "last_save_at": "2026-11-10T05:41:01.379Z",
+    "last_save_at": "2026-11-10T06:05:57.432Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3eedb1c0c11ef5d40c5e49f2f569bed6107c96b7b2b20ed105ed75980757ffaf",
+    "source_fingerprint": "sha256:428d7c0d45e90095787c3a2f23c333aa9d1d7f5bf04bad815a6c2885556cd12f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b126e4ae0fccd75cc07e9b4c6251fdb5255bdb0bd48efd73819bd6bdb047ff22",
+      "spec.md": "aa3eb915432ea470d90f5f6f2ff2689ead73d1e28bb62f07cb1144ea21d90794",
       "plan.md": "da04b99425582baab1c4e2ea16916d6d06d77fdb94da444d23064a2318afa8dd",
-      "tasks.md": "3065096bd2c164e92150605516cd7b52c37a6e149c597d3d01cf664103f15144",
+      "tasks.md": "88a294f97f5b6b5e1aeeb4e4564daf31d018993acb015ec114ced0673e101de7",
       "implementation-summary.md": "1dd9172bffa3a56ea925d8a4929eeffa3cb2d50915c06db672a51b8c95970ac5"
     },
     "last_active_at": null

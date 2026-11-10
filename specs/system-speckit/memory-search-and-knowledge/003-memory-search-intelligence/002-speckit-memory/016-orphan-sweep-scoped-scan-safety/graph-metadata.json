@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/016-orphan-sweep-scoped-scan-safety",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/016-orphan-sweep-scoped-scan-safety",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "orphan sweep time budget",
+      "orphan sweep wall-clock budget",
+      "scoped scan discovery gate parity",
+      "maintenance marker refresh cadence",
+      "drift marker specDocFiles gating",
+      "orphan sweep time budget plan",
+      "maintenance marker refresh cadence plan",
+      "scoped scan discovery gate parity plan",
+      "drift marker specDocFiles gating plan"
+    ],
+    "key_topics": [
+      "orphan",
+      "sweep",
+      "time",
+      "budget",
+      "wall-clock",
+      "scoped",
+      "scan",
+      "discovery",
+      "gate",
+      "parity",
+      "maintenance",
+      "marker"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "lib/config/spec-doc-paths.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-paths.ts",
+        "kind": "code",
+        "path": "lib/config/spec-doc-paths.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Orphan Sweep Time Budget",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scan Discovery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gate Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "F2 (headline finding, confirmed by reproduction) -- scoped scan (drift-marker consumption) bypasses every",
+    "created_at": "2026-07-09T15:13:29.637Z",
+    "last_save_at": "2026-11-10T05:47:36.796Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6f929c648e97d7ec49c305431399faa693fb872fd83f559b649df2aa846a4623",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9f14cac27e6b6c767dabc3f1193db7480063b364810e738f6bf033e06b189aee",
+      "plan.md": "b73393a4aeba37b27f3717e7d6bc2ec035d6463b199af01cd8ceb88aeb064ee4",
+      "tasks.md": "32f51fb1222a13f7ba610216b51bcce44746ba845cb489fe716020386b855f90",
+      "implementation-summary.md": "ceb7ff798aaea4fda25d38182469fc6111fcdabe49080406bc047676505fb46b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

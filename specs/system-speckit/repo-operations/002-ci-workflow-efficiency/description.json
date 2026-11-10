@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/repo-operations/002-ci-workflow-efficiency",
+  "description": "The repository's 33 workflows spend about 3,812 runner-minutes a day",
+  "keywords": [
+    "repository",
+    "workflows",
+    "spend",
+    "about",
+    "runner-minutes",
+    "day"
+  ],
+  "lastUpdated": "2026-10-24T08:57:00.437Z",
+  "specId": "039",
+  "folderSlug": "ci-workflow-efficiency",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

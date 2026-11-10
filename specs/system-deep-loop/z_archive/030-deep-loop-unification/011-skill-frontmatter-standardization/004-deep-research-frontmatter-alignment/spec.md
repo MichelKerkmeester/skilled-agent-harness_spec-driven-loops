@@ -48,7 +48,7 @@ FAILURE MODES:
 | **Status** | Complete |
 | **Created** | 2026-06-11 |
 | **Branch** | `scaffold/009-deep-research` |
-| **Related work** | One-fifth of the skill-frontmatter-standardization campaign; siblings: `001-deep-ai-council-frontmatter-alignment`, `002-deep-improvement-frontmatter-alignment`, `003-deep-loop-runtime-frontmatter-alignment`, `005-deep-review-frontmatter-alignment`. Source ledger: `system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/spec.md` |
+| **Related work** | One-fifth of the skill-frontmatter-standardization campaign; siblings: `001-deep-ai-council-frontmatter-alignment`, `002-deep-improvement-frontmatter-alignment`, `003-deep-loop-runtime-frontmatter-alignment`, `005-deep-review-frontmatter-alignment`. Source ledger: `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/spec.md` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 9 of 22 |
 | **Predecessor** | 008-deep-loop-runtime |

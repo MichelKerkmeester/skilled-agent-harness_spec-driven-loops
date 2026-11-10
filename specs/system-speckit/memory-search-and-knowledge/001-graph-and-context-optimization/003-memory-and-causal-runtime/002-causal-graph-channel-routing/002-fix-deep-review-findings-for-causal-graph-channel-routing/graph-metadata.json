@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "002-fix-deep-review-findings-for-causal-graph-channel-routing",
+      "012 deep-review remediation",
+      "p1-c-001 cache wiring",
+      "entity-density cache invalidation hooks",
+      "resource-map drift fix 012",
+      "012 p2 polish",
+      "causal",
+      "runtime",
+      "002",
+      "graph",
+      "plan",
+      "fix"
+    ],
+    "key_topics": [
+      "002-fix-deep-review-findings-for-causal-graph-channel-routing",
+      "deep-review",
+      "remediation",
+      "p1-c-001",
+      "cache",
+      "wiring",
+      "entity-density",
+      "invalidation",
+      "hooks",
+      "resource-map",
+      "drift",
+      "polish"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Causal Graph Channel Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final Handling",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Edge Case",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Skills",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Status",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Release Blockers",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Polish",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doc Polish",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "closing-status",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "how",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "write-index",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 2026-05-11 deep review of `001-deliver-causal-graph-channel-routing-mvp` produced a CONDITIONAL verdict because of two release-blocking P1s and 39 P2 polish items",
+    "created_at": "2026-05-19T15:28:02.707Z",
+    "last_save_at": "2026-11-10T05:46:19.848Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cc51a13853827f45ebf4c691560b8d015ba64bc9a9a08ebe6e8e1b2f7b4befa7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "45a00180b515de3aa410859bd5fba986e630b0c3093a0e7d6fe5798c18e54006",
+      "plan.md": "f2e11beb3749b874ce9ee1fa0398ffbf0a7e4c80ad59325eccd4fd12a88d48a7",
+      "tasks.md": "b8945f28a6c6f35e1aeaad2a1b77e37c3447c4dafd7910d36365edaf5939f79d",
+      "decision-record.md": "2d115ae0569e497495428ffbdb2d494464225414337c3528e585ff46139fe9a0",
+      "implementation-summary.md": "99bc2dc99f6da732e20e96a345806e90d9017473f04fb00de6b344ac59d0b7fa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

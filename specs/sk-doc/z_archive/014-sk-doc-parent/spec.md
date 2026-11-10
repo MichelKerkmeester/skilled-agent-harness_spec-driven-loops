@@ -43,7 +43,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete — conversion executed directly in sk-doc (canon-clean, parent-skill-check 0/0, pushed to 028); phase children are the plan seeds, worked as a batch rather than individually spec-documented. skill_advisor.py verb boosters deferred (concurrent 024 advisor lane). |
 | **Created** | 2026-07-06 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | None (root) |
 | **Parent Packet** | `skilled-agent-orchestration` |
 | **Predecessor** | `124-sk-code-parent` (reference conversion, incl. the 022 over-decomposition lesson); `117-parent-nested-skill-pattern` (governing pattern); `119-parent-skill-native-invocability` |

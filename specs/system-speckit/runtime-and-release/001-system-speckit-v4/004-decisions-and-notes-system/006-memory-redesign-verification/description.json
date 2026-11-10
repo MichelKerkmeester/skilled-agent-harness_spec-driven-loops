@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system/006-memory-redesign-verification",
+  "description": "The deprecation touches search plumbing, tier config, learned-triggers, a command, root docs, and the advisor — a wide blast radius",
+  "keywords": [
+    "deprecation",
+    "touches",
+    "search",
+    "plumbing",
+    "tier",
+    "config",
+    "learned-triggers",
+    "command",
+    "root",
+    "docs",
+    "advisor",
+    "wide",
+    "blast",
+    "radius"
+  ],
+  "lastUpdated": "2026-09-07T16:14:53.572Z",
+  "specId": "006",
+  "folderSlug": "memory-redesign-verification",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4",
+    "004-decisions-and-notes-system"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-08-26_21-23__scaffold-smoke-proves-the-generator-fix.md"
+  ]
+}

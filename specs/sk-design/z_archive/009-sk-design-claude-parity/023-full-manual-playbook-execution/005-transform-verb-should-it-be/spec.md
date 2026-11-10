@@ -41,7 +41,7 @@ _memory:
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-07-07 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 <!-- /ANCHOR:metadata -->
 
 ---

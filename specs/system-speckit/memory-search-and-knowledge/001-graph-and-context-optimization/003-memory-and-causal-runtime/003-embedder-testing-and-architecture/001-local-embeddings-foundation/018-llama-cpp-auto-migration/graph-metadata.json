@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/018-llama-cpp-auto-migration",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/018-llama-cpp-auto-migration",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 llama cpp auto migration",
+      "MEMORY_AUTO_MIGRATE_HF_TO_LLAMA",
+      "AUTO_MIGRATION_START",
+      "hf-local to llama-cpp startup migration",
+      "018 auto migration plan",
+      "018 llama cpp tasks",
+      "018 llama cpp implementation summary"
+    ],
+    "key_topics": [
+      "llama",
+      "cpp",
+      "auto",
+      "migration",
+      "hf-local",
+      "llama-cpp",
+      "startup",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "provider"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/pre-flight-notes.md",
+      "scratch/test-output.txt",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      "shared/embeddings/factory.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-flight-notes.md",
+        "kind": "doc",
+        "path": "scratch/pre-flight-notes.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-output.txt",
+        "kind": "file",
+        "path": "scratch/test-output.txt",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Historical",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Startup Result",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fixture Migration Result",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hugging Face",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After the llama-cpp provider became the local default candidate, startup only warned when a populated `hf-local` sqlite existed while the active profile pointed at the llama-cpp store",
+    "created_at": "2026-05-13T12:01:28Z",
+    "last_save_at": "2026-11-10T05:46:22.708Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-13T12:01:28Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:549bc07ea7a7e9f81a0e2f32d0dc279df735671f51ff45893314772802e63eea",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1edef3b3df9b0198a58cf568ccb16d0fdd702cc3c72c24058e9d97b67e2bce54",
+      "plan.md": "a27ef37743cf1182cbe46fb888bf072e24307bf28eaf600c87ecbdad32942ec9",
+      "tasks.md": "4c6b9107f12af90744f5ecd7e99c05c3d3b8a3939aed5ebc7cd2698120adc6f9",
+      "implementation-summary.md": "79ba392af5466bca85ec70fbb1cc0f0335ed7bd9ea7a77eb0f2ed7ec34858d22"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

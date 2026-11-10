@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/042-embedder-relisten-and-reaper-hardening",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/042-embedder-relisten-and-reaper-hardening",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "embedder demand listener re-arm",
+      "hf-embed socket missing after adoption",
+      "orphan sweeper hardening",
+      "daemon reaper maintenance marker",
+      "032 embedder relisten reaper hardening",
+      "implementation",
+      "plan",
+      "embedder relisten reaper hardening",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "summary"
+    ],
+    "key_topics": [
+      "embedder",
+      "demand",
+      "listener",
+      "re-arm",
+      "hf-embed",
+      "socket",
+      "missing",
+      "adoption",
+      "orphan",
+      "sweeper",
+      "hardening",
+      "daemon"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/scripts/README.md",
+      "scripts/README.md",
+      ".opencode/bin/hf-model-server.cjs",
+      "shared/embeddings/providers/hf-local.ts",
+      ".opencode/scripts/orphan-mcp-sweeper.sh",
+      ".opencode/scripts/session-cleanup.sh",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-mcp-sweeper.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embedder Demand",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Listener Relisten",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reaper Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Close",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 030 fixed the chronic orphan-daemon accumulation at its source (a test leak) and taught the orphan sweeper about the embedder sidecar, but it deliberately deferred two harder problems",
+    "created_at": "2026-07-11T08:41:48.642Z",
+    "last_save_at": "2026-11-10T05:47:41.262Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7c55f373d42210c39d2be2f5e191c896fe3aaa12de324d24ea889483fda93b0b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "76baa802e00e923b9cb21b7f17e049bb3b7dcccbb0587dd95ecc4c5f93a47cfa",
+      "plan.md": "20ef18b0e2cd39b2b72a06f0329ddc90c30c403b83ca829e8b573f3aae7cb5fe",
+      "tasks.md": "ab3871150ecdef9b01053339a221b13cbbc4d6c0e5f9f1a9123cd13e3b6dac3a",
+      "implementation-summary.md": "4aa02ede26ffe3db371b65167912fb724ecbf451469e2f556546dc0fa330f5c3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

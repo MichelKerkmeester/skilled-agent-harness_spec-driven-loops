@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes",
+  "spec_folder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/015-lane-rules-as-heal-modes",
+  "parent_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "lane rules as heal modes",
+      "phase 15 lane rules as heal modes",
+      "automate lane rules",
+      "deterministic repair rules",
+      "lane rules as heal modes plan",
+      "lane rules as heal modes tasks",
+      "lane rules as heal modes acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "lane rules as heal modes implementation summary"
+    ],
+    "key_topics": [
+      "lane",
+      "rules",
+      "heal",
+      "modes",
+      "phase",
+      "automate",
+      "deterministic",
+      "repair",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      "spec/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "heal-spec-docs.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "heal-lane-modes.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/heal-lane-modes.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Plugin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 13's manual repair identified five deterministic rules that apply to many packets: wrapping anchors, repointing links when the target changed, filling continuity placeholders, reading level from the spec when metadata is stale, and adding a missing template header",
+    "created_at": "2026-10-08T04:22:49Z",
+    "last_save_at": "2026-11-10T05:48:43.444Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:90af8c9c604c43dde79d158338d2b87409d2b8be2ba8b6aaaf115d9215c1a12c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "dfa9c7a26d99883b537716c2d0df2e304851148796b44579e1eab33ca4e2e426",
+      "plan.md": "5bfb9ecc04dd5f8614e3a4faa6ce567027d4d2439bc262992486329729ec95d0",
+      "tasks.md": "a558f24a09924df18ee9a3494b2009c8b938713de3de897735222e5e5773a2ef",
+      "implementation-summary.md": "b2fcff056f2508c82572ab1745a264f671f45a52b68affe127a22d0223e8c551"
+    },
+    "last_active_at": null
+  }
+}

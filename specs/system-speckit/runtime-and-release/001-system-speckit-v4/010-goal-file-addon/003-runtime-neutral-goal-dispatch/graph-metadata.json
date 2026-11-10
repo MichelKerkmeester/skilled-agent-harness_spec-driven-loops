@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/003-runtime-neutral-goal-dispatch",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/003-runtime-neutral-goal-dispatch",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime neutral goal dispatch",
+      "runtime neutral goal",
+      "goal offer dispatch",
+      "stale filename assertion",
+      "goal_prompt_choice",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "goal dispatch",
+      "stale filename guard command path",
+      "spec documentation goal offer"
+    ],
+    "key_topics": [
+      "runtime",
+      "neutral",
+      "goal",
+      "dispatch",
+      "offer",
+      "stale",
+      "filename",
+      "assertion",
+      "packet",
+      "durable",
+      "directive",
+      "completion"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-goal-offer-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Neutral Goal Dispatch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Table",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The speckit commands already offer to set a session goal, and the offer calls one runtime's tool by name",
+    "created_at": "2026-08-29T18:09:18Z",
+    "last_save_at": "2026-11-10T05:48:04.338Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6de4481349146c8a05bd077c11ca2055800a02691169c17b1494846b3cfe6b17",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e87248d4ae9deadb89924faa0487cfc97026fe6609d9f8e532ee605488ee20b0",
+      "plan.md": "81f0e0915a954909b18d7f01cb2f79384097ce216bafaa1a122b23b3ff0151ad",
+      "tasks.md": "44ecc0b90463fb10acc90122de64208d76fd376075a1d28d54b09cd1e4b55fd0",
+      "implementation-summary.md": "00e09c1bd84823e98a2ccad4bbdc2dc751e38323c3e2798a6e6ec595e55cf4c6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

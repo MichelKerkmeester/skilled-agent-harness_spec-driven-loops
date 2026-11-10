@@ -1,0 +1,183 @@
+---
+title: "Feature Specification: Spec folder tooling: canonical root, numbering, track roots and archive"
+description: "Create.sh, archive.sh and the track root lists keep packets where they live."
+trigger_phrases:
+  - "spec folder tooling"
+  - "create.sh canonical specs root"
+  - "track root children"
+  - "track aware archive"
+  - "phase aware archive"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling"
+    last_updated_at: "2026-10-11T12:13:52Z"
+    last_updated_by: "claude"
+    recent_action: "Completion 100 by the status classifier, 21 of 21 children complete, 021 closed on 01db8367c3"
+    next_safe_action: "Create follow-up phase 034/021 for the items moved out of 020"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-spec | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+# Feature Specification: Spec folder tooling: canonical root, numbering, track roots and archive
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Complete |
+| **Created** | 2026-09-23 |
+| **Branch** | `main` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | None, track root `specs/system-speckit/` |
+| **Predecessor** | None |
+| **Successor** | None |
+| **Handoff Criteria** | Every child validates strict at its slot, every live reference points at the child path and the timeline names each packet's first and last commit |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+The scripts that create, number and archive spec packets disagreed with where packets live. After the back-link to the specs folder was removed, create.sh wrote new packets into a stray tree nobody reads. Without a track it numbered a new packet from its short name alone, so differently named packets all started at 001. Fifteen of eighteen track roots listed children that did not match the packets on disk. archive.sh moved a track packet or a phase out of its own track or parent and refreshed no list.
+
+### Purpose
+Make create.sh, archive.sh and the track root lists agree with the tree: new packets written under the canonical specs root, numbers counted from the highest number in use, track-root children equal to the packets on disk with a gate that blocks a push that breaks it, and archive and restore that keep a packet inside its track or a phase inside its parent.
+
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- Packet creation under the canonical specs root
+- Root numbering that ignores the track
+- Track-root children lists and the push-time check
+- Track-aware and phase-aware archive and restore
+
+### Out of Scope
+- Spec folder content templates
+- The validator rule set
+- Goal and continuity writers
+
+### Files to Change
+Each child keeps its own plan and file list. This table is the audit trail of the phases.
+
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `001-create-canonical-specs-root/` | Existing packet | 001 | Write new packets under the canonical specs root |
+| `002-root-numbering-without-track/` | Existing packet | 002 | Number root packets from the highest number in use |
+| `003-track-root-children/` | Existing packet | 003 | Keep track-root children equal to the packets on disk |
+| `004-track-aware-archive/` | Existing packet | 004 | Archive and restore a packet inside its own track |
+| `005-phase-aware-archive/` | Existing packet | 005 | Archive and restore a phase inside its parent |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | `001-create-canonical-specs-root/` | Write new packets under the canonical specs root | Complete |
+| 2 | `002-root-numbering-without-track/` | Number root packets from the highest number in use | Complete |
+| 3 | `003-track-root-children/` | Keep track-root children equal to the packets on disk | Complete |
+| 4 | `004-track-aware-archive/` | Archive and restore a packet inside its own track | Complete |
+| 5 | `005-phase-aware-archive/` | Archive and restore a phase inside its parent | Complete |
+| 6 | `006-series-parent-rule-and-sibling-listing/` | Name the series parent and list recent packets before a new one | Complete |
+| 7 | `007-series-parent-review-and-hardening-research/` | Review Phase 6 and research how to harden it | Complete |
+| 8 | `008-series-parent-review-fixes/` | Fix the Phase 7 review findings | Complete |
+| 9 | `009-gate-3-menu-series-parent/` | Name the series parent in the Gate 3 menu | Complete |
+| 10 | `010-trigger-index-ci-rebuild/` | Rebuild the trigger index in CI after a push | Complete |
+| 11 | `011-template-phrase-census-and-cleanup/` | Report and clean the spec and acceptance criteria template phrases | Complete |
+| 12 | `012-template-phrase-cleanup-round-two/` | Clean the remaining templates' phrases, partial lists and cut-off phrases | Complete |
+| 13 | `013-corpus-wide-validation-repair/` | Repair every live and archived packet until the corpus passes strict validation | Complete |
+| 14 | `014-spec-auto-healing-research/` | Research how to harden these changes and heal old-format specs automatically | Complete |
+| 15 | `015-archive-current-location-and-ignored-files/` | Keep archived packets on their current path through moves, and skip git-ignored files in the index | Complete |
+| 16 | `016-research-recommendations/` | Plan each of the 16 research recommendations as its own child phase | Complete |
+| 17 | `017-heal-cli-and-compat-yaml-simplification/` | Apply the phase 16 overengineering research: pin the refusal order, drop the lane-mode CLI's `--mode` and `--json`, merge the compat action's failed-step fields | Complete |
+| 18 | 018-epic-docs-alignment/ | Bring the playbooks, feature catalogs, READMEs, doctor docs and release changelogs in line with the epic's tooling | Complete |
+| 19 | 019-epic-follow-up-fixes/ | Close the eleven follow-ups the epic left: the env reference, the compat workflow contract, Gate 3 parity coverage, CLI test isolation and the leaf manifest generator | Complete |
+| 20 | `020-deep-review-remediation/` | Remediate the eleven deep review findings against phases 016 to 019, the open search debt and the Hermes mirror byte diff, and settle the phase 010 status. Eight lanes, each with a red run before its fix | Complete |
+| 21 | `021-follow-up-defect-fixes/` | Fix the pre-existing defects that phase 020 found and moved here: link handling in the healer, backfill, archive, leaf manifest check, upgrade-legacy and repair-derived, the changelog row cut and comment leak, the lean parent status, two test hygiene faults and the launcher child marker with the Hermes rule. Ten code lanes, each with a red run, a green run and a mutant | Complete |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| `001-create-canonical-specs-root` | `002-root-numbering-without-track` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `002-root-numbering-without-track` | `003-track-root-children` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `003-track-root-children` | `004-track-aware-archive` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `004-track-aware-archive` | `005-phase-aware-archive` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `005-phase-aware-archive` | `006-series-parent-rule-and-sibling-listing` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `006-series-parent-rule-and-sibling-listing` | `007-series-parent-review-and-hardening-research` | Phase 6 is committed, so the review has a fixed target | `validate.sh --strict` passes on each child |
+| `007-series-parent-review-and-hardening-research` | `008-series-parent-review-fixes` | The review report lists the findings to fix | `validate.sh --strict` passes on each child |
+| `008-series-parent-review-fixes` | `009-gate-3-menu-series-parent` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `009-gate-3-menu-series-parent` | `010-trigger-index-ci-rebuild` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `010-trigger-index-ci-rebuild` | `011-template-phrase-census-and-cleanup` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `011-template-phrase-census-and-cleanup` | `012-template-phrase-cleanup-round-two` | Phase 11's tools and phrase lists exist to extend | `validate.sh --strict` passes on each child |
+| `012-template-phrase-cleanup-round-two` | `013-corpus-wide-validation-repair` | Phase 12's cleanup tool exists to run over the archive | `validate.sh --strict` passes on each child |
+| `013-corpus-wide-validation-repair` | `014-spec-auto-healing-research` | Phase 13's repair is the change set the research analyzes | `validate.sh --strict` passes on each child |
+| `014-spec-auto-healing-research` | `015-archive-current-location-and-ignored-files` | Phase 14 recommends the archive fix and the operator picks current-location semantics | `validate.sh --strict` passes on each child |
+| `015-archive-current-location-and-ignored-files` | `016-research-recommendations` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `016-research-recommendations` | `017-heal-cli-and-compat-yaml-simplification` | Phase 16 is shipped and its research names the four changes | `validate.sh --strict` passes on each child |
+| `017-heal-cli-and-compat-yaml-simplification` | `018-epic-docs-alignment` | 017 is Complete. Its acceptance rows AC-001 to AC-007 are all Met, and its strict validate prints RESULT: PASSED. 018 names 017 as its predecessor and brings the playbooks, catalogs and READMEs in line with the tooling that 017 and the earlier phases shipped | 017 `acceptance-criteria.md` (seven rows Met), 017 `implementation-summary.md` Verification row (`validate.sh --strict` RESULT: PASSED, Errors: 0, Warnings: 0), 018 `spec.md` Predecessor row |
+| `018-epic-docs-alignment` | `019-epic-follow-up-fixes` | 018 is Complete. Its acceptance rows AC-001 to AC-005 are all Met, and its strict validates print RESULT: PASSED on the packet and on this parent. 018 reached `main` at `f3f8583579`, and 019 starts from that shipped state | 018 `acceptance-criteria.md` (AC-001 to AC-005 Met), 018 `scratch/evidence/validate-packet.txt` and `validate-034.txt` (RESULT: PASSED), 018 `scratch/evidence/push.txt` (`9dbfe3a046..f3f8583579 HEAD -> main`) |
+| `019-epic-follow-up-fixes` | `020-deep-review-remediation` | 019 is Complete. Its acceptance rows AC-001 to AC-015 are all Met, SC-002 included, and its strict validate prints RESULT: PASSED on the packet and on this parent. Main CI is green on its push commit `079e9c34d2`, and 020 starts from that commit | 019 `acceptance-criteria.md` (AC-015 for SC-002), 019 `scratch/evidence/post-push-ci.txt` (14 of 14 checks succeeded on `079e9c34d2`), 020 `scratch/evidence/validate-019-closeout.txt` and `validate-034-closeout.txt` |
+| `020-deep-review-remediation` | `021-follow-up-defect-fixes` | 020 is Complete. Its acceptance rows AC-001 to AC-016 are all Met, and its strict validate prints RESULT: PASSED. It is committed at `7a0f0b4375`, and the operator moved the defects in its Known Limitations items 3, 14 to 16 and 22 to 28, and the healer and backfill findings in its guard evidence, to 021, which starts from that commit | 020 `acceptance-criteria.md` (AC-001 to AC-016 Met), 020 `scratch/evidence/closure-gate-validate-020-last.txt` (RESULT: PASSED), 020 `implementation-summary.md` Known Limitations, 020 `scratch/evidence/closure-guard-final-gA.txt` and `closure-guard-final-gB.txt`, 021 `spec.md` section 4 |
+<!-- /ANCHOR:phase-map -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+None.
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
+- **Parent Spec**: See `../spec.md`
+- **Timeline**: See `timeline.md` for the order the phases shipped in and the number map
+- **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

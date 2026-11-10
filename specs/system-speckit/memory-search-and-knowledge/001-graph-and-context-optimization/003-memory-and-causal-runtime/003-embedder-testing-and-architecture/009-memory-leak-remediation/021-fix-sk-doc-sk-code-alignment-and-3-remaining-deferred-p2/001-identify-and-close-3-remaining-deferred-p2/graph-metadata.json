@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/001-identify-and-close-3-remaining-deferred-p2",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/001-identify-and-close-3-remaining-deferred-p2",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "021 001 identify deferred p2",
+      "find 3 remaining sidecar p2",
+      "021 001 plan",
+      "remaining deferred p2 plan",
+      "021 001 tasks",
+      "remaining deferred p2 tasks",
+      "021 001 ADR",
+      "remaining deferred p2 ADR",
+      "021 001 implementation summary",
+      "remaining deferred p2 implementation summary"
+    ],
+    "key_topics": [
+      "identify",
+      "deferred",
+      "find",
+      "remaining",
+      "sidecar",
+      "plan",
+      "tasks",
+      "adr",
+      "implementation",
+      "summary",
+      "investigation",
+      "found"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/p2-closure-tally.csv",
+      "scratch/reconciliation-error.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "p2-closure-tally.csv",
+        "kind": "file",
+        "path": "scratch/p2-closure-tally.csv",
+        "source": "derived"
+      },
+      {
+        "name": "reconciliation-error.md",
+        "kind": "doc",
+        "path": "scratch/reconciliation-error.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remaining Deferred",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Systematic",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview First",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "consumer",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision No",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 015 investigation found 68 P2 findings",
+    "created_at": "2026-05-26T16:49:55.587Z",
+    "last_save_at": "2026-11-10T05:46:48.894Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d4096c092d0e4de0f98587e4f53f4e8851c54b70ff266654af65d910e3cdf368",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f80014a60ea442ef9b163f3b8d16fbd0f9d5a00d12b24bf3513013b6233a57b2",
+      "plan.md": "a02b075fe1cf3efa88a7574895d5eb1ad08aaa29870cababa226a7c726d3bc36",
+      "tasks.md": "25d2ed9aaa52bf31ec10d3cc956ee95b546a3d959bb1007589779714e4055f61",
+      "decision-record.md": "88bbaa90889a17ed9ecce9947703e1940fb97460b1780cd2e1f18ce463037bd4",
+      "implementation-summary.md": "b5f475f80fde1abdb6fd1bc750eda7fae9c4de036f8d4ce834f6d4aa50c56bbf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

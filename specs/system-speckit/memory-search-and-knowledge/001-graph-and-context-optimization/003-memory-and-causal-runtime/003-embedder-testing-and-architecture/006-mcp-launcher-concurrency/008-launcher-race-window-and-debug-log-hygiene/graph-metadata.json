@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/008-launcher-race-window-and-debug-log-hygiene",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/008-launcher-race-window-and-debug-log-hygiene",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008 race window debug log hygiene",
+      "skill-advisor debug log gate",
+      "MK_SKILL_ADVISOR_DEBUG",
+      "PID guard inside bootstrap lock",
+      "008 plan race window debug",
+      "skill-advisor 008 plan",
+      "008 tasks",
+      "008 implementation summary",
+      "skill-advisor 008 done"
+    ],
+    "key_topics": [
+      "race",
+      "window",
+      "debug",
+      "log",
+      "hygiene",
+      "skill-advisor",
+      "gate",
+      "pid",
+      "guard",
+      "inside",
+      "bootstrap",
+      "lock"
+    ],
+    "importance_tier": "useful",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Launcher Race",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Window Tightening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Log Hygiene",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implemented Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "full",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Closes 2 P2 findings from 007 deep-review: move skill-advisor PID guard write inside the bootstrap-lock critical section, and gate verbose error/path logging behind MK_SKILL_ADVISOR_DEBUG.",
+    "created_at": "2026-05-18T18:05:16.895Z",
+    "last_save_at": "2026-11-10T05:46:39.042Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fe8785bf08117dd544f5f9c5a1c8f8505a5d8fc3019b07a73a5996f54bd953a0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bde37ef672c7051246a476f89fe479aca1d0827c9cb1530c7de9d926dc80a854",
+      "plan.md": "8ae1404148b0caa0021a5310c33e4cf45b76d1a63ab7c58cfa6e80b9fa5987d4",
+      "tasks.md": "65e1fbb11b998833d359e5b5642a9b8b4c45c8bbe78923ec8ab977319f72fec3",
+      "implementation-summary.md": "a3f17f5a677d1d72dff645cb1dfd421ab0467cfcd68aa4cde645e47776d8bbc7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

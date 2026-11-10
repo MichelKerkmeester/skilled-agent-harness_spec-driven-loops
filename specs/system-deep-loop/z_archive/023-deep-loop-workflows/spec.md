@@ -40,7 +40,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Merged & functional (351 runtime tests); formal per-phase gate sign-off pending |
 | **Created** | 2026-06-14 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Handoff Criteria** | Each child phase ships and validates independently with byte-identical per-mode parity held; old skill dirs are deleted only in the final phase |
 <!-- /ANCHOR:metadata -->
 

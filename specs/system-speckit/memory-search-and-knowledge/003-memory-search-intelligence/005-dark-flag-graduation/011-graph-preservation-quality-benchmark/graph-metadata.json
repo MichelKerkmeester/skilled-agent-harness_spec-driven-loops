@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/011-graph-preservation-quality-benchmark",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/011-graph-preservation-quality-benchmark",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "graph preservation quality benchmark",
+      "content rich short query graph preservation benchmark",
+      "retrieval class routing benchmark",
+      "F15 counter memory health wiring",
+      "labeled ground truth graph preservation",
+      "graph preservation quality benchmark plan",
+      "content rich short query graph preservation benchmark plan",
+      "retrieval class routing benchmark plan",
+      "F15 counter memory health wiring plan",
+      "graph preservation quality benchmark decisions",
+      "reuse retrieval flag eval harness",
+      "classifier verified fixture"
+    ],
+    "key_topics": [
+      "graph",
+      "preservation",
+      "quality",
+      "benchmark",
+      "content",
+      "rich",
+      "short",
+      "query",
+      "retrieval",
+      "class",
+      "routing",
+      "f15"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "benchmark-results.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark-results.md",
+        "kind": "doc",
+        "path": "benchmark-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Preservation Quality Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fixture Authoring",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Benchmark Driver",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Counter Wiring",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Per",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two routing-affecting flags carry the identical unmet obligation in their own source comments:",
+    "created_at": "2026-07-09T20:28:59.939Z",
+    "last_save_at": "2026-11-10T05:47:53.059Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c486dfd306912869f2c34fa856ecb7013a82b94854fad8a2fc36ced93f3db5ee",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e3d8cbf2fcd6ac8a1912fb14850c7bc2e20e246150a309e67ac2cdf89ab9ed66",
+      "plan.md": "86a1812bee94a4f4fd5f0054568aa4d4f24f1640c0a7c715a952a2364cb17225",
+      "tasks.md": "93737f070bd486354afc56cf23a36d41b7ebcc1fa382c88950678633190ab518",
+      "decision-record.md": "9d05244246ee416a4f9631552be10ad2e184e77e176473f6ef00f2fc09dd123f",
+      "implementation-summary.md": "7e58fa168ad90fbd2304ebf36ba5798f22fac2c67aef595a8fc13b95c6f4075e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

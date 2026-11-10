@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/034-rebuild-sentinel-corruption-handling",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/034-rebuild-sentinel-corruption-handling",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/033-boot-wal-shm-sigbus-fix",
+        "reason": "Sibling packet opened from the same test pass, independent root cause",
+        "source": "manual"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rebuild sentinel corruption handling",
+      "needs-rebuild sentinel corruption class",
+      "post_crash_integrity_probe sentinel",
+      "repairNeedsRebuildSentinel corruption",
+      "quick_check failure unreachable repair",
+      "rebuild sentinel corruption handling plan",
+      "needs-rebuild sentinel source constant plan",
+      "repairNeedsRebuildSentinel corruption skip plan",
+      "rebuild sentinel corruption handling tasks",
+      "needs-rebuild sentinel source constant tasks",
+      "rebuild sentinel corruption handling status",
+      "034 complete"
+    ],
+    "key_topics": [
+      "rebuild",
+      "sentinel",
+      "corruption",
+      "handling",
+      "needs-rebuild",
+      "class",
+      "repairneedsrebuildsentinel",
+      "failure",
+      "unreachable",
+      "repair",
+      "plan",
+      "source"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rebuild Sentinel Corruption",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Class Mishandling",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The needs-rebuild sentinel file conflates two failure classes: half-finished checkpoint restores, safely auto-repaired, and physical page corruption, which its one consumer was never built to handle and cannot even reach",
+    "created_at": "2026-07-08T16:02:23Z",
+    "last_save_at": "2026-11-10T05:47:04.959Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f6c9140aa89534b3b4db8f9c41f279ba47b1f74855836365fd5f2acc836d7be0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3bb73ef7fb88c7413f88133120db423d508ed7ad8194f46eb9a689cb1ae3ae25",
+      "plan.md": "d623d6168791f41c7c933cd8d4762d835f7981d5589a32fd5b3f786db4da7d60",
+      "tasks.md": "ea7e4474275340adcecf4852957a6ea33dbd07edeeee4c4ed7fb0dbfda1ddbf1",
+      "implementation-summary.md": "ea1eb40b5c4b71a5d79df7707762620d4876aa33e97d71ad8ecc964899c87db2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

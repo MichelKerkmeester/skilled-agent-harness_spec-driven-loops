@@ -1,0 +1,19 @@
+{
+  "level": "sub-track",
+  "specFolder": "system-speckit/spec-authoring-and-continuity",
+  "description": "Templates, goal limits, save-time continuity, and operator decision capture for packet authoring.",
+  "keywords": [
+    "spec",
+    "authoring",
+    "and",
+    "continuity"
+  ],
+  "lastUpdated": "2026-11-10T05:45:50.005Z",
+  "specId": "system-speckit/spec-authoring-and-continuity",
+  "folderSlug": "spec-authoring-and-continuity",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

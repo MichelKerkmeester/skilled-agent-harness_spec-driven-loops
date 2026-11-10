@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/002-cli-claude-code",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-claude-code frontmatter alignment",
+      "cli-claude-code reference frontmatter",
+      "skill frontmatter standardization",
+      "cli-claude-code frontmatter plan",
+      "frontmatter authoring phase",
+      "claude code doc contract plan",
+      "cli-claude-code frontmatter tasks",
+      "frontmatter authoring tasks",
+      "claude code doc contract tasks",
+      "cli-claude-code frontmatter summary",
+      "frontmatter authoring complete",
+      "claude code doc contract evidence"
+    ],
+    "key_topics": [
+      "cli-claude-code",
+      "frontmatter",
+      "alignment",
+      "reference",
+      "skill",
+      "standardization",
+      "plan",
+      "authoring",
+      "phase",
+      "claude",
+      "code",
+      "doc"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frontmatter Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Frontmatter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-claude-code reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 4 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
+    "created_at": "2026-06-11T05:47:22Z",
+    "last_save_at": "2026-11-10T05:47:09.498Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:de1a08fc7857ac1bfdbbabde5c4eba36ae862ccfd59cc1e1668304fb2c98b421",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4ef74bfe675e55d0f315487c22286bd59b5fc0eb2727dd3b2e03d8c3de04d2a8",
+      "plan.md": "059b0ef0410b99e3cadd3eb22182b3d286408e6f19a84e230a74c236a5f4f1cc",
+      "tasks.md": "5a12128e8660b8ce7e9cabf51a97c94ad8a8634cc5742b19236b1e5327806ae3",
+      "implementation-summary.md": "168cf3c3b053f3bd23020bc5e54e2ce39e9cada1df2e326aa0d8acd1ab673f5e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

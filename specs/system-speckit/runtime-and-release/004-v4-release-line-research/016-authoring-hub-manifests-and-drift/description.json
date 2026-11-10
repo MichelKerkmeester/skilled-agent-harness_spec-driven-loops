@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/016-authoring-hub-manifests-and-drift",
+  "description": "Phase 16: authoring-hub-manifests-and-drift",
+  "keywords": [
+    "phase",
+    "authoring-hub-manifests-and-drift"
+  ],
+  "lastUpdated": "2026-11-08T23:39:06.380Z",
+  "specId": "016",
+  "folderSlug": "authoring-hub-manifests-and-drift",
+  "parentChain": [
+    "system-speckit",
+    "047-v4-release-line-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

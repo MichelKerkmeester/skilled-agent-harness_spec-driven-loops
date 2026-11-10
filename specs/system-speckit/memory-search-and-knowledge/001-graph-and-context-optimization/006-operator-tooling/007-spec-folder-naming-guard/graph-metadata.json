@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec folder naming guard",
+      "naming convention guard",
+      "mis-located spec folder",
+      "phase child naming",
+      "creation time naming enforcement",
+      "cross-runtime naming hook",
+      "naming guard plan",
+      "naming guard design",
+      "shared naming validation module",
+      "creation time gate",
+      "per runtime pre write hook",
+      "naming guard tasks"
+    ],
+    "key_topics": [
+      "spec",
+      "folder",
+      "naming",
+      "guard",
+      "convention",
+      "mis-located",
+      "phase",
+      "child",
+      "creation",
+      "time",
+      "enforcement",
+      "cross-runtime"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Folder Naming",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convention Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convention Audit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parity Audit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Actual Effort",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Research",
+        "kind": "proper_noun",
+        "path": "research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec folders can be created with names that are syntactically valid but semantically wrong or mis-located, and nothing stops this at creation time",
+    "created_at": "2026-06-06T05:55:29.189Z",
+    "last_save_at": "2026-11-10T05:46:59.022Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "source_fingerprint": "sha256:cbffc70fd0c28ab97654747c747a76370f67582ea37713967acf7351ff84a321",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "005dc3b4a84f102e1191a2ca3a9f7205cedde7311563c8de309f8dea5bedd7ab",
+      "plan.md": "7be2ac8da6db6ae27595aae6e1c950ca9152e3db4b6d77f0d225dd36f44b0fce",
+      "tasks.md": "579055009acf1d50d81f72cdfd7d6f46068699f7dd1f6e6b4ec31c7dc43834a5",
+      "implementation-summary.md": "fb808d950c7fc82cc4fe9b81b6d1963bfddc689e157a47d799c56777a77d67ca",
+      "research.md": "14b14499171aa1b56ad4b14e6eb747e88528c38496a1bd7135311c8f65c573fd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

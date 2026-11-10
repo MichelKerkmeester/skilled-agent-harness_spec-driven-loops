@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/026-relation-backfill-review-remediation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/026-relation-backfill-review-remediation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relation backfill review remediation",
+      "supersession contradicts caused invalidation",
+      "hasConflictingValidEdge backfill guard",
+      "backfill skippedConflicting",
+      "relation backfill honest written count",
+      "relation backfill remediation plan",
+      "conflict guard implementation",
+      "backfill honest delta counting",
+      "relation backfill review remediation tasks",
+      "relation backfill remediation decision",
+      "suppress contradicts emission vs detector",
+      "relation agnostic conflict guard decision"
+    ],
+    "key_topics": [
+      "relation",
+      "backfill",
+      "review",
+      "remediation",
+      "supersession",
+      "contradicts",
+      "caused",
+      "invalidation",
+      "hasconflictingvalidedge",
+      "guard",
+      "skippedconflicting",
+      "honest"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Backfill Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Protect",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Suppress",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Defensive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Relation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`collectSupersessionEdges` emits `contradicts` for predecessor->successor, and `collectLineageEdges` emits `caused` for the SAME directed pair because lineage is reciprocal (`A.supersededby=B` AND `B.predecessor=A`)",
+    "created_at": "2026-06-04T14:30:00Z",
+    "last_save_at": "2026-11-10T05:46:55.719Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3f0a9ce4e07447b4261a4b3cc81ed42bf11c9e5d0071da0b2ef16ff656d69d34",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4bedd64af80b40f639113158ce02acc2f71463c851d8dae2296ca5683843337c",
+      "plan.md": "bc9392fedc6e8cbb8bf2576b776a8bc31b65d92d9f5a095a01820f8dd1a46db3",
+      "tasks.md": "cdb13f253f47928c85dd65c4643519b0d00451b95d1d35ca42d6ea16dacd745a",
+      "decision-record.md": "63487902e6c9d2e6c0613eec040eea30b66132a64d4294546439fd16e18c2382",
+      "implementation-summary.md": "93381f7c32e08150dcd5a8b4d457559b57ed560c2cde8551fe1ef574bfdf18b4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

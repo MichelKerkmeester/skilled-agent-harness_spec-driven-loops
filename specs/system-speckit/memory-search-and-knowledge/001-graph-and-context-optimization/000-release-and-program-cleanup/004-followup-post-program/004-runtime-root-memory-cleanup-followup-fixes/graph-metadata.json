@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "004-runtime-root-memory-cleanup-followup-fixes",
+      "advisor resolver false sentinel",
+      "fts vec mismatch",
+      "memory bulk delete deprecated",
+      "packet 096 follow-on",
+      "findAdvisorWorkspaceRoot bare sentinel",
+      "054 plan",
+      "advisor resolver fix plan",
+      "fts vec investigation plan",
+      "bulk delete deprecated plan",
+      "054 tasks",
+      "runtime cleanup followups tasks"
+    ],
+    "key_topics": [
+      "004-runtime-root-memory-cleanup-followup-fixes",
+      "advisor",
+      "resolver",
+      "false",
+      "sentinel",
+      "fts",
+      "vec",
+      "mismatch",
+      "memory",
+      "bulk",
+      "delete",
+      "deprecated"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      "scratch/fts-vec-mismatch-ids.txt",
+      "scratch/pre-bulk-delete-stats.json",
+      "scratch/fts-vec-diagnosis.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "fts-vec-mismatch-ids.txt",
+        "kind": "file",
+        "path": "scratch/fts-vec-mismatch-ids.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pre-bulk-delete-stats.json",
+        "kind": "config",
+        "path": "scratch/pre-bulk-delete-stats.json",
+        "source": "derived"
+      },
+      {
+        "name": "fts-vec-diagnosis.md",
+        "kind": "doc",
+        "path": "scratch/fts-vec-diagnosis.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Cleanup Followups",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Snapshot",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Three",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After the packet 096 singular→plural path-residue fix, three follow-on issues remain in the runtime: (1) `findAdvisorWorkspaceRoot` uses a bare `.opencode/skills` sentinel that can match nested mock dirs and self-perpetuate (proven live: `mcpserver/.opencode/skills/.advisor-state/` was rewritten 6 minutes after restart on 2026-05-08); (2) `memoryhealth` reports a persistent FTS/vector consistency gap (50 mismatched IDs across 6857 rows) that `autoRepair` does not fix; (3) the indexed-continuity DB carries 2,751 deprecated-tier records (~33% of total) bloating retrieval and search",
+    "created_at": "2026-05-08T08:36:13Z",
+    "last_save_at": "2026-11-10T05:46:02.041Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:5feed7b810f0152d66bc5152c56ff5b7ed6400a21be9151ba9d44be121121536",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "15c4b838c6abd5853297c24386ab0113805813a8704a2c983826fee4d1cf8341",
+      "plan.md": "b2a669b1b1c46ee4eec1f53b6f88691f4d980081d12b40058067f24aab0684be",
+      "tasks.md": "2a71597b371e085ca8c6cae3173f055e44d67024ffd63b9956c42d2c913e6ba1",
+      "implementation-summary.md": "08d5c5d3afb370c8fd2339f9edf67b98737c4666702aca6ca87d37dab9ddaf80",
+      "handover.md": "3f94c58813a9467991199dfaa9da975bcd0b603d334f5912cdfd1272663dcb84"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

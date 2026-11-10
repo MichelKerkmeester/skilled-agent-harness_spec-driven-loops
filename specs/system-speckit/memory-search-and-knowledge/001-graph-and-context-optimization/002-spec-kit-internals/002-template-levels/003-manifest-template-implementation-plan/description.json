@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan",
+  "description": "Today's spec-kit template system has 86 files / ~13K LOC split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`,",
+  "keywords": [
+    "today",
+    "spec-kit",
+    "template",
+    "system",
+    "files",
+    "13k",
+    "loc",
+    "split",
+    "across",
+    "core",
+    "addendum",
+    "level2-verify",
+    "level3-arch",
+    "level3-plus-govern",
+    "phase"
+  ],
+  "lastUpdated": "2026-08-15T14:41:10.156Z",
+  "specId": "003",
+  "folderSlug": "manifest-template-implementation-plan",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-template-levels"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 3
+}

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Batch reindex discovered substantially more files on disk than were inserted into the memory index",
     "created_at": "2026-04-12T09:02:50.322Z",
-    "last_save_at": "2026-10-07T18:16:29.173Z",
+    "last_save_at": "2026-11-10T05:49:17.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:36fedcfbf7bf0295487fb68eabc69b9934c44f8c674ef95ef4bed175b8d6e7f7",
+    "source_fingerprint": "sha256:4a68b31232150bf9b7d8b60f6c1e6ecde3f76cf3c8694fea1b226d3359ada69c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a2c3aba464c573eb2fd12cedba12c946d36cfdd2609b33d90491db34389d384",
       "plan.md": "732bee96aa612ef27c5386bf92d8fa1f690726e17b3753715de5fd1eb86c5de6",
       "tasks.md": "8176c8443bf405a8f77e290b12453f27bb656e6d8eb0b1ce95399f9d61f38554",
-      "implementation-summary.md": "78b5003cb96a448fb627877d5c4358119b0a4ea97f0662075bdd00c5bf77eb8c"
+      "implementation-summary.md": "7778c1928b413ac4d8d613073ed3040a2338faba7e4c5e607ba9455e19fc0845"
     },
     "last_active_child_id": null,
     "last_active_at": null

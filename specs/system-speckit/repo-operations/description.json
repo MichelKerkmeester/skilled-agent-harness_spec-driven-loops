@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "system-speckit/repo-operations",
+  "description": "Repository security scanning, CI workflow cost, and cleanup of abandoned processes.",
+  "keywords": [
+    "repo",
+    "operations"
+  ],
+  "lastUpdated": "2026-11-10T05:45:50.005Z",
+  "specId": "system-speckit/repo-operations",
+  "folderSlug": "repo-operations",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -3699,128 +3699,128 @@
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/",
-      "to": ".opencode/specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/",
       "records": 303,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/026-graph-and-context-optimization/004-code-graph/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/004-code-graph/",
       "to": ".opencode/specs/system-code-graph/007-code-graph-buildout/",
       "records": 1357,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-037-system-code-graph-comprehensive-deep-review/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-037-system-code-graph-comprehensive-deep-review/",
       "to": ".opencode/specs/system-code-graph/z_archive/023-system-code-graph-comprehensive-deep-review/",
       "records": 56,
       "agreement": 1
     },
     {
       "from": ".opencode/specs/system-speckit/027-graph-and-context-optimization/",
-      "to": ".opencode/specs/system-speckit/026-graph-and-context-optimization/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/",
       "records": 9583,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/",
       "to": ".opencode/specs/system-code-graph/009-advisor-codegraph-shared-features/",
       "records": 85,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/",
-      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/001-speckit-memory/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-speckit-memory/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/001-speckit-memory/",
       "records": 317,
       "agreement": 0.9968
     },
     {
-      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/research/",
-      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/research/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-speckit-memory/research/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/research/",
       "records": 381,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-code-graph/",
       "to": ".opencode/specs/system-code-graph/001-code-graph-core/",
       "records": 315,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/004-novel-research/",
-      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/004-novel-research/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-spec-data-quality/004-novel-research/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/004-novel-research/",
       "records": 52,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/005-shared-engine-and-research/",
-      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/005-shared-engine-and-research/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-spec-data-quality/005-shared-engine-and-research/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/005-shared-engine-and-research/",
       "records": 54,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/",
-      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/006-generated-metadata-build/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/006-generated-metadata-build/",
       "records": 87,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/029-vague-query-model-benchmark/",
-      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/vague-query-model-benchmark/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-spec-data-quality/029-vague-query-model-benchmark/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/vague-query-model-benchmark/",
       "records": 288,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/research/",
-      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/research/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-spec-data-quality/research/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/research/",
       "records": 136,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-skill-advisor/research/",
-      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-skill-advisor/research/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-skill-advisor/research/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-skill-advisor/research/",
       "records": 150,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/029-vague-query-model-benchmark/",
-      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/029-vague-query-model-benchmark/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/029-vague-query-model-benchmark/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-spec-data-quality/029-vague-query-model-benchmark/",
       "records": 288,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/004-deep-loop/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/004-deep-loop/",
       "to": ".opencode/specs/system-deep-loop/038-deep-loop-runtime/",
       "records": 234,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/",
-      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-spec-data-quality/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/",
       "records": 1069,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/",
-      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/",
+      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/",
       "records": 122,
       "agreement": 1
     },
     {
       "from": ".opencode/specs/system-speckit/028-xce-research-based-refinement/",
-      "to": ".opencode/specs/system-speckit/027-xce-research-based-refinement/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/",
       "records": 4721,
       "agreement": 1
     },
     {
       "from": ".opencode/specs/system-speckit/029-memory-search-intelligence/",
-      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/",
+      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/",
       "records": 3783,
       "agreement": 1
     },
     {
       "from": ".opencode/specs/system-speckit/042-spec-root-resolution-hardening/",
-      "to": ".opencode/specs/system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/",
+      "to": ".opencode/specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/",
       "records": 130,
       "agreement": 1
     },
@@ -4096,7 +4096,7 @@
     },
     {
       "from": "specs/system-speckit/033-spec-kit-template-optimization/",
-      "to": "specs/system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/",
+      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/008-template-contracts-and-acceptance-criteria/",
       "records": 200,
       "agreement": 1
     },
@@ -4113,8 +4113,8 @@
       "agreement": 1
     },
     {
-      "from": "specs/system-speckit/031-system-speckit-v4/036-goal-unification/",
-      "to": "specs/system-speckit/031-system-speckit-v4/038-goal-unification/",
+      "from": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/036-goal-unification/",
+      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/",
       "records": 450,
       "agreement": 1
     },
@@ -4126,67 +4126,67 @@
     },
     {
       "from": "specs/system-speckit/035-spec-kit-simplification-research/",
-      "to": "specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/",
+      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research/",
       "records": 713,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/036-recorded-findings-closure/",
-      "to": "specs/system-speckit/031-system-speckit-v4/032-recorded-findings-closure/",
+      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/032-recorded-findings-closure/",
       "records": 150,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/036-spec-doc-template-reduction/",
-      "to": "specs/system-speckit/031-system-speckit-v4/003-spec-doc-template-reduction/",
+      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/",
       "records": 323,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/037-decisions-memory-redesign/",
-      "to": "specs/system-speckit/031-system-speckit-v4/004-decisions-and-notes-system/",
+      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system/",
       "records": 52,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/037-decisions-memory-redesign/001-analysis/",
-      "to": "specs/system-speckit/031-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis/",
+      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis/",
       "records": 96,
       "agreement": 0.9896
     },
     {
       "from": "specs/system-speckit/042-nested-goal-template-addon/",
-      "to": "specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/",
+      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/",
       "records": 88,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/045-daemon-and-test-harness-hardening/",
-      "to": "specs/system-speckit/031-system-speckit-v4/014-daemon-and-test-harness-hardening/",
+      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/014-daemon-and-test-harness-hardening/",
       "records": 61,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/049-memory-decommission/",
-      "to": "specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/",
+      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/",
       "records": 362,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/052-memory-decommission-landing/",
-      "to": "specs/system-speckit/031-system-speckit-v4/019-memory-decommission-branch-landing/",
+      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/019-memory-decommission-branch-landing/",
       "records": 96,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/053-spec-kit-runtime-rename/",
-      "to": "specs/system-speckit/031-system-speckit-v4/020-runtime-package-rename/",
+      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/020-runtime-package-rename/",
       "records": 137,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/054-decommission-debt-fixes/",
-      "to": "specs/system-speckit/031-system-speckit-v4/021-decommission-debt-and-cli-nesting/",
+      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/021-decommission-debt-and-cli-nesting/",
       "records": 652,
       "agreement": 1
     }

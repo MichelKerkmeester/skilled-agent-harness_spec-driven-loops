@@ -55,7 +55,7 @@
       ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
       ".skilled/skills/sk-doc/leaf-manifest.json",
       "manual-testing-playbook/manual-testing-playbook.md",
-      "specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md",
+      "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/spec.md",
       ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
       "001-scenario-contract/goal.md",
       "002-conversation-runner/goal.md",
@@ -215,7 +215,7 @@
     ],
     "causal_summary": "A manual testing playbook scenario today is one prompt and one answer",
     "created_at": "2026-11-01T21:03:56Z",
-    "last_save_at": "2026-11-10T05:26:10.318Z",
+    "last_save_at": "2026-11-10T06:05:58.433Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,13 +225,13 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:5189210c773b33c8f931f60e3b5437175db071cd677a4a7458d3264b22c26a44",
+    "source_fingerprint": "sha256:8eea88b373fdae35d7bf208bfaa9aec2eba3249fbcff5b2e68bc627005603db6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3b24bd42e60d07e534a91bd86966348947068a698e2c31e02630c1a2698febb0",
+      "spec.md": "37f6bc70b3b9d937f29edccd556b5115cfcb6ab51a297cb257c7cef188f2f8dd",
       "decision-record.md": "fa805a179654dc8f4bee964c449f5f42bbf7e9e732838d15e7bca43d83a23e58",
-      "research/research.md": "c91baa1c489494eb25a2b0fd047b52cca7a4fe26a68b5d71a8acde9c324c3d24",
-      "handover.md": "a0bf1d1e9ea3f740915e80f327be9a41cc669dd6c26046be62ad5d55b148d064"
+      "research/research.md": "79419bf414681f2b4b9c5a62aef7400d9bc71e18d0c2bcd38a4bb5bc3fe3f37b",
+      "handover.md": "a19dfc321306a25c64a7b657ae2abea5d559def84685a98e4da82288fddae998"
     },
     "last_active_child_id": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build",
     "last_active_at": "2026-11-03T11:16:13.807Z"

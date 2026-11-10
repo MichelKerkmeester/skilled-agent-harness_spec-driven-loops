@@ -1,0 +1,35 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/013-anchor-contract-alignment",
+  "description": "The ANCHORSVALID check in the validator code only detects duplicate anchor opens, unopened closes, unclosed opens, and documents with zero anchors",
+  "keywords": [
+    "anchorsvalid",
+    "check",
+    "validator",
+    "code",
+    "only",
+    "detects",
+    "duplicate",
+    "anchor",
+    "opens",
+    "unopened",
+    "closes",
+    "unclosed",
+    "documents",
+    "zero",
+    "anchors"
+  ],
+  "lastUpdated": "2026-10-11T19:55:50.271Z",
+  "specId": "013",
+  "folderSlug": "anchor-contract-alignment",
+  "parentChain": [
+    "system-speckit",
+    "029-spec-folder-lifecycle",
+    "003-spec-folder-tooling",
+    "016-research-recommendations"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-10-26_20-55__the-two-open-goal-criteria-are-ticked-a-new-test.md"
+  ]
+}

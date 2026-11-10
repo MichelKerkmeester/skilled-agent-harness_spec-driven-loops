@@ -29,7 +29,7 @@ _memory:
 |-------|-------|
 | **Status** | Core implementation SHIPPED (Wave D + A′ + B2); both acceptance tests met; B1 + burn-in are follow-up |
 | **Level** | 2 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Deliverable** | Shipped code: stall-detector defaults + exit-truth (deep-loop-runtime); hard_rules dispatch linter (cli-opencode) |
 | **Date** | 2026-07-05 |
 <!-- /ANCHOR:metadata -->
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The design was implemented on `system-speckit/028-memory-search-intelligence` (2026-07-05, Q2=300000ms).
+The design was implemented on `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` (2026-07-05, Q2=300000ms).
 Both acceptance tests are satisfied.
 
 **Wave D — deep-loop stall reliability (AC-2):**

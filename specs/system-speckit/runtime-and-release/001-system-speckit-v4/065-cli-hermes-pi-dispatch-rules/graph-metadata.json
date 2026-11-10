@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/065-cli-hermes-pi-dispatch-rules",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/065-cli-hermes-pi-dispatch-rules",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli hermes dispatch rules",
+      "cli pi dispatch rules",
+      "cli hermes pi runtime delegation scope",
+      "cli hermes pi dispatch rules plan",
+      "cli hermes pi runtime delegation plan",
+      "cli hermes pi dispatch rules tasks",
+      "cli hermes pi runtime delegation tasks",
+      "cli hermes pi dispatch rules",
+      "cli hermes pi runtime delegation evidence"
+    ],
+    "key_topics": [
+      "cli",
+      "hermes",
+      "dispatch",
+      "rules",
+      "runtime",
+      "delegation",
+      "scope",
+      "plan",
+      "tasks",
+      "evidence",
+      "cli-hermes",
+      "cli-pi"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.11.0.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/spec.md",
+      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.11.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.11.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Ownership",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Lifecycle",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Dispatch Shape",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-hermes and cli-pi told an orchestrator, in five places each, to send every dispatch to the shared deep-loop runtime: the core principle, Execution Ownership, Dispatch Lifecycle step 4, ALWAYS rule 2 and a success criterion",
+    "created_at": "2026-09-24T09:15:36Z",
+    "last_save_at": "2026-11-10T05:48:26.426Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a059dc43930e7ec582a0e3f3e3459bd2c872fef222c1efe0520d6bfe8f51891c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2c5ff770d006e7c6f46871f5e80640139e764344e9cd90f3b8b31b0a39fdd605",
+      "plan.md": "3e0b31dbcc26affedbabeaeed954df9a253b6143e593ede8b03ede97cc0b63e2",
+      "tasks.md": "3f82335e9c2dffb0fc431e9440718015a19698d615101dc7e02959d74a6c62c2",
+      "implementation-summary.md": "0c220a0b069d36aa124c41571c39a0d450e883b84a19c66b89a85cb49f263efb"
+    },
+    "last_active_at": null
+  }
+}

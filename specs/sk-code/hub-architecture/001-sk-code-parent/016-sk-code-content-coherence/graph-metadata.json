@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The master plan identifies sk-code as structurally canonical but content-incoherent after phase 013",
     "created_at": "2026-07-05T05:46:26.162Z",
-    "last_save_at": "2026-11-10T05:20:10.003Z",
+    "last_save_at": "2026-11-10T06:05:53.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c1743895d8ff2dc3fbfce2f076d2602234e8c782fcdd02c229947ede6f50d9f3",
+    "source_fingerprint": "sha256:d2e26e00bec537f8018738b6c6b87ddcbda63c91dab71ae3b837c2196c873f5b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d2ad00cdc7300946861a9781d1c9a67b35a91d9df65fc64b0ad46ddfca90196e",
+      "spec.md": "02070deda0f60abcf8bca49c90e48c10d1a91673413ee050fc03d45eb511ac76",
       "plan.md": "28279f6a9c6071669d4fb225604fa14eb36e2fc5454b572148d4dbdb493a0436",
       "tasks.md": "d94237f05132ea6d35f4329f1db5222f3f7d7adf4d058e5b9284bd689182c651",
       "decision-record.md": "aacef1fe6503070662e31418b104f94a396219b5f19449bc792ef1c3bdfd9488",

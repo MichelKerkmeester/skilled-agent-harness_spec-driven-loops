@@ -44,7 +44,7 @@ Phase 012 is reconciled to the existing `sk-design` Mode A router benchmark evid
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-07-06 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Estimated LOC** | Documentation-only reconciliation of the Phase 012 tracking packet; no benchmark harness or sk-design skill files edited |
 <!-- /ANCHOR:metadata -->
 

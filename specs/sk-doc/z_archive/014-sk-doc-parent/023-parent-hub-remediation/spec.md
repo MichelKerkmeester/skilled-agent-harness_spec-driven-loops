@@ -44,7 +44,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Draft (plan; execution gated on operator decisions) |
 | **Created** | 2026-07-07 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Packet** | `sk-doc/014-sk-doc-parent` |
 | **Depends On** | `022-parent-skill-logic-review/` |
 | **Predecessor** | `022-parent-skill-logic-review/` |

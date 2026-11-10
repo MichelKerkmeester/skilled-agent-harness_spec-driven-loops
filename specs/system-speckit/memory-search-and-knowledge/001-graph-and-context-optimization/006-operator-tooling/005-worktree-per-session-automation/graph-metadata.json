@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/005-worktree-per-session-automation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/005-worktree-per-session-automation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "worktree per session automation",
+      "isolate ai sessions git worktree",
+      "launch wrapper child detection guard hook",
+      "worktree automation plan",
+      "launch wrapper hybrid db isolation plan",
+      "worktree automation tasks",
+      "worktree automation status core built",
+      "worktree session wrapper reaper built"
+    ],
+    "key_topics": [
+      "worktree",
+      "per",
+      "session",
+      "automation",
+      "isolate",
+      "sessions",
+      "git",
+      "launch",
+      "wrapper",
+      "child",
+      "detection",
+      "guard"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/config.ts",
+      ".opencode/scripts/session-cleanup.sh",
+      ".opencode/bin/worktree-session.sh",
+      ".opencode/bin/worktree-reaper.sh",
+      ".opencode/bin/worktree-guard.sh",
+      ".opencode/bin/README.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      "shared/config.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-guard.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-guard.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Multiple",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose When",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Launch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Human",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Multiple AI sessions (Claude Code, OpenCode, Codex, Devin, Gemini) all operate in the same working tree on `main`, with shared, gitignored MCP databases guarded only by single-writer leases",
+    "created_at": "2026-05-30T14:07:30.760Z",
+    "last_save_at": "2026-11-10T05:46:58.632Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1f3bd0c174b2311d472563058b041406f18907e96916d047753ab4e4400cebbc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fa15855395a28f4ea1c933d34c8449df73e02094c2a59667df82c26331931142",
+      "plan.md": "457de58cc04f40dacbfde886ac88bf9985e9bb8cf2b023602ff0972288bd15bb",
+      "tasks.md": "54b4c39337a80a41aa9f383bfe1480bf10fb5474dc848a90b55f431bf4e2d000",
+      "implementation-summary.md": "9d6b8a2aadd14846fd43749f23a98de289d7a0c6a6ac25dcc6650db96bc7f7e2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/002-deep-review-stack",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/002-deep-review-stack",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "020 deep review 016-019 stack",
+      "deep review embedder + rescue + registry",
+      "cli-devin SWE 1.6 review run",
+      "020 plan",
+      "020 tasks",
+      "020 summary"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "stack",
+      "embedder",
+      "rescue",
+      "registry",
+      "cli-devin",
+      "swe",
+      "run",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "review/review-report.md",
+      "review-002-remediation/review-report.md",
+      "review/deep-review-state.jsonl",
+      "review/iterations/iteration-001.md",
+      "review/iterations/iteration-020.md",
+      "review/resource-map.md",
+      "review-002-remediation/deep-review-state.jsonl",
+      "review/deep-review-config.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state.jsonl",
+        "kind": "file",
+        "path": "review/deep-review-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-020.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-020.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-config.json",
+        "kind": "config",
+        "path": "review/deep-review-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "cli-devin SWE",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "iterations",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cited",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "annotation",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "daemon",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "task",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tightened",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "20-iteration spec_kit:deep-review run covering all code work in packets 016-019 plus dist-freshness vitest. Executor cli-devin SWE 1.6 with 3-check bundle gate. Synthesize P0/P1/P2 findings into review-report.md.",
+    "created_at": "2026-05-18T16:14:38.218Z",
+    "last_save_at": "2026-11-10T05:46:36.169Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:16ed6d5f53368305f2f8db9e0f4190db0bd3bfa45cd2afa8f0a3a6418f44d973",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fbc1a76357b9deaa8901a9d0648a7d7f2dfc43ffed6036c2f25ca629a8cae997",
+      "plan.md": "2953b8254ddf93302fef79cfe81cbf3e2f950cca06db38b1a9fc61a0d012db00",
+      "tasks.md": "3cbaed67ffbf54b6d65da35aef07ff1ce3a96e563b4fadd139db4d4788f1df01",
+      "implementation-summary.md": "ff57467a9a86f897b5143141622ff8a2ff3acdcbf285e3767779f9b544a9f9eb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

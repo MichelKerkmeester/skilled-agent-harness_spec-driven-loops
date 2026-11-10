@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality",
+  "children_ids": [
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/001-shared-safe-fix-engine",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/002-retrieval-floor-experiment",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/003-governance-rollout",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/004-vague-query-model-benchmark",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/005-vague-query-improvement-research",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/006-generated-metadata-quality-research",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/007-z-future-always-ignored"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared engine and research",
+      "spec data quality shared engine and research",
+      "shared engine and research phase parent"
+    ],
+    "key_topics": [
+      "shared",
+      "engine",
+      "research",
+      "spec",
+      "data",
+      "quality",
+      "phase",
+      "parent",
+      "subgroup",
+      "spec-data-quality",
+      "track",
+      "floor"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "001-shared-safe-fix-engine/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Engine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Engine And Research Groups",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Safe Fix Engine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Shared Engine and Research subgroup of the spec-data-quality track: the shared fix engine, the floor experiment, governance rollout, and the vague-query/generated-metadata research bridge.",
+    "created_at": "2026-06-27T17:25:56.206Z",
+    "last_save_at": "2026-11-10T05:47:45.511Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:83a9b7b9c710cdaac557b91ab3a14bd5ad8c20c3e98a3c249832ad6fb33f5b69",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "54fe7b5ce74e4d9e65a91d82a3bfbfa91d1124916444f2cc55c0a9e3f3305f81"
+    },
+    "last_active_child_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/001-shared-safe-fix-engine",
+    "last_active_at": null
+  }
+}

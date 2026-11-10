@@ -1,0 +1,20 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/004-template-section-fill-guidance",
+  "description": "Phase 4: template-section-fill-guidance",
+  "keywords": [
+    "phase",
+    "template-section-fill-guidance"
+  ],
+  "lastUpdated": "2026-10-24T16:02:41.708Z",
+  "specId": "004",
+  "folderSlug": "template-section-fill-guidance",
+  "parentChain": [
+    "system-speckit",
+    "040-weak-model-spec-authoring"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-10-26_17-02__conductor-closed-041-006-and-phase-003-landed-the.md"
+  ]
+}

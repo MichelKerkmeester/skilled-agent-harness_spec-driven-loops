@@ -209,17 +209,17 @@
     ],
     "causal_summary": "The skill advisor is the last subsystem in this framework's own runtime that ships an MCP server, and that server owns no behavior",
     "created_at": "2026-09-11T06:48:54Z",
-    "last_save_at": "2026-11-10T05:35:38.938Z",
+    "last_save_at": "2026-11-10T06:06:00.265Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:f716d9b942cc54c4137ec8f4f83b749de6c885e4d4810fca9357535f80748b7c",
+    "source_fingerprint": "sha256:fd55f5e482d51408d24614d85d62ff424eae5d310b81ec69dbdaaaecb2c3a96a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2c20f61c584b5a99105b5933742a59f878de4bc35fb7c394ac9b4043661a56fb"
+      "spec.md": "35f74032f2222057f2bbd31244a6d13e1925acc076a04e879731b2580109777e"
     },
     "last_active_at": null
   }

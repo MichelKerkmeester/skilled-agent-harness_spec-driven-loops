@@ -48,7 +48,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | In Progress |
 | **Created** | 2026-06-15 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | cli-external-orchestration/023-kimi-k2-7-code-support |
 | **Predecessor** | None |

@@ -13,7 +13,7 @@ trigger_phrases: []
 <!-- ANCHOR:migration-bridge -->
 ## Migration Bridge
 
-Every folder below moved on 2026-07-08 into `system-deep-loop/052-deep-loop-unification/011-skill-frontmatter-standardization/`. The grouping evidence is the prior remediation pass in commit `ec7d79bf7c`, which added matching `Related work` tables in each child `spec.md` naming the skill-frontmatter-standardization campaign, the other four sibling packets, and the shared source ledger at `system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/spec.md`.
+Every folder below moved on 2026-07-08 into `system-deep-loop/052-deep-loop-unification/011-skill-frontmatter-standardization/`. The grouping evidence is the prior remediation pass in commit `ec7d79bf7c`, which added matching `Related work` tables in each child `spec.md` naming the skill-frontmatter-standardization campaign, the other four sibling packets, and the shared source ledger at `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/spec.md`.
 
 | Original Phase | New Home | Status | Notes |
 |----------------|----------|--------|-------|

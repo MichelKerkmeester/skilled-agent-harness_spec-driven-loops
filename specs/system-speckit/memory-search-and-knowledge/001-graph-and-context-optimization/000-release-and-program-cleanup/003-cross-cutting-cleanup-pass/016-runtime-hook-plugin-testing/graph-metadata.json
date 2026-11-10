@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016-runtime-hook-plugin-testing",
+      "runtime hook tests",
+      "per-runtime hook validation",
+      "cli skill hook tests",
+      "hook live testing",
+      "resource map",
+      "016-runtime-hook-plugin-testing resource map",
+      "path catalog 016-runtime-hook-plugin-testing"
+    ],
+    "key_topics": [
+      "016-runtime-hook-plugin-testing",
+      "runtime",
+      "hook",
+      "tests",
+      "per-runtime",
+      "validation",
+      "cli",
+      "skill",
+      "live",
+      "testing",
+      "resource",
+      "map"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "runners/common.ts",
+      "runners/run-all-runtime-hooks.ts",
+      "runners/README.md",
+      "runners/test-claude-hooks.ts",
+      "runners/test-codex-hooks.ts",
+      "runners/test-copilot-hooks.ts",
+      "runners/test-gemini-hooks.ts",
+      "runners/test-opencode-plugins.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "common.ts",
+        "kind": "code",
+        "path": "runners/common.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-runtime-hooks.ts",
+        "kind": "code",
+        "path": "runners/run-all-runtime-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runners/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-claude-hooks.ts",
+        "kind": "code",
+        "path": "runners/test-claude-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-codex-hooks.ts",
+        "kind": "code",
+        "path": "runners/test-codex-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-copilot-hooks.ts",
+        "kind": "code",
+        "path": "runners/test-copilot-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-gemini-hooks.ts",
+        "kind": "code",
+        "path": "runners/test-gemini-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-opencode-plugins.ts",
+        "kind": "code",
+        "path": "runners/test-opencode-plugins.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Plugin Per Runtime Testing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hook contract docs and adapter scaffolding describe how Claude Code, Codex CLI, GitHub Copilot CLI, Gemini CLI, and OpenCode should receive Spec Kit prompt and lifecycle context",
+    "created_at": "2026-04-29T19:12:00.000Z",
+    "last_save_at": "2026-11-10T05:45:58.783Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:568002e15016891253973c6e1e3f0b75c281633c276215b9d0544767ab8ea4d6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "aa8ac8820b15cc82792399dfc883afc74ca7e0eb223a254cedb247432ddb85d6",
+      "plan.md": "0f3ef7f2a5fbd5f20959025ebc1dbb93aa9f216f1b2cbd2edc1441c8d09ef164",
+      "tasks.md": "bc81b18f37df1746aae5769835c5e089bac3e4541baa0d01f4d2d20f214e8971",
+      "implementation-summary.md": "2c6566a0ca7959f7ce091c133209b7e063ba37448a793202e604d2d19b6775c9",
+      "resource-map.md": "037d1b7cd8bf0a6c50832e0d7245603f9facf247860fbf8f89fcb6fbc308836b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

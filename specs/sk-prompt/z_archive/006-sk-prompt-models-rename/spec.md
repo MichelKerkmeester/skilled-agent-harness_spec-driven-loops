@@ -52,7 +52,7 @@ _memory:
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-06-28 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | sk-prompt/006-sk-prompt-models-rename |
 | **Predecessor** | skilled-agent-orchestration/120-glm-5-2-support (surfaced the misnomer) |

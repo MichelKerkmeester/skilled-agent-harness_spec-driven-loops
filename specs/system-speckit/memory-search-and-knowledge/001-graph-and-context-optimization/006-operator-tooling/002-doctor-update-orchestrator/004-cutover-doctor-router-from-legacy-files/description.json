@@ -1,0 +1,27 @@
+{
+  "childTopology": [],
+  "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files",
+  "description": "Phase 1 shipped the new `/doctor` router additively",
+  "keywords": [
+    "phase",
+    "shipped",
+    "new",
+    "doctor",
+    "router",
+    "additively"
+  ],
+  "lastUpdated": "2026-08-15T14:41:11.440Z",
+  "specId": "004",
+  "folderSlug": "cutover-doctor-router-from-legacy-files",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "006-operator-tooling",
+    "002-doctor-update-orchestrator"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "11-05-26_16-10__phase-1-static-router-verification-passed-7-7.md"
+  ],
+  "level": 2
+}

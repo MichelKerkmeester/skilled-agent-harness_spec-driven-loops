@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/004-review-remediation/003-doc-accuracy",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/004-review-remediation/003-doc-accuracy",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/004-review-remediation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 doc accuracy remediation",
+      "changelog shipped vs planned mislabel fix",
+      "028 doc staleness cluster fix",
+      "028 doc accuracy plan",
+      "doc staleness cluster fix plan",
+      "028 doc accuracy tasks",
+      "doc staleness cluster tasks",
+      "003-doc-accuracy implementation summary",
+      "028 review remediation doc accuracy"
+    ],
+    "key_topics": [
+      "doc",
+      "accuracy",
+      "remediation",
+      "changelog",
+      "shipped",
+      "planned",
+      "mislabel",
+      "staleness",
+      "cluster",
+      "plan",
+      "tasks",
+      "003-doc-accuracy"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "shared/algorithms/rrf-fusion.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": "shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doc Accuracy Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "New Section",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The doc-accuracy iteration (iteration 9) was the largest confirmed-P1 spike in the review, landing in the second-to-last deep-dive iteration",
+    "created_at": "2026-06-19T00:00:00Z",
+    "last_save_at": "2026-11-10T05:47:50.349Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3fae57b6d41380be85c6b7649bc972b23ee148a1c9b14a66797329b489989149",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c335fc774289d9b25e34578394c7cc0dd5f9980c63633f610619f275d8d28413",
+      "plan.md": "1616f1abaa90aa5b1d2652ca44b5af394abd681d71fba40a413df476b684e3e6",
+      "tasks.md": "a0faa2575b9c5dd8f74c76a416224e1cb1c06e1d5c95df1e1a0ff75ba9fc5a3f",
+      "implementation-summary.md": "837bba8e524b9a28bad9fadb564f836469c5f58559c62e532189ecb83b2943dd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

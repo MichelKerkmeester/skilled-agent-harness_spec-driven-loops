@@ -44,7 +44,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-06-15 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Type** | Read-only deep review (review workspace, not a feature packet) |
 | **Reviews** | `../../147-deep-loop-workflows`, `../../148-mcp-skill-install-doctor-standardization`, `../../117-parent-nested-skill-pattern` |
 <!-- /ANCHOR:metadata -->

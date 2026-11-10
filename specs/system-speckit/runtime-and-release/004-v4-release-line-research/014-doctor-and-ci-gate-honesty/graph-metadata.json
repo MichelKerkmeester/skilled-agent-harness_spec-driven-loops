@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/004-v4-release-line-research/014-doctor-and-ci-gate-honesty",
+  "spec_folder": "system-speckit/runtime-and-release/004-v4-release-line-research/014-doctor-and-ci-gate-honesty",
+  "parent_id": "system-speckit/runtime-and-release/004-v4-release-line-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor and ci gate honesty",
+      "phase 14 doctor and ci gate honesty",
+      "doctor and ci gate honesty plan",
+      "doctor and ci gate honesty tasks",
+      "doctor and ci gate honesty acceptance criteria",
+      "doctor and ci gate honesty decisions",
+      "doctor and ci gate honesty implementation summary"
+    ],
+    "key_topics": [
+      "doctor",
+      "gate",
+      "honesty",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decisions",
+      "implementation",
+      "summary",
+      "symlink-engine"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/bin/lib/mirror-sync-verify.cjs",
+      ".skilled/bin/check-agent-mirror-sync.cjs",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".github/workflows/sk-git-script-tests.yml",
+      ".skilled/scripts/install-git-hooks.sh",
+      ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+      ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+      ".skilled/vitest.config.bin.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mirror-sync-verify.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/mirror-sync-verify.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/check-agent-mirror-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-git-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-git-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-mirrors.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.bin.ts",
+        "kind": "code",
+        "path": ".skilled/vitest.config.bin.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`symlink-engine.cjs check` returns a literal 0 after printing broken links",
+    "created_at": "2026-11-08T23:39:04Z",
+    "last_save_at": "2026-11-10T05:48:28.574Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:10a913e0c630ff74cdbe18255d22133e1ce512a98139062650177604277a6b31",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c06c1a2a5f9003ca1b4e970369d9e16b39f2e66664c7fb618d6237df09bbf292",
+      "plan.md": "2ace42c25223ca078b373335620e4fb4aa7516f0ef5efdc363e14495debaeac0",
+      "tasks.md": "49280c4f6336096c7403275ebf7d405901d3a90dddb422a2d47a6c7aa94350f1",
+      "decision-record.md": "9e76c723b8ce9170e91f52c99181422cc059110db379695699217b9ac8faf7dd",
+      "implementation-summary.md": "65a17c60fe5315d3a01fe57296df51a076cebbbddc4af970091eaabda67a7b1f"
+    },
+    "last_active_at": null
+  }
+}

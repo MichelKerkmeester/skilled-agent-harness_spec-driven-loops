@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership",
+  "parent_id": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stale exclusion audit memory_search",
+      "deprecated row hard exclusion diagnostic",
+      "derived tool ownership lint TOOL_DEFINITIONS",
+      "mcp tool ownership drift pre-commit",
+      "includeArchived importance_tier recall audit",
+      "stale exclusion audit plan memory_search",
+      "derived tool ownership lint plan",
+      "intended vs silent exclusion policy",
+      "tool ownership drift pre-commit gate",
+      "read-only recall diagnostic health doctor",
+      "stale exclusion audit tasks",
+      "tool ownership lint tasks"
+    ],
+    "key_topics": [
+      "stale",
+      "exclusion",
+      "audit",
+      "deprecated",
+      "row",
+      "hard",
+      "diagnostic",
+      "derived",
+      "tool",
+      "ownership",
+      "lint",
+      "mcp"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Default",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow At",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "MCP",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Default `memorysearch` hard-excludes some rows: it forces `includeArchived=false` and the FTS path filters `importancetier != 'deprecated'`, so a deprecated-but-still-relevant memory can be silently dropped from recall with no signal to the caller",
+    "created_at": "2026-06-06T10:10:49Z",
+    "last_save_at": "2026-11-10T05:47:16.117Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b934921de2e08695a5af5fe1ba089bd23eaebfe088e29c0b902b1779bdf093d6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3ac7571be5387799e5110901fe92ae536823b7f7881c1e095ff520432b23f9a5",
+      "plan.md": "f2b8bfa609be53b6a8a8f993dfd2ab5c82317b7f40047c404df33eb658d1a2b3",
+      "tasks.md": "c2d1846f0216b26e1abf4ca7c02dbd4cb4d14e8756af9f6a99e0e069c0ca8f2a",
+      "implementation-summary.md": "c2d94d6c93c7e7a381d4b9a5edc67b931e305e58593abe96299fd8b4eaa2d1b7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

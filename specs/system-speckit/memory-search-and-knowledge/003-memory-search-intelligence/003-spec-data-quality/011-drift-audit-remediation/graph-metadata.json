@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/011-drift-audit-remediation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/011-drift-audit-remediation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 drift audit remediation",
+      "drift audit fix",
+      "028 findings remediation",
+      "packet 028 remediation pass",
+      "028 drift remediation plan",
+      "mimo fix dispatch",
+      "gpt-5.5 verify dispatch",
+      "028 drift remediation tasks",
+      "028 drift remediation summary",
+      "drift audit fixes complete"
+    ],
+    "key_topics": [
+      "drift",
+      "audit",
+      "remediation",
+      "findings",
+      "packet",
+      "pass",
+      "plan",
+      "mimo",
+      "dispatch",
+      "gpt-5",
+      "verify",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Audit Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reconcile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pro Hyperspeed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Bundle",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Investigate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A GPT-5.5-fast (high) audit dispatched via cli-opencode across the 8 phases of the 028-memory-search-intelligence packet (10 parallel sweeps) surfaced 75 findings: 24 high/critical drift/bug/inconsistency issues (independently re-verified against real files, 24/24 confirmed) and 51 unverified medium/low findings from the single sweep pass",
+    "created_at": "2026-07-01T07:28:37.642Z",
+    "last_save_at": "2026-11-10T05:47:49.250Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1a47bc6f8bcdfb2146c692a902abd7c94e2aea58bd6af49c9c802d65b5ba3640",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "44d7aa6872655808b9514956dbfb3ad551cf468a5eb3f739f07c0ad7233ee2e1",
+      "plan.md": "632ddbe5c96aaef9c9c49852adffd6b108eadfc981ad56d68316ba3b1981a7f4",
+      "tasks.md": "33f3dff7db8a8470b0691ce60398314f6c9ded1ffedc0bdec68c62f15c934b6e",
+      "implementation-summary.md": "1658ac3bdd3696fa867592c580ea416ab08b2931c8bb32d9716a9e883c75963e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

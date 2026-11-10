@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/repo-operations/002-ci-workflow-efficiency/005-slow-and-failing-tests",
+  "spec_folder": "system-speckit/repo-operations/002-ci-workflow-efficiency/005-slow-and-failing-tests",
+  "parent_id": "system-speckit/repo-operations/002-ci-workflow-efficiency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "slow and failing tests",
+      "phase 5 slow and failing tests",
+      "spec kit cli vitest file parallelism",
+      "deep loop diagram corpus skill advisor stress failures",
+      "slow and failing tests plan",
+      "phase 5 slow and failing tests plan",
+      "slow and failing tests tasks",
+      "phase 5 slow and failing tests tasks",
+      "slow and failing tests acceptance criteria",
+      "phase 5 slow and failing tests acceptance criteria",
+      "packet goal",
+      "durable directive"
+    ],
+    "key_topics": [
+      "slow",
+      "failing",
+      "tests",
+      "phase",
+      "spec",
+      "kit",
+      "cli",
+      "vitest",
+      "file",
+      "parallelism",
+      "deep",
+      "loop"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".github/workflows/spec-kit-check.yml",
+      "scratch/r21-recheck.md",
+      ".github/workflows/deep-loop-runtime.yml",
+      ".skilled/skills/system-spec-kit/vitest.config.ts",
+      ".skilled/skills/sk-design/sk-design-diagram/scripts/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts",
+      "scratch/r19-probe.md",
+      "scratch/r20-ci-step.md",
+      "scratch/gate-run.md",
+      "scratch/validate.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs",
+      ".skilled/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs",
+      "specs/system-speckit/repo-operations/002-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "r21-recheck.md",
+        "kind": "doc",
+        "path": "scratch/r21-recheck.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-runtime.yml",
+        "kind": "config",
+        "path": ".github/workflows/deep-loop-runtime.yml",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-diagram/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin-bridge-stress.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "r19-probe.md",
+        "kind": "doc",
+        "path": "scratch/r19-probe.md",
+        "source": "derived"
+      },
+      {
+        "name": "r20-ci-step.md",
+        "kind": "doc",
+        "path": "scratch/r20-ci-step.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-run.md",
+        "kind": "doc",
+        "path": "scratch/gate-run.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.md",
+        "kind": "doc",
+        "path": "scratch/validate.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-contract-drift.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-diagram-corpus.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`spec-kit-check`'s `check` job is the repository's most expensive job at 1,215 s, and 791 s of it, 65.1%, is one step: the `CLI vitest project` at `spec-kit-check.yml:124-128` runs 183 test files one after another because the `cli` project sets `fileParallelism: false` at `.skilled/skills/system-spec-kit/vitest.config.ts:67` without a stated reason (`iteration-005.md:30-69`)",
+    "created_at": "2026-10-23T08:47:52Z",
+    "last_save_at": "2026-11-10T05:47:56.640Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:33e0a686a51434fe003709789f81afd6f027201551f59904be3e540d54fdad16",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6a77d4092d22a431c813eb8a8dfcf1a9de742b077a29a99283551bbfd53a1705",
+      "plan.md": "b9b7bb23d924820668129e6cab1a602d7c0f47aa57025c3067b017988cea23df",
+      "tasks.md": "a966eaf6ade8b3690c98a6ba75dce271295c0ac7e896431d10c1476a0a90e0c0",
+      "decision-record.md": "54d41e609a34e49f281c38b7d5cb3b40bbc9b87d1ab89c093cee43f74e5b694e",
+      "implementation-summary.md": "92aac4cc0e765cb319609d5eef74f9ce5dbff33cadb074600b8bb1c2b9185900"
+    },
+    "last_active_at": null
+  }
+}

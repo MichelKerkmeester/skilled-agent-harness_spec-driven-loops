@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dark flag validation",
+      "dark-flag-graduation winner scenario coverage",
+      "benchmark coverage gaps",
+      "conditional graduation",
+      "production readiness of graduated flags",
+      "dark flag validation plan",
+      "dark flag validation tasks",
+      "dark flag validation implementation summary"
+    ],
+    "key_topics": [
+      "dark",
+      "flag",
+      "validation",
+      "dark-flag-graduation",
+      "winner",
+      "scenario",
+      "coverage",
+      "benchmark",
+      "gaps",
+      "conditional",
+      "graduation",
+      "production"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      "research/iterations/iteration-004.md",
+      "research/deep-research-config.json",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-strategy.md",
+      "research/deep-research-findings-registry.json",
+      "review/review-report.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dark Flag Graduation Production Coverage Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dark Flag Validation",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Steps",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Success Criteria",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 007 Dark Flag Graduation Suite returned GRADUATE verdicts for 4 clusters (9 flags) across multihop tail-appends, code-graph staleness repair and bitemporal reads, advisor RRF fusion and conflict-rerank, and deep-loop finding dedup and gauges",
+    "created_at": "2026-06-24T15:37:46.751Z",
+    "last_save_at": "2026-11-10T05:47:52.387Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:cf3b9449370c90ccb6b91ba98375d4e4e4f95ea029f57feb08e3587fd28e1424",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0b926e2c4d3d2609d2836810fbb92104024a289d5613a8577a149ce913dc27c9",
+      "plan.md": "89d0fbc2d0b28d25d7fb8b757b0d006bdc47d0af5b7e76adbdc77a6b72f2d91f",
+      "tasks.md": "64d3f77023e69b2ba5e25ca2244264df5b7af5d70f4dd10f18468d006b57b0c1",
+      "implementation-summary.md": "a247d2b1511f2e7435d7e89a1f42240ee5f02c75b7ecd6e3d96297d804290060",
+      "research/research.md": "314eefa78f5dc86940107a9a78e64e1e3c258ac503e704999034658975a3013e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

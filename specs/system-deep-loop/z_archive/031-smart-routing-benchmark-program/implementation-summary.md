@@ -53,7 +53,7 @@ The benchmark program delivered the full 10-target / 20-run matrix (per-child ro
 
 ## What shipped
 
-The program is complete — **all 8 children and both hubs scored in both modes** (20 runs), verified and pushed to the shared branch `system-speckit/028-memory-search-intelligence`.
+The program is complete — **all 8 children and both hubs scored in both modes** (20 runs), verified and pushed to the shared branch `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence`.
 
 ### Mode-A (deterministic router-replay — the CI gate)
 

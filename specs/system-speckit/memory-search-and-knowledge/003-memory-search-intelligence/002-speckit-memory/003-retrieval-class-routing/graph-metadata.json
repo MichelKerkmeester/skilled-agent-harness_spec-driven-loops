@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/003-retrieval-class-routing",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/003-retrieval-class-routing",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retrieval class routing memory",
+      "query class router single hop",
+      "tiered recall budget compaction ladder",
+      "iterative context extension memory",
+      "per class channel weight injection",
+      "retrieval class routing plan",
+      "c2-a classifier sequencing",
+      "recall shape budget ladder plan",
+      "per class weight injection plan",
+      "memory mcp query router plan",
+      "retrieval class routing tasks",
+      "c2-a c2-b c2-c tasks"
+    ],
+    "key_topics": [
+      "retrieval",
+      "class",
+      "routing",
+      "memory",
+      "query",
+      "router",
+      "single",
+      "hop",
+      "tiered",
+      "recall",
+      "budget",
+      "compaction"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "shared/algorithms/rrf-fusion.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": "shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Class Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shape Intelligence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The Memory",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Memory MCP query router (`mcpserver/lib/search/query-router.ts`) fuses exactly two orthogonal classifiers into `RouteResult`, complexity tier (`simple|moderate|complex`) and task intent (`addfeature|fixbug|findspec|…`), and neither is a retrieval-shape classifier [CONFIRMED: `query-router.ts:46-52`, `RouteResult` has `tier`/`channels`/`classification`, no `retrievalClass`]",
+    "created_at": "2026-06-19T05:47:05.552Z",
+    "last_save_at": "2026-11-10T05:47:34.384Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:224a1ca984ffd00aa914d937b0c8af5c94e1538b90dc46e091f3f4a455a944c4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7de2002f846624621b23a278ac70a7fcea027f2aa2d40f4c4b53a40d73d8e5ef",
+      "plan.md": "472ac43102dbab8ce8efeaab55b0fb918240b463ab979b051956ba8f10ee303e",
+      "tasks.md": "81d0f07986e655d4d50193f09158584e95a9f5ba6640dff3cc12918797ff47a2",
+      "decision-record.md": "134b2ccb12f39304dd426624eb6c82be601fd33f6a955fa11ef90e5d788ae6fd",
+      "implementation-summary.md": "5d2332925b931a56820955ec8f0a197946bb918434a98a35071b176ade8bda9b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

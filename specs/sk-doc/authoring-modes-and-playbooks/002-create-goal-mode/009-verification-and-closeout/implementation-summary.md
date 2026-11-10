@@ -65,7 +65,7 @@ The mode now has run evidence, not only a passing package. All eight playbook sc
 | `.skilled/changelog/sk-doc/create-goal` | Created | Relative link to `../../skills/sk-doc/sk-create-goal/changelog`. |
 | `.skilled/skills/sk-doc/benchmark/reports/README.md` | Created | Index of the report folders. |
 | `.skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal/` | Created | `README.md`, `results.csv` and `source.md` for the playbook run. |
-| `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md` | Modified | One binding row added for phase 007. Nothing else changed. |
+| `specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/goal.md` | Modified | One binding row added for phase 007. Nothing else changed. |
 | `.../017-memory-database-decommission/007-decommission-review-p1-p2-fixes/goal.md` | Created | The missing child goal, rendered from the system-spec-kit goal template. |
 | 017 parent and child `description.json`, `graph-metadata.json` | Regenerated | Needed for 017 to pass strict validation after the goal edit. |
 | `006`, `007`, `008` `acceptance-criteria.md` | Modified | Headers and closure statements closed; every row was already `Met`. |

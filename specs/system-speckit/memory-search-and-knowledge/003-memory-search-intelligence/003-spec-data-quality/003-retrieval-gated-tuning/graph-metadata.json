@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality",
+  "children_ids": [
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/001-chunk-prefix",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/002-prodmode-recall-gate",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/003-answerable-questions-tags",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/004-metadata-fusion",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/005-llm-judge-scorer"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retrieval gated tuning",
+      "spec data quality retrieval-gated tuning",
+      "retrieval-gated tuning phase parent"
+    ],
+    "key_topics": [
+      "retrieval",
+      "gated",
+      "tuning",
+      "spec",
+      "data",
+      "quality",
+      "retrieval-gated",
+      "phase",
+      "parent",
+      "subgroup",
+      "spec-data-quality",
+      "track"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gated Tuning Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gated Tuning",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrieval Gated Tuning Groups",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Chunk Prefix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Retrieval-Gated Tuning subgroup of the spec-data-quality track: retrieval-tuning items gated behind benchmarks.",
+    "created_at": "2026-06-27T17:25:40.245Z",
+    "last_save_at": "2026-11-10T05:47:43.596Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:e69f38e92dea549990bacfeaf97cc9a7a8a7d8e0d79bba4b1ea1453a60877b01",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "336304968a877b5247423a1b8a6f1a0cbc1de1466c0006456580d68727a2ff2e"
+    },
+    "last_active_child_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/002-prodmode-recall-gate",
+    "last_active_at": null
+  }
+}

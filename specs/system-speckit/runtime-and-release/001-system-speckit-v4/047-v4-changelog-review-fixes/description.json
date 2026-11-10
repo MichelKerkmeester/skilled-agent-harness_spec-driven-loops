@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/047-v4-changelog-review-fixes",
+  "description": "The 046 remediation shipped Complete, and the LUNA 5.6 MAX FAST review of its output (13 findings, verdict: mostly reads like the README author but",
+  "keywords": [
+    "remediation",
+    "shipped",
+    "complete",
+    "luna",
+    "max",
+    "fast",
+    "review",
+    "output",
+    "findings",
+    "verdict",
+    "mostly",
+    "reads",
+    "like",
+    "readme",
+    "author"
+  ],
+  "lastUpdated": "2026-09-21T18:43:27.347Z",
+  "specId": "047",
+  "folderSlug": "v4-changelog-review-fixes",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

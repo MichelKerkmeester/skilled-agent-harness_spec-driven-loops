@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence",
+  "children_ids": [
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/007-metadata-rename-reconciliation",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/008-validation-integrity-hardening",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/009-validation-hardening-fixes",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/010-validation-enforce-graduation",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/011-drift-audit-remediation",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/012-drift-audit-deep-history-correction",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/013-generated-metadata-status-integrity",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/014-create-sh-parent-corruption-fix",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/015-derive-status-explicit-bypass-fix",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/016-validate-sh-dist-freshness-and-repo-remediation",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/017-graph-metadata-child-drift-audit-and-harden",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/018-z-archive-metadata-backfill",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/019-deep-loop-036-037-reindex",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/020-archive-renumber-010-044-to-001-023"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec data quality",
+      "retrieval adherence logic",
+      "metadata fusion",
+      "embedding context",
+      "spec corpus quality",
+      "spec data quality plan",
+      "research loop plan",
+      "by angle research",
+      "ranked candidates",
+      "data quality default",
+      "spec data quality tasks",
+      "research loop tasks"
+    ],
+    "key_topics": [
+      "spec",
+      "data",
+      "quality",
+      "retrieval",
+      "adherence",
+      "logic",
+      "metadata",
+      "fusion",
+      "embedding",
+      "context",
+      "corpus",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md",
+      "research/stage-0-external-findings.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage-0-external-findings.md",
+        "kind": "doc",
+        "path": "research/stage-0-external-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Data Quality",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Historical Research Task Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context We",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec-kit writes plain markdown chunks and two metadata JSONs per packet, but none of that is shaped for retrieval recall, for AI instruction adherence or for machine logic reading",
+    "created_at": "2026-06-27T17:15:46.346Z",
+    "last_save_at": "2026-11-10T05:47:41.408Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:ed83532d0e80b411016a22190e86606263d20e55d6dd461b35d3330b058b66c4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a0980785f17d830aa4c744a03cffebdce7c3be299c62b71437b4a3dd178b2a39",
+      "plan.md": "2b3e3be4e2981d90e18c4c4b0b1cee95738f57c7a4d0a7656811b49fe8f29074",
+      "tasks.md": "868a118c2302bc71a8d0963192b2ce22303617edc31fb12831303ade3b1569ae",
+      "decision-record.md": "0e2c4cbd398646fefa83383bdd2b6e83a92ab06917cf49527c7248ec63468427",
+      "implementation-summary.md": "89d8b674c1d3ef1d5480103d5a96f8aebb7036caa13426ba8b902b85a429f124",
+      "research/research.md": "93e3a69758ddc20272ee9cc57fe3a3a3357b1751cc0dbd55e2eef689969e1bf6",
+      "handover.md": "80d75f520ef37c17c49b081193144d6364967d3d4dcc0b14e671e37896f84fea"
+    },
+    "last_active_child_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/015-derive-status-explicit-bypass-fix",
+    "last_active_at": null
+  }
+}

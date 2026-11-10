@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/010-trigger-index-ci-rebuild",
+  "spec_folder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/010-trigger-index-ci-rebuild",
+  "parent_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "trigger index ci rebuild",
+      "phase 10 trigger index ci rebuild",
+      "auto rebuild trigger index",
+      "trigger index ci rebuild plan",
+      "trigger index ci rebuild tasks",
+      "trigger index ci rebuild implementation summary"
+    ],
+    "key_topics": [
+      "trigger",
+      "index",
+      "rebuild",
+      "phase",
+      "auto",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "github",
+      "workflows",
+      "advisory-checks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".github/workflows/trigger-index-rebuild.yml",
+      "runtime/data/trigger-index.json",
+      ".github/workflows/advisory-checks.yml",
+      "scratch/evidence/actionlint-trigger-index-rebuild.txt",
+      "scratch/evidence/ci-bot-commit-proof.txt",
+      "scratch/evidence/validate-010-closure.txt",
+      "runtime/cli/retrieval/generate-trigger-index.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index-rebuild.yml",
+        "kind": "config",
+        "path": ".github/workflows/trigger-index-rebuild.yml",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "actionlint-trigger-index-rebuild.txt",
+        "kind": "file",
+        "path": "scratch/evidence/actionlint-trigger-index-rebuild.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ci-bot-commit-proof.txt",
+        "kind": "file",
+        "path": "scratch/evidence/ci-bot-commit-proof.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-010-closure.txt",
+        "kind": "file",
+        "path": "scratch/evidence/validate-010-closure.txt",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.github/workflows/advisory-checks.yml` runs `generate-trigger-index.mjs --check` with `continue-on-error`, so a stale index is reported and merged anyway",
+    "created_at": "2026-10-07T09:58:45Z",
+    "last_save_at": "2026-11-10T05:48:40.289Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c66444869966ec82843e2f569e8a290b683ebf640f6f4c8ce779197ba8b45984",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "018d36a1291b9522593c2a8dcc35b1881ac0b4f15d28df9e143c640567699eb1",
+      "plan.md": "a24f0be040c81bae6af2fbd9dc9a065edc5638b7c534b31363e868abf553b9b2",
+      "tasks.md": "69b7561822ff148610ca078f1ebd26d1cee86f7752741ba58bbbc5d1e34a3b26",
+      "implementation-summary.md": "58ae0633cc432c4bb233ba0d3a38f8e44f43a215cfec533eb8da7c47ec47d30c"
+    },
+    "last_active_at": null
+  }
+}

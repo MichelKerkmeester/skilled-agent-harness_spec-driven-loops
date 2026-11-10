@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/002-fix-write-recipe-commit-step",
+  "spec_folder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/002-fix-write-recipe-commit-step",
+  "parent_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fix write recipe commit step",
+      "step 7 of the write recipe told authors",
+      "fix write recipe commit step plan",
+      "fix write recipe commit step tasks",
+      "fix write recipe commit step implementation summary"
+    ],
+    "key_topics": [
+      "write",
+      "recipe",
+      "commit",
+      "step",
+      "told",
+      "authors",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "spec",
+      "folder"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-git/assets/commit-message-template.md",
+      ".skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit-message-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/assets/commit-message-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-write-recipe.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Step",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Step",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Step 7 of the spec folder write recipe told authors to write a subject shaped `feat|chore|fix(<packet>): <short description>` and to add a `Co-Authored-By` trailer",
+    "created_at": "2026-09-29T06:08:24Z",
+    "last_save_at": "2026-11-10T05:48:44.900Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f4353233835f4567c1819e4ecac115d3563046711c61cd7a8f6ad1cba4c02120",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "92f6a1dd1bfa4167cc2b5bf9bfe79a65164dc38b900d2669ad9b8366537142e5",
+      "plan.md": "e1adb09552136e00f22580ebe471d59759718c221947d6706350fa270561f6fd",
+      "tasks.md": "f5662a3701c8102cc8ac40ba5da5063158775ba872707c9366f39311365d70e1",
+      "implementation-summary.md": "c3dbdc5b711e178b518235b7362023849c303aa00b7f3d231cbd9bc970abc4f3"
+    },
+    "last_active_at": null
+  }
+}

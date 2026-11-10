@@ -1,0 +1,75 @@
+# Files this goal touched, asserted to be tracked. The companion checker fails if
+# any line below is not in `git ls-files`.
+#
+# Reconciled on 2026-09-07 against the current tree. 10 entr(ies) had MOVED and
+# were re-pointed at their successor path rather than dropped, because a goal that
+# touched a file still touched it after a rename and pruning it would have narrowed
+# the record of what the goal covered.
+# 16 were deleted outright by a later, deliberate commit and are pruned:
+#
+#    11  23a939c5b8b refactor(spec-kit)!: delete the memory engine and keep the package as the spec-kit engine
+#     2  fd33222d92b feat(spec-validation): stop grading prose against a moving target
+#     1  1cdc362aa62 refactor(system-speckit): delete nine advisory rules nothing reads
+#     1  c1fb92b51f4 refactor(spec-validation): delete the second validator
+#     1  4570677ec72 refactor(system-speckit): retire the standalone verification checklist
+.opencode/skills/system-skill-advisor/mcp-server/lib/render.ts
+.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py
+.opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md
+.opencode/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts
+.opencode/skills/system-spec-kit/runtime/lib/templates/level-contract-resolver.ts
+.opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+.opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts
+.opencode/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh
+.opencode/skills/system-spec-kit/runtime/cli/rules/check-files.sh
+.opencode/skills/system-spec-kit/runtime/cli/spec/check-completion.sh
+.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh
+.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh
+.opencode/skills/system-spec-kit/runtime/cli/utils/template-structure.js
+.opencode/skills/system-spec-kit/templates/addons/before-after.md.tmpl
+.opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
+.opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl
+.opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
+.opencode/skills/system-spec-kit/templates/addons/roadmap.md.tmpl
+.opencode/skills/system-spec-kit/templates/spec-kit-docs.json
+.opencode/skills/system-spec-kit/templates/core/spec.md.tmpl
+.opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl
+.opencode/skills/system-spec-kit/templates/addons/timeline.md.tmpl
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/implementation-summary.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/plan.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/spec.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/001-template-duplication-analysis/tasks.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge/implementation-summary.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge/plan.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge/spec.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/002-tasks-checklist-merge/tasks.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/003-template-dedup/implementation-summary.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/003-template-dedup/plan.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/003-template-dedup/spec.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/003-template-dedup/tasks.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/004-continuity-single-source/implementation-summary.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/004-continuity-single-source/plan.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/004-continuity-single-source/spec.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/004-continuity-single-source/tasks.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/005-comment-extraction/implementation-summary.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/005-comment-extraction/plan.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/005-comment-extraction/spec.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/005-comment-extraction/tasks.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/006-template-reduction-verification/implementation-summary.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/006-template-reduction-verification/plan.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/006-template-reduction-verification/spec.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/006-template-reduction-verification/tasks.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/007-lazy-addon-docs/description.json
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/007-lazy-addon-docs/implementation-summary.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/007-lazy-addon-docs/plan.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/007-lazy-addon-docs/spec.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/007-lazy-addon-docs/tasks.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/graph-metadata.json
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/spec.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/008-plan-and-contract-optimization/spec.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/008-plan-and-contract-optimization/plan.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/008-plan-and-contract-optimization/tasks.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/008-plan-and-contract-optimization/implementation-summary.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure/spec.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure/plan.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure/tasks.md
+specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure/implementation-summary.md

@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/021-decommission-debt-and-cli-nesting/004-save-and-resume-freshness",
+  "description": "Problem A - save completes without proving index freshness",
+  "keywords": [
+    "problem",
+    "save",
+    "completes",
+    "without",
+    "proving",
+    "index",
+    "freshness"
+  ],
+  "lastUpdated": "2026-09-06T07:09:10.117Z",
+  "specId": "004",
+  "folderSlug": "save-and-resume-freshness",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4",
+    "021-decommission-debt-and-cli-nesting"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

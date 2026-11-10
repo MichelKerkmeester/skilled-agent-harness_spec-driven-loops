@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/006-redteam-probe-gate",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/006-redteam-probe-gate",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "red-team probe gate",
+      "poisoned rag probe",
+      "query only injection probe",
+      "wrapper breakout probe",
+      "exfil audit no querytext",
+      "memory security ci gate",
+      "red-team probe gate plan",
+      "memory injection ci gate plan",
+      "prompt-pack render probe",
+      "zero success ceiling gate",
+      "red-team probe gate tasks",
+      "memory injection ci gate tasks"
+    ],
+    "key_topics": [
+      "red-team",
+      "probe",
+      "gate",
+      "poisoned",
+      "rag",
+      "query",
+      "only",
+      "injection",
+      "wrapper",
+      "breakout",
+      "exfil",
+      "audit"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "lib/utils/skill-label-sanitizer.ts",
+      "tests/security/adversarial-unicode.vitest.ts",
+      "tests/advisor-fixtures/promptPoisoningAdversarial.json",
+      "scripts/run-tests.mjs",
+      "tests/architecture-seam.vitest.ts",
+      "tests/advisor-fixtures/unicodeInstructionalSkillLabel.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-label-sanitizer.ts",
+        "kind": "code",
+        "path": "lib/utils/skill-label-sanitizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adversarial-unicode.vitest.ts",
+        "kind": "test",
+        "path": "tests/security/adversarial-unicode.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "promptPoisoningAdversarial.json",
+        "kind": "config",
+        "path": "tests/advisor-fixtures/promptPoisoningAdversarial.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-tests.mjs",
+        "kind": "file",
+        "path": "scripts/run-tests.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "architecture-seam.vitest.ts",
+        "kind": "test",
+        "path": "tests/architecture-seam.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "unicodeInstructionalSkillLabel.json",
+        "kind": "config",
+        "path": "tests/advisor-fixtures/unicodeInstructionalSkillLabel.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Team Probe Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Stand",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec-Kit Memory MCP already defends its individual injection seams, but no single gate proves the whole surface holds",
+    "created_at": "2026-06-19T05:40:37.443Z",
+    "last_save_at": "2026-11-10T05:47:34.319Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c43371173e42631dc18e975a2a1787c2f80ba9f371cf24a4b06e3f7937063ac3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "989fe2e32856ede8c3f1bf3cecf06a22cadc775ab395e64599ebfceb426a81c9",
+      "plan.md": "01ec7a64c9ccbc1704ae3789271ba29649cd9329afea81b465fba6c5cf7ceaf3",
+      "tasks.md": "add47a2c9d4ddf920621bc79f8792246d008c6eeab25eba1e732ea4914756ad1",
+      "implementation-summary.md": "8a9edb800b68b1b223f77d1413a092132ddfae30214c071dc7bd127c440bb925"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

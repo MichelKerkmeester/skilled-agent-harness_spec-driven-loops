@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation/002-doctor-dq-route",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation/002-doctor-dq-route",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor data quality route",
+      "data-quality interactive front door",
+      "guarded auto-remediation doctor",
+      "doctor confirm dry-run dq",
+      "doctor route validate manifest",
+      "doctor data quality route plan",
+      "guarded dq route implementation",
+      "doctor confirm dry-run plan",
+      "dq-engine consumer route",
+      "route validate manifest plan",
+      "doctor dq route tasks",
+      "data-quality route task breakdown"
+    ],
+    "key_topics": [
+      "doctor",
+      "data",
+      "quality",
+      "route",
+      "data-quality",
+      "interactive",
+      "front",
+      "door",
+      "guarded",
+      "auto-remediation",
+      "confirm",
+      "dry-run"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/commands/doctor/_routes.yaml",
+      ".opencode/commands/doctor/scripts/route-validate.py",
+      ".opencode/commands/doctor/speckit.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Consumer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/doctor` is an argv router whose route manifest at `.opencode/commands/doctor/routes.yaml` lists nine targets and zero of them inspect or remediate source-doc and metadata-JSON quality",
+    "created_at": "2026-06-27T17:15:35.763Z",
+    "last_save_at": "2026-11-10T05:47:43.568Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:688c7cb7ec5c8d15fc3a25bd962d40e901ffd7863bc5e2d5626357e72497f4b6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "26a8c6919f3ca52f201186036262699747b2f47fc231d0c572e3bd53becb78cb",
+      "plan.md": "8391d3204a0498a2dd97f0a5a362febf94025e7ccce68a7f4a9e93224f00bf48",
+      "tasks.md": "2369ebaeb5bf2250cff631173445f984b24aaa9ad21ae86e8e56b468f3f4613c",
+      "implementation-summary.md": "f4e7dfb17449d9f85771d9fc28a673ac6a9caca339a917b338e9c74ec2383936"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

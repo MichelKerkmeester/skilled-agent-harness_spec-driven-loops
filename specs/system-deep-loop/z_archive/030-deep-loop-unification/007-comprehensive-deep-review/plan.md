@@ -109,5 +109,5 @@ All fixes are uncommitted file edits inside `.opencode/skills/system-deep-loop/`
 
 - **Specification**: See `spec.md`
 - **Parent packet**: `../spec.md`
-- **Precedent**: `../006-skillmd-template-conformance/`, and the earlier 5-iteration review at `../../../system-speckit/028-memory-search-intelligence/002-spec-data-quality/054-archive-renumber-010-044-to-001-023/`
+- **Precedent**: `../006-skillmd-template-conformance/`, and the earlier 5-iteration review at `../../../system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-spec-data-quality/054-archive-renumber-010-044-to-001-023/`
 <!-- /ANCHOR:cross-refs -->

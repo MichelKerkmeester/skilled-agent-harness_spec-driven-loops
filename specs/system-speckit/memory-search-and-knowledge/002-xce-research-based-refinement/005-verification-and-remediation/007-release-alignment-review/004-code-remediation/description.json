@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/004-code-remediation",
+  "description": "The Track B review (`../002-code-vs-sk-code-skilled/review/findings-all.json`) surfaced 154 findings (66 P0 / 47 P1 / 41 P2) against the OpenCode",
+  "keywords": [
+    "track",
+    "review",
+    "002-code-vs-sk-code-skilled",
+    "findings-all",
+    "json",
+    "surfaced",
+    "findings",
+    "against",
+    "opencode"
+  ],
+  "lastUpdated": "2026-08-15T14:41:13.143Z",
+  "specId": "004",
+  "folderSlug": "code-remediation",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "007-release-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

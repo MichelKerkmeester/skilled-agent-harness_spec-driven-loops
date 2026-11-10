@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/003-current-state-discipline",
+  "description": "The \"describe current state, not history\" discipline is enforced only for phase-parent spec.md today (the PHASEPARENTCONTENT rule)",
+  "keywords": [
+    "describe",
+    "current",
+    "state",
+    "history",
+    "discipline",
+    "enforced",
+    "only",
+    "phase-parent",
+    "spec",
+    "today",
+    "phaseparentcontent",
+    "rule"
+  ],
+  "lastUpdated": "2026-08-15T14:41:11.922Z",
+  "specId": "003",
+  "folderSlug": "current-state-discipline",
+  "parentChain": [
+    "system-speckit",
+    "027-xce-research-based-refinement",
+    "001-research-and-doctrine",
+    "001-peck-teachings-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/009-validation-rule-reduction/001-warnings-stop-blocking",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/009-validation-rule-reduction/001-warnings-stop-blocking",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/009-validation-rule-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "warnings stop blocking",
+      "strict warn promotion",
+      "warnings no longer fail",
+      "strict selects which rules run",
+      "promotion clause removed",
+      "per-packet sample compare",
+      "warnings stop blocking plan",
+      "fixed sample measure",
+      "promotion clause removal",
+      "enforcement path restore",
+      "no packet passing to failing",
+      "warnings stop blocking tasks"
+    ],
+    "key_topics": [
+      "warnings",
+      "stop",
+      "blocking",
+      "strict",
+      "warn",
+      "promotion",
+      "longer",
+      "fail",
+      "selects",
+      "rules",
+      "run",
+      "clause"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Warning Stops Being",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remove Delete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "measured",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Strict mode decides which rules run; it stops deciding what a warning means.",
+    "created_at": "2026-08-29T17:25:57.562Z",
+    "last_save_at": "2026-11-10T05:48:03.086Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c77ba9699577a9a86c3d35856b1ffe80795efb0a908fde149fa352b3f6b284be",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a5debd84a6e56362f49e0653bde70290baa15121c00b6a19c9212c6d8a213f1a",
+      "plan.md": "46c238097081797e43c3051afafa06acb655e090fb405ec54a5c844388388e94",
+      "tasks.md": "247aa2609121fb5908d506b60ec4b5c12ee2fb981658194f515f2d8025183aaf",
+      "implementation-summary.md": "bc96200a7ce16369da9e1c66d2c6c5e3e29b538d2885a525c0079cd6fd9a7523"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

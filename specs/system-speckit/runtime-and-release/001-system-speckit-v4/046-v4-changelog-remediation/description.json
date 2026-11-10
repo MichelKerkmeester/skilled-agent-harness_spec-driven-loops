@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/046-v4-changelog-remediation",
+  "description": "The 045 research report established that what still costs the reader is structure and facts, not sentence shape: six `.opencode/` path mentions are",
+  "keywords": [
+    "research",
+    "report",
+    "established",
+    "still",
+    "costs",
+    "reader",
+    "structure",
+    "facts",
+    "sentence",
+    "shape",
+    "six",
+    "opencode",
+    "path",
+    "mentions"
+  ],
+  "lastUpdated": "2026-09-21T18:43:27.344Z",
+  "specId": "046",
+  "folderSlug": "v4-changelog-remediation",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

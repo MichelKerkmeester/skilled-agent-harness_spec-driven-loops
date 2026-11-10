@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm packet-037 scope and branch [small] — spec.md fixes the existing `system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync` packet on branch `system-speckit/028-memory-search-intelligence`
+- [x] T001 Confirm packet-037 scope and branch [small] — spec.md fixes the existing `system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync` packet on branch `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence`
 - [x] T002 Diagnose Lane-C router-replay surface-slicing drift [medium] — `router-replay.cjs` still keyed slicing on bare `webflow/`, `opencode/`, and `animation/` prefixes after sk-code moved to `code-*` packet folders
 - [x] T003 Confirm root cause across the rename boundary [medium] — the sk-code folder rename updated packet folders and `smart_routing.md` `RESOURCE_MAP`, but not the deep-improvement harness string-literal slicing constants in a different tree
 - [x] T004 Capture pre-fix leak diagnostic [small] — before the fix, 13 of 21 scored non-browser scenarios routed both `code-webflow/` and `code-skilled/` at once

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/021-decommission-debt-and-cli-nesting",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scripts into runtime nesting",
+      "scripts nesting spec",
+      "scripts beside runtime engine",
+      "runtime cli move target",
+      "scripts workspace resolution",
+      "level score 73 signal",
+      "atomic commit git mv",
+      "scripts nesting plan",
+      "runtime cli move",
+      "runtime scripts collision",
+      "resolution inventory consumers",
+      "level 3 execution recommendation"
+    ],
+    "key_topics": [
+      "scripts",
+      "runtime",
+      "nesting",
+      "spec",
+      "beside",
+      "engine",
+      "cli",
+      "move",
+      "target",
+      "workspace",
+      "resolution",
+      "level"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/cli/dist/continuity/generate-context.js",
+      "scratch/inventory.md",
+      ".opencode/bin/skill-advisor.cjs",
+      ".opencode/plugins/tests/system-dist-freshness-guard.test.cjs",
+      ".opencode/skills/system-deep-loop/shared/synthesis/resource-map.cjs",
+      "shared/embeddings/factory.ts",
+      "runtime/lib/graph/graph-metadata-parser.ts",
+      "runtime/lib/validation/orchestrator.ts",
+      "evals/check-no-mcp-lib-imports.ts",
+      "evals/check-no-mcp-lib-imports-ast.ts",
+      "evals/check-allowlist-expiry.ts",
+      "evals/import-policy-rules.ts",
+      "core/config.ts",
+      "core/workflow.ts",
+      "continuity/generate-context.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "code",
+        "path": "runtime/cli/dist/continuity/generate-context.js",
+        "source": "derived"
+      },
+      {
+        "name": "inventory.md",
+        "kind": "doc",
+        "path": "scratch/inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-dist-freshness-guard.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/system-dist-freshness-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/shared/synthesis/resource-map.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": "runtime/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-no-mcp-lib-imports.ts",
+        "kind": "code",
+        "path": "evals/check-no-mcp-lib-imports.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-no-mcp-lib-imports-ast.ts",
+        "kind": "code",
+        "path": "evals/check-no-mcp-lib-imports-ast.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-allowlist-expiry.ts",
+        "kind": "code",
+        "path": "evals/check-allowlist-expiry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "import-policy-rules.ts",
+        "kind": "code",
+        "path": "evals/import-policy-rules.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": "continuity/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Before this phase, `.opencode/skills/system-spec-kit/` ran two npm workspace packages side by side: `runtime/` (the `@spec-kit/runtime` engine - validation, metadata, hooks) and `scripts/` (then `@spec-kit/scripts`, now `runtime/cli/` as `@spec-kit/cli`; the CLI workspace over it - `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts`, `scripts/retrieval/`)",
+    "created_at": "2026-09-05T06:13:04Z",
+    "last_save_at": "2026-11-10T05:48:07.643Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:32dc49d52fd855211125bab013c46071a8eb1344be351d1e19b070fd9dcdcecc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0bef75427339cff84f6c5e0b77386be919991786f2e80e5037a772beb81f4cb3",
+      "plan.md": "88ed6203711c79a62e7cbd918491006cc23a1a54a4deb6fa0d17786894a77eee",
+      "tasks.md": "aecf39016cb0b860216b82613fca1097a14e12f53d379e16adae9734008edfee",
+      "implementation-summary.md": "3126b9774c3ab466d5e7dc6ade5919c8de23bf8e2f629db407a27c70bae764cf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

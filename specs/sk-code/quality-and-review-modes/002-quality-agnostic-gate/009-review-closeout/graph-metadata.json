@@ -52,7 +52,7 @@
       ".opencode/plugins/system-skill-advisor.js",
       ".skilled/agents/code.md",
       "evidence/timing.json",
-      "specs/system-speckit/039-ci-workflow-efficiency/goal.md",
+      "specs/system-speckit/repo-operations/002-ci-workflow-efficiency/goal.md",
       ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
       ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
       ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The review found that the gate still trusts too much and claims too much in a few places",
     "created_at": "2026-10-26T15:21:47Z",
-    "last_save_at": "2026-11-10T05:20:43.039Z",
+    "last_save_at": "2026-11-10T06:05:57.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,12 +222,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3126049d7068e182ea86fc461151c1af113a405112a636bf56a90bfe7961b0bd",
+    "source_fingerprint": "sha256:938ea88b122ad0e6f3016830d7743af9572a2e1f132765fe0b464c838dd55be1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0b56f26585086a0a3bea95510aaea11b9cfc1aee21c58d9d9545485cde767552",
+      "spec.md": "aeab13bce511fdcb1a7c13cd8587ba7d6e58c32c70f6dd6049449c6d43f68ac4",
       "plan.md": "7fd5d84f515de46a9fa9e032c2cb1bd953ba9f009caf482ab2bff5f51b1f19c4",
-      "tasks.md": "d21a248e177ad100a99bd90e0a35c5177a737d2eb7cf500777b3fe0281e6baab",
+      "tasks.md": "23140d84328142e08a6d2474ef49d70c72e83f36666e2ca1786013ef49e6b6c0",
       "decision-record.md": "8ce11c69c898b76dae17398b518a3fd3841cab21544ef99dca12b023d97bc631",
       "implementation-summary.md": "2a255375bb54065ccff374d4f214f03debba177f3dfcb48e531cc3cb3b8d10c8"
     },

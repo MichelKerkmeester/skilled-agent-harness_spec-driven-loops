@@ -45,7 +45,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | complete |
 | **Created** | 2026-06-19 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Parent Packet** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime |
 | **Candidates** | C5, C5a, AMB (+ aliases C5-advisor-lane-elision, C5a-advisor-degraded-lane-flag) |
 | **Status (all)** | complete |

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/041-skilled-source-root-migration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled gate readiness",
+      "two root gate resolution",
+      "silent gate skip fix",
+      "independent gate input check",
+      "broken move dry run",
+      "gate readiness plan",
+      "source root block plan",
+      "gate input check design",
+      "hook and ci delegation plan",
+      "gate readiness tasks",
+      "gate readiness verification checklist",
+      "hook and workflow unit tasks"
+    ],
+    "key_topics": [
+      "skilled",
+      "gate",
+      "readiness",
+      "two",
+      "root",
+      "resolution",
+      "silent",
+      "skip",
+      "independent",
+      "input",
+      "check",
+      "broken"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".github/scripts/check-gate-inputs.sh",
+      ".github/scripts/tests/broken-move-drill.sh",
+      ".opencode/bin/check-git-hooks.sh",
+      ".opencode/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh",
+      ".opencode/bin/tests/check-git-hooks.test.sh",
+      ".github/scripts/tests/check-gate-inputs.test.sh",
+      ".github/workflows/gate-inputs.yml",
+      ".github/dependabot.yml",
+      ".opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
+      "shared/tests/README.md",
+      ".opencode/scripts/git-hooks/README.md",
+      "tests/README.md",
+      ".github/workflows/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.sh",
+        "kind": "script",
+        "path": ".github/scripts/check-gate-inputs.sh",
+        "source": "derived"
+      },
+      {
+        "name": "broken-move-drill.sh",
+        "kind": "script",
+        "path": ".github/scripts/tests/broken-move-drill.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/bin/check-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mass-deletion-guard.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-git-hooks.test.sh",
+        "kind": "script",
+        "path": ".opencode/bin/tests/check-git-hooks.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-gate-inputs.test.sh",
+        "kind": "script",
+        "path": ".github/scripts/tests/check-gate-inputs.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "gate-inputs.yml",
+        "kind": "config",
+        "path": ".github/workflows/gate-inputs.yml",
+        "source": "derived"
+      },
+      {
+        "name": "dependabot.yml",
+        "kind": "config",
+        "path": ".github/dependabot.yml",
+        "source": "derived"
+      },
+      {
+        "name": "check_no_new_snake_case.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repository's gates look for their own scripts at one literal root, `$REPOROOT/.opencode/`, and most of them read a missing script as a reason to skip",
+    "created_at": "2026-09-16T17:54:07Z",
+    "last_save_at": "2026-11-10T05:48:20.491Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ec3e9b9040b31bf28d1442ffcec86e38f0a9fae8605340a7751dd76bafe27642",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5ec584eb9a48d81a8041f8ec35bff170b9bcc281b9b1b5051381c7c67e3b8546",
+      "plan.md": "9e684cb4a207342fbf749732f6d1461f8f2a92960f70909603d7077365949af8",
+      "tasks.md": "cfbdf8d0f218ad2965d997c98f5262f23da4b290c8dfa8e2ca680d8d24799644",
+      "implementation-summary.md": "47323460f670cf5cc9a81866c5636bbb6463427e71e4107612b1a1cb91e14628"
+    },
+    "last_active_at": null
+  }
+}

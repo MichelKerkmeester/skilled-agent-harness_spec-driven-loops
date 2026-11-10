@@ -82,7 +82,7 @@ Ship `/doctor:symlink`, which checks, links and unlinks the framework in a targe
 ### Out of Scope
 - Repairing the existing broken links in the operator's own repositories (the new command does that under the operator's yes)
 - The stale targets in `.skilled/bin/relink-local-specs.sh`
-- The project-root resolution defect for linked repositories, owned by `system-speckit/037-symlinked-runtime-root`; the install guide only warns about it
+- The project-root resolution defect for linked repositories, owned by `system-speckit/runtime-and-release/003-symlinked-runtime-root`; the install guide only warns about it
 
 ### Files to Change
 Files touched across all phases, for the audit trail. Per-phase detail lives in each child's plan.md.

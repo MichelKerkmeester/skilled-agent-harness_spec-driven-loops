@@ -55,7 +55,7 @@ FAILURE MODES:
 | **Priority** | P1 |
 | **Status** | partial (signal shipped, rebuild reuse gated on Memory 010) |
 | **Created** | 2026-06-19 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Packet** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime |
 <!-- /ANCHOR:metadata -->
 

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/002-research-folder-continuity",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/002-research-folder-continuity",
+  "parent_id": "system-speckit/spec-authoring-and-continuity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "research folder continuity",
+      "let the continuity writer save into a research",
+      "research folder continuity plan",
+      "research folder continuity tasks",
+      "research folder continuity implementation summary"
+    ],
+    "key_topics": [
+      "research",
+      "folder",
+      "continuity",
+      "let",
+      "writer",
+      "save",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "full-auto",
+      "fields"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+      "templates/packet-types/research.spec.md.tmpl",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+      ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+      "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/014-post-merge-deep-research/spec.md",
+      "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/spec.md",
+      "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/spec.md",
+      "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/spec.md",
+      "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/spec.md",
+      "specs/system-speckit/spec-authoring-and-continuity/002-research-folder-continuity/scratch/before/vitest-baseline.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/002-research-folder-continuity/scratch/before/vitest-new-test-on-old-code.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/002-research-folder-continuity/scratch/after/vitest.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/002-research-folder-continuity/scratch/after/save-runs.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/002-research-folder-continuity/scratch/before/research-continuity-blocks.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/002-research-folder-continuity/scratch/after/research-continuity-blocks.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "research.spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/packet-types/research.spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "save-continuity-write.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "save-workflow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-baseline.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/002-research-folder-continuity/scratch/before/vitest-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-new-test-on-old-code.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/002-research-folder-continuity/scratch/before/vitest-new-test-on-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/002-research-folder-continuity/scratch/after/vitest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "save-runs.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/002-research-folder-continuity/scratch/after/save-runs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "research-continuity-blocks.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/002-research-folder-continuity/scratch/before/research-continuity-blocks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Monolith",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A full-auto save with continuity fields refused every research record and left its continuity block scaffolded",
+    "created_at": "2026-10-19T21:44:00Z",
+    "last_save_at": "2026-11-10T05:48:30.401Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c5d7b6419717eeccad3f2671ecda79267250260642a5e3bd19493fbce62fc702",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1940101c80e8d0e9f6f21d22c59add1718f486492519281294d29fc547bcae7e",
+      "plan.md": "27cd27bed9bedd4ed651b1ddd2c92f1e5ff9c81e7dfa00a395a5965e16560d2c",
+      "tasks.md": "2e3a2ffca20367a838e7da2411675f666e84aa3826ab493b6b2ac9717bcc86aa",
+      "implementation-summary.md": "77ca86410ebc0f3222f2a20a6cbcfb2b982884b528c08536bd8af96c4937689f"
+    },
+    "last_active_at": null
+  }
+}

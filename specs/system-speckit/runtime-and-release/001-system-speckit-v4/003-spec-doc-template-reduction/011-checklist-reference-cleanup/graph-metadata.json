@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/011-checklist-reference-cleanup",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/011-checklist-reference-cleanup",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "checklist reference cleanup",
+      "dead checklist links",
+      "spec doc integrity checklist",
+      "checklist reference cleanup plan",
+      "extract_markdown_link_targets rule",
+      "link-based population count",
+      "checklist pointer disposition",
+      "demote link rather than delete",
+      "dead checklist link rescan",
+      "checklist reference cleanup tasks",
+      "checklist dead link rescan",
+      "pointer-only lines dropped"
+    ],
+    "key_topics": [
+      "checklist",
+      "reference",
+      "cleanup",
+      "dead",
+      "links",
+      "spec",
+      "doc",
+      "integrity",
+      "plan",
+      "rule",
+      "link-based",
+      "population"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Nothing Points At The Retired Checklist",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Finish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "surrounding",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Finish the retirement: remove what pointed at the deleted document",
+    "created_at": "2026-08-30T07:11:39.824Z",
+    "last_save_at": "2026-11-10T05:48:00.979Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fe89625f913b1f85c6be5779c900dbcead277bf974de39a07ba0639989191c20",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8a8358311fc10a46c1d6c996de46441d2580fd1f58c30522a0db7eebb6367409",
+      "plan.md": "ee5b9241a5fbc03a5f1d445b57e88b5a532434fd6a5742c7c3125b9b5c6dd68f",
+      "tasks.md": "b3ef3f2a434aa102af36c62c897f59aca35916a61174777f5bfd2ba9443c77dc",
+      "implementation-summary.md": "bb347610a280c116ca7cbea018de0bcb3c95f6cd6e9dca3f8d855d163daf7746"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

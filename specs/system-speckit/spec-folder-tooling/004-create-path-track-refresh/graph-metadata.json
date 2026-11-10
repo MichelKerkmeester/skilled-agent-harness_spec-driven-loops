@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/004-create-path-track-refresh",
+  "spec_folder": "system-speckit/spec-folder-tooling/004-create-path-track-refresh",
+  "parent_id": "system-speckit/spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create path track refresh",
+      "create sh path refreshes the track root",
+      "create path track refresh plan",
+      "create path track refresh tasks",
+      "create path track refresh implementation summary"
+    ],
+    "key_topics": [
+      "path",
+      "track",
+      "refresh",
+      "refreshes",
+      "root",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "new",
+      "packet",
+      "childrenids"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts",
+      "specs/system-speckit/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "create-track-refresh.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/system-speckit/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`create.sh --track` adds a new packet to its track root's `childrenids`, but `--path` never did",
+    "created_at": "2026-11-08T18:17:08Z",
+    "last_save_at": "2026-11-10T05:48:46.934Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9fb4e5c61fcd8f9f0467e3f942ff32b6ac40eef343fc8f94eeb08269762d8e4c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "83769917a07b014afe390aac02c14fecb48db2884d84c2e77ee7556e0793ac1f",
+      "plan.md": "84706371a49ca477bcd2d6ea073c25b2fb4d489e9e3a806e34ef167525572338",
+      "tasks.md": "1ff73b829d3f5b50b38486b24c2b0daf04bcecae6917ff31455ae32fb5532fe3",
+      "implementation-summary.md": "c9c0f5e9ba3191228a3926a794f90c361f3345a76df7f44e0131e4c8ce64a31f"
+    },
+    "last_active_at": null
+  }
+}

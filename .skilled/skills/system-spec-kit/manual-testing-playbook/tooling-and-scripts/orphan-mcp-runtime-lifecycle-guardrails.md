@@ -1,7 +1,7 @@
 ---
 title: "419 -- Orphan MCP Runtime Lifecycle Guardrails"
 description: "Manual validation for dry-run orphan MCP cleanup, preservation rules, LaunchAgent template lint, Claude cleanup syntax, and launcher idle-timeout discoverability."
-version: 1.6.1.0
+version: 1.6.2.0
 id: tooling-and-scripts-orphan-mcp-runtime-lifecycle-guardrails
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -88,7 +88,7 @@ If syntax or plist lint fails, inspect the exact script/template before rerunnin
 - Feature catalog: [tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md](../../feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md)
 - Feature catalog: [tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md](../../feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md)
 - Runbook: [../../runtime/cli/README.md](../../runtime/cli/README.md)
-- Spec packet: [../../../../specs/system-speckit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md](../../../../specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
+- Spec packet: [../../../../specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md](../../../../specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
 
 Provenance: manual only - bash -n .skilled/scripts/orphan-mcp-sweeper.sh
 

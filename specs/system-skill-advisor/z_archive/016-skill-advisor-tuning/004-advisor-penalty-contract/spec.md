@@ -52,7 +52,7 @@ FAILURE MODES:
 | **Priority** | P1 |
 | **Status** | COMPLETE |
 | **Created** | 2026-06-24 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/011-graduation-follow-ups` |
 <!-- /ANCHOR:metadata -->

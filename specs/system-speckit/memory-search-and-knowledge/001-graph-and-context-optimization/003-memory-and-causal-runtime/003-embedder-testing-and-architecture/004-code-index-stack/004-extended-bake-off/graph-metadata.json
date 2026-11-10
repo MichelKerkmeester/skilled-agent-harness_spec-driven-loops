@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/006/004 extended bake-off",
+      "nomic stella benchmark",
+      "extended embedder benchmark",
+      "016/006/004 plan",
+      "extended bake-off plan",
+      "016/006/004 tasks",
+      "016/004/004 summary",
+      "bge-code-v1 wins",
+      "extended bake-off results",
+      "hybrid rerank bench complete",
+      "stella xformers"
+    ],
+    "key_topics": [
+      "extended",
+      "bake-off",
+      "nomic",
+      "stella",
+      "benchmark",
+      "embedder",
+      "plan",
+      "tasks",
+      "summary",
+      "bge-code-v1",
+      "wins",
+      "results"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "evidence/runlog-with-hybrid-rerank.txt",
+      "evidence/cocoindex-embedder-comparison-with-hybrid-rerank.csv",
+      "evidence/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl",
+      "evidence/run-extended-bake-off.sh",
+      "evidence/cocoindex-embedder-comparison-extended.csv"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "runlog-with-hybrid-rerank.txt",
+        "kind": "file",
+        "path": "evidence/runlog-with-hybrid-rerank.txt",
+        "source": "derived"
+      },
+      {
+        "name": "cocoindex-embedder-comparison-with-hybrid-rerank.csv",
+        "kind": "file",
+        "path": "evidence/cocoindex-embedder-comparison-with-hybrid-rerank.csv",
+        "source": "derived"
+      },
+      {
+        "name": "cocoindex-embedder-comparison-with-hybrid-rerank.jsonl",
+        "kind": "file",
+        "path": "evidence/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "run-extended-bake-off.sh",
+        "kind": "script",
+        "path": "evidence/run-extended-bake-off.sh",
+        "source": "derived"
+      },
+      {
+        "name": "cocoindex-embedder-comparison-extended.csv",
+        "kind": "file",
+        "path": "evidence/cocoindex-embedder-comparison-extended.csv",
+        "source": "derived"
+      },
+      {
+        "name": "Extended Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embedder Bake",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "On May",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "verdict KEEP-JINA-CODE",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "these",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "same",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "retry",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extended Bake",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Re-run 018/003 benchmark harness against 2 additional candidates: nomic-CodeRankEmbed (previously failed) + stella_en_400M_v5 (newly registered). Measure hit-rate + p95 latency on the same 18-pair fixture.",
+    "created_at": "2026-05-18T05:13:47.028Z",
+    "last_save_at": "2026-11-10T05:46:32.391Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:25638482dd79c3571f98865d0e460de92b214ddeda0b8bafeaa014bf67804f97",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "362f93ee75612a03cc8653a41f5e18205771eb7c899b3af80f38f41c1efddf7d",
+      "plan.md": "5a5be00b5f29eb24a5a6f6c9370ede24b8352b6583cc4d1373b6692eb309b422",
+      "tasks.md": "6d3ffd6362bbd480943969ded9d66add895369605ef2e243609823c581598d41",
+      "implementation-summary.md": "15d5bd2baad26b784c6313ba4ff4a0c2178ebbbce1ff084140b952a69b1c7eae"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

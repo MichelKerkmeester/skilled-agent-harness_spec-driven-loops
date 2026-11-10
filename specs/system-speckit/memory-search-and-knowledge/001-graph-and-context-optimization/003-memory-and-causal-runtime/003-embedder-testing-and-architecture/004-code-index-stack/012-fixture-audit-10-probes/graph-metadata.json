@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fixture audit probe 10",
+      "expected_source_path correctness",
+      "code-retrieval fixture review",
+      "dist vs source target",
+      "016/004/012 fixture audit",
+      "016/004/012 plan",
+      "016/004/012 tasks",
+      "016/004/012 summary",
+      "fixture audit probe 10 research",
+      "code retrieval fixture expected path audit",
+      "universal ceiling probe audit"
+    ],
+    "key_topics": [
+      "fixture",
+      "audit",
+      "probe",
+      "correctness",
+      "code-retrieval",
+      "review",
+      "dist",
+      "source",
+      "target",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md",
+      "evidence/code-retrieval-fixture-proposed.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-retrieval-fixture-proposed.json",
+        "kind": "config",
+        "path": "evidence/code-retrieval-fixture-proposed.json",
+        "source": "derived"
+      },
+      {
+        "name": "Fixture Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The May",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "rationale",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "full",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "optional",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "verdict",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Their May",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff Paths",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Retrieval Fixture Expected",
+        "kind": "proper_noun",
+        "path": "research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Audit the 18-pair code-retrieval fixture for expected-path correctness. Probe 10 (`context save command that reads structured JSON` expected as the `.js` dist artifact) is the immediate trigger — the `.ts` source variant is arguably more correct. Audit pass: read every probe's expected_source_path against the actual codebase, decide whether the expected path is the BEST answer to the query, recommend updates.",
+    "created_at": "2026-05-18T19:21:19.321Z",
+    "last_save_at": "2026-11-10T05:46:32.657Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "source_fingerprint": "sha256:4881157a8fa051fb6ab3b31d97179495ded0a5255ee688c6c7be5193d3f45b75",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "13f78d7c27e886da51fd83758e58814a54162945d0f42ffd406ffbf6d3b994e7",
+      "plan.md": "5311819ea89019a6177b42ce88dd3953cbcdb4ee9c2900fb8a67649568bfc910",
+      "tasks.md": "79b3c63f96135f5fe7a3b96c78324d7c6206b025169dc0169162958293af53e0",
+      "implementation-summary.md": "2bb50d35557df182777feac2b0cfdeae3025321394197bb319b753aaf19ffa52",
+      "research.md": "8dc35cae065bc1ddb8d5af8732dd04d9b10d7c4badb7b2e88d1471518be2692f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

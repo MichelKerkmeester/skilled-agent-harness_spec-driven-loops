@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "005-stress-test-expansion-alignment",
+      "stress test alignment",
+      "stress test coverage",
+      "sk-code-skilled stress test",
+      "resource map",
+      "005-stress-test-expansion-alignment resource map",
+      "path catalog 005-stress-test-expansion-alignment"
+    ],
+    "key_topics": [
+      "005-stress-test-expansion-alignment",
+      "stress",
+      "test",
+      "alignment",
+      "coverage",
+      "sk-code-skilled",
+      "resource",
+      "map",
+      "path",
+      "catalog",
+      "stresstest",
+      "useful"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "audit-findings.md",
+      "coverage-matrix.md",
+      "remediation-log.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-findings.md",
+        "kind": "doc",
+        "path": "audit-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-matrix.md",
+        "kind": "doc",
+        "path": "coverage-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "remediation-log.md",
+        "kind": "doc",
+        "path": "remediation-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stress Test Expansion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Test",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "stresstest had useful coverage but uneven sk-code-skilled alignment and no scoped catalog coverage map",
+    "created_at": "2026-05-18T08:15:53.296Z",
+    "last_save_at": "2026-11-10T05:46:07.738Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:3f364d957367c23e27180bc462e640e3f618a9c0b645a8735c4c94676252e3e8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b4153000735f2e876cbf36d4aba68127b0d098c8d8d96120ee18cab8fbc49bf7",
+      "plan.md": "4553c1c82b34e2efbf435b8abe24930c6328685134b70920496fca924c24633c",
+      "tasks.md": "5b61bd76e8ccaf72b3583599b5ba2c6a3e4ad589667767205685cc522e009f96",
+      "decision-record.md": "f41298c73154be0acac5b523536f81d5bfacdf167a17c3eaf4ceb2e6c11e43c9",
+      "implementation-summary.md": "eb7d1e13d3bb633f3c558cd8b555d2865577d1b7f63eb90d59d89eee999cb086",
+      "resource-map.md": "1ac8ff9f11bf08b77b28b211219a58aa1f3859162be44a62a4c150788322bcad"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

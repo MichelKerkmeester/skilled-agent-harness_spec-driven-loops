@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The current server contains useful graph-related signals, but they are distributed across subsystems and do not form one coherent retrieval path",
     "created_at": "2026-04-12T09:02:50.260Z",
-    "last_save_at": "2026-10-07T20:26:33.189Z",
+    "last_save_at": "2026-11-10T05:49:07.619Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8951890e9d77642346e67bf52fa3a97f816d98455211c6071855c781b48e981",
+    "source_fingerprint": "sha256:cb3b38efca6fdb91aa749197df3c4fb21ac89e29c6c836d64d4e967d490ff4e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fd511ccc50e9c0ac6e298aa74a47248fa933379e791a568e16ccfce7db3b3252",
+      "spec.md": "9542ef0413390dfad85b8c8a8dba9949953d5334f708f624318cd6b886af5233",
       "plan.md": "44b528964e3c5ad2b5056f22a0621ee290e1df6a9a37fb2b8ca9980c29f47944",
       "tasks.md": "8e29b3323aec8a2862e2652efa051efe93cbb90b8c1006a7bf87dace4c334c2c",
       "decision-record.md": "8302f1495eaca5c794d4dc31ac006e56fffef853ae5eb9949bc420fdb1805e19",

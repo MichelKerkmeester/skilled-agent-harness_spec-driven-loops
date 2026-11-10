@@ -62,7 +62,7 @@ Verdict moves from CONDITIONAL to PASS (PASS-with-advisories for the P2-1 and P2
 | **Status** | Shipped |
 | **Created** | 2026-05-21 |
 | **Shipped** | 2026-05-21 (original) + 2026-07-08 (Round 2 hardening) |
-| **Branch** | `main` (original) / `system-speckit/028-memory-search-intelligence` (Round 2) |
+| **Branch** | `main` (original) / `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` (Round 2) |
 | **Parent Arc** | `010-skill-advisor-embedder-stack` |
 <!-- /ANCHOR:metadata -->
 

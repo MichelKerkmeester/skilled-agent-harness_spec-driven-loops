@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/016-last-50-commits-deep-review",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/016-last-50-commits-deep-review",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "last 50 commits deep review",
+      "016 deep review findings",
+      "ingest worker shutdown durability finding",
+      "concurrent SIGTERM compound shutdown review",
+      "runtime fork drift guard gap",
+      "last 50 commits deep review plan",
+      "9 angle 20 iteration review",
+      "adversarial verification round",
+      "deep review convergence approach",
+      "last 50 commits deep review tasks",
+      "20 iteration review tasks",
+      "deep review angle passes"
+    ],
+    "key_topics": [
+      "last",
+      "commits",
+      "deep",
+      "review",
+      "findings",
+      "ingest",
+      "worker",
+      "shutdown",
+      "durability",
+      "finding",
+      "concurrent",
+      "sigterm"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "review/review-report.md",
+      "review/deep-review-state.jsonl",
+      "review/iterations/iteration-001.md",
+      "review/iterations/iteration-002.md",
+      "review/iterations/iteration-003.md",
+      "review/iterations/iteration-004.md",
+      "review/iterations/iteration-005.md",
+      "review/iterations/iteration-006.md",
+      "review/iterations/iteration-007.md",
+      "review/iterations/iteration-008.md",
+      "review/iterations/iteration-009.md",
+      "review/iterations/iteration-010.md",
+      "review/iterations/iteration-011.md",
+      "review/iterations/iteration-012.md",
+      "review/iterations/iteration-013.md",
+      "review/iterations/iteration-014.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state.jsonl",
+        "kind": "file",
+        "path": "review/deep-review-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-006.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-006.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-009.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-009.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-011.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-011.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-012.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-012.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-013.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-013.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-014.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-014.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The last 50 commits (git range `fd67ede05f^..HEAD`, HEAD `3923a65db1`) shipped launcher/IPC concurrency hardening, memory-write and async-enrichment changes, causal/relation inference, shutdown/lifecycle wiring, config edits including the Gemini removal, and a large changelog rollup",
+    "created_at": "2026-06-05T11:54:13.672Z",
+    "last_save_at": "2026-11-10T05:46:13.706Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:baed0e3c932cc0aecf145fc1a8373cabbaedea8dad7e6c08b1821ba55fdb839f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "90112faf26dce422189b16478d180b63c41ce83a6c8ed6675f81a9746377a14e",
+      "plan.md": "2e7f4984a1810339dd8c1ead563e91e0bcd661d75dc92e53e22dedaea41a531a",
+      "tasks.md": "d6b8a5432b19cb4c639ce3bc0f9cad32f78e51c0867c97eca724358487df56ca",
+      "implementation-summary.md": "ec516d87f7a2a131ee87ee300ba215259dec659d17f8897c077632aad86a98b1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

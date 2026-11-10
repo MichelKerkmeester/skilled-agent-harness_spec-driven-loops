@@ -1,7 +1,7 @@
 ---
 title: "PHASE-009 -- Spec-folder literal naming (remediation rule via SKILL.md rule 20)"
 description: "Verify that external CLI agents presented with a deep-review FAIL verdict propose a remediation packet slug that names both the source (deep-review findings) and the specific target component, per system-spec-kit SKILL.md ALWAYS rule 20 added in Packet 012 REQ-006."
-version: 1.6.1.0
+version: 1.6.2.0
 id: tooling-and-scripts-spec-folder-literal-naming-remediation-rule
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -231,7 +231,7 @@ Capture, for every step in the Commands sequence above:
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Originating spec packet: [Spec-folder naming guard](../../../../specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard/)
+- Originating spec packet: [Spec-folder naming guard](../../../../specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard/)
 
 Provenance: manual only - claude
 

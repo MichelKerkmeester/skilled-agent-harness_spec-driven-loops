@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/009-authoring-benchmark-and-closeout",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/009-authoring-benchmark-and-closeout",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "authoring benchmark and closeout",
+      "phase 9 authoring benchmark and closeout",
+      "weak model authoring delta",
+      "054 packet closeout",
+      "authoring benchmark and closeout plan",
+      "authoring metric definitions",
+      "packet closeout sequence",
+      "parent completion criteria proofs",
+      "authoring benchmark and closeout tasks",
+      "final baseline run tasks",
+      "packet closeout tasks",
+      "authoring benchmark and closeout acceptance criteria"
+    ],
+    "key_topics": [
+      "authoring",
+      "benchmark",
+      "closeout",
+      "phase",
+      "weak",
+      "model",
+      "delta",
+      "packet",
+      "plan",
+      "metric",
+      "definitions",
+      "sequence"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/bench-evidence/final-run-3/plan.txt",
+      "scratch/bench-evidence/final-run-3/spec.txt",
+      "scratch/baseline/runs.jsonl",
+      "scratch/baseline/delta.json",
+      "scratch/tools/justified-anchors.sh",
+      "scratch/closeout/criteria.txt",
+      ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
+      ".skilled/changelog/system-spec-kit/v2.9.0.0.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "specs/system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/spec.md",
+      "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/spec.md",
+      "specs/system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/graph-metadata.json",
+      "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.txt",
+        "kind": "file",
+        "path": "scratch/bench-evidence/final-run-3/plan.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec.txt",
+        "kind": "file",
+        "path": "scratch/bench-evidence/final-run-3/spec.txt",
+        "source": "derived"
+      },
+      {
+        "name": "runs.jsonl",
+        "kind": "file",
+        "path": "scratch/baseline/runs.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "delta.json",
+        "kind": "config",
+        "path": "scratch/baseline/delta.json",
+        "source": "derived"
+      },
+      {
+        "name": "justified-anchors.sh",
+        "kind": "script",
+        "path": "scratch/tools/justified-anchors.sh",
+        "source": "derived"
+      },
+      {
+        "name": "criteria.txt",
+        "kind": "file",
+        "path": "scratch/closeout/criteria.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.9.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/system-spec-kit/v2.9.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 1 to 8 change the templates, the validator, the examples, the authoring card, the commands and the playbooks",
+    "created_at": "2026-10-23T11:27:27Z",
+    "last_save_at": "2026-11-10T05:48:33.168Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:69caeeccbc5305439648cd15f1b7b365512749c4a6b7ce6fe51bd063ce0c38ce",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "16b98f4a184904b52c3e1b405d02b5bb01f28d4a607e422ad794507538a65c75",
+      "plan.md": "f7c58652a05072b2686bf359dde0e119e4e254bc27be4b93b46d60b7cb8fa362",
+      "tasks.md": "ee80b5e7a0bed3807709a942051d722bb7a5e3fbf3ae1548d3c7443e965a087e",
+      "implementation-summary.md": "89f15035db21e8cfed6be9be0b9f71ea1837297b1ea05d0691b19023dab9e4b9"
+    },
+    "last_active_at": null
+  }
+}

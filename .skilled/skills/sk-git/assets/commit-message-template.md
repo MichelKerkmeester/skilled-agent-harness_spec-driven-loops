@@ -9,7 +9,7 @@ trigger_phrases:
   - "commit subject length rules"
 importance_tier: normal
 contextType: implementation
-version: 1.3.3.0
+version: 1.3.4.0
 ---
 
 # Commit Message Template - Repository-Specific Contract
@@ -150,7 +150,7 @@ Changes:
 Verification:
 - Repeated warm restarts retained DELETE mode.
 
-Spec: system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/033-boot-wal-shm-sigbus-fix
+Spec: system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/033-boot-wal-shm-sigbus-fix
 Commit-Id: 0009023
 ```
 

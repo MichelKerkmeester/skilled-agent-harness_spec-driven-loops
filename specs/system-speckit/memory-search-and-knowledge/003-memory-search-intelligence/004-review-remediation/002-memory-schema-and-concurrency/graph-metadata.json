@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/004-review-remediation/002-memory-schema-and-concurrency",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/004-review-remediation/002-memory-schema-and-concurrency",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/004-review-remediation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 memory schema concurrency remediation",
+      "derived-id identity split fix",
+      "consolidation embedding lock fix",
+      "retention spare-only stale snapshot fix",
+      "028 memory schema concurrency plan",
+      "derived-id consolidation retention fix plan",
+      "028 memory schema concurrency tasks",
+      "derived-id consolidation retention tasks",
+      "002-memory-schema-and-concurrency implementation summary",
+      "028 review remediation schema concurrency"
+    ],
+    "key_topics": [
+      "memory",
+      "schema",
+      "concurrency",
+      "remediation",
+      "derived-id",
+      "identity",
+      "split",
+      "consolidation",
+      "embedding",
+      "lock",
+      "retention",
+      "spare-only"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "shared/algorithms/rrf-fusion.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": "shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Schema",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Concurrency Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pending Remediation Contract This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three confirmed P1 defects sit in the memory schema and storage layer: a content-addressed identity that splits across the migration versus live-write boundary, a semantic-edge embedding pass that runs inside a write lock without refreshing its maintenance marker and a retention sweep that applies stale pre-transaction delete decisions on its new spare axes",
+    "created_at": "2026-06-19T00:00:00Z",
+    "last_save_at": "2026-11-10T05:47:50.152Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:289732792bf3554e7a9d2c9088aa58ef065688b2b24f3fbfd5268d5ef3b33f26",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b6a395f9a0e0bb3ee89e2a1f6b3294200cb23c248b5790151e92f3a922f055fb",
+      "plan.md": "263d5836f6825a7301ea90c996ac90250e3b8507a58dae92ee11a73ad7825830",
+      "tasks.md": "f66da42b4d83dfbc497a78f15160c5074ff12ef69a05c076568b5ab347d1b73b",
+      "implementation-summary.md": "db60565b238ed3273a74eeec5bf599722129b235e7f45c4c70903506a0b8bc85"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/021-decommission-debt-and-cli-nesting/007-memory-command-family-naming-decision",
+  "description": "The surviving continuity writer and retrieval commands still carry the word \"memory\" throughout their names, paths, and package metadata: the",
+  "keywords": [
+    "surviving",
+    "continuity",
+    "writer",
+    "retrieval",
+    "commands",
+    "still",
+    "carry",
+    "word",
+    "memory",
+    "throughout",
+    "names",
+    "paths",
+    "package",
+    "metadata"
+  ],
+  "lastUpdated": "2026-09-06T07:09:10.116Z",
+  "specId": "007",
+  "folderSlug": "memory-command-family-naming-decision",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4",
+    "021-decommission-debt-and-cli-nesting"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

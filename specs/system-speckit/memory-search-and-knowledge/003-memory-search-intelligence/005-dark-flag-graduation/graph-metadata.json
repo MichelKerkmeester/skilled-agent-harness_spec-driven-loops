@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence",
+  "children_ids": [
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/001-multihop-tail-appends",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/002-retrieval-class-weights",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/003-true-citation-ledger",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/004-save-reconsolidation",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/005-flag-name-cleanup",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/007-graduation-follow-ups",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/008-followup-deep-review",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/009-cross-package-flag-governance",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/010-flag-vocabulary-consolidation",
+    "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/011-graph-preservation-quality-benchmark"
+  ],
+  "migrated": true,
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dark flag graduation",
+      "benchmark the default-off features",
+      "graduate the dark flags",
+      "earn or cut the built-but-held flags",
+      "default-off capability benchmark suite"
+    ],
+    "key_topics": [
+      "dark",
+      "flag",
+      "graduation",
+      "benchmark",
+      "default-off",
+      "features",
+      "graduate",
+      "flags",
+      "earn",
+      "cut",
+      "built-but-held",
+      "capability"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "007-graduation-follow-ups/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dark Flag Graduation Suite",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Per",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This cycle added 41 feature flags",
+    "created_at": "2026-06-24T05:05:10.913Z",
+    "last_save_at": "2026-11-10T05:47:51.221Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:450d9036f945d99356415bfa2701ad7cef51aa2b0fbad34b2f637e0e2f648ea9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cbce6b79edfa7e370f63abb2e8fe1b5fb44fb901ff95cd59d294da3f72db9ed3"
+    },
+    "last_active_child_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-dark-flag-graduation/011-graph-preservation-quality-benchmark",
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/010-validate-and-retrieval-exit-honesty",
+  "description": "Phase 10: validate-and-retrieval-exit-honesty",
+  "keywords": [
+    "phase",
+    "validate-and-retrieval-exit-honesty"
+  ],
+  "lastUpdated": "2026-11-08T23:39:02.118Z",
+  "specId": "010",
+  "folderSlug": "validate-and-retrieval-exit-honesty",
+  "parentChain": [
+    "system-speckit",
+    "047-v4-release-line-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

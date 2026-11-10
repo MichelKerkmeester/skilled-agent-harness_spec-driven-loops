@@ -12,4 +12,4 @@ PER-PHASE LOOP: read handover + phase spec -> implement scope-locked -> VERIFY (
 
 DISCIPLINE: no "done" without --strict pass + green tests; comment hygiene (never embed spec/phase/REQ ids in code comments); never git add -A (explicit paths); IGNORE the skill-benchmark/design-token-lint.vitest.ts failure (a concurrent session's WIP, not ours).
 
-DONE WHEN: all 6 009 children Status=Complete and validate --strict clean; validate.sh 008-loop-systems-remediation --recursive green; deep-loop-runtime suite >=545 green AND 6/6 plugin tests AND deep-improvement suite green (excluding design-token-lint); everything committed and pushed to system-speckit/028-memory-search-intelligence.
+DONE WHEN: all 6 009 children Status=Complete and validate --strict clean; validate.sh 008-loop-systems-remediation --recursive green; deep-loop-runtime suite >=545 green AND 6/6 plugin tests AND deep-improvement suite green (excluding design-token-lint); everything committed and pushed to system-speckit/memory-search-and-knowledge/003-memory-search-intelligence.

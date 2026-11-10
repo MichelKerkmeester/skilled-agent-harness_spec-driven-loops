@@ -54,7 +54,7 @@ Phase 001 turns the completed standalone `deep-context` research into durable ph
 | **Priority** | P1 |
 | **Status** | Validated |
 | **Created** | 2026-07-04 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 1 of 4 |
 | **Predecessor** | None |

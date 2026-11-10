@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/002-relocate-specs-folder/001-relocation-implications-research",
+  "spec_folder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/002-relocate-specs-folder/001-relocation-implications-research",
+  "parent_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/002-relocate-specs-folder",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relocation implications research",
+      "specs folder research",
+      "glm grok specs relocation",
+      "relocation research plan",
+      "dual executor deep research",
+      "relocation research tasks",
+      "relocation research summary"
+    ],
+    "key_topics": [
+      "relocation",
+      "implications",
+      "research",
+      "specs",
+      "folder",
+      "glm",
+      "grok",
+      "plan",
+      "dual",
+      "executor",
+      "deep",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".claude/SYNC.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".claude/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Relocation Implications Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Devin Pro",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cursor Pro",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Second Round",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nobody has mapped what actually breaks if `.opencode/specs/` becomes a top-level `specs/` directory",
+    "created_at": "2026-08-06T09:09:30Z",
+    "last_save_at": "2026-11-10T05:48:38.120Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:065518719eb5ac07ecd60b895e73c710775835bf6318cdb303b956237b3d1267",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "caafacc7663533a73d610a8937c87636d5bb3192735abe4d470d4a767c46b7e8",
+      "plan.md": "87ad4c68570da2c3d1060cedffdc265024507163e961a1ff007d022dcc7aed43",
+      "tasks.md": "a8784703e6db6b99d2b5ab4fdfc1b5453017f5a87a88d6a5bdff5bed25477670",
+      "implementation-summary.md": "325fb7053d26d3c5102f812ab591697f1e3113d24afe6acad875285a3462dbc5",
+      "research/research.md": "21971a073d6863a1bfb96fd4255d899eeab35b9818989fdbf9daaef8a769821d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

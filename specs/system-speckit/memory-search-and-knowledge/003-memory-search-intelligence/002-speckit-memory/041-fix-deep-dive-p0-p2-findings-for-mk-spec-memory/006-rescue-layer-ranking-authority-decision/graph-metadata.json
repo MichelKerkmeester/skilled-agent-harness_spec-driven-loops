@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/006-rescue-layer-ranking-authority-decision",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/006-rescue-layer-ranking-authority-decision",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rescue layer ranking authority",
+      "lexical grounding dominance",
+      "eval production parity",
+      "retrieval rescue overwrite",
+      "signal theater decision",
+      "completeRecall at 3",
+      "executePipeline eval routing",
+      "ablation db swap rebind",
+      "signal ordering contract",
+      "verify first tasks",
+      "ablation rebind fix",
+      "bounded additive rescue"
+    ],
+    "key_topics": [
+      "rescue",
+      "layer",
+      "ranking",
+      "authority",
+      "lexical",
+      "grounding",
+      "dominance",
+      "eval",
+      "production",
+      "parity",
+      "retrieval",
+      "overwrite"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Layer Ranking Authority Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Part",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Decision",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Rules",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Reporting Format Report",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Production Parity Before Any Ranking Decision",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Michel Kerkmeester",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Retrieval-rescue (default ON) overwrites the final score of every candidate with `0.03base + 0.78lexicalOverlap` (`retrieval-rescue.ts:210`, applied at `stage2-fusion.ts:1425`), so learned trigger boosts (+0.7), negative demotions (x0.3), graph, recency, and co-activation signals are compressed to at most 3.7% of ranking mass (a +0.7 learned boost lands as <=0.021); only the validation multiplier at `stage2-fusion.ts:1470` runs after rescue and survives (deep-dive report Chain D; ledger Agent G P1)",
+    "created_at": "2026-07-03T09:44:21Z",
+    "last_save_at": "2026-11-10T05:47:40.729Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:47242a833f4bdd78690f1185d56088d7d0061d0cf7b15f75693555e17820a052",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e122911c5022e5500f7a0fc4bf087c9c62e3e151b1cefac327a5a56855c8bc6f",
+      "plan.md": "3ca3cd80cabc0bad387a471309702ed42a3ae15659b5547708242bb0f08731ac",
+      "tasks.md": "67cedf1debcf0486c9526d4e334f05d21585d2cfd4b7b6cd9c79f55584af95a5",
+      "decision-record.md": "7bf53e504eefef3c0a071f11ea686c9d7f300d154071ff7ab8ca5823fcbe4b47",
+      "implementation-summary.md": "96476312c29f15dbbee2997d27140a9705bd4b48316bd8f121d7b67551999582"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

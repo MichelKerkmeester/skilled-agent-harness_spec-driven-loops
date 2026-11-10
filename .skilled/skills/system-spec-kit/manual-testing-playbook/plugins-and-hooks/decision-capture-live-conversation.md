@@ -5,7 +5,7 @@ trigger_phrases:
   - "decision capture live conversation"
   - "decision capture runtime matrix"
   - "live decision capture scenario"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # decision-capture-live-conversation -- Decision capture live conversation
@@ -412,8 +412,8 @@ Keep the runner's screen.txt, question screens, check output and exit code for e
 
 | File | Role |
 |---|---|
-| specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md section 3 | Stage values, scratch project, evidence store, runtime matrix and sibling rule |
-| specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md REQ-001 to REQ-013 | Conversation, capture, save, kill-switch and matrix requirements |
+| specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/plan.md section 3 | Stage values, scratch project, evidence store, runtime matrix and sibling rule |
+| specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/spec.md REQ-001 to REQ-013 | Conversation, capture, save, kill-switch and matrix requirements |
 | .skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md | JSON conversation schema and turn outcomes |
 | .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts | Stop nudge text and behavior |
 | .skilled/hooks/decision-capture/lib/capture-core.mjs | Queue layout, session token, consumed keys and pendingRecords |

@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/052-mk-spec-memory-rename",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/052-mk-spec-memory-rename",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rename spec kit memory mcp namespace",
+      "mk-spec-memory",
+      "spec_kit_memory alias",
+      "Gemini MCP policy underscores",
+      "MCP server naming convention",
+      "017 rename plan",
+      "mk-spec-memory implementation plan",
+      "spec kit memory mcp rename",
+      "017 tasks",
+      "mk-spec-memory tasks",
+      "017 implementation summary",
+      "mk-spec-memory rename complete"
+    ],
+    "key_topics": [
+      "rename",
+      "spec",
+      "kit",
+      "memory",
+      "mcp",
+      "namespace",
+      "mk-spec-memory",
+      "alias",
+      "gemini",
+      "policy",
+      "underscores",
+      "server"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "opencode.json",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".opencode/commands/doctor/_routes.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode.json",
+        "kind": "config",
+        "path": "opencode.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Basis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Context Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Server Rename",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Update Server",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The current configured server alias forces a 22-character fully qualified prefix, `mcpmkspecmemory`, into every Claude-style tool reference",
+    "created_at": "2026-05-13T09:00:44Z",
+    "last_save_at": "2026-11-10T05:46:26.403Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:814ca8508f5f94aaa649ba305a274a7eb4a5b89a54ff0adcb1cd8d69b811940d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f078846f89e076bec1b886d01aaa2aee0ce4aae5480623965e6c8901712dfe6e",
+      "plan.md": "296d7bab4dafdf11d629d4d817e51f8ee66db84810b8cd7ae850e2111241c0ba",
+      "tasks.md": "4e65e01bdf91fef7fe4b1b4c78d831604d5fed6cc2850fa56dc4137c903bbc2a",
+      "implementation-summary.md": "8d4c74a748738780aebd0ae8ff85d9f412d403ac0877c65c6aa399971a3cb820",
+      "resource-map.md": "b877a91796deb7d3d05706f1348c47b9f0271b4e8c198a0a0ec69a9f7c0dfa9f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

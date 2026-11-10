@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/004-v4-release-line-research/012-hook-guards-and-audit-log",
+  "spec_folder": "system-speckit/runtime-and-release/004-v4-release-line-research/012-hook-guards-and-audit-log",
+  "parent_id": "system-speckit/runtime-and-release/004-v4-release-line-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook guards and audit log",
+      "phase 12 hook guards and audit log",
+      "ask surface guard menu detector",
+      "dispatch audit log root",
+      "hook guards and audit log plan",
+      "hook guards and audit log tasks",
+      "hook guards and audit log acceptance criteria",
+      "hook guards and audit log decisions",
+      "hook guards and audit log implementation summary"
+    ],
+    "key_topics": [
+      "hook",
+      "guards",
+      "audit",
+      "log",
+      "phase",
+      "ask",
+      "surface",
+      "guard",
+      "menu",
+      "detector",
+      "dispatch",
+      "root"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs",
+      ".skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs",
+      ".opencode/plugins/ask-surface-guard.js",
+      ".skilled/hooks/ask-surface-guard/dsh/ask-surface-guard.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/dispatch/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-stop.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/ask-surface-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-guard.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/ask-surface-guard/dsh/ask-surface-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/dispatch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The ask-surface guard misses a menu numbered `1.` or one with a tenth option and fires on a `1)` how-to list that ends in an unrelated question",
+    "created_at": "2026-11-08T23:39:03Z",
+    "last_save_at": "2026-11-10T05:48:28.289Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:925fe4c0575cca5806e6ddd66fda5bf4b173da1216004c8efa78561dd2999d55",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ea57443f75d10678054e0e1d75427324dc76b1fee54a184ca37c303b5cf6816a",
+      "plan.md": "1379e8d6248b07da9caf4ecd78c18b69c83e25dcb1a8675ce7d3ac7c764da73b",
+      "tasks.md": "d5ac039681c37406ab18e0e19efae69e851f67156aa4df89687dba8489e142e2",
+      "decision-record.md": "291698beb0ce9a93fa163578a3e18f108e0e821b9268c9656714b27a41a6fdbb",
+      "implementation-summary.md": "60b447c64aeeae3099ce57a800e1b6381264dc5c1d00083f3dc26fdee935aa46"
+    },
+    "last_active_at": null
+  }
+}

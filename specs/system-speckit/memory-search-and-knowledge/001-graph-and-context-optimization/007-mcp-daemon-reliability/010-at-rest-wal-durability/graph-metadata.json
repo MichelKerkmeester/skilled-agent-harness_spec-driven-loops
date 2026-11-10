@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "at-rest WAL durability",
+      "active_vec wal checkpoint",
+      "wal_autocheckpoint 256",
+      "checkpointAllWal",
+      "026 007 010 at-rest wal durability",
+      "at-rest WAL durability plan",
+      "active_vec checkpoint plan",
+      "wal_autocheckpoint 256 plan",
+      "at-rest WAL durability tasks",
+      "active_vec checkpoint tasks",
+      "wal_autocheckpoint tasks",
+      "at-rest WAL durability summary"
+    ],
+    "key_topics": [
+      "at-rest",
+      "wal",
+      "durability",
+      "checkpoint",
+      "checkpointallwal",
+      "plan",
+      "tasks",
+      "summary",
+      "packet",
+      "close-time",
+      "walcheckpoint",
+      "truncate"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/wal-durability-benchmark-results.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "wal-durability-benchmark-results.json",
+        "kind": "config",
+        "path": "scratch/wal-durability-benchmark-results.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sibling Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "best-effort",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "strict",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 008 added a close-time `walcheckpoint(TRUNCATE)` for the main context index, but the active vector shard remained attached without a shard TRUNCATE checkpoint in the close path",
+    "created_at": "2026-05-29T13:15:08.290Z",
+    "last_save_at": "2026-11-10T05:46:59.171Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ca4acd0b0fd069ca02691d24e85de34c1d825c857c2ae23918c505521703d0bd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "828cc3cb02c0b99f72eccb9cea9dd15d494537b3440017233ae685fecc93a041",
+      "plan.md": "d4c2381dd6a631e61be5a23145ad696af86af60214d7cc3adc38ed236016e594",
+      "tasks.md": "6e707ae389a22fdf615f7df7cba408eb0ecb6d23a7995534ffa6801621a77d5f",
+      "implementation-summary.md": "87a72726f2e61112409e7b0a4d12b81a92e9a05e4e2a534e49d1e2db2f167ee8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

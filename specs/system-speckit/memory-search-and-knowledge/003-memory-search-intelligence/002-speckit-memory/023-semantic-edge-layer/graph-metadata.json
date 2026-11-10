@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/023-semantic-edge-layer",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/023-semantic-edge-layer",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 semantic edge layer",
+      "per edge embedding causal graph",
+      "GR-fact-embedding-on-edge",
+      "semantic edge retrieval substrate",
+      "edge vector index triplet search",
+      "028 semantic edge layer plan",
+      "per edge embedding substrate plan",
+      "GR-fact-embedding-on-edge plan",
+      "edge vector consolidation plan",
+      "028 semantic edge layer tasks",
+      "per edge embedding substrate tasks",
+      "GR-fact-embedding-on-edge tasks"
+    ],
+    "key_topics": [
+      "semantic",
+      "edge",
+      "layer",
+      "per",
+      "embedding",
+      "causal",
+      "graph",
+      "gr-fact-embedding-on-edge",
+      "retrieval",
+      "substrate",
+      "vector",
+      "index"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "tests/flag-ceiling.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": "tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Edge Layer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context We",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The causal graph is substrate-blind at the edge",
+    "created_at": "2026-06-19T05:47:05.578Z",
+    "last_save_at": "2026-11-10T05:47:37.232Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0bf75aca76169d94928ee39bfaa46b7fbcb32d77928cac36fbe19f0ba2b8fb5a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ed258adc8329b71b74881c5f63d2004274a2767f3e4888ada5120ff7c15868dc",
+      "plan.md": "61b406df56a1a07d43bb72b419ccc281a5a516b225ec2ce080f66ab265b1031b",
+      "tasks.md": "7b0fe461b4a6b15dea7ac0e02f3cfc8f62cc700b876f668bb104aa263bd7ab8d",
+      "decision-record.md": "e202f987ba16314bab2d444fa01b80ab3f76401bb139565a2a3437a4b38f81ef",
+      "implementation-summary.md": "5daf05d56221bdd8c89c03d5fe7268a4b4d237882ffb0e089bb17d857ab53e3d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/012-playbook-findings-remediation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup/012-playbook-findings-remediation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-release-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook findings remediation",
+      "028 remediation cluster fixes",
+      "memory-search advisor code-graph remediation",
+      "playbook findings remediation plan",
+      "028 remediation cluster approach",
+      "gpt-5.5-high cluster verification",
+      "playbook findings remediation tasks",
+      "028 remediation task list",
+      "remediation cluster task list",
+      "playbook findings remediation results",
+      "028 remediation cluster results",
+      "remediation fixes verification report"
+    ],
+    "key_topics": [
+      "playbook",
+      "findings",
+      "remediation",
+      "cluster",
+      "memory-search",
+      "advisor",
+      "code-graph",
+      "plan",
+      "approach",
+      "gpt-5",
+      "5-high",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "core/config.ts",
+      "lib/extraction/entity-extractor.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-extractor.ts",
+        "kind": "code",
+        "path": "lib/extraction/entity-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Findings Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The daemon-skills playbook validation (packet 011) plus the core memory-search-intelligence re-run surfaced about twenty-two real product findings across the four subsystems",
+    "created_at": "2026-06-25T18:18:49.997Z",
+    "last_save_at": "2026-11-10T05:47:31.069Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dd6fd7bbcaa3e40e3596637d40d6155c82bf821c8b708abf19fcfb3b3105173b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "10dc6fc46960dbfde26295e47ab6e4958a23067e89ad89b34bb62a5aa658d75d",
+      "plan.md": "759250307b1686938bf8e4ee7084da155b8b991ed307f02ac498d64917e96e9d",
+      "tasks.md": "02d157327fbc6ba4ac3cddca3c3896c818f207f30330cbc2d2e4d02e752742d3",
+      "implementation-summary.md": "46999e734e836482df93fedb1378f4a1f25ed49391ffc3e452d416ef22e7012c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

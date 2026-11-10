@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/007-completion-gate-coherence",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/007-completion-gate-coherence",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "completion gate coherence",
+      "validation gate coherence",
+      "validator engine selection",
+      "strict validation failure rate",
+      "validation gate coherence plan",
+      "engine selection verdicts identical",
+      "freshness rule single entry point",
+      "duplicate finding measured refuted",
+      "stale hardcoded child list",
+      "command tree comparison repository check",
+      "validation gate coherence tasks",
+      "verdict flip reproduced"
+    ],
+    "key_topics": [
+      "completion",
+      "gate",
+      "coherence",
+      "validation",
+      "validator",
+      "engine",
+      "selection",
+      "strict",
+      "failure",
+      "rate",
+      "plan",
+      "verdicts"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Validation Verdict",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Honestly Earned",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "Yes The",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "identical",
+        "kind": "key_phrase",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Constraints The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet cannot satisfy from inside itself.",
+    "created_at": "2026-08-29T07:44:49.812Z",
+    "last_save_at": "2026-11-10T05:48:02.316Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d5fe1082d741f4766bcfad476fb8e8964dcbad21d0cc548552276cf4dfcff3e0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f8f8d4fd943f83b70556822f29cf1f3da5d32f2b5ddd2552a00aaf89986dd84d",
+      "plan.md": "fea2640a1cb1aeee4c874b4182ab49ad7c8a1baccff6ba13074f645634aac0b3",
+      "tasks.md": "84bbde26751718c320a847453eecf14046f733bd22d2d740ae2071a7cb44c7af",
+      "decision-record.md": "1a8a46fc323b34e495b04241c3d5af6247fb0f421340a63ecffe4b7479b0c65a",
+      "implementation-summary.md": "631aa52e0236456579df7164fc85ca30466d05424013145b6cc37f4e5ec51e46"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

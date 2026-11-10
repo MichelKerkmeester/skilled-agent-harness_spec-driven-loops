@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/009-validation-rule-reduction/006-delete-taste-rules",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/009-validation-rule-reduction/006-delete-taste-rules",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/009-validation-rule-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "delete taste rules",
+      "advisory rules with no consumer",
+      "validation rule deletion",
+      "delete taste rules plan",
+      "advisory rule deletion plan",
+      "advisory rules no reader",
+      "corpus verdicts identical",
+      "repo-wide consumer search",
+      "delete taste rules tasks",
+      "nine advisory rules deleted",
+      "validator-registry entries removed",
+      "pinned sample verdicts identical"
+    ],
+    "key_topics": [
+      "delete",
+      "taste",
+      "rules",
+      "advisory",
+      "consumer",
+      "validation",
+      "rule",
+      "deletion",
+      "plan",
+      "reader",
+      "corpus",
+      "verdicts"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/references/validation/validation-rules.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rules Nothing Reads",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measure Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Delete Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "everything",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nine",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Remove the rules that no code path and no downstream workflow reads, so that",
+    "created_at": "2026-08-30T06:17:43Z",
+    "last_save_at": "2026-11-10T05:48:03.972Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:712100a705befa112c75bd985de8a4fa7909eee505e3b983ccffcfa42d4d57ac",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "64400bfbb1b60ca3dc958963514c7bd3d098fb1ad137dae2f81046747e755683",
+      "plan.md": "30e04539f074eb0ad4215af36bf0cc9477898499a5ab39fedd50e089bee02524",
+      "tasks.md": "1d921ec93d6a9a4a1b4296ef6b90be6f4022e4b68d9ff1e0f7b0b26ccd9ddd9e",
+      "implementation-summary.md": "204d0a0c60a8a27553c16b1b73e8491f7003c0ce1305d1dcedadec9ba6a5a95c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

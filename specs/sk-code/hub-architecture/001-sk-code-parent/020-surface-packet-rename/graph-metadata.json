@@ -199,7 +199,7 @@
     ],
     "causal_summary": "After the phase 013 two-axis restructure, four sk-code sub-skills kept bare folder names — `review`, `webflow`, `opencode`, `animation` — while the four workflow-mode packets already carried the `code-` prefix (`code-implement`, `code-quality`, `code-debug`, `code-verify`)",
     "created_at": "2026-07-05T14:37:02.169Z",
-    "last_save_at": "2026-11-10T05:20:09.922Z",
+    "last_save_at": "2026-11-10T06:05:53.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8cea62a4e0bf5d20c0a46150e07205ec204b92b2d5138517069d632be4088ea3",
+    "source_fingerprint": "sha256:304b62a171b46eb7790c1313cc26088dc2f2102a434d43b5f04637ca71de00f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ac250cd16e06749030684af361527807c1b5f0f7c17507756243fdc95c59918c",
+      "spec.md": "fe75c09703d41e0429791fae6760dfc3f24e6b588284c008f5cc317cb246f621",
       "plan.md": "4cc4039945aed36061259e81e4e9ec8666f787e63078213b7b40b770068f4096",
       "tasks.md": "99ee5c68f0f7831f6e669b25ec1ee69285e086c70ef56e1bf9c49a6e703d460f",
       "implementation-summary.md": "1ffa24f17e5130ea340e00b0e7e96fd4e0b34a7fd4d33b91771da19073be6391"

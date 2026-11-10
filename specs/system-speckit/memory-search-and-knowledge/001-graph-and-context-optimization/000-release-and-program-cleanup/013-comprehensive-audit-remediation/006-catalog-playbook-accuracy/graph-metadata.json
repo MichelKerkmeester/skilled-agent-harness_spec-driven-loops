@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/006-catalog-playbook-accuracy",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/006-catalog-playbook-accuracy",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "catalog playbook accuracy",
+      "feature catalog defects",
+      "playbook scenario links",
+      "tool count 37",
+      "catalog playbook remediation",
+      "catalog playbook accuracy plan",
+      "feature catalog doc fixes",
+      "playbook remediation plan",
+      "catalog playbook tasks",
+      "F-catalog-playbook tasks",
+      "catalog playbook accuracy summary",
+      "F-catalog-playbook complete"
+    ],
+    "key_topics": [
+      "catalog",
+      "playbook",
+      "accuracy",
+      "feature",
+      "defects",
+      "scenario",
+      "links",
+      "tool",
+      "count",
+      "remediation",
+      "plan",
+      "doc"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      "shared/embeddings/factory.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Errors",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The feature catalog and manual testing playbook contain 10 verified accuracy defects: universal coverage claims that contradict the measured 69% audit result, a stale tool count (36 vs canonical 37) in five README locations and one test assertion, a release-gate script threshold 4 files short of the real count, five broken scenario-to-catalog cross-links, a garbled scenario contract in scenario 232, stale implementation paths in the local-LLM category overview, a false \"cleanup complete\" claim about phase-label removal, a wrong verifier script path in scenario 234, stale scenario numbering",
+    "created_at": "2026-06-04T20:45:44Z",
+    "last_save_at": "2026-11-10T05:46:13.649Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ab29be951f7cf90298352dff6fc50401c3601745489420aa2ff3840ea92f82e9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "690859a1f8cf04f8042e66fcd1fc78beeffad11c6117fafcfd3da56401c71bb9",
+      "plan.md": "d4674447527bb0ee1f8f70ae1b8bf7ab75f39b10d16febd7502471a3e56938d3",
+      "tasks.md": "d68d8732711baa815e4f2bf8ad359d1933ca848a76f2ac8788022fbaf1fd04ff",
+      "implementation-summary.md": "2151f0b58d0beb502a5cfca5c41d44e7cc7496ce5cb512f603aa7acc0bfddf08"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

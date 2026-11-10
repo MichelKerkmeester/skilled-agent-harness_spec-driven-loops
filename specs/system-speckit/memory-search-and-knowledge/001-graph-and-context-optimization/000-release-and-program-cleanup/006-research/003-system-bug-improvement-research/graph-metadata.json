@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research/003-system-bug-improvement-research",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research/003-system-bug-improvement-research",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "003-system-bug-improvement-research",
+      "system deep research bugs",
+      "20 iteration deep research",
+      "production bug hunting research",
+      "architecture refinement research",
+      "003-system-bug-improvement-research plan",
+      "003-system-bug-improvement-research tasks",
+      "003-system-bug-improvement-research summary"
+    ],
+    "key_topics": [
+      "003-system-bug-improvement-research",
+      "system",
+      "deep",
+      "research",
+      "bugs",
+      "iteration",
+      "production",
+      "bug",
+      "hunting",
+      "architecture",
+      "refinement",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/resource-map.md",
+      "research/deep-research-config.json",
+      "research/deep-research-strategy.md",
+      "research/deep-research-state.jsonl",
+      "research/iterations/iteration-001.md",
+      "research/deltas/iter-001.jsonl",
+      "research/findings-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Research Charter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Production Code Bugs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Iterative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Workflow Phases",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After packets 042-045 closed the documented stress-coverage backlog and known drift findings, the next layer of risk is unknowns: latent production-code bugs, miswired automation paths, and architectural shortcuts that have accumulated across `system-spec-kit` (the umbrella skill), `mcpserver` (the runtime), `codegraph` (subsystem), and `skilladvisor` (subsystem)",
+    "created_at": "2026-05-01T03:46:56Z",
+    "last_save_at": "2026-11-10T05:46:07.855Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:ae4c08d44fb7ca85d93a7bfb5742910bb885f60f184b81989b82c14652d2fa1e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "df4338ac2ba4dc153e741da4c7c2d24f862cfb78b3705680ee71d9446608fd67",
+      "plan.md": "3b31bbb03a41c915af67be02384cd9e3c14fa08ed82d59dd962bec729fc9c48f",
+      "tasks.md": "533bbd2a369fae30afb0ccd1ac91f79543253eb191f922a1bd6d50ee2d31d136",
+      "implementation-summary.md": "48539cf759395bd8d4c2fdb733f8948dbd4f443daccb26aca6f56d0ae4ef37e9",
+      "research/research.md": "33c1fc27788abb63dbaa6891ba522b1d025a40cb0e0e20c3294c8b47dcf7eee0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

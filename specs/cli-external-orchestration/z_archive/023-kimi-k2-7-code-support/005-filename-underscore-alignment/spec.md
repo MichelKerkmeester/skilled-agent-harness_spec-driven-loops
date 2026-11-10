@@ -54,7 +54,7 @@ FAILURE MODES:
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-06-16 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 5 |
 | **Predecessor** | 004-discriminating-bakeoff |

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "adr-014 cascade reorder",
+      "local-first embedder cascade",
+      "hf-local nomic default",
+      "ollama tier 1 cascade",
+      "voyage tier 4 cascade",
+      "016/002/015 cascade reorder",
+      "016/002/015 plan",
+      "adr-014 plan",
+      "local-first cascade plan",
+      "016/002/015 tasks",
+      "adr-014 tasks",
+      "016/002/015 impl summary"
+    ],
+    "key_topics": [
+      "adr-014",
+      "cascade",
+      "reorder",
+      "local-first",
+      "embedder",
+      "hf-local",
+      "nomic",
+      "default",
+      "ollama",
+      "tier",
+      "voyage",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+      "opencode.json",
+      ".mcp.json",
+      ".opencode/commands/doctor/mcp.md",
+      "shared/embeddings/auto-select.ts",
+      ".claude/mcp.json",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".opencode/skills/system-spec-kit/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+        "source": "derived"
+      },
+      {
+        "name": "opencode.json",
+        "kind": "config",
+        "path": "opencode.json",
+        "source": "derived"
+      },
+      {
+        "name": ".mcp.json",
+        "kind": "config",
+        "path": ".mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "First Cascade Reorder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fresh Opus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Append Commit Handoff",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sentence-transformers",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ollama",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Reorder",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Reorder auto-select provider cascade to Ollama → hf-local → OpenAI → Voyage (local-first). Change HF_LOCAL_MODEL fallback from BAAI/bge-base-en-v1.5 to nomic-ai/nomic-embed-text-v1.5 so new users with sentence-transformers get the same embedder as Ollama users. Update test, INSTALL_GUIDE, opencode.json/mcp.json env notes, all related READMEs, doctor commands, and write ADR-014.",
+    "created_at": "2026-05-19T19:25:52.541Z",
+    "last_save_at": "2026-11-10T05:46:29.473Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e0f662b228e3fd868436b10233596445c0ffb7b3f80fba698d62e09fc48665bf",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e60fdd2b61e9693495d67a99445a70320c8c024178788eacefe82b44abff2365",
+      "plan.md": "922d61396873a0afc9503b076c4fd8812e08652dff19fdcb72bb3c49104336ac",
+      "tasks.md": "c8d992289643d2196aeb28dc568ab499ef56457976c4924b30457ce8239d2af0",
+      "implementation-summary.md": "d9194a0a7fcff5485ea34b08100faeda46c66309ba1dec5037bb66f2f18fd35f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

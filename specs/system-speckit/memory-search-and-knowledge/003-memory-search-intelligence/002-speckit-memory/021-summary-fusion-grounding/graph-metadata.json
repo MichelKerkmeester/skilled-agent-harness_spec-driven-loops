@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/021-summary-fusion-grounding",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/021-summary-fusion-grounding",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fused summary channel",
+      "community summary rrf lane",
+      "world summary grounding prelude",
+      "coarse to fine retrieval grounding",
+      "summary hierarchy memory",
+      "fused summary channel plan",
+      "summary rrf lane sequencing",
+      "world summary grounding plan",
+      "summary fusion baseline retune",
+      "fused summary channel tasks",
+      "summary rrf lane tasks",
+      "world summary grounding tasks"
+    ],
+    "key_topics": [
+      "fused",
+      "summary",
+      "channel",
+      "community",
+      "rrf",
+      "lane",
+      "world",
+      "grounding",
+      "prelude",
+      "coarse",
+      "fine",
+      "retrieval"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary Fusion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary Grounding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fused Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Community Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Memory MCP already computes community and per-chunk summaries, but that evidence never participates in the main ranked blend, and there is no coarse-to-fine grounding prelude:",
+    "created_at": "2026-06-19T05:40:37.449Z",
+    "last_save_at": "2026-11-10T05:47:37.235Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:56a3b840584523c0ff865aded1c221ac00142362292d85ccc86acd31dda732a2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fba3749321fa1fb71ca3d0eb57b08314337ca33e11b13f187f2178f74921a9e0",
+      "plan.md": "4cf9b753ac829bafbd5f67f7f28cabfce3d8bc64d3c18ef2aad27324295293f5",
+      "tasks.md": "26406f722c309c769561a7c4e63a92e3f9df4bc17da6fa9d6d342649ff777462",
+      "implementation-summary.md": "96f974b7c570f2366c7fb14df8349faac22a060274475bb6a97bd66244ab4fc1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

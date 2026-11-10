@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026 program research",
+      "research driven remediation",
+      "026 retrospective",
+      "deep research synthesis",
+      "026 program research plan",
+      "research remediation plan",
+      "026 program research tasks",
+      "research remediation tasks",
+      "026 program research remediation summary",
+      "research driven fixes",
+      "causal cache depthtruncated variant"
+    ],
+    "key_topics": [
+      "program",
+      "research",
+      "driven",
+      "remediation",
+      "retrospective",
+      "deep",
+      "synthesis",
+      "plan",
+      "tasks",
+      "summary",
+      "causal",
+      "cache"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md",
+      "research/measurement-backlog.md",
+      "research/experiments/fanout-diversity/analysis.md",
+      "research/research-angles.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "measurement-backlog.md",
+        "kind": "doc",
+        "path": "research/measurement-backlog.md",
+        "source": "derived"
+      },
+      {
+        "name": "analysis.md",
+        "kind": "doc",
+        "path": "research/experiments/fanout-diversity/analysis.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-angles.md",
+        "kind": "doc",
+        "path": "research/research-angles.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Program Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "three",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Generate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parallel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Added Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measurement Experiments",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 026 graph-and-context-optimization program closed without a retrospective, and a deep review suggested it shipped mechanisms while deferring the measurements that prove them optimal",
+    "created_at": "2026-06-06T06:03:36.642Z",
+    "last_save_at": "2026-11-10T05:46:13.798Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:466727b3c7ecdabb2d6e17ee8f0e2be900307437bbdc1ac5ca16425d73229a4c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "701eb6b1d693bce71dfd4277b7d2378d59b4619c8465f02de7809da3f51517ba",
+      "plan.md": "7260b14671699cae5f3c66a218bf5709c0e81627f5ec0cf5ba241de33d65f588",
+      "tasks.md": "266b74613b060e9250008772b05f14c5ac7855777e79ade417a576ba2e054050",
+      "implementation-summary.md": "de51bb75e2aa96b2d8067d910b4efce6e6ec7b4c70caac8b730c1fea5bf81997",
+      "research/research.md": "e4f83b78c164aac349ee350986b720878227b4940bc6e868d0548dc615a5c6b4",
+      "handover.md": "61005ef4bd5429c8f92946674113f5b9a9422f38f0bf6efb5b5f84bcdd3903cb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -58,7 +58,7 @@ Phase 002 changes the public behavior contract for standalone `deep-context`: ne
 | **Priority** | P1 |
 | **Status** | Validated |
 | **Created** | 2026-07-04 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 2 of 4 |
 | **Predecessor** | `../001-research-baseline-and-inventory/spec.md` |

@@ -45,7 +45,7 @@ _memory:
 | **Authored** | 2026-06-19 |
 | **Level** | 2 |
 | **Scope** | Advisor RRF determinism spine: C3 (import) + C2 (folded) + conflict-suppression carrier - implemented default-off |
-| **Branch** | system-speckit/027-xce-research-based-refinement |
+| **Branch** | system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement |
 | **Shipped via** | Commit `c49470a44a` (feat 028 build 003-skill-advisor/001-rrf-determinism-spine, touched `fusion.ts` + `graph-causal.ts` + the rrf-determinism-spine vitest). No packet 030 changes. Dependency commit `84c532114d` remains the Memory-side `fuseResultsMulti` API extension |
 <!-- /ANCHOR:metadata -->
 

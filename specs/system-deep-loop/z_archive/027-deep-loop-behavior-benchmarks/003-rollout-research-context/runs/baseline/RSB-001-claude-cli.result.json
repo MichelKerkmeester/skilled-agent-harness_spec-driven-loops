@@ -49,12 +49,12 @@
       "opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/spec.md",
       "opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/tasks.md",
       "opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/003-rollout-research-context/runs/baseline/RSB-001-claude-cli.transcript.jsonl",
-      "opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/description.json",
+      "opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-speckit-memory/description.json",
       ".opencode/skills/.goal-state/7365735f3064636231313039666666656e3442494f774e516c5a68666230.json",
       ".opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/checklist.md",
       ".opencode/specs/deep-loops/030-agent-loops-improved/011-followup-remediation/007-sliding-window-convergence-mode/decision-record.md",
-      ".opencode/specs/system-speckit/028-memory-search-intelligence/011-create-sh-parent-corruption-fix/",
-      ".opencode/specs/system-speckit/028-memory-search-intelligence/012-derive-status-explicit-bypass-fix/"
+      ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/011-create-sh-parent-corruption-fix/",
+      ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/012-derive-status-explicit-bypass-fix/"
     ]
   },
   "terminal": {

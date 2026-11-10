@@ -122,7 +122,7 @@ See `decision-record.md` for full rationale and alternatives.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Uncommitted working tree** The mode-packet edits, this packet's doc reconciliation, and sibling Phases 001-003 are all currently uncommitted on `system-speckit/028-memory-search-intelligence`. No commit was made as part of this verification pass, per the no-commit-without-explicit-request policy.
+1. **Uncommitted working tree** The mode-packet edits, this packet's doc reconciliation, and sibling Phases 001-003 are all currently uncommitted on `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence`. No commit was made as part of this verification pass, per the no-commit-without-explicit-request policy.
 2. **Benchmark remains conditional** The canonical `sk-design` router benchmark was re-run to `/tmp/skd-bench/report.json` and `/tmp/skd-bench/report.md` in this pass. It matched the frozen baseline verdict shape: CONDITIONAL, aggregate 69/100, 21 scenarios, with six browser scenarios routed out to live mode. The committed `benchmark/baseline/` files were left untouched.
 3. **Phase 004 doc drift was found and fixed by this verification pass, not by the original implementer** The mode-packet implementation itself was already complete and correct in the live repo; only this packet's own tracking docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`) had not been updated to reflect it. This gap is now closed.
 <!-- /ANCHOR:limitations -->

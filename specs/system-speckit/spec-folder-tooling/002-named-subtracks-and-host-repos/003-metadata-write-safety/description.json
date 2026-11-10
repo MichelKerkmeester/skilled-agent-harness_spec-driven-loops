@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/003-metadata-write-safety",
+  "description": "Refuse symlinked graph-metadata writes and seed missing declared sub-track metadata so track-root repair succeeds.",
+  "keywords": [
+    "refuse",
+    "symlinked",
+    "graph-metadata",
+    "writes",
+    "seed",
+    "missing",
+    "declared",
+    "sub-track",
+    "metadata",
+    "track-root",
+    "repair",
+    "succeeds"
+  ],
+  "lastUpdated": "2026-11-07T22:48:35.828Z",
+  "specId": "003",
+  "folderSlug": "metadata-write-safety",
+  "parentChain": [
+    "system-speckit",
+    "044-named-subtracks-and-host-repos"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/021-decommission-debt-and-cli-nesting/001-continuity-freshness-claim-binding",
+  "description": "`evaluateCompletionFreshness` (`.opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts:292-349`) scans `spec.md`, `plan.md`,",
+  "keywords": [
+    "evaluatecompletionfreshness",
+    "opencode",
+    "skills",
+    "system-spec-kit",
+    "scripts",
+    "validation",
+    "continuity-freshness",
+    "scans",
+    "spec",
+    "plan"
+  ],
+  "lastUpdated": "2026-09-06T07:09:10.120Z",
+  "specId": "001",
+  "folderSlug": "continuity-freshness-claim-binding",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4",
+    "021-decommission-debt-and-cli-nesting"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

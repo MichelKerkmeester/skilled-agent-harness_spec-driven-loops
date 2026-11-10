@@ -42,7 +42,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-07-08 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Source of truth** | `../027-code-skilled-refinement-research/research/final-synthesis.md` (Fable-5-validated) |
 
 <!-- /ANCHOR:metadata -->

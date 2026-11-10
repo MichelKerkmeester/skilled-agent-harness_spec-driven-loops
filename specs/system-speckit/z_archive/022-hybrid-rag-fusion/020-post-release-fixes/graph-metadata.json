@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The canonical review now says the packet is blocked by four distinct remediation lanes:",
     "created_at": "2026-04-12T09:02:50.310Z",
-    "last_save_at": "2026-10-07T20:38:27.858Z",
+    "last_save_at": "2026-11-10T05:49:15.114Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7d04b307838e695ff4d78581763b755c600afdc50ee7160bd15ff4860a161a1",
+    "source_fingerprint": "sha256:170aa58fe1ecfab66560bd41a4a42aa127130b2549f311e2d8d7223e7a465f61",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9dd6d193fffe6d278c1059ef4a9e99814488cd1976b4aac046253af8910978ac",
-      "plan.md": "1a7574a6b394e519fc65619f86acbc4cd3b5b82106d57bff87bca98d633421c0",
-      "tasks.md": "50d0152b92488f250adb2d24462afcabcec20d175b4656af9bcd37f9b6aa6fd4",
+      "plan.md": "78c8fa22d77e609ebbc095b8d963da1d33968aaf60c82b05d98a048b6b5e0cce",
+      "tasks.md": "a4f8eb7521bfdf43149e59650acd10eb15d7002a0778ff0b80ffc0b0e3193b5b",
       "decision-record.md": "4230737ee6542b8cdc6e484c55dbb66659871ac7b2668846abeeb89a005aa491",
-      "implementation-summary.md": "f1abd1df236e0ded5a76787de9ea851c342fb609bfe104ab24d8fd38309fc166"
+      "implementation-summary.md": "37c291b58f876b92a9d528ebb3f4d950cd3ed50fce80f98423637b5417d638a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/002-relocate-specs-folder/001-relocation-implications-research",
+  "description": "Nobody has mapped what actually breaks if `.opencode/specs/` becomes a top-level `specs/` directory",
+  "keywords": [
+    "nobody",
+    "mapped",
+    "actually",
+    "breaks",
+    "opencode",
+    "specs",
+    "becomes",
+    "top-level",
+    "directory"
+  ],
+  "lastUpdated": "2026-08-15T14:41:14.664Z",
+  "specId": "001",
+  "folderSlug": "relocation-implications-research",
+  "parentChain": [
+    "system-speckit",
+    "029-spec-folder-lifecycle",
+    "002-relocate-specs-folder"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

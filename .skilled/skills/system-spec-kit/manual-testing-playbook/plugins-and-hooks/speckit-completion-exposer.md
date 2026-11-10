@@ -7,7 +7,7 @@ trigger_phrases:
   - "spec folder completion state"
   - "checklist completion tool"
   - "plg-002"
-version: 1.0.4.0
+version: 1.0.5.0
 id: plugins-and-hooks-speckit-completion-exposer
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -76,9 +76,9 @@ node -e '
   const hooks = await plugin.server({ directory: process.cwd() });
   const exec = hooks.tool.system_speckit_completion.execute;
 
-  const level2Complete = "specs/system-speckit/031-system-speckit-v4/024-metadata-regeneration-and-shared-parser";
-  const level2Incomplete = "specs/system-speckit/031-system-speckit-v4/006-derived-metadata-repair-tool";
-  const level3 = "specs/system-speckit/031-system-speckit-v4/005-skills-runtime-state-consolidation";
+  const level2Complete = "specs/system-speckit/runtime-and-release/001-system-speckit-v4/024-metadata-regeneration-and-shared-parser";
+  const level2Incomplete = "specs/system-speckit/runtime-and-release/001-system-speckit-v4/006-derived-metadata-repair-tool";
+  const level3 = "specs/system-speckit/runtime-and-release/001-system-speckit-v4/005-skills-runtime-state-consolidation";
 
   console.log("=== Level-2 COMPLETE ===");
   console.log(await exec({ specFolder: level2Complete }, { directory: process.cwd() }));
@@ -95,7 +95,7 @@ node -e '
 4. Claude/Bash CLI shim parity check on the same Level-2 COMPLETE fixture:
 
 ```bash
-node .skilled/bin/speckit-completion.cjs specs/system-speckit/031-system-speckit-v4/024-metadata-regeneration-and-shared-parser --project-dir "$PWD"
+node .skilled/bin/speckit-completion.cjs specs/system-speckit/runtime-and-release/001-system-speckit-v4/024-metadata-regeneration-and-shared-parser --project-dir "$PWD"
 ```
 
 5. CLI shim usage/exit-1 path on missing args:

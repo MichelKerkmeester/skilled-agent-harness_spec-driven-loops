@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "checkpoint v2",
+      "checkpoint_create invalid string length",
+      "full db checkpoint file snapshot",
+      "vacuum into checkpoint restore",
+      "checkpoint v2 plan",
+      "vacuum into checkpoint phases",
+      "reopenActiveDatabase coordinator",
+      "schema migration v29 checkpoints",
+      "checkpoint v2 tasks",
+      "vacuum into create restore tasks",
+      "schema v29 migration tasks",
+      "reopenActiveDatabase tasks"
+    ],
+    "key_topics": [
+      "checkpoint",
+      "invalid",
+      "string",
+      "length",
+      "full",
+      "file",
+      "snapshot",
+      "vacuum",
+      "restore",
+      "plan",
+      "phases",
+      "reopenactivedatabase"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
+      "shared/embeddings/factory.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Based Full",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Records",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`checkpointcreate` takes a full rollback snapshot before risky migrations by serializing the entire database with one `JSON.stringify(snapshot)` call (`lib/storage/checkpoints.ts:1604`)",
+    "created_at": "2026-06-01T16:00:00.000Z",
+    "last_save_at": "2026-11-10T05:46:52.563Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:104af83ee77f93aa163bdb2b04ac9775e101e8b9d4e7d408fa0997ec61ab3133",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2c7b8f64489d80250097921b1528dbea9a625a6f2639f887d01683a5a2273da5",
+      "plan.md": "bae3bfb0f0eec3b192658d3bd7ff60bb1e42c56c6412d26efcbbb9c0dcb730a1",
+      "tasks.md": "a177c55d0b33e8ea6c7cf704be5dc43415426a3dc23dec481adb75aeda7cbc5a",
+      "decision-record.md": "ab70975cdf2ce00ef5e238f4cff400a605eed4f04a388673b4ec8e591649f10d",
+      "implementation-summary.md": "f327c247d09c3231abc0850fcca2c75ffae424a76d19fa7bf8285b6367f07f67",
+      "handover.md": "7d79eb4263de3fad11f12e1313a0db0365995a3d3aebabe1aeaffc2192353f01"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

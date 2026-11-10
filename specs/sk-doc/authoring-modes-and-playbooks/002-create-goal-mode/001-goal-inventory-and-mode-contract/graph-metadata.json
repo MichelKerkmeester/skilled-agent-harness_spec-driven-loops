@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The goal contract has durable, chat, and objective slices; phase-parent goals also carry a binding table, while children carry their own phase objectives (`.skilled/hooks/goal/lib/goal-slice.cjs:52-79,87-118`; `.skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:46-105`)",
     "created_at": "2026-09-25T18:48:45Z",
-    "last_save_at": "2026-11-10T05:26:00.531Z",
+    "last_save_at": "2026-11-10T06:05:57.467Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,11 +210,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03d4f007f2b2bf33521d410b515fec212fc64e90c2194a617543162ceacbd500",
+    "source_fingerprint": "sha256:1f6898e3acb58b6de6bea17d04345695364edceb8d5c114ccbd35c4895e4414b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6d2c084a1e921c602514fea9e063525253be9d80302ee84d26d64616963fe951",
-      "plan.md": "54c06bcd41b2e08b68c3fc00626fb601c4bde4dc485fad857f2452fb4ddb7e54",
+      "plan.md": "57fc988bcdd3e8d33c861085032eae8bfe740c35b5c57b620e2e45dc8a140d60",
       "tasks.md": "849293712544eba794259ae475d9e3a4073d0c1760a51afb26ed58c7817861fa",
       "implementation-summary.md": "5fcda0dc2a1d3f22a8d33eaaa157d2650ffe9657979aeb0570da863be4477a16"
     },

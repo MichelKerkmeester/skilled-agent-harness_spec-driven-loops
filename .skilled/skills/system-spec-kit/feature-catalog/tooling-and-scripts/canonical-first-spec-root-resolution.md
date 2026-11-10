@@ -7,7 +7,7 @@ trigger_phrases:
   - spec root collision guard
   - legacy spec root fallback
   - spec root migration
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Canonical-first spec-root resolution
@@ -73,8 +73,8 @@ The implementation branch therefore contains the resolver, guards, migration pri
 
 ### 5) Deployment-gated status
 
-- `specs/system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/research/research.md:17-25` defines the canonical-first contract and the data-before-writers deployment order.
-- `specs/system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/research/research.md:138-147` gates reader rollout on 28 clean days and alias removal on complete no-alias proof.
+- `specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/research/research.md:17-25` defines the canonical-first contract and the data-before-writers deployment order.
+- `specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/research/research.md:138-147` gates reader rollout on 28 clean days and alias removal on complete no-alias proof.
 
 ### Implementation
 

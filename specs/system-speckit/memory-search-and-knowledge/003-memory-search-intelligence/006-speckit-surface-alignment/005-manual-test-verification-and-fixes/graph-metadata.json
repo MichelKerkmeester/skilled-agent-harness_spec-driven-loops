@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment/005-manual-test-verification-and-fixes",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment/005-manual-test-verification-and-fixes",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/006-speckit-surface-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "manual test verification and fixes",
+      "Fable-5 refined manual verification",
+      "gold battery path fix",
+      "bm25 scoped fill limit regression",
+      "surface alignment remediation verification",
+      "manual verification plan",
+      "Fable-5 manual test plan",
+      "bm25 scoped fill limit plan",
+      "manual verification tasks",
+      "Fable-5 fix tasks",
+      "bm25 regression fix tasks",
+      "Fable-5 bm25 decision"
+    ],
+    "key_topics": [
+      "manual",
+      "test",
+      "verification",
+      "fable-5",
+      "refined",
+      "gold",
+      "battery",
+      "path",
+      "bm25",
+      "scoped",
+      "fill",
+      "limit"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Test Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Fable",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Verification",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "early",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Record Fable",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Owner",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Fable-5-refined surface-alignment features needed a manual verification pass after documentation remediation and automated stress coverage",
+    "created_at": "2026-07-05T16:13:22.892Z",
+    "last_save_at": "2026-11-10T05:47:53.382Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f254d4b4842f0de35e241c579631d6d52f05d32583bbb63f09b459753dc51ab1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ddc3e35645951f929337c1d0e4e45ec6247d4e7d3432e72aed65c0f2a9646fe2",
+      "plan.md": "dcd51dbc58abff68b3f96f4480252e056d50525fa6c71279f85eafe6e2f19541",
+      "tasks.md": "812ad5cacb7473d9495004228bc97a15b9cebf24bb3b316115bfc40a46e74ebc",
+      "decision-record.md": "5648ad1a8022d64701497d42a057c47f3cfe8d13e5fda8eadbcdacac971f1677",
+      "implementation-summary.md": "e43d6dabbb9a6664bb841bbb2eb820ec9ea2860f67ec6201e8b62f26ee1b2e79"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

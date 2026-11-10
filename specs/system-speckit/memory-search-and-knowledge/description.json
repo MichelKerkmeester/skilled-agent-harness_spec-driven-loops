@@ -1,0 +1,19 @@
+{
+  "level": "sub-track",
+  "specFolder": "system-speckit/memory-search-and-knowledge",
+  "description": "The memory engine, graph/context and retrieval layer, and the knowledge formats and indexes that feed search.",
+  "keywords": [
+    "memory",
+    "search",
+    "and",
+    "knowledge"
+  ],
+  "lastUpdated": "2026-11-10T05:45:50.004Z",
+  "specId": "system-speckit/memory-search-and-knowledge",
+  "folderSlug": "memory-search-and-knowledge",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/021-decommission-debt-and-cli-nesting/006-orphaned-types-and-dead-modules",
+  "description": "`.opencode/skills/system-spec-kit/shared/types.ts` still exports `IVectorStore` (line 246), `SearchOptions` (189), `SearchResult` (204), `StoreStats`",
+  "keywords": [
+    "opencode",
+    "skills",
+    "system-spec-kit",
+    "shared",
+    "types",
+    "still",
+    "exports",
+    "ivectorstore",
+    "line",
+    "searchoptions",
+    "searchresult",
+    "storestats"
+  ],
+  "lastUpdated": "2026-09-06T07:09:10.117Z",
+  "specId": "006",
+  "folderSlug": "orphaned-types-and-dead-modules",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4",
+    "021-decommission-debt-and-cli-nesting"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

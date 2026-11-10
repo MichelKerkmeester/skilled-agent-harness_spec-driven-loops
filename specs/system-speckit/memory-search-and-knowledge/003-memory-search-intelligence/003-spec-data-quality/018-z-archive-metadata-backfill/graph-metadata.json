@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/018-z-archive-metadata-backfill",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/018-z-archive-metadata-backfill",
+  "parent_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "z_archive root metadata",
+      "archive container graph node",
+      "z_archive root backfill",
+      "cold tier container node",
+      "z_archive container backfill plan",
+      "archive root graph node plan",
+      "cold tier container plan",
+      "z_archive parent_id resolution",
+      "z_archive container backfill tasks",
+      "archive root graph node tasks",
+      "parent_id resolution tasks",
+      "cold tier tagging tasks"
+    ],
+    "key_topics": [
+      "root",
+      "metadata",
+      "archive",
+      "container",
+      "graph",
+      "node",
+      "backfill",
+      "cold",
+      "tier",
+      "plan",
+      "resolution",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement There",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Batch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "There are nine `zarchive` root directories across `.opencode/specs` (`system-speckit/zarchive`, `system-deep-loop/zarchive`, `skilled-agent-orchestration/zarchive`, `sk-design/zarchive`, `system-skill-advisor/zarchive`, `system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/zarchive`, `sk-design/008-sk-design-parent/external/zarchive`, plus two nested roots inside already-archived folders)",
+    "created_at": "2026-07-06T06:03:39Z",
+    "last_save_at": "2026-11-10T05:47:49.750Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8b6a390bc75437f99cf728081a17e21252ac99a9a4ff14ee5c8d360806f81edb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "80e05ca173e40d7f7a16066b00939265db9dacb4e809bad74fdd0cf1fdfe9aec",
+      "plan.md": "534dd404948167b00f6e20326c41f53bd5d97e0e398e860d5091a303d6c4e720",
+      "tasks.md": "6eb321292381ba6121632f9c3d120cd112602823b182c904ebe3ffeeee6c208f",
+      "implementation-summary.md": "5ca96d9f4c0716238ed86df779ce1bdf67ed8afbf48b73ed6b31f43c30c3def5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

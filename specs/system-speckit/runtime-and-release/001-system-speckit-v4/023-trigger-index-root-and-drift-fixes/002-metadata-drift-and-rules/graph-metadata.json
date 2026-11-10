@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/023-trigger-index-root-and-drift-fixes/002-metadata-drift-and-rules",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/023-trigger-index-root-and-drift-fixes/002-metadata-drift-and-rules",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/023-trigger-index-root-and-drift-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "metadata drift rules",
+      "graph metadata child identity",
+      "phantom children after rename",
+      "track root sweep",
+      "validator registry rule",
+      "graph metadata child identity plan",
+      "identity aware pruning merge",
+      "GRAPH_METADATA_CHILD_IDENTITY shell rule",
+      "track roots sweep script",
+      "backfill prune prediction parity",
+      "graph metadata child identity tasks",
+      "census drift 127 packets"
+    ],
+    "key_topics": [
+      "metadata",
+      "drift",
+      "rules",
+      "graph",
+      "child",
+      "identity",
+      "phantom",
+      "children",
+      "rename",
+      "track",
+      "root",
+      "sweep"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/lib/graph/graph-metadata-parser.ts",
+      "runtime/cli/graph/backfill-graph-metadata.ts",
+      "runtime/cli/rules/check-graph-metadata-child-identity.sh",
+      "runtime/cli/lib/validator-registry.json",
+      "runtime/cli/spec/sweep-track-roots.mjs",
+      "runtime/cli/spec/README.md",
+      "runtime/cli/tests/graph-metadata-refresh.vitest.ts",
+      "runtime/cli/tests/backfill-prune-report-gate.vitest.ts",
+      "runtime/tests/validation-orchestrator-bridge.vitest.ts",
+      "spec/sweep-track-roots.mjs",
+      "tests/graph-metadata-refresh.vitest.ts",
+      "tests/backfill-prune-report-gate.vitest.ts",
+      "rules/check-graph-metadata-child-identity.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": "runtime/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": "runtime/cli/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-graph-metadata-child-identity.sh",
+        "kind": "script",
+        "path": "runtime/cli/rules/check-graph-metadata-child-identity.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "runtime/cli/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-track-roots.mjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/sweep-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-refresh.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/graph-metadata-refresh.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-prune-report-gate.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/backfill-prune-report-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validation-orchestrator-bridge.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/validation-orchestrator-bridge.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Producer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A renamed packet kept the children of its old identity in graph metadata because the writer only unioned, and track roots were never validated. A refresh now prunes foreign-identity children, a registry rule reports any that remain, and a sweep reports declared-versus-actual child counts for every track root.",
+    "created_at": "2026-09-05T21:16:57Z",
+    "last_save_at": "2026-11-10T05:48:09.659Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b13668bc4404b8c29607aa660587f323518e6c529c706bf3cf2f67b17933064f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b0739602df4e508166a1f8edadf837aa86664a9db1ac00e82415814e7aa26c87",
+      "plan.md": "d1865c6b8293026dd8756d16c8285e8d18ade243e9819e7c05afb12442896440",
+      "tasks.md": "8d71b8547b3c5d67665dd372ef220e07fcc42ff35941acbef592a19f6b927d67",
+      "implementation-summary.md": "0e3b838642564ea5772d2c44c02036814a7206848fb004a22d02ccab512dac53"
+    },
+    "last_active_at": null
+  }
+}

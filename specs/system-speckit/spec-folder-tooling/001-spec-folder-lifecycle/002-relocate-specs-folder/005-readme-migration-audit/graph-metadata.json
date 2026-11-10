@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/002-relocate-specs-folder/005-readme-migration-audit",
+  "spec_folder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/002-relocate-specs-folder/005-readme-migration-audit",
+  "parent_id": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/002-relocate-specs-folder",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "readme migration audit",
+      "readme deep review",
+      "post-migration documentation drift",
+      "readme migration audit plan",
+      "dual executor deep review dispatch",
+      "readme migration audit tasks",
+      "readme migration audit summary"
+    ],
+    "key_topics": [
+      "readme",
+      "migration",
+      "audit",
+      "deep",
+      "review",
+      "post-migration",
+      "documentation",
+      "drift",
+      "plan",
+      "dual",
+      "executor",
+      "dispatch"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "README.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/bin/check-no-spec-imports.cjs",
+      ".opencode/bin/lib/README.md",
+      ".opencode/scripts/git-hooks/README.md",
+      ".opencode/scripts/git-hooks/lib/README.md",
+      ".devin/hooks/README.md",
+      "review/review-report.md",
+      "review/lineages/glm-high/invocation-metadata.json",
+      "review/orchestration-summary.json",
+      "review/lineages/deepseek-flash/review-report.md",
+      ".opencode/commands/deep/review.md",
+      "review/lineages/deepseek-flash/iterations/iteration-001.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "README.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-no-spec-imports.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/check-no-spec-imports.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "invocation-metadata.json",
+        "kind": "config",
+        "path": "review/lineages/glm-high/invocation-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "review/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "review/lineages/deepseek-flash/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Migration Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Loop",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The specs-root topology flip (`003-migration-execution`) changed the canonical location of every spec-kit document",
+    "created_at": "2026-08-07T17:29:17Z",
+    "last_save_at": "2026-11-10T05:48:39.061Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0e561352f5cf113dbd6f63f730a7c67167f4570de22022089a5e009291de5f52",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2166c20219a6acfe212316efeae459abd5179e8e007a2ce405ce786bd5f72ecf",
+      "plan.md": "901ebcc7a40215d6db8f537e75dfc5fa418848ce82ab4503a5d94b86d9a82728",
+      "tasks.md": "14944278f78019a31ba038b695c7bd293b14eb645cf56113baeccd5c2ae14b2e",
+      "implementation-summary.md": "4f27a71ce6e8b64353b6a13c33818a76032bf84e59bb5e687aab899f71cfb03d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

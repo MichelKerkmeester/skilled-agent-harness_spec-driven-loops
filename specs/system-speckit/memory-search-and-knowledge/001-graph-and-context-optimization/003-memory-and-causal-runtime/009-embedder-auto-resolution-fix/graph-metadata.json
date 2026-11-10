@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "embedder auto resolution fix",
+      "factory node:sqlite metadata read",
+      "revert embeddings provider ollama pin",
+      "embedder auto resolution fix plan",
+      "auto-resolution",
+      "node:sqlite factory fix",
+      "embedder auto resolution fix tasks",
+      "node:sqlite",
+      "embedder auto resolution fix decision record",
+      "factory metadata probe",
+      "node sqlite vs better sqlite3",
+      "embedder auto resolution fix summary"
+    ],
+    "key_topics": [
+      "embedder",
+      "auto",
+      "resolution",
+      "factory",
+      "node",
+      "sqlite",
+      "metadata",
+      "read",
+      "revert",
+      "embeddings",
+      "provider",
+      "ollama"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".claude/mcp.json",
+      "opencode.json",
+      "shared/embeddings/factory.ts",
+      "shared/dist/embeddings/factory.js",
+      "shared/types.ts",
+      "shared/package.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "opencode.json",
+        "kind": "config",
+        "path": "opencode.json",
+        "source": "derived"
+      },
+      {
+        "name": "factory.js",
+        "kind": "code",
+        "path": "shared/dist/embeddings/factory.js",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "shared/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Confined",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 008 proved why `EMBEDDINGSPROVIDER=auto` silently degrades to the unhealthy `hf-local` fallback even though ollama is up and owns the active vector shard: `factory.ts` reads the active-embedder metadata by shelling out to a bare `sqlite3` binary (`querySqliteScalar` → `execFileSync('sqlite3', …)`), and that helper returns `null` on any error, including `ENOENT`",
+    "created_at": "2026-05-27T13:26:56.638Z",
+    "last_save_at": "2026-11-10T05:46:49.371Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:417213d1b621ccf638755a715a1a98921852f2fb0407a93b6be863b00feb5e95",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c0371af951b6e4f3f95e72aad6eacc6c6de376b40f3ad2a9f00a699aa1f00653",
+      "plan.md": "618785ed39bc40a95907328678df3ebc38d88227619d1d8a777588aff57e5a17",
+      "tasks.md": "8280290c35c519cf1e4b4a24fa0c53c603f24f57b22ff89ef076965348b4d419",
+      "decision-record.md": "b599b79ea4e8a6206e19968efc81626b35435a2005e33e0672fb0f14c1c552b9",
+      "implementation-summary.md": "a851946bd9db25aa1f2ef928b7643dfcf711e9b2c47ce1e69cebabae4e73abfc",
+      "handover.md": "5a51526c045ea84e91200b51af2d2702fd7dc2b33c0f18b50b76e6a8212e7798"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

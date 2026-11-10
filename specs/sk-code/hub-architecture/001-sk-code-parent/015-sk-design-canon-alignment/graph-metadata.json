@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The master plan reports that `parent-skill-check` strict mode leaves sk-design with four remaining parent-hub invariant failures after the five-mode `packetKind` repair was already pushed in commit `8820b8963d`",
     "created_at": "2026-07-05T05:46:25.870Z",
-    "last_save_at": "2026-11-10T05:20:09.945Z",
+    "last_save_at": "2026-11-10T06:05:53.613Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d972b4be6502ba55516c3ba4e369ffe2c524afb521c09c8a78a865711ef1b64",
+    "source_fingerprint": "sha256:c995e351c46479e11ee8ce2c1a287acc3ae5650d0011903007a117aefb7534df",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6518b51b08ea738e278bfa0bd360a34c6f50ea272d4ff78d635d41d501faafe4",
+      "spec.md": "ddf1321dae5d88f40c96986f3ad1f6a0775f4fef0ff730b5e582c900106c9bc3",
       "plan.md": "f6997ad48f91e3eb8cfbf2e1b149f043939511e616c616eaa497e5d2bc48a2eb",
       "tasks.md": "9bf1cb7d1b1d4b14c52cdeff25dea5e8fc4ce76c34c341241ae6fd3dc1a45044",
       "implementation-summary.md": "cc981be6a95adbb9f32796d1214e801bc76a64a4afb16273f2ebcbd79fd03da7"

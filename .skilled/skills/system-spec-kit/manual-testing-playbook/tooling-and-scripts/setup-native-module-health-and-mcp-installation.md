@@ -1,7 +1,7 @@
 ---
 title: "243 -- Setup, Native Module Health, and MCP Installation"
 description: "This scenario validates setup and native module health for `243`. It focuses on confirming prerequisite checks, native-module diagnostics, and marker recording."
-version: 1.6.0.12
+version: 1.6.1.0
 id: tooling-and-scripts-setup-native-module-health-and-mcp-installation
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -51,7 +51,7 @@ Prerequisite JSON is emitted; native probe prints diagnostic lines and a recover
 Command 1: `bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --validate`
 
 ```text
-ERROR: Not on a feature branch. Current: system-speckit/028-memory-search-intelligence
+ERROR: Not on a feature branch. Current: system-speckit/memory-search-and-knowledge/003-memory-search-intelligence
 Feature branches should be: 001-feature-name (or main/master/trunk for trunk-based operators)
 ```
 

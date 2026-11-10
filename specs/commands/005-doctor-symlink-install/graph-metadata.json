@@ -127,16 +127,16 @@
     ],
     "causal_summary": "People who use Skilled in their own project repositories link the framework in by hand, and two link shapes have grown up side by side",
     "created_at": "2026-10-31T13:38:32Z",
-    "last_save_at": "2026-10-31T22:29:42.095Z",
+    "last_save_at": "2026-11-10T06:05:53.196Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0721e8766117b8fba1aa2a56f1215033cfbeee3a2c753a5f2174fd2142416260",
+    "source_fingerprint": "sha256:0c7c030f6d25a3d319adca38256360dbed5c3f36c4fef7c539d3e8f450a8e45d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a4e314655fdf3b79c32df701a49c1c0692e46d42151da681642dfcc976f0ee38"
+      "spec.md": "4f73f0df3ecc9095b25b5be5e7c55611c07a453f37d33fa52cccbaf9b22bda0d"
     },
     "last_active_at": null
   }

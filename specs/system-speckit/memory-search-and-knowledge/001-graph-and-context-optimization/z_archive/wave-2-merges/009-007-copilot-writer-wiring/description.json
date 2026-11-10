@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/009-007-copilot-writer-wiring",
+  "description": "Route Copilot's userPromptSubmitted and sessionStart hooks to the system-spec-kit Copilot writers by replacing the 'bash: true' no-ops in",
+  "keywords": [
+    "route",
+    "copilot",
+    "userpromptsubmitted",
+    "sessionstart",
+    "hooks",
+    "system-spec-kit",
+    "writers",
+    "replacing",
+    "bash",
+    "true",
+    "no-ops"
+  ],
+  "lastUpdated": "2026-08-15T14:41:11.784Z",
+  "specId": "009",
+  "folderSlug": "007-copilot-writer-wiring",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "z_archive",
+    "wave-2-merges"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -49,7 +49,7 @@
       ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts",
       "scratch/lock-stress.cjs",
-      "specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md",
+      "specs/system-speckit/repo-operations/002-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md",
       ".github/workflows/deep-loop-runtime.yml",
       "assets/level-decision-matrix.md",
       "scratch/repro-before.txt",
@@ -114,7 +114,7 @@
       {
         "name": "r21-recheck.md",
         "kind": "doc",
-        "path": "specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md",
+        "path": "specs/system-speckit/repo-operations/002-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Deep-Loop Runtime Tests workflow failed once on main",
     "created_at": "2026-10-25T07:12:28Z",
-    "last_save_at": "2026-11-10T05:41:07.416Z",
+    "last_save_at": "2026-11-10T06:05:58.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c4f99ba4dcaf33bea1372391ce3b684900389cd62c866b5c351c8818b522a1c0",
+    "source_fingerprint": "sha256:5831d1cc4602059a15a15b725c3f0db90ca53ad8a0865f1bca7f8778f599aa26",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "73721650fc53236fa01491ab4b587b7ed5b0b8af2752d747e9a011983932a9be",
+      "spec.md": "345038fc59fda77ad708702812632e7ab0eef39b68523b32773f8035b464f90f",
       "plan.md": "95f6a4a301eaa5e0c4b719145e43471c59e1bbdccf5c0333bf4d900bdd68a508",
       "tasks.md": "597aff6e2df98a7e4d1dcb351d629ac161603a20528c1ebd3aba10dae0850e66",
       "implementation-summary.md": "e7c00f48b9ca5363738443f00559889250534a2932c08b0da1688e3a53bdd2bc"

@@ -95,9 +95,9 @@ The 18 folders, under `specs/`:
 - `cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/016-dispatch-enforcement-ci-guard`, found at final state
 - `cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin`
 - `sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/001-source-audit`
-- `system-speckit/031-system-speckit-v4/038-goal-unification/009-close-open-decisions`
-- `system-speckit/031-system-speckit-v4/038-goal-unification/011-goal-drift-remediation`, numbered
-- `system-speckit/031-system-speckit-v4/` children `045-v4-changelog-voice-rewrite`, `046-v4-changelog-remediation`, `047-v4-changelog-review-fixes`, `048-gate-3-mutation-time-delivery`, `049-gate-3-delivery-residue` and `050-ci-cleanup-pi-proof`
+- `system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/009-close-open-decisions`
+- `system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/011-goal-drift-remediation`, numbered
+- `system-speckit/runtime-and-release/001-system-speckit-v4/` children `045-v4-changelog-voice-rewrite`, `046-v4-changelog-remediation`, `047-v4-changelog-review-fixes`, `048-gate-3-mutation-time-delivery`, `049-gate-3-delivery-residue` and `050-ci-cleanup-pi-proof`
 - `system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/` children `021` to `026`, all numbered. The final-state check found `022`, `023`, `025` and `026`
 <!-- /ANCHOR:what-built -->
 

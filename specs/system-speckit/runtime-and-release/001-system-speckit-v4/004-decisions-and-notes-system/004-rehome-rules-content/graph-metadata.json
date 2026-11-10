@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system/004-rehome-rules-content",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rehome rules content",
+      "rehome constitutional rules",
+      "citation census",
+      "retarget links",
+      "delete constitutional folder",
+      "spec core",
+      "phase four rehome rules content",
+      "rules content relocation",
+      "constitutional rules rehome",
+      "rehome plan approach",
+      "phase four rehome tasks",
+      "rules relocation tasks"
+    ],
+    "key_topics": [
+      "rehome",
+      "rules",
+      "content",
+      "constitutional",
+      "citation",
+      "census",
+      "retarget",
+      "links",
+      "delete",
+      "folder",
+      "spec",
+      "core"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "AGENTS.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Deleting",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deleting the constitutional folder naively breaks dangling `See …md` links in CLAUDE.md/AGENTS.md/BARTER.md and any skill doc that cites a rule as its authority",
+    "created_at": "2026-08-26T05:34:13Z",
+    "last_save_at": "2026-11-10T05:48:01.284Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:bcd1dc1bb8eff09f2d3d647c402717c0618e84cea3277f4d09b232c35cea2867",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9befd237d65e83984c073e484ba3c2d67601d910347f690902f58afe16c0d94f",
+      "plan.md": "83fe04f463aa628ccaa3c13ca0dacf2d4c0f806c430650beec17ee89eaa20e00",
+      "tasks.md": "1635eca09c1c72e0095d519c9ac61a95ab5f5899db8cd1fbbc04e40f1060f0a5",
+      "implementation-summary.md": "eb45ad2e53ad2024eafe19c747eea3ffa786f3dcd8eece8668d6ea5272d7118d",
+      "research/research.md": "cf3b5c2c0ccabc06c1a0e51f269b025dc2c006344f35188721249658dc50d35e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4/050-ci-cleanup-pi-proof",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4/050-ci-cleanup-pi-proof",
+  "parent_id": "system-speckit/runtime-and-release/001-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi gate-3 live proof",
+      "ci cleanup pi proof",
+      "cli-jev run keyword",
+      "scorer baseline ratchet",
+      "six ci surfaces",
+      "merged-tree re-verification",
+      "scorer baseline restore",
+      "compiled route re-mint",
+      "hermes mirror drift",
+      "ci cleanup handover"
+    ],
+    "key_topics": [
+      "gate-3",
+      "live",
+      "proof",
+      "cleanup",
+      "cli-jev",
+      "run",
+      "keyword",
+      "scorer",
+      "baseline",
+      "ratchet",
+      "six",
+      "surfaces"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "handover.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+      ".github/workflows/routing-registry-drift.yml",
+      ".github/workflows/spec-kit-check.yml",
+      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/spec.md",
+      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md",
+      "evidence/pi-headless-delivery-marker.json",
+      "evidence/pi-tui-select.txt",
+      "evidence/pi-tui-input.txt",
+      "evidence/pi-tui-final.txt",
+      "evidence/pi-tui-state.json",
+      "evidence/pi-tui-warning.log",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+      "evidence/dispatch/evidence.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-eval-baseline.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "pi-headless-delivery-marker.json",
+        "kind": "config",
+        "path": "evidence/pi-headless-delivery-marker.json",
+        "source": "derived"
+      },
+      {
+        "name": "pi-tui-select.txt",
+        "kind": "file",
+        "path": "evidence/pi-tui-select.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pi-tui-input.txt",
+        "kind": "file",
+        "path": "evidence/pi-tui-input.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pi-tui-final.txt",
+        "kind": "file",
+        "path": "evidence/pi-tui-final.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pi-tui-state.json",
+        "kind": "config",
+        "path": "evidence/pi-tui-state.json",
+        "source": "derived"
+      },
+      {
+        "name": "pi-tui-warning.log",
+        "kind": "file",
+        "path": "evidence/pi-tui-warning.log",
+        "source": "derived"
+      },
+      {
+        "name": "projection.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "evidence.md",
+        "kind": "doc",
+        "path": "evidence/dispatch/evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Proof",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 049 closed the Gate-3 residue but left two loose ends",
+    "created_at": "2026-09-22T13:07:30Z",
+    "last_save_at": "2026-11-10T05:48:23.958Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:df14a7b01ff1b3ddfad64eab7dce8e0fcfbdfa737e8e32d559dfa59e17d623d7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1cd47d86297dcdbedcb5df8af0447fb5d8cab86b3e0d728ae052b20d02642b6d",
+      "plan.md": "3b28bdb22dbfd4b8a7ed69dc8362183942eb5838679efd07662d7592ad00c9dc",
+      "tasks.md": "b70727451cbf0f015057a90950e14569ea746ccdf244d8ace0c18bd88d2ac447",
+      "implementation-summary.md": "eccb0e4fc31f2c84fcf70986614c4122cd4f4aba3dd7407184add2432e6bdd52",
+      "handover.md": "b51dd39902ee7bfe9d37b18c1b4345655e340abaf4cb7dfebd0a7ca591931a33"
+    },
+    "last_active_at": null
+  }
+}

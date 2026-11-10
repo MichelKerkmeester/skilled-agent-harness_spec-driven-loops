@@ -47,7 +47,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-06-24 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Related work** | `040-deep-loop-gauges-dedup-scale` is the production-scale follow-up covering the same three fanout flags; it refines this packet's title-only false-collapse-rate finding |
 <!-- /ANCHOR:metadata -->
 

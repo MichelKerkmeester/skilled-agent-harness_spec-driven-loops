@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/003-vitest-baseline-recovery",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/003-vitest-baseline-recovery",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vitest baseline recovery",
+      "198 vitest failures",
+      "skill advisor scorer projection-fallback",
+      "filesystem-fallback fixture drift",
+      "v3.4.1.0 baseline reconciliation",
+      "026/000/006 packet",
+      "baseline reconciliation",
+      "vitest baseline recovery tasks",
+      "baseline triage",
+      "vitest baseline recovery summary",
+      "baseline implementation summary",
+      "vitest baseline recovery resource map"
+    ],
+    "key_topics": [
+      "vitest",
+      "baseline",
+      "recovery",
+      "failures",
+      "skill",
+      "advisor",
+      "scorer",
+      "projection-fallback",
+      "filesystem-fallback",
+      "fixture",
+      "drift",
+      "reconciliation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "scratch/vitest-baseline-pre-recovery.json",
+      "scratch/triage-inventory.json",
+      "scratch/triage-classification.json",
+      "scratch/vitest-baseline-post-recovery.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-baseline-pre-recovery.json",
+        "kind": "config",
+        "path": "scratch/vitest-baseline-pre-recovery.json",
+        "source": "derived"
+      },
+      {
+        "name": "triage-inventory.json",
+        "kind": "config",
+        "path": "scratch/triage-inventory.json",
+        "source": "derived"
+      },
+      {
+        "name": "triage-classification.json",
+        "kind": "config",
+        "path": "scratch/triage-classification.json",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-baseline-post-recovery.json",
+        "kind": "config",
+        "path": "scratch/vitest-baseline-post-recovery.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After Unit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Triage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Root",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Baseline Input",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Baseline Output",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After Unit A (memory search Clusters 4-7 remediation) shipped, a full-repo `pnpm vitest run` reported 198 failed tests across 166 files out of 11,829 total (11,587 passing)",
+    "created_at": "2026-05-08T21:35:00Z",
+    "last_save_at": "2026-11-10T05:45:58.117Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:06c505fa90488804d82d835d107f48203c1379e6867068aad91f9c842d593cde",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "65493cdad00787c632c6e4abf54454330826bdbf96d1df24d7d4760f27a09db4",
+      "plan.md": "7622b3732bea23ed7a9c1f03377f464403b85a5318bfec2d9b3ccab30f8e52fc",
+      "tasks.md": "eb8c951c8d0218bd2d203882b8a2d548ce203508b5eac7945abbb3224e55758f",
+      "implementation-summary.md": "a10b3c3fde68dcbe25e2bfd19165c02571727edb82235ccbddb927b9d1ea82f8",
+      "resource-map.md": "f7040efca136dc79d9d6105816011386f14438cf1ef620812cc12c3be32f8150"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

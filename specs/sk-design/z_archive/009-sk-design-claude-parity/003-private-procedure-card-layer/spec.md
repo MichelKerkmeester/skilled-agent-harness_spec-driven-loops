@@ -43,7 +43,7 @@ Phase 003 translated the fourteen external Claude design procedures into private
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-07-05 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Estimated LOC** | Documentation packet only; implementation LOC not estimated in this phase packet |
 <!-- /ANCHOR:metadata -->
 

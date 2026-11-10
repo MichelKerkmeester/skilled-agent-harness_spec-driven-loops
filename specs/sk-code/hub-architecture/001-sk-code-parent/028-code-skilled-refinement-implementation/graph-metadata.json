@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Execute the Fable-5-validated refinement backlog for the sk-code code-skilled surface sub-skill: 24 P1 + 21 P2 + 7 P3 documentation/asset fixes across ~14 files in 7 sequenced phases, plus the sk-code-owned C1 validator retirement. code-skilled is this repo's playbook for writing code in its own .opencode/ tree; the research proved it teaches patterns that fail to compile, fabricates removed hook infrastructure, and misses the verify-doctrine reality. This packet makes the docs describe reality; underlying-code bugs C2-C8 are handed off to owning surfaces, not implemented here.",
     "created_at": "2026-07-08T14:11:39.565Z",
-    "last_save_at": "2026-11-10T05:20:10.275Z",
+    "last_save_at": "2026-11-10T06:05:53.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75202d676e174e63cd31c8fac079d1ef4bd8649d044dc9d6860d00a9fbd4a96b",
+    "source_fingerprint": "sha256:2a6e85724a82f12f11553c6b63fed73c631f583ac5d1e284e004190f7ab7e7cf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d63fd358269172cb8ca4a99a72abd1a504bf759471ebe88663b6cea59cde16ef",
+      "spec.md": "1691b3bf44d51d5ca2827867ba649bc8b7abddc64de44bd44e239067e4e61710",
       "plan.md": "5511c6d075427b5ee3b92c18c805f34616e0cdcf9861ed64f877d250b76a1e5e",
       "tasks.md": "376656355352506e86917c4d2a6ce26b8d991642905bc4f59777f9afaffaecd0",
       "implementation-summary.md": "180bb7a49a35e7fe1c6d53bc91f6c873a2eed1dbd2cb8e666b2061408f0aed28"

@@ -73,7 +73,7 @@
       ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
       ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
-      "specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md",
+      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md",
       ".skilled/commands/doctor/scripts/release-update.cjs",
       ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
       ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
@@ -200,16 +200,16 @@
     ],
     "causal_summary": "The doctor command audit (packet 048) inspected every doctor target against the current checkout and applied its verdicts, but it deliberately recorded the defects it found in the subsystems the doctors inspect instead of fixing them",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-31T15:23:40.401Z",
+    "last_save_at": "2026-11-10T06:05:53.357Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4db19b540ae151e8fcf2c35857508a7e7608b782f37919b08070a61fa8b9d4cb",
+    "source_fingerprint": "sha256:ee9208eaab01c0a71272d2742529f1c6a2bbe66026dbfb1903c04f71a84f4fab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ad7f206505ca095de48b04dfd22bac0b868036e166a7ac16159fed7957309f21"
+      "spec.md": "312397a495ba97145d7adfeeca33b3503675e1a402469ef943b9877e44d1ef3e"
     },
     "last_active_child_id": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research",
     "last_active_at": "2026-10-04T08:38:47.405Z"

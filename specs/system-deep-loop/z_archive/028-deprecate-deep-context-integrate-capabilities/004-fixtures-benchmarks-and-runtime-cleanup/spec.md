@@ -58,7 +58,7 @@ Phase 004 is the final cleanup phase. It updates or retires active fixtures and 
 | **Priority** | P1 |
 | **Status** | Validated |
 | **Created** | 2026-07-04 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 4 of 4 |
 | **Predecessor** | `../003-discoverability-docs-mirrors-and-index/spec.md` |

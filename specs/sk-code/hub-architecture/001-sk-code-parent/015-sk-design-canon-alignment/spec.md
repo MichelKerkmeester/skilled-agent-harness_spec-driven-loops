@@ -51,7 +51,7 @@ _memory:
 | **Status** | Complete |
 | **Progress** | 100% — all canon gaps closed; STRICT parent-skill-check 0 failures |
 | **Created** | 2026-07-05 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent** | `.opencode/specs/sk-code/hub-architecture/001-sk-code-parent/` |
 
 <!-- /ANCHOR:metadata -->

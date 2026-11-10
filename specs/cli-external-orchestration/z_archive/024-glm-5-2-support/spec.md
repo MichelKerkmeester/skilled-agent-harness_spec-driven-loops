@@ -55,7 +55,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete (phases 1-6) |
 | **Created** | 2026-06-28 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | cli-external-orchestration/024-glm-5-2-support |
 | **Predecessor** | cli-external-orchestration/023-kimi-k2-7-code-support (pattern reference) |

@@ -31,7 +31,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Archived historical bundle; child docs retain mixed legacy status labels |
 | **Created** | 2026-03-18 |
-| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Branch** | `system-speckit/memory-search-and-knowledge/003-memory-search-intelligence` |
 | **Parent Spec** | `system-deep-loop` |
 | **Parent Packet** | `system-deep-loop` |
 | **Handoff Criteria** | Each child phase remains independently inspectable; parent validates under recursive phase-parent policy |

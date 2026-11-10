@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/015-node-llama-cpp-evaluation",
+  "spec_folder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/015-node-llama-cpp-evaluation",
+  "parent_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "015 node llama cpp evaluation",
+      "llama-cpp memory embeddings",
+      "node-llama-cpp embeddinggemma",
+      "Memory MCP GGUF provider",
+      "llama-cpp default flip",
+      "015 llama cpp plan",
+      "node llama cpp provider plan",
+      "015 llama cpp tasks",
+      "015 llama cpp summary",
+      "llama cpp benchmark result",
+      "node llama cpp evaluation done"
+    ],
+    "key_topics": [
+      "node",
+      "llama",
+      "cpp",
+      "evaluation",
+      "llama-cpp",
+      "memory",
+      "embeddings",
+      "node-llama-cpp",
+      "embeddinggemma",
+      "mcp",
+      "gguf",
+      "provider"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/bench-results.json",
+      "scratch/parity-results.txt",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      "scratch/bench-llama-cpp-vs-hf-local.ts",
+      "scratch/model-info.json",
+      "shared/embeddings/factory.ts",
+      "scratch/smoke-results.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "bench-results.json",
+        "kind": "config",
+        "path": "scratch/bench-results.json",
+        "source": "derived"
+      },
+      {
+        "name": "parity-results.txt",
+        "kind": "file",
+        "path": "scratch/parity-results.txt",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bench-llama-cpp-vs-hf-local.ts",
+        "kind": "code",
+        "path": "scratch/bench-llama-cpp-vs-hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "model-info.json",
+        "kind": "config",
+        "path": "scratch/model-info.json",
+        "source": "derived"
+      },
+      {
+        "name": "smoke-results.txt",
+        "kind": "file",
+        "path": "scratch/smoke-results.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Embedding Surface",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Keep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Metal",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Memory MCP local embedding path currently defaults to `hf-local`, which uses `@huggingface/transformers` with the ONNX EmbeddingGemma export and q8 dtype",
+    "created_at": "2026-05-13T09:52:09Z",
+    "last_save_at": "2026-11-10T05:46:20.809Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-13T09:56:14Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:184144ac26ca3a5a8f080db8557c28b9219b71e742acc6c55ce766b8581d42b2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a891fc4543156e6432d2993b43d3142d12c5687569797531825990e1ce771940",
+      "plan.md": "c535b3c1284bda8e3e2a4a66bb88a1838ac2e6d57fe417dfe551dccc687bbb65",
+      "tasks.md": "1dca3bc2272d89c2c33ef60aaa5abd5f342b5621a2c177b24b0ed058868034d3",
+      "implementation-summary.md": "09f404e57852c551c518a93c09c1dd5f9db7872fa3924e74a8ff9888391123bc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

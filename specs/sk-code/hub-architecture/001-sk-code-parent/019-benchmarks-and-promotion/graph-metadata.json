@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 124 parent-hub program is only complete after all three hub families have fresh, comparable Lane-C benchmark baselines, parent-skill-check migration checks 5-9 can be promoted from warning posture to failure posture, and the parent phase rollup metadata reflects phases 010-019 instead of the stale 001-009 child list",
     "created_at": "2026-07-05T05:46:27.012Z",
-    "last_save_at": "2026-11-10T05:20:09.954Z",
+    "last_save_at": "2026-11-10T06:05:53.672Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8dbd0f4f87eb3eeab2c860b7342c6d2b4e6fd94b1af916b886729a3d0dc8c9b9",
+    "source_fingerprint": "sha256:27420c002d05848a4b673c3d767c8d2534d74f4a02a4e4181fb1742f9a831f86",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a3b5a5b0822a2fd64c734af3d57c12eb94069864feb69125a53372c7724d2850",
+      "spec.md": "d40ce65148f6136cf0a56dda4c63a85a667acc33f4be482d19ab6d76a9455864",
       "plan.md": "4f26af3249f90c5851a71efc096c69d2e80176823d7bf6660618fd76a24e2118",
       "tasks.md": "f89ed50f5a77bd6e5b83c3661fca2fe14a2109644433bcefc850b4ea3f1739c9",
       "implementation-summary.md": "62fc4a7c61ab504b3a679da8418f0c4edfbb211e9a30e1f2bf04474f3ef923b3"

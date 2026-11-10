@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "system-speckit/spec-folder-tooling",
+  "description": "Creation, upgrade, numbering, and named sub-track support for spec folder trees.",
+  "keywords": [
+    "spec",
+    "folder",
+    "tooling"
+  ],
+  "lastUpdated": "2026-11-10T05:45:50.005Z",
+  "specId": "system-speckit/spec-folder-tooling",
+  "folderSlug": "spec-folder-tooling",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

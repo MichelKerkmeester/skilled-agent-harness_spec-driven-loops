@@ -1,0 +1,19 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/011-goal-drift-remediation",
+  "description": "Phase 11: goal-drift-remediation",
+  "keywords": [
+    "phase",
+    "goal-drift-remediation"
+  ],
+  "lastUpdated": "2026-09-27T12:00:15.131Z",
+  "specId": "011",
+  "folderSlug": "goal-drift-remediation",
+  "parentChain": [
+    "system-speckit",
+    "031-system-speckit-v4",
+    "038-goal-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

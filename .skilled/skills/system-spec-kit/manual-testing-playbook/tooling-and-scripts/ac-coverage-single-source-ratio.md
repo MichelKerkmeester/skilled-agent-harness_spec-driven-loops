@@ -1,7 +1,7 @@
 ---
 title: "M-013 -- AC_COVERAGE single-source ratio"
 description: "Verify the acceptance-coverage advisory takes its total and its evidence from one document, so a packet that recorded its criteria is never scored as if it had not."
-version: 2.0.1.0
+version: 2.0.2.0
 id: tooling-and-scripts-ac-coverage-single-source-ratio
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -46,7 +46,7 @@ One contract detail matters when reading a result: a criterion whose Status is `
 2. Read the advisory from a live packet whose criteria carry citations:
    ```bash
    bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh \
-     specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator --strict \
+     specs/system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator --strict \
      | grep AC_COVERAGE
    ```
 3. Build the shifted-column control — a criteria table with a column BEFORE `AC-ID`, one cited row and one prose row — and read the ratio:
@@ -88,7 +88,7 @@ Output (tail):
 Command:
 ```bash
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh \
-  specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator --strict | grep AC_COVERAGE
+  specs/system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator --strict | grep AC_COVERAGE
 ```
 
 Output:

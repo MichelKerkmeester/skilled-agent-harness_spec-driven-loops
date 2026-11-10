@@ -1,7 +1,7 @@
 ---
 title: "M-011 -- Review packet type marker-gated validation"
 description: "Verify the review packet type: the SPECKIT_LEVEL review marker waives plan/tasks/implementation-summary and requires only the lean review record plus review/review-report."
-version: 1.7.0.0
+version: 1.7.1.0
 id: tooling-and-scripts-review-packet-type-marker-gated-validation
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -53,31 +53,31 @@ The detected level is `review` (explicit method), the run never reports a missin
 
 ### Evidence
 
-Selected packet: `.opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation`
+Selected packet: `.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation`
 
 Command:
 ```bash
-grep -lE '<!-- SPECKIT_LEVEL: *review *-->' ".opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation/spec.md"
+grep -lE '<!-- SPECKIT_LEVEL: *review *-->' ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation/spec.md"
 ```
 
 Output:
 ```text
-.opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation/spec.md
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation/spec.md
 ```
 
 Command:
 ```bash
-ls ".opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation/review/review-report.md"
+ls ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation/review/review-report.md"
 ```
 
 Output:
 ```text
-.opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation/review/review-report.md
+.opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation/review/review-report.md
 ```
 
 Command:
 ```bash
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh ".opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation" --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation" --strict
 ```
 
 Output:
@@ -85,7 +85,7 @@ Output:
 
 Spec Folder Validation v3.0.0
 
-  Folder: .opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation
+  Folder: .opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation
   Level:  review
 
 + FILE_EXISTS: All required files present for Level review
@@ -125,7 +125,7 @@ RESULT: FAILED
 
 Exit-code check command:
 ```bash
-bash -c 'bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh ".opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation" --strict; status=$?; printf "\nEXIT_CODE=%s\n" "$status"'
+bash -c 'bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation" --strict; status=$?; printf "\nEXIT_CODE=%s\n" "$status"'
 ```
 
 Exit-code output:

@@ -46,7 +46,7 @@ When an inbox row targets an existing registry question but carries different te
 ---
 
 ## 2. TOPIC
-Review the conversation-scenario plan before building it. (1) The existing sk-create-manual-testing-playbook skill (templates, references, validate-playbook-package.cjs and its tests, the current 'Turn | Exact user input' chain tables in cli-claude-code, cli-cursor and local-obsidian playbooks): what to improve or reuse. (2) Phase 001-scenario-contract (the json conversation block, closed key set, validator rules) and 002-conversation-runner (tmux-driven runner, per-runtime adapters for Claude Code, OpenCode, Codex, Pi and Devin, scratch-project refusal, cleanup, matrix): should anything be changed, simplified, split, re-ordered or planned differently, and is anything missing? Check the feasibility claims per runtime against the cli-* skills and each CLI's --help (read-only; do not start long interactive sessions). (3) Whether the runner contract fits its first consumer, specs/system-speckit/043-decision-capture/006-live-conversation-test (stage marks PASS/FAIL/SKIP vs its PASS/FAIL/DEVIATION/N/A, per-stage state checks, saves, restart, kill switch). Cite code and spec lines.
+Review the conversation-scenario plan before building it. (1) The existing sk-create-manual-testing-playbook skill (templates, references, validate-playbook-package.cjs and its tests, the current 'Turn | Exact user input' chain tables in cli-claude-code, cli-cursor and local-obsidian playbooks): what to improve or reuse. (2) Phase 001-scenario-contract (the json conversation block, closed key set, validator rules) and 002-conversation-runner (tmux-driven runner, per-runtime adapters for Claude Code, OpenCode, Codex, Pi and Devin, scratch-project refusal, cleanup, matrix): should anything be changed, simplified, split, re-ordered or planned differently, and is anything missing? Check the feasibility claims per runtime against the cli-* skills and each CLI's --help (read-only; do not start long interactive sessions). (3) Whether the runner contract fits its first consumer, specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test (stage marks PASS/FAIL/SKIP vs its PASS/FAIL/DEVIATION/N/A, per-stage state checks, saves, restart, kill switch). Cite code and spec lines.
 
 ---
 
@@ -165,7 +165,7 @@ Continuity ladder: no handover.md; the parent is a phase parent with no implemen
 
 ### Bounded Context Snapshot
 
-- Source pointers: `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/` (SKILL.md, scripts/validate-playbook-package.cjs, scripts/tests/, assets/manual-testing-playbook-snippet-template.md, references/); `.skilled/skills/cli-external-orchestration/cli-*/`; `specs/system-speckit/043-decision-capture/006-live-conversation-test/`.
+- Source pointers: `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/` (SKILL.md, scripts/validate-playbook-package.cjs, scripts/tests/, assets/manual-testing-playbook-snippet-template.md, references/); `.skilled/skills/cli-external-orchestration/cli-*/`; `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/`.
 - Reuse candidates: the validator's prompt-sync copies and `chainTurnOnePrompt`, the test fixture, the cli-* skills' interactive and headless flag notes.
 - Integration points: the validator export consumed by the runner; the 043/006 goal and stage marks.
 - Constraints and risks: research is read-only; the sibling 043 run is active in parallel and its packet must not be touched.

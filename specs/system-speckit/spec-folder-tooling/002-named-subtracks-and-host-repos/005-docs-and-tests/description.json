@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/005-docs-and-tests",
+  "description": "Phase 5: docs-and-tests",
+  "keywords": [
+    "phase",
+    "docs-and-tests"
+  ],
+  "lastUpdated": "2026-11-08T01:44:32.816Z",
+  "specId": "005",
+  "folderSlug": "docs-and-tests",
+  "parentChain": [
+    "system-speckit",
+    "044-named-subtracks-and-host-repos"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "08-11-26_02-44__remediated-the-packet-044-deep-review-in-five.md"
+  ]
+}

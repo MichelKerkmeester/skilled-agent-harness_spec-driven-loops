@@ -51,8 +51,8 @@ The scan flagged placeholder objectives in 15 goals. Its objective test matches 
 - `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/015-review-confirmed-findings`
 - `specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door/009-deep-review-decommission`
 - `specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door/010-deep-research-residue`
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research`
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/012-open-items-research`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/012-open-items-research`
 
 ---
 
@@ -75,8 +75,8 @@ The scan flagged placeholder decision text in 17 goals and placeholder criterion
 - `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/015-review-confirmed-findings`
 - `specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door/009-deep-review-decommission`
 - `specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door/010-deep-research-residue`
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research`
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/012-open-items-research`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/012-open-items-research`
 
 The 15 objective-placeholder paths in section 3 are a subset of these 17; the two additional paths are the two `cli-jev` goals. The scan summary reports 17 goals with any placeholder marker, not 49 distinct goals, because the placeholder categories overlap. (`scratch/goal-corpus-scan.json:11-14,23-5510`; `scratch/goal-corpus-scan.cjs:57-60,81-90`.)
 
@@ -108,20 +108,20 @@ The scan counted 36 goals with fewer than three or more than seven checked compl
 - `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening` — 10.
 - `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/scratch` — 0.
 - `specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door` — 8.
-- `specs/system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/003-restore-level-upgrade-and-vocabulary-invariance` — 2.
-- `specs/system-speckit/031-system-speckit-v4/019-memory-decommission-branch-landing` — 8.
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/anchor-inject/ws/specs/t/001-fixture` — 1.
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/broken-fence` — 0.
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/frontmatter-boundary/exact-fence` — 1.
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/frontmatter-boundary/no-frontmatter-at-all` — 1.
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/frontmatter-boundary/trailing-space-fence` — 1.
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/hostile/outside` — 1.
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/hostile/ws/specs/t/001-fixture` — 1.
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/replay/ws/specs/t/001-alpha` — 1.
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/ws/specs/t/001-fixture` — 1.
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/009-close-open-decisions` — 8.
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification/011-goal-drift-remediation` — 11.
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification` — 8.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/008-template-contracts-and-acceptance-criteria/003-restore-level-upgrade-and-vocabulary-invariance` — 2.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/019-memory-decommission-branch-landing` — 8.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/anchor-inject/ws/specs/t/001-fixture` — 1.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/broken-fence` — 0.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/frontmatter-boundary/exact-fence` — 1.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/frontmatter-boundary/no-frontmatter-at-all` — 1.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/frontmatter-boundary/trailing-space-fence` — 1.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/hostile/outside` — 1.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/hostile/ws/specs/t/001-fixture` — 1.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/replay/ws/specs/t/001-alpha` — 1.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/ws/specs/t/001-fixture` — 1.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/009-close-open-decisions` — 8.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/011-goal-drift-remediation` — 11.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification` — 8.
 
 The scan includes scratch fixture paths because its scope is every discovered non-archive `goal.md`; it does not limit the count to phase-parent and phase-child roles. (`scratch/goal-corpus-scan.cjs:14-21,37-47,63-70`.)
 
@@ -142,13 +142,13 @@ The 16 exact per-child-row packets are:
 - `specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode`
 - `specs/sk-git/commit-standards/001-crawlable-commit-history`
 - `specs/system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement`
-- `specs/system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria`
-- `specs/system-speckit/031-system-speckit-v4/010-goal-file-addon`
-- `specs/system-speckit/031-system-speckit-v4/014-daemon-and-test-harness-hardening`
-- `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission`
-- `specs/system-speckit/031-system-speckit-v4/032-recorded-findings-closure`
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification`
-- `specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/008-template-contracts-and-acceptance-criteria`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/014-daemon-and-test-harness-hardening`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/032-recorded-findings-closure`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/041-skilled-source-root-migration`
 
 The 39 range, glob or prose-style packets are:
 
@@ -189,8 +189,8 @@ The 39 range, glob or prose-style packets are:
 - `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review`
 - `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening`
 - `specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door`
-- `specs/system-speckit/031-system-speckit-v4/019-memory-decommission-branch-landing`
-- `specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/019-memory-decommission-branch-landing`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research`
 
 ---
 
@@ -208,8 +208,8 @@ Twelve packets have one or more detected phase children without a `goal.md`. The
 - `specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter` — 7 lack a goal.
 - `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review` — 2 deeper child folders lack a goal; this row is itself a phase-child goal.
 - `specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door` — 3 lack a goal.
-- `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission` — 1 lacks a goal; this row is itself a phase-child goal.
-- `specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration` — 10 deeper child folders lack a goal; this row is itself a phase-child goal.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission` — 1 lacks a goal; this row is itself a phase-child goal.
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/041-skilled-source-root-migration` — 10 deeper child folders lack a goal; this row is itself a phase-child goal.
 
 The scan's `parentsWithUnboundChildren` count is 0, but its algorithm only compares children with goals against paths parsed from exact per-child rows. It leaves `unboundChildren` empty for range, glob or prose tables. Therefore zero is not evidence that the broader binding styles cover every phase. (`scratch/goal-corpus-scan.json:15-21,23-5510`; `scratch/goal-corpus-scan.cjs:50-56,91`.)
 
@@ -261,15 +261,15 @@ Forty goals classified as phase children also carry a binding section. This coun
 - `specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing`
 - `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review`
 - `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening`
-- `specs/system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria`
-- `specs/system-speckit/031-system-speckit-v4/010-goal-file-addon`
-- `specs/system-speckit/031-system-speckit-v4/014-daemon-and-test-harness-hardening`
-- `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission`
-- `specs/system-speckit/031-system-speckit-v4/019-memory-decommission-branch-landing`
-- `specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research`
-- `specs/system-speckit/031-system-speckit-v4/032-recorded-findings-closure`
-- `specs/system-speckit/031-system-speckit-v4/038-goal-unification`
-- `specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/008-template-contracts-and-acceptance-criteria`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/014-daemon-and-test-harness-hardening`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/019-memory-decommission-branch-landing`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/032-recorded-findings-closure`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification`
+- `specs/system-speckit/runtime-and-release/001-system-speckit-v4/041-skilled-source-root-migration`
 
 ---
 
@@ -289,11 +289,11 @@ Section 4 of `wave1-goal-system-audit.md` cites four defect examples: a child pl
 
 **Placeholder objective and criteria.** Command: `node .skilled/hooks/goal/bin/goal.cjs packet specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite --workspace "$PWD"`. Relevant output: `packet_durable_chars=1718`, `packet_budget=unknown`, and the `chat_slice` contains `**Objective:** [One sentence. What this packet is for. Not how, not progress.]`, `| D1 | [The decision, stated so a reader can tell whether work honors it] |` and `[A check whose answer is an exit code, a count, or a named artifact]`. Exit status: 0. (`scratch/wave1-goal-system-audit.md:41`; goal file: `specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite/goal.md:43`; observed CLI output.)
 
-**Criterion requiring another file to judge.** Command: `node .skilled/hooks/goal/bin/goal.cjs packet specs/system-speckit/031-system-speckit-v4/010-goal-file-addon --workspace "$PWD"`. Relevant output: the `objective_slice` includes `- Every phase reports its acceptance criteria closeable`, while the goal's completion anchor says criteria should be checkable without opening another file. Exit status: 0. Calling that criterion dependent on other files is a human judgment, not a scan count. (`scratch/wave1-goal-system-audit.md:42`; `specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/goal.md:84-90`; observed CLI output.)
+**Criterion requiring another file to judge.** Command: `node .skilled/hooks/goal/bin/goal.cjs packet specs/system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon --workspace "$PWD"`. Relevant output: the `objective_slice` includes `- Every phase reports its acceptance criteria closeable`, while the goal's completion anchor says criteria should be checkable without opening another file. Exit status: 0. Calling that criterion dependent on other files is a human judgment, not a scan count. (`scratch/wave1-goal-system-audit.md:42`; `specs/system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/goal.md:84-90`; observed CLI output.)
 
 **Criterion says six children while the binding rows name eight.** Command: `node .skilled/hooks/goal/bin/goal.cjs packet specs/sk-git/commit-standards/001-crawlable-commit-history --workspace "$PWD"`. Relevant output: `packet_durable_chars=5758`, `packet_budget=over`, the objective slice includes `all six children`, and the `chat_slice` binding table contains rows 001 through 008. Exit status: 0. (`scratch/wave1-goal-system-audit.md:43`; `specs/sk-git/commit-standards/001-crawlable-commit-history/goal.md:81-90,100-115`; observed CLI output.)
 
-**Phase 007 exists in the phase map but has no child goal or binding row.** Command: `node .skilled/hooks/goal/bin/goal.cjs packet specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission --workspace "$PWD"`. Relevant output: the `chat_slice` binding rows end at `006-legacy-memory-surface-inventory`; the parent criterion text is also printed. Exit status: 0. The phase map names `007-deep-review-remediation` at `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/spec.md:164`. Command: `ls -l specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/007-deep-review-remediation/goal.md`. Relevant output: `No such file or directory`. Exit status: 1. Command: `find specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission -mindepth 2 -maxdepth 2 -type f -name goal.md -print | sort`. Relevant output: six child `goal.md` paths for phases 001 through 006, with no phase-007 path. Exit status: 0. (`scratch/wave1-goal-system-audit.md:44`; parent goal: `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md:66-73`; observed command outputs.)
+**Phase 007 exists in the phase map but has no child goal or binding row.** Command: `node .skilled/hooks/goal/bin/goal.cjs packet specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission --workspace "$PWD"`. Relevant output: the `chat_slice` binding rows end at `006-legacy-memory-surface-inventory`; the parent criterion text is also printed. Exit status: 0. The phase map names `007-deep-review-remediation` at `specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/spec.md:164`. Command: `ls -l specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/007-deep-review-remediation/goal.md`. Relevant output: `No such file or directory`. Exit status: 1. Command: `find specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission -mindepth 2 -maxdepth 2 -type f -name goal.md -print | sort`. Relevant output: six child `goal.md` paths for phases 001 through 006, with no phase-007 path. Exit status: 0. (`scratch/wave1-goal-system-audit.md:44`; parent goal: `specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/goal.md:66-73`; observed command outputs.)
 
 **Phase scaffold does not create the parent goal.** `create.sh` was not run. The parent goal log records the `create.sh --phase --level 2 --with-goal --track sk-doc --number 060` scaffold and states that it wrote child `goal.md` files but no parent goal; it records that this parent was rendered separately with the inline renderer at `--level phase`. (`specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/goal.md:129,137`.) The script source builds the fresh phase parent spec, then calls `scaffold_contract_docs` inside the loop that creates each child; that contract helper adds `goal.md` when `WITH_GOAL` is true. (`.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1275-1336,1492-1504,444-464`.)
 
@@ -303,6 +303,6 @@ Section 4 of `wave1-goal-system-audit.md` cites four defect examples: a child pl
 
 Criterion self-checkability is a human-review list, not a corpus count. The scan counts checkbox bullets but does not determine whether another file is needed to judge a criterion. (`scratch/goal-corpus-scan.cjs:46-47,69-70`; `.skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:99-105`.)
 
-- In `specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/goal.md:89`, “Every phase reports its acceptance criteria closeable” depends on knowing the acceptance state of each phase; judging it self-contained requires reviewing the referenced phase evidence. This is a human judgment.
+- In `specs/system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/goal.md:89`, “Every phase reports its acceptance criteria closeable” depends on knowing the acceptance state of each phase; judging it self-contained requires reviewing the referenced phase evidence. This is a human judgment.
 - In `specs/sk-git/commit-standards/001-crawlable-commit-history/goal.md:111`, the criterion says “all six children,” while the same goal lists eight binding rows at `specs/sk-git/commit-standards/001-crawlable-commit-history/goal.md:83-90`. The mismatch is observable in the document; deciding its intended meaning is human review.
-- The audit describes child objectives in `specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:43`, `specs/sk-git/commit-standards/001-crawlable-commit-history/002-format-decision/goal.md:43` and `specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template/goal.md:43` as phase-specific rather than progress reports. That qualitative distinction is judgment, not a measured scan field. (`scratch/wave1-goal-system-audit.md:45`; the three cited goal lines.)
+- The audit describes child objectives in `specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:43`, `specs/sk-git/commit-standards/001-crawlable-commit-history/002-format-decision/goal.md:43` and `specs/system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template/goal.md:43` as phase-specific rather than progress reports. That qualitative distinction is judgment, not a measured scan field. (`scratch/wave1-goal-system-audit.md:45`; the three cited goal lines.)

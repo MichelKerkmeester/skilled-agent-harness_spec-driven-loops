@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/001-system-speckit-v4",
+  "spec_folder": "system-speckit/runtime-and-release/001-system-speckit-v4",
+  "parent_id": "system-speckit/runtime-and-release",
+  "children_ids": [
+    "system-speckit/runtime-and-release/001-system-speckit-v4/001-plan-preflight-track-packets",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/002-daemon-reaper-orphan-classification",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/005-skills-runtime-state-consolidation",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/006-derived-metadata-repair-tool",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/007-completion-gate-coherence",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/008-template-contracts-and-acceptance-criteria",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/009-validation-rule-reduction",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/011-graph-metadata-write-containment",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/012-repair-write-symlink-refusal",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/013-repair-handle-containment",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/014-daemon-and-test-harness-hardening",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/015-apply-path-and-candidate-filter-fixes",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/016-sequential-thinking-residue-removal",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/018-single-segment-packet-pointer",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/019-memory-decommission-branch-landing",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/020-runtime-package-rename",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/021-decommission-debt-and-cli-nesting",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/022-shared-containment-helper",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/023-trigger-index-root-and-drift-fixes",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/024-metadata-regeneration-and-shared-parser",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/025-docs-reality-alignment-research",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/026-runtime-code-standards-research",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/027-doc-path-strict-mode-and-retired-capability-fixes",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/028-header-tags-hook-catch-and-script-test-fixes",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/029-goal-operator-resync-rule",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/031-ci-shared-package-resolution",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/032-recorded-findings-closure",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/033-ci-dependency-hardening",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/034-v4-state-inventory-research",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/035-v4-changelog-draft-update",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/036-spec-doc-healer",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/037-derived-artifact-registry",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/039-entry-point-symlink-resolution",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/040-gate-3-option-merge",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/041-skilled-source-root-migration",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/042-v4-doc-freshness",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/043-v4-root-readme",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/044-v4-changelog-late-cycle-entries",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/045-v4-changelog-voice-rewrite",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/046-v4-changelog-remediation",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/047-v4-changelog-review-fixes",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/048-gate-3-mutation-time-delivery",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/049-gate-3-delivery-residue",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/050-ci-cleanup-pi-proof",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/051-save-writer-continuity-fields",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/052-core-template-canonical-markers",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/053-legacy-template-default-detection",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/054-ci-cleanup-follow-ups",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/055-advisory-false-alarms",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/056-corpus-manifest-build-state",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/058-upgrade-level-section-fragments",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/059-phase-map-sync-normalization",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/060-save-resume-pointer-truth",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/061-worktree-build-provisioning",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/062-v4-parent-data-repairs",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/063-cli-codex-dispatch-rules",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/064-cli-devin-cursor-dispatch-rules",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/065-cli-hermes-pi-dispatch-rules",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/066-pre-v4-spec-upgrade",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/067-root-docs-and-git-hook-disclosure",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/068-v4-0-0-3-release-deep-review",
+    "system-speckit/runtime-and-release/001-system-speckit-v4/069-v4-0-0-3-review-remediation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system speckit v4",
+      "spec kit v4 timeline",
+      "memory decommission history",
+      "template reduction history",
+      "phase parent"
+    ],
+    "key_topics": [
+      "system",
+      "speckit",
+      "spec",
+      "kit",
+      "timeline",
+      "memory",
+      "decommission",
+      "history",
+      "template",
+      "reduction",
+      "phase",
+      "parent"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Thirty",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Hold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Thirty-eight packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-12 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
+    "created_at": "2026-09-06T06:42:39Z",
+    "last_save_at": "2026-11-10T05:47:58.062Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:d9994fef3d1737b249c8411642ef4552a7bac9e9265177c0c14e6074494f631b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d04cc4d5617633cba6a520d2850bfbd01e2b800a767706c4f1c64cf4cae16ea9"
+    },
+    "last_active_child_id": "system-speckit/runtime-and-release/001-system-speckit-v4/069-v4-0-0-3-review-remediation",
+    "last_active_at": "2026-10-06T17:42:01.436Z"
+  }
+}

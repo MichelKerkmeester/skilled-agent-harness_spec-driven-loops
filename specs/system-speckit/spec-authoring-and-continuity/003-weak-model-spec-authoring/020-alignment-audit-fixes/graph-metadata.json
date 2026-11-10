@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/020-alignment-audit-fixes",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/020-alignment-audit-fixes",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment audit fixes",
+      "phase 20 alignment audit fixes",
+      "alignment audit fixes plan",
+      "alignment audit fixes tasks",
+      "alignment audit fixes acceptance criteria",
+      "alignment audit fixes goal",
+      "alignment audit fixes implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "audit",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "new",
+      "draft-auto-repair"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/audit/scope2.txt",
+      "scratch/review.md",
+      "runtime/cli/evals/import-policy-allowlist.json",
+      "runtime/cli/spec/check-example-drift.sh",
+      "runtime/cli/lib/status-classifier.sh",
+      "runtime/cli/rules/check-measured-behavior.sh",
+      "runtime/lib/validation/orchestrator.ts",
+      "changelog/v2.9.0.0.md",
+      "changelog/v2.12.1.0.md",
+      "runtime/cli/spec/README.md",
+      ".skilled/commands/README.txt",
+      ".skilled/commands/speckit/README.txt",
+      ".skilled/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope2.txt",
+        "kind": "file",
+        "path": "scratch/audit/scope2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": "scratch/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "import-policy-allowlist.json",
+        "kind": "config",
+        "path": "runtime/cli/evals/import-policy-allowlist.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-example-drift.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/check-example-drift.sh",
+        "source": "derived"
+      },
+      {
+        "name": "status-classifier.sh",
+        "kind": "script",
+        "path": "runtime/cli/lib/status-classifier.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-measured-behavior.sh",
+        "kind": "script",
+        "path": "runtime/cli/rules/check-measured-behavior.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "v2.9.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.9.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.12.1.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.12.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Four Opus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The new `draft-auto-repair.vitest.ts` imports the internal validation orchestrator, so the CLI AST import check exits 1 and the `npm run check` gate in CI fails (Measured Behavior below)",
+    "created_at": "2026-10-26T19:01:01Z",
+    "last_save_at": "2026-11-10T05:48:34.472Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e9adc5e18fdabee25df1cff635b069340956321ab8b880b292f9c6d4ec178e4c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3783595e20461173deb157ad2f85b9a52c7dc2d8c969e48ea71ad5ca7da299cd",
+      "plan.md": "348438a06dd519b77b803472f8468d1d17e27e1cff6253e29d31338d8ecf91b4",
+      "tasks.md": "d9cb658d545e04c913650fa1c22c112389a7a4d2322b78f1bc620f50c5e92760",
+      "implementation-summary.md": "3cd961570850617108105611afb21e54300f2364bc04f1963654ca83bfa22227"
+    },
+    "last_active_at": null
+  }
+}

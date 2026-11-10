@@ -59,7 +59,7 @@
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
-      "specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md",
+      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md",
       "scratch/baseline-check.json"
     ],
     "entities": [
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`generate-trigger-index.mjs --check --json` exits 1 on this checkout: the committed index is stale (176 documents differ, 175 indexed paths are missing, 23,052 documents scanned in the planning run) and the corpus manifest hash has moved past the index's",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-31T15:23:40.876Z",
+    "last_save_at": "2026-11-10T06:05:53.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b939eb24e5fbc2ff61817f202264118510b6a4f2da484f4fa1b9873d8e1cd252",
+    "source_fingerprint": "sha256:f9be69979b5cec08b96c91e4498d055f1622b476727d9e0f08fffdcbec30783a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "090635e344642d7df61f0038e7fc89f4aed0e836928e0072d133f397bc9143da",
-      "plan.md": "854211602555bf46318bee50ca578d7c96ad6b53f96f9eda8773a519660c4f26",
-      "tasks.md": "9ec188271b13d19f4dd548230cee71d894d031189cab540f5733ecb293ab6691",
-      "decision-record.md": "ebf05ada5c48484bd86b2fd41c45b84503714fc9a3c5b08c5647bc49f83c0eec",
+      "spec.md": "c349728d0037a56160f932a5b3414b6d019c8cedb101322e5fd349ce5a92e98e",
+      "plan.md": "d9050d912cdaa10b81d8628cb342a45c300de58b7e683a6f83f6bc93c4a716f2",
+      "tasks.md": "61df6344328ca47639720b44b226d6f3519ae59d789bf4e612f86364feda53e6",
+      "decision-record.md": "8a40bcfe9600898d3c1e8af1bc09c818458bc87cdd12b266e57cba163ce0a4b9",
       "implementation-summary.md": "7005e2a8e9b062397a889b7c704b552dda1c82b04f54f91728b3f2f0c7a17f7e"
     },
     "last_active_at": null
