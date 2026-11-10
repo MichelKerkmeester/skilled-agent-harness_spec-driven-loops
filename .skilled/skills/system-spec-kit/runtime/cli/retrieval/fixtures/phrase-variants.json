@@ -1,5 +1,5 @@
 {
-  "manifestHash": "452a5db909ff9d4931844fab6f43f40c394ba288b99f466ce823ba57378116d7",
+  "manifestHash": "bea9f1534c8359249267fb378319cc802f35847acf8ad849b7ab6ef26f3eb153",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1494,6 +1494,9 @@
     ],
     "005 tasks q4 quantization": [
       "005 tasks q4 quantization"
+    ],
+    "005 test cycle speed operator decisions": [
+      "005-test-cycle-speed operator decisions"
     ],
     "005 vestigial embedding readiness gate removal": [
       "005-vestigial-embedding-readiness-gate-removal"
@@ -17349,6 +17352,9 @@
     "changelog section spacing implementation summary": [
       "changelog section spacing implementation summary"
     ],
+    "changelog sentence length": [
+      "changelog sentence length"
+    ],
     "changelog shape checker": [
       "changelog shape checker"
     ],
@@ -17402,6 +17408,9 @@
     ],
     "changelog template default phrases": [
       "changelog template default phrases"
+    ],
+    "changelog test count rule": [
+      "changelog test count rule"
     ],
     "changelog topology edge cases": [
       "changelog topology edge cases"
@@ -57752,6 +57761,9 @@
     "how is the version field derived": [
       "how is the version field derived"
     ],
+    "how it was checked": [
+      "how it was checked"
+    ],
     "how to author a behavior benchmark": [
       "how to author a behavior benchmark"
     ],
@@ -60988,6 +61000,9 @@
     ],
     "kebab to snake convention": [
       "kebab-to-snake convention"
+    ],
+    "keep a published release in step": [
+      "keep a published release in step"
     ],
     "keep a workflow skill above the cli hub": [
       "keep a workflow skill above the cli hub"
@@ -90408,6 +90423,21 @@
     "release updater repair timeline": [
       "release updater repair timeline"
     ],
+    "release writing defaults": [
+      "release writing defaults"
+    ],
+    "release writing defaults changelog detail short sentences": [
+      "release writing defaults changelog detail short sentences"
+    ],
+    "release writing defaults implementation summary": [
+      "release writing defaults implementation summary"
+    ],
+    "release writing defaults plan": [
+      "release writing defaults plan"
+    ],
+    "release writing defaults tasks": [
+      "release writing defaults tasks"
+    ],
     "relevance aware detector redesign": [
       "relevance-aware detector redesign"
     ],
@@ -104705,6 +104735,9 @@
     "sk create changelog 1 4 3 0": [
       "sk-create-changelog 1.4.3.0"
     ],
+    "sk create changelog 1 5 0 0": [
+      "sk-create-changelog 1.5.0.0"
+    ],
     "sk create changelog concise default": [
       "sk-create-changelog concise default"
     ],
@@ -104809,6 +104842,9 @@
     ],
     "sk create changelog v1 4 3 0": [
       "sk-create-changelog v1.4.3.0"
+    ],
+    "sk create changelog v1 5 0 0": [
+      "sk-create-changelog v1.5.0.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -107087,6 +107123,9 @@
     "sk doc 2 9 7 0": [
       "sk-doc 2.9.7.0"
     ],
+    "sk doc 2 9 8 0": [
+      "sk-doc 2.9.8.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -107563,6 +107602,9 @@
     ],
     "sk doc v2 9 7 0": [
       "sk-doc v2.9.7.0"
+    ],
+    "sk doc v2 9 8 0": [
+      "sk-doc v2.9.8.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -119783,6 +119825,21 @@
     ],
     "test bloat": [
       "test bloat"
+    ],
+    "test cycle speed": [
+      "test cycle speed"
+    ],
+    "test cycle speed cut the spec kit suite": [
+      "test cycle speed cut the spec kit suite"
+    ],
+    "test cycle speed implementation summary": [
+      "test cycle speed implementation summary"
+    ],
+    "test cycle speed plan": [
+      "test cycle speed plan"
+    ],
+    "test cycle speed tasks": [
+      "test cycle speed tasks"
     ],
     "test daemon fixes fresh session": [
       "test daemon fixes fresh session"

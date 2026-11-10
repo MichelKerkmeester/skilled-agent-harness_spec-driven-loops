@@ -1,5 +1,5 @@
 {
-  "corpusHash": "628dc0b69d6b62adfe0ee8b63c84675cf13732846243fd28d1effce7a98e4746",
+  "corpusHash": "27f1ab53f1199bb54602b45d608b7b6a04d351fd89bd330f49427d41e68ae724",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26027,
+  "includedPathCount": 26038,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6482,6 +6482,7 @@
     ".skilled/skills/sk-doc/changelog/v2.9.5.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.6.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.7.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.8.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
@@ -6702,6 +6703,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.1.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.2.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.3.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -14602,6 +14604,10 @@
     "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/decision-record.md",
     "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/goal.md",
     "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/spec.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults/implementation-summary.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults/plan.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults/spec.md",
+    "specs/sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults/tasks.md",
     "specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches/acceptance-criteria.md",
     "specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches/implementation-summary.md",
     "specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches/plan.md",
@@ -25379,6 +25385,11 @@
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/goal.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/research/research.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/spec.md",
+    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/decision-record.md",
+    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/plan.md",
+    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/spec.md",
+    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/spec.md",
@@ -26059,7 +26070,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "452a5db909ff9d4931844fab6f43f40c394ba288b99f466ce823ba57378116d7",
+  "manifestHash": "bea9f1534c8359249267fb378319cc802f35847acf8ad849b7ab6ef26f3eb153",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31430,6 +31441,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches/review/lineages",
       "reason": "excluded directory"
     },
@@ -36287,6 +36302,10 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/research/verification",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/005-test-cycle-speed/scratch",
       "reason": "excluded directory"
     },
     {

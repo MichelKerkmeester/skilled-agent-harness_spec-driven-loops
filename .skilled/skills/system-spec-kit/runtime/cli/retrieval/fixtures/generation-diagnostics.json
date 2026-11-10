@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6683,
-    "ok": 17715,
+    "ok": 17726,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26027,
+  "documentsScanned": 26038,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "452a5db909ff9d4931844fab6f43f40c394ba288b99f466ce823ba57378116d7",
+  "manifestHash": "bea9f1534c8359249267fb378319cc802f35847acf8ad849b7ab6ef26f3eb153",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42128,
+      "ok": 42147,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -56917,6 +56917,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches/review/lineages",
       "reason": "excluded directory"
     },
@@ -61774,6 +61778,10 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/research/verification",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/005-test-cycle-speed/scratch",
       "reason": "excluded directory"
     },
     {
