@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3f18b91c0d66c971e77b97129460d2e1e790666c7877016c04776489ba056719",
+  "corpusHash": "6ad9024d780007aca060d0ae1ad819af79bd24aef8715247c35278627eb823d6",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26044,
+  "includedPathCount": 26046,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2148,6 +2148,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.9.1.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.10.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.11.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.9.12.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.2.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.3.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.4.0.md",
@@ -2358,6 +2359,7 @@
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.18.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.19.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.2.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.20.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.4.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.5.0.md",
@@ -26076,7 +26078,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1dcd6492c2718845aa5c7243bd6576d1bd2edf4398f4cee8d371724346e04ad3",
+  "manifestHash": "76fac3cfdaa722fb990717a9d0c6327767c4b8d5b3580a522d35e302cfa0ded5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
