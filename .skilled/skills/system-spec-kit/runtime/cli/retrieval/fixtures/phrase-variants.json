@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6d518630cb7521ffec57f45b27c5ea8ca778997351e6db39bbb8e795c09f46ad",
+  "manifestHash": "b051fc2f06725407f06f47a67b5b81919e3ad284c018dcbf2fe27188a5afe72d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -77797,6 +77797,9 @@
     "patch a notion page s properties": [
       "patch a Notion page's properties"
     ],
+    "patched node releases required": [
+      "patched node releases required"
+    ],
     "path and count recipes take the limit": [
       "path and count recipes take the limit"
     ],
@@ -113180,6 +113183,9 @@
     ],
     "spec template optimizations plan": [
       "spec template optimizations plan"
+    ],
+    "spec tracks grouped into sub tracks": [
+      "spec tracks grouped into sub-tracks"
     ],
     "spec trailer containment": [
       "spec trailer containment"
