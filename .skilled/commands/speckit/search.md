@@ -41,7 +41,7 @@ Guardrails:
 | Presentation | `.skilled/commands/speckit/assets/search-presentation.txt` |
 | Retrieval contract | `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` |
 
-This is a direct-dispatch command: it runs a local lookup script and `rg` directly, and owns no workflow YAML by design. Nothing it calls needs a background service.
+This is a direct-dispatch command: it runs a local lookup script, the local `rg-wrapper.mjs` and `rg`, and owns no workflow YAML by design. Nothing it calls needs a background service.
 
 Before asking startup questions or displaying results, read the presentation asset and use it as the display source of truth. Read the retrieval contract before composing any recipe.
 
@@ -94,23 +94,23 @@ The ripgrep recipes from `retrieval-conventions.md` Section 2. Pick exactly one 
 
 | Request shape | Recipe | Output mode |
 | --- | --- | --- |
-| Line-addressable evidence (default) | Section 2.1 | `--json` |
+| Line-addressable evidence (default) | Section 2.1, run by `rg-wrapper.mjs structured` | `--json` |
 | Which files mention it (`--paths`) | Section 2.2 | `--files-with-matches` |
 | How many times (`--count`) | Section 2.3 | `--count` |
 | Evidence with surrounding lines, or anchor labelling | Section 2.4 | `--json -C 2` |
 
-Structured JSONL, the default:
+Structured evidence, the default, runs through the wrapper. It composes the Section 2.1 recipe itself, keeps the first-ranked row per file and cuts at 20 files, so a common phrase cannot flood the answer:
 
 ```bash
-rg --no-config --hidden --json --fixed-strings --ignore-case \
-  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' \
-  -- '<QUERY>' specs .skilled
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs structured '<QUERY>' --json
 ```
 
-1. Resolve the search roots. Narrow by positional path, never by pattern: `specs .skilled` for everything, `specs/<track>` for one track, `specs/<track>/<sub-track>` for one declared sub-track, `specs/<track>/<NNN-name>` for one packet, `specs/<track>/<sub-track>/<NNN-name>` for a packet inside a sub-track, `specs/<track>/<NNN-name>/<NNN-child-name>` for one phase child. `--packet <specFolder>` replaces the roots with that path.
+Narrow with one `--search-root <path>` per root in place of the default `specs .skilled`. Pass `--limit <n>` when the user asks for more files, and `--limit 0` for all of them. The record's `command` field is the exact `rg` line that ran. The wrapper reads a phrase that starts with `--` as a flag and exits `2`; run the raw Section 2.1 recipe for that phrase instead. The other three modes run their recipe directly.
+
+1. Resolve the search roots. Narrow by path, never by pattern: `specs .skilled` for everything, `specs/<track>` for one track, `specs/<track>/<sub-track>` for one declared sub-track, `specs/<track>/<NNN-name>` for one packet, `specs/<track>/<sub-track>/<NNN-name>` for a packet inside a sub-track, `specs/<track>/<NNN-name>/<NNN-child-name>` for one phase child. `--packet <specFolder>` replaces the roots with that path.
 2. Run exactly one recipe. Never combine `--json` with the path-only or count mode: ripgrep does not reject the combination, the last output-mode flag wins silently, and a JSONL parser handed count output sees an empty result rather than an error.
 3. Branch on the exit status: `0` = matches, `1` = no match returned as an empty result, `2` or higher = an execution or configuration error.
-4. Order results with the ranking tuple in `retrieval-conventions.md` Section 5 — evidence field, then normalized match class, then relative path and one-based line. Ripgrep supplies matches, paths and lines; it never ranks relevance, and no rendered output may imply that it does.
+4. Keep the wrapper's `results` in the order it returned them: it already applied the ranking tuple in `retrieval-conventions.md` Section 5 — evidence field, then normalized match class, then relative path and one-based line. Order raw-recipe output with the same tuple. Ripgrep supplies matches, paths and lines; it never ranks relevance, and no rendered output may imply that it does.
 5. To label anchor evidence, search for the marker itself (`<!-- ANCHOR:id -->`) and treat a line inside a matched pair as anchor evidence. Report an unmatched or orphan marker as a diagnostic rather than dropping it.
 6. Render with the Section 3 contract in the presentation asset.
 

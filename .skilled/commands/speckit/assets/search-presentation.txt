@@ -119,7 +119,7 @@ Rules:
 - Ripgrep produces matches, never a relevance ranking. Order rows with the Section 5 ranking tuple from `retrieval-conventions.md`: evidence field, then match class, then path and line. Never imply the tool ranked anything.
 - Do not invent a numeric score for this lane. There is none. A row carries a field, a class, a path and a line, and that is the whole record.
 - The `(+N more in this file)` suffix and the `HIDDEN` slot come from a `rg-wrapper.mjs` record with `schemaVersion: 2`, which keeps the first-ranked row per file and cuts at `--limit` files (default 20, `--limit 0` uncapped). Omit the suffix when `moreInFile` is 0.
-- When the structured lane ran the raw Section 2.1 recipe instead of the wrapper, there is no per-file shaping and no hidden count: omit the suffix and the `HIDDEN` slot, and report `RESULTS` as the matches rendered. Omit `HIDDEN` for path-only and count recipes too.
+- `/speckit:search` runs the structured lane through the wrapper. When a phrase that starts with `--` forced the raw Section 2.1 recipe instead, there is no per-file shaping and no hidden count: omit the suffix and the `HIDDEN` slot, and report `RESULTS` as the matches rendered. Omit `HIDDEN` for path-only and count recipes too.
 - Label a line inside an `<!-- ANCHOR:id -->` block as `anchor`, established by searching for the marker itself.
 - Report an unmatched or orphan anchor marker as a diagnostic line, never by silently dropping it.
 - One output mode per invocation. Never combine `--json` with the path-only or count modes; the last flag wins silently and a JSONL parser reads count output as empty.

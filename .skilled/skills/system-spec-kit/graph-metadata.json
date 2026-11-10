@@ -87,7 +87,11 @@
     "compacted session",
     "before this compaction",
     "earlier turns",
-    "history entry"
+    "history entry",
+    "spec docs",
+    "spec and skill docs",
+    "ripgrep retrieval",
+    "ripgrep wrapper"
   ],
   "derived": {
     "trigger_phrases": [

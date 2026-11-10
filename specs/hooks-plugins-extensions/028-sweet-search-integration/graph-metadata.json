@@ -9,7 +9,8 @@
     "hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research",
     "hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count",
     "hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback",
-    "hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control"
+    "hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control",
+    "hooks-plugins-extensions/028-sweet-search-integration/007-search-routing-followups"
   ],
   "manual": {
     "depends_on": [],
@@ -171,17 +172,17 @@
     ],
     "causal_summary": "Agents working in Skilled and in the project repos Skilled is installed into find code with grep and file reads",
     "created_at": "2026-11-09T11:30:04Z",
-    "last_save_at": "2026-11-10T06:34:49.612Z",
+    "last_save_at": "2026-11-10T07:17:49.215Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:10bd2323268b8bf27de4bdbe662d6ef4337da0d23eaeddf53834ffbfeed30409",
+    "source_fingerprint": "sha256:e886527a1ec5e1ccd2c549f26027c53910410c3d15d37ccae14f8e18625c9584",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b4d7e23c547ab50bb9a4b22fc2282a4e2c7dd6b12a07bc27d3976c9f7ccd9987"
+      "spec.md": "598b5dd4086125ccec1b053305a708d1d3516d1387aa98588f74962c951d5017"
     },
     "last_active_child_id": "hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research",
     "last_active_at": "2026-11-09T15:25:53.754Z"
