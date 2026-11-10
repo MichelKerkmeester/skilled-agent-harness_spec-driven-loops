@@ -67,7 +67,7 @@ on:
       - '.opencode/bin/lib/compiled-route*'
       - '.skilled/bin/lib/compiled-route*'
       - 'specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/**'
-      - 'specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/**'
+      - 'specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/**'
   pull_request:
     branches: [main]
     paths:
@@ -116,7 +116,7 @@ on:
       - '.opencode/bin/lib/compiled-route*'
       - '.skilled/bin/lib/compiled-route*'
       - 'specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/**'
-      - 'specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/**'
+      - 'specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/**'
 
 # Least-privilege default: these jobs only check out and run read-only gates,
 # so they never need write access. Declared explicitly rather than inheriting
@@ -332,7 +332,7 @@ jobs:
           set -euo pipefail
           python3 - <<'EOF'
           import hashlib, json, pathlib, sys
-          baseline = json.load(open("../../../specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json"))
+          baseline = json.load(open("../../../specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json"))
           corpus_dir = pathlib.Path("scripts/routing-accuracy")
           bad = []
           for name, meta in baseline["corpus"].items():
