@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 6663,
-    "ok": 17673,
+    "missing-frontmatter": 6683,
+    "ok": 17679,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 25965,
+  "documentsScanned": 25991,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "33cb10160b4b44e5d4dd66569ed8caececf0f7c6ca2a55ff5a44e9aabbfd94c9",
+  "manifestHash": "6e37e5cfd383c64b517dc8be6b36ce2d3041fa31eece41099a3731e8b8fe596d",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42050,
+      "ok": 42068,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -33777,7 +33777,25 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/rg-flood-control.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/stale-index-fallback.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/trigger-lookup-total-candidates.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -35392,6 +35410,108 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261020T164213Z/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/alignment/fix-plan.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/alignment/recheck.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/alignment/report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/benchmark/results.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/benchmark/scenario-489/matrix.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/alignment/fix-plan.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/alignment/recheck.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/alignment/report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/benchmark/results.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/benchmark/scenario-490/matrix.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/alignment/final-recheck.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/alignment/fix-plan.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/alignment/recheck.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/alignment/report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/benchmark/results.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/benchmark/scenario-491/matrix.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/benchmark/summary.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
