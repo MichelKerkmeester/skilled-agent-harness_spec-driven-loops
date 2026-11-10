@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research",
+  "spec_folder": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research",
+  "parent_id": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retrieval feature design research",
+      "phase 3 retrieval feature design research",
+      "trigger index zero hit fallback design",
+      "retrieval feature design research plan",
+      "retrieval feature design research tasks",
+      "retrieval feature design acceptance",
+      "feature design criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "retrieval feature design research implementation summary"
+    ],
+    "key_topics": [
+      "retrieval",
+      "feature",
+      "design",
+      "research",
+      "phase",
+      "trigger",
+      "index",
+      "zero",
+      "hit",
+      "fallback",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      "research/deep-research-config.json",
+      "research/deep-research-strategy.md",
+      "ops/retrofit-convention.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrofit-convention.mjs",
+        "kind": "file",
+        "path": "ops/retrofit-convention.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reads Skilled",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Iterative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Rendered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 2 named what to build and roughly how big each change is, but not the exact design",
+    "created_at": "2026-11-09T14:51:09Z",
+    "last_save_at": "2026-11-10T08:30:21.970Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:1c6d33fed5a082ce0ec24a548cfd077b1de9bc96d11677b193b95b15c879c179",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ebd9d65991ad1c48952fe001b86ef9c2ccf00d4793e153dcf1057ca979b172de",
+      "plan.md": "ad9fdf103d3a3d79b8ce6870dde4c80a7056e0e3db60c1c92c2c15f4d8f3c923",
+      "tasks.md": "ff4d48023d4d081232899bde8976faaf5500735596108c8e6d85e5ef8bc1d2fc",
+      "implementation-summary.md": "95825183885b8af61bfdd0831afa9349eb68a474becb244e4b0827727b35ff8a",
+      "research/research.md": "272df5c487ab92dd5194820f515f866aad986aeb9d2193e8ee2e8c70e5a0bcc7"
+    },
+    "last_active_at": null
+  }
+}

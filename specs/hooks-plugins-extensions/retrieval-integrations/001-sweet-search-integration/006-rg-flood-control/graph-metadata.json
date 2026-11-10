@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control",
+  "spec_folder": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control",
+  "parent_id": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rg flood control",
+      "ripgrep one row per file",
+      "phase 6 rg flood control",
+      "rg flood control plan",
+      "rg flood control tasks",
+      "rg flood control acceptance",
+      "ripgrep one row per file criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "rg flood control implementation summary"
+    ],
+    "key_topics": [
+      "flood",
+      "control",
+      "ripgrep",
+      "one",
+      "row",
+      "per",
+      "file",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/cli/retrieval/lib/rg-lane.mjs",
+      "runtime/cli/retrieval/rg-wrapper.mjs",
+      "runtime/cli/ops/retrofit-convention.mjs",
+      "runtime/cli/tests/rg-wrapper-recipes.vitest.ts",
+      "references/retrieval/retrieval-conventions.md",
+      ".skilled/commands/speckit/README.txt",
+      "lib/README.md",
+      "feature-catalog/retrieval/rg-flood-control.md",
+      "manual-testing-playbook/retrieval/rg-flood-control.md",
+      "changelog/v2.12.43.0.md",
+      "alignment/recheck.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "rg-lane.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/lib/rg-lane.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "rg-wrapper.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/rg-wrapper.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "retrofit-convention.mjs",
+        "kind": "file",
+        "path": "runtime/cli/ops/retrofit-convention.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "rg-wrapper-recipes.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/rg-wrapper-recipes.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": "references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "rg-flood-control.md",
+        "kind": "doc",
+        "path": "feature-catalog/retrieval/rg-flood-control.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.12.43.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.12.43.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "recheck.md",
+        "kind": "doc",
+        "path": "alignment/recheck.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The ripgrep wrapper ranks every match and only slices the first 20 for display, so one file with many matches fills the whole view and hides every other file with no sign anything was hidden",
+    "created_at": "2026-11-09T16:18:07Z",
+    "last_save_at": "2026-11-10T08:30:17.998Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0c0cb82d23c2280ba27be2e89e2ab6b5892b613c72331f9ce543f7408e31b6bf",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "270abc4086a0dd55b255ffac26832da6ea8f4bf828d4382c16d5895cff122ded",
+      "plan.md": "1a0cabc81f51fa7133df8b9e406a6d3fafb41df2be372e280a266dcd9941b79f",
+      "tasks.md": "1ba1ec96b8865ca5f5de6cf73529049a9d3225c0519c25ea23c1c0851f75eb48",
+      "implementation-summary.md": "22b061ec1c5db67a39cfc3a41177920244d32039ef5412370b69ae8223932023"
+    },
+    "last_active_at": null
+  }
+}

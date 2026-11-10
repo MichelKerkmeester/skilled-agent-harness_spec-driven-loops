@@ -1,0 +1,19 @@
+{
+  "specFolder": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups",
+  "description": "Phase 7: search-routing-followups",
+  "keywords": [
+    "phase",
+    "search-routing-followups"
+  ],
+  "lastUpdated": "2026-11-10T07:13:04.801Z",
+  "specId": "007",
+  "folderSlug": "search-routing-followups",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "retrieval-integrations",
+    "001-sweet-search-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -86,7 +86,7 @@ The ten largest tracks held 29, 21, 19, 19, 19, 18, 17, 16, 9 and 8 active packe
 
 ### Out of Scope
 - Keep agents, cli-classifier, cli-orca, commands, sk-design, sk-prompt, and system-skilled-doctor flat. Each has 2 to 6 active packets, below the approved threshold of 8.
-- Moving `hooks-plugins-extensions/028-sweet-search-integration`, `sk-code/019-surface-consistency-research`, or any track's `z_archive/`. Another session is editing the pinned packets and archives are not in scope.
+- Moving `hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration`, `sk-code/code-surfaces/006-surface-consistency-research`, or any track's `z_archive/`. Another session is editing the pinned packets and archives are not in scope.
 
 ### Files to Change
 

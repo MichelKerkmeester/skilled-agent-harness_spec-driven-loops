@@ -4,7 +4,6 @@
   "spec_folder": "sk-code",
   "parent_id": null,
   "children_ids": [
-    "sk-code/019-surface-consistency-research",
     "sk-code/code-surfaces",
     "sk-code/hub-architecture",
     "sk-code/quality-and-review-modes",

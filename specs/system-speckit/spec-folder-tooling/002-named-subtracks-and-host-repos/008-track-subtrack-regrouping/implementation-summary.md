@@ -105,7 +105,7 @@ The first pass renumbered folders and rebuilt `graph-metadata.json`. `repair-der
 
 Commit `e7ed23d545` restored 18 benchmark-report and baseline files to their recorded content without running the gate. That left five broken links. Commit `82d616acc5` fixed them by rewriting only link targets in three goal-hook report sources. Commit `a74980265a` updated the routing-registry-drift workflow and two OpenCode plugin docs that the track commits had not staged because they staged only `specs/` and `.skilled/`.
 
-Commit `eb512ee196` rebuilt the trigger index. Merge `26edf50b63` brought in `origin/main` and rebuilt the trigger index again. The merge kept pinned `hooks-plugins-extensions/028-sweet-search-integration` flat and listed it in the hooks track root. After the merge, hooks-plugins-extensions validated 36 passed and 0 failed. system-speckit validated 27 passed and 0 failed. The link check reported 0 broken links.
+Commit `eb512ee196` rebuilt the trigger index. Merge `26edf50b63` brought in `origin/main` and rebuilt the trigger index again. The merge kept pinned `hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration` flat and listed it in the hooks track root. After the merge, hooks-plugins-extensions validated 36 passed and 0 failed. system-speckit validated 27 passed and 0 failed. The link check reported 0 broken links.
 
 The goal-hook prose in three `goal.md` files exceeded the 4000-character durable-slice limit after paths grew. The decision or binding prose was shortened without changing a criterion or decision. The two DeepSeek review runs for sk-git and hooks-plugins-extensions returned no verdict, so the orchestrator checked those commits itself. `SPECKIT_SKIP_SPEC_REMINT=1` was used for the system-speckit commit. The same flag was used for the alignment repair and merge commits because the remint gate rejects two existing folders that do not use `NNN-slug` naming. The work had not been pushed at the time of writing.
 <!-- /ANCHOR:how-delivered -->
@@ -119,7 +119,7 @@ The goal-hook prose in three `goal.md` files exceeded the 4000-character durable
 | Decision | Why |
 |----------|-----|
 | Packet moves must align folder numbering and JSON metadata | The first pass left `description.json` positions stale because `repair-derived.cjs` does not update `specId` or `parentChain`. |
-| Keep the pinned packets flat | Another session pinned `hooks-plugins-extensions/028-sweet-search-integration`, and `sk-code/019-surface-consistency-research` stays flat. |
+| Keep the pinned packets flat | Another session pinned `hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration`, and `sk-code/code-surfaces/006-surface-consistency-research` stays flat. |
 | Repair report links by changing only their targets | The benchmark-report restoration left five broken links, and three goal-hook report sources contained the affected targets. |
 | Skip spec remint for the system-speckit commit and later alignment and merge commits | Two existing folders fail the remint gate because their names do not match `NNN-slug`. |
 <!-- /ANCHOR:decisions -->

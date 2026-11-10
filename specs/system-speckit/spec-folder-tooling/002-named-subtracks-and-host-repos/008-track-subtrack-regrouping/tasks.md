@@ -188,7 +188,7 @@ N/A: The approved change adds no authentication, authorization, credential, or s
 <!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
 
 - [x] CHK-050 [P1] Compare `rg --files $T` with the approved map and confirm the new subtracks are one level below the track root with a `description.json`. Evidence: The final audit records 39 one-level subtracks, with numbering from 001 and no gaps.
-- [x] CHK-051 [P1] Inspect the track tree against the map and confirm pinned packets and `z_archive/` remain outside the moves. Evidence: After the merge, pinned `hooks-plugins-extensions/028-sweet-search-integration` remained flat and listed in the track root. `sk-code/019-surface-consistency-research` remained flat and pinned.
+- [x] CHK-051 [P1] Inspect the track tree against the map and confirm pinned packets and `z_archive/` remain outside the moves. Evidence: After the merge, pinned `hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration` remained flat and listed in the track root. `sk-code/code-surfaces/006-surface-consistency-research` remained flat and pinned.
 <!-- /ANCHOR:file-org -->
 
 ---

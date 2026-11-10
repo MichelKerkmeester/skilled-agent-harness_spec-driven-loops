@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research",
+  "description": "Phase 3: retrieval-feature-design-research",
+  "keywords": [
+    "phase",
+    "retrieval-feature-design-research"
+  ],
+  "lastUpdated": "2026-11-09T15:25:53.731Z",
+  "specId": "003",
+  "folderSlug": "retrieval-feature-design-research",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "retrieval-integrations",
+    "001-sweet-search-integration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "09-11-26_16-25__phase-3-research-complete-5-parallel-iterations.md"
+  ]
+}

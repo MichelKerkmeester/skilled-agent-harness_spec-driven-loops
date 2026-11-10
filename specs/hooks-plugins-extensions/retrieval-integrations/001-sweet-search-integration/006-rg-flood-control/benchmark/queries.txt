@@ -1,0 +1,8 @@
+iteration	specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research
+iteration	specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research
+research	specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research
+sweet search	specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research
+fallback	specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research
+limit	specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research
+worktree	.skilled/skills/sk-git/references
+convergence	specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research

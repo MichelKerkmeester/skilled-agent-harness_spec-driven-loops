@@ -4,11 +4,11 @@
   "spec_folder": "hooks",
   "parent_id": null,
   "children_ids": [
-    "hooks/028-sweet-search-integration",
     "hooks/goal-and-directive-hooks",
     "hooks/hook-injection-pipeline",
     "hooks/pi-extensions",
     "hooks/repo-commit-gates",
+    "hooks/retrieval-integrations",
     "hooks/session-turn-boundaries"
   ],
   "manual": {

@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/retrieval-integrations",
+  "description": "Search and retrieval tools evaluated for the harness and integrated where they earn their place.",
+  "keywords": [
+    "retrieval",
+    "integrations"
+  ],
+  "lastUpdated": "2026-11-10T08:29:19.991Z",
+  "specId": "hooks-plugins-extensions/retrieval-integrations",
+  "folderSlug": "retrieval-integrations",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
