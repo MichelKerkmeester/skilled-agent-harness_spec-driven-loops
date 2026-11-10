@@ -295,6 +295,37 @@ describe('per-file flood control', () => {
     expect(noElision).not.toContain('more files with');
   });
 
+  it('cuts the path and count recipes at the file limit and reports what it hid', () => {
+    const cwd = makeFloodCorpus(30, 3);
+    const paths = search('path', 'flood marker', { cwd, limit: 5, roots: ['specs'] });
+    const counts = search('count', 'flood marker', { cwd, limit: 5, roots: ['specs'] });
+
+    expect(paths.paths).toHaveLength(5);
+    expect(paths.paths?.[0]).toMatch(/file-00\.md$/);
+    expect(paths.fileCount).toBe(30);
+    expect(paths.hidden).toEqual({ files: 25, matches: null });
+    expect(paths.truncated).toBe(true);
+    expect(formatSummary(paths)).toContain('+25 more files');
+
+    expect(counts.counts).toHaveLength(5);
+    expect(counts.matchCount).toBe(90);
+    expect(counts.hidden).toEqual({ files: 25, matches: 75 });
+    expect(formatSummary(counts)).toContain('+25 more files with 75 matches');
+  });
+
+  it('lists every path and count at a zero limit, busiest file first', () => {
+    const cwd = makeFloodCorpus(30, 1);
+    write(cwd, 'specs/track/001-packet/zz-busy.md', ['flood marker', 'flood marker']);
+    const paths = search('path', 'flood marker', { cwd, limit: 0, roots: ['specs'] });
+    const counts = search('count', 'flood marker', { cwd, limit: 0, roots: ['specs'] });
+
+    expect(paths.paths).toHaveLength(31);
+    expect(paths.truncated).toBe(false);
+    expect(counts.counts).toHaveLength(31);
+    expect(counts.counts?.[0]).toMatchObject({ count: 2 });
+    expect(counts.hidden).toEqual({ files: 0, matches: 0 });
+  });
+
   it('returns zero totals and an empty result for a clean structured miss', () => {
     const cwd = makeCorpus();
     const record = search('structured', 'a phrase no document declares', { cwd, roots: ['specs'] });

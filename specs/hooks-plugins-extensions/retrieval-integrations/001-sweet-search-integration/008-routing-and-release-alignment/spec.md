@@ -84,12 +84,13 @@ PASS (235 lines below the frontmatter, 26 H4 items, both at or one under the cei
 - Lift `system-spec-kit` off the read-only floor when a read-only prompt names the trigger index and not drift.
 - Apply the review findings that hold: one unused sort, three unused exports, one redundant type check, the read count, the missing rejection handler and four redundant tests.
 - Describe the retrieval work in a v4.0.2.1 release entry with its own tag, and write the two component entries.
+- Apply `--limit` to the wrapper's `path` and `count` recipes and report the cut. Added after the release on the operator's "fix still open"; it was out of scope until then.
+- Expand the v4.0.2.1 entry and its GitHub release with how each change works, the fixes and the checks. Added on the operator's request for more detail.
 
 ### Out of Scope
 - Probe P02 of phase 6 - it asks for a code edit, `sk-code` is a correct answer, and every phrase that broke the tie moved an approved route.
 - The `maxFiles` and `cwd` options - only tests pass them, but removing them costs a 501-file fixture and a `chdir` in the tests.
 - The wrapper's `truncated` field - the trigger lookup uses the same field name and three tests read it.
-- `--limit` on the wrapper's `path` and `count` recipes - found by the review, outside both questions asked of it.
 
 ### Files to Change
 
@@ -103,6 +104,8 @@ PASS (235 lines below the frontmatter, 26 H4 items, both at or one under the cei
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` | Modify | Rejection handler that exits 2 |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/stale-fallback.vitest.ts`, `rg-wrapper-recipes.vitest.ts` | Modify | Four redundant tests removed |
 | `.skilled/changelog/skilled/v4.0.2.1.md` | Create | The retrieval work |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs`, `runtime/cli/ops/retrofit-convention.mjs` | Modify | File limit on `path` and `count`; the baseline reads the uncut file total |
+| Wrapper docs: conventions, two retrieval READMEs, catalog, playbook, command asset and README; `changelog/v2.12.48.0.md` | Modify, Create | Schema version 3 and the entry |
 | `system-spec-kit` `SKILL.md`, `changelog/v2.12.47.0.md`; `system-skill-advisor` `SKILL.md`, `changelog/v0.18.6.0.md` | Modify, Create | Versions and entries |
 <!-- /ANCHOR:scope -->
 

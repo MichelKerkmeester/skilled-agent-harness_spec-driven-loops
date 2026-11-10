@@ -67,6 +67,10 @@ A review agent read the retrieval code of phases 4 to 7 against the overengineer
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/stale-fallback.vitest.ts`, `rg-wrapper-recipes.vitest.ts` | Modified | Four redundant tests removed |
 | `.skilled/changelog/skilled/v4.0.2.1.md` | Created | The retrieval work as its own release: five glance bullets |
 | `PUBLIC-RELEASE.md` | Modified | The current release is v4.0.2.1 |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs` | Modified | `path` and `count` sort their lists, cut at `--limit` and fill `fileCount`, `limit`, `hidden` and `truncated`; `schemaVersion` 3 |
+| `.skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs` | Modified | The baseline reads `fileCount` for the two recipes, so the cut leaves its numbers alone |
+| `runtime/cli/tests/rg-wrapper-recipes.vitest.ts` | Modified | Two cases: a cut at 5 of 30 files, and a zero limit with the busiest file first |
+| `retrieval-conventions.md`, two retrieval READMEs, `rg-flood-control.md` catalog and playbook, `search-presentation.txt`, command `README.txt`, `changelog/v2.12.48.0.md` | Modified, Created | The limit on all three recipes, schema version 3, release 2.12.48.0 |
 | `system-spec-kit` `SKILL.md`, `changelog/v2.12.47.0.md` | Modified, Created | Version 2.12.47.0 and its entry |
 | `system-skill-advisor` `SKILL.md`, `changelog/v0.18.6.0.md` | Modified, Created | Version 0.18.6.0 and its entry |
 <!-- /ANCHOR:what-built -->
@@ -92,6 +96,9 @@ In worktree 337, cut from `origin/main` after phase 7 landed. The conductor rera
 | Keep the wrapper's `truncated` field | The trigger lookup uses the same name, and three tests read it. `hidden` says how much, `truncated` says whether |
 | Keep the four `totalCandidates` tests | Each fails for a different reason: no limit, a limit below the pool, the search mode and the no-hit payload |
 | Leave probe P02 of phase 6 as a tie | Same reason as phase 7: it asks for a code edit and `sk-code` is a correct answer |
+| Bump the wrapper schema to 3 | `paths` and `counts` used to hold every file and now hold the files inside the limit. A reader of the old shape must be able to tell |
+| Keep the limit fix out of the v4.0.2.1 release entry | The tag points at the commit before the fix, and moving a published tag needs the operator's word. The fix is in `v2.12.48.0.md` and rides the next release |
+| Put test results in the release entry | The changelog template leaves test counts out. The operator asked for the testing done, so the entry carries them and the voice scan's one warning stands |
 | Release the work as v4.0.2.1 with its own tag | The operator first asked for the work in changelog 4.0.2.0 with the tag republished, then replaced that with a new v4.0.2.1 entry and a dedicated tag. The v4.0.2.0 entry is back to its tagged text and its tag never moved |
 <!-- /ANCHOR:decisions -->
 
@@ -114,6 +121,8 @@ In worktree 337, cut from `origin/main` after phase 7 landed. The conductor rera
 | `check_changelog_shape.py` on the three entries | `PASS` each; the release entry is inside its 240-line and 26-item limits |
 | Alignment battery over the change | `pass=55 fail=0 cannot_run=1 not_applicable=7` over 24 files. The one check that could not start, `S1-package-check`, needs a `node_modules` folder the worktree lacks; `npm --prefix .skilled/skills/system-spec-kit/runtime/cli run check` run by hand exits 0 |
 | `validate.sh --strict --recursive` on the packet | 9 folders, each `RESULT: PASSED` |
+| Wrapper tests after the limit fix | `rg-wrapper-recipes.vitest.ts`: `Tests  27 passed (27)` |
+| `path` and `count` by hand, 4 files, `--limit 2` | `paths   : 4`, two paths, `+2 more files`; `counts  : 10 across 4 path(s)`, the two busiest files, `+2 more files with 3 matches` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -123,7 +132,7 @@ In worktree 337, cut from `origin/main` after phase 7 landed. The conductor rera
 
 1. **Probe P02 of phase 6 still ties.** A prompt that mixes a code edit with spec search can route to `sk-code`. Name the skill in the prompt when the route matters.
 2. **A running advisor keeps the old scorer.** Run `npm run build` in `system-skill-advisor/runtime`, then `skill_graph_scan --trusted` and `advisor_rebuild --trusted --force true` after pulling this change.
-3. **`--limit` does nothing on the wrapper's `path` and `count` recipes.** The wrapper accepts the flag and ignores it there. The review found it; it sits outside this phase. Pipe the output through `head` for now.
+3. **`/speckit:search --paths` and `--count` run ripgrep directly.** The wrapper's limit reaches them only when a caller runs the wrapper's `path` or `count` recipe.
 4. **The lift keys on the words "trigger index".** A read-only question that calls it "the index" stays at the floor and gets no skill above 0.25.
 <!-- /ANCHOR:limitations -->
 

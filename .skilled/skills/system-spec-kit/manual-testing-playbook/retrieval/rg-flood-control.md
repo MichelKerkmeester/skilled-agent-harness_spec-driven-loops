@@ -1,7 +1,7 @@
 ---
 title: "491 -- Ripgrep one row per file"
 description: "This scenario validates ripgrep per-file result shaping for `491`. It focuses on keeping the best row from each file visible and reporting repeated matches."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # 491 -- Ripgrep one row per file
@@ -28,7 +28,7 @@ Operators run the exact prompt and command sequence for `491` and confirm the ex
 - Real user request: `Search the notes/lantern folder for lantern and tell me which files mention it. Don't just show me one file over and over.`
 - Prompt: `Search the notes/lantern folder for lantern and tell me which files mention it. Don't just show me one file over and over.`
 - Expected execution process: Run the conversation in a scratch git work tree with the repository skills and Devin configuration copied into it. Seed notes/lantern/vk2-ledger.md with 25 `lantern` matches and notes/lantern/qm7-a.md, qm7-b.md and qm7-c.md with one match each. Inspect the structured JSON and the reply after the echoed request.
-- Expected signals: The JSON record has `schemaVersion: 2`, four results, `matchCount: 28` and `moreInFile: 24` on the `vk2-ledger.md` row. The reply after the echoed request names `vk2-ledger.md` and at least two of `qm7-a.md`, `qm7-b.md` and `qm7-c.md`.
+- Expected signals: The JSON record has `schemaVersion: 3`, four results, `matchCount: 28` and `moreInFile: 24` on the `vk2-ledger.md` row. The reply after the echoed request names `vk2-ledger.md` and at least two of `qm7-a.md`, `qm7-b.md` and `qm7-c.md`.
 - Desired user-visible outcome: The assistant identifies the repeated-match file once and names multiple other matching files.
 - Pass/fail: PASS if the JSON values and the post-request file names are present; FAIL if the structured result or reply hides the repeated-match count or keeps showing only one file.
 
@@ -62,7 +62,7 @@ Operators run the exact prompt and command sequence for `491` and confirm the ex
           "optional": true
         }
       ],
-      "check": "result=\"$(node .skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs structured lantern --search-root notes/lantern --json)\" && printf '%s' \"$result\" | node -e 'let input = \"\"; process.stdin.setEncoding(\"utf8\"); process.stdin.on(\"data\", chunk => input += chunk); process.stdin.on(\"end\", () => { const record = JSON.parse(input); const ledger = record.results.find(({ path }) => path.endsWith(\"vk2-ledger.md\")); if (!(record.schemaVersion === 2 && record.results.length === 4 && ledger?.moreInFile === 24 && record.matchCount === 28)) process.exit(1); });' && reply=\"$(awk -v send='Search the notes/lantern folder for lantern' 'index($0,send){after=1;next}after{print}' \"$CONVERSATION_TURN_DIR/history.txt\" | grep -v -e '✓' -e '✗')\" && printf '%s\\n' \"$reply\" | grep -F 'vk2-ledger.md' && printf '%s\\n' \"$reply\" | node -e 'let input = \"\"; process.stdin.setEncoding(\"utf8\"); process.stdin.on(\"data\", chunk => input += chunk); process.stdin.on(\"end\", () => { const files = [\"qm7-a.md\", \"qm7-b.md\", \"qm7-c.md\"]; if (files.filter(file => input.includes(file)).length < 2) process.exit(1); });'"
+      "check": "result=\"$(node .skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs structured lantern --search-root notes/lantern --json)\" && printf '%s' \"$result\" | node -e 'let input = \"\"; process.stdin.setEncoding(\"utf8\"); process.stdin.on(\"data\", chunk => input += chunk); process.stdin.on(\"end\", () => { const record = JSON.parse(input); const ledger = record.results.find(({ path }) => path.endsWith(\"vk2-ledger.md\")); if (!(record.schemaVersion === 3 && record.results.length === 4 && ledger?.moreInFile === 24 && record.matchCount === 28)) process.exit(1); });' && reply=\"$(awk -v send='Search the notes/lantern folder for lantern' 'index($0,send){after=1;next}after{print}' \"$CONVERSATION_TURN_DIR/history.txt\" | grep -v -e '✓' -e '✗')\" && printf '%s\\n' \"$reply\" | grep -F 'vk2-ledger.md' && printf '%s\\n' \"$reply\" | node -e 'let input = \"\"; process.stdin.setEncoding(\"utf8\"); process.stdin.on(\"data\", chunk => input += chunk); process.stdin.on(\"end\", () => { const files = [\"qm7-a.md\", \"qm7-b.md\", \"qm7-c.md\"]; if (files.filter(file => input.includes(file)).length < 2) process.exit(1); });'"
     }
   ]
 }
@@ -92,7 +92,7 @@ Capture Devin's `screen.txt`, `history.txt`, the structured check output and its
 
 ### Pass / Fail
 
-- **Pass**: The JSON assertion confirms schema version 2, four results, 28 total matches and 24 additional matches for `vk2-ledger.md`; the post-request reply names that file and at least two `qm7-*.md` files.
+- **Pass**: The JSON assertion confirms schema version 3, four results, 28 total matches and 24 additional matches for `vk2-ledger.md`; the post-request reply names that file and at least two `qm7-*.md` files.
 - **Fail**: Any JSON assertion fails, or the reply after the echoed request omits `vk2-ledger.md` or names fewer than two `qm7-*.md` files.
 
 ### Failure Triage

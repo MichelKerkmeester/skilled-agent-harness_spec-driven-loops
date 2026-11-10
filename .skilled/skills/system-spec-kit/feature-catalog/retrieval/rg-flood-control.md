@@ -6,7 +6,7 @@ trigger_phrases:
   - "ripgrep per-file match flood control"
   - "rg-wrapper structured file limit"
   - "structured ripgrep result shaping"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Ripgrep one row per file (rg-wrapper.mjs)
@@ -29,7 +29,7 @@ The structured recipe groups ranked rows by exact path and keeps the first row f
 
 The default --limit is 20 files, and --limit 0 returns every file. The limit accepts a non-negative whole decimal up to the largest safe integer; negative, fractional, trailing-junk and oversized values are rejected.
 
-Structured JSON uses schema version 2. matchCount and fileCount describe all matches and files before shaping. hidden: { files, matches } reports omitted files and their matches. limit is the effective cap, and truncated is true only when hidden.files is greater than zero. Other recipes leave these new fields null or false.
+Wrapper JSON uses schema version 3. matchCount and fileCount describe all matches and files before shaping. hidden: { files, matches } reports omitted files and their matches. limit is the effective cap, and truncated is true only when hidden.files is greater than zero. The path-only and count recipes sort their lists, paths by name and counts by busiest file first, then apply the same limit and fill fileCount, limit, truncated and hidden. The count recipe also fills matchCount and the hidden match total. The path-only recipe stops at one match per file, so its hidden.matches is null.
 
 The human ranked line follows `ranked  : {matchCount} match(es) in {fileCount} file(s); showing {shown} file(s) at limit {limit}`; zero is shown as `limit 0 (uncapped)`. A row with additional matches ends with exactly `(+N more in this file)`, omitted when N is zero. Hidden files add exactly `+N more files with M matches`, omitted when N is zero.
 

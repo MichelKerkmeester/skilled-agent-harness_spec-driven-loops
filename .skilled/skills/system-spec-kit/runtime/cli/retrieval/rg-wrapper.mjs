@@ -30,8 +30,8 @@
 //   node rg-wrapper.mjs <structured|path|count> <phrase> [--root <dir>]
 //                       [--search-root <dir>]... [--limit <n>] [--json]
 //
-// --limit caps how many files the structured recipe reports (default 20);
-// --limit 0 reports every file.
+// --limit caps how many files a recipe reports (default 20); --limit 0 reports
+// every file. The totals always cover every file, shown or not.
 //
 // Exit codes: 0 = match, 1 = no match, 2 = execution or configuration error.
 // ───────────────────────────────────────────────────────────────────
@@ -65,8 +65,9 @@ import { findSourceRoot } from '../../hooks/lib/workspace/repo-root.mjs';
 /**
  * Report schema; bump when a consumer would have to change to read it.
  * Version 2 redefines `results` from every match to one row per file.
+ * Version 3 bounds `paths` and `counts` to the file limit and sorts them.
  */
-export const SCHEMA_VERSION = 2;
+export const SCHEMA_VERSION = 3;
 
 /** The recipe names this wrapper accepts. */
 export const RECIPES = Object.freeze(['structured', 'path', 'count']);
@@ -201,7 +202,7 @@ export function assertRecipeParity(phrase, roots = DEFAULT_SEARCH_ROOTS) {
  *   counts: Array<{ count: number, path: string }> | null,
  *   exitCode: number,
  *   fileCount: number | null,
- *   hidden: { files: number, matches: number } | null,
+ *   hidden: { files: number, matches: number | null } | null,
  *   limit: number | null,
  *   matchCount: number | null,
  *   outcome: 'match' | 'no-match' | 'error',
@@ -261,18 +262,33 @@ export function search(recipe, phrase, options = {}) {
     return record;
   }
 
+  // Ripgrep walks in parallel, so its line order changes between runs. Both
+  // lists are sorted before the cut so a limit keeps the same files every time.
+  const lines = run.stdout.split('\n').filter((line) => line.length > 0);
+  const limit = options.limit ?? DEFAULT_LIMIT;
+  const keep = limit === 0 ? lines.length : limit;
+  record.limit = limit;
+  record.fileCount = lines.length;
+
   if (recipe === 'path') {
-    record.paths = run.stdout.split('\n').filter((line) => line.length > 0);
+    // The path recipe stops at one match per file, so it has no match total.
+    record.paths = lines.sort().slice(0, keep);
+    record.hidden = { files: lines.length - record.paths.length, matches: null };
+    record.truncated = record.hidden.files > 0;
     return record;
   }
 
-  record.counts = run.stdout
-    .split('\n')
-    .filter((line) => line.length > 0)
+  const counts = lines
     .map((line) => {
       const separator = line.lastIndexOf(':');
       return { count: Number(line.slice(separator + 1)), path: line.slice(0, separator) };
-    });
+    })
+    .sort((a, b) => b.count - a.count || a.path.localeCompare(b.path));
+  const sum = (entries) => entries.reduce((total, entry) => total + entry.count, 0);
+  record.counts = counts.slice(0, keep);
+  record.matchCount = sum(counts);
+  record.hidden = { files: counts.length - record.counts.length, matches: sum(counts.slice(keep)) };
+  record.truncated = record.hidden.files > 0;
   return record;
 }
 
@@ -359,12 +375,16 @@ export function formatSummary(record) {
     }
   }
   if (record.paths) {
-    lines.push(`paths   : ${record.paths.length}`);
-    for (const found of record.paths.slice(0, 20)) lines.push(`  ${found}`);
+    lines.push(`paths   : ${record.fileCount}`);
+    for (const found of record.paths) lines.push(`  ${found}`);
+    if (record.hidden.files > 0) lines.push(`  +${record.hidden.files} more files`);
   }
   if (record.counts) {
-    const total = record.counts.reduce((sum, entry) => sum + entry.count, 0);
-    lines.push(`counts  : ${total} across ${record.counts.length} path(s)`);
+    lines.push(`counts  : ${record.matchCount} across ${record.fileCount} path(s)`);
+    for (const entry of record.counts) lines.push(`  ${String(entry.count).padStart(6)} ${entry.path}`);
+    if (record.hidden.files > 0) {
+      lines.push(`  +${record.hidden.files} more files with ${record.hidden.matches} matches`);
+    }
   }
 
   return `${lines.join('\n')}\n`;

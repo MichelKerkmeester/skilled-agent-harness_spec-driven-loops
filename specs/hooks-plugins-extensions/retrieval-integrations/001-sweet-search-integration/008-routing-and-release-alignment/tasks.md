@@ -55,6 +55,8 @@ contextType: "general"
 - [x] T007 Rebuild the advisor and rerun the seven probes (`.skilled/bin/skill-advisor.cjs`). Verify: six pass, and phase 6 probe P02 still ties.
 - [x] T008 Run the advisor suite (`system-skill-advisor/runtime`). Verify: `npx vitest run` exits 0 with 0 failed.
 - [x] T009 Run the `system-spec-kit` suite (`system-spec-kit/runtime`). Verify: `npm test` exits 0 with 0 failed.
+- [x] T011 Apply `--limit` to the `path` and `count` recipes (`retrieval/rg-wrapper.mjs`, `ops/retrofit-convention.mjs`, `tests/rg-wrapper-recipes.vitest.ts`). Verify: the wrapper test file passes 27 of 27.
+- [x] T012 Expand the v4.0.2.1 entry and the GitHub release (`.skilled/changelog/skilled/v4.0.2.1.md`). Verify: `check_changelog_shape.py` prints `PASS`.
 - [x] T010 Run the alignment battery over the change (`run-battery.cjs`). Verify: the status line prints `fail=0`.
 <!-- /ANCHOR:phase-3 -->
 

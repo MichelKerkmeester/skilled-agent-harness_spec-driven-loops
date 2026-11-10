@@ -485,7 +485,9 @@ function buildBaseline(input) {
       exitCode: record.exitCode,
       outcome: record.outcome,
       recipe,
-      resultCount: record.matchCount ?? record.results?.length ?? record.paths?.length ?? record.counts?.length ?? 0,
+      // The path and count recipes are measured in files. Their lists are cut
+      // at the wrapper's limit, so the count comes from the uncut total.
+      resultCount: (recipe === 'structured' ? record.matchCount : record.fileCount) ?? 0,
       stderr: record.stderr.trim(),
     };
   });

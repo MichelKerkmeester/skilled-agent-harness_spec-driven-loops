@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.33.0
+version: 2.7.34.0
 ---
 
 # System Spec Kit
@@ -329,7 +329,7 @@ System Spec Kit has no memory MCP server. Its search pipeline, query intelligenc
 Retrieval is two lexical lanes: the committed trigger index, which on a zero-hit also checks unindexed spec docs in the working tree, and ripgrep over the working tree.
 
 - **Trigger-index lookup:** `lookup-trigger-index.mjs` matches a prompt against author-declared `trigger_phrases` through the generated index.
-- **Free-text retrieval:** the ripgrep recipes in `references/retrieval/retrieval-conventions.md` find a phrase anywhere in the corpus. The `rg-wrapper.mjs` structured recipe shows each file once at its best line, cuts at `--limit` files (default 20, `--limit 0` uncapped) and reports the hidden files and matches.
+- **Free-text retrieval:** the ripgrep recipes in `references/retrieval/retrieval-conventions.md` find a phrase anywhere in the corpus. The `rg-wrapper.mjs` structured recipe shows each file once at its best line, cuts at `--limit` files (default 20, `--limit 0` uncapped) and reports the hidden files and matches. The path-only and count recipes take the same limit.
 - **Continuity:** `runtime/cli/dist/continuity/generate-context.js` writes it into the packet itself, and `/speckit:resume` reads it back through the ladder it walks.
 - **Declared losses:** semantic paraphrase, ranking fusion, decay, access tracking, session dedup and graph traversal have no successor, so a phrase nobody wrote is a clean no-hit.
 

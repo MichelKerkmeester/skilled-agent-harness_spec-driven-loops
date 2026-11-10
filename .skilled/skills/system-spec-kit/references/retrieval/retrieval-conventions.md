@@ -12,7 +12,7 @@ trigger_phrases:
   - "coverage and exclusion policy"
 importance_tier: important
 contextType: implementation
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # Ripgrep Retrieval Conventions
@@ -98,6 +98,8 @@ rg --no-config --hidden --json --fixed-strings --ignore-case \
 The wrapper that serves this recipe applies two bounds after parsing, never inside ripgrep: it keeps **one line per file**, that file's highest-ranked line, because the Section 5 tuple already orders the rows, and then cuts the resulting file list at `--limit` files (default 20; `--limit 0` lifts the cut). The bound is applied after ranking on purpose. `--max-count 1` would stop reading a file at its first matching line, which is the file's earliest line, not its highest-ranked one, and it would also destroy the per-file totals the elision needs.
 
 The bound is reported, never silent. A shown row whose file held more matches carries `(+N more in this file)`. A run that dropped whole files ends with `+N more files with M matches`. The JSON form carries the same numbers as `moreInFile` on each result, `hidden: { files, matches }` on the record, and `matchCount`, `fileCount`, `limit` and `truncated` at the top level. A caller that needs a hidden row raises `--limit`; nothing is returned silently beyond the bound.
+
+The path-only and count recipes take the same `--limit`. The wrapper sorts their lists before the cut, paths by name and counts by busiest file first, because ripgrep's own order changes between runs. Both report `fileCount`, `limit`, `truncated` and `hidden`, and the human form ends with the same `+N more files` line. The count recipe also reports `matchCount` and the hidden match total. The path-only recipe stops at one match per file, so its `hidden.matches` is `null`.
 
 ### 2.2 Path-only, replacing `memory_quick_search`
 
