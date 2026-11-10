@@ -18,10 +18,11 @@
     "bundle"
   ],
   "lastUpdated": "2026-09-02T18:51:33.263Z",
-  "specId": "019",
+  "specId": "001",
   "folderSlug": "official-obsidian-cli",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "mcp-obsidian"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -14,7 +14,8 @@
   "folderSlug": "skill-surface-reconciliation",
   "parentChain": [
     "mcp-tooling",
-    "020-obsidian-plugin-reduction"
+    "mcp-obsidian",
+    "002-obsidian-plugin-reduction"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

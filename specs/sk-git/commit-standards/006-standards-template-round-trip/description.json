@@ -16,10 +16,11 @@
     "serializer"
   ],
   "lastUpdated": "2026-10-15T13:17:04.259Z",
-  "specId": "034",
+  "specId": "006",
   "folderSlug": "standards-template-round-trip",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "commit-standards"
   ],
   "memorySequence": 3,
   "memoryNameHistory": [

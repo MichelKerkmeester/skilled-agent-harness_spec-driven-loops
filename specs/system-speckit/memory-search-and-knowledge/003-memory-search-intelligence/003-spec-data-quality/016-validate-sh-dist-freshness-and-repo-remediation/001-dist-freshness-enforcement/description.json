@@ -20,7 +20,8 @@
   "folderSlug": "dist-freshness-enforcement",
   "parentChain": [
     "system-speckit",
-    "028-memory-search-intelligence",
+    "memory-search-and-knowledge",
+    "003-memory-search-intelligence",
     "003-spec-data-quality",
     "016-validate-sh-dist-freshness-and-repo-remediation"
   ],

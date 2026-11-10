@@ -20,10 +20,11 @@
     "no-pr"
   ],
   "lastUpdated": "2026-08-21T08:55:50.739Z",
-  "specId": "025",
+  "specId": "005",
   "folderSlug": "main-protection-ruleset-relax",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "live-sync-and-publishing"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

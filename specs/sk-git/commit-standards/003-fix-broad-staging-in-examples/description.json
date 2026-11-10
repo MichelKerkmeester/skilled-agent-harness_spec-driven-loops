@@ -13,10 +13,11 @@
     "references"
   ],
   "lastUpdated": "2026-09-29T07:19:57.941Z",
-  "specId": "031",
+  "specId": "003",
   "folderSlug": "fix-broad-staging-in-examples",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "commit-standards"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -26,7 +26,8 @@
   "folderSlug": "census-path-and-config-drift-repair",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "003-mode-contracts-migration-and-cutover",
     "003-staged-state-migration-and-authority-cutover"
   ],

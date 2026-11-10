@@ -21,7 +21,8 @@
   "specId": "017",
   "folderSlug": "adapter-live-delivery-verification",
   "parentChain": [
-    "hooks",
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline",
     "002-injection-bloat-reduction"
   ],
   "memorySequence": 0,

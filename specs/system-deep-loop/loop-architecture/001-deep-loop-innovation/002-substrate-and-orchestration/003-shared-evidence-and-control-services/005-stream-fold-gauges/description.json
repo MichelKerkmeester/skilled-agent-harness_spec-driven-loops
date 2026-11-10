@@ -21,7 +21,8 @@
   "folderSlug": "stream-fold-gauges",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "002-substrate-and-orchestration",
     "003-shared-evidence-and-control-services"
   ],

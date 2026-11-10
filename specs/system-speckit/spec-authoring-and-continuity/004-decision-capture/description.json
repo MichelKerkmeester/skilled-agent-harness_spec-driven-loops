@@ -16,10 +16,11 @@
     "adapters"
   ],
   "lastUpdated": "2026-11-03T09:27:36.912Z",
-  "specId": "043",
+  "specId": "004",
   "folderSlug": "decision-capture",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "spec-authoring-and-continuity"
   ],
   "memorySequence": 9,
   "memoryNameHistory": [

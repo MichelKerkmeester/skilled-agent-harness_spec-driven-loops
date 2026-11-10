@@ -38,7 +38,8 @@
   "folderSlug": "graphify",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "001-research-and-baseline"
   ],
   "memorySequence": 3,

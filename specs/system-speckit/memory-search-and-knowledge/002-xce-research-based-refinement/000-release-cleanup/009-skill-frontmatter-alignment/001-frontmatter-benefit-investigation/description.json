@@ -23,7 +23,8 @@
   "folderSlug": "frontmatter-benefit-investigation",
   "parentChain": [
     "system-speckit",
-    "027-xce-research-based-refinement",
+    "memory-search-and-knowledge",
+    "002-xce-research-based-refinement",
     "000-release-cleanup",
     "009-skill-frontmatter-alignment"
   ],

@@ -19,6 +19,7 @@
   "folderSlug": "code-skilled-refinement-implementation",
   "parentChain": [
     "sk-code",
+    "hub-architecture",
     "001-sk-code-parent"
   ],
   "memorySequence": 28,

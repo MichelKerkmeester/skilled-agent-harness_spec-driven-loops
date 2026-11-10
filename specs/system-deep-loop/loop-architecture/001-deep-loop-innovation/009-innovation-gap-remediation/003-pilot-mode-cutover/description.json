@@ -23,7 +23,8 @@
   "folderSlug": "pilot-mode-cutover",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "009-innovation-gap-remediation"
   ],
   "memorySequence": 0,

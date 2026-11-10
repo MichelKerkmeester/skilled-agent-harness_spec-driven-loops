@@ -15,10 +15,11 @@
     "executor"
   ],
   "lastUpdated": "2026-11-08T16:43:36.975Z",
-  "specId": "034",
+  "specId": "006",
   "folderSlug": "runtime-name-implementation-routing",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "routing-and-scoring"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

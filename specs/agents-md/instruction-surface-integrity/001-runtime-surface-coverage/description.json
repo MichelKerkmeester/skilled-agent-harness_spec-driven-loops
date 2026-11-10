@@ -22,10 +22,11 @@
     "repo"
   ],
   "lastUpdated": "2026-08-15T14:40:54.863Z",
-  "specId": "002",
+  "specId": "001",
   "folderSlug": "runtime-surface-coverage",
   "parentChain": [
-    "agents-md"
+    "agents-md",
+    "instruction-surface-integrity"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

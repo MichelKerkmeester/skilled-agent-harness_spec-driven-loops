@@ -12,10 +12,11 @@
     "saves"
   ],
   "lastUpdated": "2026-10-12T09:25:17.896Z",
-  "specId": "037",
+  "specId": "003",
   "folderSlug": "symlinked-runtime-root",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "runtime-and-release"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

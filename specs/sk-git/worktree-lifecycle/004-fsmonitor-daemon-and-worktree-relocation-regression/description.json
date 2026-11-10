@@ -10,10 +10,11 @@
     "regression"
   ],
   "lastUpdated": "2026-10-27T08:12:30.724Z",
-  "specId": "035",
+  "specId": "004",
   "folderSlug": "fsmonitor-daemon-and-worktree-relocation-regression",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "worktree-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

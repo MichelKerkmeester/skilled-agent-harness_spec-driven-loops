@@ -13,10 +13,11 @@
     "launchagent"
   ],
   "lastUpdated": "2026-10-29T08:25:14.263Z",
-  "specId": "041",
+  "specId": "003",
   "folderSlug": "orphan-sweep-temp-processes",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "repo-operations"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

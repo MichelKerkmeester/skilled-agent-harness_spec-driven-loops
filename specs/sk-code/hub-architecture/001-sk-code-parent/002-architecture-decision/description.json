@@ -21,6 +21,7 @@
   "folderSlug": "architecture-decision",
   "parentChain": [
     "sk-code",
+    "hub-architecture",
     "001-sk-code-parent"
   ],
   "memorySequence": 1,

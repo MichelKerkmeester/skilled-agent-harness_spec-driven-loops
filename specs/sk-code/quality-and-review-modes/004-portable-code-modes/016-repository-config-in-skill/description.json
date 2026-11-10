@@ -6,11 +6,12 @@
     "repository-config-in-skill"
   ],
   "lastUpdated": "2026-10-28T05:17:43.896Z",
-  "specId": "015",
+  "specId": "016",
   "folderSlug": "repository-config-in-skill",
   "parentChain": [
     "sk-code",
-    "017-portable-code-modes"
+    "quality-and-review-modes",
+    "004-portable-code-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

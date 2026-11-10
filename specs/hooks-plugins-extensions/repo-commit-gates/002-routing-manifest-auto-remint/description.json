@@ -12,10 +12,11 @@
     "inputs"
   ],
   "lastUpdated": "2026-09-10T07:09:30.894Z",
-  "specId": "017",
+  "specId": "002",
   "folderSlug": "routing-manifest-auto-remint",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "repo-commit-gates"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

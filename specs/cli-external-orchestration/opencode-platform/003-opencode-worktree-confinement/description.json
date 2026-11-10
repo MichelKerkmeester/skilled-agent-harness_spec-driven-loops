@@ -11,10 +11,11 @@
     "started"
   ],
   "lastUpdated": "2026-11-08T08:06:34.028Z",
-  "specId": "087",
+  "specId": "003",
   "folderSlug": "opencode-worktree-confinement",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "opencode-platform"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

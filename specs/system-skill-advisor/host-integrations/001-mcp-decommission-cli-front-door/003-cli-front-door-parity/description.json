@@ -17,7 +17,8 @@
   "folderSlug": "cli-front-door-parity",
   "parentChain": [
     "system-skill-advisor",
-    "024-mcp-decommission-cli-front-door"
+    "host-integrations",
+    "001-mcp-decommission-cli-front-door"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

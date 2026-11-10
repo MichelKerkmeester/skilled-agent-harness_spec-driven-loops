@@ -21,7 +21,8 @@
   "folderSlug": "metadata-write-safety",
   "parentChain": [
     "system-speckit",
-    "044-named-subtracks-and-host-repos"
+    "spec-folder-tooling",
+    "002-named-subtracks-and-host-repos"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

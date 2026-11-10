@@ -19,10 +19,11 @@
     "dispatch"
   ],
   "lastUpdated": "2026-10-06T19:00:00.000Z",
-  "specId": "038",
+  "specId": "001",
   "folderSlug": "review-and-cli-lineage",
   "parentChain": [
-    "system-deep-loop"
+    "system-deep-loop",
+    "review-lineage"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

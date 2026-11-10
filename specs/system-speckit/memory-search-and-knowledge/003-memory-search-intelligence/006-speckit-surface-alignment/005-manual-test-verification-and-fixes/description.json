@@ -21,7 +21,8 @@
   "folderSlug": "manual-test-verification-and-fixes",
   "parentChain": [
     "system-speckit",
-    "028-memory-search-intelligence",
+    "memory-search-and-knowledge",
+    "003-memory-search-intelligence",
     "006-speckit-surface-alignment"
   ],
   "memorySequence": 0,

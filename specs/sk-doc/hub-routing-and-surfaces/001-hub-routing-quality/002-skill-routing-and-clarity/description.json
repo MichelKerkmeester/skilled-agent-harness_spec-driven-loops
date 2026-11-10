@@ -18,7 +18,8 @@
   "folderSlug": "skill-routing-and-clarity",
   "parentChain": [
     "sk-doc",
-    "051-hub-routing-quality"
+    "hub-routing-and-surfaces",
+    "001-hub-routing-quality"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

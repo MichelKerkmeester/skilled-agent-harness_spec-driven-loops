@@ -17,10 +17,11 @@
     "own"
   ],
   "lastUpdated": "2026-11-08T14:48:49.898Z",
-  "specId": "044",
+  "specId": "002",
   "folderSlug": "named-subtracks-and-host-repos",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "spec-folder-tooling"
   ],
   "memorySequence": 6,
   "memoryNameHistory": [

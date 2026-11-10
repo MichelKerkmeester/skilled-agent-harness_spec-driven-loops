@@ -10,7 +10,8 @@
   "folderSlug": "router-sync-guard",
   "parentChain": [
     "sk-code",
-    "011-sk-code-poinytail-based-refinement",
+    "hub-architecture",
+    "003-sk-code-poinytail-based-refinement",
     "007-follow-up-fixes"
   ],
   "memorySequence": 0,

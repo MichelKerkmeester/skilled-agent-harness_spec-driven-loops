@@ -22,8 +22,9 @@
   "specId": "008",
   "folderSlug": "goal-docs-hygiene",
   "parentChain": [
-    "hooks",
-    "003-goal-hooks-cross-runtime"
+    "hooks-plugins-extensions",
+    "goal-and-directive-hooks",
+    "001-goal-hooks-cross-runtime"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

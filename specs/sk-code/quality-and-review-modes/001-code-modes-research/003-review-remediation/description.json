@@ -10,7 +10,8 @@
   "folderSlug": "review-remediation",
   "parentChain": [
     "sk-code",
-    "014-code-modes-research"
+    "quality-and-review-modes",
+    "001-code-modes-research"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

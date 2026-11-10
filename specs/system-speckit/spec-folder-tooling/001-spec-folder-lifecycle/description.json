@@ -7,10 +7,11 @@
     "lifecycle"
   ],
   "lastUpdated": "2026-10-31T13:31:06.000Z",
-  "specId": "029",
+  "specId": "001",
   "folderSlug": "spec-folder-lifecycle",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "spec-folder-tooling"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -23,8 +23,9 @@
   "specId": "005",
   "folderSlug": "verification-and-validation",
   "parentChain": [
-    "hooks",
-    "009-goal-isolation"
+    "hooks-plugins-extensions",
+    "goal-and-directive-hooks",
+    "004-goal-isolation"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

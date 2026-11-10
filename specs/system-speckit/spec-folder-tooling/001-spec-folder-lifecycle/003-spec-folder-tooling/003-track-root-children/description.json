@@ -18,7 +18,8 @@
   "folderSlug": "track-root-children",
   "parentChain": [
     "system-speckit",
-    "029-spec-folder-lifecycle",
+    "spec-folder-tooling",
+    "001-spec-folder-lifecycle",
     "003-spec-folder-tooling"
   ],
   "memorySequence": 0,

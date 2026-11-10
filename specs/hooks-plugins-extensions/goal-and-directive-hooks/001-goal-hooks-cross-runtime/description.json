@@ -20,10 +20,11 @@
     "dormant"
   ],
   "lastUpdated": "2026-08-15T14:40:55.756Z",
-  "specId": "003",
+  "specId": "001",
   "folderSlug": "goal-hooks-cross-runtime",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "goal-and-directive-hooks"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -6,11 +6,12 @@
     "verification-and-closeout"
   ],
   "lastUpdated": "2026-10-10T18:23:56.019Z",
-  "specId": "007",
+  "specId": "010",
   "folderSlug": "verification-and-closeout",
   "parentChain": [
     "system-deep-loop",
-    "039-deprecate-improvement-modes"
+    "loop-architecture",
+    "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

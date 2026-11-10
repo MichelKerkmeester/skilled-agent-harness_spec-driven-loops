@@ -18,7 +18,8 @@
   "folderSlug": "checklist-deprecation-closure",
   "parentChain": [
     "system-speckit",
-    "031-system-speckit-v4",
+    "runtime-and-release",
+    "001-system-speckit-v4",
     "008-template-contracts-and-acceptance-criteria"
   ],
   "memorySequence": 0,

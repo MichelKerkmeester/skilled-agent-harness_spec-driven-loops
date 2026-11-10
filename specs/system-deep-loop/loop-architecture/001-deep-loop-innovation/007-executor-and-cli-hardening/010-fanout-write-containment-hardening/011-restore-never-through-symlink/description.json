@@ -14,7 +14,8 @@
   "folderSlug": "restore-never-through-symlink",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "007-executor-and-cli-hardening",
     "010-fanout-write-containment-hardening"
   ],

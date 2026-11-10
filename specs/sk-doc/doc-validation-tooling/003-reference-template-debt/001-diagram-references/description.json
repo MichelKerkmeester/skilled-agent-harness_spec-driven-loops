@@ -10,7 +10,8 @@
   "folderSlug": "diagram-references",
   "parentChain": [
     "sk-doc",
-    "064-reference-template-debt"
+    "doc-validation-tooling",
+    "003-reference-template-debt"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

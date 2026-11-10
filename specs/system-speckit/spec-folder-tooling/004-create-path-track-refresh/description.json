@@ -9,10 +9,11 @@
     "folder"
   ],
   "lastUpdated": "2026-11-08T18:17:08.129Z",
-  "specId": "046",
+  "specId": "004",
   "folderSlug": "create-path-track-refresh",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "spec-folder-tooling"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -22,7 +22,8 @@
   "folderSlug": "retrieval-coverage-alignment",
   "parentChain": [
     "system-speckit",
-    "031-system-speckit-v4",
+    "runtime-and-release",
+    "001-system-speckit-v4",
     "021-decommission-debt-and-cli-nesting"
   ],
   "memorySequence": 0,

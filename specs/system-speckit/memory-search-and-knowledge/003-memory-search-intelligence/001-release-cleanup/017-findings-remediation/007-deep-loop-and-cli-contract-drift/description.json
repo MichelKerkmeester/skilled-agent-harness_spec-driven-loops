@@ -15,7 +15,8 @@
   "folderSlug": "deep-loop-and-cli-contract-drift",
   "parentChain": [
     "system-speckit",
-    "028-memory-search-intelligence",
+    "memory-search-and-knowledge",
+    "003-memory-search-intelligence",
     "001-release-cleanup",
     "017-findings-remediation"
   ],

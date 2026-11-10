@@ -11,7 +11,8 @@
   "folderSlug": "routing-evaluation",
   "parentChain": [
     "sk-code",
-    "011-sk-code-poinytail-based-refinement",
+    "hub-architecture",
+    "003-sk-code-poinytail-based-refinement",
     "020-open-ends-research"
   ],
   "memorySequence": 1,

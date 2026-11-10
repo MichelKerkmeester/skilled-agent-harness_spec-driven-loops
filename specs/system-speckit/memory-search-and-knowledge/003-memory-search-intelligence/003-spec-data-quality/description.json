@@ -25,7 +25,8 @@
   "folderSlug": "spec-data-quality",
   "parentChain": [
     "system-speckit",
-    "028-memory-search-intelligence"
+    "memory-search-and-knowledge",
+    "003-memory-search-intelligence"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

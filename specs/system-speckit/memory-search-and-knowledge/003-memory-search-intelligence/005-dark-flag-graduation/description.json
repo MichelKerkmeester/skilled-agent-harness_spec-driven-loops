@@ -12,7 +12,8 @@
   "folderSlug": "dark-flag-graduation",
   "parentChain": [
     "system-speckit",
-    "028-memory-search-intelligence"
+    "memory-search-and-knowledge",
+    "003-memory-search-intelligence"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

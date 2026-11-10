@@ -22,7 +22,8 @@
   "folderSlug": "release-and-program-cleanup",
   "parentChain": [
     "system-speckit",
-    "027-xce-research-based-refinement",
+    "memory-search-and-knowledge",
+    "002-xce-research-based-refinement",
     "004-shared-infrastructure",
     "001-mcp-to-cli-tool-transition"
   ],

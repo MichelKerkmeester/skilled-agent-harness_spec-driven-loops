@@ -16,8 +16,9 @@
   "specId": "003",
   "folderSlug": "live-verification-and-closeout",
   "parentChain": [
-    "hooks",
-    "008-pi-caching-like-reasonix",
+    "hooks-plugins-extensions",
+    "pi-extensions",
+    "002-pi-caching-like-reasonix",
     "006-fork-and-improve-deep-pi"
   ],
   "memorySequence": 0,

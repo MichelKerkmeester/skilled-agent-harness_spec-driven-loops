@@ -10,10 +10,11 @@
     "docs"
   ],
   "lastUpdated": "2026-09-09T06:46:12.837Z",
-  "specId": "052",
+  "specId": "002",
   "folderSlug": "cli-hub-doc-version-reconciliation",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "hub-routing-and-surfaces"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

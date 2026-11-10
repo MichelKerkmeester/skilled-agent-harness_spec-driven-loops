@@ -11,7 +11,8 @@
   "folderSlug": "release-line-split",
   "parentChain": [
     "sk-doc",
-    "055-changelog-system",
+    "document-standards",
+    "003-changelog-system",
     "003-skilled-release-changelog"
   ],
   "memorySequence": 1,

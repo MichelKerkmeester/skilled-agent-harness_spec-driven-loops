@@ -14,10 +14,11 @@
     "docs"
   ],
   "lastUpdated": "2026-10-09T12:44:12.478Z",
-  "specId": "022",
+  "specId": "002",
   "folderSlug": "clickup-hosted-route-fix",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "code-mode"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

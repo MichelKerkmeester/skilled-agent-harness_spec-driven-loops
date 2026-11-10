@@ -8,10 +8,11 @@
     "expand"
   ],
   "lastUpdated": "2026-10-02T10:45:38.052Z",
-  "specId": "058",
+  "specId": "004",
   "folderSlug": "security-policy-alignment",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "document-standards"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

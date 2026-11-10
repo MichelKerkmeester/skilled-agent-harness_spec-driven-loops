@@ -10,7 +10,8 @@
   "folderSlug": "leak-and-routing-verification",
   "parentChain": [
     "sk-code",
-    "013-private-surface-skills"
+    "hub-architecture",
+    "005-private-surface-skills"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -8,10 +8,11 @@
     "fixes"
   ],
   "lastUpdated": "2026-10-21T14:00:00.000Z",
-  "specId": "023",
+  "specId": "001",
   "folderSlug": "vendored-copy-review-fixes",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "clickup-figma"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

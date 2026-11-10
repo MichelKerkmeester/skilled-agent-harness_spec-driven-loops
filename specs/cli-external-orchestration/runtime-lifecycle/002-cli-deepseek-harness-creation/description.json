@@ -14,10 +14,11 @@
     "dispatch"
   ],
   "lastUpdated": "2026-11-07T06:15:21.350Z",
-  "specId": "085",
+  "specId": "002",
   "folderSlug": "cli-deepseek-harness-creation",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "runtime-lifecycle"
   ],
   "memorySequence": 9,
   "memoryNameHistory": [

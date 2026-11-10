@@ -11,10 +11,11 @@
     "suites"
   ],
   "lastUpdated": "2026-10-19T11:32:13.641Z",
-  "specId": "024",
+  "specId": "006",
   "folderSlug": "dispatch-adapter-test-repair",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

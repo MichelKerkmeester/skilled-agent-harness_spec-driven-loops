@@ -9,10 +9,11 @@
     "gate"
   ],
   "lastUpdated": "2026-10-25T23:21:45.946Z",
-  "specId": "015",
+  "specId": "002",
   "folderSlug": "quality-agnostic-gate",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "quality-and-review-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

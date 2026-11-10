@@ -10,7 +10,8 @@
   "folderSlug": "residual-reference-sweep",
   "parentChain": [
     "system-deep-loop",
-    "039-deprecate-improvement-modes"
+    "loop-architecture",
+    "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

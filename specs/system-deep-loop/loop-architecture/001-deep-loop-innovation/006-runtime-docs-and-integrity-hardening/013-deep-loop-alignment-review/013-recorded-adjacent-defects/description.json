@@ -19,7 +19,8 @@
   "folderSlug": "recorded-adjacent-defects",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "006-runtime-docs-and-integrity-hardening",
     "013-deep-loop-alignment-review"
   ],

@@ -17,7 +17,8 @@
   "folderSlug": "advisor-adjacent-116-realignment",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "006-operator-tooling",
     "003-install-scripts-doctor-realignment"
   ],

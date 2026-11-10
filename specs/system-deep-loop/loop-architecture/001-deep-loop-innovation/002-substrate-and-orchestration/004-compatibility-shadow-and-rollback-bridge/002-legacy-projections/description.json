@@ -25,7 +25,8 @@
   "folderSlug": "legacy-projections",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "002-substrate-and-orchestration",
     "004-compatibility-shadow-and-rollback-bridge"
   ],

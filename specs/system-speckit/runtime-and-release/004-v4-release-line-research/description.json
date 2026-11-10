@@ -15,10 +15,11 @@
     "opportunities"
   ],
   "lastUpdated": "2026-11-08T19:49:04.831Z",
-  "specId": "047",
+  "specId": "004",
   "folderSlug": "v4-release-line-research",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "runtime-and-release"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -6,11 +6,12 @@
     "commands-and-runtime-mirrors"
   ],
   "lastUpdated": "2026-10-10T18:23:51.022Z",
-  "specId": "003",
+  "specId": "004",
   "folderSlug": "commands-and-runtime-mirrors",
   "parentChain": [
     "system-deep-loop",
-    "039-deprecate-improvement-modes"
+    "loop-architecture",
+    "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

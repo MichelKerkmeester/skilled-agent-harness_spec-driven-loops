@@ -19,8 +19,9 @@
   "specId": "002",
   "folderSlug": "session-scoped-core",
   "parentChain": [
-    "hooks",
-    "009-goal-isolation"
+    "hooks-plugins-extensions",
+    "goal-and-directive-hooks",
+    "004-goal-isolation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

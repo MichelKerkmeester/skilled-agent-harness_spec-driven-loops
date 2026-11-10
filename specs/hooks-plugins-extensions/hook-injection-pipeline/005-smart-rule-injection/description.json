@@ -18,10 +18,11 @@
     "design"
   ],
   "lastUpdated": "2026-09-12T17:42:06.090Z",
-  "specId": "022",
+  "specId": "005",
   "folderSlug": "smart-rule-injection",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

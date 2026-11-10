@@ -20,7 +20,8 @@
   "folderSlug": "corpus-manifest-build-state",
   "parentChain": [
     "system-speckit",
-    "031-system-speckit-v4"
+    "runtime-and-release",
+    "001-system-speckit-v4"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

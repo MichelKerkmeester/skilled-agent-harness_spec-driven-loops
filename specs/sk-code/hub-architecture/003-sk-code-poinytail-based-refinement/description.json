@@ -23,10 +23,11 @@
     "tooling"
   ],
   "lastUpdated": "2026-10-09T13:20:17.085Z",
-  "specId": "011",
+  "specId": "003",
   "folderSlug": "sk-code-poinytail-based-refinement",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "hub-architecture"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

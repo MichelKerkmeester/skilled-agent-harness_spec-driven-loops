@@ -17,7 +17,8 @@
   "folderSlug": "fix-write-recipe-post-checks",
   "parentChain": [
     "system-speckit",
-    "029-spec-folder-lifecycle",
+    "spec-folder-tooling",
+    "001-spec-folder-lifecycle",
     "004-write-recipe-fixes"
   ],
   "memorySequence": 0,

@@ -24,7 +24,8 @@
   "folderSlug": "cli-fallback-envelope-and-bridge",
   "parentChain": [
     "system-speckit",
-    "027-xce-research-based-refinement",
+    "memory-search-and-knowledge",
+    "002-xce-research-based-refinement",
     "004-shared-infrastructure",
     "004-cli-tooling-ux"
   ],

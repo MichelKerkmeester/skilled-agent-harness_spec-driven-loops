@@ -14,7 +14,8 @@
   "folderSlug": "gate5-card-pilot",
   "parentChain": [
     "agents-md",
-    "012-repo-rule-advisor-surfacing"
+    "repo-rule-operations",
+    "002-repo-rule-advisor-surfacing"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

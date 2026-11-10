@@ -19,10 +19,11 @@
     "sk-code-webflow"
   ],
   "lastUpdated": "2026-10-24T22:11:06.676Z",
-  "specId": "013",
+  "specId": "005",
   "folderSlug": "private-surface-skills",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "hub-architecture"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

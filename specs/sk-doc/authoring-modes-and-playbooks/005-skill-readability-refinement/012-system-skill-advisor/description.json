@@ -10,7 +10,8 @@
   "folderSlug": "system-skill-advisor",
   "parentChain": [
     "sk-doc",
-    "066-skill-readability-refinement"
+    "authoring-modes-and-playbooks",
+    "005-skill-readability-refinement"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

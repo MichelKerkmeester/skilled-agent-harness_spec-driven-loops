@@ -11,7 +11,8 @@
   "folderSlug": "out-of-scope-cleanup",
   "parentChain": [
     "sk-git",
-    "033-git-setup-customization"
+    "commit-standards",
+    "005-git-setup-customization"
   ],
   "memorySequence": 3,
   "memoryNameHistory": [

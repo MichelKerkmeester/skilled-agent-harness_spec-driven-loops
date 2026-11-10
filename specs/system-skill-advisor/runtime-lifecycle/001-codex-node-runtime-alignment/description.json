@@ -12,10 +12,11 @@
     "abi"
   ],
   "lastUpdated": "2026-08-15T14:41:07.725Z",
-  "specId": "018",
+  "specId": "001",
   "folderSlug": "codex-node-runtime-alignment",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "runtime-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

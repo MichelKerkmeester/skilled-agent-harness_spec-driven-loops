@@ -23,7 +23,8 @@
   "folderSlug": "boundaries-containment-and-naming",
   "parentChain": [
     "sk-code",
-    "004-code-conformance-alignment"
+    "verification-guards",
+    "001-code-conformance-alignment"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

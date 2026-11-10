@@ -7,10 +7,11 @@
     "drift"
   ],
   "lastUpdated": "2026-10-31T13:31:06.000Z",
-  "specId": "019",
+  "specId": "002",
   "folderSlug": "advisor-test-drift",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "codebase-conformance"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

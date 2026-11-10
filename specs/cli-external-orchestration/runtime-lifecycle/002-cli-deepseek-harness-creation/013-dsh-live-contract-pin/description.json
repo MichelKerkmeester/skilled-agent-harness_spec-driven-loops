@@ -16,7 +16,8 @@
   "folderSlug": "dsh-live-contract-pin",
   "parentChain": [
     "cli-external-orchestration",
-    "085-cli-deepseek-harness-creation"
+    "runtime-lifecycle",
+    "002-cli-deepseek-harness-creation"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

@@ -17,10 +17,11 @@
     "writeup"
   ],
   "lastUpdated": "2026-09-11T20:59:38.351Z",
-  "specId": "008",
+  "specId": "003",
   "folderSlug": "repo-rule-system-integration",
   "parentChain": [
-    "agents-md"
+    "agents-md",
+    "instruction-file-architecture"
   ],
   "memorySequence": 7,
   "memoryNameHistory": [

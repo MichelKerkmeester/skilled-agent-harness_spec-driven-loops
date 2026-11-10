@@ -21,7 +21,8 @@
   "specId": "001",
   "folderSlug": "measurement-and-receipts-foundation",
   "parentChain": [
-    "hooks",
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline",
     "002-injection-bloat-reduction"
   ],
   "memorySequence": 0,

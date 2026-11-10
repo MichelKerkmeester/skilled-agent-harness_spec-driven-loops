@@ -21,7 +21,8 @@
   "folderSlug": "findings-remediation",
   "parentChain": [
     "system-speckit",
-    "028-memory-search-intelligence",
+    "memory-search-and-knowledge",
+    "003-memory-search-intelligence",
     "001-release-cleanup",
     "015-manual-playbook-execution-sweep"
   ],

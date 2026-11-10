@@ -15,7 +15,8 @@
   "folderSlug": "typed-agent-io-adapter",
   "parentChain": [
     "system-speckit",
-    "027-xce-research-based-refinement",
+    "memory-search-and-knowledge",
+    "002-xce-research-based-refinement",
     "001-research-and-doctrine",
     "002-gem-team-adoption"
   ],

@@ -13,10 +13,11 @@
     "one"
   ],
   "lastUpdated": "2026-09-09T12:08:17.147Z",
-  "specId": "018",
+  "specId": "008",
   "folderSlug": "cache-optimizer-improvement-research",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "pi-extensions"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

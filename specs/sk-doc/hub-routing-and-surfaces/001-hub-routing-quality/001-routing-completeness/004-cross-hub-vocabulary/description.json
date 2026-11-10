@@ -15,7 +15,8 @@
   "folderSlug": "cross-hub-vocabulary",
   "parentChain": [
     "sk-doc",
-    "051-hub-routing-quality",
+    "hub-routing-and-surfaces",
+    "001-hub-routing-quality",
     "001-routing-completeness"
   ],
   "memorySequence": 0,

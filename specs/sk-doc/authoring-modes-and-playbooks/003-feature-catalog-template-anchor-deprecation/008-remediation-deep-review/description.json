@@ -10,7 +10,8 @@
   "folderSlug": "remediation-deep-review",
   "parentChain": [
     "sk-doc",
-    "059-feature-catalog-template-anchor-deprecation"
+    "authoring-modes-and-playbooks",
+    "003-feature-catalog-template-anchor-deprecation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

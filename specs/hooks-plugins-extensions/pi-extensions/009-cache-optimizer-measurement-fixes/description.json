@@ -15,10 +15,11 @@
     "real"
   ],
   "lastUpdated": "2026-09-11T16:49:40.855Z",
-  "specId": "019",
+  "specId": "009",
   "folderSlug": "cache-optimizer-measurement-fixes",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "pi-extensions"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

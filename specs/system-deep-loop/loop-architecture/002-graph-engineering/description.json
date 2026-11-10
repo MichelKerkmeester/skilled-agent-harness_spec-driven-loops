@@ -16,10 +16,11 @@
     "detection"
   ],
   "lastUpdated": "2026-08-15T14:41:05.293Z",
-  "specId": "037",
+  "specId": "002",
   "folderSlug": "graph-engineering",
   "parentChain": [
-    "system-deep-loop"
+    "system-deep-loop",
+    "loop-architecture"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

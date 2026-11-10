@@ -19,7 +19,8 @@
   "folderSlug": "cross-runtime-hook-parity-audit",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "001-release-readiness",
     "002-release-readiness-deep-review-audits"

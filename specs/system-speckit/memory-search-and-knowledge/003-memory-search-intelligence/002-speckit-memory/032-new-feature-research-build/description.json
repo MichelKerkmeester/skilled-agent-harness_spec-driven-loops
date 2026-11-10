@@ -24,7 +24,8 @@
   "folderSlug": "new-feature-research-build",
   "parentChain": [
     "system-speckit",
-    "028-memory-search-intelligence",
+    "memory-search-and-knowledge",
+    "003-memory-search-intelligence",
     "002-speckit-memory"
   ],
   "memorySequence": 0,

@@ -15,7 +15,8 @@
   "specId": "001",
   "folderSlug": "sk-code-parent",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "hub-architecture"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

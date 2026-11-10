@@ -11,10 +11,11 @@
     "format"
   ],
   "lastUpdated": "2026-10-29T21:27:27.462Z",
-  "specId": "064",
+  "specId": "003",
   "folderSlug": "reference-template-debt",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "doc-validation-tooling"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -6,11 +6,12 @@
     "skill-packet-and-registry"
   ],
   "lastUpdated": "2026-10-10T18:23:52.245Z",
-  "specId": "004",
+  "specId": "005",
   "folderSlug": "skill-packet-and-registry",
   "parentChain": [
     "system-deep-loop",
-    "039-deprecate-improvement-modes"
+    "loop-architecture",
+    "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

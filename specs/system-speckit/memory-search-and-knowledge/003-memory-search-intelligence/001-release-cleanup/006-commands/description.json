@@ -24,7 +24,8 @@
   "folderSlug": "commands",
   "parentChain": [
     "system-speckit",
-    "028-memory-search-intelligence",
+    "memory-search-and-knowledge",
+    "003-memory-search-intelligence",
     "001-release-cleanup"
   ],
   "memorySequence": 0,

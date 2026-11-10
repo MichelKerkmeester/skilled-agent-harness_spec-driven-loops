@@ -12,10 +12,11 @@
     "config"
   ],
   "lastUpdated": "2026-10-03T05:27:35.399Z",
-  "specId": "021",
+  "specId": "001",
   "folderSlug": "code-mode-fresh-clone-build",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "code-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -20,6 +20,7 @@
   "folderSlug": "code-quality-and-shared-implementation",
   "parentChain": [
     "sk-code",
+    "hub-architecture",
     "001-sk-code-parent"
   ],
   "memorySequence": 0,

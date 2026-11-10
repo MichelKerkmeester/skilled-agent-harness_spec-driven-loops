@@ -13,7 +13,8 @@
   "folderSlug": "follow-up-fixes",
   "parentChain": [
     "system-skill-advisor",
-    "027-pi-skill-orchestrator-based-research-refinement"
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

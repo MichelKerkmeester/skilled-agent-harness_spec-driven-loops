@@ -18,7 +18,8 @@
   "folderSlug": "advisor-surface-audit",
   "parentChain": [
     "system-skill-advisor",
-    "017-advisor-audit-and-state-containment"
+    "codebase-conformance",
+    "001-advisor-audit-and-state-containment"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

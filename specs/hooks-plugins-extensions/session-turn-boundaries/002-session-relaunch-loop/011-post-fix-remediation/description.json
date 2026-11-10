@@ -9,8 +9,9 @@
   "specId": "011",
   "folderSlug": "post-fix-remediation",
   "parentChain": [
-    "hooks",
-    "023-session-relaunch-loop"
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

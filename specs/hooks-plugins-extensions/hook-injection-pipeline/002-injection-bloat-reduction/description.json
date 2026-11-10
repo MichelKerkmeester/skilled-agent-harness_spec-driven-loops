@@ -18,7 +18,8 @@
   "specId": "002",
   "folderSlug": "injection-bloat-reduction",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

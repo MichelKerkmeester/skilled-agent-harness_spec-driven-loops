@@ -12,10 +12,11 @@
     "worktrees"
   ],
   "lastUpdated": "2026-10-28T09:01:08.949Z",
-  "specId": "025",
+  "specId": "011",
   "folderSlug": "cache-optimizer-single-copy-guard",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "pi-extensions"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

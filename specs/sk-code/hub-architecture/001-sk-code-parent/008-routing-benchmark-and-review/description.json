@@ -15,6 +15,7 @@
   "folderSlug": "routing-benchmark-and-review",
   "parentChain": [
     "sk-code",
+    "hub-architecture",
     "001-sk-code-parent"
   ],
   "memorySequence": 8,

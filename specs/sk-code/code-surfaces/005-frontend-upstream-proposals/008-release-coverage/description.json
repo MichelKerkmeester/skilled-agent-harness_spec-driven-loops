@@ -10,7 +10,8 @@
   "folderSlug": "release-coverage",
   "parentChain": [
     "sk-code",
-    "018-frontend-upstream-proposals"
+    "code-surfaces",
+    "005-frontend-upstream-proposals"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

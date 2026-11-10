@@ -24,7 +24,8 @@
   "folderSlug": "gate-and-ci-readiness",
   "parentChain": [
     "system-speckit",
-    "031-system-speckit-v4",
+    "runtime-and-release",
+    "001-system-speckit-v4",
     "041-skilled-source-root-migration"
   ],
   "memorySequence": 0,

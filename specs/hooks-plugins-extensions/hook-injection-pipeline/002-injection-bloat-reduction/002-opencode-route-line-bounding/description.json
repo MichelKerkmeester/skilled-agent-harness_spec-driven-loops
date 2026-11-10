@@ -19,7 +19,8 @@
   "specId": "002",
   "folderSlug": "opencode-route-line-bounding",
   "parentChain": [
-    "hooks",
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline",
     "002-injection-bloat-reduction"
   ],
   "memorySequence": 0,

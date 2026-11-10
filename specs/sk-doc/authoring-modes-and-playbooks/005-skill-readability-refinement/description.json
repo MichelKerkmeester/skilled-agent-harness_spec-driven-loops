@@ -14,10 +14,11 @@
     "structure"
   ],
   "lastUpdated": "2026-11-05T05:22:46.398Z",
-  "specId": "066",
+  "specId": "005",
   "folderSlug": "skill-readability-refinement",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "authoring-modes-and-playbooks"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

@@ -21,7 +21,8 @@
   "specId": "002",
   "folderSlug": "rust-standards-for-code-skilled",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "hub-architecture"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

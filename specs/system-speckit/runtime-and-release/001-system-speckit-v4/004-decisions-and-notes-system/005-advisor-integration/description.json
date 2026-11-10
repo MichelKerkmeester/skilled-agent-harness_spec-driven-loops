@@ -16,7 +16,8 @@
   "folderSlug": "advisor-integration",
   "parentChain": [
     "system-speckit",
-    "031-system-speckit-v4",
+    "runtime-and-release",
+    "001-system-speckit-v4",
     "004-decisions-and-notes-system"
   ],
   "memorySequence": 0,

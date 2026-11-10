@@ -22,7 +22,8 @@
   "folderSlug": "gap-threshold-calibration-benchmark",
   "parentChain": [
     "system-speckit",
-    "028-memory-search-intelligence",
+    "memory-search-and-knowledge",
+    "003-memory-search-intelligence",
     "003-spec-data-quality",
     "006-generated-metadata-build"
   ],

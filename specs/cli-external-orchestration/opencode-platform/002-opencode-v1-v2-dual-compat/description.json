@@ -9,10 +9,11 @@
     "research"
   ],
   "lastUpdated": "2026-10-24T09:41:35.371Z",
-  "specId": "082",
+  "specId": "002",
   "folderSlug": "opencode-v1-v2-dual-compat",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "opencode-platform"
   ],
   "memorySequence": 3,
   "memoryNameHistory": [

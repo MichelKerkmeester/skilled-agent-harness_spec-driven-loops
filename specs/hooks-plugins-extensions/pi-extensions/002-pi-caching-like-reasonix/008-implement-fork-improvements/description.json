@@ -21,8 +21,9 @@
   "specId": "008",
   "folderSlug": "implement-fork-improvements",
   "parentChain": [
-    "hooks",
-    "008-pi-caching-like-reasonix"
+    "hooks-plugins-extensions",
+    "pi-extensions",
+    "002-pi-caching-like-reasonix"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

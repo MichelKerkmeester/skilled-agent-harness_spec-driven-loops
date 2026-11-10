@@ -11,7 +11,8 @@
   "folderSlug": "runner-limit-closeout",
   "parentChain": [
     "sk-code",
-    "015-quality-agnostic-gate"
+    "quality-and-review-modes",
+    "002-quality-agnostic-gate"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

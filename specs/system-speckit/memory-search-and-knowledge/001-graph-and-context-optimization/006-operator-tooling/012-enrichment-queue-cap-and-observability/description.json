@@ -20,7 +20,8 @@
   "folderSlug": "enrichment-queue-cap-and-observability",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "006-operator-tooling"
   ],
   "memorySequence": 0,

@@ -10,7 +10,8 @@
   "folderSlug": "sk-design-diagram",
   "parentChain": [
     "sk-doc",
-    "066-skill-readability-refinement",
+    "authoring-modes-and-playbooks",
+    "005-skill-readability-refinement",
     "007-sk-design"
   ],
   "memorySequence": 0,

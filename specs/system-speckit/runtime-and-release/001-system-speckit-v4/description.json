@@ -17,10 +17,11 @@
     "creation"
   ],
   "lastUpdated": "2026-09-20T07:24:18.193Z",
-  "specId": "031",
+  "specId": "001",
   "folderSlug": "system-speckit-v4",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "runtime-and-release"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

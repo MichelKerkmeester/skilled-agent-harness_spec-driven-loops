@@ -19,7 +19,8 @@
   "specId": "010",
   "folderSlug": "playbook-cheapest-model",
   "parentChain": [
-    "hooks",
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline",
     "002-injection-bloat-reduction"
   ],
   "memorySequence": 0,

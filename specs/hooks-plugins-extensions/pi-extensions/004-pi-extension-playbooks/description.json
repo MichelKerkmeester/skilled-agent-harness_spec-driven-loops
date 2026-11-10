@@ -14,10 +14,11 @@
     "unlike"
   ],
   "lastUpdated": "2026-08-17T14:11:46.991Z",
-  "specId": "012",
+  "specId": "004",
   "folderSlug": "pi-extension-playbooks",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "pi-extensions"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

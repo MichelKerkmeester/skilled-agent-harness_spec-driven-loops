@@ -17,10 +17,11 @@
     "agent"
   ],
   "lastUpdated": "2026-10-29T23:23:55.501Z",
-  "specId": "036",
+  "specId": "005",
   "folderSlug": "personal-name-scrub",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "worktree-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

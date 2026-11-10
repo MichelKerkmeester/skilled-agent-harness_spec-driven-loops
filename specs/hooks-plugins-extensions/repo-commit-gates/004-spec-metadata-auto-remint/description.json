@@ -19,10 +19,11 @@
     "them"
   ],
   "lastUpdated": "2026-09-12T08:47:36.629Z",
-  "specId": "020",
+  "specId": "004",
   "folderSlug": "spec-metadata-auto-remint",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "repo-commit-gates"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -22,10 +22,11 @@
     "lacked"
   ],
   "lastUpdated": "2026-08-15T17:20:26.027Z",
-  "specId": "021",
+  "specId": "002",
   "folderSlug": "hook-gate-hardening",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "live-sync-and-publishing"
   ],
   "memorySequence": 7,
   "memoryNameHistory": [

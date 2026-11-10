@@ -20,8 +20,9 @@
   "specId": "010",
   "folderSlug": "cross-runtime-coverage-and-verification",
   "parentChain": [
-    "hooks",
-    "007-fable-governor-pi-hook"
+    "hooks-plugins-extensions",
+    "goal-and-directive-hooks",
+    "003-fable-governor-pi-hook"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

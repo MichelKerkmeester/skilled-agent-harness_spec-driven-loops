@@ -12,10 +12,11 @@
     "rosters"
   ],
   "lastUpdated": "2026-10-28T08:35:42.895Z",
-  "specId": "084",
+  "specId": "006",
   "folderSlug": "remove-llmgateway-luna-route",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "model-rosters"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

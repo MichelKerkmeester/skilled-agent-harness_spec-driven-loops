@@ -10,10 +10,11 @@
     "pages"
   ],
   "lastUpdated": "2026-11-05T17:14:27.288Z",
-  "specId": "026",
+  "specId": "003",
   "folderSlug": "clickup-doc-divider-spacing",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "clickup-figma"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

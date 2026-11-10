@@ -10,7 +10,8 @@
   "folderSlug": "context-type-hardening",
   "parentChain": [
     "system-speckit",
-    "036-open-knowledge-format-adoption"
+    "memory-search-and-knowledge",
+    "006-open-knowledge-format-adoption"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

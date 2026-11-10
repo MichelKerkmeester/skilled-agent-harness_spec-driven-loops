@@ -10,7 +10,8 @@
   "folderSlug": "regeneration-and-alignment-sweep",
   "parentChain": [
     "cli-external-orchestration",
-    "086-cli-hermes-deprecation"
+    "runtime-lifecycle",
+    "003-cli-hermes-deprecation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

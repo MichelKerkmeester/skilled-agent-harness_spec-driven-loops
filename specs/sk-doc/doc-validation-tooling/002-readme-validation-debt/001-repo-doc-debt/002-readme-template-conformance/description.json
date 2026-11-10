@@ -10,7 +10,8 @@
   "folderSlug": "readme-template-conformance",
   "parentChain": [
     "sk-doc",
-    "062-readme-validation-debt",
+    "doc-validation-tooling",
+    "002-readme-validation-debt",
     "001-repo-doc-debt"
   ],
   "memorySequence": 0,

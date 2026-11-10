@@ -15,8 +15,9 @@
   "specId": "001",
   "folderSlug": "reclaim-deepseek-direct-ownership",
   "parentChain": [
-    "hooks",
-    "016-cache-optimizer-absorbs-deep-pi"
+    "hooks-plugins-extensions",
+    "pi-extensions",
+    "006-cache-optimizer-absorbs-deep-pi"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

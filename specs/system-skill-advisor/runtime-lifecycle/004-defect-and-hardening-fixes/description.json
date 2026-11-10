@@ -19,10 +19,11 @@
     "gaps"
   ],
   "lastUpdated": "2026-10-06T19:00:00.000Z",
-  "specId": "025",
+  "specId": "004",
   "folderSlug": "defect-and-hardening-fixes",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "runtime-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

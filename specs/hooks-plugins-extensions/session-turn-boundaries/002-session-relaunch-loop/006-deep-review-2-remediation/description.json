@@ -10,8 +10,9 @@
   "specId": "006",
   "folderSlug": "deep-review-2-remediation",
   "parentChain": [
-    "hooks",
-    "023-session-relaunch-loop"
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

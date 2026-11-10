@@ -6,11 +6,12 @@
     "runtime-libraries-and-tests"
   ],
   "lastUpdated": "2026-10-10T19:17:45.695Z",
-  "specId": "009",
+  "specId": "006",
   "folderSlug": "runtime-libraries-and-tests",
   "parentChain": [
     "system-deep-loop",
-    "039-deprecate-improvement-modes"
+    "loop-architecture",
+    "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

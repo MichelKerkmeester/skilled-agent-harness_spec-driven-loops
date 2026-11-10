@@ -12,7 +12,8 @@
   "folderSlug": "external-user-guide",
   "parentChain": [
     "sk-code",
-    "011-sk-code-poinytail-based-refinement",
+    "hub-architecture",
+    "003-sk-code-poinytail-based-refinement",
     "026-external-surface-priority-build"
   ],
   "memorySequence": 1,

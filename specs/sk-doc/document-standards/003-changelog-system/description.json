@@ -6,10 +6,11 @@
     "system"
   ],
   "lastUpdated": "2026-10-31T13:31:06.000Z",
-  "specId": "055",
+  "specId": "003",
   "folderSlug": "changelog-system",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "document-standards"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

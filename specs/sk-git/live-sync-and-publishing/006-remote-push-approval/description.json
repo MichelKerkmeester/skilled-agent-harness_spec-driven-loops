@@ -14,10 +14,11 @@
     "own"
   ],
   "lastUpdated": "2026-08-29T20:38:30.259Z",
-  "specId": "027",
+  "specId": "006",
   "folderSlug": "remote-push-approval",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "live-sync-and-publishing"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

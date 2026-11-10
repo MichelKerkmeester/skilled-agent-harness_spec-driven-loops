@@ -12,10 +12,11 @@
     "keep"
   ],
   "lastUpdated": "2026-10-30T16:23:34.154Z",
-  "specId": "037",
+  "specId": "007",
   "folderSlug": "advisory-cd-prefix-env-steps",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "commit-standards"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

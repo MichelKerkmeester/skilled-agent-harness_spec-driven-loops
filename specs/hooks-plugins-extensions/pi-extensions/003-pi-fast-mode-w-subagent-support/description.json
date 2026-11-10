@@ -15,10 +15,11 @@
     "boundaries"
   ],
   "lastUpdated": "2026-08-30T07:16:09.443Z",
-  "specId": "011",
+  "specId": "003",
   "folderSlug": "pi-fast-mode-w-subagent-support",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "pi-extensions"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

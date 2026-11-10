@@ -20,7 +20,8 @@
   "specId": "015",
   "folderSlug": "directive-docs-alignment",
   "parentChain": [
-    "hooks",
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline",
     "002-injection-bloat-reduction"
   ],
   "memorySequence": 0,

@@ -14,10 +14,11 @@
     "passes"
   ],
   "lastUpdated": "2026-10-25T13:26:51.638Z",
-  "specId": "014",
+  "specId": "001",
   "folderSlug": "code-modes-research",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "quality-and-review-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

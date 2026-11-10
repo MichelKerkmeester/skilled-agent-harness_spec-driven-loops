@@ -10,7 +10,8 @@
   "folderSlug": "commit-id-in-every-toolchain-repo",
   "parentChain": [
     "sk-git",
-    "032-template-driven-message-enforcement"
+    "commit-standards",
+    "004-template-driven-message-enforcement"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

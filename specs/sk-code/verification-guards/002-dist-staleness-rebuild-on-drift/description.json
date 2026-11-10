@@ -19,10 +19,11 @@
     "sessions"
   ],
   "lastUpdated": "2026-08-29T15:12:05.973Z",
-  "specId": "005",
+  "specId": "002",
   "folderSlug": "dist-staleness-rebuild-on-drift",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "verification-guards"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

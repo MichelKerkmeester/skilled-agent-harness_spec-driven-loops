@@ -6,11 +6,12 @@
     "docs-and-readmes"
   ],
   "lastUpdated": "2026-10-10T18:23:54.785Z",
-  "specId": "006",
+  "specId": "008",
   "folderSlug": "docs-and-readmes",
   "parentChain": [
     "system-deep-loop",
-    "039-deprecate-improvement-modes"
+    "loop-architecture",
+    "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

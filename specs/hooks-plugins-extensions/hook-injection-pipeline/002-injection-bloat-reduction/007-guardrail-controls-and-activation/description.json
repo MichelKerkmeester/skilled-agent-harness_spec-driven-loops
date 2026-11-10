@@ -21,7 +21,8 @@
   "specId": "007",
   "folderSlug": "guardrail-controls-and-activation",
   "parentChain": [
-    "hooks",
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline",
     "002-injection-bloat-reduction"
   ],
   "memorySequence": 0,

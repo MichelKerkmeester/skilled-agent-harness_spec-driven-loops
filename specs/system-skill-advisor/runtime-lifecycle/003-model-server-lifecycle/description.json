@@ -7,10 +7,11 @@
     "lifecycle"
   ],
   "lastUpdated": "2026-10-31T13:31:06.000Z",
-  "specId": "021",
+  "specId": "003",
   "folderSlug": "model-server-lifecycle",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "runtime-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

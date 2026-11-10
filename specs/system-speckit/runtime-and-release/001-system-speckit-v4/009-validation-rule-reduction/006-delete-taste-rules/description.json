@@ -16,7 +16,8 @@
   "folderSlug": "delete-taste-rules",
   "parentChain": [
     "system-speckit",
-    "031-system-speckit-v4",
+    "runtime-and-release",
+    "001-system-speckit-v4",
     "009-validation-rule-reduction"
   ],
   "memorySequence": 0,

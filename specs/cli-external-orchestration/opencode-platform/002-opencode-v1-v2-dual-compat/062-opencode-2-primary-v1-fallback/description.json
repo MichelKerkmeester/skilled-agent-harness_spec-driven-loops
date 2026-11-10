@@ -14,7 +14,8 @@
   "folderSlug": "opencode-2-primary-v1-fallback",
   "parentChain": [
     "cli-external-orchestration",
-    "082-opencode-v1-v2-dual-compat"
+    "opencode-platform",
+    "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

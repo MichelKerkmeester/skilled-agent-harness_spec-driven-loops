@@ -22,7 +22,8 @@
   "specId": "008",
   "folderSlug": "sk-code-alignment",
   "parentChain": [
-    "hooks",
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline",
     "002-injection-bloat-reduction"
   ],
   "memorySequence": 0,

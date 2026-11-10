@@ -18,7 +18,8 @@
   "folderSlug": "sk-code",
   "parentChain": [
     "sk-doc",
-    "055-changelog-system",
+    "document-standards",
+    "003-changelog-system",
     "002-skill-changelog-retrofit"
   ],
   "memorySequence": 1,

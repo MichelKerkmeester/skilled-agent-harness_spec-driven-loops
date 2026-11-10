@@ -8,10 +8,11 @@
     "sync"
   ],
   "lastUpdated": "2026-10-31T13:31:06.000Z",
-  "specId": "050",
+  "specId": "001",
   "folderSlug": "playbook-coverage-and-sync",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "authoring-modes-and-playbooks"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

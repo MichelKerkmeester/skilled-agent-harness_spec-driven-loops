@@ -23,7 +23,8 @@
   "folderSlug": "author-presentation-md",
   "parentChain": [
     "system-speckit",
-    "027-xce-research-based-refinement",
+    "memory-search-and-knowledge",
+    "002-xce-research-based-refinement",
     "004-shared-infrastructure",
     "002-command-presentation-workflow-separation",
     "002-speckit-commands"

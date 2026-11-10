@@ -29,7 +29,8 @@
   "folderSlug": "advisor-and-codegraph",
   "parentChain": [
     "system-speckit",
-    "027-xce-research-based-refinement"
+    "memory-search-and-knowledge",
+    "002-xce-research-based-refinement"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

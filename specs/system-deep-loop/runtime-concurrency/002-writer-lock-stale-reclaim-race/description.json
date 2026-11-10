@@ -11,10 +11,11 @@
     "lock"
   ],
   "lastUpdated": "2026-10-25T07:12:28.417Z",
-  "specId": "041",
+  "specId": "002",
   "folderSlug": "writer-lock-stale-reclaim-race",
   "parentChain": [
-    "system-deep-loop"
+    "system-deep-loop",
+    "runtime-concurrency"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

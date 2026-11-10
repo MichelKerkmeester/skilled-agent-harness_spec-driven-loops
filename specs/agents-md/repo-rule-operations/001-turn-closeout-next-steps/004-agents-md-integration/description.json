@@ -17,7 +17,8 @@
   "folderSlug": "agents-md-integration",
   "parentChain": [
     "agents-md",
-    "007-turn-closeout-next-steps"
+    "repo-rule-operations",
+    "001-turn-closeout-next-steps"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

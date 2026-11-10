@@ -14,10 +14,11 @@
     "remove"
   ],
   "lastUpdated": "2026-10-10T18:42:45.967Z",
-  "specId": "059",
+  "specId": "003",
   "folderSlug": "feature-catalog-template-anchor-deprecation",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "authoring-modes-and-playbooks"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

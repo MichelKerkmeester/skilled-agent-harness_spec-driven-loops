@@ -15,10 +15,11 @@
     "root"
   ],
   "lastUpdated": "2026-08-15T14:41:14.620Z",
-  "specId": "028",
+  "specId": "003",
   "folderSlug": "memory-search-intelligence",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "memory-search-and-knowledge"
   ],
   "memorySequence": 20,
   "memoryNameHistory": [

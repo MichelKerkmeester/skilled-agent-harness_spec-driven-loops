@@ -16,7 +16,8 @@
   "folderSlug": "command-and-playbook",
   "parentChain": [
     "sk-doc",
-    "049-frontmatter-and-description-budget",
+    "document-standards",
+    "001-frontmatter-and-description-budget",
     "001-sk-create-frontmatter"
   ],
   "memorySequence": 0,

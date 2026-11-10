@@ -17,7 +17,8 @@
   "folderSlug": "scanners-and-gates",
   "parentChain": [
     "sk-code",
-    "007-sk-code-obsidian-surface"
+    "code-surfaces",
+    "002-sk-code-obsidian-surface"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

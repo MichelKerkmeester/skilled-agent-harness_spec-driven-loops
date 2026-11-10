@@ -11,7 +11,8 @@
   "folderSlug": "review-mode-research",
   "parentChain": [
     "sk-code",
-    "014-code-modes-research"
+    "quality-and-review-modes",
+    "001-code-modes-research"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

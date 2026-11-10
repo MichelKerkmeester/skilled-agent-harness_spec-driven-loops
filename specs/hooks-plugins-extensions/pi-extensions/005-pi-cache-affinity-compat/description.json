@@ -17,10 +17,11 @@
     "sendsessionaffinityheaders"
   ],
   "lastUpdated": "2026-08-30T05:43:10.214Z",
-  "specId": "013",
+  "specId": "005",
   "folderSlug": "pi-cache-affinity-compat",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "pi-extensions"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

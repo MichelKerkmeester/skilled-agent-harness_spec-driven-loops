@@ -9,8 +9,9 @@
   "specId": "008",
   "folderSlug": "claim-error-per-state",
   "parentChain": [
-    "hooks",
-    "023-session-relaunch-loop",
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
     "033-research-remediation"
   ],
   "memorySequence": 0,

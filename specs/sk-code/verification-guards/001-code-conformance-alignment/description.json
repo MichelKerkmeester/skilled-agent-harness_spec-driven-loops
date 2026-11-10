@@ -17,10 +17,11 @@
     "canonical"
   ],
   "lastUpdated": "2026-08-29T15:04:31.717Z",
-  "specId": "004",
+  "specId": "001",
   "folderSlug": "code-conformance-alignment",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "verification-guards"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

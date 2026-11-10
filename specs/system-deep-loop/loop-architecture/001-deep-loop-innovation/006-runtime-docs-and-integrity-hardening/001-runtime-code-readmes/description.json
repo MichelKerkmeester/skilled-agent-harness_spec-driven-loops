@@ -15,7 +15,8 @@
   "folderSlug": "runtime-code-readmes",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "006-runtime-docs-and-integrity-hardening"
   ],
   "memorySequence": 0,

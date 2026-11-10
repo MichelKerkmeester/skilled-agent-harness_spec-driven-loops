@@ -16,7 +16,8 @@
   "folderSlug": "write-safety-and-guards",
   "parentChain": [
     "system-speckit",
-    "027-xce-research-based-refinement",
+    "memory-search-and-knowledge",
+    "002-xce-research-based-refinement",
     "005-verification-and-remediation",
     "001-finding-remediation"
   ],

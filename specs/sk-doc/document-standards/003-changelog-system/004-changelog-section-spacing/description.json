@@ -17,7 +17,8 @@
   "folderSlug": "changelog-section-spacing",
   "parentChain": [
     "sk-doc",
-    "055-changelog-system"
+    "document-standards",
+    "003-changelog-system"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

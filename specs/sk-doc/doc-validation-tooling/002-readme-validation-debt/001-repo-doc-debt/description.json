@@ -22,7 +22,8 @@
   "folderSlug": "repo-doc-debt",
   "parentChain": [
     "sk-doc",
-    "062-readme-validation-debt"
+    "doc-validation-tooling",
+    "002-readme-validation-debt"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

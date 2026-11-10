@@ -22,7 +22,8 @@
   "folderSlug": "checklist-full-retirement",
   "parentChain": [
     "system-speckit",
-    "031-system-speckit-v4",
+    "runtime-and-release",
+    "001-system-speckit-v4",
     "003-spec-doc-template-reduction"
   ],
   "memorySequence": 0,

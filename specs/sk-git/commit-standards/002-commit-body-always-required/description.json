@@ -9,10 +9,11 @@
     "authored"
   ],
   "lastUpdated": "2026-09-28T20:37:18.864Z",
-  "specId": "030",
+  "specId": "002",
   "folderSlug": "commit-body-always-required",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "commit-standards"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

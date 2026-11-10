@@ -18,10 +18,11 @@
     "duplication"
   ],
   "lastUpdated": "2026-08-15T14:40:54.879Z",
-  "specId": "004",
+  "specId": "001",
   "folderSlug": "agents-md-bloat-audit",
   "parentChain": [
-    "agents-md"
+    "agents-md",
+    "instruction-file-architecture"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

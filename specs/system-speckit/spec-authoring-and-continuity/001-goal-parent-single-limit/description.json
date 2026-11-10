@@ -11,10 +11,11 @@
     "slice"
   ],
   "lastUpdated": "2026-09-25T15:29:15.923Z",
-  "specId": "033",
+  "specId": "001",
   "folderSlug": "goal-parent-single-limit",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "spec-authoring-and-continuity"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

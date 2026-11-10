@@ -16,10 +16,11 @@
     "system-spec-kit"
   ],
   "lastUpdated": "2026-09-30T22:06:54.610Z",
-  "specId": "034",
+  "specId": "002",
   "folderSlug": "align-runtime-code-with-sk-code-skilled",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "runtime-and-release"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

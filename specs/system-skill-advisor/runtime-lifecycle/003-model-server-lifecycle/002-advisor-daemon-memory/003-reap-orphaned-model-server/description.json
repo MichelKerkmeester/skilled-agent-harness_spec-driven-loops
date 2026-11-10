@@ -10,7 +10,8 @@
   "folderSlug": "reap-orphaned-model-server",
   "parentChain": [
     "system-skill-advisor",
-    "021-model-server-lifecycle",
+    "runtime-lifecycle",
+    "003-model-server-lifecycle",
     "002-advisor-daemon-memory"
   ],
   "memorySequence": 0,

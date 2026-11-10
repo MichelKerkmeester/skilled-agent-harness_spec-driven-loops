@@ -11,10 +11,11 @@
     "allowlists"
   ],
   "lastUpdated": "2026-09-22T07:12:09.980Z",
-  "specId": "076",
+  "specId": "002",
   "folderSlug": "mimo-v2-6-cutover",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "model-rosters"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

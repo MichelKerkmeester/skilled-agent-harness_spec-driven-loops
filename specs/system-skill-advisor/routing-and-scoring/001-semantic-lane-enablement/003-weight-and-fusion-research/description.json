@@ -15,7 +15,8 @@
   "folderSlug": "weight-and-fusion-research",
   "parentChain": [
     "system-skill-advisor",
-    "022-semantic-lane-enablement"
+    "routing-and-scoring",
+    "001-semantic-lane-enablement"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -10,7 +10,8 @@
   "folderSlug": "remaining-limits",
   "parentChain": [
     "sk-git",
-    "033-git-setup-customization"
+    "commit-standards",
+    "005-git-setup-customization"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

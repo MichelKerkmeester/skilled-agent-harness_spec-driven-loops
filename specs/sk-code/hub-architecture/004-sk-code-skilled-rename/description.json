@@ -16,10 +16,11 @@
     "reference"
   ],
   "lastUpdated": "2026-10-18T20:30:05.291Z",
-  "specId": "012",
+  "specId": "004",
   "folderSlug": "sk-code-skilled-rename",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "hub-architecture"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

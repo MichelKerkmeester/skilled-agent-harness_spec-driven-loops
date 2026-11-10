@@ -14,10 +14,11 @@
     "auto-load"
   ],
   "lastUpdated": "2026-09-19T11:10:00.215Z",
-  "specId": "008",
+  "specId": "003",
   "folderSlug": "sk-code-mobile-cli-mode",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "code-surfaces"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

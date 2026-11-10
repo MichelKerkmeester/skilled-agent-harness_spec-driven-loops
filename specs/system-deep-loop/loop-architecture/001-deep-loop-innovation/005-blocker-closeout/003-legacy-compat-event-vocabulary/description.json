@@ -18,7 +18,8 @@
   "folderSlug": "legacy-compat-event-vocabulary",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "005-blocker-closeout"
   ],
   "memorySequence": 2,

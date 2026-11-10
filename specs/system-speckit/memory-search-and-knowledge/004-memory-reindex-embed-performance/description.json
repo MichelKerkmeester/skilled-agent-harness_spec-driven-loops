@@ -11,10 +11,11 @@
     "pipeline"
   ],
   "lastUpdated": "2026-08-15T14:41:14.649Z",
-  "specId": "030",
+  "specId": "004",
   "folderSlug": "memory-reindex-embed-performance",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "memory-search-and-knowledge"
   ],
   "memorySequence": 3,
   "memoryNameHistory": [

@@ -18,10 +18,11 @@
     "opened"
   ],
   "lastUpdated": "2026-08-15T14:40:55.762Z",
-  "specId": "006",
+  "specId": "001",
   "folderSlug": "spec-gate-question-noise",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "session-turn-boundaries"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

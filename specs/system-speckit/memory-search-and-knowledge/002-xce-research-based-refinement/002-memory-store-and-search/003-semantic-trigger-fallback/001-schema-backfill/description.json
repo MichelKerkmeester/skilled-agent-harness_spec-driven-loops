@@ -22,7 +22,8 @@
   "folderSlug": "schema-backfill",
   "parentChain": [
     "system-speckit",
-    "027-xce-research-based-refinement",
+    "memory-search-and-knowledge",
+    "002-xce-research-based-refinement",
     "002-memory-store-and-search",
     "003-semantic-trigger-fallback"
   ],

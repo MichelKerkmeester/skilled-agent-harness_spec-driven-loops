@@ -23,7 +23,8 @@
   "folderSlug": "mode-design-plan",
   "parentChain": [
     "sk-code",
-    "008-sk-code-mobile-cli-mode"
+    "code-surfaces",
+    "003-sk-code-mobile-cli-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

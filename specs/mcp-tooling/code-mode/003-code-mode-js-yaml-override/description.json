@@ -9,10 +9,11 @@
     "override"
   ],
   "lastUpdated": "2026-10-21T18:00:00.000Z",
-  "specId": "024",
+  "specId": "003",
   "folderSlug": "code-mode-js-yaml-override",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "code-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

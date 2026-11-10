@@ -21,7 +21,8 @@
   "folderSlug": "command-rollout-mode-resolution",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "019-risky-followup-remediation"
   ],
   "memorySequence": 0,

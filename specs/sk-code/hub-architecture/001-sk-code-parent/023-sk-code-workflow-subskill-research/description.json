@@ -22,6 +22,7 @@
   "folderSlug": "sk-code-workflow-subskill-research",
   "parentChain": [
     "sk-code",
+    "hub-architecture",
     "001-sk-code-parent"
   ],
   "memorySequence": 0,

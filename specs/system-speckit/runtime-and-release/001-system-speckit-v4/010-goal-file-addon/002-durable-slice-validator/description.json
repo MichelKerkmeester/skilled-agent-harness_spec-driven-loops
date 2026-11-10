@@ -13,7 +13,8 @@
   "folderSlug": "durable-slice-validator",
   "parentChain": [
     "system-speckit",
-    "031-system-speckit-v4",
+    "runtime-and-release",
+    "001-system-speckit-v4",
     "010-goal-file-addon"
   ],
   "memorySequence": 0,

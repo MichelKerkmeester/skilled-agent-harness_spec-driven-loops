@@ -24,7 +24,8 @@
   "folderSlug": "production-db-isolation",
   "parentChain": [
     "system-speckit",
-    "031-system-speckit-v4",
+    "runtime-and-release",
+    "001-system-speckit-v4",
     "014-daemon-and-test-harness-hardening"
   ],
   "memorySequence": 0,

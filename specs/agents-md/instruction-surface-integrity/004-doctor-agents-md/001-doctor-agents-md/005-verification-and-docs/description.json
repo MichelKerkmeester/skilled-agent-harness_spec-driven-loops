@@ -11,7 +11,8 @@
   "folderSlug": "verification-and-docs",
   "parentChain": [
     "agents-md",
-    "016-doctor-agents-md",
+    "instruction-surface-integrity",
+    "004-doctor-agents-md",
     "001-doctor-agents-md"
   ],
   "memorySequence": 0,

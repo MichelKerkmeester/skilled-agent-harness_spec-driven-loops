@@ -8,10 +8,11 @@
     "guidance"
   ],
   "lastUpdated": "2026-09-20T12:52:10.224Z",
-  "specId": "054",
+  "specId": "002",
   "folderSlug": "sk-create-readme-writing-style",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "document-standards"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

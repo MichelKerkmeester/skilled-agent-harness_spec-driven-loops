@@ -11,10 +11,11 @@
     "disk"
   ],
   "lastUpdated": "2026-10-03T05:27:36.132Z",
-  "specId": "029",
+  "specId": "004",
   "folderSlug": "advisor-status-truthfulness",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "codebase-conformance"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

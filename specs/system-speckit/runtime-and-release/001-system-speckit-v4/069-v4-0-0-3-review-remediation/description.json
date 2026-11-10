@@ -24,7 +24,8 @@
   "folderSlug": "v4-0-0-3-review-remediation",
   "parentChain": [
     "system-speckit",
-    "031-system-speckit-v4"
+    "runtime-and-release",
+    "001-system-speckit-v4"
   ],
   "memorySequence": 3,
   "memoryNameHistory": [

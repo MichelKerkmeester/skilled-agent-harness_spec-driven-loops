@@ -17,10 +17,11 @@
     "tests"
   ],
   "lastUpdated": "2026-10-07T05:03:30.378Z",
-  "specId": "013",
+  "specId": "004",
   "folderSlug": "thinking-discipline",
   "parentChain": [
-    "agents-md"
+    "agents-md",
+    "agent-behavior"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

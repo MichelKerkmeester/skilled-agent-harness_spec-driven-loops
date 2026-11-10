@@ -10,7 +10,8 @@
   "folderSlug": "hook-stdin-deadlines",
   "parentChain": [
     "sk-code",
-    "011-sk-code-poinytail-based-refinement",
+    "hub-architecture",
+    "003-sk-code-poinytail-based-refinement",
     "012-post-merge-deep-review"
   ],
   "memorySequence": 0,

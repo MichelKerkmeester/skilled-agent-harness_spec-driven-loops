@@ -19,8 +19,9 @@
   "specId": "002",
   "folderSlug": "subagent-handoff",
   "parentChain": [
-    "hooks",
-    "011-pi-fast-mode-w-subagent-support"
+    "hooks-plugins-extensions",
+    "pi-extensions",
+    "003-pi-fast-mode-w-subagent-support"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -17,7 +17,8 @@
   "folderSlug": "q4-quantization",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation"

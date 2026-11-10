@@ -20,7 +20,8 @@
   "folderSlug": "graph-arch",
   "parentChain": [
     "system-deep-loop",
-    "037-graph-engineering"
+    "loop-architecture",
+    "002-graph-engineering"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

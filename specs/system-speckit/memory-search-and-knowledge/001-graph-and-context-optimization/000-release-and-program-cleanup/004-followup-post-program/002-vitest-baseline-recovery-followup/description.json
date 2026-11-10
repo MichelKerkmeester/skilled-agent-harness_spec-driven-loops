@@ -46,7 +46,8 @@
   "folderSlug": "vitest-baseline-recovery-followup",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "004-followup-post-program"
   ],

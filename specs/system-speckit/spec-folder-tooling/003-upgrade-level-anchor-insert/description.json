@@ -10,10 +10,11 @@
     "upgrade"
   ],
   "lastUpdated": "2026-11-08T08:54:39.767Z",
-  "specId": "045",
+  "specId": "003",
   "folderSlug": "upgrade-level-anchor-insert",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "spec-folder-tooling"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

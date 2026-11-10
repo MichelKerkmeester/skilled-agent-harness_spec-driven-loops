@@ -23,7 +23,8 @@
   "folderSlug": "codex-lineage-auth-isolation",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation"
+    "loop-architecture",
+    "001-deep-loop-innovation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

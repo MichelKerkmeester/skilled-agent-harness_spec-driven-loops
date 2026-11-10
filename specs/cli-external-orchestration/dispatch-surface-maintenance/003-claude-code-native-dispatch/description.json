@@ -14,10 +14,11 @@
     "cli"
   ],
   "lastUpdated": "2026-10-03T21:11:45.316Z",
-  "specId": "079",
+  "specId": "003",
   "folderSlug": "claude-code-native-dispatch",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "dispatch-surface-maintenance"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

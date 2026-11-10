@@ -10,7 +10,8 @@
   "folderSlug": "decision-routing-vocabulary",
   "parentChain": [
     "system-speckit",
-    "043-decision-capture"
+    "spec-authoring-and-continuity",
+    "004-decision-capture"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

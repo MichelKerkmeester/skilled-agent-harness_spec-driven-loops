@@ -11,10 +11,11 @@
     "hooks"
   ],
   "lastUpdated": "2026-08-31T03:30:12.763Z",
-  "specId": "015",
+  "specId": "001",
   "folderSlug": "git-hook-gate-reduction",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "repo-commit-gates"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

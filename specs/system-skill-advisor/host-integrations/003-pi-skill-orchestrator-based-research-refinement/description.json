@@ -9,10 +9,11 @@
     "refinement"
   ],
   "lastUpdated": "2026-09-26T06:29:58.862Z",
-  "specId": "027",
+  "specId": "003",
   "folderSlug": "pi-skill-orchestrator-based-research-refinement",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "host-integrations"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

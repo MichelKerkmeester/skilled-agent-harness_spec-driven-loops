@@ -10,7 +10,8 @@
   "folderSlug": "round-two-recommendations",
   "parentChain": [
     "sk-code",
-    "011-sk-code-poinytail-based-refinement"
+    "hub-architecture",
+    "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

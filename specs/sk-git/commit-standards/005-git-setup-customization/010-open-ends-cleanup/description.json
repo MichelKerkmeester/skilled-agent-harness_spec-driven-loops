@@ -11,7 +11,8 @@
   "folderSlug": "open-ends-cleanup",
   "parentChain": [
     "sk-git",
-    "033-git-setup-customization"
+    "commit-standards",
+    "005-git-setup-customization"
   ],
   "memorySequence": 4,
   "memoryNameHistory": [

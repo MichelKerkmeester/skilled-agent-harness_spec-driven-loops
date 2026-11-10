@@ -10,7 +10,8 @@
   "folderSlug": "cli-codex",
   "parentChain": [
     "sk-doc",
-    "065-conversation-playbook-scenarios",
+    "authoring-modes-and-playbooks",
+    "004-conversation-playbook-scenarios",
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,

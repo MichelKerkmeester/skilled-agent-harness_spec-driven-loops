@@ -15,8 +15,9 @@
   "specId": "002",
   "folderSlug": "event-triggered-injection",
   "parentChain": [
-    "hooks",
-    "022-smart-rule-injection"
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline",
+    "005-smart-rule-injection"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

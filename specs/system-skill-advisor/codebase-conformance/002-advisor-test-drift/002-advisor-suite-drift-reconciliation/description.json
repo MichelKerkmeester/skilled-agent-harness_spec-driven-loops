@@ -23,7 +23,8 @@
   "folderSlug": "advisor-suite-drift-reconciliation",
   "parentChain": [
     "system-skill-advisor",
-    "019-advisor-test-drift"
+    "codebase-conformance",
+    "002-advisor-test-drift"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

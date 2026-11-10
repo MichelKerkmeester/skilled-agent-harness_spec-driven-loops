@@ -14,10 +14,11 @@
     "turn"
   ],
   "lastUpdated": "2026-08-30T18:39:50.895Z",
-  "specId": "014",
+  "specId": "005",
   "folderSlug": "retire-governor-and-proof-directives",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "goal-and-directive-hooks"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

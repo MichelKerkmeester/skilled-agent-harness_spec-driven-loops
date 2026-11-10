@@ -22,10 +22,11 @@
     "tree"
   ],
   "lastUpdated": "2026-09-29T07:29:10.290Z",
-  "specId": "078",
+  "specId": "001",
   "folderSlug": "layer-3-own-paths-baseline",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "opencode-platform"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

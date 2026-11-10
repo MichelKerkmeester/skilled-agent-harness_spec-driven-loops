@@ -23,7 +23,8 @@
   "folderSlug": "system-deep-loop-review",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation"
+    "loop-architecture",
+    "001-deep-loop-innovation"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

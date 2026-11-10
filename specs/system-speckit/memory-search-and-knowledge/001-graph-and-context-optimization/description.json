@@ -39,10 +39,11 @@
     "one-off"
   ],
   "lastUpdated": "2026-08-15T14:41:11.746Z",
-  "specId": "026",
+  "specId": "001",
   "folderSlug": "graph-and-context-optimization",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "memory-search-and-knowledge"
   ],
   "memorySequence": 10,
   "memoryNameHistory": [

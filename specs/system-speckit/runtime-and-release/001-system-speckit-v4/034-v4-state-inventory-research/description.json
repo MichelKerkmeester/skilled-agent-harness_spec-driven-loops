@@ -19,7 +19,8 @@
   "folderSlug": "v4-state-inventory-research",
   "parentChain": [
     "system-speckit",
-    "031-system-speckit-v4"
+    "runtime-and-release",
+    "001-system-speckit-v4"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

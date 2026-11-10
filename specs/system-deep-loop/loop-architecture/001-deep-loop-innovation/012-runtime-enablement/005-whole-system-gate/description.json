@@ -14,7 +14,8 @@
   "folderSlug": "whole-system-gate",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "012-runtime-enablement"
   ],
   "memorySequence": 0,

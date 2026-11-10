@@ -13,10 +13,11 @@
     "scope"
   ],
   "lastUpdated": "2026-10-26T09:17:20.655Z",
-  "specId": "025",
+  "specId": "002",
   "folderSlug": "figma-hosted-from-cli-children",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "clickup-figma"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

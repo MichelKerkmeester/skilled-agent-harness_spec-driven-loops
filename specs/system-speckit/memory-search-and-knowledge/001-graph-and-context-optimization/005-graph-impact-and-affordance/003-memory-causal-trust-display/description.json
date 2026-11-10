@@ -16,7 +16,8 @@
   "folderSlug": "memory-causal-trust-display",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "005-graph-impact-and-affordance"
   ],
   "memorySequence": 1,

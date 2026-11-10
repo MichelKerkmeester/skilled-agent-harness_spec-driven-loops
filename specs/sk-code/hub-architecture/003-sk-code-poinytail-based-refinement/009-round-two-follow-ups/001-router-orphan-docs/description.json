@@ -10,7 +10,8 @@
   "folderSlug": "router-orphan-docs",
   "parentChain": [
     "sk-code",
-    "011-sk-code-poinytail-based-refinement",
+    "hub-architecture",
+    "003-sk-code-poinytail-based-refinement",
     "009-round-two-follow-ups"
   ],
   "memorySequence": 0,

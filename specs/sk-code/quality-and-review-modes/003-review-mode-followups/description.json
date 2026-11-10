@@ -24,10 +24,11 @@
     "routing"
   ],
   "lastUpdated": "2026-10-27T06:26:55.266Z",
-  "specId": "016",
+  "specId": "003",
   "folderSlug": "review-mode-followups",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "quality-and-review-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

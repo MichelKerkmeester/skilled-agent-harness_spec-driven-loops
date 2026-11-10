@@ -10,7 +10,8 @@
   "folderSlug": "shared-rule-contract",
   "parentChain": [
     "sk-code",
-    "017-portable-code-modes"
+    "quality-and-review-modes",
+    "004-portable-code-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

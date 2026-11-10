@@ -16,6 +16,7 @@
   "folderSlug": "cutover-and-rollout",
   "parentChain": [
     "sk-code",
+    "hub-architecture",
     "001-sk-code-parent"
   ],
   "memorySequence": 17,

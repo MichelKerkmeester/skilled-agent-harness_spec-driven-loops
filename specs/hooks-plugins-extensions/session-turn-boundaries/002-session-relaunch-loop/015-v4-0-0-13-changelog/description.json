@@ -9,8 +9,9 @@
   "specId": "015",
   "folderSlug": "v4-0-0-13-changelog",
   "parentChain": [
-    "hooks",
-    "023-session-relaunch-loop"
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

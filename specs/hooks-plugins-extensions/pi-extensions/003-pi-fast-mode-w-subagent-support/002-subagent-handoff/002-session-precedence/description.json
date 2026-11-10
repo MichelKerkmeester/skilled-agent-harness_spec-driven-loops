@@ -21,8 +21,9 @@
   "specId": "002",
   "folderSlug": "session-precedence",
   "parentChain": [
-    "hooks",
-    "011-pi-fast-mode-w-subagent-support",
+    "hooks-plugins-extensions",
+    "pi-extensions",
+    "003-pi-fast-mode-w-subagent-support",
     "002-subagent-handoff"
   ],
   "memorySequence": 0,

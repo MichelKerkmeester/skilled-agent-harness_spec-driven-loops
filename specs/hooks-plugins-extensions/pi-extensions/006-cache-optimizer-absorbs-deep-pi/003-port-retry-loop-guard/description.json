@@ -18,8 +18,9 @@
   "specId": "003",
   "folderSlug": "port-retry-loop-guard",
   "parentChain": [
-    "hooks",
-    "016-cache-optimizer-absorbs-deep-pi"
+    "hooks-plugins-extensions",
+    "pi-extensions",
+    "006-cache-optimizer-absorbs-deep-pi"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

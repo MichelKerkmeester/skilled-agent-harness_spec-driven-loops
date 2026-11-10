@@ -19,7 +19,8 @@
   "folderSlug": "spine-architecture-adr",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "001-research-inputs-and-architecture",
     "004-architecture-coverage-and-transition-contract"
   ],

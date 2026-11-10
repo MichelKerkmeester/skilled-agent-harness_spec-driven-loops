@@ -17,7 +17,8 @@
   "folderSlug": "sk-doc-playbook-coverage",
   "parentChain": [
     "sk-doc",
-    "050-playbook-coverage-and-sync"
+    "authoring-modes-and-playbooks",
+    "001-playbook-coverage-and-sync"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

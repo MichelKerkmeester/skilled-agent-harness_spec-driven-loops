@@ -11,7 +11,8 @@
   "folderSlug": "gap-closure",
   "parentChain": [
     "system-speckit",
-    "043-decision-capture"
+    "spec-authoring-and-continuity",
+    "004-decision-capture"
   ],
   "memorySequence": 6,
   "memoryNameHistory": [

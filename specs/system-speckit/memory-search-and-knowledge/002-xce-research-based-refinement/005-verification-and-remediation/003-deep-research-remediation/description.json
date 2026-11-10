@@ -15,7 +15,8 @@
   "folderSlug": "deep-research-remediation",
   "parentChain": [
     "system-speckit",
-    "027-xce-research-based-refinement",
+    "memory-search-and-knowledge",
+    "002-xce-research-based-refinement",
     "005-verification-and-remediation"
   ],
   "memorySequence": 0,

@@ -14,10 +14,11 @@
     "fires"
   ],
   "lastUpdated": "2026-08-29T14:08:52.376Z",
-  "specId": "006",
+  "specId": "002",
   "folderSlug": "restraint-and-routing-gates",
   "parentChain": [
-    "agents-md"
+    "agents-md",
+    "instruction-file-architecture"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

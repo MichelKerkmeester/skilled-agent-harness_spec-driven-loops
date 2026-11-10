@@ -17,8 +17,9 @@
   "specId": "003",
   "folderSlug": "devin-goal-hooks",
   "parentChain": [
-    "hooks",
-    "003-goal-hooks-cross-runtime"
+    "hooks-plugins-extensions",
+    "goal-and-directive-hooks",
+    "001-goal-hooks-cross-runtime"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

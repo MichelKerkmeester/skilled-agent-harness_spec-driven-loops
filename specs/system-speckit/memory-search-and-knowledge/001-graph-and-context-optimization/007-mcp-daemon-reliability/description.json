@@ -25,7 +25,8 @@
   "folderSlug": "mcp-daemon-reliability",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization"
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

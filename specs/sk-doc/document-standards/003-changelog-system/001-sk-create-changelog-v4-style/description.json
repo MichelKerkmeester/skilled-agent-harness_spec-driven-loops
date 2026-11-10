@@ -16,7 +16,8 @@
   "folderSlug": "sk-create-changelog-v4-style",
   "parentChain": [
     "sk-doc",
-    "055-changelog-system"
+    "document-standards",
+    "003-changelog-system"
   ],
   "memorySequence": 6,
   "memoryNameHistory": [

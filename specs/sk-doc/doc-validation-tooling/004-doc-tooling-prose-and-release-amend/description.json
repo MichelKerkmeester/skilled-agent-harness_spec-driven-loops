@@ -12,10 +12,11 @@
     "notes"
   ],
   "lastUpdated": "2026-11-08T14:18:54.497Z",
-  "specId": "067",
+  "specId": "004",
   "folderSlug": "doc-tooling-prose-and-release-amend",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "doc-validation-tooling"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

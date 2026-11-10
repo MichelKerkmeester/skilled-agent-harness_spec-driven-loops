@@ -20,7 +20,8 @@
   "folderSlug": "cli-pi-fanout-wiring",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "007-executor-and-cli-hardening",
     "002-executor-wiring-and-parity",
     "003-cli-executor-fanout-parity"

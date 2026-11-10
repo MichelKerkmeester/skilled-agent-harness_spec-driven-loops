@@ -13,10 +13,11 @@
     "symlink"
   ],
   "lastUpdated": "2026-10-28T15:46:18.131Z",
-  "specId": "063",
+  "specId": "005",
   "folderSlug": "opencode-native-surfaces",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "hub-routing-and-surfaces"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

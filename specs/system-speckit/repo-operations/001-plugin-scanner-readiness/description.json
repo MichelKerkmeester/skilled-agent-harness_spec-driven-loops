@@ -19,10 +19,11 @@
     "context"
   ],
   "lastUpdated": "2026-10-01T18:43:04.283Z",
-  "specId": "035",
+  "specId": "001",
   "folderSlug": "plugin-scanner-readiness",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "repo-operations"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

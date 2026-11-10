@@ -24,7 +24,8 @@
   "folderSlug": "review-leaf-protocol",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "008-review-and-rollback-followup"
   ],
   "memorySequence": 0,

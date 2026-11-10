@@ -25,8 +25,9 @@
   "specId": "006",
   "folderSlug": "fork-and-improve-deep-pi",
   "parentChain": [
-    "hooks",
-    "008-pi-caching-like-reasonix"
+    "hooks-plugins-extensions",
+    "pi-extensions",
+    "002-pi-caching-like-reasonix"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

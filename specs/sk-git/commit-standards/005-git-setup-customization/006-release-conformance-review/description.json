@@ -23,7 +23,8 @@
   "folderSlug": "release-conformance-review",
   "parentChain": [
     "sk-git",
-    "033-git-setup-customization"
+    "commit-standards",
+    "005-git-setup-customization"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

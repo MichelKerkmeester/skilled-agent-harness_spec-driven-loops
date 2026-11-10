@@ -27,10 +27,11 @@
     "ban"
   ],
   "lastUpdated": "2026-10-07T11:22:14.335Z",
-  "specId": "014",
+  "specId": "003",
   "folderSlug": "communication-rules-consolidation",
   "parentChain": [
-    "agents-md"
+    "agents-md",
+    "repo-rule-operations"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

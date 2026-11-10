@@ -19,7 +19,8 @@
   "folderSlug": "cli-versus-mcp",
   "parentChain": [
     "mcp-tooling",
-    "019-official-obsidian-cli"
+    "mcp-obsidian",
+    "001-official-obsidian-cli"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

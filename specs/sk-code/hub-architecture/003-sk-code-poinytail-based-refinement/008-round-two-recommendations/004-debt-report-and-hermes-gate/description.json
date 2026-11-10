@@ -10,7 +10,8 @@
   "folderSlug": "debt-report-and-hermes-gate",
   "parentChain": [
     "sk-code",
-    "011-sk-code-poinytail-based-refinement",
+    "hub-architecture",
+    "003-sk-code-poinytail-based-refinement",
     "008-round-two-recommendations"
   ],
   "memorySequence": 0,

@@ -46,7 +46,8 @@
   "folderSlug": "autonomous-dependency-patching",
   "parentChain": [
     "system-speckit",
-    "027-xce-research-based-refinement",
+    "memory-search-and-knowledge",
+    "002-xce-research-based-refinement",
     "004-shared-infrastructure"
   ],
   "memorySequence": 2,

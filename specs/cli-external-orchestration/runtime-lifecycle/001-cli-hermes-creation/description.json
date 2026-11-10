@@ -22,10 +22,11 @@
     "parity"
   ],
   "lastUpdated": "2026-09-15T18:33:38.584Z",
-  "specId": "071",
+  "specId": "001",
   "folderSlug": "cli-hermes-creation",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "runtime-lifecycle"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

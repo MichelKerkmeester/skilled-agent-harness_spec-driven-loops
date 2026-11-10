@@ -22,7 +22,8 @@
   "folderSlug": "review-record-packet-type",
   "parentChain": [
     "system-speckit",
-    "028-memory-search-intelligence",
+    "memory-search-and-knowledge",
+    "003-memory-search-intelligence",
     "004-review-remediation"
   ],
   "memorySequence": 0,

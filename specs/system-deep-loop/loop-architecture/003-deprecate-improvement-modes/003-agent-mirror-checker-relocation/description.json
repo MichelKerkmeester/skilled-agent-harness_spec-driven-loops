@@ -6,11 +6,12 @@
     "agent-mirror-checker-relocation"
   ],
   "lastUpdated": "2026-10-10T19:17:43.347Z",
-  "specId": "008",
+  "specId": "003",
   "folderSlug": "agent-mirror-checker-relocation",
   "parentChain": [
     "system-deep-loop",
-    "039-deprecate-improvement-modes"
+    "loop-architecture",
+    "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -19,7 +19,8 @@
   "folderSlug": "cli-child-marker-propagation",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "007-mcp-daemon-reliability",
     "015-infra-followup-hardening"
   ],

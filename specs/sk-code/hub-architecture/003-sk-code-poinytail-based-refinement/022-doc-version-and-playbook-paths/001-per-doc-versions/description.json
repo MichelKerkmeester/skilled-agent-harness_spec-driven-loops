@@ -10,7 +10,8 @@
   "folderSlug": "per-doc-versions",
   "parentChain": [
     "sk-code",
-    "011-sk-code-poinytail-based-refinement",
+    "hub-architecture",
+    "003-sk-code-poinytail-based-refinement",
     "022-doc-version-and-playbook-paths"
   ],
   "memorySequence": 0,

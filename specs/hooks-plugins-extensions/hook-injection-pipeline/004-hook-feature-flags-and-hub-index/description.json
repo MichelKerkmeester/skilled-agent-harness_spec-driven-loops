@@ -22,10 +22,11 @@
     "index"
   ],
   "lastUpdated": "2026-10-03T14:45:17.100Z",
-  "specId": "010",
+  "specId": "004",
   "folderSlug": "hook-feature-flags-and-hub-index",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

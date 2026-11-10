@@ -17,7 +17,8 @@
   "folderSlug": "doctor-command-guidance",
   "parentChain": [
     "system-skill-advisor",
-    "030-doctor-command-surfacing"
+    "routing-and-scoring",
+    "003-doctor-command-surfacing"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

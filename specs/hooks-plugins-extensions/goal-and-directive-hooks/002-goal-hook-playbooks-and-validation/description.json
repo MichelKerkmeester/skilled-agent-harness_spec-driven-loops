@@ -17,10 +17,11 @@
     "symlink"
   ],
   "lastUpdated": "2026-08-15T14:40:55.759Z",
-  "specId": "004",
+  "specId": "002",
   "folderSlug": "goal-hook-playbooks-and-validation",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "goal-and-directive-hooks"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -15,7 +15,8 @@
   "folderSlug": "description-budget",
   "parentChain": [
     "sk-doc",
-    "049-frontmatter-and-description-budget"
+    "document-standards",
+    "001-frontmatter-and-description-budget"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

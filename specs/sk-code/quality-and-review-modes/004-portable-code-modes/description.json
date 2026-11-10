@@ -9,10 +9,11 @@
     "repository"
   ],
   "lastUpdated": "2026-10-27T20:47:57.604Z",
-  "specId": "017",
+  "specId": "004",
   "folderSlug": "portable-code-modes",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "quality-and-review-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

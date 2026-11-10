@@ -19,10 +19,11 @@
     "unrelated"
   ],
   "lastUpdated": "2026-09-20T04:33:22.880Z",
-  "specId": "023",
+  "specId": "003",
   "folderSlug": "live-follow-disjoint-ff",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "live-sync-and-publishing"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

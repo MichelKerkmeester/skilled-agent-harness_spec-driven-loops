@@ -17,8 +17,9 @@
   "specId": "002",
   "folderSlug": "install-transition",
   "parentChain": [
-    "hooks",
-    "011-pi-fast-mode-w-subagent-support",
+    "hooks-plugins-extensions",
+    "pi-extensions",
+    "003-pi-fast-mode-w-subagent-support",
     "003-integration-and-tests"
   ],
   "memorySequence": 0,

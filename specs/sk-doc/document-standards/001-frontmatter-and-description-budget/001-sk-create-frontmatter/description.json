@@ -13,7 +13,8 @@
   "folderSlug": "sk-create-frontmatter",
   "parentChain": [
     "sk-doc",
-    "049-frontmatter-and-description-budget"
+    "document-standards",
+    "001-frontmatter-and-description-budget"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

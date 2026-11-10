@@ -17,10 +17,11 @@
     "behavior"
   ],
   "lastUpdated": "2026-09-12T08:08:55.399Z",
-  "specId": "024",
+  "specId": "001",
   "folderSlug": "mcp-decommission-cli-front-door",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "host-integrations"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

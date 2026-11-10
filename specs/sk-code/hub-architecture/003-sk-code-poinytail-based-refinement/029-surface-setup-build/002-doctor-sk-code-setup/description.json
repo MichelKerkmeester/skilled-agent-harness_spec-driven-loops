@@ -10,7 +10,8 @@
   "folderSlug": "doctor-sk-code-setup",
   "parentChain": [
     "sk-code",
-    "011-sk-code-poinytail-based-refinement",
+    "hub-architecture",
+    "003-sk-code-poinytail-based-refinement",
     "029-surface-setup-build"
   ],
   "memorySequence": 0,

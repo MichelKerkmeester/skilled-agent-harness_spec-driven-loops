@@ -17,10 +17,11 @@
     "terminal"
   ],
   "lastUpdated": "2026-10-25T12:14:21.913Z",
-  "specId": "023",
+  "specId": "002",
   "folderSlug": "session-relaunch-loop",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "session-turn-boundaries"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

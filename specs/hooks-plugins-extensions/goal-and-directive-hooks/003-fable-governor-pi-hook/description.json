@@ -19,10 +19,11 @@
     "richer"
   ],
   "lastUpdated": "2026-08-15T14:40:55.778Z",
-  "specId": "007",
+  "specId": "003",
   "folderSlug": "fable-governor-pi-hook",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "goal-and-directive-hooks"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

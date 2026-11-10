@@ -26,8 +26,9 @@
   "specId": "003",
   "folderSlug": "integration-and-tests",
   "parentChain": [
-    "hooks",
-    "011-pi-fast-mode-w-subagent-support"
+    "hooks-plugins-extensions",
+    "pi-extensions",
+    "003-pi-fast-mode-w-subagent-support"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -14,10 +14,11 @@
     "branch"
   ],
   "lastUpdated": "2026-08-20T08:39:48.828Z",
-  "specId": "024",
+  "specId": "004",
   "folderSlug": "rebase-abort-head-preservation",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "live-sync-and-publishing"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

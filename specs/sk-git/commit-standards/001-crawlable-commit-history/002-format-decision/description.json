@@ -13,7 +13,8 @@
   "folderSlug": "format-decision",
   "parentChain": [
     "sk-git",
-    "028-crawlable-commit-history"
+    "commit-standards",
+    "001-crawlable-commit-history"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

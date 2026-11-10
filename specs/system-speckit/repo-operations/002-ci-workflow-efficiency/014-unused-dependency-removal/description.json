@@ -14,7 +14,8 @@
   "folderSlug": "unused-dependency-removal",
   "parentChain": [
     "system-speckit",
-    "039-ci-workflow-efficiency"
+    "repo-operations",
+    "002-ci-workflow-efficiency"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

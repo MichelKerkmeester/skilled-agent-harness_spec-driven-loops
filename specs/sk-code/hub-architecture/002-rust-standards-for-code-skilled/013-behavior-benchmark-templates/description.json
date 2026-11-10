@@ -21,6 +21,7 @@
   "folderSlug": "behavior-benchmark-templates",
   "parentChain": [
     "sk-code",
+    "hub-architecture",
     "002-rust-standards-for-code-skilled"
   ],
   "memorySequence": 0,

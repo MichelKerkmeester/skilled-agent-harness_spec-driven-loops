@@ -11,10 +11,11 @@
     "folder"
   ],
   "lastUpdated": "2026-10-19T22:06:11.036Z",
-  "specId": "038",
+  "specId": "002",
   "folderSlug": "research-folder-continuity",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "spec-authoring-and-continuity"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

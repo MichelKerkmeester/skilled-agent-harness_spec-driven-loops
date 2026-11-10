@@ -13,10 +13,11 @@
     "packet"
   ],
   "lastUpdated": "2026-09-19T12:41:26.516Z",
-  "specId": "009",
+  "specId": "004",
   "folderSlug": "sk-code-mobile-cli-deprecation",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "code-surfaces"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

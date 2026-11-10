@@ -10,7 +10,8 @@
   "folderSlug": "cli-opencode",
   "parentChain": [
     "sk-doc",
-    "066-skill-readability-refinement",
+    "authoring-modes-and-playbooks",
+    "005-skill-readability-refinement",
     "002-cli-external-orchestration"
   ],
   "memorySequence": 0,

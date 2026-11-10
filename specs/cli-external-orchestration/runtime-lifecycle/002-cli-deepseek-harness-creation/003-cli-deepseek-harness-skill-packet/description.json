@@ -19,7 +19,8 @@
   "folderSlug": "cli-deepseek-harness-skill-packet",
   "parentChain": [
     "cli-external-orchestration",
-    "085-cli-deepseek-harness-creation"
+    "runtime-lifecycle",
+    "002-cli-deepseek-harness-creation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

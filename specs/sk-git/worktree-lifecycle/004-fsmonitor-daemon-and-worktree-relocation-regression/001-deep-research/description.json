@@ -21,7 +21,8 @@
   "folderSlug": "deep-research",
   "parentChain": [
     "sk-git",
-    "035-fsmonitor-daemon-and-worktree-relocation-regression"
+    "worktree-lifecycle",
+    "004-fsmonitor-daemon-and-worktree-relocation-regression"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

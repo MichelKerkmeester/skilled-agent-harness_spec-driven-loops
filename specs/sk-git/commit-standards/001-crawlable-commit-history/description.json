@@ -17,10 +17,11 @@
     "packet"
   ],
   "lastUpdated": "2026-09-11T17:47:37.211Z",
-  "specId": "028",
+  "specId": "001",
   "folderSlug": "crawlable-commit-history",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "commit-standards"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

@@ -22,7 +22,8 @@
   "folderSlug": "integrate-latest-and-closeout",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "004-gate-closeout-and-drift"
   ],
   "memorySequence": 0,

@@ -15,10 +15,11 @@
     "edit"
   ],
   "lastUpdated": "2026-10-27T19:44:36.285Z",
-  "specId": "043",
+  "specId": "003",
   "folderSlug": "fanout-resume-and-containment",
   "parentChain": [
-    "system-deep-loop"
+    "system-deep-loop",
+    "review-lineage"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

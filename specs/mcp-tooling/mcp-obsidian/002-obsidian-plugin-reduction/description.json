@@ -14,10 +14,11 @@
     "wanted"
   ],
   "lastUpdated": "2026-09-11T10:00:09.414Z",
-  "specId": "020",
+  "specId": "002",
   "folderSlug": "obsidian-plugin-reduction",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "mcp-obsidian"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

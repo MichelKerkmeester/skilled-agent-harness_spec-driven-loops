@@ -10,10 +10,11 @@
     "deep-review"
   ],
   "lastUpdated": "2026-10-25T18:30:25.412Z",
-  "specId": "042",
+  "specId": "002",
   "folderSlug": "fanout-review-focus",
   "parentChain": [
-    "system-deep-loop"
+    "system-deep-loop",
+    "review-lineage"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

@@ -13,7 +13,8 @@
   "folderSlug": "stress-suite-ci",
   "parentChain": [
     "system-skill-advisor",
-    "025-defect-and-hardening-fixes"
+    "runtime-lifecycle",
+    "004-defect-and-hardening-fixes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

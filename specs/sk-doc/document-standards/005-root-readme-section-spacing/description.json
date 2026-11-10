@@ -15,10 +15,11 @@
     "auto-fix"
   ],
   "lastUpdated": "2026-10-17T16:43:56.446Z",
-  "specId": "060",
+  "specId": "005",
   "folderSlug": "root-readme-section-spacing",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "document-standards"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

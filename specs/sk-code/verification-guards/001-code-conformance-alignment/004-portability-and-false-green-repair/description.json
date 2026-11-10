@@ -25,7 +25,8 @@
   "folderSlug": "portability-and-false-green-repair",
   "parentChain": [
     "sk-code",
-    "004-code-conformance-alignment"
+    "verification-guards",
+    "001-code-conformance-alignment"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

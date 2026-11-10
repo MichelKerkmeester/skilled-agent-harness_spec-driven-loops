@@ -23,7 +23,8 @@
   "folderSlug": "contradiction-and-supersession-events",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "002-substrate-and-orchestration",
     "006-novelty-claims-continuity-and-projections"
   ],

@@ -15,8 +15,9 @@
   "specId": "004",
   "folderSlug": "legacy-cutover-and-docs",
   "parentChain": [
-    "hooks",
-    "009-goal-isolation"
+    "hooks-plugins-extensions",
+    "goal-and-directive-hooks",
+    "004-goal-isolation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

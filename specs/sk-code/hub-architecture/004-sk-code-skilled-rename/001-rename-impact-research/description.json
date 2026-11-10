@@ -11,7 +11,8 @@
   "folderSlug": "rename-impact-research",
   "parentChain": [
     "sk-code",
-    "012-sk-code-skilled-rename"
+    "hub-architecture",
+    "004-sk-code-skilled-rename"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

@@ -18,7 +18,8 @@
   "folderSlug": "playbook-run-in-worktree",
   "parentChain": [
     "system-speckit",
-    "040-weak-model-spec-authoring"
+    "spec-authoring-and-continuity",
+    "003-weak-model-spec-authoring"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -19,7 +19,8 @@
   "folderSlug": "doc-truth-completion-and-mirrors",
   "parentChain": [
     "system-speckit",
-    "027-xce-research-based-refinement",
+    "memory-search-and-knowledge",
+    "002-xce-research-based-refinement",
     "005-verification-and-remediation",
     "005-fresh-regression-remediation"
   ],

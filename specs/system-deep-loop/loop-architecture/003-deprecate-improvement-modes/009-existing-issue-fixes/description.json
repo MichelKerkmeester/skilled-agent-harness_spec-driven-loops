@@ -6,11 +6,12 @@
     "existing-issue-fixes"
   ],
   "lastUpdated": "2026-10-10T19:17:48.514Z",
-  "specId": "010",
+  "specId": "009",
   "folderSlug": "existing-issue-fixes",
   "parentChain": [
     "system-deep-loop",
-    "039-deprecate-improvement-modes"
+    "loop-architecture",
+    "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

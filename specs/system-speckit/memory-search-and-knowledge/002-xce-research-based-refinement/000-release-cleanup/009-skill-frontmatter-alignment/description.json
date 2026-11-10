@@ -57,7 +57,8 @@
   "folderSlug": "skill-frontmatter-alignment",
   "parentChain": [
     "system-speckit",
-    "027-xce-research-based-refinement",
+    "memory-search-and-knowledge",
+    "002-xce-research-based-refinement",
     "000-release-cleanup"
   ],
   "memorySequence": 0,

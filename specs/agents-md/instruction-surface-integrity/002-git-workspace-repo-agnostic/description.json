@@ -19,10 +19,11 @@
     "implementation"
   ],
   "lastUpdated": "2026-08-16T09:05:15.011Z",
-  "specId": "005",
+  "specId": "002",
   "folderSlug": "git-workspace-repo-agnostic",
   "parentChain": [
-    "agents-md"
+    "agents-md",
+    "instruction-surface-integrity"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

@@ -11,10 +11,11 @@
     "settings"
   ],
   "lastUpdated": "2026-10-07T18:49:48.307Z",
-  "specId": "081",
+  "specId": "004",
   "folderSlug": "claude-5-5-roster-and-effort-levels",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "model-rosters"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

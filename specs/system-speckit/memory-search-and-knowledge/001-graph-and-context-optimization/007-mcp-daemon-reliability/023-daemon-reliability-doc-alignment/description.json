@@ -38,7 +38,8 @@
   "folderSlug": "daemon-reliability-doc-alignment",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],
   "memorySequence": 0,

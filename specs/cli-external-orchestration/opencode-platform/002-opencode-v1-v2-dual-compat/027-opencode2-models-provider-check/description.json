@@ -11,7 +11,8 @@
   "folderSlug": "opencode2-models-provider-check",
   "parentChain": [
     "cli-external-orchestration",
-    "082-opencode-v1-v2-dual-compat"
+    "opencode-platform",
+    "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 7,
   "memoryNameHistory": [

@@ -13,8 +13,9 @@
   "specId": "003",
   "folderSlug": "shallow-evidence-claims",
   "parentChain": [
-    "hooks",
-    "022-smart-rule-injection"
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline",
+    "005-smart-rule-injection"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

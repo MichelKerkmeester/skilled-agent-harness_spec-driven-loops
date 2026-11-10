@@ -11,7 +11,8 @@
   "folderSlug": "pi-advisor-diagnostic-stderr",
   "parentChain": [
     "system-skill-advisor",
-    "026-pi-advisor-bridge"
+    "host-integrations",
+    "002-pi-advisor-bridge"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

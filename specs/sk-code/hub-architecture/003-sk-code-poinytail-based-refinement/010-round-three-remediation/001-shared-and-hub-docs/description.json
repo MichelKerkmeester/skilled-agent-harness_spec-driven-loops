@@ -10,7 +10,8 @@
   "folderSlug": "shared-and-hub-docs",
   "parentChain": [
     "sk-code",
-    "011-sk-code-poinytail-based-refinement",
+    "hub-architecture",
+    "003-sk-code-poinytail-based-refinement",
     "010-round-three-remediation"
   ],
   "memorySequence": 0,

@@ -12,10 +12,11 @@
     "provider"
   ],
   "lastUpdated": "2026-10-27T06:59:33.469Z",
-  "specId": "083",
+  "specId": "005",
   "folderSlug": "gpt-6-1-terra-roster",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "model-rosters"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

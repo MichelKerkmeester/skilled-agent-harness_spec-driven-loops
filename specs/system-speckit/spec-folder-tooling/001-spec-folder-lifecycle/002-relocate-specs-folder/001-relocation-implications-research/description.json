@@ -18,7 +18,8 @@
   "folderSlug": "relocation-implications-research",
   "parentChain": [
     "system-speckit",
-    "029-spec-folder-lifecycle",
+    "spec-folder-tooling",
+    "001-spec-folder-lifecycle",
     "002-relocate-specs-folder"
   ],
   "memorySequence": 0,

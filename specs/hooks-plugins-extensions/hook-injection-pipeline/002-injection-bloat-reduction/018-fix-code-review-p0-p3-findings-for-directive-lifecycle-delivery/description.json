@@ -19,7 +19,8 @@
   "specId": "018",
   "folderSlug": "fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery",
   "parentChain": [
-    "hooks",
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline",
     "002-injection-bloat-reduction"
   ],
   "memorySequence": 7,

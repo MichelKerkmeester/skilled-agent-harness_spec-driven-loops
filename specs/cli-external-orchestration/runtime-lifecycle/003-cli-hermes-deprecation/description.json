@@ -11,10 +11,11 @@
     "folder"
   ],
   "lastUpdated": "2026-11-07T10:34:38.941Z",
-  "specId": "086",
+  "specId": "003",
   "folderSlug": "cli-hermes-deprecation",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "runtime-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

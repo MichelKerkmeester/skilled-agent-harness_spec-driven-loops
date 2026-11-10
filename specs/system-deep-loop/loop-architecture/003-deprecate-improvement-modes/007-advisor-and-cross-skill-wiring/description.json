@@ -6,11 +6,12 @@
     "advisor-and-cross-skill-wiring"
   ],
   "lastUpdated": "2026-10-10T18:23:53.545Z",
-  "specId": "005",
+  "specId": "007",
   "folderSlug": "advisor-and-cross-skill-wiring",
   "parentChain": [
     "system-deep-loop",
-    "039-deprecate-improvement-modes"
+    "loop-architecture",
+    "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

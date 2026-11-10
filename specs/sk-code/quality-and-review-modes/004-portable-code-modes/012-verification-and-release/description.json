@@ -6,11 +6,12 @@
     "verification-and-release"
   ],
   "lastUpdated": "2026-10-28T07:05:33.646Z",
-  "specId": "017",
+  "specId": "012",
   "folderSlug": "verification-and-release",
   "parentChain": [
     "sk-code",
-    "017-portable-code-modes"
+    "quality-and-review-modes",
+    "004-portable-code-modes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

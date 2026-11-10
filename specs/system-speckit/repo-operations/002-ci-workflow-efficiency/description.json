@@ -11,10 +11,11 @@
     "day"
   ],
   "lastUpdated": "2026-10-24T08:57:00.437Z",
-  "specId": "039",
+  "specId": "002",
   "folderSlug": "ci-workflow-efficiency",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "repo-operations"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

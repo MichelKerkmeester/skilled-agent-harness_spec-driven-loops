@@ -13,10 +13,11 @@
     "need"
   ],
   "lastUpdated": "2026-11-05T20:33:38.732Z",
-  "specId": "017",
+  "specId": "005",
   "folderSlug": "v4-0-1-0-rules-refresh",
   "parentChain": [
-    "agents-md"
+    "agents-md",
+    "instruction-surface-integrity"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

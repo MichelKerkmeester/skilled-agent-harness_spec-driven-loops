@@ -10,7 +10,8 @@
   "folderSlug": "dispatch-guard-and-vitest",
   "parentChain": [
     "sk-code",
-    "011-sk-code-poinytail-based-refinement",
+    "hub-architecture",
+    "003-sk-code-poinytail-based-refinement",
     "015-closeout"
   ],
   "memorySequence": 0,

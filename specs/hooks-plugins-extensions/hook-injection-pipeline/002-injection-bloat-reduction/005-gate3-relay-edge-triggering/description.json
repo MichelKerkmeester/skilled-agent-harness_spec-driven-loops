@@ -23,7 +23,8 @@
   "specId": "005",
   "folderSlug": "gate3-relay-edge-triggering",
   "parentChain": [
-    "hooks",
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline",
     "002-injection-bloat-reduction"
   ],
   "memorySequence": 0,

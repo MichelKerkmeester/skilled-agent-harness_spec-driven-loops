@@ -21,7 +21,8 @@
   "specId": "001",
   "folderSlug": "hook-docs-relocation",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

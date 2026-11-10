@@ -13,10 +13,11 @@
     "attestation"
   ],
   "lastUpdated": "2026-10-30T17:20:26.745Z",
-  "specId": "033",
+  "specId": "005",
   "folderSlug": "build-freshness-record",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "runtime-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -11,7 +11,8 @@
   "folderSlug": "cli-and-deep-loop",
   "parentChain": [
     "system-speckit",
-    "047-v4-release-line-research"
+    "runtime-and-release",
+    "004-v4-release-line-research"
   ],
   "memorySequence": 3,
   "memoryNameHistory": [

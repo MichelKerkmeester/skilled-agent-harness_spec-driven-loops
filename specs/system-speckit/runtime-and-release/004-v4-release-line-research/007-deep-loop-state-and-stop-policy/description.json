@@ -10,7 +10,8 @@
   "folderSlug": "deep-loop-state-and-stop-policy",
   "parentChain": [
     "system-speckit",
-    "047-v4-release-line-research"
+    "runtime-and-release",
+    "004-v4-release-line-research"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

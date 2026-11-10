@@ -10,7 +10,8 @@
   "folderSlug": "sk-create-benchmark",
   "parentChain": [
     "sk-doc",
-    "066-skill-readability-refinement",
+    "authoring-modes-and-playbooks",
+    "005-skill-readability-refinement",
     "008-sk-doc"
   ],
   "memorySequence": 0,

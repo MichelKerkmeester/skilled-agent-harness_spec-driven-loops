@@ -13,10 +13,11 @@
     "concern"
   ],
   "lastUpdated": "2026-08-21T09:18:37.683Z",
-  "specId": "008",
+  "specId": "003",
   "folderSlug": "hook-library-mk-rename",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

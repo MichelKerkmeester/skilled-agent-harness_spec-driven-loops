@@ -16,7 +16,8 @@
   "folderSlug": "scouted-bugfix-batch-5",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "010-scouted-bugfix-train"
   ],

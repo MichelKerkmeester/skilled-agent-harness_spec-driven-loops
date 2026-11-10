@@ -28,7 +28,8 @@
   "folderSlug": "mixed-version-fixtures",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "003-mode-contracts-migration-and-cutover",
     "001-shared-mode-contracts-and-fixtures"
   ],

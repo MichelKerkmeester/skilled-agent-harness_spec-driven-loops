@@ -17,10 +17,11 @@
     "cli-claude-code"
   ],
   "lastUpdated": "2026-09-23T04:51:35.485Z",
-  "specId": "077",
+  "specId": "003",
   "folderSlug": "gpt-6-luna-sol-cutover",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "model-rosters"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

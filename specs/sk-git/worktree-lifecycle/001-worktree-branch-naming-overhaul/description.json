@@ -19,10 +19,11 @@
     "counter"
   ],
   "lastUpdated": "2026-09-07T16:15:00.656Z",
-  "specId": "022",
+  "specId": "001",
   "folderSlug": "worktree-branch-naming-overhaul",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "worktree-lifecycle"
   ],
   "memorySequence": 3,
   "memoryNameHistory": [

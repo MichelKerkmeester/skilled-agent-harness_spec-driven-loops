@@ -10,7 +10,8 @@
   "folderSlug": "deep-review",
   "parentChain": [
     "sk-doc",
-    "066-skill-readability-refinement",
+    "authoring-modes-and-playbooks",
+    "005-skill-readability-refinement",
     "011-system-deep-loop"
   ],
   "memorySequence": 0,

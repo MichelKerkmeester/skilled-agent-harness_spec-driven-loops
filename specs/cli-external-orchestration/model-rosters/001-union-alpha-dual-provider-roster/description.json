@@ -15,10 +15,11 @@
     "providers"
   ],
   "lastUpdated": "2026-09-18T04:34:00.380Z",
-  "specId": "072",
+  "specId": "001",
   "folderSlug": "union-alpha-dual-provider-roster",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "model-rosters"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

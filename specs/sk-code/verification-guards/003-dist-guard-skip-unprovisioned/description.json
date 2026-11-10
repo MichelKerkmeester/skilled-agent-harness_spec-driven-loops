@@ -17,10 +17,11 @@
     "bare"
   ],
   "lastUpdated": "2026-08-29T15:12:05.972Z",
-  "specId": "006",
+  "specId": "003",
   "folderSlug": "dist-guard-skip-unprovisioned",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "verification-guards"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

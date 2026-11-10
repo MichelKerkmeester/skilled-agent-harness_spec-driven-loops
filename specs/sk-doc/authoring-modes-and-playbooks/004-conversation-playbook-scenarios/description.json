@@ -27,10 +27,11 @@
     "sk-create-manual-testing-playbook"
   ],
   "lastUpdated": "2026-11-03T11:45:57.229Z",
-  "specId": "065",
+  "specId": "004",
   "folderSlug": "conversation-playbook-scenarios",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "authoring-modes-and-playbooks"
   ],
   "memorySequence": 19,
   "memoryNameHistory": [

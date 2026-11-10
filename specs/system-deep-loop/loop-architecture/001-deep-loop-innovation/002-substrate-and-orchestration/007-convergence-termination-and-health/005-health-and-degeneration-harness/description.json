@@ -23,7 +23,8 @@
   "folderSlug": "health-and-degeneration-harness",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "002-substrate-and-orchestration",
     "007-convergence-termination-and-health"
   ],

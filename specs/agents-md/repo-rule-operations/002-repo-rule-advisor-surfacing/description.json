@@ -17,10 +17,11 @@
     "agents"
   ],
   "lastUpdated": "2026-10-04T20:47:52.887Z",
-  "specId": "012",
+  "specId": "002",
   "folderSlug": "repo-rule-advisor-surfacing",
   "parentChain": [
-    "agents-md"
+    "agents-md",
+    "repo-rule-operations"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

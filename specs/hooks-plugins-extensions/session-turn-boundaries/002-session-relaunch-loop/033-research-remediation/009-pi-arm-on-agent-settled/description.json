@@ -9,8 +9,9 @@
   "specId": "009",
   "folderSlug": "pi-arm-on-agent-settled",
   "parentChain": [
-    "hooks",
-    "023-session-relaunch-loop",
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
     "033-research-remediation"
   ],
   "memorySequence": 0,

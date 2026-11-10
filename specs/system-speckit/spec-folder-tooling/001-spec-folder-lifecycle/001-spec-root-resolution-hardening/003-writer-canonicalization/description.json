@@ -21,7 +21,8 @@
   "folderSlug": "writer-canonicalization",
   "parentChain": [
     "system-speckit",
-    "029-spec-folder-lifecycle",
+    "spec-folder-tooling",
+    "001-spec-folder-lifecycle",
     "001-spec-root-resolution-hardening"
   ],
   "memorySequence": 0,

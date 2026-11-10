@@ -7,10 +7,11 @@
     "quality"
   ],
   "lastUpdated": "2026-10-31T13:31:06.000Z",
-  "specId": "051",
+  "specId": "001",
   "folderSlug": "hub-routing-quality",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "hub-routing-and-surfaces"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

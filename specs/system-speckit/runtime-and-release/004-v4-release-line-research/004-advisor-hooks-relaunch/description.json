@@ -11,7 +11,8 @@
   "folderSlug": "advisor-hooks-relaunch",
   "parentChain": [
     "system-speckit",
-    "047-v4-release-line-research"
+    "runtime-and-release",
+    "004-v4-release-line-research"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

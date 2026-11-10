@@ -19,7 +19,8 @@
   "folderSlug": "fanout-synthesis-lineage-aggregation",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "002-substrate-and-orchestration",
     "005-fanout-fanin-durable-orchestration"
   ],

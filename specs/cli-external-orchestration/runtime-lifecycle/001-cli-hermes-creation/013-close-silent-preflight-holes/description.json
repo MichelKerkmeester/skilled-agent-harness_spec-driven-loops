@@ -23,7 +23,8 @@
   "folderSlug": "close-silent-preflight-holes",
   "parentChain": [
     "cli-external-orchestration",
-    "071-cli-hermes-creation"
+    "runtime-lifecycle",
+    "001-cli-hermes-creation"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

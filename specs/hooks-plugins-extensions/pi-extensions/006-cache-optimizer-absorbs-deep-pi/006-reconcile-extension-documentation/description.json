@@ -15,8 +15,9 @@
   "specId": "006",
   "folderSlug": "reconcile-extension-documentation",
   "parentChain": [
-    "hooks",
-    "016-cache-optimizer-absorbs-deep-pi"
+    "hooks-plugins-extensions",
+    "pi-extensions",
+    "006-cache-optimizer-absorbs-deep-pi"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

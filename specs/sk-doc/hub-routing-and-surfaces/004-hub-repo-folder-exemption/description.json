@@ -16,10 +16,11 @@
     "them"
   ],
   "lastUpdated": "2026-10-20T17:23:34.557Z",
-  "specId": "061",
+  "specId": "004",
   "folderSlug": "hub-repo-folder-exemption",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "hub-routing-and-surfaces"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

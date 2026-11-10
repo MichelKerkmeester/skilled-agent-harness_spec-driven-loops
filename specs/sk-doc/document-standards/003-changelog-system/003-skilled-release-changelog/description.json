@@ -16,7 +16,8 @@
   "folderSlug": "skilled-release-changelog",
   "parentChain": [
     "sk-doc",
-    "055-changelog-system"
+    "document-standards",
+    "003-changelog-system"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

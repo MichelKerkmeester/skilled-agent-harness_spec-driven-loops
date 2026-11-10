@@ -23,7 +23,8 @@
   "folderSlug": "write-recipe-fixes",
   "parentChain": [
     "system-speckit",
-    "029-spec-folder-lifecycle"
+    "spec-folder-tooling",
+    "001-spec-folder-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

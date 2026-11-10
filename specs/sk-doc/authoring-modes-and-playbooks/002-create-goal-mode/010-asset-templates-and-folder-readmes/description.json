@@ -22,7 +22,8 @@
   "folderSlug": "asset-templates-and-folder-readmes",
   "parentChain": [
     "sk-doc",
-    "056-create-goal-mode"
+    "authoring-modes-and-playbooks",
+    "002-create-goal-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

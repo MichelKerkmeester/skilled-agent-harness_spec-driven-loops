@@ -17,7 +17,8 @@
   "folderSlug": "remediation-deep-review",
   "parentChain": [
     "sk-code",
-    "011-sk-code-poinytail-based-refinement",
+    "hub-architecture",
+    "003-sk-code-poinytail-based-refinement",
     "013-root-cause-and-ux-research"
   ],
   "memorySequence": 0,

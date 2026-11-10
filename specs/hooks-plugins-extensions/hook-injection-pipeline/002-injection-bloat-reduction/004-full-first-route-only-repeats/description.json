@@ -23,7 +23,8 @@
   "specId": "004",
   "folderSlug": "full-first-route-only-repeats",
   "parentChain": [
-    "hooks",
+    "hooks-plugins-extensions",
+    "hook-injection-pipeline",
     "002-injection-bloat-reduction"
   ],
   "memorySequence": 0,

@@ -10,7 +10,8 @@
   "folderSlug": "hooks-vitest-scope",
   "parentChain": [
     "sk-code",
-    "011-sk-code-poinytail-based-refinement",
+    "hub-architecture",
+    "003-sk-code-poinytail-based-refinement",
     "016-residual-closeout"
   ],
   "memorySequence": 0,

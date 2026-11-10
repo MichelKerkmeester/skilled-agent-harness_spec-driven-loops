@@ -23,7 +23,8 @@
   "folderSlug": "model-benchmark",
   "parentChain": [
     "system-deep-loop",
-    "036-deep-loop-innovation",
+    "loop-architecture",
+    "001-deep-loop-innovation",
     "003-mode-contracts-migration-and-cutover",
     "002-mode-and-lane-migrations"
   ],

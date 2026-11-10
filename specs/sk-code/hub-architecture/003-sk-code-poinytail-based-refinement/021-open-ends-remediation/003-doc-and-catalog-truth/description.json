@@ -10,7 +10,8 @@
   "folderSlug": "doc-and-catalog-truth",
   "parentChain": [
     "sk-code",
-    "011-sk-code-poinytail-based-refinement",
+    "hub-architecture",
+    "003-sk-code-poinytail-based-refinement",
     "021-open-ends-remediation"
   ],
   "memorySequence": 0,

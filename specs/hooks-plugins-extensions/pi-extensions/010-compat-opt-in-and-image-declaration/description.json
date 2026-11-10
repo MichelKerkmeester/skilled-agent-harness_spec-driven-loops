@@ -13,10 +13,11 @@
     "launch"
   ],
   "lastUpdated": "2026-09-11T08:05:57.727Z",
-  "specId": "021",
+  "specId": "010",
   "folderSlug": "compat-opt-in-and-image-declaration",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "pi-extensions"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

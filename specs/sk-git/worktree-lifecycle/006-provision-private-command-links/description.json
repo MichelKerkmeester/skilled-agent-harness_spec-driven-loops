@@ -13,10 +13,11 @@
     "them"
   ],
   "lastUpdated": "2026-11-08T08:54:40.429Z",
-  "specId": "038",
+  "specId": "006",
   "folderSlug": "provision-private-command-links",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "worktree-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

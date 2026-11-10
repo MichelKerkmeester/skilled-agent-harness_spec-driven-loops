@@ -11,7 +11,8 @@
   "folderSlug": "concise-release-format",
   "parentChain": [
     "sk-doc",
-    "055-changelog-system"
+    "document-standards",
+    "003-changelog-system"
   ],
   "memorySequence": 3,
   "memoryNameHistory": [

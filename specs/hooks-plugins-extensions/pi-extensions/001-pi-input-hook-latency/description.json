@@ -17,10 +17,11 @@
     "claude"
   ],
   "lastUpdated": "2026-08-15T14:40:55.760Z",
-  "specId": "005",
+  "specId": "001",
   "folderSlug": "pi-input-hook-latency",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "pi-extensions"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

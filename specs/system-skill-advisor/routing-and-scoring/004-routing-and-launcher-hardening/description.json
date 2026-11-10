@@ -52,10 +52,11 @@
     "index"
   ],
   "lastUpdated": "2026-10-17T10:17:55.740Z",
-  "specId": "031",
+  "specId": "004",
   "folderSlug": "routing-and-launcher-hardening",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "routing-and-scoring"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

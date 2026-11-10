@@ -20,8 +20,9 @@
   "specId": "002",
   "folderSlug": "identity-config-compat",
   "parentChain": [
-    "hooks",
-    "011-pi-fast-mode-w-subagent-support",
+    "hooks-plugins-extensions",
+    "pi-extensions",
+    "003-pi-fast-mode-w-subagent-support",
     "001-fork-and-package"
   ],
   "memorySequence": 0,

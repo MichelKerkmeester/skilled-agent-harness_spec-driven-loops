@@ -13,10 +13,11 @@
     "fixtures"
   ],
   "lastUpdated": "2026-10-08T04:11:43.333Z",
-  "specId": "010",
+  "specId": "004",
   "folderSlug": "drift-guard-cleanup",
   "parentChain": [
-    "sk-code"
+    "sk-code",
+    "verification-guards"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

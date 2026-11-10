@@ -18,7 +18,8 @@
   "folderSlug": "model-server-default-spawn",
   "parentChain": [
     "system-skill-advisor",
-    "021-model-server-lifecycle"
+    "runtime-lifecycle",
+    "003-model-server-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

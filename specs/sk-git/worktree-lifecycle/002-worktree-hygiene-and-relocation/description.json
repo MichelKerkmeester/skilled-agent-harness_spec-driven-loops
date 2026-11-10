@@ -13,10 +13,11 @@
     "checkout"
   ],
   "lastUpdated": "2026-08-21T14:16:44.595Z",
-  "specId": "026",
+  "specId": "002",
   "folderSlug": "worktree-hygiene-and-relocation",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "worktree-lifecycle"
   ],
   "memorySequence": 4,
   "memoryNameHistory": [

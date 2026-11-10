@@ -7,8 +7,9 @@
   "specId": "002",
   "folderSlug": "observability-and-economics",
   "parentChain": [
-    "hooks",
-    "008-pi-caching-like-reasonix",
+    "hooks-plugins-extensions",
+    "pi-extensions",
+    "002-pi-caching-like-reasonix",
     "008-implement-fork-improvements"
   ],
   "memorySequence": 0,

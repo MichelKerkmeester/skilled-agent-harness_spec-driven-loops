@@ -21,7 +21,8 @@
   "folderSlug": "spec-root-resolution-hardening",
   "parentChain": [
     "system-speckit",
-    "029-spec-folder-lifecycle"
+    "spec-folder-tooling",
+    "001-spec-folder-lifecycle"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

@@ -12,10 +12,11 @@
     "next"
   ],
   "lastUpdated": "2026-09-11T17:35:11.460Z",
-  "specId": "007",
+  "specId": "001",
   "folderSlug": "turn-closeout-next-steps",
   "parentChain": [
-    "agents-md"
+    "agents-md",
+    "repo-rule-operations"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -11,7 +11,8 @@
   "folderSlug": "drift-guard-repairs",
   "parentChain": [
     "system-deep-loop",
-    "039-deprecate-improvement-modes"
+    "loop-architecture",
+    "003-deprecate-improvement-modes"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

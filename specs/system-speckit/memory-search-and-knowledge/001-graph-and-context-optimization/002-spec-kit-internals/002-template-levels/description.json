@@ -23,7 +23,8 @@
   "folderSlug": "template-levels",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "002-spec-kit-internals"
   ],
   "memorySequence": 0,

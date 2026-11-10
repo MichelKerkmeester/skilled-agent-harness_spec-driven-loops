@@ -15,7 +15,8 @@
   "folderSlug": "pre-existing-test-repair",
   "parentChain": [
     "system-speckit",
-    "031-system-speckit-v4",
+    "runtime-and-release",
+    "001-system-speckit-v4",
     "030-spec-kit-simplification-research"
   ],
   "memorySequence": 0,

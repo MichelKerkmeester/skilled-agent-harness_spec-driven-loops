@@ -17,7 +17,8 @@
   "folderSlug": "dispatch-preflight-parity-research",
   "parentChain": [
     "cli-external-orchestration",
-    "071-cli-hermes-creation"
+    "runtime-lifecycle",
+    "001-cli-hermes-creation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

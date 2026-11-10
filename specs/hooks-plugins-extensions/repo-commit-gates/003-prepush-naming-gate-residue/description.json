@@ -10,10 +10,11 @@
     "cases"
   ],
   "lastUpdated": "2026-09-10T08:36:19.771Z",
-  "specId": "018",
+  "specId": "003",
   "folderSlug": "prepush-naming-gate-residue",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "repo-commit-gates"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

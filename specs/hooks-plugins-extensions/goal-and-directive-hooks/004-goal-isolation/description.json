@@ -16,10 +16,11 @@
     "json"
   ],
   "lastUpdated": "2026-09-13T06:52:38.014Z",
-  "specId": "009",
+  "specId": "004",
   "folderSlug": "goal-isolation",
   "parentChain": [
-    "hooks"
+    "hooks-plugins-extensions",
+    "goal-and-directive-hooks"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

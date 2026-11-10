@@ -16,7 +16,8 @@
   "folderSlug": "on-write-quality",
   "parentChain": [
     "system-speckit",
-    "028-memory-search-intelligence",
+    "memory-search-and-knowledge",
+    "003-memory-search-intelligence",
     "003-spec-data-quality"
   ],
   "memorySequence": 0,

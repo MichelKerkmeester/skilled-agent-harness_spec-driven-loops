@@ -13,10 +13,11 @@
     "point"
   ],
   "lastUpdated": "2026-08-15T14:41:07.723Z",
-  "specId": "017",
+  "specId": "001",
   "folderSlug": "advisor-audit-and-state-containment",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "codebase-conformance"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -13,10 +13,11 @@
     "repository"
   ],
   "lastUpdated": "2026-10-15T05:35:18.127Z",
-  "specId": "033",
+  "specId": "005",
   "folderSlug": "git-setup-customization",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "commit-standards"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -18,10 +18,11 @@
     "test"
   ],
   "lastUpdated": "2026-10-27T19:44:35.455Z",
-  "specId": "032",
+  "specId": "005",
   "folderSlug": "executor-workflow-owner-guard",
   "parentChain": [
-    "system-skill-advisor"
+    "system-skill-advisor",
+    "routing-and-scoring"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

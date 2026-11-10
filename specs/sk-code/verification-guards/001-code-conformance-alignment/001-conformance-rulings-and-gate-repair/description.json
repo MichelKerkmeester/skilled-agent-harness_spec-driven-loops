@@ -19,7 +19,8 @@
   "folderSlug": "conformance-rulings-and-gate-repair",
   "parentChain": [
     "sk-code",
-    "004-code-conformance-alignment"
+    "verification-guards",
+    "001-code-conformance-alignment"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

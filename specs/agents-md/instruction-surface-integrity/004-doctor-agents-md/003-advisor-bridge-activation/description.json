@@ -10,7 +10,8 @@
   "folderSlug": "advisor-bridge-activation",
   "parentChain": [
     "agents-md",
-    "016-doctor-agents-md"
+    "instruction-surface-integrity",
+    "004-doctor-agents-md"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

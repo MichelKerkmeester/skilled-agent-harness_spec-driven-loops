@@ -21,8 +21,9 @@
   "specId": "001",
   "folderSlug": "source-baseline",
   "parentChain": [
-    "hooks",
-    "011-pi-fast-mode-w-subagent-support",
+    "hooks-plugins-extensions",
+    "pi-extensions",
+    "003-pi-fast-mode-w-subagent-support",
     "001-fork-and-package"
   ],
   "memorySequence": 0,
