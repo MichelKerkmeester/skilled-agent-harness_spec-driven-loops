@@ -19,17 +19,17 @@
       "operatorInputs": "None; the runner typed every turn and answer.",
       "evidence": [
         {
-          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/no-false-positive/devin/result.json",
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/no-false-positive/devin/result.json",
           "bytes": 1109,
           "sha256": "1ee4ca41976a04a14e3e7d9966dba476f3ad86ddc396727edfd56a3296a12d08"
         },
         {
-          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/no-false-positive/devin/checkpoints.tsv",
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/no-false-positive/devin/checkpoints.tsv",
           "bytes": 98,
           "sha256": "79d507c57bf449e8b577e625e24c431d472bf292e9802fe082945a890998b208"
         },
         {
-          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/no-false-positive/devin/turns/S1/check.txt",
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/no-false-positive/devin/turns/S1/check.txt",
           "bytes": 601,
           "sha256": "b161888dec06de78a8a219aba4d7e0301b78d01c510e7aaf4c3d2999faf9f735"
         }

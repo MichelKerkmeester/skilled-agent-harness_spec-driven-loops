@@ -19,17 +19,17 @@
       "operatorInputs": "None; the runner typed every turn and answer.",
       "evidence": [
         {
-          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/live/pi/result.json",
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/live/pi/result.json",
           "bytes": 1086,
           "sha256": "2152bcf63c4c50c51305d797482711fcb0bcedbef7496bdd5a3bc7556cd94f39"
         },
         {
-          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/live/pi/checkpoints.tsv",
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/live/pi/checkpoints.tsv",
           "bytes": 100,
           "sha256": "b72fe341196e3d0131ef91e88bf8aaca2be9511a9454c5a531e7bbc5c7391f53"
         },
         {
-          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/live/pi/turns/S1/check.txt",
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/live/pi/turns/S1/check.txt",
           "bytes": 755,
           "sha256": "e4f7ecfa3e1ddea1315eeba1f0300af0f17004dede576463c5ff9f897ebe4d33"
         }

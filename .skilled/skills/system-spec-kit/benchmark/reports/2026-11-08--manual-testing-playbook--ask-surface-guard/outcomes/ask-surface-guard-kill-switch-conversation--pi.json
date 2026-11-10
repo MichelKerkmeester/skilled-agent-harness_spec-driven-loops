@@ -19,17 +19,17 @@
       "operatorInputs": "None; the runner typed every turn and answer.",
       "evidence": [
         {
-          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/kill-switch/pi/result.json",
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/pi/result.json",
           "bytes": 1096,
           "sha256": "c5e82ddf05f9e2f9e36f81ffbd0b89cd60551711f2e4749fe224c27a582bd414"
         },
         {
-          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/kill-switch/pi/checkpoints.tsv",
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/pi/checkpoints.tsv",
           "bytes": 100,
           "sha256": "b72fe341196e3d0131ef91e88bf8aaca2be9511a9454c5a531e7bbc5c7391f53"
         },
         {
-          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/kill-switch/pi/turns/S1/check.txt",
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/pi/turns/S1/check.txt",
           "bytes": 771,
           "sha256": "54e50c5746f896067cdd6c302b6116aa65fc829ae13e412dbe70057debb25b72"
         }

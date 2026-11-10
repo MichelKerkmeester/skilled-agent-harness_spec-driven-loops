@@ -16,18 +16,18 @@ Four ask-surface conversation scenarios ran live: the live scenario on Claude Co
 
 | Scenario | Runtime | Verdict | Observed | Evidence |
 |---|---|---|---|---|
-| ask-surface-guard-live-conversation | claude-code | PASS | `runtime=claude-code tool=1 fires=0 teal=1` | `specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/live/claude-code/` |
-| ask-surface-guard-live-conversation | opencode | PASS | `runtime=opencode tool=1 fires=0 teal=1` | `specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/live/opencode/` |
-| ask-surface-guard-live-conversation | pi | PASS | `runtime=pi tool=1 fires=0 teal=1` | `specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/live/pi/` |
-| ask-surface-guard-devin-advisory-conversation | devin | PASS | `runtime=devin fires=0 advise=0 teal=1` | `specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/devin-advisory/devin/` |
-| ask-surface-guard-kill-switch-conversation | claude-code | PASS | `runtime=claude-code tool=1 fires=0 teal=1` | `specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/kill-switch/claude-code/` |
-| ask-surface-guard-kill-switch-conversation | opencode | PASS | `runtime=opencode tool=1 fires=0 teal=1` | `specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/kill-switch/opencode/` |
-| ask-surface-guard-kill-switch-conversation | pi | PASS | `runtime=pi tool=1 fires=0 teal=1` | `specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/kill-switch/pi/` |
-| ask-surface-guard-kill-switch-conversation | devin | PASS | `runtime=devin tool=1 fires=0 teal=1` | `specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/kill-switch/devin/` |
-| ask-surface-guard-no-false-positive-conversation | claude-code | PASS | `runtime=claude-code fires=0 listed=1` | `specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/no-false-positive/claude-code/` |
-| ask-surface-guard-no-false-positive-conversation | opencode | PASS | `runtime=opencode fires=0 listed=1` | `specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/no-false-positive/opencode/` |
-| ask-surface-guard-no-false-positive-conversation | pi | PASS | `runtime=pi fires=0 listed=1` | `specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/no-false-positive/pi/` |
-| ask-surface-guard-no-false-positive-conversation | devin | PASS | `runtime=devin fires=0 listed=1` | `specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/no-false-positive/devin/` |
+| ask-surface-guard-live-conversation | claude-code | PASS | `runtime=claude-code tool=1 fires=0 teal=1` | `specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/live/claude-code/` |
+| ask-surface-guard-live-conversation | opencode | PASS | `runtime=opencode tool=1 fires=0 teal=1` | `specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/live/opencode/` |
+| ask-surface-guard-live-conversation | pi | PASS | `runtime=pi tool=1 fires=0 teal=1` | `specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/live/pi/` |
+| ask-surface-guard-devin-advisory-conversation | devin | PASS | `runtime=devin fires=0 advise=0 teal=1` | `specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/devin-advisory/devin/` |
+| ask-surface-guard-kill-switch-conversation | claude-code | PASS | `runtime=claude-code tool=1 fires=0 teal=1` | `specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/claude-code/` |
+| ask-surface-guard-kill-switch-conversation | opencode | PASS | `runtime=opencode tool=1 fires=0 teal=1` | `specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/opencode/` |
+| ask-surface-guard-kill-switch-conversation | pi | PASS | `runtime=pi tool=1 fires=0 teal=1` | `specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/pi/` |
+| ask-surface-guard-kill-switch-conversation | devin | PASS | `runtime=devin tool=1 fires=0 teal=1` | `specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/devin/` |
+| ask-surface-guard-no-false-positive-conversation | claude-code | PASS | `runtime=claude-code fires=0 listed=1` | `specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/no-false-positive/claude-code/` |
+| ask-surface-guard-no-false-positive-conversation | opencode | PASS | `runtime=opencode fires=0 listed=1` | `specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/no-false-positive/opencode/` |
+| ask-surface-guard-no-false-positive-conversation | pi | PASS | `runtime=pi fires=0 listed=1` | `specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/no-false-positive/pi/` |
+| ask-surface-guard-no-false-positive-conversation | devin | PASS | `runtime=devin fires=0 listed=1` | `specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/no-false-positive/devin/` |
 
 `tool=1` means a decision-capture queue row holds the Teal answer, which only a question-tool answer writes. `fires` counts lines in the guard's `fires.jsonl`. `listed=1` means the notes summary is in the pane.
 
@@ -102,7 +102,7 @@ A run takes about 3 to 10 minutes per runtime.
 
 ## 10. CROSS-LINKS
 
-Packet: `specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/`
+Packet: `specs/hooks-plugins-extensions/027-ask-surface-enforcement/`
 
 | File | Contents |
 |---|---|
