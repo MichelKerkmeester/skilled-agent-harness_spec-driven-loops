@@ -1,5 +1,5 @@
 {
-  "corpusHash": "699fe0a87490a8a2c45609947892209476cf229ec73176327e5b2cb049840a5a",
+  "corpusHash": "e7236258bbf3e71a0516572061839859b3d9b381be49edfa8e7e66e859d1c829",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25996,
+  "includedPathCount": 26001,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8643,6 +8643,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.41.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.42.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.43.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.44.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.7.0.md",
@@ -10929,6 +10930,10 @@
     "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/plan.md",
     "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/spec.md",
     "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/tasks.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/007-search-routing-followups/implementation-summary.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/007-search-routing-followups/plan.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/007-search-routing-followups/spec.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/007-search-routing-followups/tasks.md",
     "specs/hooks-plugins-extensions/028-sweet-search-integration/goal.md",
     "specs/hooks-plugins-extensions/028-sweet-search-integration/spec.md",
     "specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state/implementation-summary.md",
@@ -26028,7 +26033,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e9ac3dd758bef88448720f2d4b4885e8e9c79f195ad8dae9929c643c2c4e2cdf",
+  "manifestHash": "dc74adcba0aadcfa0e814734894d08c23239c35150388cc0b4af05cdb379b3e6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28804,6 +28809,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/007-search-routing-followups/scratch",
       "reason": "excluded directory"
     },
     {
