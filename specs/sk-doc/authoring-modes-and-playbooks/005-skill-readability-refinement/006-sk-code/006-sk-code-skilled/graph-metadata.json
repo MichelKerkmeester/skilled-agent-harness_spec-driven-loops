@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/006-sk-code/006-sk-code-skilled",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/006-sk-code/006-sk-code-skilled",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/006-sk-code",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk code skilled",
+      "phase 6 sk code skilled",
+      "sk code skilled plan",
+      "sk code skilled tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "sk code skilled implementation summary"
+    ],
+    "key_topics": [
+      "code",
+      "skilled",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/findings.md",
+      ".skilled/skills/sk-code/sk-code-skilled/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/ROUTER.md",
+      ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/config-checklist.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/naming-init-formatting-and-css.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/overview-header-and-comments.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/verification-quick-reference-and-related.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/python-checklist.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-authoring.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-authoring.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md",
+        "source": "derived"
+      },
+      {
+        "name": "config-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/config-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "javascript-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "naming-init-formatting-and-css.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/naming-init-formatting-and-css.md",
+        "source": "derived"
+      },
+      {
+        "name": "overview-header-and-comments.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/overview-header-and-comments.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification-quick-reference-and-related.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/verification-quick-reference-and-related.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-server-authoring.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md",
+        "source": "derived"
+      },
+      {
+        "name": "python-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/python-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "overview-and-p0-parity.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md",
+        "source": "derived"
+      },
+      {
+        "name": "p0-safety-and-boundary-discipline.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The docs of the `sk-code-skilled` mode were never read as a whole for readability, layout and structure",
+    "created_at": "2026-11-04T07:16:35Z",
+    "last_save_at": "2026-11-10T05:26:12.701Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:953f8e20bcfa424dd509c2928c5ee36384e301ebba6da954a3a72f4f2c47149c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c176669f2c5efe4deceece357355164153180cc0f202753335467ae90dad7ae4",
+      "plan.md": "030a50d98cc8d3cee5a7fa6f454b096e519b2446e5055ea55f7b570c89c6b25a",
+      "tasks.md": "6282e0bfe1e45b16d2fe29c8d173dbd421a0723ac6a50966a4b3e88f0471c7b0",
+      "implementation-summary.md": "dc3c7fedcca4e76619d9738fe9cfffc103cbb86a50c8ccf8f278378a30f68cb7"
+    },
+    "last_active_at": null
+  }
+}

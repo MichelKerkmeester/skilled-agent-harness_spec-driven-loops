@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Three workflows failed on every push to main since 2026-11-01, so a real regression in any of them would have gone unnoticed",
     "created_at": "2026-11-02T12:20:00Z",
-    "last_save_at": "2026-11-02T12:46:40.707Z",
+    "last_save_at": "2026-11-10T05:34:42.073Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee5628df7a22b8292063212635eca4436af11fc73e1641054e16d888ac6ecd3c",
+    "source_fingerprint": "sha256:4464ce19d57f10c7f090899d883fe80c14f78c1b402ba7c662ba8452b8c41455",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3a3cb289a503803808d10f29d5a2f5642ad9d06a380ab511469c21b501edcce9",
+      "spec.md": "565d6637b6c33e044898f6160b7337809f6214cde00781a2e17d58fc0886f520",
       "plan.md": "5d15471743a632deee46d7f1c831a19095267b6b298f1979a7c60bc344b3bbd3",
-      "tasks.md": "d7dfe07cfce867219825e7074774a2bbe0b2be58cfe9d5012835da8d58961d6d",
+      "tasks.md": "3e5168b7c4dbbd38f500b9357fd07c8fbdc7393054bc8b433c9781853b0e7f20",
       "implementation-summary.md": "7fcb228d265decb5c63b8658e33012b12d0ac4e9c2a0fdab69b08a8a3dcd005c"
     },
     "last_active_at": null

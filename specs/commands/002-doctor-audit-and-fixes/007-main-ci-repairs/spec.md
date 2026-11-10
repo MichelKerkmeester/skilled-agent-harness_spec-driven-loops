@@ -42,7 +42,7 @@ This is **Phase 7** of the doctor audit and fixes packet.
 **Scope Boundary**: the three failures that kept Markdown Link Integrity, sk-doc Script Tests and Playbook Operator Contract red on main. No validator or workflow changes.
 
 **Dependencies**:
-- The create-goal packet now lives at `specs/sk-doc/056-create-goal-mode/`, moved there by the specs renumber.
+- The create-goal packet now lives at `specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/`, moved there by the specs renumber.
 
 **Deliverables**:
 - The two create-goal benchmark reports point at `056-create-goal-mode`.
@@ -81,7 +81,7 @@ REQUIRED_PROMPT doctor-commands/doctor-routing-helper-handoff.md: operator or or
 ## 3. SCOPE
 
 ### In Scope
-- Repoint the create-goal benchmark reports from `specs/sk-doc/060-create-goal-mode/` to `specs/sk-doc/056-create-goal-mode/`.
+- Repoint the create-goal benchmark reports from `specs/sk-doc/060-create-goal-mode/` to `specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/`.
 - Refresh the durable-directory manifest with its own `--write` mode.
 - Add a `Prompt:` line to DOC-406 and move the root playbook's next free number to DOC-407.
 

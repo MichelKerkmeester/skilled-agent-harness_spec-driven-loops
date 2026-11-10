@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/hub-routing-and-surfaces/003-governance-doc-alignment",
+  "spec_folder": "sk-doc/hub-routing-and-surfaces/003-governance-doc-alignment",
+  "parent_id": "sk-doc/hub-routing-and-surfaces",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "governance alignment",
+      "router alignment",
+      "root doc staleness",
+      "006 resume queue",
+      "governance-doc-alignment",
+      "governance doc alignment plan",
+      "governance doc alignment tasks",
+      "governance doc alignment acceptance criteria",
+      "055 decision record",
+      "swarm review superseded",
+      "execution evidence over prose review",
+      "governance doc alignment implementation summary"
+    ],
+    "key_topics": [
+      "governance",
+      "alignment",
+      "router",
+      "root",
+      "doc",
+      "staleness",
+      "resume",
+      "queue",
+      "governance-doc-alignment",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "AGENTS.md",
+      "REPO RULES.md",
+      "repo-rules/communication.md",
+      "repo-rules/scope-discipline.md",
+      ".opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+      ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+      "research/root-doc-staleness/lineages/1789357391666-zngraa-staleness/research.md",
+      ".devin/SYNC.md",
+      "scratch/opus-root-doc-audit.md",
+      "scratch/fable-review-of-root-doc-cut.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "REPO RULES.md",
+        "kind": "doc",
+        "path": "REPO RULES.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": "repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope-discipline.md",
+        "kind": "doc",
+        "path": "repo-rules/scope-discipline.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-repo-rules.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".devin/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "opus-root-doc-audit.md",
+        "kind": "doc",
+        "path": "scratch/opus-root-doc-audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "fable-review-of-root-doc-cut.md",
+        "kind": "doc",
+        "path": "scratch/fable-review-of-root-doc-cut.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Return",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 006 clarity program paused with its validation state unproven: a swarm rewrote twelve documents, and the repair pass that would confirm them was killed partway",
+    "created_at": "2026-09-13T11:50:18Z",
+    "last_save_at": "2026-11-10T05:26:35.845Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5d1c3861ee9116038684f7af441215cb095cc94f7352802e462651a44266ec65",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3d99797bb4f848b9efa19a12bfa017cf9aa38e492c252740fab15a56e5ee7b5f",
+      "plan.md": "e08df7e78410d5e1a7a2ec93fbc14b29b66db9ea17b4e85f2b29c42c362ea1d6",
+      "tasks.md": "35bf4dad43697ec96b6f3ea1d3b16637600dfb33eee6f823f5d7c9d3fca2889d",
+      "decision-record.md": "2e994d6732eb67e6908351c661cf61353ef19d0ba45635adf175b4065dc7f3ec",
+      "implementation-summary.md": "6c5bc6409ecb720082e1e1c3d94e1d3b571b6d66aa6f6de97d5cb286327a4ced"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-doc/z_archive/007-sk-doc-organization",
   "description": "The `sk-doc` skill's `assets/` directory has accreted a two-level hierarchy that no longer matches its access patterns",
   "keywords": [

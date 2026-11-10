@@ -48,7 +48,7 @@ When an inbox row targets an existing registry question but carries different te
 ---
 
 ## 2. TOPIC
-Review the decision-capture series before building its follow-ups. (1) What was built in 001-decision-capture-build (the PostToolUse capture hook, the transcript sweeps, the decision-record writer and save step, the Stop-hook nudge, the playbook scenarios): defects, weak spots, and what to improve. Known real-use gap: answers recorded by hand as table rows in another packet's decision record keep counting as pending. (2) The planned children 002-table-row-matching, 003-codex-and-pi-capture, 004-opencode-devin-live-capture, 005-chat-question-detection and 006-live-conversation-test: should any be changed, merged, split, re-ordered or planned differently? Is anything missing? (3) How 006 depends on the shared conversation runner planned in specs/sk-doc/065-conversation-playbook-scenarios, and whether the contract between them is right. Cite code and spec lines.
+Review the decision-capture series before building its follow-ups. (1) What was built in 001-decision-capture-build (the PostToolUse capture hook, the transcript sweeps, the decision-record writer and save step, the Stop-hook nudge, the playbook scenarios): defects, weak spots, and what to improve. Known real-use gap: answers recorded by hand as table rows in another packet's decision record keep counting as pending. (2) The planned children 002-table-row-matching, 003-codex-and-pi-capture, 004-opencode-devin-live-capture, 005-chat-question-detection and 006-live-conversation-test: should any be changed, merged, split, re-ordered or planned differently? Is anything missing? (3) How 006 depends on the shared conversation runner planned in specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios, and whether the contract between them is right. Cite code and spec lines.
 
 ---
 
@@ -57,7 +57,7 @@ Review the decision-capture series before building its follow-ups. (1) What was 
 - [x] What defects or weak spots exist in the 001 build (capture core, Claude PostToolUse hook, transcript/OpenCode/Devin sweeps, decision-record writer and save wiring, Stop-hook nudge), and what should be improved?
 - [x] Why do answers recorded by hand as table rows in another packet's decision record keep counting as pending, and is 002's planned matching the right fix?
 - [x] Should any of the planned children 002 to 005 be changed, merged, split, re-ordered or planned differently, and is any follow-up missing?
-- [x] How does 006 depend on the shared conversation runner in specs/sk-doc/065-conversation-playbook-scenarios, and is the contract between them right and complete?
+- [x] How does 006 depend on the shared conversation runner in specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios, and is the contract between them right and complete?
 - [x] Do the three decision-capture playbook scenarios prove what 001 claims, and what must the 006 conversation scenario assert that they do not?
 
 <!-- /ANCHOR:key-questions -->
@@ -83,7 +83,7 @@ Review the decision-capture series before building its follow-ups. (1) What was 
 - What defects or weak spots exist in the 001 build (capture core, Claude PostToolUse hook, transcript/OpenCode/Devin sweeps, decision-record writer and save wiring, Stop-hook nudge), and what should be improved?
 - Why do answers recorded by hand as table rows in another packet's decision record keep counting as pending, and is 002's planned matching the right fix?
 - Should any of the planned children 002 to 005 be changed, merged, split, re-ordered or planned differently, and is any follow-up missing?
-- How does 006 depend on the shared conversation runner in specs/sk-doc/065-conversation-playbook-scenarios, and is the contract between them right and complete?
+- How does 006 depend on the shared conversation runner in specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios, and is the contract between them right and complete?
 - Do the three decision-capture playbook scenarios prove what 001 claims, and what must the 006 conversation scenario assert that they do not?
 
 <!-- /ANCHOR:answered-questions -->
@@ -228,7 +228,7 @@ Review the decision-capture series before building its follow-ups. (1) What was 
 - Carried nuance from Q2: whether 002 refuses a match when two sessions captured the same question with different answers — a table row holds one answer, so a second, different answer must not be marked consumed under it. Not stated in 002's plan. (iteration 1)
 - Q3: Should any of the planned children 002 to 005 be changed, merged, split, re-ordered or planned differently, and is any follow-up missing? (iteration 2) (iteration 1)
 - Q5: Do the three decision-capture playbook scenarios prove what 001 claims, and what must the 006 conversation scenario assert that they do not? (iteration 3) (iteration 1)
-- Q4: How does 006 depend on the shared conversation runner in `specs/sk-doc/065-conversation-playbook-scenarios`, and is the contract between them right and complete? (iteration 3) (iteration 1)
+- Q4: How does 006 depend on the shared conversation runner in `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios`, and is the contract between them right and complete? (iteration 3) (iteration 1)
 - No question from the packet's five-key-question set remains unanswered. (iteration 3)
 - **Carried nuance from Q2, still open:** whether 002 refuses a match when two sessions captured the same question with different answers. Finding 15 records the gap and the one-line fix; 002's plan does not yet state it. Not a separate question — a change to 002. (iteration 3)
 
@@ -249,7 +249,7 @@ Review the decision-capture series before building its follow-ups. (1) What was 
 Continuity ladder: no `handover.md` and no root `implementation-summary.md` (phase parent). `spec.md` and `decision-record.md` read at init.
 
 - The series parent (`spec.md`) says 001 is Complete and lists four Known Limitations closed by 002 to 005: hand-written decision tables never matched (answers stay pending, the Stop hook keeps nudging); Codex and Pi capture nothing; OpenCode and Devin read only at save time, with no real sample of OpenCode's newest layout; a chat question counts only when it ends the assistant message. 001's playbook evidence was fixture-based single-prompt testing.
-- Operator decisions Q001 to Q004 (`decision-record.md`): series parent layout; separate goals; prove capture in a live, timed, multi-turn orchestrator-vs-test-subject conversation and re-prove 002 to 005 with it; 006 runs on the shared runner that extends sk-create-manual-testing-playbook (planned in `specs/sk-doc/065-conversation-playbook-scenarios`) and builds none of its own.
+- Operator decisions Q001 to Q004 (`decision-record.md`): series parent layout; separate goals; prove capture in a live, timed, multi-turn orchestrator-vs-test-subject conversation and re-prove 002 to 005 with it; 006 runs on the shared runner that extends sk-create-manual-testing-playbook (planned in `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios`) and builds none of its own.
 - Phase transition rule: children 002 to 005 close only after the 006 scenario re-proves them; the 006 Claude Code row runs first once 065 ships the runner.
 - Open question in spec.md: queue record 12 (session-relaunch child-guard answer) has no row in any decision record; 002 plans to record it in 001's decision-record.md.
 
@@ -260,7 +260,7 @@ Continuity ladder: no `handover.md` and no root `implementation-summary.md` (pha
 - Playbook scenarios: `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-claude-hook.md`, `decision-capture-transcript-sweeps.md`, `decision-capture-save-writer.md`.
 - Registration: `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json`, `.skilled/hooks/README.md`, `.skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md`.
 - Packet docs: children `001-decision-capture-build/` (spec, plan, tasks, decision-record, implementation-summary, acceptance-criteria, timeline) and `002-` to `006-` (spec, plan, tasks, acceptance-criteria, goal).
-- 065 packet (read-only): `specs/sk-doc/065-conversation-playbook-scenarios/` with children `001-scenario-contract/` and `002-conversation-runner/`.
+- 065 packet (read-only): `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/` with children `001-scenario-contract/` and `002-conversation-runner/`.
 - Constraints: read-only research; a sibling run researches 065 in parallel, so never write there.
 - Resource map: resource-map.md not present; skipping coverage gate.
 - Prior-work ripgrep recipe over the full topic string: no prior work (its only hit is this strategy file).

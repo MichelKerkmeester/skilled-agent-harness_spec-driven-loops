@@ -46,7 +46,7 @@
       "spec.md",
       "goal.md",
       "001-baseline-and-instrumentation/spec.md",
-      "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus/research/gate-b-measurement.md",
+      "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus/research/gate-b-measurement.md",
       "001-baseline-and-instrumentation/goal.md",
       "002-embedding-population/goal.md",
       "003-weight-and-fusion-research/goal.md",
@@ -69,7 +69,7 @@
       {
         "name": "gate-b-measurement.md",
         "kind": "doc",
-        "path": "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus/research/gate-b-measurement.md",
+        "path": "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus/research/gate-b-measurement.md",
         "source": "derived"
       },
       {
@@ -141,17 +141,17 @@
     ],
     "causal_summary": "Eight of 172 realistic phrasings reach the mode they were written for",
     "created_at": "2026-09-02T22:17:10Z",
-    "last_save_at": "2026-10-31T13:41:26.371Z",
+    "last_save_at": "2026-11-10T05:35:11.847Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:90708ccaaa3d0aa9b2c4d10b02108807edaab17cd603c3d87ff66e296813de7a",
+    "source_fingerprint": "sha256:641d66d45b508774455a17c978ad3b8e2f19657653e7dfde46ec250ee87aab7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d09f40ddfe2cf27d7d6815fe2f7fb66262f72754334c8a679597b9668b4a483e"
+      "spec.md": "bb7f08794bb97e3206a540c20ceacd9688be3b2cbaf2614a3b0d92f9a6269644"
     },
     "last_active_child_id": "system-skill-advisor/022-semantic-lane-enablement/005-verification-and-closeout",
     "last_active_at": null

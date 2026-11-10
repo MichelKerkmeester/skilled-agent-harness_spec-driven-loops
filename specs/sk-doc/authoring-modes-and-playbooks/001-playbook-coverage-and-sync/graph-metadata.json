@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/001-playbook-coverage-and-sync",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/001-playbook-coverage-and-sync",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks",
+  "children_ids": [
+    "sk-doc/authoring-modes-and-playbooks/001-playbook-coverage-and-sync/001-sk-doc-playbook-coverage",
+    "sk-doc/authoring-modes-and-playbooks/001-playbook-coverage-and-sync/002-playbook-prompt-sync"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc manual testing coverage",
+      "playbook scenario prompt sync",
+      "prompt copy mismatch warning",
+      "operator scenario verification"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "manual",
+      "testing",
+      "coverage",
+      "playbook",
+      "scenario",
+      "prompt",
+      "sync",
+      "copy",
+      "mismatch",
+      "warning",
+      "operator"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Most",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Most sk-doc modes lacked a manual testing playbook, so no written scenarios defined correct behavior or gave operators a check to follow",
+    "created_at": "2026-10-31T13:41:22.651Z",
+    "last_save_at": "2026-11-10T05:26:00.240Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:5f8d38478e86f8dc94538107ed64337a7fc4c044cda4ac60235a180f3d103516",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "29f00264e7bdc32fafaa8290e579dc7c63f7fda7cb1c0aeb5e3764f2dc0aedc5"
+    },
+    "last_active_child_id": "sk-doc/authoring-modes-and-playbooks/001-playbook-coverage-and-sync/001-sk-doc-playbook-coverage",
+    "last_active_at": null
+  }
+}

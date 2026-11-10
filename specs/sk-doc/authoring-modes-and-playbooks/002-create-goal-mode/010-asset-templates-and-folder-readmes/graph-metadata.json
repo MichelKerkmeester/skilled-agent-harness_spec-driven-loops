@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/010-asset-templates-and-folder-readmes",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/010-asset-templates-and-folder-readmes",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/002-create-goal-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal asset templates",
+      "per-kind goal template",
+      "goal template parity test",
+      "create-goal code readme",
+      "goal template plan",
+      "template parity approach",
+      "create-goal routing republish",
+      "code folder readme plan",
+      "goal template tasks",
+      "template parity tasks",
+      "create-goal readme tasks",
+      "phase 010 checklist"
+    ],
+    "key_topics": [
+      "goal",
+      "asset",
+      "templates",
+      "per-kind",
+      "template",
+      "parity",
+      "test",
+      "create-goal",
+      "code",
+      "readme",
+      "plan",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/create/goal.md",
+      "scripts/README.md",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/README.md",
+      ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.1.0.0.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-goal.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Render",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Checked",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mode's `assets/` held only exemplars, so an author had no blank for a top-level, phase-parent or phase-child goal and had to render one through system-spec-kit tooling",
+    "created_at": "2026-09-26T10:02:15Z",
+    "last_save_at": "2026-11-10T05:26:00.621Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8722652917dda610071c86ba686190b742065a78e89f4619091516fcf8f416e1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "808628ec027a4474d015c0b4a72ca4c5b52033148e23f540bb83785bb8b75f9a",
+      "plan.md": "031d9ac1482762dc26ee1a9c1220af1e60732ac0e2c771932a6d041651eb26b0",
+      "tasks.md": "a57ac460b697415364e9cfa87435f60bf11f0edd1693355efa075e242534d07c",
+      "implementation-summary.md": "0049e4103ef27f20bb41ac6dfb8298a5bcc5bf3456c67edd02b8b220d117f5bc"
+    },
+    "last_active_at": null
+  }
+}

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The continuity writer behind `/speckit:save` ignores every continuity field it is given and stamps the completion fingerprint after refreshing the graph, so a save leaves resume state stale and can fail its own strict validation",
     "created_at": "2026-09-23T08:54:19Z",
-    "last_save_at": "2026-10-31T15:28:31.877Z",
+    "last_save_at": "2026-11-10T05:35:12.433Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f63e7e2a21ac5de3ca1c7ff1f0a7df3be15def81eb289f4e2f196787ae2ca5b",
+    "source_fingerprint": "sha256:879e18e071c54edffcfbda67bba8ab210b55380ba8abcb8fc8bb126152113248",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c1ee7d215d38cbfbdf888678661e1d7aacee7ad9f0c6d965f93e833fc092b7c8",
       "plan.md": "469137361c27851e69e1e6ac7dc25866b9daea3d8dbf9ccb4d6f6e226508f516",
-      "tasks.md": "4bf04edeb943eedb0686bb59255de29deb816f12fb7deae4ad388ce37dcdffbc",
-      "implementation-summary.md": "8fe30c53b9d80c2443f2b8798fb73968a7f726a04394afe4002feced9448523a"
+      "tasks.md": "13dea49efbb875823b63ead58af462d13adc2bcab8edb263150434f4c150693e",
+      "implementation-summary.md": "ce331f4a07f70b54e6bbcc5bd71b208a554e8499303919527b3d9f7f31e84fa4"
     },
     "last_active_at": null
   }

@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-skilled,code-webflow,code-quality} to the canonical create-skill asset/reference templates: 5-field frontmatter + 4-part version, snake_case filenames, H1 + intro + `## 1. OVERVIEW` before content, optional RELATED RESOURCES last. Every rename updates all in-hub references. Extends 027's underscore convention to the reference/asset split files 027 did not cover.",
     "created_at": "2026-07-12T14:23:01.630Z",
-    "last_save_at": "2026-10-07T18:14:18.637Z",
+    "last_save_at": "2026-11-10T05:27:48.142Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34273ebccde017a6ba6caad257e09add7817184fc63092c2c0abfcca48a91fc0",
+    "source_fingerprint": "sha256:5fa2086f88d193c63285d148ab6f9c796333ef81cd9a30b3c407dba8a77d0fad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ed1e4a337e83df7b9c363a5c441bb8dec92aa6c101fe52c78c7d076b3d6f86f7",
-      "plan.md": "9f76797d60329c4285d914b35defb3b6e8337514f6336821fb4af836e7abe352",
-      "tasks.md": "3ea19b837e8b87aebe35af014e0dc5ba5a529fbb3538dcec04e0498ae3dc38c3",
-      "implementation-summary.md": "d8d4aa6ee3a3aeb661d78009752d0d0f6f7145740b3fe7679759f93de3799b37"
+      "spec.md": "f6cec8c1f24876623338c4f391d6148d900c234109cc0d47561f5278b0a69bfa",
+      "plan.md": "44a4618cc2d8eb5fb251ec5fdfd720d6352ecd6e237f1bd9d481b0f91d8579ae",
+      "tasks.md": "2abd60e0d147cd446b137e20011bd457c154564e07fc79798084158ecd5e5018",
+      "implementation-summary.md": "fe5622c396232b0c60f6c792071e1ce1faaf8070e67ecb506f796e9a5d399ced"
     },
     "last_active_child_id": null,
     "last_active_at": null

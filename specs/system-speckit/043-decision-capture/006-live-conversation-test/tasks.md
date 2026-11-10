@@ -35,7 +35,7 @@ Shell variables: `R` is the repository root. `P` is the scratch project from `mk
 ## Phase 1: Setup
 <!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
 
-- [x] T001 Wait for the scenario format only, `specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/`, before writing the scenario files (T004, T005). The runs (T007 onward) wait for `002-conversation-runner`. Verify: 001's `implementation-summary.md` reads Complete and `node -e "console.log(typeof require('./.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs').parseConversationScript)"` prints `function`.
+- [x] T001 Wait for the scenario format only, `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/`, before writing the scenario files (T004, T005). The runs (T007 onward) wait for `002-conversation-runner`. Verify: 001's `implementation-summary.md` reads Complete and `node -e "console.log(typeof require('./.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs').parseConversationScript)"` prints `function`.
 - [x] T002 Record each CLI's version and login state and the operator's consent and cost note for live sessions (`$E/preconditions.txt`). Verify: `claude auth status` exits 0, and `rg -c 'consent' $E/preconditions.txt` prints 1 or more. Evidence 2026-11-02: `claude auth status` loggedIn true, exit 0; `scratch/live-runs/preconditions.txt` names consent Q003, Q010 and Q012 and the cost note.
 - [x] T003 Build the scratch project as the plan's Scratch project component describes and save the S0 baselines (`$E/claude-run1/baseline/repo-status.txt`). Verify: `git -C "$P" rev-parse --show-toplevel` prints `$P`, `test -d "$P/.skilled/skills/.state" && test ! -L "$P/.skilled/skills/.state"` exits 0 and the baseline file exists. Evidence 2026-11-02: each scratch project was a fresh `git init` repo outside the repository with a real `.skilled/skills/.state`; the real-repository baselines are `scratch/live-runs/<runtime>-run1/baseline/repo-status-main.txt`.
 <!-- /ANCHOR:phase-1 -->
@@ -89,7 +89,7 @@ Shell variables: `R` is the repository root. `P` is the scratch project from `mk
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`, which holds the stage table and the matrix columns
-- **Runner dependency**: `specs/sk-doc/065-conversation-playbook-scenarios`
+- **Runner dependency**: `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios`
 <!-- /ANCHOR:cross-refs -->
 
 ---
@@ -116,7 +116,7 @@ A `[B]` task blocks every task after it until its blocker ships. T001 is the onl
 ## Pre-Implementation
 <!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in `goal.md` section 4. WEAK: Setup is ready. -->
 
-- [x] CHK-001 [P0] The 065 runner exists: `ls specs/sk-doc/065-conversation-playbook-scenarios/implementation-summary.md` prints the path. Evidence: 065 is a phase parent; its runner child `002-conversation-runner/implementation-summary.md` exists and its spec reads Complete.
+- [x] CHK-001 [P0] The 065 runner exists: `ls specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/implementation-summary.md` prints the path. Evidence: 065 is a phase parent; its runner child `002-conversation-runner/implementation-summary.md` exists and its spec reads Complete.
 - [x] CHK-002 [P0] The stage table is fixed before authoring: `rg -c '^\| S([0-9]|1[0-2]) \|' plan.md` prints 13. Evidence: prints 13.
 - [x] CHK-003 [P1] Logins and consent are recorded: `ls $E/preconditions.txt` prints the path. Evidence: `$E/preconditions.txt` exists.
 <!-- /ANCHOR:pre-impl -->

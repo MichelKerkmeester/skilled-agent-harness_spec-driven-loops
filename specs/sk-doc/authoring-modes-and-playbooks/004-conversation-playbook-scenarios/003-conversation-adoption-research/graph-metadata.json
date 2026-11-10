@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/003-conversation-adoption-research",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/003-conversation-adoption-research",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "conversation adoption research",
+      "phase 3 conversation adoption research",
+      "conversation adoption research plan",
+      "conversation adoption research tasks",
+      "conversation adoption research implementation summary",
+      "playbook conversation candidates",
+      "which playbook scenarios should be conversations"
+    ],
+    "key_topics": [
+      "conversation",
+      "adoption",
+      "research",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "playbook",
+      "candidates",
+      "scenarios",
+      "conversations"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/findings-registry.json",
+      "research/resource-map.md",
+      "research/fanout-attribution.md",
+      "research/deep-research-config.json",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+      "research/lineages/luna/iterations/iteration-001.md",
+      "research/lineages/devin/iterations/iteration-001.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/lineages/luna/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Style",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repository holds 56 manual testing playbook packages, and only four scenario files use the new `json conversation` format",
+    "created_at": "2026-11-02T17:36:43Z",
+    "last_save_at": "2026-11-10T05:26:10.631Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:dc39e96a6117e587d771054d5fa17278a9a035f5e32c45e061a6246076c3ed0e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "35f163b189b71b0f9733ae9453abdedd69965b840e5d9ce51cf3c1f8d44e548a",
+      "plan.md": "7f150af4ef16c5af005b3fa34fa50be673e98dea42fe522a2eaed26680c54da4",
+      "tasks.md": "eaffeb10e0da7b4099ce409959ed09ec52ed63d573fbb970dfc18e23f4816967",
+      "implementation-summary.md": "27cb1d56c183b3aa7559a1a442db9871d8f1355b872ca019c837476fb880b47b",
+      "research/research.md": "99c1a6254574df39495ecfc4982cf303315354ccf95b40ebb4e577fa36c1d57c"
+    },
+    "last_active_at": null
+  }
+}

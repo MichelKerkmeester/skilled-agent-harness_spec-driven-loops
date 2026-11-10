@@ -9,7 +9,7 @@ trigger_phrases:
   - "annotated changelog sample"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # Changelog Worked Examples
@@ -52,7 +52,7 @@ contextType: "general"
 
 `/create:changelog` now writes a hub's changelog where the hub keeps it. A hub such as `sk-doc` holds one link per mode plus `parent` and no entry of its own, so the workflow used to find no version there and would have written beside the links.
 
-> Spec folder: `specs/sk-doc/055-changelog-system/003-skilled-release-changelog/003-adjacent-alignment`
+> Spec folder: `specs/sk-doc/document-standards/003-changelog-system/003-skilled-release-changelog/003-adjacent-alignment`
 
 &nbsp;
 

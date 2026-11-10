@@ -77,7 +77,7 @@ Literal-replacement sweep plus a validator-rule addition, the same shape `030-sp
 | `test-fixtures/002-valid-level1`, `003-valid-level2`, `004-valid-level3` | Read across the extended suite, `progressive-validation.vitest.ts` and `test-validation-system.cjs` as unconditional "valid" baselines, including under `--strict` | update | every test file that references each fixture name is grepped first. The fixtures are swept before the rule change lands |
 | `test-fixtures/072-scaffold-never-touched-violation` | Models a Complete-status packet whose `plan.md` still carries scaffold markers, asserted to fail with `SCAFFOLD_NEVER_TOUCHED` | not a consumer of this change | left untouched. Its title token is part of the scenario it tests, not a defect |
 | 929 in-scope packet titles | Frontmatter `title:` field only | update | `grep -rIl '\[template:level' specs` returns only the four excluded groups after the sweep |
-| Excluded packets (`sk-doc/051-hub-routing-quality/001-routing-completeness`, `system-deep-loop/036-deep-loop-innovation`, `sk-design/*`) | Same defect, owned by other sessions | unchanged | named explicitly so a later strict run on those packets is understood as pre-existing, not a regression this phase introduced |
+| Excluded packets (`sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness`, `system-deep-loop/036-deep-loop-innovation`, `sk-design/*`) | Same defect, owned by other sessions | unchanged | named explicitly so a later strict run on those packets is understood as pre-existing, not a regression this phase introduced |
 
 Required inventories:
 - Same-class producers: `grep -rIln '^title:.*\[template:level' specs` re-run at execution time is the authoritative file list, not the count written in spec.md.

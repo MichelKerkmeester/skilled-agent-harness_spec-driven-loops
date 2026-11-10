@@ -15,7 +15,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Topic: Review the decision-capture series before building its follow-ups. (1) What was built in 001-decision-capture-build (the PostToolUse capture hook, the transcript sweeps, the decision-record writer and save step, the Stop-hook nudge, the playbook scenarios): defects, weak spots, and what to improve. Known real-use gap: answers recorded by hand as table rows in another packet's decision record keep counting as pending. (2) The planned children 002-table-row-matching, 003-codex-and-pi-capture, 004-opencode-devin-live-capture, 005-chat-question-detection and 006-live-conversation-test: should any be changed, merged, split, re-ordered or planned differently? Is anything missing? (3) How 006 depends on the shared conversation runner planned in specs/sk-doc/065-conversation-playbook-scenarios, and whether the contract between them is right. Cite code and spec lines.
+- Topic: Review the decision-capture series before building its follow-ups. (1) What was built in 001-decision-capture-build (the PostToolUse capture hook, the transcript sweeps, the decision-record writer and save step, the Stop-hook nudge, the playbook scenarios): defects, weak spots, and what to improve. Known real-use gap: answers recorded by hand as table rows in another packet's decision record keep counting as pending. (2) The planned children 002-table-row-matching, 003-codex-and-pi-capture, 004-opencode-devin-live-capture, 005-chat-question-detection and 006-live-conversation-test: should any be changed, merged, split, re-ordered or planned differently? Is anything missing? (3) How 006 depends on the shared conversation runner planned in specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios, and whether the contract between them is right. Cite code and spec lines.
 - Started: 2026-11-01T21:42:07.374Z
 - Status: INITIALIZED
 - Iteration: 3 of 3
@@ -32,7 +32,7 @@ Reducer-generated observability surface for the active research packet.
 | # | Focus | Track | Ratio | Findings | Status |
 |---|-------|-------|-------|----------|--------|
 | 1 | The 001 build: capture core, Claude PostToolUse hook, the three sweeps, decision-record-writer.ts with its tests, and the Stop-hook nudge, with a code-level trace of why hand-written table rows stay pending | decision-capture-001-audit | 0.87 | 18 | complete |
-| 2 | Q4: how 006-live-conversation-test depends on the shared conversation runner in specs/sk-doc/065-conversation-playbook-scenarios, and whether that contract is right and complete | cross-packet-contract | 0.95 | 13 | complete |
+| 2 | Q4: how 006-live-conversation-test depends on the shared conversation runner in specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios, and whether that contract is right and complete | cross-packet-contract | 0.95 | 13 | complete |
 | 3 | Q3: should children 002 to 005 be changed, merged, split, re-ordered or planned differently, and is any follow-up missing; Q5: do the three decision-capture playbook scenarios prove what 001 claims, and what must the 006 conversation scenario assert that they do not | series-shape-and-evidence-coverage | 0.92 | 20 | complete |
 
 - iterationsCompleted: 3
@@ -47,7 +47,7 @@ Reducer-generated observability surface for the active research packet.
 - [x] What defects or weak spots exist in the 001 build (capture core, Claude PostToolUse hook, transcript/OpenCode/Devin sweeps, decision-record writer and save wiring, Stop-hook nudge), and what should be improved?
 - [x] Why do answers recorded by hand as table rows in another packet's decision record keep counting as pending, and is 002's planned matching the right fix?
 - [x] Should any of the planned children 002 to 005 be changed, merged, split, re-ordered or planned differently, and is any follow-up missing?
-- [x] How does 006 depend on the shared conversation runner in specs/sk-doc/065-conversation-playbook-scenarios, and is the contract between them right and complete?
+- [x] How does 006 depend on the shared conversation runner in specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios, and is the contract between them right and complete?
 - [x] Do the three decision-capture playbook scenarios prove what 001 claims, and what must the 006 conversation scenario assert that they do not?
 
 <!-- /ANCHOR:questions -->

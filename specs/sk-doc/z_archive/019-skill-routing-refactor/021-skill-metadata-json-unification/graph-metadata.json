@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The authoring-time census of 12 skill roots produced twelve distinct metadata shapes",
     "created_at": "2026-07-27T17:47:35.453Z",
-    "last_save_at": "2026-10-07T18:13:23.273Z",
+    "last_save_at": "2026-11-10T05:27:09.331Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d8836a86c664cc26e0f529dc5eca273b37cbe04f77f9243d8cc07b96378336c",
+    "source_fingerprint": "sha256:793d70549596014eeb4cda6c33cc2122508e1a95125d76042833c4281018d357",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "13a43199acc89b9adf174d85931e1fc30d502865d1fff4616f199d28ed113db2",
       "plan.md": "18906b0e79d4bb29ca12a5dfa1ff00a5a4435d297eb791d66c9f51ebbac03334",
       "tasks.md": "1c1e10caa8eb7fb1b4791decc257a0a4c920cd73e47b65041852685918af80e9",
       "decision-record.md": "0def420fb458af11682fd821eebe989335c20d588c6741afa1a34bf4fe4d321c",
-      "implementation-summary.md": "869dc5aab6ee28c04760c2f95816d7ac7b6bca32f3dc0f8f3f551b5fb914220a"
+      "implementation-summary.md": "cb5753e4a8ff522fb87b2ac33e9d607b8665042b3da9f2d0c6a3232c6150def6"
     },
     "last_active_child_id": null,
     "last_active_at": null

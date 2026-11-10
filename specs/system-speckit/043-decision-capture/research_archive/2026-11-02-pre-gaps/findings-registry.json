@@ -45,7 +45,7 @@
     {
       "id": "question-4-how-does-006-depend-on-the-shared-conversation-runner-in-specs-sk-doc-065-conver",
       "inboxId": null,
-      "text": "How does 006 depend on the shared conversation runner in specs/sk-doc/065-conversation-playbook-scenarios, and is the contract between them right and complete?",
+      "text": "How does 006 depend on the shared conversation runner in specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios, and is the contract between them right and complete?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -105,7 +105,7 @@
     {
       "id": "question-4-how-does-006-depend-on-the-shared-conversation-runner-in-specs-sk-doc-065-conver",
       "inboxId": null,
-      "text": "How does 006 depend on the shared conversation runner in specs/sk-doc/065-conversation-playbook-scenarios, and is the contract between them right and complete?",
+      "text": "How does 006 depend on the shared conversation runner in specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios, and is the contract between them right and complete?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -142,7 +142,7 @@
       "source": "iteration-markdown"
     },
     {
-      "text": "Q4: How does 006 depend on the shared conversation runner in `specs/sk-doc/065-conversation-playbook-scenarios`, and is the contract between them right and complete? (iteration 3)",
+      "text": "Q4: How does 006 depend on the shared conversation runner in `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios`, and is the contract between them right and complete? (iteration 3)",
       "addedAtIteration": 1,
       "source": "iteration-markdown"
     },
@@ -557,7 +557,7 @@
     },
     {
       "id": "finding-2-8-checkpoints-tsv-is-not-a-runner-artifact-so-006-s-headline-gate-has-no-producer-",
-      "text": "**`checkpoints.tsv` is not a runner artifact, so 006's headline gate has no producer.** 065's per-runtime evidence is `result.json`, `actions.jsonl`, `raw-pane.log`, `setup.log`, both repository snapshots, `matrix.md`, and per turn `screen.txt`, `question-N.txt` and `check.txt`. There is no `checkpoints.tsv` and no per-stage row anywhere. Yet 006's T007 verifies \"`wc -l < checkpoints.tsv` prints 13\", AC-005 requires 13 rows each with a verdict and an evidence path, and the plan's evidence store lists the file as if the run yields it. 006 must own the derivation (merge `result.json` + `actions.jsonl` + `check.txt` per turn into rows) and say so; the plan instead says the runner \"runs the checkpoint and saves the pane\". [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:179] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/tasks.md:52] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:60] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:62] **Confirmed.**",
+      "text": "**`checkpoints.tsv` is not a runner artifact, so 006's headline gate has no producer.** 065's per-runtime evidence is `result.json`, `actions.jsonl`, `raw-pane.log`, `setup.log`, both repository snapshots, `matrix.md`, and per turn `screen.txt`, `question-N.txt` and `check.txt`. There is no `checkpoints.tsv` and no per-stage row anywhere. Yet 006's T007 verifies \"`wc -l < checkpoints.tsv` prints 13\", AC-005 requires 13 rows each with a verdict and an evidence path, and the plan's evidence store lists the file as if the run yields it. 006 must own the derivation (merge `result.json` + `actions.jsonl` + `check.txt` per turn into rows) and say so; the plan instead says the runner \"runs the checkpoint and saves the pane\". [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:179] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/tasks.md:52] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:60] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:62] **Confirmed.**",
       "addedAtIteration": 2,
       "sources": [
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:101`, `:134`, `:135`, `:174`, `:199`",
@@ -566,18 +566,18 @@
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56`, `:60`, `:96`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44`, `:56`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md:37`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md:37`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
         "`specs/system-speckit/043-decision-capture/research/deep-research-state.jsonl:5`",
         "`specs/system-speckit/043-decision-capture/research/iterations/iteration-001.md` (read to avoid repetition)"
       ]
     },
     {
       "id": "finding-2-1-006-depends-on-065-in-two-separable-halves-and-it-currently-gates-on-both-at-onc",
-      "text": "**006 depends on 065 in two separable halves, and it currently gates on both at once.** The scenario *format* and its validator are `001-scenario-contract` (a fenced `json conversation` block, closed key set, `parseConversationScript` exported). The *runner* that executes it is `002-conversation-runner`. 006's T001 is blocked on the whole packet: \"Wait for the shared conversation runner and its scenario format\". Only the *run* tasks need 002; the scenario authoring task (T004) needs only 001, because the validator is what checks the file. [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/tasks.md:38] **Confirmed.**",
+      "text": "**006 depends on 065 in two separable halves, and it currently gates on both at once.** The scenario *format* and its validator are `001-scenario-contract` (a fenced `json conversation` block, closed key set, `parseConversationScript` exported). The *runner* that executes it is `002-conversation-runner`. 006's T001 is blocked on the whole packet: \"Wait for the shared conversation runner and its scenario format\". Only the *run* tasks need 002; the scenario authoring task (T004) needs only 001, because the validator is what checks the file. [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/tasks.md:38] **Confirmed.**",
       "addedAtIteration": 2,
       "sources": [
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:101`, `:134`, `:135`, `:174`, `:199`",
@@ -586,18 +586,18 @@
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56`, `:60`, `:96`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44`, `:56`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md:37`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md:37`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
         "`specs/system-speckit/043-decision-capture/research/deep-research-state.jsonl:5`",
         "`specs/system-speckit/043-decision-capture/research/iterations/iteration-001.md` (read to avoid repetition)"
       ]
     },
     {
       "id": "finding-2-11-006-re-implements-the-runner-s-repository-guard-with-a-weaker-flag-set-065-snaps",
-      "text": "**006 re-implements the runner's repository guard with a weaker flag set.** 065 snapshots `git status --porcelain --ignored -- specs .skilled/skills/.state` before and after each runtime and fails the run as `REPO_CHANGED`, saving both snapshots. 006's own REQ-002 and S0 baseline use `git status --short specs .skilled/skills/.state` — no `--ignored`. The decision-capture state directory 006 most needs to protect is gitignored, so 006's check is blind to exactly the writes it exists to catch, while the runner would have caught them. 006 should cite the runner's snapshots as its evidence path instead of re-running a weaker command. [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:173] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:72] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/tasks.md:40] **Confirmed** (flag comparison is textual, from the two cited lines).",
+      "text": "**006 re-implements the runner's repository guard with a weaker flag set.** 065 snapshots `git status --porcelain --ignored -- specs .skilled/skills/.state` before and after each runtime and fails the run as `REPO_CHANGED`, saving both snapshots. 006's own REQ-002 and S0 baseline use `git status --short specs .skilled/skills/.state` — no `--ignored`. The decision-capture state directory 006 most needs to protect is gitignored, so 006's check is blind to exactly the writes it exists to catch, while the runner would have caught them. 006 should cite the runner's snapshots as its evidence path instead of re-running a weaker command. [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:173] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:72] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/tasks.md:40] **Confirmed** (flag comparison is textual, from the two cited lines).",
       "addedAtIteration": 2,
       "sources": [
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:101`, `:134`, `:135`, `:174`, `:199`",
@@ -606,18 +606,18 @@
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56`, `:60`, `:96`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44`, `:56`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md:37`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md:37`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
         "`specs/system-speckit/043-decision-capture/research/deep-research-state.jsonl:5`",
         "`specs/system-speckit/043-decision-capture/research/iterations/iteration-001.md` (read to avoid repetition)"
       ]
     },
     {
       "id": "finding-2-12-006-s-nudge-line-assertions-depend-on-screen-state-that-065-does-not-promise-is-",
-      "text": "**006's nudge-line assertions depend on screen state that 065 does not promise is on disk at check time — but they may not need it.** REQ-006 wants the per-turn Stop-hook nudge lines from the pane for S1 to S11. A `check` can read `<session>.nudge` through `CONVERSATION_REPO_ROOT`, which is sufficient for the count assertions; the *line* assertions need the pane, and 065 specifies `screen.txt` per turn without stating whether it is written before or after `check` runs. Recorded as **inferred**, with the confirming artifact named: the order of the screen write and the check call in `run-conversation-scenario.cjs`, which does not exist yet. [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:135] [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:179] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:96] **Inferred.**",
+      "text": "**006's nudge-line assertions depend on screen state that 065 does not promise is on disk at check time — but they may not need it.** REQ-006 wants the per-turn Stop-hook nudge lines from the pane for S1 to S11. A `check` can read `<session>.nudge` through `CONVERSATION_REPO_ROOT`, which is sufficient for the count assertions; the *line* assertions need the pane, and 065 specifies `screen.txt` per turn without stating whether it is written before or after `check` runs. Recorded as **inferred**, with the confirming artifact named: the order of the screen write and the check call in `run-conversation-scenario.cjs`, which does not exist yet. [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:135] [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:179] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:96] **Inferred.**",
       "addedAtIteration": 2,
       "sources": [
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:101`, `:134`, `:135`, `:174`, `:199`",
@@ -626,18 +626,18 @@
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56`, `:60`, `:96`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44`, `:56`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md:37`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md:37`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
         "`specs/system-speckit/043-decision-capture/research/deep-research-state.jsonl:5`",
         "`specs/system-speckit/043-decision-capture/research/iterations/iteration-001.md` (read to avoid repetition)"
       ]
     },
     {
       "id": "finding-2-4-065-explicitly-anticipates-006-s-needs-and-that-part-of-the-contract-is-right-th",
-      "text": "**065 explicitly anticipates 006's needs, and that part of the contract is right.** The reference phase requires a section \"that maps a multi-runtime live test's needs onto the script: tool questions, chat questions, a process question that must leave no trace, mid-run and final saves, restart or compaction, a kill-switch run, per-turn state copies and the results matrix\". Item for item that is 006's stage list. The runtime id set (`claude-code`, `opencode`, `codex`, `pi`, `devin`) also matches 006's five matrix rows exactly. [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:183] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:90] **Confirmed.**",
+      "text": "**065 explicitly anticipates 006's needs, and that part of the contract is right.** The reference phase requires a section \"that maps a multi-runtime live test's needs onto the script: tool questions, chat questions, a process question that must leave no trace, mid-run and final saves, restart or compaction, a kill-switch run, per-turn state copies and the results matrix\". Item for item that is 006's stage list. The runtime id set (`claude-code`, `opencode`, `codex`, `pi`, `devin`) also matches 006's five matrix rows exactly. [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:183] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:90] **Confirmed.**",
       "addedAtIteration": 2,
       "sources": [
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:101`, `:134`, `:135`, `:174`, `:199`",
@@ -646,18 +646,18 @@
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56`, `:60`, `:96`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44`, `:56`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md:37`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md:37`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
         "`specs/system-speckit/043-decision-capture/research/deep-research-state.jsonl:5`",
         "`specs/system-speckit/043-decision-capture/research/iterations/iteration-001.md` (read to avoid repetition)"
       ]
     },
     {
       "id": "finding-2-6-hard-conflict-006-s-stage-s12-cannot-live-in-the-same-scenario-file-or-the-same-",
-      "text": "**Hard conflict: 006's stage S12 cannot live in the same scenario file or the same run as S0 to S11.** S12 needs a *second* on-disk project (`$K`) with `SYSTEM_DECISION_CAPTURE_DISABLED=1`. The format gives one top-level `env` per script, the runner takes one `--scenario` and one `--scratch` per invocation, and a second fenced `json conversation` block is rejected as `CONVERSATION_SCRIPT_INVALID`. So either S12 becomes a second scenario file plus a second runner invocation, or 065 must accept per-runtime/per-turn `env` or a `reset` action. As written, 006's REQ-001 and AC-001 (\"13 stage rows S0 to S12\" in one file) and AC-005 (13-row `checkpoints.tsv` from one run) are unsatisfiable. [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:147] [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:78] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:84] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56] **Confirmed** on all three constraints; the \"S12 must therefore split\" conclusion is **inferred** and is the direct consequence of them.",
+      "text": "**Hard conflict: 006's stage S12 cannot live in the same scenario file or the same run as S0 to S11.** S12 needs a *second* on-disk project (`$K`) with `SYSTEM_DECISION_CAPTURE_DISABLED=1`. The format gives one top-level `env` per script, the runner takes one `--scenario` and one `--scratch` per invocation, and a second fenced `json conversation` block is rejected as `CONVERSATION_SCRIPT_INVALID`. So either S12 becomes a second scenario file plus a second runner invocation, or 065 must accept per-runtime/per-turn `env` or a `reset` action. As written, 006's REQ-001 and AC-001 (\"13 stage rows S0 to S12\" in one file) and AC-005 (13-row `checkpoints.tsv` from one run) are unsatisfiable. [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:147] [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:78] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:84] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56] **Confirmed** on all three constraints; the \"S12 must therefore split\" conclusion is **inferred** and is the direct consequence of them.",
       "addedAtIteration": 2,
       "sources": [
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:101`, `:134`, `:135`, `:174`, `:199`",
@@ -666,18 +666,18 @@
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56`, `:60`, `:96`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44`, `:56`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md:37`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md:37`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
         "`specs/system-speckit/043-decision-capture/research/deep-research-state.jsonl:5`",
         "`specs/system-speckit/043-decision-capture/research/iterations/iteration-001.md` (read to avoid repetition)"
       ]
     },
     {
       "id": "finding-2-9-s0-is-structurally-outside-the-runner-there-is-no-turn-and-therefore-no-check-be",
-      "text": "**S0 is structurally outside the runner: there is no turn, and therefore no `check`, before the project exists.** The runner's guard *requires* an already-prepared scratch project, and its `setup` commands run inside that prepared project while `check` runs only after a settled turn. 006's S0 is \"build the scratch project, record baselines\" with its own checkpoint. So S0 is 006's own pre-runner step (its T003), and its row in `checkpoints.tsv` can never come from the run. Consequence: the \"13 rows from 13 stages\" shape mixes one hand-produced row with twelve runner-produced turns. [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166] [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:171] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:72] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/tasks.md:40] **Confirmed** for the guard and the check placement; **inferred** for S0's row provenance.",
+      "text": "**S0 is structurally outside the runner: there is no turn, and therefore no `check`, before the project exists.** The runner's guard *requires* an already-prepared scratch project, and its `setup` commands run inside that prepared project while `check` runs only after a settled turn. 006's S0 is \"build the scratch project, record baselines\" with its own checkpoint. So S0 is 006's own pre-runner step (its T003), and its row in `checkpoints.tsv` can never come from the run. Consequence: the \"13 rows from 13 stages\" shape mixes one hand-produced row with twelve runner-produced turns. [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166] [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:171] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:72] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/tasks.md:40] **Confirmed** for the guard and the check placement; **inferred** for S0's row provenance.",
       "addedAtIteration": 2,
       "sources": [
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:101`, `:134`, `:135`, `:174`, `:199`",
@@ -686,18 +686,18 @@
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56`, `:60`, `:96`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44`, `:56`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md:37`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md:37`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
         "`specs/system-speckit/043-decision-capture/research/deep-research-state.jsonl:5`",
         "`specs/system-speckit/043-decision-capture/research/iterations/iteration-001.md` (read to avoid repetition)"
       ]
     },
     {
       "id": "finding-2-13-the-dependency-is-not-circular-and-006-is-not-on-065-s-critical-path-which-is-wo",
-      "text": "**The dependency is not circular, and 006 is not on 065's critical path — which is worth saying because 006's readiness gate reads as if it were.** 065's handoff criteria is its own MTP-007 scenario passing on Claude Code, and it names 043/006 as \"the first consumer\", not as its proof. So 065 can close without 006, and 006 waits. The cost is format risk, not deadlock: 065 designs the closed key set with no second consumer testing it, and the S12 conflict (finding 6) is the concrete shape that risk took. [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/spec.md:64] [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/spec.md:65] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44] **Confirmed** for the criteria text; **inferred** for the risk characterization.",
+      "text": "**The dependency is not circular, and 006 is not on 065's critical path — which is worth saying because 006's readiness gate reads as if it were.** 065's handoff criteria is its own MTP-007 scenario passing on Claude Code, and it names 043/006 as \"the first consumer\", not as its proof. So 065 can close without 006, and 006 waits. The cost is format risk, not deadlock: 065 designs the closed key set with no second consumer testing it, and the S12 conflict (finding 6) is the concrete shape that risk took. [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:64] [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:65] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44] **Confirmed** for the criteria text; **inferred** for the risk characterization.",
       "addedAtIteration": 2,
       "sources": [
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:101`, `:134`, `:135`, `:174`, `:199`",
@@ -706,18 +706,18 @@
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56`, `:60`, `:96`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44`, `:56`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md:37`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md:37`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
         "`specs/system-speckit/043-decision-capture/research/deep-research-state.jsonl:5`",
         "`specs/system-speckit/043-decision-capture/research/iterations/iteration-001.md` (read to avoid repetition)"
       ]
     },
     {
       "id": "finding-2-3-the-runner-executes-a-turn-s-check-with-bash-c-inside-the-project-with-conversat",
-      "text": "**The runner executes a turn's `check` with `bash -c` inside the project, with `CONVERSATION_REPO_ROOT`, `CONVERSATION_RUN_DIR` and `CONVERSATION_TURN_DIR` set, and stops that runtime's run at the first failed turn.** That is the only automated assertion surface 006 gets. Its S6 checkpoint (\"4 rows, 4 items, 4 lines and 4 keys, no decided text equals its answer, process count 0, level line unchanged, queue still 3\") is expressible as one `bash -c`, but the failure granularity is per turn, not per observable. [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:171] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:78] **Confirmed.**",
+      "text": "**The runner executes a turn's `check` with `bash -c` inside the project, with `CONVERSATION_REPO_ROOT`, `CONVERSATION_RUN_DIR` and `CONVERSATION_TURN_DIR` set, and stops that runtime's run at the first failed turn.** That is the only automated assertion surface 006 gets. Its S6 checkpoint (\"4 rows, 4 items, 4 lines and 4 keys, no decided text equals its answer, process count 0, level line unchanged, queue still 3\") is expressible as one `bash -c`, but the failure granularity is per turn, not per observable. [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:171] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:78] **Confirmed.**",
       "addedAtIteration": 2,
       "sources": [
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:101`, `:134`, `:135`, `:174`, `:199`",
@@ -726,18 +726,18 @@
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56`, `:60`, `:96`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44`, `:56`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md:37`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md:37`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
         "`specs/system-speckit/043-decision-capture/research/deep-research-state.jsonl:5`",
         "`specs/system-speckit/043-decision-capture/research/iterations/iteration-001.md` (read to avoid repetition)"
       ]
     },
     {
       "id": "finding-2-2-the-runner-s-turn-schema-is-the-operative-constraint-on-006-s-stage-table-a-turn",
-      "text": "**The runner's turn schema is the operative constraint on 006's stage table.** A turn is `id`, `send` **or** `action` (`restart`/`compact`), `delay_ms`, `timeout_ms`, `questions[]` and a mandatory `check`; a turn without `check` is invalid. `questions[]` entries carry `match` (a regex), `answer` (`select`/`other`/`reply`) and `optional`. So 006's five observables for S2 (\"1 line, 1 key, `Amber`, 1 nudge line, nudge file 1\") must be collapsed into one shell command's exit status, and its five human actions must map onto `send`/`action`. [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:74] **Confirmed.**",
+      "text": "**The runner's turn schema is the operative constraint on 006's stage table.** A turn is `id`, `send` **or** `action` (`restart`/`compact`), `delay_ms`, `timeout_ms`, `questions[]` and a mandatory `check`; a turn without `check` is invalid. `questions[]` entries carry `match` (a regex), `answer` (`select`/`other`/`reply`) and `optional`. So 006's five observables for S2 (\"1 line, 1 key, `Amber`, 1 nudge line, nudge file 1\") must be collapsed into one shell command's exit status, and its five human actions must map onto `send`/`action`. [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:74] **Confirmed.**",
       "addedAtIteration": 2,
       "sources": [
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:101`, `:134`, `:135`, `:174`, `:199`",
@@ -746,18 +746,18 @@
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56`, `:60`, `:96`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44`, `:56`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md:37`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md:37`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
         "`specs/system-speckit/043-decision-capture/research/deep-research-state.jsonl:5`",
         "`specs/system-speckit/043-decision-capture/research/iterations/iteration-001.md` (read to avoid repetition)"
       ]
     },
     {
       "id": "finding-2-5-the-scratch-project-design-matches-the-runner-s-guard-no-conflict-here-065-refus",
-      "text": "**The scratch-project design matches the runner's guard — no conflict here.** 065 refuses `--scratch` when it resolves inside the repository, when a non-empty directory lacks the `.conversation-scratch` marker, or when `specs` or `.skilled/skills/.state` in the prepared project resolves outside it. 006 builds the project with `mktemp -d` (outside the repository), symlinks only `.skilled/hooks`, `.skilled/bin` and `.skilled/skills/system-spec-kit`, and keeps `.skilled/skills/.state` a real directory — and its T003 verify asserts exactly that non-symlink condition. [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/tasks.md:40] **Confirmed** (the two texts agree on every guard input).",
+      "text": "**The scratch-project design matches the runner's guard — no conflict here.** 065 refuses `--scratch` when it resolves inside the repository, when a non-empty directory lacks the `.conversation-scratch` marker, or when `specs` or `.skilled/skills/.state` in the prepared project resolves outside it. 006 builds the project with `mktemp -d` (outside the repository), symlinks only `.skilled/hooks`, `.skilled/bin` and `.skilled/skills/system-spec-kit`, and keeps `.skilled/skills/.state` a real directory — and its T003 verify asserts exactly that non-symlink condition. [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/tasks.md:40] **Confirmed** (the two texts agree on every guard input).",
       "addedAtIteration": 2,
       "sources": [
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:101`, `:134`, `:135`, `:174`, `:199`",
@@ -766,18 +766,18 @@
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56`, `:60`, `:96`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44`, `:56`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md:37`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md:37`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
         "`specs/system-speckit/043-decision-capture/research/deep-research-state.jsonl:5`",
         "`specs/system-speckit/043-decision-capture/research/iterations/iteration-001.md` (read to avoid repetition)"
       ]
     },
     {
       "id": "finding-2-7-the-verdict-vocabulary-is-still-unreconciled-and-065-has-already-assigned-the-fi",
-      "text": "**The verdict vocabulary is still unreconciled, and 065 has already assigned the fix to 043/006, which has not made it.** The runner's contract is \"Verdicts are PASS, FAIL or SKIP only\", repeated in the runner's matrix rule (\"Stage marks map onto PASS, FAIL and SKIP\"). 065's parent spec records the divergence as an open question and states outright: \"The 043/006 packet should map its stage marks onto those, and that change is that packet's to make.\" 043/006 still requires PASS, FAIL, **DEVIATION** or **N/A** in four places, with no mapping anywhere in the packet. A conforming runner will therefore never emit two of the four marks its consumer's acceptance criterion demands. [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:180] [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:114] [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/spec.md:152] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:134] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101] **Confirmed.** Carry-forward: this is the one already-noted 065 blocker, still open.",
+      "text": "**The verdict vocabulary is still unreconciled, and 065 has already assigned the fix to 043/006, which has not made it.** The runner's contract is \"Verdicts are PASS, FAIL or SKIP only\", repeated in the runner's matrix rule (\"Stage marks map onto PASS, FAIL and SKIP\"). 065's parent spec records the divergence as an open question and states outright: \"The 043/006 packet should map its stage marks onto those, and that change is that packet's to make.\" 043/006 still requires PASS, FAIL, **DEVIATION** or **N/A** in four places, with no mapping anywhere in the packet. A conforming runner will therefore never emit two of the four marks its consumer's acceptance criterion demands. [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:180] [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:114] [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:152] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:134] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101] **Confirmed.** Carry-forward: this is the one already-noted 065 blocker, still open.",
       "addedAtIteration": 2,
       "sources": [
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:101`, `:134`, `:135`, `:174`, `:199`",
@@ -786,18 +786,18 @@
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56`, `:60`, `:96`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44`, `:56`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md:37`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md:37`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
         "`specs/system-speckit/043-decision-capture/research/deep-research-state.jsonl:5`",
         "`specs/system-speckit/043-decision-capture/research/iterations/iteration-001.md` (read to avoid repetition)"
       ]
     },
     {
       "id": "finding-2-10-two-006-stages-are-written-as-human-keystrokes-where-the-runner-has-first-class-",
-      "text": "**Two 006 stages are written as human keystrokes where the runner has first-class actions, and the DEVIATION retry has no runner mechanism at all.** S8 begins \"`/compact`, then …\" and S9 begins \"`/exit`, relaunch with `claude --continue` in the same pane\" — but the turn schema provides `action: \"compact\"` and `action: \"restart\"` precisely so a script does not type them, and typing `/exit` as `send` would surface as `SUBJECT_EXITED`. Likewise 006's NFR-R02 and risk row require a DEVIATION to be retried once, while the runner's rule is that the first failed turn ends that runtime's run; no retry exists in the runner. Both need 006 to speak in the runner's vocabulary (`action`, and a 006-side re-invocation for the retry). [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:168] [SOURCE: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:170] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:199] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:80] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:81] **Confirmed** for the action vocabulary and the single-failure rule.",
+      "text": "**Two 006 stages are written as human keystrokes where the runner has first-class actions, and the DEVIATION retry has no runner mechanism at all.** S8 begins \"`/compact`, then …\" and S9 begins \"`/exit`, relaunch with `claude --continue` in the same pane\" — but the turn schema provides `action: \"compact\"` and `action: \"restart\"` precisely so a script does not type them, and typing `/exit` as `send` would surface as `SUBJECT_EXITED`. Likewise 006's NFR-R02 and risk row require a DEVIATION to be retried once, while the runner's rule is that the first failed turn ends that runtime's run; no retry exists in the runner. Both need 006 to speak in the runner's vocabulary (`action`, and a 006-side re-invocation for the retry). [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:168] [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:170] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:199] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:80] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md:81] **Confirmed** for the action vocabulary and the single-failure rule.",
       "addedAtIteration": 2,
       "sources": [
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md:101`, `:134`, `:135`, `:174`, `:199`",
@@ -806,11 +806,11 @@
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md:56`, `:60`, `:96`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md:44`, `:56`",
         "`specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:101`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md:37`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
-        "`specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md:64`, `:65`, `:152`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md:37`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md:145`, `:147`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md:166`, `:168`, `:170`, `:171`, `:173`, `:179`, `:180`, `:183`",
+        "`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md:78`, `:114`",
         "`specs/system-speckit/043-decision-capture/research/deep-research-state.jsonl:5`",
         "`specs/system-speckit/043-decision-capture/research/iterations/iteration-001.md` (read to avoid repetition)"
       ]

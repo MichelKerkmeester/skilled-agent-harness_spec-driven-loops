@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/004-cross-hub-vocabulary",
+  "description": "This phase was scoped before either gate was measured, on the belief that a cross-hub",
+  "keywords": [
+    "phase",
+    "scoped",
+    "gate",
+    "measured",
+    "belief",
+    "cross-hub"
+  ],
+  "lastUpdated": "2026-09-11T16:49:41.126Z",
+  "specId": "004",
+  "folderSlug": "cross-hub-vocabulary",
+  "parentChain": [
+    "sk-doc",
+    "051-hub-routing-quality",
+    "001-routing-completeness"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

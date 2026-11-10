@@ -42,10 +42,10 @@ This is **Phase 6** of the Live multi-turn conversation test harness for decisio
 
 The parent `specs/system-speckit/043-decision-capture` is a series parent: the decision-capture series. Child `001-decision-capture-build` is the finished build. Siblings `002-table-row-matching`, `003-codex-and-pi-capture`, `004-opencode-devin-live-capture` and `005-chat-question-detection` each re-prove their fix with the scenario this phase plans.
 
-**Scope Boundary**: This phase writes the decision-capture conversation scenario, its per-runtime result matrix and the run results. The conversation runner that sends timed turns into a tmux pane is shared and is built in `specs/sk-doc/065-conversation-playbook-scenarios`, not here.
+**Scope Boundary**: This phase writes the decision-capture conversation scenario, its per-runtime result matrix and the run results. The conversation runner that sends timed turns into a tmux pane is shared and is built in `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios`, not here.
 
 **Dependencies**:
-- `specs/sk-doc/065-conversation-playbook-scenarios` must ship the conversation runner and the scenario format before any live run (P0).
+- `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios` must ship the conversation runner and the scenario format before any live run (P0).
 - `001-decision-capture-build` supplies the hook, the sweeps, the save writer and the Stop-hook nudge under test.
 
 **Deliverables**:
@@ -103,7 +103,7 @@ All three scenarios name a fixture and none starts a live or interactive session
 - Add the scenario's index row and state how siblings 002 to 005 add stages and rerun it.
 
 ### Out of Scope
-- The conversation runner, its tmux driver and its scenario format - shared with other skills and planned in `specs/sk-doc/065-conversation-playbook-scenarios`.
+- The conversation runner, its tmux driver and its scenario format - shared with other skills and planned in `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios`.
 - Fixing a capture defect a run finds - each fix belongs to the sibling that owns that surface (002 to 005) or to a new sibling, and this phase only records the failing checkpoint.
 - Changing the three existing decision-capture scenarios - they stay as the unit-level checks.
 
@@ -171,7 +171,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | P0: the conversation runner and scenario format in `specs/sk-doc/065-conversation-playbook-scenarios` | No live run can start, and the scenario file has no format to follow. | Task T001 stays `[B]` until 065 ships. The stage content in `plan.md` is fixed now, so only its layout waits on 065. |
+| Dependency | P0: the conversation runner and scenario format in `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios` | No live run can start, and the scenario file has no format to follow. | Task T001 stays `[B]` until 065 ships. The stage content in `plan.md` is fixed now, so only its layout waits on 065. |
 | Dependency | Provider logins and live-session cost for five CLIs | A runtime cannot run. | T002 records `auth status` per CLI and the operator's consent. A runtime that cannot log in gets a matrix row that says so. |
 | Risk | The subject model does not ask the question it was told to ask, or asks it in chat instead of with the tool | High. The checkpoint would test the model, not the capture. | The check prints `DEVIATION:`, the runner reruns the turn once (`retry: 1`), and a second miss is FAIL with the pane capture. |
 | Risk | A run writes into the real repository's `specs/` or its real queue | High. Test answers would reach a real packet. | REQ-002 compares `git status` and the real queue listing before and after each run. The scratch project's `.skilled/skills/.state` is a real directory, never a symlink. |

@@ -410,7 +410,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/decision-record.md",
+      "path": "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/decision-record.md",
       "phrases": [
         "decision record"
       ],
@@ -418,7 +418,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/008-drift-after-closure/decision-record.md",
+      "path": "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/008-drift-after-closure/decision-record.md",
       "phrases": [
         "decision record",
         "drift after closure decisions",

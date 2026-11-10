@@ -23,7 +23,7 @@ contextType: "general"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown scenario, bash checkpoint commands, `tmux` 3 at `/opt/homebrew/bin/tmux`, `jq` at `/usr/bin/jq`, Node for the save writer |
-| **Framework** | The conversation scenario format and runner from `specs/sk-doc/065-conversation-playbook-scenarios` (sk-create-manual-testing-playbook) |
+| **Framework** | The conversation scenario format and runner from `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios` (sk-create-manual-testing-playbook) |
 | **Storage** | Scratch project files only: `<session>.jsonl`, `<session>.nudge` and `consumed.jsonl` under `.skilled/skills/.state/decision-capture/`, plus the demo packet's `decision-record.md` |
 | **Testing** | Live interactive runs per runtime, `validate-playbook-package.cjs --package system-spec-kit`, `validate.sh --strict` |
 
@@ -38,7 +38,7 @@ This phase adds one playbook scenario, `decision-capture-live-conversation.md`, 
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] `ls specs/sk-doc/065-conversation-playbook-scenarios/implementation-summary.md` exists and names the runner path and the scenario format.
+- [ ] `ls specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/implementation-summary.md` exists and names the runner path and the scenario format.
 - [ ] `claude auth status` exits 0, and the operator's consent for live sessions and their cost is recorded in `scratch/live-runs/preconditions.txt`.
 - [ ] `command -v tmux jq claude` prints three paths.
 
@@ -59,7 +59,7 @@ Scripted conversation scenario. The scenario is data, the 065 runner executes it
 
 ### Key Components
 - **Scenario file** (`plugins-and-hooks/decision-capture-live-conversation.md`): the setup block, the stage table S0 to S12, the checkpoint commands, the matrix columns and the sibling extension rule.
-- **065 runner** (external, `specs/sk-doc/065-conversation-playbook-scenarios`): starts the subject in a tmux pane on its own socket, waits for turn end or a question widget, pauses like a person, types the human turn or picks the answer, then runs the checkpoint and saves the pane.
+- **065 runner** (external, `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios`): starts the subject in a tmux pane on its own socket, waits for turn end or a question widget, pauses like a person, types the human turn or picks the answer, then runs the checkpoint and saves the pane.
 - **Scratch project**: built by the scenario's `setup` in the runner's marked scratch folder, which also copies each runtime's project config (`.claude/`, `.opencode/`, `.codex/`, `.pi/`, `.devin/`) and records which model each runtime uses there. It is a `git init` repository with its own `.claude/settings.json` and hook links, `AGENTS.md` and `CLAUDE.md` copied in so the subject asks Gate 3 the way it does in the real repository, a demo packet `specs/demo/001-demo-widget` made by `create.sh` inside it, an `.opencode/` folder and a real `.skilled/skills/.state/` directory. `.skilled/hooks`, `.skilled/bin` and `.skilled/skills/system-spec-kit` are symlinks into the repository, as the save-writer scenario does at `decision-capture-save-writer.md:51-61`. The subject starts with `cd "$P"`, so Claude sets `CLAUDE_PROJECT_DIR` to `$P`, and the launch drops `AI_SESSION_CHILD`, `SYSTEM_HOOKS_DISABLED`, `SYSTEM_DECISION_CAPTURE_DISABLED` and `SKILLED_LOOP_HOPS`, so the subject behaves as an interactive session with Gate 3 live.
 - **Evidence store**: `scratch/live-runs/<runtime>-run<N>/` in this child, holding `pane-S<k>.txt`, `queue-S<k>.jsonl`, `consumed-S<k>.jsonl`, `nudge-S<k>.txt`, `decision-record-S6.md`, `decision-record-S10.md`, `decision-record-S11.md`, `baseline/repo-status.txt`, `after/repo-status.txt` and `checkpoints.tsv` (columns: stage, status, evidence path, observed value), derived from the runner's own per-turn `checkpoints.tsv` under `runner/main/` and `runner/kill-switch/`.
 
@@ -141,7 +141,7 @@ The one command that decides a run: `awk -F'\t' '$2=="FAIL"' scratch/live-runs/c
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| P0: conversation runner and scenario format, `specs/sk-doc/065-conversation-playbook-scenarios` | Internal | Red, being planned | No live run and no scenario layout. T001 blocks every later task. |
+| P0: conversation runner and scenario format, `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios` | Internal | Red, being planned | No live run and no scenario layout. T001 blocks every later task. |
 | `001-decision-capture-build` hook, sweeps, writer and Stop nudge | Internal | Green, complete | None. |
 | `tmux`, `jq`, `node` | External | Green, installed | None. |
 | Logins for `claude`, `opencode`, `codex`, `pi` and `devin`, and the operator's consent for paid live turns | External | Yellow, unchecked | The runtime row records "not run" with the `auth status` output. GPT models run only through the GPT provider, and a quota stop ends that row. |

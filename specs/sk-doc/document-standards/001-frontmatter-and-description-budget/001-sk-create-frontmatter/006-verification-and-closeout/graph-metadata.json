@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/006-verification-and-closeout",
+  "spec_folder": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/006-verification-and-closeout",
+  "parent_id": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "frontmatter mode verification",
+      "fleet gates final state",
+      "re-pin after frontmatter move",
+      "frontmatter packet closeout",
+      "final state gate sweep",
+      "canary re-pin discipline",
+      "packet closeout edits",
+      "version derivation reconcile deferred",
+      "playbook allowlist enrolment",
+      "final state sweep tasks",
+      "canary re-pin after red run",
+      "changelog rewrite closeout"
+    ],
+    "key_topics": [
+      "frontmatter",
+      "mode",
+      "verification",
+      "fleet",
+      "gates",
+      "final",
+      "state",
+      "re-pin",
+      "move",
+      "packet",
+      "closeout",
+      "gate"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "specs/descriptions.json",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/README.md",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.0.0.md",
+      "specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": "specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-failclosed-allowlist.txt",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Each phase proved its own step",
+    "created_at": "2026-09-01T08:43:01Z",
+    "last_save_at": "2026-11-10T05:26:22.036Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:03b2e5e48a6b980172aac1cc3a090f65b2d5788f7edcae85713c085728b7d8ab",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c32d0ce5fd9894ca5cb2658c9295f0f0786cff30b79747e806e81ce96f6b39f7",
+      "plan.md": "05f5cd9cf33e41427f75c532d84265a10fbdb275c8a32a6ca723c301c20ddd79",
+      "tasks.md": "55644dcd1ccff144b8e23b3f75ec414b23cc287f619f0228c830e961271c4253",
+      "implementation-summary.md": "4f71f69b3cc12c4d1133c71eee1c000c51747eeccfcb8cbd7b6724d43a86ec40"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

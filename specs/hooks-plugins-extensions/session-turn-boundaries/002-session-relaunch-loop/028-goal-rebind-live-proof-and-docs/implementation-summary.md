@@ -119,7 +119,7 @@ Cleanup: every tmux server and runtime process this phase started was killed, th
 | `validate-playbook-package.cjs --package system-spec-kit` | `PASS ... violations=0 warnings=1`, exit 0. The one warning is in another playbook file |
 | `validate_catalog_package.py --package system-spec-kit --strict` | `PASS ... violations=0`, exit 0 |
 | `validate.sh specs/hooks/023-session-relaunch-loop --strict --recursive` | `RESULT: PASSED` for all 30 folders (parent and 29 children), exit 0, after `repair-derived.cjs --apply` on this folder and the parent |
-| `validate.sh specs/sk-doc/056-create-goal-mode --strict --recursive` | `RESULT: PASSED` for all 16 folders, exit 0, run read-only |
+| `validate.sh specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode --strict --recursive` | `RESULT: PASSED` for all 16 folders, exit 0, run read-only |
 <!-- /ANCHOR:verification -->
 
 ---

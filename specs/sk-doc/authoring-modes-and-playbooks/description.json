@@ -1,0 +1,19 @@
+{
+  "level": "sub-track",
+  "specFolder": "sk-doc/authoring-modes-and-playbooks",
+  "description": "The sk-doc creation modes and the content they produce: goal authoring, feature catalogs, manual-testing playbooks and skill readability.",
+  "keywords": [
+    "authoring",
+    "modes",
+    "and",
+    "playbooks"
+  ],
+  "lastUpdated": "2026-11-10T05:25:54.536Z",
+  "specId": "sk-doc/authoring-modes-and-playbooks",
+  "folderSlug": "authoring-modes-and-playbooks",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

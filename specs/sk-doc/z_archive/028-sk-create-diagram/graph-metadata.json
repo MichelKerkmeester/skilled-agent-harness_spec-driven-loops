@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "sk-doc/z_archive/028-sk-create-diagram",
   "spec_folder": "sk-doc/z_archive/028-sk-create-diagram",
-  "parent_id": "sk-doc",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
     "sk-doc/z_archive/028-sk-create-diagram/001-inventory-and-skill-contract",
     "sk-doc/z_archive/028-sk-create-diagram/002-skill-scaffold-and-design-system",

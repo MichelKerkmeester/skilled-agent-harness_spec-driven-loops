@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/006-validator-and-template-debt",
+  "description": "A template is the one document where the fenced block is the deliverable rather than a",
+  "keywords": [
+    "template",
+    "one",
+    "document",
+    "fenced",
+    "block",
+    "deliverable",
+    "rather"
+  ],
+  "lastUpdated": "2026-09-11T16:49:41.130Z",
+  "specId": "006",
+  "folderSlug": "validator-and-template-debt",
+  "parentChain": [
+    "sk-doc",
+    "051-hub-routing-quality",
+    "001-routing-completeness"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

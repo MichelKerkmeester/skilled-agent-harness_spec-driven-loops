@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-doc/doc-validation-tooling/002-readme-validation-debt/001-repo-doc-debt",
+  "description": "Clear repo-wide documentation debt: broken README references, README template conformance, changelog internal ids and test counts",
+  "keywords": [
+    "clear",
+    "repo-wide",
+    "documentation",
+    "debt",
+    "broken",
+    "readme",
+    "references",
+    "template",
+    "conformance",
+    "changelog",
+    "internal",
+    "ids",
+    "test",
+    "counts"
+  ],
+  "lastUpdated": "2026-10-27T06:53:10.429Z",
+  "specId": "001",
+  "folderSlug": "repo-doc-debt",
+  "parentChain": [
+    "sk-doc",
+    "062-readme-validation-debt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

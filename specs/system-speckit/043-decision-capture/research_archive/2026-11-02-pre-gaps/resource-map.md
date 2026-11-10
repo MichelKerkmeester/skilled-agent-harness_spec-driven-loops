@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — Review the decision-capture series before building its follow-ups. (1) What was built in 001-decision-capture-build (the PostToolUse capture hook, the transcript sweeps, the decision-record writer and save step, the Stop-hook nudge, the playbook scenarios): defects, weak spots, and what to improve. Known real-use gap: answers recorded by hand as table rows in another packet's decision record keep counting as pending. (2) The planned children 002-table-row-matching, 003-codex-and-pi-capture, 004-opencode-devin-live-capture, 005-chat-question-detection and 006-live-conversation-test: should any be changed, merged, split, re-ordered or planned differently? Is anything missing? (3) How 006 depends on the shared conversation runner planned in specs/sk-doc/065-conversation-playbook-scenarios, and whether the contract between them is right. Cite code and spec lines."
+title: "Resource Map — Review the decision-capture series before building its follow-ups. (1) What was built in 001-decision-capture-build (the PostToolUse capture hook, the transcript sweeps, the decision-record writer and save step, the Stop-hook nudge, the playbook scenarios): defects, weak spots, and what to improve. Known real-use gap: answers recorded by hand as table rows in another packet's decision record keep counting as pending. (2) The planned children 002-table-row-matching, 003-codex-and-pi-capture, 004-opencode-devin-live-capture, 005-chat-question-detection and 006-live-conversation-test: should any be changed, merged, split, re-ordered or planned differently? Is anything missing? (3) How 006 depends on the shared conversation runner planned in specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios, and whether the contract between them is right. Cite code and spec lines."
 description: "Auto-generated research resource map from convergence evidence."
 ---
 # Resource Map
@@ -52,10 +52,10 @@ description: "Auto-generated research resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md | Cited | OK | Citations=1; Iterations=1 |
-| specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md | Cited | OK | Citations=1; Iterations=1 |
-| specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md | Cited | OK | Citations=1; Iterations=1 |
-| specs/sk-doc/065-conversation-playbook-scenarios/spec.md | Cited | OK | Citations=1; Iterations=1 |
+| specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract/spec.md | Cited | OK | Citations=1; Iterations=1 |
+| specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/plan.md | Cited | OK | Citations=1; Iterations=1 |
+| specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/spec.md | Cited | OK | Citations=1; Iterations=1 |
+| specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/spec.md | Cited | OK | Citations=1; Iterations=1 |
 | specs/system-speckit/043-decision-capture/001-decision-capture-build/acceptance-criteria.md | Cited | OK | Citations=1; Iterations=1 |
 | specs/system-speckit/043-decision-capture/001-decision-capture-build/implementation-summary.md | Cited | OK | Citations=1; Iterations=1 |
 | specs/system-speckit/043-decision-capture/001-decision-capture-build/spec.md | Cited | OK | Citations=1; Iterations=1 |

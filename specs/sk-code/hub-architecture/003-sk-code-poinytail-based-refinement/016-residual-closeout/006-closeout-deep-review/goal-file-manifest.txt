@@ -92,9 +92,9 @@ specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/015-closeo
 specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/015-closeout/spec.md
 specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/goal.md
 specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/spec.md
-specs/sk-doc/059-feature-catalog-template-anchor-deprecation/001-source-deprecation/goal.md
-specs/sk-doc/059-feature-catalog-template-anchor-deprecation/002-retroactive-removal/goal.md
-specs/sk-doc/059-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/goal.md
-specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/goal.md
-specs/sk-doc/059-feature-catalog-template-anchor-deprecation/009-review-remediation/goal.md
-specs/sk-doc/059-feature-catalog-template-anchor-deprecation/goal.md
+specs/sk-doc/authoring-modes-and-playbooks/003-feature-catalog-template-anchor-deprecation/001-source-deprecation/goal.md
+specs/sk-doc/authoring-modes-and-playbooks/003-feature-catalog-template-anchor-deprecation/002-retroactive-removal/goal.md
+specs/sk-doc/authoring-modes-and-playbooks/003-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/goal.md
+specs/sk-doc/authoring-modes-and-playbooks/003-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/goal.md
+specs/sk-doc/authoring-modes-and-playbooks/003-feature-catalog-template-anchor-deprecation/009-review-remediation/goal.md
+specs/sk-doc/authoring-modes-and-playbooks/003-feature-catalog-template-anchor-deprecation/goal.md

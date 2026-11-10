@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "sk-doc/doc-validation-tooling",
+  "description": "Validators and the tooling around them: off switches, checker false positives, reference-format debt and release/prose checks.",
+  "keywords": [
+    "doc",
+    "validation",
+    "tooling"
+  ],
+  "lastUpdated": "2026-11-10T05:25:54.536Z",
+  "specId": "sk-doc/doc-validation-tooling",
+  "folderSlug": "doc-validation-tooling",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

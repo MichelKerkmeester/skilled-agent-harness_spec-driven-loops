@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "sk-doc/document-standards",
+  "description": "Format and policy rules for the documents themselves: frontmatter and descriptions, READMEs, changelogs and SECURITY.md.",
+  "keywords": [
+    "document",
+    "standards"
+  ],
+  "lastUpdated": "2026-11-10T05:25:54.535Z",
+  "specId": "sk-doc/document-standards",
+  "folderSlug": "document-standards",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

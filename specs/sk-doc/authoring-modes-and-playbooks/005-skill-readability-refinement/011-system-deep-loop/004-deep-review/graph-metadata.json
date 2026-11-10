@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/011-system-deep-loop/004-deep-review",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/011-system-deep-loop/004-deep-review",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/011-system-deep-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review",
+      "phase 4 deep review",
+      "deep review plan",
+      "deep review tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "deep review implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/findings.md",
+      ".skilled/skills/system-deep-loop/deep-review/README.md",
+      ".skilled/skills/system-deep-loop/deep-review/ROUTER.md",
+      ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md",
+      ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md",
+      ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md",
+      ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-recovery.md",
+      ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-signals.md",
+      ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+      ".skilled/skills/system-deep-loop/deep-review/references/protocol/completion-criteria.md",
+      ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md",
+      ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+      ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-dashboard.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-strategy.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-mode-contract-snapshot.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-recovery.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-recovery.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-signals.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-signals.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+        "source": "derived"
+      },
+      {
+        "name": "completion-criteria.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/completion-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-protocol.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-state-and-gates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "state-format.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The docs of the `deep-review` mode were never read as a whole for readability, layout and structure",
+    "created_at": "2026-11-04T07:16:52Z",
+    "last_save_at": "2026-11-10T05:26:18.006Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:09c6431e10b5bff3857cbf5814bd5448f86e9035bb029f521582168a0d00084e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8e0f1e2946cfea072f6e5f8edfa3f39001d9ddce76ecfaf55c0736c5b97c37b0",
+      "plan.md": "48b66544720cae9b295d8da67602c6d10df5a9f5a2951993d2dc52012c9c97a1",
+      "tasks.md": "3979fde7350d7d2282e4bbea3d4530bd992566941904e72b5591cf9551edfcb5",
+      "implementation-summary.md": "c1e3e453bc1392ffc97d49a851969bd5833a623c95258ba510731f2168e827ca"
+    },
+    "last_active_at": null
+  }
+}

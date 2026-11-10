@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment fixes",
+      "phase 4 alignment fixes",
+      "alignment fixes plan",
+      "alignment fixes tasks",
+      "alignment fixes acceptance criteria",
+      "004-alignment-fixes operator decisions",
+      "alignment fixes implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "004-alignment-fixes",
+      "operator",
+      "decisions",
+      "implementation",
+      "summary",
+      "two"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs",
+      ".skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_doc_rewrite_guard.py",
+      ".skilled/skills/sk-doc/ROUTER.md",
+      ".skilled/skills/mcp-tooling/ROUTER.md",
+      "shared/scripts/README.md",
+      ".skilled/changelog/skilled/v4.0.1.0.md",
+      ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+      "feature-catalog/feature-catalog.md",
+      "changelog/v2.9.3.0.md",
+      ".skilled/commands/assets/local-skilled-alignment/alignment-lib.cjs",
+      ".skilled/commands/doctor/scripts/tests/routing-shape-parity.test.cjs",
+      ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-convert-transforms.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doc-rewrite-guard.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_doc_rewrite_guard.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_doc_rewrite_guard.py",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.9.3.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.9.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-lib.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/alignment-lib.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "routing-shape-parity.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/routing-shape-parity.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two doctor test suites failed in CI because their fixture routers did not open with OVERVIEW, and `/doctor:sk-skill` converted references whose description restated the intro, which the strict render check fails",
+    "created_at": "2026-11-05T16:15:37Z",
+    "last_save_at": "2026-11-10T05:26:18.337Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:674cc29be1115e148f7b70182512a1fe55c72bf02d74d3d0f4efa0fbe016b004",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f0d6cd390db62e7eab12a279cc702496cfe039599c5c8cabd2705b1a23251fe0",
+      "plan.md": "d9e9a7bdf4ece31df84b2d23f315c0fe48d034beeb4cc4b06f5df5d7cdd67418",
+      "tasks.md": "de0dd2ca1cbf4dba84faf213e93359fe1341f61db7cdf125f28523f3dd5be771",
+      "decision-record.md": "4184384830a8d6842f94ad1e976b5b4e9ded0fd29d835643381115f0e644e5d7",
+      "implementation-summary.md": "7d6db72de30f895c5b51841d4e740f1fca6968930a4bb1c30fd1a71f3013d7de"
+    },
+    "last_active_at": null
+  }
+}

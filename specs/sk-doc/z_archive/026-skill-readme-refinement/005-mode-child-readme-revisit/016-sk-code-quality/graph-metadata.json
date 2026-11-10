@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The sk-code-quality README still carries the older tabular reference-card style and predates the pilot standard",
     "created_at": "2026-08-04T08:34:44.799Z",
-    "last_save_at": "2026-10-07T18:13:49.850Z",
+    "last_save_at": "2026-11-10T05:27:41.371Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c1b6b6127b71b00048e4a334425d430e42b0b3d41b727a7d46953ae96e20d150",
+    "source_fingerprint": "sha256:9c1f5722aeb8b43647c49071f1d9f5d334e36f9f9179a3da883f5f167107b5e1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d255208d87d3e3533ff170f10fa0c37a3c24fa87896abff26213e7df05db18ca",
+      "spec.md": "370caf8c1a0d104293834027085efb2ef5f962606f56d7682de773ea15afcab3",
       "plan.md": "5f338d72bfdbf6013dd1fbd08bbb366c235fdb823b785aa75cf84fbeeea4cf47",
       "tasks.md": "c5a9473c2118b642556890c638a38db634cda772dd63535d55f60b12cb224c66",
       "implementation-summary.md": "71e2e81145f7be82cfd59a77285606b946b5aee248ece3cee9da94bb9a5fb6d5"

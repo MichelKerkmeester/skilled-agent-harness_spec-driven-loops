@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The three decision-capture playbook scenarios feed a redacted fixture payload to the hook, run a sweep over a fixture transcript or hand the save one fixed JSON payload, and none of them starts a live session (Measured Behavior below)",
     "created_at": "2026-11-01T20:57:43Z",
-    "last_save_at": "2026-11-03T06:48:05.190Z",
+    "last_save_at": "2026-11-10T05:35:13.315Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b361064e51dcc5d94336e0bd61bd2510db6a426b43624edcf1f654973f8da884",
+    "source_fingerprint": "sha256:f53378780dedc2978afd9fc9a4834ac1246368a27a51ed1227c2b96b28f9adc9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "da1d9387cb710f34fddf98c5376877450f42229e977544fad2e839f5d3d644a1",
-      "plan.md": "c61584f45dc3dedfdccc5f40f84de73c3fd2a1c6d868d9520099b5f675d0dfc5",
-      "tasks.md": "2eca8b7e11403b5b9a2549fbd3d70fda4e9bc27f890589dc0d3812863a6d5efc",
+      "spec.md": "00ce452ddc38167f4fd04b3cdf35edec90972552b23718675bd892515cb9d52e",
+      "plan.md": "d0933394b5e47f720a1424c8e5e6d1781ec6641c9af32da83767b51072e5e269",
+      "tasks.md": "1c0c55c047e65f6bb7e1961f303737040b7118a7b083a1e4988c1a45515ce8b6",
       "decision-record.md": "78f7b5acdb72f7e6111963c3c4bd4aaff13b06298633f87fd2d948990b1a16e9",
       "implementation-summary.md": "309dda9e61713108ed4622424f6c26d02daa7d0be9ff5b315d467533b91064de"
     },

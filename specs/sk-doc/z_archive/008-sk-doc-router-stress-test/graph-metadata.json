@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "sk-doc/z_archive/008-sk-doc-router-stress-test",
   "spec_folder": "sk-doc/z_archive/008-sk-doc-router-stress-test",
-  "parent_id": "sk-doc/z_archive",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
     "sk-doc/z_archive/008-sk-doc-router-stress-test/001-scenario-author",
     "sk-doc/z_archive/008-sk-doc-router-stress-test/002-matrix-execute",

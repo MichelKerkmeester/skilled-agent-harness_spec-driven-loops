@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scenario contract",
+      "phase 1 scenario contract",
+      "json conversation block",
+      "conversation scenario validator rules",
+      "scenario contract plan",
+      "conversation block schema",
+      "parse conversation script export",
+      "scenario contract tasks",
+      "scenario contract acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria"
+    ],
+    "key_topics": [
+      "scenario",
+      "contract",
+      "phase",
+      "json",
+      "conversation",
+      "block",
+      "validator",
+      "rules",
+      "plan",
+      "schema",
+      "parse",
+      "script"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
+      ".skilled/skills/sk-doc/leaf-manifest.json",
+      "scratch/fleet-before.json",
+      "scratch/fleet-after.json",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-routing-helper-handoff.md",
+      ".github/workflows/playbook-operator-contract.yml",
+      "scratch/importers.txt",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-package.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook-snippet-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "fleet-before.json",
+        "kind": "config",
+        "path": "scratch/fleet-before.json",
+        "source": "derived"
+      },
+      {
+        "name": "fleet-after.json",
+        "kind": "config",
+        "path": "scratch/fleet-after.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-routing-helper-handoff.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-routing-helper-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-operator-contract.yml",
+        "kind": "config",
+        "path": ".github/workflows/playbook-operator-contract.yml",
+        "source": "derived"
+      },
+      {
+        "name": "importers.txt",
+        "kind": "file",
+        "path": "scratch/importers.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A playbook scenario has no way to script a conversation",
+    "created_at": "2026-11-01T21:03:57Z",
+    "last_save_at": "2026-11-10T05:26:04.554Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e89d015075cecff9f22a380c569814b0723981852dc831a19e761b7c34b76dc5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ed7ba349e0550b9a9cda0a95b53d2ce814e9ede300e9f9feeb49e35eef656e81",
+      "plan.md": "707e58c21df098ad07a2efb4edc2536ecacd837ffc7b3ee1b4f1dd22b2101a29",
+      "tasks.md": "324b7ff04075c2b93f2b0f1583150da33efa87543f85c57c7647c184bfc4dfb4",
+      "implementation-summary.md": "024135ba1630b54c253e29870cd5a0a715f8d9a9fa1b8dca6fc03d2739400a57"
+    },
+    "last_active_at": null
+  }
+}

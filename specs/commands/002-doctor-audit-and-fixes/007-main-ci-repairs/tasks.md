@@ -32,7 +32,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Read each failing workflow's log and rerun its command locally. Verify: the link guard prints `18 broken`, the manifest test names three added folders and the playbook validator names `REQUIRED_PROMPT` on DOC-406.
-- [x] T002 Confirm every link target exists under the new packet number (`specs/sk-doc/056-create-goal-mode/`). Verify: 18 of 18 targets exist.
+- [x] T002 Confirm every link target exists under the new packet number (`specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/`). Verify: 18 of 18 targets exist.
 <!-- /ANCHOR:phase-1 -->
 
 ---

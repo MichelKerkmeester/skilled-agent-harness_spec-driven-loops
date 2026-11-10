@@ -67,7 +67,7 @@ Every completed criterion in both trees passes when run against today's tree, an
 ## 3. SCOPE
 
 ### In Scope
-- Every goal.md under specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement and specs/sk-doc/059-feature-catalog-template-anchor-deprecation
+- Every goal.md under specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement and specs/sk-doc/authoring-modes-and-playbooks/003-feature-catalog-template-anchor-deprecation
 - The 005 router-sync prototype script, which still called the old script names
 
 ### Out of Scope

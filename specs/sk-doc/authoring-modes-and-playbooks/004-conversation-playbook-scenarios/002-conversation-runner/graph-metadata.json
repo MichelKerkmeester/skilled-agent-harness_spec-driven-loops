@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "conversation runner",
+      "phase 2 conversation runner",
+      "run-conversation-scenario",
+      "tmux conversation runner",
+      "runtime question adapters",
+      "conversation runner plan",
+      "tmux runner design",
+      "runtime adapter feasibility",
+      "conversation runner tasks",
+      "conversation runner acceptance criteria",
+      "packet goal",
+      "durable directive"
+    ],
+    "key_topics": [
+      "conversation",
+      "runner",
+      "phase",
+      "run-conversation-scenario",
+      "tmux",
+      "runtime",
+      "question",
+      "adapters",
+      "plan",
+      "design",
+      "adapter",
+      "feasibility"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      ".codex/config.toml",
+      "scratch/runs/matrix2/repo-changed-cause.md",
+      "review/lineages/luna-xhigh/review-report.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".github/workflows/playbook-operator-contract.yml",
+      "scratch/probes.md",
+      "scratch/runs/mtp007-attempt7/matrix.md",
+      "scratch/runs/claude-code-final/matrix.md",
+      "scratch/runs/matrix3/matrix.md",
+      "scratch/runs/matrix3/run-notes.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-conversation-scenario.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "repo-changed-cause.md",
+        "kind": "doc",
+        "path": "scratch/runs/matrix2/repo-changed-cause.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/lineages/luna-xhigh/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-operator-contract.yml",
+        "kind": "config",
+        "path": ".github/workflows/playbook-operator-contract.yml",
+        "source": "derived"
+      },
+      {
+        "name": "probes.md",
+        "kind": "doc",
+        "path": "scratch/probes.md",
+        "source": "derived"
+      },
+      {
+        "name": "matrix.md",
+        "kind": "doc",
+        "path": "scratch/runs/mtp007-attempt7/matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-notes.md",
+        "kind": "doc",
+        "path": "scratch/runs/matrix3/run-notes.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Node",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A conversation script is only useful if something can play it into a real session",
+    "created_at": "2026-11-01T21:03:58Z",
+    "last_save_at": "2026-11-10T05:26:10.715Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ea8310a02218f95869fd25cb2d090311f53cd2f832617a6240142e908d863b66",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5b891c55c865bcadb781e3c943b966f186fb869602b5d52eee9b5b90d342344a",
+      "plan.md": "42404fdab93624c319bc6a02036e1a90677a875773cc66b4da97da4cece10314",
+      "tasks.md": "85cd42166dc0f39044cadce2d1ec8b27bcd7fffde4a5078b1a7144ea4fdbf49d",
+      "implementation-summary.md": "a681ddf259d6e6c1f460c0a277b1af0e14047964a55ea308adcb334330b58e67"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/017-cli-devin",
+  "description": "Phase 17: cli-devin",
+  "keywords": [
+    "phase",
+    "cli-devin"
+  ],
+  "lastUpdated": "2026-11-02T18:33:58.650Z",
+  "specId": "017",
+  "folderSlug": "cli-devin",
+  "parentChain": [
+    "sk-doc",
+    "065-conversation-playbook-scenarios",
+    "004-conversation-adoption-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

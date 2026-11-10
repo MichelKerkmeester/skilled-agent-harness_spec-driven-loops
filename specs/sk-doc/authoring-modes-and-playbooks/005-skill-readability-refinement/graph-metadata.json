@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks",
+  "children_ids": [
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/001-cli-classifier",
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration",
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/003-cli-orca",
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/004-mcp-code-mode",
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/005-mcp-tooling",
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/006-sk-code",
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/007-sk-design",
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/008-sk-doc",
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/009-sk-git",
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/010-sk-prompt",
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/011-system-deep-loop",
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/012-system-skill-advisor",
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/013-system-spec-kit",
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill readability refinement phase parent spec",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "066-skill-readability-refinement operator decisions"
+    ],
+    "key_topics": [
+      "skill",
+      "readability",
+      "refinement",
+      "phase",
+      "parent",
+      "spec",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "decision-record.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
+      "010-sk-prompt/scratch/tools/drive-v3.sh",
+      "001-cli-classifier/goal.md",
+      "002-cli-external-orchestration/goal.md",
+      "003-cli-orca/goal.md",
+      "004-mcp-code-mode/goal.md",
+      "005-mcp-tooling/goal.md",
+      "006-sk-code/goal.md",
+      "007-sk-design/goal.md",
+      "008-sk-doc/goal.md",
+      "009-sk-git/goal.md",
+      "010-sk-prompt/goal.md",
+      "011-system-deep-loop/goal.md",
+      "012-system-skill-advisor/goal.md",
+      "013-system-spec-kit/goal.md",
+      "014-sk-create-skill-refinements/goal.md",
+      "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/010-sk-prompt/scratch/tools/leaves.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-known-debt.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
+        "source": "derived"
+      },
+      {
+        "name": "drive-v3.sh",
+        "kind": "script",
+        "path": "010-sk-prompt/scratch/tools/drive-v3.sh",
+        "source": "derived"
+      },
+      {
+        "name": "leaves.txt",
+        "kind": "file",
+        "path": "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/010-sk-prompt/scratch/tools/leaves.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Skilled",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Level",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Hermes",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Style Reference",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Style References",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The render checks added to `validatedocument.py` catch the mechanical defects: joined labels, setext headings, bare URLs, empty overviews, repeated text, misnumbered or misplaced sections",
+    "created_at": "2026-11-04T07:15:52Z",
+    "last_save_at": "2026-11-10T05:31:39.141Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:96dbf48fe75fa72eb44560181705714c1bc9dfcdad63cd81ccb36252aafd6c2c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8f3f19cef2d966a2e3b20fca9531dcbc43f758b711ccbbd2fa7ae55c44d825ad",
+      "decision-record.md": "cc05515b249b8e77974d369f02a9ba96cd62c16d35add71d5d72924389e86c4e"
+    },
+    "last_active_child_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements",
+    "last_active_at": "2026-11-05T19:19:56.398Z"
+  }
+}

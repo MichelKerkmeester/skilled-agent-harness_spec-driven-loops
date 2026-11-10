@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Round three shipped `verifydocclaims.cjs` with five recorded gaps, and all five still reproduce",
     "created_at": "2026-10-10T14:44:45Z",
-    "last_save_at": "2026-11-10T05:20:17.976Z",
+    "last_save_at": "2026-11-10T05:34:42.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +219,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:089af52c0429dda2635dd069dfef59b2e02799c392b9a9d599921a3e5f1bb0c5",
+    "source_fingerprint": "sha256:38d25fff66e596d675febf2e2fa0f763a175a90f38d62d4a8ab8751f327aa793",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fc8c7b0a07bc165367d87425ef7ec878255fbd67b7fb2bd976f42b6eecc52b4f",

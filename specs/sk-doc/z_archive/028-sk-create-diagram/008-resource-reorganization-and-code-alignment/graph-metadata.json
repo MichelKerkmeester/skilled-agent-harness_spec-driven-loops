@@ -192,7 +192,7 @@
     ],
     "causal_summary": "`references/` (37 files) and `assets/` (39 files) are flat, making the folder hard to scan at a glance in a file tree — the operator flagged this directly after reviewing the merged packet",
     "created_at": "2026-08-12T00:00:00.000Z",
-    "last_save_at": "2026-10-07T18:14:21.231Z",
+    "last_save_at": "2026-11-10T05:27:45.998Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef9240902b58b99c13da2f6e9762b412406ec55648e331fc1a2ce492eeddec38",
+    "source_fingerprint": "sha256:d13620390c56b5cc29d2032ea360293e0412fcfa1092ae3f178743fdf4a9f9a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "305db3b94e33fd6c58e79d5619fb48d573dcb0e0abc2df415e40aa8f83ea3663",
-      "plan.md": "e363ccca80ffe95a7b11f6a993d31874f97bc954a8de7d063e293bbc5f1a227b",
+      "spec.md": "ecfe0af98fa4c9b52140d8b29defa96cd66aa59b48545d5f40912a65de09cc24",
+      "plan.md": "0a7c0963f8e68727c8aee02eac05e99b55194713501b96ceaf45c6ee8d2549f7",
       "tasks.md": "105fa9d14d5303f01cda0dae3a225cd4db171ff904b60a4697c32fa285c60362",
       "decision-record.md": "b91bcceb0ec5d44c3ac1d7b7535fd74268b80d7d6b36c058a917948ea4df06ab",
-      "implementation-summary.md": "dfefbb1ca8ee1e613d4e3f23dcfc079cb258d2fdb00bfd77fe1c7888cab3bf06"
+      "implementation-summary.md": "a0a8b6d163a6543ee8774b6b095c96bd7beec5cedb447fcef749117bb4a9048f"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-12T18:40:07.000Z"

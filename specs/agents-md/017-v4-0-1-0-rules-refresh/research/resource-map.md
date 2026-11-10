@@ -94,7 +94,7 @@ description: "Auto-generated research resource map from convergence evidence."
 |------|--------|--------|------|
 | specs/agents-md/016-doctor-agents-md/goal.md | Cited | OK | Citations=1; Iterations=1 |
 | specs/agents-md/016-doctor-agents-md/spec.md | Cited | OK | Citations=1; Iterations=1 |
-| specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/spec.md | Cited | OK | Citations=1; Iterations=1 |
+| specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/spec.md | Cited | OK | Citations=1; Iterations=1 |
 
 ---
 

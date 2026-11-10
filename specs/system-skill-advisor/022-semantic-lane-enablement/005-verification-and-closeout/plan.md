@@ -102,11 +102,11 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | `research/final-state.md` | The record of the final pass | create | Every gate appears with its command and its number |
 | `../spec.md` | The parent phase map | update | Every phase status matches its folder |
 | `../goal.md` | The parent progress table | update | Every row carries evidence rather than a state word alone |
-| `specs/sk-doc/051-hub-routing-quality/001-routing-completeness/roadmap.md` | Points at this packet | update | The Later entry names this packet and its result |
-| `specs/sk-doc/051-hub-routing-quality/001-routing-completeness/research/findings-register.md` | Carries finding 10 | update | Finding 10 reads resolved and names the evidence |
+| `specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/roadmap.md` | Points at this packet | update | The Later entry names this packet and its result |
+| `specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/research/findings-register.md` | Carries finding 10 | update | Finding 10 reads resolved and names the evidence |
 
 Required inventories:
-- Same-class producers: `rg -n 'semantic lane|semantic_shadow' specs/sk-doc/051-hub-routing-quality/001-routing-completeness`.
+- Same-class producers: `rg -n 'semantic lane|semantic_shadow' specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness`.
 - Consumers of changed symbols: none. This phase changes documents.
 - Matrix axes: gate by state. Every gate runs against exactly one final state, which is the point of the pass.
 - Algorithm invariant: a gate result is only valid when the corpus hashes and the coverage count are identical before and after the pass.

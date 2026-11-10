@@ -43,7 +43,7 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Every child changes the decision-capture pipeline: `.skilled/hooks/decision-capture/`, the decision-record writer or the save step. Work on any other artifact gets its own packet. Exception (2026-11-03): 010 may change `system-spec-kit` routing metadata. |
 | D2 | Children 002 to 005 close only after the 006 conversation scenario re-proves their change. |
-| D3 | 006 runs on the shared conversation runner from `specs/sk-doc/065-conversation-playbook-scenarios` and builds no runner of its own. |
+| D3 | 006 runs on the shared conversation runner from `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios` and builds no runner of its own. |
 | D4 | Live tests run in a scratch project and never write to this repository's packets or its decision-capture state. |
 | D5 | A runtime adapter is registered only after a live probe shows the answers. A runtime with no answer surface is recorded with evidence, never skipped. |
 | D6 | Implementation workers run `gpt-6-luna` xhigh, tier fast, via cli-codex. When its quota runs out they use `llmgateway/deepseek-v4.1-flash-1017` max via cli-pi. Luna never runs through a gateway. |

@@ -89,16 +89,16 @@
     ],
     "causal_summary": "The repo has 46 SKILL.md files — 7 parent hubs, 34 hub-mode children, 5 standalones",
     "created_at": "2026-07-13T15:40:27.936Z",
-    "last_save_at": "2026-10-07T18:11:52.755Z",
+    "last_save_at": "2026-11-10T05:26:45.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2370e7b5b23e55ade9ee0b42dc2235ac7ab4ee08f1c4c2a4ff9dec2d6bd0b261",
+    "source_fingerprint": "sha256:0ede27ed69e2244218c971d836836b00911ac74d4cf45b7c33c07f9f92b2511d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "108b1c0f1bca2bf58b1544b6e700f4b835623c55d13ab60b1fd13fbdefd9b3b3"
+      "spec.md": "5af5b0daeff83c7bb6aed1443c18ac7eeff8888b01275c0b4f94c6e2d7497789"
     },
     "last_active_child_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract",
     "last_active_at": null

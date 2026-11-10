@@ -62,7 +62,7 @@
       ".skilled/hooks/README.md",
       ".skilled/skills/.state/decision-capture/README.md",
       "research/synthesis-review.md",
-      "specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md",
+      "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md",
       "001-decision-capture-build/goal.md",
       "002-table-row-matching/goal.md",
       "003-codex-and-pi-capture/goal.md",
@@ -221,7 +221,7 @@
     ],
     "causal_summary": "The artifact this series changes is the automatic operator decision capture pipeline: the capture core and runtime adapters under `.skilled/hooks/decision-capture/`, the save-time sweeps in its `bin/`, and the decision-record writer at `.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts` that a full-auto `/speckit:save` calls",
     "created_at": "2026-11-01T20:52:24Z",
-    "last_save_at": "2026-11-03T10:49:31.385Z",
+    "last_save_at": "2026-11-10T05:35:13.304Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,13 +231,13 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:afc6235bd4eeb83ab7e7729b63777dc7efdf6caab2565cdd9418baeaac15f3b2",
+    "source_fingerprint": "sha256:86e0ed51448e6b47befeea9244e5a6fda7ba3bb3b287f71e3540c166dde902f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4643ecc9536fec13b02c32b72ac163cc63832d65ba14c5fcd7c57d522b321e6a",
-      "decision-record.md": "327e803927a1984bd870226297ea0fe2315ac2b0120659f5867c1ff45588da71",
+      "spec.md": "5764e0fac5b400eff347cce8f5561a2d0a67e050037be6792f686292bcd7f397",
+      "decision-record.md": "aa1cc136f902d573239f788f967f75bbd6012546870d2168f1cd78c7c1b36a83",
       "research/research.md": "fde95a40a078fd9bfc04a1af29912ba4f58f9e1de6d997335992cea1e3c34497",
-      "handover.md": "4c8c344f769a26750c900ce168e6c4a61436fea17d760b63e55cdfb8ec5e92c2"
+      "handover.md": "2592707633f435d287159ed22fb488675677cb2a0606907c49e14295036e00fe"
     },
     "last_active_child_id": "system-speckit/043-decision-capture/007-gap-closure",
     "last_active_at": "2026-11-03T08:11:03.728Z"

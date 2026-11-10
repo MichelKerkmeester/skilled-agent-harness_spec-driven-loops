@@ -40,7 +40,7 @@ This is **Phase 50** of the OpenCode v1 and v2 dual compatibility packet. It clo
 **Scope Boundary**: One import line in `validate_skill_package.py`, one cell in the mcp-figma `feature-catalog.md`, this phase's four docs and two rows of `../spec.md`. What both other sessions built is out of bounds: the hub-repository exemption stays, and the vendored-copy fixes stay.
 
 **Dependencies**:
-- Commit `31d07499ec`, "feat(sk-doc): let a hub that is also a repository pass the checkers" from spec `sk-doc/061-hub-repo-folder-exemption`, which added the failing import.
+- Commit `31d07499ec`, "feat(sk-doc): let a hub that is also a repository pass the checkers" from spec `sk-doc/hub-routing-and-surfaces/004-hub-repo-folder-exemption`, which added the failing import.
 - Commit `cd3564317a`, "fix(mcp-tooling): fix the defects a review of Product Owner's vendored copies found", which replaced the catalog link with plain text. Its CI has been red since `1573bb664f`.
 - `test_create_skill_contract.py` and `validate_catalog_package.py` as the two checks that replay the failures.
 

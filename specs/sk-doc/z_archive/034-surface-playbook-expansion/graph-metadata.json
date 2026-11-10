@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Give the two sk-code SURFACE playbooks the coverage breadth of the sk-doc corpus without leaving the operator-scenario contract they already passed.",
     "created_at": "2026-08-29T10:24:54.000Z",
-    "last_save_at": "2026-10-07T18:14:05.637Z",
+    "last_save_at": "2026-11-10T05:27:48.968Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:154035f6312c11985f284033bab2dcd0030c31b9e819f59d519ebb3e22b778c2",
+    "source_fingerprint": "sha256:0bec8d06f0173c4c9c6cd2a44a5e781c4cc1cf9d87ae59e80843c3963cfa8d70",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6b53392a8d704875b25f684e706be71fad9769b57a51d76ea3cbeb6f5ccd21ed",
-      "plan.md": "6cd26a2fe3f5b2a261979e34dffd9f3d70c3dc4fef431d65be3bed16eb5ae5d6",
-      "tasks.md": "f33c4a3fedddeef894b69fcc0275a29bed2a8a06657b171dd371266cf19524c8",
-      "implementation-summary.md": "74271f09e9ac38da924cccabe77003b0d32ce2772fb2180381786968a6433069"
+      "spec.md": "dc303123f2f18467e6205741474aee68a3d545a2e0cb65ac7dade5126e2fb81d",
+      "plan.md": "5df85b41905d2f66480ea4a0f7b34b43c462988c9e8f4102d767a932cf4093a7",
+      "tasks.md": "3907f2e01508c8f95d225a0dbc233ebbc7863ac2d683af801c74480a05aa0221",
+      "implementation-summary.md": "13cd427f695d9d1c0dd75ca8a7b1f6056aa3d6dedf250e46edcaa9b3e4cd81cf"
     },
     "last_active_child_id": null,
     "last_active_at": null

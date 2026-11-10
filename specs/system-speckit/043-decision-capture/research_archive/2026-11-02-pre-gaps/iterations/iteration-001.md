@@ -129,7 +129,7 @@ Iteration 2: the child series. Answer Q3 and Q4 from `spec.md`'s Phase Documenta
 ## Questions Remaining
 
 - Q3: Should any of the planned children 002 to 005 be changed, merged, split, re-ordered or planned differently, and is any follow-up missing? (iteration 2)
-- Q4: How does 006 depend on the shared conversation runner in `specs/sk-doc/065-conversation-playbook-scenarios`, and is the contract between them right and complete? (iteration 3)
+- Q4: How does 006 depend on the shared conversation runner in `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios`, and is the contract between them right and complete? (iteration 3)
 - Q5: Do the three decision-capture playbook scenarios prove what 001 claims, and what must the 006 conversation scenario assert that they do not? (iteration 3)
 - Carried nuance from Q2: whether 002 refuses a match when two sessions captured the same question with different answers — a table row holds one answer, so a second, different answer must not be marked consumed under it. Not stated in 002's plan.
 

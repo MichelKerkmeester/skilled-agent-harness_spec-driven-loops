@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/002-mode-scaffold",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/002-mode-scaffold",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/002-create-goal-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-create-goal packet scaffold",
+      "goal authoring mode packet",
+      "nested goal mode setup",
+      "unregistered sk-doc mode",
+      "sk-create-goal scaffold plan",
+      "nested goal packet files",
+      "goal mode package check",
+      "expected parent-skill 6a",
+      "sk-create-goal scaffold tasks",
+      "nested packet setup tasks",
+      "mode scaffold verification",
+      "parent-skill 6a check"
+    ],
+    "key_topics": [
+      "sk-create-goal",
+      "packet",
+      "scaffold",
+      "goal",
+      "authoring",
+      "mode",
+      "nested",
+      "setup",
+      "unregistered",
+      "sk-doc",
+      "plan",
+      "files"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-goal/README.md",
+      "specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/001-goal-inventory-and-mode-contract/target-tree.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "target-tree.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/001-goal-inventory-and-mode-contract/target-tree.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent assigns packet scaffolding to phase 002 and reserves authoring standards, conformance checking, routing and command work for later phases (`specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/spec.md:121-129`)",
+    "created_at": "2026-09-25T18:48:46Z",
+    "last_save_at": "2026-11-10T05:26:00.076Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:880009ab07467327251d10cdcb45bbc5dcfdaa260a621c5ff50186646397d248",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c059799a44f5e88e93e834b7b4bda7a87ba0ef79236d9ba61c1ddaa64335e459",
+      "plan.md": "cd13458c6d7bcd9ae80b11d92c3c0b7e1f1385bf0109768cfcd1b15a6daa8049",
+      "tasks.md": "ef844aa5ab47d010e63c88530e6014d2240478def2eaeccb44797f7fa79e7e7e",
+      "implementation-summary.md": "86e3a87821ad2c6f53092ff6d68be5703c9c8ba9328590e027eeeeeb256bfad5"
+    },
+    "last_active_at": null
+  }
+}

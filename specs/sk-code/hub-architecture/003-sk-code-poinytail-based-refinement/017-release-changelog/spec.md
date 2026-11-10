@@ -36,7 +36,7 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 17** of the sk-code Ponytail 5 refinement phase parent. It records the epic's user-facing changes in the Skilled v4.0.0.4 release entry, together with the feature catalog template anchor work in `sk-doc/059-feature-catalog-template-anchor-deprecation`.
+This is **Phase 17** of the sk-code Ponytail 5 refinement phase parent. It records the epic's user-facing changes in the Skilled v4.0.0.4 release entry, together with the feature catalog template anchor work in `sk-doc/authoring-modes-and-playbooks/003-feature-catalog-template-anchor-deprecation`.
 
 **Scope Boundary**: Only `.skilled/changelog/skilled/v4.0.0.4.md` and this packet's own docs change.
 

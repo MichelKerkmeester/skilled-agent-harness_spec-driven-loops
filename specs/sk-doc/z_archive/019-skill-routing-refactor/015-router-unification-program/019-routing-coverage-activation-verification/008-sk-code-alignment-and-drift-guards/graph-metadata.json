@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The documented enforcement mechanism for code-skilled's RESOURCEMAP parent-child equality is inert",
     "created_at": "2026-07-20T21:51:40.268Z",
-    "last_save_at": "2026-10-07T18:13:13.918Z",
+    "last_save_at": "2026-11-10T05:27:05.097Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ce2d3adbd08c0105bbed5c8cf0aa8b428132f8c88bb99792ff81a7e77978283",
+    "source_fingerprint": "sha256:06b8f0c61e9af2b9969945ca61f7a1614214f4881237e58dbfe863cd1e598069",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dc57bd931b1712d9eade15d3420ac1b926725efe1fe0ae99334eaa1814098b1b",
-      "plan.md": "efac94677d71b3b24684a622ec5f8b79922e027f28c166a68c62b57ee88e04cf",
-      "tasks.md": "858d91fbcf2c53f63ea150bb1fc65631d7116631e3afff45a8928a8f6214a2b2",
-      "implementation-summary.md": "6579e0bad362ca1fcef8e5aadf01fc9e65bb4b314d93502e4b074711e79be2e7"
+      "spec.md": "eff616525ddd513949e3d3d14ffec9ce001793bf760cf95d0da4ebdad2480b73",
+      "plan.md": "92b15ee345d8c7486a9d2552258840b8c8203a88909175f314c91520a7835b69",
+      "tasks.md": "8b0378a9f2c214d417c08837d3ae6f96efb20084687dd79acb7ce8e436591f15",
+      "implementation-summary.md": "ce7207c00a47730b9897923be0cfaf7ccd1ac6d697d75c5fc73a809644774f4a"
     },
     "last_active_child_id": null,
     "last_active_at": null

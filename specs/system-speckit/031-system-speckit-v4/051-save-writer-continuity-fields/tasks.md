@@ -74,7 +74,7 @@ Decisions: answered by the operator on 2026-09-23 and recorded in `spec.md` §7.
 - [x] T012 Add nested-fixture tests for REQ-006, REQ-007 and REQ-008, including `/speckit:resume` from the top parent
   - Evidence: `runtime/cli/tests/save-continuity-write.vitest.ts:278`, `:295`, `:310`, `:323`. The resume check runs the runtime ladder's `followPhaseParentRedirect`; the `/speckit:resume` command workflow itself is agent-executed YAML and is not under test.
 - [x] T013 Reproduce the edit, save and strict-validate sequence and confirm `RESULT: PASSED` on the first run (REQ-003)
-  - Evidence: on `sk-doc/055-changelog-system/001-sk-create-changelog-v4-style`, a summary edit, a `--full-auto` save from `dist` (exit 0) and `validate.sh --strict` gave `RESULT: PASSED`, Errors 0, no `SOURCE_FINGERPRINT_MISMATCH`. The four files the save touched were restored with `git checkout` and `git status` matched the pre-run snapshot.
+  - Evidence: on `sk-doc/document-standards/003-changelog-system/001-sk-create-changelog-v4-style`, a summary edit, a `--full-auto` save from `dist` (exit 0) and `validate.sh --strict` gave `RESULT: PASSED`, Errors 0, no `SOURCE_FINGERPRINT_MISMATCH`. The four files the save touched were restored with `git checkout` and `git status` matched the pre-run snapshot.
 - [x] T014 Rebuild `dist`, run the full vitest suite and strict validation on this phase, and mark `acceptance-criteria.md`
   - Evidence: `npm run build` exit 0; the full suite gave 2,736 passed, 2 failed, 32 skipped of 2,770. One failure was a file-time false positive, cleared by a forced rebuild with byte-identical output. The other two import the unbuilt `dist` of `system-skill-advisor/runtime` and `sk-communication/cli-communication-projection`, which this phase does not touch. Strict validation and the criteria are recorded in `implementation-summary.md` and `acceptance-criteria.md`.
 <!-- /ANCHOR:phase-3 -->
@@ -149,7 +149,7 @@ Decisions: answered by the operator on 2026-09-23 and recorded in `spec.md` §7.
 - [x] CHK-020 [P0] All acceptance criteria met
   - Evidence: every row in `acceptance-criteria.md` is Met.
 - [x] CHK-021 [P0] The 057-style sequence passes on the first strict run
-  - Evidence: T013 on `sk-doc/055-changelog-system/001-sk-create-changelog-v4-style`.
+  - Evidence: T013 on `sk-doc/document-standards/003-changelog-system/001-sk-create-changelog-v4-style`.
 - [x] CHK-022 [P1] Nested fixture covers fresh, stale and missing pointers
   - Evidence: fresh chain `runtime/cli/tests/save-continuity-write.vitest.ts:310`; stale, escaping and malformed pointers in the table case after `:323`; missing pointer in the same case, which leaves no usable pointer.
 - [x] CHK-023 [P1] Plan-only mode writes no continuity

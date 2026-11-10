@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/hub-routing-and-surfaces",
+  "spec_folder": "sk-doc/hub-routing-and-surfaces",
+  "parent_id": "sk-doc",
+  "children_ids": [
+    "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality",
+    "sk-doc/hub-routing-and-surfaces/002-cli-hub-doc-version-reconciliation",
+    "sk-doc/hub-routing-and-surfaces/003-governance-doc-alignment",
+    "sk-doc/hub-routing-and-surfaces/004-hub-repo-folder-exemption",
+    "sk-doc/hub-routing-and-surfaces/005-opencode-native-surfaces"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "sk-doc/hub-routing-and-surfaces"
+    ],
+    "causal_summary": "Container folder for sk-doc/hub-routing-and-surfaces."
+  }
+}

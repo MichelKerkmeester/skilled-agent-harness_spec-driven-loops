@@ -501,7 +501,7 @@ def test_unknown_base_exits_two(repo: Repo) -> None:
 REPLAY_BASE = "16e06ed2c6"
 REPLAY_PATCH = (
     REPO
-    / "specs/sk-doc/066-skill-readability-refinement/013-system-spec-kit/scratch/diff-1.patch"
+    / "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/013-system-spec-kit/scratch/diff-1.patch"
 )
 REPLAY_LINE = "Tests should stay beside parser modules when they validate parser-only behavior."
 

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/005-mcp-tooling/005-mcp-figma",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/005-mcp-tooling/005-mcp-figma",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/005-mcp-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp figma",
+      "phase 5 mcp figma",
+      "mcp figma plan",
+      "mcp figma tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "mcp figma implementation summary"
+    ],
+    "key_topics": [
+      "mcp",
+      "figma",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/findings.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/README.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/ROUTER.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/SKILL.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/assets/env-template.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/assets/utcp-figma-manual.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/references/tool-surface.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/references/troubleshooting.md",
+      "scratch/scope.txt",
+      "scratch/gate-after.txt",
+      "scratch/inbound-anchors.txt",
+      "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/005-mcp-tooling/005-mcp-figma/scratch/findings.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "env-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/assets/env-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "utcp-figma-manual.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/assets/utcp-figma-manual.md",
+        "source": "derived"
+      },
+      {
+        "name": "figma-cli-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-wiring.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool-surface.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/references/tool-surface.md",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/references/troubleshooting.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope.txt",
+        "kind": "file",
+        "path": "scratch/scope.txt",
+        "source": "derived"
+      },
+      {
+        "name": "gate-after.txt",
+        "kind": "file",
+        "path": "scratch/gate-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "inbound-anchors.txt",
+        "kind": "file",
+        "path": "scratch/inbound-anchors.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The docs of the `.skilled/skills/mcp-tooling/mcp-figma` mode were never read as a whole for readability, layout and structure",
+    "created_at": "2026-11-04T07:16:29Z",
+    "last_save_at": "2026-11-10T05:26:11.099Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e13987c67188e4a58591481c3772f9b760fd2fa326498246f15c46b876e03405",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "49fdeaf712c8a7f045b31516021ad372472c856b2eb18e176f420ffdf26468bc",
+      "plan.md": "f9a072e095ebabf1a7d71bc25fe1b0137ccabbd66de0f0e5cc33e98dcd869c3a",
+      "tasks.md": "9b82ffaf2aa08bb5b3ccbf367f18e2d8a6627fc2a022123eda9868edee86a82e",
+      "implementation-summary.md": "88ce0db25f5f4b4100e486ad4a7c5390111a9b5ac4fe7f8beafed7e9153f0267"
+    },
+    "last_active_at": null
+  }
+}

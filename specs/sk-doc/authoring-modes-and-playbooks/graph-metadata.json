@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks",
+  "parent_id": "sk-doc",
+  "children_ids": [
+    "sk-doc/authoring-modes-and-playbooks/001-playbook-coverage-and-sync",
+    "sk-doc/authoring-modes-and-playbooks/002-create-goal-mode",
+    "sk-doc/authoring-modes-and-playbooks/003-feature-catalog-template-anchor-deprecation",
+    "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios",
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "sk-doc/authoring-modes-and-playbooks"
+    ],
+    "causal_summary": "Container folder for sk-doc/authoring-modes-and-playbooks."
+  }
+}

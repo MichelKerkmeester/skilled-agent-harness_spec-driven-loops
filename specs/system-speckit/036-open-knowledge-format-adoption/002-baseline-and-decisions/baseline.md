@@ -157,6 +157,6 @@ The D3 threshold was fixed in `decision-record.md` at 2026-10-04T08:33:14Z, befo
 
 **What the data shows beyond D3.** Line drift into markdown is common: about a third of in-range citations in the sample point at the wrong lines of a file that still holds the cited text. Six of the 13 targets are skill `SKILL.md` or `README.md` files, which use headings but not `<!-- ANCHOR:` markers. A citation form keyed on heading slugs would cover all 13 targets. Counting headings would change condition 3 after the data was read, so it is recorded here as an option for the operator, not applied.
 
-**Hand check.** The orchestrator checked five rows by hand (d3-05, d3-12, d3-21, d3-30, d3-37) and agreed with the Claude labels on all five. d3-21 is a confirmed relocatable miss: the cited row of `specs/sk-doc/056-create-goal-mode/spec.md` moved from line 146 to 149.
+**Hand check.** The orchestrator checked five rows by hand (d3-05, d3-12, d3-21, d3-30, d3-37) and agreed with the Claude labels on all five. d3-21 is a confirmed relocatable miss: the cited row of `specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/spec.md` moved from line 146 to 149.
 
 **Known flaws.** In d3-26 and d3-27, a bare `README.md` citation was resolved to the repo-root README, while the citing text means another README. Neither is a relocatable miss. The same short-name problem drives the large ambiguous and gone counts in section 3. The three miss-or-support disagreements (d3-07, d3-14, d3-37) are all one labeler's partial against the other's supports.

@@ -50,7 +50,7 @@ The operator's aim: every answer to a question from the AI, in the question tool
 | Decision | Rationale | Impact |
 | --- | --- | --- |
 | Series parent with children 001 to 006 (Q94: "Series parent") | 001 shipped as packet 042 and was moved here with `git mv`; the gaps it left are separate changes to the same pipeline | This folder |
-| Proof must be a live, multi-turn conversation, an orchestrator playing the human against a test subject, not single prompts with canned input (operator, 2026-11-01) | 001's playbook evidence was fixture-based | 006, run on the shared runner from `specs/sk-doc/065-conversation-playbook-scenarios` (D3) |
+| Proof must be a live, multi-turn conversation, an orchestrator playing the human against a test subject, not single prompts with canned input (operator, 2026-11-01) | 001's playbook evidence was fixture-based | 006, run on the shared runner from `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios` (D3) |
 | D6 fix in 002: a re-save with a changed answer rewrites the appendix item (2026-11-02, "Fix it in 002") | Before, the old answer text stayed | Built and tested in 002 |
 | D7 and D9 stay accepted risk (overnight default, not reversed) | Unconfirmed DeepSeek-only findings | `research/research.md` section 4 |
 | Live probes for Codex, Pi, OpenCode and Devin: yes, all four (2026-11-02) | 003 and 004 specs require consent; one harmless question each in a scratch project | Unblocks 003 T005 and 004 REQ-001, REQ-002 |
@@ -92,7 +92,7 @@ The operator's aim: every answer to a question from the AI, in the question tool
 | The session queue is real | This session's own queue lives in `.skilled/skills/.state/decision-capture/` and the Stop hook nudges about pending answers | load-bearing | Don't run `--apply` saves at random packets: a full-auto save writes every pending answer into the packet it saves. Test on scratch copies |
 | Barter's decision record | 002 must never change it; it had 99 rows and an unchanged sha256 before and after the real run, and now has 106 hand-written rows (Q100 to Q106 added by hand on 2026-11-02) | load-bearing | Compare row count and sha256 immediately before and after any matcher run, never against a fixed number |
 | Vitest for CLI tests | The runtime's default config excludes `runtime/cli/**`, so "No test files found" | load-bearing | `cd .skilled/skills/system-spec-kit && npx vitest run runtime/cli/tests/<file> --config vitest.config.ts` |
-| Runner is another session's file | The 065 session owns `run-conversation-scenario.cjs` | load-bearing | Don't edit it; write the bug into `specs/sk-doc/065-conversation-playbook-scenarios/open-questions.md` and wait, or ask the operator |
+| Runner is another session's file | The 065 session owns `run-conversation-scenario.cjs` | load-bearing | Don't edit it; write the bug into `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/open-questions.md` and wait, or ask the operator |
 | Codex shows its question tool only with `default_mode_request_user_input` | Already enabled in `~/.codex/config.toml` and the repo `.codex/config.toml` | load-bearing | Don't remove it |
 | Hook registry check | A new adapter binding without a live probe | load-bearing (D5) | Register a binding only after the probe shows the answer in the payload; `sync-hook-registrations.cjs --check` must print PASS |
 | Another session's files | Untracked `specs/system-speckit/040-*` and `/private/tmp/fixture/cli-jortt` | load-bearing | Never touch them |

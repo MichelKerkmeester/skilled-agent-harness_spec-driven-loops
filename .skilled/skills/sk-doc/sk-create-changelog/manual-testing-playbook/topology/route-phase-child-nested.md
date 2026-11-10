@@ -1,7 +1,7 @@
 ---
 title: "CHG-002 -- Route a phase child to a global entry and refuse --nested"
 description: "This scenario validates phase-child topology for CHG-002. A phase-child source resolves to a global component entry, and a --nested request is refused because packet-local changelogs are deprecated."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CHG-002 -- Route a phase child to a global entry and refuse --nested
@@ -40,12 +40,12 @@ Operators run the exact prompt and command sequence for `CHG-002` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CHG-002 | Route a phase child to a global entry and refuse --nested | Refuse `--nested` and resolve a global target for a phase child | `Create a changelog for this phase child with --nested. Report what the workflow does with --nested, then resolve the global component the phase touched and report the target path without writing it.` | 1. `agent: Read SKILL.md sections 3, 4 and 6 and references/topology-edge-cases.md` -> 2. `bash: test -d specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/002-mode-scaffold` -> 3. `bash: ls -l .skilled/changelog/sk-doc/` -> 4. `bash: git status --porcelain` -> 5. `agent: State the refusal, the matched component and the global target path` -> 6. `bash: git status --porcelain` | Step 1 names the `--nested` refusal and global-only mode. Step 2 exits 0. Step 3 lists the hub links. Step 5 refuses `--nested` and names a `.skilled/changelog/` target. Step 6 matches step 4 | Exact prompt, the rules cited, the folder check exit status, the hub listing, the refusal text, the target path and both status snapshots | PASS if `--nested` is refused, the target is global and the status is unchanged. FAIL if a packet-local path is proposed or written, or the nested generator runs with `--write` | 1. Reread SKILL.md section 4 on deprecated packet-local changelogs. 2. Match changed paths by whole path segment. 3. Remove any `specs/**/changelog/` output the run created |
+| CHG-002 | Route a phase child to a global entry and refuse --nested | Refuse `--nested` and resolve a global target for a phase child | `Create a changelog for this phase child with --nested. Report what the workflow does with --nested, then resolve the global component the phase touched and report the target path without writing it.` | 1. `agent: Read SKILL.md sections 3, 4 and 6 and references/topology-edge-cases.md` -> 2. `bash: test -d specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/002-mode-scaffold` -> 3. `bash: ls -l .skilled/changelog/sk-doc/` -> 4. `bash: git status --porcelain` -> 5. `agent: State the refusal, the matched component and the global target path` -> 6. `bash: git status --porcelain` | Step 1 names the `--nested` refusal and global-only mode. Step 2 exits 0. Step 3 lists the hub links. Step 5 refuses `--nested` and names a `.skilled/changelog/` target. Step 6 matches step 4 | Exact prompt, the rules cited, the folder check exit status, the hub listing, the refusal text, the target path and both status snapshots | PASS if `--nested` is refused, the target is global and the status is unchanged. FAIL if a packet-local path is proposed or written, or the nested generator runs with `--write` | 1. Reread SKILL.md section 4 on deprecated packet-local changelogs. 2. Match changed paths by whole path segment. 3. Remove any `specs/**/changelog/` output the run created |
 
 ### Commands
 
 1. `agent: Read SKILL.md sections 3, 4 and 6 and references/topology-edge-cases.md`
-2. `bash: test -d specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/002-mode-scaffold`
+2. `bash: test -d specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/002-mode-scaffold`
 3. `bash: ls -l .skilled/changelog/sk-doc/`
 4. `bash: git status --porcelain`
 5. `agent: State the refusal, the matched component and the global target path`

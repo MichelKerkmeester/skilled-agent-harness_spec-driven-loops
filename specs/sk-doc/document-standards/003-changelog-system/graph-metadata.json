@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/document-standards/003-changelog-system",
+  "spec_folder": "sk-doc/document-standards/003-changelog-system",
+  "parent_id": "sk-doc/document-standards",
+  "children_ids": [
+    "sk-doc/document-standards/003-changelog-system/001-sk-create-changelog-v4-style",
+    "sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit",
+    "sk-doc/document-standards/003-changelog-system/003-skilled-release-changelog",
+    "sk-doc/document-standards/003-changelog-system/004-changelog-section-spacing",
+    "sk-doc/document-standards/003-changelog-system/005-concise-release-format"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "changelog v4 narrative format",
+      "skill changelog retrofit",
+      "skilled framework release notes",
+      "changelog section spacing",
+      "searchable component changelogs"
+    ],
+    "key_topics": [
+      "changelog",
+      "narrative",
+      "format",
+      "skill",
+      "retrofit",
+      "skilled",
+      "framework",
+      "release",
+      "notes",
+      "section",
+      "spacing",
+      "searchable"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The changelog template prescribed machine-era tables and stale paths, and its workflow did not enforce the concise narrative style established by v4.0.0.0",
+    "created_at": "2026-10-31T13:41:22.552Z",
+    "last_save_at": "2026-11-10T05:26:22.293Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:32f1b9b57c37b618665efeed6a09f1b303c609ac79175d5ae81bf19d55accf0c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4da3a1c4882b30fe78d7f51f441c441f1c6a0b98191ee093baac82b24a038db7"
+    },
+    "last_active_child_id": "sk-doc/document-standards/003-changelog-system/005-concise-release-format",
+    "last_active_at": "2026-11-07T05:11:15.322Z"
+  }
+}

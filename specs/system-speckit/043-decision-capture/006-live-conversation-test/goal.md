@@ -41,7 +41,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The scenario runs on the shared conversation runner from `specs/sk-doc/065-conversation-playbook-scenarios`. This phase builds no runner, driver or tmux script of its own. |
+| D1 | The scenario runs on the shared conversation runner from `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios`. This phase builds no runner, driver or tmux script of its own. |
 | D2 | Claude Code runs first. OpenCode, Codex, Pi and Devin follow, and a runtime with no question tool gets a no-answer-surface row with the pane or transcript line that shows it. |
 | D3 | The three existing decision-capture playbook scenarios stay as unit-level checks and are not changed by this phase. |
 
@@ -74,7 +74,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planning docs | Done | `validate.sh --strict` on this folder, 2026-11-01 |
-| Shared runner | Pending | Waits on `specs/sk-doc/065-conversation-playbook-scenarios` |
+| Shared runner | Pending | Waits on `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios` |
 | Codex row and run report; 006 closed | done | Codex main PASS (attempt 7) + kill-switch 1/1; report 2026-11-02--manual-testing-playbook--decision-capture-live-conversation, 11 PASS; save gate fix in workflow.ts |
 
 ### Deviations and findings

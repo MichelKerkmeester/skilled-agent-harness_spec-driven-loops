@@ -45,7 +45,7 @@ _memory:
 | Q009 | Fix every finding of the Sonnet writing review and push to main. | Not stated. | None | commit 6370817c2a |
 | Q010 | Replace Barter with neutral names in the skill docs and keep the spec packets as the record. | Not stated. | None | system-skilled-doctor references/overlays.md examples |
 | Q011 | Update the v4.0.2.0 notes, delete the tag and republish the release. | Not stated. | None | .skilled/changelog/skilled/v4.0.2.0.md, GitHub release v4.0.2.0 |
-| Q012 | Make all four doc-tooling fixes: README prose, release amend, merge-aware bump and HVR proper names. | Not stated. | None | specs/sk-doc/067-doc-tooling-prose-and-release-amend |
+| Q012 | Make all four doc-tooling fixes: README prose, release amend, merge-aware bump and HVR proper names. | Not stated. | None | specs/sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend |
 <!-- /ANCHOR:operator-decisions -->
 
 ---

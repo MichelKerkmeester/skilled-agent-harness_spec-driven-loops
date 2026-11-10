@@ -279,7 +279,7 @@ dirty outside the lineage directory. At 19:09:22Z it restored twenty-three track
 were this phase's own documents, which were rewritten from context. The other nineteen belonged to
 a concurrent agent, across `.opencode/skills/mcp-tooling/`,
 `.opencode/skills/sk-doc/sk-create-with-human-voice/`, `specs/sk-doc/039-create-with-human-voice/`
-and one file under `specs/sk-doc/051-hub-routing-quality/001-routing-completeness/`. Untracked files were preserved. The
+and one file under `specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/`. Untracked files were preserved. The
 tracked edits are not recoverable from git, because they were never committed. ADR-005 records the
 rule that prevents a repeat.
 

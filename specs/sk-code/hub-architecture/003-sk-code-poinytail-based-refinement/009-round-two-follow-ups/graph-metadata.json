@@ -154,14 +154,14 @@
     ],
     "causal_summary": "The round-two build recorded five follow-ups it did not close",
     "created_at": "2026-10-10T08:16:16Z",
-    "last_save_at": "2026-11-10T05:20:16.479Z",
+    "last_save_at": "2026-11-10T05:34:41.726Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:c47df818e0f26edb0e018348a00dd6b63213f1629da3a28467db19a0494ebff9",
+    "source_fingerprint": "sha256:ac72c3684b832e478c20bd48be367cc6ba683d6122571f0be9ac9a57dee1776a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3c6e33b081c5dfa839a5e53fa9e54c6befe7e8bc656f7f1171161e78d2bb0417"

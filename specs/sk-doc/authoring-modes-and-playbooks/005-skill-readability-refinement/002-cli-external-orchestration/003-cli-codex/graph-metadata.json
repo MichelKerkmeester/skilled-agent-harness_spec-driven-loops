@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration/003-cli-codex",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration/003-cli-codex",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli codex",
+      "phase 3 cli codex",
+      "cli codex plan",
+      "cli codex tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "cli codex implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "codex",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/findings.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/ROUTER.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-templates.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/references/agent-delegation.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/references/codex-tools.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/references/integration-patterns.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md",
+      "scratch/scope.txt",
+      "scratch/gate-after.txt",
+      "scratch/inbound-anchors.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-delegation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/references/agent-delegation.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "codex-tools.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/references/codex-tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration-patterns.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/references/integration-patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope.txt",
+        "kind": "file",
+        "path": "scratch/scope.txt",
+        "source": "derived"
+      },
+      {
+        "name": "gate-after.txt",
+        "kind": "file",
+        "path": "scratch/gate-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "inbound-anchors.txt",
+        "kind": "file",
+        "path": "scratch/inbound-anchors.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The docs of the `.skilled/skills/cli-external-orchestration/cli-codex` mode were never read as a whole for readability, layout and structure",
+    "created_at": "2026-11-04T07:16:22Z",
+    "last_save_at": "2026-11-10T05:26:07.702Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c320a809ee0c5c653a8c9f2627c062c8179080773d0e28e01c5b96284b72a1d5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b32e9df6522cbd291a11b2a36bdb8a609ad16bda36ee525e87ef7c7605eb68dd",
+      "plan.md": "06a0aba9a52ae4a3fb46ebc1584e4fc2984bb56f765afa7a5b27f43a357e1bdd",
+      "tasks.md": "35b21dac0afa20fb689f6e6b7f7918f7015e3c047a062436e791a6c8761eb6ff",
+      "implementation-summary.md": "9d76b353e15d6a17d4bc12ea62b0f6429ecff9dcc23dff6bf674ee60a47b0d1e"
+    },
+    "last_active_at": null
+  }
+}

@@ -89,9 +89,9 @@
       ".opencode/skills/sk-code/sk-code-skilled/README.md",
       ".opencode/skills/sk-code/sk-code-quality/README.md",
       ".opencode/skills/sk-code/sk-code-review/README.md",
-      ".opencode/skills/sk-code/sk-code-webflow/README.md",
       ".opencode/skills/sk-design/sk-design-md-generator/README.md",
-      ".opencode/skills/sk-doc/sk-create-agent/README.md"
+      ".opencode/skills/sk-doc/sk-create-agent/README.md",
+      ".opencode/skills/sk-doc/sk-create-benchmark/README.md"
     ],
     "entities": [
       {
@@ -145,16 +145,16 @@
     ],
     "causal_summary": "Phase parent: one child phase per mode (child) skill, each revisiting that skill's README against the refined template from phase 001, using mcp-obsidian as the exemplar.",
     "created_at": "2026-08-04T07:12:17.718Z",
-    "last_save_at": "2026-10-07T18:13:49.987Z",
+    "last_save_at": "2026-11-10T05:27:39.772Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d444c6718766bdaca61d03b10f3e41179e5aab1bd096d4a22d010fdd3656ff86",
+    "source_fingerprint": "sha256:1b38917694e5e4d4932e1f7d4762400e565e274f9e0d6d108374a0c94237a9d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b3d42cb0979cf7a1ef7afefce94d51cbefa6a93025755d0ba452ead96c2176e8"
+      "spec.md": "dd8309679323c3d25a891dfec0947bb6f1cf10b719f0afc1fb8928d324a88c55"
     },
     "last_active_child_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement",
     "last_active_at": "2026-08-04T18:47:15.566Z"

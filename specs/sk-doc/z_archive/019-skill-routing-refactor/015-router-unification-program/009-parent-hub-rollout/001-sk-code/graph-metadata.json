@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`sk-code` today routes through a registry-driven hub that reads `mode-registry.json` and applies `routerPolicy.outcomes.surfaceBundle` to bundle a workflow mode with read-only surfaces [Confirmed: `.opencode/skills/sk-code/SKILL.md:50-57`]",
     "created_at": "2026-07-18T13:13:19.473Z",
-    "last_save_at": "2026-10-07T18:12:54.246Z",
+    "last_save_at": "2026-11-10T05:27:01.594Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,11 +210,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:52272c53776da9e8a08d7cdf1c3d373f054b28ba01609f0b509dc9f278555b26",
+    "source_fingerprint": "sha256:9e5d0b1a428efd2a67bb4e4ea05e0bc265d437aecb1c67b3eb36ac9b241636c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "281ac6ded5bcd5460514403922617fee9c7bfd024d37cc56237331da6a85d8fd",
-      "plan.md": "9b0f1225a431b433b5064aab9ab9ddfd7cd1736467fa7bf3fc6fdb5b71a1bd5d",
+      "plan.md": "6acd2bfe0ad06be4753b4ceae9e1f24a9848b3dbddabe030f772612015a2bec3",
       "tasks.md": "1154cbcb813c19f318c496ff6138f63257edb3aa41b4ed0d23c2dccb433ba7f9",
       "implementation-summary.md": "d1b1ef8f4ded35c3af4e9cf464718ec14376798367f8fb79b18891084f96ee89"
     },

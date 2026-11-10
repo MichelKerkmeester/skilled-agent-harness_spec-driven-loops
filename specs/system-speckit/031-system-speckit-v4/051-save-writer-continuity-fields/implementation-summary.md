@@ -92,7 +92,7 @@ Paths without a leading `.skilled/` are under `.skilled/skills/system-spec-kit/`
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Each behaviour was built against a test that runs the real command-line entry point over an anchored temporary workspace with a track, a parent, a child parent, a leaf, a sibling and a root-level parent, with the telemetry store redirected into the temp directory. A dry run of the upsert over 421 real summaries came first and exposed the frontmatter damage, which was fixed at the upsert before the writer used it. The finished writer was then run once from `dist` on packet `sk-doc/055-changelog-system/001-sk-create-changelog-v4-style`: an edit to its summary, a full-auto save and a strict validation, after which the four files the save touched were restored with `git checkout` and `git status` matched the snapshot taken before the run. Nothing is committed.
+Each behaviour was built against a test that runs the real command-line entry point over an anchored temporary workspace with a track, a parent, a child parent, a leaf, a sibling and a root-level parent, with the telemetry store redirected into the temp directory. A dry run of the upsert over 421 real summaries came first and exposed the frontmatter damage, which was fixed at the upsert before the writer used it. The finished writer was then run once from `dist` on packet `sk-doc/document-standards/003-changelog-system/001-sk-create-changelog-v4-style`: an edit to its summary, a full-auto save and a strict validation, after which the four files the save touched were restored with `git checkout` and `git status` matched the snapshot taken before the run. Nothing is committed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -123,7 +123,7 @@ Each behaviour was built against a test that runs the real command-line entry po
 | New and changed suites (`save-continuity-write`, `input-normalizer-unit`, `phase-parent-pointer`, `spec-root-phase-pointer`, `generate-context-cli-authority`, `phase-status-from-payload`, `thin-continuity-record`) | PASS, 65 of 65 in the CLI project and 6 of 6 in the root project, rerun after the pointer-refusal cases were added |
 | `shared` tests, `test:legacy`, `test:validation` | PASS: 18 of 18; exit 0; exit 0 with 84 of 84 in the main validation suite and 0 failed in the others |
 | CI mirror checks (runtime mirrors, Codex agents and prompts, agent roster, command catalog, hook registrations, Gate 1 pointers) | PASS, all seven |
-| Real packet: edit, `--full-auto` save, `validate.sh --strict` on `sk-doc/055-changelog-system/001-sk-create-changelog-v4-style` | PASS: save exit 0, `RESULT: PASSED`, Errors 0, no `SOURCE_FINGERPRINT_MISMATCH`; reverted, status identical |
+| Real packet: edit, `--full-auto` save, `validate.sh --strict` on `sk-doc/document-standards/003-changelog-system/001-sk-create-changelog-v4-style` | PASS: save exit 0, `RESULT: PASSED`, Errors 0, no `SOURCE_FINGERPRINT_MISMATCH`; reverted, status identical |
 | Real packet with an invalid `next_safe_action` | Save exits 1 with `MEMORY_007` and writes nothing |
 | Negative control on the pointer-refusal cases | With the child-shape check disabled in the compiled pointer step, the case whose pointer climbs out of the parent fails; restored byte for byte, 15 of 15 pass |
 | Hermes skill and prompt sync checks | PASS, 70 skills and 33 prompts in sync |

@@ -115,16 +115,16 @@
     ],
     "causal_summary": "AI-assisted document edits often happen outside a Git repository",
     "created_at": "2026-07-15T09:48:17.080Z",
-    "last_save_at": "2026-10-07T18:12:31.869Z",
+    "last_save_at": "2026-11-10T05:26:46.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:dd632424f9860cafaa4d1fffc0fb29ee93209376db2f7849e0c8f69c60f563c2",
+    "source_fingerprint": "sha256:54374fd1e325c0e90d71a230526758a378dfd76bb7d7d278ae0c5ca9f02f08a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "40a80d5fcd5bab1abdaee1d1ec7265cd49264de96a75eb792be7433ec9b405d0"
+      "spec.md": "7b4f2d251d7fb47cd8fb0fc66ceeb3de0152b63041bfc634a4d17beaeca1ade1"
     },
     "last_active_child_id": "sk-doc/016-create-diff-mode/010-fluid-responsive-report",
     "last_active_at": "2026-07-16T14:51:13.317Z"

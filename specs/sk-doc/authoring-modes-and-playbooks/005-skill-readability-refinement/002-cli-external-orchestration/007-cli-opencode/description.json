@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration/007-cli-opencode",
+  "description": "Phase 7: cli-opencode",
+  "keywords": [
+    "phase",
+    "cli-opencode"
+  ],
+  "lastUpdated": "2026-11-04T07:16:25.083Z",
+  "specId": "007",
+  "folderSlug": "cli-opencode",
+  "parentChain": [
+    "sk-doc",
+    "066-skill-readability-refinement",
+    "002-cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

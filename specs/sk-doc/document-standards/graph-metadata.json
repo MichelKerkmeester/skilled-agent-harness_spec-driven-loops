@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/document-standards",
+  "spec_folder": "sk-doc/document-standards",
+  "parent_id": "sk-doc",
+  "children_ids": [
+    "sk-doc/document-standards/001-frontmatter-and-description-budget",
+    "sk-doc/document-standards/002-sk-create-readme-writing-style",
+    "sk-doc/document-standards/003-changelog-system",
+    "sk-doc/document-standards/004-security-policy-alignment",
+    "sk-doc/document-standards/005-root-readme-section-spacing"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "sk-doc/document-standards"
+    ],
+    "causal_summary": "Container folder for sk-doc/document-standards."
+  }
+}

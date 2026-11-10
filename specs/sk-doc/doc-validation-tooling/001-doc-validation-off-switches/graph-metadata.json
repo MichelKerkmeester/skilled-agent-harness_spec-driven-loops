@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/doc-validation-tooling/001-doc-validation-off-switches",
+  "spec_folder": "sk-doc/doc-validation-tooling/001-doc-validation-off-switches",
+  "parent_id": "sk-doc/doc-validation-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doc validation off switch",
+      "skip spec validation",
+      "skdoc skip validation",
+      "disable sk-doc validators",
+      "hook flags trailing comment",
+      "doc validation off switch plan",
+      "validation switch resolver",
+      "skipped validation report",
+      "sk-doc validator guard",
+      "doc validation off switch tasks",
+      "validation switch verification",
+      "commit trap regression"
+    ],
+    "key_topics": [
+      "doc",
+      "validation",
+      "switch",
+      "skip",
+      "spec",
+      "skdoc",
+      "disable",
+      "sk-doc",
+      "validators",
+      "hook",
+      "flags",
+      "trailing"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      ".skilled/skills/sk-doc/shared/scripts/validation_switch.py",
+      ".skilled/skills/sk-doc/shared/scripts/validation-switch.cjs",
+      ".skilled/hooks/shared/hook-flags.cjs",
+      ".skilled/hooks/shared/hook-flags.sh",
+      ".skilled/hooks/shared/hook-flags.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/validate-skip-switch.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts",
+      ".skilled/skills/sk-doc/scripts/tests/test_validation_switch.py",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts",
+      ".skilled/hooks/README.md",
+      ".skilled/changelog/skilled/v4.0.0.2.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validation_switch.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validation_switch.py",
+        "source": "derived"
+      },
+      {
+        "name": "validation-switch.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validation-switch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.sh",
+        "kind": "script",
+        "path": ".skilled/hooks/shared/hook-flags.sh",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-dist-staleness.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validate-skip-switch.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/validate-skip-switch.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test_validation_switch.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_validation_switch.py",
+        "source": "derived"
+      },
+      {
+        "name": "progressive-validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "quality-audit.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh",
+        "source": "derived"
+      },
+      {
+        "name": "strict-pass-freshness.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.2.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.2.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Someone",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`SPECKITSKIPVALIDATION` exists but traps commits",
+    "created_at": "2026-09-28T07:19:12Z",
+    "last_save_at": "2026-11-10T05:26:18.148Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:89b53a5fea26c727ca9e92c1c7c750398cc287dd5602bf9857123b8cb71529cc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b925e05553a2405b20413c4861aaf6c6ab23a19f6aee7f3449f3497aeb1a1ad7",
+      "plan.md": "5618ff9311d4a8b5334533576d37bcef52a010624f07f884e5479005518be624",
+      "tasks.md": "bd3fda0853985b1615fd1153b88392103e3efe944ef0b4a8146060d9c3b36bf5",
+      "implementation-summary.md": "ba4446ed7fc58693b631834702255bb5d9492e085955ddfe6f38636dc3cd5ede"
+    },
+    "last_active_at": null
+  }
+}

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Phase parent for the program that makes the shipped-but-inert compiled skill-router perfectly integrated, enabled by default (as the phased P4 outcome that 012 settled), and verified through automated tests + benchmarks + manual-testing playbook scenarios (GPT-5.6 LUNA HIGH as the routed test subject), with all routing code aligned to sk-code:code-skilled and every MD authored via the correct sk-doc mode template.",
     "created_at": "2026-07-20T21:22:58.451Z",
-    "last_save_at": "2026-10-07T18:13:28.281Z",
+    "last_save_at": "2026-11-10T05:27:03.336Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:08e9622ed8b22827a11b2377a56f3b5be3f0df5cd1c450143350d157dfeb4ad1",
+    "source_fingerprint": "sha256:cf053af1c65ce314aeeb9040407db1bbe7e507d79fc1faf3e7c0301257d78b51",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0c9128529bee0dc9e78ad9b9bd26a7a0781610186eca8d7fc1e0b1ff3dc54d53",
+      "spec.md": "5e3d99db3d5d9a1520331efed5020060c8c882708ed09649deace699603ab9dd",
       "handover.md": "390c48e4af9b03e03905cd53fa260e48236372d1b45cbe0b5f8175049daeb276"
     },
     "last_active_child_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root",

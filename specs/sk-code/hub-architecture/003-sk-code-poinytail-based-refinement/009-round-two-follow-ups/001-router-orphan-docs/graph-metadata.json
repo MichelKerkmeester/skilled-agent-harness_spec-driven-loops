@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verifyroutersync.cjs --checks 1b` lists nine docs that no router names, so leg 1b is held back by an `OPTINLEGS` set and the drift-guard umbrella runs `--checks 1a,2,3,4` without it",
     "created_at": "2026-10-10T08:16:18Z",
-    "last_save_at": "2026-11-10T05:20:16.904Z",
+    "last_save_at": "2026-11-10T05:34:42.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7be536085622d234659d32d71776b1474a720d6123d3beef602a54b6727b026",
+    "source_fingerprint": "sha256:f909b5cf737f67e1f725b39a7f0f965475504ef603d3b221d797aa0363fb6730",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f43498271bf0de127228857e00f1d879cda844520f68afc4a95f818c56c6c032",

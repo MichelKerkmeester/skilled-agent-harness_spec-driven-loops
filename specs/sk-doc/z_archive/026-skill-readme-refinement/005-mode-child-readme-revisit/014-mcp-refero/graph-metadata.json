@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The mcp-refero skill README at `.opencode/skills/mcp-tooling/mcp-refero/README.md` still carries the older tabular reference-card style and predates the pilot standard set by the refined template (phase 001) and the mcp-obsidian exemplar",
     "created_at": "2026-08-04T08:34:44.107Z",
-    "last_save_at": "2026-10-07T18:14:21.183Z",
+    "last_save_at": "2026-11-10T05:27:41.465Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:893cc650f3719c0e97d6a88bd7f6b84a9d880803ac65d41104f29e45e9af4904",
+    "source_fingerprint": "sha256:2e3bd69016395b0f6f1999f048017a4579e4865637f03a957a139eb367c1828c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "92b1d7152846b416f4ebf0f6a70ec9d5f7c4b5f7ec324c60f4a7bdd93cbdfa19",
+      "spec.md": "5c49d9442e1daa90c2de37af88489e19e9a3f3a697321ecc32ca6bba4c2a9d6e",
       "plan.md": "08afed16c9eecbb9e7a17057b76a385f43264ffaaf4d4088e075eabf3ceb25ef",
       "tasks.md": "90b220041b79accffd05600965ff98ebb2c5d29a576ad08bc985bdae98d19d46",
       "implementation-summary.md": "eb366cf1f573a42b55c6b1d4226be576a56d2e611b33166184b2c9dd9be0a0c9"

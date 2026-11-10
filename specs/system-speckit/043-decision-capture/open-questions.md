@@ -40,7 +40,7 @@ The research workflow also staged 41 files under `research/` with `git add`, as 
 
 ## 4. Stage marks between 006 and the shared runner
 
-**Context.** 006's goal marks stages PASS, FAIL, DEVIATION or N/A. The shared runner from `specs/sk-doc/065-conversation-playbook-scenarios` writes PASS, FAIL or SKIP.
+**Context.** 006's goal marks stages PASS, FAIL, DEVIATION or N/A. The shared runner from `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios` writes PASS, FAIL or SKIP.
 
 **Recommendation, being done now:** 006 maps its marks onto the runner's. DEVIATION becomes FAIL with a reason, and N/A becomes SKIP with a named blocker.
 
@@ -65,7 +65,7 @@ The research workflow also staged 41 files under `research/` with `git add`, as 
 
 ## Record 31, the "Runner" answer
 
-**Context.** The only record of this session still pending is record 31, your answer that the conversation runner is shared and lives in the playbook skill. It is already written by hand as Q003 in `specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md`, but that appendix item holds a shortened copy of the question, so the writer would add a duplicate Q005 rather than reuse Q003, and the matcher cannot read that table because it has no answer column.
+**Context.** The only record of this session still pending is record 31, your answer that the conversation runner is shared and lives in the playbook skill. It is already written by hand as Q003 in `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md`, but that appendix item holds a shortened copy of the question, so the writer would add a duplicate Q005 rather than reuse Q003, and the matcher cannot read that table because it has no answer column.
 
 **Recommendation, being done now:** leave it pending, which is safe. If you want it cleared, the smallest fix is to paste the full captured question into 065's Q003 appendix item and run one full-auto save at 065; the writer then reuses Q003.
 

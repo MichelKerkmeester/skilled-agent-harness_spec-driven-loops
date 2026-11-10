@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build",
+  "description": "Phase 4: conversation-adoption-build",
+  "keywords": [
+    "phase",
+    "conversation-adoption-build"
+  ],
+  "lastUpdated": "2026-11-03T11:44:30.668Z",
+  "specId": "004",
+  "folderSlug": "conversation-adoption-build",
+  "parentChain": [
+    "sk-doc",
+    "065-conversation-playbook-scenarios"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "03-11-26_12-44__round-4-fixes-and-reruns-on-opencode-and-pi.md"
+  ]
+}

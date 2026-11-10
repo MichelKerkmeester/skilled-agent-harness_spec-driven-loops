@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement",
+  "description": "Manually check and refine every skill and mode for readability, layout and structure",
+  "keywords": [
+    "manually",
+    "check",
+    "refine",
+    "every",
+    "skill",
+    "mode",
+    "readability",
+    "layout",
+    "structure"
+  ],
+  "lastUpdated": "2026-11-05T05:22:46.398Z",
+  "specId": "066",
+  "folderSlug": "skill-readability-refinement",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "05-11-26_06-22__the-readability-program-finished-every-skill-and.md",
+    "05-11-26_06-22__the-readability-program-finished-every-skill-and.md"
+  ]
+}

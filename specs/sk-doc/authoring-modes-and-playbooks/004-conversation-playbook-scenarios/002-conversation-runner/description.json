@@ -1,0 +1,35 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner",
+  "description": "A conversation script is only useful if something can play it into a real session",
+  "keywords": [
+    "conversation",
+    "script",
+    "only",
+    "useful",
+    "something",
+    "play",
+    "real",
+    "session"
+  ],
+  "lastUpdated": "2026-11-02T13:10:15.206Z",
+  "specId": "002",
+  "folderSlug": "conversation-runner",
+  "parentChain": [
+    "sk-doc",
+    "065-conversation-playbook-scenarios"
+  ],
+  "memorySequence": 10,
+  "memoryNameHistory": [
+    "02-11-26_07-59__criterion-4-is-now-proven-by-a-run-i-did-myself.md",
+    "02-11-26_07-59__the-goal-is-still-blocked-on-criterion-3-alone.md",
+    "02-11-26_07-59__only-criterion-3-is-still-open-the-decision.md",
+    "02-11-26_07-59__this-goal-stays-open-on-criterion-3-the-decision.md",
+    "02-11-26_07-59__no-change-criterion-3-is-still-waiting-on-the.md",
+    "02-11-26_07-59__i-m-still-holding-criterion-3-stays-with-the.md",
+    "02-11-26_07-59__criterion-3-is-still-with-the-fresh-decision.md",
+    "02-11-26_07-59__still-holding-criterion-3-depends-on-the-fresh.md",
+    "02-11-26_07-59__i-m-still-holding-criterion-3-depends-on-the.md",
+    "02-11-26_14-10__closed-phase-002-built-opt-in-codex-hook-trust.md"
+  ]
+}

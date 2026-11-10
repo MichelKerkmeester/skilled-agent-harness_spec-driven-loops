@@ -1,0 +1,19 @@
+{
+  "level": "sub-track",
+  "specFolder": "sk-doc/hub-routing-and-surfaces",
+  "description": "How hubs, routing entries and runtime-specific surfaces are laid out, versioned and recognized by the checkers.",
+  "keywords": [
+    "hub",
+    "routing",
+    "and",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-11-10T05:25:54.536Z",
+  "specId": "sk-doc/hub-routing-and-surfaces",
+  "folderSlug": "hub-routing-and-surfaces",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

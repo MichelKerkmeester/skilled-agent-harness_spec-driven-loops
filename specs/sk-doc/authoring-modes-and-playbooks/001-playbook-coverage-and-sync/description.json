@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/authoring-modes-and-playbooks/001-playbook-coverage-and-sync",
+  "description": "Manual testing playbook coverage and prompt sync",
+  "keywords": [
+    "playbook",
+    "coverage",
+    "and",
+    "sync"
+  ],
+  "lastUpdated": "2026-10-31T13:31:06.000Z",
+  "specId": "050",
+  "folderSlug": "playbook-coverage-and-sync",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

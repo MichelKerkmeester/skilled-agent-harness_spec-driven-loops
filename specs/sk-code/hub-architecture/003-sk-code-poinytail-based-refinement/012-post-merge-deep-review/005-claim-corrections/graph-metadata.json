@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The debt-report summary says `ceiling-report.sh` prints `markers=0 no-trigger=0 no-signal=0`, but once that packet committed its fixture `scratch/after/probe.py` the report prints `markers=3 no-trigger=1 no-signal=1`",
     "created_at": "2026-10-10T20:17:53Z",
-    "last_save_at": "2026-11-10T05:20:20.215Z",
+    "last_save_at": "2026-11-10T05:34:42.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,7 +202,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f1ca27e8244d9d6ee91bbea42b69fdb09d9fda6b597a4b2b5b3a601fb860b4bb",
+    "source_fingerprint": "sha256:814750d48a8fb91f4fafed934e1320599c0e043e48ffe9c79e2cb6c70df597ba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bdd036507ec75e1a56733c05995acb919fdffde82ba82974f3d1438dbcda16f8",

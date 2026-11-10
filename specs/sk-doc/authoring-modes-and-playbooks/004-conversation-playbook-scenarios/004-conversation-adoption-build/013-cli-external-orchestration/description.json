@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/013-cli-external-orchestration",
+  "description": "Phase 13: cli-external-orchestration",
+  "keywords": [
+    "phase",
+    "cli-external-orchestration"
+  ],
+  "lastUpdated": "2026-11-02T18:33:55.891Z",
+  "specId": "013",
+  "folderSlug": "cli-external-orchestration",
+  "parentChain": [
+    "sk-doc",
+    "065-conversation-playbook-scenarios",
+    "004-conversation-adoption-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

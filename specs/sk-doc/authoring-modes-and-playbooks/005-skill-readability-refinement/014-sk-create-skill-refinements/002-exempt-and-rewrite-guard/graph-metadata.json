@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "exempt and rewrite guard",
+      "phase 2 exempt and rewrite guard",
+      "exempt and rewrite guard plan",
+      "exempt and rewrite guard tasks",
+      "exempt and rewrite guard acceptance criteria",
+      "exempt and rewrite guard goal",
+      "exempt loader decision",
+      "pinned list decision",
+      "doc rewrite guard decision",
+      "format spec validator skip",
+      "exempt and rewrite guard implementation summary"
+    ],
+    "key_topics": [
+      "exempt",
+      "rewrite",
+      "guard",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "loader",
+      "decision",
+      "pinned"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/shared/scripts/render_exempt.py",
+      ".skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
+      ".skilled/skills/sk-doc/shared/scripts/README.md",
+      "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/010-sk-prompt/scratch/tools/scope-gate.py",
+      "shared/parsing/README.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
+      "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/013-system-spec-kit/scratch/diff-1.patch",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "render_exempt.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/render_exempt.py",
+        "source": "derived"
+      },
+      {
+        "name": "doc-rewrite-guard.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "render-known-debt.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/shared/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope-gate.py",
+        "kind": "file",
+        "path": "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/010-sk-prompt/scratch/tools/scope-gate.py",
+        "source": "derived"
+      },
+      {
+        "name": "examples-and-maintenance.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
+        "source": "derived"
+      },
+      {
+        "name": "creation-workflow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "diff-1.patch",
+        "kind": "file",
+        "path": "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/013-system-spec-kit/scratch/diff-1.patch",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Update Workflow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The exempt rule has three copies: `validatedocument.py:186-195` and `:253-258` skip all validation with no consumer, `packageskill.py:886-921` skips render only, and the 066 `scope-gate.py` re-implements it",
+    "created_at": "2026-11-05T06:39:43Z",
+    "last_save_at": "2026-11-10T05:26:18.326Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d90372eebf87ccd56f31a9e777b18e412e69e78e821d2126a818ae83a4fe3100",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "90c8324523d7c6799f433b8ed942ced49dd5cca915c59961df5c645151b5bdf7",
+      "plan.md": "b4dd421e0b003db8de717e029e393e45d7578030a31f0889c1b08e4744c564dc",
+      "tasks.md": "13ac989926d18d34830e53e1fa85f0484511847e2746d07a9b5eedf3ab982bbd",
+      "decision-record.md": "2abe54bf8b23392378c35773552d3c679298b75fcc2e5a40407b1d7e936ff48f",
+      "implementation-summary.md": "fa4cb7e6145ae933f6b750a9d8def393bc09b00160c95c2da72e17540a2f4cbf"
+    },
+    "last_active_at": null
+  }
+}

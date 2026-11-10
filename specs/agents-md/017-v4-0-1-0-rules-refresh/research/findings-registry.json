@@ -142,7 +142,7 @@
       "source": "iteration-markdown"
     },
     {
-      "text": "Q4 still open: whether a v4.0.1.0 addition not yet examined — conversation playbook scenarios (`specs/sk-doc/065-conversation-playbook-scenarios`), `/doctor:symlink` and `/doctor:install`, and the worker-session nudge removal — warrants a rule statement, and whether `/doctor:agents-md`'s section manifest now makes any shipped `AGENTS.md` section self-maintaining.",
+      "text": "Q4 still open: whether a v4.0.1.0 addition not yet examined — conversation playbook scenarios (`specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios`), `/doctor:symlink` and `/doctor:install`, and the worker-session nudge removal — warrants a rule statement, and whether `/doctor:agents-md`'s section manifest now makes any shipped `AGENTS.md` section self-maintaining.",
       "addedAtIteration": 2,
       "source": "iteration-markdown"
     },

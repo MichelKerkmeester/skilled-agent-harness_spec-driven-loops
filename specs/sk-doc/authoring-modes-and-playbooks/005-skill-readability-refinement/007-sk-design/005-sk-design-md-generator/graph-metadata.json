@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/007-sk-design/005-sk-design-md-generator",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/007-sk-design/005-sk-design-md-generator",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/007-sk-design",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk design md generator",
+      "phase 5 sk design md generator",
+      "sk design md generator plan",
+      "sk design md generator tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "sk design md generator implementation summary"
+    ],
+    "key_topics": [
+      "design",
+      "generator",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/findings.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/README.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/ROUTER.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/SKILL.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/assets/cardinal-rules-card.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/assets/design-md-prompt-template.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/assets/source-of-truth-router-card.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/references/anti-patterns.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/references/authoring-boundary.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/references/color-role-taxonomy.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/references/component-taxonomy.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/references/creation-contract.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/README.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/anti-slop-principles.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/cognitive-laws.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cardinal-rules-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/assets/cardinal-rules-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-md-prompt-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/assets/design-md-prompt-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "source-of-truth-router-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/assets/source-of-truth-router-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "anti-patterns.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/references/anti-patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "authoring-boundary.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/references/authoring-boundary.md",
+        "source": "derived"
+      },
+      {
+        "name": "color-role-taxonomy.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/references/color-role-taxonomy.md",
+        "source": "derived"
+      },
+      {
+        "name": "component-taxonomy.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/references/component-taxonomy.md",
+        "source": "derived"
+      },
+      {
+        "name": "creation-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/references/creation-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "anti-slop-principles.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/anti-slop-principles.md",
+        "source": "derived"
+      },
+      {
+        "name": "cognitive-laws.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/cognitive-laws.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The docs of the `sk-design-md-generator` mode were never read as a whole for readability, layout and structure",
+    "created_at": "2026-11-04T07:16:39Z",
+    "last_save_at": "2026-11-10T05:26:14.334Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7c56fc18466a0d14174fb95d92f2e5b75cfdbc1c1d0fa56226aa3b89783266fb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5679609c5456aa9e3664f31eefaf61a970f9a762e4a6c8408d99a78981c8121c",
+      "plan.md": "d2e27e2cf656be1ee4d29b31ec1f54c5b85a1d4f846f8467c8d89fcedfb8f9e0",
+      "tasks.md": "94443a16c010a1e48b2bcb531e941437c01b15fe3afe6c7a8a3f8f567c17c5b1",
+      "implementation-summary.md": "01b0a8b5ddece5bbb46c7565674f58f16dd8d94c4c5d602f6440baaf53e124fa"
+    },
+    "last_active_at": null
+  }
+}

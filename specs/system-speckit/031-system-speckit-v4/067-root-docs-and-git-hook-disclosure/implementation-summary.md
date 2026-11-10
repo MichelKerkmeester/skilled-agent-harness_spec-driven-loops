@@ -90,7 +90,7 @@ The test cases came first. Run against the hooks as committed at HEAD, they fail
 |----------|-----|
 | The agent mirror gate's blocks name `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` | That gate has no switch of its own, and adding one changes a gate's contract. The message says the switch turns off every pre-commit gate, so the cost is stated where the choice is made |
 | The README's `CLAUDE.md` line was left alone | Commit `003dabe08d` fixed it before this phase started |
-| The Section 5 validation switch lines in `.env.example` belong to `specs/sk-doc/057-doc-validation-off-switches` | They close that packet's review finding F002, so they are committed with it |
+| The Section 5 validation switch lines in `.env.example` belong to `specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches` | They close that packet's review finding F002, so they are committed with it |
 <!-- /ANCHOR:decisions -->
 
 ---

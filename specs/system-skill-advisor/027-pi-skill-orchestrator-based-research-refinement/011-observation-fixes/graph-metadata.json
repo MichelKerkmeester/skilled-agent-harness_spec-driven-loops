@@ -49,7 +49,6 @@
       "evidence/metrics-log-modes.txt",
       "evidence/dependabot-dismissals.txt",
       "scripts/README.md",
-      ".hermes/skills/sk-code-skilled/SKILL.md",
       "evidence/goal-reverify/harness-notes.txt",
       ".github/dependabot.yml",
       "evidence/validate-other-folders.txt",
@@ -60,7 +59,8 @@
       ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
       ".skilled/skills/sk-code/sk-code-skilled/README.md",
       ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
-      ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md"
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
+      ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
     ],
     "entities": [
       {
@@ -112,12 +112,6 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".hermes/skills/sk-code-skilled/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "harness-notes.txt",
         "kind": "file",
         "path": "evidence/goal-reverify/harness-notes.txt",
@@ -160,6 +154,12 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "verification-alignment.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -169,6 +169,12 @@
         "name": "alignment-verification-automation.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-fallback.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 10's close-out listed seven small problems it had seen outside its own scope",
     "created_at": "2026-09-27T11:43:49Z",
-    "last_save_at": "2026-10-31T15:29:48.486Z",
+    "last_save_at": "2026-11-10T05:35:12.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:11d9dc2e4bed1c8f794d99ff40d472bb3f27ef144009c71a0bed392b848372b5",
+    "source_fingerprint": "sha256:34f3e5cf38b64c51ee89432195b1851b5b8deaef242e98b8e5e6d43a09d69dcc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0c2d273de2152e857e8867be72ffed4e7529b347f039e5fefec70c86bb8cb59e",
       "plan.md": "e1a569a75e323ee2141ce62e420ce06aca7e61a8ff0d38031012645b66a1cd36",
       "tasks.md": "8a428054ded7ad22d0947adc3e5ad32820b8bc3dda4c7809558f89a192a25039",
-      "implementation-summary.md": "56a57142da8717122259996ef8b4c145ef7bfa9eac3284952a6961900cb4802a"
+      "implementation-summary.md": "834fc07b930eb510d762c30e20b622ff2a298d43c8f380b73e610bea9090cb9d"
     },
     "last_active_at": null
   }

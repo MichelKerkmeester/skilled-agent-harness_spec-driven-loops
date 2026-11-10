@@ -48,10 +48,7 @@
       "baselines/link-resolver-pre-edit.txt",
       "baselines/link-resolver-post-edit.txt",
       "baselines/install-entries-post-edit.txt",
-      ".opencode/skills/sk-code/sk-code-webflow/SKILL.md",
       ".opencode/skills/sk-code/sk-code-skilled/SKILL.md",
-      ".opencode/skills/sk-code/sk-code-webflow/references/html/style-guide.md",
-      ".opencode/skills/sk-code/sk-code-webflow/references/performance/third-party.md",
       ".opencode/skills/sk-code/benchmark/README.md",
       ".opencode/skills/sk-design/sk-design-md-generator/SKILL.md",
       ".opencode/skills/sk-git/references/quick-reference.md",
@@ -104,19 +101,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code/sk-code-webflow/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "style-guide.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/sk-code-webflow/references/html/style-guide.md",
-        "source": "derived"
-      },
-      {
-        "name": "third-party.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/sk-code-webflow/references/performance/third-party.md",
+        "path": ".opencode/skills/sk-code/sk-code-skilled/SKILL.md",
         "source": "derived"
       },
       {
@@ -202,11 +187,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Disk",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A naming migration and a hub consolidation each moved real things, and each left the prose behind",
     "created_at": "2026-07-30T19:29:17.197Z",
-    "last_save_at": "2026-10-08T19:30:12.251Z",
+    "last_save_at": "2026-11-10T05:27:37.447Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +212,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2dbadaa87d8109dddd1641a032bf113ae2b13092f85ad3478a5a8c748eee2ce",
+    "source_fingerprint": "sha256:a3b7e11a4adb83847db1d51c5317c4b299f72759d95c90324bfa865e5ef6f3bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "879f9718a9a8f8e292623405745f0c4a2357a4ea09a01ab72dc935c75b6de269",
+      "spec.md": "934ab44c30948f359d45628c0601e08db1c4600b722b511786365e819b2b350a",
       "plan.md": "2e9dc93a4f6c6934ef867d2d91fdccade0076cf69104828283e43cf53bc3f3e9",
-      "tasks.md": "9cbe276c5aac27709411ee428c62f96b34085107a7aa3bf696f95876915f6b78",
+      "tasks.md": "35a427fc9542f8e0e2236b546627657595aac607cde375bcc5dd87c57a351c9e",
       "implementation-summary.md": "613e38b5fac06bce7aa2e4c61fb9a5d172d7c23972944f579a41fb79c9e3b87a"
     },
     "last_active_child_id": null,

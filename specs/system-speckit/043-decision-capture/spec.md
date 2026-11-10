@@ -84,7 +84,7 @@ Close the four gaps and prove the whole pipeline in a live, multi-turn conversat
 - Prove the pipeline with a scripted, timed, multi-turn conversation per runtime and re-prove 002 to 005 with it (006).
 
 ### Out of Scope
-- Building the conversation runner itself. It is shared and belongs to the sk-create-manual-testing-playbook skill, planned in `specs/sk-doc/065-conversation-playbook-scenarios`; 006 uses it.
+- Building the conversation runner itself. It is shared and belongs to the sk-create-manual-testing-playbook skill, planned in `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios`; 006 uses it.
 - Barter's own conversion program and its goals, which another session owns.
 - Changing the existing `open_questions` and `answered_questions` continuity fields.
 
@@ -125,7 +125,7 @@ Close the four gaps and prove the whole pipeline in a live, multi-turn conversat
 - Parent spec tracks aggregate progress via this map
 - Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-- Children 002 to 005 close only after the 006 conversation scenario re-proves them, so the 006 Claude Code row runs first, once `specs/sk-doc/065-conversation-playbook-scenarios` ships the shared runner
+- Children 002 to 005 close only after the 006 conversation scenario re-proves them, so the 006 Claude Code row runs first, once `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios` ships the shared runner
 - 006's scenario files are written as soon as 065's `001-scenario-contract` lands, before 002 is built. Only the 006 runs wait for 065's runner
 
 ### Phase Handoff Criteria
@@ -149,7 +149,7 @@ Close the four gaps and prove the whole pipeline in a live, multi-turn conversat
 ## 4. OPEN QUESTIONS
 
 - Queue record 12 of this session's queue (the session-relaunch child-guard answer) has no row in any decision record. 002 plans to record it once in 001's `decision-record.md` through a full-auto save. The operator confirms or redirects that.
-- 006 depends on `specs/sk-doc/065-conversation-playbook-scenarios`, which another session is planning. Its runner format fixes the shape of the 006 scenario.
+- 006 depends on `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios`, which another session is planning. Its runner format fixes the shape of the 006 scenario.
 - Before the follow-ups are built: what defects and weak spots does the 001 build carry, should children 002 to 006 be changed, merged, split or re-ordered, and is the 006 contract with the 065 conversation runner right?
 
 **Research Context**: a `/deep:research` run is active for this topic. `research/research.md` is the canonical output; this note only points at it.
@@ -163,7 +163,7 @@ Close the four gaps and prove the whole pipeline in a live, multi-turn conversat
 - Maintainability by deletion: the OpenCode plugin imports its sweep's mapping instead of `answerMap`, the matcher CLI reuses the writer's consumed-log reader, and `save.md` stops restating the process filter.
 <!-- END GENERATED: deep-research/spec-findings -->
 
-Where the findings landed: 002 gained REQ-011 to REQ-016 (one-row-one-answer refusal, counted refusals as the handoff criterion, rebuild by rerun, orphan scan and `--release`, nudge text naming the sweep and matcher, bolded appendix labels, the save-writer scenario's checks). 003 gained REQ-008 (the Claude adapter's `process.cwd()` fallback) and REQ-009 (its `n/a:` refusal shape as the series convention). 004's REQ-003 fixture now comes from its own live probe, with an UNKNOWN escape. 005's 006 stage gained the negative assertion. 006 splits S12 into its own scenario file, uses the runner's `compact` and `restart`, makes S0 a check-only turn and maps its marks onto PASS, FAIL and SKIP, per `specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md` ADR-002. Set aside pending the operator: D6, D7 and D9 (open-questions.md 5).
+Where the findings landed: 002 gained REQ-011 to REQ-016 (one-row-one-answer refusal, counted refusals as the handoff criterion, rebuild by rerun, orphan scan and `--release`, nudge text naming the sweep and matcher, bolded appendix labels, the save-writer scenario's checks). 003 gained REQ-008 (the Claude adapter's `process.cwd()` fallback) and REQ-009 (its `n/a:` refusal shape as the series convention). 004's REQ-003 fixture now comes from its own live probe, with an UNKNOWN escape. 005's 006 stage gained the negative assertion. 006 splits S12 into its own scenario file, uses the runner's `compact` and `restart`, makes S0 a check-only turn and maps its marks onto PASS, FAIL and SKIP, per `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/decision-record.md` ADR-002. Set aside pending the operator: D6, D7 and D9 (open-questions.md 5).
 <!-- /ANCHOR:questions -->
 
 ---

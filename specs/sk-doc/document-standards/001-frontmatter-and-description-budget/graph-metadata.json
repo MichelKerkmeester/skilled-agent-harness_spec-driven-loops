@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/document-standards/001-frontmatter-and-description-budget",
+  "spec_folder": "sk-doc/document-standards/001-frontmatter-and-description-budget",
+  "parent_id": "sk-doc/document-standards",
+  "children_ids": [
+    "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter",
+    "sk-doc/document-standards/001-frontmatter-and-description-budget/002-description-budget"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "frontmatter contract owner",
+      "sk-create-frontmatter mode",
+      "skill description budget",
+      "agent description limits",
+      "routing token safe trims"
+    ],
+    "key_topics": [
+      "frontmatter",
+      "contract",
+      "owner",
+      "sk-create-frontmatter",
+      "mode",
+      "skill",
+      "description",
+      "budget",
+      "agent",
+      "limits",
+      "routing",
+      "token"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Six",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Six modes emitted frontmatter without one mode owning the rules, leaving the shared contract without a clear maintainer",
+    "created_at": "2026-10-31T13:41:22.661Z",
+    "last_save_at": "2026-11-10T05:26:21.166Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b6e1a018bdeaccdf60150248852b9fdfa14e6cbf33362196b27b9158cd6afc00",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "139b6559a6165efa35c4dec728832deef2fc2709404c613a523951f949b9034d"
+    },
+    "last_active_child_id": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter",
+    "last_active_at": null
+  }
+}

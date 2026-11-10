@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/doc-validation-tooling",
+  "spec_folder": "sk-doc/doc-validation-tooling",
+  "parent_id": "sk-doc",
+  "children_ids": [
+    "sk-doc/doc-validation-tooling/001-doc-validation-off-switches",
+    "sk-doc/doc-validation-tooling/002-readme-validation-debt",
+    "sk-doc/doc-validation-tooling/003-reference-template-debt",
+    "sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "sk-doc/doc-validation-tooling"
+    ],
+    "causal_summary": "Container folder for sk-doc/doc-validation-tooling."
+  }
+}

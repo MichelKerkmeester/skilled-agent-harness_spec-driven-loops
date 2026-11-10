@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "sk-doc/z_archive/007-sk-doc-organization",
   "spec_folder": "sk-doc/z_archive/007-sk-doc-organization",
-  "parent_id": "sk-doc/z_archive",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
     "sk-doc/z_archive/007-sk-doc-organization/001-relocate",
     "sk-doc/z_archive/007-sk-doc-organization/002-update-and-mirror",

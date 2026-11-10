@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The repo checks in a bridge that forwards GitHub-Copilot hook lifecycle events (`sessionStart`, `sessionEnd`,",
     "created_at": "2026-07-12T00:00:00.000Z",
-    "last_save_at": "2026-10-07T18:12:32.354Z",
+    "last_save_at": "2026-11-10T05:26:45.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0799cd0602a834269c0225b7a1ed70993df1c5dcb801a81b6fffe41efdafa3c5",
+    "source_fingerprint": "sha256:a0ca97350f394f9604ac11fa1ee616436b6caee158bb9f09dfe375e70a449b9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f7599fd47448381675a706deea289bb07011efdcd82ad667019220fe3352841c",
+      "spec.md": "02585f6adcb1be8b7ef671c1f8851d7be4b59f9b0b7fc791c35baa557b9b9c68",
       "plan.md": "9122f142485d9b0c33ace423d05b95209e2edfd86a5966f666e6c378ba77185c",
-      "tasks.md": "bf2d18b6cb9014d632c6cbf38d0c7c794e7e9603b36374fc47e88327d9b92102",
-      "implementation-summary.md": "84fc14ebde8b4b4e60c0bda4c4ed52e1ca725b33b68f9f31e07c219b2fc1e6d7"
+      "tasks.md": "9842f6140b0a814b18b5e5da89e6d490b9402fcef324f75bb0ba5ec5615cd595",
+      "implementation-summary.md": "af1cbb16ad98c35f549bad633a2d985aaac11a0e8540cc317aa9edf904565049"
     },
     "last_active_child_id": null,
     "last_active_at": null

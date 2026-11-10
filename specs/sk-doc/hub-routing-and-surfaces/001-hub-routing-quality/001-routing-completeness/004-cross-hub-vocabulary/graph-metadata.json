@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/004-cross-hub-vocabulary",
+  "spec_folder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/004-cross-hub-vocabulary",
+  "parent_id": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross hub vocabulary",
+      "bare token collision",
+      "gate b vocabulary limit",
+      "executor delegation override",
+      "cross hub vocabulary plan",
+      "executor override approach",
+      "three suite regression control",
+      "cross hub vocabulary tasks",
+      "vocabulary phase checklist",
+      "routing edit verification",
+      "cross hub vocabulary acceptance criteria",
+      "packet goal"
+    ],
+    "key_topics": [
+      "cross",
+      "hub",
+      "vocabulary",
+      "bare",
+      "token",
+      "collision",
+      "gate",
+      "limit",
+      "executor",
+      "delegation",
+      "override",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      ".opencode/skills/sk-doc/graph-metadata.json",
+      ".opencode/skills/cli-external-orchestration/hub-router.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/cli-external-orchestration/mode-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phase was scoped before either gate was measured, on the belief that a cross-hub",
+    "created_at": "2026-09-02T16:34:06Z",
+    "last_save_at": "2026-11-10T05:26:28.664Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:75b6dee8a64695743db300e23311260e4fc9712861e786e902651d8ad82a9db7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "74562f419cd94015ac3cb0780669a9326e53436cb19c727a75594f76f760c5d6",
+      "plan.md": "dc2a98a758a5225fb2908e8cf5b3ac35f88f9f8cbac30f6eb510655d166d20c6",
+      "tasks.md": "c22d7b6bb22e21435fe5fbb737c50dcf67d84abbf3b532ce6a02239abbd44fcf",
+      "implementation-summary.md": "0236d2b6bbb37907cbe52b658c6eca977515ecc5059640e3ac8f896c430567b3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

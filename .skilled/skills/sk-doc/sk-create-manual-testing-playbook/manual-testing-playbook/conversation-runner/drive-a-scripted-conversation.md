@@ -1,7 +1,7 @@
 ---
 title: "MTP-007 -- Drive a scripted conversation"
 description: "This scenario validates the conversation runner for MTP-007. It checks tool questions, chat replies, restart, compaction and per-runtime evidence."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # MTP-007 -- Drive a scripted conversation
@@ -222,7 +222,7 @@ Capture `matrix.md`, `models.md`, each runtime's `result.json` and `checkpoints.
 |---|---|
 | [`run-conversation-scenario.cjs`](../../scripts/run-conversation-scenario.cjs) | Drives the scripted conversation and writes runtime evidence |
 | [`conversation-scenarios.md`](../../references/conversation-scenarios.md) | Defines the conversation script and runner contract |
-| `specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/scratch/probes.md` | Records the current runtime probe facts |
+| `specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/002-conversation-runner/scratch/probes.md` | Records the current runtime probe facts |
 
 ---
 

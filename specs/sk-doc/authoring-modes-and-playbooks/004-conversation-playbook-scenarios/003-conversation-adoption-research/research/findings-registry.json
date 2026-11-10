@@ -1,0 +1,1895 @@
+{
+  "mergedFrom": [
+    "devin",
+    "luna"
+  ],
+  "lineageExecutors": {
+    "devin": {
+      "kind": "cli-devin",
+      "model": "deepseek-v4-1-flash-max",
+      "reasoningEffort": null
+    },
+    "luna": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "xhigh"
+    }
+  },
+  "openQuestions": [
+    {
+      "id": "question-1-which-of-the-55-skill-and-mode-packages-and-the-central-doctor-package-have-scen",
+      "inboxId": null,
+      "text": "Which of the 55 skill and mode packages and the central /doctor package have scenarios that meet Q2 or Q3, which named files merit conversion, and which stay at Q1 or Q4?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "question-2-which-existing-scenario-contracts-exercise-multiple-exchanges-answer-branching-r",
+      "inboxId": null,
+      "text": "Which existing scenario contracts exercise multiple exchanges, answer branching, restart, compaction or cross-runtime behavior while remaining manual or single-prompt, and what precise updates are needed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "question-3-which-skill-or-mode-behaviors-involving-questions-user-answers-restart-compactio",
+      "inboxId": null,
+      "text": "Which skill or mode behaviors involving questions, user answers, restart, compaction or runtime parity have no scenario that covers them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "question-5-which-candidates-rank-highest-by-risk-reduction-relative-to-authoring-and-run-co",
+      "inboxId": null,
+      "text": "Which candidates rank highest by risk reduction relative to authoring and run cost across the 28 packages?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "question-5-which-conversion-update-and-coverage-candidates-provide-the-highest-operator-or-",
+      "inboxId": null,
+      "text": "Which conversion, update and coverage candidates provide the highest operator or release risk reduction for their authoring and execution cost?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "luna"
+      ]
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-scenarios-in-the-28-unaudited-packages-meet-q2-or-q3-and-should-convert-or",
+      "inboxId": null,
+      "text": "Which scenarios in the 28 unaudited packages meet Q2 or Q3 and should convert or gain a conversation companion, and which are blocked by the runner's five runtimes and three session actions?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "question-2-which-existing-single-prompt-scenarios-need-updating-rather-than-converting-beca",
+      "inboxId": null,
+      "text": "Which existing single-prompt scenarios need updating rather than converting because the behavior is multi-turn but the current scenario checks it only once?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "question-3-which-packages-have-no-conversation-candidate-at-all-so-every-scenario-stays-sin",
+      "inboxId": null,
+      "text": "Which packages have no conversation candidate at all, so every scenario stays single prompt under Q1 or Q4?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "question-4-which-candidates-can-the-shared-runner-execute-across-its-supported-runtimes-and",
+      "inboxId": null,
+      "text": "Which candidates can the shared runner execute across its supported runtimes, and which are constrained by runtime support or host prerequisites?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "question-4-which-multi-turn-answer-dependent-restart-compaction-or-cross-runtime-behaviors-",
+      "inboxId": null,
+      "text": "Which multi-turn, answer-dependent, restart, compaction or cross-runtime behaviors in these packages lack any scenario that a conversation would add?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "_lineages": [
+        "devin"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-cli-classifier-has-no-conversation-candidate-its-seven-scenarios-are-one-routing",
+      "text": "cli-classifier has no conversation candidate: its seven scenarios are one routing decision or one offline scorer run whose verdict is a single advisor, front-door or exit-status result, so Q2 finds no second exchange and Q4 keeps every scenario single prompt. [SOURCE: .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md:83] [SOURCE: .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md:119] [SOURCE: .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md:32]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/ambiguous-defer.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-verified-corpus-baseline-is-56-validator-scanned-playbook-packages-with-four",
+      "text": "The verified corpus baseline is 56 validator-scanned playbook packages with four JSON conversation scenarios: one in sk-create-manual-testing-playbook and three in system-spec-kit. [SOURCE: specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/003-conversation-adoption-research/spec.md:58] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md:44] [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md:32] [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md:31] [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md:32]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/003-conversation-adoption-research/spec.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-2-cli-jev-has-no-conversation-candidate-all-22-scenarios-drive-the-jev-binary-s-in",
+      "text": "cli-jev has no conversation candidate: all 22 scenarios drive the `jev` binary's invocation, exit-code, provider or MCP-handshake surface from one command, and the shared runner drives an interactive runtime session rather than a shell binary, so Q2 does not apply and Q4 keeps them single prompt. [SOURCE: .skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/manual-testing-playbook.md:98] [SOURCE: .skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/manual-testing-playbook.md:16]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/ambiguous-defer.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-style-decision-is-ordered-judgment-stays-single-at-q1-multi-exchange-answer-",
+      "text": "The style decision is ordered: judgment stays single at Q1; multi-exchange, answer-dependent behavior, restart or compaction is conversation at Q2; cross-runtime or release-regression behavior is conversation at Q3 only when shell checks decide every turn; otherwise Q4 stays single. [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:346] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:348] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:355] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md:30] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:39]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/003-conversation-adoption-research/spec.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-3-keep-the-three-system-spec-kit-conversation-scenarios-as-working-q2-prototypes-l",
+      "text": "Keep the three system-spec-kit conversation scenarios as working Q2 prototypes: live decision capture already scripts question answers, compaction and restart, while kill-switch and sibling re-proof script question-tool answers and answer-dependent state. [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md:32] [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md:31] [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md:32]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/003-conversation-adoption-research/spec.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-mcp-tooling-hub-has-no-conversation-candidate-its-16-scenarios-are-routing-g",
+      "text": "The mcp-tooling hub has no conversation candidate: its 16 scenarios are routing gold where one prompt must resolve one `workflowMode`, including MT-004's `defer` outcome, so there is no answer-dependent next step for Q2 to test. [SOURCE: .skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md:31] [SOURCE: .skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/ambiguous-defer.md:16] [SOURCE: .skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md:65]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/ambiguous-defer.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-1-4-mcp-code-mode-s-26-command-scenarios-stay-single-prompt-each-is-one-call-tool-ch",
+      "text": "mcp-code-mode's 26 command scenarios stay single prompt: each is one `call_tool_chain`, script or config-recovery command whose result one shell check reads in a single pass; the steps that say \"restart Code Mode\" restart an MCP server, not the runtime session the runner can restart, so Q2 does not apply and Q4 keeps them. [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md:99] [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md:395] [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md:434]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/ambiguous-defer.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-1-4-prioritize-json-conversion-for-system-spec-kit-session-relaunch-claude-and-sessi",
+      "text": "Prioritize JSON conversion for system-spec-kit session-relaunch-claude and session-relaunch-pi-opencode at Q2; session-relaunch-command-runtimes is Q2 and Q3 but should split supported Codex/Devin runs from Cursor/Hermes until the runner supports those runtimes. [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md:29] [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md:34] [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md:36] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:39]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/003-conversation-adoption-research/spec.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-5-keep-cli-devin-dv-001-and-system-spec-kit-449-compact-names-only-cli-discovery-a",
+      "text": "Keep cli-devin DV-001 and system-spec-kit 449 compact/names-only CLI discovery at Q4: each checks one request or command result; the word compact in the latter is output compaction, not session compaction. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/default-invocation.md:20] [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-compact-and-completion.md:22]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/003-conversation-adoption-research/spec.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-5-mcp-code-mode-s-mcp-route-guard-is-the-one-add-candidate-in-this-group-the-advis",
+      "text": "mcp-code-mode's mcp-route-guard is the one add candidate in this group: the advisory exists to change the model's next tool choice, and the current file records the live OpenCode adapter path as UNAUTOMATABLE, so a two-turn companion on claude-code or opencode would cover behavior no scenario checks today (Q2). Keep the existing unit and live-core commands as primary evidence. [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md:24] [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md:29] [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md:109]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/ambiguous-defer.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-1-6-workflow-scope-conflict-recorded-yaml-pre-init-and-post-synthesis-steps-write-or",
+      "text": "Workflow scope conflict recorded: YAML pre-init and post-synthesis steps write or validate the parent spec and resource map; the dispatch bounds writes to this lineage and explicitly forbids those operations, so those steps are omitted while lineage-local initialization and synthesis proceed. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:487] [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:530] [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:2190] [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:2270] [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:2290]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/003-conversation-adoption-research/spec.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-1-mcp-mobbin-has-no-conversation-candidate-its-nine-scenarios-are-read-only-wiring",
+      "text": "mcp-mobbin has no conversation candidate: its nine scenarios are read-only wiring, discovery, retrieval or refusal checks, each driven by one prompt or one `doctor.sh` command; the \"fresh Code Mode session\" precondition reloads an MCP server, not a runner session, so Q2 does not apply and Q4 keeps them single prompt. [SOURCE: .skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md:25] [SOURCE: .skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md:139] [SOURCE: .skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md:54]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md",
+        ".skilled/skills/sk-code/ROUTER.md",
+        ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-existing-codex-cx-017-opencode-co-018-cursor-cu-015-and-hermes-hermes-011-se",
+      "text": "The existing Codex CX-017, OpenCode CO-018, Cursor CU-015 and Hermes HERMES-011 session-continuity scenarios all meet Q2 because each requires a second exchange that relies on prior state. Update style selectively: Codex and OpenCode can gain JSON conversation companions for interactive continuity, but retain their exact headless command checks; Cursor and Hermes stay manual until adapters exist because the runner accepts only Claude Code, OpenCode, Codex, Pi and Devin. [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/continue-same-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/session-continuity/resume-captured-session-id.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-2-mcp-refero-has-no-conversation-candidate-its-nine-scenarios-are-read-only-wiring",
+      "text": "mcp-refero has no conversation candidate: its nine scenarios are read-only wiring, discovery, funnel, quota or refusal checks, and the three-layer funnel runs inside one prompt; the Pro-account OAuth step is operator-only, so Q2 finds no answer-dependent turn and Q4 keeps them single prompt. [SOURCE: .skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md:25] [SOURCE: .skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md:134] [SOURCE: .skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md:53]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md",
+        ".skilled/skills/sk-code/ROUTER.md",
+        ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-2-2-update-opencode-co-046-with-a-two-send-json-conversation-its-current-single-prom",
+      "text": "Update OpenCode CO-046 with a two-send JSON conversation: its current single prompt triggers a shell command, but the asserted `[session-relaunch]` marker must appear on a later captured request, so Q2 is yes. Keep the request-capture and event-file checks as evidence alongside the turn-by-turn runner checks; the current shell procedure also covers v1/v2 plugin paths. [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/continue-same-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/session-continuity/resume-captured-session-id.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-3-add-a-pi-only-json-conversation-companion-to-pi-020-for-compact-followed-by-a-st",
+      "text": "Add a Pi-only JSON conversation companion to PI-020 for `/compact` followed by a state check or follow-up send. The current scenario explicitly skips `session_compact` in print mode and leaves `/compact` as an optional manual check; this is a Q2 gap because context must survive compaction, and the Pi adapter already exposes `/compact` plus per-turn checks. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/continue-same-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/session-continuity/resume-captured-session-id.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-3-sk-code-ci-has-no-conversation-candidate-its-eight-scenarios-are-routing-recall-",
+      "text": "sk-code-ci has no conversation candidate: its eight scenarios are routing recall, routing-floor negatives, rule-reference fixtures and two doctor-script runs, each decided by a command transcript and exit status; Q2 finds no second exchange and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md:37] [SOURCE: .skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md:44] [SOURCE: .skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md:53]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md",
+        ".skilled/skills/sk-code/ROUTER.md",
+        ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-2-4-sk-code-quality-has-no-conversation-candidate-its-23-scenarios-each-run-the-qual",
+      "text": "sk-code-quality has no conversation candidate: its 23 scenarios each run the quality runner or a doctor script over a fixture and read a gate, exit code or check row; CQ-009's trust grant is a config key set between two runs, not a conversational answer, so Q2 does not apply and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md:154] [SOURCE: .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md:300] [SOURCE: .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md:576]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md",
+        ".skilled/skills/sk-code/ROUTER.md",
+        ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-system-spec-kit-claude-pi-opencode-and-command-runtime-session-relaunch-scen",
+      "text": "The system-spec-kit Claude, Pi/OpenCode and command-runtime session-relaunch scenarios are Q2 candidates because task state crosses a process handoff, but keep their current wrapper and hook checks as the primary evidence. The shared runner's `restart` exits and resumes the same session ID through each adapter; it does not run `skilled-loop`, create or claim a handoff note, or prove Stop-hook arming. A JSON companion would add value only for the post-handoff operator exchange and must be labeled as partial coverage. [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/continue-same-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/session-continuity/resume-captured-session-id.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-5-rank-pi-020-interactive-compaction-and-co-046-later-request-capture-first-both-c",
+      "text": "Rank PI-020 interactive compaction and CO-046 later-request capture first: both close an explicit uncovered Q2 behavior with one supported runtime and moderate authoring/run cost. Rank Codex/OpenCode continuity companions next, preserving exact CLI evidence; defer Cursor/Hermes conversion until adapters land. Keep system-spec-kit wrapper handoff scenarios manual until the runner can execute the wrapper lifecycle; replacing their shell evidence with same-session restart would give false coverage. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/continue-same-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/session-continuity/resume-captured-session-id.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-sk-code-hub-has-one-add-candidate-22-of-its-23-operator-scenarios-are-one-pr",
+      "text": "The sk-code hub has one add candidate: 22 of its 23 operator scenarios are one-prompt routing, load-set, restraint or hook checks (Q4), but SD-003 stops at the UNKNOWN disambiguation question and never exercises the answer-dependent turn that `ROUTER.md` section 6 requires, so a two-turn companion that answers runtime and verification commands would cover behavior no scenario checks (Q2). [SOURCE: .skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md:33] [SOURCE: .skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md:43] [SOURCE: .skilled/skills/sk-code/ROUTER.md:162] [SOURCE: .skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:154]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md",
+        ".skilled/skills/sk-code/ROUTER.md",
+        ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-3-1-sk-code-skilled-has-no-conversation-candidate-its-twelve-scenarios-are-routing-r",
+      "text": "sk-code-skilled has no conversation candidate: its twelve scenarios are routing-recall contracts where one prompt must emit one intent's resource set, plus the shared tier and surface-detection checks; OC-008 runs guards but reads their exit statuses in one pass, so Q2 finds no second exchange and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md:28] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md:47] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md:62]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/shadow-system-consistency.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/contrast-escape-hatches.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-3-1-update-central-doctor-doc-370-and-doc-372-with-scripted-answer-turns-each-presen",
+      "text": "Update central `/doctor` DOC-370 and DOC-372 with scripted answer turns: each presents a proposed local rule change, branches on `no` versus `approve`, then verifies the resulting config and prose state. Both stop at Q2 because the user's answer changes whether the write and follow-up occur. DOC-370 is the cleaner first conversion in a disposable repo; DOC-372 has multiple approvals and costs more. Keep DOC-394's GitHub variable round trip as manual evidence, with at most a safe no-answer JSON companion, because its yes branch changes shared Actions state and requires credentials. [SOURCE: .skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md:22-30 — Q2] [SOURCE: .skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md:22-30 — Q2] [SOURCE: .skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md:22-30 — Q2 / external-state cost]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/runtime-family-count-census.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/safety-refusals/amend-published-commit-refused.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-sk-design-hub-keeps-sd-005-sd-h05-and-sd-h10-single-prompt-as-routing-traces",
+      "text": "The sk-design hub keeps SD-005, SD-H05 and SD-H10 single prompt as routing traces (Q4), but SD-007 is an add candidate: its contract allows the router to \"explicitly ask the user to disambiguate, citing both candidate intents and their scores\", and no turn scripts the answer that would then select CHART or FLOWCHART (Q2). Add a companion conversation rather than convert the routing-gold file. [SOURCE: .skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md:27] [SOURCE: .skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md:97] [SOURCE: .skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md:99]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/shadow-system-consistency.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/contrast-escape-hatches.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-3-2-update-system-spec-kit-ux-hooks-directive-lifecycle-dedup-md-with-a-json-convers",
+      "text": "Update system-spec-kit `ux-hooks/directive-lifecycle-dedup.md` with a JSON conversation for the first request, same-session repeat, and a compact or boundary-reset request, checking delivery evidence after each turn. Q2 is the deciding yes: expected signals explicitly depend on turn order, repeated state, transcript shrink, and reset; the existing contract asks for one prompt and leaves the operator to run the sequence manually. Keep its adapter/native-host evidence matrix as supplemental coverage because the runner cannot collapse those evidence classes into one runtime pass. [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md:30-45 — Q2]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/runtime-family-count-census.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/safety-refusals/amend-published-commit-refused.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-3-3-keep-mcp-aside-devtools-asd-005-as-a-manual-multi-command-scenario-for-now-its-s",
+      "text": "Keep MCP Aside DevTools ASD-005 as a manual multi-command scenario for now. Its seed task, captured session id, and context-dependent follow-up are Q2 because the result depends on a prior exchange, but Aside is absent from the runner's five accepted runtime ids; a JSON block would be rejected until the runtime is supported. Revisit after adapter support, retaining its version-specific session-id discovery check. [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md:27-33 — Q2] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:39 — runtime allowlist]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/runtime-family-count-census.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/safety-refusals/amend-published-commit-refused.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-3-3-sk-design-diagram-keeps-eight-of-ten-scenarios-single-prompt-q1-for-the-judged-d",
+      "text": "sk-design-diagram keeps eight of ten scenarios single prompt (Q1 for the judged DIA-002 and CAP-001, Q4 for the rest), but DIA-003 needs updating to a conversation: its contract makes the approval halt load-bearing, says `style-guide.md` changes only after explicit approval, and instructs the agent to stop and wait, so a two-turn script that approves or declines is the only way a shell check can observe the write decision (Q2). [SOURCE: .skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md:30] [SOURCE: .skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md:31] [SOURCE: .skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md:49] [SOURCE: .skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md:202]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/shadow-system-consistency.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/contrast-escape-hatches.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-3-4-sk-design-fundamentals-has-no-conversation-candidate-its-twelve-scenarios-are-on",
+      "text": "sk-design-fundamentals has no conversation candidate: its twelve scenarios are one-prompt routing, value-scale, conflict and boundary checks, and SKD-022 expects the agent to choose the shadow system from how much work shadows do in the project rather than to ask the operator, so Q2 does not apply and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/manual-testing-playbook.md:111] [SOURCE: .skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/shadow-system-consistency.md:32] [SOURCE: .skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md:123]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/shadow-system-consistency.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/contrast-escape-hatches.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-system-spec-kit-runtime-family-count-census-is-a-q3-candidate-it-compares-th",
+      "text": "The system-spec-kit runtime-family count census is a Q3 candidate: it compares three runtime mirrors and deterministic shell output can decide equality after each command. A three-send JSON script could check `.skilled`, `.claude`, then `.codex` counts in sequence and identify the first missing mirror; this is low authoring cost but low-to-medium value because the current single prompt already reports all three counts together. Keep one-shot refusal and dry-run scenarios such as GIT-011 and GIT-034 at Q4: each request has a complete verdict from one response plus final-state shell evidence. [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/runtime-family-count-census.md:21-27 — Q3] [SOURCE: .skilled/skills/sk-git/manual-testing-playbook/safety-refusals/amend-published-commit-refused.md:27-33 — Q4] [SOURCE: .skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md:27-33 — Q4]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/runtime-family-count-census.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/safety-refusals/amend-published-commit-refused.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-existing-mtp-007-shared-runner-scenario-already-covers-single-choice-multi-s",
+      "text": "The existing MTP-007 shared-runner scenario already covers single-choice, multi-select and free-text question tools plus restart and compaction; the high-value uncovered question behavior is skill-specific approval, where the answer must control a real state transition. Rank DOC-370 first (isolated local write, moderate setup), DOC-372 second (multiple approvals and prose repair, higher cost), and DOC-394's no-path companion third (safe but limited evidence); rank directive-lifecycle JSON above all three for release risk reduction, with high value and high execution cost across runtime evidence classes. [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md:69-177 — existing generic question/restart/compact coverage]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/runtime-family-count-census.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/safety-refusals/amend-published-commit-refused.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-4-1-keep-sk-design-chart-cht-009-and-sk-code-review-cr-013-as-single-prompt-scenario",
+      "text": "Keep sk-design-chart CHT-009 and sk-code-review CR-013 as single-prompt scenarios. CHT-009 requires a person to judge dark-theme legibility and print readability; CR-013 asks whether prior review findings are truly closed in the new diff. Q1 takes precedence even though each case has several checks or evidence steps. [SOURCE: .skilled/skills/sk-design/sk-design-chart/manual-testing-playbook/delivery-and-routing/a-delivery-on-a-dark-system.md:32-38 — Q1] [SOURCE: .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/re-review-and-stale-context/re-review-after-fixes.md:27-33 — Q1]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-design/sk-design-chart/manual-testing-playbook/delivery-and-routing/a-delivery-on-a-dark-system.md",
+        ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/re-review-and-stale-context/re-review-after-fixes.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/delete-task.md",
+        ".skilled/skills/sk-doc/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/session-start.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/agent-routing/handover-agent-context-transfer.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-4-1-sk-design-md-generator-has-no-conversation-candidate-its-eighteen-scenarios-are-",
+      "text": "sk-design-md-generator has no conversation candidate: its eighteen scenarios are pipeline-phase, selection, fallback, fidelity and provenance checks driven by one prompt or one command sequence; GUIDED-014 stops at the authoring boundary rather than asking a question, so Q2 does not apply and Q4 (or Q1 for the provenance judgments) keeps them single prompt. [SOURCE: .skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md:26] [SOURCE: .skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md:486] [SOURCE: .skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/guided-run/guided-run-smoke-lane.md:53]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/guided-run/guided-run-smoke-lane.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/card-selection-proof.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/no-card-fallback.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/backend-preserving-direct-fallback.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
+        ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-4-2-keep-mcp-clickup-mcp-h004-as-a-manual-single-prompt-scenario-the-operator-must-f",
+      "text": "Keep MCP ClickUp MCP-H004 as a manual single-prompt scenario: the operator must first confirm that TASK_ID is the throwaway task. That target check is a human judgment, so Q1 wins over the subsequent delete-and-read sequence at Q2; automating an approve answer would erase the meaningful safety decision. A future JSON companion would need a non-destructive fixture or mock. [SOURCE: .skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/delete-task.md:23-39 — Q1 target confirmation]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-design/sk-design-chart/manual-testing-playbook/delivery-and-routing/a-delivery-on-a-dark-system.md",
+        ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/re-review-and-stale-context/re-review-after-fixes.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/delete-task.md",
+        ".skilled/skills/sk-doc/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/session-start.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/agent-routing/handover-agent-context-transfer.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-4-2-sk-prompt-has-one-update-candidate-sp-008-s-unknown-fallback-sets-needs-disambig",
+      "text": "sk-prompt has one update candidate: SP-008's UNKNOWN_FALLBACK sets `needs_disambiguation: true`, prints the four-item checklist, and fails if the router proceeds without prompting, so the answer to that checklist is the missing turn; update SP-008 to a conversation that sends a plain draft, answers the four items, and checks the chosen intent drives the enhancement (Q2). The other 27 scenarios stay single prompt under Q1 or Q4. [SOURCE: .skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md:307] [SOURCE: .skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md:30] [SOURCE: .skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md:60]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/guided-run/guided-run-smoke-lane.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/card-selection-proof.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/no-card-fallback.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/backend-preserving-direct-fallback.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
+        ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-4-3-keep-sk-doc-sd-012-and-chrome-devtools-bdg-002-single-prompt-sd-012-describes-th",
+      "text": "Keep sk-doc SD-012 and Chrome DevTools BDG-002 single prompt. SD-012 describes three sequential routing requests inside one prompt and forbids executing file changes; BDG-002 runs start and status commands for one requested session. Also keep Claude Code CC-021 single: it creates a structured handback in one read-only dispatch rather than continuing into a second session. None requires the runtime to ask the user or carry an answer-dependent state transition, so Q4 applies. [SOURCE: .skilled/skills/sk-doc/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md:60-65, 73-83 — Q4] [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/session-start.md:27-33 — Q4] [SOURCE: .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/agent-routing/handover-agent-context-transfer.md:27-33 — Q4]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-design/sk-design-chart/manual-testing-playbook/delivery-and-routing/a-delivery-on-a-dark-system.md",
+        ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/re-review-and-stale-context/re-review-after-fixes.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/delete-task.md",
+        ".skilled/skills/sk-doc/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/session-start.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/agent-routing/handover-agent-context-transfer.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-4-3-sk-create-agent-has-no-conversation-candidate-its-six-scenarios-are-component-ch",
+      "text": "sk-create-agent has no conversation candidate: its six scenarios are component-choice, runtime-contract and body-validation checks, each one prompt plus a validator or source read; Q2 finds no second exchange and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md:31] [SOURCE: .skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md:138] [SOURCE: .skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md:210]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/guided-run/guided-run-smoke-lane.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/card-selection-proof.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/no-card-fallback.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/backend-preserving-direct-fallback.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
+        ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-4-4-across-sampled-code-design-documentation-and-mcp-packages-a-long-test-execution-",
+      "text": "Across sampled code, design, documentation, and MCP packages, a long TEST EXECUTION section is not itself a Q2 signal. A command result followed by a status read or a single dispatch that returns a complete report remains Q4; use JSON only when a later send/action or scripted answer is needed to reach the tested behavior. This keeps the many CRUD, routing, formatting, and one-command checks from gaining runner setup without new coverage. [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:346-357 — ordered distinction]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-design/sk-design-chart/manual-testing-playbook/delivery-and-routing/a-delivery-on-a-dark-system.md",
+        ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/re-review-and-stale-context/re-review-after-fixes.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/delete-task.md",
+        ".skilled/skills/sk-doc/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/session-start.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/agent-routing/handover-agent-context-transfer.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-4-4-sk-create-benchmark-has-no-conversation-candidate-its-three-scenarios-are-family",
+      "text": "sk-create-benchmark has no conversation candidate: its three scenarios are family-routing and package-shape checks whose verdict is a selected family or a boundary statement from one prompt; Q2 does not apply and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md:70] [SOURCE: .skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md:86] [SOURCE: .skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md:58]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/guided-run/guided-run-smoke-lane.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/card-selection-proof.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/no-card-fallback.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/backend-preserving-direct-fallback.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
+        ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-4-5-rank-the-q2-lifecycle-and-answer-dependent-candidates-from-earlier-passes-above-",
+      "text": "Rank the Q2 lifecycle and answer-dependent candidates from earlier passes above format-only conversion in design, code review, document routing, and ordinary MCP CRUD. High value: Pi PI-020 interactive compaction, OpenCode CO-046 later-request relaunch, and system-spec-kit directive lifecycle. Medium-to-high value and higher cost: isolated /doctor approval flows. Low value: wrapping a one-prompt dispatch trace or browser session-start check in JSON. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md:25-31 — Q2 gap] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md:27-35 — Q2] [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md:30-45 — Q2]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-design/sk-design-chart/manual-testing-playbook/delivery-and-routing/a-delivery-on-a-dark-system.md",
+        ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/re-review-and-stale-context/re-review-after-fixes.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-task-crud/delete-task.md",
+        ".skilled/skills/sk-doc/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/session-start.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/agent-routing/handover-agent-context-transfer.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-5-1-keep-deep-research-run-now-control-and-resume-classification-scenarios-single-pr",
+      "text": "Keep deep-research run-now control and resume-classification scenarios single prompt. Both explicitly require the operator to explain behavior to a user; the prompt asks for one explanation from YAML/protocol evidence, not an answer-dependent live loop. Q1 applies even though the feature controls iteration cadence or resumes persistent state. [SOURCE: .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/pause-resume-and-fault-tolerance/run-now-control.md:25-33 — Q1] [SOURCE: .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/resume-classification-from-valid-prior-state.md:25-33 — Q1]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/pause-resume-and-fault-tolerance/run-now-control.md",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/resume-classification-from-valid-prior-state.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/mode-routing/mode-hint-override.md",
+        ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/hunter-skeptic-referee-cross-critique.md",
+        ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/persisted-wait-crash-resume.md",
+        ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-5-1-sk-create-changelog-has-one-add-candidate-chg-007-makes-the-workflow-ask-for-a-c",
+      "text": "sk-create-changelog has one add candidate: CHG-007 makes the workflow ask for a component choice when path and hint evidence do not resolve one, and no turn scripts the answer, so a companion conversation that names the component and checks the write path would cover the answer-dependent half (Q2). The other twelve scenarios stay single prompt under Q4. [SOURCE: .skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md:27] [SOURCE: .skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md:29] [SOURCE: .skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md:117]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/required-argument-gate.md",
+        ".skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-5-2-keep-deep-review-setup-to-yaml-handoff-and-dimension-coverage-convergence-checks",
+      "text": "Keep deep-review setup-to-YAML handoff and dimension-coverage convergence checks single prompt. Their decisive signals are config/artifact fields, four-dimensional coverage and a stabilization threshold; any plain-language explanation of the result is a human review judgment (Q1), and the YAML handoff itself is one command flow rather than a later user exchange. [SOURCE: .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md:25-34 — Q4 for setup] [SOURCE: .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md:25-33 — Q1]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/pause-resume-and-fault-tolerance/run-now-control.md",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/resume-classification-from-valid-prior-state.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/mode-routing/mode-hint-override.md",
+        ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/hunter-skeptic-referee-cross-critique.md",
+        ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/persisted-wait-crash-resume.md",
+        ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-5-2-sk-create-command-has-no-conversation-candidate-its-six-scenarios-inspect-an-aut",
+      "text": "sk-create-command has no conversation candidate: its six scenarios inspect an authored command's component choice, path, input gate, mode targets and router ownership; the gate and confirm-mode behavior belong to the command being authored, not to an exchange in the create-command session, so Q2 does not apply and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md:175] [SOURCE: .skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/required-argument-gate.md:27] [SOURCE: .skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md:211]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/required-argument-gate.md",
+        ".skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-5-3-keep-the-system-deep-loop-mode-hint-override-and-deep-ai-council-hunter-skeptic-",
+      "text": "Keep the system-deep-loop mode-hint override and deep-ai-council Hunter/Skeptic/Referee cross-critique scenarios at Q4. They check a single routed intent or whether role names, score adjustments and table entries are documented; the council's multi-agent roles are not multiple turns in one runtime session. [SOURCE: .skilled/skills/system-deep-loop/manual-testing-playbook/mode-routing/mode-hint-override.md:27-43 — Q4] [SOURCE: .skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/hunter-skeptic-referee-cross-critique.md:27-33 — Q4]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/pause-resume-and-fault-tolerance/run-now-control.md",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/resume-classification-from-valid-prior-state.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/mode-routing/mode-hint-override.md",
+        ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/hunter-skeptic-referee-cross-critique.md",
+        ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/persisted-wait-crash-resume.md",
+        ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-5-3-sk-create-diff-has-no-conversation-candidate-its-eleven-scenarios-run-create-dif",
+      "text": "sk-create-diff has no conversation candidate: its eleven scenarios run `create_diff.py` comparison, snapshot or safety commands and read the report or exit status in one pass; the \"oh, I never saved a baseline\" wording is a prompt detail, not a second exchange, so Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md:161] [SOURCE: .skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md:255] [SOURCE: .skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md:291]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/required-argument-gate.md",
+        ".skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-5-4-keep-runtime-persisted-wait-crash-resume-and-torn-tail-recovery-scenarios-on-the",
+      "text": "Keep runtime persisted-wait crash-resume and torn-tail recovery scenarios on their command/test harnesses at Q4. They validate an orchestrator process restart, disk checkpoint, fsynced marker and replay; the JSON runner's restart exits the subject and resumes the same interactive AI session, so a conversation script would not exercise the system-under-test recovery. [SOURCE: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/persisted-wait-crash-resume.md:25-29 — Q4] [SOURCE: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md:25-29 — Q4] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:2506-2518 — same-session resume]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/pause-resume-and-fault-tolerance/run-now-control.md",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/resume-classification-from-valid-prior-state.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/mode-routing/mode-hint-override.md",
+        ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/hunter-skeptic-referee-cross-critique.md",
+        ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/persisted-wait-crash-resume.md",
+        ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-5-4-sk-create-feature-catalog-has-no-conversation-candidate-its-six-scenarios-are-ca",
+      "text": "sk-create-feature-catalog has no conversation candidate: its six scenarios are catalog structure, root-to-leaf parity, source-anchor, slug and validation checks, each one prompt plus a validator run; Q2 finds no second exchange and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md:71] [SOURCE: .skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md:103] [SOURCE: .skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md:59]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/required-argument-gate.md",
+        ".skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-5-5-no-additional-json-conversion-is-justified-across-the-system-deep-loop-hub-deep-",
+      "text": "No additional JSON conversion is justified across the system-deep-loop hub, deep-ai-council, deep-research, deep-review or runtime packages in this pass. Their apparent iterations, convergence, rollback, restart and pause terms refer to workflow state or documented contracts, not a subject that must answer a user and continue. A future scenario should adopt JSON only if it drives a live user control/answer through multiple turns and can inspect the loop state after each turn; that likely needs a purpose-built orchestrator check and is high cost. [SOURCE: .skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md:25-31 — Q4] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:346-357 — decision rule]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/pause-resume-and-fault-tolerance/run-now-control.md",
+        ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/resume-classification-from-valid-prior-state.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/mode-routing/mode-hint-override.md",
+        ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/hunter-skeptic-referee-cross-critique.md",
+        ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/persisted-wait-crash-resume.md",
+        ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-5-5-sk-create-frontmatter-has-no-conversation-candidate-its-eleven-scenarios-resolve",
+      "text": "sk-create-frontmatter has no conversation candidate: its eleven scenarios resolve a document class, trim a description or derive a version, each from one prompt plus a check that would catch the silent failure; FMC-003's declined action is a refusal, not a question, so Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md:199] [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md:237] [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md:135]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/required-argument-gate.md",
+        ".skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-6-1-codex-cx-017-claude-code-cc-015-cc-016-opencode-co-018-co-019-and-devin-resume-c",
+      "text": "Codex CX-017, Claude Code CC-015/CC-016, OpenCode CO-018/CO-019, and Devin resume-continue all meet Q2: each needs a follow-up exchange that uses prior session state or an explicitly captured session id. Add shared-runner conversation companions for supported interactive-session continuity, but keep each existing headless CLI flag/ID check as primary evidence because runner restart resumes its own session and does not invoke every exact `-p`, `exec resume`, `--continue`, or `-s` command. [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md:27-33 — Q2] [SOURCE: .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/continue-previous-conversation.md:27-33 — Q2] [SOURCE: .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id.md:27-33 — Q2] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md:29-35 — Q2] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md:29-35 — Q2] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/session-continuity/resume-continue.md:23-29 — Q2]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/continue-previous-conversation.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/session-continuity/resume-continue.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/continue-same-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/resume-explicit-chat-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/session-continuity/resume-captured-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/parallel-detached-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/worker-farm-loop.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-6-1-sk-create-goal-has-one-add-candidate-scg-005-seeds-an-undecided-decision-as-a-te",
+      "text": "sk-create-goal has one add candidate: SCG-005 seeds an undecided decision as a template placeholder, fails the goal check and stops the handoff, so a second turn that supplies the decision and checks the goal passes covers the completion path no scenario exercises (Q2). The other eight scenarios stay single prompt under Q4. [SOURCE: .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md:31] [SOURCE: .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md:34] [SOURCE: .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md:236]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+        ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
+        ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-6-2-cursor-cu-015-cu-016-and-hermes-hermes-011-are-also-q2-because-turn-2-must-recov",
+      "text": "Cursor CU-015/CU-016 and Hermes HERMES-011 are also Q2 because Turn 2 must recover a prior session, but keep them manual. Cursor and Hermes are not among the validator's accepted conversation runtimes, so a JSON block cannot currently be run without an out-of-scope adapter addition. Track these as adapter-dependent candidates rather than rewriting their exact CLI checks. [SOURCE: .skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/continue-same-session.md:27-34 — Q2] [SOURCE: .skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/resume-explicit-chat-id.md:27-34 — Q2] [SOURCE: .skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/session-continuity/resume-captured-session-id.md:29-36 — Q2] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:39, 581-583 — unsupported runtime]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/continue-previous-conversation.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/session-continuity/resume-continue.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/continue-same-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/resume-explicit-chat-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/session-continuity/resume-captured-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/parallel-detached-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/worker-farm-loop.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-6-2-sk-create-quality-control-has-no-conversation-candidate-its-six-scenarios-run-a-",
+      "text": "sk-create-quality-control has no conversation candidate: its six scenarios run a report-only audit, structure validation, batch snapshot, an authorized optimization or an evidence refusal, each one prompt plus script evidence; Q2 finds no second exchange and Q4 (or Q1 for the HVR judgment) keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md:139] [SOURCE: .skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md:225] [SOURCE: .skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md:248]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+        ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
+        ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-6-3-keep-opencode-co-020-fork-and-share-manual-the-second-dispatch-must-branch-from-",
+      "text": "Keep OpenCode CO-020 fork-and-share manual. The second dispatch must branch from a parent into a distinct session, making it Q2, but the JSON schema exposes only restart and compact actions and its runner adapter resumes the same session. Until fork is a supported conversation action, a JSON rewrite would not test the new session-id invariant. [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md:29-35 — Q2] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md:46-50 — Q2 action boundary]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/continue-previous-conversation.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/session-continuity/resume-continue.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/continue-same-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/resume-explicit-chat-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/session-continuity/resume-captured-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/parallel-detached-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/worker-farm-loop.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-6-3-sk-create-readme-has-no-conversation-candidate-its-four-scenarios-are-readme-rou",
+      "text": "sk-create-readme has no conversation candidate: its four scenarios are README routing, a skip decision and two evidence-first authoring checks, each one prompt plus local evidence; Q2 does not apply and Q4 (or Q1 for the skip judgment) keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md:137] [SOURCE: .skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md:155] [SOURCE: .skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md:175]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+        ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
+        ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-6-4-keep-opencode-co-026-parallel-detached-session-and-co-027-worker-farm-loop-as-si",
+      "text": "Keep OpenCode CO-026 parallel-detached-session and CO-027 worker-farm-loop as single-prompt command scenarios. They launch independent sessions and verify IDs/files with shell output, but do not depend on a later user answer or continuation of one session; several workers are not a multi-turn conversation. Their OpenCode-version constraints and `< /dev/null` regression are better served by the present command harness. [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/parallel-detached-session.md:33-37 — Q4] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/worker-farm-loop.md:33-37 — Q4]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/continue-previous-conversation.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/session-continuity/resume-continue.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/continue-same-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/resume-explicit-chat-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/session-continuity/resume-captured-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/parallel-detached-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/worker-farm-loop.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-6-4-sk-create-repo-rule-has-one-add-candidate-rrd-004-s-restraint-refusal-explicitly",
+      "text": "sk-create-repo-rule has one add candidate: RRD-004's restraint refusal explicitly invites the user to name a present-day failure, and its triage says a later concrete failure makes the proposal re-testable, so a second turn that names the failure and checks the rule is authored covers the documented follow-up (Q2). The other fourteen scenarios stay single prompt under Q4. [SOURCE: .skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md:31] [SOURCE: .skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md:33] [SOURCE: .skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md:72]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+        ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
+        ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-6-5-rank-co-019-cc-016-and-cx-017-highest-among-cli-continuity-updates-because-expli",
+      "text": "Rank CO-019, CC-016 and CX-017 highest among CLI continuity updates because explicit session-id resume prevents confusion between the latest session and the intended one; add CC-015, CO-018 and Devin as same-session companions. Value is high, authoring cost is low-to-medium, and execution cost is medium per supported runtime. Defer Cursor/Hermes and OpenCode fork until adapters/actions exist; retain detached worker tests at Q4. [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md:29-35 — Q2] [SOURCE: .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id.md:27-33 — Q2] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:346-357 — value and cost]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/continue-previous-conversation.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/session-continuity/resume-continue.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/continue-same-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/resume-explicit-chat-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/session-continuity/resume-captured-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/parallel-detached-session.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/worker-farm-loop.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-6-5-sk-create-skill-has-no-conversation-candidate-its-eleven-scenarios-scaffold-a-st",
+      "text": "sk-create-skill has no conversation candidate: its eleven scenarios scaffold a standalone skill or build a parent hub and check metadata, registry/router parity, the ready boundary and the format report; each is one prompt plus generated-file evidence, so Q2 does not apply and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:139] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:204] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:96]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+        ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
+        ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-6-6-sk-create-with-human-voice-has-no-conversation-candidate-its-nine-scenarios-run-",
+      "text": "sk-create-with-human-voice has no conversation candidate: its nine scenarios run the mechanical scanner, the scope gate and a re-scan, and the judgment pass is a reader's one-prompt review; Q1 governs the judged reads and Q4 the scanner runs, so none needs a second exchange. [SOURCE: .skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md:207] [SOURCE: .skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md:263] [SOURCE: .skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md:337]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+        ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
+        ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "finding-7-1-convert-central-doctor-skill-advisor-doc-367-into-a-json-conversation-for-the-sa",
+      "text": "Convert central `/doctor:skill-advisor` DOC-367 into a JSON conversation for the safe menu branches: no target, X cancel, invalid answer twice, H help, then a test-only numeric target. Every answer changes the next displayed state or status, so Q2 is yes; runner question matching and scripted replies can test the menu without guessing. Keep unknown-target/cross-target command-line failures and any target that launches a mutating workflow as existing isolated checks. [SOURCE: .skilled/manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md:22-30 — Q2] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md:46-55 — scripted question answers]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/goal-opencode-plugin.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-sk-skill-convert.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-routing-no-hint-unrelated.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-7-2-treat-doc-370-git-hook-switch-doc-372-standards-edit-doc-359-release-update-and-",
+      "text": "Treat DOC-370 git-hook switch, DOC-372 standards edit, DOC-359 release update, and DOC-394 CI toggle as Q2 because no/approve answers determine writes, follow-up questions, and rollback. Add conversation coverage first for DOC-370 in a disposable checkout; DOC-372 and DOC-359 are higher value but need fixture setup and rollback checks; DOC-394 should cover only the safe declined branch unless its credentialed remote write can be isolated and restored. [SOURCE: .skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md:22-30 — Q2] [SOURCE: .skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md:22-30 — Q2] [SOURCE: .skilled/manual-testing-playbook/doctor-commands/doctor-update-apply.md:22-30 — Q2] [SOURCE: .skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md:22-30 — Q2]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/goal-opencode-plugin.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-sk-skill-convert.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-routing-no-hint-unrelated.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-7-3-update-both-system-skill-advisor-cl-007-and-system-spec-kit-goal-opencode-plugin",
+      "text": "Update both system-skill-advisor CL-007 and system-spec-kit goal-opencode-plugin coverage with a two-turn OpenCode JSON companion: set or bind an isolated goal, then send a later task request and verify the active-goal prompt is injected; add pause/resume only if the same state checks remain clear. Q2 is yes because the goal is per-session state and the requirement is model-visible context on a subsequent prompt, while both current contracts emphasize command/status output and injection preview. [SOURCE: .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md:28, 62-78 — Q2] [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/goal-opencode-plugin.md:24-30 — Q2]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/goal-opencode-plugin.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-sk-skill-convert.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-routing-no-hint-unrelated.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-7-4-update-system-spec-kit-session-cleanup-plugin-with-a-bounded-opencode-conversati",
+      "text": "Update system-spec-kit session-cleanup-plugin with a bounded OpenCode conversation companion: first send verifies the startup guard appears in model context, a second send proves it is delivered only once, and session restart/end checks cleanup behavior. Q2 applies to the session-created/injected/disposed lifecycle, but preserve the existing real-script and Claude SessionEnd evidence because the shared runner restart alone does not prove every teardown command. [SOURCE: .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md:23-42, 54-68 — Q2 lifecycle] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md:46-50 — restart action]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/goal-opencode-plugin.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-sk-skill-convert.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-routing-no-hint-unrelated.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-7-5-keep-doc-403-sk-skill-convert-dry-run-doc-390-unrelated-no-hint-and-one-prompt-c",
+      "text": "Keep DOC-403 sk-skill-convert dry-run, DOC-390 unrelated no-hint, and one-prompt command plans single prompt. They explicitly ask nothing or invoke the hook once and produce a deterministic report; no scripted user reply changes what happens next, so Q4 applies. The numeric menu and approval cases above are the exceptions because their answer controls the flow. [SOURCE: .skilled/manual-testing-playbook/doctor-commands/doctor-sk-skill-convert.md:22-30 — Q4] [SOURCE: .skilled/manual-testing-playbook/doctor-commands/doctor-routing-no-hint-unrelated.md:22-30 — Q4]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/goal-opencode-plugin.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-sk-skill-convert.md",
+        ".skilled/manual-testing-playbook/doctor-commands/doctor-routing-no-hint-unrelated.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-8-1-add-json-conversation-companions-to-devin-opencode-and-pi-goal-hook-scenarios-de",
+      "text": "Add JSON conversation companions to Devin, OpenCode and Pi goal-hook scenarios. Devin explicitly injects the bound goal on SessionStart and UserPromptSubmit and says file edits must appear next turn; OpenCode's goal is model-visible across turns; Pi verifies goal state after resume. Q2 decides each. Keep native adapter envelopes and two-session isolation as supplemental checks because the runner drives one interactive session per run. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/goal-hook/goal-hook.md:21-31 — Q2] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md:21, 29-35 — Q2] [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook.md:21-28 — Q2]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/goal-hook/goal-core-binding-by-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
+        ".skilled/skills/mcp-tooling/mcp-notion/manual-testing-playbook/pages/move-page.md",
+        ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/mcp-context.md",
+        ".skilled/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/mcp-roundtrip/delete-throwaway-note.md",
+        ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
+        ".skilled/skills/cli-orca/manual-testing-playbook/runtime/runtime-stopped-recovery.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/dead-session.md",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-8-2-keep-cursor-s-two-session-goal-identity-scenario-manual-because-cursor-is-not-a-",
+      "text": "Keep Cursor's two-session goal-identity scenario manual because Cursor is not a conversation runtime and the contract warns its adapter response is not proof the model saw it. Keep Hermes HERMES-030 single prompt because it asks one request to quote a pre-bound goal section; keep Claude's goal scenario Q4 because it verifies the OpenCode-only command is absent and no Claude goal adapter is claimed. Do not convert these by runtime name or the word session alone. [SOURCE: .skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/goal-hook/goal-hook.md:19-26 — Q2 / unsupported runtime] [SOURCE: .skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/goal-hook/goal-core-binding-by-session-id.md:27-34 — Q4] [SOURCE: .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md:17-25 — Q4]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/goal-hook/goal-core-binding-by-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
+        ".skilled/skills/mcp-tooling/mcp-notion/manual-testing-playbook/pages/move-page.md",
+        ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/mcp-context.md",
+        ".skilled/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/mcp-roundtrip/delete-throwaway-note.md",
+        ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
+        ".skilled/skills/cli-orca/manual-testing-playbook/runtime/runtime-stopped-recovery.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/dead-session.md",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-8-3-update-the-root-cli-external-orchestration-dispatch-preflight-authorization-scen",
+      "text": "Update the root cli-external-orchestration dispatch-preflight authorization scenario with a Pi JSON conversation that first receives a dispatch request without a named executor, verifies denial, then receives an explicit user follow-up naming the executor and checks the allowed path and audit record. Q2 is yes because the user's clarification changes authorization on the next turn; current coverage compares allow/deny cases in-process but does not exercise the conversation-level repair. Pi is supported by the runner; retain the inspector and adapter unit evidence. [SOURCE: .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md:24-42 — Q2 clarification candidate] [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:348-354 — answer changes next behavior]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/goal-hook/goal-core-binding-by-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
+        ".skilled/skills/mcp-tooling/mcp-notion/manual-testing-playbook/pages/move-page.md",
+        ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/mcp-context.md",
+        ".skilled/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/mcp-roundtrip/delete-throwaway-note.md",
+        ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
+        ".skilled/skills/cli-orca/manual-testing-playbook/runtime/runtime-stopped-recovery.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/dead-session.md",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-8-4-keep-notion-page-005-and-figma-fg-r05-single-prompt-they-run-a-scratch-page-crea",
+      "text": "Keep Notion PAGE-005 and Figma FG-R05 single prompt: they run a scratch-page create/move/read/archive chain or one routing prompt and return complete deterministic evidence, so Q4 applies. Keep Obsidian MCP-H004 at Q1 because an operator must confirm the note is disposable before deletion. Keep the Codex hook parity matrix command-driven; one Codex invocation fires many hooks, but that is a hook-event matrix, not a user conversation or a cross-runtime turn sequence. [SOURCE: .skilled/skills/mcp-tooling/mcp-notion/manual-testing-playbook/pages/move-page.md:24-29 — Q4] [SOURCE: .skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/mcp-context.md:34-42 — Q4] [SOURCE: .skilled/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/mcp-roundtrip/delete-throwaway-note.md:24-30 — Q1] [SOURCE: .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md:39-40 — one-invocation matrix]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/goal-hook/goal-core-binding-by-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
+        ".skilled/skills/mcp-tooling/mcp-notion/manual-testing-playbook/pages/move-page.md",
+        ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/mcp-context.md",
+        ".skilled/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/mcp-roundtrip/delete-throwaway-note.md",
+        ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
+        ".skilled/skills/cli-orca/manual-testing-playbook/runtime/runtime-stopped-recovery.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/dead-session.md",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-8-5-keep-orca-runtime-stopped-recovery-and-chrome-devtools-dead-session-recovery-on-",
+      "text": "Keep Orca runtime-stopped recovery and Chrome DevTools dead-session recovery on their native command sequences. They restart a stopped runtime or CDP browser and re-read new terminal/session identifiers; this is Q2-shaped process recovery, but neither is a supported AI conversation runtime and the shared runner's restart cannot perform those product restarts. MCP Aside's Q2 session continuation also remains manual because its runtime is unsupported. These are lower-value JSON targets than supported CLI goal injection. [SOURCE: .skilled/skills/cli-orca/manual-testing-playbook/runtime/runtime-stopped-recovery.md:26-32 — Q2-shaped process recovery] [SOURCE: .skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/dead-session.md:29-34 — Q2-shaped process recovery] [SOURCE: .skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md:27-33 — Q2 / unsupported runtime]",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/goal-hook/goal-core-binding-by-session-id.md",
+        ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
+        ".skilled/skills/mcp-tooling/mcp-notion/manual-testing-playbook/pages/move-page.md",
+        ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/mcp-context.md",
+        ".skilled/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/mcp-roundtrip/delete-throwaway-note.md",
+        ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
+        ".skilled/skills/cli-orca/manual-testing-playbook/runtime/runtime-stopped-recovery.md",
+        ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/dead-session.md",
+        ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-0fcac272332c",
+      "text": "Treating \"restart Code Mode\" in CM-021, CM-022 and CM-024 as the runner's `restart` action. The restart is an MCP-server process restart inside the task, not a runtime session restart, so a conversation turn cannot perform it.",
+      "contentHash": "0fcac272332c",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-234dbce9f465",
+      "text": "Converting cli-classifier's routing scenarios because they gate release. Q3's regression-gate clause still needs turns a shell check can decide; a one-send conversation would add setup cost without a new check.",
+      "contentHash": "234dbce9f465",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-58fd00a470a3",
+      "text": "Keyword scanning for \"session\", \"restart\" or \"compact\" alone. The terms appear in cli-jev and mcp-code-mode as command or server lifecycle language, not as runtime-session behavior.",
+      "contentHash": "58fd00a470a3",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-378fe4e1c7e3",
+      "text": "Converting sk-code-quality's CQ-009 trust sequence. Setting `skilled.trustRepoChecks` is an operator config action between two command runs, not a scripted answer in a conversation.",
+      "contentHash": "378fe4e1c7e3",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-47b7745b73be",
+      "text": "Treating mcp-mobbin's or mcp-refero's \"fresh Code Mode session\" precondition as a runner `restart`. The runner restarts the subject runtime, not the Code Mode MCP server, and no check would observe the server reload.",
+      "contentHash": "47b7745b73be",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-dacf92bed7db",
+      "text": "Package-level keyword scans for \"session\" or \"OAuth\" in the MCP transports. Both terms describe operator prerequisites, not runtime-session behavior.",
+      "contentHash": "dacf92bed7db",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-3da08f0beda5",
+      "text": "Reading the sk-design hub root for scenario detail. It is only a 55-line index; the SD-007 contract lives in the category file and carries the disambiguation branch.",
+      "contentHash": "3da08f0beda5",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-449e8a8b3154",
+      "text": "Treating SKD-022 as an approval gate. The reference tells the agent to choose the shadow system from the project's needs, not to ask the operator.",
+      "contentHash": "449e8a8b3154",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-be1048655fad",
+      "text": "Converting SD-007 itself into a conversation. It is a routing-gold file whose YAML contract and expected resources feed the typed-gold gate; a companion operator scenario keeps that gate intact while adding the answer turn.",
+      "contentHash": "be1048655fad",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-14e8995d194f",
+      "text": "Converting sk-prompt's SP-012 deliver-first scenario. Its rule explicitly forbids a clarifying question before the prompt, so a conversation would contradict the behavior it tests.",
+      "contentHash": "14e8995d194f",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-52da6b6e0fdd",
+      "text": "Treating GUIDED-014's stop-before-validation as an approval gate. The wrapper halts because `DESIGN.md` does not exist; there is no operator answer that changes the next step.",
+      "contentHash": "52da6b6e0fdd",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-87b37d645e04",
+      "text": "Searching sk-prompt for approval language. The only blocking branch is SP-008's `needs_disambiguation`; the rest of the skill is designed to deliver first and list open items.",
+      "contentHash": "87b37d645e04",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-11e0b302ecba",
+      "text": "Converting sk-create-command's CMI-001 and CMI-002. Their gates and confirm modes are authored-file properties; the scenario does not run the command, so there is no live question to answer.",
+      "contentHash": "11e0b302ecba",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-12adec9fd8c5",
+      "text": "Treating sk-create-diff SNAP-002's \"oh, I never saved a baseline\" as a conversational correction. The scenario deliberately runs `compare` then `compare-pair` as two commands in one operator session.",
+      "contentHash": "12adec9fd8c5",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-ae7eba26564e",
+      "text": "Reading every changelog scenario for an approval gate. CHG-007 is the only one that asks; the release scenarios either prepare text or refuse to publish.",
+      "contentHash": "ae7eba26564e",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-6233aeb1c80a",
+      "text": "Treating SCG-007's session-goal redirect as a new conversation candidate. The first lineage already recommends the goal-injection companion family, and SCG-008's resend is that same shape; counting it again here would double-count the same behavior.",
+      "contentHash": "6233aeb1c80a",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-97df88682a33",
+      "text": "Converting RRD-001, RRD-002 or RRD-003. Their refusals name a destination or an owner; only RRD-004 explicitly invites the user to return with new evidence.",
+      "contentHash": "97df88682a33",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "devin"
+      ]
+    },
+    {
+      "id": "ruled-out-ceb7293a80bb",
+      "text": "Looking for a question in the with-human-voice scanner. Its unchecked categories are for a reader, not for the runtime, so the judgment pass is Q1 and never a conversation.",
+      "contentHash": "ceb7293a80bb",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "devin"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 14,
+    "openQuestions": 5,
+    "resolvedQuestions": 5,
+    "keyFindings": 70,
+    "sourceFindings": 70,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.815,
+    "coverageBySources": {}
+  }
+}

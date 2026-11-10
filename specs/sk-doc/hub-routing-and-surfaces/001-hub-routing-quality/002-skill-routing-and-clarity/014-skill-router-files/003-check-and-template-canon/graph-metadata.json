@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon",
+  "spec_folder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/003-check-and-template-canon",
+  "parent_id": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "check and template canon",
+      "phase 3 check and template canon",
+      "check and template canon plan",
+      "check and template canon tasks",
+      "check and template canon acceptance criteria",
+      "phase 3 check and template canon closure",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "check and template canon implementation summary"
+    ],
+    "key_topics": [
+      "check",
+      "template",
+      "canon",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "closure",
+      "packet",
+      "goal",
+      "durable"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/routing-shape-debt.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/fixtures/routing-shape-known-debt-frozen.json",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
+      ".skilled/bin/lib/compiled-route-manifest.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".skilled/skills/sk-doc/leaf-manifest.json",
+      "feature-catalog/feature-catalog.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-skill-root-metadata.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "root-router-contract.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "routing-shape-debt.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/routing-shape-debt.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "routing-shape-known-debt.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json",
+        "source": "derived"
+      },
+      {
+        "name": "routing-shape-known-debt-frozen.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/fixtures/routing-shape-known-debt-frozen.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-router-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "init_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-route-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The canon keeps the machine router inside `SKILL.md`",
+    "created_at": "2026-10-29T07:52:42Z",
+    "last_save_at": "2026-11-10T05:26:32.572Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:00c4a292bf8b8a6e38d58be49eab2706cea786900389ac53e85e394ad8e9903d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "50f4510e2734909b01e22c1fc91935efd91b4ad7c56d7384874d68092f684a1d",
+      "plan.md": "35bd2e95e4995d2aa4fb8536d069ad59ae350f093093bca68d389debce23e427",
+      "tasks.md": "6c0fe689f8a80803b119f48f1e51f92e3973e9d264b89ff97113925ee1517103",
+      "implementation-summary.md": "8f76bdb03bf703f35f3d8b2f544a5c4da2345ab5c2d723c4dba8e66289e445de"
+    },
+    "last_active_at": null
+  }
+}

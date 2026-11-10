@@ -26145,7 +26145,7 @@
       "lastUpdated": "2026-09-01T06:54:12.460Z"
     },
     {
-      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter",
+      "specFolder": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter",
       "description": "Six modes emit frontmatter",
       "keywords": [
         "six",
@@ -26156,7 +26156,7 @@
       "lastUpdated": "2026-09-06T06:34:09.836Z"
     },
     {
-      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract",
+      "specFolder": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract",
       "description": "A move is only as safe as the inventory behind it",
       "keywords": [
         "move",
@@ -26168,7 +26168,7 @@
       "lastUpdated": "2026-09-01T10:49:46.245Z"
     },
     {
-      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/002-mode-scaffold",
+      "specFolder": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/002-mode-scaffold",
       "description": "A packet that gains content and structure at the same time cannot tell you which of the two",
       "keywords": [
         "packet",
@@ -26184,7 +26184,7 @@
       "lastUpdated": "2026-09-01T11:08:12.309Z"
     },
     {
-      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/003-content-migration",
+      "specFolder": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/003-content-migration",
       "description": "Two files move and roughly forty references follow them",
       "keywords": [
         "two",
@@ -26199,7 +26199,7 @@
       "lastUpdated": "2026-09-01T11:12:19.552Z"
     },
     {
-      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/004-routing-integration",
+      "specFolder": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/004-routing-integration",
       "description": "A registry entry is not a route",
       "keywords": [
         "registry",
@@ -26209,7 +26209,7 @@
       "lastUpdated": "2026-09-01T11:17:02.842Z"
     },
     {
-      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/005-command-and-playbook",
+      "specFolder": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/005-command-and-playbook",
       "description": "A mode with no operator surface is reachable only by the router, and a mode with no playbook",
       "keywords": [
         "mode",
@@ -26223,7 +26223,7 @@
       "lastUpdated": "2026-09-01T11:32:43.548Z"
     },
     {
-      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/006-verification-and-closeout",
+      "specFolder": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/006-verification-and-closeout",
       "description": "Each phase proved its own step",
       "keywords": [
         "phase",
@@ -26234,7 +26234,7 @@
       "lastUpdated": "2026-09-01T11:37:52.043Z"
     },
     {
-      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/007-human-voice-playbook",
+      "specFolder": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/007-human-voice-playbook",
       "description": "The human voice mode owns the standard the whole repository writes against, and it is one of",
       "keywords": [
         "human",
@@ -26251,7 +26251,7 @@
       "lastUpdated": "2026-09-01T11:39:46.703Z"
     },
     {
-      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/008-utilization-review",
+      "specFolder": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/008-utilization-review",
       "description": "The packet ships eleven manual-testing scenarios that had never been run, so no claim about the",
       "keywords": [
         "packet",
@@ -26267,7 +26267,7 @@
       "lastUpdated": "2026-09-02T19:25:56.153Z"
     },
     {
-      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract",
+      "specFolder": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract",
       "description": "The mode exists so that one place is accountable for what a frontmatter block must carry",
       "keywords": [
         "mode",
@@ -26283,7 +26283,7 @@
       "lastUpdated": "2026-09-06T14:52:15.708Z"
     },
     {
-      "specFolder": "sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing",
+      "specFolder": "sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing",
       "description": "Phase 10: add plain-language phrases to both routing stages so a newcomer describing a frontmatter problem reaches the mode, held to out-of-domain rep",
       "keywords": [
         "phase",
@@ -26306,7 +26306,7 @@
       "lastUpdated": "2026-09-06T06:39:02.034Z"
     },
     {
-      "specFolder": "sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage",
+      "specFolder": "sk-doc/authoring-modes-and-playbooks/001-playbook-coverage-and-sync/001-sk-doc-playbook-coverage",
       "description": "Three of the fifteen sk-doc modes carry a manual testing playbook",
       "keywords": [
         "three",
@@ -26321,7 +26321,7 @@
       "lastUpdated": "2026-09-01T11:49:39.664Z"
     },
     {
-      "specFolder": "sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/001-authoring-surfaces",
+      "specFolder": "sk-doc/authoring-modes-and-playbooks/001-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/001-authoring-surfaces",
       "description": "Each of these takes a request and emits a new component that something else will load",
       "keywords": [
         "takes",
@@ -26336,7 +26336,7 @@
       "lastUpdated": "2026-09-07T16:14:57.142Z"
     },
     {
-      "specFolder": "sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/002-artifact-producers",
+      "specFolder": "sk-doc/authoring-modes-and-playbooks/001-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/002-artifact-producers",
       "description": "Each of these derives a document from something that already exists, so their failure mode is drift: the artifact stops describing its source and",
       "keywords": [
         "derives",
@@ -26355,7 +26355,7 @@
       "lastUpdated": "2026-09-07T16:14:57.145Z"
     },
     {
-      "specFolder": "sk-doc/050-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/003-meta-and-quality",
+      "specFolder": "sk-doc/authoring-modes-and-playbooks/001-playbook-coverage-and-sync/001-sk-doc-playbook-coverage/003-meta-and-quality",
       "description": "Each of these takes another mode's output as its input",
       "keywords": [
         "takes",
@@ -26367,7 +26367,7 @@
       "lastUpdated": "2026-09-07T16:14:57.143Z"
     },
     {
-      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness",
+      "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness",
       "description": "A hub can be complete in every registry and still not be reachable",
       "keywords": [
         "hub",
@@ -26380,7 +26380,7 @@
       "lastUpdated": "2026-09-05T14:38:09.119Z"
     },
     {
-      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/001-transport-and-baseline",
+      "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/001-transport-and-baseline",
       "description": "Two scorers answer the same question",
       "keywords": [
         "two",
@@ -26392,7 +26392,7 @@
       "lastUpdated": "2026-09-02T16:35:48.107Z"
     },
     {
-      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/002-gate-a-signal-closure",
+      "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/002-gate-a-signal-closure",
       "description": "Across all five hubs, 234 of 444 declared signals resolve end to end to exactly one mode",
       "keywords": [
         "across",
@@ -26409,7 +26409,7 @@
       "lastUpdated": "2026-09-04T10:09:44.345Z"
     },
     {
-      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus",
+      "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/003-gate-b-realistic-corpus",
       "description": "Against a corpus of 180 prompts written the way people write, 8 reach the intended mode",
       "keywords": [
         "against",
@@ -26426,7 +26426,7 @@
       "lastUpdated": "2026-09-02T17:13:34.031Z"
     },
     {
-      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/004-cross-hub-vocabulary",
+      "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/004-cross-hub-vocabulary",
       "description": "This phase was scoped before either gate was measured, on the belief that a cross-hub",
       "keywords": [
         "phase",
@@ -26439,7 +26439,7 @@
       "lastUpdated": "2026-09-02T17:13:57.301Z"
     },
     {
-      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/005-hub-surface-truth",
+      "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/005-hub-surface-truth",
       "description": "Three hub surfaces state something their registries contradict, and none of them has a gate",
       "keywords": [
         "three",
@@ -26456,7 +26456,7 @@
       "lastUpdated": "2026-09-02T16:46:56.848Z"
     },
     {
-      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/006-validator-and-template-debt",
+      "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/006-validator-and-template-debt",
       "description": "A template is the one document where the fenced block is the deliverable rather than a",
       "keywords": [
         "template",
@@ -26470,7 +26470,7 @@
       "lastUpdated": "2026-09-02T16:46:56.848Z"
     },
     {
-      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue",
+      "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/007-spec-kit-residue",
       "description": "The suite does not complete",
       "keywords": [
         "suite",
@@ -26479,7 +26479,7 @@
       "lastUpdated": "2026-09-05T14:38:06.409Z"
     },
     {
-      "specFolder": "sk-doc/051-hub-routing-quality/001-routing-completeness/008-drift-after-closure",
+      "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/008-drift-after-closure",
       "description": "A packet that closes on measured numbers stays true only while its inputs hold still",
       "keywords": [
         "packet",

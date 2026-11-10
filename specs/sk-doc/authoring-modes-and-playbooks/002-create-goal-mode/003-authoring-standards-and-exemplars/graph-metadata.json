@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/003-authoring-standards-and-exemplars",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/003-authoring-standards-and-exemplars",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/002-create-goal-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal authoring standards",
+      "goal criteria checkability",
+      "goal exemplars",
+      "phase goal objective rubric",
+      "goal standards plan",
+      "goal rubric verification",
+      "negative and positive goal examples",
+      "goal authoring reference",
+      "goal standards tasks",
+      "goal corpus rubric",
+      "goal authoring verification",
+      "phase 3 goal exemplars"
+    ],
+    "key_topics": [
+      "goal",
+      "authoring",
+      "standards",
+      "criteria",
+      "checkability",
+      "exemplars",
+      "phase",
+      "objective",
+      "rubric",
+      "plan",
+      "verification",
+      "negative"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-goal/references/authoring-standards.md",
+      ".skilled/skills/sk-doc/sk-create-goal/assets/goal-exemplars.md",
+      ".skilled/skills/sk-doc/sk-create-goal/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "authoring-standards.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/references/authoring-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-exemplars.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/assets/goal-exemplars.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Authoring Standards",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Corpus",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Closure Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Goal files can retain a template objective, include criteria that require checking other files or state a child count that conflicts with the binding table (specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite/goal.md:43; specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/goal.md:84-90; specs/sk-git/commit-standards/001-crawlable-commit-history/goal.md:81-90,111)",
+    "created_at": "2026-09-25T18:48:47Z",
+    "last_save_at": "2026-11-10T05:26:00.781Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7c75580e4d717ec8b6f23a31a79208233790289e8293a2bbab68d2f7eb1547be",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "77243ddcf198feb4f85245a48fc0ffb39404b05537bab68cfffb39285259d68a",
+      "plan.md": "85734dc1932c035c300d78168ddf9df0c4af0916b676b2238a99536300fb1cf0",
+      "tasks.md": "78f7c1e455910280b54cb5238517eb2cf756ebd07cf6efee3e382a5ef342dd17",
+      "implementation-summary.md": "71b27d9d401de87ec93e5c4dbee5af32ec7165c1e679f67aeb5e3732257c62ee"
+    },
+    "last_active_at": null
+  }
+}

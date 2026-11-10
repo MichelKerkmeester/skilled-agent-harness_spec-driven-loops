@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/008-sk-doc/014-sk-create-skill",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/008-sk-doc/014-sk-create-skill",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/008-sk-doc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk create skill",
+      "phase 14 sk create skill",
+      "sk create skill plan",
+      "sk create skill tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "sk create skill implementation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/findings.md",
+      ".skilled/skills/sk-doc/sk-create-skill/README.md",
+      ".skilled/skills/sk-doc/sk-create-skill/ROUTER.md",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/packet-skill-scaffold.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-procedure-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-hub-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-readme-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-root-router-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-skill-scaffold.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md",
+        "source": "derived"
+      },
+      {
+        "name": "packet-skill-scaffold.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/packet-skill-scaffold.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-asset-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-md-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-procedure-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-procedure-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-reference-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-router-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The docs of the `sk-create-skill` mode were never read as a whole for readability, layout and structure",
+    "created_at": "2026-11-04T07:16:48Z",
+    "last_save_at": "2026-11-10T05:26:15.357Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ae2350baba9214523e7a8df986c79c9729c183e20137c7c44a71d10da410daff",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0711b809d66d84d536952a2ef55d3bb5cbd47678f010a7efe481bbcf66308435",
+      "plan.md": "0aeb7bdbe8e4917ce3260e6f94ce95ba3b581cd0bcc9b094cec2ba6790e5a314",
+      "tasks.md": "c05a8a178aa738944c04ae1ca31121d937fb71a00450892769020e9e058f3307",
+      "implementation-summary.md": "21723c073745817a4e0072e284eabb1be88b1557075c74ab7199f2be709a9c09"
+    },
+    "last_active_at": null
+  }
+}
