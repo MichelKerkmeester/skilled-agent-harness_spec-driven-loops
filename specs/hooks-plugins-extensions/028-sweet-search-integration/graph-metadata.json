@@ -171,14 +171,14 @@
     ],
     "causal_summary": "Agents working in Skilled and in the project repos Skilled is installed into find code with grep and file reads",
     "created_at": "2026-11-09T11:30:04Z",
-    "last_save_at": "2026-11-10T04:32:26.046Z",
+    "last_save_at": "2026-11-10T06:00:08.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:49d747a4fee751f2e76c6ae94e4872d5cb893ac1a4ce213f92c218ded8e3621c",
+    "source_fingerprint": "sha256:975ecb0379b379eacfe4735322772ce96dd2741f5909415867c1457a4923d3c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b4d7e23c547ab50bb9a4b22fc2282a4e2c7dd6b12a07bc27d3976c9f7ccd9987"
