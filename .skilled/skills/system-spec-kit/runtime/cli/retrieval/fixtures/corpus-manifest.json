@@ -1,5 +1,5 @@
 {
-  "corpusHash": "27f1ab53f1199bb54602b45d608b7b6a04d351fd89bd330f49427d41e68ae724",
+  "corpusHash": "0eb00aebd97625253cd98069b0491b930b851313331dbadf2ea34e443520d9c5",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26038,
+  "includedPathCount": 26040,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2153,6 +2153,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.9.6.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.7.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.8.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.9.9.0.md",
     ".skilled/skills/mcp-tooling/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
     ".skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md",
@@ -2351,6 +2352,7 @@
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.14.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.15.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.16.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.17.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.4.0.md",
@@ -26070,7 +26072,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "bea9f1534c8359249267fb378319cc802f35847acf8ad849b7ab6ef26f3eb153",
+  "manifestHash": "c182ed7c2ad26a933aa7075966a1e795b19e377eb00d7fa2f05b5fe5d01e3305",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

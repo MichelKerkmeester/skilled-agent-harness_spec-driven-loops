@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bea9f1534c8359249267fb378319cc802f35847acf8ad849b7ab6ef26f3eb153",
+  "manifestHash": "c182ed7c2ad26a933aa7075966a1e795b19e377eb00d7fa2f05b5fe5d01e3305",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -65418,6 +65418,9 @@
     "mcp click up 1 2 16 0": [
       "mcp-click-up 1.2.16.0"
     ],
+    "mcp click up 1 2 17 0": [
+      "mcp-click-up 1.2.17.0"
+    ],
     "mcp click up 1 2 2 0": [
       "mcp-click-up 1.2.2.0"
     ],
@@ -65510,6 +65513,9 @@
     ],
     "mcp click up v1 2 16 0": [
       "mcp-click-up v1.2.16.0"
+    ],
+    "mcp click up v1 2 17 0": [
+      "mcp-click-up v1.2.17.0"
     ],
     "mcp click up v1 2 2 0": [
       "mcp-click-up v1.2.2.0"
@@ -67014,6 +67020,9 @@
     "mcp tooling 1 9 8 0": [
       "mcp-tooling 1.9.8.0"
     ],
+    "mcp tooling 1 9 9 0": [
+      "mcp-tooling 1.9.9.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -67178,6 +67187,9 @@
     ],
     "mcp tooling v1 9 8 0": [
       "mcp-tooling v1.9.8.0"
+    ],
+    "mcp tooling v1 9 9 0": [
+      "mcp-tooling v1.9.9.0"
     ],
     "mcp tools": [
       "mcp tools"
