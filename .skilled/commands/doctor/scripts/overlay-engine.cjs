@@ -1255,6 +1255,7 @@ function planSkillRootOverlay(entry, ctx, problems) {
   // A replaced subtree is the overlay's to capture into; only a path the entry
   // removes without also replacing is a removal the overlay performs.
   const isDeclaredRemoval = (rel) => matchesPrefix(entry.remove, rel) && !matchesPrefix(entry.replace, rel);
+  const isReplacedSubtree = (rel) => matchesPrefix([...replacedSubtrees], rel);
 
   for (const [rel, wanted] of desired) {
     const destinationPath = path.join(destinationDir, rel);
@@ -1276,7 +1277,13 @@ function planSkillRootOverlay(entry, ctx, problems) {
     const destinationPath = path.join(destinationDir, rel);
     deletes.push(destinationPath);
     if (current.get(rel).kind === 'file') {
-      outputs.push({ filePath: destinationPath, buffer: null, sourcePath: path.join(sourceDir, rel), removal: isDeclaredRemoval(rel) });
+      outputs.push({
+        filePath: destinationPath,
+        buffer: null,
+        sourcePath: path.join(sourceDir, rel),
+        removal: isDeclaredRemoval(rel),
+        replacedSubtree: isReplacedSubtree(rel),
+      });
     }
   }
   // Deepest first, so a removed folder is empty by the time its own delete runs.
@@ -1781,10 +1788,11 @@ function planWouldWrite(plan, filePath) {
 
 /**
  * Name the sync state of one destination.
- * @param {{output: object, plan: object, key: string, live: Buffer|null, state: object, manifest: object}} input
+ * @param {{output: object, plan: object, key: string, live: Buffer|null, state: object,
+ *   manifest: object, upstreamBytes: ((key: string) => Buffer|null)|null}} input
  * @returns {string} One of STATUS_NAMES.
  */
-function classifyDestination({ output, plan, key, live, state, manifest }) {
+function classifyDestination({ output, plan, key, live, state, manifest, upstreamBytes }) {
   const desired = output.buffer;
   const hasState = Object.prototype.hasOwnProperty.call(state.files, key);
   const appliedHash = hasState ? state.files[key] : undefined;
@@ -1795,7 +1803,16 @@ function classifyDestination({ output, plan, key, live, state, manifest }) {
   if (output.removal) return 'overlay-edited';
 
   if (!hasState) {
-    if (desired === null && live !== null) return 'live-edited';
+    if (desired === null && live !== null) {
+      // A replaced folder is the overlay's whole. Its delete is the overlay's
+      // own work when the live bytes are the upstream file's at the pin this
+      // run compares against. Any other bytes belong to a person and stay a
+      // capture.
+      if (output.replacedSubtree && upstreamBytes && buffersEqual(live, upstreamBytes(key))) {
+        return 'overlay-edited';
+      }
+      return 'live-edited';
+    }
     return planWouldWrite(plan, output.filePath) ? 'overlay-edited' : 'both-changed';
   }
 
@@ -1834,10 +1851,12 @@ function layoutLinkRecords(layout, root) {
  * @param {object} ctx Engine context.
  * @param {object} manifest Loaded overlay manifest.
  * @param {object} state Loaded applied-hash state.
+ * @param {((key: string) => Buffer|null)|null} [upstreamBytes] Reads a path's
+ *   bytes at the pin this run compares against; defaults to the manifest pin.
  * @returns {{plans: object[], records: object[], blocked: object[], layout: object}}
  *   `blocked` holds plans whose problems left no destination to classify.
  */
-function analyze(ctx, manifest, state) {
+function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manifest)) {
   const root = ctx.root;
   const { exact, refused } = assertSafeToPlan(ctx, manifest);
   const plans = manifest.overlays.map((entry) => (refused.has(entry.id)
@@ -1878,6 +1897,7 @@ function analyze(ctx, manifest, state) {
           live: readBufferOrNull(output.filePath),
           state,
           manifest,
+          upstreamBytes,
         });
       if (plan.problems.length > 0 && stateName === 'overlay-edited') stateName = 'both-changed';
       records.push({
@@ -2107,15 +2127,17 @@ function commandStatus(ctx, options = {}) {
  * Apply every overlay edit; the caller holds the lock.
  * @param {object} ctx Engine context.
  * @param {object} manifest Loaded overlay manifest.
- * @param {{isRegenerateForced?: boolean, outcome?: object}} [options] A re-pin
+ * @param {{isRegenerateForced?: boolean, outcome?: object,
+ *   upstreamBytes?: ((key: string) => Buffer|null)|null}} [options] A re-pin
  *   regenerates even when no overlay wrote, because the copy changed the inputs;
- *   `outcome.changed` receives the count printed on the last line.
+ *   `outcome.changed` receives the count printed on the last line;
+ *   `upstreamBytes` reads the pin this run compares against.
  * @returns {number} 0 when applied, 1 on conflict or a failed step.
  */
 function applyUnderLock(ctx, manifest, options = {}) {
   const root = ctx.root;
   const state = loadState(ctx, manifest);
-  const analysis = analyze(ctx, manifest, state);
+  const analysis = analyze(ctx, manifest, state, options.upstreamBytes);
   const blockers = analysis.records.filter((record) => BLOCKING_STATES.has(record.state));
   const layoutProblems = analysis.layout.problems;
   if (blockers.length > 0 || analysis.blocked.length > 0 || layoutProblems.length > 0) {
@@ -2158,7 +2180,7 @@ function applyUnderLock(ctx, manifest, options = {}) {
     }
   }
 
-  const updated = analyze(ctx, manifest, state);
+  const updated = analyze(ctx, manifest, state, options.upstreamBytes);
   const unresolved = updated.records.filter((record) => record.state !== 'in-sync');
   if (unresolved.length > 0) {
     printProblems(ctx, unresolved);
@@ -2506,6 +2528,45 @@ function runGit(upstream, args) {
   const result = spawnSync('git', ['-C', upstream, ...args], { encoding: 'buffer', maxBuffer: GIT_MAX_BUFFER });
   if (result.error) throw result.error;
   return result;
+}
+
+/**
+ * Read a path's bytes at one commit of an upstream checkout.
+ * @param {string} upstream Upstream checkout.
+ * @param {string} commit Commit id.
+ * @returns {(key: string) => Buffer|null}
+ */
+function commitBytesReader(upstream, commit) {
+  return (key) => {
+    const result = runGit(upstream, ['cat-file', 'blob', `${commit}:${key}`]);
+    return result.status === 0 ? result.stdout : null;
+  };
+}
+
+/**
+ * Read a path's bytes from an extracted commit tree.
+ * @param {string} tree Folder holding the commit's roots.
+ * @returns {(key: string) => Buffer|null}
+ */
+function treeBytesReader(tree) {
+  return (key) => {
+    const filePath = path.join(tree, key);
+    return isFile(filePath) ? fs.readFileSync(filePath) : null;
+  };
+}
+
+/**
+ * Read a path's bytes at the commit the manifest records, when the manifest
+ * names the checkout that holds it. Without that checkout there is nothing to
+ * compare, and the caller keeps its no-state classification.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {((key: string) => Buffer|null)|null}
+ */
+function pinnedUpstreamBytes(manifest) {
+  const pin = manifest.pin || {};
+  if (typeof pin.checkout !== 'string' || typeof pin.commit !== 'string' ||
+      !isDirectory(pin.checkout)) return null;
+  return commitBytesReader(pin.checkout, pin.commit);
 }
 
 function gitText(upstream, args) {
@@ -3035,20 +3096,21 @@ function repinWrites(ctx, job, touched, newTree, report) {
       console.log(`stage skipped ${report.stageSkipped.regenerate} regenerate and ${report.stageSkipped.verify} verify step(s); the live run runs them`);
     }
   }
-  const afterCopy = analyze(ctx, manifest, loadState(ctx, manifest));
+  const readUpstream = treeBytesReader(newTree);
+  const afterCopy = analyze(ctx, manifest, loadState(ctx, manifest), readUpstream);
   reportBlocked(afterCopy, report);
   report.equalsUpstream = overlaysEqualToUpstream(ctx, afterCopy, newTree, job.settings.roots);
   for (const id of report.equalsUpstream) console.log('equals-upstream ' + id);
 
   const first = {};
-  if (applyUnderLock(ctx, manifest, { isRegenerateForced: true, outcome: first }) !== EXIT_OK) return false;
+  if (applyUnderLock(ctx, manifest, { isRegenerateForced: true, outcome: first, upstreamBytes: readUpstream }) !== EXIT_OK) return false;
   const second = {};
-  if (applyUnderLock(ctx, manifest, { outcome: second }) !== EXIT_OK) return false;
+  if (applyUnderLock(ctx, manifest, { outcome: second, upstreamBytes: readUpstream }) !== EXIT_OK) return false;
   if (second.changed !== 0) {
     console.log(`MISS     a second apply changed ${second.changed} destination(s)`);
     return false;
   }
-  const finalAnalysis = analyze(ctx, manifest, loadState(ctx, manifest));
+  const finalAnalysis = analyze(ctx, manifest, loadState(ctx, manifest), readUpstream);
   const check = runCheck(ctx, manifest, finalAnalysis.plans);
   for (const problem of check.problems) console.log(`MISS     ${problem}`);
   const outOfSync = finalAnalysis.records.filter((record) => record.state !== 'in-sync');
@@ -3072,7 +3134,7 @@ function refuseRepin(lines) {
  */
 function repinUnderLock(ctx, job, report) {
   const manifest = loadManifest(ctx);
-  const analysis = analyze(ctx, manifest, loadState(ctx, manifest));
+  const analysis = analyze(ctx, manifest, loadState(ctx, manifest), commitBytesReader(job.upstream, job.oldCommit));
   const blockers = analysis.records.filter((record) => BLOCKING_STATES.has(record.state));
   if (blockers.length > 0) {
     for (const record of blockers) console.log(problemLine(ctx, record));
