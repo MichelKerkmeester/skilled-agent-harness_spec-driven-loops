@@ -14,14 +14,34 @@
     "extension",
     "opportunities"
   ],
-  "lastUpdated": "2026-11-08T19:49:04.831Z",
+  "lastUpdated": "2026-11-09T14:52:33.876Z",
   "specId": "004",
   "folderSlug": "v4-release-line-research",
   "parentChain": [
     "system-speckit",
     "runtime-and-release"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
+  "memorySequence": 19,
+  "memoryNameHistory": [
+    "09-11-26_12-47__both-deepseek-workers-are-running-and-making.md",
+    "09-11-26_14-48__the-v4-research-and-remediation-goal-is-complete.md",
+    "09-11-26_14-52__i-ve-committed-the-depth-bar-rows-as-1eaba5ca3c.md",
+    "09-11-26_15-37__all-six-goal-criteria-are-now-backed-by-evidence.md",
+    "09-11-26_15-39__all-six-goal-criteria-now-hold-each-is-checked.md",
+    "09-11-26_15-41__here-is-the-evidence-for-each-criterion-i-printed.md",
+    "09-11-26_15-42__i-m-stopping-here-the-remaining-objections-ask.md",
+    "09-11-26_15-42__i-m-leaving-the-assessment-as-it-is-this-round-of.md",
+    "09-11-26_15-44__the-goal-is-now-met-and-i-closed-the-three-gaps.md",
+    "09-11-26_15-45__both-checks-hold-so-the-goal-is-met-productive.md",
+    "09-11-26_15-45__i-m-not-changing-the-assessment-again-this-round.md",
+    "09-11-26_15-45__that-settles-it-the-registry-can-t-support-the.md",
+    "09-11-26_15-45__this-feedback-repeats-the-previous-round-with.md",
+    "09-11-26_15-45__i-m-leaving-this-as-is-the-feedback-describes-an.md",
+    "09-11-26_15-45__the-goal-is-met-on-every-criterion-as-goal-md.md",
+    "09-11-26_15-45__no-change-from-me-this-round-the-feedback-is-the.md",
+    "09-11-26_15-46__the-deltas-and-each-child-s-synthesis-both-record.md",
+    "09-11-26_15-46__unchanged-all-six-goal-criteria-hold-on.md",
+    "09-11-26_15-52__the-depth-bars-for-001-and-005-are-now-confirmed.md"
+  ],
   "level": "2"
 }
