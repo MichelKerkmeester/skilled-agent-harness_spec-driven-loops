@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f9d5d77d0ce6a95b21bf52c45fdf28ceeace1be4cdee337becd42134b10a0286",
+  "manifestHash": "6f67a58663d5a57e1b6e5d2d10c8a3c864f2c05585fdb9574070a8bd174cb8bc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12678,6 +12678,9 @@
     "aside queryselector": [
       "aside querySelector"
     ],
+    "aside redaction rule": [
+      "aside redaction rule"
+    ],
     "aside repl": [
       "aside repl"
     ],
@@ -15332,6 +15335,9 @@
     ],
     "browser automation scripts": [
       "browser automation scripts"
+    ],
+    "browser capture secrets": [
+      "browser capture secrets"
     ],
     "browser console errors": [
       "browser console errors"
@@ -65130,6 +65136,9 @@
     "mcp aside devtools 1 1 1 0": [
       "mcp-aside-devtools 1.1.1.0"
     ],
+    "mcp aside devtools 1 1 10 0": [
+      "mcp-aside-devtools 1.1.10.0"
+    ],
     "mcp aside devtools 1 1 2 0": [
       "mcp-aside-devtools 1.1.2.0"
     ],
@@ -65180,6 +65189,9 @@
     ],
     "mcp aside devtools v1 1 1 0": [
       "mcp-aside-devtools v1.1.1.0"
+    ],
+    "mcp aside devtools v1 1 10 0": [
+      "mcp-aside-devtools v1.1.10.0"
     ],
     "mcp aside devtools v1 1 2 0": [
       "mcp-aside-devtools v1.1.2.0"
@@ -65286,6 +65298,9 @@
     "mcp chrome devtools 1 0 23 0": [
       "mcp-chrome-devtools 1.0.23.0"
     ],
+    "mcp chrome devtools 1 0 24 0": [
+      "mcp-chrome-devtools 1.0.24.0"
+    ],
     "mcp chrome devtools 1 0 7 0": [
       "mcp-chrome-devtools 1.0.7.0"
     ],
@@ -65376,6 +65391,9 @@
     "mcp chrome devtools v1 0 23 0": [
       "mcp-chrome-devtools v1.0.23.0"
     ],
+    "mcp chrome devtools v1 0 24 0": [
+      "mcp-chrome-devtools v1.0.24.0"
+    ],
     "mcp chrome devtools v1 0 7 0": [
       "mcp-chrome-devtools v1.0.7.0"
     ],
@@ -65462,6 +65480,9 @@
     ],
     "mcp click up 1 2 20 0": [
       "mcp-click-up 1.2.20.0"
+    ],
+    "mcp click up 1 2 21 0": [
+      "mcp-click-up 1.2.21.0"
     ],
     "mcp click up 1 2 3 0": [
       "mcp-click-up 1.2.3.0"
@@ -65567,6 +65588,9 @@
     ],
     "mcp click up v1 2 20 0": [
       "mcp-click-up v1.2.20.0"
+    ],
+    "mcp click up v1 2 21 0": [
+      "mcp-click-up v1.2.21.0"
     ],
     "mcp click up v1 2 3 0": [
       "mcp-click-up v1.2.3.0"
@@ -67056,6 +67080,12 @@
     "mcp tooling 1 9 12 0": [
       "mcp-tooling 1.9.12.0"
     ],
+    "mcp tooling 1 9 13 0": [
+      "mcp-tooling 1.9.13.0"
+    ],
+    "mcp tooling 1 9 14 0": [
+      "mcp-tooling 1.9.14.0"
+    ],
     "mcp tooling 1 9 2 0": [
       "mcp-tooling 1.9.2.0"
     ],
@@ -67232,6 +67262,12 @@
     ],
     "mcp tooling v1 9 12 0": [
       "mcp-tooling v1.9.12.0"
+    ],
+    "mcp tooling v1 9 13 0": [
+      "mcp-tooling v1.9.13.0"
+    ],
+    "mcp tooling v1 9 14 0": [
+      "mcp-tooling v1.9.14.0"
     ],
     "mcp tooling v1 9 2 0": [
       "mcp-tooling v1.9.2.0"
