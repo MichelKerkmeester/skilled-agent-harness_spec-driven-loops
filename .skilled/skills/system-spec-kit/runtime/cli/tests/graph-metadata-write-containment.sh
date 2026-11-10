@@ -23,7 +23,7 @@
 #   real repository alike.
 
 set -uo pipefail
-REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../../.." && pwd)"
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../../../.." && pwd)"
 PARSER="$REPO/.skilled/skills/system-spec-kit/runtime/dist/lib/graph/graph-metadata-parser.js"
 PASS=0; FAIL=0
 

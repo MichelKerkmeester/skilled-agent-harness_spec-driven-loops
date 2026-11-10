@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6683,
-    "ok": 17689,
+    "ok": 17694,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26001,
+  "documentsScanned": 26006,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "dc74adcba0aadcfa0e814734894d08c23239c35150388cc0b4af05cdb379b3e6",
+  "manifestHash": "4274a62ac707764f53c2c47bd2270a63b4daf664b087034045b5676919234cac",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42082,
+      "ok": 42090,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -62278,6 +62278,10 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/scratch",
       "reason": "excluded directory"
     },
     {

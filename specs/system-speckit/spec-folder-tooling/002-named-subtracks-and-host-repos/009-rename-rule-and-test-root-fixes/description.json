@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes",
+  "description": "Phase 9: rename-rule-and-test-root-fixes",
+  "keywords": [
+    "phase",
+    "rename-rule-and-test-root-fixes"
+  ],
+  "lastUpdated": "2026-11-10T08:08:37.292Z",
+  "specId": "009",
+  "folderSlug": "rename-rule-and-test-root-fixes",
+  "parentChain": [
+    "system-speckit",
+    "spec-folder-tooling",
+    "002-named-subtracks-and-host-repos"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e7236258bbf3e71a0516572061839859b3d9b381be49edfa8e7e66e859d1c829",
+  "corpusHash": "c81c8d3f26b8f70cf06bf16685cff455e3bab38f71ca1a390a7561bd6c875b6b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26001,
+  "includedPathCount": 26006,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8644,6 +8644,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.42.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.43.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.44.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.45.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.7.0.md",
@@ -26012,6 +26013,10 @@
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/plan.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/spec.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/plan.md",
+    "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/spec.md",
+    "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/tasks.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/acceptance-criteria.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/decision-record.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/implementation-summary.md",
@@ -26033,7 +26038,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "dc74adcba0aadcfa0e814734894d08c23239c35150388cc0b4af05cdb379b3e6",
+  "manifestHash": "4274a62ac707764f53c2c47bd2270a63b4daf664b087034045b5676919234cac",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36765,6 +36770,10 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/scratch",
       "reason": "excluded directory"
     },
     {

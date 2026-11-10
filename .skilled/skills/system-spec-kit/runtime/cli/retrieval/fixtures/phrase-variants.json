@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dc74adcba0aadcfa0e814734894d08c23239c35150388cc0b4af05cdb379b3e6",
+  "manifestHash": "4274a62ac707764f53c2c47bd2270a63b4daf664b087034045b5676919234cac",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -71658,6 +71658,9 @@
     "moved gone past end citations": [
       "moved gone past end citations"
     ],
+    "moved path in historical spec docs": [
+      "moved path in historical spec docs"
+    ],
     "mps auto detect cocoindex": [
       "mps auto-detect cocoindex"
     ],
@@ -80971,6 +80974,9 @@
     ],
     "phase 9 reference restructure": [
       "phase 9 reference restructure"
+    ],
+    "phase 9 rename rule and test root fixes": [
+      "phase 9 rename rule and test root fixes"
     ],
     "phase 9 research fixes": [
       "phase 9 research fixes"
@@ -90956,6 +90962,18 @@
     ],
     "rename push deletion ceiling": [
       "rename push deletion ceiling"
+    ],
+    "rename rule and test root fixes": [
+      "rename rule and test root fixes"
+    ],
+    "rename rule and test root fixes implementation summary": [
+      "rename rule and test root fixes implementation summary"
+    ],
+    "rename rule and test root fixes plan": [
+      "rename rule and test root fixes plan"
+    ],
+    "rename rule and test root fixes tasks": [
+      "rename rule and test root fixes tasks"
     ],
     "rename spec kit memory mcp namespace": [
       "rename spec kit memory mcp namespace"
@@ -117833,6 +117851,9 @@
     "system spec kit 2 12 44 0": [
       "system-spec-kit 2.12.44.0"
     ],
+    "system spec kit 2 12 45 0": [
+      "system-spec-kit 2.12.45.0"
+    ],
     "system spec kit 2 12 5 0": [
       "system-spec-kit 2.12.5.0"
     ],
@@ -118432,6 +118453,9 @@
     ],
     "system spec kit v2 12 44 0": [
       "system-spec-kit v2.12.44.0"
+    ],
+    "system spec kit v2 12 45 0": [
+      "system-spec-kit v2.12.45.0"
     ],
     "system spec kit v2 12 5 0": [
       "system-spec-kit v2.12.5.0"

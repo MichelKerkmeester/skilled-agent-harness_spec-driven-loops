@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes",
+  "spec_folder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes",
+  "parent_id": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rename rule and test root fixes",
+      "phase 9 rename rule and test root fixes",
+      "rename rule and test root fixes plan",
+      "rename rule and test root fixes tasks",
+      "rename rule and test root fixes implementation summary"
+    ],
+    "key_topics": [
+      "rename",
+      "rule",
+      "test",
+      "root",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "moved",
+      "packets",
+      "prevented"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/references/workflows/rename-pattern.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/fingerprint-docset-generation.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-write-containment.sh",
+      ".skilled/skills/system-spec-kit/changelog/v2.12.45.0.md",
+      ".skilled/skills/system-spec-kit/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "rename-pattern.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/rename-pattern.md",
+        "source": "derived"
+      },
+      {
+        "name": "fingerprint-docset-generation.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/fingerprint-docset-generation.sh",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-write-containment.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-write-containment.sh",
+        "source": "derived"
+      },
+      {
+        "name": "v2.12.45.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v2.12.45.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Update",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 8 moved 174 packets, and the rename rule prevented historical spec docs from updating live locator paths, so the repository markdown link check fails on dead paths",
+    "created_at": "2026-11-10T08:08:36Z",
+    "last_save_at": "2026-11-10T08:28:11.169Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f722b74dc38d19890c190346d23b8ff6cd784d7e6e0ec995c0c5630d92b5c4e9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a840408ebf5193e1920b7403928e8009db249d39d0addd459bfa2ef483866f75",
+      "plan.md": "d97080c4df51c8be1e6985e342e8412c0d002a310835c5ff20529760c0408b58",
+      "tasks.md": "bad764cb394ce4d183e524da33c3d7097b5194ae03f0125c2761751ba3d98deb",
+      "implementation-summary.md": "0be2f6d4649719bdaa49eb8a777a6b2f3c30c6d1c147ea2ae9496c60728869d8"
+    },
+    "last_active_at": null
+  }
+}
