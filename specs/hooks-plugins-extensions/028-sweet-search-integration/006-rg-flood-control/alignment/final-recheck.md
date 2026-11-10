@@ -17,3 +17,17 @@ The one failure is `S9-command-references`: `doctor-deep-loop.yaml:96` names `.s
 | 006 (`20261109T211259Z-p006`) | 2 | 2 (S9 and C-001, both P2) | 0 | 6 | 0 |
 
 C-001 is fixed: the root README sentence now names the wrapper behavior. It reads as open because `recheck.cjs` tests a literal fix's old text first, and the new text contains the old. Every needs-review finding was reviewed and closed in the phase's `implementation-summary.md`.
+
+## Rerun on the tree that reached main
+
+Run at `d19b0c18d2`, after two rebases onto main and the fixes for the standing failures.
+
+`resolve-scope.cjs 53cff48097..HEAD --kind range`: 110 files. `run-battery.cjs`: 75 pass, 0 fail, 0 cannot run. `S9-command-references` now passes, because the check skips the generated graph databases.
+
+| Phase run | Resolved | Still open | New | Needs review | Open P0 or P1 |
+|-----------|---------:|-----------:|----:|-------------:|--------------:|
+| 004 (`20261109T180850Z-p004`) | 6 | 0 | 0 | 6 | 0 |
+| 005 (`20261109T200702Z-p005`) | 3 | 0 | 0 | 6 | 0 |
+| 006 (`20261109T211259Z-p006`) | 3 | 1 (C-001, P2) | 0 | 6 | 0 |
+
+C-001 still reads as open because the root README sentence was reworded after the fix, so the literal fix text is not there; the sentence does name the wrapper behavior. The needs-review rows are the same findings as before. The one P1 among them, the `/speckit:search` mismatch, is a judgment finding the tool cannot close by itself: `search-presentation.txt` and the command README both state that `/speckit:search` runs the raw recipe and gets no per-file shaping.

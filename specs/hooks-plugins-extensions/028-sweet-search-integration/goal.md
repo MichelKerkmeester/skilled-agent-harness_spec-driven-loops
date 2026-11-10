@@ -86,13 +86,13 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `validate.sh --recursive --strict` on `028-sweet-search-integration` prints `RESULT: PASSED` for it and its six children
-- [ ] The system-spec-kit vitest suite has no failure absent from `004-total-candidate-count/scratch/baseline.txt`
-- [ ] `lookup-trigger-index.mjs --limit 2 --json` reports `totalCandidates`, finds an uncommitted spec doc's phrase without a rebuild, and `rg-wrapper.mjs structured` lists one row per file
-- [ ] Cold-lookup p95 over `runtime/cli/retrieval/fixtures/prompt-set.json` is at or under 200 ms
-- [ ] Scenarios 489, 490 and 491 and three retrieval catalog entries exist, and both package validators exit 0
-- [ ] `/local-skilled-alignment` recheck from the pre-004 commit to the 006 commit shows 0 open P0 and P1 findings
-- [ ] `006-rg-flood-control/benchmark/summary.md` holds before and after tables for phases 004, 005 and 006 with measured values
+- [x] `validate.sh --recursive --strict` on `028-sweet-search-integration` prints `RESULT: PASSED` for it and its six children
+- [x] The system-spec-kit vitest suite has no failure absent from `004-total-candidate-count/scratch/baseline.txt`
+- [x] `lookup-trigger-index.mjs --limit 2 --json` reports `totalCandidates`, finds an uncommitted spec doc's phrase without a rebuild, and `rg-wrapper.mjs structured` lists one row per file
+- [x] Cold-lookup p95 over `runtime/cli/retrieval/fixtures/prompt-set.json` is at or under 200 ms
+- [x] Scenarios 489, 490 and 491 and three retrieval catalog entries exist, and both package validators exit 0
+- [x] `/local-skilled-alignment` recheck from the pre-004 commit to the 006 commit shows 0 open P0 and P1 findings
+- [x] `006-rg-flood-control/benchmark/summary.md` holds before and after tables for phases 004, 005 and 006 with measured values
 <!-- /ANCHOR:completion -->
 
 ---
@@ -118,7 +118,7 @@ and findings belong here.
 | Criterion: lookup and wrapper | Met | `--limit 2` on "trigger index": `totalCandidates` 823; an untracked temp spec doc's phrase found via `staleFallback` without a rebuild; "iteration" over the phase 2 research folder: 14 rows, 14 files, schema 2 |
 | Criterion: latency | Met | After the rebase `measure-cold-lookup.mjs` exit 0, p95 69.6 ms. Phase 5 prompt-set benchmark p95 160.4, 160.9 and 161.1 ms on a quiet machine (load average 3), 151.7 ms before the rebase; runs taken while other sessions held the load average above 13 read 224 ms and up |
 | Criterion: scenarios and catalog | Met | 489, 490, 491 and three retrieval catalog entries; both validators exit 0 |
-| Criterion: alignment | Met | Battery over `c82a5b31de..HEAD` (110 files) after the rebase: 75 pass, 0 fail; final rechecks of all three phase runs: 0 open P0 and P1 (`006-rg-flood-control/alignment/final-recheck.md`) |
+| Criterion: alignment | Met | Battery over the eight build commits at `d19b0c18d2` (110 files): 75 pass, 0 fail; rechecks of all three phase runs on that tree: 0 open P0 and P1 (`006-rg-flood-control/alignment/final-recheck.md`) |
 | Criterion: benchmark summary | Met | `006-rg-flood-control/benchmark/summary.md` |
 
 ### Deviations and findings
