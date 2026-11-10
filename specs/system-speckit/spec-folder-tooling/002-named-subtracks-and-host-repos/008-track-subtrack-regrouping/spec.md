@@ -21,14 +21,14 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-10 |
 | **Branch** | `worktrees/336-subtrack-gap-fixes` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 8 of 8 |
 | **Predecessor** | 007-children-list-duplicates |
 | **Successor** | None |
-| **Handoff Criteria** | All ten tracks are regrouped, each per-track gate passes against its baseline, one commit exists per track, and the trigger index is rebuilt. |
+| **Handoff Criteria** | All ten tracks are regrouped, packet numbering and JSON metadata align with each folder, each per-track gate passes against its baseline, one commit exists per track, and the trigger index is rebuilt. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,13 +38,14 @@ contextType: "general"
 
 This is **Phase 8** of the Regroup the large Skilled tracks into named sub-tracks specification.
 
-**Scope Boundary**: Regroup the ten approved tracks with at least eight active packets. Keep the seven smaller tracks flat, leave both pinned packets and every `z_archive/` untouched.
+**Scope Boundary**: Regroup the ten approved tracks with at least eight active packets. Keep the seven smaller tracks flat, leave both pinned packets and every track's `z_archive/` in place. Archived files that name a moved packet have that path updated (407 files), and an archive nested inside a moved packet moves with it.
 
 **Dependencies**:
-- [To be defined during planning]
+- Operator-approved maps and the named system-spec-kit scripts.
 
 **Deliverables**:
-- [To be defined during planning]
+- 39 named subtracks containing 174 moved active packets across ten tracks.
+- Aligned packet numbering and JSON metadata, passing per-track gates, and a rebuilt trigger index.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -67,7 +68,7 @@ Group every eligible active packet under its approved named subtrack so readers 
 ```text
 N/A: No verbatim command transcript was supplied. Operator-provided baseline captured 2026-11-10: every track passed strict validation except hooks-plugins-extensions, which had 2 failed folders from stale metadata paths in 001 and 008. The markdown link check recorded 14509 links and 0 broken.
 
-The ten largest tracks held 29, 21, 19, 19, 19, 18, 17, 16, 9 and 8 active packets. Ten tracks meet the approved threshold, their maps define 40 subtracks, and about 175 packets move. Seven smaller tracks have 2 to 6 active packets and stay flat.
+The ten largest tracks held 29, 21, 19, 19, 19, 18, 17, 16, 9 and 8 active packets. Their approved maps define 39 named subtracks and move 174 active packets. By track, the maps assign agents-md 4 subtracks and 17 packets, cli-external-orchestration 4 and 16, hooks-plugins-extensions 5 and 29, mcp-tooling 3 and 8, sk-code 4 and 18, sk-doc 4 and 19, sk-git 3 and 19, system-deep-loop 3 and 9, system-skill-advisor 4 and 18 and system-speckit 5 and 21. Seven smaller tracks have 2 to 6 active packets and stay flat.
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -78,7 +79,7 @@ The ten largest tracks held 29, 21, 19, 19, 19, 18, 17, 16, 9 and 8 active packe
 <!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- Regroup the ten approved tracks with 8 or more active packets into their 40 operator-approved named subtracks, moving about 175 active packets. The tracks are hooks-plugins-extensions, system-speckit, sk-code, sk-doc, sk-git, system-skill-advisor, agents-md, cli-external-orchestration, system-deep-loop, and mcp-tooling.
+- Regroup the ten approved tracks with 8 or more active packets into their 39 operator-approved named subtracks, moving 174 active packets. The tracks are hooks-plugins-extensions, system-speckit, sk-code, sk-doc, sk-git, system-skill-advisor, agents-md, cli-external-orchestration, system-deep-loop and mcp-tooling.
 - Move each assigned packet with `git mv` to `<track>/<sub-track>/<NNN>-<slug>`, numbering from 001 in original order and preserving the slug. Create each subtrack's `description.json` with `level` set to `sub-track`.
 - Update each qualifying track root's `graph-metadata.json` and rewrite every live mention of a moved packet path across tracked files. Rebuild generated indexes rather than editing them.
 - Run `refresh-track-roots.mjs --apply` and `repair-derived.cjs --roots specs/<track> --apply` for each track. Require all three per-track gates before its one commit, then rebuild the trigger index after all tracks.
@@ -92,7 +93,7 @@ The ten largest tracks held 29, 21, 19, 19, 19, 18, 17, 16, 9 and 8 active packe
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `specs/<track>/<packet>/` | Move | Move each assigned active packet under its mapped one-level subtrack path, except the two pinned packets. |
-| `specs/<track>/<sub-track>/description.json` | Create | Create one level `sub-track` descriptor for each of the 40 named subtracks. |
+| `specs/<track>/<sub-track>/description.json` | Create | Create one level `sub-track` descriptor for each of the 39 named subtracks. |
 | `specs/<track>/graph-metadata.json` | Modify | Refresh each qualifying track root to match its new direct children. |
 | Tracked files that contain moved packet paths | Modify | Rewrite live locators. Preserve historical event records listed in the method. |
 | Generated indexes | Regenerate | Rebuild generated indexes, including the trigger index, rather than hand-editing them. |
@@ -110,16 +111,17 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | For each of the ten approved maps, move every assigned active packet exactly once to `<track>/<sub-track>/<NNN>-<slug>`, with numbering from 001 in original order and the original slug retained. Keep the two pinned packets, all `z_archive/` directories, and the seven smaller tracks in place. |
+| REQ-001 | For each of the ten approved maps, move all 174 assigned active packets exactly once into the 39 named subtracks at `<track>/<sub-track>/<NNN>-<slug>`, with numbering from 001 in original order and the original slug retained. Keep the two pinned packets, all `z_archive/` directories and the seven smaller tracks in place. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | Create one `description.json` at level `sub-track` for each of the 40 named subtracks, update each qualifying track root's `graph-metadata.json`, and run `refresh-track-roots.mjs --apply` plus `repair-derived.cjs --roots specs/<track> --apply` per track. |
+| REQ-002 | Create one `description.json` at level `sub-track` for each of the 39 named subtracks, update each qualifying track root's `graph-metadata.json`, and run `refresh-track-roots.mjs --apply` plus `repair-derived.cjs --roots specs/<track> --apply` per track. |
 | REQ-003 | Rewrite every live tracked mention of a moved packet path. Preserve changelogs, research and review iteration logs, `.jsonl` event streams, `scratch/`, `evidence/`, and test fixtures as historical records. Rewrite historical spec documents only when a moved path is a live locator. |
-| REQ-004 | Before each track's one commit, require `sweep-track-roots.mjs` to print `all track roots match`, recursive strict validation to show no more failed folders than that track's baseline, and `check-markdown-links.cjs` to report 0 broken links. |
+| REQ-004 | Before each track's one commit, require all three gates to pass: `sweep-track-roots.mjs` prints `all track roots match their declared children`, recursive strict validation shows no more failed folders than that track's baseline, and `check-markdown-links.cjs` reports 0 broken links. |
 | REQ-005 | After all ten tracks are processed, rebuild the trigger index with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`. |
+| REQ-006 | Moving a packet into a subtrack without aligning its folder number and JSON metadata is forbidden. Each packet's number and `description.json` `specId` and `parentChain` must match its folder and actual ancestors. Its `graph-metadata.json` `packet_id`, `spec_folder`, `parent_id` and `children_ids` must also match. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -134,7 +136,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **SC-001**: **Given** each of the ten approved maps, **When** its movable active packets are regrouped, **Then** each packet appears exactly once under its mapped subtrack and each original slug is preserved.
 - **SC-002**: **Given** an approved map for a qualifying track, **When** the track is regrouped, **Then** its mapped subtracks each have a `description.json` with `level` set to `sub-track`, and packet numbering starts at 001 in original order.
 - **SC-003**: **Given** all moved packet paths, **When** live tracked locators are rewritten and the link checker runs, **Then** `node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs` reports 0 broken links.
-- **SC-004**: **Given** a processed track, **When** all three pre-commit gates run, **Then** the root sweep prints `all track roots match`, strict validation has no more failed folders than that track's baseline, and the link checker reports 0 broken links.
+- **SC-004**: **Given** a processed track, **When** all three pre-commit gates run, **Then** the sweep prints `all track roots match their declared children`, strict validation has no more failed folders than that track's baseline and the link checker reports 0 broken links.
 - **SC-005**: **Given** all ten track changes are processed, **When** `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` runs, **Then** the trigger index is rebuilt.
 <!-- /ANCHOR:success-criteria -->
 
@@ -146,7 +148,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Operator-approved maps, Git, and the named system-spec-kit scripts | Without the maps or scripts, the affected track cannot be moved or gated. | Stop the affected track before its commit. No alternate map is approved. |
+| Dependency | Operator-approved maps and the named system-spec-kit scripts | Without the maps or scripts, the affected track cannot be moved or gated. | Stop the affected track before its commit. No alternate map is approved. |
 | Risk | Older commits' `Spec:` trailers retain old paths, and branches that edit moved packets can conflict when they merge. The heaviest known history is sk-git 028 with 40 commits, then 032 and 033 with 27 each. | Searches on a new path miss those older commits, and merges may need conflict resolution. | Preserve historical trailers, search the old path when tracing prior commits, and resolve path conflicts at merge time. |
 <!-- /ANCHOR:risks -->
 
@@ -179,7 +181,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
 
 - Empty input: N/A: This is a finite filesystem migration over approved maps, not a runtime input handler.
-- Maximum input: N/A: No maximum map size is specified. The approved scope is about 175 packet moves across 40 subtracks.
+- Maximum input: N/A: No maximum map size is specified. The approved scope is 174 packet moves across 39 subtracks.
 - Failure path: If any per-track gate fails, do not create that track commit. Correct the move or metadata state and rerun all three gates.
 <!-- /ANCHOR:edge-cases -->
 

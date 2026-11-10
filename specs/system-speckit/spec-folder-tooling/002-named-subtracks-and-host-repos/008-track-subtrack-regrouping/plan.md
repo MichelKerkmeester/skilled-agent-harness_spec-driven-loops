@@ -27,7 +27,7 @@ contextType: "general"
 | **Testing** | Per-track root sweep, recursive strict validation, and Markdown link check |
 
 ### Overview
-Each approved map moves active packets in ten qualifying `specs/<track>/` roots into one-level named subtracks. Each moved packet keeps its slug and receives a number from 001 in its original order, while the two pinned packets and every `z_archive/` stay in place. Per-track sweeps, strict validation, and the Markdown link checker provide the required pre-commit gates, and the trigger index is rebuilt after all tracks.
+Each approved map moves 174 active packets in ten qualifying `specs/<track>/` roots into 39 one-level named subtracks. Each moved packet keeps its slug and receives a number from 001 in its original order, while the two pinned packets and every `z_archive/` stay in place. Packet numbering and JSON metadata align with each new folder. Per-track sweeps, strict validation, and the Markdown link checker provide the required pre-commit gates, and the trigger index is rebuilt after all tracks.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -37,15 +37,15 @@ Each approved map moves active packets in ten qualifying `specs/<track>/` roots 
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] `rg -n '10 qualifying tracks|40 subtracks|about 175' spec.md` prints the approved scope.
-- [ ] `rg -n 'AC-00[1-5]' acceptance-criteria.md` prints the five planned closure criteria.
-- [ ] `rg -n 'refresh-track-roots|repair-derived|check-markdown-links' spec.md` prints the required per-track tooling.
+- [x] `rg -n 'ten approved tracks|39 named subtracks|174 active packets' spec.md` prints the approved scope. Evidence: `spec.md` names ten qualifying tracks, 39 subtracks and 174 packets.
+- [x] `rg -n 'AC-00[1-6]' acceptance-criteria.md` prints the six closure criteria. Evidence: the acceptance table has one row for each requirement REQ-001 through REQ-006.
+- [x] `rg -n 'refresh-track-roots|repair-derived|check-markdown-links' spec.md` prints the required per-track tooling. Evidence: all three tool names appear under REQ-002 and REQ-004.
 
 ### Definition of Done
-- [ ] Every acceptance criterion is Met with observed evidence or has an approved decision record.
-- [ ] For each track, `node .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs --specs specs/<track>` prints `all track roots match`.
-- [ ] Recursive strict validation is no worse than the track baseline, the link check reports 0 broken, and the trigger index is rebuilt after all tracks.
-- [ ] `spec.md`, `plan.md`, `tasks.md`, and `acceptance-criteria.md` describe the same approved scope and gates.
+- [x] Every acceptance criterion is Met with evidence or has an approved decision record. Evidence: AC-001 through AC-006 are Met and cite the matching task evidence.
+- [x] For each track, `node .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs --specs specs/<track>` prints `all track roots match their declared children`. Evidence: all ten track sweeps printed that line.
+- [x] All three per-track gates passed, and the trigger index was rebuilt after all tracks. Evidence: all ten tracks validated with 224 passed and 0 failed total. Link checks printed `0 broken markdown links`. The trigger index was rebuilt in `eb512ee196` and the merge.
+- [x] `spec.md`, `plan.md`, `tasks.md`, and `acceptance-criteria.md` describe the same approved scope and gates. Evidence: each records ten tracks, 39 subtracks, 174 packets, the alignment rule, and the three gates.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -58,11 +58,11 @@ Each approved map moves active packets in ten qualifying `specs/<track>/` roots 
 Per-track filesystem regrouping
 
 ### Key Components
-- **Approved grouping maps**: assign each active packet exactly once to one of the 40 named subtracks.
-- **Path and metadata updates**: `git mv` packet folders, create subtrack descriptions, update track-root metadata, and rewrite live path locators.
+- **Approved grouping maps**: assign each active packet exactly once to one of the 39 named subtracks.
+- **Path and metadata updates**: `git mv` packet folders, create subtrack descriptions, align `specId`, `parentChain`, `packet_id`, `spec_folder`, `parent_id` and `children_ids` then rewrite live path locators.
 
 ### Data Flow
-The approved map determines each packet's subtrack and new number. The move keeps its slug, then live locators are rewritten, track-root and derived metadata are refreshed, and each track passes the three gates before its commit.
+The approved map determines each packet's subtrack and new number. The move keeps its slug and aligns the packet's JSON metadata with its new folder and actual ancestors. Live locators are rewritten, track-root metadata is refreshed, and each track passes the three gates before its commit.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -75,9 +75,11 @@ Use this section to name the path, metadata, and locator surfaces changed by the
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `specs/<track>/<packet>/` | Holds each active packet at its current path | Move | Compare `rg --files specs/<track>` with that track's approved map. |
-| `specs/<track>/<sub-track>/description.json` | Describes a named subtrack | Create | Inspect each new descriptor and confirm `level` is `sub-track`. |
-| `specs/<track>/graph-metadata.json` | Declares each track root's direct children | Modify | `node .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs --specs specs/<track>` prints `all track roots match`. |
+| `specs/<track>/<sub-track>/<NNN>-<slug>/` | Holds each moved active packet | Move | Compare the final tree with the approved map. Numbering starts at 001 with no gaps. |
+| `specs/<track>/<sub-track>/description.json` | Describes a named subtrack | Create | The 39 approved subtracks each have a descriptor. |
+| `specs/<track>/<sub-track>/<NNN>-<slug>/description.json` | Stores each packet's number and parent chain | Align | 0 of 311 flat-track and 0 of 2521 regrouped packet descriptions are out of line. |
+| `specs/<track>/<sub-track>/<packet>/graph-metadata.json` | Stores each packet's identity and children | Align | All 2521 files have matching `packet_id`, `spec_folder`, `parent_id` and `children_ids`. |
+| `specs/<track>/graph-metadata.json` | Declares each track root's direct children | Modify | `node .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs --specs specs/<track>` printed `all track roots match their declared children`. |
 | Tracked files with live moved packet paths | Locate current packet folders | Modify | `node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs` reports 0 broken links. |
 | Historical spec docs containing a moved live locator | Preserve history while linking to a current path | Modify only the moved path | The same Markdown link check reports 0 broken links. This is the approved deviation from `rename-pattern.md` section 2, which says to preserve historical spec docs. |
 | Changelogs, research and review iteration logs, `.jsonl` event streams, `scratch/`, `evidence/`, and test fixtures | Record historical events and test state | Unchanged | Confirm the excluded paths remain outside the move list. |
@@ -87,7 +89,7 @@ Required inventories:
 - Same-class producers: N/A. No source behavior or symbols change.
 - Consumers of changed symbols: N/A. No exported symbols change. Live path locators are handled above.
 - Matrix axes: eligible active packets, two pinned packets, seven flat tracks, and each track's `z_archive/`.
-- Algorithm invariant: each movable active packet appears exactly once under its approved named subtrack. Pinned packets and `z_archive/` remain unmoved.
+- Algorithm invariant: each movable active packet appears exactly once under its approved named subtrack. Its number and JSON metadata match its folder and actual ancestors. Pinned packets and `z_archive/` remain unmoved.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -123,8 +125,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation, and V
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Git and the named system-spec-kit scripts | Internal | Required, not yet run | The affected track cannot be moved, refreshed, or gated. Stop before its commit. |
-| Operator-approved maps for all ten tracks | Internal input | Approved, not yet applied | The packet placement cannot be inferred or substituted. Stop the affected track. |
+| Git and the named system-spec-kit scripts | Internal | Used | The affected track cannot be moved, refreshed, or gated without them. |
+| Operator-approved maps for all ten tracks | Internal input | Applied | The packet placement cannot be inferred or substituted. |
 <!-- /ANCHOR:dependencies -->
 
 ---

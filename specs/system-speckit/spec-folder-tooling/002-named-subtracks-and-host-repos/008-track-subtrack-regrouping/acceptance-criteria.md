@@ -1,24 +1,24 @@
 ---
 title: "Acceptance Criteria: Phase 8: track-subtrack-regrouping"
-description: "Closure criteria for the approved regrouping of ten large Skilled tracks into 40 named subtracks, with per-track validation and link gates."
+description: "Closure criteria for moving 174 active packets into 39 named subtracks across ten Skilled tracks, with aligned packet metadata and passing validation gates."
 trigger_phrases:
   - "track subtrack regrouping acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-track-subtrack-regrouping"
-    last_updated_at: "2026-11-10T05:05:28Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    packet_pointer: "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping"
+    last_updated_at: "2026-11-10T06:31:28Z"
+    last_updated_by: "codex"
+    recent_action: "Met every criterion with track and metadata evidence"
+    next_safe_action: "Review the closed phase record"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-008-track-subtrack-regrouping"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,9 +37,9 @@ _memory:
 ## 1. METADATA
 <!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** `system-speckit/044-named-subtracks-and-host-repos/008-track-subtrack-regrouping`
+**Packet:** `system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping`
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-10
 <!-- /ANCHOR:metadata -->
 
@@ -53,11 +53,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the ten approved maps, When movable active packets are regrouped, Then every assigned packet appears exactly once under its mapped subtrack with its slug preserved, while pinned packets, `z_archive/`, and the seven smaller tracks stay in place. | Planned check: compare `rg --files specs/<track>` with each approved map and inspect the pinned and archive paths. | Unmet | - |
-| AC-002 | REQ-002 | Given the 40 approved subtracks, When their descriptors and track-root metadata are updated, Then each `description.json` has `level` set to `sub-track` and each track sweep prints `all track roots match`. | Planned check: inspect each new `description.json`, then run `node .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs --specs specs/<track>` for each qualifying track. | Unmet | - |
-| AC-003 | REQ-003 | Given moved packet paths, When live tracked locators are rewritten and historical event records are preserved, Then the markdown link checker reports 0 broken links. | Planned check: `node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs` reports 0 broken links. Compare preserved changelogs, research and review iterations, `.jsonl` streams, `scratch/`, `evidence/`, and test fixtures with the scoped exclusions. | Unmet | - |
-| AC-004 | REQ-004 | Given a processed track, When its three required gates run before its one commit, Then the sweep prints `all track roots match`, recursive strict validation has no more failed folders than the track baseline, and the link checker reports 0 broken links. | Planned checks: `node .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs --specs specs/<track>`, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<track> --recursive --strict`, and `node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs`. | Unmet | - |
-| AC-005 | REQ-005 | Given all ten track changes, When the trigger-index generator runs after them, Then the generated trigger index is rebuilt. | Planned check: run `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` after all ten tracks and record the actual output. | Unmet | - |
+| AC-001 | REQ-001 | Given the ten approved maps, When the 174 active packets are regrouped, Then each appears once under its mapped subtrack with its slug preserved. The pinned packets and `z_archive/` stay in place, and the seven smaller tracks remain flat. | Evidence: `tasks.md:49`, `tasks.md:50`, `tasks.md:51`, `tasks.md:52`, `tasks.md:53`, `tasks.md:54`, `tasks.md:55`, `tasks.md:56`, `tasks.md:57`, `tasks.md:58`, `tasks.md:136`, `tasks.md:191`. The ten track commits recorded the mapped changes. The final map audit found 39 subtracks and numbering from 001 with no gaps. The two pinned packets remained flat. | Met | - |
+| AC-002 | REQ-002 | Given the 39 approved subtracks, When their descriptors and track-root metadata are updated, Then each `description.json` has `level` set to `sub-track` and each track sweep prints `all track roots match their declared children`. | Evidence: `tasks.md:137` and `tasks.md:138`. All ten strict validations passed with 224 passed and 0 failed. | Met | - |
+| AC-003 | REQ-003 | Given moved packet paths, When live tracked locators are rewritten and historical event records are preserved, Then the markdown link checker reports 0 broken links. | Evidence: `tasks.md:150` and `tasks.md:180`. Each track link check printed `0 broken markdown links`. Commit `e7ed23d545` restored 18 benchmark-report and baseline files to their recorded content. Older commit trailers retain their old paths. Commit `82d616acc5` repaired the five broken links by rewriting only link targets in three report sources. | Met | - |
+| AC-004 | REQ-004 | Given a processed track, When its three required gates run before its one commit, Then all three pass. The sweep prints `all track roots match their declared children`, strict validation has no more failed folders than the track baseline, and the link check reports 0 broken links. | Evidence: `tasks.md:148`, `tasks.md:149` and `tasks.md:150`. All ten sweeps printed the required line. Strict validation totaled 224 passed and 0 failed. Link checks printed `0 broken markdown links`. | Met | - |
+| AC-005 | REQ-005 | Given all ten track changes, When the trigger-index generator runs after them, Then the generated trigger index is rebuilt. | Evidence: `tasks.md:77` and `tasks.md:151`. `generate-trigger-index.mjs` exited 0 in commit `eb512ee196` and ran again in merge `26edf50b63`. | Met | - |
+| AC-006 | REQ-006 | Given a packet moved into a subtrack, When its folder number and JSON metadata are checked, Then its number, `specId`, `parentChain`, `packet_id`, `spec_folder`, `parent_id` and `children_ids` match its folder and actual ancestors. | Evidence: `tasks.md:152`. 0 of 311 flat-track and 0 of 2521 regrouped `description.json` files were out of line. All 2521 `graph-metadata.json` files matched their folders. The subtrack numbering starts at 001 with no gaps. | Met | - |
 
 ### Status values
 
@@ -83,7 +84,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every criterion remains Unmet while the regrouping is still in progress.
+Every criterion is Met with evidence recorded in `tasks.md`, and nothing was waived.
 <!-- /ANCHOR:closure -->
