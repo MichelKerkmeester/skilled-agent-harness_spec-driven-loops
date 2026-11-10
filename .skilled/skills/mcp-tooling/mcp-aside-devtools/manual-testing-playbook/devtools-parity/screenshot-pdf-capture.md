@@ -1,7 +1,7 @@
 ---
 title: "ASD-017 -- Full-page screenshot + PDF capture"
 description: "This scenario validates Chrome-DevTools visual-capture parity for `ASD-017`: page.screenshot({ fullPage }) and page.pdf through the aside REPL, each verified by artifact magic bytes, with a SKIP-valid path when no bound session exists."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # ASD-017 -- Full-page screenshot + PDF capture
@@ -24,7 +24,7 @@ Full-page and print-to-PDF are common evidence deliverables. Aside supports both
 
 Operators run the exact prompt and command sequence for `ASD-017` and confirm the expected signals without contradictory evidence.
 
-- Objective: On a bound tab, write a full-page PNG and an A4 PDF under `./artifacts/`, and verify each file exists, is non-empty, and starts with the correct magic bytes.
+- Objective: On a bound tab, write a full-page PNG and an A4 PDF under `/tmp/aside-artifacts/`, and verify each file exists, is non-empty, and starts with the correct magic bytes.
 - Real user request: `"Capture a full-page screenshot and a PDF of this page as evidence."`
 - Prompt: `Capture a full-page screenshot and a PDF through the aside REPL and confirm both artifacts are valid by magic bytes.`
 - Expected execution process: screenshot + pdf calls, then two byte checks.
@@ -43,10 +43,11 @@ Operators run the exact prompt and command sequence for `ASD-017` and confirm th
 ### Commands
 
 1. Precondition: a bound tab (ASD-006). If none, SKIP with that blocker.
-2. `bash: mkdir -p ./artifacts && rm -f ./artifacts/asd017.png ./artifacts/asd017.pdf`
-3. `bash: aside repl "await page.screenshot({ path: './artifacts/asd017.png', fullPage: true, type: 'png' }); await page.pdf({ path: './artifacts/asd017.pdf', format: 'A4', printBackground: true }); console.log('captured')" 2>&1`
-4. `bash: ls -la ./artifacts/asd017.png ./artifacts/asd017.pdf`
-5. `bash: xxd ./artifacts/asd017.png | head -1 && head -c 4 ./artifacts/asd017.pdf`
+2. `bash: mkdir -p /tmp/aside-artifacts && rm -f /tmp/aside-artifacts/asd017.png /tmp/aside-artifacts/asd017.pdf`
+3. `bash: aside repl "await page.screenshot({ path: '/tmp/aside-artifacts/asd017.png', fullPage: true, type: 'png' }); await page.pdf({ path: '/tmp/aside-artifacts/asd017.pdf', format: 'A4', printBackground: true }); console.log('captured')" 2>&1`
+4. `bash: ls -la /tmp/aside-artifacts/asd017.png /tmp/aside-artifacts/asd017.pdf`
+5. `bash: xxd /tmp/aside-artifacts/asd017.png | head -1 && head -c 4 /tmp/aside-artifacts/asd017.pdf`
+6. `bash: rm -rf /tmp/aside-artifacts` (delete the captures once the checks are recorded, since they can show a signed-in page)
 
 ### Expected
 
@@ -54,7 +55,7 @@ Operators run the exact prompt and command sequence for `ASD-017` and confirm th
 
 ### Evidence
 
-Command outputs, file sizes, and the magic-byte lines. Record the step-3 response shape as an installed-version fixture.
+Command outputs, file sizes, and the magic-byte lines. Never quote page content from either file (SKILL.md ALWAYS rule 6). Record the step-3 response shape as an installed-version fixture.
 
 ### Pass / Fail
 

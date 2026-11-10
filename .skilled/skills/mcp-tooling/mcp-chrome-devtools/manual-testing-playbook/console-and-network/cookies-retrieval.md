@@ -1,7 +1,7 @@
 ---
 title: "BDG-012 -- Cookies retrieval"
 description: "This scenario validates cookie retrieval for `BDG-012`. It focuses on confirming `bdg network getCookies` returns a valid JSON array (possibly empty) for the active page."
-version: 1.0.0.7
+version: 1.0.1.0
 ---
 
 # BDG-012 -- Cookies retrieval
@@ -57,7 +57,7 @@ Operators run the exact prompt and command sequence for `BDG-012` and confirm th
 
 ### Evidence
 
-Capture all command outputs and the parsed type / length values.
+Capture the exit codes and the parsed type / length values. On a page that sets cookies, redact the `value` field before quoting any output (SKILL.md ALWAYS rule 7).
 
 ### Pass / Fail
 
@@ -68,10 +68,12 @@ Capture all command outputs and the parsed type / length values.
 
 1. If `jq '.'` reports parse error: dump the raw output with `bdg network getCookies 2>&1` and inspect — the surface may be wrapping the array in a status envelope (e.g., `{"ok":true,"data":[...]}`); update the assertion path or cross-reference BDG-002 if the session is dead.
 2. If `type` returns `object` instead of `array`: the response shape changed upstream; inspect with `bdg network getCookies 2>&1 | jq 'keys'` and adapt the assertion to navigate to the array (commonly `.cookies` or `.data`).
+3. Redact the `value` field of every cookie before quoting any dump (SKILL.md ALWAYS rule 7).
 
 ### Optional Supplemental Checks
 
 - Navigate to a cookie-setting page (`bdg https://www.google.com`) and re-run to confirm non-empty case works; expect length > 0.
+- For that check, use `bdg network getCookies 2>&1 | jq 'map({name, domain})'` and `jq 'length'` so no cookie value is printed.
 
 ---
 
