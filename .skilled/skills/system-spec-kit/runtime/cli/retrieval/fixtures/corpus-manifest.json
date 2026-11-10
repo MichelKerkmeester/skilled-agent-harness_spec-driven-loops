@@ -1,5 +1,5 @@
 {
-  "corpusHash": "770e00683df6b6a7b77788bdd86a9cddd07b7feec4fadcf8aec4bacbda1b925f",
+  "corpusHash": "3105b6f91e42811f265ea340da9f7c4dd2dcc39a55d2dd1f76c40bcf7fc394af",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25964,
+  "includedPathCount": 25965,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8639,6 +8639,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.38.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.39.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.40.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.7.0.md",
@@ -25996,7 +25997,7 @@
     "specs/system-speckit/047-v4-release-line-research/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2ad9d5a74bfbdc958e07a377f2f2f8ea3a50e4109602f6cbe2096a7a521ff4f3",
+  "manifestHash": "33cb10160b4b44e5d4dd66569ed8caececf0f7c6ca2a55ff5a44e9aabbfd94c9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

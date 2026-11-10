@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2ad9d5a74bfbdc958e07a377f2f2f8ea3a50e4109602f6cbe2096a7a521ff4f3",
+  "manifestHash": "33cb10160b4b44e5d4dd66569ed8caececf0f7c6ca2a55ff5a44e9aabbfd94c9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -57644,6 +57644,9 @@
     "hop notice": [
       "hop notice"
     ],
+    "host index folder setting": [
+      "host index folder setting"
+    ],
     "host lifecycle epoch": [
       "host lifecycle epoch"
     ],
@@ -59122,6 +59125,9 @@
     ],
     "indexable content sources": [
       "indexable content sources"
+    ],
+    "indexdir in skilled host json": [
+      "indexDir in skilled-host.json"
     ],
     "indexed but not routed": [
       "indexed but not routed"
@@ -117768,6 +117774,9 @@
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
     ],
+    "system spec kit 2 12 40 0": [
+      "system-spec-kit 2.12.40.0"
+    ],
     "system spec kit 2 12 5 0": [
       "system-spec-kit 2.12.5.0"
     ],
@@ -118352,6 +118361,9 @@
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"
+    ],
+    "system spec kit v2 12 40 0": [
+      "system-spec-kit v2.12.40.0"
     ],
     "system spec kit v2 12 5 0": [
       "system-spec-kit v2.12.5.0"

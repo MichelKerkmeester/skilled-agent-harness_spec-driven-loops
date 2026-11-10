@@ -77,6 +77,7 @@ contextType: "general"
 - [x] T029 Test that a linked project reads the index it keeps itself (`H`). Verify: "reads the index the project keeps itself before its host is asked" passes in the 48-case run.
 - [x] T030 Name the setting in `README.md`, `.skilled/skills/system-spec-kit/README.md` and `.skilled/commands/speckit/README.txt`, and state in `search.md` that a project's own index wins. Verify: `rg -l "skilled-host" README.md .skilled/skills/system-spec-kit/README.md .skilled/commands/speckit/README.txt` prints all three files.
 - [x] T031 Fold the setting and the root guide alignment into `.skilled/changelog/skilled/v4.0.2.0.md`. Verify: `check_changelog_shape.py` prints `PASS` and `rg -c "skilled-host"` on the entry prints 2.
+- [x] T032 Write `.skilled/skills/system-spec-kit/changelog/v2.12.40.0.md` and raise `SKILL.md` to 2.12.40.0. Verify: `check_changelog_shape.py` prints `PASS` and `validate_document.py` reports 0 issues.
 - [x] T021 Strict validation of this folder. Verify: `validate.sh specs/system-speckit/047-v4-release-line-research/023-configurable-host-index-folder --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
