@@ -201,7 +201,7 @@
     ],
     "causal_summary": "OpenCode had no semantic code search capability",
     "created_at": "2026-04-12T09:02:50.170Z",
-    "last_save_at": "2026-10-07T19:23:46.584Z",
+    "last_save_at": "2026-11-10T05:44:32.769Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,11 +211,11 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:7c6a7d2fe17cc714328596a3a33a662cffd76a3b41e095f7927e5bbb007af861",
+    "source_fingerprint": "sha256:7f632bfba314bd3f0a328430e3bccad4c19bf3093356808d0d9afeb42be59d31",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "174eb48c89bcf48f8a891aa6746c7d7881de38500ef41b100d3becc973ca4179",
-      "plan.md": "9a405fd626538ed2190aee5dce53e110f622e6943debe1fccfd2ef20929ce9ab",
+      "plan.md": "573682cae978e8c9d40538646ebae135c93f88a105e775ca37cc49ce09e9eb1d",
       "tasks.md": "3eb10c42df67bf10a15c981edfc0dc5983f363f8c112790e875ee78b5d58142d",
       "implementation-summary.md": "30f0487397e732b21d8d0a3692f2f36a99c5939a5e439a80832b79db9fc87551",
       "research/research.md": "c19163b2133a063265c9d7301e330bfaa1487eb70d54930c08874bf75f870824"

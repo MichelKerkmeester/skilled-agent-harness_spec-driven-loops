@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "3",
   "specFolder": "mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent",
   "description": "The Figma MCP capability lives as a developer-grade skill (`mcp-figma`) inside the Public skill repo",
   "keywords": [

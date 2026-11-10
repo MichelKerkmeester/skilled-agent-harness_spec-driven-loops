@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing",
+  "spec_folder": "mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing",
+  "parent_id": "mcp-tooling/clickup-figma",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "clickup doc divider spacing",
+      "clickup doc divider spacing on api written pages",
+      "clickup doc divider spacing plan",
+      "clickup doc divider spacing tasks",
+      "clickup doc divider spacing implementation summary"
+    ],
+    "key_topics": [
+      "clickup",
+      "doc",
+      "divider",
+      "spacing",
+      "api",
+      "written",
+      "pages",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "every"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md",
+      ".skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md",
+      ".skilled/skills/mcp-tooling/mcp-click-up/SKILL.md",
+      ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.10.0.md",
+      ".skilled/skills/mcp-tooling/ROUTER.md",
+      ".skilled/skills/sk-doc/ROUTER.md",
+      ".skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md",
+      ".skilled/skills/mcp-tooling/hub-router.json",
+      ".skilled/skills/mcp-tooling/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      "feature-catalog/feature-catalog.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-tools.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-click-up/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.2.10.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.10.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-tooling/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reference",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every divider the hosted ClickUp MCP writes into a doc page gets an empty line under it, so a page built from markdown shows a double gap under each `  `",
+    "created_at": "2026-11-05T17:14:27Z",
+    "last_save_at": "2026-11-10T05:44:32.577Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d0c7ea33d964890bb00a84727dbde2ba37a9e4aad8f0b1f4a0a7f928526db613",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "68441494772e1b92b8f96e421870df4dd2218f47d32939de4c867d29a0774a2b",
+      "plan.md": "51a4791dd721b31c387888a0d960e8e5595b979bd3b866c978585467d49c0cb6",
+      "tasks.md": "eff215c5d660c29395d9d5c875ed958e5ea3c21b3e52f698a9c9664e135cc97b",
+      "implementation-summary.md": "530a2d88ef80dda7812ca98fa36ad00b1c087e06c4d17c35d37265aa1c67a6e3"
+    },
+    "last_active_at": null
+  }
+}

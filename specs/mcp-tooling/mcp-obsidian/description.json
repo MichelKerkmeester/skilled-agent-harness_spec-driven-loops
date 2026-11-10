@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "mcp-tooling/mcp-obsidian",
+  "description": "Document the official Obsidian CLI's real failure modes and trim the mcp-obsidian plugin surface to the two retained integrations.",
+  "keywords": [
+    "mcp",
+    "obsidian"
+  ],
+  "lastUpdated": "2026-11-10T05:44:28.545Z",
+  "specId": "mcp-tooling/mcp-obsidian",
+  "folderSlug": "mcp-obsidian",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

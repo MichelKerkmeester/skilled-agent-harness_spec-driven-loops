@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "mcp-tooling/clickup-figma",
+  "description": "Fix the shared mcp-click-up and mcp-figma skill surfaces: vendored-copy defects, the Figma hosted-server route for CLI children, and ClickUp doc divider spacing.",
+  "keywords": [
+    "clickup",
+    "figma"
+  ],
+  "lastUpdated": "2026-11-10T05:44:28.545Z",
+  "specId": "mcp-tooling/clickup-figma",
+  "folderSlug": "clickup-figma",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

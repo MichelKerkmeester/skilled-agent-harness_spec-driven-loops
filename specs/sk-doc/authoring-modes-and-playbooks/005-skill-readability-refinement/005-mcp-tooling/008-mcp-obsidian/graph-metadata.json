@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The docs of the `.skilled/skills/mcp-tooling/mcp-obsidian` mode were never read as a whole for readability, layout and structure",
     "created_at": "2026-11-04T07:16:30Z",
-    "last_save_at": "2026-11-10T05:26:11.508Z",
+    "last_save_at": "2026-11-10T05:45:01.746Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:812605dd79397426a49471b51d9b0d4044ee069817907c73633ab31db822c46e",
+    "source_fingerprint": "sha256:721903783d7d17b46006273abce3b0ec46298a963a5bd9381bfe3c4bb80b4eb0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e666ab62ce369dc2498335c18a37e09e23246e946f144a53404c7397399a2acc",
       "plan.md": "73226a15d496bf00544e776b2139d8e036d24d50f9cf98a60aeb0c8ce8f906d6",
       "tasks.md": "d879465422ecd018a291a4fdc197b7bdda2a825f54912027d9f702689b01a8f0",
-      "implementation-summary.md": "ba100662dd0f01698694ec00d1d6452a8ca240387de2e6e33ae3477958c0bc06"
+      "implementation-summary.md": "c343567c69c04e1b7b79ee4131a69ef35a92cc18fb0eb42df5e72688478952c1"
     },
     "last_active_at": null
   }

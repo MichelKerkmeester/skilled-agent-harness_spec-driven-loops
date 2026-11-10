@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "mcp-tooling/code-mode",
+  "description": "Keep the Code Mode server installable from a fresh clone, make its UTCP manual validation truthful, and register the hosted ClickUp manual so tools actually load.",
+  "keywords": [
+    "code",
+    "mode"
+  ],
+  "lastUpdated": "2026-11-10T05:44:28.544Z",
+  "specId": "mcp-tooling/code-mode",
+  "folderSlug": "code-mode",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -133,7 +133,7 @@ The scan found 55 goals with a binding anchor: 16 whose rows all match its exact
 
 The 16 exact per-child-row packets are:
 
-- `specs/mcp-tooling/019-official-obsidian-cli`
+- `specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli`
 - `specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul`
 - `specs/sk-design/019-sk-design-diagram-upgrade`
 - `specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter`

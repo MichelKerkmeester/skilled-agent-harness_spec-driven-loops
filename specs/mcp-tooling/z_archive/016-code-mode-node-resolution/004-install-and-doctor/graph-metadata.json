@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Two install scripts write MCP registrations, so a fresh install would reintroduce whatever shape they encode regardless of what the cutover fixed",
     "created_at": "2026-08-28T16:11:22Z",
-    "last_save_at": "2026-10-07T18:11:39.830Z",
+    "last_save_at": "2026-11-10T05:44:44.060Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3cfa41cee794d1c757c5a3726b9e79c2feabe169eb908bd6e10c3519f3c1425a",
+    "source_fingerprint": "sha256:bee92fe6d8160e7804fb6a20d90de76fc41ae87d119ff8ffe219e2399375c65f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "842104cd57311d00938f1e6902b34fdd8065f6102e739a30ac9377f4ceb06944",
+      "spec.md": "724e68065352c8244664a10c005ee27dd3a5934cb2723c81bc14e0fddcb016cf",
       "plan.md": "b5976970158a7cced7972006848261562435e3b30575c92ecd064fc757b349f2",
-      "tasks.md": "4908ad5399cf98dc84ef5aa13d5503d67d2a80eb7d3470cece423ae078e11e9e",
-      "implementation-summary.md": "608be35920e2f9331dd24a914d863bf610572a88fcf434731e45d02268797917"
+      "tasks.md": "031d7d171c729119948b653185af94894f5ec52be194c116b5c5a622980861bc",
+      "implementation-summary.md": "df384aebedd3df3313ebda509f485034e16b47a9bdc176189e6fa0cbb14b4583"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -8036,7 +8036,7 @@
       "lastUpdated": "2026-08-29T14:33:53.772Z"
     },
     {
-      "specFolder": "mcp-tooling/019-official-obsidian-cli",
+      "specFolder": "mcp-tooling/mcp-obsidian/001-official-obsidian-cli",
       "description": "The official `obsidian` binary is already registered on this machine at `/usr/local/bin/obsidian`, symlinked into the desktop app bundle",
       "keywords": [
         "official",
@@ -8056,7 +8056,7 @@
       "lastUpdated": "2026-09-02T18:51:33.263Z"
     },
     {
-      "specFolder": "mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp",
+      "specFolder": "mcp-tooling/mcp-obsidian/001-official-obsidian-cli/001-cli-versus-mcp",
       "description": "The skill described the official CLI and the MCP server side by side and left the choice to the reader",
       "keywords": [
         "skill",

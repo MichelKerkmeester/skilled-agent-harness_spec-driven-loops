@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/clickup-figma",
+  "spec_folder": "mcp-tooling/clickup-figma",
+  "parent_id": "mcp-tooling",
+  "children_ids": [
+    "mcp-tooling/clickup-figma/001-vendored-copy-review-fixes",
+    "mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children",
+    "mcp-tooling/clickup-figma/003-clickup-doc-divider-spacing"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "mcp-tooling/clickup-figma"
+    ],
+    "causal_summary": "Container folder for mcp-tooling/clickup-figma."
+  }
+}
