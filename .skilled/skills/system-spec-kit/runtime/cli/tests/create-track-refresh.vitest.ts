@@ -205,7 +205,7 @@ describe('create.sh --track refreshes a declared sub-track and its track', () =>
   });
 
   it('seeds missing metadata while scaffolding in the declared sub-track and keeps the sweep clean', () => {
-    const { specs } = buildSubtrackTree(workspace);
+    const { specs } = buildSubtrackTree(workspace, { flat: false });
     const subMetadata = path.join(specs, 'demo', 'sub', 'graph-metadata.json');
     fs.rmSync(subMetadata);
 

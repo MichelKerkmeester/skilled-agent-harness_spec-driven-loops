@@ -6,7 +6,7 @@ trigger_phrases:
   - "refresh-track-roots"
   - "sweep-track-roots"
   - "track-root pre-push gate"
-version: 2.0.6.0
+version: 2.0.7.0
 ---
 
 # Track-root children lists
@@ -45,6 +45,10 @@ it reads that commit instead of the working tree, and leaves out a symlinked
 track, whose files live in another repository. A packet named more than once is
 drift even though the set is unchanged: the sweep names it and the writer
 removes the repeat.
+
+A track that holds numbered packets beside declared sub-tracks is mixed. The
+sweep names the flat packets and exits 1, even when the children list is
+correct. The writer cannot clear it: each flat packet moves into a sub-track.
 
 A declared sub-track is a container one level below a track: its
 `"level": "sub-track"` description makes it a track root in miniature, with the

@@ -202,6 +202,7 @@ Abridged from `research/research.md` (3 iterations, 5/5 questions answered):
 | 7 | 007-children-list-duplicates/ | A repeated `children_ids` entry counts as drift in the sweep and is removed by the writer, plus the stale specs-root list a host mirror exposes | Complete |
 | 8 | 008-track-subtrack-regrouping/ | [Phase 8 scope] | Pending |
 | 9 | 009-rename-rule-and-test-root-fixes/ | [Phase 9 scope] | Pending |
+| 10 | 010-mixed-track-sweep-guard/ | [Phase 10 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -222,6 +223,7 @@ Abridged from `research/research.md` (3 iterations, 5/5 questions answered):
 | 006-review-follow-ups | 007-children-list-duplicates | Phases 001 to 006 are Complete | `track-roots.vitest.ts` passes, and `validate.sh` on `007-children-list-duplicates` prints `RESULT: PASSED` |
 | 007-children-list-duplicates | 008-track-subtrack-regrouping | [Criteria TBD] | [Verification TBD] |
 | 008-track-subtrack-regrouping | 009-rename-rule-and-test-root-fixes | [Criteria TBD] | [Verification TBD] |
+| 009-rename-rule-and-test-root-fixes | 010-mixed-track-sweep-guard | [Criteria TBD] | [Verification TBD] |
 ### Recorded Operator Decisions
 
 Each decision sits in its child's `spec.md` section 7. The operator answered all decisions on 2026-11-07.

@@ -60,17 +60,19 @@ function packet(dir, title) {
 /**
  * Build the sub-track tree under `root`.
  * @param {string} root an empty directory; specs/ and linked-target/ are created in it
- * @param {{ declared?: boolean }} [options] declared=false leaves every children_ids list empty,
- *   which is the state a tool must repair
+ * @param {{ declared?: boolean, flat?: boolean }} [options] declared=false leaves every
+ *   children_ids list empty, which is the state a tool must repair. flat=false leaves out the
+ *   flat packet, so the track holds sub-tracks only and is not mixed
  * @returns {{ specs: string, entries: Record<string, string> }}
  */
 export function buildSubtrackTree(root, options = {}) {
   const declared = options.declared !== false;
+  const withFlat = options.flat !== false;
   const specs = path.join(root, 'specs');
   const list = (ids) => (declared ? ids : []);
 
-  container(specs, 'demo', 'track', list(['demo/001-flat-probe', 'demo/sub']));
-  const flat = packet(path.join(specs, 'demo', '001-flat-probe'), 'Flat probe');
+  container(specs, 'demo', 'track', list(withFlat ? ['demo/001-flat-probe', 'demo/sub'] : ['demo/sub']));
+  const flat = withFlat ? packet(path.join(specs, 'demo', '001-flat-probe'), 'Flat probe') : null;
 
   const sub = container(specs, 'demo/sub', 'sub-track', list(['demo/sub/001-nested-probe']));
   const nested = packet(path.join(sub, '001-nested-probe'), 'Nested probe');

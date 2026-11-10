@@ -12,7 +12,8 @@
     "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/006-review-follow-ups",
     "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/007-children-list-duplicates",
     "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping",
-    "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes"
+    "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes",
+    "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard"
   ],
   "manual": {
     "depends_on": [],
@@ -220,7 +221,7 @@
     ],
     "causal_summary": "A repository built on Skilled can file packets as `specs/<track>/<sub-track>/<NNN>-<slug>/`, and such a packet works on its own, but every tool that treats a track as a unit looks only one level below `specs/`",
     "created_at": "2026-11-07T12:11:59Z",
-    "last_save_at": "2026-11-10T08:08:37.572Z",
+    "last_save_at": "2026-11-10T08:48:51.158Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -232,17 +233,17 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:73ed23a9aea8204caeb4a499c6821ec06d5a5415b484b8da50e21e5dd86bb896",
+    "source_fingerprint": "sha256:58839251999a45ce11093aca6dc38e0c50f5ac4bba73239516c2e9fec3c997e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "833ba40a5340b3970a312b956aefb1a5f9dcd25baf826282e4e27492b98fd54b",
+      "spec.md": "7003371b3923888914886eab1d86aee601ca732220a3a6b806b26038d57099c9",
       "plan.md": "922f5f592c2ffe8955f154fe4a16a827aba1c482fac6d823065d6d835a2d8596",
       "tasks.md": "1802664bfc30d6ff81073e89c67e30ee8d78075b69c543f88adf458bd9dd83ec",
       "decision-record.md": "6dd424ef1aed4c7bc45a6ce8616e198d74956ca90c8019ef0fd283fc29ea389e",
       "implementation-summary.md": "a4e5d3961d112bebd71a4d0a8186deb648580df992aa3131e6d568e66f261228",
       "research/research.md": "ce37a5d6e51b8279dd28b78133c5802fc4365ad77aee78184250cffabe59fb71"
     },
-    "last_active_child_id": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping",
-    "last_active_at": "2026-11-10T07:36:52.363Z"
+    "last_active_child_id": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard",
+    "last_active_at": "2026-11-10T08:48:51.158Z"
   }
 }

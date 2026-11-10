@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard",
+  "spec_folder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard",
+  "parent_id": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mixed track sweep guard",
+      "phase 10 mixed track sweep guard",
+      "mixed track sweep guard plan",
+      "mixed track sweep guard tasks",
+      "mixed track sweep guard implementation summary"
+    ],
+    "key_topics": [
+      "mixed",
+      "track",
+      "sweep",
+      "guard",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "regrouped",
+      "ten",
+      "spec"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "runtime/cli/lib/track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/subtrack-tree.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/README.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/track-root-children-lists.md",
+      ".skilled/skills/system-spec-kit/changelog/v2.12.46.0.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      "runtime/cli/spec/sweep-track-roots.mjs",
+      "runtime/cli/tests/fixtures/subtrack-tree.mjs",
+      "tests/fixtures/subtrack-tree.mjs",
+      "runtime/cli/spec/README.md",
+      "runtime/cli/lib/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.mjs",
+        "kind": "file",
+        "path": "runtime/cli/lib/track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "subtrack-tree.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/subtrack-tree.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "track-root-children-lists.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/track-root-children-lists.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.12.46.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v2.12.46.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Move",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 008 regrouped ten spec tracks into 39 sub-tracks but left two packets flat because another session was editing them",
+    "created_at": "2026-11-10T08:34:34Z",
+    "last_save_at": "2026-11-10T08:48:51.141Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:04f25a2606929c77ee439f4c1a5caf1700bff0eee4539990135bac1e9b706a4c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1743cda31f83ed5b3beb306072d6d340d317b98c64f3b535d74c979a5dc26c33",
+      "plan.md": "ba2df4ca227533a5da2c65383cc13f2e305f1a08c6ed9192492e191e9d353d88",
+      "tasks.md": "0035a37f215e93958b567eb68be9021a5ed3edfc0a1c8ec9a7332b01e3523bc9",
+      "implementation-summary.md": "61d6f2605c435698e8138d18677fb46cbc8589472a58d81445880cab9db57179"
+    },
+    "last_active_at": null
+  }
+}

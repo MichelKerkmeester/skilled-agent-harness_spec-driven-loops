@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4274a62ac707764f53c2c47bd2270a63b4daf664b087034045b5676919234cac",
+  "manifestHash": "fa30041429da9d75eec9006be899e10f52a75c210897e9d202079f1f158ef8d1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -50592,6 +50592,9 @@
     "flat level 3 packet": [
       "flat Level 3 packet"
     ],
+    "flat packets beside sub tracks": [
+      "flat packets beside sub-tracks"
+    ],
     "flat price fan out billing": [
       "flat price fan-out billing"
     ],
@@ -70446,6 +70449,18 @@
     "mixed epoch promotion rejection": [
       "mixed epoch promotion rejection"
     ],
+    "mixed track sweep guard": [
+      "mixed track sweep guard"
+    ],
+    "mixed track sweep guard implementation summary": [
+      "mixed track sweep guard implementation summary"
+    ],
+    "mixed track sweep guard plan": [
+      "mixed track sweep guard plan"
+    ],
+    "mixed track sweep guard tasks": [
+      "mixed track sweep guard tasks"
+    ],
     "mixed vector guard": [
       "mixed vector guard"
     ],
@@ -79072,6 +79087,9 @@
     ],
     "phase 10 final gate ledger": [
       "phase 10 final gate ledger"
+    ],
+    "phase 10 mixed track sweep guard": [
+      "phase 10 mixed track sweep guard"
     ],
     "phase 10 observations": [
       "phase 10 observations"
@@ -117854,6 +117872,9 @@
     "system spec kit 2 12 45 0": [
       "system-spec-kit 2.12.45.0"
     ],
+    "system spec kit 2 12 46 0": [
+      "system-spec-kit 2.12.46.0"
+    ],
     "system spec kit 2 12 5 0": [
       "system-spec-kit 2.12.5.0"
     ],
@@ -118456,6 +118477,9 @@
     ],
     "system spec kit v2 12 45 0": [
       "system-spec-kit v2.12.45.0"
+    ],
+    "system spec kit v2 12 46 0": [
+      "system-spec-kit v2.12.46.0"
     ],
     "system spec kit v2 12 5 0": [
       "system-spec-kit v2.12.5.0"

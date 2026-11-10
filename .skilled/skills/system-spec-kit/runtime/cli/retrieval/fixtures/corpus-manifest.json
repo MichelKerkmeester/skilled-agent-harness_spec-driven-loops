@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c81c8d3f26b8f70cf06bf16685cff455e3bab38f71ca1a390a7561bd6c875b6b",
+  "corpusHash": "f2e0fb445b27ef95b939b168d96cb766145eb32912cd8722d33a26f4c6edd224",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26006,
+  "includedPathCount": 26011,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8645,6 +8645,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.43.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.44.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.45.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.46.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.7.0.md",
@@ -10875,68 +10876,6 @@
     "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/spec.md",
     "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/tasks.md",
     "specs/commands/005-doctor-symlink-install/spec.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/acceptance-criteria.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/goal.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/implementation-summary.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/plan.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/research.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/spec.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/tasks.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/acceptance-criteria.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/goal.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/implementation-summary.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/plan.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/research.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/spec.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/tasks.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/acceptance-criteria.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/goal.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/implementation-summary.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/plan.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/research.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/spec.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/tasks.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/acceptance-criteria.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/alignment/fix-plan.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/alignment/recheck.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/alignment/report.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/benchmark/results.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/benchmark/scenario-489/matrix.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/goal.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/implementation-summary.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/plan.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/spec.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/tasks.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/acceptance-criteria.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/alignment/fix-plan.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/alignment/recheck.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/alignment/report.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/benchmark/results.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/benchmark/scenario-490/matrix.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/goal.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/implementation-summary.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/plan.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/spec.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/tasks.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/acceptance-criteria.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/alignment/final-recheck.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/alignment/fix-plan.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/alignment/recheck.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/alignment/report.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/benchmark/results.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/benchmark/scenario-491/matrix.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/benchmark/summary.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/goal.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/implementation-summary.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/plan.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/spec.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/tasks.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/007-search-routing-followups/implementation-summary.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/007-search-routing-followups/plan.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/007-search-routing-followups/spec.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/007-search-routing-followups/tasks.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/goal.md",
-    "specs/hooks-plugins-extensions/028-sweet-search-integration/spec.md",
     "specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state/implementation-summary.md",
     "specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state/plan.md",
     "specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state/spec.md",
@@ -11461,6 +11400,68 @@
     "specs/hooks-plugins-extensions/repo-commit-gates/004-spec-metadata-auto-remint/plan.md",
     "specs/hooks-plugins-extensions/repo-commit-gates/004-spec-metadata-auto-remint/spec.md",
     "specs/hooks-plugins-extensions/repo-commit-gates/004-spec-metadata-auto-remint/tasks.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/goal.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/implementation-summary.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/plan.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/research.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/spec.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/tasks.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/goal.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/implementation-summary.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/plan.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/research.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/spec.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/tasks.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/goal.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/implementation-summary.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/plan.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/research.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/spec.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/tasks.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/alignment/fix-plan.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/alignment/recheck.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/alignment/report.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/benchmark/results.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/benchmark/scenario-489/matrix.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/goal.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/implementation-summary.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/plan.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/spec.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/tasks.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/alignment/fix-plan.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/alignment/recheck.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/alignment/report.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/benchmark/results.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/benchmark/scenario-490/matrix.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/goal.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/implementation-summary.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/plan.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/spec.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/tasks.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/alignment/final-recheck.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/alignment/fix-plan.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/alignment/recheck.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/alignment/report.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/benchmark/results.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/benchmark/scenario-491/matrix.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/benchmark/summary.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/goal.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/implementation-summary.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/plan.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/spec.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/tasks.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups/implementation-summary.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups/plan.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups/spec.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups/tasks.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/goal.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/001-spec-gate-question-noise/handover.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/001-spec-gate-question-noise/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/001-spec-gate-question-noise/plan.md",
@@ -11799,181 +11800,181 @@
     "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/spec.md",
     "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/tasks.md",
     "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/spec.md",
-    "specs/sk-code/019-surface-consistency-research/acceptance-criteria.md",
-    "specs/sk-code/019-surface-consistency-research/decision-record.md",
-    "specs/sk-code/019-surface-consistency-research/implementation-summary.md",
-    "specs/sk-code/019-surface-consistency-research/plan.md",
-    "specs/sk-code/019-surface-consistency-research/research/research.md",
-    "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/deep-research-dashboard.md",
-    "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/deep-research-strategy.md",
-    "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-001.md",
-    "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-002.md",
-    "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-003.md",
-    "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-004.md",
-    "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-005.md",
-    "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-1.md",
-    "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-2.md",
-    "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-3.md",
-    "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-4.md",
-    "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-5.md",
-    "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/research.md",
-    "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/resource-map.md",
-    "specs/sk-code/019-surface-consistency-research/spec.md",
-    "specs/sk-code/019-surface-consistency-research/tasks.md",
-    "specs/sk-code/code-surfaces/001-content-quality-remediation/implementation-summary.md",
-    "specs/sk-code/code-surfaces/001-content-quality-remediation/plan.md",
-    "specs/sk-code/code-surfaces/001-content-quality-remediation/spec.md",
-    "specs/sk-code/code-surfaces/001-content-quality-remediation/tasks.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/001-surface-design-plan/goal.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/001-surface-design-plan/implementation-summary.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/001-surface-design-plan/mode-design-plan.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/001-surface-design-plan/plan.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/001-surface-design-plan/spec.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/001-surface-design-plan/tasks.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/002-repo-convention-audit/goal.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/002-repo-convention-audit/implementation-summary.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/002-repo-convention-audit/plan.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/002-repo-convention-audit/spec.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/002-repo-convention-audit/tasks.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/003-hub-wiring/goal.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/003-hub-wiring/implementation-summary.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/003-hub-wiring/plan.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/003-hub-wiring/spec.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/003-hub-wiring/tasks.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/004-skill-core/goal.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/004-skill-core/implementation-summary.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/004-skill-core/plan.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/004-skill-core/spec.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/004-skill-core/tasks.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/005-references-stack/goal.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/005-references-stack/implementation-summary.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/005-references-stack/plan.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/005-references-stack/spec.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/005-references-stack/tasks.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/006-assets-checklists/goal.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/006-assets-checklists/implementation-summary.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/006-assets-checklists/plan.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/006-assets-checklists/spec.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/006-assets-checklists/tasks.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/007-manual-testing-playbook/goal.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/007-manual-testing-playbook/implementation-summary.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/007-manual-testing-playbook/plan.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/007-manual-testing-playbook/spec.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/007-manual-testing-playbook/tasks.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/008-scanners-and-gates/goal.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/008-scanners-and-gates/implementation-summary.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/008-scanners-and-gates/plan.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/008-scanners-and-gates/spec.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/008-scanners-and-gates/tasks.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/009-banners-and-folder-docs/goal.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/009-banners-and-folder-docs/implementation-summary.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/009-banners-and-folder-docs/plan.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/009-banners-and-folder-docs/spec.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/009-banners-and-folder-docs/tasks.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/010-kebab-rename/goal.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/010-kebab-rename/implementation-summary.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/010-kebab-rename/plan.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/010-kebab-rename/spec.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/010-kebab-rename/tasks.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/011-changelog-and-verification/goal.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/011-changelog-and-verification/implementation-summary.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/011-changelog-and-verification/plan.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/011-changelog-and-verification/spec.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/011-changelog-and-verification/tasks.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/012-doc-template-conformance/goal.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/012-doc-template-conformance/implementation-summary.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/012-doc-template-conformance/plan.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/012-doc-template-conformance/spec.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/012-doc-template-conformance/tasks.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/013-surface-reality-conformance/goal.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/013-surface-reality-conformance/implementation-summary.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/013-surface-reality-conformance/plan.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/013-surface-reality-conformance/spec.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/013-surface-reality-conformance/tasks.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/goal.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/roadmap.md",
-    "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/spec.md",
-    "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/001-mode-design-plan/mode-design-plan.md",
-    "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/001-mode-design-plan/plan.md",
-    "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/001-mode-design-plan/spec.md",
-    "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/001-mode-design-plan/tasks.md",
-    "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/002-scripts-ownership/implementation-summary.md",
-    "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/002-scripts-ownership/plan.md",
-    "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/002-scripts-ownership/spec.md",
-    "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/002-scripts-ownership/tasks.md",
-    "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/003-skill-doc-alignment/plan.md",
-    "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/003-skill-doc-alignment/spec.md",
-    "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/003-skill-doc-alignment/tasks.md",
-    "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/implementation-phases.md",
-    "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/spec.md",
-    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-deprecation/acceptance-criteria.md",
-    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-deprecation/implementation-summary.md",
-    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-deprecation/plan.md",
-    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-deprecation/spec.md",
-    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-deprecation/tasks.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/001-frontend-surface-mode/acceptance-criteria.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/001-frontend-surface-mode/decision-record.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/001-frontend-surface-mode/goal.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/001-frontend-surface-mode/implementation-summary.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/001-frontend-surface-mode/plan.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/001-frontend-surface-mode/spec.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/001-frontend-surface-mode/tasks.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/002-tooling-fixes/acceptance-criteria.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/002-tooling-fixes/decision-record.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/002-tooling-fixes/goal.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/002-tooling-fixes/implementation-summary.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/002-tooling-fixes/plan.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/002-tooling-fixes/spec.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/002-tooling-fixes/tasks.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/003-design-handoffs/acceptance-criteria.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/003-design-handoffs/goal.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/003-design-handoffs/implementation-summary.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/003-design-handoffs/plan.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/003-design-handoffs/spec.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/003-design-handoffs/tasks.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/004-playbook-scenarios/acceptance-criteria.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/004-playbook-scenarios/goal.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/004-playbook-scenarios/implementation-summary.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/004-playbook-scenarios/plan.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/004-playbook-scenarios/spec.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/004-playbook-scenarios/tasks.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/005-inferred-confirmations/acceptance-criteria.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/005-inferred-confirmations/decision-record.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/005-inferred-confirmations/goal.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/005-inferred-confirmations/implementation-summary.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/005-inferred-confirmations/plan.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/005-inferred-confirmations/spec.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/005-inferred-confirmations/tasks.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/006-open-items-and-alignment/acceptance-criteria.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/006-open-items-and-alignment/implementation-summary.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/006-open-items-and-alignment/plan.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/006-open-items-and-alignment/spec.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/006-open-items-and-alignment/tasks.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/007-web-only-frontend/acceptance-criteria.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/007-web-only-frontend/decision-record.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/007-web-only-frontend/implementation-summary.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/007-web-only-frontend/plan.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/007-web-only-frontend/spec.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/007-web-only-frontend/tasks.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/008-release-coverage/acceptance-criteria.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/008-release-coverage/implementation-summary.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/008-release-coverage/plan.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/008-release-coverage/spec.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/008-release-coverage/tasks.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/009-reference-restructure/acceptance-criteria.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/009-reference-restructure/implementation-summary.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/009-reference-restructure/plan.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/009-reference-restructure/spec.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/009-reference-restructure/tasks.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research/acceptance-criteria.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research/implementation-summary.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research/plan.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research/research/research.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research/spec.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research/tasks.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/decision-record.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/goal.md",
-    "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/spec.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/acceptance-criteria.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/decision-record.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/implementation-summary.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/plan.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research/research.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/deep-research-dashboard.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/deep-research-strategy.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-001.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-002.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-003.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-004.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-005.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-1.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-2.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-3.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-4.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-5.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/research.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/resource-map.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/spec.md",
+    "specs/sk-code/code-surfaces/001-surface-consistency-research/tasks.md",
+    "specs/sk-code/code-surfaces/002-content-quality-remediation/implementation-summary.md",
+    "specs/sk-code/code-surfaces/002-content-quality-remediation/plan.md",
+    "specs/sk-code/code-surfaces/002-content-quality-remediation/spec.md",
+    "specs/sk-code/code-surfaces/002-content-quality-remediation/tasks.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/001-surface-design-plan/goal.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/001-surface-design-plan/implementation-summary.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/001-surface-design-plan/mode-design-plan.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/001-surface-design-plan/plan.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/001-surface-design-plan/spec.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/001-surface-design-plan/tasks.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/002-repo-convention-audit/goal.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/002-repo-convention-audit/implementation-summary.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/002-repo-convention-audit/plan.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/002-repo-convention-audit/spec.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/002-repo-convention-audit/tasks.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/003-hub-wiring/goal.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/003-hub-wiring/implementation-summary.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/003-hub-wiring/plan.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/003-hub-wiring/spec.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/003-hub-wiring/tasks.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/004-skill-core/goal.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/004-skill-core/implementation-summary.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/004-skill-core/plan.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/004-skill-core/spec.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/004-skill-core/tasks.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/005-references-stack/goal.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/005-references-stack/implementation-summary.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/005-references-stack/plan.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/005-references-stack/spec.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/005-references-stack/tasks.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/006-assets-checklists/goal.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/006-assets-checklists/implementation-summary.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/006-assets-checklists/plan.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/006-assets-checklists/spec.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/006-assets-checklists/tasks.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/007-manual-testing-playbook/goal.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/007-manual-testing-playbook/implementation-summary.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/007-manual-testing-playbook/plan.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/007-manual-testing-playbook/spec.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/007-manual-testing-playbook/tasks.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/008-scanners-and-gates/goal.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/008-scanners-and-gates/implementation-summary.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/008-scanners-and-gates/plan.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/008-scanners-and-gates/spec.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/008-scanners-and-gates/tasks.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/009-banners-and-folder-docs/goal.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/009-banners-and-folder-docs/implementation-summary.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/009-banners-and-folder-docs/plan.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/009-banners-and-folder-docs/spec.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/009-banners-and-folder-docs/tasks.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/010-kebab-rename/goal.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/010-kebab-rename/implementation-summary.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/010-kebab-rename/plan.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/010-kebab-rename/spec.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/010-kebab-rename/tasks.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/011-changelog-and-verification/goal.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/011-changelog-and-verification/implementation-summary.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/011-changelog-and-verification/plan.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/011-changelog-and-verification/spec.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/011-changelog-and-verification/tasks.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/012-doc-template-conformance/goal.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/012-doc-template-conformance/implementation-summary.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/012-doc-template-conformance/plan.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/012-doc-template-conformance/spec.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/012-doc-template-conformance/tasks.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/013-surface-reality-conformance/goal.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/013-surface-reality-conformance/implementation-summary.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/013-surface-reality-conformance/plan.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/013-surface-reality-conformance/spec.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/013-surface-reality-conformance/tasks.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/goal.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/roadmap.md",
+    "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/spec.md",
+    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/001-mode-design-plan/mode-design-plan.md",
+    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/001-mode-design-plan/plan.md",
+    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/001-mode-design-plan/spec.md",
+    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/001-mode-design-plan/tasks.md",
+    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/002-scripts-ownership/implementation-summary.md",
+    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/002-scripts-ownership/plan.md",
+    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/002-scripts-ownership/spec.md",
+    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/002-scripts-ownership/tasks.md",
+    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/003-skill-doc-alignment/plan.md",
+    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/003-skill-doc-alignment/spec.md",
+    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/003-skill-doc-alignment/tasks.md",
+    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/implementation-phases.md",
+    "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/spec.md",
+    "specs/sk-code/code-surfaces/005-sk-code-mobile-cli-deprecation/acceptance-criteria.md",
+    "specs/sk-code/code-surfaces/005-sk-code-mobile-cli-deprecation/implementation-summary.md",
+    "specs/sk-code/code-surfaces/005-sk-code-mobile-cli-deprecation/plan.md",
+    "specs/sk-code/code-surfaces/005-sk-code-mobile-cli-deprecation/spec.md",
+    "specs/sk-code/code-surfaces/005-sk-code-mobile-cli-deprecation/tasks.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/001-frontend-surface-mode/acceptance-criteria.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/001-frontend-surface-mode/decision-record.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/001-frontend-surface-mode/goal.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/001-frontend-surface-mode/implementation-summary.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/001-frontend-surface-mode/plan.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/001-frontend-surface-mode/spec.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/001-frontend-surface-mode/tasks.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/002-tooling-fixes/acceptance-criteria.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/002-tooling-fixes/decision-record.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/002-tooling-fixes/goal.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/002-tooling-fixes/implementation-summary.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/002-tooling-fixes/plan.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/002-tooling-fixes/spec.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/002-tooling-fixes/tasks.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/003-design-handoffs/acceptance-criteria.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/003-design-handoffs/goal.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/003-design-handoffs/implementation-summary.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/003-design-handoffs/plan.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/003-design-handoffs/spec.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/003-design-handoffs/tasks.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/004-playbook-scenarios/acceptance-criteria.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/004-playbook-scenarios/goal.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/004-playbook-scenarios/implementation-summary.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/004-playbook-scenarios/plan.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/004-playbook-scenarios/spec.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/004-playbook-scenarios/tasks.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/005-inferred-confirmations/acceptance-criteria.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/005-inferred-confirmations/decision-record.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/005-inferred-confirmations/goal.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/005-inferred-confirmations/implementation-summary.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/005-inferred-confirmations/plan.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/005-inferred-confirmations/spec.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/005-inferred-confirmations/tasks.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/006-open-items-and-alignment/acceptance-criteria.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/006-open-items-and-alignment/implementation-summary.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/006-open-items-and-alignment/plan.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/006-open-items-and-alignment/spec.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/006-open-items-and-alignment/tasks.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/007-web-only-frontend/acceptance-criteria.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/007-web-only-frontend/decision-record.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/007-web-only-frontend/implementation-summary.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/007-web-only-frontend/plan.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/007-web-only-frontend/spec.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/007-web-only-frontend/tasks.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/008-release-coverage/acceptance-criteria.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/008-release-coverage/implementation-summary.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/008-release-coverage/plan.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/008-release-coverage/spec.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/008-release-coverage/tasks.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/009-reference-restructure/acceptance-criteria.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/009-reference-restructure/implementation-summary.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/009-reference-restructure/plan.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/009-reference-restructure/spec.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/009-reference-restructure/tasks.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/acceptance-criteria.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/implementation-summary.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/plan.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/research/research.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/spec.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/tasks.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/decision-record.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/goal.md",
+    "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/spec.md",
     "specs/sk-code/hub-architecture/001-sk-code-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-code/hub-architecture/001-sk-code-parent/001-research-and-context/plan.md",
     "specs/sk-code/hub-architecture/001-sk-code-parent/001-research-and-context/research/research.md",
@@ -26017,6 +26018,10 @@
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/plan.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/spec.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard/plan.md",
+    "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard/spec.md",
+    "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard/tasks.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/acceptance-criteria.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/decision-record.md",
     "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/implementation-summary.md",
@@ -26038,7 +26043,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4274a62ac707764f53c2c47bd2270a63b4daf664b087034045b5676919234cac",
+  "manifestHash": "fa30041429da9d75eec9006be899e10f52a75c210897e9d202079f1f158ef8d1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28709,118 +28714,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-audit-ledger",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-ledger",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deltas",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/dispatch-receipts",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/locks-and-fencing-v1",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/prompts",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/deep-research-audit-ledger",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/deep-research-ledger",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/deltas",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/dispatch-receipts",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/iterations",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/locks-and-fencing-v1",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/prompts",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/deep-research-audit-ledger",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/deep-research-ledger",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/deltas",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/dispatch-receipts",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/iterations",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/locks-and-fencing-v1",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/prompts",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/007-search-routing-followups/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/001-research/scratch",
       "reason": "excluded directory"
     },
@@ -29133,6 +29026,118 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/001-claude-relaunch-loop/scratch",
       "reason": "excluded directory"
     },
@@ -29389,83 +29394,83 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/research/deep-research-audit-ledger",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research/deep-research-audit-ledger",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/research/deep-research-ledger",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research/deep-research-ledger",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/research/deltas",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research/deltas",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/research/dispatch-receipts",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research/dispatch-receipts",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/research/iterations",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research/iterations",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/research/locks-and-fencing-v1",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research/locks-and-fencing-v1",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/research/prompts",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research/prompts",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/scratch",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-deprecation/scratch",
+      "path": "specs/sk-code/code-surfaces/005-sk-code-mobile-cli-deprecation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/001-frontend-surface-mode/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/001-frontend-surface-mode/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/002-tooling-fixes/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/002-tooling-fixes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/003-design-handoffs/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/003-design-handoffs/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/004-playbook-scenarios/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/004-playbook-scenarios/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/005-inferred-confirmations/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/005-inferred-confirmations/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/006-open-items-and-alignment/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/006-open-items-and-alignment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/007-web-only-frontend/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/007-web-only-frontend/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/008-release-coverage/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/008-release-coverage/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/009-reference-restructure/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/009-reference-restructure/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research/research/lineages",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/scratch",
       "reason": "excluded directory"
     },
     {
@@ -36774,6 +36779,10 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard/scratch",
       "reason": "excluded directory"
     },
     {

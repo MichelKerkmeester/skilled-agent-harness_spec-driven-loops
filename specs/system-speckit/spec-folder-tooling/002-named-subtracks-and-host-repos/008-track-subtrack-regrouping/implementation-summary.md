@@ -119,7 +119,7 @@ The goal-hook prose in three `goal.md` files exceeded the 4000-character durable
 | Decision | Why |
 |----------|-----|
 | Packet moves must align folder numbering and JSON metadata | The first pass left `description.json` positions stale because `repair-derived.cjs` does not update `specId` or `parentChain`. |
-| Keep the pinned packets flat | Another session pinned `hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration`, and `sk-code/code-surfaces/006-surface-consistency-research` stays flat. |
+| Keep the pinned packets flat | Another session pinned `hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration`, and `sk-code/code-surfaces/001-surface-consistency-research` stays flat. |
 | Repair report links by changing only their targets | The benchmark-report restoration left five broken links, and three goal-hook report sources contained the affected targets. |
 | Skip spec remint for the system-speckit commit and later alignment and merge commits | Two existing folders fail the remint gate because their names do not match `NNN-slug`. |
 <!-- /ANCHOR:decisions -->

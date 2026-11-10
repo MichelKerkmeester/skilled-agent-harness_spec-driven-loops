@@ -341,6 +341,17 @@ export function compareTrackChildren(metadata, trackName, children) {
   };
 }
 
+/**
+ * Split a track's children into numbered packets and declared sub-tracks. A track
+ * is mixed when it holds both: a reader then has to look in two places for a
+ * packet, and the sub-track names stop describing the whole track.
+ */
+export function trackLayout(children) {
+  const packets = children.filter((name) => SPEC_LEAF_SEGMENT_PATTERN.test(name));
+  const subTracks = children.filter((name) => !SPEC_LEAF_SEGMENT_PATTERN.test(name));
+  return { packets, subTracks, mixed: packets.length > 0 && subTracks.length > 0 };
+}
+
 /** The children_ids a track should declare: its packets on disk, sorted, under its identity. */
 export function expectedChildrenIds(metadata, trackName, children) {
   const identity = trackIdentity(metadata, trackName);

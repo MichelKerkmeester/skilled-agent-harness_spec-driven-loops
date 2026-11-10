@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard",
+  "description": "Phase 10: mixed-track-sweep-guard",
+  "keywords": [
+    "phase",
+    "mixed-track-sweep-guard"
+  ],
+  "lastUpdated": "2026-11-10T08:48:51.141Z",
+  "specId": "010",
+  "folderSlug": "mixed-track-sweep-guard",
+  "parentChain": [
+    "system-speckit",
+    "spec-folder-tooling",
+    "002-named-subtracks-and-host-repos"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "10-11-26_09-48__operator-decisions-on-2026-11-10-sk-code-019.md"
+  ]
+}

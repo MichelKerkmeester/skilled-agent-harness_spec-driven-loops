@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6683,
-    "ok": 17694,
+    "ok": 17699,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26006,
+  "documentsScanned": 26011,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4274a62ac707764f53c2c47bd2270a63b4daf664b087034045b5676919234cac",
+  "manifestHash": "fa30041429da9d75eec9006be899e10f52a75c210897e9d202079f1f158ef8d1",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42090,
+      "ok": 42098,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -34887,108 +34887,6 @@
       "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/alignment/fix-plan.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/alignment/recheck.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/alignment/report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/benchmark/results.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/benchmark/scenario-489/matrix.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/alignment/fix-plan.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/alignment/recheck.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/alignment/report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/benchmark/results.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/benchmark/scenario-490/matrix.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/alignment/final-recheck.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/alignment/fix-plan.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/alignment/recheck.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/alignment/report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/benchmark/results.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/benchmark/scenario-491/matrix.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/benchmark/summary.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/001-research/evidence/iterations.md",
@@ -35352,6 +35250,108 @@
       "reason": "no opening frontmatter delimiter"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/alignment/fix-plan.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/alignment/recheck.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/alignment/report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/benchmark/results.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/benchmark/scenario-489/matrix.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/alignment/fix-plan.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/alignment/recheck.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/alignment/report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/benchmark/results.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/benchmark/scenario-490/matrix.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/alignment/final-recheck.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/alignment/fix-plan.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/alignment/recheck.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/alignment/report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/benchmark/results.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/benchmark/scenario-491/matrix.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/benchmark/summary.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/001-spec-gate-question-noise/resume-prompt.md",
@@ -35517,93 +35517,93 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/deep-research-dashboard.md",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/deep-research-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-001.md",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-002.md",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-003.md",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-004.md",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-005.md",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/iterations/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-1.md",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-1.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-2.md",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-2.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-3.md",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-3.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-4.md",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-4.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-5.md",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/prompts/iteration-5.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/sk-code/019-surface-consistency-research/research_archive/20261019T081751Z/resource-map.md",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research_archive/20261019T081751Z/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/001-mode-design-plan/mode-design-plan.md",
+      "path": "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/001-mode-design-plan/mode-design-plan.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/sk-code/code-surfaces/003-sk-code-mobile-cli-mode/implementation-phases.md",
+      "path": "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-mode/implementation-phases.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research/research/research.md",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/research/research.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -54217,118 +54217,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-audit-ledger",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-ledger",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deltas",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/dispatch-receipts",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/locks-and-fencing-v1",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/prompts",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/deep-research-audit-ledger",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/deep-research-ledger",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/deltas",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/dispatch-receipts",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/iterations",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/locks-and-fencing-v1",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/prompts",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/deep-research-audit-ledger",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/deep-research-ledger",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/deltas",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/dispatch-receipts",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/iterations",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/locks-and-fencing-v1",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/prompts",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/007-search-routing-followups/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/001-research/scratch",
       "reason": "excluded directory"
     },
@@ -54641,6 +54529,118 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/006-rg-flood-control/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/001-claude-relaunch-loop/scratch",
       "reason": "excluded directory"
     },
@@ -54897,83 +54897,83 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/research/deep-research-audit-ledger",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research/deep-research-audit-ledger",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/research/deep-research-ledger",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research/deep-research-ledger",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/research/deltas",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research/deltas",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/research/dispatch-receipts",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research/dispatch-receipts",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/research/iterations",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research/iterations",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/research/locks-and-fencing-v1",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research/locks-and-fencing-v1",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/research/prompts",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/research/prompts",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/019-surface-consistency-research/scratch",
+      "path": "specs/sk-code/code-surfaces/001-surface-consistency-research/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/004-sk-code-mobile-cli-deprecation/scratch",
+      "path": "specs/sk-code/code-surfaces/005-sk-code-mobile-cli-deprecation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/001-frontend-surface-mode/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/001-frontend-surface-mode/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/002-tooling-fixes/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/002-tooling-fixes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/003-design-handoffs/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/003-design-handoffs/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/004-playbook-scenarios/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/004-playbook-scenarios/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/005-inferred-confirmations/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/005-inferred-confirmations/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/006-open-items-and-alignment/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/006-open-items-and-alignment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/007-web-only-frontend/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/007-web-only-frontend/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/008-release-coverage/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/008-release-coverage/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/009-reference-restructure/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/009-reference-restructure/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research/research/lineages",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research/scratch",
+      "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/scratch",
       "reason": "excluded directory"
     },
     {
@@ -62282,6 +62282,10 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard/scratch",
       "reason": "excluded directory"
     },
     {

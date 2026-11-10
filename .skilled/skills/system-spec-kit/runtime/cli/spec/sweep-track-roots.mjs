@@ -14,6 +14,10 @@
 // alone is not enough: a packet renamed on disk leaves both counts where they
 // were, and a repeated entry leaves the set itself equal.
 //
+// A track that holds numbered packets beside declared sub-tracks is mixed and
+// counts as drift too. Its children list can be correct and the track still
+// wrong, so refreshing does not clear it: the packets move into a sub-track.
+//
 // An undeclared non-numbered folder and a symlinked sub-track each print one
 // diagnostic. Diagnostics are advisory and never change the exit code.
 //
@@ -29,7 +33,7 @@
 //   node .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs [--specs <dir>] [--rev <commit>]
 //
 // Exit codes: 0 = every track's declared children match its packets,
-//             1 = at least one track differs (or its metadata is unreadable),
+//             1 = at least one track differs, is mixed or has unreadable metadata,
 //             2 = a rejected argument or a commit that cannot be read.
 // ───────────────────────────────────────────────────────────────────
 
@@ -39,6 +43,7 @@ import {
   readCommitTracks,
   readWorkingTreeTracks,
   resolveSpecsRoot,
+  trackLayout,
 } from '../lib/track-roots.mjs';
 
 const SCRIPT = 'sweep-track-roots';
@@ -94,6 +99,7 @@ function main() {
   }
 
   let drifted = 0;
+  let mixed = 0;
   for (const track of tracks) {
     const metadata = parseTrackMetadata(track.rawMetadata);
     if (!metadata) {
@@ -121,10 +127,21 @@ function main() {
     if (!result.matches) {
       drifted += 1;
     }
+    // Only a top-level track can be mixed: a sub-track holds packets alone.
+    const layout = track.name.includes('/') ? null : trackLayout(track.children);
+    if (layout?.mixed) {
+      process.stdout.write(`    flat packets beside sub-tracks: ${layout.packets.join(', ')}\n`);
+      mixed += 1;
+    }
   }
 
   if (drifted > 0) {
     process.stdout.write(`\n${SCRIPT}: ${drifted} track root(s) drifted; rewrite them with refresh-track-roots.mjs --apply\n`);
+  }
+  if (mixed > 0) {
+    process.stdout.write(`\n${SCRIPT}: ${mixed} track(s) hold flat packets beside sub-tracks; move each packet into a sub-track\n`);
+  }
+  if (drifted > 0 || mixed > 0) {
     process.exit(1);
   }
   process.stdout.write(`\n${SCRIPT}: all track roots match their declared children\n`);

@@ -385,7 +385,7 @@ describe('refresh-track-roots', () => {
     for (const name of ['alpha', 'beta', 'delta']) {
       fs.rmSync(path.join(specs, name), { recursive: true, force: true });
     }
-    const { entries } = buildSubtrackTree(repo);
+    const { entries } = buildSubtrackTree(repo, { flat: false });
     const metadataPath = path.join(entries.sub, 'graph-metadata.json');
     fs.unlinkSync(metadataPath);
 
@@ -405,7 +405,7 @@ describe('refresh-track-roots', () => {
       refreshStatus: 0,
       refreshStdout: 'demo/sub: add 001-nested-probe (written)\n',
       sweepStatus: 0,
-      sweepStdout: 'demo/linked: symlinked folder skipped, not followed\ndemo/loose: undeclared folder ignored\ndemo: declared=2 actual=2\ndemo/sub: declared=1 actual=1\n\nsweep-track-roots: all track roots match their declared children\n',
+      sweepStdout: 'demo/linked: symlinked folder skipped, not followed\ndemo/loose: undeclared folder ignored\ndemo: declared=1 actual=1\ndemo/sub: declared=1 actual=1\n\nsweep-track-roots: all track roots match their declared children\n',
       metadata: {
         schema_version: 1,
         packet_id: 'demo/sub',
@@ -472,7 +472,7 @@ describe('flat-tree refresh compatibility', () => {
 
 describe('sweep-track-roots with sub-tracks', () => {
   it('reports the undeclared folder and symlink once without changing either view result', () => {
-    buildSubtrackTree(repo);
+    buildSubtrackTree(repo, { flat: false });
     commitFixture();
 
     const working = run(SWEEP, []);
@@ -482,6 +482,23 @@ describe('sweep-track-roots with sub-tracks', () => {
       expect(result.stdout.match(/demo\/linked: symlinked folder skipped, not followed/g)).toHaveLength(1);
       expect(result.stdout.match(/demo\/loose: undeclared folder ignored/g)).toHaveLength(1);
       expect(result.stdout).toContain('demo/sub: declared=1 actual=1');
+    }
+    expect(committed.stdout).toBe(working.stdout);
+  });
+
+  // The children list of a mixed track is correct, so nothing else reports it.
+  it('fails a track that holds a flat packet beside a sub-track, in both views', () => {
+    buildSubtrackTree(repo);
+    commitFixture();
+
+    const working = run(SWEEP, []);
+    const committed = run(SWEEP, ['--rev', 'HEAD']);
+    for (const result of [working, committed]) {
+      expect(result.status, result.stdout + result.stderr).toBe(1);
+      expect(result.stdout).toContain('demo: declared=2 actual=2');
+      expect(result.stdout).toContain('    flat packets beside sub-tracks: 001-flat-probe');
+      expect(result.stdout).toContain('1 track(s) hold flat packets beside sub-tracks');
+      expect(result.stdout).not.toContain('drifted');
     }
     expect(committed.stdout).toBe(working.stdout);
   });
