@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries",
+  "parent_id": "hooks-plugins-extensions",
+  "children_ids": [
+    "hooks-plugins-extensions/session-turn-boundaries/001-spec-gate-question-noise",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop",
+    "hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "hooks-plugins-extensions/session-turn-boundaries"
+    ],
+    "causal_summary": "Container folder for hooks-plugins-extensions/session-turn-boundaries."
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/006-dispatch-authorization-hardening",
+  "spec_folder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/006-dispatch-authorization-hardening",
+  "parent_id": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Pi dispatch authorization",
+      "dispatch shape tokenizer",
+      "cli-pi self dispatch",
+      "Pi tool_call enforcement",
+      "user-authored dispatch override",
+      "Pi dispatch hardening plan",
+      "dispatch tokenizer plan",
+      "tool_call integration matrix",
+      "Pi dispatch hardening tasks",
+      "dispatch tokenizer tasks",
+      "Pi tool_call matrix",
+      "Pi dispatch hardening summary"
+    ],
+    "key_topics": [
+      "dispatch",
+      "authorization",
+      "shape",
+      "tokenizer",
+      "cli-pi",
+      "self",
+      "enforcement",
+      "user-authored",
+      "override",
+      "hardening",
+      "plan",
+      "integration"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+      ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+      ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      ".pi/extensions/dispatch-preflight-lint.ts",
+      ".pi/extensions/prompt-advisor.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.test.ts",
+        "kind": "test",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Dispatch Authorization Boundary Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Make Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview First",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Runtime",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The current working tree contains a partial Pi guard: it denies `cli-pi`, stores an input event, strips known advisor/directive markers, and has a pure helper matrix",
+    "created_at": "2026-08-04T17:57:53Z",
+    "last_save_at": "2026-11-10T05:10:11.909Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1c15d13ee67d5b5a0b453ae9cdd1e8321c2caa6eef67f30f6ebb0480a2c89294",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "85583f1ef531b96bde8eeb07305a49e15f7e8eb2a9ee634921914856e9f581ba",
+      "plan.md": "2d18c924efc4e3e56afdbe8c60e187a94b26ba0cfa0a7e087c6df6deaa2602b7",
+      "tasks.md": "1c13648855758ba27983a615cab4497cb167eaeafa1c97a7b8d9e7dc20b749f5",
+      "implementation-summary.md": "989e3d872ec289b08460f53ea17a8cc033bb7308ec3236900384aae24c2cce2a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

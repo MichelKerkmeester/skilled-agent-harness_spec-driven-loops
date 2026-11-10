@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff",
+  "spec_folder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff",
+  "parent_id": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support",
+  "children_ids": [
+    "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract",
+    "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence",
+    "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "subagent-handoff workstream",
+      "fast-mode environment handoff",
+      "pi_fast_mode_w_subagent_support",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "subagent-handoff",
+      "workstream",
+      "fast-mode",
+      "environment",
+      "handoff",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-handoff-contract/goal.md",
+      "002-session-precedence/goal.md",
+      "003-process-propagation/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A child Pi process inherits the parent process environment, but the fast-mode preference is not currently represented by a fork-owned contract",
+    "created_at": "2026-08-16T07:07:47Z",
+    "last_save_at": "2026-11-10T05:10:21.892Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:f7475c7babb6d3dcae6362e417280815e3a2a69284cd7e34f8c90e341b8e6b5a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fe2fd0090abaf6717fe640cd38bfb60a0bc7b1d34c886f8a4282122bef80f99b"
+    },
+    "last_active_child_id": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation",
+    "last_active_at": null
+  }
+}

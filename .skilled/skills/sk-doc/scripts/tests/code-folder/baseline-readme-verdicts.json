@@ -10654,7 +10654,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/hooks-plugins-extensions/021-compat-opt-in-and-image-declaration/review/README.md",
+      "file": "specs/hooks-plugins-extensions/pi-extensions/010-compat-opt-in-and-image-declaration/review/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,

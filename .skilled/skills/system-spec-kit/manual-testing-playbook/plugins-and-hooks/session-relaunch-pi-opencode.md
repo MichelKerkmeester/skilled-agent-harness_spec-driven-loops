@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.18.0
+version: 1.0.19.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -128,7 +128,7 @@ The 2026-10-19 benchmark reports for this scenario hold the outcomes, operator i
 
 #### Recorded Results, 2026-10-22
 
-Pi 1.3.0 and OpenCode 1.19.3 with `openai/gpt-6-luna`, live in tmux at a 0.05 threshold against a 200,000-token window. The live runs found three defects, each fixed with a failing test first and then rerun: OpenCode sessions started in the same second planned the same note, and on both runtimes a turn started just after the arm was signalled mid-turn. The full matrix, commits and evidence paths are in the [runtime-certainty implementation summary](../../../../../specs/hooks-plugins-extensions/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/implementation-summary.md). After Pi moved to 1.4.0 the same day, S1, S3 and S6 were rerun on it and passed.
+Pi 1.3.0 and OpenCode 1.19.3 with `openai/gpt-6-luna`, live in tmux at a 0.05 threshold against a 200,000-token window. The live runs found three defects, each fixed with a failing test first and then rerun: OpenCode sessions started in the same second planned the same note, and on both runtimes a turn started just after the arm was signalled mid-turn. The full matrix, commits and evidence paths are in the [runtime-certainty implementation summary](../../../../../specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/implementation-summary.md). After Pi moved to 1.4.0 the same day, S1, S3 and S6 were rerun on it and passed.
 
 | Situation | Pi | OpenCode |
 |---|---|---|
@@ -426,7 +426,7 @@ Repeat with `opencode` in place of `pi` and a session name of `shim-opencode`. E
 
 ### Goal Carry-Over Checks
 
-A hand-over note can carry the sender's goal as a `goal_packet` line. `skilled-loop` exports it as `SESSION_RELAUNCH_GOAL_PACKET` to the relaunched session, and a Pi or OpenCode receiver with no goal of its own binds that packet on its first turn. `SESSION_RELAUNCH_GOAL=0` turns it off, and a dispatched child (`AI_SESSION_CHILD=1`) never binds. These checks run in a throwaway checkout that holds copies of the real hooks, wrapper and goal hooks, because a goal bound in this repository would start real work. The harness is kept with the packet that recorded the runs: `specs/hooks-plugins-extensions/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/`. The relaunch CLI is refused to a sub-agent, so from an agent session the harness script is what runs `prepare`, against its own note and runtime directory.
+A hand-over note can carry the sender's goal as a `goal_packet` line. `skilled-loop` exports it as `SESSION_RELAUNCH_GOAL_PACKET` to the relaunched session, and a Pi or OpenCode receiver with no goal of its own binds that packet on its first turn. `SESSION_RELAUNCH_GOAL=0` turns it off, and a dispatched child (`AI_SESSION_CHILD=1`) never binds. These checks run in a throwaway checkout that holds copies of the real hooks, wrapper and goal hooks, because a goal bound in this repository would start real work. The harness is kept with the packet that recorded the runs: `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/`. The relaunch CLI is refused to a sub-agent, so from an agent session the harness script is what runs `prepare`, against its own note and runtime directory.
 
 #### GR-P1 A Pi hop carries the goal (Live)
 
@@ -434,7 +434,7 @@ Run from the repository root with `tmux`, `node` and `pi` signed in to the `open
 
 ~~~bash
 repo_root="$(git rev-parse --show-toplevel)"
-harness="$repo_root/specs/hooks-plugins-extensions/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness"
+harness="$repo_root/specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness"
 sandbox="$(mktemp -d)/sandbox"; out="$(mktemp -d)"
 bash "$harness/build-sandbox.sh" pi "$sandbox" 3990 "$repo_root"
 bash "$harness/run-hop.sh" pi "$sandbox" "$out" goal
@@ -509,7 +509,7 @@ PASS when the command exits 0 and each named case ran. FAIL when a case is missi
 
 #### Recorded Results, 2026-10-25
 
-Pi 1.4.0 with `openai/gpt-6-luna` and OpenCode 2.1.4, live in tmux with a private runtime directory per run. Evidence lives in `specs/hooks-plugins-extensions/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/`.
+Pi 1.4.0 with `openai/gpt-6-luna` and OpenCode 2.1.4, live in tmux with a private runtime directory per run. Evidence lives in `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/`.
 
 | Run | Result | Receiver | Evidence folder |
 |---|---|---|---|
@@ -518,7 +518,7 @@ Pi 1.4.0 with `openai/gpt-6-luna` and OpenCode 2.1.4, live in tmux with a privat
 | Pi switch off at `prepare` too | Pass | Note carried no packet, no goal block in the receiver log | `pi-b2-switch-off-at-prepare/` |
 | Pi no goal (GR-P2) | Pass | No `goal_packet`, no records, no goal block, note `done` | `pi-c-no-goal/` |
 | OpenCode hop (GR-O1), first run | Fail | Killer signalled the server, no relaunch, note stayed `open` | `opencode-a-hop-attempt/`, `opencode-process-tree.txt` |
-| OpenCode hop (GR-O1), after the fixes | Pass | Killer signalled the TUI, `relaunch`, then `handed-over`, `claimed` and `done`; two records, `GOALENV.marker` is the packet | `specs/hooks-plugins-extensions/023-session-relaunch-loop/030-opencode2-killer-target/scratch/opencode-a-hop/` |
+| OpenCode hop (GR-O1), after the fixes | Pass | Killer signalled the TUI, `relaunch`, then `handed-over`, `claimed` and `done`; two records, `GOALENV.marker` is the packet | `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/030-opencode2-killer-target/scratch/opencode-a-hop/` |
 | OpenCode receiver, goal (GR-O2) | Pass, receiver half only | Model quoted the goal id of the one record | `opencode-receiver-a-goal/` |
 | OpenCode receiver, switch off and no goal (GR-O2) | Pass, receiver half only | Model answered `NONE`, no record | `opencode-receiver-b-switch-off/`, `opencode-receiver-c-no-goal/` |
 
@@ -534,9 +534,9 @@ Pi 1.4.0 with `openai/gpt-6-luna` and OpenCode 2.1.4, live in tmux with a privat
 | `../../feature-catalog/context-preservation/session-relaunch-loop.md` | Shared handoff implementation and runtime coverage. |
 | `../../../cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md` | OpenCode runner scenario with the withdraw and extra-nudge steps. |
 | `../../../../hooks/session-relaunch/README.md` | Adapter matrix, launch syntax and known live-TUI limits. |
-| `../../../../../specs/hooks-plugins-extensions/023-session-relaunch-loop/scratch/contracts/interface-contract.md` | Section 11 contract for events and seed syntax. |
-| `../../../../../specs/hooks-plugins-extensions/023-session-relaunch-loop/002-pi-opencode-adapters/scratch/spike/SPIKE-REPORT.md` | Adapter spike verdicts and UNVERIFIED items. |
-| `../../../../../specs/hooks-plugins-extensions/023-session-relaunch-loop/scratch/run-ledger.md` | Recorded Pi smoke and pre-existing `--fast` conflict. |
+| `../../../../../specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/scratch/contracts/interface-contract.md` | Section 11 contract for events and seed syntax. |
+| `../../../../../specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/002-pi-opencode-adapters/scratch/spike/SPIKE-REPORT.md` | Adapter spike verdicts and UNVERIFIED items. |
+| `../../../../../specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/scratch/run-ledger.md` | Recorded Pi smoke and pre-existing `--fast` conflict. |
 
 ### Implementation And Test Anchors
 
@@ -559,7 +559,7 @@ Pi 1.4.0 with `openai/gpt-6-luna` and OpenCode 2.1.4, live in tmux with a privat
 | `.skilled/hooks/session-relaunch/tests/hop-history.test.cjs` | Hop history, history command and withdrawn-note tests. |
 | `.skilled/hooks/goal/pi/goal-context.ts` | Pi goal extension: binds the hand-over packet at `session_start` and the first `input`. |
 | `.opencode/plugins/opencode-goal.js` | OpenCode goal plugin: binds the hand-over packet at `session.created`. |
-| `specs/hooks-plugins-extensions/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/` | The throwaway-checkout harness behind the goal carry-over checks and their recorded runs. |
+| `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/` | The throwaway-checkout harness behind the goal carry-over checks and their recorded runs. |
 
 Provenance: .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
 

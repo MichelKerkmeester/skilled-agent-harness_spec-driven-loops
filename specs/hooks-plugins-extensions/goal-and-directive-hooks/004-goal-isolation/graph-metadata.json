@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation",
+  "spec_folder": "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation",
+  "parent_id": "hooks-plugins-extensions/goal-and-directive-hooks",
+  "children_ids": [
+    "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/001-goal-isolation-research",
+    "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/002-session-scoped-core",
+    "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/003-pi-and-runtime-bindings",
+    "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/004-legacy-cutover-and-docs",
+    "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/005-verification-and-validation",
+    "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/006-opencode-goal-optimization-and-devin-removal"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "hooks/003-goal-hooks-cross-runtime",
+        "reason": "Investigates and corrects the shared singleton state model introduced by the cross-runtime goal-hook packet.",
+        "source": "author",
+        "spec_folder": "hooks/003-goal-hooks-cross-runtime",
+        "title": "Cross-runtime goal hooks"
+      },
+      {
+        "packet_id": "hooks/004-goal-hook-playbooks-and-validation",
+        "reason": "Extends the prior goal-hook validation surface with explicit concurrent-session isolation evidence.",
+        "source": "author",
+        "spec_folder": "hooks/004-goal-hook-playbooks-and-validation",
+        "title": "Goal-hook playbooks and validation"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal isolation",
+      "multiple active goals",
+      "pi goal confusion",
+      "cross-runtime goal state",
+      "session-scoped goal",
+      "goal isolation plan",
+      "session-scoped goal implementation",
+      "pi goal state migration",
+      "active-goal singleton replacement",
+      "goal isolation tasks",
+      "pi session goal tasks",
+      "cross-runtime goal implementation"
+    ],
+    "key_topics": [
+      "goal",
+      "isolation",
+      "multiple",
+      "active",
+      "goals",
+      "confusion",
+      "cross-runtime",
+      "state",
+      "session-scoped",
+      "plan",
+      "implementation",
+      "migration"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".opencode/hooks/goal/bin/goal.cjs",
+      ".opencode/hooks/goal/pi/goal-context.ts",
+      ".opencode/hooks/goal/cursor/goal-inject.mjs",
+      ".pi/settings.json",
+      ".pi/prompts/goal-pi.md",
+      ".cursor/commands/goal-cursor.md",
+      ".opencode/hooks/goal/devin/goal-inject.mjs",
+      ".devin/hooks.v1.json",
+      ".cursor/hooks.json",
+      ".opencode/hooks/goal/lib/goal-core.test.cjs",
+      ".pi/extensions/goal-context.ts",
+      "specs/system-speckit/031-system-speckit-v4/038-goal-unification/002-decisions-and-contract-freeze/decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/bin/goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-context.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/goal/pi/goal-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-pi.md",
+        "kind": "doc",
+        "path": ".pi/prompts/goal-pi.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-cursor.md",
+        "kind": "doc",
+        "path": ".cursor/commands/goal-cursor.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.test.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Goal Isolation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependency",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cross-runtime core resolves every Pi and Cursor goal operation to one fixed file, `active-goal.json`",
+    "created_at": "2026-08-10T10:17:19Z",
+    "last_save_at": "2026-11-10T05:10:12.096Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:681b17454e9e4ba91b6c27d5cb60f6681fb7fb7f022318531fa12545aebe5453",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1546a9db57da5ef9681ebdc02f31509ea5f2e0658b9b7896bedb97ba90b39dee",
+      "plan.md": "42252726c9a88041f4cf0cebc399894a344292f4468b8298dca16feb0b7acaae",
+      "tasks.md": "bf26c0c5753bd79b834883bf847d82c159ba855e77bcf5598b20690c6c53aa06",
+      "decision-record.md": "3ca8ac363a8b36330ddd9289d64adc4f4ed26c014e931ecace215e9d39f26999",
+      "implementation-summary.md": "6fe85219498da08d2894f42d3d324dace68624a9c7a46e930645d6b30af6eaf8"
+    },
+    "last_active_child_id": "hooks/009-goal-isolation/006-opencode-goal-optimization-and-devin-removal",
+    "last_active_at": "2026-08-10T19:27:47.625Z"
+  }
+}

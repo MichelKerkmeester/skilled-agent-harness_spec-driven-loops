@@ -103,8 +103,8 @@ description: "Auto-generated research resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md | Cited | OK | Citations=2; Iterations=2 |
-| specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md | Cited | OK | Citations=2; Iterations=2 |
+| specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md | Cited | OK | Citations=2; Iterations=2 |
+| specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md | Cited | OK | Citations=2; Iterations=2 |
 
 ---
 

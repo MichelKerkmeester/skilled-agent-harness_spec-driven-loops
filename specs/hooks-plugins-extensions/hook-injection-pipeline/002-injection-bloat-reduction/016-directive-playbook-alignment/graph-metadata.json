@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/016-directive-playbook-alignment",
+  "spec_folder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/016-directive-playbook-alignment",
+  "parent_id": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "hooks/002-injection-bloat-reduction/014-cross-runtime-directive-lifecycle",
+        "reason": "Documents/validates the 014 lifecycle feature",
+        "source": "derived"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "directive lifecycle playbook alignment",
+      "directive lifecycle scenario 457",
+      "directive lifecycle dedup playbook",
+      "directive lifecycle feature catalog",
+      "directive lifecycle playbook alignment plan",
+      "directive lifecycle scenario plan",
+      "directive lifecycle dedup catalog plan",
+      "directive lifecycle playbook alignment tasks",
+      "directive lifecycle scenario tasks",
+      "directive lifecycle playbook alignment implementation",
+      "directive lifecycle scenario summary",
+      "directive lifecycle dedup catalog summary"
+    ],
+    "key_topics": [
+      "directive",
+      "lifecycle",
+      "playbook",
+      "alignment",
+      "scenario",
+      "dedup",
+      "feature",
+      "catalog",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+      ".opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/system-spec-kit/feature-catalog/ux-hooks/directive-lifecycle-dedup.md",
+      ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      "feature-catalog/ux-hooks/directive-lifecycle-dedup.md",
+      "feature-catalog/feature-catalog.md",
+      "hooks/claude/user-prompt-submit.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "directive-lifecycle-dedup.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Lifecycle Playbook Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "executable",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "concrete",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Phases",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Executable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Scenario",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "compact",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Close the playbook/catalog coverage gap left by the live directive-lifecycle feature (013/014): add manual scenario 457 validating first-message full, repeat-turn route-only, boundary re-delivery, kill-switch revert, and fail-open per runtime (Pi/Claude/Cursor/Devin/Codex/OpenCode), register it in the root index, add the lifecycle-aware 119-C note, and publish the feature-catalog entry with both kill-switches — docs only.",
+    "created_at": "2026-08-11T10:10:08.000Z",
+    "last_save_at": "2026-11-10T05:10:15.744Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:79bb693c47b8e3b67a1413fbb7e8f9534bb722e7c11bed0a8df09ee6b5b5e0bc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "756b61880662fb6c58d3dd823ca0619fe62c1921678f3c13a4501948c3073a02",
+      "plan.md": "65f10432fe607f909ba42bc442de7e36b689de9e904b8d259d2f6925420e09c6",
+      "tasks.md": "aba93738ac92d5263dee3c83da349691afd8fa105e188bf2666fc941403bbc7b",
+      "implementation-summary.md": "70757e857e41c937bfbc91dd4330473fcef81e6e1fed2965e144ad0657fe3202"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

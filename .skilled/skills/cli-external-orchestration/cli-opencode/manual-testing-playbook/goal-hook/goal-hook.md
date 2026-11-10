@@ -1,7 +1,7 @@
 ---
 title: "CO-039 -- Goal hook native opencode-goal validation"
 description: "Validates OpenCode goal actions, session isolation, fixed opaque state keys, lazy legacy migration, native token accounting, and system-prompt injection."
-version: 1.5.14.0
+version: 1.5.15.0
 ---
 
 # CO-039 -- Goal hook native opencode-goal validation
@@ -172,7 +172,7 @@ console.log(JSON.stringify({ verdict: 'PASS', stateFiles, migrated: true, tokens
 || `.opencode/plugins/tests/opencode-goal-tool-path.test.cjs` | Tool-context session-id resolution and packet-bind path coverage (16 tests) |
 || `.opencode/plugins/tests/opencode-goal-render-parity.test.cjs` | Brief render parity with the shared goal core (3 tests) |
 || `.skilled/hooks/goal/goal-plugin.md` | Operator contract for the plugin: runtime surfaces, environment variables, output fields, cross-runtime relationship |
-|| `specs/hooks-plugins-extensions/004-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt` | An earlier headless-run finding that reported the goal tools hidden and the transform silent, superseded by the live run below |
+|| `specs/hooks-plugins-extensions/goal-and-directive-hooks/002-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt` | An earlier headless-run finding that reported the goal tools hidden and the transform silent, superseded by the live run below |
 || `specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/scratch/runtime-verification/opencode/a3-live-summary.md` | The live headless `opencode run` evidence cited in Section 3 Optional Supplemental Checks |
 
 ---

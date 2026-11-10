@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/002-synthesis-and-decision",
+  "spec_folder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/002-synthesis-and-decision",
+  "parent_id": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi caching go no-go",
+      "reasonix pi decision",
+      "pi caching synthesis",
+      "caching build gate",
+      "pi caching decision plan",
+      "go no-go protocol",
+      "pi caching decision tasks",
+      "pi caching go no-go decision",
+      "reasonix pi decision record",
+      "pi-cache-optimizer audit",
+      "caching build gate closed",
+      "pi caching decision summary"
+    ],
+    "key_topics": [
+      "caching",
+      "no-go",
+      "reasonix",
+      "decision",
+      "synthesis",
+      "gate",
+      "plan",
+      "protocol",
+      "tasks",
+      "record",
+      "pi-cache-optimizer",
+      "audit"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Style Pi Caching Go",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Updated Successor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Single Go",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ingest Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claim Resolution",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Build Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Engine",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 1 produces verified findings, a claims ledger, and a feasibility picture, but no decision",
+    "created_at": "2026-08-06T09:15:11.712Z",
+    "last_save_at": "2026-11-10T05:10:18.723Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:520ade26afa2888a5118160148d106d8f1b2022aec486d649e3bd1659eb25c97",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "832a418c277180678c3205b6d5be299e0fa54cf4cf0e5200f88bf312386089eb",
+      "plan.md": "c68401ee8c085fda62531b69c20d318b1434507741ac6a83ad43c54f6905c439",
+      "tasks.md": "2c11e62e1a5504bc6ad7cf5bbc40859db18a865196920b94f0a66e771abf03f2",
+      "decision-record.md": "27f41d1f7e6718c55188dc949e5872c5b83e1bf6ec90a15fe9c4dd0cbabef199",
+      "implementation-summary.md": "312625d8eecc6c6b1c045578191e40ed007ee95a84df8dd67bf46e2f1720c1c4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

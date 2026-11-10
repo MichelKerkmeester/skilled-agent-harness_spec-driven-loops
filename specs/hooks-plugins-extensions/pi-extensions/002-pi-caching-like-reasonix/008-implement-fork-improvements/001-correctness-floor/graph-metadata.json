@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/008-implement-fork-improvements/001-correctness-floor",
+  "spec_folder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/008-implement-fork-improvements/001-correctness-floor",
+  "parent_id": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/008-implement-fork-improvements",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "correctness floor",
+      "deep-pi cold start bug",
+      "combined host composition test",
+      "correctness floor plan",
+      "correctness floor tasks",
+      "correctness floor implementation",
+      "pi cache optimizer correctness",
+      "deep-pi correctness floor"
+    ],
+    "key_topics": [
+      "correctness",
+      "floor",
+      "deep-pi",
+      "cold",
+      "start",
+      "bug",
+      "combined",
+      "host",
+      "composition",
+      "test",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".pi/extensions/pi-cache-optimizer/package.json",
+      ".pi/extensions/pi-cache-optimizer/index.ts",
+      ".pi/settings.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".pi/extensions/pi-cache-optimizer/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Correctness Floor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Fork Improvements",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Same",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Opus",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four P0 defects were found by 007's four-lineage research and re-confirmed against the live source while authoring this spec",
+    "created_at": "2026-08-08T06:50:09.777Z",
+    "last_save_at": "2026-11-10T05:10:19.647Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:67632d4378137af2e7e3b68efa6009a866039b077325a98ab69e2fc205d1480b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "aba518273d3a56c551233febed208ce27f00707d9734a47c6572e4edc34ad428",
+      "plan.md": "fdebfe4cd06dddb54afab62b56de4868b438ff3617dcdad3e5bb894c29535e4f",
+      "tasks.md": "f0c8c4885b5aa4c64a7e41e7395f17975f73d033f3d878975d90b1c06ac50377",
+      "implementation-summary.md": "0a0262b209349f93e5a15faa925b73e09b7ecb51da7d896d5fd1da5c379a65e6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

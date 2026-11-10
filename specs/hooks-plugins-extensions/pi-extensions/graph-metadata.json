@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/pi-extensions",
+  "spec_folder": "hooks-plugins-extensions/pi-extensions",
+  "parent_id": "hooks-plugins-extensions",
+  "children_ids": [
+    "hooks-plugins-extensions/pi-extensions/001-pi-input-hook-latency",
+    "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix",
+    "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support",
+    "hooks-plugins-extensions/pi-extensions/004-pi-extension-playbooks",
+    "hooks-plugins-extensions/pi-extensions/005-pi-cache-affinity-compat",
+    "hooks-plugins-extensions/pi-extensions/006-cache-optimizer-absorbs-deep-pi",
+    "hooks-plugins-extensions/pi-extensions/007-cache-optimizer-review-remediation",
+    "hooks-plugins-extensions/pi-extensions/008-cache-optimizer-improvement-research",
+    "hooks-plugins-extensions/pi-extensions/009-cache-optimizer-measurement-fixes",
+    "hooks-plugins-extensions/pi-extensions/010-compat-opt-in-and-image-declaration",
+    "hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "hooks-plugins-extensions/pi-extensions"
+    ],
+    "causal_summary": "Container folder for hooks-plugins-extensions/pi-extensions."
+  }
+}

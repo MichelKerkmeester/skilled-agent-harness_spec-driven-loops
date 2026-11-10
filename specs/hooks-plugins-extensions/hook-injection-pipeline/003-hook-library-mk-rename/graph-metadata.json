@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-injection-pipeline/003-hook-library-mk-rename",
+  "spec_folder": "hooks-plugins-extensions/hook-injection-pipeline/003-hook-library-mk-rename",
+  "parent_id": "hooks-plugins-extensions/hook-injection-pipeline",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook library rename",
+      "mk prefix rename",
+      "plugin rename",
+      "mk to system",
+      "daemon rename",
+      "hook rename plan",
+      "mk rename phases",
+      "daemon rename plan",
+      "hook rename tasks",
+      "mk rename checklist tasks",
+      "hook rename decisions",
+      "mk rename adr"
+    ],
+    "key_topics": [
+      "hook",
+      "library",
+      "rename",
+      "prefix",
+      "plugin",
+      "system",
+      "daemon",
+      "plan",
+      "phases",
+      "tasks",
+      "checklist",
+      "decisions"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/hooks/shared/hook-flags.cjs",
+      ".opencode/hooks/shared/env-aliases.cjs",
+      ".opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs",
+      ".claude/settings.json",
+      ".cursor/hooks.json",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".opencode/plugins/README.md",
+      ".cursor/mcp.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "env-aliases.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/shared/env-aliases.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Library",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prefix Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Execution",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every runtime hook entry point is named `mk-<concern>` (e.g",
+    "created_at": "2026-08-20T00:00:00.000Z",
+    "last_save_at": "2026-11-10T05:10:18.711Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3e044121c4b97f1ca7dc63c6f8be4a98393c1a62be967ea50eecc7a3d988903b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5ede9e72d19b8d79322f6575a0d20114af781f4977122670d316f47ef57af15a",
+      "plan.md": "2d629e77204e083ae586846fcfbdfd5daea371ba20c138a087857239ee57fe56",
+      "tasks.md": "400ab6211c5b7f5a06d56968c3f7addbd4f8639e434694de0e491a97c2c5f41f",
+      "decision-record.md": "4f5f19c0f722e44fd4cbce25334dcfb12e29c563bcf7df6765976853772577eb",
+      "implementation-summary.md": "c6da86148a47970e419faf3d1c935d7fec03d144b0365cab6c1a8b67299c2e2c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

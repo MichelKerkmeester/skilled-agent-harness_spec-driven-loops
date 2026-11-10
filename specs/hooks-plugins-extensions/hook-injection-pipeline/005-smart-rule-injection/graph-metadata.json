@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection",
+  "spec_folder": "hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection",
+  "parent_id": "hooks-plugins-extensions/hook-injection-pipeline",
+  "children_ids": [
+    "hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/001-deep-research",
+    "hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/002-event-triggered-injection",
+    "hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/003-shallow-evidence-claims",
+    "hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/004-agents-md-concision"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "smart rule injection",
+      "inject a rule at prompt time",
+      "hook instead of gate 5",
+      "rule that binds on a read-only turn",
+      "injection selectivity",
+      "stop embedding on every message",
+      "smart rule injection plan",
+      "three injection research lineages",
+      "refusal and admission ledger",
+      "smart rule injection tasks",
+      "research lineage task ledger",
+      "refusal and admission evidence rows"
+    ],
+    "key_topics": [
+      "smart",
+      "rule",
+      "injection",
+      "inject",
+      "prompt",
+      "time",
+      "hook",
+      "instead",
+      "gate",
+      "binds",
+      "read-only",
+      "turn"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "AGENTS.md",
+      "REPO RULES.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "REPO RULES.md",
+        "kind": "doc",
+        "path": "REPO RULES.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. PROBLEM",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. THE CONSTRAINT THAT SHAPES THE ANSWER",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PORTABILITY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Decide from repository evidence which repo rules, if any, are better served by a prompt-time injection hook than by the Gate 5 load, and design the selectivity that keeps injection off most turns.",
+    "created_at": "2026-09-12T00:00:00Z",
+    "last_save_at": "2026-11-10T05:10:18.323Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:29c2be8e86cd2fe07a4d53c5f1eb541014e83ab944458680951cc7057a99735a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6dfd9ebf810cfa4ba61e0d5d273f7989985726ea45246403c840b3836e5489c9",
+      "plan.md": "8bbdb186bf8e68f5b89e5c475e485be9d65aae3165e1ac212855f40317e633e7",
+      "tasks.md": "e6dd76caeba3d1e9b50606440f56ba3ae93cb47f7b857b5b08e92456ca1807b5"
+    },
+    "last_active_child_id": "hooks/022-smart-rule-injection/003-shallow-evidence-claims",
+    "last_active_at": "2026-09-12T00:00:00Z"
+  }
+}

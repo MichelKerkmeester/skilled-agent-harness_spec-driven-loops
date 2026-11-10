@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/pi-extensions/006-cache-optimizer-absorbs-deep-pi",
+  "description": "Pi loads two cache extensions whose responsibilities are divided by a hand-maintained model",
+  "keywords": [
+    "loads",
+    "two",
+    "cache",
+    "extensions",
+    "whose",
+    "responsibilities",
+    "divided",
+    "hand-maintained",
+    "model"
+  ],
+  "lastUpdated": "2026-09-08T19:19:22.363Z",
+  "specId": "016",
+  "folderSlug": "cache-optimizer-absorbs-deep-pi",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

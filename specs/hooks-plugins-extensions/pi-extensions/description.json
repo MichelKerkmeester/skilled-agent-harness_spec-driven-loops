@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/pi-extensions",
+  "description": "Pi's extension ecosystem: input-hook latency, fast-mode subagent handoff, the cache optimizer and deep-pi forks with their compat, measurement, retry guards and single-copy loading, and the playbooks that test them.",
+  "keywords": [
+    "pi",
+    "extensions"
+  ],
+  "lastUpdated": "2026-11-10T05:10:06.304Z",
+  "specId": "hooks-plugins-extensions/pi-extensions",
+  "folderSlug": "pi-extensions",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

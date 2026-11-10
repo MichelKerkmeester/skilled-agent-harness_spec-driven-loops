@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/008-sk-code-alignment",
+  "spec_folder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/008-sk-code-alignment",
+  "parent_id": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code alignment audit",
+      "code readme freshness",
+      "injection bloat readme sweep",
+      "opencode surface standards check",
+      "sk-code alignment plan",
+      "readme freshness plan",
+      "injection bloat audit plan",
+      "sk-code alignment tasks",
+      "readme freshness tasks",
+      "sk-code alignment summary",
+      "readme freshness summary",
+      "injection bloat audit result"
+    ],
+    "key_topics": [
+      "sk-code",
+      "alignment",
+      "audit",
+      "code",
+      "readme",
+      "freshness",
+      "injection",
+      "bloat",
+      "sweep",
+      "opencode",
+      "surface",
+      "standards"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "lib/README.md",
+      "research/lineages/deepseek-flash/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Freshness Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "rationale",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-file",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The injection-bloat shadow program (packet 002, phases 001-007) landed roughly sixteen changed code files across the `system-skill-advisor` runtime, the `system-spec-kit` Gate-3 hook adapters, and the OpenCode plugins",
+    "created_at": "2026-08-07T14:02:15.127Z",
+    "last_save_at": "2026-11-10T05:10:15.190Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4ef2c6d3da908c7ed8f705bbdc43d354c0bbc67d80307fd43451f2de1424e30b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "940fadbee5e1619e9cd70e12059b6a7b23d8f362b3e04ff600637c8fdf2cc7e2",
+      "plan.md": "9e6558bc525c39a9a6796e2056f5975e18050163fc852a6b07ac6ec5fc27bfa7",
+      "tasks.md": "e97e2cbf63ac54e2256a5b94341a03e52bdb418204a696297e4633c52d097e1d",
+      "implementation-summary.md": "3c32ca16079f523e65d3034fd6f0ff66a35834d30a20adaefbcbfab98df109c8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`.dsh/prompts/local-skilled-alignment.md` was committed although its source, the operator's private command, is gitignored, so CI and every new worktree reported it as an extra prompt",
     "created_at": "2026-11-08T08:54:12Z",
-    "last_save_at": "2026-11-08T17:09:32.536Z",
+    "last_save_at": "2026-11-10T05:12:00.276Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:bd68887b8423cb018e18391fe6ebd870c1a23cb16803be7abb760b8b15b3b997",
+    "source_fingerprint": "sha256:44fc231600d67fd890c2ec441ff8fed747f617e56f13726f395a88c8fad3f341",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9e84516080f43615b68634f059b9bbb8edc0e134aac431a1f807cf9d61206fbf",
@@ -229,7 +229,7 @@
       "tasks.md": "77eeac0effe6fe0ff3215ba6af61034f5e912488ece824a6989b15ee0b8a4708",
       "decision-record.md": "d4e917cec561e934fc00f91e3c521df8f61e8c270848b773d677dfea35ad39d9",
       "implementation-summary.md": "bbe42e864649b0a44f162bafa2674a1b5adf9321114c7c2ebc2173a3dc5298c3",
-      "research/research.md": "3e1f123f0a1620699fbb5960b24ff2af2874cbdb5fa5782e9d891ce00c6e5be1"
+      "research/research.md": "d968edb1644e5a8a07777336cfb87764af962e52532b1b239084d711248333d6"
     },
     "last_active_at": null
   }

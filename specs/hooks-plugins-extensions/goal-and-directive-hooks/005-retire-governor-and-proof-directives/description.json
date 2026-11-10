@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/005-retire-governor-and-proof-directives",
+  "description": "Three constant directives were appended to every advisor brief on every user turn, on every",
+  "keywords": [
+    "three",
+    "constant",
+    "directives",
+    "appended",
+    "every",
+    "advisor",
+    "brief",
+    "user",
+    "turn"
+  ],
+  "lastUpdated": "2026-08-30T18:39:50.895Z",
+  "specId": "014",
+  "folderSlug": "retire-governor-and-proof-directives",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

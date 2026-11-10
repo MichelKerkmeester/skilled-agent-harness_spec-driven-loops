@@ -12,7 +12,7 @@ This map separates the canonical contracts, the private gold, and the curated ou
 | Scenario corpus | `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/goal-hook/goal-hook.md` (`CU-027`) |
 | Scoring method | `not recorded` |
 | Spec packet | `.opencode/specs/hooks/004-goal-hook-playbooks-and-validation` |
-| Raw evidence | [`cursor-recorded-evidence.txt`](../../../../../../specs/hooks-plugins-extensions/004-goal-hook-playbooks-and-validation/evidence/cursor-recorded-evidence.txt) |
+| Raw evidence | [`cursor-recorded-evidence.txt`](../../../../../../specs/hooks-plugins-extensions/goal-and-directive-hooks/002-goal-hook-playbooks-and-validation/evidence/cursor-recorded-evidence.txt) |
 | Machine record | [`skill-benchmark-report.json`](./skill-benchmark-report.json) |
 | Curated result set | [`results.csv`](./results.csv) |
 

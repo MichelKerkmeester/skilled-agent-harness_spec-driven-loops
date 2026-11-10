@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/004-cursor-goal-hooks",
+  "description": "A goal set for the work does not survive into a Cursor session",
+  "keywords": [
+    "goal",
+    "set",
+    "work",
+    "survive",
+    "cursor",
+    "session"
+  ],
+  "lastUpdated": "2026-08-15T14:40:55.751Z",
+  "specId": "004",
+  "folderSlug": "cursor-goal-hooks",
+  "parentChain": [
+    "hooks",
+    "003-goal-hooks-cross-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

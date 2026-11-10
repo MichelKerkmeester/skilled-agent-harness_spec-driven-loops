@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition",
+  "description": "Installing the fork beside another extension that registers `/fast` and `--fast` creates load-order ambiguity",
+  "keywords": [
+    "installing",
+    "fork",
+    "beside",
+    "another",
+    "extension",
+    "registers",
+    "fast",
+    "load-order",
+    "ambiguity"
+  ],
+  "lastUpdated": "2026-08-30T07:16:09.434Z",
+  "specId": "002",
+  "folderSlug": "install-transition",
+  "parentChain": [
+    "hooks",
+    "011-pi-fast-mode-w-subagent-support",
+    "003-integration-and-tests"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

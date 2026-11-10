@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries",
+  "description": "Behavior at a turn or session boundary: keeping the spec-folder question from re-firing every turn, enforcing operator decisions through each runtime's native ask tool, and relaunching a CLI session near its context limit.",
+  "keywords": [
+    "session",
+    "turn",
+    "boundaries"
+  ],
+  "lastUpdated": "2026-11-10T05:10:06.304Z",
+  "specId": "hooks-plugins-extensions/session-turn-boundaries",
+  "folderSlug": "session-turn-boundaries",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

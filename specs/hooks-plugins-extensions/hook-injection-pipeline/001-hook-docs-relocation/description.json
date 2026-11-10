@@ -1,0 +1,30 @@
+{
+  "level": 2,
+  "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/001-hook-docs-relocation",
+  "description": "The folder `.opencode/skills/system-spec-kit/references/hooks/` holds four documents that describe hooks, not the spec-kit itself: the injection",
+  "keywords": [
+    "folder",
+    "opencode",
+    "skills",
+    "system-spec-kit",
+    "references",
+    "hooks",
+    "holds",
+    "four",
+    "documents",
+    "describe",
+    "spec-kit",
+    "itself",
+    "injection"
+  ],
+  "lastUpdated": "2026-08-15T14:40:55.586Z",
+  "specId": "001",
+  "folderSlug": "hook-docs-relocation",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "05-08-26_00-00__hook-docs-relocation.md"
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support",
+  "spec_folder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support",
+  "parent_id": "hooks-plugins-extensions/pi-extensions",
+  "children_ids": [
+    "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/001-fork-and-package",
+    "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff",
+    "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/003-integration-and-tests"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi-fast-mode-w-subagent-support",
+      "fast mode subagent handoff",
+      "openai fast mode fork",
+      "011-pi-fast-mode-w-subagent-support",
+      "pi fast mode subagent goal",
+      "fast mode fork goal",
+      "research",
+      "synthesis",
+      "fast",
+      "mode",
+      "subagent",
+      "011"
+    ],
+    "key_topics": [
+      "pi-fast-mode-w-subagent-support",
+      "fast",
+      "mode",
+      "subagent",
+      "handoff",
+      "openai",
+      "fork",
+      "011-pi-fast-mode-w-subagent-support",
+      "goal",
+      "research",
+      "synthesis",
+      "fast-mode"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "research/research.md",
+      ".pi/settings.json",
+      ".pi/PLUGINS.md",
+      "001-fork-and-package/goal.md",
+      "002-subagent-handoff/goal.md",
+      "003-integration-and-tests/goal.md",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-config.json",
+      "research/iterations/iteration-003.md",
+      "research/iterations/iteration-004.md",
+      "research/iterations/iteration-005.md",
+      "research/iterations/iteration-007.md",
+      "research/iterations/iteration-008.md",
+      "research/iterations/iteration-009.md",
+      "research/iterations/iteration-002.md",
+      ".pi/SYNC.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "PLUGINS.md",
+        "kind": "doc",
+        "path": ".pi/PLUGINS.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-009.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-009.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".pi/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "footers",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "next",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fast-mode engine, child-process handoff, and installed-environment proof span separate ownership boundaries",
+    "created_at": "2026-08-16T07:07:46Z",
+    "last_save_at": "2026-11-10T05:10:21.754Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:8a815c21ed1047da04cc17dc20f56c65abf83b463a0d8722f61c8a087068e2e0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9188a5a1ad89798e57d8bccfd23a9ec3001dda0945e9d6eccd916677902ba7b6",
+      "research/research.md": "068aacf3893ba364ec842077cceae301f09d73f57f86972ea437bd1948b88e56"
+    },
+    "last_active_child_id": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests",
+    "last_active_at": "2026-08-16T08:45:06.414Z"
+  }
+}

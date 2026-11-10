@@ -871,7 +871,7 @@
       "source": "iteration-markdown"
     },
     {
-      "text": "**New — was the scratch spike tree deleted deliberately, or did the track rename orphan it?** f-iter022-003's remediation differs: restore five files versus rewrite five table rows. `git log --diff-filter=D -- 'specs/hooks-plugins-extensions/023-session-relaunch-loop/*/scratch/spike/*'` settles it, path-limited as the run config requires.",
+      "text": "**New — was the scratch spike tree deleted deliberately, or did the track rename orphan it?** f-iter022-003's remediation differs: restore five files versus rewrite five table rows. `git log --diff-filter=D -- 'specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/*/scratch/spike/*'` settles it, path-limited as the run config requires.",
       "addedAtIteration": 22,
       "source": "iteration-markdown"
     },

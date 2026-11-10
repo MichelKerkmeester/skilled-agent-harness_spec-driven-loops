@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-injection-pipeline/004-hook-feature-flags-and-hub-index",
+  "spec_folder": "hooks-plugins-extensions/hook-injection-pipeline/004-hook-feature-flags-and-hub-index",
+  "parent_id": "hooks-plugins-extensions/hook-injection-pipeline",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook feature flags",
+      "feature-flag all hooks",
+      "hooks hub full index",
+      "MK_HOOKS_DISABLED master switch",
+      "per-concern hook kill-switch",
+      "hook feature flags plan",
+      "hook kill-switch implementation",
+      "cross-runtime hook phases",
+      "hook feature flags tasks",
+      "hook kill-switch phase status",
+      "packet 010 reconciliation",
+      "hook feature flag decisions"
+    ],
+    "key_topics": [
+      "hook",
+      "feature",
+      "flags",
+      "feature-flag",
+      "hooks",
+      "hub",
+      "full",
+      "index",
+      "master",
+      "switch",
+      "per-concern",
+      "kill-switch"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/hooks/README.md",
+      ".opencode/hooks/hook-flags.env.example",
+      ".opencode/hooks/shared/hook-flags.cjs",
+      ".opencode/hooks/shared/hook-flags.sh",
+      ".opencode/bin/worktree-guard.sh",
+      ".opencode/bin/check-git-hooks.sh",
+      ".opencode/scripts/session-cleanup.sh",
+      ".opencode/bin/install-codex-hooks.mjs",
+      ".opencode/hooks/injection-contract.md",
+      ".opencode/hooks/coverage-rationale.md",
+      ".opencode/hooks/shared/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
+        "kind": "file",
+        "path": ".opencode/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.sh",
+        "kind": "script",
+        "path": ".opencode/hooks/shared/hook-flags.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-guard.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-guard.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/bin/check-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "install-codex-hooks.mjs",
+        "kind": "file",
+        "path": ".opencode/bin/install-codex-hooks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-rationale.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/coverage-rationale.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Feature Flags",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Hub Index",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Equivalent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Equivalent hooks used different runtime adapters, module formats, and shell entrypoints",
+    "created_at": "2026-08-13T17:49:26.189Z",
+    "last_save_at": "2026-11-10T05:10:18.797Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:77a98c748228d89175d3337bf8fd4806ca4f1f00f695baf74904f228a0de78f9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c2a329fbd16a08259d3bfd6d68cd54a1972b3ca51149daf92cde46f54d44375f",
+      "plan.md": "8de4058f34703b10803cbc6d7b0ff2d2165ed1125c2f79600d590dbe062249cc",
+      "tasks.md": "4c6edc72a0ed5ddfbaf4eaa41eaea87f6dc3bf1ab6bbd5788770cb9beb8b0131",
+      "decision-record.md": "bd494acb13081c4e8cdf9235592ce5576752deb7cca1808a8f3b6e2702b5d04a",
+      "implementation-summary.md": "483df0c48eb826375c7a65076aa1d16e53ed6f0838c511df81bbdd90d7a36d3c",
+      "research/research.md": "3360fdabb2549769eafa1769d4b799ee946ca3f374dde45e0bf627129dd98c21"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -19,17 +19,17 @@
       "operatorInputs": "None; the runner typed every turn and answer.",
       "evidence": [
         {
-          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/devin/result.json",
+          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/kill-switch/devin/result.json",
           "bytes": 1111,
           "sha256": "55786e00935b8022e8e4da50a20ca458251fdeca537e7354ad84f6b009b63a5d"
         },
         {
-          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/devin/checkpoints.tsv",
+          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/kill-switch/devin/checkpoints.tsv",
           "bytes": 103,
           "sha256": "fc185392c38d0979f64ec96cdc9b7663be88a881ae89937e6f3fddf2f2171231"
         },
         {
-          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/devin/turns/S1/check.txt",
+          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/kill-switch/devin/turns/S1/check.txt",
           "bytes": 774,
           "sha256": "38805e4de30b7582f5145689e3805678a2da7bf8a8a28e1533e65e3490a58600"
         }

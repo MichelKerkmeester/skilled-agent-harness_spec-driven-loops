@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction",
+  "spec_folder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction",
+  "parent_id": "hooks-plugins-extensions/hook-injection-pipeline",
+  "children_ids": [
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/001-measurement-and-receipts-foundation",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/002-opencode-route-line-bounding",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/003-opencode-transform-dedup",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/004-full-first-route-only-repeats",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/005-gate3-relay-edge-triggering",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/006-pi-dispatch-and-compaction",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/008-sk-code-alignment",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/009-testing-doc-alignment",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/010-playbook-cheapest-model",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/011-playbook-results-automation",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/012-playbook-fails-remediation",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/013-pi-local-directive-dedup",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/014-cross-runtime-directive-lifecycle",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/015-directive-docs-alignment",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/016-directive-playbook-alignment",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/017-adapter-live-delivery-verification",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery",
+    "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/019-pi-directive-startup-compaction-only"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "injection bloat reduction",
+      "per-prompt directive reduction",
+      "lifecycle policy capsule"
+    ],
+    "key_topics": [
+      "injection",
+      "bloat",
+      "reduction",
+      "per-prompt",
+      "directive",
+      "lifecycle",
+      "policy",
+      "capsule",
+      "hooks",
+      "research",
+      "measured",
+      "three"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts",
+      ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "directive-lifecycle.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Prompt Injection Bloat Reduction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `hooks/001` research measured that the three always-on directives (comment-hygiene, governor, proof-over-appearance) are ~763 bytes / ~190 estimated tokens and constitute ~94.7% of the per-turn advisor payload, delivered on nearly every valid turn across Claude Code, Codex, Devin, and OpenCode; Pi adds its own ~554-byte dispatch directive",
+    "created_at": "2026-08-06T11:15:01.299Z",
+    "last_save_at": "2026-11-10T05:10:15.309Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:10279b766dcefc4a0ba7cb25e747812384b29556143bb755746fc3a9ad33e14f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7bf04ef90d0d2cef28a8aaa3d76ab7c6392486df92747ae7ef61be59e3711f8b"
+    },
+    "last_active_child_id": "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery",
+    "last_active_at": "2026-08-12T05:31:12.206Z"
+  }
+}

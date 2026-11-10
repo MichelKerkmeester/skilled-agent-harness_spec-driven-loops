@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi arm on agent settled",
+      "phase 9 pi arm on agent settled",
+      "pi arm on agent settled plan",
+      "pi arm on agent settled tasks",
+      "pi arm on agent settled acceptance criteria",
+      "pi arm on agent settled goal",
+      "pi arm on agent settled implementation summary"
+    ],
+    "key_topics": [
+      "arm",
+      "agent",
+      "settled",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "extension"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
+      ".skilled/hooks/session-relaunch/README.md",
+      "scratch/red-before.txt",
+      "scratch/agent-end-inventory.txt",
+      "scratch/tsc-negative-control.txt",
+      "scratch/final-vitest.txt",
+      "scratch/final-tsc.txt",
+      "scratch/final-node.txt",
+      "scratch/after-node.txt",
+      ".pi/extensions/session-relaunch.ts",
+      ".pi/types/pi-coding-agent.d.ts",
+      "scratch/baseline-vitest.txt",
+      "scratch/baseline-node.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "red-before.txt",
+        "kind": "file",
+        "path": "scratch/red-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "agent-end-inventory.txt",
+        "kind": "file",
+        "path": "scratch/agent-end-inventory.txt",
+        "source": "derived"
+      },
+      {
+        "name": "tsc-negative-control.txt",
+        "kind": "file",
+        "path": "scratch/tsc-negative-control.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-vitest.txt",
+        "kind": "file",
+        "path": "scratch/final-vitest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-tsc.txt",
+        "kind": "file",
+        "path": "scratch/final-tsc.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-node.txt",
+        "kind": "file",
+        "path": "scratch/final-node.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-node.txt",
+        "kind": "file",
+        "path": "scratch/after-node.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pi-coding-agent.d.ts",
+        "kind": "code",
+        "path": ".pi/types/pi-coding-agent.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-vitest.txt",
+        "kind": "file",
+        "path": "scratch/baseline-vitest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-node.txt",
+        "kind": "file",
+        "path": "scratch/baseline-node.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Pi extension arms the prepared record on `agentend` (`.skilled/hooks/session-relaunch/pi/session-relaunch.ts:526`) and withdraws an arm on `agentstart` (`:561`)",
+    "created_at": "2026-10-25T13:42:36Z",
+    "last_save_at": "2026-11-10T05:10:32.437Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8efe52325b70268c7e5d0f20862865f866fd9669626290d637b68052997c86a0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1eb70976b519c73348487557e8eb56f316e17a742927fc4a4ade444bd8d2e027",
+      "plan.md": "a6b3662f1022776f27df486bd1f5bd6fab49c63b82a456fe85ad8207caf28d20",
+      "tasks.md": "ce1163f9be26d550edb925a8645b6baefa4ab04330aa6ecc8dc61696254c9711",
+      "implementation-summary.md": "8fbc1ff96025ac717dc1440c977fdabdb7dcf3639f017d28ec089525bb34bee9"
+    },
+    "last_active_at": null
+  }
+}

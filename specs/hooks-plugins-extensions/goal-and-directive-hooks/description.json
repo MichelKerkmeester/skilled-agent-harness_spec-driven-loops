@@ -1,0 +1,19 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks",
+  "description": "Standing agent state injected each turn: the cross-runtime goal capsule with its isolation, playbooks, live validation and runtime ports, plus the governor and subagent-dispatch directives evaluated, revised and retired around it.",
+  "keywords": [
+    "goal",
+    "and",
+    "directive",
+    "hooks"
+  ],
+  "lastUpdated": "2026-11-10T05:10:06.303Z",
+  "specId": "hooks-plugins-extensions/goal-and-directive-hooks",
+  "folderSlug": "goal-and-directive-hooks",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

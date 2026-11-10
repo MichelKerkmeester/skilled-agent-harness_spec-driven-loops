@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract",
+  "description": "Child Pi processes need a stable representation of the parent's fast-mode preference",
+  "keywords": [
+    "child",
+    "processes",
+    "need",
+    "stable",
+    "representation",
+    "parent",
+    "fast-mode",
+    "preference"
+  ],
+  "lastUpdated": "2026-08-30T07:16:09.417Z",
+  "specId": "001",
+  "folderSlug": "handoff-contract",
+  "parentChain": [
+    "hooks",
+    "011-pi-fast-mode-w-subagent-support",
+    "002-subagent-handoff"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

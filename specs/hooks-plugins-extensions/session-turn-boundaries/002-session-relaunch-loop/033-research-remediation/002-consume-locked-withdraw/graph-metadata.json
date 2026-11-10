@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "consume locked withdraw",
+      "phase 2 consume locked withdraw",
+      "consume locked withdraw plan",
+      "consume locked withdraw tasks",
+      "consume locked withdraw acceptance criteria",
+      "consume locked withdraw goal",
+      "consume locked withdraw implementation summary"
+    ],
+    "key_topics": [
+      "consume",
+      "locked",
+      "withdraw",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "reads"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+      "scratch/red-before-full-suite.txt",
+      "scratch/green-after-full-suite.txt",
+      "scratch/green-after-vitest.txt",
+      ".skilled/hooks/session-relaunch/tests/withdraw.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-cli.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red-before-full-suite.txt",
+        "kind": "file",
+        "path": "scratch/red-before-full-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-after-full-suite.txt",
+        "kind": "file",
+        "path": "scratch/green-after-full-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-after-vitest.txt",
+        "kind": "file",
+        "path": "scratch/green-after-vitest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "withdraw.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/withdraw.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Wrapper",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`consume` reads the relaunch record outside its lock (`.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:692`, `core.readRelaunchFile(loopId)`) and unlinks it later under `core.withAppendLock` (`:715-722`) without rechecking its status",
+    "created_at": "2026-10-25T13:42:26Z",
+    "last_save_at": "2026-11-10T05:10:32.852Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:72122b28f0bc4adb83b49b686da7767f2fa8285edd5bb23714c17df4df04566f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "00dc3d21fb34a1718f2bd494e765a8955d3e094cb1829ab42d87f9870cbab8d2",
+      "plan.md": "c0cc40c9b030a0a34b730c7f07f22c248b2f664f367e58548b42cab2d79dc5ff",
+      "tasks.md": "13772ad81ef277f542b6a80b4ad98f7702655c481515c5a72d78390cbf7437fd",
+      "implementation-summary.md": "c5416d6930d5f06e7072d54d1ef4dde9e1819948f100abd4ce8f80cd9c6343fe"
+    },
+    "last_active_at": null
+  }
+}

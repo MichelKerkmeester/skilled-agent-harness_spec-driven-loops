@@ -317,8 +317,8 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.3.0.md:16`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/sk-doc/shared/references/filesystem-naming-convention.md:66-74`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "Command evidence: `git tag --list 'v4.0.2*'` prints `v4.0.2.0`; repository-wide `rg` passes for the style guide, `specs/hooks/` and the changelog policy."
       ]
     },
@@ -336,8 +336,8 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.3.0.md:16`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/sk-doc/shared/references/filesystem-naming-convention.md:66-74`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "Command evidence: `git tag --list 'v4.0.2*'` prints `v4.0.2.0`; repository-wide `rg` passes for the style guide, `specs/hooks/` and the changelog policy."
       ]
     },
@@ -355,8 +355,8 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.3.0.md:16`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/sk-doc/shared/references/filesystem-naming-convention.md:66-74`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "Command evidence: `git tag --list 'v4.0.2*'` prints `v4.0.2.0`; repository-wide `rg` passes for the style guide, `specs/hooks/` and the changelog policy."
       ]
     },
@@ -374,14 +374,14 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.3.0.md:16`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/sk-doc/shared/references/filesystem-naming-convention.md:66-74`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "Command evidence: `git tag --list 'v4.0.2*'` prints `v4.0.2.0`; repository-wide `rg` passes for the style guide, `specs/hooks/` and the changelog policy."
       ]
     },
     {
       "id": "finding-2-5-q5-depth-the-live-specs-hooks-residue-under-specs-is-goal-state-not-prose-exclud",
-      "text": "**Q5 depth — the live `specs/hooks/` residue under `specs/` is goal state, not prose.** Excluding `research/`, `review*/`, `research_archive/`, `run1-archive/`, `scratch/` and `z_archive/`, 22 non-archived `goal.md` files still name the old track. Two concrete failures: the 034 packet's goal keeps an unchecked acceptance box whose command is `validate.sh specs/hooks/023-session-relaunch-loop/034-default-off-opt-in --strict`, a path that no longer exists, and the 011 packet's goal sets a `packet_pointer` under `specs/hooks/`. A resume on any of those packets resolves or executes a dead path; 478cdec696 did not touch goal state. [SOURCE: specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58] [SOURCE: specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10]",
+      "text": "**Q5 depth — the live `specs/hooks/` residue under `specs/` is goal state, not prose.** Excluding `research/`, `review*/`, `research_archive/`, `run1-archive/`, `scratch/` and `z_archive/`, 22 non-archived `goal.md` files still name the old track. Two concrete failures: the 034 packet's goal keeps an unchecked acceptance box whose command is `validate.sh specs/hooks/023-session-relaunch-loop/034-default-off-opt-in --strict`, a path that no longer exists, and the 011 packet's goal sets a `packet_pointer` under `specs/hooks/`. A resume on any of those packets resolves or executes a dead path; 478cdec696 did not touch goal state. [SOURCE: specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58] [SOURCE: specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10]",
       "addedAtIteration": 2,
       "sources": [
         "`.skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md:36`",
@@ -393,8 +393,8 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.3.0.md:16`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/sk-doc/shared/references/filesystem-naming-convention.md:66-74`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "Command evidence: `git tag --list 'v4.0.2*'` prints `v4.0.2.0`; repository-wide `rg` passes for the style guide, `specs/hooks/` and the changelog policy."
       ]
     },
@@ -412,8 +412,8 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.3.0.md:16`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/sk-doc/shared/references/filesystem-naming-convention.md:66-74`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "Command evidence: `git tag --list 'v4.0.2*'` prints `v4.0.2.0`; repository-wide `rg` passes for the style guide, `specs/hooks/` and the changelog policy."
       ]
     },
@@ -603,8 +603,8 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/SKILL.md:245-263`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/system-skilled-doctor/changelog/v1.1.1.0.md:3,15,24`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "`.gitignore:444-445`",
         "Command evidence: `rg -n --fixed-strings 'specs/hooks/' 'SETUP.md'` over `.skilled`, `README.md`, `INSTALL-SKILLED.md`, `AGENTS.md` (changelogs and `specs/` excluded); `node -e` count of `leaf-aliases.json` (5 entries, 4 `shared/`); `test -e iteration-005.md` (absent)."
       ]
@@ -633,8 +633,8 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/SKILL.md:245-263`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/system-skilled-doctor/changelog/v1.1.1.0.md:3,15,24`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "`.gitignore:444-445`",
         "Command evidence: `rg -n --fixed-strings 'specs/hooks/' 'SETUP.md'` over `.skilled`, `README.md`, `INSTALL-SKILLED.md`, `AGENTS.md` (changelogs and `specs/` excluded); `node -e` count of `leaf-aliases.json` (5 entries, 4 `shared/`); `test -e iteration-005.md` (absent)."
       ]
@@ -663,8 +663,8 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/SKILL.md:245-263`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/system-skilled-doctor/changelog/v1.1.1.0.md:3,15,24`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "`.gitignore:444-445`",
         "Command evidence: `rg -n --fixed-strings 'specs/hooks/' 'SETUP.md'` over `.skilled`, `README.md`, `INSTALL-SKILLED.md`, `AGENTS.md` (changelogs and `specs/` excluded); `node -e` count of `leaf-aliases.json` (5 entries, 4 `shared/`); `test -e iteration-005.md` (absent)."
       ]
@@ -693,8 +693,8 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/SKILL.md:245-263`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/system-skilled-doctor/changelog/v1.1.1.0.md:3,15,24`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "`.gitignore:444-445`",
         "Command evidence: `rg -n --fixed-strings 'specs/hooks/' 'SETUP.md'` over `.skilled`, `README.md`, `INSTALL-SKILLED.md`, `AGENTS.md` (changelogs and `specs/` excluded); `node -e` count of `leaf-aliases.json` (5 entries, 4 `shared/`); `test -e iteration-005.md` (absent)."
       ]
@@ -723,15 +723,15 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/SKILL.md:245-263`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/system-skilled-doctor/changelog/v1.1.1.0.md:3,15,24`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "`.gitignore:444-445`",
         "Command evidence: `rg -n --fixed-strings 'specs/hooks/' 'SETUP.md'` over `.skilled`, `README.md`, `INSTALL-SKILLED.md`, `AGENTS.md` (changelogs and `specs/` excluded); `node -e` count of `leaf-aliases.json` (5 entries, 4 `shared/`); `test -e iteration-005.md` (absent)."
       ]
     },
     {
       "id": "finding-5-7-d-specs-hooks-repoints-478cdec696-fix-the-live-skilled-set-in-finding-1-session-",
-      "text": "**D. `specs/hooks/` repoints (478cdec696).** Fix the live `.skilled` set in finding 1 (session-relaunch README, three session-relaunch playbooks, `directive-lifecycle-dedup.md`, `goal-hook.md`, the three 2026-10-19 benchmark reports, the cli-cursor 2026-07-29 `source.md:14`) plus the 22 non-archived `goal.md` files under `specs/hooks-plugins-extensions/` that still point at the old track, including `023-session-relaunch-loop/034-default-off-opt-in/goal.md:58` and `011-post-fix-remediation/goal.md:10`. Frozen `spec.md`/`plan.md`/`tasks.md` transcripts and changelogs stay as written. [SOURCE: specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58] [SOURCE: specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10]",
+      "text": "**D. `specs/hooks/` repoints (478cdec696).** Fix the live `.skilled` set in finding 1 (session-relaunch README, three session-relaunch playbooks, `directive-lifecycle-dedup.md`, `goal-hook.md`, the three 2026-10-19 benchmark reports, the cli-cursor 2026-07-29 `source.md:14`) plus the 22 non-archived `goal.md` files under `specs/hooks-plugins-extensions/` that still point at the old track, including `023-session-relaunch-loop/034-default-off-opt-in/goal.md:58` and `011-post-fix-remediation/goal.md:10`. Frozen `spec.md`/`plan.md`/`tasks.md` transcripts and changelogs stay as written. [SOURCE: specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58] [SOURCE: specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10]",
       "addedAtIteration": 5,
       "sources": [
         "`.skilled/skills/cli-external-orchestration/cli-cursor/benchmark/reports/2026-07-29--manual-testing-playbook--goal-hook/source.md:14`",
@@ -753,8 +753,8 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/SKILL.md:245-263`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/system-skilled-doctor/changelog/v1.1.1.0.md:3,15,24`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "`.gitignore:444-445`",
         "Command evidence: `rg -n --fixed-strings 'specs/hooks/' 'SETUP.md'` over `.skilled`, `README.md`, `INSTALL-SKILLED.md`, `AGENTS.md` (changelogs and `specs/` excluded); `node -e` count of `leaf-aliases.json` (5 entries, 4 `shared/`); `test -e iteration-005.md` (absent)."
       ]
@@ -783,8 +783,8 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/SKILL.md:245-263`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/system-skilled-doctor/changelog/v1.1.1.0.md:3,15,24`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "`.gitignore:444-445`",
         "Command evidence: `rg -n --fixed-strings 'specs/hooks/' 'SETUP.md'` over `.skilled`, `README.md`, `INSTALL-SKILLED.md`, `AGENTS.md` (changelogs and `specs/` excluded); `node -e` count of `leaf-aliases.json` (5 entries, 4 `shared/`); `test -e iteration-005.md` (absent)."
       ]
@@ -813,8 +813,8 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/SKILL.md:245-263`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/system-skilled-doctor/changelog/v1.1.1.0.md:3,15,24`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "`.gitignore:444-445`",
         "Command evidence: `rg -n --fixed-strings 'specs/hooks/' 'SETUP.md'` over `.skilled`, `README.md`, `INSTALL-SKILLED.md`, `AGENTS.md` (changelogs and `specs/` excluded); `node -e` count of `leaf-aliases.json` (5 entries, 4 `shared/`); `test -e iteration-005.md` (absent)."
       ]
@@ -843,8 +843,8 @@
         "`.skilled/skills/sk-doc/sk-create-changelog/SKILL.md:245-263`",
         "`.skilled/changelog/skilled/v4.0.2.0.md:195-233`",
         "`.skilled/skills/system-skilled-doctor/changelog/v1.1.1.0.md:3,15,24`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
-        "`specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in/goal.md:58`",
+        "`specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/011-post-fix-remediation/goal.md:10`",
         "`.gitignore:444-445`",
         "Command evidence: `rg -n --fixed-strings 'specs/hooks/' 'SETUP.md'` over `.skilled`, `README.md`, `INSTALL-SKILLED.md`, `AGENTS.md` (changelogs and `specs/` excluded); `node -e` count of `leaf-aliases.json` (5 entries, 4 `shared/`); `test -e iteration-005.md` (absent)."
       ]

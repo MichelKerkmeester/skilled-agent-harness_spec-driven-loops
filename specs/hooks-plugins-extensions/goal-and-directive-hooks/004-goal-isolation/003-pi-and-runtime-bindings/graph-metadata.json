@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/003-pi-and-runtime-bindings",
+  "spec_folder": "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/003-pi-and-runtime-bindings",
+  "parent_id": "hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi goal session binding",
+      "runtime goal adapter isolation",
+      "goal management session identity",
+      "pi runtime binding plan",
+      "goal adapter isolation plan",
+      "pi goal binding tasks",
+      "runtime adapter goal tasks",
+      "pi goal binding status"
+    ],
+    "key_topics": [
+      "goal",
+      "session",
+      "binding",
+      "runtime",
+      "adapter",
+      "isolation",
+      "management",
+      "identity",
+      "plan",
+      "tasks",
+      "status",
+      "cursor"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".pi/settings.json",
+      ".opencode/hooks/goal/pi/goal-context.ts",
+      ".pi/prompts/goal-pi.md",
+      ".opencode/hooks/goal/cursor/goal-inject.mjs",
+      ".cursor/commands/goal-cursor.md",
+      ".devin/hooks.v1.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-context.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/goal/pi/goal-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-pi.md",
+        "kind": "doc",
+        "path": ".pi/prompts/goal-pi.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-cursor.md",
+        "kind": "doc",
+        "path": ".cursor/commands/goal-cursor.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Goal Bindings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bind Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconcile Pi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bind Cursor",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Pi and Cursor now bind every supported lifecycle operation to native session identity",
+    "created_at": "2026-08-10T11:33:30Z",
+    "last_save_at": "2026-11-10T05:10:15.351Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dce3a2b497b8e3ee7e7a22c536443931607301a0b005febe247f53fc126af5c3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4485e0e6748be16a2c05cef284d21a4af0876eb19c466f0a7825d34537c7187c",
+      "plan.md": "e8c396788eb05107530400b216f28a6590802c56efe6bd519151037e3dd19ad3",
+      "tasks.md": "3bfb4ee022dca527e1754d561a4bce5c5abb235237c97ee0a5a84f5583372c6e",
+      "implementation-summary.md": "ba58d8c0fba2473dab8242c2099d15b0103c734111cee6c0e6bf7a082b74b076"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

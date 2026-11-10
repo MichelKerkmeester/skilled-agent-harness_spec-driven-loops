@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/002-governor-parity",
+  "description": "The per-turn governor capsule is inconsistent across runtimes: canonical composition points carry hygiene + governor + proof-over-appearance",
+  "keywords": [
+    "per-turn",
+    "governor",
+    "capsule",
+    "inconsistent",
+    "across",
+    "runtimes",
+    "canonical",
+    "composition",
+    "points",
+    "carry",
+    "hygiene",
+    "proof-over-appearance"
+  ],
+  "lastUpdated": "2026-08-15T14:40:55.764Z",
+  "specId": "002",
+  "folderSlug": "governor-parity",
+  "parentChain": [
+    "hooks",
+    "007-fable-governor-pi-hook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

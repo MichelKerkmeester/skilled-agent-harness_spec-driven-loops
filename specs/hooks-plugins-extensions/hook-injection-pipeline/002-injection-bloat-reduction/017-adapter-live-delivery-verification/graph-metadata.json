@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/017-adapter-live-delivery-verification",
+  "spec_folder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/017-adapter-live-delivery-verification",
+  "parent_id": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "adapter live delivery verification",
+      "codex cursor devin hook wiring",
+      "false negative playbook verdict",
+      "adapter live delivery verification plan",
+      "017 plan",
+      "adapter live delivery verification tasks",
+      "017 tasks",
+      "adapter live delivery verification implementation",
+      "017 implementation summary"
+    ],
+    "key_topics": [
+      "adapter",
+      "live",
+      "delivery",
+      "verification",
+      "codex",
+      "cursor",
+      "devin",
+      "hook",
+      "wiring",
+      "false",
+      "negative",
+      "playbook"
+    ],
+    "importance_tier": "high",
+    "status": "blocked",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".codex/hooks/user-prompt-submit.js",
+      ".cursor/hooks/user-prompt-submit.js",
+      ".devin/hooks/user-prompt-submit.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": ".codex/hooks/user-prompt-submit.js",
+        "source": "derived"
+      },
+      {
+        "name": "Adapter Live",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Delivery Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Retain",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ready Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Preserved Ground Truth",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria This",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Delivery State",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built No",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phase was created from a false diagnosis that treated `.codex/.cursor/.devin/hooks/user-prompt-submit.js` as stale regular-file copies with dead imports",
+    "created_at": "2026-08-11T13:51:46.895Z",
+    "last_save_at": "2026-11-10T05:10:18.354Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:94bc5d313905ce66af5ccaed144364f9b0fd6c32289fdf82ce785efb5474f30b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2121834187bd80d39e38a42e36d45358acb531ba1670e928b0dd02e4804efd30",
+      "plan.md": "6cc43adf23577a3a6280a640fc3bc094712d16f3137d72536a1930ff29fd2258",
+      "tasks.md": "87a9f2e5b5935b069f833bae909f2dcc03ff7231a879558693b522c51e4420ad",
+      "implementation-summary.md": "614f80ae97eb7970befe580d130e1c136097e9724d9c5e10f3a267f6296d9b29"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

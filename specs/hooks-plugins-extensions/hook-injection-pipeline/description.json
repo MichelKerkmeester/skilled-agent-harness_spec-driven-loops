@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/hook-injection-pipeline",
+  "description": "The cross-runtime hook library and its per-prompt injection path: where hook reference docs live, how hook scripts and concerns are named, flagged and indexed, which repo rules are injected at prompt time, how per-prompt payload growth is measured and cut, and how the dispatch adapter suites are run.",
+  "keywords": [
+    "hook",
+    "injection",
+    "pipeline"
+  ],
+  "lastUpdated": "2026-11-10T05:10:06.303Z",
+  "specId": "hooks-plugins-extensions/hook-injection-pipeline",
+  "folderSlug": "hook-injection-pipeline",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

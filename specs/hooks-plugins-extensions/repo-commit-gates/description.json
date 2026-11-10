@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "hooks-plugins-extensions/repo-commit-gates",
+  "description": "Repository gates that run at commit, push or test time: trimming and repairing git hook gates, auto re-minting routing manifests and spec metadata, and clearing the deleted pre-push naming gate's residue.",
+  "keywords": [
+    "repo",
+    "commit",
+    "gates"
+  ],
+  "lastUpdated": "2026-11-10T05:10:06.304Z",
+  "specId": "hooks-plugins-extensions/repo-commit-gates",
+  "folderSlug": "repo-commit-gates",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

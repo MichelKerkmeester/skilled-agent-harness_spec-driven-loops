@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction",
+  "spec_folder": "hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction",
+  "parent_id": "hooks-plugins-extensions/repo-commit-gates",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "git hook gate reduction",
+      "hook off-switch broken",
+      "mcp mutation regex blind",
+      "mass deletion zero saves",
+      "plan core",
+      "tasks core",
+      "git hook gate reduction acceptance criteria",
+      "impl summary core"
+    ],
+    "key_topics": [
+      "git",
+      "hook",
+      "gate",
+      "reduction",
+      "off-switch",
+      "broken",
+      "mcp",
+      "mutation",
+      "regex",
+      "blind",
+      "mass",
+      "deletion"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/scripts/git-hooks/pre-commit",
+      ".opencode/scripts/git-hooks/pre-push",
+      ".opencode/scripts/git-hooks/commit-msg"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit",
+        "kind": "file",
+        "path": ".opencode/scripts/git-hooks/pre-commit",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push",
+        "kind": "file",
+        "path": ".opencode/scripts/git-hooks/pre-push",
+        "source": "derived"
+      },
+      {
+        "name": "commit-msg",
+        "kind": "file",
+        "path": ".opencode/scripts/git-hooks/commit-msg",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Git Hook Gate Reduction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Thirteen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Thirteen blocking gates across three hooks",
+    "created_at": "2026-08-31T02:55:45Z",
+    "last_save_at": "2026-11-10T05:10:25.475Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:70a0ca5e01195dfbf0035eb570e83b24269ba06dfee2c822e619336c86cf1503",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f24a24650e8ebc881c4d1fc979db35887a803eabf83ada5b75531fbb3e842e43",
+      "plan.md": "96e164d6d82745a584c82e1b0d7b881343493660009a15cb53722ad300c51424",
+      "tasks.md": "b0d1b6b954c3c440ff37aa5c89ce89096106c192a4cfebcd583d6b348bfd6966",
+      "implementation-summary.md": "b164d0111c0f207546787ab31266141e3af15e2483c8ba86d15e1b21d7d044b7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/012-playbook-fails-remediation",
+  "spec_folder": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/012-playbook-fails-remediation",
+  "parent_id": "hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "manual playbook FAIL remediation",
+      "zero unresolved playbook fails",
+      "manual-testing-playbook remediation",
+      "playbook scenario reclassification",
+      "runtime playbook fail cleanup",
+      "manual playbook FAIL remediation plan",
+      "runtime remediation matrix",
+      "playbook operator action checklist",
+      "zero FAIL rerun plan",
+      "manual playbook remediation tasks",
+      "runtime fail remediation tasks",
+      "operator action tasks"
+    ],
+    "key_topics": [
+      "manual",
+      "playbook",
+      "fail",
+      "remediation",
+      "zero",
+      "unresolved",
+      "fails",
+      "manual-testing-playbook",
+      "scenario",
+      "reclassification",
+      "runtime",
+      "cleanup"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+      ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+      ".opencode/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts",
+      ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/git-preflight-advisory/git-preflight-advisory.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/review-profile.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/context-profile.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/debug-profile.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/full-auto-hooks.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/integration-patterns/generate-review-fix-cycle.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/prompt-templates/prompt-templates-inventory.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/prompt-templates/clear-scoring-quality-card.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-package.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-preflight-advisory.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-preflight-advisory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-preflight-advisory.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/git-preflight-advisory/git-preflight-advisory.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-profile.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/review-profile.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-profile.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/context-profile.md",
+        "source": "derived"
+      },
+      {
+        "name": "debug-profile.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/debug-profile.md",
+        "source": "derived"
+      },
+      {
+        "name": "full-auto-hooks.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/full-auto-hooks.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-resume-fork.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-review-fix-cycle.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/integration-patterns/generate-review-fix-cycle.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-templates-inventory.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/prompt-templates/prompt-templates-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "clear-scoring-quality-card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/prompt-templates/clear-scoring-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Class",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authoritative Evidence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 011 wrapper run produced 30 manual-testing-playbook FAIL records across Codex, OpenCode, Pi, Cursor, and Devin",
+    "created_at": "2026-08-08T16:09:42Z",
+    "last_save_at": "2026-11-10T05:10:15.441Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8121858dedb6b9e9097ccf5c66b4971b746911d23f42cc867de5fc1ffbbd832f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6b4a6187990e32098e61d37ce42dba12ddab0f6bfd7c96bb026b5a08ad2a97b8",
+      "plan.md": "93d0928fbf100967486fd97b230c78fd786428cca77f7e4eae31ad987286356e",
+      "tasks.md": "3cf4fd27657efe3f55dc38516e1d76bce11b026be9a41ed45dcac8870bbb8bad",
+      "implementation-summary.md": "d8f4f9b82298bb9e9a0d35eeed4c2a8ed22396694fd44ccd22eec847bda0d0d6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

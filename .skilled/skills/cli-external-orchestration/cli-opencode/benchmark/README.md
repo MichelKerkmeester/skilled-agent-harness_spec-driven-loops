@@ -67,4 +67,4 @@ Each run-label folder holds the seven-file package the storage guide defines:
 |---|---|
 | [`cli-opencode`](../SKILL.md) | The CLI under measurement |
 | [`goal-hook.md`](../manual-testing-playbook/goal-hook/goal-hook.md) | The `CO-039` scenario this run's headless slice is drawn from |
-| [`004-goal-hook-playbooks-and-validation`](../../../../specs/hooks-plugins-extensions/004-goal-hook-playbooks-and-validation/spec.md) | The spec packet that captured the underlying evidence |
+| [`004-goal-hook-playbooks-and-validation`](../../../../specs/hooks-plugins-extensions/goal-and-directive-hooks/002-goal-hook-playbooks-and-validation/spec.md) | The spec packet that captured the underlying evidence |

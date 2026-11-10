@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/008-goal-docs-hygiene",
+  "description": "The `/goal:goal-opencode` command's file moved into a `commands/goal/` subfolder during an earlier rename, but four references across the repo still",
+  "keywords": [
+    "goal",
+    "goal-opencode",
+    "command",
+    "file",
+    "moved",
+    "commands",
+    "subfolder",
+    "earlier",
+    "rename",
+    "four",
+    "references",
+    "across",
+    "repo",
+    "still"
+  ],
+  "lastUpdated": "2026-08-15T14:40:55.756Z",
+  "specId": "008",
+  "folderSlug": "goal-docs-hygiene",
+  "parentChain": [
+    "hooks",
+    "003-goal-hooks-cross-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

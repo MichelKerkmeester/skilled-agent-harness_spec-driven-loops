@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime",
+  "spec_folder": "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime",
+  "parent_id": "hooks-plugins-extensions/goal-and-directive-hooks",
+  "children_ids": [
+    "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state",
+    "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/002-capability-probes",
+    "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/003-devin-goal-hooks",
+    "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/004-cursor-goal-hooks",
+    "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/005-pi-goal-hooks",
+    "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/006-dispatch-shape-coverage",
+    "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/007-opencode-plugin-symlinks",
+    "hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/008-goal-docs-hygiene"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal hooks cross runtime",
+      "goal hook devin cursor pi",
+      "dispatch shape coverage",
+      "opencode plugin symlinks"
+    ],
+    "key_topics": [
+      "goal",
+      "hooks",
+      "cross",
+      "runtime",
+      "hook",
+      "devin",
+      "cursor",
+      "dispatch",
+      "shape",
+      "coverage",
+      "opencode",
+      "plugin"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".devin/hooks.v1.json",
+      ".cursor/hooks.json",
+      ".opencode/hooks/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Whether Devin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Whether Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "touches",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Port the OpenCode passive session-goal system to cli-devin, cli-cursor and cli-pi via a runtime-neutral goal hook concern, activate the dormant hard_rules for those CLIs in the dispatch hook, and mirror the OpenCode plugins into the unified hooks tree.",
+    "created_at": "2026-07-28T17:29:36.478Z",
+    "last_save_at": "2026-11-10T05:10:12.040Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:f8da03dc719146c8c476bafaa368ecb92ce36e98b2f66190eb9ef5fe1d70910b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "32d3bca6b52211aeb9eaf3b210af2e39c0eb1e8adb89c3582abcd244940361c8"
+    },
+    "last_active_child_id": "hooks/003-goal-hooks-cross-runtime/008-goal-docs-hygiene",
+    "last_active_at": null
+  }
+}

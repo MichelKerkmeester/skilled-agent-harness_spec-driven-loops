@@ -19,17 +19,17 @@
       "operatorInputs": "None; the runner typed every turn and answer.",
       "evidence": [
         {
-          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/opencode/result.json",
+          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/kill-switch/opencode/result.json",
           "bytes": 1126,
           "sha256": "821515f08532b7ee67c67fef4927f8e5dd855e796c5f76b29ef631e3befb3b02"
         },
         {
-          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/opencode/checkpoints.tsv",
+          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/kill-switch/opencode/checkpoints.tsv",
           "bytes": 106,
           "sha256": "b90c4dfd7b42a18624b0bb9545c55f7c9b99d16c6aa35447b17f3c6af9094248"
         },
         {
-          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/opencode/turns/S1/check.txt",
+          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/kill-switch/opencode/turns/S1/check.txt",
           "bytes": 777,
           "sha256": "7213a93c314925aae275962fe2a776a4d6e39e2c197eaa7e9bb9a5edb5bfe929"
         }

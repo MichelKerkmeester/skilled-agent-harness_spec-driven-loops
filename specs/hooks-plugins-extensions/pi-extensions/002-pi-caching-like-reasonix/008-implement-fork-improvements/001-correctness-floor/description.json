@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/008-implement-fork-improvements/001-correctness-floor",
+  "description": "Four P0 defects were found by 007's four-lineage research and re-confirmed against the live source while authoring this spec",
+  "keywords": [
+    "four",
+    "defects",
+    "found",
+    "four-lineage",
+    "research",
+    "re-confirmed",
+    "against",
+    "live",
+    "source",
+    "while",
+    "authoring",
+    "spec"
+  ],
+  "lastUpdated": "2026-08-15T14:40:55.824Z",
+  "specId": "001",
+  "folderSlug": "correctness-floor",
+  "parentChain": [
+    "hooks",
+    "008-pi-caching-like-reasonix",
+    "008-implement-fork-improvements"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -19,17 +19,17 @@
       "operatorInputs": "None; the runner typed every turn and answer.",
       "evidence": [
         {
-          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/no-false-positive/claude-code/result.json",
+          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/no-false-positive/claude-code/result.json",
           "bytes": 1137,
           "sha256": "de3175af4f2dd91602dead4e4b58b35163a58ee99bb9cbec2aabccf3b582d0a1"
         },
         {
-          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/no-false-positive/claude-code/checkpoints.tsv",
+          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/no-false-positive/claude-code/checkpoints.tsv",
           "bytes": 104,
           "sha256": "bb8fde163d9890455d88a459ff991db1911528a0745a009e69bbb5766885eeb3"
         },
         {
-          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/no-false-positive/claude-code/turns/S1/check.txt",
+          "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch/live-runs/no-false-positive/claude-code/turns/S1/check.txt",
           "bytes": 607,
           "sha256": "ee1ad37dd87211ef0c8a467ec64466b99521b061736bfb12d08aa3651122ca4f"
         }

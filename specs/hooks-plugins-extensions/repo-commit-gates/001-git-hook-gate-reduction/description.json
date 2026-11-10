@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction",
+  "description": "Thirteen blocking gates across three hooks",
+  "keywords": [
+    "thirteen",
+    "blocking",
+    "gates",
+    "across",
+    "three",
+    "hooks"
+  ],
+  "lastUpdated": "2026-08-31T03:30:12.763Z",
+  "specId": "015",
+  "folderSlug": "git-hook-gate-reduction",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

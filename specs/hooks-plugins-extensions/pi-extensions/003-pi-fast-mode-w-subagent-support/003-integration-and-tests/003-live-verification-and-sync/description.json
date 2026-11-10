@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/003-integration-and-tests/003-live-verification-and-sync",
+  "description": "Source and package tests cannot prove real TUI/RPC status delivery, custom-footer coexistence, or a child Pi session inheriting the preference",
+  "keywords": [
+    "source",
+    "package",
+    "tests",
+    "cannot",
+    "prove",
+    "real",
+    "tui",
+    "rpc",
+    "status",
+    "delivery",
+    "custom-footer",
+    "coexistence",
+    "child",
+    "session",
+    "inheriting",
+    "preference"
+  ],
+  "lastUpdated": "2026-08-30T08:03:49.624Z",
+  "specId": "003",
+  "folderSlug": "live-verification-and-sync",
+  "parentChain": [
+    "hooks",
+    "011-pi-fast-mode-w-subagent-support",
+    "003-integration-and-tests"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/008-phase-state-reconciliation",
+  "spec_folder": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/008-phase-state-reconciliation",
+  "parent_id": "hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase state reconciliation",
+      "spec metadata reconciliation",
+      "stale completion frontmatter",
+      "graph status repair",
+      "phase state reconciliation plan",
+      "metadata refresh plan",
+      "parent map repair plan",
+      "phase state reconciliation tasks",
+      "metadata refresh tasks",
+      "parent map repair tasks",
+      "phase state reconciliation summary",
+      "metadata reconciliation status"
+    ],
+    "key_topics": [
+      "phase",
+      "state",
+      "reconciliation",
+      "spec",
+      "metadata",
+      "stale",
+      "completion",
+      "frontmatter",
+      "graph",
+      "status",
+      "repair",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Phase State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Reconciliation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet's phase implementation summaries contain contradictory state: some frontmatter says planned or not started while the body says implemented, completion percentages remain at zero after claimed work, graph metadata still reports draft/planned state, and completion criteria remain unchecked",
+    "created_at": "2026-08-04T17:57:55Z",
+    "last_save_at": "2026-11-10T05:10:12.136Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b943ab0a34ba4aa2544028b47ee42b4178224007c500e6a039079d22f8e57425",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1688d185760bbfd1f0078746b6c00ec643a3afa581df011b3d2b3c5ca57c12ad",
+      "plan.md": "ea459c926c420bf82293be15549f1029993738ab47bd51f77413a097d7af0694",
+      "tasks.md": "cd547b34c33b5c31082a789f79590e23643a3547b8cf3e0c76fd1341fafeae34",
+      "implementation-summary.md": "542abce474c0c9058aec7139a8f0c53a4e621c2bd79b73bc0e22bf05903d0876"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
