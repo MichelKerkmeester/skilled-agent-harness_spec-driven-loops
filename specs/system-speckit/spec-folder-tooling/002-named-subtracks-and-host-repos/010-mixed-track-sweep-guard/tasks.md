@@ -51,7 +51,9 @@ No shell variables are used. Task lines name the relevant paths directly.
 - [x] T007 Add the flat fixture option and mixed-track sweep coverage (`tests/fixtures/subtrack-tree.mjs`, `track-roots.vitest.ts`). Verify: the track-roots test count increases from 28 to 29, and the two test files report 89 passed and 0 failed. Evidence: `track-roots.vitest.ts` and `archive-track.vitest.ts` passed.
 - [x] T008 Update the CLI and feature-catalog docs and release version (`runtime/cli/spec/README.md`, `runtime/cli/lib/README.md`, `tooling-and-scripts/track-root-children-lists.md`, changelog, `SKILL.md`). Verify: markdown links report 0 broken and `check_changelog_shape.py` prints PASS. Evidence: feature-catalog version 2.0.7.0, changelog v2.12.46.0 and skill version 2.12.46.0.
 - [x] T009 Record the Barter host impact and the completed changes (`implementation-summary.md`). Verify: the summary names bartender, barter-scrooge and gitops-development as mixed tracks. Evidence: the reported counts are two, six and two flat packets, and no Barter files changed.
+- [x] T011 Warn about a numbered folder without `spec.md` beside sub-tracks (`runtime/cli/lib/track-roots.mjs`, `track-roots.vitest.ts`). Verify: the working-tree sweep prints the diagnostic and still exits 0, and the new test fails without the change. Evidence: three suites report 116 passed and 0 failed; changelog v2.12.49.0 and skill version 2.12.49.0.
 <!-- /ANCHOR:phase-2 -->
+- [x] T011 Warn about a numbered folder without `spec.md` beside sub-tracks (`runtime/cli/lib/track-roots.mjs`, `track-roots.vitest.ts`). Verify: the working-tree sweep prints the diagnostic and still exits 0, and the new test fails without the change. Evidence: three suites report 116 passed and 0 failed; changelog v2.12.49.0.
 
 ---
 

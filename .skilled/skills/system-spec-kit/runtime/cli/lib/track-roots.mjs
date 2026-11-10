@@ -159,6 +159,16 @@ export function readWorkingTreeTracks(specsRoot) {
         symlinked: false,
       });
     }
+    // A packet that moved into a sub-track can leave its ignored files behind
+    // under the old flat name. Git never sees that folder, so it is reported
+    // here and not counted as a packet.
+    if (track.children.some((child) => !SPEC_LEAF_SEGMENT_PATTERN.test(child))) {
+      for (const entry of fs.readdirSync(trackPath, { withFileTypes: true })) {
+        if (!entry.isDirectory() || !SPEC_LEAF_SEGMENT_PATTERN.test(entry.name)) continue;
+        if (fs.existsSync(path.join(trackPath, entry.name, 'spec.md'))) continue;
+        diagnostics.push(`${name}/${entry.name}: numbered folder without spec.md beside sub-tracks`);
+      }
+    }
     track.children.sort(compareNames);
   }
 

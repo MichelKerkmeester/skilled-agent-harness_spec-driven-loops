@@ -69,6 +69,10 @@ Phase 008 regrouped ten spec tracks into 39 sub-tracks but left two packets flat
 
 The shared fixture gained a flat option. Two clean-sweep tests now build without the flat packet, and a new test checks exit 1 and identical output in working-tree and commit runs. The docs describe the rule, the feature-catalog version is 2.0.7.0, and the skill and changelog are at version 2.12.46.0.
 
+Later on 2026-11-10 the operator found `specs/hooks-plugins-extensions/026-context-paging` in the primary checkout. It held only an ignored copy of a reference clone. The packet itself lives at `specs/other/004-context-paging`. A search of the checkout found one more leftover, `specs/sk-communication`, with 90 ignored files from a track deleted in commit `122af3efd4`. The operator chose to delete both without a backup. The one file that existed only in the old clone, `npm.md`, was copied to the live clone first.
+
+The sweep missed that folder because it only counts a numbered folder with a `spec.md`. In the working tree it now prints `<track>/<folder>: numbered folder without spec.md beside sub-tracks` for such a folder in a track with sub-tracks. The operator chose a warning, so the exit code does not change. The skill and changelog are at version 2.12.49.0, and the feature catalog at 2.0.8.0.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -84,7 +88,8 @@ The shared fixture gained a flat option. Two clean-sweep tests now build without
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/README.md` and `.skilled/skills/system-spec-kit/runtime/cli/lib/README.md` | Modified | Document the sweep guard and shared classifier |
 | `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/track-root-children-lists.md` | Modified | Document the mixed-track rule and update the catalog version to 2.0.7.0 |
 | `.skilled/skills/system-spec-kit/changelog/v2.12.46.0.md` | Created | Record the release changes |
-| `.skilled/skills/system-spec-kit/SKILL.md` | Modified | Update the skill version to 2.12.46.0 |
+| `.skilled/skills/system-spec-kit/SKILL.md` | Modified | Update the skill version to 2.12.46.0, then 2.12.49.0 |
+| `.skilled/skills/system-spec-kit/changelog/v2.12.49.0.md` | Created | Record the leftover-folder warning |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -130,6 +135,8 @@ Strict validation reported 24 passed and 0 failed for sk-code and 37 passed and 
 | `track-roots.vitest.ts` and `archive-track.vitest.ts` | PASS: 89 passed, 0 failed. The track-roots file increased from 28 to 29 tests |
 | Mixed-track working-tree and commit cases | PASS: both exit 1 and produce identical output with both messages |
 | `check_changelog_shape.py` | PASS |
+| Leftover-folder warning test | PASS: `track-roots`, `archive-track` and `create-track-refresh` report 116 passed, 0 failed. The new test fails with the change removed |
+| Primary checkout after the deletions | PASS: no numbered folder beside sub-tracks lacks `spec.md`, and the sweep prints `all track roots match their declared children` |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -18,7 +18,8 @@
 // counts as drift too. Its children list can be correct and the track still
 // wrong, so refreshing does not clear it: the packets move into a sub-track.
 //
-// An undeclared non-numbered folder and a symlinked sub-track each print one
+// An undeclared non-numbered folder, a symlinked sub-track and, in the working
+// tree, a numbered folder without spec.md beside sub-tracks each print one
 // diagnostic. Diagnostics are advisory and never change the exit code.
 //
 // With --rev <commit> the sweep reads that commit instead of the working tree.

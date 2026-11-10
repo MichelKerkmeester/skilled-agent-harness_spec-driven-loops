@@ -6,7 +6,7 @@ trigger_phrases:
   - "refresh-track-roots"
   - "sweep-track-roots"
   - "track-root pre-push gate"
-version: 2.0.7.0
+version: 2.0.8.0
 ---
 
 # Track-root children lists
@@ -49,6 +49,9 @@ removes the repeat.
 A track that holds numbered packets beside declared sub-tracks is mixed. The
 sweep names the flat packets and exits 1, even when the children list is
 correct. The writer cannot clear it: each flat packet moves into a sub-track.
+In the working tree, a numbered folder without `spec.md` beside sub-tracks is
+not a packet. It is usually ignored files a moved packet left behind, so the
+sweep prints it as a diagnostic and does not fail.
 
 A declared sub-track is a container one level below a track: its
 `"level": "sub-track"` description makes it a track root in miniature, with the

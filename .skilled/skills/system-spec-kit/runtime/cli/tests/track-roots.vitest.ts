@@ -503,6 +503,20 @@ describe('sweep-track-roots with sub-tracks', () => {
     expect(committed.stdout).toBe(working.stdout);
   });
 
+  // A packet moved into a sub-track can leave ignored files under its old name.
+  it('warns about a numbered folder without spec.md beside sub-tracks and still passes', () => {
+    buildSubtrackTree(repo, { flat: false });
+    commitFixture();
+    const leftover = path.join(repo, 'specs', 'demo', '026-left-behind', 'context');
+    fs.mkdirSync(leftover, { recursive: true });
+    fs.writeFileSync(path.join(leftover, 'README.md'), '# clone\n');
+
+    const result = run(SWEEP, []);
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(result.stdout).toContain('demo/026-left-behind: numbered folder without spec.md beside sub-tracks');
+    expect(result.stdout).toContain('demo: declared=1 actual=1');
+  });
+
   it('detects drift in a declared sub-track', () => {
     buildSubtrackTree(repo, { declared: false });
     const result = run(SWEEP, []);
