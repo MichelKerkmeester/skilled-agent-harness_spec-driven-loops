@@ -13,7 +13,7 @@ trigger_phrases:
   - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.14.0
+version: 1.1.15.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -373,12 +373,12 @@ The default way to write a new doc page. The MCP creates the page, the editor wr
 
 **How to run it.** Create the page with `clickup_create_document_page`, `content_format: "text/md"` and the content `[[BODY]]`, then run the program below with the page ID and the markdown body, without its H1. Give the `call_tool_chain` call a `timeout` of about 90 seconds plus 30 per local image. The program converts the markdown as follows:
 - `## `, `### ` and `#### ` lines become headings, and a heading with no text, such as `###   `, stays an empty spacer heading
-- `* * *` or `---` becomes a divider
+- `* * *`, `- - -`, `---`, `***` or `___` becomes a divider
 - `- []`, `- [ ]` and `- [x]` become checklist items, `- ` and `* ` bullets, `1. ` numbered items, and four leading spaces indent one level
 - `2\. **Title**` and `2 ) **Title**` keep their number as plain text, gray and regular weight, before the bold title
 - A checklist item reading `_Mark as done, if the criteria are met_` becomes gray italic text
 - `[[COLS]]` opens a side-by-side pair, `[[|]]` starts the right column and `[[/COLS]]` closes it. Each line between them, such as a `Code` label, a `[Figma](link)` label or an image, becomes one block in its column
-- An image with an `https` source renders from that URL. An image with any other source is a file in the Aside session folder, which the program pastes as a file so ClickUp uploads it
+- An image with an `https` source renders from that URL. An image with any other source must be a bare png, jpg, gif or webp file name in the Aside session folder, which the program pastes as a file so ClickUp uploads it. A path or any other file is refused
 
 `STYLE` turns the gray numbers and the gray Mark-as-done line off for a page that should not carry them.
 
@@ -394,6 +394,13 @@ The default way to write a new doc page. The MCP creates the page, the editor wr
 
   const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   const GRAY = (s) => `<span class="ql-text-color ql-color-grey">${s}</span>`;
+  // A link keeps its target only for a web or mail address, so a script URL in the markdown stays plain text.
+  const SAFE_HREF = /^(https?:|mailto:)/i;
+  const DIVIDER = /^(\* \* \*|- - -|---|\*\*\*|___)$/;
+  // A local image is a bare file name in the Aside session folder with an image extension, never a path,
+  // so the upload cannot read any other file on the machine. The extension sets the upload's type.
+  const IMAGE_TYPES = { png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg", gif: "image/gif", webp: "image/webp" };
+  const imageType = (file) => { const m = /^[A-Za-z0-9][\w .-]*\.(png|jpe?g|gif|webp)$/i.exec(file); return m && !file.includes("..") ? IMAGE_TYPES[m[1].toLowerCase()] : null; };
   const uploads = [];
   // Code spans, images and links are set aside first, so bold and italic never reach inside a URL.
   const inline = (text) => {
@@ -405,7 +412,7 @@ The default way to write a new doc page. The MCP creates the page, the editor wr
         if (/^https?:/.test(src)) return hold(`<img src="${esc(src)}">`);
         const marker = `[[IMG-${uploads.length + 1}]]`; uploads.push({ marker, file: src }); return hold(esc(marker));
       })
-      .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, href) => hold(`<a href="${esc(href)}">${esc(t)}</a>`))
+      .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, href) => hold(SAFE_HREF.test(href) ? `<a href="${esc(href)}">${esc(t)}</a>` : esc(t)))
       .replace(/\\([\\`*_[\]().#-])/g, (m, c) => hold(esc(c)));
     s = esc(s).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/(^|[^\w])_([^_]+)_(?=$|[^\w])/g, "$1<em>$2</em>");
     return s.replace(/\u0000(\d+)\u0000/g, (m, i) => keep[Number(i)]);
@@ -419,7 +426,7 @@ The default way to write a new doc page. The MCP creates the page, the editor wr
     for (const line of lines) {
       let m;
       if (line.trim() === "") { gap = true; continue; }
-      if (/^(\* \* \*|---|\*\*\*|___)$/.test(line.trim())) push({ k: "hr", h: "<hr>" });
+      if (DIVIDER.test(line.trim())) push({ k: "hr", h: "<hr>" });
       else if (/^#{1,4}\s*$/.test(line.trim())) push({ k: "spacer", h: `<h${line.trim().length}><br></h${line.trim().length}>` });
       else if ((m = /^(#{1,4})\s+(.*)$/.exec(line))) push({ k: "h", h: `<h${m[1].length}>${inline(m[2])}</h${m[1].length}>` });
       else if ((m = /^(\s*)[-*]\s+\[( |x|X)?\]\s+(.*)$/.exec(line))) {
@@ -480,6 +487,10 @@ The default way to write a new doc page. The MCP creates the page, the editor wr
   };
 
   const html = toHtml(MD);
+  // What the saved page must hold, counted from the HTML that is pasted.
+  const count = (re) => (html.match(re) || []).length;
+  const expected = { dividers: count(/<hr>/g), gray: count(/ql-color-grey/g),
+    checklist: count(/data-list="(un)?checked"/g), columns: count(/ql-layout-row-container/g) };
   const call = async (title, code) => {
     const raw = JSON.stringify(await aside.aside_repl({ title, code }));
     const m = /RESULT ([A-Za-z0-9\-_.!~*'()%]+)/.exec(raw);
@@ -488,8 +499,10 @@ The default way to write a new doc page. The MCP creates the page, the editor wr
   const out = (expr) => `console.log("RESULT " + encodeURIComponent(JSON.stringify(${expr})));`;
   // The body editor sits inside the task-editor wrapper. The page title is a second .ql-editor outside it.
   const EDITOR = `(document.querySelector('[data-test="task-editor"] .ql-editor') || document.querySelector(".ql-editor.ql-cls-checklist"))`;
+  // Every placeholder and marker this program writes. One left on the saved page means a step missed.
+  const MARKER = /\[\[(BODY|IMG-[^\]]*|COLS|\||\/COLS)\]\]/;
   const url = `https://app.clickup.com/${WORKSPACE}/v/dc/${DOC}/${PAGE}`;
-  const report = { page: PAGE, htmlLength: html.length };
+  const report = { page: PAGE, htmlLength: html.length, expected };
 
   // A page the server has just written can take a few seconds to reach the editor, so reload until the placeholder shows.
   for (let attempt = 0; attempt < 4 && !report.open?.placeholder; attempt++) {
@@ -527,19 +540,22 @@ The default way to write a new doc page. The MCP creates the page, the editor wr
   // A local image is pasted as a file, which ClickUp uploads, and its marker is removed with a real key press.
   report.uploads = [];
   for (const u of uploads) {
+    // A refused file leaves its marker on the page, so the check below reports it as a leftover.
+    const type = imageType(u.file);
+    if (!type) { report.uploads.push({ marker: u.marker, file: u.file, refused: "not a png, jpg, gif or webp file name in the Aside session folder" }); continue; }
     report.uploads.push(await call("Upload a screenshot", `await (async () => {
       const b64 = (await fs.readFile(path.join(pwd, ${JSON.stringify(u.file)}))).toString("base64");
-      const found = await __pageTab.evaluate(({ marker, b64, name }) => {
+      const found = await __pageTab.evaluate(({ marker, b64, name, type }) => {
         const ed = ${EDITOR};
         const blk = [...ed.querySelectorAll(".ql-block")].find((e) => e.textContent.trim() === marker);
         if (!blk) return false;
         ed.focus(); const s = window.getSelection(); s.removeAllRanges();
         const range = document.createRange(); range.selectNodeContents(blk); s.addRange(range);
         const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
-        const dt = new DataTransfer(); dt.items.add(new File([bytes], name, { type: "image/png" }));
+        const dt = new DataTransfer(); dt.items.add(new File([bytes], name, { type }));
         ed.dispatchEvent(new ClipboardEvent("paste", { clipboardData: dt, bubbles: true, cancelable: true }));
         return true;
-      }, { marker: ${JSON.stringify(u.marker)}, b64, name: ${JSON.stringify(u.file)} });
+      }, { marker: ${JSON.stringify(u.marker)}, b64, name: ${JSON.stringify(u.file)}, type: ${JSON.stringify(type)} });
       await sleep(6000);
       const sel = await __pageTab.evaluate((marker) => {
         const ed = ${EDITOR};
@@ -557,7 +573,7 @@ The default way to write a new doc page. The MCP creates the page, the editor wr
     await sleep(3000);
     await __pageTab.goto(${JSON.stringify(url)});
     await sleep(10000);
-    const r = await __pageTab.evaluate(() => {
+    const r = await __pageTab.evaluate((marker) => {
       const ed = ${EDITOR};
       const kids = [...ed.children];
       return {
@@ -567,26 +583,29 @@ The default way to write a new doc page. The MCP creates the page, the editor wr
         columns: [...ed.querySelectorAll(".ql-layout-row-container")].map((row) => [...row.children].map((c) => c.querySelectorAll("img").length)),
         gray: ed.querySelectorAll(".ql-color-grey").length,
         checklist: ed.querySelectorAll('li[data-list="unchecked"], li[data-list="checked"]').length,
-        leftovers: (ed.textContent.match(/\\[\\[(BODY|IMG-\\d+|COLS|\\||\\/COLS)\\]\\]/g) || []),
+        leftovers: ed.textContent.match(new RegExp(marker, "g")) || [],
       };
-    });
+    }, ${JSON.stringify(MARKER.source)});
     await closeTab(__pageTab); delete globalThis.__pageTab;
     ${out("r")}
   })();`);
 
+  // The same normalizer runs in every program in this section, so a read-back compares the same way everywhere.
   // The markdown read-back drops colour and columns, so it checks the words only. ClickUp stores a pasted
   // image under a new attachment URL, so an image line counts as present when any image sits there.
-  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, "").replace(/^\s*[-*]\s+\[\s?\]\s+/, "- [ ] ").replace(/^(\* \* \*|---|\*\*\*|___)$/, "---"))
-    .filter((l) => l.trim() !== "" && !/^\[\[(COLS|\||\/COLS)\]\]$/.test(l.trim()) && !/^#{1,4}\s*$/.test(l.trim()))
+  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, "").replace(/^\s*[-*]\s+\[\s?\]\s+/, "- [ ] ").replace(/^(\* \* \*|- - -|---|\*\*\*|___)$/, "---"))
+    .filter((l) => l.trim() !== "" && !/^\[\[[^\]]+\]\]$/.test(l.trim()) && !/^#{1,4}\s*$/.test(l.trim()))
     .map((l) => l.replace(/\[(https?:[^\]\s]+)\]\(\1\)/g, "$1").replace(/!\[[^\]]*\]\([^)]*\)/g, "![](image)").replace(/^\s+/, ""));
   const page = (await clickup_official.clickup_official_clickup_get_document_pages({ document_id: DOC, page_ids: [PAGE], content_format: "text/md" })).pages[0];
   const got = new Set(norm(page.content));
   report.importDiff = norm(MD).filter((l) => !got.has(l));
+  report.mismatch = !report.verify || report.verify.error ? ["verify"] : Object.keys(expected).filter((k) =>
+    (k === "columns" ? (report.verify.columns || []).length : report.verify[k]) !== expected[k]);
   console.log(JSON.stringify(report));
 })();
 ```
 
-The report names each stage. `open.placeholder: false` after four tries means the page never showed `[[BODY]]`: check the page ID and `open.login`. Under `verify`, `gaps` counts empty lines under a divider and must be 0, `columns` lists each saved row with the image count per column, `gray` counts gray runs and `leftovers` lists any placeholder or marker still on the page. `importDiff` lists the source lines missing from the markdown read-back, with images compared by position, because ClickUp stores each pasted image under a new attachment URL. A page with gaps, leftovers or an import diff is not delivered.
+The report names each stage. `open.placeholder: false` after four tries means the page never showed `[[BODY]]`: check the page ID and `open.login`. Under `verify`, `gaps` counts empty lines under a divider and must be 0, `columns` lists each saved row with the image count per column, `gray` counts gray runs and `leftovers` lists any placeholder or marker still on the page. `expected` holds the dividers, gray runs, checklist items and columns rows counted from the pasted HTML, and `mismatch` names each one the saved page does not match. `importDiff` lists the source lines missing from the markdown read-back, with images compared by position, because ClickUp stores each pasted image under a new attachment URL. An `uploads` entry with `refused` is a local image that was not a bare png, jpg, gif or webp file name in the Aside session folder, so it was never read and its marker stays on the page. A page with gaps, leftovers, a mismatch or an import diff is not delivered.
 
 When no browser tool is available, or the page opens on ClickUp's login screen, write the page with the markdown and run the routine under "Required after every page write" instead. That path keeps no colour, so say so in the report.
 
@@ -623,8 +642,12 @@ Every `clickup_create_document_page` or `clickup_update_document_page` call that
   const PAGES = [{ id: "PAGE_ID", sent: "THE MARKDOWN YOU SENT" }];
   const read = async (id, format) => (await clickup_official.clickup_official_clickup_get_document_pages(
     { document_id: DOC, page_ids: [id], content_format: format })).pages[0].content;
-  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, ""))
-    .filter((l) => l.trim() !== "").map((l) => l.replace(/\[(https?:[^\]\s]+)\]\(\1\)/g, "$1"));
+  // The same normalizer runs in every program in this section, so a read-back compares the same way everywhere.
+  // The markdown read-back drops colour and columns, so it checks the words only. ClickUp stores a pasted
+  // image under a new attachment URL, so an image line counts as present when any image sits there.
+  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, "").replace(/^\s*[-*]\s+\[\s?\]\s+/, "- [ ] ").replace(/^(\* \* \*|- - -|---|\*\*\*|___)$/, "---"))
+    .filter((l) => l.trim() !== "" && !/^\[\[[^\]]+\]\]$/.test(l.trim()) && !/^#{1,4}\s*$/.test(l.trim()))
+    .map((l) => l.replace(/\[(https?:[^\]\s]+)\]\(\1\)/g, "$1").replace(/!\[[^\]]*\]\([^)]*\)/g, "![](image)").replace(/^\s+/, ""));
   const gaps = (text) => (text.match(/(^|\n) \n/g) || []).length;
   // Returns the number of empty blocks under a divider and puts the caret in the first one.
   // -1 means no editor on the page, -2 means ClickUp showed its login screen.
@@ -691,7 +714,8 @@ Every `clickup_create_document_page` or `clickup_update_document_page` call that
     const after = await read(page.id, "text/md");
     const plainHits = gaps(await read(page.id, "text/plain"));
     // The editor counts only dividers. The plain-text count also catches an image at the end of a block.
-    const gapsLeft = browser.editor && !browser.login && browser.done !== false ? (browser.left ?? plainHits) : plainHits;
+    const reached = browser.editor && !browser.login && browser.done !== false, left = browser.left;
+    const gapsLeft = reached && Number.isInteger(left) ? left : plainHits;
     report.push({ page: page.id, importDiff, gapsBefore, ...browser, calls, gapsLeft, plainHits,
       textUnchanged: norm(after).join("\n") === norm(md).join("\n") });
   }
@@ -711,8 +735,12 @@ A report with an `error` field means the Aside call failed before the editor pas
   const B = chrome_devtools_live;
   const read = async (id, format) => (await clickup_official.clickup_official_clickup_get_document_pages(
     { document_id: DOC, page_ids: [id], content_format: format })).pages[0].content;
-  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, ""))
-    .filter((l) => l.trim() !== "").map((l) => l.replace(/\[(https?:[^\]\s]+)\]\(\1\)/g, "$1"));
+  // The same normalizer runs in every program in this section, so a read-back compares the same way everywhere.
+  // The markdown read-back drops colour and columns, so it checks the words only. ClickUp stores a pasted
+  // image under a new attachment URL, so an image line counts as present when any image sits there.
+  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, "").replace(/^\s*[-*]\s+\[\s?\]\s+/, "- [ ] ").replace(/^(\* \* \*|- - -|---|\*\*\*|___)$/, "---"))
+    .filter((l) => l.trim() !== "" && !/^\[\[[^\]]+\]\]$/.test(l.trim()) && !/^#{1,4}\s*$/.test(l.trim()))
+    .map((l) => l.replace(/\[(https?:[^\]\s]+)\]\(\1\)/g, "$1").replace(/!\[[^\]]*\]\([^)]*\)/g, "![](image)").replace(/^\s+/, ""));
   const gaps = (text) => (text.match(/(^|\n) \n/g) || []).length;
   const sleep = (ms) => B.chrome_devtools_live_evaluate_script(
     { function: `() => new Promise((r) => setTimeout(() => r(1), ${ms}))` });
@@ -773,7 +801,8 @@ A report with an `error` field means the Aside call failed before the editor pas
       const after = await read(page.id, "text/md");
       const plainHits = gaps(await read(page.id, "text/plain"));
       // The editor counts only dividers. The plain-text count also catches an image at the end of a block.
-      const gapsLeft = editor && !login ? left : plainHits;
+      const reached = editor && !login;
+      const gapsLeft = reached && Number.isInteger(left) ? left : plainHits;
       report.push({ page: page.id, login, editor, importDiff, gapsBefore, presses, gapsLeft, plainHits,
         textUnchanged: norm(after).join("\n") === norm(md).join("\n") });
     }
@@ -823,6 +852,12 @@ ClickUp's `/Columns` block puts two screenshots next to each other, such as the 
   // The body editor sits inside the task-editor wrapper. The page title is a second .ql-editor outside it.
   const EDITOR = `(document.querySelector('[data-test="task-editor"] .ql-editor') || document.querySelector(".ql-editor.ql-cls-checklist"))`;
   const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  // A link keeps its target only for a web or mail address, so a script URL stays plain text.
+  const SAFE_HREF = /^(https?:|mailto:)/i;
+  // A local image is a bare file name in the Aside session folder with an image extension, never a path,
+  // so the upload cannot read any other file on the machine. The extension sets the upload's type.
+  const IMAGE_TYPES = { png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg", gif: "image/gif", webp: "image/webp" };
+  const imageType = (file) => { const m = /^[A-Za-z0-9][\w .-]*\.(png|jpe?g|gif|webp)$/i.exec(file); return m && !file.includes("..") ? IMAGE_TYPES[m[1].toLowerCase()] : null; };
   const url = `https://app.clickup.com/${WORKSPACE}/v/dc/${DOC}/${PAGE}`;
   const report = { page: PAGE, rows: [] };
 
@@ -840,7 +875,7 @@ ClickUp's `/Columns` block puts two screenshots next to each other, such as the 
     const row = "row" + stamp, cols = ["l" + stamp, "r" + stamp];
     const html = [pair.left, pair.right].map((side, i) => {
       const block = (inner) => `<div class="ql-block" data-layout="${row}_${cols[i]}" data-layout-width="0.50">${inner}</div>`;
-      const label = side.link ? `<a href="${esc(side.link)}">${esc(side.label)}</a>` : esc(side.label);
+      const label = side.link && SAFE_HREF.test(side.link) ? `<a href="${esc(side.link)}">${esc(side.label)}</a>` : esc(side.label);
       let image = "";
       if (side.image && side.image.url) image = block(`<img src="${esc(side.image.url)}">`);
       if (side.image && side.image.file) { const marker = `[[IMG-${n + 1}-${i ? "R" : "L"}]]`; uploads.push({ marker, file: side.image.file }); image = block(marker); }
@@ -867,19 +902,22 @@ ClickUp's `/Columns` block puts two screenshots next to each other, such as the 
   // A pasted file is uploaded by ClickUp itself and lands beside the marker, so the marker is removed with a real key press.
   report.uploads = [];
   for (const u of uploads) {
+    // A refused file leaves its marker on the page, so the check below reports it as a leftover.
+    const type = imageType(u.file);
+    if (!type) { report.uploads.push({ marker: u.marker, file: u.file, refused: "not a png, jpg, gif or webp file name in the Aside session folder" }); continue; }
     report.uploads.push(await call("Upload a screenshot into its column", `await (async () => {
       const b64 = (await fs.readFile(path.join(pwd, ${JSON.stringify(u.file)}))).toString("base64");
-      const found = await __colTab.evaluate(({ marker, b64, name }) => {
+      const found = await __colTab.evaluate(({ marker, b64, name, type }) => {
         const ed = ${EDITOR};
         const blk = [...ed.querySelectorAll(".ql-block")].find((e) => e.textContent.trim() === marker);
         if (!blk) return false;
         ed.focus(); const s = window.getSelection(); s.removeAllRanges();
         const range = document.createRange(); range.selectNodeContents(blk); s.addRange(range);
         const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
-        const dt = new DataTransfer(); dt.items.add(new File([bytes], name, { type: "image/png" }));
+        const dt = new DataTransfer(); dt.items.add(new File([bytes], name, { type }));
         ed.dispatchEvent(new ClipboardEvent("paste", { clipboardData: dt, bubbles: true, cancelable: true }));
         return true;
-      }, { marker: ${JSON.stringify(u.marker)}, b64, name: ${JSON.stringify(u.file)} });
+      }, { marker: ${JSON.stringify(u.marker)}, b64, name: ${JSON.stringify(u.file)}, type: ${JSON.stringify(type)} });
       await sleep(6000);
       const sel = await __colTab.evaluate((marker) => {
         const ed = ${EDITOR};
@@ -912,7 +950,7 @@ ClickUp's `/Columns` block puts two screenshots next to each other, such as the 
 })();
 ```
 
-The report has one `rows` entry per placeholder and one `uploads` entry per local file. `verify.rows` lists each saved row with its two columns. A placeholder or `[[IMG-...]]` marker under `verify.leftovers` means a paste missed: the page still holds that text, so write it again or finish it by hand.
+The report has one `rows` entry per placeholder and one `uploads` entry per local file. An `uploads` entry with `refused` is a file that was not a bare png, jpg, gif or webp file name in the Aside session folder, so it was never read. `verify.rows` lists each saved row with its two columns. A placeholder or `[[IMG-...]]` marker under `verify.leftovers` means a paste missed: the page still holds that text, so write it again or finish it by hand.
 
 ---
 
