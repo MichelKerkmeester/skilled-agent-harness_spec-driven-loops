@@ -1,5 +1,5 @@
 {
-  "corpusHash": "19caf42b3ed98ffd9d448054a87fbca21d75a0961f9b2b87de1a45fe3141de97",
+  "corpusHash": "0520c5522c65f8ccc55f2241a6430c881aa45cef45839d0aa9762673cdb4fb92",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26119,
+  "includedPathCount": 26126,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -17837,6 +17837,12 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/acceptance-criteria.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/research.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md",
     "specs/system-skilled-doctor/002-symlink-first-link/implementation-summary.md",
@@ -25765,6 +25771,7 @@
     "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/review/fanout-attribution.md",
     "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/review/review-report.md",
     "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research/research.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/plan.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/spec.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/tasks.md",
@@ -26151,7 +26158,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "47f6118e5b5240c5ead4c2da524311659ef81cb19b9c195a3d177bc4ceb7b5d7",
+  "manifestHash": "c09978c1eb0e890e51a9328f8e5de3d12e6edc93ac1f7714bbe1b7be07085209",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33210,6 +33217,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skilled-doctor/002-symlink-first-link/scratch",
       "reason": "excluded directory"
     },
@@ -36623,6 +36634,34 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research/prompts",
       "reason": "excluded directory"
     },
     {

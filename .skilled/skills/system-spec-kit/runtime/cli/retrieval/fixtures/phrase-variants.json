@@ -1,5 +1,5 @@
 {
-  "manifestHash": "47f6118e5b5240c5ead4c2da524311659ef81cb19b9c195a3d177bc4ceb7b5d7",
+  "manifestHash": "c09978c1eb0e890e51a9328f8e5de3d12e6edc93ac1f7714bbe1b7be07085209",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8248,9 +8248,6 @@
     ],
     "admission research fan out": [
       "admission research fan-out"
-    ],
-    "adopt a vendored file into an overlay": [
-      "adopt a vendored file into an overlay"
     ],
     "adopt an existing overlay folder": [
       "adopt an existing overlay folder"
@@ -76978,6 +76975,12 @@
     "overlay engine plan": [
       "overlay engine plan"
     ],
+    "overlay engine relayout target": [
+      "overlay engine relayout target"
+    ],
+    "overlay engine stale lock takeover": [
+      "overlay engine stale lock takeover"
+    ],
     "overlay engine tasks": [
       "overlay engine tasks"
     ],
@@ -77046,6 +77049,24 @@
     ],
     "overlay sync repin failure modes": [
       "overlay sync repin failure modes"
+    ],
+    "overlay write checks follow up": [
+      "overlay write checks follow up"
+    ],
+    "overlay write checks follow up acceptance criteria": [
+      "overlay write checks follow up acceptance criteria"
+    ],
+    "overlay write checks follow up goal": [
+      "overlay write checks follow up goal"
+    ],
+    "overlay write checks follow up implementation summary": [
+      "overlay write checks follow up implementation summary"
+    ],
+    "overlay write checks follow up plan": [
+      "overlay write checks follow up plan"
+    ],
+    "overlay write checks follow up tasks": [
+      "overlay write checks follow up tasks"
     ],
     "overlays for vendored copies": [
       "overlays for vendored copies"
@@ -81337,6 +81358,9 @@
     ],
     "phase 9 open items ledger": [
       "phase 9 open items ledger"
+    ],
+    "phase 9 overlay write checks follow up": [
+      "phase 9 overlay write checks follow up"
     ],
     "phase 9 pi arm on agent settled": [
       "phase 9 pi arm on agent settled"
