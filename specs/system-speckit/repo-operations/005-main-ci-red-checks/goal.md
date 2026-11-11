@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "main-ci-red-checks-2026-11-11"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -57,7 +57,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` exits 0
 - [x] `ci-hub-vocabulary-source.cjs` prints `drift=0`
 - [x] The three failing Spec-Kit test files pass in the CLI vitest project
-- [ ] `gh run list --branch main` shows the five workflows as `success` on the commit with the fixes
+- [x] `gh run list --branch main` shows the five workflows as `success` on the commit with the fixes
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,7 +77,7 @@ and findings belong here.
 | sk-doc baselines | Done | `c807a36cab`, `all sk-doc script tests passed` |
 | Routing drift | Done | `f090583b7d`, `checked=7 hub(s), drift=0` |
 | Spec-Kit tests | Done | `72a2a0b3f4`, `Tests 18 passed (18)` |
-| CI confirmation on main | Pending | Waits on the push |
+| CI confirmation on main | Done | Chart Corpus run 42986319009 and Diagram Corpus run 42986318839 on `68359fb3b6`, Spec-Kit Check on `4207a2b4a5`, sk-doc Script Tests and Routing Registry Drift Guard on `5524f2ee48`, all `success` |
 
 ### Deviations and findings
 

@@ -56,7 +56,7 @@ contextType: "general"
 
 - [x] T008 Rerun each command that failed. Verify: the corpus suites pass 88 and 21 tests on Node 22, `run-script-tests.sh` prints `all sk-doc script tests passed`, the vocabulary guard prints `drift=0`, the three Spec-Kit files pass 18 tests.
 - [x] T009 Rerun the rest of each workflow. Verify: every routing workflow step exits 0 and the scorer gates pass 53 tests.
-- [ ] T010 [B] Confirm on CI after the push to main. Verify: `gh run list --branch main` shows no failed workflow on the new head. Blocked on the operator's push approval.
+- [x] T010 Confirm on CI after the push to main. Verify: Chart Corpus run 42986319009 and Diagram Corpus run 42986318839 on `68359fb3b6`, Spec-Kit Check on `4207a2b4a5`, sk-doc Script Tests and Routing Registry Drift Guard on `5524f2ee48`, all `success`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -64,8 +64,8 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
@@ -118,7 +118,7 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. AC-005 waits on the push to main.
+- [x] CHK-020 [P0] All acceptance criteria met. Evidence: the five workflows conclude `success` on main.
 - [x] CHK-021 [P0] Manual testing complete. Evidence: `compiled-route.cjs --hub cli-external-orchestration --prompt "run this review over the opencode go route"` routes to `cli-deepseek-harness`.
 - [x] CHK-022 [P1] Edge cases tested. Evidence: "use cli-opencode with the opencode-go deepseek model" still routes to `cli-opencode`.
 - [x] CHK-023 [P1] Error scenarios validated. Evidence: the directory form still fails on Node 22, which is the failure the glob replaces.
@@ -174,7 +174,7 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
+| P0 Items | 12 | 12/12 |
 | P1 Items | 14 | 14/14 |
 | P2 Items | 1 | 1/1 |
 

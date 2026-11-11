@@ -40,7 +40,7 @@ Five workflows fail on main for five separate reasons. Each is reproduced locall
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
+- [x] All acceptance criteria met
 - [x] `bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` prints `all sk-doc script tests passed`
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
@@ -112,7 +112,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Operator approval to push to main | Internal | Yellow | CI cannot confirm the fixes until the push |
+| Operator approval to push to main | Internal | Green | Given on 2026-11-11 |
 <!-- /ANCHOR:dependencies -->
 
 ---

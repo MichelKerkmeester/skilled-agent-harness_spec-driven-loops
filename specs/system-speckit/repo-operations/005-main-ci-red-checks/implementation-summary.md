@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Five workflows that failed on every push to main are repaired at their causes. The fixes are four local commits in worktree 346 and wait on a push."
+description: "Five workflows that failed on every push to main are repaired at their causes. The fixes are on main and all five workflows pass there."
 trigger_phrases:
   - "main ci red checks implementation summary"
 importance_tier: "normal"
@@ -11,14 +11,14 @@ _memory:
     last_updated_at: "2026-11-11T07:47:57Z"
     last_updated_by: "claude-code"
     recent_action: "Fixed and locally verified the five failing workflows"
-    next_safe_action: "Push to main after operator approval, then read the five workflow results"
+    next_safe_action: "None, the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "main-ci-red-checks-2026-11-11"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,8 +36,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-main-ci-red-checks |
-| **Completed** | Not yet, the CI confirmation is open |
-| **Status** | In Progress |
+| **Completed** | 2026-11-11 |
+| **Status** | Complete |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -73,7 +73,7 @@ The routing guard reported one drift: the CLI hub router sent "opencode go route
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Each failure was read from its CI job log, reproduced locally where the machine allows it and traced to its producer. Each fix is its own commit in worktree 346: `6bb42a9f5a`, `c807a36cab`, `f090583b7d` and `72a2a0b3f4`. Nothing is pushed. The command that failed was rerun after each fix, then the other steps of its workflow.
+Each failure was read from its CI job log, reproduced locally where the machine allows it and traced to its producer. Each fix is its own commit in worktree 346: `6bb42a9f5a`, `c807a36cab`, `f090583b7d` and `72a2a0b3f4`. All of it is on `origin/main`. The command that failed was rerun after each fix, then the other steps of its workflow.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -101,7 +101,7 @@ Each failure was read from its CI job log, reproduced locally where the machine 
 | Other routing workflow steps, parity suites and scorer gates | PASS, 22 and 53 tests, every step exit 0 |
 | Three Spec-Kit test files | PASS, 18 of 18 |
 | Full Spec-Kit CLI project | 2,518 passed, 2 timed out at 30 seconds under full local load. Both pass alone, 22 of 22, and neither failed in CI |
-| The five workflows on main | NOT RUN, waits on the push |
+| The five workflows on main | PASS. Chart Corpus run 42986319009 and Diagram Corpus run 42986318839 on `68359fb3b6`, Spec-Kit Check on `4207a2b4a5`, sk-doc Script Tests and Routing Registry Drift Guard on `5524f2ee48`, all `success` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -109,8 +109,8 @@ Each failure was read from its CI job log, reproduced locally where the machine 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The Bash fixes cannot be reproduced locally.** This machine has only Bash 3.2. The first push (`68359fb3b6`) confirmed the array length fix on the runner, where the empty-root test passed, and showed a second cause: three bare `(( ))` counters that end a `set -e` script on Bash 4.1 and later. Commit `f15ba37e94` replaces them, and the CI run on it is the confirmation.
-2. **Nothing is pushed.** The four commits exist only on `worktrees/346-main-ci-red-checks`. AC-005 stays open until main carries them.
+1. **The Bash fixes cannot be reproduced locally.** This machine has only Bash 3.2, so the staleness checker's two Linux-only causes were confirmed by CI: the first push fixed the empty-root test, and commit `f15ba37e94` fixed the other seven.
+2. **Two CLI tests time out in a full local run.** They pass alone and pass in CI, so they are outside this packet.
 <!-- /ANCHOR:limitations -->
 
 ---

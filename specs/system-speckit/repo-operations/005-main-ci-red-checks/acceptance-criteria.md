@@ -11,14 +11,14 @@ _memory:
     last_updated_at: "2026-11-11T07:47:57Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Push to main after operator approval, then read the five workflow results"
+    next_safe_action: "None, the packet is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "main-ci-red-checks-2026-11-11"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** system-speckit/repo-operations/005-main-ci-red-checks
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-11
 <!-- /ANCHOR:metadata -->
 
@@ -55,7 +55,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-002 | REQ-002 | Given the refreshed baselines, When `run-script-tests.sh` runs, Then it prints `all sk-doc script tests passed` | `.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json:1`. The runner exited 0 with 57 `PASS` lines and no `FAIL` | Met | - |
 | AC-003 | REQ-003 | Given the phrase in the harness intent, When the vocabulary guard and the other routing workflow steps run, Then the guard prints `drift=0` and every step exits 0 | `.skilled/skills/cli-external-orchestration/ROUTER.md:119`. The guard printed `checked=7 hub(s), drift=0` and `RESULT: PASSED`. The parity suites passed 22 tests and the scorer gates 53 | Met | - |
 | AC-004 | REQ-004 | Given the three repairs, When the three test files run in the CLI vitest project, Then all pass | `.skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts:106`. The run printed `Test Files 3 passed (3)` and `Tests 18 passed (18)` | Met | - |
-| AC-005 | REQ-005 | Given the fixes on main, When the workflows run on that commit, Then all five conclude `success` | `gh run list --branch main` on the commit that carries the fixes. Not yet run, the push is the operator's call | Unmet | - |
+| AC-005 | REQ-005 | Given the fixes on main, When the workflows run on that commit, Then all five conclude `success` | `.github/workflows/spec-kit-check.yml:1`. Chart Corpus run 42986319009 and Diagram Corpus run 42986318839 on `68359fb3b6`, Spec-Kit Check on `4207a2b4a5`, sk-doc Script Tests and Routing Registry Drift Guard on `5524f2ee48`, all `success` | Met | - |
 
 ### Status values
 
@@ -80,7 +80,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-005 blocks closure until the fixes are pushed to main and the five workflows pass there.
+Every criterion is Met, and the five workflows pass on main.
 <!-- /ANCHOR:closure -->
