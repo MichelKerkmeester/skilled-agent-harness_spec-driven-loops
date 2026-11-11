@@ -125,6 +125,7 @@ function buildFailureClassRollup(results) {
     projection_refusal: 0,
     unattributed_state_log: 0,
     needs_input: 0,
+    quota: 0,
   };
   for (const result of results) {
     if (!result || result.status !== 'rejected') {

@@ -21,6 +21,7 @@ const { resolveOpencodeBinary } = require('./opencode-version.cjs');
 const {
   classifyExitCode,
   detectPendingQuestion,
+  detectQuotaExhaustion,
   assertKnownFlags,
   maybeThrowTestFault,
   validateNamespaceValue,
@@ -4025,11 +4026,25 @@ async function main() {
             : dshCompletionFailure
               ? dshCompletionFailure
               : `exited with code ${exitCode}`;
-        const failure = new Error(`lineage ${lineage.label} ${reason}`);
+        // A provider that refuses the run on an exhausted allowance exits like any crash.
+        // Name it and keep its own words, so the roll-up shows an outage the operator can
+        // act on instead of an anonymous exit.
+        const quotaExhaustion = !timedOut && !killedBySignal
+          ? detectQuotaExhaustion(savedStderr, savedStdout)
+          : null;
+        const failure = new Error(
+          quotaExhaustion
+            ? `lineage ${lineage.label} ${reason}: provider quota exhausted (${quotaExhaustion.cause})`
+            : `lineage ${lineage.label} ${reason}`,
+        );
         failure.label = lineage.label;
         failure.exitCode = exitCode;
         failure.timedOut = timedOut;
         failure.killedBySignal = killedBySignal;
+        if (quotaExhaustion) {
+          failure.quotaExhausted = true;
+          failure.reason = 'quota';
+        }
         failure.salvage = salvage;
         attachGatewayProjectionRefusal(failure, gatewayProjectionRefusal);
         throw failure;

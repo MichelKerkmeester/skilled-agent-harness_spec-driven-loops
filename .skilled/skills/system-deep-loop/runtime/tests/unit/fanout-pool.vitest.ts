@@ -40,7 +40,7 @@ const {
       error?: {
         message: string;
         code?: string;
-        failure_class?: 'timeout' | 'exit' | 'salvage_miss' | 'artifact_miss' | 'projection_refusal' | 'unattributed_state_log' | 'needs_input';
+        failure_class?: 'timeout' | 'exit' | 'salvage_miss' | 'artifact_miss' | 'projection_refusal' | 'unattributed_state_log' | 'needs_input' | 'quota';
         retry_verdict?: 'transient' | 'fatal';
         retryable?: boolean;
         aborted?: boolean;
@@ -57,13 +57,13 @@ const {
       all_failed: boolean;
       completed_with_containment_advisory: number;
       gauges: { lag: number; pending: number; failed: number };
-      failure_classes: { timeout: number; exit: number; salvage_miss: number; artifact_miss: number; projection_refusal: number; unattributed_state_log: number; needs_input: number };
+      failure_classes: { timeout: number; exit: number; salvage_miss: number; artifact_miss: number; projection_refusal: number; unattributed_state_log: number; needs_input: number; quota: number };
     };
   }>;
   buildPoolSummary: (results: Array<Record<string, unknown>>) => {
     summary: {
       completed_with_containment_advisory: number;
-      failure_classes: { timeout: number; exit: number; salvage_miss: number; artifact_miss: number; projection_refusal: number; unattributed_state_log: number; needs_input: number };
+      failure_classes: { timeout: number; exit: number; salvage_miss: number; artifact_miss: number; projection_refusal: number; unattributed_state_log: number; needs_input: number; quota: number };
     };
   };
   createWavePlannerInterface: () => {
@@ -211,7 +211,7 @@ describe('runCappedPool', () => {
       all_failed: false,
       completed_with_containment_advisory: 0,
       gauges: { lag: 0, pending: 0, failed: 0 },
-      failure_classes: { timeout: 0, exit: 0, salvage_miss: 0, artifact_miss: 0, projection_refusal: 0, unattributed_state_log: 0, needs_input: 0 },
+      failure_classes: { timeout: 0, exit: 0, salvage_miss: 0, artifact_miss: 0, projection_refusal: 0, unattributed_state_log: 0, needs_input: 0, quota: 0 },
     });
   });
 
@@ -683,6 +683,7 @@ describe('runCappedPool', () => {
       projection_refusal: 0,
       unattributed_state_log: 0,
       needs_input: 0,
+      quota: 0,
     });
   });
 
@@ -735,6 +736,7 @@ describe('runCappedPool', () => {
       projection_refusal: 1,
       unattributed_state_log: 0,
       needs_input: 0,
+      quota: 0,
     });
   });
 
@@ -768,6 +770,7 @@ describe('runCappedPool', () => {
       projection_refusal: 0,
       unattributed_state_log: 0,
       needs_input: 1,
+      quota: 0,
     });
     expect(events.filter((event) => event.event === 'retry_scheduled')).toEqual([]);
   });
@@ -971,6 +974,7 @@ describe('status ledger helpers', () => {
       projection_refusal: 0,
       unattributed_state_log: 0,
       needs_input: 0,
+      quota: 0,
     });
   });
 
@@ -987,6 +991,7 @@ describe('status ledger helpers', () => {
       projection_refusal: 0,
       unattributed_state_log: 0,
       needs_input: 0,
+      quota: 0,
     });
   });
 

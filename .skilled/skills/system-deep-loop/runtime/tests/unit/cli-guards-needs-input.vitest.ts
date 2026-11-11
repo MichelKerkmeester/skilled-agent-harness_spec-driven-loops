@@ -9,6 +9,7 @@ import {
   PENDING_QUESTION_PATTERN,
   classifyLineageFailure,
   detectPendingQuestion,
+  detectQuotaExhaustion,
 } from '../../scripts/lib/cli-guards.cjs';
 
 const COMPLETE_MARKER = 'FANOUT_LINEAGE_COMPLETE:live-opencode';
@@ -65,5 +66,29 @@ describe('classifyLineageFailure needs_input', () => {
     const result = classifyLineageFailure({ needsInput: true, timedOut: true });
 
     expect(result.failure_class).toBe('timeout');
+  });
+});
+
+describe('quota exhaustion', () => {
+  it('finds a provider refusal in stderr and keeps its wording', () => {
+    const stderr = 'starting session\nYour weekly usage quota has been exhausted\n';
+
+    expect(detectQuotaExhaustion(stderr, '')).toEqual({
+      cause: 'Your weekly usage quota has been exhausted',
+    });
+  });
+
+  it('ignores a transcript that only discusses quotas', () => {
+    const stdout = 'The reviewer checks how the pool reports quota and rate limit handling.';
+
+    expect(detectQuotaExhaustion('', stdout)).toBeNull();
+  });
+
+  it('classifies a quota failure as its own fatal class', () => {
+    const result = classifyLineageFailure({ exitCode: 1, quotaExhausted: true });
+
+    expect(result.failure_class).toBe('quota');
+    expect(result.retry_verdict).toBe('fatal');
+    expect(result.retryable).toBe(false);
   });
 });

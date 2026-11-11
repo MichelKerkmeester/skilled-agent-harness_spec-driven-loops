@@ -33,6 +33,10 @@ const LINEAGE_FAILURE_CLASSES = Object.freeze({
   // leaf behavior, so it is terminal.
   UNATTRIBUTED_STATE_LOG: 'unattributed_state_log',
   NEEDS_INPUT: 'needs_input',
+  // The provider refused the run on a usage, credit or rate limit. The same
+  // account answers the same way on retry, so it is terminal, and it is kept
+  // apart from a plain exit so the operator sees an outage, not a crash.
+  QUOTA: 'quota',
 });
 const LINEAGE_RETRY_VERDICTS = Object.freeze({
   TRANSIENT: 'transient',
@@ -199,6 +203,43 @@ function detectPendingQuestion(text) {
   return { question: lastLine.slice(0, 300) };
 }
 
+// Provider wording for an exhausted allowance. Each pattern needs the limit
+// word and its verdict together, so a transcript that merely discusses quotas
+// does not match.
+const QUOTA_EXHAUSTION_PATTERNS = Object.freeze([
+  /resource_exhausted/i,
+  /(?:usage|rate)[\s_-]*limit[^\n]{0,60}(?:reached|exceeded|hit)/i,
+  /quota[^\n]{0,60}(?:exhausted|exceeded|reached)/i,
+  /(?:exceeded|exhausted|reached)[^\n]{0,60}quota/i,
+  /insufficient[\s_-]+(?:credits?|quota|balance)/i,
+  /too\s+many\s+requests/i,
+]);
+const QUOTA_STDOUT_TAIL_LINES = 40;
+
+/**
+ * Find a provider quota or rate-limit refusal in a failed lineage's output.
+ * Reads all of stderr and only the tail of stdout, where a CLI prints the
+ * refusal that ended it.
+ *
+ * @param {string} stderr - Captured stderr of the lineage process.
+ * @param {string} [stdout] - Captured stdout of the lineage process.
+ * @returns {{cause:string}|null} The matching line, or null when none matches.
+ */
+function detectQuotaExhaustion(stderr, stdout) {
+  const stderrLines = typeof stderr === 'string' ? stderr.split(/\r?\n/) : [];
+  const stdoutLines = typeof stdout === 'string'
+    ? stdout.split(/\r?\n/).slice(-QUOTA_STDOUT_TAIL_LINES)
+    : [];
+  for (const rawLine of [...stderrLines, ...stdoutLines]) {
+    const line = rawLine.trim();
+    if (!line) continue;
+    if (QUOTA_EXHAUSTION_PATTERNS.some((pattern) => pattern.test(line))) {
+      return { cause: line.slice(0, 300) };
+    }
+  }
+  return null;
+}
+
 /**
  * Classify a lineage failure using bounded process, salvage, and gateway signals.
  *
@@ -212,6 +253,7 @@ function classifyLineageFailure(error) {
   const projectionRefusal = Boolean(error && typeof error === 'object' && error.projectionRefused === true);
   const unattributedStateLog = Boolean(error && typeof error === 'object' && error.unattributedStateLog === true);
   const needsInput = Boolean(error && typeof error === 'object' && error.needsInput === true);
+  const quotaExhausted = Boolean(error && typeof error === 'object' && error.quotaExhausted === true);
 
   let failureClass = LINEAGE_FAILURE_CLASSES.EXIT;
   if (timedOut) {
@@ -220,6 +262,8 @@ function classifyLineageFailure(error) {
     failureClass = LINEAGE_FAILURE_CLASSES.UNATTRIBUTED_STATE_LOG;
   } else if (projectionRefusal) {
     failureClass = LINEAGE_FAILURE_CLASSES.PROJECTION_REFUSAL;
+  } else if (quotaExhausted) {
+    failureClass = LINEAGE_FAILURE_CLASSES.QUOTA;
   } else if (needsInput) {
     // A clean exit that ends on a question replays the same question on retry,
     // so it is terminal until the operator answers.
@@ -627,6 +671,7 @@ module.exports = {
   classifyExitCode,
   classifyLineageFailure,
   detectPendingQuestion,
+  detectQuotaExhaustion,
   installSignalHandlers,
   maybeThrowTestFault,
   PENDING_QUESTION_PATTERN,
