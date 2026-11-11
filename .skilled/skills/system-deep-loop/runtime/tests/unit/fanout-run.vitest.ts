@@ -2590,6 +2590,24 @@ describe('fanout-run.cjs — buildLoopPrompt identity wording', () => {
     }
   });
 
+  it('binds a review lineage to the named target and keeps the spec folder as the default', () => {
+    const lineageDir = 'specs/test-fanout-target/review/lineages/seat';
+    const seat = { kind: 'cli-opencode', label: 'seat', model: 'opencode-go/glm-5.1' };
+    const named = buildLoopPrompt(
+      'review', 'specs/test-fanout-target', lineageDir, 'fanout-review-run-123', seat, undefined,
+      { reviewTarget: '.skilled/skills/sk-git', reviewTargetType: 'skill' },
+    );
+    expect(named).toContain('review_target: .skilled/skills/sk-git');
+    expect(named).toContain('review_target_type: skill');
+    expect(named).toContain('spec_folder: specs/test-fanout-target');
+
+    const defaulted = buildLoopPrompt(
+      'review', 'specs/test-fanout-target', lineageDir, 'fanout-review-run-123', seat,
+    );
+    expect(defaulted).toContain('review_target: specs/test-fanout-target');
+    expect(defaulted).toContain('review_target_type: spec-folder');
+  });
+
   it('names the lineage steer.md by repository-relative path for a CLI lineage only', () => {
     const lineageDir = 'specs/test-fanout-steer/research/lineages/seat';
     const cliPrompt = buildLoopPrompt(

@@ -211,6 +211,8 @@ workflow:
             --spec-folder {spec_folder} \
             --loop-type review \
             --review-focus "{review_focus}" \
+            --review-target "{review_target}" \
+            --review-target-type {review_target_type} \
             --fanout-config-json '{config.fanout_json}' \
             --base-artifact-dir {artifact_dir} \
             --convergence-threshold {convergence_threshold} \

@@ -65,6 +65,18 @@ The public surface is the executable script name plus its documented argument co
 
 The scripts write or read durable state through the domain modules. They do not own mode semantics or consumer presentation.
 
+A review fan-out reviews its spec folder unless `fanout-run.cjs` is given `--review-target`, with `--review-target-type` as one of `spec-folder`, `skill`, `agent`, `track` or `files`. The spec folder still owns every write. A named target with no type is treated as `files`.
+
+One focus line reaches every lineage. To give each lineage its own angle, write a `steer.md` into its lineage folder before the run. A CLI lineage reads it before init, before each iteration and before resolving a conflict:
+
+```text
+<spec-folder>/review/lineages/<label>/steer.md
+
+Review angle for this lineage: command workflows only.
+Iteration 1 covers the create commands, iteration 2 the deep commands.
+Cite every finding as path:line.
+```
+
 ---
 
 ## 5. SPINE ROLE

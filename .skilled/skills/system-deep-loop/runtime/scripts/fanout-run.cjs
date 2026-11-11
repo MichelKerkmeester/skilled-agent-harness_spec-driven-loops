@@ -28,7 +28,7 @@ const {
 } = require('./lib/cli-guards.cjs');
 
 const FANOUT_FLAGS = [
-  'specFolder', 'loopType', 'researchTopic', 'reviewFocus', 'fanoutConfigJson', 'baseArtifactDir',
+  'specFolder', 'loopType', 'researchTopic', 'reviewFocus', 'reviewTarget', 'reviewTargetType', 'fanoutConfigJson', 'baseArtifactDir',
   'convergenceThreshold', 'lineageTimeoutHours', 'stopPolicy', 'convergenceMode', 'containmentMode',
   'noMetadataRefresh', 'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
   'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
@@ -203,6 +203,39 @@ function normalizeReviewFocus(raw) {
     throw inputError(`reviewFocus must be at most ${REVIEW_FOCUS_MAX_LENGTH} characters, got ${focus.length}`);
   }
   return focus;
+}
+
+const REVIEW_TARGET_TYPES = Object.freeze(['spec-folder', 'skill', 'agent', 'track', 'files']);
+
+/**
+ * Resolve the review target every lineage is bound to.
+ *
+ * A review can audit something other than its own packet. Without an explicit target each
+ * lineage is told to review the spec folder, whatever the operator asked for.
+ *
+ * @param {unknown} rawTarget - The `--review-target` value as parsed from argv.
+ * @param {unknown} rawType - The `--review-target-type` value as parsed from argv.
+ * @param {string} specFolder - The packet that owns the run, and the default target.
+ * @returns {{target:string,type:string}} The single-line target and its type.
+ */
+function resolveReviewTarget(rawTarget, rawType, specFolder) {
+  if (rawTarget !== undefined && rawTarget !== null && rawTarget !== false && typeof rawTarget !== 'string') {
+    throw inputError('reviewTarget must be a text value');
+  }
+  const target = typeof rawTarget === 'string'
+    ? rawTarget.replace(REVIEW_FOCUS_CONTROL_PATTERN, ' ').replace(/\s+/g, ' ').trim()
+    : '';
+  if (target.length > REVIEW_FOCUS_MAX_LENGTH) {
+    throw inputError(`reviewTarget must be at most ${REVIEW_FOCUS_MAX_LENGTH} characters, got ${target.length}`);
+  }
+  const type = typeof rawType === 'string' ? rawType.trim() : '';
+  if (type && !REVIEW_TARGET_TYPES.includes(type)) {
+    throw inputError(`reviewTargetType must be one of ${REVIEW_TARGET_TYPES.join(', ')}, got ${type}`);
+  }
+  if (!target || target === specFolder) {
+    return { target: specFolder, type: type || 'spec-folder' };
+  }
+  return { target, type: type || 'files' };
 }
 
 function readRawConfigNumber(rawConfig, names, fieldName) {
@@ -1643,8 +1676,8 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
       ? [
           ``,
           `Review setup bindings (emit before any writes, same as native PRE-BOUND SETUP ANSWERS):`,
-          `review_target: ${specFolder}`,
-          `review_target_type: spec-folder`,
+          `review_target: ${options.reviewTarget || specFolder}`,
+          `review_target_type: ${options.reviewTargetType || 'spec-folder'}`,
           `review_dimensions: all`,
           ...(reviewFocus ? [`review_focus: ${reviewFocus}`] : []),
           `spec_folder: ${specFolder}`,
@@ -1713,9 +1746,13 @@ function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, opti
   const convergenceThreshold = options.convergenceThreshold ?? (loopType === 'research' ? 0.05 : 0.1);
   const stopPolicy = options.stopPolicy || 'convergence';
   const sessionId = options.sessionId || '';
+  const reviewTarget = loopType === 'review' && options.reviewTarget ? options.reviewTarget : specFolder;
+  const reviewTargetType = loopType === 'review' && options.reviewTargetType
+    ? options.reviewTargetType
+    : 'spec-folder';
   const args = [
     ':auto',
-    JSON.stringify(specFolder),
+    JSON.stringify(loopType === 'review' ? reviewTarget : specFolder),
     `--spec-folder=${specFolder}`,
     `--max-iterations=${maxIterations}`,
     `--convergence=${convergenceThreshold}`,
@@ -1736,8 +1773,8 @@ function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, opti
     args.join(' '),
     '',
     'PRE-BOUND SETUP ANSWERS:',
-    `review_target: ${specFolder}`,
-    'review_target_type: spec-folder',
+    `review_target: ${reviewTarget}`,
+    `review_target_type: ${reviewTargetType}`,
     'review_dimensions: all',
     ...(reviewFocus ? [`review_focus: ${reviewFocus}`] : []),
     `spec_folder: ${specFolder}`,
@@ -3277,6 +3314,10 @@ async function main() {
   if (reviewFocus && loopType !== 'review') {
     throw inputError('reviewFocus applies only to the review loop type');
   }
+  if ((args.reviewTarget || args.reviewTargetType) && loopType !== 'review') {
+    throw inputError('reviewTarget applies only to the review loop type');
+  }
+  const reviewTargetBinding = resolveReviewTarget(args.reviewTarget, args.reviewTargetType, specFolder);
   const fanoutConfigJson = ensureString(args, 'fanoutConfigJson');
   const baseArtifactDir = validateBaseArtifactDir(ensureString(args, 'baseArtifactDir'), specFolder, loopType);
   const convergenceThreshold = parseOptionalNumber(args, 'convergenceThreshold');
@@ -3561,6 +3602,8 @@ async function main() {
         convergenceMode,
         stopPolicy,
         reviewFocus,
+        reviewTarget: reviewTargetBinding.target,
+        reviewTargetType: reviewTargetBinding.type,
       });
 
       // Sandbox resolution stays write-capable by default even for review lineages:
@@ -3609,6 +3652,8 @@ async function main() {
           stopPolicy,
           researchTopic,
           reviewFocus,
+          reviewTarget: reviewTargetBinding.target,
+          reviewTargetType: reviewTargetBinding.type,
         },
       );
 
