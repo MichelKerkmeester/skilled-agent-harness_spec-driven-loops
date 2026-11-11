@@ -1,5 +1,5 @@
 {
-  "manifestHash": "caff4923f529bcf0d5e9affc9b72dde7b8c675145bf85f21f039eb014fa7b33a",
+  "manifestHash": "d5456bedc49056571c7735458009b92aaca534bda2cd971e896632fbe29557a4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -66215,6 +66215,9 @@
     "mcp figma 1 2 2 0": [
       "mcp-figma 1.2.2.0"
     ],
+    "mcp figma 1 2 3 0": [
+      "mcp-figma 1.2.3.0"
+    ],
     "mcp figma implementation summary": [
       "mcp figma implementation summary"
     ],
@@ -66280,6 +66283,9 @@
     ],
     "mcp figma v1 2 2 0": [
       "mcp-figma v1.2.2.0"
+    ],
+    "mcp figma v1 2 3 0": [
+      "mcp-figma v1.2.3.0"
     ],
     "mcp front proxy": [
       "mcp front proxy"
@@ -67197,6 +67203,9 @@
     "mcp tooling 1 9 15 0": [
       "mcp-tooling 1.9.15.0"
     ],
+    "mcp tooling 1 9 16 0": [
+      "mcp-tooling 1.9.16.0"
+    ],
     "mcp tooling 1 9 2 0": [
       "mcp-tooling 1.9.2.0"
     ],
@@ -67382,6 +67391,9 @@
     ],
     "mcp tooling v1 9 15 0": [
       "mcp-tooling v1.9.15.0"
+    ],
+    "mcp tooling v1 9 16 0": [
+      "mcp-tooling v1.9.16.0"
     ],
     "mcp tooling v1 9 2 0": [
       "mcp-tooling v1.9.2.0"
@@ -105946,6 +105958,9 @@
     "sk create readme 1 3 15 0": [
       "sk-create-readme 1.3.15.0"
     ],
+    "sk create readme 1 3 16 0": [
+      "sk-create-readme 1.3.16.0"
+    ],
     "sk create readme 1 3 2 0": [
       "sk-create-readme 1.3.2.0"
     ],
@@ -106026,6 +106041,9 @@
     ],
     "sk create readme v1 3 15 0": [
       "sk-create-readme v1.3.15.0"
+    ],
+    "sk create readme v1 3 16 0": [
+      "sk-create-readme v1.3.16.0"
     ],
     "sk create readme v1 3 2 0": [
       "sk-create-readme v1.3.2.0"
@@ -107399,6 +107417,9 @@
     "sk doc 2 9 10 0": [
       "sk-doc 2.9.10.0"
     ],
+    "sk doc 2 9 11 0": [
+      "sk-doc 2.9.11.0"
+    ],
     "sk doc 2 9 2 0": [
       "sk-doc 2.9.2.0"
     ],
@@ -107884,6 +107905,9 @@
     ],
     "sk doc v2 9 10 0": [
       "sk-doc v2.9.10.0"
+    ],
+    "sk doc v2 9 11 0": [
+      "sk-doc v2.9.11.0"
     ],
     "sk doc v2 9 2 0": [
       "sk-doc v2.9.2.0"

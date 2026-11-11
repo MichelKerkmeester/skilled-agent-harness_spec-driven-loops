@@ -1,5 +1,5 @@
 {
-  "corpusHash": "00685cbbca03e04eadf02483afc40e2c96a8da5ef5a15e71f3ebd114ed19c651",
+  "corpusHash": "3b0318fd67340e433c9648bddc1dfbdf0884fb9ffa023dc7cd3fec61d97de9f8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26104,
+  "includedPathCount": 26108,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2157,6 +2157,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.9.13.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.14.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.15.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.9.16.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.2.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.3.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.4.0.md",
@@ -2572,6 +2573,7 @@
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.2.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.2.1.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.2.2.0.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.2.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/optional-mcp-context.md",
     ".skilled/skills/mcp-tooling/mcp-figma/feature-catalog/a11y-and-analysis/a11y-and-analysis.md",
@@ -6499,6 +6501,7 @@
     ".skilled/skills/sk-doc/changelog/v2.9.0.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.10.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.11.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.4.0.md",
@@ -6997,6 +7000,7 @@
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.13.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.14.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.15.0.md",
+    ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.16.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.2.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.3.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.4.0.md",
@@ -26136,7 +26140,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "caff4923f529bcf0d5e9affc9b72dde7b8c675145bf85f21f039eb014fa7b33a",
+  "manifestHash": "d5456bedc49056571c7735458009b92aaca534bda2cd971e896632fbe29557a4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
