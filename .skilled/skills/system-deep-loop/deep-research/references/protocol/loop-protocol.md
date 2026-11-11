@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.6.0
+version: 1.14.7.0
 ---
 
 # Loop Protocol Reference
@@ -159,7 +159,7 @@ Every field in the contract MUST be present on every persisted lifecycle event. 
 Run the convergence algorithm (see convergence.md):
 - Max iterations reached? STOP
 - Stuck count >= threshold? STUCK_RECOVERY
-- Average newInfoRatio < threshold? STOP
+- Average newInfoRatio < threshold? STOP candidate: it stops the loop only when the stop policy allows a convergence stop and the quality gates pass
 - All questions answered? STOP
 - Otherwise: CONTINUE
 
