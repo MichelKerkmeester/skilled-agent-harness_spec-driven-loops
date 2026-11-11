@@ -7,7 +7,7 @@ trigger_phrases:
   - "diagram corpus checker"
   - "diagram family contract"
   - "grid baseline"
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # sk-design-diagram Check Families
@@ -89,7 +89,7 @@ Run from the repository root. No install step is needed.
 node .skilled/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs
 
 # the standing mutation suite, one case per family
-node --test .skilled/skills/sk-design/sk-design-diagram/scripts/tests/
+node --test '.skilled/skills/sk-design/sk-design-diagram/scripts/tests/*.test.cjs'
 
 # a syntax check after editing a family
 for f in .skilled/skills/sk-design/sk-design-diagram/scripts/families/*.cjs; do node --check "$f" || exit 1; done

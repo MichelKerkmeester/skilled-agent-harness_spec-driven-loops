@@ -57,7 +57,7 @@ Run from the repository root.
 
 ```bash
 # the whole folder
-node --test .skilled/skills/sk-design/sk-design-chart/scripts/tests/
+node --test '.skilled/skills/sk-design/sk-design-chart/scripts/tests/*.test.cjs'
 
 # one file at a time
 node --test .skilled/skills/sk-design/sk-design-chart/scripts/tests/apply-design-md.test.cjs

@@ -66,7 +66,7 @@ The last three tests keep the suite honest. One checks that every family under `
 Run from the repository root.
 
 ```bash
-node --test .skilled/skills/sk-design/sk-design-diagram/scripts/tests/
+node --test '.skilled/skills/sk-design/sk-design-diagram/scripts/tests/*.test.cjs'
 ```
 
 Expected result: 21 tests pass and 0 fail. The run takes about 30 seconds because every case starts a checker process. The first test runs the checker over the whole packet, so one document outside this folder that fails a family fails the suite before any case runs.

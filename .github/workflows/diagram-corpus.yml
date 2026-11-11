@@ -67,4 +67,4 @@ jobs:
         run: |
           set -euo pipefail
           cd .opencode/skills/sk-design/sk-design-diagram
-          node --test scripts/tests/
+          node --test 'scripts/tests/*.test.cjs'
