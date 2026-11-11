@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f0e45932993b5a87ef20f7c5395f7b850030349c7b472bf9d100259eac9e004c",
+  "manifestHash": "0d2054f8f9c0401e3a7f2e8ca061fe4f238d8d6d577e0a75ee05e9742dd9c794",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -21981,8 +21981,8 @@
     "cli external orchestration 1 8 0 0": [
       "cli-external-orchestration 1.8.0.0"
     ],
-    "cli external orchestration 1 9 0 0": [
-      "cli-external-orchestration 1.9.0.0"
+    "cli external orchestration 2 0 0 0": [
+      "cli-external-orchestration 2.0.0.0"
     ],
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
@@ -22119,8 +22119,8 @@
     "cli external orchestration v1 8 0 0": [
       "cli-external-orchestration v1.8.0.0"
     ],
-    "cli external orchestration v1 9 0 0": [
-      "cli-external-orchestration v1.9.0.0"
+    "cli external orchestration v2 0 0 0": [
+      "cli-external-orchestration v2.0.0.0"
     ],
     "cli fallback envelope normalization": [
       "cli fallback envelope normalization"
