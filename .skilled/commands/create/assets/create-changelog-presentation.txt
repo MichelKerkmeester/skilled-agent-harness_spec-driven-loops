@@ -140,6 +140,7 @@ Proceed only when every required field has a value.
 `Release Published` reflects what step 7 (`step_7_publish_release`) actually did, not the raw `publish_release` input:
 - `publish_release` was `false` (default or explicit No) -> `Not requested`
 - `publish_release` was `true` and the tag + release were created -> `Yes -- {release_tag} ({release_url})`
+- `publish_release` was `true` and the release already existed, so its notes were rebuilt in place -> `Updated -- {release_tag} ({release_url})`
 - `publish_release` was `true` but publishing did not happen (a component other than `skilled`, tag collision, missing `gh` auth or skipped/aborted at the Step 7 checkpoint) -> `No -- {reason}`
 
 ```text
