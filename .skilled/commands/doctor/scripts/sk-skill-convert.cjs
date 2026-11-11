@@ -1353,7 +1353,13 @@ function applyPlainPlan(plan, context) {
     fileSystem.mkdirSync(plan.targetRoot);
     targetCreated = true;
     try {
-      fileSystem.cpSync(plan.sourceRoot, plan.targetRoot, { recursive: true, force: false, errorOnExist: true });
+      // The exclusive mkdir above already claimed the folder, so the copy goes
+      // in entry by entry: Node 26 fails a strict copy onto a folder that
+      // exists, and each entry still fails loudly if something stands in its way.
+      for (const name of fileSystem.readdirSync(plan.sourceRoot)) {
+        fileSystem.cpSync(path.join(plan.sourceRoot, name), path.join(plan.targetRoot, name),
+          { recursive: true, force: false, errorOnExist: true });
+      }
     } catch (error) {
       throw new ConvertError('SOURCE_COPY_FAILED', `The source copy could not be created: ${firstLine(error.message)}`, 1);
     }
