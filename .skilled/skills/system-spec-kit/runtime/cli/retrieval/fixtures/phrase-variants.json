@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a274af76524dbbaee9bb3f8239839af1f0e619e8391616cfa2b29d2ffc246f28",
+  "manifestHash": "eb9f1f9e4b21401686600a452f85cb665338d2587a1d681bf8dc95d0b94c2a1a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -65577,6 +65577,9 @@
     "mcp click up 1 2 22 0": [
       "mcp-click-up 1.2.22.0"
     ],
+    "mcp click up 1 2 23 0": [
+      "mcp-click-up 1.2.23.0"
+    ],
     "mcp click up 1 2 3 0": [
       "mcp-click-up 1.2.3.0"
     ],
@@ -65688,6 +65691,9 @@
     "mcp click up v1 2 22 0": [
       "mcp-click-up v1.2.22.0"
     ],
+    "mcp click up v1 2 23 0": [
+      "mcp-click-up v1.2.23.0"
+    ],
     "mcp click up v1 2 3 0": [
       "mcp-click-up v1.2.3.0"
     ],
@@ -65789,6 +65795,9 @@
     ],
     "mcp code mode 1 0 17 0": [
       "mcp-code-mode 1.0.17.0"
+    ],
+    "mcp code mode 1 0 18 0": [
+      "mcp-code-mode 1.0.18.0"
     ],
     "mcp code mode 1 0 2 0": [
       "mcp-code-mode 1.0.2.0"
@@ -65903,6 +65912,9 @@
     ],
     "mcp code mode v1 0 17 0": [
       "mcp-code-mode v1.0.17.0"
+    ],
+    "mcp code mode v1 0 18 0": [
+      "mcp-code-mode v1.0.18.0"
     ],
     "mcp code mode v1 0 2 0": [
       "mcp-code-mode v1.0.2.0"
@@ -67182,6 +67194,9 @@
     "mcp tooling 1 9 14 0": [
       "mcp-tooling 1.9.14.0"
     ],
+    "mcp tooling 1 9 15 0": [
+      "mcp-tooling 1.9.15.0"
+    ],
     "mcp tooling 1 9 2 0": [
       "mcp-tooling 1.9.2.0"
     ],
@@ -67364,6 +67379,9 @@
     ],
     "mcp tooling v1 9 14 0": [
       "mcp-tooling v1.9.14.0"
+    ],
+    "mcp tooling v1 9 15 0": [
+      "mcp-tooling v1.9.15.0"
     ],
     "mcp tooling v1 9 2 0": [
       "mcp-tooling v1.9.2.0"
@@ -105360,6 +105378,9 @@
     "sk create feature catalog 1 0 11 0": [
       "sk-create-feature-catalog 1.0.11.0"
     ],
+    "sk create feature catalog 1 0 12 0": [
+      "sk-create-feature-catalog 1.0.12.0"
+    ],
     "sk create feature catalog 1 0 2 0": [
       "sk-create-feature-catalog 1.0.2.0"
     ],
@@ -105422,6 +105443,9 @@
     ],
     "sk create feature catalog v1 0 11 0": [
       "sk-create-feature-catalog v1.0.11.0"
+    ],
+    "sk create feature catalog v1 0 12 0": [
+      "sk-create-feature-catalog v1.0.12.0"
     ],
     "sk create feature catalog v1 0 2 0": [
       "sk-create-feature-catalog v1.0.2.0"
@@ -105733,6 +105757,9 @@
     "sk create manual testing playbook 1 1 1 0": [
       "sk-create-manual-testing-playbook 1.1.1.0"
     ],
+    "sk create manual testing playbook 1 1 2 0": [
+      "sk-create-manual-testing-playbook 1.1.2.0"
+    ],
     "sk create manual testing playbook implementation summary": [
       "sk create manual testing playbook implementation summary"
     ],
@@ -105792,6 +105819,9 @@
     ],
     "sk create manual testing playbook v1 1 1 0": [
       "sk-create-manual-testing-playbook v1.1.1.0"
+    ],
+    "sk create manual testing playbook v1 1 2 0": [
+      "sk-create-manual-testing-playbook v1.1.2.0"
     ],
     "sk create quality control": [
       "sk create quality control"
@@ -105913,6 +105943,9 @@
     "sk create readme 1 3 14 0": [
       "sk-create-readme 1.3.14.0"
     ],
+    "sk create readme 1 3 15 0": [
+      "sk-create-readme 1.3.15.0"
+    ],
     "sk create readme 1 3 2 0": [
       "sk-create-readme 1.3.2.0"
     ],
@@ -105990,6 +106023,9 @@
     ],
     "sk create readme v1 3 14 0": [
       "sk-create-readme v1.3.14.0"
+    ],
+    "sk create readme v1 3 15 0": [
+      "sk-create-readme v1.3.15.0"
     ],
     "sk create readme v1 3 2 0": [
       "sk-create-readme v1.3.2.0"
@@ -107360,6 +107396,9 @@
     "sk doc 2 9 1 0": [
       "sk-doc 2.9.1.0"
     ],
+    "sk doc 2 9 10 0": [
+      "sk-doc 2.9.10.0"
+    ],
     "sk doc 2 9 2 0": [
       "sk-doc 2.9.2.0"
     ],
@@ -107842,6 +107881,9 @@
     ],
     "sk doc v2 9 1 0": [
       "sk-doc v2.9.1.0"
+    ],
+    "sk doc v2 9 10 0": [
+      "sk-doc v2.9.10.0"
     ],
     "sk doc v2 9 2 0": [
       "sk-doc v2.9.2.0"
