@@ -9,7 +9,7 @@ trigger_phrases:
   - "test temp folder isolation"
 importance_tier: normal
 contextType: implementation
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Directory & Test File Conventions
@@ -29,7 +29,7 @@ Define predictable directory layouts and test-file conventions for OpenCode syst
 - Creating or reorganizing a skill, MCP server, or scripts package
 - Choosing unit and integration test locations
 - Naming test files for a supported language
-- Writing a test that creates files or runs code that does
+- Writing a test that creates files, or that runs code which creates them
 - Reviewing a package layout for consistency
 
 ---

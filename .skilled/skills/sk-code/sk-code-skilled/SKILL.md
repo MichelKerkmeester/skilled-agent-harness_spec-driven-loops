@@ -8,7 +8,7 @@ metadata:
   packetKind: surface
 ---
 
-# opencode Surface — System-Code Evidence
+# Skilled Surface — System-Code Evidence
 
 **Domain evidence** and shared workflow doctrine for OpenCode system code (the `.skilled/` tree: skills, agents, commands, plugins, MCP servers, config, changelogs, and runtime bridge wiring). This surface owns the implement -> debug -> verify phases through the workflow references below, then slices evidence by the detected language so a TypeScript task never pulls the Python/shell/config guides.
 

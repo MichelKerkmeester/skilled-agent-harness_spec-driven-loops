@@ -1,17 +1,17 @@
 ---
-title: "opencode Surface — System-Code Evidence Router"
+title: "Skilled Surface — System-Code Evidence Router"
 description: "Sibling router for sk-code-skilled: the intent signals, the resource map and the no-match checklist a reader parses first."
 trigger_phrases:
   - "sk-code-skilled router"
   - "sk-code-skilled routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
 
-# opencode Surface — System-Code Evidence Router
+# Skilled Surface — System-Code Evidence Router
 
 The machine router for [`SKILL.md`](./SKILL.md). `SKILL.md` keeps the short routing prose and the
 link that points here; this file holds the declaration a reader parses to decide what loads.
