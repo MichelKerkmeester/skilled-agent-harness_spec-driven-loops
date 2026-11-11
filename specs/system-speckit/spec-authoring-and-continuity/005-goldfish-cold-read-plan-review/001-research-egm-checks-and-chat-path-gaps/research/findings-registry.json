@@ -1,0 +1,1204 @@
+{
+  "sessionId": "2026-11-11T20:11:35Z",
+  "parentSessionId": "2026-11-11T19:50:01Z",
+  "lineageMode": "restart",
+  "generation": 3,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-which-lines-in-the-command-doc-the-workflow-yaml-the-skills-and-agents-md-allowe",
+      "inboxId": null,
+      "text": "Which lines in the command doc, the workflow YAML, the skills and AGENTS.md allowed or invited the bypass in the incident, and which steps of the single-executor path are enforced by code as opposed to prose? Cite file and line.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-why-does-a-fan-out-lineage-run-all-its-iterations-in-one-process-is-that-by-desi",
+      "inboxId": null,
+      "text": "Why does a fan-out lineage run all its iterations in one process, is that by design, and does anything record or report that a lineage's iterations did not each get a fresh context?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-existing-checks-could-have-caught-the-incident-before-or-after-the-run-ver",
+      "inboxId": null,
+      "text": "Which existing checks could have caught the incident before or after the run (verify-iteration.cjs, dispatch receipts, config status, lock, fanout-run's success report, validate.sh), and why did each not fire?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-what-are-the-candidate-fixes-a-runner-that-owns-the-single-executor-loop-fanout-",
+      "inboxId": null,
+      "text": "What are the candidate fixes (a runner that owns the single-executor loop, fanout-run refusing or labelling a one-lineage run, a completion check on receipts and config status, wording in the command doc or AGENTS.md, a hook), what does each cost and break, and how does each behave on the seven runtimes and in a dispatched child?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-is-the-smallest-set-of-changes-to-existing-files-that-keeps-a-chat-started-",
+      "inboxId": null,
+      "text": "What is the smallest set of changes to existing files that keeps a chat-started loop on its workflow, how does it apply to deep-review and ai-council, and what should not be built?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-lines-in-the-command-doc-the-workflow-yaml-the-skills-and-agents-md-allowe",
+      "inboxId": null,
+      "text": "Which lines in the command doc, the workflow YAML, the skills and AGENTS.md allowed or invited the bypass in the incident, and which steps of the single-executor path are enforced by code as opposed to prose? Cite file and line.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-why-does-a-fan-out-lineage-run-all-its-iterations-in-one-process-is-that-by-desi",
+      "inboxId": null,
+      "text": "Why does a fan-out lineage run all its iterations in one process, is that by design, and does anything record or report that a lineage's iterations did not each get a fresh context?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-which-existing-checks-could-have-caught-the-incident-before-or-after-the-run-ver",
+      "inboxId": null,
+      "text": "Which existing checks could have caught the incident before or after the run (verify-iteration.cjs, dispatch receipts, config status, lock, fanout-run's success report, validate.sh), and why did each not fire?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-what-are-the-candidate-fixes-a-runner-that-owns-the-single-executor-loop-fanout-",
+      "inboxId": null,
+      "text": "What are the candidate fixes (a runner that owns the single-executor loop, fanout-run refusing or labelling a one-lineage run, a completion check on receipts and config status, wording in the command doc or AGENTS.md, a hook), what does each cost and break, and how does each behave on the seven runtimes and in a dispatched child?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-5-what-is-the-smallest-set-of-changes-to-existing-files-that-keeps-a-chat-started-",
+      "inboxId": null,
+      "text": "What is the smallest set of changes to existing files that keeps a chat-started loop on its workflow, how does it apply to deep-review and ai-council, and what should not be built?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Unasked but open: does the *correct* fan-out path ever write `config.status: complete` at packet level, given `step_update_config_status` lives in `phase_synthesis` and fan-out reaches `phase_synthesis`? This decides whether a status check would be a safe gate or a false-positive generator.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the smallest set of changes, and what should not be built?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which existing checks could have caught the incident before or after the run, and why did each not fire? (Largely answered as a by-product here; the positive case — what would have fired on the driver path too — is not yet tested.)",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What are the candidate fixes, their cost, their cost on the seven runtimes, and their behaviour in a dispatched child?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which existing checks could have caught the incident before or after the run, and why did each not fire? (Iteration 1 answered the negative case; this iteration adds the positive half — the status field would catch it after the fact, the gateway cannot stop a run — but the four named checks have still not been tested against the driver path.)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the smallest set of changes to existing files that keeps a chat-started loop on its workflow, how does it apply to deep-review and ai-council, and what should not be built? (Now priceable from Findings 1–9; not yet assembled into a recommendation.)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the refusal be unconditional by default with `--allow-single-lineage` as the only escape, or should the escape be a config field? A flag matches the file's existing style (`FANOUT_FLAGS`, `assertKnownFlags`) and needs no schema change; the fixture cost is identical either way.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should a legitimate fan-out run execute packet-level `phase_init` and `phase_save` at all, given it is defined as skipping them? (Named in Finding 8 as out of this set's scope.)",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-6-verify-iteration-cjs-passes-on-a-run-whose-packet-level-phases-never-happened-it",
+      "text": "**`verify-iteration.cjs` passes on a run whose packet-level phases never happened.** It verifies per-iteration artefacts inside whatever `--artifact-dir` it is given: narrative non-empty, delta present, state record for that iteration, gateway receipt. It does not assert that a lock was ever acquired, that session classification or the spec check ran, that synthesis wrote back, that a continuity save ran, or that config status became `complete`. Its route proof degrades to a warning when the projection carries no leaf dispatch fields, and an inline executor that writes the route-proof fields itself satisfies it. Ten clean passes are compatible with zero packet-level workflow. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:476]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md:1-30",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:37-47, 116-266",
+        ".skilled/commands/deep/research.md:11-22, 27-45, 56-80, 103, 105-128, 169-175",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:25-37, 179-235, 240-250, 284, 302, 387, 444, 456, 536-586, 591-600, 1163, 2186-2210, 2315-2343, 2439-2470",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 95-109, 343-366",
+        ".skilled/skills/system-deep-loop/SKILL.md:36, 63, 91-93",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:3, 13, 150-154, 163-168, 212, 225-229, 266",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:406-414, 620-646, 1325-1329, 1540-1725, 3456-3495, 4193-4218, 4244-4275",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:275-303, 351-372, 393-445, 476-531",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1501-1545",
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:300-345, 381-424",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:79-99",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs (caller of fanout-run.cjs; located by rg)",
+        "AGENTS.md:20-28, 86-89",
+        ".skilled/repo-rules/delegation-and-orchestration.md:126-150, 207-222"
+      ]
+    },
+    {
+      "id": "finding-1-5-every-hard-check-in-the-loop-is-invoked-from-inside-a-yaml-step-so-a-route-that-",
+      "text": "**Every hard check in the loop is invoked from inside a YAML step, so a route that skips the workflow skips all of them at once.** The gateway fences state rows and refuses stable-identity-less records; `verify-iteration.cjs` requires the narrative, the delta's `type=iteration` row, the state record, and a gateway-backed ledger; `synthesis-closeout.cjs` fails closed on missing synthesis artefacts and on state findings not reflected in the registry. Each of these is *called by* `step_dispatch_iteration`, `step_reduce_state`, `step_fanout_merge` or `step_synthesis`. There is no caller outside the workflow, so none of them can be reached by a route that did not enter the workflow — which is the structural reason the incident produced no failure in any of them. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:445]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md:1-30",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:37-47, 116-266",
+        ".skilled/commands/deep/research.md:11-22, 27-45, 56-80, 103, 105-128, 169-175",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:25-37, 179-235, 240-250, 284, 302, 387, 444, 456, 536-586, 591-600, 1163, 2186-2210, 2315-2343, 2439-2470",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 95-109, 343-366",
+        ".skilled/skills/system-deep-loop/SKILL.md:36, 63, 91-93",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:3, 13, 150-154, 163-168, 212, 225-229, 266",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:406-414, 620-646, 1325-1329, 1540-1725, 3456-3495, 4193-4218, 4244-4275",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:275-303, 351-372, 393-445, 476-531",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1501-1545",
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:300-345, 381-424",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:79-99",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs (caller of fanout-run.cjs; located by rg)",
+        "AGENTS.md:20-28, 86-89",
+        ".skilled/repo-rules/delegation-and-orchestration.md:126-150, 207-222"
+      ]
+    },
+    {
+      "id": "finding-1-3-in-process-iteration-is-a-deliberate-cli-lineage-design-stated-in-the-prompt-and",
+      "text": "**In-process iteration is a deliberate CLI-lineage design, stated in the prompt and explained in the code comment — and it silently overrides the repo's stated \"fresh context per iteration\" principle.** The child prompt carries a section headed \"EXECUTION MODE (read this first): THIS process is the executor for EVERY iteration\", followed by \"The workflow YAML's per-iteration executor-dispatch steps are ALREADY SATISFIED by this process: treat them as done and run the iteration inline\" and an explicit prohibition on nested dispatch. The adjacent comment gives the causal reason: a leaf that reads the YAML literally \"spawns a nested CLI from inside its own sandbox, where nested dispatch is denied — the lineage then burns every iteration on dispatch failures and produces zero findings.\" Meanwhile the YAML's operating principle still reads \"Fresh context per iteration + externalized state = no context degradation\", and the mode skill calls fresh context per dispatch its \"Core Innovation\". Neither document names the CLI-lineage exception. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1568]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md:1-30",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:37-47, 116-266",
+        ".skilled/commands/deep/research.md:11-22, 27-45, 56-80, 103, 105-128, 169-175",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:25-37, 179-235, 240-250, 284, 302, 387, 444, 456, 536-586, 591-600, 1163, 2186-2210, 2315-2343, 2439-2470",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 95-109, 343-366",
+        ".skilled/skills/system-deep-loop/SKILL.md:36, 63, 91-93",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:3, 13, 150-154, 163-168, 212, 225-229, 266",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:406-414, 620-646, 1325-1329, 1540-1725, 3456-3495, 4193-4218, 4244-4275",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:275-303, 351-372, 393-445, 476-531",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1501-1545",
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:300-345, 381-424",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:79-99",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs (caller of fanout-run.cjs; located by rg)",
+        "AGENTS.md:20-28, 86-89",
+        ".skilled/repo-rules/delegation-and-orchestration.md:126-150, 207-222"
+      ]
+    },
+    {
+      "id": "finding-1-7-no-script-anywhere-asserts-that-a-run-completed-the-yaml-s-completion-marker-is-",
+      "text": "**No script anywhere asserts that a run completed.** The YAML's completion marker is a one-field edit — `step_update_config_status` sets `status: \"complete\"`. Across the runtime's scripts the only reader of that field is `readStoredLineageSessionId`, which uses `config.status === 'complete'` solely to decide whether to reuse a session id. The incident's third run stayed `initialized` and nothing objected. This is the cheapest possible completion check: the marker is already written by the workflow and already meaningful to the code. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:2340]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md:1-30",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:37-47, 116-266",
+        ".skilled/commands/deep/research.md:11-22, 27-45, 56-80, 103, 105-128, 169-175",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:25-37, 179-235, 240-250, 284, 302, 387, 444, 456, 536-586, 591-600, 1163, 2186-2210, 2315-2343, 2439-2470",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 95-109, 343-366",
+        ".skilled/skills/system-deep-loop/SKILL.md:36, 63, 91-93",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:3, 13, 150-154, 163-168, 212, 225-229, 266",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:406-414, 620-646, 1325-1329, 1540-1725, 3456-3495, 4193-4218, 4244-4275",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:275-303, 351-372, 393-445, 476-531",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1501-1545",
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:300-345, 381-424",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:79-99",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs (caller of fanout-run.cjs; located by rg)",
+        "AGENTS.md:20-28, 86-89",
+        ".skilled/repo-rules/delegation-and-orchestration.md:126-150, 207-222"
+      ]
+    },
+    {
+      "id": "finding-1-4-nothing-records-or-reports-that-a-lineage-s-iterations-shared-one-context-the-on",
+      "text": "**Nothing records or reports that a lineage's iterations shared one context.** The only artefacts that differ are timestamps and durations: the incident's ten-iteration run finished in 577 s with iterations 7, 9 and 10 sharing a modification second. The repo already computes exactly that signal — `checkLineageTimestampWindow` compares every state record's `timestamp` against the lineage's dispatch window with a tolerance, `collectTimestampAnomalies` gathers the results, and a `timestamp_anomaly` row is written to the status ledger and folded into `orchestration-summary.json`. It is explicitly non-fatal: \"Timestamp telemetry is advisory and cannot affect lineage fulfillment\", and the exit code is computed from `fulfilled`/`rejected` only. A reported warning existed; nothing surfaced it to the operator. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:79]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md:1-30",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:37-47, 116-266",
+        ".skilled/commands/deep/research.md:11-22, 27-45, 56-80, 103, 105-128, 169-175",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:25-37, 179-235, 240-250, 284, 302, 387, 444, 456, 536-586, 591-600, 1163, 2186-2210, 2315-2343, 2439-2470",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 95-109, 343-366",
+        ".skilled/skills/system-deep-loop/SKILL.md:36, 63, 91-93",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:3, 13, 150-154, 163-168, 212, 225-229, 266",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:406-414, 620-646, 1325-1329, 1540-1725, 3456-3495, 4193-4218, 4244-4275",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:275-303, 351-372, 393-445, 476-531",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1501-1545",
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:300-345, 381-424",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:79-99",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs (caller of fanout-run.cjs; located by rg)",
+        "AGENTS.md:20-28, 86-89",
+        ".skilled/repo-rules/delegation-and-orchestration.md:126-150, 207-222"
+      ]
+    },
+    {
+      "id": "finding-1-8-one-file-s-report-is-the-leverage-point-for-all-three-modes-fanout-run-cjs-is-th",
+      "text": "**One file's report is the leverage point for all three modes.** `fanout-run.cjs` is the shared lineage executor: `deep-ai-council/scripts/orchestrate-session.cjs` calls it, `deep-review` reaches it through the same `--loop-type review` surface, and the prompt/skill paths are already parameterised by loop type. A reporting change inside `fanout-run.cjs` lands on research, review and council simultaneously; a per-mode compliance check would have to be built three times. [INFERENCE: based on the loop-type parameterisation at fanout-run.cjs:1540 and the council caller found by rg over .skilled]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md:1-30",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:37-47, 116-266",
+        ".skilled/commands/deep/research.md:11-22, 27-45, 56-80, 103, 105-128, 169-175",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:25-37, 179-235, 240-250, 284, 302, 387, 444, 456, 536-586, 591-600, 1163, 2186-2210, 2315-2343, 2439-2470",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 95-109, 343-366",
+        ".skilled/skills/system-deep-loop/SKILL.md:36, 63, 91-93",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:3, 13, 150-154, 163-168, 212, 225-229, 266",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:406-414, 620-646, 1325-1329, 1540-1725, 3456-3495, 4193-4218, 4244-4275",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:275-303, 351-372, 393-445, 476-531",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1501-1545",
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:300-345, 381-424",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:79-99",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs (caller of fanout-run.cjs; located by rg)",
+        "AGENTS.md:20-28, 86-89",
+        ".skilled/repo-rules/delegation-and-orchestration.md:126-150, 207-222"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-fan-out-path-does-not-merely-skip-phase-init-it-is-defined-as-not-containing",
+      "text": "**The fan-out path does not merely skip `phase_init`; it is defined as not containing it.** The YAML says: \"After all lineages complete, jump directly to phase_synthesis — skip phase_init and phase_main_loop entirely (those are the single-executor path).\" So the packet-level lock, session classification, spec check, config creation, state-log creation, strategy and registry steps are absent from fan-out by design, for *every* lineage count, not only for the incident's single lineage. The child prompt then re-asks for those phases in prose: \"Run phase_init, phase_main_loop (…), and phase_synthesis.\" Nothing outside the child's own compliance notices whether it did. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:207]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md:1-30",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:37-47, 116-266",
+        ".skilled/commands/deep/research.md:11-22, 27-45, 56-80, 103, 105-128, 169-175",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:25-37, 179-235, 240-250, 284, 302, 387, 444, 456, 536-586, 591-600, 1163, 2186-2210, 2315-2343, 2439-2470",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 95-109, 343-366",
+        ".skilled/skills/system-deep-loop/SKILL.md:36, 63, 91-93",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:3, 13, 150-154, 163-168, 212, 225-229, 266",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:406-414, 620-646, 1325-1329, 1540-1725, 3456-3495, 4193-4218, 4244-4275",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:275-303, 351-372, 393-445, 476-531",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1501-1545",
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:300-345, 381-424",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:79-99",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs (caller of fanout-run.cjs; located by rg)",
+        "AGENTS.md:20-28, 86-89",
+        ".skilled/repo-rules/delegation-and-orchestration.md:126-150, 207-222"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-fan-out-policy-is-prose-keyed-on-flag-shape-and-the-script-it-points-at-neve",
+      "text": "**The fan-out policy is prose keyed on flag shape, and the script it points at never re-checks it.** The command doc states the rule — \"zero or one `--executor` and no `--executors` runs the single-executor path; two or more `--executor` flags, an `--executors` value, or any `--count` above 1 switches to fan-out\" — and the presentation asset repeats it as a binding default. `fanout-run.cjs` accepts `--fanout-config-json` and spawns exactly the lineages it is handed, with no comparison against that policy and no minimum lineage count. A one-entry JSON therefore reaches the fan-out path while the caller believes it selected the runner for the single-executor path. [SOURCE: .skilled/commands/deep/research.md:125]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md:1-30",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:37-47, 116-266",
+        ".skilled/commands/deep/research.md:11-22, 27-45, 56-80, 103, 105-128, 169-175",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:25-37, 179-235, 240-250, 284, 302, 387, 444, 456, 536-586, 591-600, 1163, 2186-2210, 2315-2343, 2439-2470",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 95-109, 343-366",
+        ".skilled/skills/system-deep-loop/SKILL.md:36, 63, 91-93",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md:3, 13, 150-154, 163-168, 212, 225-229, 266",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:406-414, 620-646, 1325-1329, 1540-1725, 3456-3495, 4193-4218, 4244-4275",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:275-303, 351-372, 393-445, 476-531",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1501-1545",
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:300-345, 381-424",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:79-99",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs (caller of fanout-run.cjs; located by rg)",
+        "AGENTS.md:20-28, 86-89",
+        ".skilled/repo-rules/delegation-and-orchestration.md:126-150, 207-222"
+      ]
+    },
+    {
+      "id": "finding-2-8-a-gateway-hosted-gate-is-the-highest-blast-radius-candidate-and-cannot-stop-a-ru",
+      "text": "**A gateway-hosted gate is the highest-blast-radius candidate and cannot stop a run even when it fires.** The gateway already refuses records and records the refusal in `gateway-refusals.jsonl`, deliberately *before* touching the ledger, and the refusal path is best-effort (\"must not change the CLI result\"). Every lineage and every mode calls it, so a new precondition there (for example \"an iteration record requires a live lock in the run directory\") would land on all three loop types, on crash-resume where the original lock is gone, and would surface as a refusal row the surrounding run is designed to ignore. It changes the record stream, not the route. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:198] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:494]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:75, 132, 195, 225, 243, 267",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:217-219, 225, 356-357, 2186-2196, 2340-2343",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:210",
+        ".skilled/commands/deep/research.md:125",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:125-129, 3396-3406, 3456, 3476-3493, 4245-4290, 472-473, 630-646",
+        ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:30-39",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:198, 417-424, 494",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:36",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:533, 642",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:53-58",
+        ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+        "AGENTS.md (runtime agent directories, PLAN-WORKFLOW LOCK)"
+      ]
+    },
+    {
+      "id": "finding-2-4-a-guard-inside-fanout-run-cjs-is-inert-in-a-dispatched-child-which-is-the-cheape",
+      "text": "**A guard inside `fanout-run.cjs` is inert in a dispatched child, which is the cheapest possible child behaviour.** `fanout-run.cjs` is the parent-side lineage runner: the child prompt it writes forbids nested dispatch and instructs the child to run iterations inline, and the leaf contract bars spawning at all. Nothing in a lineage calls `fanout-run.cjs`, so the guard is evaluated exactly once, in the process the operator or workflow started, with no sandbox interaction and no per-runtime capability. Contrast a gate hosted in the append gateway, which every lineage *does* call. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1583] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3456]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:75, 132, 195, 225, 243, 267",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:217-219, 225, 356-357, 2186-2196, 2340-2343",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:210",
+        ".skilled/commands/deep/research.md:125",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:125-129, 3396-3406, 3456, 3476-3493, 4245-4290, 472-473, 630-646",
+        ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:30-39",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:198, 417-424, 494",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:36",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:533, 642",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:53-58",
+        ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+        "AGENTS.md (runtime agent directories, PLAN-WORKFLOW LOCK)"
+      ]
+    },
+    {
+      "id": "finding-2-3-a-hard-refusal-cannot-break-a-legitimate-workflow-path-but-it-does-break-three-t",
+      "text": "**A hard refusal cannot break a legitimate workflow path, but it does break three test fixtures — and that is the whole blast radius.** The only production callers pass a `config.fanout_json` that the command's own policy says must carry two or more lineages: the research auto YAML at 225 and the review confirm YAML at 210; the council reaches the same script. `fanout-salvage.cjs` does not construct executor lists. The one-lineage configs in the repository live in the stress suite (lines 165, 756, 794), where they exist to keep the pool cheap, not because the policy permits them; they would need `count: 2` or an explicit override flag. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:225] [SOURCE: .skilled/commands/deep/assets/deep-review-confirm.yaml:210] [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:75, 132, 195, 225, 243, 267",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:217-219, 225, 356-357, 2186-2196, 2340-2343",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:210",
+        ".skilled/commands/deep/research.md:125",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:125-129, 3396-3406, 3456, 3476-3493, 4245-4290, 472-473, 630-646",
+        ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:30-39",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:198, 417-424, 494",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:36",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:533, 642",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:53-58",
+        ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+        "AGENTS.md (runtime agent directories, PLAN-WORKFLOW LOCK)"
+      ]
+    },
+    {
+      "id": "finding-2-6-a-runner-that-owns-the-single-executor-loop-is-a-new-subsystem-not-a-wrapper-and",
+      "text": "**A runner that owns the single-executor loop is a new subsystem, not a wrapper, and nothing existing can be promoted into it.** No script under `runtime/scripts/` extracts the auto YAML's step blocks; the closest neighbours render *command contracts* from a manifest of legacy bodies (`MANIFEST_PATH`, the `COMMANDS` map), which is a documentation pipeline, not a step executor. The driver the session had to write is 267 lines that locate and bind YAML command blocks and then call `loop-lock.cjs`, `append-mode-event.cjs`, `convergence.cjs`, `verify-iteration.cjs` and `reduce-state.cjs` in order — a second template engine over the same 2,539-line source of truth. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:30] [SOURCE: specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:75]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:75, 132, 195, 225, 243, 267",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:217-219, 225, 356-357, 2186-2196, 2340-2343",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:210",
+        ".skilled/commands/deep/research.md:125",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:125-129, 3396-3406, 3456, 3476-3493, 4245-4290, 472-473, 630-646",
+        ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:30-39",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:198, 417-424, 494",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:36",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:533, 642",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:53-58",
+        ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+        "AGENTS.md (runtime agent directories, PLAN-WORKFLOW LOCK)"
+      ]
+    },
+    {
+      "id": "finding-2-2-doing-it-in-the-schema-instead-of-at-the-boundary-is-the-expensive-variant-and-i",
+      "text": "**Doing it in the schema instead of at the boundary is the expensive variant, and it is the wrong layer.** `fanoutConfigSchema`/`parseFanoutConfig` is a shared contract, not a CLI policy: the unit suite exercises single-entry `executors` arrays to test containment defaults, churn thresholds, lag ceilings and `count` expansion (a documented behaviour is \"count=1 keeps base label\"), so a `.min(2)` there would invalidate well over a dozen existing assertions in one file alone. The policy the topic wants enforced (\"two or more `--executor`, an `--executors` value, or `--count > 1`\") is a *caller* rule stated in the command doc, and the caller rule belongs where the caller's arguments are read. [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:533] [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:642] [SOURCE: .skilled/commands/deep/research.md:125]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:75, 132, 195, 225, 243, 267",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:217-219, 225, 356-357, 2186-2196, 2340-2343",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:210",
+        ".skilled/commands/deep/research.md:125",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:125-129, 3396-3406, 3456, 3476-3493, 4245-4290, 472-473, 630-646",
+        ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:30-39",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:198, 417-424, 494",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:36",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:533, 642",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:53-58",
+        ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+        "AGENTS.md (runtime agent directories, PLAN-WORKFLOW LOCK)"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-carried-forward-status-question-is-answered-a-correctly-walked-fan-out-run-d",
+      "text": "**The carried-forward status question is answered: a correctly walked fan-out run does write packet-level `config.status: complete`, so the field is a valid discriminator — but a lagging one.** `step_update_config_status` sits inside `phase_synthesis` with no `skip_when`, and fan-out is defined as jumping *into* `phase_synthesis`, so the parent walker executes it on both routes; the packet-level config it edits is the same file `fanout-run.cjs` reads for session reuse. The incident's run left that file at `initialized`, which is exactly what a missing synthesis looks like. What the field cannot do is prevent anything: it is written at the end, by the route being questioned, and a legitimate early stop (stopped, failed, abandoned) also leaves `initialized`, so a status gate that fires on non-`complete` would alarm on honest aborts. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:2340] [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:217] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:641]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:75, 132, 195, 225, 243, 267",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:217-219, 225, 356-357, 2186-2196, 2340-2343",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:210",
+        ".skilled/commands/deep/research.md:125",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:125-129, 3396-3406, 3456, 3476-3493, 4245-4290, 472-473, 630-646",
+        ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:30-39",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:198, 417-424, 494",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:36",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:533, 642",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:53-58",
+        ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+        "AGENTS.md (runtime agent directories, PLAN-WORKFLOW LOCK)"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-cheapest-refusal-has-an-existing-precedent-in-the-same-file-in-the-same-shap",
+      "text": "**The cheapest refusal has an existing precedent in the same file, in the same shape, at the same place.** `fanout-run.cjs` expands the lineage list at 3396 and then, immediately, enforces one policy in code before any spawn: a `stopPolicy=max-iterations` run whose lineage lacks a positive iteration cap is refused with `throw inputError(...)` naming the offending labels. `inputError` sets `code = 'INPUT_VALIDATION'`; the top-level catch emits `{status:'error', code:'INPUT_VALIDATION', error:<message>}` and exits non-zero. A one-lineage refusal is that block with a different predicate, so it costs one guard and no new mechanism. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3396] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:125] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4281]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:75, 132, 195, 225, 243, 267",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:217-219, 225, 356-357, 2186-2196, 2340-2343",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:210",
+        ".skilled/commands/deep/research.md:125",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:125-129, 3396-3406, 3456, 3476-3493, 4245-4290, 472-473, 630-646",
+        ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:30-39",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:198, 417-424, 494",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:36",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:533, 642",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:53-58",
+        ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+        "AGENTS.md (runtime agent directories, PLAN-WORKFLOW LOCK)"
+      ]
+    },
+    {
+      "id": "finding-2-9-the-documentation-candidate-is-not-free-it-is-the-same-class-of-control-that-fai",
+      "text": "**The documentation candidate is not free — it is the same class of control that failed, and its cheap version is one sentence in two existing places.** The command doc's fan-out policy paragraph is where the incident's session read the rule and then violated it with a one-entry JSON; adding what fan-out does *not* do (`phase_init`, `phase_save`) beside that paragraph is a single edit with zero runtime cost on all seven runtimes, but it is prose and the incident is evidence prose did not hold. Its value is that it is the text the next session reads *at the decision point*, which no other candidate reaches. [SOURCE: .skilled/commands/deep/research.md:125]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:75, 132, 195, 225, 243, 267",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:217-219, 225, 356-357, 2186-2196, 2340-2343",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:210",
+        ".skilled/commands/deep/research.md:125",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:125-129, 3396-3406, 3456, 3476-3493, 4245-4290, 472-473, 630-646",
+        ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:30-39",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:198, 417-424, 494",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:36",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:533, 642",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:53-58",
+        ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+        "AGENTS.md (runtime agent directories, PLAN-WORKFLOW LOCK)"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-hook-option-costs-six-separate-runtime-mechanisms-and-still-delivers-prose-t",
+      "text": "**The hook option costs six separate runtime mechanisms and still delivers prose.** The advisor hook layer — the only prompt-time hook layer in the repo — is implemented per runtime: thin shims plus compiled handlers for Claude, Codex, Cursor and Devin, an in-process TypeScript extension for Pi, and a plugin with a different event surface for OpenCode. All six are prompt-time: they inject context into the model's view. A workflow-fidelity hook would therefore be six adapters (on seven runtime directories), each re-delivering the same instruction text, i.e. the prose control that already failed, at the highest maintenance cost of any candidate. The capability matrix that gates deep-research specifically records `hookBootstrap: true` for one of its two tracked runtimes. [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:53] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:57] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:58] [SOURCE: .skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/single-executor-driver.py:75, 132, 195, 225, 243, 267",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:217-219, 225, 356-357, 2186-2196, 2340-2343",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:210",
+        ".skilled/commands/deep/research.md:125",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:125-129, 3396-3406, 3456, 3476-3493, 4245-4290, 472-473, 630-646",
+        ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:30-39",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:198, 417-424, 494",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs:36",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:533, 642",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:53-58",
+        ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+        "AGENTS.md (runtime agent directories, PLAN-WORKFLOW LOCK)"
+      ]
+    },
+    {
+      "id": "finding-3-7-deep-review-inherits-both-defects-and-needs-one-of-the-two-edits-not-two-review-",
+      "text": "**`deep-review` inherits both defects and needs one of the two edits, not two.** Review states the identical policy paragraph; its fan-out step also runs before `phase_init` and is skipped on an empty executor list; it calls the same script with the same internal flag. So change 1 covers review with no review-specific code, and only the doc sentence needs a second copy. [SOURCE: .skilled/commands/deep/review.md:97]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        ".skilled/commands/deep/research.md:111-128",
+        ".skilled/commands/deep/review.md:95-100",
+        ".skilled/commands/deep/ai-council.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:179-235, 1278, 1354, 1455, 1557, 1668, 1769, 1834, 2340",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:185-216",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:234",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-36, 121-129, 3396-3418, 4244-4253, 4272-4273",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:1-110",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:416-417, 482, 516, 529-535",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:17, 262-300",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/research/dispatch-receipts/ (i1, i2, i3-intent present; written by the single-executor path)"
+      ]
+    },
+    {
+      "id": "finding-3-5-corrective-the-timestamp-anomaly-cannot-see-in-process-iteration-so-iteration-2-",
+      "text": "**Corrective: the timestamp anomaly cannot see in-process iteration, so iteration 2's recommended change (3) is unsound.** The check classifies each state record's timestamp as `before_window`, `after_window` or `unparseable` against the lineage's own dispatch window. A record written *inside* that window is normal by definition — and every record an in-process lineage writes is inside it. The incident's symptoms (iterations 7, 9 and 10 sharing a modification second; iteration 3 modified after iteration 10) are all intra-window facts, so the field would have been absent or quiet. It is also folded into the summary unconditionally when non-empty, which means the wiring iteration 2 wanted already exists; there is nothing to escalate because there is nothing to escalate. Withdrawn: \"escalate the already-computed timestamp anomaly\". [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:5]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        ".skilled/commands/deep/research.md:111-128",
+        ".skilled/commands/deep/review.md:95-100",
+        ".skilled/commands/deep/ai-council.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:179-235, 1278, 1354, 1455, 1557, 1668, 1769, 1834, 2340",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:185-216",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:234",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-36, 121-129, 3396-3418, 4244-4253, 4272-4273",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:1-110",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:416-417, 482, 516, 529-535",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:17, 262-300",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/research/dispatch-receipts/ (i1, i2, i3-intent present; written by the single-executor path)"
+      ]
+    },
+    {
+      "id": "finding-3-9-no-existing-check-could-have-fired-before-the-run-and-only-one-can-fire-after-it",
+      "text": "**No existing check could have fired before the run, and only one can fire after it — the answer to the last open key question, now tested in the positive direction.** *`verify-iteration.cjs`*: not on the incident's route at all (`fanout-run.cjs` runs its own per-lineage artifact gates), and on the driver route it passed ten times because it is per-iteration by construction — it never examines packet-level phases. Its route proof is advisory by its own comment: when the projection carries no leaf dispatch fields the warning fires and the iteration still passes, deliberately, \"so a real bypass stays\" visible rather than fatal — which is exactly what ten clean passes over a zero-packet-workflow run look like. *Dispatch receipts*: written only by YAML dispatch steps, all of which bind `receiptDir` to the packet's `dispatch-receipts/`; the fan-out route never executes those steps either, so an absent receipt cannot separate a correct fan-out from the incident. *Lock*: nothing contends with a lock that was never taken; absence is not an observable any current check tests. *`fanout-run.cjs`'s report*: the exit code is computed from `fulfilled`/`rejected` alone, and the timestamp field it would have carried cannot fire (Finding 5). *`validate.sh`*: packet documents were never touched, which is precisely the state it accepts. The surviving discriminator is the packet config's `status` field — written by `step_update_config_status` in `phase_synthesis`, left at `initialized` by the incident, meaningful to a human and to no script. That is a report, not a gate, and it arrives after the damage. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4272]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        ".skilled/commands/deep/research.md:111-128",
+        ".skilled/commands/deep/review.md:95-100",
+        ".skilled/commands/deep/ai-council.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:179-235, 1278, 1354, 1455, 1557, 1668, 1769, 1834, 2340",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:185-216",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:234",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-36, 121-129, 3396-3418, 4244-4253, 4272-4273",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:1-110",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:416-417, 482, 516, 529-535",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:17, 262-300",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/research/dispatch-receipts/ (i1, i2, i3-intent present; written by the single-executor path)"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-conditional-that-makes-the-guard-cheap-is-already-written-in-the-file-and-it",
+      "text": "**The conditional that makes the guard cheap is already written in the file, and it excludes the council by construction.** The existing policy guard's own predicate is `(loopType === 'research' || loopType === 'review') && ...`. Reusing it means the refusal lands on exactly the two loop types that reach the fan-out path through a workflow, and never on `council`. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3397]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        ".skilled/commands/deep/research.md:111-128",
+        ".skilled/commands/deep/review.md:95-100",
+        ".skilled/commands/deep/ai-council.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:179-235, 1278, 1354, 1455, 1557, 1668, 1769, 1834, 2340",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:185-216",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:234",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-36, 121-129, 3396-3418, 4244-4253, 4272-4273",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:1-110",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:416-417, 482, 516, 529-535",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:17, 262-300",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/research/dispatch-receipts/ (i1, i2, i3-intent present; written by the single-executor path)"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-council-needs-no-change-at-all-it-never-enters-fanout-run-cjs-s-lineage-runn",
+      "text": "**The council needs no change at all: it never enters `fanout-run.cjs`'s lineage runner.** `orchestrate-session.cjs` imports exactly one symbol from the script — `buildLineageCommand`, a spawn-argument builder — and spawns each deliberation seat itself in `runSeatSubprocess`. The council's command doc contains no fan-out, fanout or single-executor language, so there is no policy surface to bypass and no one-lineage fan-out shape to refuse. Combined with Finding 4, the guard is inert for the council on both counts. [SOURCE: .skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:17]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        ".skilled/commands/deep/research.md:111-128",
+        ".skilled/commands/deep/review.md:95-100",
+        ".skilled/commands/deep/ai-council.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:179-235, 1278, 1354, 1455, 1557, 1668, 1769, 1834, 2340",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:185-216",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:234",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-36, 121-129, 3396-3418, 4244-4253, 4272-4273",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:1-110",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:416-417, 482, 516, 529-535",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:17, 262-300",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/research/dispatch-receipts/ (i1, i2, i3-intent present; written by the single-executor path)"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-guard-has-three-same-family-precedents-inside-one-screen-of-code-and-the-ins",
+      "text": "**The guard has three same-family precedents inside one screen of code, and the insertion point is a single line.** `fanout-run.cjs` expands the lineages at 3396; at 3397 it already refuses a policy-violating run in code (`stopPolicy=max-iterations` on an uncapped lineage) using `throw inputError(...)`; at 3408 it refuses a run whose capabilities do not preflight; at 121 it refuses unknown flags. `inputError` sets `code = 'INPUT_VALIDATION'` and the top-level catch emits `{status:'error', code:'INPUT_VALIDATION', error:<message>}`. A one-lineage refusal is the same block with a different predicate, inserted after 3396, before anything spawns. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3396]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        ".skilled/commands/deep/research.md:111-128",
+        ".skilled/commands/deep/review.md:95-100",
+        ".skilled/commands/deep/ai-council.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:179-235, 1278, 1354, 1455, 1557, 1668, 1769, 1834, 2340",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:185-216",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:234",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-36, 121-129, 3396-3418, 4244-4253, 4272-4273",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:1-110",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:416-417, 482, 516, 529-535",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:17, 262-300",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/research/dispatch-receipts/ (i1, i2, i3-intent present; written by the single-executor path)"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-policy-is-written-about-one-flag-surface-and-the-script-is-entered-through-a",
+      "text": "**The policy is written about one flag surface, and the script is entered through another.** The command doc's flag table lists `--executor`, `--executors` and `--concurrency`, and the policy sentence is defined over those. The flag that actually carries the lineage matrix into `fanout-run.cjs` is `--fanout-config-json`, which appears in **no** command doc and in **no** presentation policy table — only inside the four workflow YAMLs and one runbook. The incident's session did not have to contradict the policy to bypass it; it only had to reach the script by its real entry flag. Any guard keyed to the documented flags leaves that route open, which is why the refusal has to sit on the expanded lineage list rather than on flag parsing. [SOURCE: .skilled/commands/deep/research.md:121]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        ".skilled/commands/deep/research.md:111-128",
+        ".skilled/commands/deep/review.md:95-100",
+        ".skilled/commands/deep/ai-council.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:179-235, 1278, 1354, 1455, 1557, 1668, 1769, 1834, 2340",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:185-216",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:234",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-36, 121-129, 3396-3418, 4244-4253, 4272-4273",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:1-110",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:416-417, 482, 516, 529-535",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:17, 262-300",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/research/dispatch-receipts/ (i1, i2, i3-intent present; written by the single-executor path)"
+      ]
+    },
+    {
+      "id": "finding-3-8-the-smallest-set-is-three-edits-and-it-is-honest-about-what-it-does-not-fix-1-fa",
+      "text": "**The smallest set is three edits, and it is honest about what it does not fix.** (1) `fanout-run.cjs`: a one-lineage refusal after `expandLineages`, modelled on the `stopPolicy` guard, predicate `(loopType === 'research' || loopType === 'review') && allLineages.length < 2`, message naming both legal routes (\"run the command's own workflow for a single executor; fan-out requires two or more labels\"), with `--allow-single-lineage` added to the `FANOUT_FLAGS` allowlist so the three stress fixtures and any salvage call keep working. Cost: roughly ten lines plus one flag name. (2) `research.md:125` and `review.md:97`: one sentence appended to the policy paragraph stating that fan-out requires two or more labels and contains no packet-level `phase_init`/`phase_save`. (3) Optionally mirror that sentence in the two presentation assets, which is where setup rendering reads the policy. **What it does not fix, stated plainly:** a *legitimate* two- or three-lineage fan-out run still runs no packet lock, no session classification and no spec check, because fan-out is defined as skipping `phase_init`. The refusal makes the incident's route illegal; it does not give fan-out a packet-level init. That is a separate, larger question and should be its own packet. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:217]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        ".skilled/commands/deep/research.md:111-128",
+        ".skilled/commands/deep/review.md:95-100",
+        ".skilled/commands/deep/ai-council.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:179-235, 1278, 1354, 1455, 1557, 1668, 1769, 1834, 2340",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:185-216",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:234",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-36, 121-129, 3396-3418, 4244-4253, 4272-4273",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:1-110",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:416-417, 482, 516, 529-535",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:17, 262-300",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/research/dispatch-receipts/ (i1, i2, i3-intent present; written by the single-executor path)"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-workflow-already-draws-this-boundary-twice-and-both-gates-open-for-a-one-ent",
+      "text": "**The workflow already draws this boundary, twice, and both gates open for a one-entry array.** `step_fanout_spawn` is skipped on `config.fanout is absent`; its CLI sub-step is skipped on `no entries in config.fanout.executors`. A config carrying exactly one entry is present and has entries, so both conditions pass and the script is called — the same shape the incident produced. The YAML's belief is \"fan-out exists or it does not\"; the policy's rule is \"fan-out means two or more labels\". The gap between those two sentences is the incident. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:207]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch/incident-chat-started-loop.md",
+        ".skilled/commands/deep/research.md:111-128",
+        ".skilled/commands/deep/review.md:95-100",
+        ".skilled/commands/deep/ai-council.md",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:179-235, 1278, 1354, 1455, 1557, 1668, 1769, 1834, 2340",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:185-216",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:234",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-36, 121-129, 3396-3418, 4244-4253, 4272-4273",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:1-110",
+        ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:416-417, 482, 516, 529-535",
+        ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:17, 262-300",
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/research/dispatch-receipts/ (i1, i2, i3-intent present; written by the single-executor path)"
+      ]
+    },
+    {
+      "id": "finding-4-5-allow-single-lineage-is-mandatory-not-optional-at-least-three-stress-cases-invok",
+      "text": "**`--allow-single-lineage` is mandatory, not optional: at least three stress cases invoke the CLI with exactly one executor.** `fanout.vitest.ts` builds its configs as `executors: [{...}]` — one entry at `165`, one at `756`, one at `794` — and pins one shim capture per run, so a second entry would break the assertion, not just the setup. The unit suites do not exercise `fanout-config-json` at all (`rg` over `tests/unit` returns no executor matrices passed to the CLI), so the fixture cost is confined to the stress suite. Without the escape flag, change 1 makes three existing green tests red. [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:20-50, 110-129, 475-484, 3370-3430",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:160-180, 752-806",
+        ".skilled/commands/deep/research.md:108-129",
+        ".skilled/commands/deep/review.md:93-99",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 103-109",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:85-88",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:205-235, 310-321, 1049-1060, 1204-1222, 2325-2345",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:226, 420, 1105-1111, 2451",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:208, 408, 2011"
+      ]
+    },
+    {
+      "id": "finding-4-7-change-2-must-amend-the-trigger-sentence-itself-or-code-and-doc-contradict-each-",
+      "text": "**Change 2 must amend the trigger sentence itself, or code and doc contradict each other.** Both command docs currently say fan-out begins on \"an `--executors` value\" — a one-entry `--executors` matrix included — and \"one independent lineage per label\". With the guard in place a one-entry `--executors` value is refused, so appending a clarifying sentence to the same paragraph (iteration 3's plan) leaves the preceding line promising the exact call the code now rejects. The edit has to restate the trigger as *two or more expanded lineages*: two or more `--executor` groups, a `--count` above 1, or an `--executors` matrix that expands to two or more. Same wording in `research.md:125-128` and `review.md:97-98`, and the two presentation policy lines that repeat the trigger (`deep-research-presentation.txt:71`, `deep-review-presentation.txt:88`). [SOURCE: .skilled/commands/deep/research.md:125]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:20-50, 110-129, 475-484, 3370-3430",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:160-180, 752-806",
+        ".skilled/commands/deep/research.md:108-129",
+        ".skilled/commands/deep/review.md:93-99",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 103-109",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:85-88",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:205-235, 310-321, 1049-1060, 1204-1222, 2325-2345",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:226, 420, 1105-1111, 2451",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:208, 408, 2011"
+      ]
+    },
+    {
+      "id": "finding-4-3-iteration-3-s-third-false-positive-candidate-is-empty-nothing-re-enters-the-guar",
+      "text": "**Iteration 3's third false-positive candidate is empty: nothing re-enters the guard from a persisted matrix, because nothing reads a persisted matrix.** Resume is decided inside `phase_init` (`on_resume` branch, state-artifact reconciliation), and the fan-out matrix is a render-time binding computed from the invocation flags — no runtime script reads a stored `fanout.executors`. A lineage child is marked by `config.fanout_lineage_artifact_dir` plus a `fanout` block holding `{label, concurrency, siblingLineage}` and **no** `executors` key, which is also why the YAML's `no entries in config.fanout.executors` skip keeps working inside a lineage. The escape flag is therefore needed for fixtures and for declared-flagless re-runs, not for resume. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:310]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:20-50, 110-129, 475-484, 3370-3430",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:160-180, 752-806",
+        ".skilled/commands/deep/research.md:108-129",
+        ".skilled/commands/deep/review.md:93-99",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 103-109",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:85-88",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:205-235, 310-321, 1049-1060, 1204-1222, 2325-2345",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:226, 420, 1105-1111, 2451",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:208, 408, 2011"
+      ]
+    },
+    {
+      "id": "finding-4-8-the-carried-forward-status-question-is-answered-and-it-clears-the-status-field-o",
+      "text": "**The carried-forward status question is answered, and it clears the status field of the false-positive charge: the correct fan-out path does write `status: complete`, unconditionally.** `step_update_config_status` has no `skip_when` and no fan-out branch, it sits in `phase_synthesis`, and every fan-out continuation jumps to `phase_synthesis` (`research-auto.yaml:1053,1056,1059`; `review-auto.yaml:420,1105-1111`; `review-confirm.yaml:408`). The writer exists in all three generated YAMLs (`research-auto.yaml:2340`, `review-auto.yaml:2451`, `review-confirm.yaml:2011`). So a packet left at `initialized` after a run is a *true* discriminator, and a check on it cannot false-positive a correct fan-out run — it still fires only after the damage, which is why it remains a report rather than a gate. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:2340]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:20-50, 110-129, 475-484, 3370-3430",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:160-180, 752-806",
+        ".skilled/commands/deep/research.md:108-129",
+        ".skilled/commands/deep/review.md:93-99",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 103-109",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:85-88",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:205-235, 310-321, 1049-1060, 1204-1222, 2325-2345",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:226, 420, 1105-1111, 2451",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:208, 408, 2011"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-loop-type-conjunction-in-the-predicate-is-an-optimization-not-load-bearing-t",
+      "text": "**The loop-type conjunction in the predicate is an optimization, not load-bearing: the council is refused by a code check two lines into the run.** `ACTIVE_FANOUT_LOOP_TYPES` is `{research, review}` and `assertActiveFanoutLoopType` throws `inputError` for anything else with the deprecation message, so no `council` lineage can reach the expansion at all. Iteration 3 proved this by import graph; this is a second, independent proof in code. Practical consequence: the reviewer may drop `(loopType === 'research' || loopType === 'review')` from the new condition without changing behaviour — keeping it costs nothing and documents intent, so keep it, but nobody should argue the change is council-unsafe. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:475]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:20-50, 110-129, 475-484, 3370-3430",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:160-180, 752-806",
+        ".skilled/commands/deep/research.md:108-129",
+        ".skilled/commands/deep/review.md:93-99",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 103-109",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:85-88",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:205-235, 310-321, 1049-1060, 1204-1222, 2325-2345",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:226, 420, 1105-1111, 2451",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:208, 408, 2011"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-one-false-positive-is-real-it-is-already-in-tree-and-it-does-not-come-from-r",
+      "text": "**The one false positive is real, it is already in-tree, and it does not come from resume — it comes from a packet whose stored matrix has one executor.** `specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json` persists `fanout.executors` of length one (`sol`, `iterations: 15`, `concurrency: 1`). Re-invoking that packet's matrix after the guard lands is refused unless `--allow-single-lineage` is passed. That is a *declared behaviour change*, not a defect: the run is the incident shape, so refusing it is the intent, but the change note must say that this packet needs the flag to continue. Contrast with a genuine two-lineage packet (`006-fanout-deep-review/review/deep-review-config.json`, `mimo` + `deepseek`), whose resume is unaffected. [SOURCE: specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:20-50, 110-129, 475-484, 3370-3430",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:160-180, 752-806",
+        ".skilled/commands/deep/research.md:108-129",
+        ".skilled/commands/deep/review.md:93-99",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 103-109",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:85-88",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:205-235, 310-321, 1049-1060, 1204-1222, 2325-2345",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:226, 420, 1105-1111, 2451",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:208, 408, 2011"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-predicate-is-right-as-written-but-only-because-count-expansion-runs-first-a-",
+      "text": "**The predicate is right as written, but only because `count` expansion runs first — a \"two or more labels\" guard written literally over the *base* labels would refuse a documented path.** `expandLineages` keeps a `count: 1` entry as one lineage and expands `count > 1` into `${label}-1 … ${label}-N`, each carrying `count: 1`. So a single `--executor X --count 5` — documented as native fan-out that \"runs N sequential `@deep-research` agent dispatches\" — expands to five lineages and passes `allLineages.length < 2`. Counting *distinct base labels* instead would refuse it. The predicate as proposed (`allLineages.length < 2`, after expansion) is therefore the correct one, and the refusal message must say \"expanded lineages\", not \"labels\", or it will read as forbidding `--count`. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1158]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:20-50, 110-129, 475-484, 3370-3430",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:160-180, 752-806",
+        ".skilled/commands/deep/research.md:108-129",
+        ".skilled/commands/deep/review.md:93-99",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 103-109",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:85-88",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:205-235, 310-321, 1049-1060, 1204-1222, 2325-2345",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:226, 420, 1105-1111, 2451",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:208, 408, 2011"
+      ]
+    },
+    {
+      "id": "finding-4-6-the-repository-already-ships-the-refusal-this-change-adds-one-layer-up-and-its-w",
+      "text": "**The repository already ships the refusal this change adds, one layer up, and its wording is the one to reuse.** The research YAML's non-fan-out dispatch branch refuses `cli-deepseek-harness` with a stderr message — `'cli-deepseek-harness runs only as a fan-out lineage; rerun with --count=2 or a second --executor group, or choose another executor kind'` — followed by `process.exit(2)`, and its note records that it \"fails closed before any dispatch receipt is written\". That is the house style for \"this executor needs a fan-out, pick another route\": name the two legal routes, fail closed before any side effect. `fanout-run.cjs`'s `inputError` path produces the same fail-closed shape (`{status:'error', code:'INPUT_VALIDATION'}`) before the pool spawns, so the new refusal should borrow this sentence rather than invent new wording. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:1212]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/research/deep-research-config.json:5",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/deep-review-config.json:33",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-config.json:36",
+        ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:1148-1167",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:20-50, 110-129, 475-484, 3370-3430",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:160-180, 752-806",
+        ".skilled/commands/deep/research.md:108-129",
+        ".skilled/commands/deep/review.md:93-99",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:68-71, 103-109",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:85-88",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:205-235, 310-321, 1049-1060, 1204-1222, 2325-2345",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml:226, 420, 1105-1111, 2451",
+        ".skilled/commands/deep/assets/deep-review-confirm.yaml:208, 408, 2011"
+      ]
+    },
+    {
+      "id": "finding-5-3-contra-iteration-4-s-fixture-claim-is-wrong-the-unit-suite-does-pass-a-one-entry",
+      "text": "**CONTRA: iteration 4's fixture claim is wrong — the unit suite does pass a one-entry executor matrix to the CLI, and one of those tests currently spawns.** `fanout-run.vitest.ts:2459` builds `executors: [{ label: 'uncapped-research', kind: 'cli-opencode', ... }]` and `:2489` builds `executors: [{ label: 'capped-research', ..., iterations: 1 }]`, both with `--loop-type research --fanout-config-json`. The first is refused by the *existing* stop-policy guard; the **second passes it and reaches a spawn** — `expect(existsSync(cappedMarkerPath)).toBe(true)`. Under change 1 that second test is refused unless it passes `--allow-single-lineage`. So the cost is one failing *passing* test plus three stress fixtures, not three stress fixtures alone. The contradiction is resolved in favour of the executed code path (the test bodies), not in favour of iteration 4's `rg`-shaped prior. [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2459]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-35, 121, 1109-1117, 3396-3405, 3440",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2440-2505",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/commands/deep/research.md:100-135",
+        ".skilled/commands/deep/review.md:97-98",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/repo-rules/delegation-and-orchestration.md:40, 76-78",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:1204-1222 (wording source, carried from iteration 4)"
+      ]
+    },
+    {
+      "id": "finding-5-7-the-consolidated-change-set-is-five-edits-across-four-files-zero-new-files-and-i",
+      "text": "**The consolidated change set is five edits across four files, zero new files, and its own negative test proves the claim the incident needed.** (a) `fanout-run.cjs` — add `'allowSingleLineage'` to `FANOUT_FLAGS`; (b) `fanout-run.cjs` — the 6-line refusal after `:3396`, worded from the shipped `cli-deepseek-harness` sentence and naming \"expanded lineages\", not \"labels\"; (c) `tests/unit/fanout-run.vitest.ts` — add the flag to the capped spawn case at `:2477` and add one negative plus one positive case from the `2446-2476` template; (d) the three stress fixtures at `fanout.vitest.ts:165, 756, 794` — add the flag; (e) four doc lines, one clause each. Nothing here is a new command, agent, hook, schema field or document, which is the topic's stated preference. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-35, 121, 1109-1117, 3396-3405, 3440",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2440-2505",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/commands/deep/research.md:100-135",
+        ".skilled/commands/deep/review.md:97-98",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/repo-rules/delegation-and-orchestration.md:40, 76-78",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:1204-1222 (wording source, carried from iteration 4)"
+      ]
+    },
+    {
+      "id": "finding-5-6-the-doc-edit-is-one-clause-and-the-sentence-it-sits-in-is-the-contradiction-iter",
+      "text": "**The doc edit is one clause, and the sentence it sits in is the contradiction iteration 4 predicted, now line-exact.** `research.md:126` and `review.md:98` both read \"two or more `--executor` flags, an `--executors` value, or any `--count` above 1 switches to fan-out\". With change 1 landed, \"an `--executors` value\" promises the exact call the code refuses. Replacing that clause with \"an `--executors` matrix that expands to two or more lineages\" restores truth in both files and leaves the rest of the paragraph — including \"one independent lineage per label\" — correct, because it now only ever describes a two-or-more expansion. The two presentation assets repeat the trigger (`deep-research-presentation.txt:71`, `deep-review-presentation.txt:88`) and take the same clause. [SOURCE: .skilled/commands/deep/research.md:126]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-35, 121, 1109-1117, 3396-3405, 3440",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2440-2505",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/commands/deep/research.md:100-135",
+        ".skilled/commands/deep/review.md:97-98",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/repo-rules/delegation-and-orchestration.md:40, 76-78",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:1204-1222 (wording source, carried from iteration 4)"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-escape-flag-is-a-second-required-line-not-just-a-flag-at-the-call-site-an-un",
+      "text": "**The escape flag is a *second required line*, not just a flag at the call site: an unregistered flag is itself an `INPUT_VALIDATION` failure.** `parseArgs` camel-cases `--allow-single-lineage` to `args.allowSingleLineage` and then calls `assertKnownFlags(args, FANOUT_FLAGS, inputError)` (`:121`), so a caller who passes the escape without adding it to `FANOUT_FLAGS` (`:30-35`) gets exit 3 for the *unknown flag* instead of the run. Iteration 4 priced the escape but did not name this edit. It also fixes the naming: the file's allowlist entries are camelCase booleans or value options (`noMetadataRefresh`), so the entry is the string `'allowSingleLineage'` and the check is `!args.allowSingleLineage`. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:121]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-35, 121, 1109-1117, 3396-3405, 3440",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2440-2505",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/commands/deep/research.md:100-135",
+        ".skilled/commands/deep/review.md:97-98",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/repo-rules/delegation-and-orchestration.md:40, 76-78",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:1204-1222 (wording source, carried from iteration 4)"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-new-refusal-has-a-line-for-line-template-already-sitting-at-the-exact-anchor",
+      "text": "**The new refusal has a line-for-line template already sitting at the exact anchor, and the anchor is before every side effect.** `const allLineages = expandLineages(fanoutConfig)` is `fanout-run.cjs:3396`; the next statement is the shipped `stopPolicy === 'max-iterations'` guard (`3397-3405`), which uses the same `(loopType === 'research' || loopType === 'review') && <predicate>` shape and the same `throw inputError(...)`. Between `3396` and the first ledger append (`appendFanoutStatusLedger` in the aggregate-budget branch, `~3440`) only `preflightFanoutCapabilities` runs, so a guard inserted at `3397` fails closed before the lineage directory, the status ledger, the summary, or any spawn. That is a *pre-run* refusal, which is stronger than every check iteration 1 mapped: all of those are reached only from inside a YAML step the incident never entered. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3396]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-35, 121, 1109-1117, 3396-3405, 3440",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2440-2505",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/commands/deep/research.md:100-135",
+        ".skilled/commands/deep/review.md:97-98",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/repo-rules/delegation-and-orchestration.md:40, 76-78",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:1204-1222 (wording source, carried from iteration 4)"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-repository-rules-file-does-not-restate-the-numeric-fan-out-trigger-so-it-dro",
+      "text": "**The repository-rules file does not restate the numeric fan-out trigger, so it drops out of the change set.** `delegation-and-orchestration.md` mentions fan-out only as a dispatch *trigger* (`:40`) and as a write-freeze obligation while a lineage runs (`:76-78`); it never says what makes a call fan-out. The trigger is stated once per mode, in the command doc and the presentation asset only. So the doc half of the change set is four one-clause edits, and `AGENTS.md` plus `.skilled/repo-rules/delegation-and-orchestration.md` are untouched. This narrows what iteration 3 and 4 implied (\"command doc wording\") without changing their conclusion. [SOURCE: .skilled/repo-rules/delegation-and-orchestration.md:40]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-35, 121, 1109-1117, 3396-3405, 3440",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2440-2505",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/commands/deep/research.md:100-135",
+        ".skilled/commands/deep/review.md:97-98",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/repo-rules/delegation-and-orchestration.md:40, 76-78",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:1204-1222 (wording source, carried from iteration 4)"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-same-unit-file-supplies-the-acceptance-test-for-change-1-including-the-fail-",
+      "text": "**The same unit file supplies the acceptance test for change 1, including the fail-closed assertions.** The stop-policy test at `2446-2476` is the template: spawn with a stub binary, assert `exitCode === 3`, assert the message text, then assert `lineages/`, `orchestration-status.log` and `orchestration-summary.json` **do not exist**, and assert the spawn marker was never written. A negative case for change 1 is that block with the config reduced to one executor and the flag omitted; a positive case is the same block with `--allow-single-lineage` added. No new fixture machinery is needed — `spawnFanout`, `makeTempDir` and the stub-binary helper already exist in scope. [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2446]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:30-35, 121, 1109-1117, 3396-3405, 3440",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2440-2505",
+        ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:165, 756, 794",
+        ".skilled/commands/deep/research.md:100-135",
+        ".skilled/commands/deep/review.md:97-98",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt:71",
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:88",
+        ".skilled/repo-rules/delegation-and-orchestration.md:40, 76-78",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:1204-1222 (wording source, carried from iteration 4)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-883a98bb2635",
+      "text": "**\"`fanout-merge.cjs`'s `status: ok` is a workflow verdict.\"** It is a merge verdict: refusals are limited to reducer-provenance and near-line pairs, and `status: 'ok'` is emitted unconditionally once the registry writes succeed. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1530]",
+      "contentHash": "883a98bb2635",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-5ecb29c53ac3",
+      "text": "**\"`validate.sh` would have caught it.\"** It validates packet document structure. A run that skipped `phase_init` and `phase_save` leaves the packet documents untouched, which is exactly the state validation accepts.",
+      "contentHash": "5ecb29c53ac3",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-bedfe72a7ca9",
+      "text": "**\"The 2,539-line YAML is the enforcement.\"** Verified false: the YAML contains commands and prose, but nothing validates that `phase_init` or `phase_save` ran. Its checks fire only for a session already walking its steps.",
+      "contentHash": "bedfe72a7ca9",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b468538d7e17",
+      "text": "**\"The lock catches non-workflow runs.\"** A lock only reports contention against a lock; a run that never calls `loop-lock.cjs` leaves nothing to contend with. Absence of a lock is not an observable the current code tests.",
+      "contentHash": "b468538d7e17",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-177fdc631c01",
+      "text": "Looking for a council-side fan-out guard in `deep-ai-council/SKILL.md`: the mode document contains no fan-out or workflow-fidelity language; the council inherits whatever `orchestrate-session.cjs` and `fanout-run.cjs` do.",
+      "contentHash": "177fdc631c01",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b96b2896cbe4",
+      "text": "Searching for a packet-level workflow receipt comparable to `dispatch-receipts/`: receipts exist per *iteration dispatch* under the lineage, not per workflow phase. There is no phase receipt to look for, so \"check the receipt\" is not available for `phase_init`.",
+      "contentHash": "b96b2896cbe4",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-70911b479194",
+      "text": "**`fanoutConfigSchema.executors` minimum of two.** Wrong layer and expensive: it is the shared parse contract for tests, resume and the reducer, and single-entry arrays are used there for reasons unrelated to the policy. [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:533]",
+      "contentHash": "70911b479194",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-7fbef2049d61",
+      "text": "**A gateway precondition (\"iteration record requires a live lock\").** Fires on the incident's path, but reaches every lineage, every mode and every resume, and is designed to be non-blocking — it cannot stop a run. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:494]",
+      "contentHash": "7fbef2049d61",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1aaba66553e8",
+      "text": "**A hook as the enforcement surface.** Six runtime-specific adapters, all prompt-time context injection; reproduces prose at maximum cost. [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:53]",
+      "contentHash": "1aaba66553e8",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-206df6e4033f",
+      "text": "**A post-run completion assertion hosted anywhere in the runtime scripts.** Nothing in the incident's route calls a runtime script at the end, so a new assertion in any of them would inherit the same \"not reached\" property as every check iteration 1 mapped.",
+      "contentHash": "206df6e4033f",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-b09a0fd28a8e",
+      "text": "**Labelling instead of refusing, by itself.** `fanout-run.cjs` already emits a summary the incident's session read; it read \"succeeded\" and moved on. A new label in the same object is not more visible than the fields already there. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4273]",
+      "contentHash": "b09a0fd28a8e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-a241a3041e23",
+      "text": "**Promoting `render-command-contract.cjs` into the runner.** It renders command *contracts* from a manifest of legacy bodies; it never parses step blocks or executes a step. Sharing its importer would not shorten the driver.",
+      "contentHash": "a241a3041e23",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e9f268bec1b6",
+      "text": "**A packet-level \"did this run walk the workflow\" receipt to check afterwards.** The only receipt writer in the repository is the YAML dispatch step (`receiptDir` bound at eight places in the research YAML alone), so receipts mark the single-executor path and are legitimately absent on fan-out. Building a fan-out receipt would be a new artifact, not an existing check.",
+      "contentHash": "e9f268bec1b6",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-9ae5afcd48d8",
+      "text": "**Escalating the already-computed timestamp anomaly** (iteration 2's change 3). The classifier only reports records outside the lineage's dispatch window, so intra-window in-process iteration cannot trigger it, and the non-empty summary fold already exists. [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts:5]",
+      "contentHash": "9ae5afcd48d8",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-8e82754f6194",
+      "text": "**Keying the guard to the documented flags** (`--executor`, `--executors`, `--count`). The script is entered through `--fanout-config-json`, which none of those flags describe; a flag-level guard is bypassable by construction. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:229]",
+      "contentHash": "8e82754f6194",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-ff3856f928e2",
+      "text": "**Requiring two entries in the YAML's `skip_when` instead of in the script.** It would have to be written twice (research and review), would leave the direct script call untouched — which is exactly how the incident happened — and `skip_when` fails open. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:223]",
+      "contentHash": "ff3856f928e2",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-9b3921e9a372",
+      "text": "**Using `fanout-run.cjs`'s `status` field as a workflow verdict.** Already ruled out in iteration 2 and re-confirmed here at the exit-code line: the code is a function of `fulfilled`/`rejected` only. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:4272]",
+      "contentHash": "9b3921e9a372",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-e4ad7d68bc88",
+      "text": "**A distinct-base-label guard** (\"refuse when fewer than two labels are declared\"). It runs before replica expansion in effect, so it would refuse a single `--executor X --count 5`, which the presentation asset documents as native fan-out. [SOURCE: .skilled/commands/deep/assets/deep-research-presentation.txt:71]",
+      "contentHash": "e4ad7d68bc88",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-924327612a3c",
+      "text": "**Guarding resume** by re-validating a persisted `fanout.executors`. No code reads that field; adding a reader would create the surface it is meant to police. [SOURCE: .skilled/commands/deep/assets/deep-research-auto.yaml:223]",
+      "contentHash": "924327612a3c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-52ad343930fb",
+      "text": "**Reusing the YAML's `cli-deepseek-harness` refusal as the only enforcement**, i.e. making single-lineage fan-out a per-executor-kind rule in the workflow instead of a runner rule. It is one layer above the direct script call that caused the incident, so the incident's route would still be open.",
+      "contentHash": "52ad343930fb",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-f673940f66bc",
+      "text": "**Searching for a resume path that reconstructs the fan-out matrix.** `rg` over `.skilled/` for readers of a persisted `fanout.executors` returns only tests and playbooks; `deep-research-auto.yaml` references `config.fanout` only at its three spawn/skip guards. There is no reconstruction path to guard, and none to break.",
+      "contentHash": "f673940f66bc",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-0498ac1b5017",
+      "text": "**Treating the one-entry in-tree packet as a counter-example that invalidates change 1.** It is the incident shape with a different executor; under the policy in the docs it was never legal. It becomes the change's one real cost, not its refutation.",
+      "contentHash": "0498ac1b5017",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-ff3ddb109f20",
+      "text": "**Pricing the escape flag from the stress suite alone** (iteration 4's Finding 5). The unit suite spawns with a one-entry matrix too, so the cost estimate was low and the test template better than the one assumed. (Finding 3)",
+      "contentHash": "ff3ddb109f20",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ea0648d90587",
+      "text": "**Searching the rule docs for a numeric fan-out trigger.** `rg -i 'fan-out|fanout|lineage'` over `delegation-and-orchestration.md` returns three lines, none of them a trigger definition. There is no second enforcement sentence to align and none to break.",
+      "contentHash": "ea0648d90587",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-248b3cb3f977",
+      "text": "**Touching `.skilled/repo-rules/delegation-and-orchestration.md` or `AGENTS.md` for the trigger.** The rule file never states the trigger; adding a second statement would create the drift the change exists to remove. (Finding 5)",
+      "contentHash": "248b3cb3f977",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 8,
+    "keyFindings": 41,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.89,
+    "coverageBySources": {
+      "code": 76,
+      "other": 20
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

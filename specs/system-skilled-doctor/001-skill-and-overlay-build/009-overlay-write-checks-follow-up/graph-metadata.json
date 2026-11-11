@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up",
+  "spec_folder": "system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up",
+  "parent_id": "system-skilled-doctor/001-skill-and-overlay-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "overlay write checks follow up",
+      "phase 9 overlay write checks follow up",
+      "overlay engine stale lock takeover",
+      "overlay engine relayout target",
+      "overlay write checks follow up plan",
+      "overlay write checks follow up tasks",
+      "overlay write checks follow up acceptance criteria",
+      "overlay write checks follow up goal",
+      "overlay write checks follow up implementation summary"
+    ],
+    "key_topics": [
+      "overlay",
+      "write",
+      "checks",
+      "follow",
+      "phase",
+      "engine",
+      "stale",
+      "lock",
+      "takeover",
+      "relayout",
+      "target",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/fable-review.md",
+      "barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/011-repin-review-fixes/handover.md",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-overlay-contract.test.cjs",
+      ".skilled/hooks/overlay-guard/README.md",
+      ".skilled/commands/doctor/overlay.md",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/commands/README.txt",
+      ".skilled/changelog/skilled/v4.0.2.1.md",
+      ".skilled/skills/system-skilled-doctor/SKILL.md",
+      "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/research/fable-review.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fable-review.md",
+        "kind": "doc",
+        "path": "research/fable-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlays.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-strict-writes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-overlay-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/overlay-guard/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/overlay.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.2.1.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.2.1.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 8 shipped the opt-in write checks",
+    "created_at": "2026-11-11T21:21:40Z",
+    "last_save_at": "2026-11-11T21:27:35.409Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7e962a8ea8a3684c3f0b704f93f4532cb5fa2d623e2bcb877baa9cf73bc7480b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8edc99dda383b4181b885a6ecbf84660af86548b41bebe5ca1c8f5550139b9af",
+      "plan.md": "3dd95d2df194ee2fa696b3224d995340db6e6de80082b6bbe776020d5fb6033f",
+      "tasks.md": "a43a83b2bddd5539f34925c01d8b436b6e77dafc1bbe54e0e2b83de89f9f6e42",
+      "implementation-summary.md": "809b3c70c13591b907a2823e29872c49768d2db872249d062f440759540718d2"
+    },
+    "last_active_at": null
+  }
+}

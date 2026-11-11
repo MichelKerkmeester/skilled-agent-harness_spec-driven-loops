@@ -10,8 +10,6 @@ trigger_phrases:
   - "edit the overlay not the live file"
   - "re-pin vendored skilled"
   - "roll back a re-pin"
-  - "strict writes overlay manifest"
-  - "adopt a vendored file into an overlay"
 importance_tier: normal
 contextType: general
 version: 1.0.5.0
