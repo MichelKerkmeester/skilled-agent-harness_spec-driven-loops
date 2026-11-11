@@ -980,6 +980,17 @@ describe('lookup --scoring-only', () => {
     expect(candidatesLine).not.toContain(' of ');
   });
 
+  it('shows why a row matched and explains a zero-score row in human output', () => {
+    const indexPath = fixtureIndexPath();
+    const unfiltered = runLookupText(indexPath, 'Spec folder question');
+    const scored = runLookupText(indexPath, 'Spec folder question', ['--scoring-only']);
+
+    expect(unfiltered.stdout).toMatch(/^ {9}phrases: .+$/m);
+    expect(unfiltered.stdout).toMatch(/^note {7}: a 0\.000 row matched only part of a phrase/m);
+    expect(scored.stdout).toMatch(/^ {9}phrases: .+$/m);
+    expect(scored.stdout).not.toMatch(/^note {7}:/m);
+  });
+
   it('exits 0 when a real phrase scores', () => {
     const indexPath = fixtureIndexPath();
     const scored = runLookup(indexPath, 'Spec folder question', ['--scoring-only']);

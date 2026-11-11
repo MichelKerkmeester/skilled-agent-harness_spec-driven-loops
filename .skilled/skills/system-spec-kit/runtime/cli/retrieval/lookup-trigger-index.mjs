@@ -542,6 +542,14 @@ function formatAnswer(answer, indexPath, ownerRoot) {
   }
   for (const result of answer.results) {
     lines.push(`  ${result.score.toFixed(3)}  ${result.matchClass.padEnd(18)} ${result.path}`);
+    // The phrases are why the row matched, and a reader choosing which doc to open
+    // needs that more than the score.
+    if (Array.isArray(result.phrases) && result.phrases.length > 0) {
+      lines.push(`         phrases: ${result.phrases.join(', ')}`);
+    }
+  }
+  if (answer.results.some((result) => result.score === 0)) {
+    lines.push('note       : a 0.000 row matched only part of a phrase; --scoring-only hides those rows');
   }
   return `${lines.join('\n')}\n`;
 }
