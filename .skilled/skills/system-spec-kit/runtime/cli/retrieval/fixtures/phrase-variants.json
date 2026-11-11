@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c09978c1eb0e890e51a9328f8e5de3d12e6edc93ac1f7714bbe1b7be07085209",
+  "manifestHash": "5e8dccc69d0348e332715ab25c3867fc3b4b8d00ba9d04383e6036bab25bb10e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13868,6 +13868,9 @@
     ],
     "barter parity tasks": [
       "barter parity tasks"
+    ],
+    "barter re pin after engine fixes": [
+      "barter re-pin after engine fixes"
     ],
     "barter symlinks readme": [
       "barter symlinks readme"
@@ -56208,6 +56211,9 @@
     "handover state routing correction": [
       "handover_state routing correction"
     ],
+    "handover to barter overlay follow up": [
+      "handover to barter overlay follow up"
+    ],
     "handover trigger review": [
       "handover trigger review"
     ],
@@ -75248,6 +75254,12 @@
     ],
     "opencode nested run waiver": [
       "opencode nested run waiver"
+    ],
+    "opencode overlay guard": [
+      "opencode overlay guard"
+    ],
+    "opencode overlay owned write": [
+      "opencode overlay owned write"
     ],
     "opencode parallel detached session": [
       "opencode parallel detached session"

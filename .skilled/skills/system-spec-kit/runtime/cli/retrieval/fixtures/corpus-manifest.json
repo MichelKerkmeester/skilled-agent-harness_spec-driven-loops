@@ -1,5 +1,5 @@
 {
-  "corpusHash": "0520c5522c65f8ccc55f2241a6430c881aa45cef45839d0aa9762673cdb4fb92",
+  "corpusHash": "039effb2b5e4864f0f41d4cc008695611eca4fa21f133c922136f1fc28e51acf",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26126,
+  "includedPathCount": 26133,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -207,6 +207,7 @@
     ".skilled/hooks/overlay-guard/devin/README.md",
     ".skilled/hooks/overlay-guard/dsh/README.md",
     ".skilled/hooks/overlay-guard/lib/README.md",
+    ".skilled/hooks/overlay-guard/opencode/README.md",
     ".skilled/hooks/overlay-guard/pi/README.md",
     ".skilled/hooks/overlay-guard/tests/README.md",
     ".skilled/hooks/permission-policy/README.md",
@@ -8390,8 +8391,13 @@
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.4.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.5.0.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-an-unowned-file.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md",
+    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/pre-commit-refuses-unowned-change.md",
+    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/relayout-moves-sources.md",
+    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/stale-lock-takeover.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-without-overlays.md",
+    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/strict-guard-refuses-unowned-write.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/routing/integration-request-routing.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/routing/moved-command-contract.md",
     ".skilled/skills/system-skilled-doctor/references/overlays.md",
@@ -17839,6 +17845,7 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/acceptance-criteria.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/handover-to-barter.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/implementation-summary.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/spec.md",
@@ -26158,7 +26165,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c09978c1eb0e890e51a9328f8e5de3d12e6edc93ac1f7714bbe1b7be07085209",
+  "manifestHash": "5e8dccc69d0348e332715ab25c3867fc3b4b8d00ba9d04383e6036bab25bb10e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26402,6 +26409,10 @@
     },
     {
       "path": ".skilled/hooks/mcp-route-guard/opencode/mcp-route-guard.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/overlay-guard/opencode/overlay-guard.js",
       "reason": "symlink not followed"
     },
     {
