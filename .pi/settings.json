@@ -46,6 +46,6 @@
     "{\"source\":\"npm:pi-blackhole\",\"scope\":\"project\"}": "0.5.17",
     "{\"source\":\"npm:pi-web-access\",\"scope\":\"project\"}": "0.47.0",
     "{\"source\":\"git:github.com/dbachelder/pi-btw\",\"scope\":\"project\"}": "0.8.1",
-    "{\"source\":\"npm:pi-claude-code-ui\",\"scope\":\"project\"}": "1.0.109"
+    "{\"source\":\"npm:pi-claude-code-ui\",\"scope\":\"project\"}": "1.0.112"
   }
 }
