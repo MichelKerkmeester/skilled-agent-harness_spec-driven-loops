@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Pi Extension - Env Secret Guard
+// ───────────────────────────────────────────────────────────────────
+
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 type Guard = typeof import("../../.skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs");
