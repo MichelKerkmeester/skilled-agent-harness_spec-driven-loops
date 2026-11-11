@@ -288,6 +288,8 @@ main() {
     local current_count=0 stale_count=0 none_count=0 missing_count=0
     local stale_folders=()
     # Bash 3.2 compatible version tracking (parallel arrays instead of associative)
+    # The index counters use an assignment: a bare (( )) that evaluates to zero
+    # ends a `set -e` script on Bash 4.1 and later.
     local version_keys=()
     local version_vals=()
 
@@ -306,7 +308,7 @@ main() {
                 found=true
                 break
             fi
-            ((idx++))
+            idx=$((idx + 1))
         done
         if ! $found; then
             version_keys+=("$version")
@@ -336,7 +338,7 @@ main() {
         for vk in "${version_keys[@]+"${version_keys[@]}"}"; do
             $first_v && first_v=false || versions_json+=","
             versions_json+="\"$vk\":${version_vals[$vidx]}"
-            ((vidx++))
+            vidx=$((vidx + 1))
         done
         versions_json+="}"
 
@@ -359,7 +361,7 @@ EOF
             local marker=""
             [[ "$vk" == "$current_version" ]] && marker=" (current)"
             echo "    $vk: $count folders$marker"
-            ((vidx++))
+            vidx=$((vidx + 1))
         done
         echo ""
 
