@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d72870161a59d708b03e4cbc4b68b95e475e6344328112183d45fb233c247015",
+  "corpusHash": "b7de6ef1771cc994af6e08839c0163cc267e22609960ee2c7696d018148a21ba",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26090,
+  "includedPathCount": 26096,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -24090,6 +24090,12 @@
     "specs/system-speckit/repo-operations/004-node-security-patch-update/plan.md",
     "specs/system-speckit/repo-operations/004-node-security-patch-update/spec.md",
     "specs/system-speckit/repo-operations/004-node-security-patch-update/tasks.md",
+    "specs/system-speckit/repo-operations/005-main-ci-red-checks/acceptance-criteria.md",
+    "specs/system-speckit/repo-operations/005-main-ci-red-checks/goal.md",
+    "specs/system-speckit/repo-operations/005-main-ci-red-checks/implementation-summary.md",
+    "specs/system-speckit/repo-operations/005-main-ci-red-checks/plan.md",
+    "specs/system-speckit/repo-operations/005-main-ci-red-checks/spec.md",
+    "specs/system-speckit/repo-operations/005-main-ci-red-checks/tasks.md",
     "specs/system-speckit/runtime-and-release/001-system-speckit-v4/001-plan-preflight-track-packets/implementation-summary.md",
     "specs/system-speckit/runtime-and-release/001-system-speckit-v4/001-plan-preflight-track-packets/plan.md",
     "specs/system-speckit/runtime-and-release/001-system-speckit-v4/001-plan-preflight-track-packets/spec.md",
@@ -26122,7 +26128,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0d2054f8f9c0401e3a7f2e8ca061fe4f238d8d6d577e0a75ee05e9742dd9c794",
+  "manifestHash": "5263be58756aca0c5132d0e2d5c8dacb6bec49e5839b6f905d260314271b3568",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -35290,6 +35296,10 @@
     },
     {
       "path": "specs/system-speckit/repo-operations/004-node-security-patch-update/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/repo-operations/005-main-ci-red-checks/scratch",
       "reason": "excluded directory"
     },
     {

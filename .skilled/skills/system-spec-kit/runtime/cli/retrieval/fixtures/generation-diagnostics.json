@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6684,
-    "ok": 17777,
+    "ok": 17783,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26090,
+  "documentsScanned": 26096,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "0d2054f8f9c0401e3a7f2e8ca061fe4f238d8d6d577e0a75ee05e9742dd9c794",
+  "manifestHash": "5263be58756aca0c5132d0e2d5c8dacb6bec49e5839b6f905d260314271b3568",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42246,
+      "ok": 42253,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -60720,6 +60720,10 @@
     },
     {
       "path": "specs/system-speckit/repo-operations/004-node-security-patch-update/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/repo-operations/005-main-ci-red-checks/scratch",
       "reason": "excluded directory"
     },
     {

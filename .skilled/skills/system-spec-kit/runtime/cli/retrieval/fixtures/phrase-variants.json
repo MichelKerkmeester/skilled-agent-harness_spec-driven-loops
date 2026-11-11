@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0d2054f8f9c0401e3a7f2e8ca061fe4f238d8d6d577e0a75ee05e9742dd9c794",
+  "manifestHash": "5263be58756aca0c5132d0e2d5c8dacb6bec49e5839b6f905d260314271b3568",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -64407,6 +64407,24 @@
     "magicpath mode removal": [
       "magicpath mode removal"
     ],
+    "main ci red checks": [
+      "main ci red checks"
+    ],
+    "main ci red checks acceptance criteria": [
+      "main ci red checks acceptance criteria"
+    ],
+    "main ci red checks goal": [
+      "main ci red checks goal"
+    ],
+    "main ci red checks implementation summary": [
+      "main ci red checks implementation summary"
+    ],
+    "main ci red checks plan": [
+      "main ci red checks plan"
+    ],
+    "main ci red checks tasks": [
+      "main ci red checks tasks"
+    ],
     "main ci regenerations": [
       "main ci regenerations"
     ],
@@ -91503,6 +91521,9 @@
     ],
     "repair scan to write gap": [
       "repair scan to write gap"
+    ],
+    "repair the five checks that fail on main": [
+      "repair the five checks that fail on main"
     ],
     "repair walk skips symlinks": [
       "repair walk skips symlinks"
