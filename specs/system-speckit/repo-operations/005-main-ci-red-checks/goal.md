@@ -83,6 +83,6 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| The array expansion fix could not be reproduced locally | Only Bash 3.2 is installed here. The fix is inferred and CI confirms it |
+| The staleness checker had two Linux-only causes | Only Bash 3.2 is installed here. CI on `68359fb3b6` confirmed the array length fix and exposed three bare `(( ))` counters, fixed in `f15ba37e94` |
 | Two CLI tests timed out in the full local run | They pass alone and did not fail in CI, so they are outside this packet |
 <!-- /ANCHOR:log -->

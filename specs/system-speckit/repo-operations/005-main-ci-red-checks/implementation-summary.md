@@ -109,7 +109,7 @@ Each failure was read from its CI job log, reproduced locally where the machine 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The Bash fix is inferred.** This machine has only Bash 3.2, which accepts the old expansion. The cause was read from the empty output on the Linux runner. The CI run after the push confirms it.
+1. **The Bash fixes cannot be reproduced locally.** This machine has only Bash 3.2. The first push (`68359fb3b6`) confirmed the array length fix on the runner, where the empty-root test passed, and showed a second cause: three bare `(( ))` counters that end a `set -e` script on Bash 4.1 and later. Commit `f15ba37e94` replaces them, and the CI run on it is the confirmation.
 2. **Nothing is pushed.** The four commits exist only on `worktrees/346-main-ci-red-checks`. AC-005 stays open until main carries them.
 <!-- /ANCHOR:limitations -->
 
