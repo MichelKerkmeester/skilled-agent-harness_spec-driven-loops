@@ -13,7 +13,7 @@ trigger_phrases:
   - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.17.0
+version: 1.1.18.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -370,6 +370,10 @@ The default way to write a new doc page. The MCP creates the page, the editor wr
 - **Dividers stay tight.** The paste writes no empty line under a divider, so the gap pass has nothing to do. The program drops an empty line next to a divider or a spacer heading, where the editor shows none.
 - **Gray text is a class.** ClickUp's gray text colour is `<span class="ql-text-color ql-color-grey">`, which the team uses on the lead number of a numbered title and on the Mark-as-done line. Markdown has no colour, so this is the only path that writes it.
 - **The body editor is inside the task-editor wrapper.** A doc page has a second `.ql-editor` for its title, and on a short page the two can hold the same number of blocks. Select the body with `[data-test="task-editor"] .ql-editor`, falling back to `.ql-editor.ql-cls-checklist`.
+
+**Which browser.** Aside (`mcp-aside-devtools`) owns signed-in ClickUp work by default, and this program drives it. The user's live Chrome (`chrome_devtools_live`) is the fallback, and only the gap pass under "Required after every page write" has a Chrome program.
+
+**No discovery step.** Code Mode asks for `search_tools()` and `tool_info()` before an unknown tool is called. The programs in this section are exempt, because they call tools by the names this document records. When a call answers tool not found, run `tool_info()` on that name before changing the program.
 
 **How to run it.** Create the page with `clickup_create_document_page`, `content_format: "text/md"` and the content `[[BODY]]`, then run the program below with the page ID and the markdown body, without its H1. Give the `call_tool_chain` call a `timeout` of about 90 seconds plus 30 per local image. The program converts the markdown as follows:
 - `## `, `### ` and `#### ` lines become headings, and a heading with no text, such as `###   `, stays an empty spacer heading

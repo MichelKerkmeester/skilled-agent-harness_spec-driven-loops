@@ -83,7 +83,7 @@ Configure one or more Chrome DevTools MCP entries in `.utcp_config.json` with `-
 
 #### Live Instance (Your Own Chrome)
 
-`chrome_devtools_live` runs `chrome-devtools-mcp --autoConnect` and attaches to the Chrome the user already has open, with its logins. Use it only for signed-in work that an isolated browser cannot do, such as the ClickUp editor pass, because an isolated instance starts logged out on every run.
+`chrome_devtools_live` runs `chrome-devtools-mcp --autoConnect` and attaches to the Chrome the user already has open, with its logins. Use it only for signed-in work that an isolated browser cannot do, such as the ClickUp editor pass, because an isolated instance starts logged out on every run. Aside owns that work by default, and this instance is its fallback.
 
 - **Setup, once:** the user turns on remote debugging at `chrome://inspect/#remote-debugging`. Chrome must be open, and it may ask the user to allow each new connection.
 - **Stay out of the user's way:** open pages with `new_page({ url, background: true })`, which keeps the user's view as it is and selects the new tab for later calls. Close only the tab you opened, found by the page ID that appeared in `list_pages` after your `new_page`, never by URL, since the user may have the same page open. Never navigate, press keys in or close a tab you did not open.
