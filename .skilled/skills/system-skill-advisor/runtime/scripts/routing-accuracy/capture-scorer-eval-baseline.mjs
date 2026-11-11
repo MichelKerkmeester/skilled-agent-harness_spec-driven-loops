@@ -16,6 +16,7 @@
 // Usage:
 //   node capture-scorer-eval-baseline.mjs            # print JSON to stdout
 //   node capture-scorer-eval-baseline.mjs --write     # also write the baseline
+//   node capture-scorer-eval-baseline.mjs --misses    # print each failing prompt, one JSON line each
 //   SPECKIT_EVAL_BASELINE_SCORING_DATE=YYYY-MM-DD node capture-scorer-eval-baseline.mjs --write
 //                                                     # move the pinned scoring date
 
@@ -31,7 +32,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { rejectUnknownOptions } from './reject-unknown-options.mjs';
 
-rejectUnknownOptions(import.meta.url, ['--write']);
+rejectUnknownOptions(import.meta.url, ['--write', '--misses']);
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -153,10 +154,20 @@ function accuracy(correct, total) {
   return total > 0 ? Number((correct / total).toFixed(4)) : 0;
 }
 
-function scoreSet(rows) {
+// A count says how many prompts fail, never which ones. A scoring change is judged
+// against the failing prompts themselves, so each set records them as it scores.
+const misses = [];
+
+function recordMiss(set, row, top) {
+  misses.push({ set, id: row.id, gold: row.skill_top_1, got: top === null ? 'none' : top, prompt: row.prompt });
+}
+
+function scoreSet(rows, set) {
   let correct = 0;
   for (const row of rows) {
-    if (isTop1Correct(topSkill(row.prompt), row.skill_top_1)) correct += 1;
+    const top = topSkill(row.prompt);
+    if (isTop1Correct(top, row.skill_top_1)) correct += 1;
+    else if (set) recordMiss(set, row, top);
   }
   return { correct, total: rows.length, accuracy: accuracy(correct, rows.length) };
 }
@@ -174,12 +185,13 @@ for (const row of corpus) {
   if (top === null) unknown += 1;
   if (row.skill_top_1 === 'none' && top !== null) goldNoneFalseFire += 1;
   if (isTop1Correct(top, row.skill_top_1)) fullCorrect += 1;
+  else recordMiss('full_corpus', row, top);
 }
 
-const holdout = scoreSet(readJsonl(HOLDOUT_JSONL));
+const holdout = scoreSet(readJsonl(HOLDOUT_JSONL), 'holdout');
 
 const ambiguityRows = readJsonl(AMBIGUITY_JSONL);
-const ambiguity = scoreSet(ambiguityRows);
+const ambiguity = scoreSet(ambiguityRows, 'ambiguity');
 const tau = ambiguityRows.length > 0 ? ambiguityRows[0].tau : null;
 
 const reviewRows = corpus.filter((row) => row.bucket === 'true_read_only');
@@ -232,8 +244,14 @@ const baseline = {
 // ───────────────────────────────────────────────────────────────────
 
 const serialized = JSON.stringify(baseline, null, 2) + '\n';
-if (process.argv.includes('--write')) {
-  writeFileSync(OUTPUT_JSON, serialized, 'utf8');
-  console.log(`wrote baseline -> ${OUTPUT_JSON}`);
+if (process.argv.includes('--misses')) {
+  // The review and memory-save buckets are slices of the full corpus, so their
+  // failing prompts are already listed under it.
+  for (const miss of misses) console.log(JSON.stringify(miss));
+} else {
+  if (process.argv.includes('--write')) {
+    writeFileSync(OUTPUT_JSON, serialized, 'utf8');
+    console.log(`wrote baseline -> ${OUTPUT_JSON}`);
+  }
+  console.log(serialized);
 }
-console.log(serialized);
