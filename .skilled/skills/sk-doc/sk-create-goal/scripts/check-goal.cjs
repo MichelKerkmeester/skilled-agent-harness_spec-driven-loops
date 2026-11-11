@@ -600,7 +600,8 @@ function parseArguments(argv) {
 
 function printUsage() {
   console.log([
-    'Usage: check-goal.cjs [--all] [--root <path>] [<packet-directory>]',
+    'Usage: check-goal.cjs [--root <path>] <packet-directory>',
+    '       check-goal.cjs --all [--root <path>]',
     '       check-goal.cjs --help',
     '',
     'Options:',
@@ -728,7 +729,15 @@ function main(argv) {
   exitIfValidationOff('check-goal.cjs', argv);
   const workspaceRoot = options.workspaceRoot || getDefaultWorkspaceRoot();
 
-  if (options.scanAll || options.packetArg === null) {
+  // A bare call used to scan every packet, which turned a forgotten argument into a full
+  // corpus report. The scan now has to be asked for by name.
+  if (!options.scanAll && options.packetArg === null) {
+    console.error('check-goal.cjs: name a packet directory, or pass --all to scan every packet');
+    printUsage();
+    return 2;
+  }
+
+  if (options.scanAll) {
     const report = scanCorpus(workspaceRoot);
     printCorpusReport(report);
     if (report.errors.length > 0) return 2;

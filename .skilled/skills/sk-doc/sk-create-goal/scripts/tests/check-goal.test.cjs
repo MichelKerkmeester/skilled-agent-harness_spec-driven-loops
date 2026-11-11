@@ -139,6 +139,12 @@ for (const asset of ['goal-top-level-template.md', 'goal-phase-parent-template.m
   });
 }
 
+test('a call with no packet and no --all is refused', () => {
+  const run = spawnSync(process.execPath, [path.join(__dirname, '..', 'check-goal.cjs'), '--root', WORKSPACE_ROOT], { encoding: 'utf8' });
+  assert.equal(run.status, 2, run.stdout + run.stderr);
+  assert.match(run.stderr, /name a packet directory, or pass --all/);
+});
+
 test('a goal.md path checks the folder that holds it', () => {
   const folderRun = spawnSync(
     process.execPath,
