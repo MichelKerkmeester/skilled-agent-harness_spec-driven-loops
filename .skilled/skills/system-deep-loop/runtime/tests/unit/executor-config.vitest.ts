@@ -10,7 +10,6 @@ import { afterEach, describe, it, expect, vi } from 'vitest';
 
 import {
   EXECUTOR_KINDS,
-  EXPERIMENTAL_EXECUTOR_KINDS,
   EXECUTOR_KIND_FLAG_SUPPORT,
   EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY,
   EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX,
@@ -53,7 +52,6 @@ describe('executor-config', () => {
       'cli-pi',
       'cli-deepseek-harness',
     ]);
-    expect([...EXPERIMENTAL_EXECUTOR_KINDS]).toEqual(['cli-deepseek-harness']);
     expect(parseExecutorConfig({}).kind).toBe('native');
   });
 

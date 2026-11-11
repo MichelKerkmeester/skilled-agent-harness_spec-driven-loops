@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh deep-loop lineage"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # DeepSeek Harness - Fan-Out Executor
@@ -32,7 +32,7 @@ Describes how the shared runner builds, runs and judges a dsh lineage, so a call
 
 ### Status
 
-`cli-deepseek-harness` is in `EXECUTOR_KINDS`, and `buildDshLineageCommand` builds its command. `EXPERIMENTAL_EXECUTOR_KINDS` lists it for information only. LLM Gateway `deepseek-v4.1-flash-1017` completed a keyed lineage and is the default model. OpenCode Go `deepseek-v4.1-flash` was proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` and stays out of defaults. This packet must not add a wrapper, spawn path or command builder of its own.
+`cli-deepseek-harness` is in `EXECUTOR_KINDS`, and `buildDshLineageCommand` builds its command. LLM Gateway `deepseek-v4.1-flash-1017` completed a keyed lineage and is the default model. OpenCode Go `deepseek-v4.1-flash` was proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` and stays out of defaults. This packet must not add a wrapper, spawn path or command builder of its own.
 
 ---
 

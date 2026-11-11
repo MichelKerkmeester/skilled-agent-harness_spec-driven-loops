@@ -20,10 +20,6 @@ export const EXECUTOR_KINDS = [
 ] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
 
-// Informational only: nothing reads this set to gate a run. dsh stays listed while OpenCode Go
-// is unverified; DSH_DEFAULT_MODEL keeps the verified Gateway route as the default.
-export const EXPERIMENTAL_EXECUTOR_KINDS: ReadonlySet<ExecutorKind> = new Set(['cli-deepseek-harness']);
-
 // Ordered low→high. `ultra` is codex gpt-6-sol's top reasoning tier, above `max`.
 export const REASONING_EFFORTS = ['none', 'minimal', 'low', 'medium', 'high', 'xhigh', 'max', 'ultra'] as const;
 export type ReasoningEffort = typeof REASONING_EFFORTS[number];
