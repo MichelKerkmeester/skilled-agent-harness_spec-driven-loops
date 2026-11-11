@@ -78,7 +78,7 @@ If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen` 
 When `spec_folder` is a packet path, save its continuity before `prepare` so the receiving session's `/speckit:resume` lands on fresh state.
 The automatic nudge asks for the note first and the save second.
 Both orders meet that need.
-Claude runs `/speckit:save full-auto`, because a bare `/speckit:save` prints a save plan and writes nothing.
+Claude runs `/speckit:save` in its explicit full-auto mode, because the default response is a save plan that writes nothing.
 Continue only when the result reports the writer ran.
 Other runtimes pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto <spec-folder>`.
 Record the repo-relative packet path in `spec_folder`.
