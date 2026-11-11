@@ -7,7 +7,7 @@ trigger_phrases:
   - "bdg"
   - "screenshot"
   - "browser automation"
-version: 1.0.19.0
+version: 1.0.20.0
 ---
 
 # mcp-chrome-devtools
@@ -92,7 +92,7 @@ The last command lists the file, which must exist as a valid PNG. `bdg stop` end
 
 **Step 3: Use the MCP path with Code Mode.**
 
-The `chrome_devtools_1` and `chrome_devtools_2` manuals in `.utcp_config.json` pin `chrome-devtools-mcp@0.26.0` with `--isolated=true`. Run browser operations inside a `call_tool_chain()` block:
+The `chrome_devtools_1` and `chrome_devtools_2` manuals, as registered in `.utcp_config.json`, pin `chrome-devtools-mcp@0.26.0` with `--isolated=true`. Run browser operations inside a `call_tool_chain()` block:
 
 ```typescript
 call_tool_chain(`
@@ -115,7 +115,7 @@ The skill prefers the CLI for fast low-token inspection. It switches to the MCP 
 
 ### The CLI Path
 
-`bdg` starts a Chrome session and sends CDP commands over WebSocket. Artifacts land on disk. It is self-documenting at every level. `bdg cdp --list` lists every CDP domain. `bdg cdp --describe Page` enumerates the methods in a domain with their signatures. `bdg cdp --search screenshot` finds every CDP method whose name or description contains the term. Because the CLI reaches the full protocol surface, you can compose arbitrary CDP workflows and pipe results through Unix tools.
+`bdg` starts a Chrome session and sends CDP commands over WebSocket. Artifacts land on disk, and a HAR file, cookie dump or screenshot of a logged-in page can hold live session cookies and bearer tokens. Write them outside the repository and never commit them. It is self-documenting at every level. `bdg cdp --list` lists every CDP domain. `bdg cdp --describe Page` enumerates the methods in a domain with their signatures. `bdg cdp --search screenshot` finds every CDP method whose name or description contains the term. Because the CLI reaches the full protocol surface, you can compose arbitrary CDP workflows and pipe results through Unix tools.
 
 ```bash
 bdg cdp --list | head -5
@@ -155,7 +155,7 @@ A third entry, `chrome_devtools_live`, is not isolated. It runs with `--autoConn
 
 The skill ships three production scripts under `examples/`. Each doubles as an end-to-end workflow and a CI-ready test.
 
-- `performance-baseline.sh [URL] [OUTPUT_DIR]` captures metrics, a HAR trace, a screenshot, console logs and DOM stats into timestamped files. The output lands in a `performance-baselines/` directory with JSON for metrics and console logs, a HAR file for the network trace and a PNG for the visual baseline.
+- `performance-baseline.sh [URL] [OUTPUT_DIR]` captures metrics, a HAR trace, a screenshot, console logs and DOM stats into timestamped files. The output lands in a `performance-baselines/` directory under the temp folder, outside the repository, with JSON for metrics and console logs, a HAR file for the network trace and a PNG for the visual baseline.
 - `animation-testing.sh` asserts layout count, recalculation count and task-duration thresholds, captures before and after screenshots and exits non-zero on any failure. It targets a selector and an animation trigger class so you can test any animated element on the page.
 - `multi-viewport-test.sh` runs five viewports (desktop 1920x1080, laptop 1366x768, tablet 768x1024, mobile 375x667, mobile-large 414x896) and fails on any console error. It captures an initial and an animated screenshot per viewport and writes a per-viewport summary.
 

@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/003-split-upgrade-legacy",
+  "description": "Phase 3: split-upgrade-legacy",
+  "keywords": [
+    "phase",
+    "split-upgrade-legacy"
+  ],
+  "lastUpdated": "2026-11-10T20:34:44.307Z",
+  "specId": "003",
+  "folderSlug": "split-upgrade-legacy",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "10-11-26_21-34__split-upgrade-legacy-into-four-files-cli-lane-397.md"
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing",
+  "spec_folder": "system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing",
+  "parent_id": "system-speckit/runtime-and-release/006-test-cycle-speed",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ci runner timing",
+      "phase 5 ci runner timing",
+      "ci runner timing plan",
+      "ci runner timing tasks",
+      "ci runner timing implementation summary"
+    ],
+    "key_topics": [
+      "runner",
+      "timing",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "suites",
+      "now",
+      "run",
+      "files",
+      "parallel"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "cli/tests/template-staleness-discovery.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-staleness-discovery.vitest.ts",
+        "kind": "test",
+        "path": "cli/tests/template-staleness-discovery.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Runner Timing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The suites now run files in parallel",
+    "created_at": "2026-11-10T18:28:15Z",
+    "last_save_at": "2026-11-10T20:35:13.219Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:07f01f3fc89873f1b507b40e34bf5f50aef5b7680bcc3ea455753fc6c12d2b5a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fcb18144e312b38a00b88b5ec89c097f5d4c358582362551164296bd45b7045f",
+      "plan.md": "2bb75fff90aa91355f5ca4b8afeeb3cf8f419dfeed721a4fff126281eba623f3",
+      "tasks.md": "8fc479974f3d552c987ef8126bc72409b1dcf0a57af97eb8e872e2517f504efe",
+      "implementation-summary.md": "4c1f8a1d31fd565bab4644df6ec0163fe5ae679654b8c18f79b38762fc077bad"
+    },
+    "last_active_at": null
+  }
+}

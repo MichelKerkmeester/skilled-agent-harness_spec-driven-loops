@@ -1,7 +1,7 @@
 ---
 title: "BDG-012 -- Cookies retrieval"
 description: "This scenario validates cookie retrieval for `BDG-012`. It focuses on confirming `bdg network getCookies` returns a valid JSON array (possibly empty) for the active page."
-version: 1.0.0.7
+version: 1.0.2.0
 ---
 
 # BDG-012 -- Cookies retrieval
@@ -24,11 +24,11 @@ Cookies are the primary mechanism for session state, authentication, and trackin
 
 Operators run the exact prompt and command sequence for `BDG-012` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify `bdg network getCookies 2>&1 | jq '.'` succeeds and returns a JSON array (length may be 0).
+- Objective: Verify `bdg network getCookies` succeeds and returns a JSON array (length may be 0), without printing a cookie value.
 - Real user request: `"Show me the cookies on this page."`
 - Prompt: `Show cookies from the active page and confirm the output is a JSON array.`
 - Expected execution process: assumes active session (BDG-002); run getCookies; verify JSON-array shape.
-- Expected signals: `bdg network getCookies` exits 0; `jq '.'` parses successfully; `jq 'type'` reports `array`.
+- Expected signals: `bdg network getCookies` exits 0; `jq 'map({name, domain})'` parses successfully; `jq 'type'` reports `array`.
 - Desired user-visible outcome: A short report stating the cookie count (e.g., "0 cookies on example.com") with a PASS verdict.
 - Pass/fail: PASS if all three signals hold; FAIL if the command errors, JSON parse fails, or the result is not an array.
 
@@ -43,21 +43,21 @@ Operators run the exact prompt and command sequence for `BDG-012` and confirm th
 ### Commands
 
 1. Precondition: active bdg session (BDG-002); verify with `bash: bdg status 2>&1`
-2. `bash: bdg network getCookies 2>&1`
-3. `bash: bdg network getCookies 2>&1 | jq '.'`
+2. `bash: bdg network getCookies > /dev/null 2>&1; echo "exit=$?"`
+3. `bash: bdg network getCookies 2>&1 | jq 'map({name, domain})'`
 4. `bash: bdg network getCookies 2>&1 | jq 'type'`
 5. `bash: bdg network getCookies 2>&1 | jq 'length'`
 
 ### Expected
 
-- Step 2: exits 0; produces JSON output
-- Step 3: parses successfully (no jq error)
+- Step 2: prints `exit=0`
+- Step 3: parses successfully (no jq error) and prints names and domains only
 - Step 4: returns `"array"`
 - Step 5: returns an integer >= 0 (likely 0 for `example.com`)
 
 ### Evidence
 
-Capture all command outputs and the parsed type / length values.
+Capture the exit codes and the parsed type / length values. On a page that sets cookies, redact the `value` field before quoting any output (SKILL.md ALWAYS rule 7).
 
 ### Pass / Fail
 
@@ -66,12 +66,14 @@ Capture all command outputs and the parsed type / length values.
 
 ### Failure Triage
 
-1. If `jq '.'` reports parse error: dump the raw output with `bdg network getCookies 2>&1` and inspect — the surface may be wrapping the array in a status envelope (e.g., `{"ok":true,"data":[...]}`); update the assertion path or cross-reference BDG-002 if the session is dead.
+1. If `jq` reports parse error: on `example.com`, which sets no cookies, dump the raw output with `bdg network getCookies 2>&1` and inspect — the surface may be wrapping the array in a status envelope (e.g., `{"ok":true,"data":[...]}`); update the assertion path or cross-reference BDG-002 if the session is dead.
 2. If `type` returns `object` instead of `array`: the response shape changed upstream; inspect with `bdg network getCookies 2>&1 | jq 'keys'` and adapt the assertion to navigate to the array (commonly `.cookies` or `.data`).
+3. Redact the `value` field of every cookie before quoting any dump (SKILL.md ALWAYS rule 7).
 
 ### Optional Supplemental Checks
 
 - Navigate to a cookie-setting page (`bdg https://www.google.com`) and re-run to confirm non-empty case works; expect length > 0.
+- That check runs the same steps, so no cookie value is printed.
 
 ---
 

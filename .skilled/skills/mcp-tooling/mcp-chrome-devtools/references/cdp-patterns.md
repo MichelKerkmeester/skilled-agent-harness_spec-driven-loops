@@ -10,7 +10,7 @@ trigger_phrases:
   - "pipe bdg output to jq"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.3.0
 ---
 
 # CDP Patterns & Command Examples
@@ -58,13 +58,16 @@ Progressive disclosure from discovery to execution - always explore capabilities
 
 | Task | Command Pattern | Output |
 |------|----------------|--------|
-| Screenshot | `bdg dom screenshot output.png` | PNG file saved |
+| Screenshot | `bdg dom screenshot "${TMPDIR:-/tmp}/output.png"` | PNG file saved |
 | Console logs | `bdg console --list` | JSON array of log entries |
-| Network cookies | `bdg network getCookies` | JSON cookie list |
+| Network cookies | `bdg network getCookies \| jq 'map({name, domain})'` | Cookie names and domains |
 | DOM query | `bdg dom query ".classname"` | Matching elements |
-| HAR export | `bdg network har output.har` | HAR file with network data |
+| HAR export | `bdg network har "${TMPDIR:-/tmp}/output.har"` | HAR file with network data |
 | JavaScript eval | `bdg dom eval "document.title"` | Execution result |
 | Page navigation | `bdg cdp Page.navigate '{"url":"https://example.com"}'` | Navigation response |
+
+**Capture Hygiene**:
+HAR files, cookie dumps, traces, heap snapshots and screenshots of logged-in pages can hold live session cookies and bearer tokens. The recipes below write them under `"${TMPDIR:-/tmp}"`, outside the repository. Never commit one. Redact cookie and authorization values before quoting any of it, and print cookie names and domains instead of values.
 
 ---
 
@@ -191,16 +194,16 @@ bdg cdp Network.clearBrowserCache
 # Clear browser cookies
 bdg cdp Network.clearBrowserCookies
 
-# Get all cookies
-bdg cdp Network.getAllCookies
+# Get all cookies (values are live secrets, so list names and domains only)
+bdg cdp Network.getAllCookies 2>&1 | jq '[.result.cookies[] | {name, domain}]'
 
 # Get cookies for URL
-bdg cdp Network.getCookies '{"urls":["https://example.com"]}'
+bdg cdp Network.getCookies '{"urls":["https://example.com"]}' 2>&1 | jq '[.result.cookies[] | {name, domain}]'
 
-# Set cookie
+# Set cookie (use a throwaway value, never a real session token)
 bdg cdp Network.setCookie '{
   "name": "session",
-  "value": "abc123",
+  "value": "<throwaway-value>",
   "domain": "example.com",
   "path": "/",
   "secure": true,
@@ -236,9 +239,13 @@ bdg cdp Network.continueInterceptedRequest '{
 **Helper Command Alternative**:
 ```bash
 # Simpler network inspection
-bdg network getCookies
+bdg network getCookies 2>&1 | jq 'map({name, domain})'
+
+# Headers can include Cookie and Authorization values, so redact them before quoting
 bdg network headers
-bdg network har network-trace.har
+
+# A HAR file carries those headers too, so it goes to a scratch path
+bdg network har "${TMPDIR:-/tmp}/network-trace.har"
 ```
 
 ---
@@ -274,7 +281,7 @@ bdg cdp Runtime.getProperties '{
 # Simpler console access
 bdg console --list
 bdg dom eval "window.location.href"
-bdg dom eval "localStorage.getItem('token')"
+bdg dom eval "localStorage.getItem('theme')"
 ```
 
 ---
@@ -283,6 +290,7 @@ bdg dom eval "localStorage.getItem('token')"
 
 **Heap Snapshots**:
 ```bash
+# A heap snapshot holds page memory, tokens included, so save it to a scratch path only
 # Take heap snapshot
 bdg cdp HeapProfiler.takeHeapSnapshot
 
@@ -323,6 +331,7 @@ bdg cdp Performance.disable
 
 **Timeline Recording**:
 ```bash
+# A trace records request URLs, tokens in query strings included, so save it to a scratch path only
 # Start timeline
 bdg cdp Tracing.start '{
   "categories": "devtools.timeline"
@@ -345,6 +354,9 @@ bdg cdp Tracing.getCategories
 #!/bin/bash
 # Complete screenshot workflow with error handling
 
+# A screenshot of a logged-in page can show session data, so keep it outside the repository
+SCRATCH="${TMPDIR:-/tmp}"
+
 # Check bdg availability
 command -v bdg || { echo "Install: npm install -g browser-debugger-cli@alpha"; exit 1; }
 
@@ -356,15 +368,15 @@ sleep 2
 bdg status 2>&1 || { echo "Session failed"; exit 1; }
 
 # Capture screenshot
-bdg dom screenshot output.png 2>&1
+bdg dom screenshot "$SCRATCH/output.png" 2>&1
 
 # Alternative: Base64 screenshot via CDP
-bdg cdp Page.captureScreenshot 2>&1 | jq -r '.result.data' > screenshot-b64.txt
+bdg cdp Page.captureScreenshot 2>&1 | jq -r '.result.data' > "$SCRATCH/screenshot-b64.txt"
 
 # Stop session
 bdg stop 2>&1
 
-echo "Screenshot saved to output.png"
+echo "Screenshot saved to $SCRATCH/output.png"
 ```
 
 ---
@@ -375,20 +387,23 @@ echo "Screenshot saved to output.png"
 #!/bin/bash
 # Capture and analyze console logs
 
+# Console output can echo tokens from URLs, so keep it outside the repository
+SCRATCH="${TMPDIR:-/tmp}"
+
 bdg https://example.com 2>&1
 
 # Enable console
 bdg cdp Runtime.enable 2>&1
 
 # Get console logs (helper)
-bdg console --list 2>&1 | jq '.[] | select(.level=="error")' > errors.json
+bdg console --list 2>&1 | jq '.[] | select(.level=="error")' > "$SCRATCH/errors.json"
 
 # Count errors
-error_count=$(jq '. | length' errors.json)
+error_count=$(jq '. | length' "$SCRATCH/errors.json")
 echo "Found $error_count console errors"
 
 # Extract error messages
-jq -r '.[] | "\(.level): \(.text)"' errors.json
+jq -r '.[] | "\(.level): \(.text)"' "$SCRATCH/errors.json"
 
 bdg stop 2>&1
 ```
@@ -401,6 +416,9 @@ bdg stop 2>&1
 #!/bin/bash
 # Monitor and export network requests
 
+# A HAR file carries Cookie and Authorization headers verbatim, so keep it outside the repository
+SCRATCH="${TMPDIR:-/tmp}"
+
 bdg https://example.com 2>&1
 
 # Enable network tracking
@@ -410,7 +428,7 @@ bdg cdp Network.enable 2>&1
 sleep 5
 
 # Export HAR file
-bdg network har network-trace.har 2>&1
+bdg network har "$SCRATCH/network-trace.har" 2>&1
 
 # Analyze HAR with jq
 jq '.log.entries[] | {
@@ -418,10 +436,13 @@ jq '.log.entries[] | {
   method: .request.method,
   status: .response.status,
   time: .time
-}' network-trace.har > requests-summary.json
+}' "$SCRATCH/network-trace.har" > "$SCRATCH/requests-summary.json"
 
 # Find slow requests (>1000ms)
-jq '.log.entries[] | select(.time > 1000) | {url, time}' network-trace.har
+jq '.log.entries[] | select(.time > 1000) | {url, time}' "$SCRATCH/network-trace.har"
+
+# Delete the HAR file once the analysis is done
+rm -f "$SCRATCH/network-trace.har"
 
 bdg stop 2>&1
 ```
@@ -433,6 +454,7 @@ bdg stop 2>&1
 ```bash
 #!/bin/bash
 # Cookie operations workflow
+# Cookie values are live session secrets, so print names and domains only
 
 bdg https://example.com 2>&1
 
@@ -440,12 +462,12 @@ bdg https://example.com 2>&1
 bdg cdp Network.enable 2>&1
 
 # Get all cookies
-bdg network getCookies 2>&1 | jq '.'
+bdg network getCookies 2>&1 | jq 'map({name, domain})'
 
-# Set authentication cookie
+# Set authentication cookie (use a throwaway value, never a real session token)
 bdg cdp Network.setCookie '{
   "name": "auth_token",
-  "value": "secret-token-123",
+  "value": "<throwaway-value>",
   "domain": "example.com",
   "path": "/",
   "secure": true,
@@ -455,7 +477,7 @@ bdg cdp Network.setCookie '{
 
 # Verify cookie set
 bdg cdp Network.getCookies '{"urls":["https://example.com"]}' 2>&1 | \
-  jq '.result.cookies[] | select(.name=="auth_token")'
+  jq '.result.cookies[] | select(.name=="auth_token") | {name, domain}'
 
 # Navigate with cookie
 bdg cdp Page.navigate '{"url":"https://example.com/dashboard"}' 2>&1
@@ -511,8 +533,8 @@ bdg cdp Page.getNavigationHistory 2>&1 | jq '.result.entries[] | .url'
 # Filter results
 bdg console --list 2>&1 | jq '.[] | select(.level == "error")'
 
-# Transform output
-bdg network getCookies 2>&1 | jq '[.[] | {name, domain, value}]'
+# Transform output (names and domains only, never values)
+bdg network getCookies 2>&1 | jq '[.[] | {name, domain}]'
 
 # Count items
 bdg cdp DOM.querySelectorAll '{"nodeId":1,"selector":"div"}' 2>&1 | \
@@ -527,8 +549,8 @@ bdg cdp DOM.querySelectorAll '{"nodeId":1,"selector":"div"}' 2>&1 | \
 # Find errors in logs
 bdg console --list 2>&1 | grep -i "error"
 
-# Filter by URL pattern
-bdg network har - 2>&1 | grep "api.example.com"
+# Filter by URL pattern (print the URLs only, because a HAR entry also carries Cookie and Authorization headers)
+bdg network har - 2>&1 | jq -r '.log.entries[].request.url' | grep "api.example.com"
 
 # Case-insensitive search
 bdg cdp DOM.getDocument 2>&1 | grep -i "title"
@@ -550,7 +572,7 @@ bdg dom eval "localStorage.getItem('data')" 2>&1 | \
 # Chain multiple operations
 bdg cdp Page.captureScreenshot 2>&1 | \
   jq -r '.result.data' | \
-  base64 -d > output.png
+  base64 -d > "${TMPDIR:-/tmp}/output.png"
 ```
 
 ---
@@ -563,15 +585,15 @@ urls=("https://example.com" "https://test.com" "https://demo.com")
 
 for url in "${urls[@]}"; do
   bdg "$url" 2>&1
-  bdg dom screenshot "${url//https:\/\//}.png" 2>&1
+  bdg dom screenshot "${TMPDIR:-/tmp}/${url//https:\/\//}.png" 2>&1
   bdg stop 2>&1
 done
 
-# Batch cookie extraction
+# Batch cookie extraction (names and domains only, since values are live session secrets)
 bdg https://example.com 2>&1
-bdg network getCookies 2>&1 | jq -r '.[] | "\(.name)=\(.value)"' | \
+bdg network getCookies 2>&1 | jq -r '.[] | "\(.name)@\(.domain)"' | \
 while read cookie; do
-  echo "$cookie" >> cookies.txt
+  echo "$cookie" >> "${TMPDIR:-/tmp}/cookie-names.txt"
 done
 bdg stop 2>&1
 ```
@@ -582,13 +604,14 @@ bdg stop 2>&1
 
 ```bash
 # Capture stderr separately
-bdg cdp Page.navigate '{"url":"invalid"}' 2>errors.log 1>output.json
+SCRATCH="${TMPDIR:-/tmp}"
+bdg cdp Page.navigate '{"url":"invalid"}' 2>"$SCRATCH/errors.log" 1>"$SCRATCH/output.json"
 
 # Check exit code
 bdg status 2>&1
 if [ $? -ne 0 ]; then
   echo "Session check failed"
-  cat errors.log
+  cat "$SCRATCH/errors.log"
 fi
 
 # Discard stderr
@@ -705,7 +728,7 @@ done
 bdg https://example.com 2>&1 && \
 bdg dom eval "document.querySelectorAll('a')" 2>&1 | \
 jq -r '.result.value[] | .href' | \
-sort -u > links.txt && \
+sort -u > "${TMPDIR:-/tmp}/links.txt" && \
 bdg stop 2>&1
 
 # Performance monitoring pipeline
@@ -713,7 +736,7 @@ bdg https://example.com 2>&1 && \
 bdg cdp Performance.enable 2>&1 && \
 sleep 5 && \
 bdg cdp Performance.getMetrics 2>&1 | \
-jq '.result.metrics[] | select(.name | contains("DOM"))' > perf.json && \
+jq '.result.metrics[] | select(.name | contains("DOM"))' > "${TMPDIR:-/tmp}/perf.json" && \
 bdg stop 2>&1
 ```
 
@@ -729,6 +752,7 @@ bdg stop 2>&1
 6. **Progressive disclosure** - start with --describe before executing
 7. **Case-insensitive method names** - bdg normalizes automatically
 8. **Semantic exit codes** - check `$?` for scripting
+9. **Keep captures out of the repository** - write HAR files, cookie dumps and screenshots to a scratch path and redact cookie and authorization values before quoting them
 
 ---
 

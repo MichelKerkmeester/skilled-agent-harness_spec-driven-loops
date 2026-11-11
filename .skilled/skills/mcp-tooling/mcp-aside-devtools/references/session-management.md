@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside concurrency"
 importance_tier: normal
 contextType: reference
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Aside Session Management
@@ -51,7 +51,7 @@ Do not mix the layers: `--session` continues an agent task; it does not select a
 
 **UNKNOWN**: which permission/task mode `aside mcp` inherits, and whether MCP activity is auditable in the Aside UI, is not published. Apply caller-owned read/action/sensitive policy on top.
 
-Data egress: selected prompts, tool results, snapshots, screenshots, and files may reach hosted model providers — "local-first" is not "never leaves device". Redact sensitive material from default logs.
+Data egress: selected prompts, tool results, snapshots, screenshots, and files may reach hosted model providers: "local-first" is not "never leaves device". Redact sensitive material from every log, transcript, saved capture, report and reply.
 
 ---
 

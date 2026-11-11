@@ -2,7 +2,7 @@
 name: mcp-chrome-devtools
 description: "Chrome DevTools orchestrator: routes between bdg CLI (fast, token-efficient) and Code Mode MCP (multi-tool integration)."
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.0.23.0
+version: 1.0.24.0
 ---
 
 # Chrome DevTools Orchestrator - CLI + MCP Integration
@@ -134,6 +134,7 @@ Always close browser instances when done. Wrap Code Mode browser operations in `
 4. Capture stderr with `2>&1`.
 5. Stop sessions after operations.
 6. Use `jq` for JSON processing.
+7. Keep captures out of the repository and out of replies. HAR files, cookie dumps, traces, heap snapshots and screenshots of logged-in pages can hold live session cookies and bearer tokens. Write them to a scratch folder outside the repository, such as `"${TMPDIR:-/tmp}"`, or to a path the repository ignores, and never commit them. Redact cookie and authorization values before quoting any of it in a reply, report or file. Print cookie names and domains, not values, unless the operator explicitly needs one.
 
 ### ⛔ NEVER Rules
 
@@ -165,6 +166,7 @@ The workflow is complete when:
 - [ ] The session is active.
 - [ ] CDP operations exit 0 with valid JSON.
 - [ ] The requested data is captured.
+- [ ] Captures sit outside the repository and are redacted before they are quoted.
 - [ ] Sessions are cleaned up.
 - [ ] Discovery and error handling are documented.
 
@@ -215,7 +217,7 @@ In shell scripts, install a trap so `bdg stop 2>&1` runs on exit.
 
 The router discovers Markdown resources dynamically from `references/` and `assets/` when those directories exist.
 This skill currently routes over the flat reference set: `references/cdp-patterns.md`, `references/session-management.md` and `references/troubleshooting.md`.
-The asset [`assets/utcp-chrome-devtools-manuals.md`](assets/utcp-chrome-devtools-manuals.md) is the registered-state snapshot of the `chrome_devtools_1` and `chrome_devtools_2` Code Mode manuals. Verify them, do not re-add them.
+The asset [`assets/utcp-chrome-devtools-manuals.md`](assets/utcp-chrome-devtools-manuals.md) is the registered-state snapshot of the `chrome_devtools_1` and `chrome_devtools_2` Code Mode manuals. Check `.utcp_config.json` first and add only the entries it lacks.
 
 Scripts: `scripts/install.sh` and `scripts/doctor.sh`, both documented in `scripts/README.md`.
 

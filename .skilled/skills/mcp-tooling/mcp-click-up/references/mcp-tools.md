@@ -13,7 +13,7 @@ trigger_phrases:
   - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.11.0
+version: 1.1.16.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -288,7 +288,7 @@ ClickUp shows plain text literally, so markdown sent through a plain-text path a
 - Document pages: set `content_format: "text/md"` on `clickup_create_document_page`, `clickup_update_document_page` and `clickup_get_document_pages`. The only other value is `"text/plain"`.
 - Comments and chat: `clickup_create_comment` and `clickup_send_chat_message` accept markdown in their text.
 
-Push shape for a markdown artifact: the document's H1 becomes the task or page `name`, so drop it from the body. Strip internal HTML comments and processing metadata. Everything else travels verbatim.
+Push shape for a markdown artifact: the document's H1 becomes the task or page `name`, so drop it from the body. Strip internal HTML comments and processing metadata. Everything else travels verbatim. Two spellings change on the way to a document page, both seen on 2026-11-10. An empty checkbox `- []` imports as literal `\[\]` text, while `- [ ]` imports as a checklist item. A numbered bold title such as `2.  **Header**` imports as a one-item numbered list, and the divider after it ends the list, so every title on the page reads `1.`. Send it as `2\. **Header**`, which imports as a plain paragraph and reads back exactly as sent.
 
 ClickUp's markdown import has three traps, all observed on 2026-10-08:
 - A file name ending in `.md` in running text becomes a link, and the link can start mid-name at a space. Wrap every file path in backticks.
@@ -363,6 +363,253 @@ The IDs come back under their own names, checked 2026-11-05: `clickup_create_doc
 
 To change an existing page, read it first with `clickup_get_document_pages`, then call `clickup_update_document_page`. Its default `content_edit_mode` is `replace`, which overwrites the whole page. `append` and `prepend` keep the existing content. In a ClickUp doc URL, the first ID after `/v/dc/` or `/docs/` is the `document_id` and the second is the `page_id`.
 
+### Browser-first page write
+
+The default way to write a new doc page. The MCP creates the page, the editor writes its body, and nothing is left to repair afterwards. A markdown write leaves a gap under every divider and keeps no colour, and the editor cannot be reached through any MCP call, so the body goes in as one HTML paste in the user's logged-in browser. Measured on 2026-11-10 on two scratch pages and checked against four live Barter tasks written by hand:
+- **One paste writes the whole body.** HTML pasted over a selected placeholder becomes headings, dividers, checklists, bullets, numbered lists, images and columns in one editor change, and the page reads the same after a reload.
+- **Dividers stay tight.** The paste writes no empty line under a divider, so the gap pass has nothing to do. The program drops an empty line next to a divider or a spacer heading, where the editor shows none.
+- **Gray text is a class.** ClickUp's gray text colour is `<span class="ql-text-color ql-color-grey">`, which the team uses on the lead number of a numbered title and on the Mark-as-done line. Markdown has no colour, so this is the only path that writes it.
+- **The body editor is inside the task-editor wrapper.** A doc page has a second `.ql-editor` for its title, and on a short page the two can hold the same number of blocks. Select the body with `[data-test="task-editor"] .ql-editor`, falling back to `.ql-editor.ql-cls-checklist`.
+
+**How to run it.** Create the page with `clickup_create_document_page`, `content_format: "text/md"` and the content `[[BODY]]`, then run the program below with the page ID and the markdown body, without its H1. Give the `call_tool_chain` call a `timeout` of about 90 seconds plus 30 per local image. The program converts the markdown as follows:
+- `## `, `### ` and `#### ` lines become headings, and a heading with no text, such as `###   `, stays an empty spacer heading
+- `* * *`, `- - -`, `---`, `***` or `___` becomes a divider
+- `- []`, `- [ ]` and `- [x]` become checklist items, `- ` and `* ` bullets, `1. ` numbered items, and four leading spaces indent one level
+- `2\. **Title**` and `2 ) **Title**` keep their number as plain text, gray and regular weight, before the bold title
+- A checklist item that opens with `Mark as done`, such as `_Mark as done, if the criteria are met_` or `_Mark as done_`, becomes gray italic text, checked or not
+- `[[COLS]]` opens a side-by-side pair, `[[|]]` starts the right column and `[[/COLS]]` closes it. Each line between them, such as a `Code` label, a `[Figma](link)` label or an image, becomes one block in its column
+- An image with an `https` source renders from that URL. An image with any other source must be a bare png, jpg, gif or webp file name in the Aside session folder, which the program pastes as a file so ClickUp uploads it. A path or any other file is refused
+
+`STYLE` turns the gray numbers and the gray Mark-as-done line off for a page that should not carry them.
+
+```javascript
+(async () => {
+  const WORKSPACE = "WORKSPACE_ID";
+  const DOC = "DOCUMENT_ID";
+  const PAGE = "PAGE_ID";
+  // The markdown body without its H1, as the export holds it. The page itself holds only the line [[BODY]].
+  const MD = "THE MARKDOWN BODY";
+  // Gray lead numbers on "1\. **Title**" and "1 ) **Title**" lines, and a gray italic Mark-as-done line.
+  const STYLE = { grayNumbers: true, grayMarkAsDone: true };
+
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const GRAY = (s) => `<span class="ql-text-color ql-color-grey">${s}</span>`;
+  // A link keeps its target only for a web or mail address, so a script URL in the markdown stays plain text.
+  const SAFE_HREF = /^(https?:|mailto:)/i;
+  const DIVIDER = /^(\* \* \*|- - -|---|\*\*\*|___)$/;
+  // A local image is a bare file name in the Aside session folder with an image extension, never a path,
+  // so the upload cannot read any other file on the machine. The extension sets the upload's type.
+  const IMAGE_TYPES = { png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg", gif: "image/gif", webp: "image/webp" };
+  const imageType = (file) => { const m = /^[A-Za-z0-9][\w .-]*\.(png|jpe?g|gif|webp)$/i.exec(file); return m && !file.includes("..") ? IMAGE_TYPES[m[1].toLowerCase()] : null; };
+  const uploads = [];
+  // Code spans, images and links are set aside first, so bold and italic never reach inside a URL.
+  const inline = (text) => {
+    const keep = [];
+    const hold = (html) => `\u0000${keep.push(html) - 1}\u0000`;
+    let s = text
+      .replace(/`([^`]+)`/g, (m, c) => hold(`<code>${esc(c)}</code>`))
+      .replace(/!\[[^\]]*\]\(([^)\s]+)\)/g, (m, src) => {
+        if (/^https?:/.test(src)) return hold(`<img src="${esc(src)}">`);
+        const marker = `[[IMG-${uploads.length + 1}]]`; uploads.push({ marker, file: src }); return hold(esc(marker));
+      })
+      .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, href) => hold(SAFE_HREF.test(href) ? `<a href="${esc(href)}">${esc(t)}</a>` : esc(t)))
+      .replace(/\\([\\`*_[\]().#-])/g, (m, c) => hold(esc(c)));
+    s = esc(s).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/(^|[^\w])_([^_]+)_(?=$|[^\w])/g, "$1<em>$2</em>");
+    return s.replace(/\u0000(\d+)\u0000/g, (m, i) => keep[Number(i)]);
+  };
+
+  // Each markdown line becomes one editor block. A blank line in the markdown becomes an empty block,
+  // except next to a divider, a spacer heading or a list, where the editor keeps no empty line.
+  const toBlocks = (lines) => {
+    const blocks = []; let gap = false;
+    const push = (b) => { b.gap = gap; gap = false; blocks.push(b); };
+    for (const line of lines) {
+      let m;
+      if (line.trim() === "") { gap = true; continue; }
+      if (DIVIDER.test(line.trim())) push({ k: "hr", h: "<hr>" });
+      else if (/^#{1,4}\s*$/.test(line.trim())) push({ k: "spacer", h: `<h${line.trim().length}><br></h${line.trim().length}>` });
+      else if ((m = /^(#{1,4})\s+(.*)$/.exec(line))) push({ k: "h", h: `<h${m[1].length}>${inline(m[2])}</h${m[1].length}>` });
+      else if ((m = /^(\s*)[-*]\s+\[( |x|X)?\]\s+(.*)$/.exec(line))) {
+        const done = /x/i.test(m[2] || ""), body = m[3];
+        // Any line that opens with "Mark as done" counts, whatever follows, such as "_Mark as done_" or "Mark as done, if ...".
+        const mark = /^_?Mark as done(?![A-Za-z0-9])/i.test(body);
+        const html = mark && STYLE.grayMarkAsDone ? `<em>${GRAY(esc(body.replace(/^_|_$/g, "")))}</em>` : inline(body);
+        push({ k: "li", list: done ? "checked" : "unchecked", indent: Math.floor(m[1].length / 4), h: html });
+      }
+      else if ((m = /^(\s*)[-*]\s+(.*)$/.exec(line))) push({ k: "li", list: "bullet", indent: Math.floor(m[1].length / 4), h: inline(m[2]) });
+      else if ((m = /^(\s*)\d+\.\s+(.*)$/.exec(line))) push({ k: "li", list: "ordered", indent: Math.floor(m[1].length / 4), h: inline(m[2]) });
+      else if ((m = /^(\d+)\\\.\s+(.*)$/.exec(line))) push({ k: "p", h: (STYLE.grayNumbers ? GRAY(`${m[1]}. `) : `${m[1]}. `) + inline(m[2]) });
+      else if ((m = /^(\d+) \)\s+(.*)$/.exec(line))) push({ k: "p", h: (STYLE.grayNumbers ? GRAY(`${m[1]} ) `) : `${m[1]} ) `) + inline(m[2]) });
+      else push({ k: "p", h: inline(line) });
+    }
+    return blocks;
+  };
+  const render = (blocks, wrap = (h) => h) => {
+    let html = "", list = [];
+    const flush = () => { if (list.length) { html += wrap(`<ol>${list.join("")}</ol>`); list = []; } };
+    blocks.forEach((b, i) => {
+      const prev = blocks[i - 1];
+      if (b.k !== "li") flush();
+      const quiet = !prev || [b.k, prev.k].some((k) => k === "hr" || k === "spacer") || (b.k === "li" && prev.k !== "li");
+      if (b.gap && !quiet) { flush(); html += wrap("<p><br></p>"); }
+      if (b.k === "li") list.push(`<li data-list="${b.list}"${b.indent ? ` class="ql-indent-${b.indent}"` : ""}>${b.h}</li>`);
+      else html += wrap(b.k === "p" ? `<p>${b.h}</p>` : b.h);
+    });
+    flush();
+    return html;
+  };
+  // [[COLS]] opens a side-by-side pair, [[|]] starts the right column and [[/COLS]] closes it.
+  const toHtml = (md) => {
+    const out = []; let cols = null;
+    const lines = md.split("\n");
+    const flat = [];
+    const emitFlat = () => { if (flat.length) { out.push({ gap: true, html: render(toBlocks(flat.splice(0))) }); } };
+    for (const line of lines) {
+      const t = line.trim();
+      if (t === "[[COLS]]") { emitFlat(); cols = [[], []]; continue; }
+      if (cols && t === "[[|]]") { cols.side = 1; continue; }
+      if (cols && t === "[[/COLS]]") {
+        const stamp = Date.now() + "" + out.length, row = "row" + stamp;
+        const html = cols.map((side, i) => {
+          const col = `${i ? "r" : "l"}${stamp}`;
+          const blk = (inner) => `<div class="ql-block" data-layout="${row}_${col}" data-layout-width="0.50">${inner}</div>`;
+          const body = render(toBlocks(side.filter((l) => l.trim() !== "")), (h) => h.startsWith("<p>") ? blk(h.slice(3, -4)) : blk(h));
+          return `<div class="ql-layout-col-container" data-layout-row="${row}" data-layout-col="${col}">${body}</div>`;
+        }).join("");
+        out.push({ cols: true, html: `<div class="ql-layout-row-container" data-layout-row="${row}">${html}</div>` });
+        cols = null; continue;
+      }
+      if (cols) cols[cols.side || 0].push(line); else flat.push(line);
+    }
+    emitFlat();
+    // An empty line next to a divider or a spacer heading shows as a double gap, so it is dropped there.
+    return out.map((o, i) => (i && o.cols ? "<p><br></p>" : "") + o.html + (o.cols && i < out.length - 1 ? "<p><br></p>" : "")).join("")
+      .replace(/<p><br><\/p>(?=<hr>|<h\d><br><\/h\d>)/g, "").replace(/(<hr>)<p><br><\/p>/g, "$1");
+  };
+
+  const html = toHtml(MD);
+  // What the saved page must hold, counted from the HTML that is pasted.
+  const count = (re) => (html.match(re) || []).length;
+  const expected = { dividers: count(/<hr>/g), gray: count(/ql-color-grey/g),
+    checklist: count(/data-list="(un)?checked"/g), columns: count(/ql-layout-row-container/g) };
+  const call = async (title, code) => {
+    const raw = JSON.stringify(await aside.aside_repl({ title, code }));
+    const m = /RESULT ([A-Za-z0-9\-_.!~*'()%]+)/.exec(raw);
+    return m ? JSON.parse(decodeURIComponent(m[1])) : { error: raw.slice(0, 300) };
+  };
+  const out = (expr) => `console.log("RESULT " + encodeURIComponent(JSON.stringify(${expr})));`;
+  // The body editor sits inside the task-editor wrapper. The page title is a second .ql-editor outside it.
+  const EDITOR = `(document.querySelector('[data-test="task-editor"] .ql-editor') || document.querySelector(".ql-editor.ql-cls-checklist"))`;
+  // Every placeholder and marker this program writes. One left on the saved page means a step missed.
+  const MARKER = /\[\[(BODY|IMG-[^\]]*|COLS|\||\/COLS)\]\]/;
+  const url = `https://app.clickup.com/${WORKSPACE}/v/dc/${DOC}/${PAGE}`;
+  const report = { page: PAGE, htmlLength: html.length, expected };
+
+  // A page the server has just written can take a few seconds to reach the editor, so reload until the placeholder shows.
+  for (let attempt = 0; attempt < 4 && !report.open?.placeholder; attempt++) {
+    report.open = await call("Open the ClickUp page", `await (async () => {
+      if (!globalThis.__pageTab) globalThis.__pageTab = await openTab(${JSON.stringify(url)}); else await __pageTab.goto(${JSON.stringify(url)});
+      await sleep(10000);
+      const r = await __pageTab.evaluate(() => {
+        const ed = ${EDITOR};
+        return { login: location.pathname.includes("/login"), editor: !!ed, placeholder: !!ed && [...ed.children].some((e) => e.textContent.trim() === "[[BODY]]") };
+      });
+      ${out("r")}
+    })();`);
+    if (report.open.error || report.open.login) break;
+  }
+  if (!report.open?.placeholder) {
+    await call("Close the tab", `if (globalThis.__pageTab) { await closeTab(__pageTab); delete globalThis.__pageTab; } ${out("1")}`);
+    console.log(JSON.stringify(report)); return;
+  }
+
+  // Pasting over the selected placeholder writes the whole body in one editor change.
+  report.paste = await call("Write the page body", `await (async () => {
+    const r = await __pageTab.evaluate((html) => {
+      const ed = ${EDITOR};
+      const ph = [...ed.children].find((e) => e.textContent.trim() === "[[BODY]]");
+      ed.focus(); const s = window.getSelection(); s.removeAllRanges();
+      const range = document.createRange(); range.selectNodeContents(ph); s.addRange(range);
+      const dt = new DataTransfer(); dt.setData("text/html", html); dt.setData("text/plain", "[[BODY]]");
+      ed.dispatchEvent(new ClipboardEvent("paste", { clipboardData: dt, bubbles: true, cancelable: true }));
+      return { blocks: ed.children.length };
+    }, ${JSON.stringify(html)});
+    await sleep(5000);
+    ${out("r")}
+  })();`);
+
+  // A local image is pasted as a file, which ClickUp uploads, and its marker is removed with a real key press.
+  report.uploads = [];
+  for (const u of uploads) {
+    // A refused file leaves its marker on the page, so the check below reports it as a leftover.
+    const type = imageType(u.file);
+    if (!type) { report.uploads.push({ marker: u.marker, file: u.file, refused: "not a png, jpg, gif or webp file name in the Aside session folder" }); continue; }
+    report.uploads.push(await call("Upload a screenshot", `await (async () => {
+      const b64 = (await fs.readFile(path.join(pwd, ${JSON.stringify(u.file)}))).toString("base64");
+      const found = await __pageTab.evaluate(({ marker, b64, name, type }) => {
+        const ed = ${EDITOR};
+        const blk = [...ed.querySelectorAll(".ql-block")].find((e) => e.textContent.trim() === marker);
+        if (!blk) return false;
+        ed.focus(); const s = window.getSelection(); s.removeAllRanges();
+        const range = document.createRange(); range.selectNodeContents(blk); s.addRange(range);
+        const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+        const dt = new DataTransfer(); dt.items.add(new File([bytes], name, { type }));
+        ed.dispatchEvent(new ClipboardEvent("paste", { clipboardData: dt, bubbles: true, cancelable: true }));
+        return true;
+      }, { marker: ${JSON.stringify(u.marker)}, b64, name: ${JSON.stringify(u.file)}, type: ${JSON.stringify(type)} });
+      await sleep(6000);
+      const sel = await __pageTab.evaluate((marker) => {
+        const ed = ${EDITOR};
+        const w = document.createTreeWalker(ed, NodeFilter.SHOW_TEXT); let t;
+        while ((t = w.nextNode())) { const i = t.data.indexOf(marker); if (i >= 0) { ed.focus(); const s = window.getSelection(); s.removeAllRanges(); const r = document.createRange(); r.setStart(t, i); r.setEnd(t, i + marker.length); s.addRange(r); return true; } }
+        return false;
+      }, ${JSON.stringify(u.marker)});
+      if (sel) { await __pageTab.keyboard.press("Backspace"); await sleep(1000); }
+      ${out(`{ marker: ${JSON.stringify(u.marker)}, found, markerRemoved: sel }`)}
+    })();`));
+  }
+
+  // Read the saved page after a reload, so the result describes the server copy, not the open tab.
+  report.verify = await call("Check the saved page", `await (async () => {
+    await sleep(3000);
+    await __pageTab.goto(${JSON.stringify(url)});
+    await sleep(10000);
+    const r = await __pageTab.evaluate((marker) => {
+      const ed = ${EDITOR};
+      const kids = [...ed.children];
+      return {
+        blocks: kids.length,
+        dividers: kids.filter((e) => e.tagName === "HR").length,
+        gaps: kids.filter((e, i) => kids[i - 1] && kids[i - 1].tagName === "HR" && e.textContent === "" && !e.querySelector("img")).length,
+        columns: [...ed.querySelectorAll(".ql-layout-row-container")].map((row) => [...row.children].map((c) => c.querySelectorAll("img").length)),
+        gray: ed.querySelectorAll(".ql-color-grey").length,
+        checklist: ed.querySelectorAll('li[data-list="unchecked"], li[data-list="checked"]').length,
+        leftovers: ed.textContent.match(new RegExp(marker, "g")) || [],
+      };
+    }, ${JSON.stringify(MARKER.source)});
+    await closeTab(__pageTab); delete globalThis.__pageTab;
+    ${out("r")}
+  })();`);
+
+  // The same normalizer runs in every program in this section, so a read-back compares the same way everywhere.
+  // The markdown read-back drops colour and columns, so it checks the words only. ClickUp stores a pasted
+  // image under a new attachment URL, so an image line counts as present when any image sits there.
+  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, "").replace(/^\s*[-*]\s+\[\s?\]\s+/, "- [ ] ").replace(/^(\* \* \*|- - -|---|\*\*\*|___)$/, "---"))
+    .filter((l) => l.trim() !== "" && !/^\[\[[^\]]+\]\]$/.test(l.trim()) && !/^#{1,4}\s*$/.test(l.trim()))
+    .map((l) => l.replace(/\[(https?:[^\]\s]+)\]\(\1\)/g, "$1").replace(/!\[[^\]]*\]\([^)]*\)/g, "![](image)").replace(/^\s+/, ""));
+  const page = (await clickup_official.clickup_official_clickup_get_document_pages({ document_id: DOC, page_ids: [PAGE], content_format: "text/md" })).pages[0];
+  const got = new Set(norm(page.content));
+  report.importDiff = norm(MD).filter((l) => !got.has(l));
+  report.mismatch = !report.verify || report.verify.error ? ["verify"] : Object.keys(expected).filter((k) =>
+    (k === "columns" ? (report.verify.columns || []).length : report.verify[k]) !== expected[k]);
+  console.log(JSON.stringify(report));
+})();
+```
+
+The report names each stage. `open.placeholder: false` after four tries means the page never showed `[[BODY]]`: check the page ID and `open.login`. Under `verify`, `gaps` counts empty lines under a divider and must be 0, `columns` lists each saved row with the image count per column, `gray` counts gray runs and `leftovers` lists any placeholder or marker still on the page. `expected` holds the dividers, gray runs, checklist items and columns rows counted from the pasted HTML, and `mismatch` names each one the saved page does not match. `importDiff` lists the source lines missing from the markdown read-back, with images compared by position, because ClickUp stores each pasted image under a new attachment URL. An `uploads` entry with `refused` is a local image that was not a bare png, jpg, gif or webp file name in the Aside session folder, so it was never read and its marker stays on the page. A page with gaps, leftovers, a mismatch or an import diff is not delivered.
+
+When no browser tool is available, or the page opens on ClickUp's login screen, write the page with the markdown and run the routine under "Required after every page write" instead. That path keeps no colour, so say so in the report.
+
 ### Divider spacing on pages the server writes
 
 Every divider the server writes gets an empty line under it, so a page built from markdown with `* * *` dividers shows a double gap below each one. Observed on 2026-11-05 across 65 pages:
@@ -376,7 +623,7 @@ Every divider the server writes gets an empty line under it, so a page built fro
 
 ### Required after every page write
 
-Every `clickup_create_document_page` or `clickup_update_document_page` call ends with this routine, in the same turn, before the push is reported. It belongs to the write the user approved, so it needs no second yes: it removes only empty lines, and step 4 proves the text is unchanged.
+Every `clickup_create_document_page` or `clickup_update_document_page` call that writes a markdown body ends with this routine, in the same turn, before the push is reported. A page written by the browser-first page writer has no gaps to remove, and its own report covers the import check. It belongs to the write the user approved, so it needs no second yes: it removes only empty lines, and step 4 proves the text is unchanged.
 
 1. **Check the import.** Read the page with `content_format: "text/md"` and compare it with the markdown you sent, both normalized: trailing spaces and blank lines dropped, and `[url](url)` unwrapped to the bare URL. A line you sent that is missing from the read-back is an import defect, such as an escaped `\*\*`, a paragraph turned into a heading above a divider, a literal `\[\]` or an auto-linked `.md` name. Fix the content and write the page again before step 2. A bold run that ClickUp re-split around inline code is not a defect.
 2. **Count the gaps.** Read the page with `content_format: "text/plain"` and count `/(^|\n) \n/g`. Zero means the routine is done.
@@ -387,7 +634,7 @@ Every `clickup_create_document_page` or `clickup_update_document_page` call ends
    When no browser tool is available, or a page opens on ClickUp's login screen (`login: true`), stop and tell the user the gap count per page and which browser needs the ClickUp login. Run the program again once they confirm.
 4. **Report per page:** import diff lines, gaps before, gaps left and whether the text is unchanged. A page with gaps left or changed text is not delivered. Say which, and why.
 
-**Aside program.** It runs steps 1, 3 and 4 for a batch of pages. Fill in the constants and paste it as the `code` of one `mcp__code_mode__call_tool_chain` call. The read-backs run in Code Mode and the editor pass runs in one `aside.aside_repl` call per page. That tool needs a `title`, and its REPL keeps one shared scope between calls, so the pass runs inside its own function. Each call stops after about 12 seconds of work, under Code Mode's 30-second limit per tool call, and keeps its tab for the next call, so a page with many dividers takes several calls. Give the `call_tool_chain` call a `timeout` of about 60 seconds per page. Keep batches to about ten pages, because each page takes 10 to 20 seconds and a longer call moves to the background. The editor selectors are ClickUp internals as of 2026-11-05 and can change. Verified on 2026-11-06 on eleven scratch pages, including two with 74 dividers and runs with Aside minimized: every gap removed, text unchanged, no login prompt, the user's active tabs unchanged. A long page that needed two calls finished on the same tab and left no tab open.
+**Aside program.** It runs steps 1, 3 and 4 for a batch of pages. Fill in the constants and paste it as the `code` of one `mcp__code_mode__call_tool_chain` call. The read-backs run in Code Mode and the editor pass runs in one `aside.aside_repl` call per page. That tool needs a `title`, and its REPL keeps one shared scope between calls, so the pass runs inside its own function. Each call stops after about 12 seconds of work, under Code Mode's 30-second limit per tool call, and keeps its tab for the next call, so a page with many dividers takes several calls. Give the `call_tool_chain` call a `timeout` of about 60 seconds per page. Keep batches to about ten pages, because each page takes 10 to 20 seconds and a longer call moves to the background. The editor selectors are ClickUp internals as of 2026-11-05 and can change. On 2026-11-10 a doc page carried a second `.ql-editor` for its title, which made the pass report no gaps while the plain-text read-back still counted 60. Picking the editor with the most blocks removed all 60, with the text unchanged, but on a short page the title and the body can hold the same number of blocks, so since 2026-11-10 the programs select the body inside its `[data-test="task-editor"]` wrapper. Verified on 2026-11-06 on eleven scratch pages, including two with 74 dividers and runs with Aside minimized: every gap removed, text unchanged, no login prompt, the user's active tabs unchanged. A long page that needed two calls finished on the same tab and left no tab open.
 
 ```javascript
 (async () => {
@@ -396,14 +643,20 @@ Every `clickup_create_document_page` or `clickup_update_document_page` call ends
   const PAGES = [{ id: "PAGE_ID", sent: "THE MARKDOWN YOU SENT" }];
   const read = async (id, format) => (await clickup_official.clickup_official_clickup_get_document_pages(
     { document_id: DOC, page_ids: [id], content_format: format })).pages[0].content;
-  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, ""))
-    .filter((l) => l.trim() !== "").map((l) => l.replace(/\[(https?:[^\]\s]+)\]\(\1\)/g, "$1"));
+  // The same normalizer runs in every program in this section, so a read-back compares the same way everywhere.
+  // The markdown read-back drops colour and columns, so it checks the words only. ClickUp stores a pasted
+  // image under a new attachment URL, so an image line counts as present when any image sits there.
+  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, "").replace(/^\s*[-*]\s+\[\s?\]\s+/, "- [ ] ").replace(/^(\* \* \*|- - -|---|\*\*\*|___)$/, "---"))
+    .filter((l) => l.trim() !== "" && !/^\[\[[^\]]+\]\]$/.test(l.trim()) && !/^#{1,4}\s*$/.test(l.trim()))
+    .map((l) => l.replace(/\[(https?:[^\]\s]+)\]\(\1\)/g, "$1").replace(/!\[[^\]]*\]\([^)]*\)/g, "![](image)").replace(/^\s+/, ""));
   const gaps = (text) => (text.match(/(^|\n) \n/g) || []).length;
   // Returns the number of empty blocks under a divider and puts the caret in the first one.
   // -1 means no editor on the page, -2 means ClickUp showed its login screen.
   const PICK = `() => {
     if (location.pathname.includes("/login")) return -2;
-    const ed = document.querySelector(".ql-editor"); if (!ed) return -1; ed.focus();
+    // A doc page has two editors, the page title and the body. The body sits inside the task-editor wrapper.
+    const ed = document.querySelector('[data-test="task-editor"] .ql-editor') || document.querySelector(".ql-editor.ql-cls-checklist");
+    if (!ed) return -1; ed.focus();
     const empty = [...ed.querySelectorAll(":scope > hr.ql-divider")].map((h) => h.nextElementSibling)
       .filter((n) => n && n.classList.contains("ql-block") && n.textContent === ""
         && n.children.length === 1 && n.firstElementChild.tagName === "BR");
@@ -462,7 +715,8 @@ Every `clickup_create_document_page` or `clickup_update_document_page` call ends
     const after = await read(page.id, "text/md");
     const plainHits = gaps(await read(page.id, "text/plain"));
     // The editor counts only dividers. The plain-text count also catches an image at the end of a block.
-    const gapsLeft = browser.editor && !browser.login && browser.done !== false ? (browser.left ?? plainHits) : plainHits;
+    const reached = browser.editor && !browser.login && browser.done !== false, left = browser.left;
+    const gapsLeft = reached && Number.isInteger(left) ? left : plainHits;
     report.push({ page: page.id, importDiff, gapsBefore, ...browser, calls, gapsLeft, plainHits,
       textUnchanged: norm(after).join("\n") === norm(md).join("\n") });
   }
@@ -482,8 +736,12 @@ A report with an `error` field means the Aside call failed before the editor pas
   const B = chrome_devtools_live;
   const read = async (id, format) => (await clickup_official.clickup_official_clickup_get_document_pages(
     { document_id: DOC, page_ids: [id], content_format: format })).pages[0].content;
-  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, ""))
-    .filter((l) => l.trim() !== "").map((l) => l.replace(/\[(https?:[^\]\s]+)\]\(\1\)/g, "$1"));
+  // The same normalizer runs in every program in this section, so a read-back compares the same way everywhere.
+  // The markdown read-back drops colour and columns, so it checks the words only. ClickUp stores a pasted
+  // image under a new attachment URL, so an image line counts as present when any image sits there.
+  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, "").replace(/^\s*[-*]\s+\[\s?\]\s+/, "- [ ] ").replace(/^(\* \* \*|- - -|---|\*\*\*|___)$/, "---"))
+    .filter((l) => l.trim() !== "" && !/^\[\[[^\]]+\]\]$/.test(l.trim()) && !/^#{1,4}\s*$/.test(l.trim()))
+    .map((l) => l.replace(/\[(https?:[^\]\s]+)\]\(\1\)/g, "$1").replace(/!\[[^\]]*\]\([^)]*\)/g, "![](image)").replace(/^\s+/, ""));
   const gaps = (text) => (text.match(/(^|\n) \n/g) || []).length;
   const sleep = (ms) => B.chrome_devtools_live_evaluate_script(
     { function: `() => new Promise((r) => setTimeout(() => r(1), ${ms}))` });
@@ -492,7 +750,9 @@ A report with an `error` field means the Aside call failed before the editor pas
   // -1 means no editor on the page, -2 means ClickUp showed its login screen.
   const PICK = `() => {
     if (location.pathname.includes("/login")) return -2;
-    const ed = document.querySelector(".ql-editor"); if (!ed) return -1; ed.focus();
+    // A doc page has two editors, the page title and the body. The body sits inside the task-editor wrapper.
+    const ed = document.querySelector('[data-test="task-editor"] .ql-editor') || document.querySelector(".ql-editor.ql-cls-checklist");
+    if (!ed) return -1; ed.focus();
     const empty = [...ed.querySelectorAll(":scope > hr.ql-divider")].map((h) => h.nextElementSibling)
       .filter((n) => n && n.classList.contains("ql-block") && n.textContent === ""
         && n.children.length === 1 && n.firstElementChild.tagName === "BR");
@@ -542,7 +802,8 @@ A report with an `error` field means the Aside call failed before the editor pas
       const after = await read(page.id, "text/md");
       const plainHits = gaps(await read(page.id, "text/plain"));
       // The editor counts only dividers. The plain-text count also catches an image at the end of a block.
-      const gapsLeft = editor && !login ? left : plainHits;
+      const reached = editor && !login;
+      const gapsLeft = reached && Number.isInteger(left) ? left : plainHits;
       report.push({ page: page.id, login, editor, importDiff, gapsBefore, presses, gapsLeft, plainHits,
         textUnchanged: norm(after).join("\n") === norm(md).join("\n") });
     }
@@ -558,7 +819,139 @@ A report with an `error` field means the Aside call failed before the editor pas
 
 `gapsLeft` comes from the editor whenever the pass reached it, and the editor counts only dividers. `plainHits` is the plain-text count after the pass, which also counts an image at the end of a block, so `gapsLeft: 0` with `plainHits: 1` on a page with an image is a clean page. When the pass never reached the editor, `gapsLeft` falls back to `plainHits`.
 
-**Prefer `replace` on an existing page.** A page that already has editor-made dividers keeps them tight under `replace`, so the routine finds nothing to remove.
+**Prefer `replace` on an existing page.** A page that already has editor-made dividers keeps them tight under `replace`, so the routine finds nothing to remove. The one exception is a page that holds columns: the markdown read-back flattens a columns block into stacked lines, so a `replace` built from it deletes every column on the page. Use `append` or `prepend` there, or edit in the ClickUp editor.
+
+### Side-by-side columns on a doc page
+
+ClickUp's `/Columns` block puts two screenshots next to each other, such as the built screen beside its Figma frame. No MCP call writes one, because a page takes only `"text/md"` and `"text/plain"`, and neither format has a column. The editor writes it, so the routine below builds it there after the page write, the same way the gap pass removes divider gaps. Measured on 2026-11-10 on three scratch pages and one live page:
+- **A column is a line attribute.** Each block inside a columns row carries `data-layout="<row id>_<column id>"` and `data-layout-width="0.50"`, inside a `.ql-layout-row-container` holding one `.ql-layout-col-container` per column.
+- **A paste builds it.** Pasting HTML in that shape into the editor creates a real columns row that survives a reload. ClickUp keeps no editor instance on `window`, so a paste is the only way in.
+- **A pasted file is uploaded.** A local PNG pasted as a file lands in its column as a `clickup-attachments` image, and a hosted image URL in the pasted HTML renders as it is. ClickUp inserts the pasted image beside the selected text instead of replacing it, so the routine removes each marker afterwards with a real Backspace.
+- **The markdown read-back cannot see it.** `"text/md"` returns the labels and images as stacked lines, so the check reads the editor after a reload instead.
+
+**Write placeholders, then run the routine.** In the markdown you send, put a line such as `[[COLS-1]]` on its own where each pair belongs, then write the page and run the gap pass as usual. Run the routine below last, because any later `replace` would remove the columns again. A local screenshot has to sit in the Aside session folder, which the REPL reads as `pwd`, so copy it there first. Each pair sets a label for each side, with an optional link such as the Figma frame, and an image given as `file` or `url`. The approved push covers this pass, as it covers the gap pass. Give the `call_tool_chain` call a `timeout` of about 30 seconds per image plus 30. Verified on 2026-11-10: two pairs, one from local files and one from hosted URLs, each read back after a reload as two columns holding their label and one image, with no placeholder or marker left.
+
+```javascript
+(async () => {
+  const WORKSPACE = "WORKSPACE_ID";
+  const DOC = "DOCUMENT_ID";
+  const PAGE = "PAGE_ID";
+  // One entry per placeholder line the page write left, such as [[COLS-1]] on a line of its own.
+  // An image is { file: "dev.png" }, a file in the Aside session folder, or { url: "https://..." }.
+  const PAIRS = [
+    { marker: "[[COLS-1]]",
+      left: { label: "DEV", image: { file: "dev.png" } },
+      right: { label: "FIGMA", link: "https://www.figma.com/design/FILE?node-id=1-2", image: { file: "figma.png" } } },
+  ];
+  // Each Aside call stays under Code Mode's 30-second limit per tool call, and the tab lives in the REPL between calls.
+  const call = async (title, code) => {
+    const raw = JSON.stringify(await aside.aside_repl({ title, code }));
+    const m = /RESULT ([A-Za-z0-9\-_.!~*'()%]+)/.exec(raw);
+    return m ? JSON.parse(decodeURIComponent(m[1])) : { error: raw.slice(0, 300) };
+  };
+  const out = (expr) => `console.log("RESULT " + encodeURIComponent(JSON.stringify(${expr})));`;
+  // The body editor sits inside the task-editor wrapper. The page title is a second .ql-editor outside it.
+  const EDITOR = `(document.querySelector('[data-test="task-editor"] .ql-editor') || document.querySelector(".ql-editor.ql-cls-checklist"))`;
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  // A link keeps its target only for a web or mail address, so a script URL stays plain text.
+  const SAFE_HREF = /^(https?:|mailto:)/i;
+  // A local image is a bare file name in the Aside session folder with an image extension, never a path,
+  // so the upload cannot read any other file on the machine. The extension sets the upload's type.
+  const IMAGE_TYPES = { png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg", gif: "image/gif", webp: "image/webp" };
+  const imageType = (file) => { const m = /^[A-Za-z0-9][\w .-]*\.(png|jpe?g|gif|webp)$/i.exec(file); return m && !file.includes("..") ? IMAGE_TYPES[m[1].toLowerCase()] : null; };
+  const url = `https://app.clickup.com/${WORKSPACE}/v/dc/${DOC}/${PAGE}`;
+  const report = { page: PAGE, rows: [] };
+
+  report.open = await call("Open the ClickUp page", `await (async () => {
+    globalThis.__colTab = await openTab(${JSON.stringify(url)});
+    await sleep(9000);
+    const r = await __colTab.evaluate(() => ({ login: location.pathname.includes("/login"), editor: !!document.querySelector(".ql-editor") }));
+    ${out("r")}
+  })();`);
+  if (report.open.error || report.open.login || !report.open.editor) { console.log(JSON.stringify(report)); return; }
+
+  const uploads = [];
+  for (const [n, pair] of PAIRS.entries()) {
+    const stamp = Date.now() + "" + n;
+    const row = "row" + stamp, cols = ["l" + stamp, "r" + stamp];
+    const html = [pair.left, pair.right].map((side, i) => {
+      const block = (inner) => `<div class="ql-block" data-layout="${row}_${cols[i]}" data-layout-width="0.50">${inner}</div>`;
+      const label = side.link && SAFE_HREF.test(side.link) ? `<a href="${esc(side.link)}">${esc(side.label)}</a>` : esc(side.label);
+      let image = "";
+      if (side.image && side.image.url) image = block(`<img src="${esc(side.image.url)}">`);
+      if (side.image && side.image.file) { const marker = `[[IMG-${n + 1}-${i ? "R" : "L"}]]`; uploads.push({ marker, file: side.image.file }); image = block(marker); }
+      return `<div class="ql-layout-col-container" data-layout-row="${row}" data-layout-col="${cols[i]}">${block(label)}${image}</div>`;
+    }).join("");
+    const rowHtml = `<div class="ql-layout-row-container" data-layout-row="${row}">${html}</div>`;
+    // Pasting over the selected placeholder keeps the lines around it as they are.
+    report.rows.push(await call("Turn a placeholder into columns", `await (async () => {
+      const r = await __colTab.evaluate(({ marker, rowHtml }) => {
+        const ed = ${EDITOR};
+        const ph = [...ed.children].find((e) => e.textContent.trim() === marker);
+        if (!ph) return { marker, pasted: false };
+        ed.focus(); const s = window.getSelection(); s.removeAllRanges();
+        const range = document.createRange(); range.selectNodeContents(ph); s.addRange(range);
+        const dt = new DataTransfer(); dt.setData("text/html", rowHtml); dt.setData("text/plain", marker);
+        ed.dispatchEvent(new ClipboardEvent("paste", { clipboardData: dt, bubbles: true, cancelable: true }));
+        return { marker, pasted: true };
+      }, ${JSON.stringify({ marker: pair.marker, rowHtml })});
+      await sleep(3000);
+      ${out("r")}
+    })();`));
+  }
+
+  // A pasted file is uploaded by ClickUp itself and lands beside the marker, so the marker is removed with a real key press.
+  report.uploads = [];
+  for (const u of uploads) {
+    // A refused file leaves its marker on the page, so the check below reports it as a leftover.
+    const type = imageType(u.file);
+    if (!type) { report.uploads.push({ marker: u.marker, file: u.file, refused: "not a png, jpg, gif or webp file name in the Aside session folder" }); continue; }
+    report.uploads.push(await call("Upload a screenshot into its column", `await (async () => {
+      const b64 = (await fs.readFile(path.join(pwd, ${JSON.stringify(u.file)}))).toString("base64");
+      const found = await __colTab.evaluate(({ marker, b64, name, type }) => {
+        const ed = ${EDITOR};
+        const blk = [...ed.querySelectorAll(".ql-block")].find((e) => e.textContent.trim() === marker);
+        if (!blk) return false;
+        ed.focus(); const s = window.getSelection(); s.removeAllRanges();
+        const range = document.createRange(); range.selectNodeContents(blk); s.addRange(range);
+        const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+        const dt = new DataTransfer(); dt.items.add(new File([bytes], name, { type }));
+        ed.dispatchEvent(new ClipboardEvent("paste", { clipboardData: dt, bubbles: true, cancelable: true }));
+        return true;
+      }, { marker: ${JSON.stringify(u.marker)}, b64, name: ${JSON.stringify(u.file)}, type: ${JSON.stringify(type)} });
+      await sleep(6000);
+      const sel = await __colTab.evaluate((marker) => {
+        const ed = ${EDITOR};
+        const w = document.createTreeWalker(ed, NodeFilter.SHOW_TEXT); let t;
+        while ((t = w.nextNode())) { const i = t.data.indexOf(marker); if (i >= 0) { ed.focus(); const s = window.getSelection(); s.removeAllRanges(); const r = document.createRange(); r.setStart(t, i); r.setEnd(t, i + marker.length); s.addRange(r); return true; } }
+        return false;
+      }, ${JSON.stringify(u.marker)});
+      if (sel) { await __colTab.keyboard.press("Backspace"); await sleep(1000); }
+      ${out(`{ marker: ${JSON.stringify(u.marker)}, found, markerRemoved: sel }`)}
+    })();`));
+  }
+
+  // Read the page again from the server, so the result describes what was saved, not what the tab still shows.
+  report.verify = await call("Check the saved columns", `await (async () => {
+    await sleep(3000);
+    await __colTab.goto(${JSON.stringify(url)});
+    await sleep(9000);
+    const r = await __colTab.evaluate((markers) => {
+      const ed = ${EDITOR};
+      const text = ed.textContent;
+      return {
+        rows: [...ed.querySelectorAll(".ql-layout-row-container")].map((row) => [...row.children].map((col) => ({ text: col.textContent.trim().slice(0, 40), images: col.querySelectorAll("img").length }))),
+        leftovers: markers.filter((m) => text.includes(m)).concat((text.match(/\\[\\[IMG-[^\\]]*\\]\\]/g) || [])),
+      };
+    }, ${JSON.stringify(PAIRS.map((p) => p.marker))});
+    await closeTab(__colTab); delete globalThis.__colTab;
+    ${out("r")}
+  })();`);
+  console.log(JSON.stringify(report));
+})();
+```
+
+The report has one `rows` entry per placeholder and one `uploads` entry per local file. An `uploads` entry with `refused` is a file that was not a bare png, jpg, gif or webp file name in the Aside session folder, so it was never read. `verify.rows` lists each saved row with its two columns. A placeholder or `[[IMG-...]]` marker under `verify.leftovers` means a paste missed: the page still holds that text, so write it again or finish it by hand.
 
 ---
 

@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin",
+  "description": "Phase 6: overlay-replaced-subtree-repin",
+  "keywords": [
+    "phase",
+    "overlay-replaced-subtree-repin"
+  ],
+  "lastUpdated": "2026-11-10T21:05:26.662Z",
+  "specId": "006",
+  "folderSlug": "overlay-replaced-subtree-repin",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "10-11-26_22-05__fixed-the-overlay-engine-so-a-re-pin-copy-file.md"
+  ]
+}

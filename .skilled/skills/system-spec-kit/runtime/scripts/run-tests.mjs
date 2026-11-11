@@ -111,5 +111,10 @@ if (status !== 0) {
   process.exit(status);
 }
 
+status = run('npm', ['run', 'test:cli']);
+if (status !== 0) {
+  process.exit(status);
+}
+
 status = run('npm', ['run', 'test:spec-validation']);
 process.exit(status);

@@ -12,7 +12,7 @@ import {
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterAll, afterEach, describe, expect, it } from 'vitest';
 
 import {
   AppendOnlyLedger,
@@ -485,6 +485,27 @@ async function completeArtifactSetMembers(
   return Object.freeze(members);
 }
 
+interface SharedArtifactSetFixture {
+  readonly harness: ArtifactEvidenceHarness;
+  readonly members: readonly DeepReviewArtifactSetMemberInput[];
+}
+
+const sharedFixtureRoots: string[] = [];
+let sharedArtifactSetFixture: Promise<SharedArtifactSetFixture> | undefined;
+
+// A full set costs many fsync'd ledger appends, so read-only tests build it once.
+function sharedArtifactSet(): Promise<SharedArtifactSetFixture> {
+  sharedArtifactSetFixture ??= (async () => {
+    const rootCount = temporaryRoots.length;
+    const harness = createArtifactEvidenceHarness();
+    const members = await completeArtifactSetMembers(harness);
+    // The shared fixture outlives per-test cleanup; hand its roots to afterAll.
+    sharedFixtureRoots.push(...temporaryRoots.splice(rootCount));
+    return { harness, members };
+  })();
+  return sharedArtifactSetFixture;
+}
+
 async function expectArtifactFailure(
   operation: Promise<unknown>,
   code: string,
@@ -519,6 +540,12 @@ function expectSynchronousArtifactFailure(
 
 afterEach(() => {
   for (const root of temporaryRoots.splice(0)) {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+afterAll(() => {
+  for (const root of sharedFixtureRoots.splice(0)) {
     rmSync(root, { recursive: true, force: true });
   }
 });
@@ -987,8 +1014,7 @@ describe('deep review sealed artifacts', () => {
   });
 
   it('builds byte-identical complete review sets and shared replay inputs', async () => {
-    const harness = createArtifactEvidenceHarness();
-    const members = await completeArtifactSetMembers(harness);
+    const { harness, members } = await sharedArtifactSet();
     const first = bindDeepReviewArtifactSet(ARTIFACT_SET_CONTEXT, members);
     const second = bindDeepReviewArtifactSet(
       { ...ARTIFACT_SET_CONTEXT },
@@ -1067,8 +1093,8 @@ describe('deep review sealed artifacts', () => {
   });
 
   it('rejects missing, reordered, and unknown lifecycle artifacts', async () => {
-    const harness = createArtifactEvidenceHarness();
-    const members = [...await completeArtifactSetMembers(harness)];
+    const { members: sharedMembers } = await sharedArtifactSet();
+    const members = [...sharedMembers];
 
     expectSynchronousArtifactFailure(
       () => bindDeepReviewArtifactSet(ARTIFACT_SET_CONTEXT, members.slice(0, -1)),
@@ -1083,7 +1109,7 @@ describe('deep review sealed artifacts', () => {
 
     const validSet = bindDeepReviewArtifactSet(
       ARTIFACT_SET_CONTEXT,
-      await completeArtifactSetMembers(createArtifactEvidenceHarness()),
+      sharedMembers,
     );
     const unknownKind = JSON.parse(JSON.stringify(validSet)) as {
       orderedMembers: Array<{ binding: { artifactKind: string } }>;
@@ -1096,8 +1122,8 @@ describe('deep review sealed artifacts', () => {
   });
 
   it('rejects a binding that does not match its verified creation evidence', async () => {
-    const harness = createArtifactEvidenceHarness();
-    const members = [...await completeArtifactSetMembers(harness)];
+    const { members: sharedMembers } = await sharedArtifactSet();
+    const members = [...sharedMembers];
     const first = members[0];
     if (!first) throw new Error('Expected a first artifact-set member');
     members[0] = {

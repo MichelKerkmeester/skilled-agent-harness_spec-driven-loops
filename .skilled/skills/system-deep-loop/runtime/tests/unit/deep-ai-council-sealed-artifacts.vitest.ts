@@ -12,7 +12,7 @@ import {
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterAll, afterEach, describe, expect, it } from 'vitest';
 
 import {
   AppendOnlyLedger,
@@ -76,6 +76,7 @@ const DIGEST_B = 'b'.repeat(64);
 const DIGEST_C = 'c'.repeat(64);
 const DIGEST_D = 'd'.repeat(64);
 const temporaryRoots: string[] = [];
+const retainedRoots: string[] = [];
 
 const AUTHORITY: AuthoritySnapshot = Object.freeze({ state: 'shadowing', epoch: 1 });
 const FIXED_TIME = '2026-08-15T00:00:00.000Z';
@@ -103,9 +104,9 @@ const LOCATOR = Object.freeze({
   revision: 'revision-1',
 });
 
-function temporaryRoot(label: string): string {
+function temporaryRoot(label: string, roots: string[] = temporaryRoots): string {
   const root = mkdtempSync(join(tmpdir(), `deep-ai-council-sealed-${label}-`));
-  temporaryRoots.push(root);
+  roots.push(root);
   return root;
 }
 
@@ -185,8 +186,10 @@ function evaluateArtifactPolicy(
     : { verdict: 'deny', reasonCode: 'policy-denied', matchedRuleIds: ['artifact-write'] };
 }
 
-function createArtifactEvidenceHarness(): ArtifactEvidenceHarness {
-  const rootDirectory = temporaryRoot('evidence-harness');
+function createArtifactEvidenceHarness(
+  roots: string[] = temporaryRoots,
+): ArtifactEvidenceHarness {
+  const rootDirectory = temporaryRoot('evidence-harness', roots);
   const registry = new EventTypeRegistry(sealedArtifactEventDefinitions());
   const policies = new TransitionPolicyRegistry([{
     policyId: 'deep-ai-council-artifact-policy',
@@ -323,6 +326,21 @@ async function completeArtifactSetMembers(
   return Object.freeze(members);
 }
 
+interface CompleteArtifactSetFixture {
+  readonly harness: ArtifactEvidenceHarness;
+  readonly members: readonly DeepAiCouncilArtifactSetMemberInput[];
+}
+
+let sharedArtifactSetFixture: Promise<CompleteArtifactSetFixture> | undefined;
+
+function completeArtifactSetFixture(): Promise<CompleteArtifactSetFixture> {
+  sharedArtifactSetFixture ??= (async () => {
+    const harness = createArtifactEvidenceHarness(retainedRoots);
+    return { harness, members: await completeArtifactSetMembers(harness) };
+  })();
+  return sharedArtifactSetFixture;
+}
+
 async function expectArtifactFailure(
   operation: Promise<unknown>,
   code: string,
@@ -357,6 +375,12 @@ function expectSynchronousArtifactFailure(
 
 afterEach(() => {
   for (const root of temporaryRoots.splice(0)) {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+afterAll(() => {
+  for (const root of retainedRoots.splice(0)) {
     rmSync(root, { recursive: true, force: true });
   }
 });
@@ -585,8 +609,7 @@ describe('deep AI council sealed artifacts', () => {
   });
 
   it('builds byte-identical complete council lifecycle sets and replay inputs', async () => {
-    const harness = createArtifactEvidenceHarness();
-    const members = await completeArtifactSetMembers(harness);
+    const { harness, members } = await completeArtifactSetFixture();
     const first = bindDeepAiCouncilArtifactSet(ARTIFACT_SET_CONTEXT, members);
     const second = bindDeepAiCouncilArtifactSet(
       { ...ARTIFACT_SET_CONTEXT },
@@ -614,8 +637,8 @@ describe('deep AI council sealed artifacts', () => {
   });
 
   it('rejects missing and reordered council lifecycle artifacts before binding', async () => {
-    const harness = createArtifactEvidenceHarness();
-    const members = [...await completeArtifactSetMembers(harness)];
+    const { members: sharedMembers } = await completeArtifactSetFixture();
+    const members = [...sharedMembers];
 
     expectSynchronousArtifactFailure(
       () => bindDeepAiCouncilArtifactSet(
@@ -636,8 +659,8 @@ describe('deep AI council sealed artifacts', () => {
   });
 
   it('rejects bindings that do not match verified creation evidence', async () => {
-    const harness = createArtifactEvidenceHarness();
-    const members = [...await completeArtifactSetMembers(harness)];
+    const { members: sharedMembers } = await completeArtifactSetFixture();
+    const members = [...sharedMembers];
     const first = members[0];
     if (!first) throw new Error('Expected a first artifact-set member');
     members[0] = {

@@ -1,7 +1,7 @@
 ---
 title: "Chrome DevTools Installation Guide"
 description: "Installation and configuration for Chrome DevTools browser debugging through the bdg CLI and the MCP fallback."
-version: 1.0.1.0
+version: 1.0.3.0
 ---
 
 # Chrome DevTools Installation Guide
@@ -246,7 +246,7 @@ bdg --list
 bdg https://example.com 2>&1
 
 # Take a screenshot
-bdg screenshot test.png 2>&1
+bdg screenshot /tmp/test.png 2>&1
 
 # Check console logs
 bdg console logs 2>&1
@@ -255,7 +255,7 @@ bdg console logs 2>&1
 bdg stop 2>&1
 
 # Confirm screenshot was created
-ls -la test.png
+ls -la /tmp/test.png
 ```
 
 ### Step 4: Configure Chrome path if needed
@@ -525,11 +525,13 @@ Your AI client successfully captures a screenshot on request. The system is oper
 
 ## 6. USAGE
 
+Captures can hold live session cookies and bearer tokens. The patterns write them under `"${TMPDIR:-/tmp}"`, outside the repository. Never commit a capture. Redact cookie and authorization values before quoting any of it.
+
 ### Pattern 1: Quick Screenshot (CLI)
 
 ```bash
 bdg https://example.com 2>&1
-bdg screenshot output.png 2>&1
+bdg screenshot "${TMPDIR:-/tmp}/output.png" 2>&1
 bdg stop 2>&1
 ```
 
@@ -544,14 +546,16 @@ bdg stop 2>&1
 ### Pattern 3: Network Monitoring (CLI)
 
 ```bash
+# A HAR file carries Cookie and Authorization headers verbatim, so keep it outside the repository
+SCRATCH="${TMPDIR:-/tmp}"
 bdg https://example.com 2>&1
 bdg cdp Network.enable 2>&1
 sleep 5
-bdg har export network-trace.har 2>&1
+bdg har export "$SCRATCH/network-trace.har" 2>&1
 bdg stop 2>&1
 
 # Analyze slow requests
-jq '.log.entries[] | select(.time > 1000) | {url: .request.url, time}' network-trace.har
+jq '.log.entries[] | select(.time > 1000) | {url: .request.url, time}' "$SCRATCH/network-trace.har"
 ```
 
 ### Pattern 4: Cookie Manipulation (CLI)
@@ -560,13 +564,13 @@ jq '.log.entries[] | select(.time > 1000) | {url: .request.url, time}' network-t
 bdg https://example.com 2>&1
 bdg cdp Network.enable 2>&1
 
-# Get cookies
-bdg network cookies 2>&1
+# Get cookies (values are live secrets, so list names and domains only)
+bdg network cookies 2>&1 | jq 'map({name, domain})'
 
-# Set a cookie
+# Set a cookie (use a throwaway value, never a real session token)
 bdg cdp Network.setCookie '{
   "name": "auth_token",
-  "value": "secret-123",
+  "value": "<throwaway-value>",
   "domain": "example.com",
   "secure": true
 }' 2>&1
@@ -639,10 +643,10 @@ call_tool_chain(`
 | ---------------------------- | ----------------------- | ----------------------------------- |
 | `bdg screenshot <path>`      | Capture page screenshot | `bdg screenshot /tmp/test.png 2>&1` |
 | `bdg console logs`           | Get console messages    | `bdg console logs 2>&1 \| jq '.'`   |
-| `bdg network cookies`        | Get all cookies         | `bdg network cookies 2>&1`          |
+| `bdg network cookies`        | Get all cookies         | `bdg network cookies 2>&1 \| jq 'map({name, domain})'` |
 | `bdg dom query "<selector>"` | Query DOM elements      | `bdg dom query ".my-class" 2>&1`    |
 | `bdg js "<expression>"`      | Execute JavaScript      | `bdg js "document.title" 2>&1`      |
-| `bdg har export <path>`      | Export network as HAR   | `bdg har export trace.har 2>&1`     |
+| `bdg har export <path>`      | Export network as HAR   | `bdg har export /tmp/trace.har 2>&1` |
 
 **Discovery Commands**
 
@@ -707,6 +711,9 @@ bdg "$URL" 2>&1 || exit 1
 # Complete debug session with error handling
 trap "bdg stop 2>&1" EXIT INT TERM
 
+# Captures can hold session cookies and bearer tokens, so keep them outside the repository
+SCRATCH="${TMPDIR:-/tmp}"
+
 # Verify CLI is available
 command -v bdg || { echo "Install: npm install -g browser-debugger-cli@alpha"; exit 1; }
 
@@ -714,18 +721,18 @@ command -v bdg || { echo "Install: npm install -g browser-debugger-cli@alpha"; e
 bdg https://example.com 2>&1 || exit 1
 
 # Capture initial state
-bdg screenshot before.png 2>&1
-bdg console logs 2>&1 > console-before.json
+bdg screenshot "$SCRATCH/before.png" 2>&1
+bdg console logs 2>&1 > "$SCRATCH/console-before.json"
 
 # Enable network monitoring
 bdg cdp Network.enable 2>&1
 sleep 3
 
 # Export network trace
-bdg har export session.har 2>&1
-bdg screenshot after.png 2>&1
+bdg har export "$SCRATCH/session.har" 2>&1
+bdg screenshot "$SCRATCH/after.png" 2>&1
 
-echo "Debug session complete. Files: before.png, after.png, session.har, console-before.json"
+echo "Debug session complete. Files in $SCRATCH: before.png, after.png, session.har, console-before.json"
 ```
 
 ### Example 2: JavaScript Execution
@@ -757,7 +764,7 @@ bdg dom query ".nav-link" 2>&1
 bdg js "document.querySelector('#submit-btn').click()" 2>&1
 
 # Check result after click
-bdg screenshot post-click.png 2>&1
+bdg screenshot "${TMPDIR:-/tmp}/post-click.png" 2>&1
 bdg console logs 2>&1
 
 bdg stop 2>&1
@@ -766,19 +773,24 @@ bdg stop 2>&1
 ### Example 4: Network Analysis
 
 ```bash
+# A HAR file carries Cookie and Authorization headers verbatim, so keep it outside the repository
+SCRATCH="${TMPDIR:-/tmp}"
 bdg https://example.com 2>&1
 bdg cdp Network.enable 2>&1
 
 # Wait for full page load activity
 sleep 5
-bdg har export network-trace.har 2>&1
+bdg har export "$SCRATCH/network-trace.har" 2>&1
 bdg stop 2>&1
 
 # Find slow requests (over 1 second)
-jq '.log.entries[] | select(.time > 1000) | {url: .request.url, time}' network-trace.har
+jq '.log.entries[] | select(.time > 1000) | {url: .request.url, time}' "$SCRATCH/network-trace.har"
 
 # Find failed requests
-jq '.log.entries[] | select(.response.status >= 400) | {url: .request.url, status: .response.status}' network-trace.har
+jq '.log.entries[] | select(.response.status >= 400) | {url: .request.url, status: .response.status}' "$SCRATCH/network-trace.har"
+
+# Delete the HAR file once the analysis is done
+rm -f "$SCRATCH/network-trace.har"
 ```
 
 ### Example 5: Parallel Comparison (MCP)
@@ -808,16 +820,20 @@ call_tool_chain(`
 ### Example 6: Cookie Session Management
 
 ```bash
+# The cookie dump holds live session values, so keep it private and outside the repository
+umask 077
+SCRATCH="${TMPDIR:-/tmp}"
+
 bdg https://example.com 2>&1
 bdg cdp Network.enable 2>&1
 
 # Export current cookies
-bdg network cookies 2>&1 > cookies.json
+bdg network cookies 2>&1 > "$SCRATCH/cookies.json"
 
-# Inject an auth token
+# Inject an auth token (use a throwaway value, never a real session token)
 bdg cdp Network.setCookie '{
   "name": "auth_token",
-  "value": "test-session-token",
+  "value": "<throwaway-value>",
   "domain": "example.com",
   "path": "/",
   "secure": true,
@@ -826,9 +842,12 @@ bdg cdp Network.setCookie '{
 
 # Reload to test authenticated state
 bdg cdp Page.reload 2>&1
-bdg screenshot authenticated.png 2>&1
+bdg screenshot "$SCRATCH/authenticated.png" 2>&1
 
 bdg stop 2>&1
+
+# Delete the cookie dump when the test is done
+rm -f "$SCRATCH/cookies.json"
 ```
 
 ---
@@ -1027,7 +1046,7 @@ bdg stop                      # Stop session
 ```bash
 bdg screenshot <path>         # Capture screenshot
 bdg console logs              # Get console messages
-bdg network cookies           # Get all cookies
+bdg network cookies | jq 'map({name, domain})'  # List cookie names and domains, never values
 bdg dom query "<selector>"    # Query DOM
 bdg js "<expression>"         # Execute JavaScript
 bdg har export <path>         # Export HAR file

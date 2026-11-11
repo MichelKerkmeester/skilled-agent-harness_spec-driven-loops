@@ -10,7 +10,7 @@ trigger_phrases:
   - "browser session state persistence"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Advanced Session Management
@@ -64,7 +64,7 @@ bdg status
 
 # 3. Execute operations
 bdg cdp <Method>
-bdg dom screenshot output.png
+bdg dom screenshot "${TMPDIR:-/tmp}/output.png"
 bdg console --list
 
 # 4. Stop session
@@ -182,7 +182,7 @@ echo "Current state: $session_state"
 
 # Conditional execution based on status
 if bdg status 2>&1 | jq -e '.state == "active"' > /dev/null; then
-  bdg dom screenshot output.png 2>&1
+  bdg dom screenshot "${TMPDIR:-/tmp}/output.png" 2>&1
 else
   echo "Session not active, cannot capture screenshot"
 fi
@@ -294,6 +294,9 @@ run_labeled_session "staging" "https://staging.example.com"
 #!/bin/bash
 # Process multiple URLs sequentially with session cleanup
 
+# Captures can hold session cookies and bearer tokens, so keep them outside the repository
+SCRATCH="${TMPDIR:-/tmp}"
+
 urls=(
   "https://example.com"
   "https://test.com"
@@ -313,9 +316,9 @@ process_url() {
   sleep 3
 
   # Capture data
-  bdg dom screenshot "${filename}.png" 2>&1
-  bdg console --list 2>&1 > "${filename}-console.json"
-  bdg network har "${filename}.har" 2>&1
+  bdg dom screenshot "$SCRATCH/${filename}.png" 2>&1
+  bdg console --list 2>&1 > "$SCRATCH/${filename}-console.json"
+  bdg network har "$SCRATCH/${filename}.har" 2>&1
 
   # Cleanup
   bdg stop 2>&1
@@ -374,7 +377,9 @@ resume_or_start "https://example.com"
 #!/bin/bash
 # Save and restore session state
 
-SESSION_STATE_FILE="/tmp/bdg-session-state.json"
+# The state file holds live cookies, so keep it private and outside the repository
+umask 077
+SESSION_STATE_FILE="${TMPDIR:-/tmp}/bdg-session-state.json"
 
 save_session_state() {
   echo "Saving session state..."
@@ -424,6 +429,9 @@ restore_session_state() {
 save_session_state
 bdg stop 2>&1
 restore_session_state
+
+# Delete the state file once the session is restored
+rm -f "$SESSION_STATE_FILE"
 ```
 
 ---
@@ -499,7 +507,7 @@ capture_with_fallback() {
   return 1
 }
 
-capture_with_fallback "https://example.com" "output.png"
+capture_with_fallback "https://example.com" "${TMPDIR:-/tmp}/output.png"
 ```
 
 ---
@@ -514,7 +522,7 @@ capture_with_fallback "https://example.com" "output.png"
 # Missing cleanup - resource leak risk
 
 bdg https://example.com 2>&1
-bdg dom screenshot output.png 2>&1
+bdg dom screenshot "${TMPDIR:-/tmp}/output.png" 2>&1
 bdg console --list 2>&1
 
 # Script exits without stopping session
@@ -541,7 +549,7 @@ trap cleanup EXIT INT TERM
 
 # Session work
 bdg https://example.com 2>&1
-bdg dom screenshot output.png 2>&1
+bdg dom screenshot "${TMPDIR:-/tmp}/output.png" 2>&1
 bdg console --list 2>&1
 
 **Validation**: `operations_complete`
@@ -642,6 +650,7 @@ keep_alive &
 ```bash
 #!/bin/bash
 # Batch multiple operations in single session
+# The captures go to a scratch folder outside the repository, and the cookie step lists names only
 
 batch_operations() {
   local url=$1
@@ -663,10 +672,10 @@ batch_operations() {
 
 # Usage
 batch_operations "https://example.com" \
-  "bdg dom screenshot page.png" \
-  "bdg console --list > console.json" \
-  "bdg network getCookies > cookies.json" \
-  "bdg network har network.har"
+  "bdg dom screenshot ${TMPDIR:-/tmp}/page.png" \
+  "bdg console --list > ${TMPDIR:-/tmp}/console.json" \
+  "bdg network getCookies | jq 'map({name, domain})' > ${TMPDIR:-/tmp}/cookie-names.json" \
+  "bdg network har ${TMPDIR:-/tmp}/network.har"
 ```
 
 ---
@@ -683,6 +692,7 @@ batch_operations "https://example.com" \
 8. **Use timeouts** to prevent hanging on failed session starts
 9. **Clean up sessions** promptly to release browser resources
 10. **Log session lifecycle events** for debugging
+11. **Keep captures and saved state out of the repository** - a HAR file, cookie dump or saved session holds live secrets, so write it to a scratch path and delete it when done
 
 ---
 

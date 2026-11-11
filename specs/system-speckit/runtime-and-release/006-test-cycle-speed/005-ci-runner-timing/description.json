@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing",
+  "description": "Phase 5: ci-runner-timing",
+  "keywords": [
+    "phase",
+    "ci-runner-timing"
+  ],
+  "lastUpdated": "2026-11-10T20:35:13.219Z",
+  "specId": "005",
+  "folderSlug": "ci-runner-timing",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "10-11-26_21-35__read-ci-step-times-before-and-after-the-cuts-no.md"
+  ]
+}

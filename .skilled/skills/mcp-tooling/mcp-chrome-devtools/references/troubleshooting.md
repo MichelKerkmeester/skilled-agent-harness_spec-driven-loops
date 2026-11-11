@@ -10,7 +10,7 @@ trigger_phrases:
   - "jq parse error bdg output"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.3.0
 ---
 
 # Troubleshooting Guide
@@ -353,8 +353,8 @@ $ bdg status
 
 **Diagnosis**:
 ```bash
-# Check stderr output
-bdg https://example.com 2>&1 | tee debug.log
+# Check stderr output (debug output can include request headers, so the log stays outside the repository)
+bdg https://example.com 2>&1 | tee "${TMPDIR:-/tmp}/debug.log"
 
 # Check system resources
 free -h  # Linux
@@ -499,7 +499,7 @@ bdg cdp Page.captureScreenshot 2>&1
 bdg cdp page.capturescreenshot 2>&1
 
 # Use helper instead
-bdg dom screenshot output.png 2>&1
+bdg dom screenshot "${TMPDIR:-/tmp}/output.png" 2>&1
 ```
 
 ---
@@ -626,10 +626,10 @@ Binary file (standard input) matches
 Handle binary output correctly:
 ```bash
 # Save to file
-bdg dom screenshot output.png 2>&1
+bdg dom screenshot "${TMPDIR:-/tmp}/output.png" 2>&1
 
 # Or pipe to base64
-bdg cdp Page.captureScreenshot 2>&1 | jq -r '.result.data' | base64 -d > output.png
+bdg cdp Page.captureScreenshot 2>&1 | jq -r '.result.data' | base64 -d > "${TMPDIR:-/tmp}/output.png"
 
 # Don't pipe binary to jq
 ```
@@ -675,10 +675,10 @@ bdg dom eval "document.querySelectorAll('*').length" 2>&1
 2. **Use helpers instead of raw CDP**:
    ```bash
     # Faster
-    bdg dom screenshot output.png 2>&1
+    bdg dom screenshot "${TMPDIR:-/tmp}/output.png" 2>&1
 
     # Slower (raw CDP)
-   bdg cdp Page.captureScreenshot 2>&1 | jq -r '.result.data' | base64 -d > output.png
+   bdg cdp Page.captureScreenshot 2>&1 | jq -r '.result.data' | base64 -d > "${TMPDIR:-/tmp}/output.png"
    ```
 
 3. **Reduce page complexity**:
@@ -799,8 +799,8 @@ export DISPLAY=:0
 # Set debug environment variable
 export DEBUG=bdg:*
 
-# Run command
-bdg https://example.com 2>&1 | tee debug.log
+# Run command (debug output can include request headers, so the log stays outside the repository)
+bdg https://example.com 2>&1 | tee "${TMPDIR:-/tmp}/debug.log"
 
 # Or increase log level
 export BDG_LOG_LEVEL=debug
@@ -817,7 +817,7 @@ bdg status 2>&1
    - bdg version (`bdg --version`)
    - Platform (macOS/Linux/WSL)
    - Node version (`node --version`)
-   - Full error output (with `2>&1`)
+   - Full error output (with `2>&1`), with cookie and authorization values redacted
    - Minimal reproduction steps
 
 ---

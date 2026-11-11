@@ -7,7 +7,7 @@ trigger_phrases:
   - "aside element screenshot"
   - "aside pdf"
 last_updated: "2026-07-17"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Screenshots, Element Captures, and PDF (DevTools parity)
@@ -24,18 +24,20 @@ Capability class: MUTATING (writes artifacts to operator-directed paths). The ho
 
 Fixture-documented options: `page.screenshot` supports `path`, `fullPage`, `clip`, `type`, `quality`, `timeout`; `locator.screenshot` supports `path`, `type`, `quality`, `timeout`, `margin` (default 8, default `type` `webp`); `page.pdf` supports Playwright PDF options (`path`, `format`, `width`, `height`, `margin`, `pageRanges`, `preferCSSPageSize`, `printBackground`). The fixture directs user-visible PDFs to `./artifacts/`.
 
+A relative path lands in the repository that is open, so the examples below write to a scratch folder instead (SKILL.md ALWAYS rule 6).
+
 ```js
 // Full-page PNG (DevTools "capture full size screenshot" analog)
-await page.screenshot({ path: './artifacts/full.png', fullPage: true, type: 'png' });
+await page.screenshot({ path: '/tmp/aside-artifacts/full.png', fullPage: true, type: 'png' });
 
 // Clipped region (DevTools "capture area screenshot" analog)
-await page.screenshot({ path: './artifacts/hero.png', clip: { x: 0, y: 0, width: 1200, height: 400 } });
+await page.screenshot({ path: '/tmp/aside-artifacts/hero.png', clip: { x: 0, y: 0, width: 1200, height: 400 } });
 
 // Single element (DevTools "capture node screenshot" analog)
-await page.locator('main').screenshot({ path: './artifacts/main.webp' });
+await page.locator('main').screenshot({ path: '/tmp/aside-artifacts/main.webp' });
 
 // Print to PDF (no native DevTools equivalent; Playwright print path)
-await page.pdf({ path: './artifacts/page.pdf', format: 'A4', printBackground: true });
+await page.pdf({ path: '/tmp/aside-artifacts/page.pdf', format: 'A4', printBackground: true });
 
 console.log('captured');
 ```

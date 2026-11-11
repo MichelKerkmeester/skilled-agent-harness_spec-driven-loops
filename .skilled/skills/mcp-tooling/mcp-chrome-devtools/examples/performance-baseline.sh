@@ -2,13 +2,15 @@
 # Performance Baseline Capture Script
 # Purpose: Create comprehensive performance baseline for regression testing
 # Usage: ./performance-baseline.sh [URL] [OUTPUT_DIR]
-# Example: ./performance-baseline.sh https://example.com ./baselines
+# Example: ./performance-baseline.sh https://example.com "${TMPDIR:-/tmp}/baselines"
 
 set -euo pipefail
 
 # Configuration
 URL="${1:-https://example.com}"
-OUTPUT_DIR="${2:-performance-baselines}"
+# The HAR file and screenshot can hold session cookies and bearer tokens, so the default folder
+# is outside the repository. Pass a folder the repository ignores to keep the results.
+OUTPUT_DIR="${2:-${TMPDIR:-/tmp}/performance-baselines}"
 DATE_STAMP=$(date +%Y%m%d-%H%M%S)
 
 # Validate URL format

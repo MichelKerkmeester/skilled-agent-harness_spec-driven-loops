@@ -1,5 +1,5 @@
 {
-  "corpusHash": "27f1ab53f1199bb54602b45d608b7b6a04d351fd89bd330f49427d41e68ae724",
+  "corpusHash": "e7c1ea9a0e2023336d9d2ec4b2f56dcd13fa9f304c57fe4be10fc8fb825cdbe0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26038,
+  "includedPathCount": 26074,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2146,6 +2146,11 @@
     ".skilled/skills/mcp-tooling/changelog/v1.8.9.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.0.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.1.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.9.10.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.9.11.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.9.12.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.9.13.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.9.14.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.2.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.3.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.4.0.md",
@@ -2153,6 +2158,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.9.6.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.7.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.8.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.9.9.0.md",
     ".skilled/skills/mcp-tooling/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
     ".skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md",
@@ -2181,6 +2187,7 @@
     ".skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.0.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.1.0.md",
+    ".skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.10.0.md",
     ".skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.4.0.md",
@@ -2264,6 +2271,7 @@
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.21.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.22.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.23.0.md",
+    ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.24.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.7.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.8.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/examples/README.md",
@@ -2351,7 +2359,12 @@
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.14.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.15.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.16.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.17.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.18.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.19.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.2.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.20.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.21.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.4.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.5.0.md",
@@ -8349,6 +8362,7 @@
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.0.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.1.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.2.0.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.1.3.0.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-without-overlays.md",
@@ -25385,11 +25399,33 @@
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/goal.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/research/research.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/spec.md",
-    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/decision-record.md",
-    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/implementation-summary.md",
-    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/plan.md",
-    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/spec.md",
-    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/decision-record.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/research/research.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/002-fresh-timing-profile/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/002-fresh-timing-profile/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/002-fresh-timing-profile/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/002-fresh-timing-profile/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/003-split-upgrade-legacy/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/003-split-upgrade-legacy/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/003-split-upgrade-legacy/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/003-split-upgrade-legacy/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/004-split-fanout-run/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/004-split-fanout-run/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/004-split-fanout-run/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/004-split-fanout-run/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/spec.md",
@@ -26070,7 +26106,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "bea9f1534c8359249267fb378319cc802f35847acf8ad849b7ab6ef26f3eb153",
+  "manifestHash": "6f67a58663d5a57e1b6e5d2d10c8a3c864f2c05585fdb9574070a8bd174cb8bc",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36305,7 +36341,35 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/runtime-and-release/005-test-cycle-speed/scratch",
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/002-fresh-timing-profile/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/003-split-upgrade-legacy/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/004-split-fanout-run/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/scratch",
       "reason": "excluded directory"
     },
     {

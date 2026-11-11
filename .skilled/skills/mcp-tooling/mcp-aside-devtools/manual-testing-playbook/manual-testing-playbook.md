@@ -1,7 +1,7 @@
 ---
 title: "MCP Aside Devtools: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-aside-devtools skill."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # MCP Aside Devtools: Manual Testing Playbook
@@ -70,6 +70,7 @@ This playbook provides 29 deterministic scenarios across 8 categories (7 operato
 - Final user-facing outcome and PASS / FAIL / SKIP verdict (SKIP requires a specific, documented blocker).
 - For ASD-015, evidence of process cleanup (no leaked `aside mcp` processes via `pgrep -fl "aside mcp"` or equivalent).
 - Redaction: no cookies, credentials, private DOM, or request headers/bodies in saved evidence.
+- Captures stay in scratch paths outside the repository and are never committed (SKILL.md ALWAYS rule 6).
 
 ---
 
@@ -324,7 +325,7 @@ Expected signals: Step 1: bound tab from ASD-006; Step 2: `page.$eval('h1',...)`
 ### ASD-017 | Full-page screenshot + PDF capture
 
 #### Description
-Verify `page.screenshot({ fullPage })` and `page.pdf` write valid artifacts to `./artifacts/`, each verified by magic bytes.
+Verify `page.screenshot({ fullPage })` and `page.pdf` write valid artifacts to `/tmp/aside-artifacts/`, each verified by magic bytes.
 
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, capture a full-page screenshot and a PDF through the aside REPL and confirm both artifacts are valid by magic bytes. Verify PNG magic `89 50 4e 47` and PDF header `%PDF`. Return a concise user-facing pass/fail verdict with the main reason. SKIP-valid with the blocker "no bound Aside session available".

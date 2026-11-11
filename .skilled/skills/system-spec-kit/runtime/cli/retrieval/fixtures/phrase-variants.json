@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bea9f1534c8359249267fb378319cc802f35847acf8ad849b7ab6ef26f3eb153",
+  "manifestHash": "6f67a58663d5a57e1b6e5d2d10c8a3c864f2c05585fdb9574070a8bd174cb8bc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12678,6 +12678,9 @@
     "aside queryselector": [
       "aside querySelector"
     ],
+    "aside redaction rule": [
+      "aside redaction rule"
+    ],
     "aside repl": [
       "aside repl"
     ],
@@ -15333,6 +15336,9 @@
     "browser automation scripts": [
       "browser automation scripts"
     ],
+    "browser capture secrets": [
+      "browser capture secrets"
+    ],
     "browser console errors": [
       "browser console errors"
     ],
@@ -15350,6 +15356,9 @@
     ],
     "browser developer tools workflows": [
       "browser developer tools workflows"
+    ],
+    "browser first page write": [
+      "browser-first page write"
     ],
     "browser launch fails": [
       "browser launch fails"
@@ -19263,6 +19272,18 @@
     ],
     "ci runner minutes": [
       "ci runner minutes"
+    ],
+    "ci runner timing": [
+      "ci runner timing"
+    ],
+    "ci runner timing implementation summary": [
+      "ci runner timing implementation summary"
+    ],
+    "ci runner timing plan": [
+      "ci runner timing plan"
+    ],
+    "ci runner timing tasks": [
+      "ci runner timing tasks"
     ],
     "ci shared package resolution": [
       "ci shared package resolution"
@@ -23759,6 +23780,9 @@
     ],
     "clickup cli": [
       "clickup cli"
+    ],
+    "clickup columns": [
+      "clickup columns"
     ],
     "clickup create comment": [
       "clickup_create_comment"
@@ -51506,6 +51530,18 @@
     "fresh start mcp launcher": [
       "fresh-start MCP launcher"
     ],
+    "fresh timing profile": [
+      "fresh timing profile"
+    ],
+    "fresh timing profile implementation summary": [
+      "fresh timing profile implementation summary"
+    ],
+    "fresh timing profile plan": [
+      "fresh timing profile plan"
+    ],
+    "fresh timing profile tasks": [
+      "fresh timing profile tasks"
+    ],
     "fresh worktree dependencies": [
       "fresh worktree dependencies"
     ],
@@ -65100,6 +65136,9 @@
     "mcp aside devtools 1 1 1 0": [
       "mcp-aside-devtools 1.1.1.0"
     ],
+    "mcp aside devtools 1 1 10 0": [
+      "mcp-aside-devtools 1.1.10.0"
+    ],
     "mcp aside devtools 1 1 2 0": [
       "mcp-aside-devtools 1.1.2.0"
     ],
@@ -65150,6 +65189,9 @@
     ],
     "mcp aside devtools v1 1 1 0": [
       "mcp-aside-devtools v1.1.1.0"
+    ],
+    "mcp aside devtools v1 1 10 0": [
+      "mcp-aside-devtools v1.1.10.0"
     ],
     "mcp aside devtools v1 1 2 0": [
       "mcp-aside-devtools v1.1.2.0"
@@ -65256,6 +65298,9 @@
     "mcp chrome devtools 1 0 23 0": [
       "mcp-chrome-devtools 1.0.23.0"
     ],
+    "mcp chrome devtools 1 0 24 0": [
+      "mcp-chrome-devtools 1.0.24.0"
+    ],
     "mcp chrome devtools 1 0 7 0": [
       "mcp-chrome-devtools 1.0.7.0"
     ],
@@ -65346,6 +65391,9 @@
     "mcp chrome devtools v1 0 23 0": [
       "mcp-chrome-devtools v1.0.23.0"
     ],
+    "mcp chrome devtools v1 0 24 0": [
+      "mcp-chrome-devtools v1.0.24.0"
+    ],
     "mcp chrome devtools v1 0 7 0": [
       "mcp-chrome-devtools v1.0.7.0"
     ],
@@ -65418,8 +65466,23 @@
     "mcp click up 1 2 16 0": [
       "mcp-click-up 1.2.16.0"
     ],
+    "mcp click up 1 2 17 0": [
+      "mcp-click-up 1.2.17.0"
+    ],
+    "mcp click up 1 2 18 0": [
+      "mcp-click-up 1.2.18.0"
+    ],
+    "mcp click up 1 2 19 0": [
+      "mcp-click-up 1.2.19.0"
+    ],
     "mcp click up 1 2 2 0": [
       "mcp-click-up 1.2.2.0"
+    ],
+    "mcp click up 1 2 20 0": [
+      "mcp-click-up 1.2.20.0"
+    ],
+    "mcp click up 1 2 21 0": [
+      "mcp-click-up 1.2.21.0"
     ],
     "mcp click up 1 2 3 0": [
       "mcp-click-up 1.2.3.0"
@@ -65511,8 +65574,23 @@
     "mcp click up v1 2 16 0": [
       "mcp-click-up v1.2.16.0"
     ],
+    "mcp click up v1 2 17 0": [
+      "mcp-click-up v1.2.17.0"
+    ],
+    "mcp click up v1 2 18 0": [
+      "mcp-click-up v1.2.18.0"
+    ],
+    "mcp click up v1 2 19 0": [
+      "mcp-click-up v1.2.19.0"
+    ],
     "mcp click up v1 2 2 0": [
       "mcp-click-up v1.2.2.0"
+    ],
+    "mcp click up v1 2 20 0": [
+      "mcp-click-up v1.2.20.0"
+    ],
+    "mcp click up v1 2 21 0": [
+      "mcp-click-up v1.2.21.0"
     ],
     "mcp click up v1 2 3 0": [
       "mcp-click-up v1.2.3.0"
@@ -66993,6 +67071,21 @@
     "mcp tooling 1 9 1 0": [
       "mcp-tooling 1.9.1.0"
     ],
+    "mcp tooling 1 9 10 0": [
+      "mcp-tooling 1.9.10.0"
+    ],
+    "mcp tooling 1 9 11 0": [
+      "mcp-tooling 1.9.11.0"
+    ],
+    "mcp tooling 1 9 12 0": [
+      "mcp-tooling 1.9.12.0"
+    ],
+    "mcp tooling 1 9 13 0": [
+      "mcp-tooling 1.9.13.0"
+    ],
+    "mcp tooling 1 9 14 0": [
+      "mcp-tooling 1.9.14.0"
+    ],
     "mcp tooling 1 9 2 0": [
       "mcp-tooling 1.9.2.0"
     ],
@@ -67013,6 +67106,9 @@
     ],
     "mcp tooling 1 9 8 0": [
       "mcp-tooling 1.9.8.0"
+    ],
+    "mcp tooling 1 9 9 0": [
+      "mcp-tooling 1.9.9.0"
     ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
@@ -67158,6 +67254,21 @@
     "mcp tooling v1 9 1 0": [
       "mcp-tooling v1.9.1.0"
     ],
+    "mcp tooling v1 9 10 0": [
+      "mcp-tooling v1.9.10.0"
+    ],
+    "mcp tooling v1 9 11 0": [
+      "mcp-tooling v1.9.11.0"
+    ],
+    "mcp tooling v1 9 12 0": [
+      "mcp-tooling v1.9.12.0"
+    ],
+    "mcp tooling v1 9 13 0": [
+      "mcp-tooling v1.9.13.0"
+    ],
+    "mcp tooling v1 9 14 0": [
+      "mcp-tooling v1.9.14.0"
+    ],
     "mcp tooling v1 9 2 0": [
       "mcp-tooling v1.9.2.0"
     ],
@@ -67178,6 +67289,9 @@
     ],
     "mcp tooling v1 9 8 0": [
       "mcp-tooling v1.9.8.0"
+    ],
+    "mcp tooling v1 9 9 0": [
+      "mcp-tooling v1.9.9.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -76762,6 +76876,18 @@
     "overlay repin": [
       "overlay repin"
     ],
+    "overlay replaced subtree repin": [
+      "overlay replaced subtree repin"
+    ],
+    "overlay replaced subtree repin implementation summary": [
+      "overlay replaced subtree repin implementation summary"
+    ],
+    "overlay replaced subtree repin plan": [
+      "overlay replaced subtree repin plan"
+    ],
+    "overlay replaced subtree repin tasks": [
+      "overlay replaced subtree repin tasks"
+    ],
     "overlay sync repin failure modes": [
       "overlay sync repin failure modes"
     ],
@@ -79670,6 +79796,9 @@
     "phase 2 fresh clone onboarding": [
       "phase 2 fresh clone onboarding"
     ],
+    "phase 2 fresh timing profile": [
+      "phase 2 fresh timing profile"
+    ],
     "phase 2 goal criteria refresh": [
       "phase 2 goal criteria refresh"
     ],
@@ -80117,6 +80246,9 @@
     "phase 3 sk git playbook changelog": [
       "phase 3 sk git playbook changelog"
     ],
+    "phase 3 split upgrade legacy": [
+      "phase 3 split upgrade legacy"
+    ],
     "phase 3 stale jev canary": [
       "phase 3 stale jev canary"
     ],
@@ -80348,6 +80480,9 @@
     "phase 4 sk design fundamentals": [
       "phase 4 sk design fundamentals"
     ],
+    "phase 4 split fanout run": [
+      "phase 4 split fanout run"
+    ],
     "phase 4 symlink relink after unlink": [
       "phase 4 symlink relink after unlink"
     ],
@@ -80413,6 +80548,9 @@
     ],
     "phase 5 chat question detection": [
       "phase 5 chat question detection"
+    ],
+    "phase 5 ci runner timing": [
+      "phase 5 ci runner timing"
     ],
     "phase 5 claim corrections": [
       "phase 5 claim corrections"
@@ -80671,6 +80809,9 @@
     ],
     "phase 6 open items and alignment": [
       "phase 6 open items and alignment"
+    ],
+    "phase 6 overlay replaced subtree repin": [
+      "phase 6 overlay replaced subtree repin"
     ],
     "phase 6 plan": [
       "phase 6 plan"
@@ -91368,6 +91509,9 @@
     ],
     "replace spec kit classifier shim": [
       "replace spec-kit classifier shim"
+    ],
+    "replaced folder re pin block": [
+      "replaced folder re-pin block"
     ],
     "replay enrichment window": [
       "replay enrichment window"
@@ -113982,6 +114126,18 @@
     "split delegation phrasing": [
       "split delegation phrasing"
     ],
+    "split fanout run": [
+      "split fanout run"
+    ],
+    "split fanout run implementation summary": [
+      "split fanout run implementation summary"
+    ],
+    "split fanout run plan": [
+      "split fanout run plan"
+    ],
+    "split fanout run tasks": [
+      "split fanout run tasks"
+    ],
     "split oversized sk code references": [
       "split oversized sk-code references"
     ],
@@ -113990,6 +114146,18 @@
     ],
     "split review references index": [
       "split review references index"
+    ],
+    "split upgrade legacy": [
+      "split upgrade legacy"
+    ],
+    "split upgrade legacy implementation summary": [
+      "split upgrade legacy implementation summary"
+    ],
+    "split upgrade legacy plan": [
+      "split upgrade legacy plan"
+    ],
+    "split upgrade legacy tasks": [
+      "split upgrade legacy tasks"
     ],
     "spring versus easing curve": [
       "spring versus easing curve"
@@ -117575,6 +117743,9 @@
     "system skilled doctor 1 1 2 0": [
       "system-skilled-doctor 1.1.2.0"
     ],
+    "system skilled doctor 1 1 3 0": [
+      "system-skilled-doctor 1.1.3.0"
+    ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
     ],
@@ -117619,6 +117790,9 @@
     ],
     "system skilled doctor v1 1 2 0": [
       "system-skilled-doctor v1.1.2.0"
+    ],
+    "system skilled doctor v1 1 3 0": [
+      "system-skilled-doctor v1.1.3.0"
     ],
     "system spec gate": [
       "system-spec-gate"
@@ -119834,6 +120008,9 @@
     ],
     "test cycle speed implementation summary": [
       "test cycle speed implementation summary"
+    ],
+    "test cycle speed phase parent spec": [
+      "test cycle speed phase parent spec"
     ],
     "test cycle speed plan": [
       "test cycle speed plan"

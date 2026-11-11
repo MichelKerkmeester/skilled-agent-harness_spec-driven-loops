@@ -6,36 +6,27 @@ import path from 'node:path';
 
 import { defineConfig } from 'vitest/config';
 
-const TEST_TIMEOUT_MS = 30_000; // 30s default, increase for CI if needed
+// A safety cap for a hung test. Files run side by side, so a heavy test takes longer than it does alone.
+const TEST_TIMEOUT_MS = 120_000;
 const TEARDOWN_TIMEOUT_MS = 1_000;
 const _INCLUDE_BENCHES = process.env.SPECKIT_RUN_BENCHES === 'true';
 
 export default defineConfig({
   root: path.resolve(import.meta.dirname, '..'),
   test: {
+    // The deep-loop suite runs under its own config and CI job, so it is not collected here.
     include: [
       'runtime/tests/**/*.{vitest,test}.ts',
-      '../system-deep-loop/runtime/tests/**/*.{vitest,test}.ts',
     ],
     exclude: [
       'runtime/cli/**',
     ],
     setupFiles: [
       path.resolve(import.meta.dirname, 'tests', '_support', 'vitest-setup.ts'),
-      path.resolve(
-        import.meta.dirname,
-        '..',
-        '..',
-        'system-deep-loop',
-        'runtime',
-        'tests',
-        '_support',
-        'hermetic-opencode-path.ts',
-      ),
     ],
-    // Several script suites mutate shared process-level state and temp project roots.
-    // Run files serially so the combined config remains deterministic.
-    fileParallelism: false,
+    // Files run side by side. Each file runs in its own worker process, and the
+    // setup file gives each one its own scratch database directory.
+    fileParallelism: true,
     globals: true,
     environment: 'node',
     reporters: ['default', 'hanging-process'],

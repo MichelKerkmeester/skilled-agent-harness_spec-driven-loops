@@ -163,6 +163,7 @@ function createRepinFixture(t, options = {}) {
   fs.mkdirSync(upstream);
   git(upstream, ['init', '-q']);
   writeEntries(upstream, OLD_ENTRIES);
+  if (options.oldEntries) writeEntries(upstream, options.oldEntries);
   git(upstream, ['add', '-A']);
   git(upstream, ['commit', '-q', '-m', 'old']);
   const oldCommit = git(upstream, ['rev-parse', 'HEAD']);
@@ -528,6 +529,68 @@ test('repin --stage treats an upstream addition inside a removed folder as remov
   assert.doesNotMatch(staged.output, /live-edited \.skilled\/skills\/hub\/old-folder/m);
   assert.equal(fs.existsSync(path.join(stageDir, '.skilled/skills/hub/old-folder/new-file.md')), false);
   assert.equal(read(stageDir, '.skilled/skills/hub/stable.md'), 'stable\n');
+});
+
+test('repin --stage treats an upstream addition inside a replaced folder as overlay-owned, and a hand-added file as live-edited', (t) => {
+  const fixture = createRepinFixture(t, {
+    newEntries: { '.skilled/skills/hub/replaced/sub/f.md': 'upstream addition\n' },
+  });
+  writeFile(fixture.overlayDir, 'hub-root/replaced/keep.md', 'overlay keep\n');
+  fixture.manifest.overlays.push({
+    id: 'hub-root',
+    scope: 'skill-root',
+    source: 'hub-root',
+    destination: '.skilled/skills/hub',
+    replace: ['replaced'],
+    remove: [],
+  });
+  writeManifest(fixture);
+  const seeded = fixture.run(['apply']);
+  assert.equal(seeded.code, 0, seeded.output);
+  assert.equal(fixture.run(['status']).code, 0);
+
+  const stageDir = path.join(fixture.workspace, 'stage');
+  const staged = fixture.repin(['--stage', stageDir]);
+  assert.equal(staged.code, 0, staged.output);
+  assert.match(staged.output, /^RESULT: STAGED$/m);
+  assert.doesNotMatch(staged.output, /^blocked hub-root:/m);
+  assert.doesNotMatch(staged.output, /live-edited \.skilled\/skills\/hub\/replaced/m);
+  assert.equal(fs.existsSync(path.join(stageDir, '.skilled/skills/hub/replaced/sub/f.md')), false);
+  assert.equal(read(stageDir, '.skilled/skills/hub/replaced/keep.md'), 'overlay keep\n');
+
+  writeFile(fixture.tree, '.skilled/skills/hub/replaced/other.md', 'hand added\n');
+  const handStage = path.join(fixture.workspace, 'stage-hand');
+  const handAdded = fixture.repin(['--stage', handStage]);
+  assert.equal(handAdded.code, 2, handAdded.output);
+  assert.match(handAdded.output, /live-edited \.skilled\/skills\/hub\/replaced\/other\.md/);
+  assert.match(handAdded.output, /refuse: status shows/);
+  assert.equal(read(fixture.tree, '.skilled/skills/hub/replaced/other.md'), 'hand added\n');
+});
+
+test('repin --stage treats an upstream change inside a replaced folder as overlay-owned', (t) => {
+  const fixture = createRepinFixture(t, {
+    oldEntries: { '.skilled/skills/hub/replaced/sub/f.md': 'upstream v1\n' },
+    newEntries: { '.skilled/skills/hub/replaced/sub/f.md': 'upstream v2\n' },
+  });
+  writeFile(fixture.overlayDir, 'hub-root/replaced/keep.md', 'overlay keep\n');
+  fixture.manifest.overlays.push({
+    id: 'hub-root',
+    scope: 'skill-root',
+    source: 'hub-root',
+    destination: '.skilled/skills/hub',
+    replace: ['replaced'],
+    remove: [],
+  });
+  writeManifest(fixture);
+
+  const stageDir = path.join(fixture.workspace, 'stage');
+  const staged = fixture.repin(['--stage', stageDir]);
+  assert.equal(staged.code, 0, staged.output);
+  assert.match(staged.output, /^RESULT: STAGED$/m);
+  assert.doesNotMatch(staged.output, /^blocked hub-root:/m);
+  assert.doesNotMatch(staged.output, /live-edited \.skilled\/skills\/hub\/replaced/m);
+  assert.equal(fs.existsSync(path.join(stageDir, '.skilled/skills/hub/replaced/sub/f.md')), false);
+  assert.equal(read(stageDir, '.skilled/skills/hub/replaced/keep.md'), 'overlay keep\n');
 });
 
 test('repin --stage refuses a folder that is not empty or that sits inside the live tree', (t) => {

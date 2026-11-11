@@ -13,6 +13,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
+const { spawnSync } = require('node:child_process');
 
 const {
   ENGINE,
@@ -192,7 +193,52 @@ test('a retained path that the overlay also replaces is reported, guarded and ca
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. THE ENGINE'S OWN LOCK
+// 4. REPLACED FOLDER PROVENANCE
+// ─────────────────────────────────────────────────────────────────────────────
+
+function pinCheckout(fixture) {
+  const upstream = path.join(fixture.workspace, 'upstream');
+  fs.mkdirSync(upstream);
+  const git = (...args) => {
+    const result = spawnSync('git', [
+      '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',
+      '-c', 'commit.gpgsign=false', '-c', 'core.hooksPath=/dev/null',
+      '-C', upstream, ...args,
+    ], { encoding: 'utf8' });
+    assert.equal(result.status, 0, result.stderr);
+    return result.stdout.trim();
+  };
+  git('init', '-q');
+  writeFile(upstream, 'skill/docs/sub/f.md', 'upstream file\n');
+  git('add', '-A');
+  git('commit', '-q', '-m', 'pin');
+  fixture.manifest.pin.checkout = upstream;
+  fixture.manifest.pin.commit = git('rev-parse', 'HEAD');
+  writeManifest(fixture);
+}
+
+test('a file under a replaced folder holding the recorded pin bytes is overlay-edited, and a hand-added file stays live-edited', (t) => {
+  const fixture = createSyncFixture(t);
+  seed(fixture);
+  pinCheckout(fixture);
+  writeFile(fixture.tree, 'skill/docs/sub/f.md', 'upstream file\n');
+  writeFile(fixture.tree, 'skill/docs/other.md', 'hand added\n');
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /overlay-edited skill\/docs\/sub\/f\.md/);
+  assert.match(status.output, /live-edited skill\/docs\/other\.md/);
+  assert.doesNotMatch(status.output, /live-edited skill\/docs\/sub\/f\.md/);
+
+  fs.rmSync(path.join(fixture.tree, 'skill/docs/other.md'));
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fs.existsSync(path.join(fixture.tree, 'skill/docs/sub/f.md')), false);
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. THE ENGINE'S OWN LOCK
 // ─────────────────────────────────────────────────────────────────────────────
 
 const FOREIGN_LOCK = 'orchestrator repin pid=4242 2026-11-06T08:00:00Z\n';

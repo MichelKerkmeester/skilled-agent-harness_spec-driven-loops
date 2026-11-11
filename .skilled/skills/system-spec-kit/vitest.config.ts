@@ -4,7 +4,8 @@
 
 import path from 'node:path';
 
-const TEST_TIMEOUT_MS = 30_000;
+// A safety cap for a hung test. Save and validation tests run the full writer and take longer when files run side by side.
+const TEST_TIMEOUT_MS = 120_000;
 const TEARDOWN_TIMEOUT_MS = 1_000;
 
 // The CLI workspace nests inside runtime/ and carries its own tsconfig and
@@ -47,7 +48,7 @@ export default {
           ],
           globals: true,
           environment: 'node',
-          fileParallelism: false,
+          fileParallelism: true,
           testTimeout: TEST_TIMEOUT_MS,
           teardownTimeout: TEARDOWN_TIMEOUT_MS,
           name: 'root',
@@ -64,7 +65,7 @@ export default {
           ],
           globals: true,
           environment: 'node',
-          fileParallelism: false,
+          fileParallelism: true,
           testTimeout: TEST_TIMEOUT_MS,
           teardownTimeout: TEARDOWN_TIMEOUT_MS,
           name: 'cli',

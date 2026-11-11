@@ -5,7 +5,7 @@ trigger_phrases:
   - "bdg dom eval"
   - "bdg js"
   - "run javascript in browser cli"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Eval JavaScript
@@ -14,13 +14,15 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`bdg dom eval "document.title" 2>&1` executes an expression in the page context and returns the result. Works for reads (`localStorage.getItem('token')`), counts (`document.querySelectorAll('a').length`), and interactions (`document.querySelector('#submit-btn').click()`).
+`bdg dom eval "document.title" 2>&1` executes an expression in the page context and returns the result. Works for reads (`localStorage.getItem('theme')`), counts (`document.querySelectorAll('a').length`), and interactions (`document.querySelector('#submit-btn').click()`).
 
 ---
 
 ## 2. HOW IT WORKS
 
 The helper wraps the Runtime domain (`Runtime.evaluate` with `returnByValue`). Pipe results through `jq` for structured extraction, and chain eval with screenshot/console capture to verify interaction effects.
+
+A result can hold a live token or cookie. Read storage keys instead of values and redact any value before quoting it (SKILL.md ALWAYS rule 7).
 
 ---
 

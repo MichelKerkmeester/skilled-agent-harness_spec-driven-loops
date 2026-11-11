@@ -5,7 +5,7 @@ trigger_phrases:
   - "chrome devtools examples"
   - "bdg example scripts"
   - "browser automation scripts"
-version: 1.0.0.0
+version: 1.0.2.0
 ---
 
 # CLI Chrome DevTools - Example Scripts
@@ -63,6 +63,8 @@ command -v bc >/dev/null || echo "Install bc for calculations"
 
 ## 3. AVAILABLE SCRIPTS
 
+All three scripts write their captures under `"${TMPDIR:-/tmp}"`, outside the repository, because a HAR file or screenshot can hold live session cookies and bearer tokens. Never commit a capture. Pass `performance-baseline.sh` a folder the repository ignores to keep its results.
+
 ### 3.1 performance-baseline.sh
 
 **Purpose:** Create comprehensive performance baseline for regression testing
@@ -75,8 +77,8 @@ command -v bc >/dev/null || echo "Install bc for calculations"
 # Custom URL
 ./performance-baseline.sh https://example.com
 
-# Custom output directory
-./performance-baseline.sh https://example.com ./<my-baselines-dir>
+# Custom output directory (outside the repository or in a path it ignores)
+./performance-baseline.sh https://example.com "${TMPDIR:-/tmp}/<my-baselines-dir>"
 ```
 
 **What it captures:**
@@ -89,7 +91,7 @@ command -v bc >/dev/null || echo "Install bc for calculations"
 
 **Output:**
 ```
-performance-baselines/
+${TMPDIR:-/tmp}/performance-baselines/
 ├── metrics-20241127-143022.json
 ├── network-20241127-143022.har
 ├── screenshot-20241127-143022.png
@@ -171,7 +173,7 @@ performance-baselines/
 
 **Output:**
 ```
-viewport-tests/20241127-143022/
+${TMPDIR:-/tmp}/viewport-tests/20241127-143022/
 ├── desktop-initial.png
 ├── desktop-animated.png
 ├── desktop-metrics.json
@@ -208,7 +210,7 @@ set -e  # Exit on first failure
 echo "Running visual regression tests..."
 
 # 1. Capture current baseline
-./performance-baseline.sh https://staging.example.com ./<baselines>/current
+./performance-baseline.sh https://staging.example.com "${TMPDIR:-/tmp}/<baselines>/current"
 
 # 2. Test animations
 ./animation-testing.sh https://staging.example.com ".hero" "animate-in"
@@ -223,29 +225,33 @@ echo "All visual tests passed"
 
 ```bash
 # Before optimization
-./performance-baseline.sh https://staging.example.com ./<baselines>/before
+./performance-baseline.sh https://staging.example.com "${TMPDIR:-/tmp}/<baselines>/before"
 
 # After optimization
-./performance-baseline.sh https://staging.example.com ./<baselines>/after
+./performance-baseline.sh https://staging.example.com "${TMPDIR:-/tmp}/<baselines>/after"
 
 # Compare metrics
-echo "Before: $(jq '.result.metrics[] | select(.name=="TaskDuration") | .value' ./<baselines>/before/metrics-*.json)"
-echo "After: $(jq '.result.metrics[] | select(.name=="TaskDuration") | .value' ./<baselines>/after/metrics-*.json)"
+echo "Before: $(jq '.result.metrics[] | select(.name=="TaskDuration") | .value' "${TMPDIR:-/tmp}"/<baselines>/before/metrics-*.json)"
+echo "After: $(jq '.result.metrics[] | select(.name=="TaskDuration") | .value' "${TMPDIR:-/tmp}"/<baselines>/after/metrics-*.json)"
 ```
 
 ### Visual Diff Workflow
 
 ```bash
+# The screenshots stay in the scratch folder. Copy a baseline into the repository
+# only for a public page with no session data
+SCRATCH="${TMPDIR:-/tmp}"
+
 # Capture baseline
 ./multi-viewport-test.sh https://production.example.com "" "none"
-mv viewport-tests/*/desktop-initial.png baseline-desktop.png
+mv "$SCRATCH"/viewport-tests/*/desktop-initial.png "$SCRATCH/baseline-desktop.png"
 
 # Capture current state
 ./multi-viewport-test.sh https://staging.example.com "" "none"
-mv viewport-tests/*/desktop-initial.png current-desktop.png
+mv "$SCRATCH"/viewport-tests/*/desktop-initial.png "$SCRATCH/current-desktop.png"
 
 # Visual diff (requires ImageMagick)
-compare baseline-desktop.png current-desktop.png diff.png
+compare "$SCRATCH/baseline-desktop.png" "$SCRATCH/current-desktop.png" "$SCRATCH/diff.png"
 ```
 
 ---
@@ -318,7 +324,7 @@ command -v jq || sudo apt install jq  # Linux
 # Verify CDP command syntax
 bdg https://example.com 2>&1
 bdg cdp Emulation.setDeviceMetricsOverride '{"width":375,"height":667,"deviceScaleFactor":2,"mobile":true}' 2>&1
-bdg dom screenshot test.png 2>&1
+bdg dom screenshot "${TMPDIR:-/tmp}/test.png" 2>&1
 bdg stop 2>&1
 ```
 
@@ -326,12 +332,12 @@ bdg stop 2>&1
 
 ```bash
 # Check output directory permissions
-mkdir -p ./<test-output>
-chmod 755 ./<test-output>
+mkdir -p "${TMPDIR:-/tmp}/<test-output>"
+chmod 755 "${TMPDIR:-/tmp}/<test-output>"
 
 # Test screenshot command
 bdg https://example.com 2>&1
-bdg dom screenshot ./<test-output>/test.png 2>&1
+bdg dom screenshot "${TMPDIR:-/tmp}/<test-output>/test.png" 2>&1
 bdg stop 2>&1
 ```
 

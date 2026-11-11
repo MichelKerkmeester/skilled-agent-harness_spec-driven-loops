@@ -10,7 +10,8 @@ set -euo pipefail
 URL="${1:-https://example.com}"
 SELECTOR="${2:-.animated-element}"
 TRIGGER_CLASS="${3:-animate}"
-OUTPUT_DIR="viewport-tests"
+# Screenshots can show session data, so the output folder is outside the repository
+OUTPUT_DIR="${TMPDIR:-/tmp}/viewport-tests"
 DATE_STAMP=$(date +%Y%m%d-%H%M%S)
 
 # Define viewports (width:height:name:mobile)

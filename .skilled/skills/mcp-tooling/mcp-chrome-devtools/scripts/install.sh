@@ -379,7 +379,7 @@ main() {
     echo ""
     echo "Quick start:"
     echo "  bdg https://example.com    # Start session"
-    echo "  bdg screenshot test.png    # Take screenshot"
+    echo "  bdg screenshot /tmp/test.png # Take screenshot"
     echo "  bdg console logs           # Get console logs"
     echo "  bdg stop                   # Stop session"
     echo ""
