@@ -1,7 +1,7 @@
 ---
 title: "F2C-001 -- Figma node read becomes token markup"
 description: "This scenario validates Figma-to-code translation for `F2C-001`. It focuses on turning one Figma node into semantic markup whose every value is a token the app installs."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # F2C-001 -- Figma node read becomes token markup
@@ -70,7 +70,7 @@ Compare each token name in the markup against the installed package's exports; a
 |---|---|
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | Root directory page and scenario summary |
 | [node-to-token-markup.md](node-to-token-markup.md) | Canonical per-feature execution contract |
-| [`figma-to-code.md`](../../../../sk-code/sk-code-frontend/references/figma-to-code.md) | Repo path `.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`; the construct table, workflow and five-pass check this scenario follows |
+| `figma-to-code.md` | Repo path `.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`; the construct table, workflow and five-pass check this scenario follows |
 | [inspect.md](../../feature-catalog/inspect/inspect.md) | Feature-catalog source for the read-only node surface the scenario starts from |
 
 ### Implementation And Test Anchors

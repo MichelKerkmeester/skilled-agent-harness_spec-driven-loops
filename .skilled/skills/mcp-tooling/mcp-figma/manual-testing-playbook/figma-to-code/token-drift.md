@@ -1,7 +1,7 @@
 ---
 title: "F2C-002 -- Off-token frame values are reported as drift"
 description: "This scenario validates token drift reporting for `F2C-002`. It focuses on a frame value that matches no installed token and no scale step, and the agent reporting it instead of rounding it."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # F2C-002 -- Off-token frame values are reported as drift
@@ -70,8 +70,8 @@ Read the Project Profile Slot precedence in `SKILL.md` and confirm the reply fol
 |---|---|
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | Root directory page and scenario summary |
 | [token-drift.md](token-drift.md) | Canonical per-feature execution contract |
-| [`figma-to-code.md`](../../../../sk-code/sk-code-frontend/references/figma-to-code.md) | Repo path `.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`; a row with no token is a finding to report, and workflow step 4 hands an open value to `sk-code-frontend` (`web-visual-values.md`) |
-| [`web-visual-values.md`](../../../../sk-code/sk-code-frontend/references/web-visual-values.md) | The design scales and the precedence order the drift decision is handed to |
+| `figma-to-code.md` | Repo path `.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`; a row with no token is a finding to report, and workflow step 4 hands an open value to `sk-code-frontend` (`web-visual-values.md`) |
+| `web-visual-values.md` | Repo path `.skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md`; the design scales and the precedence order the drift decision is handed to |
 | [inspect.md](../../feature-catalog/inspect/inspect.md) | Feature-catalog source for the read-only node surface the scenario starts from |
 
 ### Implementation And Test Anchors

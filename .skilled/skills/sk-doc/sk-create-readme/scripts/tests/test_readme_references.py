@@ -135,3 +135,27 @@ def test_spaced_path_that_is_gone_and_command_lines_are_still_checked_per_path(r
     command = resolve_all(root, "Run `python3 ../tool.py ../missing.md`.\n")
     assert {item.reference.raw: item.resolved for item in command} == {"../tool.py": True, "../missing.md": False}
 
+
+
+
+def test_path_written_from_the_repository_root_resolves_from_a_nested_readme(root: Path) -> None:
+    (root / "scripts").mkdir()
+    (root / "scripts" / "sync.py").write_text("x\n", encoding="utf-8")
+    (root / "bench" / "gates").mkdir(parents=True)
+
+    for span in ("scripts/sync.py", "bench/gates/"):
+        results = resolve_all(root, f"Run `{span}`.\n")
+        assert results and all(result.resolved for result in results), span
+
+
+def test_root_folder_head_does_not_hide_a_path_that_is_gone(root: Path) -> None:
+    (root / "scripts").mkdir()
+    (root / ".git" / "hooks").mkdir(parents=True)
+
+    gone = resolve_all(root, "Run `scripts/gone.py`, `nowhere/tool.py` and `.git/hooks/`.\n")
+
+    assert [(item.reference.raw, item.resolved) for item in gone] == [
+        ("scripts/gone.py", False),
+        ("nowhere/tool.py", False),
+        (".git/hooks/", False),
+    ]

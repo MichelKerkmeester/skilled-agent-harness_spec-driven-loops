@@ -1,7 +1,7 @@
 ---
 title: "F2C-003 -- Built screen checked against its frame"
 description: "This scenario validates the five-pass Figma check for `F2C-003`. It focuses on comparing a built web screen with its authored frame and preserving an honest `INCOMPLETE` verdict when a pass cannot run."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # F2C-003 -- Built screen checked against its frame
@@ -81,7 +81,7 @@ Repeat Pass 5 contrast reads against the background each control actually sits o
 |---|---|
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | Root directory page and scenario summary |
 | [check-built-screen.md](check-built-screen.md) | Canonical per-feature execution contract |
-| [`figma-to-code.md`](../../../../sk-code/sk-code-frontend/references/figma-to-code.md) | Repo path `.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`; Section 5 defines the five passes, the evidence each needs and the `INCOMPLETE` verdict rule |
+| `figma-to-code.md` | Repo path `.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`; Section 5 defines the five passes, the evidence each needs and the `INCOMPLETE` verdict rule |
 | [inspect.md](../../feature-catalog/inspect/inspect.md) | Feature-catalog source for the read-only node surface the scenario starts from |
 
 ### Implementation And Test Anchors

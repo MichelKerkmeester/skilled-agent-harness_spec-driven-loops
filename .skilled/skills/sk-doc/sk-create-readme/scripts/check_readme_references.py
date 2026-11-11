@@ -704,6 +704,26 @@ def name_on_disk(name: str, root: Path) -> bool:
     return any(os.path.lexists(root / relative) for relative in _TRACKED_NAMES[root][2].get(name, ()))
 
 
+def root_anchored(candidate: str, root: Path) -> bool:
+    """Tell whether a relative token may also be read from the repository root.
+
+    A known root anchor always may. So may a token whose first segment names a
+    folder that sits at the repository root, since docs often write a path the
+    way the repository lays it out. A bare file name or a first segment the root
+    does not hold stays tied to the README folder, so a stale relative path is
+    still reported. A dot folder outside the known anchors stays tied too:
+    `.git/hooks/` names a path git owns, which a README allows by marker.
+    """
+    if candidate.startswith(REPOSITORY_ROOT_PREFIXES):
+        return True
+    if candidate.startswith(("./", "../", "/")):
+        return False
+    head, slash, _tail = candidate.partition("/")
+    if not slash or not head or head.startswith(".") or "*" in head:
+        return False
+    return (root / head).is_dir()
+
+
 def candidate_paths(candidate: str, base: Path, root: Path) -> list[Path]:
     """Resolve a literal or glob from the README directory, safe root anchors and a skill folder."""
     if candidate.rstrip("/") == base.name:
@@ -711,7 +731,7 @@ def candidate_paths(candidate: str, base: Path, root: Path) -> list[Path]:
     if candidate.startswith("/"):
         return [Path(candidate)]
     paths = [base / candidate]
-    if candidate.startswith(REPOSITORY_ROOT_PREFIXES):
+    if root_anchored(candidate, root):
         root_path = root / candidate
         if root_path not in paths:
             paths.append(root_path)
@@ -1059,7 +1079,7 @@ def gitignore_candidate(raw: str) -> bool:
 
 def named_ignore_paths(raw: str, readme: Path, root: Path) -> list[str]:
     """Return the repository-relative paths a name-resolved token can mean, for git to judge."""
-    bases = [readme.parent] + ([root] if raw.startswith(REPOSITORY_ROOT_PREFIXES) else [])
+    bases = [readme.parent] + ([root] if root_anchored(raw, root) else [])
     paths = []
     for start in bases:
         try:
