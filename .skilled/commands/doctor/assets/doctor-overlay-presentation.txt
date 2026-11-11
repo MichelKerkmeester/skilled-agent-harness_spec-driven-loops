@@ -424,5 +424,6 @@ What each engine exit means for `Changed:`:
 | A re-pin finished and listed overlays that now equal upstream | Drop those entries from the overlay manifest, then `/doctor:overlay status` | Those overlays no longer change anything |
 | A live re-pin failed and was not rolled back | `/doctor:overlay repin --rollback <run-id>` | The run folder still holds the backup |
 | A re-pin or a rollback just ran | `/doctor:overlay status` | The re-read confirms the tree is in sync |
+| A re-pin finished and the tree is in sync | `/doctor:update record-base --release=<tag>` | The release-update base still names the old pin until it is recorded again |
 
 End interactive presentations with: `What would you like to do next?`

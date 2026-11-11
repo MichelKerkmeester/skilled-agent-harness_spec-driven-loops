@@ -183,6 +183,11 @@ workflow:
         when: "Always."
         command: "node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check"
         repair: "With approval, run node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs with no arguments, then rerun --check."
+      - name: overlay_status
+        when: "Only when the tree carries overlays: overlay-manifest.json exists in the folder .skilled-overlays.json names, or in skilled-overlays/ when that file is absent."
+        command: "node .skilled/commands/doctor/scripts/overlay-engine.cjs status"
+        pass_rule: "Exit 0 means every overlay destination is in sync. Exit 1 is a finding: the update replaced or moved a file an overlay owns. Exit 2 is a precondition that failed, such as an invalid .skilled-overlays.json."
+        repair: "This check has no write mode here. Show the engine's lines and name /doctor:overlay apply, which runs under its own plan and yes."
       - name: hook_installers
         when: "Only when followUps.reinstallHooks is true."
         commands:
