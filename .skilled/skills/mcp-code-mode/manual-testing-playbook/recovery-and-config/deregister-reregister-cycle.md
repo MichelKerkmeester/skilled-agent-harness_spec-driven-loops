@@ -1,7 +1,7 @@
 ---
 title: "CM-024 -- Deregister/re-register cycle (DESTRUCTIVE)"
 description: "This scenario validates dynamic manual deregister/re-register for `CM-024`. It focuses on confirming `deregister_manual` removes a manual at runtime and `register_manual` restores it without restarting Code Mode."
-version: 1.0.0.6
+version: 1.0.1.0
 id: CM-024
 category: recovery_and_config
 stage: routing
@@ -33,7 +33,7 @@ Operators run the exact prompt and command sequence for `CM-024` and confirm the
 
 - Objective: Verify `deregister_manual({name: "github"})` removes GitHub tools; `register_manual({...github_config})` restores them — without Code Mode restart.
 - Real user request: `"Hot-swap the GitHub MCP without restarting my session."`
-- RCAF Prompt: `As a manual-testing orchestrator, deregister the GitHub manual, list tools (verify absent), then re-register it from the saved .utcp_config.json entry through Code Mode against the live runtime. Verify the manual is absent during the deregister window and present after re-register. Return a concise user-facing pass/fail verdict with the main reason.`
+- Orchestrator prompt: `As a manual-testing orchestrator, deregister the GitHub manual, list tools (verify absent), then re-register it from the saved .utcp_config.json entry through Code Mode against the live runtime. Verify the manual is absent during the deregister window and present after re-register. Return a concise user-facing pass/fail verdict with the main reason.`
 - Expected execution process: capture original GitHub config block → deregister → list_tools (verify absent) → register with original config → list_tools (verify present).
 - Expected signals: deregister returns success; intermediate `list_tools()` shows no `github.` entries; re-register succeeds; final `list_tools()` shows GitHub tools again.
 - Desired user-visible outcome: A short report listing tool counts at each step with a PASS verdict.
@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `CM-024` and confirm the
 
 ### Prompt
 
-- RCAF Prompt: `As a manual-testing orchestrator, deregister the GitHub manual, list tools (verify absent), then re-register it from the saved .utcp_config.json entry through Code Mode against the live runtime. Verify the manual is absent during the deregister window and present after re-register. Return a concise user-facing pass/fail verdict with the main reason.`
+- Orchestrator prompt: `As a manual-testing orchestrator, deregister the GitHub manual, list tools (verify absent), then re-register it from the saved .utcp_config.json entry through Code Mode against the live runtime. Verify the manual is absent during the deregister window and present after re-register. Return a concise user-facing pass/fail verdict with the main reason.`
 
 ### Commands
 

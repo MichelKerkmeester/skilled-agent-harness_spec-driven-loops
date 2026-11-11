@@ -2,7 +2,7 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: README REFERENCE RESOLVER REGRESSIONS
 # ───────────────────────────────────────────────────────────────
-"""Regression tests for filename templates and bracketed route folders."""
+"""Regression tests for filename templates, bracketed route folders, line citations and spaced paths."""
 
 from __future__ import annotations
 
@@ -15,6 +15,7 @@ import pytest
 SCRIPTS = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(SCRIPTS))
 
+import audit_readmes as audit  # type: ignore  # noqa: E402
 import check_readme_references as references  # type: ignore  # noqa: E402
 
 
@@ -77,3 +78,60 @@ def test_bracketed_dynamic_route_folder_remains_a_checked_path(root: Path) -> No
     missing = resolve(root, "app/[id]/pagee.tsx")
     assert not missing.resolved
     assert missing.detail == "path does not exist"
+
+
+def resolve_all(root: Path, text: str) -> list[references.Resolution]:
+    """Resolve every reference in a README kept one folder below the test root."""
+    readme = root / "docs" / "README.md"
+    readme.parent.mkdir(exist_ok=True)
+    readme.write_text(text, encoding="utf-8")
+    parsed = references.extract_references(text, readme, root)
+    return [references.resolve_reference(item, readme, root) for item in parsed]
+
+
+def test_line_citation_is_not_part_of_the_path(root: Path) -> None:
+    (root / "lib").mkdir()
+    (root / "lib" / "flow.md").write_text("flow\n", encoding="utf-8")
+
+    for citation in (":352", ":26-69", ":60,68", ":60, 68"):
+        results = resolve_all(root, f"See `../lib/flow.md{citation}`.\n")
+        assert results and all(result.resolved for result in results), citation
+
+    missing = resolve_all(root, "See `../lib/gone.md:352`.\n")
+    assert [(item.reference.raw, item.resolved) for item in missing] == [("../lib/gone.md", False)]
+    assert missing[0].detail == "path does not exist"
+
+
+def test_line_citation_on_a_link_target_is_still_a_broken_link(root: Path) -> None:
+    (root / "lib").mkdir()
+    (root / "lib" / "flow.md").write_text("flow\n", encoding="utf-8")
+
+    results = resolve_all(root, "[flow](../lib/flow.md:352)\n")
+
+    assert [(item.reference.kind, item.resolved) for item in results] == [("link", False)]
+    assert audit.extract_references("See `../lib/flow.md:352` and [flow](../lib/flow.md:352).") == {
+        "../lib/flow.md",
+        "../lib/flow.md:352",
+    }
+
+
+def test_code_span_naming_a_path_with_spaces_resolves_as_one_path(root: Path) -> None:
+    (root / "claude project" / "knowledge").mkdir(parents=True)
+    (root / "sync loop").mkdir()
+    (root / "sync loop" / "systems.py").write_text("x\n", encoding="utf-8")
+
+    for span in ("claude project/knowledge/", "../claude project/knowledge/", "sync loop/systems.py"):
+        results = resolve_all(root, f"Read `{span}`.\n")
+        assert results and all(result.resolved for result in results), span
+
+
+def test_spaced_path_that_is_gone_and_command_lines_are_still_checked_per_path(root: Path) -> None:
+    (root / "claude project").mkdir()
+    (root / "tool.py").write_text("x\n", encoding="utf-8")
+
+    gone = resolve_all(root, "Read `claude project/gone/`.\n")
+    assert gone and not any(result.resolved for result in gone)
+
+    command = resolve_all(root, "Run `python3 ../tool.py ../missing.md`.\n")
+    assert {item.reference.raw: item.resolved for item in command} == {"../tool.py": True, "../missing.md": False}
+

@@ -5,7 +5,7 @@ trigger_phrases:
   - "clickup_get_operators"
   - "clickup operators"
   - "unified api operators"
-version: 1.0.0.0
+version: 1.0.1.0
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -32,7 +32,7 @@ Lists the Unified API operators enabled on this server (`<model>.<operator>` pai
 
 ## 2. HOW IT WORKS
 
-On 2026-10-08 workspace `90151466006` returned "Enabled operators: none". Check it again before relying on `clickup_execute_operator` for anything the dedicated tools lack.
+On 2026-10-08 workspace `<workspace-id>` returned "Enabled operators: none". Check it again before relying on `clickup_execute_operator` for anything the dedicated tools lack.
 
 ---
 

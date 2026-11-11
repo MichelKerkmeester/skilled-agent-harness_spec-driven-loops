@@ -1,7 +1,7 @@
 ---
 title: "MCP-H006 -- Get Workspace Hierarchy (CRITICAL PATH)"
 description: "This scenario validates Get Workspace Hierarchy (CRITICAL PATH) for `MCP-H006`. Objective: Verify `clickup_get_workspace_hierarchy` answers, proving the MCP route and the OAuth sign-in work."
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # MCP-H006 -- Get Workspace Hierarchy (CRITICAL PATH)
@@ -33,7 +33,7 @@ Verify `clickup_get_workspace_hierarchy` answers, proving the MCP route and the 
 
 ### Recommended Orchestration Process
 
-PRE: `clickup_official` manual configured in `.utcp_config.json` and signed in to workspace 90151466006.
+PRE: `clickup_official` manual configured in `.utcp_config.json` and signed in to workspace `<workspace-id>`.
 1. Code Mode: `clickup_official.clickup_official_clickup_get_workspace_hierarchy({max_depth: 1})`
 2. Check that the response lists at least one space and carries no `error` field
 

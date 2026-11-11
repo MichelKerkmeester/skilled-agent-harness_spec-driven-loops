@@ -13,7 +13,7 @@ trigger_phrases:
   - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.18.0
+version: 1.1.19.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -140,7 +140,7 @@ Use the **official MCP** for:
 
 Use **cupt** for daily task work: listing your queue, showing a task, completing it with a dry run, notes, timers and tags (see `cupt-commands.md`).
 
-**No route on either surface.** The hosted server has no tools for goals or OKRs, bulk task creation or bulk update, webhooks, editing checklists, spaces, views, editing or deleting space tags, task templates, guests, user groups, audit logs or product feedback. It also has no whole-document read or update. Documents are read and written page by page. No tool deletes a document or a page, so a page the API creates stays until someone deletes it in the ClickUp app (checked 2026-11-05). Run trial writes in one scratch doc and tell the user what to delete. Its operator catalog (`clickup_get_operators`) returned "Enabled operators: none" for workspace `90151466006` on 2026-10-08, so `clickup_execute_operator` adds nothing either. Tell the user the feature is not available rather than routing it anywhere.
+**No route on either surface.** The hosted server has no tools for goals or OKRs, bulk task creation or bulk update, webhooks, editing checklists, spaces, views, editing or deleting space tags, task templates, guests, user groups, audit logs or product feedback. It also has no whole-document read or update. Documents are read and written page by page. No tool deletes a document or a page, so a page the API creates stays until someone deletes it in the ClickUp app (checked 2026-11-05). Run trial writes in one scratch doc and tell the user what to delete. Its operator catalog (`clickup_get_operators`) returned "Enabled operators: none" for workspace `<workspace-id>` on 2026-10-08, so `clickup_execute_operator` adds nothing either. Tell the user the feature is not available rather than routing it anywhere.
 
 Two reads survive for things that cannot be edited: `clickup_get_task` with `include: ["checklists"]` returns a task's checklists, and `include: ["dependencies"]` returns its dependencies.
 

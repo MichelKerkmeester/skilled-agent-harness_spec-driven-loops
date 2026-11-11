@@ -129,6 +129,28 @@ def run() -> int:
         check('case-folded root/link matching passes', check_root_catalog_bijection(
             tmp / 'coverage' / '.skilled' / 'skills', packages) == [])
 
+        # A root that is a whole repository finds its packages and not the copies its record trees keep.
+        repo = tmp / 'records'
+        for relative in (
+            'real-skill/feature-catalog',
+            'real-skill/sub/feature-catalog',
+            'specs/001-x/research/baseline/real-skill/feature-catalog',
+            'node_modules/dep/feature-catalog',
+            'export/run/feature-catalog',
+            'benchmark/reports/2026-run/feature-catalog',
+            'real-skill/benchmark/reports/run/feature-catalog',
+        ):
+            (repo / relative).mkdir(parents=True)
+        for relative in ('real-skill', 'real-skill/sub'):
+            (repo / relative / 'feature-catalog' / 'feature-catalog.md').write_text('# Clean\n', encoding='utf-8')
+        found = [pkg['name'] for pkg in expected_root_packages(repo)]
+        check('record trees are not packages', found == ['real-skill', 'real-skill/sub'])
+        records = subprocess.run(
+            [sys.executable, str(VALIDATOR), '--repo-root', str(repo), '--skills-root', str(repo)],
+            check=False, capture_output=True, text=True, env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1'},
+        )
+        check('repository root with stale snapshots exits zero', records.returncode == 0 and 'specs' not in records.stdout)
+
         clean_root = tmp / 'exit' / '.skilled' / 'skills' / 'clean' / 'feature-catalog'
         clean_root.mkdir(parents=True)
         (clean_root / 'feature-catalog.md').write_text('# Clean\n', encoding='utf-8')

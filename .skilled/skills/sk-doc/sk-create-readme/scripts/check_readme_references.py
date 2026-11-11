@@ -49,6 +49,14 @@ targets. A bracketed segment in a file basename, such as
 folder. A bracketed segment in a folder position, as in
 ``app/[id]/page.tsx``, is a real dynamic-route folder and is checked.
 
+A line citation after a path that is already read as one, as in
+``../a/flow-mode.md:352``, ``../a/run.sh:26-69`` or ``../a/user-flow.md:60,68``,
+is not part of the path: the file is what has to exist. A citation on a link
+target stays part of it, since a reader cannot follow that link. A code span of
+several words that exists whole as one path, as in ``claude project/knowledge/``,
+resolves as that path. A command line never exists as a path, so its paths stay
+checked one by one, and a spaced path that is gone still fails.
+
 A reference resolves from the README folder, from the nearest folder above it
 that holds a ``package.json`` and from the repository root. A code span the
 audit reads as a path, an inventory or a tree entry also resolves from each
@@ -126,6 +134,7 @@ from audit_readmes import (  # type: ignore  # noqa: E402
     git_ignored_paths,
     normalize_reference_token,
     resolve_gitignored_references,
+    strip_line_citation,
     token_looks_like_path,
 )
 
@@ -315,7 +324,7 @@ def token_candidates(value: str) -> Iterable[str]:
             continue
         cleaned = clean_candidate(token)
         if looks_like_path(cleaned):
-            yield cleaned
+            yield strip_line_citation(cleaned)
 
 
 def path_tokens(text: str) -> list[str]:
@@ -336,7 +345,7 @@ def path_tokens(text: str) -> list[str]:
             continue
         token = normalize_reference_token(raw, "inline_code")
         if token and token_looks_like_path(token, "inline_code"):
-            tokens.append(token)
+            tokens.append(strip_line_citation(token))
     return tokens
 
 
@@ -452,7 +461,7 @@ class TreeState:
 
 def inline_references(line_number: int, span_text: str, skip: set[str]) -> list[Reference]:
     """Return the path references in one code span, each token once."""
-    span = clean_candidate(span_text) if " " in span_text.strip() else ""
+    span = strip_line_citation(clean_candidate(span_text)) if " " in span_text.strip() else ""
     audited = path_tokens(span_text)
     references: list[Reference] = []
     seen: set[str] = set(skip)
@@ -802,6 +811,26 @@ def resolve_literal(reference: Reference, raw: str, readme: Path, root: Path) ->
     return Resolution(reference, False, "path does not exist")
 
 
+def resolve_whole_span(reference: Reference, readme: Path, root: Path) -> Resolution | None:
+    """Resolve a code span of several words as one path, for a name that holds spaces.
+
+    Only a span that exists whole counts, from the README folder, each folder above
+    it and the skills folder. A command line never exists as a path, so its paths stay
+    checked one by one, and a spaced path that is gone still fails.
+    """
+    span = reference.span
+    if reference.kind != "inline" or not span or span.startswith(("~", "/", "-", "$", "@")):
+        return None
+    folder = readme.parent
+    bases = [folder, *(a for a in folder.parents if a == root or root in a.parents)]
+    bases.extend(root / rel for rel in SKILL_RELATIVE_BASES)
+    for base in bases:
+        path = Path(os.path.normpath(base / span))
+        if path.exists() and (path == root or root in path.parents):
+            return Resolution(reference, True, str(path))
+    return None
+
+
 def resolve_by_name(reference: Reference, readme: Path, root: Path) -> Resolution | None:
     """Resolve a token the audit does not read as a path: by literal, whole span or repository name."""
     literal = resolve_literal(reference, reference.raw, readme, root)
@@ -906,6 +935,9 @@ def resolve_reference(reference: Reference, readme: Path, root: Path) -> Resolut
         return resolve_slash_command(reference, root)
     if machine_path_outside(reference.raw, root):
         return Resolution(reference, False, "names a machine-local path outside the repository")
+    whole = resolve_whole_span(reference, readme, root)
+    if whole is not None:
+        return whole
     if reference.kind in ("inline", "link"):
         candidates = (reference.raw, *reference.alternatives)
         if any(matching_filename_template(Path(candidate)) is not None for candidate in candidates):

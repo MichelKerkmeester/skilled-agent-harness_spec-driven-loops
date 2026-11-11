@@ -89,7 +89,8 @@ function usage() {
     '  --package ID|PATH   Validate one package or an explicit playbook root',
     '  --repo-root PATH    Repository root (defaults from this script)',
     '  --skills-root PATH  Skills root (defaults to <repo>/.skilled/skills)',
-    '  --manifest PATH     Corpus manifest (defaults to this packet manifest)',
+    '  --manifest PATH     Corpus manifest (defaults to this packet manifest, whose roots',
+    '                      are skipped when absent under a non-default --repo-root)',
     '  --format text|json  Report format (default: text)',
     '  --json              Alias for --format json',
     '  --strict            Fail closed (default)',
@@ -1179,22 +1180,35 @@ function promptSyncChecks(text, relPath, rootPrompt) {
 // 9. PACKAGE DISCOVERY
 // ─────────────────────────────────────────────────────────────────────────────
 
-function loadManifest(manifestPath, repoRoot) {
+/**
+ * Read the corpus manifest and resolve its routing-gold roots against the repository.
+ *
+ * A missing root is an error by default because a stale entry would silently stop
+ * excluding a tree. `skipMissingRoots` relaxes that for the packaged manifest used
+ * against another repository, where its entries name trees that repository lacks.
+ */
+function loadManifest(manifestPath, repoRoot, { skipMissingRoots = false } = {}) {
   if (!fs.existsSync(manifestPath)) throw new Error(`manifest not found: ${manifestPath}`);
   let manifest;
   try { manifest = JSON.parse(readText(manifestPath)); } catch (error) { throw new Error(`manifest is not valid JSON: ${error.message}`); }
   if (!Array.isArray(manifest.routingGoldRoots) || manifest.routingGoldRoots.length === 0) throw new Error('manifest routingGoldRoots must be a non-empty array');
+  const skippedRoots = [];
   const roots = manifest.routingGoldRoots.map((entry) => {
     if (typeof entry !== 'string' || !entry || path.isAbsolute(entry) || entry.split('/').includes('..')) throw new Error(`manifest root is not repository-relative: ${entry}`);
     const resolved = path.resolve(repoRoot, entry);
     if (!isWithin(resolved, repoRoot)) throw new Error(`manifest root escapes repository: ${entry}`);
-    if (!fs.existsSync(resolved) || !fs.statSync(resolved).isDirectory()) throw new Error(`manifest root does not exist: ${entry}`);
+    if (!fs.existsSync(resolved) || !fs.statSync(resolved).isDirectory()) {
+      if (!skipMissingRoots) throw new Error(`manifest root does not exist: ${entry}`);
+      skippedRoots.push(entry);
+      return null;
+    }
     return resolved;
-  });
+  }).filter(Boolean);
   return {
     version: manifest.version,
     defaultContract: manifest.defaultContract || CONTRACT,
     routingGoldRoots: [...new Set(roots)],
+    skippedRoots,
     warnPackages: Array.isArray(manifest.warnPackages) ? manifest.warnPackages : [],
     sourcePath: manifestPath,
   };
@@ -1383,8 +1397,19 @@ function runValidation(options = {}) {
   const skillsRoot = path.resolve(options.skillsRoot || defaults.skillsRoot);
   const manifestPath = path.resolve(options.manifest || defaults.manifest);
   if (!fs.existsSync(repoRoot) || !fs.existsSync(skillsRoot)) throw new Error('repository or skills root does not exist');
-  const manifest = loadManifest(manifestPath, repoRoot);
+  // The packaged manifest names trees of the repository this script ships in. Run against
+  // another repository, an entry that repository lacks has nothing to exclude. A manifest
+  // the caller supplies was written for the root it runs with, so it stays strict.
+  const skipMissingRoots = !options.manifest && repoRoot !== defaults.repoRoot;
+  const manifest = loadManifest(manifestPath, repoRoot, { skipMissingRoots });
   const selected = resolvePackageFilter(options.packageFilter || null, skillsRoot, repoRoot);
+  const notes = [];
+  if (manifest.skippedRoots.length > 0) {
+    notes.push(`${manifest.skippedRoots.length} packaged manifest root(s) are absent under ${repoRoot} and were skipped`);
+  }
+  if (selected && !options.repoRoot && !isWithin(selected, repoRoot)) {
+    notes.push(`package is outside the repository root ${repoRoot}, so its local links cannot resolve: pass --repo-root with the repository that holds it`);
+  }
   const packages = selected
     ? [{ id: packageId(selected, skillsRoot, repoRoot), playbookRoot: selected }]
     : discoverPackages(skillsRoot, repoRoot);
@@ -1399,6 +1424,7 @@ function runValidation(options = {}) {
     manifest: path.relative(repoRoot, manifestPath).split(path.sep).join('/'),
     strict,
     warnPackages: manifest.warnPackages,
+    notes,
     packages: reports,
     exitCode: strict && hasFailClosedViolation ? EXIT_VIOLATIONS : EXIT_OK,
     warnedViolationCount: hasWarnedViolations
@@ -1412,6 +1438,7 @@ function formatText(report) {
     `contract=${report.contract} routing_gold_contract=${report.routingGoldContract} strict=${report.strict ? 'on' : 'off'}`,
     `manifest=${report.manifest}`,
     `warn_packages=${report.warnPackages.join(',')}`,
+    ...report.notes.map((note) => `note=${note}`),
   ];
   for (const pkg of report.packages) {
     const c = pkg.derivedCensus;

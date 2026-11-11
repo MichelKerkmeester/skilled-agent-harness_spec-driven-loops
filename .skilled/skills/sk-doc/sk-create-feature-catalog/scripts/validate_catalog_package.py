@@ -70,6 +70,12 @@ WARN_PACKAGE_IDS = frozenset({
 # Explicit rulings here exclude any runtime-data root that gains a same-named directory without a skill contract.
 EXCLUDED_PACKAGE_PREFIXES = {}
 
+# Record trees hold copies and run output, never a skill's own catalog. A research snapshot
+# under specs/ repeats whole packages, so a walk that starts at a repository root must not
+# enter one or it reports each stale copy as a package.
+RECORD_TREE_NAMES = frozenset({'.git', 'node_modules', 'specs', 'export'})
+RECORD_TREE_PATHS = frozenset({'benchmark/reports'})
+
 WORKFLOW_MODE_INVENTORY_PATHS = {
     'root catalog': Path(CATALOG_DIRNAME) / ROOT_CATALOG_FILENAME,
     'packet-authored registry routing': (
@@ -116,14 +122,24 @@ VOLATILE_SNAPSHOT_RE = re.compile(
 # ───────────────────────────────────────────────────────────────
 
 
+def _is_record_tree(relative_parts: Sequence[str]) -> bool:
+    return relative_parts[-1] in RECORD_TREE_NAMES or '/'.join(relative_parts[-2:]) in RECORD_TREE_PATHS
+
+
 def discover_catalog_directories(skills_root: Path) -> List[Path]:
-    """Discover every canonical feature-catalog directory under the skills root."""
+    """Discover every canonical feature-catalog directory under the skills root.
+
+    The walk skips the record trees named above, judged by the path below the skills
+    root, so a root that is itself a whole repository finds its packages only.
+    """
     if not skills_root.exists():
         return []
-    return sorted(
-        (path for path in skills_root.rglob(CATALOG_DIRNAME) if path.is_dir()),
-        key=lambda path: path.as_posix(),
-    )
+    found: List[Path] = []
+    for current, dirnames, _files in os.walk(skills_root):
+        base = Path(current)
+        dirnames[:] = [name for name in dirnames if not _is_record_tree((base / name).relative_to(skills_root).parts)]
+        found.extend(base / name for name in dirnames if name == CATALOG_DIRNAME)
+    return sorted(found, key=lambda path: path.as_posix())
 
 
 def _package_id(catalog_dir: Path, skills_root: Path) -> str:

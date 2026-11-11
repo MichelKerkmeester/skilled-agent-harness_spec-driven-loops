@@ -9,7 +9,7 @@ trigger_phrases:
   - "tool search strategy config"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Configuration Guide - .utcp_config.json and Environment Setup
@@ -325,7 +325,7 @@ Use it when setting up or changing either file.
 
 # ClickUp Configuration (prefix: clickup)
 clickup_CLICKUP_API_KEY=pk_your_api_key_here
-clickup_CLICKUP_TEAM_ID=90151466006
+clickup_CLICKUP_TEAM_ID=90000000000
 
 # Figma Configuration (prefix: figma)
 figma_FIGMA_API_KEY=figd_your_token_here

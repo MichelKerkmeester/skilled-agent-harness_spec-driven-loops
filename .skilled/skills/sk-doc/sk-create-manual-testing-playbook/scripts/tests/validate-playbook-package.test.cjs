@@ -11,6 +11,7 @@ const path = require('path');
 const { spawnSync } = require('child_process');
 const {
   validatePackage,
+  loadManifest,
   parseConversationScript,
   CONVERSATION_FENCE_INFO,
 } = require('../validate-playbook-package.cjs');
@@ -396,6 +397,69 @@ function runCentralPackageDiscoveryRegression() {
   console.log('central package discovery regression: PASS (2 assertions)');
 }
 
+/**
+ * Pin the external-repository path: a package that belongs to another repository.
+ *
+ * The packaged manifest names Skilled's own trees, so under another root its entries must be
+ * skipped, while a manifest the caller supplies stays strict. Links resolve against the root
+ * the caller names, so a real broken link in the external package is still reported.
+ */
+function runExternalPackageRegression() {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'playbook-external-'));
+  try {
+    const skillRoot = path.join(tempRoot, 'pkg-a');
+    const playbookRoot = path.join(skillRoot, 'manual-testing-playbook');
+    fs.cpSync(fixtureSource, playbookRoot, { recursive: true });
+    fs.writeFileSync(path.join(skillRoot, 'SKILL.md'), '# External skill\n');
+    const scenario = path.join(playbookRoot, 'scenarios', 'clean-scenario.md');
+    const original = fs.readFileSync(scenario, 'utf8');
+    const withLink = (target) => fs.writeFileSync(scenario, `${original}\nSee [the target](${target}).\n`);
+    const run = (extra) => spawnSync(process.execPath, [
+      validatorPath, '--package', playbookRoot, '--format', 'json', ...extra,
+    ], { encoding: 'utf8' });
+    const external = ['--repo-root', tempRoot, '--skills-root', tempRoot];
+    const violationCodes = (result) => JSON.parse(result.stdout).packages.flatMap((pkg) => pkg.violations.map((item) => item.code));
+
+    // A link out of the playbook but inside the named repository resolves, and the packaged
+    // manifest entries that repository lacks are skipped and said so.
+    withLink('../../SKILL.md');
+    const resolved = run(external);
+    assert.strictEqual(resolved.status, 0, `external package should exit 0\n${resolved.stdout}\n${resolved.stderr}`);
+    assert.deepStrictEqual(violationCodes(resolved), [], 'external package links should resolve against --repo-root');
+    assert(JSON.parse(resolved.stdout).notes.some((note) => /packaged manifest root\(s\) are absent/.test(note)), 'skipped manifest roots should be reported');
+
+    // The checks stay real under that root: a missing target and a target outside it both fail.
+    withLink('../../GONE.md');
+    assert(violationCodes(run(external)).includes('PATH_MISSING'), 'a broken link in an external package should still fail');
+    withLink('../../../../escape.md');
+    assert(violationCodes(run(external)).includes('PATH_OUTSIDE_REPO'), 'a link leaving the named repository should still fail');
+
+    // Without --repo-root the package is outside Skilled, which keeps failing, and the report says what to pass.
+    withLink('../../SKILL.md');
+    const unrooted = run([]);
+    assert.strictEqual(unrooted.status, 1, 'an external package checked against the default root keeps failing');
+    assert(JSON.parse(unrooted.stdout).notes.some((note) => /pass --repo-root/.test(note)), 'the report should name --repo-root');
+
+    // Skipping is only for the packaged manifest. One the caller supplies, and the loader's own
+    // default, stay strict so a stale entry cannot quietly stop excluding a tree.
+    const stale = path.join(tempRoot, 'stale-manifest.json');
+    fs.writeFileSync(stale, JSON.stringify({ version: 1, routingGoldRoots: ['gone/manual-testing-playbook'], warnPackages: [] }));
+    const supplied = run([...external, '--manifest', stale]);
+    assert.strictEqual(supplied.status, 2, `a supplied manifest with a missing root should exit 2\n${supplied.stdout}\n${supplied.stderr}`);
+    assert(/manifest root does not exist/.test(supplied.stderr), 'a supplied manifest should still name the missing root');
+    assert.throws(() => loadManifest(stale, tempRoot), /manifest root does not exist/);
+    assert.deepStrictEqual(loadManifest(stale, tempRoot, { skipMissingRoots: true }).skippedRoots, ['gone/manual-testing-playbook']);
+
+    // Inside Skilled nothing is skipped and nothing is noted.
+    const inside = spawnSync(process.execPath, [validatorPath, '--package', 'sk-doc/sk-create-readme', '--format', 'json'], { encoding: 'utf8' });
+    assert.strictEqual(inside.status, 0, `a Skilled package should still pass\n${inside.stdout}\n${inside.stderr}`);
+    assert.deepStrictEqual(JSON.parse(inside.stdout).notes, [], 'a run inside Skilled should carry no notes');
+  } finally {
+    fs.rmSync(tempRoot, { recursive: true, force: true });
+  }
+  console.log('external package regression: PASS (13 assertions)');
+}
+
 function unsyncedWarnings(outcome) {
   return outcome.report.packages[0].warnings.filter((warning) => warning.code === 'PROMPT_UNSYNCED');
 }
@@ -669,6 +733,7 @@ function runPipedReportRegression() {
 run();
 runContractRegressions();
 runCentralPackageDiscoveryRegression();
+runExternalPackageRegression();
 runPromptSyncRegressions();
 runPipedReportRegression();
 runConversationRegressions();

@@ -96,6 +96,9 @@ ALLOWED_LINK_EXTENSIONS = {
 }
 IMPLICIT_EXTENSIONS = (".md", ".ts", ".tsx", ".js", ".mjs", ".cjs", ".json", ".sh", ".py")
 INDEX_FILES = ("README.md", "index.ts", "index.tsx", "index.js", "index.mjs", "index.cjs")
+# A line citation after a path points into the file it names: `../a/flow-mode.md:352`,
+# `../a/run.sh:26-69` or `../a/user-flow.md:60,68`. The file is what has to exist.
+LINE_CITATION_RE = re.compile(r"(?<=[^\s:]):\d+(?:-\d+)?(?:,\d+(?:-\d+)?)*$")
 
 SPECIAL_FILENAMES = {"package.json", "skill.md", "readme.md"}
 PATH_PREFIX_HINTS = (
@@ -410,6 +413,11 @@ def manifest_reproduction(repo_root: Path, manifest_path: Optional[Path] = None)
     }
 
 
+def strip_line_citation(token: str) -> str:
+    """Drop a trailing line citation so the existence test sees the file."""
+    return LINE_CITATION_RE.sub("", token)
+
+
 def normalize_reference_token(raw: str, source: str) -> Optional[str]:
     token = raw.strip().strip("\"'`<>")
     if not token:
@@ -526,7 +534,8 @@ def extract_references(content: str) -> Set[str]:
     def maybe_add(raw_token: str, source: str) -> None:
         token = normalize_reference_token(raw_token, source)
         if token and token_looks_like_path(token, source):
-            refs.add(token)
+            # A link target is a destination a reader follows, so a citation on it is a broken link.
+            refs.add(token if source == "markdown_link" else strip_line_citation(token))
 
     for raw in MARKDOWN_LINK_RE.findall(content):
         maybe_add(raw, "markdown_link")
