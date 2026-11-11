@@ -33,7 +33,7 @@ trigger_phrases:
 Run the suites from the repository root:
 
 ```bash
-node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/
+node --test '.skilled/skills/sk-doc/sk-create-goal/scripts/tests/*.test.cjs'
 ```
 
 Expected result: every test in the three suites passes and the runner exits 0. The parent README documents the same command.

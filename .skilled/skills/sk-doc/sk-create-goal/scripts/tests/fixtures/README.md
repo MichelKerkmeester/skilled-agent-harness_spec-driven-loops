@@ -51,7 +51,7 @@ Current state:
 ## 4. VALIDATION
 
 ```bash
-node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/
+node --test '.skilled/skills/sk-doc/sk-create-goal/scripts/tests/*.test.cjs'
 ```
 
 ---

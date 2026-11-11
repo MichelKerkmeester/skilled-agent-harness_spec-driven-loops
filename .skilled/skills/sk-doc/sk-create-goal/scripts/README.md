@@ -6,7 +6,7 @@ trigger_phrases:
   - "goal conformance checker"
   - "goal template parity test"
   - "goal criteria lint"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # sk-create-goal scripts: goal checker and criteria lint
@@ -98,7 +98,7 @@ The lint takes the same `<packet>`, `--all` and `--root` and always exits 0.
 ## 6. VALIDATION
 
 ```bash
-node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/
+node --test '.skilled/skills/sk-doc/sk-create-goal/scripts/tests/*.test.cjs'
 ```
 
 Expected result: every test passes.
