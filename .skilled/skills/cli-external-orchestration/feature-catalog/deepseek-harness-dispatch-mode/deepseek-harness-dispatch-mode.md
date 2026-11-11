@@ -1,20 +1,20 @@
 ---
 title: "DeepSeek Harness Dispatch Mode"
-description: "`cli-deepseek-harness` is the eighth workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it remains experimental while OpenCode Go is configured but not verified."
+description: "`cli-deepseek-harness` is the seventh workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it remains experimental. Both routes answered a keyed run, LLM Gateway on 2026-11-06 and OpenCode Go on 2026-11-07."
 trigger_phrases:
   - "DeepSeek Harness Dispatch Mode"
   - "deepseek harness"
   - "dsh headless"
   - "delegate to dsh"
   - "cli-deepseek-harness"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # DeepSeek Harness Dispatch Mode (dsh)
 
 ## 1. OVERVIEW
 
-`cli-deepseek-harness` is the eighth workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it remains experimental while OpenCode Go is configured but not verified.
+`cli-deepseek-harness` is the seventh workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it remains experimental. Both routes answered a keyed run, LLM Gateway on 2026-11-06 and OpenCode Go on 2026-11-07.
 
 DeepSeek Harness picks its own model. Its headless mode has no model, provider, timeout or working-directory option, so the packet fixes the model through a checked-in route patch and fixes the rest through the argv shape. A caller reaches the mode through the hub like any sibling. The LLM Gateway route has answered a keyed run; the OpenCode Go route has not been run with a key.
 
