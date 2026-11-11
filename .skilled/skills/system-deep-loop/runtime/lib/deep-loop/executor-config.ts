@@ -28,6 +28,15 @@ export const EXPERIMENTAL_EXECUTOR_KINDS: ReadonlySet<ExecutorKind> = new Set(['
 export const REASONING_EFFORTS = ['none', 'minimal', 'low', 'medium', 'high', 'xhigh', 'max', 'ultra'] as const;
 export type ReasoningEffort = typeof REASONING_EFFORTS[number];
 
+// Codex models whose top reasoning tier sits below `ultra`. A model absent from this map is
+// unconstrained here, because Codex itself decides for an id this file has never heard of.
+// An unpinned lineage runs gpt-6-luna, so that ceiling also covers a config with no model.
+const CODEX_EFFORT_CEILINGS: Readonly<Record<string, ReasoningEffort>> = {
+  'gpt-5.5': 'xhigh',
+  'gpt-6-luna': 'max',
+};
+const CODEX_UNPINNED_MODEL = 'gpt-6-luna';
+
 export const SERVICE_TIERS = ['priority', 'standard', 'fast'] as const;
 export type ServiceTier = typeof SERVICE_TIERS[number];
 
@@ -667,6 +676,19 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
         }.`,
       })),
     });
+  }
+
+  if (config.kind === 'cli-codex' && config.reasoningEffort) {
+    const model = config.model ?? CODEX_UNPINNED_MODEL;
+    const ceiling = CODEX_EFFORT_CEILINGS[model];
+    if (ceiling && REASONING_EFFORTS.indexOf(config.reasoningEffort) > REASONING_EFFORTS.indexOf(ceiling)) {
+      throw new ExecutorConfigError({
+        issues: [{
+          path: ['reasoningEffort'],
+          message: `reasoning effort '${config.reasoningEffort}' is above the '${ceiling}' ceiling of cli-codex model '${model}'.`,
+        }],
+      });
+    }
   }
 
   return config;

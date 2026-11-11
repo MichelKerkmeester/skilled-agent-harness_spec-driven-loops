@@ -185,6 +185,15 @@ describe('executor-config', () => {
     });
   });
 
+  it('rejects a codex effort above the selected model ceiling', () => {
+    expect(() => parseExecutorConfig({ kind: 'cli-codex', model: 'gpt-6-luna', reasoningEffort: 'ultra' }))
+      .toThrow(/above the 'max' ceiling of cli-codex model 'gpt-6-luna'/);
+    expect(() => parseExecutorConfig({ kind: 'cli-codex', reasoningEffort: 'ultra' }))
+      .toThrow(/ceiling of cli-codex model 'gpt-6-luna'/);
+    expect(parseExecutorConfig({ kind: 'cli-codex', model: 'gpt-6-luna', reasoningEffort: 'max' }).reasoningEffort)
+      .toBe('max');
+  });
+
   it('rejects configDir for cli-codex', () => {
     expect(() => parseExecutorConfig({ kind: 'cli-codex', configDir: '~/.codex' })).toThrowError(
       /configDir.*not supported by executor kind 'cli-codex'/,
