@@ -31,6 +31,14 @@
 //     not live-edited, 2 on refusal or error.
 //   node overlay-engine.cjs --guard <path> [--root <tree>]
 //     Exit 0 when the path is not owned by an overlay, 1 when it is, 2 on error.
+//     With "strictWrites": true in the manifest, also exit 1 for a write under
+//     a vendored root that no overlay owns and the generated list does not name.
+//   node overlay-engine.cjs apply --adopt <path> [--root <tree>]
+//     Add a manifest entry for a vendored path no overlay owns yet, then apply.
+//     Exit 0, 1 when the apply that follows is blocked, 2 on refusal or error.
+//   node overlay-engine.cjs pre-commit [--root <tree>]
+//     With strictWrites on, exit 1 when a staged change touches a vendored path
+//     no overlay owns. Exit 0 otherwise, 2 on error.
 //   node overlay-engine.cjs repin --upstream <dir> --to <commit> [--stage <dir>] [--root <tree>] [--json]
 //     Move the tree to a new upstream commit and apply the overlays again. With
 //     --stage, do it on a copy of the tree in <dir> and leave the tree alone.
@@ -76,11 +84,16 @@ const RUNS_FOLDER = 'repin-runs';
 const RUN_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 const GIT_MAX_BUFFER = 512 * 1024 * 1024;
 const REPIN_VALUE_FLAGS = ['upstream', 'to', 'stage', 'rollback'];
+const COMMAND_WORDS = ['status', 'apply', 'repin', 'pre-commit'];
+// A token-named file is adopted only when its extension marks it as source or
+// prose. Any other token-named file may hold a credential, so it is refused.
+const TOKEN_NAME_ADOPT_EXTENSIONS = new Set(['.md', '.css', '.ts', '.js', '.cjs', '.mjs', '.svelte']);
 
 const USAGE = [
   'usage: node overlay-engine.cjs status [--root <tree>] [--json]',
-  '       node overlay-engine.cjs apply [--capture <path>] [--root <tree>]',
+  '       node overlay-engine.cjs apply [--capture <path> | --adopt <path>] [--root <tree>]',
   '       node overlay-engine.cjs --guard <path> [--root <tree>]',
+  '       node overlay-engine.cjs pre-commit [--root <tree>]',
   '       node overlay-engine.cjs repin --upstream <dir> --to <commit> [--stage <dir>] [--root <tree>] [--json]',
   '       node overlay-engine.cjs repin --rollback <run-id> [--root <tree>] [--json]',
 ].join('\n');
@@ -2505,6 +2518,11 @@ function commandGuard(ctx, inputPath) {
       '; edit the overlay, then run ' + ENGINE_COMMAND + ' apply');
     return EXIT_CONFLICT;
   }
+  const refusal = strictWriteRefusal(ctx, manifest, inputPath);
+  if (refusal) {
+    console.log(refusal);
+    return EXIT_CONFLICT;
+  }
   console.log('allow');
   return EXIT_OK;
 }
@@ -2635,7 +2653,7 @@ function isUnderAny(relativePath, prefixes) {
 /**
  * Read the manifest's optional `repin` block.
  * @param {object} manifest Loaded overlay manifest.
- * @returns {{roots: string[], runtimeFolders: string[], exclude: string[]}}
+ * @returns {{roots: string[], runtimeFolders: string[], exclude: string[], rootFiles: string[]}}
  */
 function repinSettings(manifest) {
   const settings = manifest.repin === undefined ? {} : manifest.repin;
@@ -2652,6 +2670,9 @@ function repinSettings(manifest) {
     roots: [...new Set([VENDOR_ROOT, ...runtimeFolders])],
     runtimeFolders,
     exclude: listOf('exclude', []),
+    // Upstream root files the project carries. A re-pin never copies them, so
+    // naming them is what lets the run report an upstream change to one.
+    rootFiles: listOf('rootFiles', []),
   };
 }
 
@@ -3046,6 +3067,35 @@ function reportNotCopied(paths, settings) {
   if (paths.length > NOT_COPIED_SHOWN) console.log(`not-copied … ${paths.length - NOT_COPIED_SHOWN} more in report.json`);
 }
 
+/**
+ * List the named root files upstream changed between the two commits. A re-pin
+ * never copies a root file, so each one is named on its own line, uncapped: an
+ * unowned one has to be carried over by hand, and an owned one needs its
+ * overlay rebased.
+ * @param {object} ctx Engine context of the tree being re-pinned.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {object} job Re-pin job.
+ * @returns {{path: string, owned: boolean}[]} Sorted by path.
+ */
+function rootFileChanges(ctx, manifest, job) {
+  const { rootFiles } = job.settings;
+  if (rootFiles.length === 0) return [];
+  const isManaged = managedPathTest(ctx, manifest);
+  return diffNames(job.upstream, job.oldCommit, job.newCommit, 'AMTD', rootFiles)
+    .filter((relativePath) => rootFiles.includes(relativePath))
+    .sort()
+    .map((relativePath) => ({ path: relativePath, owned: isManaged(relativePath) }));
+}
+
+function reportRootFiles(changes) {
+  for (const change of changes) {
+    console.log(change.owned
+      ? `root-file ${change.path} changed upstream; rebase the overlay that owns it`
+      : `root-file ${change.path} changed upstream and no overlay owns it; carry the change over by hand, ` +
+        `or run ${ENGINE_COMMAND} apply --adopt ${shellPath(change.path)} so a later re-pin reports it as an overlay`);
+  }
+}
+
 function reportBlocked(analysis, report) {
   for (const record of analysis.records) {
     if (!BLOCKING_STATES.has(record.state)) continue;
@@ -3163,6 +3213,8 @@ function repinUnderLock(ctx, job, report) {
   if (shape.length > 0) return refuseRepin(shape);
   report.notCopied = notCopiedChanges(ctx, job);
   reportNotCopied(report.notCopied, job.settings);
+  report.rootFiles = rootFileChanges(ctx, manifest, job);
+  reportRootFiles(report.rootFiles);
 
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'overlay-repin-'));
   try {
@@ -3408,6 +3460,7 @@ function commandRepin(ctx, options) {
     blocked: [],
     equalsUpstream: [],
     notCopied: [],
+    rootFiles: [],
     stageSkipped: null,
     lines: [],
   };
@@ -3435,7 +3488,396 @@ function commandRepin(ctx, options) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 17. COMMAND ENTRY POINT
+// 17. STRICT WRITES
+//
+// Off unless the manifest sets "strictWrites": true, so a repository that
+// vendors nothing is never checked. A vendoring project turns it on because the
+// guard above only knows the paths an overlay already owns. A new file in the
+// vendored tree has no upstream copy for a re-pin to carry, and an edit to an
+// upstream file no overlay owns is overwritten by the next re-pin. Both are
+// found weeks later, at the re-pin, unless the write is refused when it is made.
+// The same test runs three times: at the edit (--guard), at the commit
+// (pre-commit) and when a path is brought under an overlay (apply --adopt).
+// ─────────────────────────────────────────────────────────────────────────────
+
+function isStrictWrites(manifest) {
+  if (manifest.strictWrites !== undefined && typeof manifest.strictWrites !== 'boolean') {
+    throw new Error('the manifest strictWrites value must be true or false');
+  }
+  return manifest.strictWrites === true;
+}
+
+// `*` matches inside one path segment, `**` across segments.
+function globToRegExp(glob) {
+  let pattern = '';
+  for (let index = 0; index < glob.length; index += 1) {
+    const char = glob[index];
+    if (char === '*' && glob[index + 1] === '*') {
+      pattern += '.*';
+      index += 1;
+      if (glob[index + 1] === '/') index += 1;
+    } else if (char === '*') {
+      pattern += '[^/]*';
+    } else {
+      pattern += char.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
+    }
+  }
+  return new RegExp('^' + pattern + '$');
+}
+
+/**
+ * Read what the write checks need from the manifest: the vendored roots, the
+ * named root files, and the `generated` globs. A generated path is written by
+ * one of the project's generators, so no overlay can own it and no check
+ * refuses it.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {{roots: string[], rootFiles: string[], isGenerated: (key: string) => boolean}}
+ */
+function writeCheckSettings(manifest) {
+  const { roots, rootFiles } = repinSettings(manifest);
+  const generated = manifest.generated === undefined ? [] : manifest.generated;
+  if (!Array.isArray(generated) || generated.some((glob) => typeof glob !== 'string' || glob === '')) {
+    throw new Error('the manifest generated list must be a list of glob strings');
+  }
+  const patterns = generated.map(globToRegExp);
+  return { roots, rootFiles, isGenerated: (key) => patterns.some((pattern) => pattern.test(key)) };
+}
+
+function isVendoredKey(key, settings) {
+  return settings.rootFiles.includes(key) || settings.roots.some((root) => key.startsWith(root + '/'));
+}
+
+function isIgnoredByGit(root, filePath) {
+  return runGit(root, ['check-ignore', '-q', '--', filePath]).status === 0;
+}
+
+// A path as a command line takes it: quoted when it holds a space or another
+// character a shell would split or expand, so a printed command can be pasted.
+function shellPath(key) {
+  return /^[A-Za-z0-9._\/-]+$/.test(key) ? key : '"' + key.replace(/(["\\$`])/g, '\\$1') + '"';
+}
+
+// Where adopt keeps a destination inside the overlay folder: the same path
+// with the leading dot dropped, so the copy is not a hidden folder.
+function adoptSource(key) {
+  return key.replace(/^\.+/, '');
+}
+
+// The highest missing folder above a new file, at least two segments deep, so
+// a new skill is adopted as one directory entry rather than one entry per file.
+function adoptionUnit(root, filePath) {
+  let unit = filePath;
+  let parent = path.dirname(filePath);
+  while (isWithin(root, parent) && !pathExists(parent) &&
+      path.relative(root, parent).split(path.sep).length >= 2) {
+    unit = parent;
+    parent = path.dirname(parent);
+  }
+  return unit;
+}
+
+// The directory or skill-root entry whose destination folder holds a key.
+function folderEntryHolding(manifest, key) {
+  for (const entry of manifest.overlays) {
+    if (entry.scope !== 'directory' && entry.scope !== 'skill-root') continue;
+    const destination = path.posix.normalize(entry.destination);
+    if (key.startsWith(destination + '/')) return { entry, relative: key.slice(destination.length + 1) };
+  }
+  return null;
+}
+
+/**
+ * Say why a write under a vendored root must go through an overlay first, or
+ * return null to allow it. The caller has already refused every existing path
+ * an overlay owns, so what reaches here is unowned, new, generated or managed.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {string} inputPath Path to test, relative to the cwd or absolute.
+ * @returns {string|null} One refusal line, or null.
+ */
+function strictWriteRefusal(ctx, manifest, inputPath) {
+  if (!isStrictWrites(manifest)) return null;
+  const root = canonicalPath(ctx.root);
+  const filePath = canonicalPath(path.resolve(process.cwd(), inputPath));
+  if (!isWithin(root, filePath) || filePath === root) return null;
+  const key = relativeKey(root, filePath);
+  const settings = writeCheckSettings(manifest);
+  if (!isVendoredKey(key, settings) || isDirectory(filePath)) return null;
+  if (settings.isGenerated(key) || isIgnoredByGit(root, filePath)) return null;
+
+  const overlay = ctx.overlayLabel + '/';
+  const isLive = pathExists(filePath);
+  const holder = folderEntryHolding(manifest, key);
+  if (managedPathTest(ctx, manifest)(key)) {
+    // A link or a regenerated output is written by apply, and an existing owned
+    // file was refused before this ran. Only a new file in an owned folder is left.
+    if (isLive || !holder) return null;
+    return `refuse: ${key} is a new file inside overlay ${holder.entry.id}; create it as ` +
+      `${overlay}${holder.entry.source}/${holder.relative}, then run ${ENGINE_COMMAND} apply`;
+  }
+  if (holder) {
+    // Inside a skill-root folder but not on its replace list: the entry keeps
+    // the upstream file as found, and only that list can hand it to the overlay.
+    return `refuse: ${key} is ${isLive ? 'an upstream file overlay ' + holder.entry.id + ' keeps as it is' :
+      'a new file overlay ' + holder.entry.id + ' does not replace'}; add ${holder.relative} to that entry's ` +
+      `replace list${isLive ? ', and take it off the retained list if it is there' : ''}, keep its copy at ` +
+      `${overlay}${holder.entry.source}/${holder.relative}, then run ${ENGINE_COMMAND} apply`;
+  }
+  if (isLive) {
+    return `refuse: ${key} is a vendored file no overlay owns, so a re-pin would overwrite this edit; run ` +
+      `${ENGINE_COMMAND} apply --adopt ${shellPath(key)}, then edit ${overlay}${adoptSource(key)}`;
+  }
+  const unitKey = relativeKey(root, adoptionUnit(root, filePath));
+  return `refuse: ${key} is a new file in the vendored tree, which a re-pin would not carry; create it as ` +
+    `${overlay}${adoptSource(key)}, then run ${ENGINE_COMMAND} apply --adopt ${shellPath(unitKey)}`;
+}
+
+function pathsOverlap(left, right) {
+  return left === right || left.startsWith(right + '/') || right.startsWith(left + '/');
+}
+
+// Why a destination or its overlay source collides with an existing entry.
+function adoptOverlap(ctx, manifest, key, source) {
+  for (const entry of manifest.overlays) {
+    const destinations = entry.scope === 'remove-root' ? (entry.paths || []) : [entry.destination];
+    if (destinations.some((destination) => typeof destination === 'string' &&
+        pathsOverlap(path.posix.normalize(destination), key))) {
+      return `${key} overlaps overlay ${entry.id}; change that entry or its source instead`;
+    }
+    const sources = ['source', 'base', 'fragment'].map((field) => entry[field])
+      .filter((value) => typeof value === 'string');
+    if (sources.some((value) => pathsOverlap(path.posix.normalize(value), source))) {
+      return `${ctx.overlayLabel}/${source} overlaps the source of overlay ${entry.id}`;
+    }
+  }
+  return null;
+}
+
+function isRefusedAdoptName(filePath) {
+  if (isEnvName(filePath)) return true;
+  return isTokenName(filePath) && !TOKEN_NAME_ADOPT_EXTENSIONS.has(path.extname(filePath).toLowerCase());
+}
+
+function adoptionId(manifest, key) {
+  const slug = key.replace(/[^A-Za-z0-9]+/g, '-').replace(/^-+|-+$/g, '').toLowerCase();
+  const ids = new Set(manifest.overlays.map((entry) => entry.id));
+  let id = 'adopted-' + slug;
+  for (let suffix = 2; ids.has(id); suffix += 1) id = `adopted-${slug}-${suffix}`;
+  return id;
+}
+
+/**
+ * Append one entry to the manifest's overlays list, changing no other text, so
+ * the file keeps its formatting and every key the engine does not know.
+ * @param {object} ctx Engine context.
+ * @param {object} entry Manifest overlay entry.
+ */
+function appendOverlayEntry(ctx, entry) {
+  const text = fs.readFileSync(ctx.manifestPath, 'utf8');
+  const list = nodeAtPath(parseJsonSource(text), ['overlays']);
+  if (list.type !== 'array') throw new Error('the manifest overlays value is not a list');
+  const last = list.items[list.items.length - 1];
+  const indent = (last && indentBefore(text, last.start)) || '    ';
+  const body = JSON.stringify(entry, null, 2).split('\n').join('\n' + indent);
+  const updated = last
+    ? text.slice(0, last.end) + ',\n' + indent + body + text.slice(last.end)
+    : text.slice(0, list.start) + '[\n' + indent + body + '\n  ]' + text.slice(list.end);
+  fs.writeFileSync(ctx.manifestPath, updated);
+}
+
+/**
+ * Bring one vendored path under an overlay; the caller holds the lock.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {string} inputPath Path to adopt, relative to the tree, the cwd or absolute.
+ * @returns {number} 0 when adopted and applied, 1 when the apply is blocked, 2 on refusal.
+ */
+function adoptUnderLock(ctx, manifest, inputPath) {
+  const refuse = (message) => {
+    console.log('refuse: ' + message);
+    return EXIT_ERROR;
+  };
+  const root = canonicalPath(ctx.root);
+  const settings = writeCheckSettings(manifest);
+  const destinationPath = captureCandidates(root, inputPath)
+    .map((candidate) => canonicalPathWithoutLeaf(candidate))
+    .find((candidate) => isWithin(root, candidate) && candidate !== root &&
+      isVendoredKey(relativeKey(root, candidate), settings));
+  if (!destinationPath) {
+    return refuse(`${inputPath} is not under a vendored root (${settings.roots.join(', ')}) and is not a file ` +
+      'named in repin.rootFiles');
+  }
+  const key = relativeKey(root, destinationPath);
+  const source = adoptSource(key);
+  const sourcePath = path.join(ctx.overlayRoot, ...source.split('/'));
+  const shownSource = ctx.overlayLabel + '/' + source;
+  // A link inside the overlay folder would take the copy somewhere the manifest
+  // entry does not name, so the source has to resolve inside the folder itself.
+  if (!isWithin(canonicalPath(ctx.overlayRoot), canonicalPath(sourcePath))) {
+    return refuse(`${shownSource} resolves outside the overlay folder through a link; adopt writes only inside ${ctx.overlayLabel}`);
+  }
+  if (settings.isGenerated(key)) {
+    return refuse(`${key} is on the manifest's generated list; change what it is generated from instead`);
+  }
+  const overlap = adoptOverlap(ctx, manifest, key, source);
+  if (overlap) return refuse(overlap);
+
+  const isLive = pathExists(destinationPath);
+  const hasSource = pathExists(sourcePath);
+  if (isLive && hasSource) return refuse(`both ${key} and ${shownSource} exist; keep one, then adopt again`);
+  if (!isLive && !hasSource) return refuse(`nothing to adopt; create ${shownSource} first`);
+
+  const fromPath = hasSource ? sourcePath : destinationPath;
+  const files = isDirectory(fromPath) ? listTreePaths(fromPath) : [fromPath];
+  for (const filePath of files) {
+    if (isRefusedAdoptName(filePath)) {
+      return refuse(`${path.basename(filePath)} is a protected path and cannot be an overlay`);
+    }
+    if (!isFile(filePath)) {
+      return refuse(`${toPosix(path.relative(fromPath, filePath)) || path.basename(filePath)} is not a regular file; ` +
+        'adopt takes files and folders only');
+    }
+  }
+
+  // An upstream file becomes a file entry pinned to upstream's bytes, so the
+  // next re-pin reports upstream-moved instead of keeping or losing the copy
+  // without a word.
+  let pinnedSha256 = null;
+  if (isLive) {
+    const pin = manifest.pin || {};
+    const readUpstream = pinnedUpstreamBytes(manifest);
+    if (!readUpstream || resolveCommit(pin.checkout, pin.commit) === null) {
+      return refuse(`cannot read pin.commit in the upstream checkout pin.checkout names, to tell whether ${key} ` +
+        'is upstream\'s; adopt it where that checkout exists');
+    }
+    const shipped = files.map((filePath) => relativeKey(root, filePath))
+      .filter((fileKey) => readUpstream(fileKey) !== null);
+    if (shipped.length > 0 && isDirectory(destinationPath)) {
+      return refuse(`upstream ships ${shipped.length} file(s) under ${key}, such as ${shipped.sort()[0]}; ` +
+        'adopt each upstream file on its own');
+    }
+    if (shipped.length > 0) pinnedSha256 = sha256(readUpstream(key));
+    for (const filePath of files) {
+      copyUpstreamEntry(filePath, path.join(sourcePath, path.relative(destinationPath, filePath)));
+    }
+  }
+
+  const isFolder = isDirectory(sourcePath);
+  const entry = { id: adoptionId(manifest, key), scope: isFolder ? 'directory' : 'file', source, destination: key };
+  // A directory walk refuses a token-named file the entry does not list, so
+  // the names adopt accepted as source code are recorded with the entry.
+  const tokenNamed = isFolder
+    ? listTreePaths(sourcePath).filter(isTokenName).map((filePath) => toPosix(path.relative(sourcePath, filePath)))
+    : [];
+  if (tokenNamed.length > 0) entry.protectedPaths = tokenNamed.sort();
+  if (pinnedSha256) entry.pinnedSha256 = pinnedSha256;
+  entry.description = pinnedSha256
+    ? 'Overlay of an upstream file. pinnedSha256 is the upstream copy it was taken from.'
+    : 'Project addition with no upstream copy. This entry is what carries it across a re-pin.';
+  appendOverlayEntry(ctx, entry);
+  console.log(`adopted ${key} as ${shownSource} (${entry.scope} entry ${entry.id})`);
+  return applyUnderLock(ctx, loadManifest(ctx));
+}
+
+/**
+ * Bring one vendored path under an overlay, then apply.
+ * @param {object} ctx Engine context.
+ * @param {string} inputPath Path to adopt.
+ * @param {{lock?: object}} [options] A lock the caller already holds.
+ * @returns {number} Exit code.
+ */
+function commandAdopt(ctx, inputPath, options = {}) {
+  const manifest = loadManifest(ctx);
+  return withLock(ctx, 'overlay-engine adopt', () => adoptUnderLock(ctx, manifest, inputPath), options);
+}
+
+function gitTextOrNull(cwd, args) {
+  const result = runGit(cwd, args);
+  return result.status === 0 ? result.stdout.toString('utf8') : null;
+}
+
+function pinCommitOf(manifestText) {
+  try {
+    return JSON.parse(manifestText).pin.commit;
+  } catch {
+    return undefined;
+  }
+}
+
+/**
+ * List the staged changes under a vendored root that no overlay owns. A write
+ * hook sees only an agent's write tools, and a script, a shell edit or a
+ * person reaches the tree without one, so the commit is checked too. A staged
+ * copy equal to upstream's is upstream's own file, and a commit that moves the
+ * pin is a re-pin, which the re-pin's own drift scan already judged.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {{status: string, key: string}[]} One record per unowned staged path.
+ */
+function stagedUnownedChanges(ctx, manifest) {
+  const root = canonicalPath(ctx.root);
+  const top = gitTextOrNull(root, ['rev-parse', '--show-toplevel']);
+  if (top === null) return [];
+  const topLevel = canonicalPath(top.trim());
+  const prefix = toPosix(path.relative(topLevel, root));
+  const listing = gitTextOrNull(topLevel, ['diff', '--cached', '--name-status', '--no-renames', '-z']);
+  if (!listing) return [];
+  const settings = writeCheckSettings(manifest);
+  const parts = listing.split('\0').filter(Boolean);
+  const changes = [];
+  for (let index = 0; index + 1 < parts.length; index += 2) {
+    const file = parts[index + 1];
+    if (prefix && !file.startsWith(prefix + '/')) continue;
+    const key = prefix ? file.slice(prefix.length + 1) : file;
+    if (isVendoredKey(key, settings)) changes.push({ status: parts[index][0], file, key });
+  }
+  if (changes.length === 0) return [];
+
+  const manifestFile = path.posix.join(prefix, toPosix(path.relative(ctx.root, ctx.manifestPath)));
+  const stagedPin = pinCommitOf(gitTextOrNull(topLevel, ['show', ':' + manifestFile]));
+  const headPin = pinCommitOf(gitTextOrNull(topLevel, ['show', 'HEAD:' + manifestFile]));
+  if (stagedPin !== undefined && headPin !== undefined && stagedPin !== headPin) return [];
+
+  const pin = manifest.pin || {};
+  const hasCheckout = typeof pin.checkout === 'string' && typeof pin.commit === 'string' && isDirectory(pin.checkout);
+  const isManaged = managedPathTest(ctx, manifest);
+  return changes.filter((change) => {
+    if (isManaged(change.key) || settings.isGenerated(change.key)) return false;
+    if (!hasCheckout) return true;
+    const upstreamBlob = gitTextOrNull(pin.checkout, ['rev-parse', '--verify', '--quiet', `${pin.commit}:${change.key}`]);
+    // Deleting a file upstream never shipped removes the project's own stray file.
+    if (change.status === 'D') return upstreamBlob !== null;
+    const stagedBlob = gitTextOrNull(topLevel, ['rev-parse', '--verify', '--quiet', ':' + change.file]);
+    return !(upstreamBlob !== null && stagedBlob !== null && upstreamBlob.trim() === stagedBlob.trim());
+  }).map(({ status, key }) => ({ status, key }));
+}
+
+/**
+ * Refuse a commit that stages a vendored change no overlay owns. Never writes.
+ * @param {object} ctx Engine context.
+ * @returns {number} 0 to allow, 1 to refuse.
+ */
+function commandPreCommit(ctx) {
+  const manifest = loadManifest(ctx);
+  if (!isStrictWrites(manifest)) {
+    console.log('allow: strictWrites is off in the overlay manifest, so nothing was checked');
+    return EXIT_OK;
+  }
+  const unowned = stagedUnownedChanges(ctx, manifest);
+  if (unowned.length === 0) {
+    console.log('allow');
+    return EXIT_OK;
+  }
+  for (const change of unowned) {
+    console.log(`refuse: staged ${change.status === 'D' ? 'deletion of' : 'change to'} ${change.key} is under a vendored root and no overlay owns it`);
+  }
+  console.log(`  bring each path under an overlay with ${ENGINE_COMMAND} apply --adopt <path>, add a generator's output to ` +
+    'the manifest\'s generated list, or unstage it');
+  return EXIT_CONFLICT;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 18. COMMAND ENTRY POINT
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -3445,18 +3887,18 @@ function commandRepin(ctx, options) {
  */
 function parseArguments(argv) {
   const options = {
-    command: null, root: null, isJson: false, capture: null, guard: null,
+    command: null, root: null, isJson: false, capture: null, guard: null, adopt: null,
     upstream: null, to: null, stage: null, rollback: null,
   };
   for (let index = 0; index < argv.length; index += 1) {
     const value = argv[index];
     if (value === '--help' || value === '-h') return { command: 'help' };
-    if (value === 'status' || value === 'apply' || value === 'repin') {
+    if (COMMAND_WORDS.includes(value)) {
       if (options.command) return null;
       options.command = value;
       continue;
     }
-    if (value === '--root' || value === '--capture' || value === '--guard' ||
+    if (value === '--root' || value === '--capture' || value === '--adopt' || value === '--guard' ||
         REPIN_VALUE_FLAGS.includes(value.slice(2))) {
       const next = argv[index + 1];
       const field = value.slice(2);
@@ -3472,11 +3914,12 @@ function parseArguments(argv) {
     return null;
   }
   if (options.guard !== null) {
-    if (options.command || options.capture !== null || options.isJson) return null;
+    if (options.command || options.capture !== null || options.adopt !== null || options.isJson) return null;
     options.command = 'guard';
   }
   if (!options.command) return null;
   if (options.capture !== null && options.command !== 'apply') return null;
+  if (options.adopt !== null && (options.command !== 'apply' || options.capture !== null)) return null;
   if (options.isJson && options.command !== 'status' && options.command !== 'repin') return null;
   const repinFlags = REPIN_VALUE_FLAGS.filter((field) => options[field] !== null);
   if (options.command !== 'repin') return repinFlags.length === 0 ? options : null;
@@ -3509,7 +3952,9 @@ function main(argv) {
     if (options.command === 'guard') return commandGuard(ctx, options.guard);
     if (options.command === 'status') return commandStatus(ctx, { isJson: options.isJson });
     if (options.command === 'repin') return commandRepin(ctx, options);
+    if (options.command === 'pre-commit') return commandPreCommit(ctx);
     if (options.capture !== null) return commandCapture(ctx, options.capture);
+    if (options.adopt !== null) return commandAdopt(ctx, options.adopt);
     return commandApply(ctx);
   } catch (error) {
     // A JSON caller parses stdout, so the error has to arrive there as JSON too.
@@ -3524,7 +3969,7 @@ if (require.main === module) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 18. EXPORTS
+// 19. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
@@ -3533,9 +3978,11 @@ module.exports = {
   applyJsonOperations,
   applyLayoutLink,
   applyOnePlan,
+  commandAdopt,
   commandApply,
   commandCapture,
   commandGuard,
+  commandPreCommit,
   commandRepin,
   commandStatus,
   createContext,

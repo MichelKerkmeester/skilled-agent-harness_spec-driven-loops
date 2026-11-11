@@ -109,7 +109,7 @@ test('the manifest holds status, apply and repin routes, and only status answers
     assert.deepEqual(route.mcp_tools, []);
   }
   assert.deepEqual(routeFor('status').allowed_flags, ['--json', '--root <dir>']);
-  assert.deepEqual(routeFor('apply').allowed_flags, ['--root <dir>', '--capture <path>']);
+  assert.deepEqual(routeFor('apply').allowed_flags, ['--root <dir>', '--capture <path>', '--adopt <path>']);
   assert.deepEqual(routeFor('repin').allowed_flags, ['--root <dir>', '--upstream <dir>', '--to <commit>', '--rollback <run-id>']);
   // The phrase moved off the read-only route, so a re-pin request reaches the target that re-pins.
   assert.ok(routeFor('repin').trigger_phrases.includes('re-pin my vendored Skilled'));
@@ -117,11 +117,20 @@ test('the manifest holds status, apply and repin routes, and only status answers
 });
 
 test('the engine parses every flag each route allows and refuses a flag the other target owns', () => {
+  // --capture and --adopt name two different writes, so apply takes one of them
+  // at a time and each is probed on its own beside the flags that combine.
+  const exclusive = ['--capture <path>', '--adopt <path>'];
   for (const route of ROUTES.filter((entry) => entry.target !== 'repin')) {
-    const { status, accepted } = engineParses(route.target, route.allowed_flags);
-    assert.equal(status, 2, route.target);
-    assert.ok(accepted, `the engine refused a flag ${route.target} allows: ${route.allowed_flags.join(' ')}`);
+    const shared = route.allowed_flags.filter((flag) => !exclusive.includes(flag));
+    const alone = route.allowed_flags.filter((flag) => exclusive.includes(flag));
+    for (const flags of alone.length > 0 ? alone.map((flag) => [...shared, flag]) : [shared]) {
+      const { status, accepted } = engineParses(route.target, flags);
+      assert.equal(status, 2, route.target);
+      assert.ok(accepted, `the engine refused a flag ${route.target} allows: ${flags.join(' ')}`);
+    }
   }
+  assert.equal(engineParses('apply', exclusive).accepted, false, 'apply must not take --capture with --adopt');
+  assert.equal(engineParses('status', ['--adopt <path>']).accepted, false, 'status must not take --adopt');
   assert.equal(engineParses('apply', ['--json']).accepted, false, 'apply must not take --json');
   assert.equal(engineParses('status', ['--capture <path>']).accepted, false, 'status must not take --capture');
   assert.equal(engineParses('status', ['--upstream <dir>']).accepted, false, 'status must not take --upstream');

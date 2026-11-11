@@ -1,6 +1,6 @@
 ---
 title: "Vendored Skilled Overlays"
-description: "What each overlay sync state means, how the overlay folder is found, what the engine refuses, how to re-pin a vendored copy or roll a re-pin back, and how a project with its own overlay folder adopts the engine."
+description: "What each overlay sync state means, how the overlay folder is found, what the engine refuses, how strict writes and adopt keep every vendored change in an overlay, how to re-pin a vendored copy or roll a re-pin back, and how a project with its own overlay folder adopts the engine."
 trigger_phrases:
   - "vendored skilled overlays"
   - "adopt the overlay engine"
@@ -10,9 +10,11 @@ trigger_phrases:
   - "edit the overlay not the live file"
   - "re-pin vendored skilled"
   - "roll back a re-pin"
+  - "strict writes overlay manifest"
+  - "adopt a vendored file into an overlay"
 importance_tier: normal
 contextType: general
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Vendored Skilled Overlays
@@ -30,7 +32,7 @@ A project that vendors Skilled replaces its whole copy when it moves to a new up
 ### When to Use
 
 - `/doctor:overlay status` printed a line that is not `in-sync`.
-- An edit to a vendored file was refused because an overlay owns it.
+- An edit to a vendored file was refused because an overlay owns it, or because no overlay owns it yet.
 - A project is setting up overlays for the first time.
 - A project is moving its vendored copy to a newer upstream commit.
 
@@ -54,7 +56,7 @@ The value is a path relative to the tree root. With no setting file the folder i
 |------|---------------|
 | `overlay-manifest.json` | The pinned upstream commit and one entry per overlay |
 | `sync-state.json` | The bytes the engine last applied to each destination, as hashes |
-| `.build-lock` | Present only while an `apply` or a capture runs |
+| `.build-lock` | Present only while an `apply`, a capture, an adopt or a re-pin runs |
 | Everything else | The overlay sources the manifest entries name |
 
 The setting lives outside `.skilled` because a re-copy overwrites that folder, and outside the manifest because the manifest sits inside the folder the setting finds.
@@ -110,6 +112,39 @@ A refused file blocks only the entry it belongs to. `status` still reports every
 
 The `overlay-guard` hook refuses an agent's edit to a file an overlay owns, before it is written, and names the overlay file to edit instead. It asks the engine for each path, so it follows the same manifest. In a repository with no overlay folder it allows every edit at once. `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns it off.
 
+### A Write No Overlay Owns
+
+By default the guard refuses only what an overlay already owns. Every other write under the vendored copy is allowed, and it is lost or refused weeks later, at the next re-pin: a new file has no upstream copy for the re-pin to carry, and an edit to an upstream file is overwritten. A vendoring project closes that gap with one key in `overlay-manifest.json`:
+
+```json
+{
+  "strictWrites": true,
+  "generated": [".claude/agents/**", ".skilled/**/graph-metadata.json"],
+  "repin": { "rootFiles": ["REPO RULES.md"] }
+}
+```
+
+With `strictWrites` on, the engine's `--guard` also refuses a write under `.skilled`, under a runtime folder or to a file named in `repin.rootFiles`, when no overlay owns the path. The refusal names what to do:
+
+| The write | The refusal names |
+|-----------|-------------------|
+| An edit to an upstream file no overlay owns | `apply --adopt <path>`, then the overlay copy to edit |
+| A new file inside a folder an overlay owns | The overlay path to create it at, then `apply` |
+| A new file anywhere else | The overlay path to create it at, then `apply --adopt` for the highest new folder |
+| A file inside a skill-root entry's folder that the entry does not replace | That entry's `replace` list |
+
+A path matching a `generated` glob is allowed, because a generator writes it and no overlay can own it. `*` stays inside one path segment and `**` crosses segments. A path git ignores is allowed too.
+
+`/doctor:overlay apply --adopt <path>` turns the path into a manifest entry. It copies the file or folder into the overlay folder, at the same path without its leading dot, appends a `file` or `directory` entry and applies. An upstream file is pinned to upstream's bytes at the manifest's pin, read from the checkout `pin.checkout` names, so a later re-pin reports it as `upstream-moved`. A folder's token-named source files go into the entry's `protectedPaths`. Adopt refuses a generated path, a path an overlay already owns, a `.env` file, a token-named file that is not source or prose, and a folder that holds upstream files.
+
+A write hook sees only an agent's write tools. For everything else, a project calls the same check from its commit hook:
+
+```bash
+node .skilled/commands/doctor/scripts/overlay-engine.cjs pre-commit
+```
+
+It exits 1 and names each staged change under a vendored root that no overlay owns. A generated path passes, and so does a staged file equal to upstream's bytes at the pin. A commit that moves the pin is a re-pin and is not checked. With `strictWrites` off it checks nothing and exits 0.
+
 ---
 
 ## 5. MOVING TO A NEW UPSTREAM COMMIT
@@ -123,6 +158,8 @@ A re-pin replaces the vendored copy with a newer upstream commit and puts the ov
 - **Deleted paths:** whatever upstream removed between the two commits is removed here too.
 
 A path in the manifest's `repin.exclude` list is never copied over, which keeps a project's real folder where upstream ships a link. Root files such as `AGENTS.md` and `REPO RULES.md` are never copied, so a re-pin never overwrites the project's own copy.
+
+Name the root files the copy carries from upstream in `repin.rootFiles`. The re-pin report then prints one `root-file` line for each of them that upstream changed, however long the `not-copied` list is. A line that says no overlay owns the file means its upstream change is carried over by hand, or the file is adopted. A line that says to rebase the overlay means an overlay owns it and its source needs the upstream change.
 
 What a re-pin leaves out, it lists. Each upstream change under `repin.exclude`, or under a top-level file or folder of the copy outside the copied roots, prints as a `not-copied` line, up to 20, then one line with the count of the rest. `report.json` keeps the full list. A top-level link, such as a `specs` link to the project's own folder, is skipped. Carry each listed change over by hand when it applies. For the shipped `AGENTS.md` sections, `/doctor:agents-md` owns that merge.
 

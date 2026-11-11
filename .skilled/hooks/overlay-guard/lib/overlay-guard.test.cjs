@@ -197,6 +197,28 @@ test('an unowned path in a tree with a manifest is allowed', () => {
   assert.equal(calls.length, 1, 'the engine judged the one path');
 });
 
+test('with strictWrites on, an unowned vendored path and a new file are refused with the adopt command', () => {
+  const manifestText = JSON.stringify({
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: 'pin-one' },
+    strictWrites: true,
+    generated: ['.skilled/generated/**'],
+    overlays: [{ id: 'owned', scope: 'file', source: OVERLAY_SOURCE, destination: OWNED.split(path.sep).join('/') }],
+  }, null, 2) + '\n';
+  const root = makeTree({ manifestText });
+
+  const edit = evaluate(root, [UNOWNED]);
+  assert.equal(edit.decision, 'deny');
+  assert.match(edit.reason, /^refuse: \.skilled\/owned\/free\.txt is a vendored file no overlay owns.* apply --adopt \.skilled\/owned\/free\.txt/);
+
+  const created = evaluate(root, [path.join('.skilled', 'fresh', 'new.txt')]);
+  assert.equal(created.decision, 'deny');
+  assert.match(created.reason, /is a new file in the vendored tree.* apply --adopt \.skilled\/fresh$/);
+
+  assert.equal(evaluate(root, [path.join('.skilled', 'generated', 'index.json')]).decision, 'allow');
+  assert.equal(evaluate(root, ['notes.md']).decision, 'allow');
+});
+
 test('a call naming several paths is refused when any one is owned', () => {
   const root = makeTree();
   const result = evaluate(root, [UNOWNED, OWNED]);

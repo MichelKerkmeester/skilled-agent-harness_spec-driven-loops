@@ -650,15 +650,16 @@ routes:
   - command: /doctor:overlay
     target: apply
     yaml: doctor-overlay-apply.yaml
-    setup_vars: [execution_mode, root, capture_path]
-    allowed_flags: ["--root <dir>", "--capture <path>"]
+    setup_vars: [execution_mode, root, capture_path, adopt_path]
+    allowed_flags: ["--root <dir>", "--capture <path>", "--adopt <path>"]
     mutating: mutates
-    gate3_location: "the overlay destinations and layout links the overlay manifest names inside the vendored tree, the outputs of the manifest's regenerate steps, and <overlay folder>/sync-state.json, all under the engine's own <overlay folder>/.build-lock; with --capture <path>, only the one overlay source that path maps to plus sync-state.json; the write runs only after the operator approved the status report this run printed"
+    gate3_location: "the overlay destinations and layout links the overlay manifest names inside the vendored tree, the outputs of the manifest's regenerate steps, and <overlay folder>/sync-state.json, all under the engine's own <overlay folder>/.build-lock; with --capture <path>, only the one overlay source that path maps to plus sync-state.json; with --adopt <path>, the copy of that vendored path in the overlay folder and one new entry in <overlay folder>/overlay-manifest.json, followed by the same apply; the write runs only after the operator approved the status report this run printed"
     mcp_tools: []   # script-only; no MCP calls
     script_invocations:
       - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # read-only: the report the run shows as its plan before the question, and the re-read after the write'
       - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply  # applies every overlay under the engine lock, then regenerates and verifies; writes nothing while a destination is live-edited, both-changed or upstream-moved; run only after the apply yes'
       - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --capture <path>  # moves one live edit into its overlay source; run only after the capture yes'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --adopt <path>  # copies one unowned vendored path into the overlay folder, appends its manifest entry and applies; exit 0 = adopted and applied, 1 = the apply was blocked, 2 = a refusal with nothing written; run only after the adopt yes'
     trigger_phrases:
       - "apply the skilled overlays"
       - "put my overlays back into vendored skilled"

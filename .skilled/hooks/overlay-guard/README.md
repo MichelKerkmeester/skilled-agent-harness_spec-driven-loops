@@ -1,6 +1,6 @@
 ---
 title: "Overlay Guard: Refuse Edits to Overlay-Owned Files"
-description: "Pre-write guard that refuses an edit to a file a vendored Skilled tree's overlay owns and names the overlay file to edit, with one runtime-neutral core and six per-runtime adapters."
+description: "Pre-write guard that refuses an edit to a file a vendored Skilled tree's overlay owns and names the overlay file to edit, and with strict writes on also a vendored write no overlay owns, with one runtime-neutral core and six per-runtime adapters."
 trigger_phrases:
   - "overlay guard"
   - "overlay owned file"
@@ -16,6 +16,8 @@ trigger_phrases:
 `overlay-guard/` stops an agent from editing a file that an overlay owns in a project that vendors Skilled. A vendored tree is replaced wholesale at each re-pin, and the overlay engine then puts the project's own versions back from the overlay folder. An edit made directly to one of those files is therefore lost at the next re-pin. The guard refuses that edit before it is written and tells the agent which overlay file to edit instead.
 
 The concern is one runtime-neutral core plus a thin adapter per runtime. The core never judges ownership itself. It asks the overlay engine's `--guard` query, once per path, and the engine stays the only reader of the overlay setting and the manifest. Two outcomes exist: `allow` (stay silent) and `deny` (refuse with the engine's message).
+
+A project can widen what the engine refuses with `"strictWrites": true` in its overlay manifest. The engine then also refuses a new file, or an edit to an upstream file no overlay owns, under `.skilled`, a runtime folder or a root file the manifest names, and its line names the overlay path to create or the `apply --adopt` command to run. The guard needs no setting of its own for this, because it passes the engine's answer on. The key is off unless the project sets it.
 
 The guard is pre-write only. It never applies overlays, captures a live edit or writes any file. After the operator edits the overlay, running the engine's `apply` is a separate, explicit step.
 
@@ -42,7 +44,7 @@ The refusal is the engine's own line, for example:
 refuse: .skilled/owned/target.txt is owned by skilled-overlays/files/owned.txt; edit the overlay, then run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply
 ```
 
-The guard finds its tree root and the engine from its own location (`lib/` sits four levels below the root), the same tree the engine treats as its default root. A path the engine could not judge is never refused. Only an engine answer of "owned" blocks a write.
+The guard finds its tree root and the engine from its own location (`lib/` sits four levels below the root), the same tree the engine treats as its default root. A path the engine could not judge is never refused. Only an engine `refuse:` answer blocks a write.
 
 ---
 
@@ -121,7 +123,7 @@ The overlay folder itself is the engine's setting, `overlayDir` in `.skilled-ove
 |---|---|
 | Imports | The core imports Node builtins only, and loads the engine module only when the tree carries an overlay setting or folder. Adapters import `../lib/` and `../../shared/`. |
 | Writes | None. The guard never applies, captures or writes a file, and a refused call leaves the tree byte-identical. |
-| Decisions | `allow` or `deny`. `deny` only when the engine answered that a path is owned. |
+| Decisions | `allow` or `deny`. `deny` only when the engine answered `refuse:` for a path: an overlay owns it, or strict writes are on and no overlay does. |
 | Failure | Fails open. Malformed stdin, an engine error or timeout, an unreadable setting or an internal error allows the write, with a one-line stderr note when the engine could not judge a path. |
 
 ---

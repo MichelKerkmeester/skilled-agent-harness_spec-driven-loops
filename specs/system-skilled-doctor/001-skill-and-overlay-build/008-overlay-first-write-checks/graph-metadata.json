@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks",
+  "spec_folder": "system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks",
+  "parent_id": "system-skilled-doctor/001-skill-and-overlay-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "overlay first write checks",
+      "phase 8 overlay first write checks",
+      "strict writes overlay manifest",
+      "overlay engine adopt and unowned guard",
+      "overlay first write checks plan",
+      "overlay first write checks tasks",
+      "overlay first write checks acceptance criteria",
+      "overlay first write checks implementation summary"
+    ],
+    "key_topics": [
+      "overlay",
+      "first",
+      "write",
+      "checks",
+      "phase",
+      "strict",
+      "writes",
+      "manifest",
+      "engine",
+      "adopt",
+      "unowned",
+      "guard"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-overlay-contract.test.cjs",
+      ".skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs",
+      ".skilled/hooks/overlay-guard/README.md",
+      ".skilled/commands/doctor/overlay.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml",
+      ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      ".skilled/commands/README.txt",
+      ".skilled/commands/doctor/scripts/sk-skill-convert.cjs",
+      "barter/ai-speckit/skilled/barter-overlays/sync.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-strict-writes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-overlay-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-guard.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/overlay-guard/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/overlay.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "overlays.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-convert.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-skill-convert.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync.cjs",
+        "kind": "file",
+        "path": "barter/ai-speckit/skilled/barter-overlays/sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The engine's `--guard` refuses two cases: a path an overlay owns, and a path a removal targets",
+    "created_at": "2026-11-11T18:02:36Z",
+    "last_save_at": "2026-11-11T19:22:29.302Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d5f9dc5bf5b22f9d85dd34ec93102a2272c193aa032db81f5b7924f0b8ee956d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b47f5bb7b60f03b00fa20ebfd93ff7cff52750fbe865d6d9fa5fd029f1a5628b",
+      "plan.md": "faa3e06cd6ef3d90b6e94f67803bfd3998b6b727a1f3e0b5ee667cdb3a14786b",
+      "tasks.md": "bb430e5ac01ef09380b10c4ca49d6e5039136387c2538546c925e801c88a80cb",
+      "implementation-summary.md": "9b0a6020bc532a5edb0be4e4c9bf4f3980750c57c1f9f3a3c835d8978a8deb73"
+    },
+    "last_active_at": null
+  }
+}

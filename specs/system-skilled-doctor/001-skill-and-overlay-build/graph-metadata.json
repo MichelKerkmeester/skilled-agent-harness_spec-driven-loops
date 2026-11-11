@@ -10,7 +10,8 @@
     "system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook",
     "system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity",
     "system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide",
-    "system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research"
+    "system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research",
+    "system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks"
   ],
   "manual": {
     "depends_on": [],
@@ -161,17 +162,17 @@
     ],
     "causal_summary": "A project that vendors Skilled by archive, as Barter does, keeps its local changes across a new pin only through a private overlay engine, guard adapters in each runtime, a manual runbook and scratch scripts written for each re-pin",
     "created_at": "2026-11-06T07:23:07Z",
-    "last_save_at": "2026-11-08T16:39:25.993Z",
+    "last_save_at": "2026-11-11T18:29:35.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2c226afb3e1a5edf67b3a1c71a682cf506ff2262c211f440526b7fd34f4b6215",
+    "source_fingerprint": "sha256:5557d7c7c114f3a29cff0354c08be3a6641ac7a756d0591fb9ebdc8554b22b67",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ecec5dcc22625a75fd9974817934f5cf1d0f4fcda042ab99fa7f71bd83038aca",
+      "spec.md": "6b7e4f51d905c046d1bbff16033e9dcd551094778c41b494e258b543f6c2b6ed",
       "research/research.md": "b0650e10ec6e394fc1bd35c7d7dca9abc4e629f88b8512927b5d085859dd24c8"
     },
     "last_active_child_id": "system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research",

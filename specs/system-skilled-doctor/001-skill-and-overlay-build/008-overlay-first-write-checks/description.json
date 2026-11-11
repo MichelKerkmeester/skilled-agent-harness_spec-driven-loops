@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks",
+  "description": "Phase 8: overlay-first-write-checks",
+  "keywords": [
+    "phase",
+    "overlay-first-write-checks"
+  ],
+  "lastUpdated": "2026-11-11T18:02:36.705Z",
+  "specId": "008",
+  "folderSlug": "overlay-first-write-checks",
+  "parentChain": [
+    "system-skilled-doctor",
+    "001-skill-and-overlay-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

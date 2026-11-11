@@ -105,6 +105,7 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 5 | 005-barter-parity/ | Adoption by a real vendoring project: per-entry protected-path refusal, `.dsh` and not-copied changes in a re-pin, adoption docs and routing, Barter's tree on the engine | Complete |
 | 6 | 006-setup-guide/ | A root `SETUP.md` that guides linking and copying with overlays, and a root README that points to it | Complete |
 | 7 | 007-doctor-ux-research/ | [Phase 7 scope] | Pending |
+| 8 | 008-overlay-first-write-checks/ | Opt-in write checks for a vendoring project: a strict `--guard` behind the manifest's `strictWrites`, `apply --adopt`, a `generated` list, a `pre-commit` check and a `root-file` line in the re-pin report | Complete |
 
 ### Phase Transition Rules
 
@@ -123,6 +124,7 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 004-guard-hook | 005-barter-parity | The guard hook ships and the engine passes its own tests | `node --test` on the engine tests |
 | 005-barter-parity | 006-setup-guide | The engine runs on a real copy and its docs match it | Barter's tree passes `status` and the doctor suite passes |
 | 006-setup-guide | 007-doctor-ux-research | [Criteria TBD] | [Verification TBD] |
+| 007-doctor-ux-research | 008-overlay-first-write-checks | None. Phase 8 builds on phases 2 to 4 and does not wait on the research | `node --test` on the overlay engine tests |
 <!-- /ANCHOR:phase-map -->
 
 ---
