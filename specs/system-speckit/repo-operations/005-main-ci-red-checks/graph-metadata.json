@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/repo-operations/005-main-ci-red-checks",
+  "spec_folder": "system-speckit/repo-operations/005-main-ci-red-checks",
+  "parent_id": "system-speckit/repo-operations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "main ci red checks",
+      "repair the five checks that fail on main",
+      "main ci red checks plan",
+      "main ci red checks tasks",
+      "main ci red checks acceptance criteria",
+      "main ci red checks goal",
+      "main ci red checks implementation summary"
+    ],
+    "key_topics": [
+      "main",
+      "red",
+      "checks",
+      "repair",
+      "five",
+      "fail",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".github/workflows/chart-corpus.yml",
+      ".github/workflows/diagram-corpus.yml",
+      ".skilled/skills/sk-design/sk-design-chart/scripts/tests/README.md",
+      ".skilled/skills/sk-design/sk-design-diagram/scripts/tests/README.md",
+      ".skilled/skills/sk-design/sk-design-diagram/scripts/families/README.md",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      ".skilled/skills/cli-external-orchestration/ROUTER.md",
+      ".skilled/skills/cli-external-orchestration/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy-host-root.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "chart-corpus.yml",
+        "kind": "config",
+        "path": ".github/workflows/chart-corpus.yml",
+        "source": "derived"
+      },
+      {
+        "name": "diagram-corpus.yml",
+        "kind": "config",
+        "path": ".github/workflows/diagram-corpus.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-chart/scripts/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registration-sync.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy-host-root.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy-host-root.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-template-staleness.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Five",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Chart Corpus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Diagram Corpus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Script Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five workflows fail on every push to main: Chart Corpus, Diagram Corpus, sk-doc Script Tests, Routing Registry Drift Guard and Spec-Kit Check",
+    "created_at": "2026-11-11T07:47:57Z",
+    "last_save_at": "2026-11-11T08:02:41.298Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:444a87349ae99ae596b6c4884f019e8588793aedcd892a2b591a0176af1eea70",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d1f80852b3be07ba21edf8f307c802395a7d9def926b12271952bfefa9dab787",
+      "plan.md": "1b7b5489b72f314c50c24e14ee62b6b0fcf0053fca5cdea60301228dfee6c936",
+      "tasks.md": "b2182cedfdb58d0ee8141d4b8347f81ce686772ac06b6cf598f15c9517a91aa2",
+      "implementation-summary.md": "50cc7ee65c2ad7ca84209bd790f8d35047f945201b460b1c2f11c45c07e887f9"
+    },
+    "last_active_at": null
+  }
+}

@@ -7,7 +7,8 @@
     "system-speckit/repo-operations/001-plugin-scanner-readiness",
     "system-speckit/repo-operations/002-ci-workflow-efficiency",
     "system-speckit/repo-operations/003-orphan-sweep-temp-processes",
-    "system-speckit/repo-operations/004-node-security-patch-update"
+    "system-speckit/repo-operations/004-node-security-patch-update",
+    "system-speckit/repo-operations/005-main-ci-red-checks"
   ],
   "manual": {
     "depends_on": [],

@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-speckit/repo-operations/005-main-ci-red-checks",
+  "description": "Repair the five checks that fail on main",
+  "keywords": [
+    "repair",
+    "five",
+    "checks",
+    "fail",
+    "main"
+  ],
+  "lastUpdated": "2026-11-11T07:47:57.664Z",
+  "specId": "005",
+  "folderSlug": "main-ci-red-checks",
+  "parentChain": [
+    "system-speckit",
+    "repo-operations"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
