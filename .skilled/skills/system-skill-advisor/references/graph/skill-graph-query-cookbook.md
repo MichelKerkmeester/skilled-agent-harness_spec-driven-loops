@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor graph traversal"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Skill Graph Query Cookbook
@@ -51,7 +51,7 @@ Query examples should reflect live advisor semantics and remain tied to the pack
 | `family_members` | Sibling skills in the same family | §7 |
 | `conflicts` | Skills marked as mutually exclusive | §8 |
 | `transitive_path` | Path between two skills through edges | §9 |
-| `hub_skills` | Skills with highest in or out degree | §10 |
+| `hub_skills` | Skills with at least a given number of inbound edges | §10 |
 | `orphans` | Skills with no edges in either direction | §11 |
 | `subgraph` | Local neighborhood around a skill | §12 |
 
@@ -256,31 +256,33 @@ Query examples should reflect live advisor semantics and remain tied to the pack
 
 ## 10. `hub_skills`
 
-**Purpose**: Returns skills with the highest combined in plus out degree across all edge types.
+**Purpose**: Returns the skills that at least `minInbound` other skills point at. It counts inbound edges across all edge types. Outbound edges and the parent-hub contract play no part, so a parent hub with few inbound edges is not listed and a single skill many others depend on is.
 
 **Input**:
 
 ```json
-{ "queryType": "hub_skills", "topN": 5 }
+{ "queryType": "hub_skills", "minInbound": 2, "limit": 5 }
 ```
+
+`minInbound` defaults to 2 and is clamped to 0 through 200, and the query treats anything below 1 as 1.
 
 **Output shape**:
 
 ```json
 {
   "queryType": "hub_skills",
-  "topN": 5,
+  "minInbound": 2,
   "skills": [
-    { "skillId": "system-spec-kit", "inDegree": 18, "outDegree": 6, "total": 24 },
-    { "skillId": "sk-doc", "inDegree": 12, "outDegree": 4, "total": 16 },
-    { "skillId": "system-skill-advisor", "inDegree": 9, "outDegree": 7, "total": 16 }
+    { "node": { "id": "system-spec-kit" }, "inboundCount": 18 }
   ]
 }
 ```
 
-**Worked example**: `system-spec-kit` is the highest-degree hub because almost every other skill depends on its validation workflow. Use this query to identify high-blast-radius skills before refactors.
+Each `node` carries the full skill node. The count above is an example, not a measurement.
 
-**Gotcha**: A high degree count does not mean a skill is high-quality. It just means many other skills point at it. Cross-reference with `advisor_validate` accuracy slices to see whether routing TO this skill is actually high-precision.
+**Worked example**: `system-spec-kit` ranks high because many other skills depend on its validation workflow. Use this query to identify high-blast-radius skills before refactors.
+
+**Gotcha**: A high inbound count does not mean a skill is high-quality. It just means many other skills point at it. Cross-reference with `advisor_validate` accuracy slices to see whether routing TO this skill is actually high-precision.
 
 ---
 
