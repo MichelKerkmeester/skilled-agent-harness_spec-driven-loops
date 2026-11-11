@@ -1,5 +1,5 @@
 {
-  "count": 1143,
+  "count": 1144,
   "mode": "readme",
   "results": [
     {
@@ -431,8 +431,8 @@
       "warnings": [
         {
           "auto_fixable": false,
-          "line": 292,
-          "line_number": 292,
+          "line": 303,
+          "line_number": 303,
           "message": "\"RELATED\" must be the last H2; it is followed by \"COVERAGE MATRIX\".",
           "severity": "warning",
           "type": "render_section_order"
@@ -874,6 +874,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/hooks/dist-freshness/opencode/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/env-secret-guard/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -4902,16 +4912,16 @@
       "warnings": [
         {
           "auto_fixable": false,
-          "line": 377,
-          "line_number": 377,
+          "line": 383,
+          "line_number": 383,
           "message": "Consecutive bold labels \"Directory Version\" and \"Last Updated\" join into one paragraph; separate them or use list items.",
           "severity": "warning",
           "type": "render_bold_label_join"
         },
         {
           "auto_fixable": false,
-          "line": 378,
-          "line_number": 378,
+          "line": 384,
+          "line_number": 384,
           "message": "Consecutive bold labels \"Last Updated\" and \"Maintained By\" join into one paragraph; separate them or use list items.",
           "severity": "warning",
           "type": "render_bold_label_join"
@@ -10562,7 +10572,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/scratch/a2-v2pkg/package/README.md",
+      "file": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/scratch/a2-v2pkg/package/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -10654,7 +10664,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/hooks-plugins-extensions/021-compat-opt-in-and-image-declaration/review/README.md",
+      "file": "specs/hooks-plugins-extensions/pi-extensions/010-compat-opt-in-and-image-declaration/review/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -10673,7 +10683,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": "specs/sk-code/011-sk-code-poinytail-based-refinement/003-doctrine-pass/scratch/before/README.md",
+      "file": "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/003-doctrine-pass/scratch/before/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -10709,7 +10719,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": "specs/sk-doc/066-skill-readability-refinement/002-cli-external-orchestration/007-cli-opencode/scratch/hand-final/.skilled/skills/cli-external-orchestration/cli-opencode/README.md",
+      "file": "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration/007-cli-opencode/scratch/hand-final/.skilled/skills/cli-external-orchestration/cli-opencode/README.md",
       "return_code": 0,
       "total_issues": 1,
       "valid": true,
@@ -10816,7 +10826,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "unknown",
-      "file": "specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/003-legacy-compat-event-vocabulary/fixtures/skill-benchmark-live/README.md",
+      "file": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout/003-legacy-compat-event-vocabulary/fixtures/skill-benchmark-live/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -10833,7 +10843,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-deep-loop/036-deep-loop-innovation/changelog/README.md",
+      "file": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/changelog/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -10859,7 +10869,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/001-agent-swarms/research/README.md",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/001-agent-swarms/research/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -10885,7 +10895,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/README.md",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/002-graphene-main/research/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -10911,7 +10921,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/README.md",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/003-graph-arch/research/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -10937,7 +10947,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/004-graph-engineering-master/research/README.md",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/004-graph-engineering-master/research/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -10963,7 +10973,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/research/README.md",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/005-noaa-paper-and-blog-theory/research/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -10989,7 +10999,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/README.md",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/006-cross-study-integration/research/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11018,7 +11028,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/reference/README.md",
+      "file": "specs/system-deep-loop/loop-architecture/002-graph-engineering/reference/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -11314,16 +11324,16 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-skill-advisor/023-routing-perfection-research/research/lineages/luna/containment-reverted/README.md",
+      "file": "specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door/008-verification-and-closeout/playbook-runs/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
       "warnings": [
         {
           "auto_fixable": false,
-          "line": 7,
-          "line_number": 7,
-          "message": "The first H2 should be \"overview\"; found \"The damage\".",
+          "line": 21,
+          "line_number": 21,
+          "message": "The first H2 should be \"overview\"; found \"WHAT RAN\".",
           "severity": "warning",
           "type": "render_section_order"
         }
@@ -11340,16 +11350,16 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-skill-advisor/024-mcp-decommission-cli-front-door/008-verification-and-closeout/playbook-runs/README.md",
+      "file": "specs/system-skill-advisor/routing-and-scoring/002-routing-perfection-research/research/lineages/luna/containment-reverted/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
       "warnings": [
         {
           "auto_fixable": false,
-          "line": 21,
-          "line_number": 21,
-          "message": "The first H2 should be \"overview\"; found \"WHAT RAN\".",
+          "line": 7,
+          "line_number": 7,
+          "message": "The first H2 should be \"overview\"; found \"The damage\".",
           "severity": "warning",
           "type": "render_section_order"
         }
@@ -11522,7 +11532,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11548,7 +11558,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11574,7 +11584,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing/runners/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing/runners/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -11584,7 +11594,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/024-daemon-concurrency-fixes/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/024-daemon-concurrency-fixes/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -11601,7 +11611,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11627,7 +11637,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11653,7 +11663,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11679,7 +11689,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11705,7 +11715,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/README.md",
       "return_code": 1,
       "total_issues": 3,
       "valid": false,
@@ -11739,7 +11749,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation/research/phase2-bench/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11765,7 +11775,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/changelog/004-code-graph/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/changelog/004-code-graph/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11791,7 +11801,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/changelog/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/changelog/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11817,7 +11827,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/scratch/deep-research-prompts/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/scratch/deep-research-prompts/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11843,7 +11853,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/scratch/manual-test-prompts-029-hooks/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/scratch/manual-test-prompts-029-hooks/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11869,7 +11879,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening/changelog/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening/changelog/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11895,7 +11905,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved/changelog/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved/changelog/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11921,7 +11931,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/008-vector-read-path-resilience/review/lineages/gpt-1/prompts/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/008-vector-read-path-resilience/review/lineages/gpt-1/prompts/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -11938,7 +11948,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/027-xce-research-based-refinement/changelog/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/changelog/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11964,7 +11974,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/027-xce-research-based-refinement/research/001-xce-adoption-matrix/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/research/001-xce-adoption-matrix/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -11990,7 +12000,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/027-xce-research-based-refinement/research/002-implementation-risk-cross-validation/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/research/002-implementation-risk-cross-validation/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -12016,7 +12026,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/027-xce-research-based-refinement/research/003-memory-causal-expansion/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/research/003-memory-causal-expansion/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -12042,7 +12052,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/027-xce-research-based-refinement/research/004-continuation-revalidation/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/research/004-continuation-revalidation/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -12068,7 +12078,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/027-xce-research-based-refinement/research/005-live-rescope-coco-purge/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/research/005-live-rescope-coco-purge/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -12094,7 +12104,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/research/006-peck-source-deep-mining/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -12111,7 +12121,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/027-xce-research-based-refinement/research/007-gem-team-adoption-matrix/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/research/007-gem-team-adoption-matrix/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -12137,7 +12147,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/027-xce-research-based-refinement/research/008-caura-memclaw-fleet-memory-teachings/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/research/008-caura-memclaw-fleet-memory-teachings/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -12163,7 +12173,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/027-xce-research-based-refinement/research/008-caura-memclaw-fleet-memory-teachings/integration/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/research/008-caura-memclaw-fleet-memory-teachings/integration/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -12180,7 +12190,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/027-xce-research-based-refinement/research/009-gem-team-integration-impact/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/research/009-gem-team-integration-impact/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -12197,7 +12207,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/027-xce-research-based-refinement/research/010-openltm-memory-architecture-teachings/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/research/010-openltm-memory-architecture-teachings/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -12223,7 +12233,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/028-memory-search-intelligence/changelog/README.md",
+      "file": "specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/changelog/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -12249,33 +12259,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/changelog/README.md",
-      "return_code": 1,
-      "total_issues": 2,
-      "valid": false,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "line": 16,
-          "line_number": 16,
-          "message": "The first H2 should be \"overview\"; found \"Phases\".",
-          "severity": "warning",
-          "type": "render_section_order"
-        }
-      ]
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/system-speckit/040-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/README.md",
+      "file": "specs/system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/README.md",
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
@@ -12301,7 +12285,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/040-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/scratch/analysis/README.md",
+      "file": "specs/system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/scratch/analysis/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -12318,11 +12302,37 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run1/attempts/README.md",
+      "file": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run1/attempts/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
       "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/002-relocate-specs-folder/changelog/README.md",
+      "return_code": 1,
+      "total_issues": 2,
+      "valid": false,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "line": 16,
+          "line_number": 16,
+          "message": "The first H2 should be \"overview\"; found \"Phases\".",
+          "severity": "warning",
+          "type": "render_section_order"
+        }
+      ]
     },
     {
       "auto_fixable_count": 0,

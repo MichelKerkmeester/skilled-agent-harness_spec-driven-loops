@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 922,
+  "derived_count": 923,
   "directories": [
     ".",
     ".claude",
@@ -84,6 +84,7 @@
     ".skilled/hooks/dist-freshness/cursor",
     ".skilled/hooks/dist-freshness/devin",
     ".skilled/hooks/dist-freshness/opencode",
+    ".skilled/hooks/env-secret-guard",
     ".skilled/hooks/git",
     ".skilled/hooks/git-hooks-check",
     ".skilled/hooks/git-hooks-check/claude",
