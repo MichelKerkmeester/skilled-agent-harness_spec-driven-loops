@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for the repository's Codex hook scripts; r
 
 ## 1. OVERVIEW
 
-`.codex/hooks/` contains 22 symlinks to hook scripts owned under `.skilled/`. `mcp-route-guard.cjs`, `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, and the three session-relaunch adapters (`context-nudge.mjs`, `prompt-seed.mjs`, `stop-arm.mjs`) target `.skilled/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.skilled/hooks/README.md)). The rest target their owning skill under `.skilled/skills/`. Codex executes the real paths declared in `.codex/hooks.json`. The user-global Codex hook file is managed separately by the repository installer and should not be repointed to this mirror.
+`.codex/hooks/` contains 26 symlinks to hook scripts owned under `.skilled/`. Eleven target `.skilled/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.skilled/hooks/README.md)): `ask-surface-stop.cjs`, `dispatch-audit-posttooluse.mjs`, `dispatch-preflight-lint.mjs`, `env-secret-guard-after.cjs`, `env-secret-guard.cjs`, `mcp-route-guard.cjs`, `overlay-guard.cjs`, `post-edit-quality.cjs` and the three session-relaunch adapters (`context-nudge.mjs`, `prompt-seed.mjs`, `stop-arm.mjs`). Ten target their owning skill under `.skilled/skills/`, and five target `.skilled/bin/` or `.skilled/scripts/`. Codex executes the real paths declared in `.codex/hooks.json`. The user-global Codex hook file is managed separately by the repository installer and should not be repointed to this mirror.
 
 Two compiled ESM adapters do not execute through their symlink because their direct-entry guards compare the invocation path with the resolved module URL. Invoke those files through the real command path used by `hooks.json`.
 
@@ -20,7 +20,7 @@ Two compiled ESM adapters do not execute through their symlink because their dir
 |--------|----------------|-------------------|
 | `session-start.js` | No output | Valid `SessionStart` envelope |
 | `user-prompt-submit.js` | No output | Valid `UserPromptSubmit` envelope |
-| Other 20 scripts | Matches real-path behavior | Authoritative runtime behavior |
+| Every other script | Matches real-path behavior | Authoritative runtime behavior |
 
 ---
 

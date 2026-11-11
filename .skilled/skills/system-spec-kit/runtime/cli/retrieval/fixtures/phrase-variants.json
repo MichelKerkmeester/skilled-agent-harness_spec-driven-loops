@@ -1,5 +1,5 @@
 {
-  "manifestHash": "76fac3cfdaa722fb990717a9d0c6327767c4b8d5b3580a522d35e302cfa0ded5",
+  "manifestHash": "1dedb91d78d21cb38fe8733a337f178bd8b04669a66b2e9e447fcc8eb91c19d7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12678,6 +12678,9 @@
     "aside queryselector": [
       "aside querySelector"
     ],
+    "aside redaction rule": [
+      "aside redaction rule"
+    ],
     "aside repl": [
       "aside repl"
     ],
@@ -14775,6 +14778,9 @@
     "block convergence critical disagreement": [
       "block convergence critical disagreement"
     ],
+    "block env file reads": [
+      "block env file reads"
+    ],
     "block misaligned commit messages": [
       "block misaligned commit messages"
     ],
@@ -15332,6 +15338,9 @@
     ],
     "browser automation scripts": [
       "browser automation scripts"
+    ],
+    "browser capture secrets": [
+      "browser capture secrets"
     ],
     "browser console errors": [
       "browser console errors"
@@ -16861,6 +16870,12 @@
     ],
     "ce p05": [
       "CE-P05"
+    ],
+    "ce p06": [
+      "CE-P06"
+    ],
+    "ce p07": [
+      "CE-P07"
     ],
     "ceiling marker report": [
       "ceiling marker report"
@@ -19266,6 +19281,18 @@
     ],
     "ci runner minutes": [
       "ci runner minutes"
+    ],
+    "ci runner timing": [
+      "ci runner timing"
+    ],
+    "ci runner timing implementation summary": [
+      "ci runner timing implementation summary"
+    ],
+    "ci runner timing plan": [
+      "ci runner timing plan"
+    ],
+    "ci runner timing tasks": [
+      "ci runner timing tasks"
     ],
     "ci shared package resolution": [
       "ci shared package resolution"
@@ -43347,11 +43374,29 @@
     "dot state directories": [
       "dot state directories"
     ],
+    "dotenv fingerprint": [
+      "dotenv fingerprint"
+    ],
+    "dotenv guard": [
+      "dotenv guard"
+    ],
+    "dotenv guard plugin": [
+      "dotenv guard plugin"
+    ],
+    "dotenv inspect without values": [
+      "dotenv inspect without values"
+    ],
     "dotenv loader mcp launcher": [
       "dotenv loader MCP launcher"
     ],
+    "dotenv secret guard": [
+      "dotenv secret guard"
+    ],
     "dotenv variable loading": [
       "dotenv variable loading"
+    ],
+    "dotenv write refused": [
+      "dotenv write refused"
     ],
     "double quoted variables": [
       "double quoted variables"
@@ -46095,6 +46140,30 @@
     "env reference switch plan": [
       "env reference switch plan"
     ],
+    "env secret guard": [
+      "env secret guard"
+    ],
+    "env secret guard acceptance criteria": [
+      "env secret guard acceptance criteria"
+    ],
+    "env secret guard conversation": [
+      "env secret guard conversation"
+    ],
+    "env secret guard edit conversation": [
+      "env secret guard edit conversation"
+    ],
+    "env secret guard implementation summary": [
+      "env secret guard implementation summary"
+    ],
+    "env secret guard pepper": [
+      "ENV_SECRET_GUARD_PEPPER"
+    ],
+    "env secret guard plan": [
+      "env secret guard plan"
+    ],
+    "env secret guard tasks": [
+      "env secret guard tasks"
+    ],
     "env snapshot restore": [
       "env snapshot restore"
     ],
@@ -46139,6 +46208,9 @@
     ],
     "environment variables route to spec kit": [
       "environment variables route to spec-kit"
+    ],
+    "envsitter port": [
+      "envsitter port"
     ],
     "eperm launcher lease": [
       "EPERM launcher lease"
@@ -51511,6 +51583,18 @@
     ],
     "fresh start mcp launcher": [
       "fresh-start MCP launcher"
+    ],
+    "fresh timing profile": [
+      "fresh timing profile"
+    ],
+    "fresh timing profile implementation summary": [
+      "fresh timing profile implementation summary"
+    ],
+    "fresh timing profile plan": [
+      "fresh timing profile plan"
+    ],
+    "fresh timing profile tasks": [
+      "fresh timing profile tasks"
     ],
     "fresh worktree dependencies": [
       "fresh worktree dependencies"
@@ -57112,6 +57196,9 @@
     ],
     "history rewrite tasks": [
       "history rewrite tasks"
+    ],
+    "hmac fingerprint dotenv": [
+      "hmac fingerprint dotenv"
     ],
     "hol plugin scanner": [
       "hol plugin scanner"
@@ -65106,6 +65193,9 @@
     "mcp aside devtools 1 1 1 0": [
       "mcp-aside-devtools 1.1.1.0"
     ],
+    "mcp aside devtools 1 1 10 0": [
+      "mcp-aside-devtools 1.1.10.0"
+    ],
     "mcp aside devtools 1 1 2 0": [
       "mcp-aside-devtools 1.1.2.0"
     ],
@@ -65156,6 +65246,9 @@
     ],
     "mcp aside devtools v1 1 1 0": [
       "mcp-aside-devtools v1.1.1.0"
+    ],
+    "mcp aside devtools v1 1 10 0": [
+      "mcp-aside-devtools v1.1.10.0"
     ],
     "mcp aside devtools v1 1 2 0": [
       "mcp-aside-devtools v1.1.2.0"
@@ -65262,6 +65355,9 @@
     "mcp chrome devtools 1 0 23 0": [
       "mcp-chrome-devtools 1.0.23.0"
     ],
+    "mcp chrome devtools 1 0 24 0": [
+      "mcp-chrome-devtools 1.0.24.0"
+    ],
     "mcp chrome devtools 1 0 7 0": [
       "mcp-chrome-devtools 1.0.7.0"
     ],
@@ -65352,6 +65448,9 @@
     "mcp chrome devtools v1 0 23 0": [
       "mcp-chrome-devtools v1.0.23.0"
     ],
+    "mcp chrome devtools v1 0 24 0": [
+      "mcp-chrome-devtools v1.0.24.0"
+    ],
     "mcp chrome devtools v1 0 7 0": [
       "mcp-chrome-devtools v1.0.7.0"
     ],
@@ -65438,6 +65537,9 @@
     ],
     "mcp click up 1 2 20 0": [
       "mcp-click-up 1.2.20.0"
+    ],
+    "mcp click up 1 2 21 0": [
+      "mcp-click-up 1.2.21.0"
     ],
     "mcp click up 1 2 3 0": [
       "mcp-click-up 1.2.3.0"
@@ -65543,6 +65645,9 @@
     ],
     "mcp click up v1 2 20 0": [
       "mcp-click-up v1.2.20.0"
+    ],
+    "mcp click up v1 2 21 0": [
+      "mcp-click-up v1.2.21.0"
     ],
     "mcp click up v1 2 3 0": [
       "mcp-click-up v1.2.3.0"
@@ -67032,6 +67137,12 @@
     "mcp tooling 1 9 12 0": [
       "mcp-tooling 1.9.12.0"
     ],
+    "mcp tooling 1 9 13 0": [
+      "mcp-tooling 1.9.13.0"
+    ],
+    "mcp tooling 1 9 14 0": [
+      "mcp-tooling 1.9.14.0"
+    ],
     "mcp tooling 1 9 2 0": [
       "mcp-tooling 1.9.2.0"
     ],
@@ -67208,6 +67319,12 @@
     ],
     "mcp tooling v1 9 12 0": [
       "mcp-tooling v1.9.12.0"
+    ],
+    "mcp tooling v1 9 13 0": [
+      "mcp-tooling v1.9.13.0"
+    ],
+    "mcp tooling v1 9 14 0": [
+      "mcp-tooling v1.9.14.0"
     ],
     "mcp tooling v1 9 2 0": [
       "mcp-tooling v1.9.2.0"
@@ -76816,6 +76933,18 @@
     "overlay repin": [
       "overlay repin"
     ],
+    "overlay replaced subtree repin": [
+      "overlay replaced subtree repin"
+    ],
+    "overlay replaced subtree repin implementation summary": [
+      "overlay replaced subtree repin implementation summary"
+    ],
+    "overlay replaced subtree repin plan": [
+      "overlay replaced subtree repin plan"
+    ],
+    "overlay replaced subtree repin tasks": [
+      "overlay replaced subtree repin tasks"
+    ],
     "overlay sync repin failure modes": [
       "overlay sync repin failure modes"
     ],
@@ -79724,6 +79853,9 @@
     "phase 2 fresh clone onboarding": [
       "phase 2 fresh clone onboarding"
     ],
+    "phase 2 fresh timing profile": [
+      "phase 2 fresh timing profile"
+    ],
     "phase 2 goal criteria refresh": [
       "phase 2 goal criteria refresh"
     ],
@@ -80171,6 +80303,9 @@
     "phase 3 sk git playbook changelog": [
       "phase 3 sk git playbook changelog"
     ],
+    "phase 3 split upgrade legacy": [
+      "phase 3 split upgrade legacy"
+    ],
     "phase 3 stale jev canary": [
       "phase 3 stale jev canary"
     ],
@@ -80402,6 +80537,9 @@
     "phase 4 sk design fundamentals": [
       "phase 4 sk design fundamentals"
     ],
+    "phase 4 split fanout run": [
+      "phase 4 split fanout run"
+    ],
     "phase 4 symlink relink after unlink": [
       "phase 4 symlink relink after unlink"
     ],
@@ -80467,6 +80605,9 @@
     ],
     "phase 5 chat question detection": [
       "phase 5 chat question detection"
+    ],
+    "phase 5 ci runner timing": [
+      "phase 5 ci runner timing"
     ],
     "phase 5 claim corrections": [
       "phase 5 claim corrections"
@@ -80725,6 +80866,9 @@
     ],
     "phase 6 open items and alignment": [
       "phase 6 open items and alignment"
+    ],
+    "phase 6 overlay replaced subtree repin": [
+      "phase 6 overlay replaced subtree repin"
     ],
     "phase 6 plan": [
       "phase 6 plan"
@@ -91422,6 +91566,9 @@
     ],
     "replace spec kit classifier shim": [
       "replace spec-kit classifier shim"
+    ],
+    "replaced folder re pin block": [
+      "replaced folder re-pin block"
     ],
     "replay enrichment window": [
       "replay enrichment window"
@@ -114036,6 +114183,18 @@
     "split delegation phrasing": [
       "split delegation phrasing"
     ],
+    "split fanout run": [
+      "split fanout run"
+    ],
+    "split fanout run implementation summary": [
+      "split fanout run implementation summary"
+    ],
+    "split fanout run plan": [
+      "split fanout run plan"
+    ],
+    "split fanout run tasks": [
+      "split fanout run tasks"
+    ],
     "split oversized sk code references": [
       "split oversized sk-code references"
     ],
@@ -114044,6 +114203,18 @@
     ],
     "split review references index": [
       "split review references index"
+    ],
+    "split upgrade legacy": [
+      "split upgrade legacy"
+    ],
+    "split upgrade legacy implementation summary": [
+      "split upgrade legacy implementation summary"
+    ],
+    "split upgrade legacy plan": [
+      "split upgrade legacy plan"
+    ],
+    "split upgrade legacy tasks": [
+      "split upgrade legacy tasks"
     ],
     "spring versus easing curve": [
       "spring versus easing curve"
@@ -117629,6 +117800,9 @@
     "system skilled doctor 1 1 2 0": [
       "system-skilled-doctor 1.1.2.0"
     ],
+    "system skilled doctor 1 1 3 0": [
+      "system-skilled-doctor 1.1.3.0"
+    ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
     ],
@@ -117673,6 +117847,9 @@
     ],
     "system skilled doctor v1 1 2 0": [
       "system-skilled-doctor v1.1.2.0"
+    ],
+    "system skilled doctor v1 1 3 0": [
+      "system-skilled-doctor v1.1.3.0"
     ],
     "system spec gate": [
       "system-spec-gate"
@@ -119888,6 +120065,9 @@
     ],
     "test cycle speed implementation summary": [
       "test cycle speed implementation summary"
+    ],
+    "test cycle speed phase parent spec": [
+      "test cycle speed phase parent spec"
     ],
     "test cycle speed plan": [
       "test cycle speed plan"

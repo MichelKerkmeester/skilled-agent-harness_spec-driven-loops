@@ -83,6 +83,7 @@ Flags can be set as environment variables **or** in a config file: copy `.skille
 | `SYSTEM_TASK_DISPATCH_DISABLED` | unset (enabled) | truthy disable flag | Disables task-dispatch warnings and denials. No aliases. | `.skilled/hooks/task-dispatch/`, `.opencode/plugins/system-deep-loop-guard.js` |
 | `SYSTEM_DECISION_CAPTURE_DISABLED` | unset (enabled) | truthy disable flag | Disables operator decision capture: the answer hooks and plugins queue nothing and the stop hook sends no save nudge. No aliases. | `.skilled/hooks/decision-capture/`, `.opencode/plugins/decision-capture.js`, `hooks/claude/session-stop.ts` |
 | `SYSTEM_ASK_SURFACE_DISABLED` | unset (enabled) | truthy disable flag | Disables the ask-surface guard: a turn ending in a typed option menu is neither sent back nor logged as a fire. No aliases. | `.skilled/hooks/ask-surface-guard/`, `.opencode/plugins/ask-surface-guard.js` |
+| `SYSTEM_ENV_SECRET_GUARD_DISABLED` | unset (enabled) | truthy disable flag | Disables the dotenv guard: reads and writes of `.env` files are no longer refused, the after-call check stops, and the three OpenCode inspection tools report that they are disabled. Read from the process environment only, never from `hook-flags.env`, which an agent can write. No aliases. | `.skilled/hooks/env-secret-guard/`, `.opencode/plugins/env-secret-guard.js` |
 | `MCP_ROUTE_GUARD_DISABLED` | unset (enabled) | truthy disable flag | Disables MCP route warnings and audit records. No aliases. | `.skilled/hooks/mcp-route-guard/`, `.opencode/plugins/mcp-route-guard.js` |
 | `OPENCODE_GOAL_DISABLED` | unset (enabled) | truthy disable flag | Disables goal injection and tools. Alias: `OPENCODE_GOAL_PLUGIN_DISABLED`. | `.skilled/hooks/goal/`, `.opencode/plugins/opencode-goal.js` |
 | `SK_GIT_PREFLIGHT_DISABLED` | unset (enabled) | truthy disable flag | Disables git-preflight advisories. No aliases. | `.skilled/skills/sk-git/scripts/hooks/`, `.opencode/plugins/sk-git-preflight-advisory.js` |
@@ -499,6 +500,16 @@ Features that ask Typesafe's Jev classifier one measured question each. Every on
 | `JEV_FEATURE_INJECTION_SCREEN` | unset (on) | boolean (off `0`/`false`/`no`/`off`) | PostToolUse screen of fetched web text on Claude Code, Devin, OpenCode and Pi. Adds one advisory line when a section reads as instructions aimed at an AI agent. | `.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs` |
 | `JEV_PROVIDER` | `official` | string | Jev provider every feature asks and checks the credential for. | `.skilled/skills/cli-classifier/shared/scripts/jev-features.mjs` |
 | `JEV_TRANSPORT` | unset (Pi first) | string (`jev` or `pi`) | `jev` skips Pi's classifier and always uses the jev CLI. | `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs` |
+
+## ENV SECRET GUARD
+
+The dotenv guard compares two values by an HMAC fingerprint instead of showing either one. The key comes from the process environment only. Set it in your shell profile, never in a file inside a repository, because a key the agent can read lets it test guesses against a fingerprint.
+
+| Variable | Default | Type | Description | Source |
+|----------|---------|------|-------------|--------|
+| `ENV_SECRET_GUARD_PEPPER` | unset (no fingerprints) | string | HMAC-SHA256 key for `fingerprint` in the CLI and `env_secret_fingerprint` in OpenCode. Unset, both refuse rather than return an unkeyed digest. Generate one with `openssl rand -base64 32`. | `.skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs` |
+| `ENV_SECRET_GUARD_WRITE_CHECK` | `restore` | `restore` or `report` | What the guard does when a shell call changed, deleted or created a dotenv file. `restore` puts the file back and keeps the rejected version; `report` names the change and leaves it. | `.skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs` |
+| `ENV_SECRET_GUARD_STATE_DIR` | `$XDG_STATE_HOME/env-secret-guard`, else `~/.local/state/env-secret-guard` | path | Where the guard keeps its record of dotenv files and their backup copies. Keep it outside any repository. | `.skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs` |
 
 ---
 

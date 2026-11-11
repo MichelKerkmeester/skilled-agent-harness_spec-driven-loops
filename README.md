@@ -81,7 +81,7 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 - **Goal Plugin:** binds a session to a spec packet's `goal.md`. On every turn (at session start on Cursor) it injects a pointer to that file plus its completion criteria, so intent survives context resets instead of fading with the window
 - **In-Session Handover:** off by default. Once turned on, a session near its context limit hands its work to a fresh session in the same terminal. See [In-Session Handover](#in-session-handover)
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches. `pi-fast-mode-w-subagent-support` sits beside it for fast mode with subagent support
-- **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories. These are thin runtime adapters over shared policy cores in `.skilled/hooks/`
+- **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, a guard that keeps dotenv secrets out of the model, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories. These are thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
 Behind them: 14 on-demand skills, 45 command entry points and the Code Mode MCP server, each detailed in its own section below.
 
@@ -1082,11 +1082,11 @@ In linked projects, each project keeps its answers in its own folder under `.ski
 
 #### OpenCode Plugins
 
-Nineteen JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds them. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
+Twenty JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds them. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
 
 - **Gates:** the spec-folder gate and two completion checks that ask for evidence before a task is called done
 - **Routing:** the skill advisor's prompt-time brief, and a guard that suggests Code Mode when a native MCP call should go through it
-- **Quality and safety:** post-edit code checks, git commit advisories and the commit message gate, deep-loop and build-freshness guards, a Codex hook watchdog, a CLI dispatch audit, a screen for instructions hidden in fetched web pages, and a guard that sends a turn ending in a typed option menu back to ask through the question tool
+- **Quality and safety:** post-edit code checks, git commit advisories and the commit message gate, deep-loop and build-freshness guards, a Codex hook watchdog, a CLI dispatch audit, a screen for instructions hidden in fetched web pages, a dotenv guard that refuses reading or writing `.env` files and offers three value-free inspection tools instead, and a guard that sends a turn ending in a typed option menu back to ask through the question tool
 - **Sessions:** the goal plugin, session cleanup, the in-session handover relaunch and the history lookup offer after a compaction
 
 Every plugin except the git message gate has an off switch, listed in the [hooks README](.skilled/hooks/README.md). `SYSTEM_HOOKS_DISABLED=1` turns them all off at once.
@@ -1117,7 +1117,7 @@ Our custom extension, vendored in `.pi/extensions/` as the live runtime source. 
 
 DeepSeek Harness loads plugins only from the patches a run names. `.dsh/patches/guards.patch.yml` loads `.dsh/plugins/repo-guards/`. Its adapters live in the hook library beside their cores and reach the bundle through links that `/doctor:runtime-mirrors` checks.
 
-- **Before a tool call, able to stop it:** dispatch preflight, the spec-folder gate, the MCP route guard, the overlay guard and the git message gate
+- **Before a tool call, able to stop it:** dispatch preflight, the spec-folder gate, the MCP route guard, the overlay guard, the dotenv guard and the git message gate
 - **After a tool call, as advice on its result:** post-edit quality, the git advisory, the dispatch audit log and the injection screen on fetched pages and MCP results
 - **At session start and each turn:** the session context and the bound packet goal, plus the skill advisor brief, `/goal-dsh` and six warn-only checks in an interactive session
 - **Around the session:** context again after compaction, the completion-evidence nudge and live decision capture, plus an autosave at close in an interactive session
@@ -1130,7 +1130,7 @@ In fan-out lineages, the lineage patch adds a marker row that keeps the four int
 
 `.skilled/hooks/` carries the runtime-agnostic cores the plugin adapters call into.
 
-The cores are `goal`, `dispatch`, `decision-capture`, `spec-gate`, `completion`, `mcp-route-guard`, `overlay-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen` and `ask-surface`. The git cores are `git`, `git-hooks-check`, `git-preflight`, `git-message-gate`, `git-live-follow`, `git-primary-reconcile`, `git-worktree-guard` and `hook-install`. The rest are `session-cleanup`, `session-lifecycle`, `session-relaunch`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness` and `codex-watchdog`, plus `shared` for the helpers they all use.
+The cores are `goal`, `dispatch`, `decision-capture`, `spec-gate`, `completion`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen` and `ask-surface`. The git cores are `git`, `git-hooks-check`, `git-preflight`, `git-message-gate`, `git-live-follow`, `git-primary-reconcile`, `git-worktree-guard` and `hook-install`. The rest are `session-cleanup`, `session-lifecycle`, `session-relaunch`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness` and `codex-watchdog`, plus `shared` for the helpers they all use.
 
 The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which runtime runs each hook, and why a runtime that skips one cannot carry it. Codex runs a repository hook only after you approve that entry. Open `/hooks` after an update and approve every entry it lists as needing review. Its shell matchers name both `exec` and `Bash`, the tool's name from Codex 0.160 on.
 

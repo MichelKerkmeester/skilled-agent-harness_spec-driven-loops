@@ -7,6 +7,7 @@ import { registerCompletionEvidence } from './adapters/completion-evidence.mjs';
 import { registerClassifierInjectionScreen } from './adapters/classifier-injection-screen.mjs';
 import { registerDecisionCapture } from './adapters/decision-capture.mjs';
 import { registerDispatchAudit } from './adapters/dispatch-audit.mjs';
+import { registerEnvSecretGuard } from './adapters/env-secret-guard.mjs';
 import { registerDispatchPreflightLint } from './adapters/dispatch-preflight-lint.mjs';
 import { registerGitMessageGate } from './adapters/git-message-gate.mjs';
 import { registerGitPreflightAdvisory } from './adapters/git-preflight-advisory.mjs';
@@ -58,6 +59,7 @@ export function apply(ctx, config = {}) {
   registerPostEditQuality(ctx, options.postEditQuality);
   registerClassifierInjectionScreen(ctx, options.classifierInjectionScreen);
   registerOverlayGuard(ctx, options.overlayGuard);
+  registerEnvSecretGuard(ctx, options.envSecretGuard);
   registerDecisionCapture(ctx, options.decisionCapture);
   withServices(ctx, ['commands', 'tools'], (scoped) => registerGoalManage(scoped, options.goalManage));
   registerSessionStartAdvisories(ctx, options.sessionStartAdvisories);

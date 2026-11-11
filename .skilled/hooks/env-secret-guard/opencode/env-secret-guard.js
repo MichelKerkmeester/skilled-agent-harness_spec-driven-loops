@@ -1,0 +1,1 @@
+../../../../.opencode/plugins/env-secret-guard.js

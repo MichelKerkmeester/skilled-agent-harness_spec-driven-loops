@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh hook bridge"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # DeepSeek Harness - Guards and Hooks
@@ -32,7 +32,7 @@ Explains how the repository's guard cores reach a dsh run, which seams they atta
 
 ### Status
 
-Twenty adapters are registered by `.dsh/plugins/repo-guards/index.mjs`, and `.dsh/patches/guards.patch.yml` inserts the bundle into every dsh lineage the deep-loop runner builds and into an operator's interactive session. Four of them are interactive-only: the lineage patch inserts a marker row, `repo-guards-lineage-leaf`, and those four check it at event time (section 4).
+Twenty-two adapters are registered by `.dsh/plugins/repo-guards/index.mjs`, and `.dsh/patches/guards.patch.yml` inserts the bundle into every dsh lineage the deep-loop runner builds and into an operator's interactive session. Four of them are interactive-only: the lineage patch inserts a marker row, `repo-guards-lineage-leaf`, and those four check it at event time (section 4).
 
 Keyless boots of both compositions reached `MISSING_CREDENTIAL` with no `did not activate` or `patch: entry not found` line. The interactive boot carried the advisor brief, the worktree advisory and the `dsh_goal` tool. The lineage boot carried none of them and kept the session-prime context (`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity/evidence/keyless-boot-interactive.txt` and `keyless-boot-lineage.txt`). The 2026-11-06 Gateway run and the clean second lineage completed without a `did not activate` line. These runs confirm loading and composition, not every guard decision on real model tool calls. See `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.stderr.txt` and `fanout-lineage.md`.
 
@@ -93,6 +93,7 @@ Every adapter below is registered by `index.mjs`. `.dsh/plugins/repo-guards/READ
 | `spec-gate-classify` | `agent/pre-step` | Latest operator prompt | Log and continue |
 | `spec-gate-enforce` | `tools/pre-execute` | `write`, `edit`, `apply_patch`, `bash` | Log and deny on core failure |
 | `completion-evidence` | `agent/turn-stopping` | Current assistant turn | Log and continue |
+| `ask-surface-guard` | `agent/turn-stopping` | A closing typed option menu with no `ask_user_question` call | Log and continue, skipped in a headless or child session |
 | `task-dispatch-guard` | `tools/pre-execute` | `subagent`, `subagent_fork` | Log and continue |
 | `post-edit-quality` | `tools/post-execute` | `write`, `edit`, `apply_patch` | Log and continue |
 | `mcp-route-guard` | `tools/pre-execute` | `mcp__*` | Log and deny on core failure, and deny a `code_mode` tool outside the four-tool allowlist |
@@ -103,13 +104,14 @@ Every adapter below is registered by `index.mjs`. `.dsh/plugins/repo-guards/READ
 | `git-preflight-advisory` | `tools/post-execute` | Bash Git commands | Log and continue, add context |
 | `git-message-gate` | `tools/pre-execute` | Bash commands covered by the message contract | Log unexpected errors and continue, deny on `ContractError` |
 | `overlay-guard` | `tools/pre-execute` | `write`, `edit`, `apply_patch` | Log and allow, deny only a path an overlay owns |
+| `env-secret-guard` | `tools/pre-execute` | File tools and `bash` naming a dotenv file | Log and allow, deny a read or write of a dotenv file |
 | `session-compact-context` | `session/event` (`compaction/end`) | Session-prime `compact` output | Log and continue |
 | `decision-capture` | `tools/result`, `session/event`, `agent/status` | `ask_user_question` answers and late timed replies | Log and continue |
 | `goal-manage` | `agent/created`, `agent/pre-step`, `agent/turn-stopping`, `agent/status` | `/goal-dsh`, `dsh_goal`, goal brief, verify note | Log and continue, interactive only |
 | `session-start-advisories` | `agent/created` (`startup`) | The six warn-only session-start guards | Log each failing guard and continue, interactive only |
 | `session-stop-context` | `agent/disposed` | `session-stop.js` autosave | Log and continue, interactive only |
 
-Five of these can refuse a call: `dispatch-preflight-lint`, `spec-gate-enforce`, `mcp-route-guard`, `git-message-gate` and `overlay-guard`. The rest inject context, attach an advisory, record a row or ask for another step. Context adapters call `agent.inject` or return `additionalContexts`, and a core error in one of them never blocks a tool call.
+Six of these can refuse a call: `dispatch-preflight-lint`, `spec-gate-enforce`, `mcp-route-guard`, `git-message-gate`, `overlay-guard` and `env-secret-guard`. The rest inject context, attach an advisory, record a row or ask for another step. Context adapters call `agent.inject` or return `additionalContexts`, and a core error in one of them never blocks a tool call.
 
 `dispatch-audit`, `dispatch-preflight-lint`, `git-preflight-advisory`, `mcp-route-guard` and `session-start-advisories` resolve the checkout from the adapter file, not the session cwd. A dsh session runs in a lineage or scratch folder, where a cwd-relative rule tree would be empty and the lint would allow every command. `git-message-gate` is a policy gate, so a contract violation or an unreadable contract returns `deny`.
 

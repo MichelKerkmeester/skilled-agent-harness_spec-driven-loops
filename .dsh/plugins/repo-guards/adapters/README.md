@@ -5,7 +5,7 @@ trigger_phrases:
   - "repo guards adapters"
   - "dsh adapter links"
   - "dsh guard registration"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Repo Guards Adapters: One Link per DSH Adapter
@@ -28,6 +28,7 @@ version: 1.0.0.0
 | `dispatch-audit.mjs` | `tools/post-execute` on `bash` | Records dispatch audit rows under the checkout's log path. | Fails open. |
 | `dispatch-preflight-lint.mjs` | `tools/pre-execute` on `bash` | Runs the dispatch rule checks and denies a command the core rejects. | Fails closed. A core failure denies the command. |
 | `dsh-llm.mjs` | Shared loader, no event | Loads `@deepseek-ai/dsh-llm` and `@deepseek-ai/dsh-tools` from the running `dsh` binary and caches each module. | A load failure rejects to the calling adapter. |
+| `env-secret-guard.mjs` | `tools/pre-execute` on every tool | Denies a file tool or shell command that reads or writes a dotenv file, naming the value-free CLI in the reason. | Fails open. A core failure is logged and the call proceeds. |
 | `git-message-gate.mjs` | `tools/pre-execute` on Bash commands covered by the message contract | Checks the commit message contract and denies on a `ContractError`. | Logs an unexpected error and continues. A `ContractError` denies. |
 | `git-preflight-advisory.mjs` | `tools/post-execute` on Git Bash commands | Adds up to three Git preflight advisories to the result. | Fails open. |
 | `goal-context.mjs` | `agent/created` | Injects the `DSH_SPEC_FOLDER` goal chat slice. | Fails open. |
@@ -53,3 +54,7 @@ version: 1.0.0.0
 - [`../index.mjs`](../index.mjs): the bundle entry that registers these adapters.
 - [`../lineage-leaf.mjs`](../lineage-leaf.mjs): the marker plugin the lineage patch inserts.
 - [`../../../../.skilled/hooks/README.md`](../../../../.skilled/hooks/README.md): the hook library and its coverage matrix.
+
+<!-- readme-check
+allow-ref hooks/dsh/ | a folder name inside each owning skill, not a path from here; the same sentence names the full path form
+-->

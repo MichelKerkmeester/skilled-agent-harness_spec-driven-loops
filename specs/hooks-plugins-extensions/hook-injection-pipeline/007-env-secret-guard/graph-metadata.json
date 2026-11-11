@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard",
+  "spec_folder": "hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard",
+  "parent_id": "hooks-plugins-extensions/hook-injection-pipeline",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "env secret guard",
+      "dotenv guard plugin",
+      "block env file reads",
+      "hmac fingerprint dotenv",
+      "envsitter port",
+      "env secret guard plan",
+      "env secret guard tasks",
+      "env secret guard acceptance criteria",
+      "env secret guard implementation summary"
+    ],
+    "key_topics": [
+      "env",
+      "secret",
+      "guard",
+      "dotenv",
+      "plugin",
+      "block",
+      "file",
+      "reads",
+      "hmac",
+      "fingerprint",
+      "envsitter",
+      "port"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/.state/env-secret-guard.log",
+      ".skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs",
+      ".skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs",
+      ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard-after.cjs",
+      ".skilled/hooks/env-secret-guard/cli/env-secret.cjs",
+      ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs",
+      ".skilled/hooks/env-secret-guard/pi/env-secret-guard.ts",
+      ".opencode/plugins/env-secret-guard.js",
+      ".dsh/plugins/repo-guards/index.mjs",
+      "review/lineages/luna/review-report.md",
+      ".skilled/hooks/env-secret-guard/dsh/env-secret-guard.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      ".cursor/hooks.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "env-secret-guard.log",
+        "kind": "file",
+        "path": ".skilled/skills/.state/env-secret-guard.log",
+        "source": "derived"
+      },
+      {
+        "name": "env-secret-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "env-secret-watch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "env-secret-guard-after.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard-after.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "env-secret.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/env-secret-guard/cli/env-secret.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "env-secret-guard.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/env-secret-guard/pi/env-secret-guard.ts",
+        "source": "derived"
+      },
+      {
+        "name": "env-secret-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/env-secret-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "index.mjs",
+        "kind": "file",
+        "path": ".dsh/plugins/repo-guards/index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/lineages/luna/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "env-secret-guard.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/env-secret-guard/dsh/env-secret-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An agent in a Skilled checkout can read, edit or patch a `.env` file on every runtime this repository supports",
+    "created_at": "2026-11-10T14:52:41Z",
+    "last_save_at": "2026-11-11T06:07:03.302Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f323661ada4d36ba9f2e8f50f1756d1c7b9937434426cb0821f9474b4a9cff8a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "55c43dbb52034189a1313b355d7a8e3beda382424c03bf49b683f5eaabb0415d",
+      "plan.md": "fbfa46051fd5b7ed613da9fefc0a9df3d2f971b6d85a8606e10da3e65163d6c3",
+      "tasks.md": "f716e675d03f09efdbef4a0614fda824c25dfb5823b8e1077b03d1ecc6c5a4c6",
+      "implementation-summary.md": "d45fe35b0c5b3bd3e3163617df9e10cbe8141592bb9ecf1fcaab6ddfc29a473c"
+    },
+    "last_active_at": null
+  }
+}

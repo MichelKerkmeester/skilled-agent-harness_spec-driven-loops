@@ -6,7 +6,7 @@ trigger_phrases:
   - "upgrade-legacy downgrades"
   - "upgrade-baseline.json"
   - "grouped detail upgrade-legacy"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Upgrade-legacy Downgrades and grouped detail (upgrade-legacy.mjs)
@@ -57,7 +57,7 @@ A packet whose top-level link resolves outside the packet is refused before its 
 
 | File | Type | Role |
 |------|------|------|
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts` | Vitest | Checks that the dry run Downgrades match the baseline the apply run records |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy-core-a.vitest.ts` | Vitest | Checks that the dry run Downgrades match the baseline the apply run records |
 | `.skilled/skills/system-spec-kit/runtime/tests/upgrade-baseline.vitest.ts` | Vitest | Checks which recorded entries are downgraded and which stay errors |
 
 ---

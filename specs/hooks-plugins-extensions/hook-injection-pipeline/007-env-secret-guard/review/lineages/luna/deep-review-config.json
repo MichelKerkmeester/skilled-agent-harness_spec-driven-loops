@@ -1,0 +1,161 @@
+{
+  "topic": "Review: env-secret-guard across runtimes, inspection tools, and documentation",
+  "sessionId": "fanout-luna-1794335564064-t156gg",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 4,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard",
+  "createdAt": "2026-11-10T18:42:03Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewFocus": "The env-secret-guard change: core .skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs, its runtime adapters (Claude, Codex, Cursor, Devin, Pi, DSH, OpenCode plugin), the hook-registry entry, CE-P06/CE-P07 playbook scenarios and the docs that list it. Hunt for dotenv reads or writes the guard misses, false denials, value leaks from the inspection tools, and doc claims the code does not back. Never open a real .env file.",
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/spec.md",
+    "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/plan.md",
+    "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/tasks.md",
+    "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/description.json",
+    ".skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs",
+    ".skilled/hooks/env-secret-guard/cli/env-secret.cjs",
+    ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs",
+    ".skilled/hooks/env-secret-guard/pi/env-secret-guard.ts",
+    ".pi/extensions/env-secret-guard.ts",
+    ".skilled/hooks/env-secret-guard/dsh/env-secret-guard.mjs",
+    ".dsh/plugins/repo-guards/index.mjs",
+    ".opencode/plugins/env-secret-guard.js",
+    ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+    ".claude/settings.json",
+    ".codex/hooks.json",
+    ".cursor/hooks.json",
+    ".devin/hooks.v1.json",
+    ".skilled/hooks/env-secret-guard/lib/env-secret-guard.test.cjs",
+    ".skilled/hooks/env-secret-guard/tests/dsh-env-secret-guard.test.mjs",
+    ".opencode/plugins/tests/env-secret-guard.test.cjs",
+    ".skilled/hooks/env-secret-guard/README.md",
+    ".skilled/hooks/README.md",
+    ".skilled/hooks/injection-contract.md",
+    ".claude/hooks/README.md",
+    ".codex/hooks/README.md",
+    ".cursor/hooks/README.md",
+    ".devin/hooks/README.md",
+    ".opencode/plugins/README.md",
+    ".opencode/plugins/ARCHITECTURE.md",
+    ".pi/extensions/README.md",
+    ".dsh/SYNC.md",
+    ".dsh/plugins/repo-guards/README.md",
+    ".dsh/plugins/repo-guards/adapters/README.md",
+    ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+    ".skilled/skills/cli-external-orchestration/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/env-secret-guard-protect-from-edit-conversation.md",
+    ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/env-secret-guard-inspect-without-values-conversation.md",
+    ".skilled/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
+    ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+    ".skilled/changelog/skilled/v4.0.2.1.md"
+  ],
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

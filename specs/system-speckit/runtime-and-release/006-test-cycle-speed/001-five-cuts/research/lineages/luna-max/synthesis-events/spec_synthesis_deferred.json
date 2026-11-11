@@ -1,0 +1,1 @@
+{"type":"spec_mutation","event":"spec_synthesis_deferred","reason":"Generated findings writeback targets the parent spec.md outside the dispatched lineage-only write boundary; the synthesis was recorded without modifying that file.","generatedFence":"deep-research/spec-findings","timestamp":"2026-11-10T17:54:13Z"}

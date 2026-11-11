@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed",
+  "description": "Make the Skilled test cycle faster, one measured change at a time; closes when the CI runner timing is recorded and every follow-up cut is built or re",
+  "keywords": [
+    "skilled",
+    "test",
+    "cycle",
+    "faster",
+    "one",
+    "measured",
+    "change",
+    "time",
+    "closes",
+    "runner",
+    "timing",
+    "recorded",
+    "every",
+    "follow-up",
+    "cut",
+    "rejected",
+    "evidence"
+  ],
+  "lastUpdated": "2026-11-10T18:27:35.859Z",
+  "specId": "006",
+  "folderSlug": "test-cycle-speed",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

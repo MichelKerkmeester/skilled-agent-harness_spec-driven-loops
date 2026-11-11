@@ -10,7 +10,7 @@ trigger_phrases:
   - "is hook output visible"
 importance_tier: "important"
 contextType: "reference"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Hook & Plugin Injection Contract
@@ -279,7 +279,7 @@ A fan-out leaf, marked by the lineage patch, keeps every guard and skips the fou
 |---|---|---|
 | Skill advisor brief | `agent/pre-step` | Appended `repo-guards` message, interactive only |
 | Spec-gate classification | `agent/pre-step` | Appended `repo-guards` message |
-| Spec-gate enforcement, dispatch preflight lint, MCP route guard, overlay guard and the sk-git message gate | `tools/pre-execute` | `[BLOCK]`, a `deny` with its reason |
+| Spec-gate enforcement, dispatch preflight lint, MCP route guard, overlay guard, dotenv guard and the sk-git message gate | `tools/pre-execute` | `[BLOCK]`, a `deny` with its reason |
 | Task dispatch guard | `tools/pre-execute` | `[LOG]`. Warnings and audits go to the guard's state folder, and the call is never denied |
 | Dispatch audit | `tools/post-execute` | `[LOG]` |
 | Injection screen, post-edit quality and the sk-git preflight advisory | `tools/post-execute` | `additionalContexts` on the tool result |
@@ -316,4 +316,4 @@ The bundle README, [`../../.dsh/plugins/repo-guards/README.md`](../../.dsh/plugi
 - [`../../.opencode/plugins/README.md`](../../.opencode/plugins/README.md): full OpenCode plugin inventory and hook-event model this doc's OpenCode column cites.
 - [`../../.pi/extensions/README.md`](../../.pi/extensions/README.md): Pi's own extension inventory, including the `session_compact`-untraced caveat this doc's §4 repeats.
 - [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors this doc cross-links from.
-- [`README.md`](./README.md): why the real cores of `dispatch`, `mcp-route-guard`, `overlay-guard`, `post-edit-quality`, `task-dispatch`, `classifier-injection-screen`, `goal`, `decision-capture` and `session-relaunch` live under `.skilled/hooks/` instead of `.skilled/skills/`, while every skill-owned hook in this doc stays inside its owning skill.
+- [`README.md`](./README.md): why the real cores of `dispatch`, `mcp-route-guard`, `overlay-guard`, `env-secret-guard`, `post-edit-quality`, `task-dispatch`, `classifier-injection-screen`, `goal`, `decision-capture` and `session-relaunch` live under `.skilled/hooks/` instead of `.skilled/skills/`, while every skill-owned hook in this doc stays inside its owning skill.

@@ -1676,6 +1676,103 @@
       "pi": {
         "extension": "ask-surface-guard.ts"
       }
+    },
+    {
+      "id": "env-secret-guard",
+      "concern": "Refuse a file tool or shell command that would read or write a dotenv file, naming the value-free way to inspect it, then undo a dotenv write and report a dotenv value in a shell call's output",
+      "bindings": {
+        "claude": [
+          {
+            "event": "PreToolUse",
+            "group": 6,
+            "slot": 0,
+            "matcher": "Read|Write|Edit|MultiEdit|NotebookEdit|Grep|Bash",
+            "runner": "node",
+            "script": ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          },
+          {
+            "event": "PostToolUse",
+            "group": 5,
+            "slot": 0,
+            "matcher": "Bash",
+            "runner": "node",
+            "script": ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard-after.cjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "PreToolUse",
+            "group": 4,
+            "slot": 0,
+            "matcher": "exec|Bash|apply_patch|edit|read_file",
+            "runner": "node",
+            "script": ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          },
+          {
+            "event": "PostToolUse",
+            "group": 3,
+            "slot": 0,
+            "matcher": "exec|Bash",
+            "runner": "node",
+            "script": ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard-after.cjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "preToolUse",
+            "group": 0,
+            "slot": 6,
+            "matcher": null,
+            "runner": "node",
+            "script": ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs",
+            "timeout": 10,
+            "fallback": "none"
+          },
+          {
+            "event": "postToolUse",
+            "group": 0,
+            "slot": 1,
+            "matcher": null,
+            "runner": "node",
+            "script": ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard-after.cjs",
+            "timeout": 10,
+            "fallback": "none"
+          }
+        ],
+        "devin": [
+          {
+            "event": "PreToolUse",
+            "group": 4,
+            "slot": 0,
+            "matcher": "^(read|edit|write|grep|exec|multiedit|patch|apply_patch|apply-patch|bash|run-command|run_command)$",
+            "runner": "node",
+            "script": ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs",
+            "timeout": 10,
+            "fallback": "none"
+          },
+          {
+            "event": "PostToolUse",
+            "group": 4,
+            "slot": 0,
+            "matcher": "^(exec|bash|run-command|run_command)$",
+            "runner": "node",
+            "script": ".skilled/hooks/env-secret-guard/command-hook/env-secret-guard-after.cjs",
+            "timeout": 10,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "env-secret-guard.ts"
+      }
     }
   ]
 }

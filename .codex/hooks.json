@@ -119,6 +119,16 @@
             "timeout": 10
           }
         ]
+      },
+      {
+        "matcher": "exec|Bash|apply_patch|edit|read_file",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=PreToolUse adapter=env-secret-guard.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
+            "timeout": 10
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -148,6 +158,16 @@
             "type": "command",
             "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-relaunch/codex/context-nudge.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=PostToolUse adapter=context-nudge.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
             "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "exec|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/env-secret-guard/command-hook/env-secret-guard-after.cjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=PostToolUse adapter=env-secret-guard-after.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
+            "timeout": 10
           }
         ]
       }

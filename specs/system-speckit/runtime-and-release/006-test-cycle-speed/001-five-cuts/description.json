@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts",
+  "description": "A local `npm test` in `system-spec-kit/runtime` took 1767 seconds on the v4.0.2.1 work",
+  "keywords": [
+    "local",
+    "npm",
+    "test",
+    "system-spec-kit",
+    "runtime",
+    "took",
+    "seconds",
+    "work"
+  ],
+  "lastUpdated": "2026-11-10T16:42:37.113Z",
+  "specId": "001",
+  "folderSlug": "five-cuts",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "10-11-26_13-21__plan-a-faster-simpler-test-cycle.md",
+    "10-11-26_14-28__built-cut-1-of-the-test-cycle-plan-the-spec-kit.md",
+    "10-11-26_17-37__built-all-five-test-cycle-cuts-deep-loop-suite.md"
+  ]
+}

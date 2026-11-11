@@ -36,11 +36,11 @@ This folder holds the `--patch` layers the repository owns. Model selection belo
 
 ### Repo-guards adapters
 
-The bundle registers twenty-one adapters. `.dsh/plugins/repo-guards/README.md` section 4 owns the full table with each adapter's event, scope, leaf behavior and error policy. The real adapters live in the hook library, `.skilled/hooks/<concern>/dsh/` or the owning skill's `hooks/dsh/` folder, and `adapters/` holds one relative link per adapter, the layout `.pi/extensions/` uses.
+The bundle registers twenty-two adapters. `.dsh/plugins/repo-guards/README.md` section 4 owns the full table with each adapter's event, scope, leaf behavior and error policy. The real adapters live in the hook library, `.skilled/hooks/<concern>/dsh/` or the owning skill's `hooks/dsh/` folder, and `adapters/` holds one relative link per adapter, the layout `.pi/extensions/` uses.
 
 | Adapter group | Adapters | Fan-out leaf |
 |---|---|---|
-| Deny or ask | `dispatch-preflight-lint`, `spec-gate-enforce`, `mcp-route-guard`, `git-message-gate`, `overlay-guard` | runs |
+| Deny or ask | `dispatch-preflight-lint`, `spec-gate-enforce`, `mcp-route-guard`, `git-message-gate`, `overlay-guard`, `env-secret-guard` | runs |
 | Advise, audit or attach | `dispatch-audit`, `task-dispatch-guard`, `post-edit-quality`, `classifier-injection-screen`, `git-preflight-advisory`, `completion-evidence`, `spec-gate-classify` | runs |
 | Send back | `ask-surface-guard` | off: a leaf has no question tool |
 | Context and capture | `goal-context`, `session-start-context`, `session-compact-context`, `decision-capture` | runs |
