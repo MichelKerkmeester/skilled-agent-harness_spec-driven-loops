@@ -49,7 +49,6 @@ upstream_assets:
 inputs:
   execution_mode: "INTERACTIVE"
   root: "Required target project repository, passed as --root <dir>. The engine requires it to exist and be a directory."
-  source: "Optional Skilled checkout path, passed as --source <dir>. When omitted, the engine resolves its checkout root from its own script path."
   runtimes: "Optional comma-separated runtime names: claude,opencode,codex,cursor,devin,pi. When omitted, the engine selects runtimes whose primary entry already exists in the target root. The core entry is always included."
   mode: "Optional layout mode: auto, whole or merge. The default is auto."
   include: "Optional comma-separated extras: repo-rules,github,utcp,env."
@@ -72,7 +71,7 @@ execution:
   phase_2_plan:
     purpose: "Resolve the exact actions without writing"
     activities:
-      - "Run node .skilled/commands/doctor/scripts/symlink-engine.cjs plan --root \"{root}\", adding --source \"{source}\" when supplied, --runtimes \"{runtimes}\" when supplied, --mode \"{mode}\" when supplied, --include \"{include}\" when supplied, --link-instructions when requested and --ignore \"{ignore}\" when supplied."
+      - "Run node .skilled/commands/doctor/scripts/symlink-engine.cjs plan --root \"{root}\", adding --runtimes \"{runtimes}\" when supplied, --mode \"{mode}\" when supplied, --include \"{include}\" when supplied, --link-instructions when requested and --ignore \"{ignore}\" when supplied."
       - "Keep the engine's exact entry lines, details, warnings, action lines, refusals and PLAN DIGEST line. The plan is the only description the question and apply may use."
       - "Exit 0 with NOTHING TO DO means the plan has no actions. Render the unchanged result with the engine's digest, ask nothing and do not run apply."
       - "A refusal in the plan stays visible and is never applied. Show every refusal beside the actions that can run."
@@ -91,7 +90,7 @@ execution:
     purpose: "Apply only after the operator approves this run's plan and digest"
     activities:
       - "Continue only when digest_confirmation is true, after the operator approved this run's plan and digest."
-      - "Run node .skilled/commands/doctor/scripts/symlink-engine.cjs apply --root \"{root}\" --plan-digest \"{plan_digest}\", with exactly the same optional flags that plan used: --source \"{source}\", --runtimes \"{runtimes}\", --mode \"{mode}\", --include \"{include}\", --link-instructions and --ignore \"{ignore}\"."
+      - "Run node .skilled/commands/doctor/scripts/symlink-engine.cjs apply --root \"{root}\" --plan-digest \"{plan_digest}\", with exactly the same optional flags that plan used: --runtimes \"{runtimes}\", --mode \"{mode}\", --include \"{include}\", --link-instructions and --ignore \"{ignore}\"."
       - "Exit 0 means apply completed. Keep the engine's action lines, run record path, check summary and undo command as printed. The undo command uses node .skilled/commands/doctor/scripts/symlink-engine.cjs unlink --run <dir> --dry-run."
       - "Exit 1 means apply failed part-way. The run record lists the actions already applied. Quote the engine message and report that record. Do not retry apply automatically."
       - "Exit 2 means the invocation or root was refused. Quote the engine message and end with STATUS=FAIL."

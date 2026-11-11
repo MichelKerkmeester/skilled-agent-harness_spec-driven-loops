@@ -41,7 +41,6 @@ upstream_assets:
 inputs:
   execution_mode: "INTERACTIVE"
   root: "Required target project repository, passed as --root <dir>. The engine requires it to exist and be a directory."
-  source: "Optional Skilled checkout path, passed as --source <dir>. When omitted, the engine resolves its checkout root from its own script path."
   runtimes: "Optional comma-separated runtime names, passed as --runtimes <list> when supplied: claude,opencode,codex,cursor,devin,pi. When omitted, the engine selects runtimes whose primary entry already exists in the target root. The core entry is always included."
   include: "Optional comma-separated extras, passed as --include <list> when supplied: repo-rules,github,utcp,env."
   link_instructions: "When true, pass --link-instructions to include AGENTS.md, CLAUDE.md and REPO RULES.md."
@@ -54,7 +53,7 @@ inputs:
 execution:
   steps:
     - "Check that .skilled/commands/doctor/scripts/symlink-engine.cjs, .skilled/commands/doctor/assets/symlink-manifest.json and .skilled/commands/doctor/assets/doctor-symlink-presentation.txt exist. If one is missing, report its path and stop with STATUS=FAIL. Do not create the presentation file here."
-    - 'Run node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root "{root}", adding --source "{source}" when supplied, --runtimes "{runtimes}" when supplied, --include "{include}" when supplied, --link-instructions when requested and --json when requested.'
+    - 'Run node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root "{root}", adding --runtimes "{runtimes}" when supplied, --include "{include}" when supplied, --link-instructions when requested and --json when requested.'
     - "The engine reports one status for each selected manifest entry, with detail lines for missing children, broken links and local conflicts. It also reports detected runtimes, tracked absolute links, Git state and applicable warnings."
     - "Exit 0 means no drift was found. Exit 1 means drift was found: broken links, foreign links, broken links inside merged folders, a missing source, or tracked absolute links. Missing children in a partial merge do not count as drift. Show the report and end with STATUS=WARN. Exit 2 means the invocation or target root was refused. Quote the engine message and end with STATUS=FAIL."
     - "Render the engine output through .skilled/commands/doctor/assets/doctor-symlink-presentation.txt. When --json was requested, print the engine's JSON object alone."
