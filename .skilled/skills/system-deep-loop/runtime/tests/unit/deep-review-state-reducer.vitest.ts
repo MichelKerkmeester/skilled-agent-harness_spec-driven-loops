@@ -495,3 +495,29 @@ describe('reduceReviewState: numbered finding narrative', () => {
     expect(summarize(registry).map((row) => row[0])).toEqual(['F001', 'F002']);
   });
 });
+
+describe('reduceReviewState — dashboard iteration rows', () => {
+  it('shows a corrected attempt once when its run value is not a number', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'corrected-attempt' }));
+    const attempt = (run: string, focus: string) => JSON.stringify({
+      type: 'iteration',
+      iteration: 1,
+      run,
+      focus,
+      dimensions: ['correctness'],
+      newFindingsRatio: 0.5,
+      status: 'complete',
+    });
+    writeFileSync(
+      join(reviewDir, 'deep-review-state.jsonl'),
+      `${attempt('attempt-a', 'first attempt')}\n${attempt('attempt-b', 'corrected attempt')}\n`,
+    );
+    writeFileSync(join(reviewDir, 'deep-review-strategy.md'), '# Deep Review Strategy\n');
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+
+    expect(result.dashboard).toContain('corrected attempt');
+    expect(result.dashboard).not.toContain('first attempt');
+  });
+});

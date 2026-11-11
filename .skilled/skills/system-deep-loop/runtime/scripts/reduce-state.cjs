@@ -2008,9 +2008,11 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
 }
 
 function renderDashboard(config, registry, iterationRecords, iterationFiles) {
+  // Deduplication keys on the numeric iteration, so a run label must never replace
+  // it: a corrected attempt carrying a text run value would show as a second row.
   const dashboardIterationRecords = latestIterationRecords(iterationRecords.map((record) => (
     record?.type === 'iteration'
-      ? { ...record, iteration: record.run ?? record.iteration }
+      ? { ...record, iteration: getIterationRun(record) ?? record.run }
       : record
   )));
   const latestIteration = dashboardIterationRecords.filter((record) => record.type === 'iteration').at(-1);
