@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────────────────────
 # DEEP RESEARCH: AUTONOMOUS DEEP RESEARCH LOOP (AUTO MODE)
 # ─────────────────────────────────────────────────────────────────
-# YAML PREDICATE GRAMMAR CONTRACT (S7 / M11):
+# YAML PREDICATE GRAMMAR CONTRACT:
 # - This asset does not currently use typed BooleanExpr predicates under
 #   `when:`; flow control is branch-label-driven (`on_resume`, `on_fresh`,
 #   `on_restart`, etc.). Retain the existing shape.
@@ -11,7 +11,7 @@
 # - See `.skilled/skills/system-spec-kit/shared/predicates/boolean-expr.ts`
 #   for the canonical BooleanExpr grammar.
 #
-# GATE 3 CLASSIFICATION (T-YML-DPR-01 / paired with T-DOC-03 R50-001):
+# GATE 3 CLASSIFICATION:
 # - `resume` is a tested WRITE-PATH that produces `iteration-NNN.md` files
 #   and JSONL state-log appends. The workflow classifies resume as
 #   write-path below (see `gate3_classification` fields) so Gate 3 trigger
@@ -313,8 +313,8 @@ workflow:
         outputs:
           - session_state: "fresh | resume | completed-session | invalid-state"
         on_resume:
-          # T-YML-DPR-01 / R50-001: Resume is a WRITE-PATH. Produces `iteration-NNN.md` + JSONL appends.
-          # Paired with T-DOC-03 Gate 3 trigger addition (resume, save context, save memory, /speckit:save).
+          # Resume is a WRITE-PATH. Produces `iteration-NNN.md` + JSONL appends.
+          # Gate 3 lists it as a trigger beside save context, save memory and /speckit:save.
           gate3_classification: write-path
           gate3_rationale: "resume produces iteration-NNN.md writes and JSONL state-log appends"
           log: "Auto-resume: state artifacts are complete and consistent. Continue the same lineage (sessionId unchanged, generation unchanged, no archive)."
@@ -2430,7 +2430,7 @@ workflow:
         skip_when: "config.fanout_lineage_artifact_dir is present"
         action: "Stage all skill-owned artifacts under artifact_dir for the operator's next git commit"
         command: 'git add -- "{state_paths.packet_dir}" ":(exclude){state_paths.packet_dir}/.deep-research.lock" ":(exclude){state_paths.packet_dir}/.deep-research-pause" ":(exclude){state_paths.packet_dir}/.deep-research-run-now" ":(exclude){state_paths.packet_dir}/.legacy-projection-watermarks"'
-        note: "Skill-owned contract fix (028): without this stage step, operators who do `git add research-report.md` lose the iteration trail (iterations/, deltas/, state.jsonl, strategy, etc.). Staging the whole artifact_dir keeps the audit trail intact. Operators retain commit authority and can `git restore --staged {path}` to unstage anything before commit. Failure is non-fatal: log warning and continue. The exclude pathspecs keep the live lock file, the pause and run-now sentinels, and the legacy projection watermark directory out of the index; locks-and-fencing-v1, ledgers, deltas, iterations and the state log stay staged."
+        note: "Skill-owned contract: without this stage step, operators who do `git add research-report.md` lose the iteration trail (iterations/, deltas/, state.jsonl, strategy, etc.). Staging the whole artifact_dir keeps the audit trail intact. Operators retain commit authority and can `git restore --staged {path}` to unstage anything before commit. Failure is non-fatal: log warning and continue. The exclude pathspecs keep the live lock file, the pause and run-now sentinels, and the legacy projection watermark directory out of the index; locks-and-fencing-v1, ledgers, deltas, iterations and the state log stay staged."
         on_fail: "Log warning. Do not block synthesis. The artifact_dir may be outside a git repo (e.g., temp test fixture) which is a valid case."
 
   # ═══════════════════════════════════════════════════════════════
