@@ -5,7 +5,7 @@ trigger_phrases:
   - "cli-classifier hub"
   - "local classifier hub"
   - "jev judgment hub"
-version: 0.8.6.0
+version: 0.8.7.0
 ---
 
 # cli-classifier
@@ -108,6 +108,9 @@ Releases live in `changelog/` with one file per release, named `v[version].md`. 
 
 | Release | Entry |
 |---|---|
+| v0.8.9.0 | [`changelog/v0.8.9.0.md`](./changelog/v0.8.9.0.md) |
+| v0.8.8.0 | [`changelog/v0.8.8.0.md`](./changelog/v0.8.8.0.md) |
+| v0.8.7.0 | [`changelog/v0.8.7.0.md`](./changelog/v0.8.7.0.md) |
 | v0.8.6.0 | [`changelog/v0.8.6.0.md`](./changelog/v0.8.6.0.md) |
 | v0.8.5.0 | [`changelog/v0.8.5.0.md`](./changelog/v0.8.5.0.md) |
 | v0.8.4.0 | [`changelog/v0.8.4.0.md`](./changelog/v0.8.4.0.md) |

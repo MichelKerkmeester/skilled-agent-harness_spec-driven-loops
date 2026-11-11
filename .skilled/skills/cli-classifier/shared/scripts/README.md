@@ -5,7 +5,7 @@ trigger_phrases:
   - "jev transport"
   - "pi classifier transport"
   - "cli-classifier shared scripts"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Jev transport scripts
@@ -14,7 +14,7 @@ version: 1.0.2.0
 
 ## 1. OVERVIEW
 
-`shared/scripts/` holds the three shared helpers the classifier callers import: the transport that answers a jev `choice` or `noul` question, the one gate the four measured features ask before they run, and the report pieces the classifier scorers share.
+`shared/scripts/` holds the three shared helpers the classifier callers import: the transport that answers a jev `choice` or `noul` question, the one gate the two measured features ask before they run, and the report pieces the classifier scorers share.
 
 Use this folder when you need to inspect or change the shared Jev transport, feature gate or scorer-report helpers.
 
@@ -52,7 +52,7 @@ shared/scripts/
 
 **`jev-features.mjs`**
 
-- Is the one gate the four measured features ask before they run.
+- Is the one gate the two measured features, `cite-drift` and `injection-screen`, ask before they run.
 - `featureSwitch` resolves the `JEV_FEATURES` master switch, the feature's own switch and its older names from the environment first and then from the hook-flags file.
 - `featureReady` adds the readiness check, one bounded `jev auth status --provider <JEV_PROVIDER>` that runs only after the switch allows it.
 - A closed gate returns its reason and spawns nothing, so an off switch never touches the CLI.
