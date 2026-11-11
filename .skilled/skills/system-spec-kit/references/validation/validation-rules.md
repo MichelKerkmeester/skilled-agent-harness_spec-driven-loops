@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.7.13.0
+version: 2.7.14.0
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -155,7 +155,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 
 ### AC_COVERAGE
 
-`AC_COVERAGE` is registered at INFO severity and runs by default; set `SPECKIT_AC_COVERAGE=false` to opt out. The rule is advisory: it reports the coverage denominator, covered count, configured floor, manual-infeasible escape hatch status, malformed evidence citations, and unresolved evidence citations without adding strict warnings or errors. A citation is unresolved when its file is not found as an absolute path, in the packet folder or under the repository root, or when its line is outside that file, and it still counts toward the covered count. `SPECKIT_AC_COVERAGE_ENFORCE=true` turns an under-floor result into a failure. The floor is aspirational today: across the repository about one in five criteria marked Met cites a `file:line`, so enabling the switch fleet-wide would fail most closed packets until their Verification cells are retro-cited.
+`AC_COVERAGE` is registered at INFO severity and runs by default; set `SPECKIT_AC_COVERAGE=false` to opt out. The rule is advisory: it reports the coverage denominator, covered count, configured floor, manual-infeasible escape hatch status, malformed evidence citations, and unresolved evidence citations without adding strict warnings or errors. A citation is unresolved when its file is not found as an absolute path, in the packet folder or under the repository root, or when its line is outside that file, and it still counts toward the covered count. `SPECKIT_AC_COVERAGE_ENFORCE=true` turns an under-floor result into a failure for a packet created after the coverage cutoff, and leaves an older packet advisory. The floor is aspirational today: across the repository about one in five criteria marked Met cites a `file:line`, so enabling the switch fleet-wide would fail most closed packets until their Verification cells are retro-cited.
 
 **Rule ID:** `AC_COVERAGE`  
 
@@ -175,7 +175,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | --- | --- | --- |
 | `SPECKIT_AC_TRACEABILITY_TEMPLATE` | `false` | Reserved opt-in for future scaffold template rendering of traceability rows. |
 | `SPECKIT_AC_COVERAGE` | `true` | Runs the advisory validation scan by default; set to `false` to opt out. |
-| `SPECKIT_AC_COVERAGE_ENFORCE` | `false` | Reserved promotion switch; current rule remains INFO/advisory. |
+| `SPECKIT_AC_COVERAGE_ENFORCE` | `false` | `true` fails an under-floor result for a packet created after the coverage cutoff. An older packet stays advisory, and the default keeps every packet advisory. |
 | `SPECKIT_AC_COVERAGE_FLOOR` | `0.9` | Sets the advisory coverage floor, clamped to `[0,1]`. |
 
 ### Non-Breaking Completion Freshness Rollout
