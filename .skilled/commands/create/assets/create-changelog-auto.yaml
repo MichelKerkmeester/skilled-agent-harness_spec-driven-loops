@@ -760,6 +760,7 @@ workflow:
       - "Run: git push origin {release_tag}"
       - "Run: gh release create {release_tag} --title \"{release_title}\" --notes-file {notes_file_path}"
       - "Capture the release URL returned by gh release create"
+      - "State the rollback in the completion report whenever release_published = true. A published release is undone with `gh release delete {release_tag} --yes`, then `git push --delete origin {release_tag}`, then `git tag -d {release_tag}`"
       - |
         ON success:
           Set release_published = true

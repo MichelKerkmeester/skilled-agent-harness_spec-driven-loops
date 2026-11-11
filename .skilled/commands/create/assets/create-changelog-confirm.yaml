@@ -677,7 +677,7 @@ workflow:
       - "Verify `gh` CLI is available and authenticated: run `gh auth status`. IF unavailable/unauthenticated -> STOP, report, set release_published = false, set release_published_display = \"No -- gh CLI unavailable or unauthenticated\"; do not attempt tag/release"
       - "Build the release notes body: run `python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/build_release_notes.py {output_path} --out /tmp/release-notes-{release_tag}.md` and use that file as {notes_file_path}. It drops the YAML frontmatter and the editorial title H1, keeps the entry's spacing and appends the &nbsp; line and the Full changelog pointer. Exit 2 means the entry could not be read: PAUSE and report it"
       - "Compose the exact commands: `git tag -a {release_tag} -m \"{tag_message}\"`, `git push origin {release_tag}`, `gh release create {release_tag} --title \"{release_title}\" --notes-file {notes_file_path}`"
-      - "Present the checkpoint below showing the literal tag name and the exact commands. Only execute after explicit Approve."
+      - "Present the checkpoint below showing the literal tag name, the exact commands and the rollback: `gh release delete {release_tag} --yes`, then `git push --delete origin {release_tag}`, then `git tag -d {release_tag}`. Only execute after explicit Approve."
       - |
         ON approve:
           Run the three composed commands in order
