@@ -57,6 +57,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` exits 0
 - [x] `ci-hub-vocabulary-source.cjs` prints `drift=0`
 - [x] The three failing Spec-Kit test files pass in the CLI vitest project
+- [x] The full CLI vitest project passes locally three runs in a row
 - [x] `gh run list --branch main` shows the five workflows as `success` on the commit with the fixes
 <!-- /ANCHOR:completion -->
 
@@ -84,5 +85,5 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | The staleness checker had two Linux-only causes | Only Bash 3.2 is installed here. CI on `68359fb3b6` confirmed the array length fix and exposed three bare `(( ))` counters, fixed in `f15ba37e94` |
-| Two CLI tests timed out in the full local run | They pass alone and did not fail in CI, so they are outside this packet |
+| Two CLI tests timed out in the full local run | Reopened on 2026-11-11 at the operator's request. The cause was lock starvation between processes, fixed in `c6a15ded43` |
 <!-- /ANCHOR:log -->

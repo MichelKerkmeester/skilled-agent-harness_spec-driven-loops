@@ -56,6 +56,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-003 | Given the phrase in the harness intent, When the vocabulary guard and the other routing workflow steps run, Then the guard prints `drift=0` and every step exits 0 | `.skilled/skills/cli-external-orchestration/ROUTER.md:119`. The guard printed `checked=7 hub(s), drift=0` and `RESULT: PASSED`. The parity suites passed 22 tests and the scorer gates 53 | Met | - |
 | AC-004 | REQ-004 | Given the three repairs, When the three test files run in the CLI vitest project, Then all pass | `.skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts:106`. The run printed `Test Files 3 passed (3)` and `Tests 18 passed (18)` | Met | - |
 | AC-005 | REQ-005 | Given the fixes on main, When the workflows run on that commit, Then all five conclude `success` | `.github/workflows/spec-kit-check.yml:1`. Chart Corpus run 42986319009 and Diagram Corpus run 42986318839 on `68359fb3b6`, Spec-Kit Check on `4207a2b4a5`, sk-doc Script Tests and Routing Registry Drift Guard on `5524f2ee48`, all `success` | Met | - |
+| AC-006 | REQ-006 | Given the lock pause and the 25 ms poll, When the full CLI vitest project runs locally, Then no test times out | `.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts:890`. Three full runs in a row printed `Tests 2520 passed`. The longest traced lock wait fell from 26236 ms to 6363 ms | Met | - |
 
 ### Status values
 

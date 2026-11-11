@@ -81,10 +81,10 @@ Spec-Kit Check, CLI project:
 - Change the two corpus workflows to pass test files to `node --test` as a glob, which Node 22 accepts, and show the same form in the six READMEs that document it.
 - Refresh the two sk-doc README baselines after the tree changes that made them stale.
 - Add the phrase "opencode go route" to the DeepSeek harness intent in the CLI hub's `ROUTER.md` and carry it into the derived metadata.
+- Stop two CLI tests from timing out in a full local run, by letting a waiting process take the workflow lock between another process's queued saves. Added on 2026-11-11 after the packet first closed.
 - Fix the three Spec-Kit test failures: the binding count, the copy race on `.workflow-lock` and the array length expansion in the staleness checker.
 
 ### Out of Scope
-- Two CLI tests that time out at 30 seconds in a full local run - they pass alone and did not fail in CI.
 - A version bump or release note for the CLI hub - the change adds one keyword that the hub router already carried.
 
 ### Files to Change
@@ -105,6 +105,7 @@ Spec-Kit Check, CLI project:
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts` | Modify | Expect 116 bindings |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy-host-root.vitest.ts` | Modify | Leave `.workflow-lock` out of the copy |
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh` | Modify | Read the array length without a default |
+| `.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts` | Modify | Pause before re-taking a released lock, poll every 25 ms |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -127,6 +128,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement |
 |----|-------------|
 | REQ-005 | All five workflows conclude `success` on the main commit that carries these fixes. |
+| REQ-006 | The full CLI vitest project passes locally with no test timing out on the workflow lock. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -178,7 +180,7 @@ N/A: the packet changes CI commands, test fixtures and one routing keyword. It r
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 8/25 | 16 files, about 20 hand-written lines, two regenerated baselines |
+| Scope | 8/25 | 17 files, about 20 hand-written lines, two regenerated baselines |
 | Risk | 5/25 | CI commands and test fixtures, one routing keyword |
 | Research | 8/20 | Five separate root causes to trace |
 | **Total** | **21/70** | **Level 2** |

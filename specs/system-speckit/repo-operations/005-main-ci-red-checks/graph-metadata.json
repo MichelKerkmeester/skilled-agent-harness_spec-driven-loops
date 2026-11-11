@@ -54,7 +54,8 @@
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy-host-root.vitest.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh"
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts"
     ],
     "entities": [
       {
@@ -160,6 +161,12 @@
         "source": "derived"
       },
       {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,17 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Five workflows fail on every push to main: Chart Corpus, Diagram Corpus, sk-doc Script Tests, Routing Registry Drift Guard and Spec-Kit Check",
     "created_at": "2026-11-11T07:47:57Z",
-    "last_save_at": "2026-11-11T09:46:26.255Z",
+    "last_save_at": "2026-11-11T10:29:06.155Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c1d4bf86ab413183a44bbfddaf7c72c73ff2477e29ee880d8291e6f7ac24be8",
+    "source_fingerprint": "sha256:300da41e6f44a480ba64a24218522a8fc351c159cf558c10c99bff6f0ab11452",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "44c8f0fcd104070f571197fbb5892c197a3f09f334dd5bda2a3d1d6d2da14474",
+      "spec.md": "a776cc2b607341250eeb13a9b5a08b2bf225c77287d375e934ff34c1687c8ff8",
       "plan.md": "d2c53c387d0230ebe3c71699da3a0b50877976c6af0b50db67877f4f25bba632",
-      "tasks.md": "ec0b6537560a781e2fa4dac4fc0afc2e3e7acd35be097ac094c27e4b94b52502",
-      "implementation-summary.md": "18d8aab070754efd733a28c6a67a72b7e191b2309fb38070887e0d42475e59c5"
+      "tasks.md": "ee7246a3be8e5ab2d4c6e2be9f311be37fc98858fcaa4dc23166b5d5fa1926cd",
+      "implementation-summary.md": "1677c5155f2b62280c724a58d48cc7f63a52d96693da92e9531c9863cd943c5e"
     },
     "last_active_at": null
   }

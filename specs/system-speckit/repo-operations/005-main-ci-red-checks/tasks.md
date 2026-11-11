@@ -46,6 +46,7 @@ contextType: "general"
 - [x] T006 Add "opencode go route" to the harness intent and regenerate the intent signals and compiled graph (`.skilled/skills/cli-external-orchestration/ROUTER.md`). Commit `f090583b7d`.
 - [x] T007a Show the glob command in the three `sk-create-goal` READMEs (`.skilled/skills/sk-doc/sk-create-goal/scripts/`). Commit `1ffd2213e9`.
 - [x] T007b Replace three bare `(( ))` counters in the staleness checker (`.skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh`). Commit `f15ba37e94`.
+- [x] T007c Pause before re-taking a released workflow lock and poll every 25 ms (`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`). Commit `c6a15ded43`.
 - [x] T007 Fix the binding count, the lock copy race and the array length expansion (`.skilled/skills/system-spec-kit/runtime/cli/`). Commit `72a2a0b3f4`.
 <!-- /ANCHOR:phase-2 -->
 

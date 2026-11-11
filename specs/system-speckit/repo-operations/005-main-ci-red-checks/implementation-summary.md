@@ -84,6 +84,7 @@ Each failure was read from its CI job log, reproduced locally where the machine 
 | Decision | Why |
 |----------|-----|
 | Add the phrase to `ROUTER.md`, keep it in `hub-router.json` | The v1.8.0.0 hub release added the phrase on purpose, so the missing side was the intent |
+| Pause 100 ms before a process re-takes the workflow lock | A trace showed one process re-taking it 1 to 6 ms after each release and holding it 26 seconds while another waited. No poll interval wins a 2 ms window |
 | Rebuild the baselines, change no test | All 48 verdict mismatches were READMEs that no longer exist, and the one manifest change is a real new folder |
 | Fix the `sk-create-goal` READMEs too | They showed the same directory form, and the operator asked for them on 2026-11-11 |
 <!-- /ANCHOR:decisions -->
@@ -100,7 +101,7 @@ Each failure was read from its CI job log, reproduced locally where the machine 
 | Hub vocabulary guard | PASS, `checked=7 hub(s), drift=0` |
 | Other routing workflow steps, parity suites and scorer gates | PASS, 22 and 53 tests, every step exit 0 |
 | Three Spec-Kit test files | PASS, 18 of 18 |
-| Full Spec-Kit CLI project | 2,518 passed, 2 timed out at 30 seconds under full local load. Both pass alone, 22 of 22, and neither failed in CI |
+| Full Spec-Kit CLI project | PASS, 2,520 passed in three runs in a row after commit `c6a15ded43`. Before it, 2 tests timed out at 30 seconds in two of three runs |
 | The five workflows on main | PASS. Chart Corpus run 42986319009 and Diagram Corpus run 42986318839 on `68359fb3b6`, Spec-Kit Check on `4207a2b4a5`, sk-doc Script Tests and Routing Registry Drift Guard on `5524f2ee48`, all `success` |
 <!-- /ANCHOR:verification -->
 
@@ -110,7 +111,7 @@ Each failure was read from its CI job log, reproduced locally where the machine 
 ## Known Limitations
 
 1. **The Bash fixes cannot be reproduced locally.** This machine has only Bash 3.2, so the staleness checker's two Linux-only causes were confirmed by CI: the first push fixed the empty-root test, and commit `f15ba37e94` fixed the other seven.
-2. **Two CLI tests time out in a full local run.** They pass alone and pass in CI, so they are outside this packet.
+2. **The lock change has no test of its own.** The lock functions are private and a cross-process fairness test would need a second process. The evidence is the traced runs and three full passes.
 <!-- /ANCHOR:limitations -->
 
 ---
