@@ -115,8 +115,8 @@ create/
 | **Confirm** | `:confirm` | Pause at each step and wait for user approval |
 
 Each mode loads a separate YAML workflow from `assets/` when that command ships YAML assets:
-- Auto: `create_<command>_auto.yaml`
-- Confirm: `create_<command>_confirm.yaml`
+- Auto: `create-<command>-auto.yaml`
+- Confirm: `create-<command>-confirm.yaml`
 
 The `--chained` flag on `/create:skill` doc-only operations indicates parent workflow handoff.
 
