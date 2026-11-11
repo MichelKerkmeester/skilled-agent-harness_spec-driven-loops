@@ -680,8 +680,8 @@ workflow:
           - "{state_paths.strategy}"
           - "{state_paths.config}"
         extract:
-          - iteration_count: "Count distinct run values (run, else iteration) across lines where type === 'iteration'; a redispatched run counts once"
-          - highest_run: "Highest run value (run, else iteration) across lines where type === 'iteration', else 0"
+          - iteration_count: "Count distinct run values (the integer iteration, else a numeric run) across lines where type === 'iteration'; a redispatched run counts once"
+          - highest_run: "Highest run value (the integer iteration, else a numeric run) across lines where type === 'iteration', else 0"
           - current_iteration: "max(highest_run, iteration_count) + 1"
           - last_newFindingsRatio: "Extract newFindingsRatio from last iteration record"
           - last_focus: "Extract focus/dimension from latest iteration record, else 'none yet'"
@@ -2244,8 +2244,8 @@ workflow:
         read_patterns:
           - "{state_paths.packet_dir}/lineages/*/deep-review-state.jsonl"
         extract:
-          - iteration_count: "When direct lineage state logs exist, count distinct run values (run, else iteration) across those logs in stable lineage order; otherwise count distinct run values (run, else iteration) across the root state log. Never add root compatibility records to lineage records."
-          - highest_run: "When direct lineage state logs exist, take the highest run value (run, else iteration) across lines where type === 'iteration' in those logs in stable lineage order, else 0; otherwise take the highest run value (run, else iteration) across lines where type === 'iteration' in the root state log, else 0. Never add root compatibility records to lineage records."
+          - iteration_count: "When direct lineage state logs exist, count distinct run values (the integer iteration, else a numeric run) across those logs in stable lineage order; otherwise count distinct run values (the integer iteration, else a numeric run) across the root state log. Never add root compatibility records to lineage records."
+          - highest_run: "When direct lineage state logs exist, take the highest run value (the integer iteration, else a numeric run) across lines where type === 'iteration' in those logs in stable lineage order, else 0; otherwise take the highest run value (the integer iteration, else a numeric run) across lines where type === 'iteration' in the root state log, else 0. Never add root compatibility records to lineage records."
           - current_iteration: "max(highest_run, iteration_count) + 1"
           - p0_count: "Total P0 findings across all iterations (deduped)"
           - p1_count: "Total P1 findings across all iterations (deduped)"
