@@ -54,7 +54,9 @@ Route /create:command to its presentation contract and workflow YAML for creatin
 
 The following content lives only in `.skilled/commands/create/assets/create-command-presentation.txt`:
 
-- Startup questions, Phase 0 verification, setup dashboard, confirmation prompts, status display, completion display, and next-step text.
+- Startup questions, Phase 0 verification, setup dashboard, status display, completion display, and next-step text.
+
+Step checkpoint questions and their options are the exception: the confirm workflow YAML defines them next to the step they gate.
 
 The router must not invent visible wording for those surfaces; it only selects the workflow YAML and execution mode.
 
