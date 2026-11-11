@@ -1240,7 +1240,7 @@ workflow:
         if_cli_deepseek_harness:
           command: |
             node --input-type=module <<'EOF'
-            console.error('cli-deepseek-harness runs only as a fan-out lineage; rerun with --fanout or choose another executor kind');
+            console.error('cli-deepseek-harness runs only as a fan-out lineage; rerun with --count=2 or a second --executor group, or choose another executor kind');
             process.exit(2);
             EOF
           working_directory: "{repo_root}"
