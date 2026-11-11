@@ -8,7 +8,7 @@ trigger_phrases:
   - "cli dispatch resource map"
 importance_tier: important
 contextType: general
-version: 1.7.11.0
+version: 1.7.12.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -116,7 +116,7 @@ INTENT_SIGNALS = {
     "CURSOR":      {"weight": 4, "keywords": ["cursor", "cursor cli", "cursor-agent", "cli-cursor", "composer", "cursor composer", "composer dispatch", "delegate to cursor", "cursor agent dispatch", "grok coding dispatch", "cursor agent", "cursor plan mode", "cursor ask mode", "cursor worktree", "cursor cloud worker"]},
     "DEVIN":       {"weight": 4, "keywords": ["devin", "devin cli", "cli-devin", "cognition devin", "delegate to devin", "swe-2 dispatch", "autonomous swe agent", "devin cloud session", "devin headless", "grok 4.5 devin dispatch", "grok 4.6 devin dispatch", "cognition cli", "cognition cli second opinion", "devin handoff", "cognition-cli", "devin subagent", "devin cloud handoff", "swe-1.7 dispatch"]},
     "PI":          {"weight": 4, "keywords": ["pi cli", "cli-pi", "pi dispatch", "pi headless", "delegate to pi", "pi thinking", "pi passthrough", "pi print mode", "pi multi-provider", "pi agent", "pi.dev cli", "pi coding agent", "cli pi", "pi json event stream", "pi rpc integration", "pi community package", "pi headless dispatch"]},
-    "DEEPSEEK_HARNESS": {"weight": 4, "keywords": ["dsh", "dsh headless", "deepseek harness", "delegate to dsh", "cli-deepseek-harness", "cli deepseek harness", "dsh cli", "deepseek harness cli", "dsh dispatch", "dsh headless dispatch", "dsh one-task run", "dsh json event stream", "dsh second opinion", "dsh review", "deepseek harness dispatch", "deepseek harness headless"]},
+    "DEEPSEEK_HARNESS": {"weight": 4, "keywords": ["dsh", "dsh headless", "deepseek harness", "delegate to dsh", "cli-deepseek-harness", "cli deepseek harness", "dsh cli", "deepseek harness cli", "dsh dispatch", "dsh headless dispatch", "dsh one-task run", "dsh json event stream", "dsh second opinion", "dsh review", "deepseek harness dispatch", "deepseek harness headless", "opencode go route"]},
 }
 
 RESOURCE_MAP = {

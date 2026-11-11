@@ -155,7 +155,8 @@
     "dsh json event stream",
     "dsh second opinion",
     "dsh review",
-    "deepseek harness headless"
+    "deepseek harness headless",
+    "opencode go route"
   ],
   "derived": {
     "trigger_phrases": [
@@ -571,6 +572,7 @@
     "dsh json event stream",
     "dsh second opinion",
     "dsh review",
-    "deepseek harness headless"
+    "deepseek harness headless",
+    "opencode go route"
   ]
 }
