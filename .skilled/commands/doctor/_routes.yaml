@@ -144,6 +144,7 @@ routes:
       - "rebuild the skill graph database"
       - "rerun the skill_graph scan"
       - "new skill not appearing in advisor results"
+      - "advisor daemon is stale"
 
   - command: /doctor:skill-advisor
     target: skill-budget
@@ -716,6 +717,7 @@ mcp_subroutes:
       - "utcp config is broken"
       - "debug the code mode utcp config"
       - "mcp-doctor.sh diagnostic script"
+      - "mcp tools are missing"
 
 # ─────────────────────────────────────────────────────────────────
 # STANDALONE COMMANDS (own routers, tracked here for visibility)

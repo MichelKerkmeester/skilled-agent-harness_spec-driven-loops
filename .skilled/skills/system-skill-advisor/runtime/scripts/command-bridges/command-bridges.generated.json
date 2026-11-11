@@ -1000,7 +1000,8 @@
             "MCP connection failure",
             "utcp config is broken",
             "debug the code mode utcp config",
-            "mcp-doctor.sh diagnostic script"
+            "mcp-doctor.sh diagnostic script",
+            "mcp tools are missing"
           ],
           "intentSignals": [
             "/doctor:mcp debug"
@@ -1515,7 +1516,8 @@
             "skill advisor rebuild",
             "rebuild the skill graph database",
             "rerun the skill_graph scan",
-            "new skill not appearing in advisor results"
+            "new skill not appearing in advisor results",
+            "advisor daemon is stale"
           ],
           "intentSignals": [
             "/doctor:skill-advisor rebuild"
