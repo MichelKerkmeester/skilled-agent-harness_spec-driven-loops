@@ -505,7 +505,7 @@ main() {
     exit_if_switched_off
     if ! $RECURSIVE && ! $RECURSIVE_OPT_OUT && has_phase_children "$FOLDER_PATH"; then
         RECURSIVE=true
-        ! $JSON_MODE && ! $QUIET_MODE && echo "Auto-enabled recursive validation: phase child folders detected."
+        ! $JSON_MODE && ! $QUIET_MODE && echo "Auto-enabled recursive validation: child phase or sub-track folders detected."
     fi
     resolve_orchestrator
 
