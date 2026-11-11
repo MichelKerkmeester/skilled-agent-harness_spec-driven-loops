@@ -10,7 +10,7 @@ trigger_phrases:
   - "devin session resume continue"
 importance_tier: important
 contextType: implementation
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # Devin CLI - Complete Command Reference
@@ -198,7 +198,7 @@ devin -- add a login page
 
 ### Supported Models
 
-Devin dispatches **`swe-2-max`** at the **`accept-edits`** permission mode by default. The model is switched per-dispatch with `--model <alias>` (short names resolve to the latest version in that family). There is no headless reasoning-effort flag — depth is expressed through the permission mode (autonomy) and the chosen model, not a reasoning flag; interactive REPL sessions cycle thinking depth with `Alt+T` (macOS: `Opt+T`).
+Devin dispatches **`swe-2-max`** at the **`dangerous`** permission mode by default. The model is switched per-dispatch with `--model <alias>` (short names resolve to the latest version in that family). There is no headless reasoning-effort flag — depth is expressed through the permission mode (autonomy) and the chosen model, not a reasoning flag; interactive REPL sessions cycle thinking depth with `Alt+T` (macOS: `Opt+T`).
 
 **Full curated roster (DeepSeek / Gemini / GLM-5.2 / GPT-5.6 Luna Max / SWE-2 families) → [providers-and-models.md](./providers-and-models.md).** Devin's native Adaptive router and full 48-family roster are out of this skill's curated scope.
 

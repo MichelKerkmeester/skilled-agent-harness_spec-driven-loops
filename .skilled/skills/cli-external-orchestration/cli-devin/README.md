@@ -9,7 +9,7 @@ trigger_phrases:
   - "subagent delegation"
   - "second opinion"
   - "cross-validate"
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 # cli-devin
@@ -98,7 +98,7 @@ devin --version
 devin -p --model swe --permission-mode accept-edits -- "Add input validation to src/utils.ts" 2>&1
 ```
 
-The default model is `swe-2-max` and the default permission mode is `accept-edits`. Success looks like the file edited in place plus a text response on stdout. `devin -p` is non-interactive and exits after one turn.
+The default model is `swe-2-max` and the default permission mode is `dangerous`. Success looks like the file edited in place plus a text response on stdout. `devin -p` is non-interactive and exits after one turn.
 
 **Step 4: Hand a long-running task to the cloud.**
 
@@ -127,9 +127,9 @@ Devin has no headless reasoning-effort flag. Autonomy is set through the permiss
 | Mode | Flag value | What it approves | Use for |
 |---|---|---|---|
 | **Auto** | `auto` | read-only tools, prompting for writes and shell commands | review, analysis, research or security work (`devin -p` default) |
-| **Accept Edits** | `accept-edits` | workspace edits plus read-only tools, prompting for shell | code generation and refactoring (skill default) |
+| **Accept Edits** | `accept-edits` | workspace edits plus read-only tools, prompting for shell | code generation and refactoring |
 | **Smart** | `smart` | actions a fast model judges safe | trusted workflows with judgment calls |
-| **Dangerous** | `dangerous` | every tool without prompting | full trust, explicit user approval required |
+| **Dangerous** | `dangerous` | every tool without prompting | full trust, explicit user approval required (skill default) |
 
 The `--sandbox` flag wraps the session in OS-enforced filesystem and network boundaries. On Linux it needs `devin sandbox setup`, which installs `bwrap` and `socat`. macOS works out of the box.
 
