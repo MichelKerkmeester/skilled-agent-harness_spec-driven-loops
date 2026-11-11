@@ -8,7 +8,7 @@ trigger_phrases:
   - "dsh dispatch template"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # DeepSeek Harness CLI Prompt Templates
@@ -58,13 +58,14 @@ command -v dsh || { echo "dsh not on PATH, refusing the route"; exit 1; }
 Prove the patches compose before the first real dispatch with a new route or a new dsh version. No model is called.
 
 ```bash
-DSH_HOME="$RUN_DIR/.dsh-home" dsh --profile headless --patch "$REPO/.dsh/patches/route-llmgateway-deepseek.patch.yml" --patch "$REPO/.dsh/patches/lineage.patch.yml" --dump-config \
+DSH_HOME="$RUN_DIR/.dsh-home" dsh --profile headless --patch "$REPO/.dsh/patches/route-llmgateway-deepseek.patch.yml" --patch "$REPO/.dsh/patches/lineage.patch.yml" --patch "$REPO/.dsh/patches/guards.patch.yml" --dump-config \
   </dev/null >"$RUN_DIR/dump.txt" 2>"$RUN_DIR/dump.err"; echo "exit=$?"
 grep -n -A3 'id: agent-default-model' "$RUN_DIR/dump.txt"
 grep -n -A2 'id: session-telemetry-otel' "$RUN_DIR/dump.txt"
+grep -n 'id: repo-guards$' "$RUN_DIR/dump.txt"
 ```
 
-Expect exit 0, an empty `dump.err`, the route's provider and model under `agent-default-model` and `mode: DISABLED` under `session-telemetry-otel`.
+Expect exit 0, an empty `dump.err`, the route's provider and model under `agent-default-model`, `mode: DISABLED` under `session-telemetry-otel` and one `repo-guards` row, which shows the guards patch every real dispatch carries composed too.
 
 ---
 

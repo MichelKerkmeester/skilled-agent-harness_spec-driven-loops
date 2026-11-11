@@ -6,7 +6,7 @@ trigger_phrases:
   - "dsh headless"
   - "delegate to dsh"
   - "deepseek harness cli"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # cli-deepseek-harness
@@ -60,10 +60,11 @@ The version must be the pin in [cli-reference.md](./references/cli-reference.md)
 
 ~~~bash
 dsh --profile headless --patch "$REPO/.dsh/patches/route-llmgateway-deepseek.patch.yml" \
-  --patch "$REPO/.dsh/patches/lineage.patch.yml" --dump-config </dev/null
+  --patch "$REPO/.dsh/patches/lineage.patch.yml" \
+  --patch "$REPO/.dsh/patches/guards.patch.yml" --dump-config </dev/null
 ~~~
 
-Expect exit 0, nothing on stderr and the route's provider and model under `agent-default-model`.
+Expect exit 0, nothing on stderr, the route's provider and model under `agent-default-model` and a `repo-guards` row.
 
 **Step 3: Dispatch with the prompt on stdin and check the final event.**
 
@@ -183,7 +184,7 @@ A: It is proven. A keyed run on 2026-11-07 answered against `https://opencode.ai
 | Check | Result |
 |---|---|
 | Availability | `command -v dsh` prints a path and `dsh --version` prints the pin |
-| Composition | `--dump-config` with the route and lineage patches exits 0 with empty stderr |
+| Composition | `--dump-config` with the route, lineage and guards patches exits 0 with empty stderr |
 | Completion | Exit 0 and a last `final` event with `reason.kind` `completed` |
 | Rules | `hard-rules.json` parses and carries all thirteen rule ids |
 | Flags | Every double-dash token in `references/cli-reference.md` is in the captured help text, except the four launcher flags that file grounds separately |

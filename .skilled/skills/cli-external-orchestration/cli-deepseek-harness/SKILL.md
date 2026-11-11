@@ -27,7 +27,7 @@ Each live result applies only to the route and behavior the saved probe exercise
 - **Explicit dsh dispatch**: the task names DeepSeek Harness, `dsh` or `dsh headless`.
 - **Cross-AI validation**: an independent review or second opinion from a DeepSeek V4.1 Flash run that is not the calling runtime.
 - **One-task headless work**: a bounded task that answers once and exits, with a machine-readable JSON event stream.
-- **Composition checks**: proving a route or lineage patch composes with `--dump-config` before any model call.
+- **Composition checks**: proving the route, lineage and guards patches compose with `--dump-config` before any model call.
 
 ### When NOT to Use
 
