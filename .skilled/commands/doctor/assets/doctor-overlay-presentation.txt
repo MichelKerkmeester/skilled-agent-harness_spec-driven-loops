@@ -14,7 +14,7 @@ Every argument failure happens before any workflow YAML loads. It prints the wor
 | A value flag given without its value, such as `--root` or `--capture` at the end of the line | `Missing value: [argument] needs [a directory for --root, the destination path a status line named for --capture, the vendored file or folder to bring under an overlay for --adopt, the upstream checkout for --upstream, a commit for --to, a run id for --rollback]` then `Try: [the accepted invocation for the bound target]` then `STATUS=FAIL ERROR="missing_argument"` |
 | `repin` without `--rollback`, and without `--upstream` or `--to` | `A re-pin needs both --upstream <dir> and --to <commit>.` then `Try: /doctor:overlay repin --upstream <dir> --to <commit> [--root <dir>]` then `STATUS=FAIL ERROR="missing_argument"` |
 | `--rollback` given with `--upstream` or `--to` | `--rollback restores one earlier run and takes no --upstream or --to.` then `Try: /doctor:overlay repin --rollback <run-id> [--root <dir>]` then `STATUS=FAIL ERROR="conflicting_arguments"` |
-| `--capture` given with `--adopt` | `--capture saves a live edit and --adopt adds a new entry. Give one of them.` then `Try: /doctor:overlay apply [--root <dir>] [--capture <path> | --adopt <path>]` then `STATUS=FAIL ERROR="conflicting_arguments"` |
+| `--capture` given with `--adopt` or `--relayout`, or `--adopt` given with `--relayout` | `--capture saves a live edit, --adopt adds a new entry and --relayout moves overlay sources. Give one of them.` then `Try: /doctor:overlay apply [--root <dir>] [--capture <path> | --adopt <path> | --relayout]` then `STATUS=FAIL ERROR="conflicting_arguments"` |
 | A target bound with a second positional, such as `status foo` | `Only one target may be bound.` then `Try: [the accepted invocation for the bound target]` then `STATUS=FAIL ERROR="too_many_arguments"` |
 | The engine prints its usage block and exits 2 | `USAGE: [the engine's first usage line]` then the rest of the block. The workflow only ever runs the documented calls, so this is the engine's own contract rather than a route the operator reaches |
 
@@ -22,16 +22,16 @@ The flags each target accepts, for the unknown-argument wording:
 
 | Target | Accepts |
 |--------|---------|
-| `status` | `--json` and `--root <dir>` |
-| `apply` | `--root <dir>`, `--capture <path>` and `--adopt <path>` |
+| `status` | `--json`, `--audit` and `--root <dir>` |
+| `apply` | `--root <dir>`, `--capture <path>`, `--adopt <path>` and `--relayout` |
 | `repin` | `--root <dir>`, `--upstream <dir>`, `--to <commit>` and `--rollback <run-id>` |
 
 The accepted invocation for each target, for the `Try:` lines:
 
 | Target | Invocation |
 |--------|------------|
-| `status` | `/doctor:overlay status [--json] [--root <dir>]` |
-| `apply` | `/doctor:overlay apply [--root <dir>] [--capture <path> | --adopt <path>]` |
+| `status` | `/doctor:overlay status [--json] [--audit] [--root <dir>]` |
+| `apply` | `/doctor:overlay apply [--root <dir>] [--capture <path> | --adopt <path> | --relayout]` |
 | `repin` | `/doctor:overlay repin --upstream <dir> --to <commit> [--root <dir>]`, or `/doctor:overlay repin --rollback <run-id> [--root <dir>]` |
 
 ## 2. Startup Presentation
@@ -69,7 +69,7 @@ Render this table for any menu word. Values mirror `_routes.yaml`.
 | Target | Workflow | Mutation Class | One-Line Purpose |
 |--------|----------|----------------|------------------|
 | `status` | `doctor-overlay-status.yaml` | read-only | Name each overlay destination that is not in sync, with the engine's fix for it |
-| `apply` | `doctor-overlay-apply.yaml` | mutates | Put the overlays back into the vendored tree, capture one live edit, or adopt one unowned path, after one yes |
+| `apply` | `doctor-overlay-apply.yaml` | mutates | Put the overlays back into the vendored tree, capture one live edit, adopt one unowned path, or move overlay sources onto their layout paths, after one yes |
 | `repin` | `doctor-overlay-repin.yaml` | mutates | Move the vendored tree to a newer upstream commit over a staged plan after one yes, or roll one re-pin back |
 
 ## 3. Status Report
@@ -83,6 +83,10 @@ Overlay status: [the root the engine read]
 ...
 in-sync=[n] overlay-edited=[n] live-edited=[n] both-changed=[n] upstream-moved=[n]
 MISS     [one line per check that failed, when any did]
+STALE    root-file [path]: [the engine's line about the pin, one per stale root file]
+LAYOUT   [overlay]: [field] [from] belongs at [to]; run [the engine command] apply --relayout
+AUDIT    [kind] [path], with --audit only
+audit=[n], with --audit only
 checked=[n] ok=[n] miss=[n]
 RESULT: [PASSED|FAILED]
 ```
@@ -99,7 +103,19 @@ What each state means, and who acts on it:
 
 The `fix:` text the engine prints names the engine command itself. Show it as printed, and name the matching `/doctor:overlay` form from the table beside it.
 
-With `--json`, print the engine's JSON and nothing around it. The JSON carries the state counts and one entry per destination not in sync, beside the full check.
+### Status Lines Beyond The Destinations
+
+The engine prints three more kinds of line after the counts, and the report tells them apart:
+
+| Line | When it prints | What it means | Status |
+|------|----------------|---------------|--------|
+| `STALE` | An upstream file named in a `repin.rootFiles` overlay changed since that overlay was pinned | A re-pin never copies a root file, so between re-pins this comparison is the only place the drift shows. Rebase the overlay onto the new upstream bytes, then set its `pinnedSha256` to theirs | fails the status |
+| `LAYOUT` | An overlay source sits off the layout path its destination maps to, such as a copy kept under `<overlay folder>/.skilled/skills/...` | The copy still applies, so the tree is not broken and nothing is lost. `/doctor:overlay apply --relayout` moves it to the same path with the leading dot dropped and points the manifest there | does not fail the status |
+| `AUDIT` | Only with `--audit`. A vendored path that no overlay owns and no `generated` glob matches is `differs` from upstream at the pin, `missing` from the tree while upstream has it, or `extra` in the tree while upstream never had it | Nothing else reports a path like this, so the drift would otherwise go unseen until a re-pin or a strict write refused it | fails the status |
+
+`AUDIT    skipped: no upstream checkout at the pin` means the comparison could not run on this machine, because the manifest names no checkout that holds the pinned commit. Show it as printed and treat the audit as not run rather than as clean.
+
+With `--json`, print the engine's JSON and nothing around it. The JSON carries the state counts and one entry per destination not in sync, beside the full check, the stale root files, the off-layout sources, and, with `--audit`, the audit findings.
 
 ### Status Summary
 
@@ -109,7 +125,7 @@ Target: status
 Status: [OK|FINDINGS|ERROR]
 Mutation class: read-only
 Scope: [the root the engine read]
-Evidence: [the engine's state counts line] / [the engine's checked line]
+Evidence: [the engine's state counts line] / [the engine's checked line] / [the engine's audit count, with --audit only]
 Recommendation: [the fix for each line not in sync, or none]
 STATUS=[status]
 ```
@@ -245,7 +261,43 @@ Three keys in `overlay-manifest.json` belong to the vendoring project. All three
 
 `pre-commit` skips its check while the staged manifest moves the pin, because that commit is a re-pin and the re-pin ran its own drift scan. A staged file that equals upstream's bytes at the pin passes. Skilled's own repository vendors nothing and has no manifest, so none of this runs there.
 
-## 7. Repin Plan and Approval
+## 7. Relayout Plan and Approval
+
+The engine has no plan mode for `apply --relayout`, so the plan is the `LAYOUT` lines the same run's status report printed. Each one names the overlay, the manifest field, the path the copy sits at now and the path it belongs at. Every move stays inside the overlay folder: the copy keeps the same path with the leading dot dropped, and the destination the overlay writes is untouched.
+
+```text
+OVERLAY RELAYOUT PLAN
+Root: [the vendored tree]
+Overlay folder: [the folder the engine reads, from .skilled-overlays.json or the default skilled-overlays/]
+Will move: [one LAYOUT line per source off its layout, restated as from -> to]
+Backup: [overlay folder]/relayout-runs/[stamp]/, holding every copy the run moves and the manifest, written before the first move
+Will rewrite: the manifest's source, fragment and base fields that name a moved copy, and the layout-link targets that reach one
+Then: /doctor:overlay apply, run in this same run, so the destinations catch up with the moved sources
+
+Move these sources now? [yes/no]
+```
+
+| Report | What the run shows | Status |
+|--------|--------------------|--------|
+| No `LAYOUT` line | The nothing-to-move result. Every source already sits on its layout path | `STATUS=OK` |
+| At least one `LAYOUT` line, and nothing else outstanding | The relayout plan and the relayout question | asks |
+| Any `live-edited`, `both-changed` or `upstream-moved` line, a `MISS` line or a `STALE` line | Each such line with its fix, beside the `LAYOUT` lines. The apply that follows the move would be refused until it is settled | `STATUS=FAIL ERROR="needs_resolution"` |
+
+`Move these sources now? [yes/no]` covers every move, the backup, the manifest rewrite and the layout-link retargeting. Any answer other than yes counts as no. Print the cancelled result and write nothing.
+
+### Refusals Before Any Write
+
+The engine prints one `refuse:` line and exits 2. Nothing was written.
+
+| The engine refuses because | Fix |
+|----------------------------|-----|
+| The target path already exists in the overlay folder | Keep one of the two copies, put the bytes you want in it, then rerun |
+| A copy the manifest names is missing | Point that field at the copy that exists, or create the copy the manifest names, then rerun |
+| Two copies belong at one path, or one copy is claimed by two fields | Settle the manifest so one copy owns one path, then rerun |
+| Two copies sit one inside the other | Move the outer copy in its own run, then the inner one |
+| The overlay lock is held | Wait for the other run to end, then remove the lock file the message names by hand. A lock whose owner has ended is taken over by the next run with a `note:` line instead of refused |
+
+## 8. Repin Plan and Approval
 
 ### Setup
 
@@ -346,7 +398,7 @@ Roll this re-pin back now? [yes/no]
 
 `Roll this re-pin back now? [yes/no]` covers only the paths that one run backed up and the files it created. Any answer other than yes counts as no. After a failed re-pin, print the left-in-place result. On the direct path, print the cancelled result. Neither writes anything.
 
-## 8. Result Templates
+## 9. Result Templates
 
 ### Applied
 
@@ -377,6 +429,18 @@ Root: [the vendored tree]
 Engine: [the adopted line the engine printed, then each line its apply printed]
 Entry: [the entry id the adopted line names], in [overlay folder]/overlay-manifest.json
 Re-read: [the status report's RESULT line and its state counts]
+STATUS=OK
+```
+
+### Sources Moved
+
+```text
+OVERLAY SOURCES MOVED
+Root: [the vendored tree]
+Backup: [overlay folder]/relayout-runs/[stamp]/
+Engine: [the backup line, each moved line and the moved count the engine printed, then each line its apply printed]
+Re-read: [the status report's RESULT line and its LAYOUT lines]
+Next: /doctor:overlay status, so the re-read confirms the tree is in sync
 STATUS=OK
 ```
 
@@ -429,7 +493,7 @@ STATUS=FAIL ERROR="repin_failed"
 
 ```text
 OVERLAY RUN CANCELLED
-Declined: [the apply | the capture of the path | the adoption of the path | the re-pin to the commit | the rollback of the run]
+Declined: [the apply | the capture of the path | the adoption of the path | the relayout of the overlay folder | the re-pin to the commit | the rollback of the run]
 Changed: none
 STATUS=CANCELLED ACTION=cancelled
 ```
@@ -451,6 +515,7 @@ What each engine exit means for `Changed:`:
 | Engine result | Changed |
 |---------------|---------|
 | Exit 2: a refusal or a failed precondition, such as a held lock | none |
+| A relayout, exit 0 with `skipped` lines | The copies the run reported moved. The skipped credential copy stayed where it was |
 | Exit 1 with `BLOCKED` lines or `changed=0` | none |
 | An adopt, exit 1 after its `adopted` line | The overlay copy and the manifest entry were written, and the apply after them was blocked. Name the entry |
 | Exit 1 after `regeneration failed` | The overlays were written and the tree is only partly rebuilt. Name each failed step |
@@ -459,7 +524,7 @@ What each engine exit means for `Changed:`:
 | A live re-pin, exit 2 with no `rollback:` line | none |
 | A live re-pin, exit 1, or exit 2 with a `rollback:` line | The tree is partly moved and the run folder keeps the backup. Name the rollback line |
 
-## 9. Troubleshooting Display
+## 10. Troubleshooting Display
 
 | Situation | Suggested Action |
 |-----------|------------------|
@@ -470,6 +535,15 @@ What each engine exit means for `Changed:`:
 | `.skilled-overlays.json` is refused | The setting must name a relative folder inside the tree with forward slashes. Fix the file, then rerun `/doctor:overlay status` |
 | `refuse: the overlay lock is held` | Another run holds the lock. Wait for it to end, then remove the lock file the message names by hand. The engine never clears a held lock itself |
 | A `live-edited` line | Run `/doctor:overlay apply --capture <path>` for that path, then `/doctor:overlay apply` |
+| A `LAYOUT` line in a status report | Run `/doctor:overlay apply --relayout`, which moves each off-layout source and then applies. The copy still applies while it sits off its layout path |
+| A `STALE` line in a status report | Upstream changed a root file a `repin.rootFiles` overlay owns. Rebase the overlay onto the new bytes, then set its `pinnedSha256` to theirs and rerun `/doctor:overlay status` |
+| A relayout printed `skipped` for a path | The file is token-named, so the engine never opened it and left it where it was. Move that copy by hand to the path the `LAYOUT` line named |
+| A relayout refused because the target exists | The overlay folder holds both the old copy and the path it belongs at. Keep one of them, then rerun |
+| `note: took over the overlay lock of a run that has ended: ...` | The earlier run ended without removing its lock, so this run took it over and carried on. Nothing to do, unless that run is still working under another host |
+| `AUDIT    differs <path>` | No overlay owns the path and it no longer matches upstream at the pin. Adopt it with `/doctor:overlay apply --adopt <path>`, or add an overlay that owns it |
+| `AUDIT    missing <path>` | Upstream has the file at the pin and the tree lacks it. Restore it from the checkout the manifest names, or take it through a re-pin |
+| `AUDIT    extra <path>` | The tree tracks a file upstream never had at the pin. Move it into an overlay, adopt it, or remove it |
+| `AUDIT    skipped: no upstream checkout at the pin` | The comparison needs the checkout `pin.checkout` names with the pinned commit fetched. The audit did not run here, so read nothing into its silence |
 | The guard refuses a write with `is a vendored file no overlay owns` | The manifest has `strictWrites` on. Run `/doctor:overlay apply --adopt <path>` for that file, then edit its copy in the overlay folder and run `/doctor:overlay apply` |
 | The guard refuses a write with `is a new file in the vendored tree` or `is a new file inside overlay` | Create the file at the overlay path the line names. Then run `/doctor:overlay apply --adopt <path>` with the path it names, or `/doctor:overlay apply` when the line says an overlay already holds the folder |
 | The guard refuses a file a generator writes | Add a glob for it to the manifest's `generated` list |
@@ -485,15 +559,19 @@ What each engine exit means for `Changed:`:
 | A live re-pin failed after its backup | Run `/doctor:overlay repin --rollback <run-id>` with the run id the rollback line names, then `/doctor:overlay status` |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
-## 10. Next Step
+## 11. Next Step
 
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
 | The status report shows `overlay-edited` lines | `/doctor:overlay apply` | Those destinations are behind their overlays, and the apply puts them back |
 | The status report shows a `live-edited` line | `/doctor:overlay apply --capture <path>` | The edit belongs in the overlay source, or the next re-pin loses it |
+| The status report shows a `LAYOUT` line | `/doctor:overlay apply --relayout` | The source moves onto its layout path, the manifest names that path, and the apply in the same run puts the destinations on it |
+| A relayout just ran | `/doctor:overlay status` | The re-read confirms the tree is in sync |
+| The status report shows a `STALE` line | Rebase the overlay, then update its `pinnedSha256` and run `/doctor:overlay status` | A re-pin never copies a root file, so the overlay has to catch up by hand |
+| The audit reports a path no overlay owns | `/doctor:overlay apply --adopt <path>` | The path gets an overlay entry, and the next re-pin reports it instead of overwriting it |
 | A write was refused as an unowned vendored file | `/doctor:overlay apply --adopt <path>` | The file gets an overlay entry, and the next re-pin reports it instead of overwriting it |
 | A capture just ran | `/doctor:overlay apply` | The captured source is now canonical, and the generated files catch up on apply |
-| An apply, a capture or an adopt just ran | `/doctor:overlay status` | The re-read confirms the tree is in sync |
+| An apply, a capture, an adopt or a relayout just ran | `/doctor:overlay status` | The re-read confirms the tree is in sync |
 | A re-pin stage listed blocked overlays | `/doctor:overlay repin --upstream <dir> --to <commit>` | Rerun once each blocked overlay is rebased onto the new upstream file |
 | A re-pin finished and listed overlays that now equal upstream | Drop those entries from the overlay manifest, then `/doctor:overlay status` | Those overlays no longer change anything |
 | A live re-pin failed and was not rolled back | `/doctor:overlay repin --rollback <run-id>` | The run folder still holds the backup |

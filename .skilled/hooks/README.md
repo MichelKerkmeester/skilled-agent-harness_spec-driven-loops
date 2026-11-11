@@ -228,7 +228,7 @@ DSH follows Pi's layout. Each real adapter lives in a per-concern `dsh/` subfold
 |---|---|---|
 | `dispatch` | claude, devin, codex, cursor (indexed proxy), pi (symlinked from `.pi/extensions/`), dsh (symlinked from `.dsh/plugins/repo-guards/adapters/`) | `cli-dispatch-audit.js` |
 | `mcp-route-guard` | claude, cursor, devin, codex, pi (symlinked), dsh (symlinked) | `mcp-route-guard.js` |
-| `overlay-guard` | claude, cursor, devin, codex, pi (symlinked), dsh (symlinked) | none: no OpenCode adapter |
+| `overlay-guard` | claude, cursor, devin, codex, pi (symlinked), dsh (symlinked) | `overlay-guard.js` |
 | `env-secret-guard` | claude, codex, cursor and devin through one `command-hook/` adapter, pi (symlinked), dsh (symlinked) | `env-secret-guard.js` |
 | `post-edit-quality` | claude, devin, codex, cursor (indexed proxy), pi (symlinked), dsh (symlinked) | `sk-code-post-edit-quality.js` |
 | `injection-screen` | claude, devin, pi (symlinked from `.pi/extensions/`), dsh (symlinked from `.dsh/plugins/repo-guards/adapters/`) | `classifier-injection-screen.js` |
@@ -334,7 +334,7 @@ For the *why* behind each absence, why a runtime has no adapter for a concern, s
 | `goal` | by-design: native host goal command, and the packet goal reaches it through the speckit workflows | by-design: native host goal command, as for Claude | ✓ covered (injection + packet read) | ✓ covered (injection only) | ✓ covered | ✓ covered | ✓ covered |
 | `injection-screen` | ✓ covered | n/a: only web tool is the provider-hosted `web_search`, so no local hook ever sees a fetched page | n/a: the `Fetch` postToolUse payload carries only `url`, `status_code` and `content_length` | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `mcp-route-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `overlay-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | by-design: no adapter, and `/doctor:overlay status` reports an edit made there | ✓ covered | ✓ covered |
+| `overlay-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `permission-policy` | by-design: permission via `PreToolUse` decision, no dedicated permission-request adapter | n/a: fires no permission event at all, so no approval hook exists | by-design: no dedicated permission-request adapter | ✓ covered | by-design: no dedicated permission-request adapter | by-design: no separate approval event beyond `tool_call` | by-design: `tools/pre-execute` already carries the spec-gate and dispatch decisions, and `approval/request` carries no tool arguments to judge |
 | `post-edit-quality` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `session-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | by-design: session events run inside the concern plugins (`system-skill-advisor`, `opencode-goal`, `session-cleanup`) | ✓ covered | ✓ covered |

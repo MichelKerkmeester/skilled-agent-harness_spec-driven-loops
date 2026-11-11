@@ -1,0 +1,1 @@
+../../../../.opencode/plugins/overlay-guard.js

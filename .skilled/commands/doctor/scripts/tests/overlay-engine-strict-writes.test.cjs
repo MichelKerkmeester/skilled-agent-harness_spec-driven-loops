@@ -126,6 +126,40 @@ function entryFor(fixture, destination) {
   return readJson(fixture.manifestPath).overlays.find((entry) => entry.destination === destination);
 }
 
+/**
+ * Build a repository whose vendored tree is the subfolder `vendor/skilled`, so
+ * the commit check has to read the top level's paths through that prefix.
+ * @param {object} t The node:test context.
+ * @returns {object} Fixture paths, its manifest and a `run` helper.
+ */
+function createNestedFixture(t) {
+  const { workspace } = createWorkspace(t, 'overlay-engine-nested-');
+  const tree = path.join(workspace, 'vendor', 'skilled');
+  const overlayDir = path.join(tree, 'skilled-overlays');
+  const manifestPath = path.join(overlayDir, 'overlay-manifest.json');
+  writeFile(tree, '.skilled/skills/hub/stable.md', 'stable\n');
+  writeFile(overlayDir, 'overlay-manifest.json', JSON.stringify({
+    schemaVersion: 1,
+    // No checkout that exists, so every unowned staged change is reported.
+    pin: { upstream: 'fixture', checkout: path.join(workspace, 'no-checkout'), commit: 'pin-one' },
+    strictWrites: true,
+    generated: [],
+    layoutLinks: [],
+    overlays: [],
+    regenerate: [],
+    verifyGenerated: [],
+  }, null, 2) + '\n');
+  git(workspace, ['init', '-q']);
+  commitAll(workspace, 'vendored tree in a subfolder');
+  return {
+    workspace,
+    tree,
+    overlayDir,
+    manifestPath,
+    run: (args, cwd = tree) => runEngine([...args, '--root', tree], cwd),
+  };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. GUARD
 // ─────────────────────────────────────────────────────────────────────────────
@@ -188,6 +222,29 @@ test('the guard allows a generated path and a path git ignores', (t) => {
   }
   // The same runtime folder outside the generated globs is still checked.
   assert.equal(fixture.run(['--guard', '.claude/settings.json']).code, 1);
+});
+
+test('a generated glob with ** matches whole folders, not a longer name beside them', (t) => {
+  const fixture = createStrictFixture(t);
+  const manifest = readJson(fixture.manifestPath);
+  manifest.generated = ['.skilled/skills/**/leaf-manifest.json', '.skilled/cache/**'];
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+  const allowed = [
+    '.skilled/skills/leaf-manifest.json',
+    '.skilled/skills/hub/deep/leaf-manifest.json',
+    '.skilled/cache/a/b.json',
+  ];
+  for (const relativePath of allowed) {
+    const result = fixture.run(['--guard', relativePath]);
+    assert.equal(result.code, 0, relativePath + ': ' + result.output);
+    assert.equal(result.stdout, 'allow\n');
+  }
+
+  // The glob names leaf-manifest.json in any folder, not every name ending that way.
+  const sibling = fixture.run(['--guard', '.skilled/skills/hub/my-leaf-manifest.json']);
+  assert.equal(sibling.code, 1, sibling.output);
+  assert.match(sibling.stdout, /^refuse:/);
 });
 
 test('with the setting off the guard allows every path no overlay owns, and the commit check checks nothing', (t) => {
@@ -290,6 +347,77 @@ test('adopt refuses what it cannot own and writes nothing', (t) => {
   assert.equal(fs.readFileSync(fixture.manifestPath, 'utf8'), before);
 });
 
+test('the flow the guard names for a new file adopts it from the overlay folder and applies it', (t) => {
+  const fixture = createStrictFixture(t);
+  const key = '.skilled/skills/brand/docs/new.md';
+
+  const refused = fixture.run(['--guard', key]);
+  assert.equal(refused.code, 1, refused.output);
+  assert.ok(refused.stdout.includes('create it as skilled-overlays/skilled/skills/brand/docs/new.md'),
+    refused.stdout);
+  // Follow the command the refusal names rather than one written here, so this
+  // test fails once the message stops naming a command that works.
+  const named = /apply --adopt (\S+)/.exec(refused.stdout);
+  assert.ok(named, refused.stdout);
+
+  const contents = 'brand doc\n';
+  writeFile(fixture.overlayDir, 'skilled/skills/brand/docs/new.md', contents);
+  const before = readJson(fixture.manifestPath).overlays.length;
+
+  const adopted = fixture.run(['apply', '--adopt', named[1]]);
+  assert.equal(adopted.code, 0, adopted.output);
+  assert.equal(readJson(fixture.manifestPath).overlays.length, before + 1);
+  const entry = entryFor(fixture, '.skilled/skills/brand');
+  assert.deepEqual({ scope: entry.scope, source: entry.source },
+    { scope: 'directory', source: 'skilled/skills/brand' });
+  assert.equal(entry.pinnedSha256, undefined);
+  assert.deepEqual(fs.readFileSync(path.join(fixture.tree, key)), Buffer.from(contents));
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 0, status.output);
+});
+
+test('adopt refuses a taken source, a source clash, a non-file and a missing checkout, and writes nothing', (t) => {
+  const fixture = createStrictFixture(t);
+  const manifestBytes = () => fs.readFileSync(fixture.manifestPath, 'utf8');
+  const expectRefusal = (target, pattern) => {
+    const before = manifestBytes();
+    const result = fixture.run(['apply', '--adopt', target]);
+    assert.equal(result.code, 2, target + ': ' + result.output);
+    assert.match(result.stdout, pattern, target);
+    assert.equal(manifestBytes(), before, target);
+  };
+
+  // A copy in both places leaves the run no way to tell which one to keep.
+  writeFile(fixture.overlayDir, 'skilled/skills/hub/fix.md', 'fix copy\n');
+  expectRefusal('.skilled/skills/hub/fix.md',
+    /both \.skilled\/skills\/hub\/fix\.md and skilled-overlays\/skilled\/skills\/hub\/fix\.md exist; keep one, then adopt again/);
+  fs.rmSync(path.join(fixture.overlayDir, 'skilled/skills/hub/fix.md'));
+
+  // An entry that already keeps its copy where this file's copy would go.
+  const manifest = readJson(fixture.manifestPath);
+  manifest.overlays.push({ id: 'hub-parts', scope: 'directory', source: 'skilled/skills/hub/parts',
+    destination: 'vendored-parts' });
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+  expectRefusal('.skilled/skills/hub/parts/notes.md',
+    /skilled-overlays\/skilled\/skills\/hub\/parts\/notes\.md overlaps the source of overlay hub-parts/);
+
+  // A copy holding a link would put something in the tree the walk cannot own.
+  writeFile(fixture.overlayDir, 'skilled/skills/linked/SKILL.md', 'linked skill\n');
+  fs.symlinkSync(fixture.workspace, path.join(fixture.overlayDir, 'skilled/skills/linked/notes-link'));
+  expectRefusal('.skilled/skills/linked',
+    /notes-link is not a regular file; adopt takes files and folders only/);
+
+  // Without the checkout the pin names, adopt cannot tell upstream's own file
+  // from a project edit, so it does not guess.
+  const pinned = readJson(fixture.manifestPath);
+  pinned.pin.checkout = path.join(fixture.workspace, 'upstream-that-moved-away');
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(pinned, null, 2) + '\n');
+  expectRefusal('.skilled/skills/hub/fix.md',
+    /cannot read pin\.commit in the upstream checkout pin\.checkout names, to tell whether \.skilled\/skills\/hub\/fix\.md is upstream's; adopt it where that checkout exists/);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'skilled/skills/hub/fix.md')), false);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. COMMIT CHECK
 // ─────────────────────────────────────────────────────────────────────────────
@@ -330,6 +458,101 @@ test('pre-commit refuses a staged vendored change no overlay owns, and passes ow
   git(fixture.tree, ['add', '-A']);
   const repinCommit = fixture.run(['pre-commit']);
   assert.equal(repinCommit.code, 0, repinCommit.output);
+});
+
+test('pre-commit treats a staged file as upstream\'s own when only its line endings differ', (t) => {
+  const fixture = createStrictFixture(t);
+  const vendoredPath = '.skilled/skills/hub/crlf.md';
+
+  // Upstream stores the CRLF bytes exactly as written, so its blob differs from
+  // a project copy whose lines end in LF under a `* text=auto` checkout.
+  git(fixture.upstream, ['config', 'core.autocrlf', 'false']);
+  writeFile(fixture.upstream, vendoredPath, 'one\r\ntwo\r\n');
+  const crlfCommit = commitAll(fixture.upstream, 'crlf');
+
+  writeFile(fixture.tree, '.gitattributes', '* text=auto\n');
+  const manifest = readJson(fixture.manifestPath);
+  manifest.pin.commit = crlfCommit;
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+  // Committed, so the pin move is not the staged change the check is judging.
+  commitAll(fixture.tree, 'vendor the crlf commit');
+
+  writeFile(fixture.tree, vendoredPath, 'one\ntwo\n');
+  git(fixture.tree, ['add', '--', vendoredPath]);
+  assert.notEqual(git(fixture.tree, ['rev-parse', ':' + vendoredPath]),
+    git(fixture.upstream, ['rev-parse', crlfCommit + ':' + vendoredPath]));
+  const sameText = fixture.run(['pre-commit']);
+  assert.equal(sameText.code, 0, sameText.output);
+  assert.equal(sameText.stdout, 'allow\n');
+
+  writeFile(fixture.tree, vendoredPath, 'one\nthree\n');
+  git(fixture.tree, ['add', '--', vendoredPath]);
+  const changed = fixture.run(['pre-commit']);
+  assert.equal(changed.code, 1, changed.output);
+  assert.ok(changed.stdout.includes(vendoredPath), changed.stdout);
+});
+
+test('a path under repin.exclude needs no overlay, so the guard and the commit check leave it alone', (t) => {
+  const fixture = createStrictFixture(t);
+  const manifest = readJson(fixture.manifestPath);
+  // A leading ./ and a trailing slash are both normalised away before matching.
+  manifest.repin.exclude = ['./.skilled/local/'];
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+  const excluded = fixture.run(['--guard', '.skilled/local/new-thing.sh']);
+  assert.equal(excluded.code, 0, excluded.output);
+  assert.equal(excluded.stdout, 'allow\n');
+
+  // The rest of the vendored tree is still checked.
+  const kept = fixture.run(['--guard', '.skilled/skills/new-thing.md']);
+  assert.equal(kept.code, 1, kept.output);
+  assert.match(kept.stdout, /^refuse:/);
+
+  writeFile(fixture.tree, '.skilled/local/new-thing.sh', 'echo hi\n');
+  git(fixture.tree, ['add', '-A']);
+  const commitCheck = fixture.run(['pre-commit']);
+  assert.equal(commitCheck.code, 0, commitCheck.output);
+  assert.equal(commitCheck.stdout, 'allow\n');
+});
+
+test('the commit check reports a staged change under a vendored tree that sits below the git top level', (t) => {
+  const fixture = createNestedFixture(t);
+  writeFile(fixture.tree, '.skilled/skills/hub/stable.md', 'edited in place\n');
+  writeFile(fixture.workspace, 'vendor/other/notes.md', 'other\n');
+  writeFile(fixture.workspace, 'top-note.md', 'project note\n');
+  git(fixture.workspace, ['add', '-A']);
+
+  const refused = fixture.run(['pre-commit']);
+
+  assert.equal(refused.code, 1, refused.output);
+  // The path is the tree's own key, not the top level's path to the same file.
+  assert.deepEqual(refused.stdout.split('\n').filter((line) => line.startsWith('refuse: ')),
+    ['refuse: staged change to .skilled/skills/hub/stable.md is under a vendored root and no overlay owns it']);
+  assert.equal(refused.stdout.includes('vendor/other/notes.md'), false, refused.stdout);
+  assert.equal(refused.stdout.includes('top-note.md'), false, refused.stdout);
+});
+
+test('the commit check names an unowned vendored change when the checkout its pin names is gone', (t) => {
+  const fixture = createStrictFixture(t);
+  const manifest = readJson(fixture.manifestPath);
+  manifest.pin.checkout = path.join(fixture.workspace, 'upstream-that-moved-away');
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+  writeFile(fixture.tree, '.skilled/skills/hub/fix.md', 'edited with no checkout\n');
+  git(fixture.tree, ['add', '-A']);
+  const refused = fixture.run(['pre-commit']);
+  assert.equal(refused.code, 1, refused.output);
+  assert.deepEqual(refused.stdout.split('\n').filter((line) => line.startsWith('refuse: ')),
+    ['refuse: staged change to .skilled/skills/hub/fix.md is under a vendored root and no overlay owns it']);
+
+  // An owned path is the overlay's own, so it needs nothing to compare with.
+  writeFile(fixture.tree, '.skilled/skills/hub/fix.md', FIX_UPSTREAM);
+  writeFile(fixture.tree, '.skilled/skills/own/SKILL.md', 'owned edit\n');
+  writeFile(fixture.overlayDir, 'skills/own/SKILL.md', 'owned edit\n');
+  git(fixture.tree, ['add', '-A']);
+  const allowed = fixture.run(['pre-commit']);
+  assert.equal(allowed.code, 0, allowed.output);
+  assert.equal(allowed.stdout, 'allow\n');
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

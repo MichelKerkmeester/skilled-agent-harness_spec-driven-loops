@@ -279,7 +279,7 @@ test('apply holds the lock while it runs and removes it when done, also after a 
   fixture.manifest.regenerate = [{ id: 'probe', argv: ['node', '-e', probe] }];
   writeManifest(fixture);
   seed(fixture);
-  assert.match(fs.readFileSync(path.join(fixture.tree, 'lock-seen.txt'), 'utf8'), /^overlay-engine apply pid=\d+ \d{4}-\d\d-\d\dT/);
+  assert.match(fs.readFileSync(path.join(fixture.tree, 'lock-seen.txt'), 'utf8'), /^overlay-engine apply pid=\d+ host=\S+ \d{4}-\d\d-\d\dT/);
   assert.equal(fs.existsSync(fixture.lockPath), false);
 
   fixture.manifest.regenerate = [{ id: 'fails', argv: ['node', '-e', 'process.exit(3)'] }];

@@ -61,7 +61,7 @@ Single engine script
 - **`globToRegExp`**: compiles `**/` to zero or more whole segments.
 - **`strictWriteRefusal` and `stagedUnownedChanges`**: skip `repin.exclude` paths, and the commit check compares normalised content.
 - **`status`**: two new report lines and an `--audit` flag.
-- **`relayout`**: a new target beside `apply` and `repin`. Today each project writes a one-off move script.
+- **`apply --relayout`**: a new flag of `apply`. Today each project writes a one-off move script.
 - **`overlay-guard/opencode`**: a seventh adapter over the unchanged hook core.
 
 ### Data Flow
@@ -95,6 +95,8 @@ Required inventories:
 |----------------|----------|--------|
 | Make the edit hook fail closed | Deferred to `handover-to-barter.md` | Fail-open is the hook's stated contract across seven runtimes, and the commit check still blocks |
 | Check a commit that moves the pin | Rejected | A re-pin commit carries upstream's own changes, so the check would refuse every re-pin. `status --audit` covers the gap |
+| Run the `overlay-guard` tests in CI | Rejected | They already run. The OpenCode Plugin Tests workflow collects every `node:test` file under `.skilled/hooks`, and its run on `c57b7e4cef` collected 78 files and passed |
+| A separate `relayout` target, as the handover asked | Changed to `apply --relayout` | A new target needs its own route and a skill-advisor bridge in five advisor runtime files. Adopt took the same flag form in phase 8 for the same reason |
 | The four Barter items | Moved to `handover-to-barter.md` | Barter's tree is read-only for this session |
 <!-- /ANCHOR:affected-surfaces -->
 

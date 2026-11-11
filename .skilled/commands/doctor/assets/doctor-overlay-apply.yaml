@@ -1,9 +1,9 @@
 # ─────────────────────────────────────────────────────────────────
 # DOCTOR: OVERLAY APPLY (INTERACTIVE, ONE VENDORED TREE)
 # ─────────────────────────────────────────────────────────────────
-role: Careful operator putting a project's overlays back into its vendored Skilled tree, moving one live edit into its overlay source, or bringing one unowned vendored path under an overlay, without overwriting a change nobody has looked at
-purpose: Show the engine's status report as the plan, ask once, then run the engine's apply, capture or adopt only after that yes, and re-read the tree through status
-action: Read the engine -> run status -> show the plan -> explicit yes -> run apply, apply --capture <path> or apply --adopt <path> -> re-read through status
+role: Careful operator putting a project's overlays back into its vendored Skilled tree, moving one live edit into its overlay source, bringing one unowned vendored path under an overlay, or moving overlay sources onto their layout paths, without overwriting a change nobody has looked at
+purpose: Show the engine's status report as the plan, ask once, then run the engine's apply, capture, adopt or relayout only after that yes, and re-read the tree through status
+action: Read the engine -> run status -> show the plan -> explicit yes -> run apply, apply --capture <path>, apply --adopt <path> or apply --relayout then apply -> re-read through status
 skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
@@ -31,12 +31,14 @@ mutation_boundaries:
     - "<overlay folder>/.build-lock, which the engine creates for the run and removes when its own run ends"
     - "with --capture <path>, the one overlay source that path maps to, plus sync-state.json"
     - "with --adopt <path>, the copy of that vendored file or folder the engine writes into the overlay folder, and the one entry it appends to <overlay folder>/overlay-manifest.json, followed by everything a plain apply writes"
+    - "with --relayout, the overlay sources the manifest keeps off their layout paths, moved inside the overlay folder to the same path with the leading dot dropped, the layout links that reach them, the source, fragment and base fields of <overlay folder>/overlay-manifest.json, and the backup in <overlay folder>/relayout-runs/<stamp>/ the run writes before the first move, followed by everything a plain apply writes"
   forbidden_targets:
     - "any path the overlay manifest does not name once the adopt entry is in, because the engine plans every write from that manifest and this workflow composes none"
     - "a destination in live-edited, both-changed or upstream-moved state, which the engine refuses to overwrite"
+    - "a relayout target path that already exists, or a copy the engine cannot place safely, which the engine refuses rather than overwrite"
     - ".skilled/commands/doctor/scripts/overlay-engine.cjs itself"
     - "the git index, history and remotes"
-  invariant: "Nothing is written until the operator has read this run's status report and answered yes to it. The engine takes its own lock and classifies every destination again before the first write. While any destination is live-edited, both-changed or upstream-moved it writes nothing and exits 1. A no at the question ends the run with STATUS=CANCELLED and nothing written."
+  invariant: "Nothing is written until the operator has read this run's status report, and with --relayout its LAYOUT lines, and answered yes to it. The engine takes its own lock and classifies every destination again before the first write. While any destination is live-edited, both-changed or upstream-moved it writes nothing and exits 1. A no at the question ends the run with STATUS=CANCELLED and nothing written."
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
@@ -54,7 +56,8 @@ inputs:
   execution_mode: "INTERACTIVE"
   root: "The vendored tree to read and write when --root <dir> is passed (default none, so the engine works on the tree it is vendored in)."
   capture_path: "The destination path given with --capture <path> (default none, so the run applies every overlay). The engine resolves it against the tree root or the working directory."
-  adopt_path: "The vendored file or folder given with --adopt <path> (default none). It sits under .skilled, under a runtime folder the manifest's repin block names, or is a root file named in repin.rootFiles. The engine resolves it against the tree root or the working directory. Never given together with --capture."
+  adopt_path: "The vendored file or folder given with --adopt <path> (default none). It sits under .skilled, under a runtime folder the manifest's repin block names, or is a root file named in repin.rootFiles. The engine resolves it against the tree root or the working directory. Never given together with --capture or --relayout."
+  relayout: "The --relayout flag when the operator gave it (default none). It moves each overlay source kept off its layout path onto that path and then applies. Never given together with --capture or --adopt."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -64,41 +67,51 @@ workflow:
     purpose: "Load what the run is built from before anything is asked"
     activities:
       - "Check that .skilled/commands/doctor/scripts/overlay-engine.cjs exists. If it is missing, report the missing path and stop with STATUS=FAIL."
-      - "Read the engine's interface before driving it: node .skilled/commands/doctor/scripts/overlay-engine.cjs --help prints its usage block and exits 0. status is read-only. apply applies every overlay under the engine's lock. apply --capture <path> moves one live edit into its overlay source. apply --adopt <path> copies one unowned vendored path into the overlay folder, appends its manifest entry and then applies. The engine has no plan, digest or dry-run mode, so this workflow passes no such flag."
+      - "Read the engine's interface before driving it: node .skilled/commands/doctor/scripts/overlay-engine.cjs --help prints its usage block and exits 0. status is read-only. apply applies every overlay under the engine's lock. apply --capture <path> moves one live edit into its overlay source. apply --adopt <path> copies one unowned vendored path into the overlay folder, appends its manifest entry and then applies. apply --relayout moves each overlay source kept off its layout path onto that path, rewrites the manifest fields and layout links that name it and leaves the apply that follows to retarget them. The engine has no plan, digest or dry-run mode, so this workflow passes no such flag."
       - "Read .skilled/commands/doctor/assets/doctor-overlay-presentation.txt for the plan, question, refusal and result wording. Every visible line comes from there."
 
   phase_2_plan:
     purpose: "Run the read-only status report and decide whether there is anything to ask"
     activities:
       - "Run node .skilled/commands/doctor/scripts/overlay-engine.cjs status, adding --root \"{root}\" when the operator passed one. Status writes nothing and takes no lock. Keep every line it prints: the destination lines, the state counts, each MISS line, the checked line and the RESULT line."
-      - "Exit 2 means a precondition failed, such as a missing overlay manifest or an invalid .skilled-overlays.json. Quote the engine's message, name the accepted invocation (/doctor:overlay apply [--root <dir>] [--capture <path> | --adopt <path>]), and end with STATUS=FAIL. Nothing was written."
+      - "Exit 2 means a precondition failed, such as a missing overlay manifest or an invalid .skilled-overlays.json. Quote the engine's message, name the accepted invocation (/doctor:overlay apply [--root <dir>] [--capture <path> | --adopt <path> | --relayout]), and end with STATUS=FAIL. Nothing was written."
       - "Without adopt_path: exit 0 with RESULT: PASSED means the tree is in sync. Render the unchanged result, ask nothing, write nothing and go to phase 6 with STATUS=OK."
-      - "Without capture_path and adopt_path: a live-edited line stops the run before the question, because a plain apply refuses while one is there. Show each such line with /doctor:overlay apply --capture <path> for it and end with STATUS=FAIL. Nothing was written."
-      - "Without capture_path and adopt_path: a both-changed or upstream-moved line stops the run before the question, because a person resolves it. Show each such line with the engine's fix and end with STATUS=FAIL. Nothing was written."
-      - "Without capture_path and adopt_path: a MISS line that says refusing to inspect a protected path means that entry is blocked and apply would write nothing; show it with the fix from the presentation contract's refusing to inspect a protected path row and end with STATUS=FAIL. Otherwise, exit 1 with no destination line and only MISS lines means no destination is behind, so an apply has nothing to fix. Show the MISS lines and end with STATUS=FAIL. Nothing was written."
+      - "Without capture_path, adopt_path or relayout: a live-edited line stops the run before the question, because a plain apply refuses while one is there. Show each such line with /doctor:overlay apply --capture <path> for it and end with STATUS=FAIL. Nothing was written."
+      - "Without capture_path, adopt_path or relayout: a both-changed or upstream-moved line stops the run before the question, because a person resolves it. Show each such line with the engine's fix and end with STATUS=FAIL. Nothing was written."
+      - "Without capture_path, adopt_path or relayout: a MISS line that says refusing to inspect a protected path means that entry is blocked and apply would write nothing; show it with the fix from the presentation contract's refusing to inspect a protected path row and end with STATUS=FAIL. Otherwise, exit 1 with no destination line and only MISS lines means no destination is behind, so an apply has nothing to fix. Show the MISS lines and end with STATUS=FAIL. Nothing was written."
       - "With capture_path: find the one destination line whose key is that path, made relative to the tree root. With no such line the path is in sync or not an overlay destination, so render the nothing-to-capture result, ask nothing and end with STATUS=OK. A line in any state other than live-edited stops the run with that line and its fix, and STATUS=FAIL."
       - "With adopt_path: a live-edited, both-changed or upstream-moved line anywhere in the report stops the run before the question, because the engine appends the entry first and then applies, and that apply would be refused. Show each such line with its fix and end with STATUS=FAIL. Nothing was written. A report in sync, or one with only overlay-edited lines, goes on to the adopt plan."
+      - "With relayout, keep every LAYOUT line as well: the overlay id, the manifest field, the path the copy sits at now and the path it belongs at."
+      - "With relayout, a report with no LAYOUT line means every source already sits on its layout path, so render the nothing-to-move result, ask nothing, write nothing and go to phase 6 with STATUS=OK."
+      - "With relayout, a live-edited, both-changed or upstream-moved line, a MISS line or a STALE line stops the run before the question, because the apply that follows the move would be refused until it is settled. Show each such line with its fix beside the LAYOUT lines and end with STATUS=FAIL. Nothing was written."
 
   phase_3_approval:
     purpose: "Ask the one question against the report on screen, and write only after its yes"
     activities:
-      - "Without capture_path, render the apply plan from the presentation contract: one line per overlay-edited line the report printed, each MISS line, the regenerate and verify steps that follow, and the lock the engine holds. Then ask the apply question once."
+      - "Without capture_path, adopt_path or relayout, render the apply plan from the presentation contract: one line per overlay-edited line the report printed, each MISS line, the regenerate and verify steps that follow, and the lock the engine holds. Then ask the apply question once."
       - "With capture_path, render the capture plan: the one live-edited line, the overlay source it names and the engine's record. Then ask the capture question once."
       - "With adopt_path, render the adopt plan: the path, the overlay-edited lines the same apply will also write, and what the engine does with the path. Then ask the adopt question once."
+      - "With relayout, render the relayout plan from the presentation contract: one line per LAYOUT line the report printed, the backup folder the run leaves, the manifest fields and layout links it rewrites, and the apply that follows in the same run. Then ask the relayout question once."
       - "Any answer other than yes is a no: print the cancelled result naming what was declined, state Changed: none, and end with STATUS=CANCELLED ACTION=cancelled. Nothing is written."
       - "Never default an answer, never carry an approval from an earlier run, and never ask against a report the operator has not seen. Phase 4 runs only after this phase's yes."
 
   phase_4_write:
     purpose: "Run the one engine call the operator approved, and nothing else"
     activities:
-      - "Without capture_path, run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply, adding --root \"{root}\" when the plan ran with it. Run it only after the apply yes."
+      - "Without capture_path, adopt_path or relayout, run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply, adding --root \"{root}\" when the plan ran with it. Run it only after the apply yes."
       - "With capture_path, run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --capture \"{capture_path}\", adding --root \"{root}\" when the plan ran with it. Run it only after the capture yes."
       - "With adopt_path, run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --adopt \"{adopt_path}\", adding --root \"{root}\" when the plan ran with it. Run it only after the adopt yes."
+      - "With relayout, run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout, adding --root \"{root}\" when the plan ran with it, then run node .skilled/commands/doctor/scripts/overlay-engine.cjs apply with the same --root, because a move leaves each live link naming the old target until an apply retargets it. Run both only after the relayout yes."
       - "Exit 0 means the engine finished. Keep exactly the lines it printed: each linked line and the changed count for an apply, or the captured line for a capture. A capture that prints nothing to capture found the edit already in its source."
       - "Exit 1 from apply with problem lines, BLOCKED lines or blocked=<n> changed=0 means the engine refused because the tree changed since the report, so nothing was written. Quote the lines and end with STATUS=FAIL. Never retry the apply here."
       - "Exit 1 from apply after regeneration failed means the overlays were written and the tree is only partly rebuilt. Exit 1 with MISS generated lines after the changed count means the overlays were written and recorded while a generator check still fails. Quote the lines, name each failed step or check, report the written overlays in Changed, and end with STATUS=FAIL."
       - "Exit 1 from a capture means the path was not live-edited when the engine looked, so nothing was written. Exit 2 means a refusal, such as a held lock, a protected path or a path that is not an overlay destination, so nothing was written. Quote the engine's lines and end with STATUS=FAIL."
       - "From an adopt, exit 0 means the engine printed its adopted line, wrote the entry and applied. Exit 2 with a refuse line means nothing was written: the path is outside the vendored roots, on the generated list, already inside an overlay, a protected name, or upstream's and the upstream checkout the manifest's pin names could not be read. Quote the line and end with STATUS=FAIL. Exit 1 after the adopted line means the entry and the overlay copy were written and the apply after them was blocked. Quote the lines, report the entry in Changed, and end with STATUS=FAIL."
+      - "A relayout that exits 0 prints its backup line, one moved line per copy, the moved count and the apply line it names. The run then applies, and every line both calls printed is kept."
+      - "A skipped line inside an exit 0 relayout means a credential file was never opened, so that one copy stayed where it was while the run moved the others. Report each skipped path in Changed and carry on with the apply."
+      - "Exit 2 from apply --relayout with refuse lines means nothing was written: a target already exists, a copy the manifest names is missing, two copies belong at one path, two copies sit one inside the other, or the overlay lock is held. Quote the lines and end with STATUS=FAIL. Never retry the relayout here."
+      - "Exit 2 from apply --relayout with an [overlay-engine] line on stderr means the manifest changed under the run, so the field it planned against no longer holds that path and nothing was written. Quote the line and end with STATUS=FAIL."
+      - "Exit 1 from the apply a relayout run makes means the sources moved and the destinations were not written, so report the moved lines in Changed and end with STATUS=FAIL."
       - "Never remove the overlay lock inside this route. A held lock is the operator's to clear once the other run has ended, as the engine's message says."
 
   phase_5_reread:
@@ -106,12 +119,13 @@ workflow:
     activities:
       - "After any engine write, run node .skilled/commands/doctor/scripts/overlay-engine.cjs status once more, with --root \"{root}\" when this run used it, and read its RESULT line and counts against the engine's own result lines."
       - "A capture that succeeded leaves other overlays behind until the next apply, so a re-read that still shows overlay-edited lines after a capture is the next step and not a failure."
+      - "A re-read after a relayout must show no LAYOUT line for a copy the run reported moved. One that still does is a failure, and its line is quoted as printed."
       - "When the re-read cannot run at all, report its message, keep the write result and name the missing re-read as the next step. Never report a write as verified when the re-read never answered."
 
   phase_6_report:
     purpose: "Summarize the run and hand the next step back to the operator"
     activities:
-      - "Render the applied, captured, adopted, unchanged, cancelled or failure result from the presentation contract, with the engine's lines as printed and the re-read verdict."
+      - "Render the applied, captured, adopted, moved, unchanged, cancelled or failure result from the presentation contract, with the engine's lines as printed and the re-read verdict."
       - "Name the next command from the presentation contract's next-step table."
       - "End by saying the operator commits the changed files themselves; this route stages and commits nothing."
 

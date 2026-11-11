@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Vendored Skilled Overlays
@@ -53,11 +53,13 @@ The value is a path relative to the tree root. With no setting file the folder i
 | File | What it holds |
 |------|---------------|
 | `overlay-manifest.json` | The pinned upstream commit and one entry per overlay |
-| `sync-state.json` | The bytes the engine last applied to each destination, as hashes |
+| `sync-state.json` | The hashes it last applied to each destination, the layout link targets it made and the array items it added |
 | `.build-lock` | Present only while an `apply`, a capture, an adopt or a re-pin runs |
 | Everything else | The overlay sources the manifest entries name |
 
 The setting lives outside `.skilled` because a re-copy overwrites that folder, and outside the manifest because the manifest sits inside the folder the setting finds.
+
+`sync-state.json` carries two optional records beside its hashes. `links` maps each layout link path to the target the engine confirmed there, so when the manifest moves a link target the engine retargets its own link instead of refusing a stranger at that path. `items` holds the array items each `json-entry` overlay added, so an item the overlay drops is removed from the live file while it still equals what the engine wrote. An item recorded there but edited since is refused rather than deleted, because the entry set no longer describes what it should be. A link the state has no record of is refused and reported, and an item it has no record of is left in place. A state file from an older engine holds neither key, so nothing is retargeted or removed until the first apply records them.
 
 ---
 
@@ -77,13 +79,24 @@ The setting lives outside `.skilled` because a re-copy overwrites that folder, a
 
 The common mistake is running `apply` over a `live-edited` destination. It blocks, and the fix was one capture away.
 
+### Off-Layout and Stale Sources
+
+Two more `status` lines name work no destination state covers.
+
+| The line | What happened | What resolves it |
+|----------|---------------|------------------|
+| `STALE    root-file <path>` | Upstream changed a file named in `repin.rootFiles` since the overlay that owns it was pinned. A re-pin never copies a root file, so no destination line reports it | Rebase the overlay onto the new upstream file, then update its `pinnedSha256` |
+| `LAYOUT   <overlay>: source <from> belongs at <to>` | The copy the entry names sits off its layout path, which is the entry's destination path with the leading dot dropped | `/doctor:overlay apply --relayout` |
+
+`apply --relayout` moves each off-layout copy onto its layout path, and with it a `marked-section` entry's `fragment` and `base`. It copies every path it moves into `<overlayDir>/relayout-runs/<stamp>/` first, then points the entry's fields and the manifest's layout links at the new path. It refuses rather than overwrite a path that already exists, and then it writes nothing. The plain `apply` that follows retargets the live links and puts the destinations on the moved copies.
+
 ---
 
 ## 4. WHAT THE ENGINE REFUSES
 
 ### A Held Lock
 
-`apply` and a capture take `<overlayDir>/.build-lock` themselves and remove it when they finish, also on failure. While another run holds it, they refuse and print both the owner line and the lock file path. No run clears a lock on its own: when the owner process is gone, remove the file by hand and run again.
+`apply` and a capture take `<overlayDir>/.build-lock` themselves and remove it when they finish, also on failure. The owner line records the process id and the host that wrote it, as `pid=<n> host=<name>`. A lock whose owner has ended on this host is leftover state, so the next run takes it over and prints one note naming whose lock it was. A lock with a live owner, a lock another host wrote, or a lock with no process id in its line still refuses, and that refusal prints the owner line and the lock file path. Remove such a file by hand once you know its run has ended.
 
 ### Secret Files
 
@@ -108,7 +121,7 @@ A refused file blocks only the entry it belongs to. `status` still reports every
 
 ### An Edit to an Owned File
 
-The `overlay-guard` hook refuses an agent's edit to a file an overlay owns, before it is written, and names the overlay file to edit instead. It asks the engine for each path, so it follows the same manifest. In a repository with no overlay folder it allows every edit at once. `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns it off.
+The `overlay-guard` hook refuses an agent's edit to a file an overlay owns, before it is written, and names the overlay file to edit instead. It asks the engine for each path, so it follows the same manifest. It is one runtime-neutral core with an adapter per runtime, for Claude, Codex, Cursor, Devin, Pi, DSH and OpenCode, and the OpenCode adapter sits at `.skilled/hooks/overlay-guard/opencode/overlay-guard.js`. In a repository with no overlay folder it allows every edit at once. `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns it off.
 
 ### A Write No Overlay Owns
 
@@ -131,7 +144,9 @@ With `strictWrites` on, the engine's `--guard` also refuses a write under `.skil
 | A new file anywhere else | The overlay path to create it at, then `apply --adopt` for the highest new folder |
 | A file inside a skill-root entry's folder that the entry does not replace | That entry's `replace` list |
 
-A path matching a `generated` glob is allowed, because a generator writes it and no overlay can own it. `*` stays inside one path segment and `**` crosses segments. A path git ignores is allowed too.
+A path matching a `generated` glob is allowed, because a generator writes it and no overlay can own it. In a glob, `*` stays inside one path segment and `**` crosses segments. A `**/` matches zero or more whole segments, so `.skilled/**/graph-metadata.json` covers that file at any depth, the top level included, and never a longer name beside it. A path git ignores is allowed too.
+
+A path under a `repin.exclude` folder is never copied by a re-pin, so a write there cannot be lost. With `strictWrites` on, neither the guard nor the commit check judges it.
 
 `/doctor:overlay apply --adopt <path>` turns the path into a manifest entry. It copies the file or folder into the overlay folder, at the same path without its leading dot, appends a `file` or `directory` entry and applies. An upstream file is pinned to upstream's bytes at the manifest's pin, read from the checkout `pin.checkout` names, so a later re-pin reports it as `upstream-moved`. A folder's token-named source files go into the entry's `protectedPaths`. Adopt refuses a generated path, a path an overlay already owns, a `.env` file, a token-named file that is not source or prose, and a folder that holds upstream files.
 
@@ -141,7 +156,17 @@ A write hook sees only an agent's write tools. For everything else, a project ca
 node .skilled/commands/doctor/scripts/overlay-engine.cjs pre-commit
 ```
 
-It exits 1 and names each staged change under a vendored root that no overlay owns. A generated path passes, and so does a staged file equal to upstream's bytes at the pin. A commit that moves the pin is a re-pin and is not checked. With `strictWrites` off it checks nothing and exits 0.
+It exits 1 and names each staged change under a vendored root that no overlay owns. A generated path passes, and so does a staged file whose contents equal upstream's bytes at the pin, with CRLF read as LF. A commit that moves the pin is a re-pin and is not checked. With `strictWrites` off it checks nothing and exits 0.
+
+### Drift No Overlay Owns
+
+The write checks judge a write as it is made. A vendored file that already differs from upstream, or an upstream file the tree lacks, waits for a re-pin to refuse the run unless something reports it first. `/doctor:overlay status --audit` is that report. It prints one `AUDIT` line per vendored path no overlay owns:
+
+- `differs`: the path's contents differ from upstream at the pin.
+- `missing`: upstream has the path at the pin and the tree does not.
+- `extra`: the tree tracks the path and upstream never had it.
+
+A generated path, a path an overlay owns and a `.env` name are not judged. `audit=<n>` counts the findings and any finding fails the status. With no checkout at the pin the run prints `AUDIT    skipped` and judges nothing.
 
 ---
 

@@ -108,8 +108,10 @@ test('the manifest holds status, apply and repin routes, and only status answers
     assert.ok(fs.existsSync(path.join(ASSETS, route.yaml)), route.yaml);
     assert.deepEqual(route.mcp_tools, []);
   }
-  assert.deepEqual(routeFor('status').allowed_flags, ['--json', '--root <dir>']);
-  assert.deepEqual(routeFor('apply').allowed_flags, ['--root <dir>', '--capture <path>', '--adopt <path>']);
+  assert.deepEqual(routeFor('status').allowed_flags, ['--json', '--audit', '--root <dir>']);
+  // --relayout is a flag of apply, so apply is the one route that carries every
+  // write the engine takes, and the three it must never combine in one run.
+  assert.deepEqual(routeFor('apply').allowed_flags, ['--root <dir>', '--capture <path>', '--adopt <path>', '--relayout']);
   assert.deepEqual(routeFor('repin').allowed_flags, ['--root <dir>', '--upstream <dir>', '--to <commit>', '--rollback <run-id>']);
   // The phrase moved off the read-only route, so a re-pin request reaches the target that re-pins.
   assert.ok(routeFor('repin').trigger_phrases.includes('re-pin my vendored Skilled'));
@@ -117,9 +119,10 @@ test('the manifest holds status, apply and repin routes, and only status answers
 });
 
 test('the engine parses every flag each route allows and refuses a flag the other target owns', () => {
-  // --capture and --adopt name two different writes, so apply takes one of them
-  // at a time and each is probed on its own beside the flags that combine.
-  const exclusive = ['--capture <path>', '--adopt <path>'];
+  // --capture, --adopt and --relayout name three different writes, so apply
+  // takes one of them at a time and each is probed on its own beside the flags
+  // that combine.
+  const exclusive = ['--capture <path>', '--adopt <path>', '--relayout'];
   for (const route of ROUTES.filter((entry) => entry.target !== 'repin')) {
     const shared = route.allowed_flags.filter((flag) => !exclusive.includes(flag));
     const alone = route.allowed_flags.filter((flag) => exclusive.includes(flag));
@@ -129,10 +132,13 @@ test('the engine parses every flag each route allows and refuses a flag the othe
       assert.ok(accepted, `the engine refused a flag ${route.target} allows: ${flags.join(' ')}`);
     }
   }
-  assert.equal(engineParses('apply', exclusive).accepted, false, 'apply must not take --capture with --adopt');
+  assert.equal(engineParses('apply', exclusive).accepted, false, 'apply must not take more than one of --capture, --adopt and --relayout');
   assert.equal(engineParses('status', ['--adopt <path>']).accepted, false, 'status must not take --adopt');
   assert.equal(engineParses('apply', ['--json']).accepted, false, 'apply must not take --json');
   assert.equal(engineParses('status', ['--capture <path>']).accepted, false, 'status must not take --capture');
+  assert.equal(engineParses('status', ['--relayout']).accepted, false, 'status must not take --relayout');
+  // relayout has no target of its own, so only apply parses the flag.
+  assert.equal(engineAccepts(['relayout', '--root', MISSING_TREE]).accepted, false, 'relayout must not parse as a target');
   assert.equal(engineParses('status', ['--upstream <dir>']).accepted, false, 'status must not take --upstream');
   assert.equal(engineParses('apply', ['--to <commit>']).accepted, false, 'apply must not take --to');
 });
@@ -167,6 +173,7 @@ test('the router carries the owner tag on line 6, the template sections and one 
   const hint = ROUTER.match(/^argument-hint:\s*"(.*)"$/m)[1];
   assert.ok(hint.length <= 140, `argument-hint is ${hint.length} chars`);
   assert.ok(hint.startsWith('[status|apply|repin]'), hint);
+  assert.ok(hint.includes('--relayout'), hint);
 
   const headings = [...ROUTER.matchAll(/^## \d+\. ([A-Z ]+)$/gm)].map((match) => match[1]);
   assert.deepEqual(headings, [
@@ -182,7 +189,7 @@ test('the router carries the owner tag on line 6, the template sections and one 
     const row = `| \`${route.target}\` | \`.skilled/commands/doctor/assets/${route.yaml}\` |`;
     assert.ok(ROUTER.includes(row), row);
   }
-  assert.match(ROUTER, /A bare `\/doctor:overlay` never reaches `apply`, which writes, or `repin`, which writes too/);
+  assert.match(ROUTER, /A bare `\/doctor:overlay` never reaches `apply` or `repin`, which write/);
 });
 
 test('the presentation menu and the target list name exactly the manifest targets, in order', () => {

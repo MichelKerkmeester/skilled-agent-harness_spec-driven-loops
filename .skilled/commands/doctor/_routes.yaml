@@ -628,13 +628,14 @@ routes:
     target: status
     default_target: true
     yaml: doctor-overlay-status.yaml
-    setup_vars: [execution_mode, root, json_output]
-    allowed_flags: ["--json", "--root <dir>"]
+    setup_vars: [execution_mode, root, json_output, audit_output]
+    allowed_flags: ["--json", "--audit", "--root <dir>"]
     mutating: read-only
     gate3_location: "n/a (read-only diagnostic; the engine classifies every overlay destination in the vendored tree, runs the overlay manifest's read-only verify checks and writes nothing)"
     mcp_tools: []   # script-only; no MCP calls
     script_invocations:
-      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # exit 0 = in sync, 1 = something out of sync, 2 = a failed precondition; the workflow adds --root <dir> and --json only when the operator passed them'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # exit 0 = in sync, 1 = something out of sync, 2 = a failed precondition; the workflow adds --root <dir>, --json and --audit only when the operator passed them'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status --audit  # read-only: the same report plus one AUDIT line per unowned path that differs from upstream at the pin, is missing from the tree or is tracked there and never upstream, then the audit count. A finding fails the status. Run only after the operator asked for --audit'
     trigger_phrases:
       - "check my vendored skilled overlays"
       - "are my skilled overlays in sync"
@@ -650,16 +651,17 @@ routes:
   - command: /doctor:overlay
     target: apply
     yaml: doctor-overlay-apply.yaml
-    setup_vars: [execution_mode, root, capture_path, adopt_path]
-    allowed_flags: ["--root <dir>", "--capture <path>", "--adopt <path>"]
+    setup_vars: [execution_mode, root, capture_path, adopt_path, relayout]
+    allowed_flags: ["--root <dir>", "--capture <path>", "--adopt <path>", "--relayout"]
     mutating: mutates
-    gate3_location: "the overlay destinations and layout links the overlay manifest names inside the vendored tree, the outputs of the manifest's regenerate steps, and <overlay folder>/sync-state.json, all under the engine's own <overlay folder>/.build-lock; with --capture <path>, only the one overlay source that path maps to plus sync-state.json; with --adopt <path>, the copy of that vendored path in the overlay folder and one new entry in <overlay folder>/overlay-manifest.json, followed by the same apply; the write runs only after the operator approved the status report this run printed"
+    gate3_location: "the overlay destinations and layout links the overlay manifest names inside the vendored tree, the outputs of the manifest's regenerate steps, and <overlay folder>/sync-state.json, all under the engine's own <overlay folder>/.build-lock; with --capture <path>, only the one overlay source that path maps to plus sync-state.json; with --adopt <path>, the copy of that vendored path in the overlay folder and one new entry in <overlay folder>/overlay-manifest.json, followed by the same apply; with --relayout, the overlay sources the manifest keeps off their layout paths, moved inside the overlay folder to the same path with the leading dot dropped, the layout-link targets that reach them, the source, fragment and base fields of <overlay folder>/overlay-manifest.json, and the backup in <overlay folder>/relayout-runs/<stamp>/, followed by the same apply; the write runs only after the operator approved the status report this run printed, or the LAYOUT lines in it when --relayout carries the run"
     mcp_tools: []   # script-only; no MCP calls
     script_invocations:
       - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # read-only: the report the run shows as its plan before the question, and the re-read after the write'
       - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply  # applies every overlay under the engine lock, then regenerates and verifies; writes nothing while a destination is live-edited, both-changed or upstream-moved; run only after the apply yes'
       - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --capture <path>  # moves one live edit into its overlay source; run only after the capture yes'
       - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --adopt <path>  # copies one unowned vendored path into the overlay folder, appends its manifest entry and applies; exit 0 = adopted and applied, 1 = the apply was blocked, 2 = a refusal with nothing written; run only after the adopt yes'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout  # moves every off-layout copy onto its layout path under the engine lock, backs up what it leaves in relayout-runs/, points the manifest fields and layout links there and prints one moved line per path, then names the apply that retargets the live link; exit 0 = done, 2 = a refusal with nothing written, such as a target that already exists; run only after the relayout yes, followed by apply'
     trigger_phrases:
       - "apply the skilled overlays"
       - "put my overlays back into vendored skilled"

@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-doctor playbook"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # system-skilled-doctor Manual Testing Playbook
@@ -21,7 +21,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-The walked tree holds 4 deterministic scenarios in 2 categories, covering advisor routing for Skilled integration requests, the behavior of the doctor commands this skill owns, the overlay engine on a tree with no overlays and the engine's per-entry protected-file refusal. The doctor contract tests remain authoritative for each command's full behavior. These scenarios check what an operator sees.
+The walked tree holds 9 deterministic scenarios in 2 categories, covering advisor routing for Skilled integration requests, the behavior of the doctor commands this skill owns, the overlay engine on a tree with no overlays, the engine's per-entry protected-file refusal, the guard's strict write checks, adopting an unowned upstream file, the commit check, a stale lock takeover and the move of an off-layout source. The doctor contract tests remain authoritative for each command's full behavior. These scenarios check what an operator sees.
 
 ### Realistic Test Model
 
@@ -33,7 +33,7 @@ The walked tree holds 4 deterministic scenarios in 2 categories, covering adviso
 
 ### Package Boundaries
 
-- The scenarios are read-only. They never run a writing doctor target.
+- The scenarios write only inside a temporary tree. A scenario that writes builds that tree in a folder from `mktemp -d` and names no repository path.
 - A `SKIP` needs a named environment blocker, such as a missing Node runtime.
 
 ---
@@ -91,6 +91,7 @@ Record each verdict under the skill's `benchmark/reports/` directory with the tr
 |---|---|---|---|
 | 1 | Routing | `SKD-001`, `SKD-002` | Confirm integration requests route here and the owned commands kept their behavior. |
 | 2 | Overlays | `SKD-003`, `SKD-004` | Confirm the overlay check names a missing manifest and writes nothing, and that a directory entry refuses an unprotected token-named file. |
+| 3 | Overlays | `SKD-005`, `SKD-006`, `SKD-007`, `SKD-008`, `SKD-009` | Confirm the guard refuses an unowned write and allows a generated or excluded path, that adopt and the commit check close the gap, that a stale lock is taken over, and that an off-layout source moves. |
 
 ---
 
@@ -132,6 +133,46 @@ Prompt: `check my own overlay folder with an unprotected tokens.css file`
 
 > **Feature File:** [SKD-004](overlays/adopt-with-protected-file.md)
 
+### SKD-005 | Overlay guard refuses a write under a vendored root that no overlay owns
+
+Verify `--guard` on a manifest with `strictWrites` on exits 1 for a new file and for an unowned upstream file, and prints `allow` for a generated path and a path under `repin.exclude`.
+
+Prompt: `stop me writing into the vendored skilled tree where no overlay owns the file`
+
+> **Feature File:** [SKD-005](overlays/strict-guard-refuses-unowned-write.md)
+
+### SKD-006 | Overlay adopt takes an unowned upstream file into the overlay folder
+
+Verify `apply --adopt` on an unowned upstream file appends its manifest entry, copies the edited file into the overlay folder, pins upstream's bytes and leaves `status` passing.
+
+Prompt: `adopt an upstream skill file i edited in place so a re-pin keeps my change`
+
+> **Feature File:** [SKD-006](overlays/adopt-an-unowned-file.md)
+
+### SKD-007 | Overlay pre-commit refuses a staged change no overlay owns
+
+Verify `pre-commit` exits 1 naming a staged unowned vendored change, and exits 0 once that change is adopted.
+
+Prompt: `block the commit while a vendored file no overlay owns is staged`
+
+> **Feature File:** [SKD-007](overlays/pre-commit-refuses-unowned-change.md)
+
+### SKD-008 | Overlay apply takes over a lock a killed run left behind
+
+Verify `apply` takes over a lock naming a dead process on this host with one `note:` line and removes the file, and refuses a lock naming a live process.
+
+Prompt: `my overlay run died and left a lock file, can a new run take it over`
+
+> **Feature File:** [SKD-008](overlays/stale-lock-takeover.md)
+
+### SKD-009 | Overlay relayout moves an off-layout source onto its layout path
+
+Verify `status` prints a `LAYOUT` line for an off-layout source and still passes, `apply --relayout` moves the copy and rewrites the manifest, and the `apply` and `status` that follow both pass.
+
+Prompt: `move my overlay sources onto the layout folder`
+
+> **Feature File:** [SKD-009](overlays/relayout-moves-sources.md)
+
 ---
 
 ## 9. AUTOMATED TEST CROSS-REFERENCE
@@ -140,4 +181,4 @@ Prompt: `check my own overlay folder with an unprotected tokens.css file`
 |---|---|---|
 | Advisor routing | [Skill graph metadata](../graph-metadata.json) | `SKD-001` |
 | Doctor command contracts | `.skilled/commands/doctor/scripts/tests/` | `SKD-002` |
-| Overlay engine | `.skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` | `SKD-003`, `SKD-004` |
+| Overlay engine | `.skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` | `SKD-003`, `SKD-004`, `SKD-005`, `SKD-006`, `SKD-007`, `SKD-008`, `SKD-009` |

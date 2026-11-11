@@ -39,6 +39,9 @@
 //   node overlay-engine.cjs pre-commit [--root <tree>]
 //     With strictWrites on, exit 1 when a staged change touches a vendored path
 //     no overlay owns. Exit 0 otherwise, 2 on error.
+//   node overlay-engine.cjs apply --relayout [--root <tree>]
+//     Move every overlay source kept off its layout path onto it, back up what
+//     it leaves behind, and point the manifest there. Exit 0, 2 on a refusal.
 //   node overlay-engine.cjs repin --upstream <dir> --to <commit> [--stage <dir>] [--root <tree>] [--json]
 //     Move the tree to a new upstream commit and apply the overlays again. With
 //     --stage, do it on a copy of the tree in <dir> and leave the tree alone.
@@ -81,6 +84,7 @@ const EXIT_ERROR = 2;
 const VENDOR_ROOT = '.skilled';
 const DEFAULT_RUNTIME_FOLDERS = ['.claude', '.codex', '.cursor', '.devin', '.dsh', '.opencode', '.pi'];
 const RUNS_FOLDER = 'repin-runs';
+const RELAYOUT_RUNS_FOLDER = 'relayout-runs';
 const RUN_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 const GIT_MAX_BUFFER = 512 * 1024 * 1024;
 const REPIN_VALUE_FLAGS = ['upstream', 'to', 'stage', 'rollback'];
@@ -90,8 +94,8 @@ const COMMAND_WORDS = ['status', 'apply', 'repin', 'pre-commit'];
 const TOKEN_NAME_ADOPT_EXTENSIONS = new Set(['.md', '.css', '.ts', '.js', '.cjs', '.mjs', '.svelte']);
 
 const USAGE = [
-  'usage: node overlay-engine.cjs status [--root <tree>] [--json]',
-  '       node overlay-engine.cjs apply [--capture <path> | --adopt <path>] [--root <tree>]',
+  'usage: node overlay-engine.cjs status [--root <tree>] [--json] [--audit]',
+  '       node overlay-engine.cjs apply [--capture <path> | --adopt <path> | --relayout] [--root <tree>]',
   '       node overlay-engine.cjs --guard <path> [--root <tree>]',
   '       node overlay-engine.cjs pre-commit [--root <tree>]',
   '       node overlay-engine.cjs repin --upstream <dir> --to <commit> [--stage <dir>] [--root <tree>] [--json]',
@@ -455,14 +459,16 @@ function loadManifest(ctx) {
 }
 
 function emptyState(pin) {
-  return { schemaVersion: STATE_SCHEMA_VERSION, pin, files: {}, exists: false };
+  return { schemaVersion: STATE_SCHEMA_VERSION, pin, files: {}, links: {}, items: {}, exists: false };
 }
 
 /**
- * Load the hashes of what each destination last received from its overlay.
+ * Load the hashes of what each destination last received from its overlay, the
+ * layout link targets this engine itself put there, and the array items it added.
  * @param {object} ctx Engine context.
  * @param {object} manifest Loaded overlay manifest.
- * @returns {{schemaVersion: number, pin: string, files: Record<string, string>, exists: boolean}}
+ * @returns {{schemaVersion: number, pin: string, files: Record<string, string>,
+ *   links: Record<string, string>, items: Record<string, object[]>, exists: boolean}}
  */
 function loadState(ctx, manifest) {
   const buffer = readBufferOrNull(ctx.statePath);
@@ -477,6 +483,20 @@ function loadState(ctx, manifest) {
       !parsed.files || typeof parsed.files !== 'object' || Array.isArray(parsed.files)) {
     throw new Error(STATE_FILE + ' has an unsupported shape');
   }
+  // An older state file predates the link records, so a missing key means the
+  // engine has no link it may retarget: every link on disk is someone else's.
+  const links = parsed.links === undefined ? {} : parsed.links;
+  if (!links || typeof links !== 'object' || Array.isArray(links) ||
+      Object.values(links).some((target) => typeof target !== 'string')) {
+    throw new Error(STATE_FILE + ' has an unsupported shape');
+  }
+  // A state file written before the added items were recorded says the engine
+  // added nothing, so a missing key means no recorded item may ever be removed.
+  const items = parsed.items === undefined ? {} : parsed.items;
+  if (!items || typeof items !== 'object' || Array.isArray(items) ||
+      Object.values(items).some((records) => !Array.isArray(records))) {
+    throw new Error(STATE_FILE + ' has an unsupported shape');
+  }
   for (const [destination, hash] of Object.entries(parsed.files)) {
     if (path.isAbsolute(destination) || destination.includes('\\') ||
         destination.split('/').some((part) => part === '..' || part === '.' || part === '') ||
@@ -488,6 +508,8 @@ function loadState(ctx, manifest) {
     schemaVersion: STATE_SCHEMA_VERSION,
     pin: parsed.pin,
     files: parsed.files,
+    links,
+    items,
     exists: true,
   };
 }
@@ -495,17 +517,29 @@ function loadState(ctx, manifest) {
 /**
  * Write the applied-hash state, sorted, only when its bytes would change.
  * @param {object} ctx Engine context.
- * @param {{pin: string, files: Record<string, string>}} state State to record.
+ * @param {{pin: string, files: Record<string, string>, links?: Record<string, string>,
+ *   items?: Record<string, object[]>}} state State to record.
  * @returns {boolean} Whether the file was written.
  */
 function writeStateIfChanged(ctx, state) {
   const sortedFiles = {};
   for (const key of Object.keys(state.files).sort()) sortedFiles[key] = state.files[key];
-  const content = JSON.stringify({
+  const sortedLinks = {};
+  for (const key of Object.keys(state.links || {}).sort()) sortedLinks[key] = state.links[key];
+  const sortedItems = {};
+  for (const key of Object.keys(state.items || {}).sort()) sortedItems[key] = state.items[key];
+  const body = {
     schemaVersion: STATE_SCHEMA_VERSION,
     pin: state.pin,
     files: sortedFiles,
-  }, null, 2) + '\n';
+  };
+  // A tree with no layout links keeps the bytes it had before links were
+  // recorded, so an overlay-only state file never churns on rewrite.
+  if (Object.keys(sortedLinks).length > 0) body.links = sortedLinks;
+  // The added items follow the same rule: a tree whose overlays add none keeps
+  // the state file bytes it already had.
+  if (Object.keys(sortedItems).length > 0) body.items = sortedItems;
+  const content = JSON.stringify(body, null, 2) + '\n';
   const current = readBufferOrNull(ctx.statePath);
   if (current && current.toString('utf8') === content) return false;
   fs.writeFileSync(ctx.statePath, content, 'utf8');
@@ -757,6 +791,37 @@ function matchIndex(arrayNode, match, identityKey) {
 }
 
 /**
+ * The value that names a recorded item: the identity key's value for an object,
+ * the value itself for a primitive.
+ * @param {object} record One recorded added item.
+ * @returns {*} The item's identity.
+ */
+function recordIdentity(record) {
+  const identityKey = record.identityKey === undefined ? null : record.identityKey;
+  if (identityKey === null || isPrimitive(record.item)) return record.item;
+  return record.item[identityKey];
+}
+
+/**
+ * Whether a recorded item and an item an entry set lists are the same array
+ * entry, so a re-apply recognises its own work and never an upstream item.
+ * @param {object} record One recorded added item.
+ * @param {Array<string|number>} path Array the entry set writes.
+ * @param {string} [identityKey] Key naming an object item; absent when the value is the identity.
+ * @param {*} item Item the entry set lists.
+ * @returns {boolean} Whether the two describe the same entry.
+ */
+function isRecordedItem(record, path, identityKey, item) {
+  if (!record || !deepEqual(record.path, path)) return false;
+  const recordedKey = record.identityKey === undefined ? null : record.identityKey;
+  const key = identityKey === undefined ? null : identityKey;
+  if (recordedKey !== key) return false;
+  if (key === null) return deepEqual(record.item, item);
+  if (isPrimitive(record.item) || isPrimitive(item)) return false;
+  return record.item[key] === item[key];
+}
+
+/**
  * Applies one operation to the parsed document and records the text edit that
  * realises it. Nothing is written here; the caller decides whether to keep it.
  * @param {object} operation One entry-set operation.
@@ -764,7 +829,10 @@ function matchIndex(arrayNode, match, identityKey) {
  * @param {string} text Document text the nodes point into.
  * @param {object} style Entry-set style.
  * @param {object[]} edits Collects the text edits.
- * @param {{canReplaceExisting: boolean}} options Whether a differing entry may be rewritten.
+ * @param {{canReplaceExisting: boolean, recordedItems?: object[],
+ *   onListed?: function}} options Whether a differing entry may be rewritten, the
+ *   items this overlay already added to the array, and where each listed item is
+ *   reported so a later pass can recognise it as the engine's own work.
  * @returns {string} 'changed' or 'unchanged'.
  */
 function planOperation(operation, root, text, style, edits, options) {
@@ -811,13 +879,29 @@ function planOperation(operation, root, text, style, edits, options) {
   if (operation.op === 'insertItems' || operation.op === 'appendItems') {
     const arrayNode = nodeAtPath(root, operation.path);
     const identityKey = operation.identityKey;
+    const recordedItems = options.recordedItems || [];
+    // Only an item this overlay put there is reported back as its own: an item
+    // the live file already held and the state never recorded may be upstream's.
+    const reportListed = (item) => {
+      if (!options.onListed) return;
+      options.onListed({
+        path: [...operation.path],
+        identityKey: identityKey === undefined ? null : identityKey,
+        item,
+      });
+    };
+    const wasRecorded = (item) => recordedItems
+      .some((record) => isRecordedItem(record, operation.path, identityKey, item));
     const pending = [];
     let hasChanged = false;
     for (const item of operation.items) {
       if (!identityKey) {
         // A scalar list carries its own identity, so an existing value counts as
         // already applied. Without this, a second apply would append a duplicate.
-        if (isPrimitive(item) && arrayNode.items.some((node) => node.value === item)) continue;
+        if (isPrimitive(item) && arrayNode.items.some((node) => node.value === item)) {
+          if (wasRecorded(item)) reportListed(item);
+          continue;
+        }
         if (!isPrimitive(item)) throw new Error('an item list without an identity key cannot hold objects');
       }
       if (identityKey) {
@@ -841,10 +925,12 @@ function planOperation(operation, root, text, style, edits, options) {
             });
             hasChanged = true;
           }
+          if (wasRecorded(item)) reportListed(item);
           continue;
         }
       }
       pending.push(item);
+      reportListed(item);
       hasChanged = true;
     }
     if (!hasChanged) return 'unchanged';
@@ -949,18 +1035,118 @@ function withLaterKeysMerged(operations) {
 }
 
 /**
- * Return the document text with every declared entry in place.
+ * Read the array a recorded item was added to.
+ * @param {object} root Root node of a parsed document.
+ * @param {Array<string|number>} path Array path the item was added at.
+ * @returns {object|null} The array node, or null when the path holds no array now.
+ */
+function recordedArrayAt(root, path) {
+  let node;
+  try {
+    node = nodeAtPath(root, path);
+  } catch (error) {
+    return null;
+  }
+  return node.type === 'array' ? node : null;
+}
+
+/**
+ * Find the live entry that carries a recorded item's identity, so an item whose
+ * identity was changed by hand is left alone rather than deleted by mistake.
+ * @param {object} arrayNode Parsed array node.
+ * @param {object} record One recorded added item.
+ * @returns {number} Index of the entry, or -1 when the array does not hold it.
+ */
+function findRecordedIndex(arrayNode, record) {
+  const identityKey = record.identityKey === undefined ? null : record.identityKey;
+  const wanted = recordIdentity(record);
+  return arrayNode.items.findIndex((node) => {
+    if (identityKey !== null) {
+      if (node.type !== 'object') return false;
+      const member = findMember(node, identityKey);
+      return Boolean(member) && member.value.value === wanted;
+    }
+    if (node.type === 'object' || node.type === 'array') return false;
+    return node.value === wanted;
+  });
+}
+
+/**
+ * The edit that deletes one array item together with the comma that separated
+ * it, so the document stays valid JSON and keeps no dangling separator.
+ * @param {object[]} items Parsed items of the array.
+ * @param {number} index Item to delete.
+ * @returns {{start: number, end: number, text: string}} The text edit.
+ */
+function removalEdit(items, index) {
+  if (index > 0) return { start: items[index - 1].end, end: items[index].end, text: '' };
+  if (items.length > 1) return { start: items[index].start, end: items[1].start, text: '' };
+  return { start: items[index].start, end: items[index].end, text: '' };
+}
+
+/**
+ * Whether an entry set still lists a recorded item.
+ * @param {object} operation One entry-set operation.
+ * @param {object} record One recorded added item.
+ * @returns {boolean} Whether the operation re-lists the item.
+ */
+function listsRecordedItem(operation, record) {
+  if (operation.op !== 'insertItems' && operation.op !== 'appendItems') return false;
+  return operation.items.some((item) => isRecordedItem(record, operation.path, operation.identityKey, item));
+}
+
+/**
+ * Delete every item this overlay added that its entry set no longer lists, so a
+ * dropped entry leaves the live file instead of staying behind as a line the
+ * entry set never mentions. An item that changed after it was applied is
+ * refused rather than deleted: that edit belongs to a person, and the entry set
+ * no longer describes what the item should be.
+ * @param {string} text Live document text.
+ * @param {object[]} operations Operations of one entry set, in order.
+ * @param {object[]} recordedItems Items this overlay added to the destination.
+ * @returns {string} The text with every dropped item gone.
+ */
+function removeDroppedItems(text, operations, recordedItems) {
+  let output = text;
+  for (const record of recordedItems) {
+    if (operations.some((operation) => listsRecordedItem(operation, record))) continue;
+    // The array, or the item others kept in it, may be gone already: either way
+    // nothing is left for this record to retract.
+    const arrayNode = recordedArrayAt(parseJsonSource(output), record.path);
+    if (!arrayNode) continue;
+    const index = findRecordedIndex(arrayNode, record);
+    if (index < 0) continue;
+    const node = arrayNode.items[index];
+    const live = JSON.parse(output.slice(node.start, node.end));
+    if (!deepEqual(live, record.item)) {
+      throw new Error('dropped entry ' + describe(recordIdentity(record)) +
+        ' was edited after it was applied; remove it by hand or restore it in the entry set');
+    }
+    output = applyEdits(output, [removalEdit(arrayNode.items, index)]);
+  }
+  return output;
+}
+
+/**
+ * Return the document text with every declared entry in place, and with the
+ * items the entry set no longer lists gone.
  * @param {string} text Live document text.
  * @param {{style?: object, operations: object[]}} spec Entry set.
- * @param {{canReplaceExisting: boolean}} options Whether a differing entry may be rewritten.
+ * @param {{canReplaceExisting: boolean, recordedItems?: object[],
+ *   onListed?: function}} options Whether a differing entry may be rewritten, the
+ *   items this overlay added to the file last time, and where a listed item is
+ *   reported.
  * @returns {string} The edited document text.
  */
 function applyJsonOperations(text, spec, options) {
   const style = spec.style || { indent: 2, primitiveArrays: 'inline' };
-  let output = text;
+  const operations = withLaterKeysMerged(spec.operations);
+  // A dropped entry is retracted before the entry set runs, so every operation
+  // addresses the array the set describes rather than the one it left behind.
+  let output = removeDroppedItems(text, operations, options.recordedItems || []);
   // Each operation sees the document the operations before it produced, so a
   // later operation can address an item an earlier one in the same set added.
-  for (const operation of withLaterKeysMerged(spec.operations)) {
+  for (const operation of operations) {
     const edits = [];
     planOperation(operation, parseJsonSource(output), output, style, edits, options);
     if (edits.length > 0) output = applyEdits(output, edits);
@@ -1134,9 +1320,13 @@ function planMarkedSectionOverlay(entry, ctx, problems, acceptedSha256) {
  * @param {object} ctx Engine context.
  * @param {string[]} problems Collects reasons the overlay cannot be applied.
  * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
- * @returns {{writes: object[], deletes: string[], outputs: object[]}}
+ * @param {{recordedItems?: object[]}} [options] Items this overlay added to the
+ *   destination last time, so a dropped entry leaves the live file.
+ * @returns {{writes: object[], deletes: string[], outputs: object[], listedItems: object[]}}
+ *   `listedItems` holds the items the entry set still lists and this overlay
+ *   added, which is what a later pass may retract.
  */
-function planJsonOverlay(entry, ctx, problems, acceptedSha256) {
+function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems } = {}) {
   const specPath = path.join(ctx.overlayRoot, entry.source);
   const destinationPath = path.join(ctx.root, entry.destination);
   const specBuffer = readBufferOrNull(specPath);
@@ -1156,8 +1346,13 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256) {
   const appliedHash = acceptedHashFor(acceptedSha256, entry.destination);
   const canReplaceExisting = appliedHash !== undefined && sha256(current) === appliedHash;
   let expected;
+  const listedItems = [];
   try {
-    expected = applyJsonOperations(currentText, spec, { canReplaceExisting });
+    expected = applyJsonOperations(currentText, spec, {
+      canReplaceExisting,
+      recordedItems,
+      onListed: (record) => listedItems.push(record),
+    });
   } catch (error) {
     problems.push(`cannot apply the entry set to ${entry.destination}: ${error.message}`);
     // The destination is still reported, with no desired bytes, so the conflict is
@@ -1170,8 +1365,8 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256) {
     };
   }
   const output = { filePath: destinationPath, buffer: Buffer.from(expected, 'utf8'), mode: entry.mode, sourcePath: specPath };
-  if (expected === currentText) return { writes: [], deletes: [], outputs: [output] };
-  return { writes: [output], deletes: [], outputs: [output] };
+  if (expected === currentText) return { writes: [], deletes: [], outputs: [output], listedItems };
+  return { writes: [output], deletes: [], outputs: [output], listedItems };
 }
 
 /**
@@ -1363,19 +1558,29 @@ const PLANNERS = {
  * Build a read-only plan for one manifest overlay.
  * @param {object} entry Manifest overlay entry.
  * @param {object} ctx Engine context.
- * @param {{acceptedSha256?: Map<string, string>|Record<string, string>}} [options]
- *   Hashes of what this overlay wrote last, which authorize rewriting a destination
- *   that changed only because the canonical copy did.
- * @returns {{entry: object, problems: string[], writes: object[], deletes: string[], outputs: object[]}}
+ * @param {{acceptedSha256?: Map<string, string>|Record<string, string>,
+ *   recordedItems?: object[]}} [options] Hashes of what this overlay wrote last, which
+ *   authorize rewriting a destination that changed only because the canonical copy
+ *   did, and the items it added there, which a dropped entry takes back.
+ * @returns {{entry: object, problems: string[], writes: object[], deletes: string[],
+ *   outputs: object[], listedItems: object[]}}
+ *   `listedItems` names the added items an entry set still lists, for the state write.
  */
-function planOverlay(entry, ctx, { acceptedSha256 } = {}) {
+function planOverlay(entry, ctx, { acceptedSha256, recordedItems } = {}) {
   const problems = [];
   const planner = PLANNERS[entry.scope];
   if (!planner) {
-    return { entry, problems: [`unknown scope "${entry.scope}"`], writes: [], deletes: [], outputs: [] };
+    return { entry, problems: [`unknown scope "${entry.scope}"`], writes: [], deletes: [], outputs: [], listedItems: [] };
   }
-  const plan = planner(entry, ctx, problems, acceptedSha256);
-  return { entry, problems, writes: plan.writes, deletes: plan.deletes, outputs: plan.outputs || [] };
+  const plan = planner(entry, ctx, problems, acceptedSha256, { recordedItems });
+  return {
+    entry,
+    problems,
+    writes: plan.writes,
+    deletes: plan.deletes,
+    outputs: plan.outputs || [],
+    listedItems: plan.listedItems || [],
+  };
 }
 
 /**
@@ -1448,12 +1653,26 @@ function replacedLinkState(root, link) {
 }
 
 /**
+ * Say whether the state records this exact target as a link the engine made.
+ * @param {object} state Loaded applied-hash state.
+ * @param {object} link Layout link entry from the manifest.
+ * @param {string|null} current Target the path links to right now.
+ * @returns {boolean} Whether the record matches what stands on disk.
+ */
+function isRecordedLink(state, link, current) {
+  const recorded = state && state.links ? state.links[link.path] : undefined;
+  return typeof recorded === 'string' && recorded === current;
+}
+
+/**
  * Find the manifest's layout links that are missing or refused.
  * @param {object} manifest Loaded overlay manifest.
  * @param {string} root Destination tree root.
+ * @param {object} state Loaded applied-hash state; its link records are what
+ *   tells a link the engine made from one it must refuse to touch.
  * @returns {{missing: object[], problems: string[]}}
  */
-function planLayoutLinks(manifest, root) {
+function planLayoutLinks(manifest, root, state) {
   const missing = [];
   const problems = [];
   for (const link of manifest.layoutLinks || []) {
@@ -1475,9 +1694,16 @@ function planLayoutLinks(manifest, root) {
     } catch (error) {
       if (!error || error.code !== 'ENOENT') throw error;
     }
+    let current = null;
+    if (stats && stats.isSymbolicLink()) current = fs.readlinkSync(linkPath);
     if (!stats) {
       missing.push({ link, linkPath });
-    } else if (!stats.isSymbolicLink() || fs.readlinkSync(linkPath) !== link.target) {
+    } else if (current !== null && current !== link.target && isRecordedLink(state, link, current)) {
+      // The manifest moved this entry's target after an earlier apply, and the
+      // state records the link standing here as the engine's own: the link is
+      // retargeted rather than reported as a stranger occupying the path.
+      missing.push({ link, linkPath, isRetarget: true });
+    } else if (current !== link.target) {
       problems.push(`${link.path} exists but is not the link to ${link.target}`);
     }
   }
@@ -1490,11 +1716,29 @@ function planLayoutLinks(manifest, root) {
  * have removed it, and a link that changed since planning must not be deleted.
  * @param {string} root Destination tree root.
  * @param {object} link Layout link entry from the manifest.
+ * @param {boolean} [isRetarget] Whether the state records the link standing at
+ *   this path as the engine's own, which permits pointing it at a new target.
  */
-function applyLayoutLink(root, link) {
+function applyLayoutLink(root, link, isRetarget) {
   const replacement = replacedLinkState(root, link);
   if (replacement.state === 'refused') throw new Error(replacement.reason);
   if (replacement.state === 'pinned') fs.unlinkSync(replacement.replacedPath);
+  if (isRetarget === true) {
+    // The link is removed only while it is still a link: a path that became a
+    // real file or folder since planning is someone else's work, and unlinking
+    // it would delete that work.
+    const linkPath = path.join(root, link.path);
+    let stats = null;
+    try {
+      stats = fs.lstatSync(linkPath);
+    } catch (error) {
+      if (!error || error.code !== 'ENOENT') throw error;
+    }
+    if (stats && !stats.isSymbolicLink()) {
+      throw new Error(link.path + ' is no longer the link this engine made; refusing to replace it');
+    }
+    if (stats) fs.unlinkSync(linkPath);
+  }
   ensureSymlink(path.join(root, link.path), link.target);
 }
 
@@ -1850,11 +2094,12 @@ function classifyDestination({ output, plan, key, live, state, manifest, upstrea
 // so a tree that lost one cannot be repaired by copying anything: the report has
 // to carry it as outstanding work or the link stays missing silently.
 function layoutLinkRecords(layout, root) {
-  return layout.missing.map(({ link, linkPath }) => ({
+  return layout.missing.map(({ link, linkPath, isRetarget }) => ({
     state: 'overlay-edited',
     key: relativeKey(root, linkPath),
     target: link.target,
     link,
+    isRetarget: isRetarget === true,
     layout: true,
   }));
 }
@@ -1874,7 +2119,10 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
   const { exact, refused } = assertSafeToPlan(ctx, manifest);
   const plans = manifest.overlays.map((entry) => (refused.has(entry.id)
     ? refusedPlan(entry, refused.get(entry.id))
-    : planOverlay(entry, ctx, { acceptedSha256: state.files })));
+    : planOverlay(entry, ctx, {
+      acceptedSha256: state.files,
+      recordedItems: (state.items || {})[entry.destination] || [],
+    })));
   const records = [];
   const blocked = [];
   const seen = new Set();
@@ -1923,7 +2171,7 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
       });
     }
   }
-  const layout = planLayoutLinks(manifest, root);
+  const layout = planLayoutLinks(manifest, root, state);
   for (const record of layoutLinkRecords(layout, root)) records.push(record);
   return { plans, records, blocked, layout };
 }
@@ -1966,26 +2214,74 @@ function stateSummary(records) {
 // 11. LOCK
 //
 // Every command that writes the tree or the overlay folder takes the lock
-// itself, so no wrapper is needed to keep two runs apart. A held lock is never
-// cleared automatically: the refusal names the owner line and the file, and a
-// person removes it once they know that run has ended.
+// itself, so no wrapper is needed to keep two runs apart. A lock whose writer
+// has ended on this host is taken over, because it is only leftover state; a
+// lock that may still have a live owner is refused, and a person removes it
+// once they know that run has ended.
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
+ * Tell whether the run that wrote an owner line has ended.
+ * A lock left behind by a killed run blocks every later run until someone
+ * deletes the file by hand, so the recorded process id is probed with signal 0,
+ * which asks the kernel whether that process exists without touching it. Only a
+ * missing process on this host counts: another host's ids say nothing here, and
+ * any other error (a process owned by another user answers EPERM) says the
+ * process is there.
+ * @param {string} line Owner line read from the lock file.
+ * @returns {boolean} True only when the writer is known to be gone.
+ */
+function isLockOwnerGone(line) {
+  const pid = / pid=(\d+) /.exec(line);
+  const host = / host=(\S+) /.exec(line);
+  if (!pid || !host || host[1] !== os.hostname()) return false;
+  try {
+    process.kill(Number(pid[1]), 0);
+  } catch (error) {
+    return Boolean(error) && error.code === 'ESRCH';
+  }
+  return false;
+}
+
+/**
  * Try to take the overlay lock.
+ * A lock whose writer has ended is removed and taken over, with one note saying
+ * whose lock it was; every other held lock is left alone and reported.
  * @param {object} ctx Engine context.
  * @param {string} owner Who takes it, written at the start of the owner line.
  * @returns {{isHeld: boolean, lockPath: string, ownerLine: string, release?: function}}
  */
 function acquireLock(ctx, owner) {
-  const ownerLine = `${owner} pid=${process.pid} ${new Date().toISOString()}`;
+  const ownerLine = `${owner} pid=${process.pid} host=${os.hostname()} ${new Date().toISOString()}`;
   let fd;
   try {
     fd = fs.openSync(ctx.lockPath, 'wx');
   } catch (error) {
     if (!error || error.code !== 'EEXIST') throw error;
     const current = readBufferOrNull(ctx.lockPath);
-    return { isHeld: false, lockPath: ctx.lockPath, ownerLine: current ? current.toString('utf8').trim() : '(empty lock file)' };
+    const currentLine = current ? current.toString('utf8').trim() : '(empty lock file)';
+    if (!current || !isLockOwnerGone(currentLine)) {
+      return { isHeld: false, lockPath: ctx.lockPath, ownerLine: currentLine };
+    }
+    console.log('note: took over the overlay lock of a run that has ended: ' + currentLine);
+    // Another run can remove the same leftover between the read and this
+    // removal; the retry below then reports that run's owner line instead.
+    try {
+      fs.unlinkSync(ctx.lockPath);
+    } catch (unlinkError) {
+      if (!unlinkError || unlinkError.code !== 'ENOENT') throw unlinkError;
+    }
+    try {
+      fd = fs.openSync(ctx.lockPath, 'wx');
+    } catch (retryError) {
+      if (!retryError || retryError.code !== 'EEXIST') throw retryError;
+      const taken = readBufferOrNull(ctx.lockPath);
+      return {
+        isHeld: false,
+        lockPath: ctx.lockPath,
+        ownerLine: taken ? taken.toString('utf8').trim() : '(empty lock file)',
+      };
+    }
   }
   try {
     fs.writeSync(fd, ownerLine + '\n');
@@ -2044,14 +2340,15 @@ function withLock(ctx, owner, run, options = {}) {
  * overlay is pending work, not a rebase.
  * @param {object} ctx Engine context.
  * @param {object} manifest Loaded overlay manifest.
+ * @param {object} state Loaded applied-hash state.
  * @param {object[]} plans Plans from analyze(), made with the accepted hashes.
  * @returns {{checked: number, ok: number, miss: number, problems: string[]}}
  */
-function runCheck(ctx, manifest, plans) {
+function runCheck(ctx, manifest, state, plans) {
   const root = ctx.root;
   const problems = [];
   let misses = 0;
-  const layout = planLayoutLinks(manifest, root);
+  const layout = planLayoutLinks(manifest, root, state);
   const layoutCount = (manifest.layoutLinks || []).length > 0 ? 1 : 0;
   for (const problem of layout.problems) problems.push(`layout: ${problem}`);
   for (const { link } of layout.missing) problems.push(`layout: ${link.path} is missing (link to ${link.target})`);
@@ -2091,18 +2388,60 @@ function runCheck(ctx, manifest, plans) {
 }
 
 /**
+ * Every source field an overlay keeps off the layout, where a copy sits inside
+ * the overlay folder at its destination path with the leading dot dropped. A
+ * copy kept elsewhere still applies, so this names where it belongs instead of
+ * refusing the run.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {{overlay: string, field: string, from: string, to: string}[]} One
+ *   record per field off the layout, in manifest order.
+ */
+function layoutMoves(manifest) {
+  const moves = [];
+  const collect = (entry, field, current, layout) => {
+    if (typeof current === 'string' && current !== layout) {
+      moves.push({ overlay: entry.id, field, from: current, to: layout });
+    }
+  };
+  for (const entry of manifest.overlays || []) {
+    if (entry.scope === 'remove-root' || typeof entry.destination !== 'string') continue;
+    const layout = adoptSource(entry.destination);
+    if (entry.scope !== 'marked-section') {
+      collect(entry, 'source', entry.source, layout);
+      continue;
+    }
+    // A marked-section entry names the same copy twice when `source` matches
+    // `fragment`, so both fields move together; a source that differs is some
+    // other copy and stays where the entry put it.
+    if (entry.source === entry.fragment) collect(entry, 'source', entry.source, layout);
+    collect(entry, 'fragment', entry.fragment, layout);
+    if (typeof entry.base === 'string') {
+      const extension = path.posix.extname(layout);
+      const base = extension === '' ? layout + '.base' : layout.slice(0, -extension.length) + '.base' + extension;
+      collect(entry, 'base', entry.base, base);
+    }
+  }
+  return moves;
+}
+
+/**
  * Report every destination not in sync, then run the full check.
  * @param {object} ctx Engine context.
- * @param {{isJson?: boolean}} [options]
+ * @param {{isJson?: boolean, isAudit?: boolean}} [options] `isAudit` also
+ *   compares the vendored tree with the pin, for the paths no overlay owns.
  * @returns {number} 0 when everything is in sync, 1 otherwise.
  */
 function commandStatus(ctx, options = {}) {
   const manifest = loadManifest(ctx);
   const state = loadState(ctx, manifest);
   const analysis = analyze(ctx, manifest, state);
-  const check = runCheck(ctx, manifest, analysis.plans);
+  const check = runCheck(ctx, manifest, state, analysis.plans);
+  const audit = options.isAudit ? auditVendoredTree(ctx, manifest) : null;
   const outOfSync = analysis.records.filter((record) => record.state !== 'in-sync');
-  const isInSync = outOfSync.length === 0 && analysis.blocked.length === 0 && check.miss === 0;
+  const stale = staleRootFiles(manifest);
+  const offLayout = layoutMoves(manifest);
+  const isInSync = outOfSync.length === 0 && analysis.blocked.length === 0 && check.miss === 0 &&
+    stale.length === 0 && (audit === null || audit.findings.length === 0);
 
   if (options.isJson) {
     const report = {
@@ -2118,8 +2457,11 @@ function commandStatus(ctx, options = {}) {
         source: record.source ? ctx.overlayLabel + '/' + record.source : null,
         fix: fixFor(ctx, record),
       })),
+      staleRootFiles: stale,
+      offLayout,
       check,
     };
+    if (audit) report.audit = audit;
     console.log(JSON.stringify(report, null, 2));
     return isInSync ? EXIT_OK : EXIT_CONFLICT;
   }
@@ -2127,6 +2469,21 @@ function commandStatus(ctx, options = {}) {
   for (const record of outOfSync) console.log(problemLine(ctx, record));
   console.log(stateSummary(analysis.records));
   for (const problem of check.problems) console.log(`MISS     ${problem}`);
+  // A re-pin never copies a root file, so an upstream move to an owned one is
+  // outstanding work no destination line can report, and this comparison is the
+  // only place status sees it between re-pins.
+  for (const entry of stale) {
+    console.log(`STALE    root-file ${entry.path}: upstream changed it since overlay ${entry.overlay} was pinned; ` +
+      'rebase the overlay, then update its pinnedSha256');
+  }
+  for (const move of offLayout) {
+    console.log(`LAYOUT   ${move.overlay}: ${move.field} ${move.from} belongs at ${move.to}; run ${ENGINE_COMMAND} apply --relayout`);
+  }
+  if (audit) {
+    for (const finding of audit.findings) console.log(`AUDIT    ${finding.kind} ${finding.path}`);
+    if (!audit.isAvailable) console.log('AUDIT    skipped: no upstream checkout at the pin');
+    console.log(`audit=${audit.findings.length}`);
+  }
   console.log(`checked=${check.checked} ok=${check.ok} miss=${check.miss}`);
   console.log(isInSync ? 'RESULT: PASSED' : 'RESULT: FAILED');
   return isInSync ? EXIT_OK : EXIT_CONFLICT;
@@ -2156,7 +2513,14 @@ function applyUnderLock(ctx, manifest, options = {}) {
   if (blockers.length > 0 || analysis.blocked.length > 0 || layoutProblems.length > 0) {
     // Nothing is written when one overlay cannot be applied on its own: a
     // half-applied set is worse than an untouched tree.
-    if (blockers.length > 0) printProblems(ctx, analysis.records);
+    if (blockers.length > 0) {
+      printProblems(ctx, analysis.records);
+      // A destination whose desired bytes could not be computed has no line of
+      // its own saying why, so the plan's own reason is printed beside it.
+      for (const record of blockers) {
+        for (const problem of (record.plan && record.plan.problems) || []) console.log(`BLOCKED  ${record.plan.entry.id}: ${problem}`);
+      }
+    }
     for (const plan of analysis.blocked) {
       for (const problem of plan.problems) console.log(`BLOCKED  ${plan.entry.id}: ${problem}`);
     }
@@ -2176,7 +2540,7 @@ function applyUnderLock(ctx, manifest, options = {}) {
   // The links are restored before the regeneration steps run: a route resolving
   // skills through one of them reads nothing until the link exists.
   for (const record of layoutRecords) {
-    applyLayoutLink(root, record.link);
+    applyLayoutLink(root, record.link, record.isRetarget);
     console.log('linked ' + record.key + ' -> ' + record.target);
   }
 
@@ -2203,7 +2567,31 @@ function applyUnderLock(ctx, manifest, options = {}) {
   for (const record of updated.records) {
     if (record.output.buffer !== null) files[record.key] = sha256(record.output.buffer);
   }
-  writeStateIfChanged(ctx, { pin: manifest.pin.commit, files });
+  // Only the items an entry set still lists are recorded: one it dropped has just
+  // left the live file, and a destination with none listed keeps no key at all.
+  // The plans are the ones whose writes this run applied, because the analysis
+  // that follows sees those items as already live and no longer as its own work.
+  const items = {};
+  for (const plan of analysis.plans) {
+    if (!plan.listedItems || plan.listedItems.length === 0) continue;
+    items[plan.entry.destination] = plan.listedItems;
+  }
+  const links = {};
+  for (const link of manifest.layoutLinks || []) {
+    const linkPath = path.join(root, link.path);
+    let stats = null;
+    try {
+      stats = fs.lstatSync(linkPath);
+    } catch (error) {
+      if (!error || error.code !== 'ENOENT') throw error;
+    }
+    // Only a link standing at the manifest's target is recorded as the
+    // engine's own: that record is what lets a later apply retarget it.
+    if (stats && stats.isSymbolicLink() && fs.readlinkSync(linkPath) === link.target) {
+      links[link.path] = link.target;
+    }
+  }
+  writeStateIfChanged(ctx, { pin: manifest.pin.commit, files, links, items });
 
   // The applied hashes are recorded first: they describe the destinations, which
   // are in sync, whatever the generators' own checks say next.
@@ -2366,6 +2754,11 @@ function captureUnderLock(ctx, manifest, inputPath) {
   }
   if (classified.state !== 'live-edited') {
     printProblems(ctx, [classified]);
+    // The same reason apply prints for this destination: a capture and an apply
+    // that both refuse it have to read the same way.
+    for (const problem of (classified.plan && classified.plan.problems) || []) {
+      console.log(`BLOCKED  ${classified.plan.entry.id}: ${problem}`);
+    }
     return EXIT_CONFLICT;
   }
   const live = fs.readFileSync(record.destinationPath);
@@ -2376,7 +2769,12 @@ function captureUnderLock(ctx, manifest, inputPath) {
   fs.writeFileSync(record.sourcePath, source);
 
   const files = { ...state.files, [record.key]: sha256(live) };
-  writeStateIfChanged(ctx, { pin: state.exists ? state.pin : manifest.pin.commit, files });
+  writeStateIfChanged(ctx, {
+    pin: state.exists ? state.pin : manifest.pin.commit,
+    files,
+    links: state.links,
+    items: state.items,
+  });
   console.log('captured ' + record.key);
   return EXIT_OK;
 }
@@ -2676,6 +3074,28 @@ function repinSettings(manifest) {
   };
 }
 
+/**
+ * List the owned root files whose upstream copy has moved since the overlay was
+ * pinned. A re-pin never copies a root file, so only this comparison tells an
+ * overlay whose upstream base changed from one that still matches it.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {{path: string, overlay: string}[]} Sorted by path; empty when the
+ *   manifest names no readable upstream checkout or no root files.
+ */
+function staleRootFiles(manifest) {
+  const { rootFiles } = repinSettings(manifest);
+  const readUpstream = rootFiles.length === 0 ? null : pinnedUpstreamBytes(manifest);
+  if (readUpstream === null) return [];
+  const stale = [];
+  for (const entry of manifest.overlays) {
+    if (entry.scope !== 'file' || !entry.pinnedSha256) continue;
+    if (!rootFiles.includes(entry.destination)) continue;
+    const upstreamBytes = readUpstream(entry.destination);
+    if (upstreamBytes === null || sha256(upstreamBytes) === entry.pinnedSha256) continue;
+    stale.push({ path: entry.destination, overlay: entry.id });
+  }
+  return stale.sort((left, right) => left.path.localeCompare(right.path));
+}
 /**
  * Compute the one set of paths the copy will write and delete.
  * @param {object} job Re-pin job with upstream, commits and settings.
@@ -3160,8 +3580,9 @@ function repinWrites(ctx, job, touched, newTree, report) {
     console.log(`MISS     a second apply changed ${second.changed} destination(s)`);
     return false;
   }
-  const finalAnalysis = analyze(ctx, manifest, loadState(ctx, manifest), readUpstream);
-  const check = runCheck(ctx, manifest, finalAnalysis.plans);
+  const finalState = loadState(ctx, manifest);
+  const finalAnalysis = analyze(ctx, manifest, finalState, readUpstream);
+  const check = runCheck(ctx, manifest, finalState, finalAnalysis.plans);
   for (const problem of check.problems) console.log(`MISS     ${problem}`);
   const outOfSync = finalAnalysis.records.filter((record) => record.state !== 'in-sync');
   printProblems(ctx, outOfSync);
@@ -3507,15 +3928,18 @@ function isStrictWrites(manifest) {
   return manifest.strictWrites === true;
 }
 
-// `*` matches inside one path segment, `**` across segments.
+// `*` matches inside one path segment. `**` on its own matches across segments,
+// while `**/` matches zero or more whole segments, so a glob naming a file in
+// any folder never also matches a longer file name beside it.
 function globToRegExp(glob) {
   let pattern = '';
   for (let index = 0; index < glob.length; index += 1) {
     const char = glob[index];
     if (char === '*' && glob[index + 1] === '*') {
-      pattern += '.*';
+      const isWholeSegments = glob[index + 2] === '/';
+      pattern += isWholeSegments ? '(?:.*/)?' : '.*';
       index += 1;
-      if (glob[index + 1] === '/') index += 1;
+      if (isWholeSegments) index += 1;
     } else if (char === '*') {
       pattern += '[^/]*';
     } else {
@@ -3527,23 +3951,34 @@ function globToRegExp(glob) {
 
 /**
  * Read what the write checks need from the manifest: the vendored roots, the
- * named root files, and the `generated` globs. A generated path is written by
- * one of the project's generators, so no overlay can own it and no check
- * refuses it.
+ * named root files, the `repin.exclude` paths, and the `generated` globs. A
+ * generated path is written by one of the project's generators, so no overlay
+ * can own it and no check refuses it. An excluded path is one a re-pin never
+ * copies, so a write there cannot be lost and no check refuses it either.
  * @param {object} manifest Loaded overlay manifest.
- * @returns {{roots: string[], rootFiles: string[], isGenerated: (key: string) => boolean}}
+ * @returns {{roots: string[], rootFiles: string[], exclude: string[], isGenerated: (key: string) => boolean}}
  */
 function writeCheckSettings(manifest) {
-  const { roots, rootFiles } = repinSettings(manifest);
+  const { roots, rootFiles, exclude } = repinSettings(manifest);
   const generated = manifest.generated === undefined ? [] : manifest.generated;
   if (!Array.isArray(generated) || generated.some((glob) => typeof glob !== 'string' || glob === '')) {
     throw new Error('the manifest generated list must be a list of glob strings');
   }
   const patterns = generated.map(globToRegExp);
-  return { roots, rootFiles, isGenerated: (key) => patterns.some((pattern) => pattern.test(key)) };
+  return { roots, rootFiles, exclude, isGenerated: (key) => patterns.some((pattern) => pattern.test(key)) };
 }
 
+/**
+ * Say whether a re-pin would copy over a key, which is the only reason a write
+ * to it goes through an overlay. An excluded path is the project's own, because
+ * the copy never reaches it, so a refusal there would name a lost edit that
+ * cannot happen.
+ * @param {string} key Path relative to the tree.
+ * @param {object} settings Result of the write checks' manifest read.
+ * @returns {boolean}
+ */
 function isVendoredKey(key, settings) {
+  if (isUnderAny(key, settings.exclude)) return false;
   return settings.rootFiles.includes(key) || settings.roots.some((root) => key.startsWith(root + '/'));
 }
 
@@ -3796,6 +4231,25 @@ function gitTextOrNull(cwd, args) {
   return result.status === 0 ? result.stdout.toString('utf8') : null;
 }
 
+function gitBytesOrNull(cwd, args) {
+  const result = runGit(cwd, args);
+  return result.status === 0 ? result.stdout : null;
+}
+
+/**
+ * Compare two file contents as text, ignoring a CRLF versus LF line-ending
+ * difference. A NUL byte marks a binary file, which has no line endings to
+ * ignore, so such a pair never matches here.
+ * @param {Buffer} left One file's bytes.
+ * @param {Buffer} right The other file's bytes.
+ * @returns {boolean} Whether both hold the same lines.
+ */
+function isSameText(left, right) {
+  if (left.includes(0) || right.includes(0)) return false;
+  // Latin-1 maps one byte to one character, so nothing is lost or reshaped.
+  return left.toString('latin1').replace(/\r\n/g, '\n') === right.toString('latin1').replace(/\r\n/g, '\n');
+}
+
 function pinCommitOf(manifestText) {
   try {
     return JSON.parse(manifestText).pin.commit;
@@ -3848,8 +4302,164 @@ function stagedUnownedChanges(ctx, manifest) {
     // Deleting a file upstream never shipped removes the project's own stray file.
     if (change.status === 'D') return upstreamBlob !== null;
     const stagedBlob = gitTextOrNull(topLevel, ['rev-parse', '--verify', '--quiet', ':' + change.file]);
-    return !(upstreamBlob !== null && stagedBlob !== null && upstreamBlob.trim() === stagedBlob.trim());
+    if (upstreamBlob !== null && stagedBlob !== null && upstreamBlob.trim() === stagedBlob.trim()) return false;
+    if (upstreamBlob === null || stagedBlob === null) return true;
+    // A project may normalise line endings on commit, so the same text can reach
+    // the index as different bytes than upstream stored. Compare the contents
+    // before calling a staged copy a change.
+    const upstreamBytes = gitBytesOrNull(pin.checkout, ['cat-file', 'blob', `${pin.commit}:${change.key}`]);
+    const stagedBytes = gitBytesOrNull(topLevel, ['cat-file', 'blob', ':' + change.file]);
+    return !(upstreamBytes !== null && stagedBytes !== null && isSameText(upstreamBytes, stagedBytes));
   }).map(({ status, key }) => ({ status, key }));
+}
+
+/**
+ * List the blobs upstream holds at one commit, under the given roots and root
+ * files.
+ * @param {string} upstream Upstream checkout.
+ * @param {string} commit Commit id.
+ * @param {string[]} pathspecs Vendored roots and root files to list.
+ * @returns {Map<string, {mode: string, object: string}>} One record per path,
+ *   keyed by the path relative to the tree. A submodule is left out: the tree
+ *   carries no bytes for it.
+ */
+function lsTreeBlobs(upstream, commit, pathspecs) {
+  const blobs = new Map();
+  for (const record of gitText(upstream, ['ls-tree', '-r', '-z', commit, '--', ...pathspecs]).split('\0')) {
+    const tab = record.indexOf('\t');
+    if (tab < 0) continue;
+    const [mode, type, object] = record.slice(0, tab).split(' ');
+    if (type !== 'blob') continue;
+    blobs.set(record.slice(tab + 1), { mode, object });
+  }
+  return blobs;
+}
+
+/**
+ * Hash a batch of tree files in one git run, so an audit of a whole vendored
+ * tree costs one process rather than one per file.
+ * @param {string} root Tree root.
+ * @param {string} format The checkout's object format, used for a file git will
+ *   not hash on its own.
+ * @param {string[]} keys Paths relative to the tree root.
+ * @returns {Map<string, string>} One object id per key.
+ */
+function blobIdsInTree(root, format, keys) {
+  const ids = new Map();
+  if (keys.length === 0) return ids;
+  const result = spawnSync('git', ['-C', root, 'hash-object', '--stdin-paths'], {
+    input: Buffer.from(keys.join('\n') + '\n'), maxBuffer: GIT_MAX_BUFFER,
+  });
+  if (result.error) throw result.error;
+  const lines = result.status === 0 ? result.stdout.toString('utf8').split('\n') : [];
+  for (let index = 0; index < keys.length; index += 1) {
+    // A batch git refuses, and any file that moved under it, is hashed from the
+    // bytes here rather than reported as drift.
+    ids.set(keys[index], lines[index] || gitBlobId(format, fs.readFileSync(path.join(root, keys[index]))));
+  }
+  return ids;
+}
+
+/**
+ * List the paths git tracks in a tree, relative to that tree's own root. The
+ * repository may hold the tree in a folder of its own, so the listing is mapped
+ * back onto the tree.
+ * @param {string} root Tree root.
+ * @returns {string[]} Paths relative to the tree root.
+ */
+function trackedTreeKeys(root) {
+  // A temporary folder sits behind a link on some systems, so the tree's own
+  // path is resolved before it is compared with the repository's top level.
+  const projectRoot = canonicalPath(root);
+  const top = gitTextOrNull(projectRoot, ['rev-parse', '--show-toplevel']);
+  if (top === null) return [];
+  const topLevel = canonicalPath(top.trim());
+  const prefix = toPosix(path.relative(topLevel, projectRoot));
+  const listing = gitTextOrNull(topLevel, ['ls-files', '-z']);
+  if (!listing) return [];
+  const keys = [];
+  for (const file of listing.split('\0').filter(Boolean)) {
+    if (!prefix) {
+      keys.push(file);
+    } else if (file.startsWith(prefix + '/')) {
+      keys.push(file.slice(prefix.length + 1));
+    }
+  }
+  return keys;
+}
+
+/**
+ * Compare the vendored tree with upstream at the pin, for the paths no overlay
+ * owns. The strict write checks judge a write as it is made, so a vendored file
+ * that already differs from upstream, or an upstream file the tree lacks, waits
+ * for a re-pin to refuse the run unless something reports it first.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {{isAvailable: boolean, findings: {kind: string, path: string}[]}}
+ *   One finding per unowned path that drifted, sorted by path. `isAvailable` is
+ *   false when the manifest names no checkout that holds the pin.
+ */
+function auditVendoredTree(ctx, manifest) {
+  const pin = manifest.pin || {};
+  if (typeof pin.checkout !== 'string' || typeof pin.commit !== 'string' || !isDirectory(pin.checkout)) {
+    return { isAvailable: false, findings: [] };
+  }
+  const settings = writeCheckSettings(manifest);
+  const isManaged = managedPathTest(ctx, manifest);
+  // A generated path is one of the project's own outputs and a managed one is
+  // written back by apply, so neither can hold drift a re-pin would lose.
+  const isJudged = (key) => isVendoredKey(key, settings) && !settings.isGenerated(key) &&
+    !isManaged(key) && !isEnvName(key);
+  const format = objectFormat(pin.checkout);
+  const upstream = lsTreeBlobs(pin.checkout, pin.commit, [...settings.roots, ...settings.rootFiles]);
+  const findings = [];
+  const regular = [];
+
+  for (const [key, blob] of upstream) {
+    if (!isJudged(key)) continue;
+    const filePath = path.join(ctx.root, key);
+    let stats;
+    try {
+      stats = fs.lstatSync(filePath);
+    } catch (error) {
+      if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
+      findings.push({ kind: 'missing', path: key });
+      continue;
+    }
+    const isUpstreamLink = blob.mode === '120000';
+    if (stats.isDirectory() || isUpstreamLink !== stats.isSymbolicLink()) {
+      findings.push({ kind: 'differs', path: key });
+      continue;
+    }
+    if (isUpstreamLink) {
+      const target = gitBytesOrNull(pin.checkout, ['cat-file', 'blob', blob.object]);
+      if (target === null || !target.equals(Buffer.from(fs.readlinkSync(filePath)))) {
+        findings.push({ kind: 'differs', path: key });
+      }
+      continue;
+    }
+    regular.push({ key, blob, filePath });
+  }
+
+  const treeIds = blobIdsInTree(ctx.root, format, regular.map((entry) => entry.key));
+  for (const entry of regular) {
+    if (treeIds.get(entry.key) === entry.blob.object) continue;
+    // A project may normalise line endings on commit, so the same text can reach
+    // the tree as different bytes than upstream stored. Compare the contents
+    // before calling the file a change.
+    const upstreamBytes = gitBytesOrNull(pin.checkout, ['cat-file', 'blob', entry.blob.object]);
+    if (upstreamBytes !== null && isSameText(upstreamBytes, fs.readFileSync(entry.filePath))) continue;
+    findings.push({ kind: 'differs', path: entry.key });
+  }
+
+  for (const key of trackedTreeKeys(ctx.root)) {
+    if (upstream.has(key) || !isJudged(key)) continue;
+    // A tracked path deleted from the working tree is the other side's drift.
+    if (!pathExists(path.join(ctx.root, key))) continue;
+    findings.push({ kind: 'extra', path: key });
+  }
+  findings.sort((left, right) => (left.path < right.path ? -1 : left.path > right.path ? 1 : 0));
+  return { isAvailable: true, findings };
 }
 
 /**
@@ -3877,7 +4487,276 @@ function commandPreCommit(ctx) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 18. COMMAND ENTRY POINT
+// 18. RELAYOUT
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Resolve one path the manifest names inside the overlay folder, refusing any
+ * that leaves it.
+ * @param {object} ctx Engine context.
+ * @param {string} value Path as the manifest writes it.
+ * @returns {{absolute: string, relative: string}|{problem: string}} The resolved
+ *   path, or why it cannot be used.
+ */
+function containedOverlayPath(ctx, value) {
+  const absolute = path.resolve(ctx.overlayRoot, value);
+  try {
+    return { absolute, relative: sourceRelative(ctx, absolute) };
+  } catch (error) {
+    return { problem: error.message };
+  }
+}
+
+/**
+ * Group moved fields by the copy each one names, so a copy two fields name
+ * moves once.
+ * @param {object[]} moves Records from layoutMoves.
+ * @returns {object[]} One group per source path, carrying the fields naming it.
+ */
+function groupLayoutMoves(moves) {
+  const groups = new Map();
+  for (const move of moves) {
+    const group = groups.get(move.from);
+    if (!group) {
+      groups.set(move.from, { from: move.from, to: move.to, records: [move] });
+      continue;
+    }
+    group.records.push(move);
+    // Two fields naming the same copy belong at the same layout path, so a
+    // second destination for it means the manifest disagrees with itself.
+    if (group.to !== move.to) group.clashes = [...(group.clashes || []), move.to];
+  }
+  return [...groups.values()];
+}
+
+/**
+ * Resolve every move into filesystem paths and collect what stops the run.
+ * Nothing is written here, so a refusal leaves the tree as it stood.
+ * @param {object} ctx Engine context.
+ * @param {object[]} groups Groups from groupLayoutMoves.
+ * @returns {{problems: string[], moves: object[], skipped: string[]}}
+ */
+function planRelayout(ctx, groups) {
+  const problems = [];
+  const moves = [];
+  const skipped = [];
+  const claimed = new Map();
+  for (const group of groups) {
+    if (group.clashes) {
+      const destinations = [group.to, ...group.clashes].join(' and ');
+      problems.push(`refuse: ${group.from} is claimed by ${destinations}; one copy cannot move to both`);
+      continue;
+    }
+    const from = containedOverlayPath(ctx, group.from);
+    const to = containedOverlayPath(ctx, group.to);
+    if (from.problem || to.problem) {
+      problems.push('refuse: ' + (from.problem || to.problem));
+      continue;
+    }
+    if (pathExists(to.absolute)) {
+      problems.push(`refuse: ${to.relative} already exists in ${ctx.overlayLabel}`);
+      continue;
+    }
+    if (!pathExists(from.absolute)) {
+      problems.push(`refuse: ${from.relative} does not exist in ${ctx.overlayLabel}`);
+      continue;
+    }
+    // Moving a folder carries the copies inside it, so a second move out of that
+    // folder would find its own path gone half-way through the run.
+    const nested = moves.find((move) => isWithin(move.from.absolute, from.absolute) ||
+      isWithin(from.absolute, move.from.absolute));
+    if (nested) {
+      problems.push(`refuse: ${nested.from.relative} and ${from.relative} sit one inside the other; ` +
+        'they have to move in separate runs');
+      continue;
+    }
+    if (claimed.has(to.relative)) {
+      problems.push(`refuse: ${claimed.get(to.relative)} and ${from.relative} both belong at ${to.relative}`);
+      continue;
+    }
+    claimed.set(to.relative, from.relative);
+    // A credential file is never opened, so it cannot be backed up, and a copy
+    // that cannot be backed up is left where it is.
+    if (isEnvName(from.absolute)) {
+      skipped.push(from.relative);
+      continue;
+    }
+    moves.push({ from, to, records: group.records });
+  }
+  return { problems, moves, skipped };
+}
+
+/**
+ * Copy one path into a backup folder, keeping its shape and never opening a
+ * credential file.
+ * @param {string} sourcePath Path to copy.
+ * @param {string} targetPath Where the copy goes.
+ * @param {string} relativePath Position of the copy, for the `skipped` line.
+ */
+function copyForBackup(sourcePath, targetPath, relativePath) {
+  let stats;
+  try {
+    stats = fs.lstatSync(sourcePath);
+  } catch (error) {
+    if (error && error.code === 'ENOENT') return;
+    throw error;
+  }
+  if (stats.isSymbolicLink()) {
+    // A link is restored as a link: following it would copy bytes belonging to
+    // whatever it points at instead of the shape the folder had.
+    fs.mkdirSync(path.dirname(targetPath), { recursive: true });
+    fs.symlinkSync(fs.readlinkSync(sourcePath), targetPath);
+    return;
+  }
+  if (stats.isDirectory()) {
+    fs.mkdirSync(targetPath, { recursive: true });
+    for (const name of fs.readdirSync(sourcePath).sort()) {
+      copyForBackup(path.join(sourcePath, name), path.join(targetPath, name), relativePath + '/' + name);
+    }
+    return;
+  }
+  if (isEnvName(sourcePath)) {
+    console.log(`skipped ${relativePath}`);
+    return;
+  }
+  writeFile(targetPath, fs.readFileSync(sourcePath), stats.mode & 0o777);
+}
+
+/**
+ * Every layout link whose target reached through a copy about to move.
+ * @param {object} ctx Engine context.
+ * @param {object[]} moves Groups the run is about to move.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {{path: string, from: string, target: string}[]} The link path, the
+ *   target it names now and the target holding the same bytes afterwards.
+ */
+function relayoutLinkTargets(ctx, moves, manifest) {
+  const changes = [];
+  for (const link of manifest.layoutLinks || []) {
+    if (!link || typeof link.path !== 'string' || typeof link.target !== 'string') continue;
+    const linkDir = path.dirname(path.join(ctx.root, link.path));
+    const reached = path.resolve(linkDir, link.target);
+    const move = moves.find((candidate) => isWithin(candidate.from.absolute, reached));
+    if (!move) continue;
+    const below = path.relative(move.from.absolute, reached);
+    const landed = below === '' ? move.to.absolute : path.join(move.to.absolute, below);
+    const target = toPosix(path.relative(linkDir, landed));
+    if (target === '' || target === link.target) continue;
+    changes.push({ path: link.path, from: link.target, target });
+  }
+  return changes;
+}
+
+/**
+ * Point every moved field and every retargeted link at its new path, replacing
+ * only those string values so the rest of the manifest keeps its bytes.
+ * @param {object} ctx Engine context.
+ * @param {object[]} fieldEdits The fields of the copies that moved.
+ * @param {object[]} linkEdits Changes from relayoutLinkTargets.
+ */
+function rewriteRelayoutManifest(ctx, fieldEdits, linkEdits) {
+  const text = fs.readFileSync(ctx.manifestPath, 'utf8');
+  const document = parseJsonSource(text);
+  const edits = [];
+  if (fieldEdits.length > 0) {
+    const entries = new Map();
+    for (const node of nodeAtPath(document, ['overlays']).items) {
+      const id = node.type === 'object' ? findMember(node, 'id') : undefined;
+      if (id && id.value.type === 'string') entries.set(id.value.value, node);
+    }
+    for (const change of fieldEdits) {
+      const entry = entries.get(change.overlay);
+      const member = entry && findMember(entry, change.field);
+      // The manifest was read before the moves, so a field that no longer holds
+      // the path this run moved is a different file from the one planned against.
+      if (!member || member.value.value !== change.from) {
+        throw new Error(`overlay ${change.overlay} no longer keeps ${change.from} in ${change.field}`);
+      }
+      edits.push({ start: member.value.start, end: member.value.end, text: JSON.stringify(change.to) });
+    }
+  }
+  if (linkEdits.length > 0) {
+    const links = new Map();
+    for (const node of nodeAtPath(document, ['layoutLinks']).items) {
+      const linkPath = node.type === 'object' ? findMember(node, 'path') : undefined;
+      if (linkPath && linkPath.value.type === 'string') links.set(linkPath.value.value, node);
+    }
+    for (const change of linkEdits) {
+      const node = links.get(change.path);
+      const member = node && findMember(node, 'target');
+      if (!member || member.value.value !== change.from) {
+        throw new Error(`layout link ${change.path} no longer points at ${change.from}`);
+      }
+      edits.push({ start: member.value.start, end: member.value.end, text: JSON.stringify(change.target) });
+    }
+  }
+  if (edits.length > 0) fs.writeFileSync(ctx.manifestPath, applyEdits(text, edits));
+}
+
+/**
+ * Move every copy the manifest keeps off the layout onto its layout path.
+ * The backup stays inside the overlay folder, so the old copy is recoverable
+ * beside the manifest that named it.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {number} 0 when done or there was nothing to move, 2 on a refusal.
+ */
+function relayoutUnderLock(ctx, manifest) {
+  const groups = groupLayoutMoves(layoutMoves(manifest));
+  if (groups.length === 0) {
+    console.log('0 moved');
+    return EXIT_OK;
+  }
+  const plan = planRelayout(ctx, groups);
+  if (plan.problems.length > 0) {
+    for (const problem of plan.problems) console.log(problem);
+    return EXIT_ERROR;
+  }
+  for (const relativePath of plan.skipped) console.log(`skipped ${relativePath}`);
+  if (plan.moves.length === 0) {
+    console.log('0 moved');
+    return EXIT_OK;
+  }
+
+  const stamp = new Date().toISOString().replace(/:/g, '-');
+  const runDir = path.join(ctx.overlayRoot, RELAYOUT_RUNS_FOLDER, stamp);
+  for (const move of plan.moves) {
+    copyForBackup(move.from.absolute, path.join(runDir, relativeKey(ctx.root, move.from.absolute)), move.from.relative);
+  }
+  copyForBackup(ctx.manifestPath, path.join(runDir, relativeKey(ctx.root, ctx.manifestPath)), relativeKey(ctx.root, ctx.manifestPath));
+  console.log('backup ' + relativeKey(ctx.root, runDir));
+
+  const fieldEdits = [];
+  for (const move of plan.moves) {
+    fs.mkdirSync(path.dirname(move.to.absolute), { recursive: true });
+    fs.renameSync(move.from.absolute, move.to.absolute);
+    for (const record of move.records) {
+      fieldEdits.push({ overlay: record.overlay, field: record.field, from: record.from, to: record.to });
+    }
+    pruneEmptyParents(ctx.overlayRoot, move.from.absolute);
+    console.log(`moved ${move.from.relative} -> ${move.to.relative}`);
+  }
+
+  // The live link is left alone: it still names the old target, and the next
+  // apply retargets it now that the manifest says where the bytes went.
+  rewriteRelayoutManifest(ctx, fieldEdits, relayoutLinkTargets(ctx, plan.moves, manifest));
+
+  console.log(`${plan.moves.length} moved`);
+  console.log(`run ${ENGINE_COMMAND} apply`);
+  return EXIT_OK;
+}
+
+/**
+ * Move the off-layout copies a manifest keeps onto their layout paths.
+ * @param {object} ctx Engine context.
+ * @returns {number} 0 when done or there was nothing to move, 2 on a refusal.
+ */
+function commandRelayout(ctx) {
+  return withLock(ctx, 'overlay-engine relayout', () => relayoutUnderLock(ctx, loadManifest(ctx)));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 19. COMMAND ENTRY POINT
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -3887,7 +4766,7 @@ function commandPreCommit(ctx) {
  */
 function parseArguments(argv) {
   const options = {
-    command: null, root: null, isJson: false, capture: null, guard: null, adopt: null,
+    command: null, root: null, isJson: false, isAudit: false, isRelayout: false, capture: null, guard: null, adopt: null,
     upstream: null, to: null, stage: null, rollback: null,
   };
   for (let index = 0; index < argv.length; index += 1) {
@@ -3911,6 +4790,14 @@ function parseArguments(argv) {
       options.isJson = true;
       continue;
     }
+    if (value === '--audit') {
+      options.isAudit = true;
+      continue;
+    }
+    if (value === '--relayout') {
+      options.isRelayout = true;
+      continue;
+    }
     return null;
   }
   if (options.guard !== null) {
@@ -3918,8 +4805,10 @@ function parseArguments(argv) {
     options.command = 'guard';
   }
   if (!options.command) return null;
+  if (options.isAudit && options.command !== 'status') return null;
   if (options.capture !== null && options.command !== 'apply') return null;
   if (options.adopt !== null && (options.command !== 'apply' || options.capture !== null)) return null;
+  if (options.isRelayout && (options.command !== 'apply' || options.capture !== null || options.adopt !== null)) return null;
   if (options.isJson && options.command !== 'status' && options.command !== 'repin') return null;
   const repinFlags = REPIN_VALUE_FLAGS.filter((field) => options[field] !== null);
   if (options.command !== 'repin') return repinFlags.length === 0 ? options : null;
@@ -3950,9 +4839,10 @@ function main(argv) {
   try {
     const ctx = createContext(root);
     if (options.command === 'guard') return commandGuard(ctx, options.guard);
-    if (options.command === 'status') return commandStatus(ctx, { isJson: options.isJson });
+    if (options.command === 'status') return commandStatus(ctx, { isJson: options.isJson, isAudit: options.isAudit });
     if (options.command === 'repin') return commandRepin(ctx, options);
     if (options.command === 'pre-commit') return commandPreCommit(ctx);
+    if (options.command === 'apply' && options.isRelayout) return commandRelayout(ctx);
     if (options.capture !== null) return commandCapture(ctx, options.capture);
     if (options.adopt !== null) return commandAdopt(ctx, options.adopt);
     return commandApply(ctx);
@@ -3969,7 +4859,7 @@ if (require.main === module) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 19. EXPORTS
+// 20. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
@@ -3984,6 +4874,7 @@ module.exports = {
   commandGuard,
   commandPreCommit,
   commandRepin,
+  commandRelayout,
   commandStatus,
   createContext,
   isCaptureRestricted,

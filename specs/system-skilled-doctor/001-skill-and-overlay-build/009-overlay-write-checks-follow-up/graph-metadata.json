@@ -48,6 +48,7 @@
       "research/fable-review.md",
       "barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/011-repin-review-fixes/handover.md",
       ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs",
       ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
       ".skilled/commands/doctor/scripts/tests/doctor-overlay-contract.test.cjs",
       ".skilled/hooks/overlay-guard/README.md",
@@ -111,6 +112,12 @@
         "name": "overlay-engine.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-follow-up.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs",
         "source": "derived"
       },
       {
@@ -196,17 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 8 shipped the opt-in write checks",
     "created_at": "2026-11-11T21:21:40Z",
-    "last_save_at": "2026-11-11T21:30:05.639Z",
+    "last_save_at": "2026-11-11T23:20:37.344Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +218,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:374be1afe7e8c6786919a4aa68643263c4043db81b1cb11e6e0dc3c565d22f5d",
+    "source_fingerprint": "sha256:c6692b6653b11ae65dceb19cbfedcdce49af9debe58563be9b017adb1884a1f4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8edc99dda383b4181b885a6ecbf84660af86548b41bebe5ca1c8f5550139b9af",
-      "plan.md": "3dd95d2df194ee2fa696b3224d995340db6e6de80082b6bbe776020d5fb6033f",
-      "tasks.md": "a43a83b2bddd5539f34925c01d8b436b6e77dafc1bbe54e0e2b83de89f9f6e42",
+      "spec.md": "d8a711cd9fe11bdf062c5b1eab26ab5ac2402936a2e900af4d627a226ab55ab3",
+      "plan.md": "c5d74bbefdbc9baaf5fb6c459ccec967433351b232516e88f28551a83bc06e82",
+      "tasks.md": "9ed32dc99ab4bd2bdb1ae793e46a9ea0b88255e16f2fdc39b6d25dccfccc5178",
       "implementation-summary.md": "a7a90bd4dd7f98f6ce09972474abd0ad264884535c308d9e0c93f80f2c65b744"
     },
     "last_active_at": null

@@ -1,6 +1,6 @@
 ---
 title: "Overlay Guard: Refuse Edits to Overlay-Owned Files"
-description: "Pre-write guard that refuses an edit to a file a vendored Skilled tree's overlay owns and names the overlay file to edit, and with strict writes on also a vendored write no overlay owns, with one runtime-neutral core and six per-runtime adapters."
+description: "Pre-write guard that refuses an edit to a file a vendored Skilled tree's overlay owns and names the overlay file to edit, and with strict writes on also a vendored write no overlay owns, with one runtime-neutral core and seven per-runtime adapters."
 trigger_phrases:
   - "overlay guard"
   - "overlay owned file"
@@ -60,12 +60,13 @@ Every runtime evaluates the same `lib/overlay-guard.cjs` core. What differs is t
 | **Devin** | `devin/overlay-guard.cjs` | `PreToolUse`, `^(edit\|write)$` | `tool_input.file_path` | `permissionDecision: "deny"` |
 | **Pi** | `pi/overlay-guard.ts` | `tool_call`, tools `edit` and `write` | `input.path` | `{ block: true, reason }` |
 | **DSH** | `dsh/overlay-guard.mjs` | `tools/pre-execute`, tools `write`, `edit` and `apply_patch` | a path field, or every file header in the patch | `{ kind: 'deny', reason }` |
+| **OpenCode** | `opencode/overlay-guard.js` | `tool.execute.before`, tools `write`, `edit`, `multiedit`, `patch` and `apply_patch` | the `file_path`, `filePath` or `path` field, or every `*** Add/Update/Delete File:` header and `*** Move to:` target in a patch body | throws the engine's `refuse:` line |
 
 Shell commands are not parsed. A write made through `Bash`, `exec` or `Shell` is not guarded.
 
 The Cursor registration carries no fallback chain. Cursor blocks on exit 2, and a `|| { fallback }` chain would run on that exit, append an allow envelope and exit 0, so the refusal would never reach Cursor.
 
-Pi loads through `.pi/extensions/overlay-guard.ts`, a relative symlink back to `pi/overlay-guard.ts`. Pi resolves the extension's imports against the symlink path, so they are written for the `.pi/extensions/` base. DSH loads through the repo-guards bundle, whose `adapters/overlay-guard.mjs` links back to `dsh/overlay-guard.mjs`. OpenCode has no adapter.
+Pi loads through `.pi/extensions/overlay-guard.ts`, a relative symlink back to `pi/overlay-guard.ts`. Pi resolves the extension's imports against the symlink path, so they are written for the `.pi/extensions/` base. DSH loads through the repo-guards bundle, whose `adapters/overlay-guard.mjs` links back to `dsh/overlay-guard.mjs`. OpenCode loads its plugin from `.opencode/plugins/overlay-guard.js`, and `opencode/overlay-guard.js` is a relative symlink back to it. Nothing loads through that link, because the OpenCode loader globs only `.opencode/plugins/*.js`.
 
 ---
 
@@ -81,9 +82,11 @@ overlay-guard/
 +-- cursor/   overlay-guard.mjs  # preToolUse adapter, Cursor permission envelope
 +-- devin/    overlay-guard.cjs  # PreToolUse adapter
 +-- dsh/      overlay-guard.mjs  # tools/pre-execute adapter (linked from the .dsh repo-guards bundle)
++-- opencode/ overlay-guard.js   # tool.execute.before adapter (symlink to .opencode/plugins/overlay-guard.js)
 +-- pi/       overlay-guard.ts   # Pi tool_call extension (symlinked from .pi/extensions/)
 `-- tests/
-    `-- dsh-overlay-guard.test.mjs  # node --test suite for the DSH adapter
+    +-- dsh-overlay-guard.test.mjs  # node --test suite for the DSH adapter
+    `-- opencode-overlay-guard.test.mjs  # node --test suite for the OpenCode plugin
 ```
 
 ---
@@ -97,6 +100,7 @@ overlay-guard/
 | `codex/overlay-guard.cjs` | The same, plus every path an `apply_patch` body names. One owned path refuses the whole call. |
 | `cursor/overlay-guard.mjs` | Cursor's permission envelope, with the workspace root from `workspace_roots[0]`. |
 | `pi/overlay-guard.ts` | Filters on `edit` and `write`, honors the kill-switch, dynamic-imports the core. |
+| `opencode/overlay-guard.js` | A browsability link to the OpenCode plugin, which throws the engine's refusal in `tool.execute.before` and writes its notes to a log because OpenCode paints console output onto the prompt line. |
 
 The registrations come from the `overlay-guard` entry in `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json`, rendered by `sync-hook-registrations.cjs` in the same folder.
 

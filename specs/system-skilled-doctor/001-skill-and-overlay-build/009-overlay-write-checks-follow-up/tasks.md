@@ -35,7 +35,7 @@ Each Phase 2 task is one brief to one DeepSeek V4.1 Flash agent at max thinking.
 
 - [x] T001 Save the fresh review (`research/fable-review.md`). Verify: `wc -l research/fable-review.md` prints 103.
 - [x] T002 Read Barter's open handover at Barter commit `12f3cd4d4` and confirm the review's two headline claims. Verify: `gh run list --branch main --limit 25` shows `3b787637e1 failure Skill Doc Frontmatter`.
-- [ ] T003 Capture the baseline. Verify: `node --test tests/` in `.skilled/commands/doctor/scripts` prints `tests 1100`, `fail 0`, and the hook test files print `fail 0`.
+- [x] T003 Capture the baseline. Verify: `node --test tests/` in `.skilled/commands/doctor/scripts` printed `tests 1100`, `fail 0`, and the hook test file printed `tests 19`, `fail 0`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,23 +43,23 @@ Each Phase 2 task is one brief to one DeepSeek V4.1 Flash agent at max thinking.
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 R1 Cut the trigger phrases to 8 (`.skilled/skills/system-skilled-doctor/references/overlays.md`). Verify: the frontmatter check the Skill Doc Frontmatter workflow runs exits 0 on that file.
-- [ ] T005 H1 Take over a lock whose pid is dead (`overlay-engine.cjs`, `acquireLock`). Verify: tests for a dead pid, a live pid, no pid and a malformed lock pass.
-- [ ] T006 H2 Record layout link targets and retarget an own link (`overlay-engine.cjs`, `planLayoutLinks`, `applyLayoutLink`, the state writer). Verify: tests for an own link, a foreign link and a state file without the new key pass.
-- [ ] T007 H3 Record appended and inserted items and remove a dropped one (`overlay-engine.cjs`, the `json-entry` writer). Verify: tests for a dropped item, a hand-edited dropped item and a kept item pass.
-- [ ] T008 R4 Make `**/` match whole segments (`overlay-engine.cjs`, `globToRegExp`). Verify: a test shows `a/**/x.json` matching `a/x.json` and `a/b/x.json` and not `a/my-x.json`.
-- [ ] T009 R5 Leave `repin.exclude` paths alone under strict writes (`overlay-engine.cjs`, `strictWriteRefusal`, `stagedUnownedChanges`). Verify: a guard test and a commit check test on an excluded path print `allow`.
-- [ ] T010 R7 Compare normalised content in the commit check (`overlay-engine.cjs`, `stagedUnownedChanges`). Verify: a test stages a CRLF copy of an upstream LF file and `pre-commit` exits 0.
-- [ ] T011 H6 Flag a stale root-file overlay in `status` (`overlay-engine.cjs`). Verify: a test changes the upstream root file and `status` prints one line for it and exits 1.
-- [ ] T012 H4 List off-layout sources in `status` (`overlay-engine.cjs`). Verify: a test with one off-layout source reads one line and an unchanged exit code.
-- [ ] T013 H4 Add the `relayout` target (`overlay-engine.cjs`). Verify: tests move a file, a directory, a `json-entry` and a `marked-section` with its base, and a present target exits 2 with nothing moved.
-- [ ] T014 R6 Add `status --audit` (`overlay-engine.cjs`). Verify: a test lists one unowned differing file and one missing upstream link, and lists nothing owned or generated.
-- [ ] T015 H5 Add the OpenCode adapter (`.skilled/hooks/overlay-guard/opencode/`). Verify: its test refuses an unowned write, allows an owned one and stays inert with no manifest.
-- [ ] T016 R8 Add the four groups of missing tests (`tests/overlay-engine-strict-writes.test.cjs`). Verify: the file's test count rises and `fail 0`.
-- [ ] T017 R9 Run the `overlay-guard` tests in CI (the workflow under `.github/workflows/` that runs the doctor tests). Verify: `rg -n 'overlay-guard' .github/workflows` prints the step.
-- [ ] T018 Bring the command documents in line (`overlay.md`, `_routes.yaml`, `assets/doctor-overlay-*.yaml`, `assets/doctor-overlay-presentation.txt`, `command-contract.json`, `references/overlays.md`, `overlay-guard/README.md`, `.skilled/commands/README.txt`, `README.md`). Verify: `route-validate.sh` ends with `OK: route-validate` and the contract test prints `fail 0`.
-- [ ] T019 R10 Add playbook scenarios (`.skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/`). Verify: `validate_document.py` prints `VALID` for each new file.
-- [ ] T020 Write the Barter handover (`handover-to-barter.md`). Verify: it names the four Barter items and the two deferred risks.
+- [x] T004 R1 Cut the trigger phrases to 8 (`.skilled/skills/system-skilled-doctor/references/overlays.md`). Verify: the frontmatter check the Skill Doc Frontmatter workflow runs exits 0 on that file.
+- [x] T005 H1 Take over a lock whose pid is dead (`overlay-engine.cjs`, `acquireLock`). Verify: tests for a dead pid, a live pid, no pid and a malformed lock pass.
+- [x] T006 H2 Record layout link targets and retarget an own link (`overlay-engine.cjs`, `planLayoutLinks`, `applyLayoutLink`, the state writer). Verify: tests for an own link, a foreign link and a state file without the new key pass.
+- [x] T007 H3 Record appended and inserted items and remove a dropped one (`overlay-engine.cjs`, the `json-entry` writer). Verify: tests for a dropped item, a hand-edited dropped item and a kept item pass.
+- [x] T008 R4 Make `**/` match whole segments (`overlay-engine.cjs`, `globToRegExp`). Verify: a test shows `a/**/x.json` matching `a/x.json` and `a/b/x.json` and not `a/my-x.json`.
+- [x] T009 R5 Leave `repin.exclude` paths alone under strict writes (`overlay-engine.cjs`, `strictWriteRefusal`, `stagedUnownedChanges`). Verify: a guard test and a commit check test on an excluded path print `allow`.
+- [x] T010 R7 Compare normalised content in the commit check (`overlay-engine.cjs`, `stagedUnownedChanges`). Verify: a test stages a CRLF copy of an upstream LF file and `pre-commit` exits 0.
+- [x] T011 H6 Flag a stale root-file overlay in `status` (`overlay-engine.cjs`). Verify: a test changes the upstream root file and `status` prints one line for it and exits 1.
+- [x] T012 H4 List off-layout sources in `status` (`overlay-engine.cjs`). Verify: a test with one off-layout source reads one line and an unchanged exit code.
+- [x] T013 H4 Add relayout as `apply --relayout` (`overlay-engine.cjs`). Verify: tests move a file, a directory, a `json-entry` and a `marked-section` with its base, and a present target exits 2 with nothing moved.
+- [x] T014 R6 Add `status --audit` (`overlay-engine.cjs`). Verify: a test lists one unowned differing file and one missing upstream link, and lists nothing owned or generated.
+- [x] T015 H5 Add the OpenCode adapter (`.skilled/hooks/overlay-guard/opencode/`). Verify: its test refuses an unowned write, allows an owned one and stays inert with no manifest.
+- [x] T016 R8 Add the four groups of missing tests (`tests/overlay-engine-strict-writes.test.cjs`). Verify: the file's test count rises and `fail 0`.
+- [x] T017 R9 Rejected with evidence: CI already runs the `overlay-guard` tests. The OpenCode Plugin Tests workflow collects every `node:test` file under `.skilled/hooks`. Verify: its run on `c57b7e4cef` printed `Collected 78 node:test hook files` and concluded `success`.
+- [x] T018 Bring the command documents in line (`overlay.md`, `_routes.yaml`, `assets/doctor-overlay-*.yaml`, `assets/doctor-overlay-presentation.txt`, `command-contract.json`, `references/overlays.md`, `overlay-guard/README.md`, `.skilled/commands/README.txt`, `README.md`). Verify: `route-validate.sh` ends with `OK: route-validate` and the contract test prints `fail 0`.
+- [x] T019 R10 Add playbook scenarios (`.skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/`). Verify: `validate_document.py` prints `VALID` for each new file.
+- [x] T020 Write the Barter handover (`handover-to-barter.md`). Verify: it names the four Barter items and the two deferred risks.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -67,7 +67,7 @@ Each Phase 2 task is one brief to one DeepSeek V4.1 Flash agent at max thinking.
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T021 Rerun every gate. Verify: `node --test tests/` prints `fail 0`, `route-validate.sh` ends with `OK`, `sync-runtime-mirrors.cjs --check` prints `PASS` and `quality-gate.cjs` prints `"p0_blocking": 0`.
+- [x] T021 Rerun every gate. Verify: `node --test tests/` prints `fail 0`, `route-validate.sh` ends with `OK`, `sync-runtime-mirrors.cjs --check` prints `PASS` and `quality-gate.cjs` prints `"p0_blocking": 0`.
 - [ ] T022 Commit and push the implementation. Verify: `git ls-remote origin refs/heads/main` names the new commit and the Skill Doc Frontmatter run on it concludes `success`.
 - [ ] T023 Run `/deep:review` for 5 iterations on this phase. Verify: the `review/` folder holds 5 iteration records.
 - [ ] T024 Have a fresh Opus agent at high effort write the synthesis. Verify: the report exists in `review/` and lists each finding with a severity.

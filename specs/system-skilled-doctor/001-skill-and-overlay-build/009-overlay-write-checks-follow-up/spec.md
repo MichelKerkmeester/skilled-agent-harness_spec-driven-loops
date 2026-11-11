@@ -96,7 +96,7 @@ The suite before the first edit: `node --test tests/` in `.skilled/commands/doct
 - Leave a path under `repin.exclude` alone in the strict guard and the commit check. Without it the guard refuses a file a re-pin never touches and gives a false reason.
 - Compare content with line endings normalised in the commit check. Without it a file equal to upstream is refused under `text=auto`.
 - Report in `status` a `repin.rootFiles` overlay whose upstream file changed, and each overlay source that is off the layout.
-- Add a `relayout` target that moves off-layout sources. Without it each vendoring project writes its own one-off script.
+- Add `apply --relayout`, which moves off-layout sources. Without it each vendoring project writes its own one-off script.
 - Add `status --audit`, which lists vendored paths that differ from upstream at the pin and that no overlay owns. Without it nothing reports drift that predates strict writes.
 - Add an OpenCode adapter to `overlay-guard`. Without it a vendoring project keeps its own OpenCode guard.
 - Add the missing tests, run the hook tests in CI, add playbook scenarios and bring the command documents in line.
@@ -116,11 +116,10 @@ The suite before the first edit: `node --test tests/` in `.skilled/commands/doct
 | `.skilled/commands/doctor/scripts/overlay-engine.cjs` | Modify | The lock, link, item, glob, exclude, compare, status, relayout and audit changes |
 | `.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs` | Create | Tests for the engine fixes and the new targets |
 | `.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs` | Modify | Tests for the glob, the excluded path, the line-ending compare and the untested paths |
-| `.skilled/commands/doctor/scripts/tests/doctor-overlay-contract.test.cjs` | Modify | The route flags for `relayout` and `--audit` |
+| `.skilled/commands/doctor/scripts/tests/doctor-overlay-contract.test.cjs` | Modify | The route flags for `--relayout` and `--audit` |
 | `.skilled/hooks/overlay-guard/opencode/` | Create | The OpenCode adapter and its test |
 | `.skilled/hooks/overlay-guard/README.md` | Modify | The seventh adapter |
-| `.github/workflows/` (the workflow that runs the doctor tests) | Modify | Run the `overlay-guard` tests |
-| `.skilled/commands/doctor/overlay.md`, `_routes.yaml`, `assets/doctor-overlay-*.yaml`, `assets/doctor-overlay-presentation.txt` | Modify | `relayout`, `--audit` and the new status lines |
+| `.skilled/commands/doctor/overlay.md`, `_routes.yaml`, `assets/doctor-overlay-*.yaml`, `assets/doctor-overlay-presentation.txt` | Modify | `--relayout`, `--audit` and the new status lines |
 | `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` | Modify | The overlay hint and selector lines |
 | `.skilled/skills/system-skilled-doctor/manual-testing-playbook/` | Modify | Scenarios for strict writes, adopt, the commit check, root files and relayout |
 | `.skilled/commands/README.txt`, `README.md` | Modify | The overlay command's hint |
@@ -152,10 +151,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |----|-------------|
 | REQ-009 | `status` prints one line for each `repin.rootFiles` overlay whose upstream file differs from the entry's `pinnedSha256`, and exits 1. |
 | REQ-010 | `status` prints one line for each overlay source that is not at its destination with the leading dot dropped. The line does not change the exit code. |
-| REQ-011 | `relayout` moves each off-layout source under the lock, backs up every path it moves, rewrites `source`, `base` and `fragment`, retargets layout links that point into the overlay folder, refuses when a target exists and prints each old and new path. |
+| REQ-011 | `apply --relayout` moves each off-layout source under the lock, backs up every path it moves, rewrites `source`, `base` and `fragment`, retargets layout links that point into the overlay folder, refuses when a target exists and prints each old and new path. |
 | REQ-012 | `status --audit` lists each vendored path that differs from upstream at the pin, or that upstream has and the tree lacks, when no overlay owns it and no `generated` glob matches it. |
 | REQ-013 | An OpenCode adapter in `overlay-guard` refuses an unowned write on `tool.execute.before` by throwing the engine's refusal line, and stays inert in a repository with no overlay manifest. |
-| REQ-014 | The paths the review named as untested each have a test, and a CI workflow runs the `overlay-guard` tests. |
+| REQ-014 | The paths the review named as untested each have a test, and a CI workflow runs the `overlay-guard` tests, which it already did. |
 | REQ-015 | The overlay router, route manifest, workflows, presentation, command contract, reference and playbook describe the new targets and lines, and the route validator and contract test pass. |
 | REQ-016 | A deep review of this phase ran 5 iterations, and every P0 and P1 finding is fixed or rejected with evidence. |
 | REQ-017 | The `v4.0.2.1` entry names this work, and the tag and the release match `main`. |
