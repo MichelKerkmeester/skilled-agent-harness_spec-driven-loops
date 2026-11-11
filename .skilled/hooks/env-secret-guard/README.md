@@ -106,13 +106,13 @@ Three runtimes can refuse a dotenv file themselves, before any hook runs. The ch
 | Runtime | File | What it denies |
 |---|---|---|
 | Claude Code | `.claude/settings.json`, `permissions.deny` | `Read` and `Edit` of `.env` and `.env.*` at any depth, with `.env.example` carved out. Also covers the shell commands Claude Code recognises as file reads and writes, such as `cat`, `head`, `sed` and a redirect |
-| Devin | `.devin/config.json`, `permissions.deny` | `Read` and `Write` of the named dotenv files at any depth |
+| Devin | `.devin/config.json`, `permissions.deny` | `Read` of the named dotenv files at any depth, by the file tools, `grep` and `cat`. Not in `dangerous` mode, and the `Write` entries did not stop a write when tried |
 | Cursor | `.cursor/cli.json`, `permissions.deny` | the same list as Devin |
 | Cursor | `.cursorignore` | nothing new. Cursor hides `.env*` by default, and this file gives `.env.example` back |
 
 Devin and Cursor match a file name exactly, so their lists name `.env`, `.env.local`, `.env.development`, `.env.production`, `.env.staging`, `.env.test` and `.env.*.local`. A dotenv file under another name is covered by the guard only. Codex, OpenCode, Pi and DSH have no stable rule of this kind, so the guard is their only layer.
 
-When a runtime's own rule fires first, its message replaces the guard's, and the hint that names the value-free CLI is not shown.
+On Claude Code the runtime's rule answers a `Read` or `Edit` first, so the agent sees Claude Code's message there. A shell command is answered by the guard, whose refusal names the value-free CLI.
 
 ### Loaded Environment on DSH
 
@@ -161,7 +161,7 @@ Make a pepper once with `openssl rand -base64 32` and export it from your shell 
 - The output scan knows a value only as the dotenv file spells it, so a value printed encoded, reversed or split is not found. It skips values shorter than 12 characters, a single plain word and a local address. On Claude Code, Codex, Cursor, Devin and DSH it reports a leak after the model has already read it.
 - The rule that an agent may not change the guard covers file tools and shell redirections. A program such as `sed -i`, `cp` or `rm` aimed at the guard's folder is not judged, and nothing stops an agent from editing a runtime's hook registration.
 - The loaded-environment rule on DSH reads the command text. A script file that prints the environment, inline code that dumps every variable without naming one, and a program that echoes its arguments get past it. The after-call scan still reports a value of 12 characters or more.
-- The runtime deny rules are each runtime's own feature and are not tested here against a live session. Claude Code's rule does not cover a script or a recursive grep, and whether Devin's holds in its `dangerous` mode is not documented.
+- The runtime deny rules are each runtime's own feature. Tried in live sessions on a dummy project: Claude Code refused `Read`, `Edit` and `cat` with permissions bypassed and let `python3 -c` read the file. Devin refused the reads in `auto` mode, refused nothing in `dangerous` mode, and created a dotenv file in `accept-edits` mode under a `Write` rule and under an `Edit` rule. On Devin the guard is the layer that holds. Cursor's list was not tried.
 - A grep over a directory that holds a `.env` is not judged. ripgrep skips gitignored files by default.
 - A grep family program's first plain argument is its pattern, so `grep -n .env README.md` is allowed and `grep KEY .env` is not.
 
