@@ -85,8 +85,8 @@ into `config`.
 | `--max-rounds-per-topic` | `N` | Ceiling on deliberation rounds per topic. |
 | `--saturation` | `N` | Saturation threshold that ends a topic once new argument stops arriving. |
 | `--convergence` | `N` | Adjudicator-verdict stability threshold. |
-| `--executor-mode` | `in-cli` \| `external-cli` | Binds `executor.mode`. Default `in-cli`, which deliberates the seats inside this session; `external-cli` dispatches them to an external CLI executor. |
-| `--executor` | `TYPE` | Selects the executor kind for `external-cli`, alongside `--model=X`, `--reasoning-effort=LEVEL`, `--service-tier=TIER` and `--executor-timeout=SECONDS`. Which of those a given kind supports is in the presentation asset. |
+| `--executor-mode` | `in-cli` \| `external-cli` | Binds `executor.mode`, default `in-cli`. It is a label and does not route: `--executor` decides, where `native` deliberates the seats inside this session and any `cli-*` kind dispatches them to that external CLI. |
+| `--executor` | `TYPE` | Selects the executor kind, and with it where the seats run, alongside `--model=X`, `--reasoning-effort=LEVEL`, `--service-tier=TIER` and `--executor-timeout=SECONDS`. Which of those a given kind supports is in the presentation asset. |
 
 Under `:auto` a `PRE-BOUND SETUP ANSWERS:` block in the prompt body binds the same values without
 an interactive prompt.

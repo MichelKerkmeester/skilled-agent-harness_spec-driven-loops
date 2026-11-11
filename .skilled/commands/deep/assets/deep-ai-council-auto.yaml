@@ -22,7 +22,7 @@ user_inputs:
   max_topics_per_session: "[MAX_TOPICS_PER_SESSION] - Default: 5."
   saturation_threshold: "[SATURATION_THRESHOLD] - Default: 0.20."
   executor:
-    mode: "[in-cli|external-cli] - Default: in-cli."
+    mode: "[in-cli|external-cli] - Default: in-cli. A label only: dispatch follows executor.cli, where native deliberates in this session and any cli-* kind dispatches the seats externally."
     cli: "[native|cli-opencode|cli-cursor|cli-devin|cli-pi] - One CLI per round. cli-codex and cli-claude-code are rejected as council seats."
     model: "[MODEL] - Runtime-selected default unless provided."
     reasoning: "[REASONING_LEVEL] - Optional executor-specific setting."

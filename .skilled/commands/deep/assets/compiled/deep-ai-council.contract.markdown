@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/ai-council.md",
-      "sha256": "958914093861223f06c74ae1ad24fc0aca40cfab927ef5cac1a304e0ae71d908",
+      "sha256": "e31de1ac979633af836b73fe9982fcfdd3821e3195e42da560bfd8fb0fa988d3",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-ai-council-auto.yaml",
-      "sha256": "c04e6f1f8600c856396848bfce96488dafe894f41a4ff3f791d07c16c412f038",
+      "sha256": "308d6706e513225e6762808448dfd2e61be6d4eb3efd9512508c2731f3db3599",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-ai-council-confirm.yaml",
-      "sha256": "9e9eb15fc20678765bfc47b1eee68a0b052b65e7be157634783402d9a4541cec",
+      "sha256": "7db97eaa51aa47659da0d67b8e9edce6cb4829beb378f97f3e86a40204381b96",
       "section": "full"
     },
     {
