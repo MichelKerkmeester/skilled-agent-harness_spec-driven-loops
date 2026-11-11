@@ -14,7 +14,7 @@ test before this.
     candidateSha              6b42f05ec9949e2ce2bfe046518627c24f7e5327   (real HEAD)
     baseSha                   88092faabb888c9b83900367d3295678f348a7dc   (real parent)
     startingAuthorityEpoch    1                                          (read from the live record)
-    verifierActorId           operator:michel.k@getbarter.com            (resolved, not supplied)
+    verifierActorId           operator:<email redacted>                  (resolved, not supplied)
     protectedPathsUnchanged   true
 
     ok      false
@@ -78,7 +78,7 @@ The script is kept. Everything it does apart from the classification constructio
 and was proven by execution: real binding resolution, real epoch read from the live record,
 hermetic sandbox, protected-path digests unchanged across the run, honest refusal instead of a
 forced pass, and attribution preserved across the manifest's narrower identity grammar
-(`operator:michel.k@getbarter.com` recorded alongside the slug it requires).
+(`operator:<email redacted>` recorded alongside the slug it requires).
 
 It is not yet capable of producing a certificate, and the reason is now known rather than
 guessed.

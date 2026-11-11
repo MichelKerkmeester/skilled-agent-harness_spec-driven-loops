@@ -1,5 +1,5 @@
 commit 104d65f0018b34545183642b2b16a57b01198fb4
-Author: Michel Kerkmeester <michel.k@getbarter.com>
+Author: Michel Kerkmeester <email redacted>
 Date:   Mon Aug 31 21:27:39 2026 +0200
 
     refactor(repo-rules): rename three rules, ban the em dash, brief the next program
