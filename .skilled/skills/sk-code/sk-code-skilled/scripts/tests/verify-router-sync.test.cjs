@@ -198,6 +198,15 @@ test('leg 2 reports a shared parent-map path ROUTER.md does not declare', (t) =>
   assert.doesNotMatch(out, /sk-code-review\/assets\/leaf\.md/);
 });
 
+test('leg 2 fails when the mode registry is missing', (t) => {
+  const { hub, guard } = buildHub(t);
+  write(path.join(hub, 'ROUTER.md'), 'RESOURCE_MAP = {\n}\nSHARED_CONTROL_RESOURCES = [\n    "shared/references/control.md",\n]\n');
+  write(path.join(hub, 'leaf-manifest.json'), JSON.stringify({ modes: [] }));
+  const { status, out } = runGuard(guard, ['--checks', '2']);
+  assert.equal(status, 1, out);
+  assert.match(out, /mode-registry\.json is missing, so no surface can be checked/);
+});
+
 test('leg 2 passes when an example surface packet is not on disk', (t) => {
   const { hub, guard } = buildHub(t);
   const router = 'DEFAULT_RESOURCE = [\n]\nRESOURCE_MAP = {\n  "DEMO": ["sk-code-skilled/references/o.md", "shared/references/control.md"],\n}\n';

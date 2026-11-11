@@ -35,10 +35,13 @@ const NON_ROUTED_ALLOWLIST = new Set([
 // The registry is the surface inventory, and a hub may ship without an example surface, so only
 // registered packets present on disk count.
 const onDisk = (packet) => fs.existsSync(path.join(SKCODE, packet));
+const REGISTRY_FILE = path.join(SKCODE, 'mode-registry.json');
+// A missing registry names no surface, and a surface check over no surfaces passes. The checks
+// that read the inventory report the missing file instead.
+const REGISTRY_MISSING = !fs.existsSync(REGISTRY_FILE);
 function registeredSurfaces() {
-  const file = path.join(SKCODE, 'mode-registry.json');
-  if (!fs.existsSync(file)) return [];
-  const modes = JSON.parse(fs.readFileSync(file, 'utf8')).modes || [];
+  if (REGISTRY_MISSING) return [];
+  const modes = JSON.parse(fs.readFileSync(REGISTRY_FILE, 'utf8')).modes || [];
   return modes.filter((m) => m && m.packetKind === 'surface' && typeof m.packet === 'string' && onDisk(m.packet));
 }
 const SURFACE_MODES = registeredSurfaces();
@@ -228,6 +231,7 @@ function legOrphans() {
 
 // Leg 2: the parent surface RESOURCE_MAP equals the union of the surface children plus the parent tier.
 function legSurfaceMap() {
+  if (REGISTRY_MISSING) return ['mode-registry.json is missing, so no surface can be checked'];
   const problems = [];
   surfaceSignalProblems(problems);
   const sharedControls = sharedControlResources();
