@@ -57,7 +57,7 @@ repo-guards/
 +-- adapters/                 # one relative link per adapter, see section 2
 |   +-- ask-surface-guard.mjs, classifier-injection-screen.mjs, completion-evidence.mjs
 |   +-- decision-capture.mjs
-|   +-- dispatch-audit.mjs, dispatch-preflight-lint.mjs, git-message-gate.mjs
+|   +-- dispatch-audit.mjs, dispatch-preflight-lint.mjs, env-secret-guard.mjs, git-message-gate.mjs
 |   +-- git-preflight-advisory.mjs, goal-context.mjs, goal-manage.mjs
 |   +-- mcp-route-guard.mjs, overlay-guard.mjs, post-edit-quality.mjs, prompt-advisor.mjs
 |   +-- session-compact-context.mjs, session-start-advisories.mjs, session-start-context.mjs
@@ -88,6 +88,7 @@ Each adapter's tests sit in its concern's `tests/` folder as `dsh-<concern>.test
 | `mcp-route-guard` | `tools/pre-execute` | `mcp__*` | runs | Log and deny on core failure, and deny a `code_mode` tool outside `call_tool_chain`, `list_tools`, `search_tools` and `tool_info` |
 | `classifier-injection-screen` | `tools/post-execute` | `web_fetch`, `web_search`, `mcp__*` | runs | Log and continue |
 | `overlay-guard` | `tools/pre-execute` | `write`, `edit`, `apply_patch` | runs | Log and allow, deny only a path an overlay owns |
+| `env-secret-guard` | `tools/pre-execute` | `read`, `write`, `edit`, `apply_patch`, `grep`, `bash` | runs | Log and allow, deny only a call that reads or writes a dotenv file |
 | `git-preflight-advisory` | `tools/post-execute` | Bash Git commands | runs | Log and continue, add context |
 | `git-message-gate` | `tools/pre-execute` | Bash commands covered by the message contract | runs | Log unexpected errors and continue, deny on `ContractError` |
 | `goal-context` | `agent/created` | `DSH_SPEC_FOLDER` chat slice | runs | Log and continue |
@@ -135,7 +136,7 @@ Run these commands from the repository root.
 node --test .skilled/hooks/*/tests/dsh-*.test.mjs .skilled/skills/system-skill-advisor/hooks/tests/dsh-*.test.mjs .dsh/plugins/repo-guards/tests/
 ```
 
-Expected result: 85 tests pass.
+Expected result: 90 tests pass.
 
 ```sh
 node --test .skilled/hooks/decision-capture/bin/sweep-dsh.test.mjs
@@ -161,3 +162,10 @@ Expected result: 38 tests pass.
 - [Goal core](../../../.skilled/hooks/goal/lib/goal-core.cjs)
 - [DSH session sweep](../../../.skilled/hooks/decision-capture/bin/sweep-dsh.mjs)
 - [Git message contract tests](../../../.skilled/skills/sk-git/scripts/lib/message-contract.test.mjs)
+
+<!-- readme-check
+allow-ref hooks/dsh/ | a folder name inside each owning skill, not a path from here; the same sentence names the full paths
+allow-ref ../plugins/repo-guards/index.mjs | a path inside a patch file, resolved from .dsh/patches/, not from this README
+allow-count 90 tests | node --test prints this total; no file listing can derive it
+allow-count 38 tests | node --test prints this total; no file listing can derive it
+-->

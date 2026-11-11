@@ -95,11 +95,21 @@
         "type": "command",
         "matcher": "Write",
         "timeout": 10
+      },
+      {
+        "command": "node .skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs",
+        "type": "command",
+        "timeout": 10
       }
     ],
     "postToolUse": [
       {
         "command": "node .skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=postToolUse adapter=post-tool-use.mjs\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
+        "type": "command",
+        "timeout": 10
+      },
+      {
+        "command": "node .skilled/hooks/env-secret-guard/command-hook/env-secret-guard-after.cjs",
         "type": "command",
         "timeout": 10
       }

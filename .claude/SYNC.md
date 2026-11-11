@@ -29,7 +29,7 @@ The exception matters. `.claude/agents/` holds **real files**, not symlinks, bec
 | `.utcp_config.json` | symlink | `../.utcp_config.json` | No |
 | `agents/*.md` | **real forked copy** | `.skilled/agents/*.md` | **Yes** — guarded by pre-commit gate |
 | `agents/README.txt` | real file | hand-maintained | Yes — no gate |
-| `hooks/*` (29 symlinks) | per-file symlinks | scattered `.skilled/**` | Yes — guarded by the mirror generator |
+| `hooks/*` (32 symlinks) | per-file symlinks | scattered `.skilled/**` | Yes — guarded by the mirror generator |
 | `settings.json` | authored, except its `hooks` key | `hooks` is rendered from `hook-registry.json` by `sync-hook-registrations.cjs` | The `hooks` key, if hand-edited. `--check` reports it |
 | `mcp.json` | **real file, and it is canonical** | — | Root `.mcp.json` symlinks *to it*; Cursor reaches it via that hop |
 | `statusline-command.sh` | real file | — | n/a |

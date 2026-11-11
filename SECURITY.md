@@ -103,6 +103,8 @@ The Claude Code, Codex, Cursor, Devin, OpenCode and Pi configs each register one
 
 Git ignores `.env` and `.env.*` (`.env.example` excepted), `*.key`, `*.pem`, `*.cert` and the Codex home a dispatched run creates under `specs/**/lineages/*/.codex-home/`, which can hold a linked credential. The commit hooks run no secret scan. A key written into a spec document, a commit message or `.utcp_config.json` is committed as written. A key typed on a command line stays in your shell history and in the session transcript.
 
+The dotenv guard keeps an agent from reading `.env` through its tools, but it judges a list of programs, not every command. A script that prints a loaded variable, or interpreter code that loads the file without naming it, gets past that check. A second check after each shell call undoes a dotenv write and looks for a dotenv value in the output, but on Claude Code, Codex, Cursor, Devin and DSH it can only report a value the model has already read, and it does not find a value printed encoded or split. Treat the guard as a seatbelt, not a vault: keep real values in a secret manager where you can.
+
 ### Hooks Reach Outside The Repository
 
 `.skilled/bin/install-codex-hooks.mjs` edits `~/.codex/hooks.json` to remove this repository's entries from it. The session-start hook only runs it with `--check`. The git hook installer writes to the hooks directory git resolves, so when you have set a global `core.hooksPath`, the hooks land there and run in every repository on your machine. They are written to stay silent in a repository that does not ship Skilled.
@@ -137,6 +139,7 @@ In OpenCode, change `"bash"` and `"edit"` under `permission` in `opencode.json` 
 
 - Keep API keys in the root `.env` file or your shell, never in `.utcp_config.json`. Refer to them there as `${VARIABLE_NAME}`. Code Mode expects each name prefixed with its manual name, with every underscore in that name doubled. The [Code Mode install guide](.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md) shows the exact form
 - Restrict the file with `chmod 600 .env`
+- To let an agent compare dotenv values, export `ENV_SECRET_GUARD_PEPPER` from your shell profile, never from a file in the repository. A key the agent can read lets it test guesses against a fingerprint
 - Never type a key on a command line or paste one into a prompt or a spec document
 - Check `git diff --cached` before you commit, because no hook will catch a key for you
 
@@ -171,6 +174,7 @@ bash .skilled/scripts/install-git-hooks.sh --uninstall
 | dsh git preflight advisory | Evaluates dsh git commands against the shared sk-git hard rules and warns after a risky one has run | `.dsh/plugins/repo-guards/` |
 | Devin permission policy | Answers each Devin permission request and denies on malformed input, a missing field, an unknown tool or any internal error | `.skilled/hooks/permission-policy/` |
 | Overlay guard | Denies an edit to a file that a copied project's overlay owns. It covers every runtime except OpenCode, and `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns it off | `.skilled/hooks/overlay-guard/` |
+| Dotenv guard | Denies an agent's read or write of a `.env` file on every runtime, through file tools, patches and the common shell reads. After a shell call it undoes a dotenv write and reports a dotenv value in the output. It answers with key names, syntax errors or a keyed fingerprint instead of a value, and `SYSTEM_ENV_SECRET_GUARD_DISABLED=1` in the environment turns it off | `.skilled/hooks/env-secret-guard/` |
 | Fan-out write containment | Diffs the tree after each dispatch, quarantines a copy of every write outside the lane's directory and reports it | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts` |
 | Dispatch audit log | Writes one line per dispatch, with API keys, tokens, passwords and authorization headers redacted. Git ignores the log | `.skilled/logs/cli-dispatch-audit.log` |
 | Pinned CI actions | Every GitHub Action is pinned to a commit SHA, and Dependabot updates the pins weekly | `.github/workflows/`, `.github/dependabot.yml` |

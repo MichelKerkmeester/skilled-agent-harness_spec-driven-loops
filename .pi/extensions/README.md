@@ -20,6 +20,7 @@ trigger_phrases:
 | `dispatch-preflight-lint.ts`, `dispatch-audit.ts` | `.skilled/hooks/dispatch/pi/` |
 | `task-dispatch-guard.ts` | `.skilled/hooks/task-dispatch/pi/` |
 | `mcp-route-guard.ts` | `.skilled/hooks/mcp-route-guard/pi/` |
+| `env-secret-guard.ts` | `.skilled/hooks/env-secret-guard/pi/` |
 | `post-edit-quality.ts` | `.skilled/hooks/post-edit-quality/pi/` |
 | `classifier-injection-screen.ts` | `.skilled/hooks/classifier-injection-screen/pi/` |
 | `decision-capture.ts` | `.skilled/hooks/decision-capture/pi/` |
@@ -45,6 +46,7 @@ extensions/
 +-- classifier-injection-screen.ts  # Appends the Jev injection-screen advisory to a fetch_content result
 +-- decision-capture.ts         # Queues each answered question for the decision record; shows the pending count at turn end
 +-- mcp-route-guard.ts          # Attaches route warnings to a native mcp_* tool call
++-- env-secret-guard.ts         # Blocks a read, write, edit, grep, bash or powershell call that would expose a dotenv file
 +-- task-dispatch-guard.ts      # Returns the dispatch-guard text for a direct subagent call (advisory)
 +-- session-start-context.ts    # Bridges session-prime's SessionStart context into the session
 +-- session-start-advisories.ts # Runs the SessionStart advisory checks devin/cursor wire in
@@ -69,6 +71,7 @@ extensions/
 | `dispatch-preflight-lint.ts` | `tool_call` (bash) | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` `readHardRules()`/`evaluate()` |
 | `dispatch-audit.ts` | `tool_result` (bash) | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` `recordDispatch()` |
 | `post-edit-quality.ts` | `tool_result` (edit/write) | `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` `resolveDispatch()`/`runChecks()` |
+| `env-secret-guard.ts` | `tool_call` (read/write/edit/grep/bash/powershell) | `.skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs` `evaluateToolCall()`; returns `{ block: true, reason }` on a dotenv file |
 | `mcp-route-guard.ts` | `tool_call` (`mcp_*`) | `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs` `evaluateNativeMcpCall()` |
 | `classifier-injection-screen.ts` | `tool_result` (`fetch_content`) | `.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs` `fetchedText()`/`screenAdvisory()`; appends the advisory to the tool result |
 | `decision-capture.ts` | `tool_result` (`ask_user_question`, `question`), `turn_end` | `.skilled/hooks/decision-capture/bin/sweep-pi.mjs` `recoveredRecords()` and `.skilled/hooks/decision-capture/lib/capture-core.mjs` `appendRecords()`/`takeNudge()`; never changes a tool result |

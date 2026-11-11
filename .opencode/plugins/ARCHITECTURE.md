@@ -7,7 +7,7 @@ trigger_phrases:
   - "dual plugin export"
   - "v2 bridge"
 importance_tier: "important"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Architecture: OpenCode plugins
@@ -63,6 +63,7 @@ The diagram shows the bridged plugins. Every entry file in the folder is one.
 ├── cli-dispatch-audit.js
 ├── codex-hooks-watchdog.js
 ├── decision-capture.js
+├── env-secret-guard.js
 ├── mcp-route-guard.js
 ├── opencode-goal.js
 ├── session-cleanup.js

@@ -1,0 +1,1 @@
+../../.skilled/hooks/env-secret-guard/command-hook/env-secret-guard.cjs

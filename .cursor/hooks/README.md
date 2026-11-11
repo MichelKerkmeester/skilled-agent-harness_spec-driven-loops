@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for the repository's Cursor hook scripts; 
 
 ## 1. OVERVIEW
 
-`.cursor/hooks/` contains 22 symlinks after including the session-start spec-gate prebind. `dispatch-preflight-lint.mjs`, `mcp-route-guard.mjs` and `task-dispatch-guard.mjs` target `.skilled/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.skilled/hooks/README.md)); the rest target their owning skill under `.skilled/skills/`. Cursor executes the real paths declared in `.cursor/hooks.json`, not this discovery mirror.
+`.cursor/hooks/` contains 25 symlinks, including the session-start spec-gate prebind. Seven target `.skilled/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.skilled/hooks/README.md)): `dispatch-preflight-lint.mjs`, `env-secret-guard-after.cjs`, `env-secret-guard.cjs`, `goal-inject.mjs`, `mcp-route-guard.mjs`, `overlay-guard.mjs` and `task-dispatch-guard.mjs`. Twelve target their owning skill under `.skilled/skills/`, and six target `.skilled/bin/` or `.skilled/scripts/`. Cursor executes the real paths declared in `.cursor/hooks.json`, not this discovery mirror.
 
 Four compiled ESM lifecycle adapters do not execute through their symlink because `runCursorHook()` compares the invocation path with the resolved module URL. Plain `.mjs` proxies do not use that guard, but all runtime wiring stays on one consistent set of real paths.
 

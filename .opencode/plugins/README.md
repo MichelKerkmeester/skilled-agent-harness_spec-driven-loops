@@ -17,7 +17,7 @@ trigger_phrases:
 
 `.opencode/plugins/` contains the JavaScript modules OpenCode discovers as local plugins. Each module default-exports one plain object `{ id, setup, server }`: `setup` is the OpenCode 2 (recommended) entry and `server` the OpenCode 1 (fallback) entry. Source plugins build that object with `dualPlugin(id, server)` from `lib/v2-bridge.js`, so the v1 factory stays the single implementation and the bridge derives the v2 leg from it. OpenCode loads plugins by a flat glob over this folder (it does not recurse), so every loadable plugin lives directly here. The `lib/` and `tests/` subfolders are not plugin sources.
 
-Every plugin here runs on both OpenCode majors. OpenCode 2 calls `setup(ctx)` and OpenCode 1 calls `server(input)`, and neither host calls the other's entry, so a plugin that exported only one entry would do nothing on the other host. On 2026-10-19 the 17 plugin files then present were verified on OpenCode 2.0.32 and OpenCode 1.19.3: the doctor battery reported all 17 active on 2.0.32 and discovered all 17 on 1.19.3. On 2026-10-20 a live run of every plugin showed each one's effect on both versions. One of those plugins has since been removed, and `decision-capture.js` was added later through the same bridge without a rerun of that battery. `session-history-lookup.js` was added the same way; on 2026-11-08 a live OpenCode 2.2.5 session showed its section and redeemed the printed command, and a live OpenCode 1.19.4 session did the same. [ARCHITECTURE.md](./ARCHITECTURE.md) explains the dual export, the bridge and what has no OpenCode 2 equivalent.
+Every plugin here runs on both OpenCode majors. OpenCode 2 calls `setup(ctx)` and OpenCode 1 calls `server(input)`, and neither host calls the other's entry, so a plugin that exported only one entry would do nothing on the other host. On 2026-10-19 the 17 plugin files then present were verified on OpenCode 2.0.32 and OpenCode 1.19.3: the doctor battery reported all 17 active on 2.0.32 and discovered all 17 on 1.19.3. On 2026-10-20 a live run of every plugin showed each one's effect on both versions. One of those plugins has since been removed, and `decision-capture.js` was added later through the same bridge without a rerun of that battery. `session-history-lookup.js` was added the same way, and so was `env-secret-guard.js`, which has no live battery run yet; on 2026-11-08 a live OpenCode 2.2.5 session showed its section and redeemed the printed command, and a live OpenCode 1.19.4 session did the same. [ARCHITECTURE.md](./ARCHITECTURE.md) explains the dual export, the bridge and what has no OpenCode 2 equivalent.
 
 <!-- readme-check
 allow-count 17 plugin files | a dated count of the files present at the 2026-10-19 battery, not the current folder
@@ -30,7 +30,7 @@ Most plugins honor a per-concern kill switch through the shared `hook-flags.cjs`
 
 Most become full no-ops, while the goal tools and the advisor status tool stay registered and report that they are disabled. All advisory checks fail open.
 
-Two plugins reject by default by throwing from `tool.execute.before`: `sk-git-message-gate.js` and the dispatch guard in `cli-dispatch-audit.js`. Other rejection is opt-in: `SYSTEM_SPEC_GATE_ENFORCE` for spec-gate deny, and `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` or `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` for the deep-loop guard, which otherwise only warns.
+Three plugins reject by default by throwing from `tool.execute.before`: `sk-git-message-gate.js`, the dispatch guard in `cli-dispatch-audit.js` and `env-secret-guard.js`, which refuses a read or write of a dotenv file. Other rejection is opt-in: `SYSTEM_SPEC_GATE_ENFORCE` for spec-gate deny, and `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` or `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` for the deep-loop guard, which otherwise only warns.
 
 One plugin is an exception. `sk-git-message-gate.js` has no switch, because the commit, PR and branch rules carry no bypass on any surface.
 
@@ -45,6 +45,7 @@ One plugin is an exception. `sk-git-message-gate.js` has no switch, because the 
 | `cli-dispatch-audit.js` | `dispatch`, `dispatch-guard` | `tool.execute.before` and `tool.execute.after` for Bash | `tool.execute.before` blocks a CLI dispatch that breaks a hard rule declared in the target skill's `SKILL.md` by throwing, and fails open on its own errors. `tool.execute.after` records redacted dispatch telemetry after completed CLI calls, recognizes an `opencode` or `opencode2` invocation and appends a bounded audit record. |
 | `codex-hooks-watchdog.js` | `codex-watchdog` | `event` (`session.created`) | Watches Codex hook installation and reports drift. Never affects the guarded session. |
 | `decision-capture.js` | `decision-capture` | `tool.execute.after` for `question`, `experimental.chat.system.transform` | Queues each answered `question` call for the next full-auto save under the same key as the save-time sweep, and pushes one system line when the count of answers still waiting for a decision record rises. Fails open and never changes the tool output. |
+| `env-secret-guard.js` | `env-secret-guard` | `tool.execute.before`, `tool` (`env_secret_list_keys`, `env_secret_validate`, `env_secret_fingerprint`) | Refuses a file tool or shell command that would read or write a dotenv file by throwing, through the shared core in `../hooks/env-secret-guard/`. Its three tools list keys, check syntax and fingerprint one value without returning any value. Fails open on its own errors. |
 | `mcp-route-guard.js` | `mcp-route-guard` | `tool.execute.before` | Advises when native MCP calls should use Code Mode. Persists to a bounded, rotated workspace log. |
 | `opencode-goal.js` | `goal` | `event` (`session.created`/`status`/`idle`/`deleted`, `message.updated`/`message.part.updated`, `permission.asked`/`replied`, `question.asked`/`replied`/`rejected`), `experimental.chat.system.transform`, `tool` (goal tools) | Holds a text goal or binds a session to a packet `goal.md` and injects the objective slice built from it (via `../hooks/goal/lib/goal-slice.cjs`). Largest plugin in this folder. Owns the goal state machine, supervisor, continuation, capabilities and the goal tool surface including `bind`, `resent` and `packet`. |
 | `session-cleanup.js` | `session-cleanup` | `event` (`session.created`/`deleted`), `experimental.chat.system.transform`, `dispose` | Performs bounded session and host cleanup. Startup guards and teardown cleanup. Reaps MCP helper processes via `session-cleanup.sh`. |
@@ -109,6 +110,7 @@ plugins/
 +-- cli-dispatch-audit.js
 +-- codex-hooks-watchdog.js
 +-- decision-capture.js
++-- env-secret-guard.js
 +-- mcp-route-guard.js
 +-- opencode-goal.js
 +-- session-cleanup.js
@@ -195,7 +197,7 @@ Set a flag inline for one command, export it for a session or persist it in `.sk
 Plugin factories register some subset of:
 
 - `tool`: tools exposed to the model (e.g. `spec_kit_skill_advisor_status`, the goal tools, the read-only completion-evidence tool).
-- `tool.execute.before`: pre-tool evaluation (spec-gate enforce, dispatch guard, git message gate, git-preflight, mcp-route-guard, post-edit-quality path stash, deep-loop guard).
+- `tool.execute.before`: pre-tool evaluation (spec-gate enforce, dispatch guard, env-secret-guard, git message gate, git-preflight, mcp-route-guard, post-edit-quality path stash, deep-loop guard).
 - `tool.execute.after`: post-tool evaluation (cli-dispatch-audit, post-edit-quality run, injection screen).
 - `experimental.chat.system.transform`: per-turn system-context injection (advisor, spec-gate classify, goal, session-cleanup, session-relaunch nudge and seed, git-preflight drain, post-edit-quality drain, dist-freshness and injection-screen drain).
 - `event`: lifecycle and activity handlers (`session.created`/`status`/`idle`/`deleted`/`resumed`/`compacted`/`compact`, `message.updated`/`message.part.updated`, the goal plugin's permission and question events, `server.instance.disposed`/`global.disposed`).
@@ -247,7 +249,7 @@ Expected result: each exits 0, reporting all plugin files active on OpenCode 2 (
 - [`../skills/`](../skills/): the shared skill cores these plugins adapt.
 
 <!-- readme-check
-allow-count two plugins | the sentence counts the plugins that reject by default by behavior, not the plugin files in this folder
+allow-count three plugins | the sentence counts the plugins that reject by default by behavior, not the plugin files in this folder
 allow-count 17 plugin files | the sentence reports the 2026-10-19 battery run and names the plugins added since
 allow-count 17 plugins | the sentence reports the 2026-10-19 battery run, not the current folder
 -->

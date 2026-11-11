@@ -9,7 +9,8 @@
     "hooks-plugins-extensions/hook-injection-pipeline/003-hook-library-mk-rename",
     "hooks-plugins-extensions/hook-injection-pipeline/004-hook-feature-flags-and-hub-index",
     "hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection",
-    "hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair"
+    "hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair",
+    "hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard"
   ],
   "manual": {
     "depends_on": [],

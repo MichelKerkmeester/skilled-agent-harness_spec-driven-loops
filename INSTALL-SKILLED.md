@@ -74,7 +74,7 @@ Code Mode is the bridge your runtime uses to call external MCP tools. It builds 
 
 It installs the dependencies and builds Code Mode when its `dist` is missing or stale. It configures the `.utcp_config.json` manuals. It registers Code Mode in the seven project config files, two of them for Claude. Each write waits for its own approval. Add `--runtime <name>` to register one runtime only: `opencode`, `claude`, `codex`, `cursor`, `pi` or `devin`.
 
-To check Code Mode later, run `/doctor:mcp debug`. It reports PASS, WARN or FAIL per check, and `--fix` adds guided repair. Provider keys live in `.env`, which only Code Mode reads. Section 1 of [`.env.example`](.env.example) lists them. The [Code Mode install guide](.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md) covers the manual steps.
+To check Code Mode later, run `/doctor:mcp debug`. It reports PASS, WARN or FAIL per check, and `--fix` adds guided repair. Provider keys live in `.env`, which only Code Mode reads. Section 1 of [`.env.example`](.env.example) lists them. An agent cannot read that file: the [dotenv guard](.skilled/hooks/env-secret-guard/README.md) refuses it on every runtime and offers key names or a fingerprint instead. The [Code Mode install guide](.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md) covers the manual steps.
 
 ### Git Hooks
 
