@@ -57,6 +57,13 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 ## 3. HOW IT WORKS
 
+### Execution Ownership
+
+This packet owns user-facing routing, the `command -v claude` availability probe, prompt construction and the self-invocation guard.
+For research and review lineages, the shared deep-loop runtime at `../../system-deep-loop/runtime/scripts/fanout-run.cjs` owns process construction and execution, using executor kind `cli-claude-code`.
+That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5.
+Do not add a packet-local wrapper, spawn path or command builder. Direct `claude -p` snippets below are operator reference and manual-testing examples.
+
 ### Prerequisites
 
 ```bash
