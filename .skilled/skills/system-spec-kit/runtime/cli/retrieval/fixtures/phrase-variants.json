@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cd359b942df22b1b19a0853b4ebbbfdcb8ba51603ccf0df623ce7de659fbcebc",
+  "manifestHash": "caff4923f529bcf0d5e9affc9b72dde7b8c675145bf85f21f039eb014fa7b33a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -118349,6 +118349,9 @@
     "system spec kit 2 12 50 0": [
       "system-spec-kit 2.12.50.0"
     ],
+    "system spec kit 2 12 51 0": [
+      "system-spec-kit 2.12.51.0"
+    ],
     "system spec kit 2 12 6 0": [
       "system-spec-kit 2.12.6.0"
     ],
@@ -118966,6 +118969,9 @@
     ],
     "system spec kit v2 12 50 0": [
       "system-spec-kit v2.12.50.0"
+    ],
+    "system spec kit v2 12 51 0": [
+      "system-spec-kit v2.12.51.0"
     ],
     "system spec kit v2 12 6 0": [
       "system-spec-kit v2.12.6.0"
@@ -126863,6 +126869,9 @@
     ],
     "workflow invariance": [
       "workflow invariance"
+    ],
+    "workflow lock starvation": [
+      "workflow lock starvation"
     ],
     "workflow owner guard": [
       "workflow owner guard",
