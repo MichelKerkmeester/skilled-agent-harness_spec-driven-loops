@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1dedb91d78d21cb38fe8733a337f178bd8b04669a66b2e9e447fcc8eb91c19d7",
+  "manifestHash": "15f8e74e5c28fef0934a32085e99d7b6653add6f7b58830023a2486c2dcb4851",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13098,6 +13098,9 @@
     "audit findings remediation": [
       "audit findings remediation"
     ],
+    "audit fixes since v4 0 1 0": [
+      "audit fixes since v4.0.1.0"
+    ],
     "audit logic invariants": [
       "audit logic invariants"
     ],
@@ -21978,6 +21981,9 @@
     "cli external orchestration 1 8 0 0": [
       "cli-external-orchestration 1.8.0.0"
     ],
+    "cli external orchestration 1 9 0 0": [
+      "cli-external-orchestration 1.9.0.0"
+    ],
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
@@ -22112,6 +22118,9 @@
     ],
     "cli external orchestration v1 8 0 0": [
       "cli-external-orchestration v1.8.0.0"
+    ],
+    "cli external orchestration v1 9 0 0": [
+      "cli-external-orchestration v1.9.0.0"
     ],
     "cli fallback envelope normalization": [
       "cli fallback envelope normalization"
@@ -22250,6 +22259,9 @@
     ],
     "cli hermes plan": [
       "cli hermes plan"
+    ],
+    "cli hermes removed": [
+      "cli-hermes removed"
     ],
     "cli hermes research scope": [
       "cli-hermes research scope"
@@ -48444,6 +48456,9 @@
     "fan out prototype result": [
       "fan-out prototype result"
     ],
+    "fan out quota failure class": [
+      "fan-out quota failure class"
+    ],
     "fan out research closes complete": [
       "fan-out research closes complete"
     ],
@@ -65541,6 +65556,9 @@
     "mcp click up 1 2 21 0": [
       "mcp-click-up 1.2.21.0"
     ],
+    "mcp click up 1 2 22 0": [
+      "mcp-click-up 1.2.22.0"
+    ],
     "mcp click up 1 2 3 0": [
       "mcp-click-up 1.2.3.0"
     ],
@@ -65648,6 +65666,9 @@
     ],
     "mcp click up v1 2 21 0": [
       "mcp-click-up v1.2.21.0"
+    ],
+    "mcp click up v1 2 22 0": [
+      "mcp-click-up v1.2.22.0"
     ],
     "mcp click up v1 2 3 0": [
       "mcp-click-up v1.2.3.0"
@@ -95091,6 +95112,9 @@
     "review synthesis tasks": [
       "review synthesis tasks"
     ],
+    "review target override": [
+      "review target override"
+    ],
     "review traceability checks": [
       "review traceability checks"
     ],
@@ -100704,6 +100728,9 @@
     "setup scripts": [
       "setup scripts"
     ],
+    "seven cli modes": [
+      "seven cli modes"
+    ],
     "seven mode production boundary matrix": [
       "seven mode production boundary matrix"
     ],
@@ -102445,6 +102472,9 @@
     ],
     "sk code 3 11 4 0": [
       "sk-code 3.11.4.0"
+    ],
+    "sk code 3 11 5 0": [
+      "sk-code 3.11.5.0"
     ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
@@ -104545,6 +104575,9 @@
     ],
     "sk code v3 11 4 0": [
       "sk-code v3.11.4.0"
+    ],
+    "sk code v3 11 5 0": [
+      "sk-code v3.11.5.0"
     ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
@@ -107327,6 +107360,9 @@
     "sk doc 2 9 8 0": [
       "sk-doc 2.9.8.0"
     ],
+    "sk doc 2 9 9 0": [
+      "sk-doc 2.9.9.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -107806,6 +107842,9 @@
     ],
     "sk doc v2 9 8 0": [
       "sk-doc v2.9.8.0"
+    ],
+    "sk doc v2 9 9 0": [
+      "sk-doc v2.9.9.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -117008,6 +117047,9 @@
     "system deep loop 1 6 23 0": [
       "system-deep-loop 1.6.23.0"
     ],
+    "system deep loop 1 6 24 0": [
+      "system-deep-loop 1.6.24.0"
+    ],
     "system deep loop 1 6 3 0": [
       "system-deep-loop 1.6.3.0"
     ],
@@ -117202,6 +117244,9 @@
     ],
     "system deep loop v1 6 23 0": [
       "system-deep-loop v1.6.23.0"
+    ],
+    "system deep loop v1 6 24 0": [
+      "system-deep-loop v1.6.24.0"
     ],
     "system deep loop v1 6 3 0": [
       "system-deep-loop v1.6.3.0"
@@ -117445,6 +117490,9 @@
     ],
     "system skill advisor 0 18 6 0": [
       "system-skill-advisor 0.18.6.0"
+    ],
+    "system skill advisor 0 18 7 0": [
+      "system-skill-advisor 0.18.7.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -117764,6 +117812,9 @@
     "system skill advisor v0 18 6 0": [
       "system-skill-advisor v0.18.6.0"
     ],
+    "system skill advisor v0 18 7 0": [
+      "system-skill-advisor v0.18.7.0"
+    ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
     ],
@@ -117802,6 +117853,9 @@
     ],
     "system skilled doctor 1 1 3 0": [
       "system-skilled-doctor 1.1.3.0"
+    ],
+    "system skilled doctor 1 1 4 0": [
+      "system-skilled-doctor 1.1.4.0"
     ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
@@ -117850,6 +117904,9 @@
     ],
     "system skilled doctor v1 1 3 0": [
       "system-skilled-doctor v1.1.3.0"
+    ],
+    "system skilled doctor v1 1 4 0": [
+      "system-skilled-doctor v1.1.4.0"
     ],
     "system spec gate": [
       "system-spec-gate"
@@ -118225,6 +118282,9 @@
     ],
     "system spec kit 2 12 5 0": [
       "system-spec-kit 2.12.5.0"
+    ],
+    "system spec kit 2 12 50 0": [
+      "system-spec-kit 2.12.50.0"
     ],
     "system spec kit 2 12 6 0": [
       "system-spec-kit 2.12.6.0"
@@ -118840,6 +118900,9 @@
     ],
     "system spec kit v2 12 5 0": [
       "system-spec-kit v2.12.5.0"
+    ],
+    "system spec kit v2 12 50 0": [
+      "system-spec-kit v2.12.50.0"
     ],
     "system spec kit v2 12 6 0": [
       "system-spec-kit v2.12.6.0"
