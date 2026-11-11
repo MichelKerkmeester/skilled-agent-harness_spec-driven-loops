@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6f67a58663d5a57e1b6e5d2d10c8a3c864f2c05585fdb9574070a8bd174cb8bc",
+  "manifestHash": "23f9669761f84d2fe02178700197c456ad6a1f429c574ef4e577a818b83bf81b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14778,6 +14778,9 @@
     "block convergence critical disagreement": [
       "block convergence critical disagreement"
     ],
+    "block env file reads": [
+      "block env file reads"
+    ],
     "block misaligned commit messages": [
       "block misaligned commit messages"
     ],
@@ -16867,6 +16870,12 @@
     ],
     "ce p05": [
       "CE-P05"
+    ],
+    "ce p06": [
+      "CE-P06"
+    ],
+    "ce p07": [
+      "CE-P07"
     ],
     "ceiling marker report": [
       "ceiling marker report"
@@ -43365,11 +43374,29 @@
     "dot state directories": [
       "dot state directories"
     ],
+    "dotenv fingerprint": [
+      "dotenv fingerprint"
+    ],
+    "dotenv guard": [
+      "dotenv guard"
+    ],
+    "dotenv guard plugin": [
+      "dotenv guard plugin"
+    ],
+    "dotenv inspect without values": [
+      "dotenv inspect without values"
+    ],
     "dotenv loader mcp launcher": [
       "dotenv loader MCP launcher"
     ],
+    "dotenv secret guard": [
+      "dotenv secret guard"
+    ],
     "dotenv variable loading": [
       "dotenv variable loading"
+    ],
+    "dotenv write refused": [
+      "dotenv write refused"
     ],
     "double quoted variables": [
       "double quoted variables"
@@ -46113,6 +46140,30 @@
     "env reference switch plan": [
       "env reference switch plan"
     ],
+    "env secret guard": [
+      "env secret guard"
+    ],
+    "env secret guard acceptance criteria": [
+      "env secret guard acceptance criteria"
+    ],
+    "env secret guard conversation": [
+      "env secret guard conversation"
+    ],
+    "env secret guard edit conversation": [
+      "env secret guard edit conversation"
+    ],
+    "env secret guard implementation summary": [
+      "env secret guard implementation summary"
+    ],
+    "env secret guard pepper": [
+      "ENV_SECRET_GUARD_PEPPER"
+    ],
+    "env secret guard plan": [
+      "env secret guard plan"
+    ],
+    "env secret guard tasks": [
+      "env secret guard tasks"
+    ],
     "env snapshot restore": [
       "env snapshot restore"
     ],
@@ -46157,6 +46208,9 @@
     ],
     "environment variables route to spec kit": [
       "environment variables route to spec-kit"
+    ],
+    "envsitter port": [
+      "envsitter port"
     ],
     "eperm launcher lease": [
       "EPERM launcher lease"
@@ -57142,6 +57196,9 @@
     ],
     "history rewrite tasks": [
       "history rewrite tasks"
+    ],
+    "hmac fingerprint dotenv": [
+      "hmac fingerprint dotenv"
     ],
     "hol plugin scanner": [
       "hol plugin scanner"

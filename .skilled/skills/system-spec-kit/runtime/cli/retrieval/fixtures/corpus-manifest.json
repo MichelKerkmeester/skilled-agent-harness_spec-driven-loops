@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e7c1ea9a0e2023336d9d2ec4b2f56dcd13fa9f304c57fe4be10fc8fb825cdbe0",
+  "corpusHash": "0d8215007d6b0785d08db38e03e457ae2a2a4c648d9cbc65a832835b45c32b78",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26074,
+  "includedPathCount": 26082,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -139,6 +139,7 @@
     ".skilled/hooks/dist-freshness/cursor/README.md",
     ".skilled/hooks/dist-freshness/devin/README.md",
     ".skilled/hooks/dist-freshness/opencode/README.md",
+    ".skilled/hooks/env-secret-guard/README.md",
     ".skilled/hooks/git-hooks-check/README.md",
     ".skilled/hooks/git-hooks-check/claude/README.md",
     ".skilled/hooks/git-hooks-check/codex/README.md",
@@ -1979,6 +1980,8 @@
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization-conversation.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
+    ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/env-secret-guard-inspect-without-values-conversation.md",
+    ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/env-secret-guard-protect-from-edit-conversation.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md",
     ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md",
     ".skilled/skills/cli-orca/README.md",
@@ -11174,6 +11177,11 @@
     "specs/hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair/plan.md",
     "specs/hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair/spec.md",
     "specs/hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair/tasks.md",
+    "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/implementation-summary.md",
+    "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/plan.md",
+    "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/spec.md",
+    "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/tasks.md",
     "specs/hooks-plugins-extensions/pi-extensions/001-pi-input-hook-latency/implementation-summary.md",
     "specs/hooks-plugins-extensions/pi-extensions/001-pi-input-hook-latency/plan.md",
     "specs/hooks-plugins-extensions/pi-extensions/001-pi-input-hook-latency/spec.md",
@@ -26106,7 +26114,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6f67a58663d5a57e1b6e5d2d10c8a3c864f2c05585fdb9574070a8bd174cb8bc",
+  "manifestHash": "23f9669761f84d2fe02178700197c456ad6a1f429c574ef4e577a818b83bf81b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26206,6 +26214,10 @@
     },
     {
       "path": ".skilled/hooks/dist-freshness/opencode/system-dist-freshness-guard.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/env-secret-guard/opencode/env-secret-guard.js",
       "reason": "symlink not followed"
     },
     {
@@ -28898,6 +28910,14 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/scratch",
       "reason": "excluded directory"
     },
     {

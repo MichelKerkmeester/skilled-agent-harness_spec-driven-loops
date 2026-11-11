@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6684,
-    "ok": 17761,
+    "ok": 17769,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26074,
+  "documentsScanned": 26082,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6f67a58663d5a57e1b6e5d2d10c8a3c864f2c05585fdb9574070a8bd174cb8bc",
+  "manifestHash": "23f9669761f84d2fe02178700197c456ad6a1f429c574ef4e577a818b83bf81b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42206,
+      "ok": 42225,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -51655,6 +51655,10 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/env-secret-guard/opencode/env-secret-guard.js",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/git-hooks-check/claude/check-git-hooks.sh",
       "reason": "symlink not followed"
     },
@@ -54344,6 +54348,14 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/scratch",
       "reason": "excluded directory"
     },
     {
