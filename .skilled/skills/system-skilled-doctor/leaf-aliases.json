@@ -1,13 +1,38 @@
 [
   {
     "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/overlays/adopt-an-unowned-file.md",
+    "diskPath": "manual-testing-playbook/overlays/adopt-an-unowned-file.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
     "leafResourceId": "manual-testing-playbook/overlays/adopt-with-protected-file.md",
     "diskPath": "manual-testing-playbook/overlays/adopt-with-protected-file.md"
   },
   {
     "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/overlays/pre-commit-refuses-unowned-change.md",
+    "diskPath": "manual-testing-playbook/overlays/pre-commit-refuses-unowned-change.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/overlays/relayout-moves-sources.md",
+    "diskPath": "manual-testing-playbook/overlays/relayout-moves-sources.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/overlays/stale-lock-takeover.md",
+    "diskPath": "manual-testing-playbook/overlays/stale-lock-takeover.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
     "leafResourceId": "manual-testing-playbook/overlays/status-without-overlays.md",
     "diskPath": "manual-testing-playbook/overlays/status-without-overlays.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/overlays/strict-guard-refuses-unowned-write.md",
+    "diskPath": "manual-testing-playbook/overlays/strict-guard-refuses-unowned-write.md"
   },
   {
     "workflowMode": "system-skilled-doctor",
