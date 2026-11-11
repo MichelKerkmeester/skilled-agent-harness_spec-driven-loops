@@ -51,7 +51,12 @@ function refreshCopiedDistMtimes(copy: string): void {
 // a copy carries the tree itself and links everything large or shared back to this checkout.
 function provisionSkillCopy(skillsDir: string): string {
   const copy = path.join(skillsDir, 'system-spec-kit');
-  fs.cpSync(skillRoot, copy, { recursive: true, filter: (src) => path.basename(src) !== 'node_modules' });
+  // Other test files create and remove the runtime's .workflow-lock while this copy runs, so
+  // copying it can fail with ENOENT. It is transient state and stays out of the copy.
+  fs.cpSync(skillRoot, copy, {
+    recursive: true,
+    filter: (src) => !['node_modules', '.workflow-lock'].includes(path.basename(src)),
+  });
   for (const relative of ['node_modules', 'runtime/node_modules', 'runtime/cli/node_modules']) {
     const source = path.join(skillRoot, relative);
     if (fs.existsSync(source)) fs.symlinkSync(source, path.join(copy, relative), 'dir');

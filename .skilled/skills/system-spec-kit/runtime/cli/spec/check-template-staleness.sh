@@ -281,10 +281,10 @@ main() {
         [[ -n "$folder" ]] && folders+=("$folder")
     done < <(discover_spec_folders "$ROOT_PATH")
 
-    # An empty discovery result leaves the array unset, which `set -u` treats as
-    # an unbound variable on Bash 3.2; the defaults keep a packet-less root a
-    # clean zero rather than a crash.
-    local total=${#folders[@]:-0}
+    # The length of an empty array is a clean zero under `set -u` on every Bash.
+    # A `:-` default on a length expansion is a bad substitution on Bash 4 and
+    # later, so the count is read bare and only the loop below guards the array.
+    local total=${#folders[@]}
     local current_count=0 stale_count=0 none_count=0 missing_count=0
     local stale_folders=()
     # Bash 3.2 compatible version tracking (parallel arrays instead of associative)
