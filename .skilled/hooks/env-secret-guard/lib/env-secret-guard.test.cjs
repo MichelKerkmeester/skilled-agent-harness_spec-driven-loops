@@ -333,6 +333,31 @@ test('codex sends its shell command as an argv array', () => {
   assert.equal(result.decision, 'deny');
 });
 
+test('a runtime that loads the dotenv file refuses a command that prints a loaded value', (t) => {
+  const dir = project(t);
+  const judge = (command, loadedEnv = true) => core.evaluateToolCall({ tool: 'bash', input: { command }, cwd: dir, loadedEnv });
+  for (const command of [
+    'env', 'env | sort', 'printenv', 'printenv API_KEY', 'export -p', 'declare -p API_KEY', 'set',
+    'echo $API_KEY', 'printf "%s" "${API_KEY:-none}"', 'cat <<< "$API_KEY"', 'bash -c "printenv"',
+    'x=$(printenv API_KEY); curl "$x"', 'node -e "console.log(process.env.API_KEY)"',
+  ]) {
+    const result = judge(command);
+    assert.equal(result.decision, 'deny', command);
+    assert.match(result.reason, /loaded from the project's dotenv file/);
+    assert.ok(!result.reason.includes(SECRET));
+  }
+  // Using a variable hands the value to the program, not to the output.
+  for (const command of [
+    'curl -H "Authorization: $API_KEY" https://example.test', "echo '$API_KEY'", 'echo $HOME', 'printenv HOME',
+    'set -euo pipefail', 'export NODE_ENV=test', 'env NODE_ENV=test node app.js', 'npm test',
+  ]) {
+    assert.equal(judge(command).decision, 'allow', command);
+  }
+  // Every other runtime starts without the dotenv values, so the rule is off for them.
+  assert.equal(judge('printenv', false).decision, 'allow');
+  assert.equal(core.evaluateToolCall({ tool: 'bash', input: { command: 'printenv' }, cwd: '/', loadedEnv: true }).decision, 'allow');
+});
+
 test('a runtime hint is named before the CLI in the refusal', () => {
   const hint = 'call env_secret_list_keys';
   const result = core.evaluateToolCall({ tool: 'read', input: { filePath: '.env' }, cwd: '/', hint });

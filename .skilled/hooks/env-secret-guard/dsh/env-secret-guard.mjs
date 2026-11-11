@@ -43,7 +43,14 @@ export function registerEnvSecretGuard(ctx, {
   ctx.on('tools/pre-execute', async (exec, next) => {
     try {
       const sessionDir = exec.agent?.session?.header?.cwd ?? cwd;
-      const result = core.evaluateToolCall({ tool: exec.name, input: exec.arguments ?? {}, cwd: sessionDir });
+      // dsh loads the invoking directory's dotenv file into its own process and
+      // its shell inherits most of it, so printing the environment is a read too.
+      const result = core.evaluateToolCall({
+        tool: exec.name,
+        input: exec.arguments ?? {},
+        cwd: sessionDir,
+        loadedEnv: true,
+      });
       if (result.decision === 'deny') return { kind: 'deny', reason: result.reason };
       if (core.SHELL_TOOLS.has(String(exec.name).toLowerCase())) watch.snapshotDotenv(sessionDir);
     } catch (error) {

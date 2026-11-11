@@ -207,7 +207,7 @@
     ],
     "causal_summary": "An agent in a Skilled checkout can read, edit or patch a `.env` file on every runtime this repository supports",
     "created_at": "2026-11-10T14:52:41Z",
-    "last_save_at": "2026-11-11T04:49:25.882Z",
+    "last_save_at": "2026-11-11T06:07:03.302Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2bd66810d22f6fb472fa5d95e123828b8787b7c6b050911a0c3c4ae0d774f2b",
+    "source_fingerprint": "sha256:f323661ada4d36ba9f2e8f50f1756d1c7b9937434426cb0821f9474b4a9cff8a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55c43dbb52034189a1313b355d7a8e3beda382424c03bf49b683f5eaabb0415d",
       "plan.md": "fbfa46051fd5b7ed613da9fefc0a9df3d2f971b6d85a8606e10da3e65163d6c3",
-      "tasks.md": "417563e58eeeec11feb4642d2be919202461a47230ab6812f326db92cb6079fc",
-      "implementation-summary.md": "22e2157320b11d9cfaa5df345d5eef9e314fe64fa9fe804191e409ce7ff3db28"
+      "tasks.md": "f716e675d03f09efdbef4a0614fda824c25dfb5823b8e1077b03d1ecc6c5a4c6",
+      "implementation-summary.md": "d45fe35b0c5b3bd3e3163617df9e10cbe8141592bb9ecf1fcaab6ddfc29a473c"
     },
     "last_active_at": null
   }

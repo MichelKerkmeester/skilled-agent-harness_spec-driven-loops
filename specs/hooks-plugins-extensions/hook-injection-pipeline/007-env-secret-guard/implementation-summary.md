@@ -58,6 +58,8 @@ One core decides every call. File tools are judged by the base name of every pat
 
 A second check runs after every shell call, because a call's text does not show everything it does. The guard records the project's dotenv files before the call, puts back any that changed and keeps the rejected version outside the checkout, and looks for a dotenv value in the output. OpenCode and Pi replace a found value before the model reads it; the other runtimes report it. An agent may read the guard's code but its file tools and shell redirections may not change it, and every refusal and finding is appended, without values, to `.skilled/skills/.state/env-secret-guard.log`.
 
+Three runtimes also refuse a dotenv file themselves, before any hook runs: Claude Code, Devin and Cursor each carry a deny list in their own config, so the file stays closed when the guard is switched off or fails open. DSH loads the invoking directory's dotenv file into its own process, where no file rule can see it, so its adapter asks the core to refuse a shell command that would print a loaded value: a listing of the environment, or a dotenv key handed to `echo`, `printf`, `printenv`, a here-string or inline interpreter code. Using a variable, as in `psql "$DATABASE_URL"`, stays allowed.
+
 The fingerprint is HMAC-SHA256 keyed by `ENV_SECRET_GUARD_PEPPER` from the environment. The pepper the source branch committed is not reused, and no pepper is ever read from disk.
 
 ### Files Changed
@@ -100,6 +102,9 @@ Built in worktree `341-env-secret-guard`. Each adapter is tested with its runtim
 | Kill switch from the environment only | Operator direction after the live runs. `hook-flags.env` is a file the agent can write, so this guard no longer goes through the shared `isHookEnabled` reader the spec named |
 | Undo a dotenv write by default | Operator kept every check enabled by default. `ENV_SECRET_GUARD_WRITE_CHECK=report` is the opt-out for a tool that is meant to write one |
 | Backups outside the checkout, owner-only | Undoing a write needs the old content, and a copy of a dotenv file must not sit where an agent or git can reach it |
+| Refuse printing a loaded variable, not using one | The plan named every `$KEY` reference. That would block `psql "$DATABASE_URL"`, where the value reaches a program and not the output, so only printing is refused |
+| Runtime deny lists shipped, sandboxes documented | A deny list costs nothing in normal work. A sandbox blocks ordinary commands too, so it stays a per-person choice described in the README |
+| The follow-up was written past the guard's own folder rule | The session ran with the guard active, which refuses agent edits to its folder. The operator chose to finish through scripts instead of restarting with the kill switch |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -119,6 +124,7 @@ Built in worktree `341-env-secret-guard`. Each adapter is tested with its runtim
 | Luna deep review, 4 iterations | 1 P1 and 3 P2, each reproduced. Fixed: the P1 (a path printed by `$(echo .env)` or `$(printf .env)`), the single-quoted `'$f'` false denial and the DSH table missing `grep`, each code fix with a test. Kept by design: `.env*` is refused in a folder holding only `.env.example`, because an earlier `cd` can move the shell to a folder the guard never lists. Battery after the fixes: 57/57 rows |
 | CE-P06 and CE-P07 live runs | Latest result per runtime: CE-P06 and CE-P07 both PASS on Codex, Devin, OpenCode and Pi; CE-P07 PASS on Claude Code in the first pass. The Devin, OpenCode and Pi passes predate the last two fixes. OpenCode and Pi ran on OpenCode Go because LLM Gateway returned a credit-limit error. The runs found four holes, each fixed with a test: Codex read a value with a Python here-document, also reported by the output scan; Devin appended to `.env` with `node -e '...' .env`; Codex read a value with `if [ -f .env ]; then awk ... .env; fi`, which the output scan reported in the same turn; and `grep --exclude=.env*` was falsely refused. Claude Code's CE-P06 was not rerun after a script error of the runner's making, and its after-call hook is proven by tests only |
 | DeepSeek reviews | 15 findings, 14 distinct (two reviews found the Write `content` case): 13 confirmed and fixed, 1 partly confirmed (Codex `read_file`) and covered |
+| Follow-up: runtime deny rules and the DSH loaded-environment rule | Guard suites 62/62, CI hook collection 1545/1545, plugins 581/581, hooks vitest 491/491, DSH 92/92, both sync checks PASS, quality gate `NO_BLOCKER_FOUND`. The deny lists were not exercised in a live session |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -132,7 +138,8 @@ Built in worktree `341-env-secret-guard`. Each adapter is tested with its runtim
 4. **Scenario coverage has gaps.** Claude Code's CE-P06 has no clean pass on record, Cursor and DSH have no live run, and CE-P07's first message now tells the agent not to ask questions because the runner cannot answer a follow-up dialog on Pi.
 6. **The write check can undo a legitimate write.** A command run through the agent that is meant to write a dotenv file is reverted unless `ENV_SECRET_GUARD_WRITE_CHECK=report` is set. The rejected version is kept.
 7. **Self-protection is partial.** `sed -i`, `cp` or `rm` aimed at the guard's folder is not judged, and nothing stops an agent from editing a runtime's hook registration.
-8. **Not built.** An operating-system deny rule per runtime, and moving real values to a secret manager.
+8. **Runtime deny rules are untested live.** Claude Code, Devin and Cursor carry deny lists, which are each runtime's own feature. Claude Code's does not cover a script or a recursive grep, Devin and Cursor match the listed names only, and whether Devin's holds in its `dangerous` mode is not documented. Codex, OpenCode, Pi and DSH have no stable rule of this kind. Sandboxes and secret managers are described in the README and not switched on.
+9. **The DSH loaded-environment rule reads the command text.** A script file that prints the environment, or inline code that dumps every variable without naming one, gets past it. That DSH loads the dotenv file was confirmed from its README and its scrub list, not from a live run.
 5. **Folded into a tagged release.** The operator chose to add this work to v4.0.2.1, which was already tagged and published. The changelog rule numbers a new entry in that case. The entry now runs past the template's 240-line ceiling, and the operator chose to leave it there, so the changelog shape check fails on length alone. The published release text was updated before the commit, so the tag v4.0.2.1 does not yet hold the guard code; moving it waits on the operator.
 <!-- /ANCHOR:limitations -->
 

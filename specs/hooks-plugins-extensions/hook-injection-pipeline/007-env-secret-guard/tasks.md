@@ -59,6 +59,8 @@ contextType: "general"
 - [x] T012 Update the concern README, the hooks kill-switch index and the plugin inventories. Verify: `rg -n env-secret-guard .skilled/hooks/README.md .opencode/plugins/README.md` prints the new rows.
 - [x] T013 Independent review of the plugin, extension and hook surfaces by DeepSeek v4.1 Flash at max reasoning, and fix what it confirms. Verify: each review run exits 0 with a `completed` final event. Done: three runs on OpenCode Go, 14 findings triaged, every confirmed one fixed with a test.
 - [x] T014 Conversational playbook scenarios CE-P06 and CE-P07, then `/local-skilled-alignment` and its fixes. Verify: `validate-playbook-package.cjs` reports 0 violations and the guard suites pass 41/41.
+- [x] T015 Add each runtime's own deny rule for dotenv files where one exists: Claude Code `permissions.deny`, Devin `permissions.deny`, Cursor `.cursor/cli.json` and a `.cursorignore` that gives `.env.example` back. Verify: both runtime-mirror checks still print `PASS`. Not verified against a live session.
+- [x] T016 Refuse a shell command that prints a value DSH loaded from the project's dotenv file, and document secret managers and the opt-in sandboxes in the concern README. Verify: the guard suites pass 62/62.
 <!-- /ANCHOR:phase-3 -->
 
 ---

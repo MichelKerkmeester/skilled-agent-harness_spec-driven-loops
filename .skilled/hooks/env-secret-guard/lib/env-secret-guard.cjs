@@ -113,6 +113,12 @@ const MAX_SHELL_NESTING = 4;
 // Programs whose output is only their operands, so a substitution running one
 // can be judged by what it prints without running it.
 const PRODUCERS = new Set(['echo', 'printf', 'realpath', 'readlink', 'basename']);
+// Programs that write their operands to the output, so a loaded variable handed to one is printed.
+const PRINTERS = new Set(['echo', 'printf', 'print', 'write-output', 'write-host']);
+// Shell builtins that list every variable when given no name.
+const VARIABLE_LISTERS = new Set(['export', 'declare', 'typeset', 'set']);
+// PowerShell's directory listers, which list the environment when pointed at `Env:`.
+const POWERSHELL_LISTERS = new Set(['get-childitem', 'gci', 'dir', 'ls']);
 // Stands in for a `$` the shell keeps literal; a control character no command
 // line uses, so it never collides with a real word.
 const LITERAL_DOLLAR = '\u0001';
@@ -641,9 +647,111 @@ function shellDotenvTarget(command, cwd = process.cwd(), depth = 0, { powershell
   return null;
 }
 
+/** Every key the dotenv files directly in `cwd` define. Names only, never a value. */
+function loadedDotenvKeys(cwd) {
+  const keys = new Set();
+  let names;
+  try {
+    names = fs.readdirSync(path.resolve(cwd));
+  } catch {
+    return keys;
+  }
+  for (const name of names) {
+    if (!isDotenvName(name)) continue;
+    const listed = listKeys(name, cwd);
+    if (listed.ok) listed.keys.forEach((key) => keys.add(key));
+  }
+  return keys;
+}
+
+/** The dotenv key a shell word expands, as `$KEY`, `${KEY}` or PowerShell's `$env:KEY`, or null. */
+function loadedKeyInWord(word, keys) {
+  for (const match of String(word).matchAll(/\$(?:env:)?\{?([A-Za-z_][A-Za-z0-9_]*)/gi)) {
+    if (keys.has(match[1])) return match[1];
+  }
+  return null;
+}
+
+/**
+ * What a shell command would print from the process environment, or null.
+ * For a runtime that loads the project's dotenv file into its own process,
+ * where the shell inherits those values and no file is ever opened. A command
+ * that only uses a variable, such as `psql "$DATABASE_URL"`, stays allowed:
+ * the value then goes to the program, not to the output.
+ * @param {string|string[]} command
+ * @param {Set<string>} keys - The keys the project's dotenv files define.
+ * @param {number} [depth] - Nesting level of a substitution or `-c` script; callers pass 0.
+ * @param {{powershell?: boolean}} [options]
+ * @returns {string|null} The command or variable that would be printed.
+ */
+function loadedEnvTarget(command, keys, depth = 0, { powershell = false } = {}) {
+  const text = Array.isArray(command) ? argvScript(command) : command;
+  if (typeof text !== 'string' || !text || depth > MAX_SHELL_NESTING) return null;
+  const escape = powershell ? '`' : '\\';
+  for (const body of substitutionBodies(text, escape)) {
+    const hit = loadedEnvTarget(body, keys, depth + 1, { powershell });
+    if (hit) return hit;
+  }
+  const noVars = new Map();
+  for (const words of simpleCommands(text, escape)) {
+    const split = envSplitString(words);
+    const splitHit = split ? loadedEnvTarget(restoreDollar(split), keys, depth + 1) : null;
+    if (splitHit) return splitHit;
+    // A here-string prints its word into the command's input: `cat <<< "$KEY"`.
+    const fed = words
+      .map((word, i) => (word.startsWith('<<<') ? loadedKeyInWord(word.slice(3) || words[i + 1], keys) : null))
+      .find(Boolean);
+    if (fed) return `$${fed}`;
+    const { index = words.length } = resolveProgram(words, '/', noVars);
+    // `env` with no program after it prints the environment.
+    if (index >= words.length) {
+      if (words.slice(0, index).includes('env')) return 'env';
+      continue;
+    }
+    const verb = baseName(words[index]).toLowerCase();
+    const args = words.slice(index + 1);
+    const operands = args.filter((word) => !word.startsWith('-') && !/^\d*[<>]/.test(word));
+    if (verb === 'printenv') {
+      if (!operands.length) return 'printenv';
+      const named = operands.find((word) => keys.has(word));
+      if (named) return `printenv ${named}`;
+    } else if (VARIABLE_LISTERS.has(verb)) {
+      // `set -e` and `export NAME=value` change the shell; only the listing forms print.
+      const lists = verb === 'set' ? !args.length : !operands.length;
+      if (lists) return verb;
+      const named = verb !== 'set' && args.some((word) => /^-[A-Za-z]*p/.test(word))
+        ? operands.find((word) => keys.has(word))
+        : null;
+      if (named) return `${verb} -p ${named}`;
+    } else if (POWERSHELL_LISTERS.has(verb) && operands.some((word) => /^env:/i.test(word))) {
+      return `${verb} Env:`;
+    } else if (PRINTERS.has(verb)) {
+      const printed = args.map((word) => loadedKeyInWord(word, keys)).find(Boolean);
+      if (printed) return `$${printed}`;
+    } else if (SCRIPT_SHELLS.has(verb)) {
+      const flag = args.findIndex((word) => /^-[A-Za-z]*c$/.test(word));
+      const hit = flag >= 0 && args[flag + 1] ? loadedEnvTarget(restoreDollar(args[flag + 1]), keys, depth + 1) : null;
+      if (hit) return hit;
+    } else if (INLINE_CODE[verb]) {
+      // Inline code reads the environment by variable name, so a dotenv key named in it counts.
+      const flag = args.findIndex((word) => INLINE_CODE[verb].has(word));
+      const code = flag >= 0 ? restoreDollar(args[flag + 1] ?? '') : '';
+      const named = [...keys].find((key) => new RegExp(`(?<![A-Za-z0-9_])${key}(?![A-Za-z0-9_])`).test(code));
+      if (named) return named;
+    }
+  }
+  return null;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. POLICY EVALUATION (runtime-neutral)
 // ─────────────────────────────────────────────────────────────────────────────
+
+function loadedEnvRefusal(target) {
+  return `env-secret-guard: ${target} would print a value this runtime loaded from the project's dotenv file, `
+    + 'and those values must not reach the model. Use the variable without printing it, '
+    + `or compare a value without seeing it: run ${CLI_HINT}.`;
+}
 
 function refusal(target, extraHint) {
   const hint = extraHint ? `${extraHint}, or run ${CLI_HINT}` : `run ${CLI_HINT}`;
@@ -653,11 +761,13 @@ function refusal(target, extraHint) {
 
 /**
  * Decide whether a pending tool call may run.
- * @param {{tool: string, input: unknown, cwd?: string, hint?: string}} request
+ * @param {{tool: string, input: unknown, cwd?: string, hint?: string, loadedEnv?: boolean}} request
  *   `hint` names runtime-native tools the refusal should mention first.
+ *   `loadedEnv` is set by a runtime that loads the project's dotenv file into
+ *   its own process; a shell command that would print one of those values is then refused too.
  * @returns {{decision: 'allow'|'deny', reason: string|null}}
  */
-function evaluateToolCall({ tool, input, cwd = process.cwd(), hint } = {}) {
+function evaluateToolCall({ tool, input, cwd = process.cwd(), hint, loadedEnv = false } = {}) {
   const allow = { decision: 'allow', reason: null };
   const name = String(tool || '').toLowerCase();
   const deny = (reason) => {
@@ -674,7 +784,10 @@ function evaluateToolCall({ tool, input, cwd = process.cwd(), hint } = {}) {
       if (target) return deny(refusal(target, hint));
     }
     const guarded = shellGuardFolderTarget(command, powershell);
-    return guarded ? deny(guardFolderRefusal(guarded)) : allow;
+    if (guarded) return deny(guardFolderRefusal(guarded));
+    const keys = loadedEnv ? loadedDotenvKeys(cwd) : null;
+    const printed = keys && keys.size ? loadedEnvTarget(command, keys, 0, { powershell }) : null;
+    return printed ? deny(loadedEnvRefusal(printed)) : allow;
   }
   if (!FILE_TOOLS.has(name)) return allow;
   const paths = pathsFromToolInput(input);
@@ -912,6 +1025,7 @@ module.exports = {
   isDotenvPath,
   pathsFromToolInput,
   shellDotenvTarget,
+  loadedEnvTarget,
   parseDotenv,
   listKeys,
   validate,

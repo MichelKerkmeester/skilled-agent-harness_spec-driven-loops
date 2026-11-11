@@ -7,7 +7,7 @@ trigger_phrases:
   - "block env file reads"
   - "dotenv fingerprint"
   - "ENV_SECRET_GUARD_PEPPER"
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # Env Secret Guard: Dotenv Protection on Every Runtime
@@ -99,6 +99,32 @@ The after-call check runs on shell tools only.
 
 The Codex hook installer identifies a hook by its script path, which is why the after-call registration has its own entry file.
 
+### Runtime Deny Rules
+
+Three runtimes can refuse a dotenv file themselves, before any hook runs. The checkout ships those rules as a second layer, so a dotenv file stays closed when the guard is switched off or fails open.
+
+| Runtime | File | What it denies |
+|---|---|---|
+| Claude Code | `.claude/settings.json`, `permissions.deny` | `Read` and `Edit` of `.env` and `.env.*` at any depth, with `.env.example` carved out. Also covers the shell commands Claude Code recognises as file reads and writes, such as `cat`, `head`, `sed` and a redirect |
+| Devin | `.devin/config.json`, `permissions.deny` | `Read` and `Write` of the named dotenv files at any depth |
+| Cursor | `.cursor/cli.json`, `permissions.deny` | the same list as Devin |
+| Cursor | `.cursorignore` | nothing new. Cursor hides `.env*` by default, and this file gives `.env.example` back |
+
+Devin and Cursor match a file name exactly, so their lists name `.env`, `.env.local`, `.env.development`, `.env.production`, `.env.staging`, `.env.test` and `.env.*.local`. A dotenv file under another name is covered by the guard only. Codex, OpenCode, Pi and DSH have no stable rule of this kind, so the guard is their only layer.
+
+When a runtime's own rule fires first, its message replaces the guard's, and the hint that names the value-free CLI is not shown.
+
+### Loaded Environment on DSH
+
+DSH loads the dotenv file of the directory it starts in into its own process. It drops credential-shaped names before starting a shell, and the rest, such as `DATABASE_URL` or a webhook address, reach every shell command. No file is opened, so the file rules never see it.
+
+The DSH adapter therefore passes `loadedEnv: true`, and the core then also refuses a shell command that would print a loaded value:
+
+- a listing of the environment: `env`, `printenv`, `export -p`, `declare -p`, bare `set`, PowerShell's `Get-ChildItem Env:`
+- a key the project's dotenv files define, handed to `echo`, `printf`, `printenv`, a here-string or inline interpreter code
+
+Using a variable stays allowed, as in `psql "$DATABASE_URL"`, because the value goes to the program and not to the output. The keys are read from the dotenv files directly in the session directory, names only.
+
 ### Settings
 
 | Variable | Default | Meaning |
@@ -134,8 +160,35 @@ Make a pepper once with `openssl rand -base64 32` and export it from your shell 
 - The after-call check is what catches those routes, and it has limits of its own. A write is undone only for a shell call, only for dotenv files within three folders of the project root, and only when the record taken before the call is under an hour old. A process left running in the background can write after the check has run.
 - The output scan knows a value only as the dotenv file spells it, so a value printed encoded, reversed or split is not found. It skips values shorter than 12 characters, a single plain word and a local address. On Claude Code, Codex, Cursor, Devin and DSH it reports a leak after the model has already read it.
 - The rule that an agent may not change the guard covers file tools and shell redirections. A program such as `sed -i`, `cp` or `rm` aimed at the guard's folder is not judged, and nothing stops an agent from editing a runtime's hook registration.
+- The loaded-environment rule on DSH reads the command text. A script file that prints the environment, inline code that dumps every variable without naming one, and a program that echoes its arguments get past it. The after-call scan still reports a value of 12 characters or more.
+- The runtime deny rules are each runtime's own feature and are not tested here against a live session. Claude Code's rule does not cover a script or a recursive grep, and whether Devin's holds in its `dangerous` mode is not documented.
 - A grep over a directory that holds a `.env` is not judged. ripgrep skips gitignored files by default.
 - A grep family program's first plain argument is its pattern, so `grep -n .env README.md` is allowed and `grep KEY .env` is not.
+
+---
+
+### Stronger Options
+
+The guard and the deny rules both judge a tool call. Neither can stop a program the agent starts from opening a file by itself. Two things can, and both are yours to switch on.
+
+**Keep the values out of the file.** A dotenv file that holds references has nothing to leak. A secret manager resolves the references into the environment of one command, and the agent's shell never holds them.
+
+| Tool | The file holds | Run the app with |
+|---|---|---|
+| 1Password CLI | `API_KEY=op://vault/item/field` | `op run --env-file=.env -- npm start` |
+| Doppler | no dotenv file | `doppler run -- npm start` |
+| Infisical | no dotenv file | `infisical run -- npm start` |
+| macOS Keychain | no dotenv file | `API_KEY=$(security find-generic-password -s my-app -w) npm start`, typed by you |
+
+Run those commands yourself or from a script the agent starts and cannot read the output of. An agent that runs `op run -- printenv` sees the values, which is the case the after-call scan exists for.
+
+**Let the operating system refuse the read.** A sandbox applies to every process the shell starts, scripts included.
+
+- Claude Code: in your own `~/.claude/settings.json`, switch `sandbox.enabled` on, list the dotenv paths under `sandbox.filesystem.denyRead` and `denyWrite`, and set `sandbox.allowUnsandboxedCommands` to `false`. Without the last one a command can ask to run outside the sandbox.
+- Codex: a permission profile can deny a path. It is a beta feature, and it is ignored when a sandbox mode is passed on the command line or the session runs with full access.
+- Devin: the sandbox applies only when a session is started with `--sandbox`.
+
+These are not shipped in the checkout: a sandbox also blocks ordinary work, so it is a per-person choice.
 
 ---
 

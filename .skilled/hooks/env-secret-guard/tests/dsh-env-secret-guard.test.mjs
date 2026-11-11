@@ -49,6 +49,22 @@ test('env secret guard judges paths against the session working directory', asyn
   assert.equal(seen[0].tool, 'read');
 });
 
+test('env secret guard asks the core to refuse printing the loaded environment', async () => {
+  const seen = [];
+  const { ctx, fire } = pluginHarness();
+  const core = {
+    ...guardCore,
+    evaluateToolCall(request) {
+      seen.push(request);
+      return { decision: 'deny', reason: 'env-secret-guard: printenv' };
+    },
+  };
+  registerEnvSecretGuard(ctx, { core, isEnabled: enabled });
+  const result = await fire('tools/pre-execute', call('bash', { command: 'printenv' }), allow);
+  assert.equal(result.kind, 'deny');
+  assert.equal(seen[0].loadedEnv, true);
+});
+
 test('env secret guard registers nothing when its kill switch is set', () => {
   const { ctx, handlers } = pluginHarness();
   registerEnvSecretGuard(ctx, { isEnabled: disabled });
