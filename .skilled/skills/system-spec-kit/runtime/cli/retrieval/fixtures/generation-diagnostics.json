@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6684,
-    "ok": 17800,
+    "ok": 17806,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26113,
+  "documentsScanned": 26119,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "9e8d510bdc24e362d147ca4256effeb7ded68886782cfb55dbb437b0f02af433",
+  "manifestHash": "47f6118e5b5240c5ead4c2da524311659ef81cb19b9c195a3d177bc4ceb7b5d7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42293,
+      "ok": 42306,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -58604,6 +58604,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/scratch",
       "reason": "excluded directory"
     },
     {

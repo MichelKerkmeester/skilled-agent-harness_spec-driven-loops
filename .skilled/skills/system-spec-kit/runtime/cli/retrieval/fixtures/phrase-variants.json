@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9e8d510bdc24e362d147ca4256effeb7ded68886782cfb55dbb437b0f02af433",
+  "manifestHash": "47f6118e5b5240c5ead4c2da524311659ef81cb19b9c195a3d177bc4ceb7b5d7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8248,6 +8248,9 @@
     ],
     "admission research fan out": [
       "admission research fan-out"
+    ],
+    "adopt a vendored file into an overlay": [
+      "adopt a vendored file into an overlay"
     ],
     "adopt an existing overlay folder": [
       "adopt an existing overlay folder"
@@ -76942,11 +76945,17 @@
     "overlay adoption closure gate": [
       "overlay adoption closure gate"
     ],
+    "overlay apply adopt": [
+      "overlay apply adopt"
+    ],
     "overlay engine": [
       "overlay engine"
     ],
     "overlay engine acceptance criteria": [
       "overlay engine acceptance criteria"
+    ],
+    "overlay engine adopt and unowned guard": [
+      "overlay engine adopt and unowned guard"
     ],
     "overlay engine decision record": [
       "overlay engine decision record"
@@ -76971,6 +76980,21 @@
     ],
     "overlay engine tasks": [
       "overlay engine tasks"
+    ],
+    "overlay first write checks": [
+      "overlay first write checks"
+    ],
+    "overlay first write checks acceptance criteria": [
+      "overlay first write checks acceptance criteria"
+    ],
+    "overlay first write checks implementation summary": [
+      "overlay first write checks implementation summary"
+    ],
+    "overlay first write checks plan": [
+      "overlay first write checks plan"
+    ],
+    "overlay first write checks tasks": [
+      "overlay first write checks tasks"
     ],
     "overlay guard": [
       "overlay guard"
@@ -81217,6 +81241,9 @@
     ],
     "phase 8 out of scope cleanup": [
       "phase 8 out of scope cleanup"
+    ],
+    "phase 8 overlay first write checks": [
+      "phase 8 overlay first write checks"
     ],
     "phase 8 playbook run in worktree": [
       "phase 8 playbook run in worktree"
@@ -115878,6 +115905,9 @@
     "strict mode warning semantics doc fix": [
       "strict mode warning semantics doc fix"
     ],
+    "strict overlay writes": [
+      "strict overlay writes"
+    ],
     "strict pass freshness sweep": [
       "strict pass freshness sweep"
     ],
@@ -115913,6 +115943,9 @@
     ],
     "strict warn promotion": [
       "strict warn promotion"
+    ],
+    "strict writes overlay manifest": [
+      "strict writes overlay manifest"
     ],
     "string seed of thought": [
       "string seed of thought"
@@ -117983,6 +118016,9 @@
     "system skilled doctor 1 1 4 0": [
       "system-skilled-doctor 1.1.4.0"
     ],
+    "system skilled doctor 1 1 5 0": [
+      "system-skilled-doctor 1.1.5.0"
+    ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
     ],
@@ -118033,6 +118069,9 @@
     ],
     "system skilled doctor v1 1 4 0": [
       "system-skilled-doctor v1.1.4.0"
+    ],
+    "system skilled doctor v1 1 5 0": [
+      "system-skilled-doctor v1.1.5.0"
     ],
     "system spec gate": [
       "system-spec-gate"

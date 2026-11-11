@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5969fd2e7942dae5e00b9a11451bce5e53e004d4da072c7bc1b1ad8f69f8cf05",
+  "corpusHash": "19caf42b3ed98ffd9d448054a87fbca21d75a0961f9b2b87de1a45fe3141de97",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26113,
+  "includedPathCount": 26119,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8388,6 +8388,7 @@
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.2.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.3.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.4.0.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.1.5.0.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-without-overlays.md",
@@ -17831,6 +17832,11 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/research.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/acceptance-criteria.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/research.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md",
     "specs/system-skilled-doctor/002-symlink-first-link/implementation-summary.md",
@@ -26145,7 +26151,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9e8d510bdc24e362d147ca4256effeb7ded68886782cfb55dbb437b0f02af433",
+  "manifestHash": "47f6118e5b5240c5ead4c2da524311659ef81cb19b9c195a3d177bc4ceb7b5d7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33197,6 +33203,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/scratch",
       "reason": "excluded directory"
     },
     {
