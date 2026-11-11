@@ -1086,7 +1086,7 @@ Twenty JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds the
 
 - **Gates:** the spec-folder gate and two completion checks that ask for evidence before a task is called done
 - **Routing:** the skill advisor's prompt-time brief, and a guard that suggests Code Mode when a native MCP call should go through it
-- **Quality and safety:** post-edit code checks, git commit advisories and the commit message gate, deep-loop and build-freshness guards, a Codex hook watchdog, a CLI dispatch audit, a screen for instructions hidden in fetched web pages, a dotenv guard that refuses reading or writing `.env` files and offers three value-free inspection tools instead, and a guard that sends a turn ending in a typed option menu back to ask through the question tool
+- **Quality and safety:** post-edit code checks, git commit advisories and the commit message gate, deep-loop and build-freshness guards, a Codex hook watchdog, a CLI dispatch audit, a screen for instructions hidden in fetched web pages, a dotenv guard that refuses reading or writing `.env` files, undoes a dotenv write a shell call made anyway, reports a dotenv value in its output and offers three value-free inspection tools instead, and a guard that sends a turn ending in a typed option menu back to ask through the question tool
 - **Sessions:** the goal plugin, session cleanup, the in-session handover relaunch and the history lookup offer after a compaction
 
 Every plugin except the git message gate has an off switch, listed in the [hooks README](.skilled/hooks/README.md). `SYSTEM_HOOKS_DISABLED=1` turns them all off at once.
@@ -1118,9 +1118,11 @@ Our custom extension, vendored in `.pi/extensions/` as the live runtime source. 
 DeepSeek Harness loads plugins only from the patches a run names. `.dsh/patches/guards.patch.yml` loads `.dsh/plugins/repo-guards/`. Its adapters live in the hook library beside their cores and reach the bundle through links that `/doctor:runtime-mirrors` checks.
 
 - **Before a tool call, able to stop it:** dispatch preflight, the spec-folder gate, the MCP route guard, the overlay guard, the dotenv guard and the git message gate
-- **After a tool call, as advice on its result:** post-edit quality, the git advisory, the dispatch audit log and the injection screen on fetched pages and MCP results
+- **After a tool call, as advice on its result:** post-edit quality, the git advisory, the dispatch audit log, the dotenv guard's check for a changed dotenv file or a printed value, and the injection screen on fetched pages and MCP results
 - **At session start and each turn:** the session context and the bound packet goal, plus the skill advisor brief, `/goal-dsh` and six warn-only checks in an interactive session
 - **Around the session:** context again after compaction, the completion-evidence nudge and live decision capture, plus an autosave at close in an interactive session
+
+DeepSeek Harness loads the dotenv file of the folder it starts in, so the dotenv guard there also refuses a shell command that prints a loaded value, such as `printenv`. Claude Code, Devin and Cursor carry their own deny lists for dotenv files as a second layer. The [guard README](.skilled/hooks/env-secret-guard/README.md) says how far each list goes.
 
 In fan-out lineages, the lineage patch adds a marker row that keeps the four interactive-only adapters off and every guard on. See [`.dsh/SYNC.md`](.dsh/SYNC.md).
 
