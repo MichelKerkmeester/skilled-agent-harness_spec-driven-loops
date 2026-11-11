@@ -8,7 +8,7 @@ trigger_phrases:
   - "completion claim gate"
 importance_tier: important
 contextType: general
-version: 2.2.6.0
+version: 2.2.7.0
 ---
 
 # Workflow Reference - Verification
@@ -110,6 +110,7 @@ Walk every gate in order before any status claim:
 | Test | Exercise targeted unit, integration, end-to-end, runtime or manual checks where available, including at least one edge case and one error path. |
 | Verify | Confirm the output, exit code, test count and observed behavior match expectations, and that the run reached the changed code on a fresh build with real assertions. |
 | Record | Save the exact evidence the final claim rests on. |
+| Reread | Reread the request and its amendments, and confirm each outcome it asks for is backed by recorded evidence or named as not done. |
 | Claim | State only the narrow claim the evidence supports. |
 
 The Verify row guards against the four ways a green run lies, which `.skilled/repo-rules/evidence-and-proof.md` section 3 lists: it did not run, it ran on the wrong thing, it ran on stale artifacts or it asserted nothing.

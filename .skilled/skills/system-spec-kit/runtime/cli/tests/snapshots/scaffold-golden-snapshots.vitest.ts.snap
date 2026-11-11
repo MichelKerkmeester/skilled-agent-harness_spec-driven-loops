@@ -462,7 +462,7 @@ contextType: "general"
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is \`scripts/rotate-logs.sh\`. WEAK: Standard architecture. -->
+<!-- FILL: Name the pattern in three words, then list the one component that changes. Name what fails today without each component you add, or drop it. GOOD: Single script branch. The component is \`scripts/rotate-logs.sh\`. WEAK: Standard architecture. -->
 
 ### Pattern
 [YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
@@ -571,7 +571,7 @@ contextType: "general"
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a \`--keep <n>\` option that deletes all but the newest n archives in \`logs/archive/\`. WEAK: Update the script and docs. -->
+<!-- FILL: List three to five things this change does, each starting with a verb. Before you list a new file, module, option, layer or dependency, name what fails today without it, or drop it. GOOD: Add a \`--keep <n>\` option that deletes all but the newest n archives in \`logs/archive/\`. WEAK: Update the script and docs. -->
 
 ### In Scope
 - [YOUR_VALUE_HERE: Deliverable 1]
@@ -902,7 +902,7 @@ contextType: "general"
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is \`scripts/rotate-logs.sh\`. WEAK: Standard architecture. -->
+<!-- FILL: Name the pattern in three words, then list the one component that changes. Name what fails today without each component you add, or drop it. GOOD: Single script branch. The component is \`scripts/rotate-logs.sh\`. WEAK: Standard architecture. -->
 
 ### Pattern
 [YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
@@ -1058,7 +1058,7 @@ contextType: "general"
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a \`--keep <n>\` option that deletes all but the newest n archives in \`logs/archive/\`. WEAK: Update the script and docs. -->
+<!-- FILL: List three to five things this change does, each starting with a verb. Before you list a new file, module, option, layer or dependency, name what fails today without it, or drop it. GOOD: Add a \`--keep <n>\` option that deletes all but the newest n archives in \`logs/archive/\`. WEAK: Update the script and docs. -->
 
 ### In Scope
 - [YOUR_VALUE_HERE: Deliverable 1]
@@ -1552,7 +1552,7 @@ contextType: "general"
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is \`scripts/rotate-logs.sh\`. WEAK: Standard architecture. -->
+<!-- FILL: Name the pattern in three words, then list the one component that changes. Name what fails today without each component you add, or drop it. GOOD: Single script branch. The component is \`scripts/rotate-logs.sh\`. WEAK: Standard architecture. -->
 
 ### Pattern
 [YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
@@ -1801,7 +1801,7 @@ contextType: "general"
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a \`--keep <n>\` option that deletes all but the newest n archives in \`logs/archive/\`. WEAK: Update the script and docs. -->
+<!-- FILL: List three to five things this change does, each starting with a verb. Before you list a new file, module, option, layer or dependency, name what fails today without it, or drop it. GOOD: Add a \`--keep <n>\` option that deletes all but the newest n archives in \`logs/archive/\`. WEAK: Update the script and docs. -->
 
 ### In Scope
 - [YOUR_VALUE_HERE: Deliverable 1]
@@ -2392,7 +2392,7 @@ contextType: "general"
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is \`scripts/rotate-logs.sh\`. WEAK: Standard architecture. -->
+<!-- FILL: Name the pattern in three words, then list the one component that changes. Name what fails today without each component you add, or drop it. GOOD: Single script branch. The component is \`scripts/rotate-logs.sh\`. WEAK: Standard architecture. -->
 
 ### Pattern
 [YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
@@ -2737,7 +2737,7 @@ contextType: "general"
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a \`--keep <n>\` option that deletes all but the newest n archives in \`logs/archive/\`. WEAK: Update the script and docs. -->
+<!-- FILL: List three to five things this change does, each starting with a verb. Before you list a new file, module, option, layer or dependency, name what fails today without it, or drop it. GOOD: Add a \`--keep <n>\` option that deletes all but the newest n archives in \`logs/archive/\`. WEAK: Update the script and docs. -->
 
 ### In Scope
 - [YOUR_VALUE_HERE: Deliverable 1]

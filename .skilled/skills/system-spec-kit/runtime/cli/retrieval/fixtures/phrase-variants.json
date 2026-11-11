@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d5456bedc49056571c7735458009b92aaca534bda2cd971e896632fbe29557a4",
+  "manifestHash": "3f4abe22810fc3fa0f303fc35ac51dfd2c4e60b23e7e3a0b365358ae9c890e02",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14433,6 +14433,9 @@
     "benchmark keyword triggers": [
       "benchmark keyword triggers"
     ],
+    "benchmark negative control": [
+      "benchmark negative control"
+    ],
     "benchmark one off example": [
       "benchmark one-off example"
     ],
@@ -28332,6 +28335,9 @@
     ],
     "completion gate tasks": [
       "completion gate tasks"
+    ],
+    "completion hook reread reminder": [
+      "completion hook reread reminder"
     ],
     "completion pct report only": [
       "completion pct report only"
@@ -84628,6 +84634,9 @@
     "pre bound setup answers": [
       "pre-bound setup answers"
     ],
+    "pre claim gate reread": [
+      "pre-claim gate reread"
+    ],
     "pre commit auto remint": [
       "pre-commit auto remint"
     ],
@@ -92407,6 +92416,9 @@
     "reranker vestige cleanup": [
       "reranker vestige cleanup"
     ],
+    "reread the request": [
+      "reread the request"
+    ],
     "rerun 24 scenarios post 032": [
       "rerun 24 scenarios post-032"
     ],
@@ -93523,6 +93535,9 @@
     ],
     "restraint and routing gates acceptance criteria": [
       "restraint and routing gates acceptance criteria"
+    ],
+    "restraint pass at scope": [
+      "restraint pass at scope"
     ],
     "restraint route test": [
       "restraint route test"
@@ -102527,6 +102542,9 @@
     "sk code 3 11 5 0": [
       "sk-code 3.11.5.0"
     ],
+    "sk code 3 11 6 0": [
+      "sk-code 3.11.6.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -103553,6 +103571,9 @@
     "sk code quality 1 13 18 0": [
       "sk-code-quality 1.13.18.0"
     ],
+    "sk code quality 1 13 19 0": [
+      "sk-code-quality 1.13.19.0"
+    ],
     "sk code quality 1 13 2 0": [
       "sk-code-quality 1.13.2.0"
     ],
@@ -103702,6 +103723,9 @@
     ],
     "sk code quality v1 13 18 0": [
       "sk-code-quality v1.13.18.0"
+    ],
+    "sk code quality v1 13 19 0": [
+      "sk-code-quality v1.13.19.0"
     ],
     "sk code quality v1 13 2 0": [
       "sk-code-quality v1.13.2.0"
@@ -104630,6 +104654,9 @@
     "sk code v3 11 5 0": [
       "sk-code v3.11.5.0"
     ],
+    "sk code v3 11 6 0": [
+      "sk-code v3.11.6.0"
+    ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
     ],
@@ -104888,6 +104915,9 @@
     "sk create benchmark 1 6 6 0": [
       "sk-create-benchmark 1.6.6.0"
     ],
+    "sk create benchmark 1 6 7 0": [
+      "sk-create-benchmark 1.6.7.0"
+    ],
     "sk create benchmark implementation summary": [
       "sk create benchmark implementation summary"
     ],
@@ -104944,6 +104974,9 @@
     ],
     "sk create benchmark v1 6 6 0": [
       "sk-create-benchmark v1.6.6.0"
+    ],
+    "sk create benchmark v1 6 7 0": [
+      "sk-create-benchmark v1.6.7.0"
     ],
     "sk create changelog": [
       "sk create changelog"
@@ -107420,6 +107453,9 @@
     "sk doc 2 9 11 0": [
       "sk-doc 2.9.11.0"
     ],
+    "sk doc 2 9 12 0": [
+      "sk-doc 2.9.12.0"
+    ],
     "sk doc 2 9 2 0": [
       "sk-doc 2.9.2.0"
     ],
@@ -107908,6 +107944,9 @@
     ],
     "sk doc v2 9 11 0": [
       "sk-doc v2.9.11.0"
+    ],
+    "sk doc v2 9 12 0": [
+      "sk-doc v2.9.12.0"
     ],
     "sk doc v2 9 2 0": [
       "sk-doc v2.9.2.0"
@@ -118376,6 +118415,9 @@
     "system spec kit 2 12 51 0": [
       "system-spec-kit 2.12.51.0"
     ],
+    "system spec kit 2 12 52 0": [
+      "system-spec-kit 2.12.52.0"
+    ],
     "system spec kit 2 12 6 0": [
       "system-spec-kit 2.12.6.0"
     ],
@@ -118996,6 +119038,9 @@
     ],
     "system spec kit v2 12 51 0": [
       "system-spec-kit v2.12.51.0"
+    ],
+    "system spec kit v2 12 52 0": [
+      "system-spec-kit v2.12.52.0"
     ],
     "system spec kit v2 12 6 0": [
       "system-spec-kit v2.12.6.0"

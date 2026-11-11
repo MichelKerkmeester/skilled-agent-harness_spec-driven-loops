@@ -791,6 +791,7 @@ workflow:
     - Fill User Scenarios & Testing section
     - Generate Functional Requirements (testable)
     - Define Success Criteria (measurable, technology-agnostic)
+    - "Run the restraint pass on Scope and Files to Change: for each new file, module, option, layer or dependency name what fails today without it (prevent-overengineering.md section 2)"
     - Identify Key Entities if data involved
     - For Level 2+, include acceptance-criteria.md with one row per requirement
     - For Level 3, include decision-record.md with Traceability, Risk Matrix, Rollback Plan
@@ -949,6 +950,7 @@ workflow:
     - Generate Success Metrics from spec criteria
     - Import Risk Matrix from spec
     - Generate Dependencies Tables
+    - "Run the restraint pass on the planned components and files before the plan is final: name what fails today without each new file, module, option, layer or dependency"
     - Generate Communication & Review sections
     - Re-evaluate Constitution Check post-design
     - Generate Phase 2-4 outlines (implementation phases)
@@ -1207,6 +1209,7 @@ workflow:
     activities:
     - Load acceptance-criteria.md and the Verification Checklist section of tasks.md
     - Set every row to Met with observed evidence, or to Waived/Superseded naming an ADR that exists in decision-record.md
+    - Reread the request and its amendments and map each outcome they ask for to a Met row or name it as not done
     - Verify ALL P0 checklist items are marked [x] with evidence
     - Verify ALL P1 items are either marked [x] or have documented user approval to defer
     - P2 items may be deferred without approval

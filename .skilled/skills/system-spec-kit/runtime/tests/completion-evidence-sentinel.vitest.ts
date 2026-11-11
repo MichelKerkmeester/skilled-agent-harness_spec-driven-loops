@@ -39,6 +39,8 @@ const sentinelCore = require('../hooks/lib/completion-evidence-sentinel.cjs') as
 };
 
 const CLAIM_TEXT = 'The core is now complete and shipped.';
+const REREAD_REMINDER = 'reread the request and confirm each outcome it asks for is met or named not done';
+const REREAD_ONLY_DETAIL = `claimed done: ${REREAD_REMINDER}`;
 const NON_CLAIM_TEXT = 'Let me look at a few more things before continuing.';
 
 function makeFixtureFolder(options: { checklist?: string | null; implementationSummary?: boolean; acceptance?: string }): string {
@@ -211,7 +213,7 @@ describe('completion-evidence-sentinel core', () => {
     expect(result.deduped).toBe(false);
   });
 
-  it('REQ-002 fixture B: the same packet with a full evidence marker resolves ok', () => {
+  it('REQ-002 fixture B: the same packet with a full evidence marker advises the reread reminder alone', () => {
     projectDir = newProjectDir();
     const fixture = trackFixture(makeFixtureFolder({ checklist: CHECKLIST_P0_WITH_EVIDENCE }));
 
@@ -221,7 +223,7 @@ describe('completion-evidence-sentinel core', () => {
       projectDir,
     });
 
-    expect(result).toEqual({ decision: 'ok', detail: null, deduped: false });
+    expect(result).toEqual({ decision: 'advise', detail: REREAD_ONLY_DETAIL, deduped: false });
   });
 
   it('a closed checklist with an Unmet acceptance criterion advises AC_UNMET', () => {
@@ -237,7 +239,7 @@ describe('completion-evidence-sentinel core', () => {
     expect(result.detail).toContain('1 acceptance criteria are unmet');
   });
 
-  it('a closed checklist with every acceptance criterion Met resolves ok', () => {
+  it('a closed checklist with every acceptance criterion Met advises the reread reminder alone', () => {
     projectDir = newProjectDir();
     const fixture = trackFixture(makeFixtureFolder({ checklist: CHECKLIST_P0_WITH_EVIDENCE, acceptance: ACCEPTANCE_CLOSED }));
     const result = sentinelCore.evaluateCompletionEvidence({
@@ -246,7 +248,8 @@ describe('completion-evidence-sentinel core', () => {
       projectDir,
       env: process.env,
     });
-    expect(result.decision).toBe('ok');
+    expect(result.decision).toBe('advise');
+    expect(result.detail).toBe(REREAD_ONLY_DETAIL);
   });
 
   it('REQ-003: a Level 1 folder with no checklist.md and no implementation-summary.md advises', () => {
@@ -263,7 +266,7 @@ describe('completion-evidence-sentinel core', () => {
     expect(result.detail).toMatch(/no implementation-summary\.md recorded/);
   });
 
-  it('REQ-003: a Level 1 folder WITH implementation-summary.md resolves ok', () => {
+  it('REQ-003: a Level 1 folder WITH implementation-summary.md advises the reread reminder alone', () => {
     projectDir = newProjectDir();
     const fixture = trackFixture(makeFixtureFolder({ implementationSummary: true }));
 
@@ -273,7 +276,7 @@ describe('completion-evidence-sentinel core', () => {
       projectDir,
     });
 
-    expect(result).toEqual({ decision: 'ok', detail: null, deduped: false });
+    expect(result).toEqual({ decision: 'advise', detail: REREAD_ONLY_DETAIL, deduped: false });
   });
 
   it('REQ-004: never invokes validate.sh, vitest, npm test, or a build', () => {
@@ -309,6 +312,28 @@ describe('completion-evidence-sentinel core', () => {
     });
 
     expect(result).toEqual({ decision: 'ok', detail: null, deduped: false });
+  });
+
+  it('a satisfied packet returns the reread reminder once, then dedups the identical claim', () => {
+    projectDir = newProjectDir();
+    const fixture = trackFixture(makeFixtureFolder({ checklist: CHECKLIST_P0_WITH_EVIDENCE }));
+
+    const first = sentinelCore.evaluateCompletionEvidence({ specFolder: fixture, claimText: CLAIM_TEXT, projectDir });
+    const second = sentinelCore.evaluateCompletionEvidence({ specFolder: fixture, claimText: CLAIM_TEXT, projectDir });
+
+    expect(first).toEqual({ decision: 'advise', detail: REREAD_ONLY_DETAIL, deduped: false });
+    expect(second).toEqual({ decision: 'ok', detail: null, deduped: true });
+  });
+
+  it('an evidence advisory keeps its own wording first and appends the reread reminder', () => {
+    projectDir = newProjectDir();
+    const fixture = trackFixture(makeFixtureFolder({ checklist: CHECKLIST_P0_NO_EVIDENCE }));
+
+    const result = sentinelCore.evaluateCompletionEvidence({ specFolder: fixture, claimText: CLAIM_TEXT, projectDir });
+
+    expect(result.decision).toBe('advise');
+    expect(result.detail).toMatch(/lack an evidence marker/);
+    expect(result.detail.endsWith(`; ${REREAD_REMINDER}`)).toBe(true);
   });
 
   it('REQ-007: dedups an identical packet+message pair to at most one advisory', () => {

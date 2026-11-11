@@ -8,7 +8,7 @@ trigger_phrases:
   - "schema v2 scenario scaffold"
 importance_tier: "important"
 contextType: "general"
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Behavior Benchmark Scenario Template
@@ -185,6 +185,8 @@ Field guidance (see framework.md for the authoritative enums):
                         min_seats applies ONLY to seat_artifacts, and expected_targets/forbidden_targets apply ONLY to direct_dispatch.
                         Each target is a literal substring or /regex/[flags]. question_halt cells usually set leaf_agent:null,
                         min_task_events:0.
+  negative control    : a marker, target or postcondition counts only after a run that skips the behavior has failed it. Name that run
+                        in the scenario's Failure modes paragraph. A check that no skipping run can fail proves nothing.
   artifacts_required  : V2. Whether the run owes new fixture artifacts. Defaults to min_task_events > 0. Set false on
                         inline-reporting hand-off cells that produce no new files.
   postconditions      : V2. Allowlisted post-run probes. Every declared probe must pass for a `pass`. Kinds:

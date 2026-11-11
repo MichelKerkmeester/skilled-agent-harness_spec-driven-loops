@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6684,
-    "ok": 17795,
+    "ok": 17800,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26108,
+  "documentsScanned": 26113,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "d5456bedc49056571c7735458009b92aaca534bda2cd971e896632fbe29557a4",
+  "manifestHash": "3f4abe22810fc3fa0f303fc35ac51dfd2c4e60b23e7e3a0b365358ae9c890e02",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42278,
+      "ok": 42293,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -54876,6 +54876,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/z_archive",
       "reason": "excluded directory"
     },
     {

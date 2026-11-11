@@ -69,6 +69,10 @@ const COMPLETION_CLAIM_PATTERN = /\b(completed|complete|resolved|fixed|finished|
 // the same as a turn that actually ends on the claim.
 const CLAIM_ANCHOR_TAIL_CHARS = 160;
 
+// Evidence can be complete while a requested outcome never became a
+// criterion, so every detected claim carries this reminder.
+const REREAD_REQUEST_ADVISORY = 'reread the request and confirm each outcome it asks for is met or named not done';
+
 // Best-effort packet resolution from free text (the OpenCode adapter's own
 // use: session.idle hands over neither the last message nor the active
 // packet, so the adapter must recover both itself).
@@ -283,7 +287,7 @@ function verdictFromChecklistResult(result, specFolder) {
   if (!result || !result.ok || !result.data || typeof result.data !== 'object') {
     // Spawn/parse failure: fail open. This also covers the (pre-checked-away)
     // "verification section not found" branch of the script, which reports no status.
-    return { decision: 'ok', detail: null };
+    return { decision: 'ok', detail: null, inconclusive: true };
   }
   const status = typeof result.data.status === 'string' ? result.data.status : null;
   if (!status || !CHECKLIST_ADVISE_STATUSES.has(status)) {
@@ -585,9 +589,12 @@ function evaluateCompletionEvidence(request = {}) {
       )
       : verdictFromImplementationSummary(absoluteSpecFolder, rawSpecFolder);
 
-    if (verdict.decision !== 'advise') {
+    if (verdict.decision !== 'advise' && verdict.inconclusive) {
       return { decision: 'ok', detail: null, deduped: false };
     }
+    const detail = verdict.detail
+      ? `${verdict.detail}; ${REREAD_REQUEST_ADVISORY}`
+      : `claimed done: ${REREAD_REQUEST_ADVISORY}`;
 
     const { stateDir } = resolveSentinelPaths(projectDir);
     const dedup = applyDedup(stateDir, rawSpecFolder, claimText);
@@ -595,7 +602,7 @@ function evaluateCompletionEvidence(request = {}) {
       return { decision: 'ok', detail: null, deduped: true };
     }
 
-    return { decision: 'advise', detail: verdict.detail, deduped: false };
+    return { decision: 'advise', detail, deduped: false };
   } catch (_) {
     // Fail open on any unexpected internal error -- a sentinel bug must never
     // block or affect the stop/idle processing it observes.

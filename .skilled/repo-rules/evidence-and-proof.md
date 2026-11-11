@@ -26,7 +26,7 @@ trigger_phrases:
   - "verify before claiming done"
 importance_tier: important
 contextType: reference
-version: 1.1.1.5
+version: 1.1.1.6
 ---
 
 # Rule: Evidence and proof
@@ -175,6 +175,7 @@ Before any completion claim:
 
 - [ ] Every required artifact exists **at its exact path** in the required format, verified by inspection, not by the fact that you wrote it.
 - [ ] The §8 proof plan and the authoritative gate both pass **from the final state**, output and exit status read.
+- [ ] Every outcome the request and its amendments ask for maps to a criterion that passed, or the close-out names it as not done. Reread the request to find them, because the criteria list can miss one.
 - [ ] The scoped diff contains no task-created residue, no scratch files, no debug
       output, no unrelated file.
 - [ ] Any failing check keeps the completion claim blocked. Repair, or report the
@@ -232,3 +233,4 @@ after you, and is any of it outside the frozen scope.
 - [ ] A filter enumerated its variants first, a computed answer was derived twice, an exact artifact was checked by name and shape.
 - [ ] Every sub-agent, reviewer or tool finding I acted on was confirmed against the real symptom first.
 - [ ] The proof plan existed before the first edit, and it passed from the final state with the scoped diff clean of residue.
+- [ ] I reread the request, and every outcome it asks for is met or named as not done.

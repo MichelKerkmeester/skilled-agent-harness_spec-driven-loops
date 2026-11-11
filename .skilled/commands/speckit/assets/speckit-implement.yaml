@@ -673,7 +673,7 @@ workflow:
     purpose: Generate implementation summary
     level_requirement: "All levels (MANDATORY - do not skip)"
     enforcement_note: "MANDATORY for all levels. implementation-summary.md is a required file created after implementation completes."
-    activities: [Run validation on spec folder, Verify all tasks completed, Validate tests pass, Confirm plan followed, Generate implementation-summary.md, Update all task status]
+    activities: [Run validation on spec folder, Verify all tasks completed, Validate tests pass, Confirm plan followed, Generate implementation-summary.md, Update all task status, Reread the request and its amendments and map each outcome they ask for to a Met row or name it as not done]
     pre_completion_validation:
       enforcement: MANDATORY
       outcomes: { success: "continue", user_error: "STOP and fix invocation", validation_error: "STOP and fix", system_error: "STOP and diagnose tooling or file I/O" }

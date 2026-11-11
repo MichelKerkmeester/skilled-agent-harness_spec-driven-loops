@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: "sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists."
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.18.0
+version: 1.13.19.0
 metadata:
   family: sk-code
 ---
@@ -229,6 +229,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 6. Fix P0 issues before handing to verification unless the only safe action is escalation.
 7. Keep fixes scoped to quality-gate failures in files already in scope.
 8. Hand failures that need root-cause investigation to the surface's debugging workflow (`workflow-debug.md`) with the exact symptom and evidence.
+9. Reread the request before the handoff to verification and name any outcome it asks for that no check covers.
 
 ### ⛔ NEVER
 

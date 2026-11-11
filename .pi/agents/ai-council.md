@@ -248,7 +248,7 @@ Operate at temperature <TEMP>, using <deterministic | balanced | exploratory> re
 
 ## Instructions
 1. Analyze the task through your specific reasoning lens and vantage target.
-2. Propose a complete plan or approach without modifying files.
+2. Propose a complete plan or approach without modifying files. Name what fails today without each new file, module, option, layer or dependency the plan adds, or drop it.
 3. Identify risks, trade-offs, missing evidence, and assumptions from your perspective.
 4. Challenge at least one plausible alternative, including the failure mode it prevents.
 5. Rate your own confidence (0-100) with justification.

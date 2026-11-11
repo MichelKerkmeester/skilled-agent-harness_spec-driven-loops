@@ -9,7 +9,7 @@ trigger_phrases:
   - "behavior benchmark templates"
 importance_tier: normal
 contextType: reference
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Behavior Benchmark Authoring Guide
@@ -140,8 +140,10 @@ Complete these steps in order.
 
    Delete the block you are not using. The remaining fenced json block is the
    machine contract the runner parses; keep its field order. Fill Rationale,
-   Pass shape, and Failure modes as scoring context. Keep every row in the index
-   table and its scenario file in exact sync.
+   Pass shape, and Failure modes as scoring context. In Failure modes, name the
+   run that skips the behavior and fails each expected marker (the negative
+   control). A marker no skipping run has failed does not count. Keep every
+   row in the index table and its scenario file in exact sync.
 7. **Write the baseline.** Copy the baseline template to
    `baselines/claude-baseline.md`. Ship every cell `pending` / `not_captured` if no
    Claude leg has run — that is a legitimate ship state, but it is never quotable

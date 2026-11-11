@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3b0318fd67340e433c9648bddc1dfbdf0884fb9ffa023dc7cd3fec61d97de9f8",
+  "corpusHash": "8bbd3aa421a30b2022c7b236ce76d5ec94d9394c70bf9f1ac46f87a0054b52a4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26108,
+  "includedPathCount": 26113,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3015,6 +3015,7 @@
     ".skilled/skills/sk-code/changelog/v3.11.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.11.4.0.md",
     ".skilled/skills/sk-code/changelog/v3.11.5.0.md",
+    ".skilled/skills/sk-code/changelog/v3.11.6.0.md",
     ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
@@ -3190,6 +3191,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.16.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.17.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.18.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.19.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.2.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.3.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.4.0.md",
@@ -6502,6 +6504,7 @@
     ".skilled/skills/sk-doc/changelog/v2.9.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.10.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.11.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.12.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.4.0.md",
@@ -6693,6 +6696,7 @@
     ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.6.4.0.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.6.5.0.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.6.6.0.md",
+    ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.6.7.0.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/benchmark-families/author-behavior-package.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/family-routing/leave-in-flight-benchmark.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/family-routing/promote-mcp-result.md",
@@ -8691,6 +8695,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.50.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.51.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.52.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.7.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.8.0.md",
@@ -26140,7 +26145,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d5456bedc49056571c7735458009b92aaca534bda2cd971e896632fbe29557a4",
+  "manifestHash": "3f4abe22810fc3fa0f303fc35ac51dfd2c4e60b23e7e3a0b365358ae9c890e02",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29464,6 +29469,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/z_archive",
       "reason": "excluded directory"
     },
     {

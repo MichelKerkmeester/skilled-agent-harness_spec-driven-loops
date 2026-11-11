@@ -41,7 +41,7 @@ Every file in this folder is a symlink. The real per-runtime adapters live in `s
    If the folder has no `checklist.md` (Level 1), it stats `implementation-summary.md` instead and advises when the file is absent: `claimed done but no implementation-summary.md recorded in <folder>`.
 
 4. Applies per-spec-folder dedup. A fingerprint of `specFolder + claimText` is stored in `.skilled/skills/.state/completion-sentinel/advisory-dedup.json`; if the same packet+message pair was already advised, the advisory is suppressed. A persistence failure fails open to "not deduped": the worst case is one extra advisory, never a blocked turn.
-5. Returns `{decision:'advise', detail, deduped}` or `{decision:'ok', detail:null, deduped}`.
+5. Returns `{decision:'advise', detail, deduped}` for every detected claim against a resolved packet. The detail ends with a reminder to reread the request and confirm each outcome it asks for is met or named not done, because evidence can be complete while a requested outcome never became a criterion. With sound evidence the detail is that reminder alone. It returns `{decision:'ok', detail:null, deduped}` when there is no claim, no resolved packet, the check could not run, the pair was already advised, or the kill switch is set.
 
 The adapter invokes `appendAdvisoryLog(projectDir, detail)` to write the bounded log line (256 KB, rotated to `.1`):
 
@@ -130,7 +130,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 | Boundary | Rule |
 |---|---|
 | Imports | The core imports Node builtins, `node:child_process`, and `.skilled/skills/system-spec-kit/runtime/cli/lib/completion-state.cjs` (for `check-completion.sh` path + JSON-parse helper). Adapters import the core and `shared/hook-flags` (`.cjs`/`.mjs`/`.ts` flavor per runtime). |
-| Decisions | `ok` or `advise`. Never `block`: the sentinel is advisory-only for the entire v1 rollout. A bug or false-positive can never force continuation. |
+| Decisions | `ok` or `advise`. Never `block`: the sentinel is advisory-only for the entire v1 rollout. A bug or false-positive can never force continuation. A claim against a resolved packet always advises, with the reread reminder alone when the evidence is sound. |
 | Evidence | The core checks recorded artifacts only: `check-completion.sh --json` output (checklist folders) or a `stat` of `implementation-summary.md` (Level 1 folders). It never runs a test, build, or `validate.sh`. |
 | Failure | Fail-open on every path: missing payload, missing spec folder, missing checklist, spawn failure, timeout, non-zero exit with no recoverable stdout, dedup persistence error, log write error, sweep error: all resolve to `{decision:'ok'}` or a no-op. |
 | State | Dedup store at `.skilled/skills/.state/completion-sentinel/advisory-dedup.json` (atomic writes, per-spec-folder fingerprint). Advisory log at `.skilled/logs/completion-sentinel-advisories.log` (256 KB, rotated to `.1`). Sweep prunes entries older than the retention window. |

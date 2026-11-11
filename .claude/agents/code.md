@@ -66,7 +66,7 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
    Load every checklist `checklists[]` names with the `why` it gives, the universal floor among them.
    Read `gate`, `summary.p0_blocking` and `summary.unverified` into the RETURN `Quality Gate` field.
    This step reads the run verdict and never produces one, so it makes no passing claim of its own.
-6. **VERIFY** → Run sk-code's returned verification command. Capture command name, exit code, and first failing assertion if FAIL. FAIL-CLOSED — verification failure returns summary to orchestrator. NO internal retry. NO loop-fix.
+6. **VERIFY** → Run sk-code's returned verification command. Capture command name, exit code, and first failing assertion if FAIL. FAIL-CLOSED — verification failure returns summary to orchestrator. NO internal retry. NO loop-fix. Then reread the task request and map each outcome it asks for to a verified result, or name it not done.
 7. **RETURN** → Structured RETURN to orchestrator (see §8 format).
 
 ### Stack Delegation Contract

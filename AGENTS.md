@@ -140,6 +140,7 @@ Trigger: Claiming "done", "complete", "finished", "works"
 1. Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict`. **Require an explicit `RESULT: PASSED`.** Exit status and the absence of `FAILED` have each been wrong in both directions. The four traps and the exit taxonomy are `system-spec-kit/references/validation/validation-rules.md` §1 and §14.
 2. Work the Verification Checklist inside `tasks.md` and every row of `acceptance-criteria.md` → mark each with evidence. The acceptance criteria are the closure gate.
 3. Reconcile completion metadata across `spec.md`, the evidence rows, continuity fields and `implementation-summary.md`, so no packet doc claims a different completion state.
+4. Reread the request and its amendments: each outcome is a `Met` row or named not done.
 - Skip: Level 1 tasks (`acceptance-criteria.md` is scaffolded from Level 2 and is the closure gate there).
 
 #### MEMORY SAVE RULE [HARD] BLOCK
@@ -204,6 +205,7 @@ Trigger: a session bound to a spec packet, on every turn.
 | "DRY this up" across two instances | similarity mistaken for sameness | Two is not a pattern; wait for the third before abstracting |
 | The change touches callers or a shared contract | the blast radius is wider than the file | Name owner, callers, and the frozen contract before editing, the touch check in [`prevent-overengineering.md`](.skilled/repo-rules/prevent-overengineering.md) §2 |
 | The fix works only where the bug surfaced | the symptom was treated, not the cause | Trace to the producer and fix at source |
+| A spec or plan adds a file, module, option, layer or dependency | the restraint pass waits for code, after the scope is frozen | Run the pre-write pass on the scope before it freezes, per [`prevent-overengineering.md`](.skilled/repo-rules/prevent-overengineering.md) §2 |
 
 ---
 

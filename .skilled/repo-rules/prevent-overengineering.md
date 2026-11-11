@@ -25,7 +25,7 @@ trigger_phrases:
   - "over-engineering"
 importance_tier: important
 contextType: reference
-version: 1.0.1.3
+version: 1.0.1.4
 ---
 
 # Rule: Prevent overengineering
@@ -36,6 +36,7 @@ version: 1.0.1.3
 ## Fires when
 
 - Adding a file, module, class, interface, abstraction, config option, feature flag, layer, or dependency.
+- Writing a spec or plan whose scope adds a file, module, option, layer, or dependency, before that scope is frozen.
 - Generalizing something that already works for its one caller.
 - Writing or thinking: *flexible*, *future-proof*, *scalable*, *extensible*, *might need*, *best practice*, *while we're here*.
 - Adding a test beyond the coverage floor, or wrapping something already callable.
@@ -89,7 +90,7 @@ past the move you can justify.
 
 ## 2. THE PRE-WRITE PASS
 
-After reading the existing code, before the first edit:
+After reading the existing code, before the first edit, and before a spec or plan freezes its scope:
 
 1. **Does this need to exist?** Walk §1 in order. Answer by naming the move and writing
    its climbing sentence.

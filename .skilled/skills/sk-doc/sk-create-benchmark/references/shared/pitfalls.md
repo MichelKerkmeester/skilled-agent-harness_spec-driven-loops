@@ -9,7 +9,7 @@ trigger_phrases:
   - "benchmark re-run mistake"
 importance_tier: normal
 contextType: reference
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Benchmark Folder Common Pitfalls
@@ -43,6 +43,7 @@ Each row names a mistake, why it breaks the skill-local surface, and the correct
 | Cross-referencing numbers between skills | Stacks differ; numbers are not comparable | Add a "Stack distinction" line in Caveats; link to the sibling README but do not compare figures |
 | Creating a new dated folder for a re-run that confirms the winner | Pollutes the index with redundant folders | Update the existing `benchmark-report.md` with a "Re-run YYYY-MM-DD" section |
 | Writing a ten-section report without a source.md | Readers cannot find the audit trail | Always author source.md; use the `source-template.md` scaffold |
+| Counting a scenario marker with no negative control (no skipping run has failed it) | A marker passes any reply that contains the string, so a run that skipped the behavior can still pass | Run the scenario once with the behavior skipped, confirm the marker fails, and name that run in the scenario's Failure modes |
 
 ---
 

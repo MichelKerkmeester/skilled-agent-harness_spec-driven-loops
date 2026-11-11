@@ -2,7 +2,7 @@
 name: sk-create-benchmark
 description: Author MCP-promotion and behavior artifacts.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.6.6.0
+version: 1.6.7.0
 ---
 
 # create-benchmark
@@ -354,6 +354,7 @@ and naming; execution and evidence stay in the executing packet.
 - **ALWAYS** keep the shared `framework.md` as the single source for rubric, buckets, budget formula, and enums; the package instantiates, it does not redefine.
 - **ALWAYS** keep the index SCENARIO TABLE and the scenario files in exact sync.
 - **ALWAYS** ship uncaptured baseline cells as `pending` / `not_captured` rather than inventing values.
+- **ALWAYS** count an expected marker, target or postcondition only after a run that skips the behavior has failed it (a negative control), and name that run in the scenario's Failure modes.
 - **NEVER** ship fixtures, transcripts, or result JSONs inside the package — they belong to the executing spec-packet phase.
 - **NEVER** give a shipped scenario file frontmatter or a `## OVERVIEW` heading; it opens at the `# <PREFIX>-NNN` H1 (the scenario template's own frontmatter, usage comment, and Overview are stripped on copy).
 - **NEVER** add a scenario whose `id` disagrees with its filename or its index-table row.

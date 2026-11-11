@@ -8,7 +8,7 @@ trigger_phrases:
   - "completion sentinel plugin"
   - "completion-evidence-sentinel"
   - "stop hook advisory"
-version: 1.0.2.0
+version: 1.0.3.0
 id: plugins-and-hooks-completion-evidence-sentinel
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -69,7 +69,7 @@ This scenario validates:
   - First occurrence: core returns `{"decision":"advise","detail":"claimed done but ...","deduped":false}`.
   - Identical claim text against the identical packet, next check: `{"decision":"ok","detail":null,"deduped":true}`.
   - A genuinely satisfied packet (implementation-summary.md present, or a fully evidenced
-    checklist): `{"decision":"ok","detail":null,"deduped":false}`.
+    checklist): `{"decision":"advise","detail":"claimed done: reread the request and confirm each outcome it asks for is met or named not done","deduped":false}`. The reread reminder alone, with no evidence complaint.
   - `SYSTEM_COMPLETION_SENTINEL_DISABLED=1` (any adapter, any call): unconditional `{"decision":"ok"}`,
     no filesystem probe, no advisory written.
   - The OpenCode plugin appends the advisory line to
@@ -169,7 +169,7 @@ try {
     projectDir, env: process.env,
   }), null, 2));
 
-  section('evaluateCompletionEvidence -- Level 1 packet WITH implementation-summary.md (expect decision=ok)');
+  section('evaluateCompletionEvidence -- Level 1 packet WITH implementation-summary.md (expect decision=advise, reread reminder alone)');
   fs.mkdirSync(path.join(projectDir, 'specs/999-level1-with-summary'), { recursive: true });
   fs.writeFileSync(path.join(projectDir, 'specs/999-level1-with-summary/implementation-summary.md'), '# Implementation Summary\nDone.\n');
   console.log(JSON.stringify(core.evaluateCompletionEvidence({
