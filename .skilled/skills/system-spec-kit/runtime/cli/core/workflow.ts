@@ -887,6 +887,8 @@ const WORKFLOW_MODULE_DIR = moduleDir;
 const WORKFLOW_LOCK_DIR = path.resolve(WORKFLOW_MODULE_DIR, '../../.workflow-lock');
 const WORKFLOW_LOCK_OWNER_PATH = path.join(WORKFLOW_LOCK_DIR, 'owner.json');
 const LEGACY_LOCK_STALE_MS = 5_000;
+const REACQUIRE_PAUSE_MS = 100;
+let lastFilesystemLockReleaseAt = 0;
 const SAVE_PFD_LOCK_NAME = '.savePFD.lock';
 const SAVE_PFD_LOCK_STALE_MS = 5_000;
 
@@ -931,12 +933,23 @@ function shouldClearStaleWorkflowLock(): boolean {
 
 /**
  * Acquire the filesystem lock via atomic mkdir.
- * Uses exponential backoff; gives up after ~30 s total wait.
+ * Polls at a short fixed interval; gives up after ~30 s total wait.
+ *
+ * Waiters are not queued across processes. A process with several saves in
+ * its own queue would take the lock again a few milliseconds after releasing
+ * it, and so hold it for the whole queue while another process starves. It
+ * therefore pauses before taking back a lock it has just released, and that
+ * pause is several poll intervals long so a waiting process can step in.
  */
 async function acquireFilesystemLock(): Promise<boolean> {
   const MAX_TOTAL_MS = 30_000;
+  const POLL_MS = 25;
   let waited = 0;
-  let delay = 100;
+
+  const sinceOwnRelease = Date.now() - lastFilesystemLockReleaseAt;
+  if (sinceOwnRelease < REACQUIRE_PAUSE_MS) {
+    await new Promise<void>((resolve) => setTimeout(resolve, REACQUIRE_PAUSE_MS - sinceOwnRelease));
+  }
 
   while (waited < MAX_TOTAL_MS) {
     try {
@@ -952,10 +965,9 @@ async function acquireFilesystemLock(): Promise<boolean> {
         clearWorkflowLockDir();
         continue;
       }
-      // Lock held by another process -- wait with backoff
-      await new Promise<void>((resolve) => setTimeout(resolve, delay));
-      waited += delay;
-      delay = Math.min(delay * 2, 4_000);
+      // Lock held by another process -- poll again shortly
+      await new Promise<void>((resolve) => setTimeout(resolve, POLL_MS));
+      waited += POLL_MS;
     }
   }
   // Timed out -- proceed without fs lock (fallback to in-process queue)
@@ -964,6 +976,7 @@ async function acquireFilesystemLock(): Promise<boolean> {
 }
 
 function releaseFilesystemLock(): void {
+  lastFilesystemLockReleaseAt = Date.now();
   try {
     clearWorkflowLockDir();
   } catch (_err: unknown) {
