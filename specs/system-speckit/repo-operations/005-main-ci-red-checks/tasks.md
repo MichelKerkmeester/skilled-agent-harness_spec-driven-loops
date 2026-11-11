@@ -44,6 +44,7 @@ contextType: "general"
 - [x] T004 Pass the corpus test files as a glob (`.github/workflows/chart-corpus.yml`, `.github/workflows/diagram-corpus.yml`, three sk-design READMEs). Commit `6bb42a9f5a`.
 - [x] T005 Refresh the two sk-doc README baselines with each test's `--write` mode (`.skilled/skills/sk-doc/scripts/tests/code-folder/`). Commit `c807a36cab`.
 - [x] T006 Add "opencode go route" to the harness intent and regenerate the intent signals and compiled graph (`.skilled/skills/cli-external-orchestration/ROUTER.md`). Commit `f090583b7d`.
+- [x] T007a Show the glob command in the three `sk-create-goal` READMEs (`.skilled/skills/sk-doc/sk-create-goal/scripts/`). Commit `1ffd2213e9`.
 - [x] T007 Fix the binding count, the lock copy race and the array length expansion (`.skilled/skills/system-spec-kit/runtime/cli/`). Commit `72a2a0b3f4`.
 <!-- /ANCHOR:phase-2 -->
 

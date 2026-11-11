@@ -78,13 +78,12 @@ Spec-Kit Check, CLI project:
 ## 3. SCOPE
 
 ### In Scope
-- Change the two corpus workflows to pass test files to `node --test` as a glob, which Node 22 accepts.
+- Change the two corpus workflows to pass test files to `node --test` as a glob, which Node 22 accepts, and show the same form in the six READMEs that document it.
 - Refresh the two sk-doc README baselines after the tree changes that made them stale.
 - Add the phrase "opencode go route" to the DeepSeek harness intent in the CLI hub's `ROUTER.md` and carry it into the derived metadata.
 - Fix the three Spec-Kit test failures: the binding count, the copy race on `.workflow-lock` and the array length expansion in the staleness checker.
 
 ### Out of Scope
-- The three `sk-create-goal` READMEs that show `node --test` with a directory - no failing check runs them. They are noted as a follow-up.
 - Two CLI tests that time out at 30 seconds in a full local run - they pass alone and did not fail in CI.
 - A version bump or release note for the CLI hub - the change adds one keyword that the hub router already carried.
 
@@ -97,6 +96,7 @@ Spec-Kit Check, CLI project:
 | `.skilled/skills/sk-design/sk-design-chart/scripts/tests/README.md` | Modify | Show the glob command |
 | `.skilled/skills/sk-design/sk-design-diagram/scripts/tests/README.md` | Modify | Show the glob command |
 | `.skilled/skills/sk-design/sk-design-diagram/scripts/families/README.md` | Modify | Show the glob command |
+| Three READMEs under `.skilled/skills/sk-doc/sk-create-goal/scripts/` | Modify | Show the glob command |
 | `.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json` | Modify | Add the new hook folder |
 | `.skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json` | Modify | Drop 48 removed READMEs and add 49 new ones |
 | `.skilled/skills/cli-external-orchestration/ROUTER.md` | Modify | Add the phrase to the harness intent |
@@ -178,7 +178,7 @@ N/A: the packet changes CI commands, test fixtures and one routing keyword. It r
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 8/25 | 13 files, about 20 hand-written lines, two regenerated baselines |
+| Scope | 8/25 | 16 files, about 20 hand-written lines, two regenerated baselines |
 | Risk | 5/25 | CI commands and test fixtures, one routing keyword |
 | Research | 8/20 | Five separate root causes to trace |
 | **Total** | **21/70** | **Level 2** |

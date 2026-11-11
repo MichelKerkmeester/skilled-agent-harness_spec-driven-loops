@@ -72,7 +72,7 @@ Other: five independent repairs, one per failing workflow.
 |---------|--------------|--------|--------------|
 | `node --test scripts/tests/` in two workflows | Runs the mutation suites | Update to a glob | Node v22.23.4: 21 and 88 tests pass |
 | The same command in three sk-design READMEs | Tells a reader how to run the suites | Update to a glob | `rg -n "node --test" .skilled/skills/sk-design` |
-| The same command in three `sk-create-goal` READMEs | Tells a reader how to run the goal tests | Unchanged, noted as follow-up | No failing check runs them |
+| The same command in three `sk-create-goal` READMEs | Tells a reader how to run the goal tests | Update to a glob | Node v22.23.4: 36 tests pass |
 | `cpSync` in `upgrade-legacy-harness.ts` | Copies the skill into a sandbox | Unchanged, it already filters `.workflow-lock` | `rg -n "workflow-lock" runtime/cli/tests` |
 | `cpSync` in `upgrade-legacy-host-root.vitest.ts` | Copies the skill into a sandbox | Update with the same filter | The test file passes |
 | `${#folders[@]:-0}` in `check-template-staleness.sh` | Counts discovered packets | Update to the bare length | `rg -n '\$\{#[a-zA-Z_]*\[@\]:-' .skilled` finds no other use |

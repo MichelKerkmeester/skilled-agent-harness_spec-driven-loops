@@ -59,7 +59,7 @@ The routing guard reported one drift: the CLI hub router sent "opencode go route
 | File | Action | Purpose |
 |------|--------|---------|
 | `.github/workflows/chart-corpus.yml`, `.github/workflows/diagram-corpus.yml` | Modified | Run the mutation suites on Node 22 |
-| Three sk-design READMEs | Modified | Show the command that works on Node 22 |
+| Three sk-design READMEs and three `sk-create-goal` READMEs | Modified | Show the command that works on Node 22 |
 | `durable-directory-manifest.json`, `baseline-readme-verdicts.json` | Modified | Match the live tree |
 | `cli-external-orchestration/ROUTER.md` | Modified | Carry the phrase the hub router already routes |
 | `cli-external-orchestration/graph-metadata.json`, `skill-graph.json`, two route manifests | Modified | Regenerated from the router |
@@ -85,7 +85,7 @@ Each failure was read from its CI job log, reproduced locally where the machine 
 |----------|-----|
 | Add the phrase to `ROUTER.md`, keep it in `hub-router.json` | The v1.8.0.0 hub release added the phrase on purpose, so the missing side was the intent |
 | Rebuild the baselines, change no test | All 48 verdict mismatches were READMEs that no longer exist, and the one manifest change is a real new folder |
-| Leave the `sk-create-goal` READMEs alone | They show the same directory form, but no failing check runs them |
+| Fix the `sk-create-goal` READMEs too | They showed the same directory form, and the operator asked for them on 2026-11-11 |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -111,7 +111,6 @@ Each failure was read from its CI job log, reproduced locally where the machine 
 
 1. **The Bash fix is inferred.** This machine has only Bash 3.2, which accepts the old expansion. The cause was read from the empty output on the Linux runner. The CI run after the push confirms it.
 2. **Nothing is pushed.** The four commits exist only on `worktrees/346-main-ci-red-checks`. AC-005 stays open until main carries them.
-3. **Three more READMEs show the directory form.** The `sk-create-goal` READMEs fail the same way on Node 22 when a reader copies the command.
 <!-- /ANCHOR:limitations -->
 
 ---

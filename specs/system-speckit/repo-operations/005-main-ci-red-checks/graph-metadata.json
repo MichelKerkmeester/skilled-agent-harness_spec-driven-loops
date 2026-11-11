@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Five workflows fail on every push to main: Chart Corpus, Diagram Corpus, sk-doc Script Tests, Routing Registry Drift Guard and Spec-Kit Check",
     "created_at": "2026-11-11T07:47:57Z",
-    "last_save_at": "2026-11-11T08:02:41.298Z",
+    "last_save_at": "2026-11-11T08:17:55.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:444a87349ae99ae596b6c4884f019e8588793aedcd892a2b591a0176af1eea70",
+    "source_fingerprint": "sha256:0b8403a608fc4c9375f86005397d1ce29deec8f5f6499079a9f105b02e87bf40",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d1f80852b3be07ba21edf8f307c802395a7d9def926b12271952bfefa9dab787",
-      "plan.md": "1b7b5489b72f314c50c24e14ee62b6b0fcf0053fca5cdea60301228dfee6c936",
-      "tasks.md": "b2182cedfdb58d0ee8141d4b8347f81ce686772ac06b6cf598f15c9517a91aa2",
-      "implementation-summary.md": "50cc7ee65c2ad7ca84209bd790f8d35047f945201b460b1c2f11c45c07e887f9"
+      "spec.md": "648c4cc38bc4dde1bdcbb9b54ade2a04cb5ec1e54f95fdaf5774062f869f9549",
+      "plan.md": "24f8bef2935ffde8733a9af47b11950b3f6bbd8923c4a56e252ddfe3d7091b23",
+      "tasks.md": "b451fd444db5e8559e9218fa4dfb4b5a935416f7e0a1510e9c880efa4e30a3fe",
+      "implementation-summary.md": "a8e2be3c5b53147e6bb2b9722f779676410cfadfd5fd8d8cf4ce108ca9c94b29"
     },
     "last_active_at": null
   }
