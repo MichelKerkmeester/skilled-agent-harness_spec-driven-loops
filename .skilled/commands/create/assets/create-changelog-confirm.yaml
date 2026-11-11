@@ -605,6 +605,7 @@ workflow:
       - "Run VERSION CHECKS (4-segment; for a new entry sequential with no duplicates; when extending, the version equals the open entry's and no v{next_version} release tag exists yet)"
       - "Run CONTENT CHECKS (compact summary near 60 words or expanded opening within 5 paragraphs, short sentences preferred, bold lead-in bullets, H4 headings 10 words at most, H4 items one paragraph near 60 words and two when the item needs it, omission rules applied, no internal labels outside the spec-folder line, each fact said once)"
       - "Run the SHAPE GATE (blocking): write changelog_content to a temp draft file, run `python3 {shape_check} {draft_file}` and treat each printed [rule] line as a failed check. Exit 1 means cut at the H4 level (template section 3) and rerun, exit 2 means the draft could not be read. Never write the entry while it exits non-zero"
+      - "Run the VOICE GATE (blocking): run `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py {draft_file}` on the same draft. Zero hard blockers passes; any hard blocker means rewrite the flagged sentences and rerun. When the scanner is unavailable, apply the rules by hand and record that the scan was skipped. Never write the entry while it reports a hard blocker"
       - "Auto-fix minor issues if possible"
     outputs:
       - validation_passed: "true/false"
@@ -625,6 +626,7 @@ workflow:
       - "Construct output path: .skilled/changelog/{primary_component}/v{next_version}.md, or open_entry_path when entry_mode == \"extend\""
       - "Write changelog_content to output path using Write tool; when entry_mode == \"extend\", edit the open entry in place with the Edit tool instead"
       - "Verify file was created or updated by reading first 5 lines"
+      - "Run the shared markdown checks on the written file: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py {output_path}`, then `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py {output_path}`. IF either exits non-zero: fix the blocking issue in the entry and rerun, or report the exact blocker and command output and stop before the release step"
       - |
         MOVE EVERY VERSION COPY to next_version, without its leading v:
           Resolve SKILL_ROOT for the component:

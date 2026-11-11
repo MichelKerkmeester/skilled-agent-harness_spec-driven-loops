@@ -690,6 +690,13 @@ workflow:
           Exit 2 -> the draft could not be read. Report it as a failure
           Never write the entry while the shape gate exits non-zero
       - |
+        VOICE GATE (blocking):
+          Run: python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py {draft_file}
+          Zero hard blockers (banned punctuation or words) -> the voice gate passes; deductions below that are acceptable
+          Any hard blocker -> rewrite the flagged sentences in the draft, then rerun
+          Scanner unavailable -> apply the rules by hand and record that the scan was skipped
+          Never write the entry while the scan reports a hard blocker
+      - |
         IF any check fails:
           Log failed check(s)
           Auto-fix if possible (e.g., missing section -> add empty section)
@@ -706,6 +713,7 @@ workflow:
       - "Construct output path: .skilled/changelog/{primary_component}/v{next_version}.md, or open_entry_path when entry_mode == \"extend\""
       - "Write changelog_content to output path using Write tool; when entry_mode == \"extend\", edit the open entry in place with the Edit tool instead"
       - "Verify file was created or updated: Read the first 5 lines of the written file"
+      - "Run the shared markdown checks on the written file: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py {output_path}`, then `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py {output_path}`. IF either exits non-zero: fix the blocking issue in the entry and rerun, or report the exact blocker and command output and stop before step_7_publish_release"
       - |
         MOVE EVERY VERSION COPY to next_version, without its leading v:
           Resolve SKILL_ROOT for the component:
