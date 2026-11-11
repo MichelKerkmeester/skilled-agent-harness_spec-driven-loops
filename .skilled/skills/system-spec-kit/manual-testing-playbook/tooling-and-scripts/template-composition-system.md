@@ -1,7 +1,7 @@
 ---
 title: "244 -- Template Composition System"
 description: "This scenario validates Level-based packet generation and vocabulary invariance for the current template flow."
-version: 1.6.0.13
+version: 1.6.1.0
 id: tooling-and-scripts-template-composition-system
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:
@@ -221,7 +221,7 @@ description.json created in /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000
 11. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$TMPDIR/test-phase-parent" --strict`
 
 ```text
-Auto-enabled recursive validation: phase child folders detected.
+Auto-enabled recursive validation: child phase or sub-track folders detected.
 
 Spec Folder Validation v3.0.0
 

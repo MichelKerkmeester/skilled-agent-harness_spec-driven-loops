@@ -1,7 +1,7 @@
 ---
 title: "062 -- Progressive validation for spec documents (PI-B2)"
 description: "This scenario validates Progressive validation for spec documents (PI-B2) for `062`. It focuses on Confirm level 1-4 behavior."
-version: 1.6.0.15
+version: 1.6.1.0
 id: tooling-and-scripts-progressive-validation-for-spec-documents-pi-b2
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:
@@ -81,7 +81,7 @@ Progressive Validation Pipeline v1.0.0
   Levels:   1-1
 
   Level 1: Detect — Running validate.sh
-Auto-enabled recursive validation: phase child folders detected.
+Auto-enabled recursive validation: child phase or sub-track folders detected.
 
 Spec Folder Validation v3.0.0
   Folder: .opencode/specs/system-speckit/031-manual-playbook-execution-sweep

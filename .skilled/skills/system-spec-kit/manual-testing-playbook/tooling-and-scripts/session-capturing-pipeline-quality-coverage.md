@@ -1,7 +1,7 @@
 ---
 title: "139 -- Session capturing pipeline quality"
 description: "This scenario validates Session capturing pipeline quality for `139`. It focuses on Canonical coverage sourced from M-007 session-capturing closure verification."
-version: 1.6.2.0
+version: 1.6.3.0
 id: tooling-and-scripts-session-capturing-pipeline-quality-coverage
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -160,7 +160,7 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
 - Spec validation command failed for the pre-approved spec folder:
   ```text
   $ bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh .opencode/specs/system-speckit/031-manual-playbook-execution-sweep
-  Auto-enabled recursive validation: phase child folders detected.
+  Auto-enabled recursive validation: child phase or sub-track folders detected.
 
   Spec Folder Validation v3.0.0
 
