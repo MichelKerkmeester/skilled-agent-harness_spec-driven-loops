@@ -97,7 +97,7 @@ then confirm when login finishes — the skill will retry the original dispatch.
 
 ### Default Invocation (Skill Default)
 
-**Default model + permission mode**: `swe` (alias → `swe-2`) · `dangerous` permission mode.
+**Default model + permission mode**: `swe-2-max` · `dangerous` permission mode. The CLI's own `swe` alias is not pinned, so every dispatch names `swe-2-max`.
 
 ```bash
 devin -p \
@@ -149,7 +149,7 @@ Honor the dimensions the user names. Otherwise the model stays `swe` and the per
 
 ### Model Selection
 
-Default `swe` (alias → `swe-2`). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`.
+Default `swe-2-max`. Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`.
 
 Curated families, alphabetical:
 
@@ -164,7 +164,7 @@ Curated families, alphabetical:
 
 Full roster and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
 
-**Selection Strategy**: default `swe` for quick edits and cost-sensitive work; switch to `gpt-5-6-luna-max` for reasoning-heavy work (architecture, security, deep planning); use `glm-5-2` / `glm-5-2-max` for general generation; use `swe-2-max` for max-effort SWE work. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
+**Selection Strategy**: default `swe-2-max` for everyday and cost-sensitive work, with `swe-2-medium` for quick edits; switch to `gpt-5-6-luna-max` for reasoning-heavy work (architecture, security, deep planning); use `glm-5-2` / `glm-5-2-max` for general generation. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
 
 ### Devin Subagent Delegation
 

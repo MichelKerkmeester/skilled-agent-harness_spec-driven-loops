@@ -9,7 +9,7 @@ trigger_phrases:
   - "subagent delegation"
   - "second opinion"
   - "cross-validate"
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # cli-devin
@@ -98,7 +98,7 @@ devin --version
 devin -p --model swe --permission-mode accept-edits -- "Add input validation to src/utils.ts" 2>&1
 ```
 
-The default model is `swe` (alias for `swe-2`) and the default permission mode is `accept-edits`. Success looks like the file edited in place plus a text response on stdout. `devin -p` is non-interactive and exits after one turn.
+The default model is `swe-2-max` and the default permission mode is `accept-edits`. Success looks like the file edited in place plus a text response on stdout. `devin -p` is non-interactive and exits after one turn.
 
 **Step 4: Hand a long-running task to the cloud.**
 
@@ -227,7 +227,7 @@ A: When the task benefits from a second AI perspective or a fresh context window
 
 **Q: Which model should I pick?**
 
-A: The default `swe` (alias for `swe-2`, free at 262K context) balances speed and cost. Use `gpt-5-6-luna-max` for reasoning-heavy work, `glm-5-2` for general generation, `swe-2-max` for max-effort SWE work and `swe-2-medium` for quick edits. The curated roster lives in `references/providers-and-models.md` and the full family list is available through `devin models list`.
+A: The default `swe-2-max` (free at 262K context) balances speed and cost. Use `gpt-5-6-luna-max` for reasoning-heavy work, `glm-5-2` for general generation and `swe-2-medium` for quick edits. The curated roster lives in `references/providers-and-models.md` and the full family list is available through `devin models list`.
 
 **Q: Can Devin keep working after I close my laptop?**
 

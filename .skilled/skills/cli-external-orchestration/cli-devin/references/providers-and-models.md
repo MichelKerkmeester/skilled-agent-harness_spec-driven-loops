@@ -10,7 +10,7 @@ trigger_phrases:
   - "devin model alias reference"
 importance_tier: normal
 contextType: implementation
-version: 1.4.9.0
+version: 1.4.10.0
 ---
 
 # cli-devin Providers, Models & Invocation
@@ -99,7 +99,7 @@ Dispatch this mode's default without opening any other file:
 
 | Field | Value |
 |-------|-------|
-| Default model | `swe` (alias → `swe-2`) |
+| Default model | `swe-2-max` |
 | Default permission mode | `--permission-mode accept-edits` |
 | Prompt separator | `--` before the print-mode prompt (required) |
 
