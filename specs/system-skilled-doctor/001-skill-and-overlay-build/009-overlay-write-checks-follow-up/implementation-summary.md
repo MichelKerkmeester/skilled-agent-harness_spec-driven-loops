@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "In progress. The trigger-phrase fix that turns main green has landed, and the engine work is planned and not started."
 trigger_phrases:
   - "overlay write checks follow up implementation summary"
 importance_tier: "normal"
@@ -9,16 +9,16 @@ _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up"
     last_updated_at: "2026-11-11T21:21:40Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-code"
+    recent_action: "Landed the trigger-phrase fix and wrote the plan"
+    next_safe_action: "Dispatch task T005, the stale lock takeover"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-009-overlay-write-checks-follow-up"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 5
     open_questions: []
     answered_questions: []
 ---
@@ -32,12 +32,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 009-overlay-write-checks-follow-up |
-| **Completed** | 2026-11-11 |
+| **Completed** | Not yet. In progress since 2026-11-11 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,60 +44,57 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The Skill Doc Frontmatter check passes again. Everything else in this phase is planned and not built yet.
 
 ### Overlay write checks follow-up
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The overlay reference carried ten trigger phrases after phase 8, two more than the contract allows, and the workflow failed on `main`. The two added phrases are gone. The engine fixes, the new targets, the adapter and the tests are listed in `tasks.md` and wait for their build.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/skills/system-skilled-doctor/references/overlays.md` | Modified | Eight trigger phrases, down from ten |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+One DeepSeek V4.1 Flash agent made the edit from a one-change brief. The frontmatter guard was run before and after, and the fix was pushed as `c57b7e4cef`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Work items are tasks in this packet, not child phases | Each is one small change to the same engine file, and they run in series |
+| The trigger-phrase fix went out ahead of the rest | `main` was failing because of phase 8, and the fix is two deleted lines |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `check-skill-doc-frontmatter.sh . --coverage` before the change | `violations=1`, exit 1 |
+| The same command after it | `violations=0`, exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **The first commit of this phase carries another session's files.** Commit `c57b7e4cef` took 57 research files from `specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/`, which another session had staged in the shared index. They were not reviewed here. Later commits name their paths.
+2. **Tasks T005 to T028 are open.** Nothing in the engine has changed yet.
 <!-- /ANCHOR:limitations -->
 
 ---

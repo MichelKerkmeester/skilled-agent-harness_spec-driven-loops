@@ -44,9 +44,9 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
       "research/fable-review.md",
       "barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/011-repin-review-fixes/handover.md",
-      ".skilled/skills/system-skilled-doctor/references/overlays.md",
       ".skilled/commands/doctor/scripts/overlay-engine.cjs",
       ".skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs",
       ".skilled/commands/doctor/scripts/tests/doctor-overlay-contract.test.cjs",
@@ -96,15 +96,15 @@
         "source": "derived"
       },
       {
-        "name": "fable-review.md",
-        "kind": "doc",
-        "path": "research/fable-review.md",
-        "source": "derived"
-      },
-      {
         "name": "overlays.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "fable-review.md",
+        "kind": "doc",
+        "path": "research/fable-review.md",
         "source": "derived"
       },
       {
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phase 8 shipped the opt-in write checks",
     "created_at": "2026-11-11T21:21:40Z",
-    "last_save_at": "2026-11-11T21:27:35.409Z",
+    "last_save_at": "2026-11-11T21:30:05.639Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e962a8ea8a3684c3f0b704f93f4532cb5fa2d623e2bcb877baa9cf73bc7480b",
+    "source_fingerprint": "sha256:374be1afe7e8c6786919a4aa68643263c4043db81b1cb11e6e0dc3c565d22f5d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8edc99dda383b4181b885a6ecbf84660af86548b41bebe5ca1c8f5550139b9af",
       "plan.md": "3dd95d2df194ee2fa696b3224d995340db6e6de80082b6bbe776020d5fb6033f",
       "tasks.md": "a43a83b2bddd5539f34925c01d8b436b6e77dafc1bbe54e0e2b83de89f9f6e42",
-      "implementation-summary.md": "809b3c70c13591b907a2823e29872c49768d2db872249d062f440759540718d2"
+      "implementation-summary.md": "a7a90bd4dd7f98f6ce09972474abd0ad264884535c308d9e0c93f80f2c65b744"
     },
     "last_active_at": null
   }
