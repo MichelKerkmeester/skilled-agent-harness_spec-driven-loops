@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-design-chart routing"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -28,7 +28,7 @@ Requests reach this skill when the artifact plots values rather than explains a 
 - the template contract, with the corpus validator that proves every form still renders
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource
 loads before an intent selects it.
 
 ---
