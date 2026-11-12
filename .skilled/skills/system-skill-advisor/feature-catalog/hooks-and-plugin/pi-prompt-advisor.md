@@ -6,7 +6,7 @@ trigger_phrases:
   - "pi prompt advisor extension"
   - "pi advisor extension"
   - "SPECKIT_PI_ADVISOR_DEBUG"
-version: 0.1.1.0
+version: 0.1.2.0
 ---
 
 # Pi Prompt Advisor Extension
@@ -15,13 +15,13 @@ version: 0.1.1.0
 
 A Pi extension that surfaces the skill advisor's brief at prompt time in-process, without spawning the advisor as a subprocess.
 
-`hooks/pi/prompt-advisor.ts` is the real file behind the `.pi/extensions/prompt-advisor.ts` symlink. Pi awaits input handlers before agent processing, so the extension calls the shared advisor lifecycle module directly and appends the returned context below the user's prompt text.
+`hooks/pi/prompt-advisor.ts` is the real file that the `.pi/extensions/prompt-advisor.ts` one-line entry file re-exports. Pi awaits input handlers before agent processing, so the extension calls the shared advisor lifecycle module directly and appends the returned context below the user's prompt text.
 
 ---
 
 ## 2. HOW IT WORKS
 
-The extension registers a Pi `input` handler that calls `handleClaudeUserPromptSubmit` from the compiled Claude `user-prompt-submit` hook with `runtime: 'pi'`. The handler loads that hook with dynamic `import()`, trying `ADVISOR_HOOK_MODULE` first and falling back to `ADVISOR_HOOK_FALLBACK_MODULE` when the first specifier does not resolve. The primary specifier is written for the `.pi/extensions/` symlink base and the fallback for the skill's `hooks/pi/` source directory, so the compiled hook resolves from either load location.
+The extension registers a Pi `input` handler that calls `handleClaudeUserPromptSubmit` from the compiled Claude `user-prompt-submit` hook with `runtime: 'pi'`. The handler loads that hook with dynamic `import()`, trying `ADVISOR_HOOK_MODULE` first and falling back to `ADVISOR_HOOK_FALLBACK_MODULE` when the first specifier does not resolve. `ADVISOR_HOOK_MODULE` is the long form left from the link-based layout and is tried first; it resolves only through the test alias. `ADVISOR_HOOK_FALLBACK_MODULE` is the folder-relative specifier of this skill's `hooks/pi/` source directory, and it is the one that resolves when Pi loads the adapter.
 
 The in-process call races a timer set to the advisor budget plus `PI_ADVISOR_DEADLINE_MARGIN_MS` (300 ms). The budget is `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` or 2500 ms when that variable holds no number. A call that hangs past the deadline delivers `renderAdvisorFallbackDirective()` output instead of the advisor context. The deadline path passes the shared `SETUP_WORDING` check to the fallback renderer, so matching prompts show the same `/doctor:setup` hint.
 

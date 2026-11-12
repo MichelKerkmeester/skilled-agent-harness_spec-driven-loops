@@ -1,6 +1,6 @@
 ---
 title: "Session Lifecycle: Pi Extensions"
-description: "Pi session lifecycle extensions for start, stop, post-compaction and startup advisories, discovered through the .pi/extensions links."
+description: "Pi session lifecycle extensions for start, stop, post-compaction and startup advisories, discovered through the one-line entry files in .pi/extensions."
 trigger_phrases:
   - "pi session lifecycle"
   - "pi session start context"
@@ -33,4 +33,4 @@ version: 1.0.0.0
 
 - [`../README.md`](../README.md): the concern README with the per-runtime matrix.
 - [`../../../skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts`](../../../skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts): the real start extension.
-- [`../../../../.pi/extensions/`](../../../../.pi/extensions/): the links Pi discovers.
+- [`../../../../.pi/extensions/`](../../../../.pi/extensions/): the one-line entry files Pi discovers.

@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`hooks/pi/` holds the real files behind the `.pi/extensions/` entry files for this skill's Pi hooks. Pi discovers each one through its one-line entry file, which re-exports it, so it loads from this folder and every import in these files is relative to this folder.
+`hooks/pi/` holds the real files behind the `.pi/extensions/` entry files for this skill's Pi hooks. Pi discovers each one through its one-line entry file, which re-exports it, so it loads from this folder and every import Pi resolves in these files is relative to this folder. `completion-evidence.ts` also keeps a long test-only specifier left from the link-based layout.
 
 ---
 

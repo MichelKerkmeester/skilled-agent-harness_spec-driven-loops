@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 `hooks/completion/pi/` holds a browsability symlink to the Pi completion-evidence extension. The extension runs on `turn_end` and flattens the ending assistant message content. It resolves the spec folder from the claim text first and falls back to the shared lifecycle state file.
 
-When the shared core advises, the extension writes the bounded log and sends a message with `display: false` and `deliverAs: "nextTurn"`, so the advisory is hidden from the operator and visible to the model on the next turn. `.pi/extensions/` symlinks to the real file under `system-spec-kit/runtime/hooks/pi/`.
+When the shared core advises, the extension writes the bounded log and sends a message with `display: false` and `deliverAs: "nextTurn"`, so the advisory is hidden from the operator and visible to the model on the next turn. `.pi/extensions/` holds a one-line entry file that re-exports the real file under `system-spec-kit/runtime/hooks/pi/`.
 
 ---
 

@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 `hooks/dispatch/pi/` holds the Pi extensions for the dispatch concern. Pi is the only runtime with an authorization layer on top of the hard-rule lint, because a direct dispatch must be authorized by the operator's own request. The preflight captures the raw user input at `input` and evaluates the command at `tool_call`.
 
-The real TypeScript files live here, and `.pi/extensions/` holds the relative symlinks Pi discovers.
+The real TypeScript files live here, and `.pi/extensions/` holds the one-line entry files Pi discovers.
 
 ---
 

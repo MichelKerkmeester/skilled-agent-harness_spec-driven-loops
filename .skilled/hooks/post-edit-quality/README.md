@@ -72,7 +72,7 @@ Every runtime evaluates the **same** `lib/post-edit-router.cjs` core. What diffe
 
 The three CommonJS adapters (Claude, Codex, Devin) share the same structure: read stdin JSON, fast-exit on a non-edit tool name, resolve the file, run the router, then deliver findings. Claude and Devin write a `hookSpecificOutput.additionalContext` JSON envelope on stdout; Codex prints plain text on stdout. They share the Claude budget constants. Cursor deliberately does not reimplement the check: it reshapes its `Write` payload and shells out to the Claude adapter. Pi and OpenCode deliver findings into model-visible channels (tool-result content and the system transform respectively) rather than stdout.
 
-Two runtimes are mirrored rather than hosted here. OpenCode's real plugin cannot live in this tree because its loader globs `.opencode/plugins/` by a flat pattern, so `opencode/sk-code-post-edit-quality.js` is a browsability-only symlink back into that folder and nothing loads through it. Pi loads in the other direction: the real `pi/post-edit-quality.ts` lives here, and `.pi/extensions/` holds the relative symlink Pi discovers.
+Two runtimes are mirrored rather than hosted here. OpenCode's real plugin cannot live in this tree because its loader globs `.opencode/plugins/` by a flat pattern, so `opencode/sk-code-post-edit-quality.js` is a browsability-only symlink back into that folder and nothing loads through it. Pi loads in the other direction: the real `pi/post-edit-quality.ts` lives here, and `.pi/extensions/` holds a one-line entry file that re-exports it.
 
 ---
 
@@ -90,7 +90,7 @@ post-edit-quality/
 +-- devin/    post-edit-quality.cjs
 +-- codex/    post-edit-quality.cjs
 +-- cursor/   post-tool-use.mjs    # multiplexed proxy (Write -> post-edit-quality, Shell -> dispatch)
-+-- pi/       post-edit-quality.ts (real file; `.pi/extensions/` symlinks to it)
++-- pi/       post-edit-quality.ts (real file; `.pi/extensions/` holds a one-line entry file that re-exports it)
 `-- opencode/ sk-code-post-edit-quality.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
 ```
 

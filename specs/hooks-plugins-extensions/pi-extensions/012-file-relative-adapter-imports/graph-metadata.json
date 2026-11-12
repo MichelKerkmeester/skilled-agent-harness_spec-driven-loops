@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Pi found this repository's hook adapters through 22 relative symlinks in `.pi/extensions/`",
     "created_at": "2026-11-12T09:07:41Z",
-    "last_save_at": "2026-11-12T10:08:28.670Z",
+    "last_save_at": "2026-11-12T12:00:44.136Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:894635b9837c75a00c8e1ec547e3d6f3824279aeef5310694e8a79422ec91213",
+    "source_fingerprint": "sha256:52c9d96b3bcf8834b0060c3961ca6c3bc612f0e74ffa8fbd2c357fa81c8c30a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "097b3c65521afa13b3543139c9b666de40295e61079eb749682e71f7d0f13285",
       "plan.md": "00fceb49452a9b5ff1a19982befee0a847c29f9eae92933e20ff5ad4377ffca1",
-      "tasks.md": "ebb4e2f2de6df635f3aa3cc854d4d8581614ec54cd0f08aebf8ec6a258ca93fc",
-      "implementation-summary.md": "47fb7c59ffba034a0f9d7e2646ed131da9ad9dc004fca4bfd3d610d15464a071"
+      "tasks.md": "6573f77ba4d09cd3517345e538be0088a6e27d0617a1a3ea9a4d1009117e16e2",
+      "implementation-summary.md": "3ac495a9f34225490fe7261b08512a8bccfb387e4ceee03fec21dad6c81c70da"
     },
     "last_active_at": null
   }

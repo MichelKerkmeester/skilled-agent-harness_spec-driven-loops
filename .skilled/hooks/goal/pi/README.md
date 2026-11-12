@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`goal/pi/` holds the real Pi goal extension. `goal-context.ts` is discovered through `.pi/extensions/goal-context.ts`, a relative symlink back to this file. It registers `/goal-pi` and three lifecycle handlers that all load `../lib/goal-core.cjs` at call time, so the extension works from the canonical path and from the discovery link.
+`goal/pi/` holds the real Pi goal extension. `goal-context.ts` is discovered through `.pi/extensions/goal-context.ts`, a one-line entry file that re-exports the adapter. It registers `/goal-pi` and three lifecycle handlers that all load `../lib/goal-core.cjs` at call time, so the extension works from this folder; the long specifier beside it is left from the link-based layout and resolves only through the test alias.
 
 `input` binds a hand-over packet, reads the active record and returns `{ action: 'transform', text }` with the brief and any resend reminder appended to the operator's prompt. `session_start` restores the same brief with `pi.sendMessage` and `triggerTurn: false`. `turn_end` runs the heuristic verifier, records the turn and sends a `[goal_verify]` note with `deliverAs: 'nextTurn'` when the verdict is not met. That note never restarts a turn. Management shells to `bin/goal.cjs` with the native session id.
 
@@ -34,4 +34,4 @@ version: 1.0.0.0
 - [`../README.md`](../README.md): the concern index, with the per-runtime capability matrix and the state layout.
 - [`./goal-context.ts`](./goal-context.ts): the extension itself.
 - [`../lib/goal-core.cjs`](../lib/goal-core.cjs): the core it loads at call time.
-- [`../../../../.pi/extensions/goal-context.ts`](../../../../.pi/extensions/goal-context.ts): the discovery symlink Pi loads.
+- [`../../../../.pi/extensions/goal-context.ts`](../../../../.pi/extensions/goal-context.ts): the one-line entry file Pi discovers.

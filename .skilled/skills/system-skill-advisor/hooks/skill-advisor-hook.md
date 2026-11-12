@@ -9,7 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.4.0
+version: 3.6.5.0
 ---
 
 # Skill Advisor Hook Reference
@@ -54,7 +54,7 @@ Every native runtime and Pi run the same hook handler, which gates the prompt, c
 | **Codex** | `system-spec-kit/.../hooks/codex/user-prompt-submit.ts` (shim) → `.../dist/hooks/codex/user-prompt-submit.js` | `UserPromptSubmit` in `.codex/hooks.json`, timeout 3s | Same shim dispatch. `cd "${CODEX_PROJECT_DIR:-$PWD}"`. Fallback `printf` envelope on resolution failure | Same `additionalContext` JSON |
 | **Cursor** | `system-spec-kit/.../hooks/cursor/user-prompt-submit.ts` (shim) → `.../dist/hooks/cursor/user-prompt-submit.js` | `beforeSubmitPrompt` in `.cursor/hooks.json`, timeout 10s | Same shim dispatch | Same `additionalContext` JSON |
 | **Devin** | `system-spec-kit/.../hooks/devin/user-prompt-submit.ts` (shim) → `.../dist/hooks/devin/user-prompt-submit.js` | `UserPromptSubmit` in `.devin/hooks.v1.json`, matcher `""`, timeout 10s | Same shim dispatch. `cd "${DEVIN_PROJECT_DIR:-$PWD}"`. Fallback `printf` envelope | Same `additionalContext` JSON |
-| **Pi** | `system-skill-advisor/hooks/pi/prompt-advisor.ts` (real file, `.pi/extensions/` symlinks here) | `user_input` / prompt event via `.pi/extensions/` | Imports the advisor module **in-process** (not a subprocess). Pi awaits input handlers before agent processing, so the old blocking-spawn bridge stalled every send. In-process calls remove the stall and let the module-level prompt cache work. Captures raw user text (bounded 32 KiB, 64-session LRU). The in-process call passes `runtime: 'pi'` and races a timer of the advisor budget plus 300 ms, delivering the fallback directives if the call hangs | Model-visible message. Delivery-state machine suppresses same-session re-delivery |
+| **Pi** | `system-skill-advisor/hooks/pi/prompt-advisor.ts` (real file, re-exported by its one-line `.pi/extensions/` entry) | `user_input` / prompt event via `.pi/extensions/` | Imports the advisor module **in-process** (not a subprocess). Pi awaits input handlers before agent processing, so the old blocking-spawn bridge stalled every send. In-process calls remove the stall and let the module-level prompt cache work. Captures raw user text (bounded 32 KiB, 64-session LRU). The in-process call passes `runtime: 'pi'` and races a timer of the advisor budget plus 300 ms, delivering the fallback directives if the call hangs | Model-visible message. Delivery-state machine suppresses same-session re-delivery |
 | **OpenCode** | `.opencode/plugins/system-skill-advisor.js` | Plugin, loaded by OpenCode's flat glob over `.opencode/plugins/`. `experimental.chat.system.transform` per prompt, `event` for session lifecycle, `tool` for status | Shells out to the advisor CLI (bounded timeout, stdout cap 256 KiB, grace termination), TTL+LRU prompt cache with in-flight dedup, transform-dedup integration | Brief appended to `output.system`. `spec_kit_skill_advisor_status` tool returns a key=value report (no raw path leakage) |
 
 OpenCode has no source-hook adapter in `system-spec-kit`. Its prompt-time integration is the committed plugin, which shells out to the advisor CLI and inherits the shared render contract. The hooks-tree index at `.skilled/hooks/skill-advisor/` mirrors the per-runtime shims and the OpenCode plugin via relative symlinks. This README is the symlink target.
@@ -73,7 +73,7 @@ system-skill-advisor/hooks/
 |   `-- user-prompt-submit.ts         # real advisor handler (Claude shape)
 +-- pi/
 |   +-- README.md
-|   `-- prompt-advisor.ts             # real Pi extension (.pi/extensions/ symlinks here)
+|   `-- prompt-advisor.ts             # real Pi extension (.pi/extensions/ re-exports it)
 `-- lib/
     +-- README.md
     +-- directive-lifecycle.ts, directive-lifecycle-contract.ts, directive-lifecycle-file-store.ts

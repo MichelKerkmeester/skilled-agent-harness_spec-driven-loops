@@ -25,7 +25,7 @@ trigger_phrases:
 | `classifier-injection-screen.ts` | `.skilled/hooks/classifier-injection-screen/pi/` |
 | `decision-capture.ts` | `.skilled/hooks/decision-capture/pi/` |
 | `spec-gate-{classify,enforce}.ts`, `session-{start,stop,compact}-context.ts`, `session-start-advisories.ts` | `.skilled/skills/system-spec-kit/runtime/hooks/pi/` |
-| `lib/claude-hook-adapter.ts` | `.skilled/skills/system-spec-kit/runtime/hooks/pi/lib/` |
+| `lib/claude-hook-adapter.ts` (not an entry: a symlink) | `.skilled/skills/system-spec-kit/runtime/hooks/pi/lib/` |
 | `prompt-advisor.ts` | `.skilled/skills/system-skill-advisor/hooks/pi/` |
 | `git-preflight-advisory.ts`, `git-message-gate.ts` | `.skilled/skills/sk-git/scripts/hooks/pi/` |
 | `goal-context.ts` | `.skilled/hooks/goal/pi/goal-context.ts` |

@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 `hooks/classifier-injection-screen/pi/` holds the Pi extension for the injection screen concern. Pi has no built-in fetch tool. The `pi-web-access` package registers `fetch_content`, whose result is a content block array. The extension listens at `tool_result` and appends one advisory text block to that result when the screen flags.
 
-The extension default export is a factory that takes the Pi `ExtensionAPI`. `.pi/extensions/` symlinks to this file, so Pi loads it as an extension.
+The extension default export is a factory that takes the Pi `ExtensionAPI`. `.pi/extensions/` holds the one-line entry file that re-exports it, so Pi loads it as an extension.
 
 ---
 

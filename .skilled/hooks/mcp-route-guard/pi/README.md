@@ -30,4 +30,4 @@ version: 1.0.0.0
 
 - [`../README.md`](../README.md): the concern README with the policy table and the per-runtime matrix.
 - [`../lib/mcp-route-guard.cjs`](../lib/mcp-route-guard.cjs): the shared core this extension imports.
-- [`../../../../.pi/extensions/mcp-route-guard.ts`](../../../../.pi/extensions/mcp-route-guard.ts): the link Pi discovers.
+- [`../../../../.pi/extensions/mcp-route-guard.ts`](../../../../.pi/extensions/mcp-route-guard.ts): the one-line entry file Pi discovers.

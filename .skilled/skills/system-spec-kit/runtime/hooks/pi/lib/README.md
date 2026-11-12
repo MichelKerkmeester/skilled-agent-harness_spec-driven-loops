@@ -17,7 +17,7 @@ trigger_phrases:
 Current state:
 
 - One file, two exported functions, no local state and no runtime-neutral policy of its own.
-- Imported by the session adapters in `../` from this folder, so their specifiers are relative to this folder. The `.pi/extensions/lib/claude-hook-adapter.ts` symlink only serves a checkout whose entries are still symlinks.
+- Imported by the session adapters in `../` from this folder, so their specifiers are relative to this folder. The `.pi/extensions/lib/claude-hook-adapter.ts` symlink is left from the link-based layout, and no entry file loads through it.
 - Consumed by two callers today: `../session-start-context.ts` and `../session-stop-context.ts`.
 
 ---

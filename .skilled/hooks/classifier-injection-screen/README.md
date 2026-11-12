@@ -71,7 +71,7 @@ classifier-injection-screen/
 +-- claude/   classifier-injection-screen-posttooluse.mjs (+ test)
 +-- devin/    classifier-injection-screen-posttooluse.mjs (+ test)
 +-- opencode/ classifier-injection-screen.js (browsability symlink -> ../../../plugins/)
-`-- pi/       classifier-injection-screen.ts (+ test; `.pi/extensions/` symlinks to it)
+`-- pi/       classifier-injection-screen.ts (+ test; `.pi/extensions/` holds a one-line entry file that re-exports it)
 ```
 
 | Runtime | Adapter | Event | Fetch tool | Delivery |
@@ -79,7 +79,7 @@ classifier-injection-screen/
 | Claude Code | `claude/classifier-injection-screen-posttooluse.mjs` | `PostToolUse` | `WebFetch` | `hookSpecificOutput.additionalContext` |
 | Devin | `devin/classifier-injection-screen-posttooluse.mjs` | `PostToolUse`, matcher `^webfetch$` | `webfetch` (the page text rides `tool_response.output`) | `hookSpecificOutput.additionalContext` |
 | OpenCode | `.opencode/plugins/classifier-injection-screen.js` (the hub's `opencode/` entry is a browsability symlink) | `tool.execute.after` + `experimental.chat.system.transform` | `webfetch` | Buffered per session, drained on the next transform — the model call that reads the fetch result |
-| Pi | `pi/classifier-injection-screen.ts` (symlinked from `.pi/extensions/`) | `tool_result` | `fetch_content` (registered by the `pi-web-access` package; Pi has no built-in fetch tool) | Advisory text block appended to the tool result |
+| Pi | `pi/classifier-injection-screen.ts` (re-exported from `.pi/extensions/`) | `tool_result` | `fetch_content` (registered by the `pi-web-access` package; Pi has no built-in fetch tool) | Advisory text block appended to the tool result |
 
 Registration lives in `system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json`, and `sync-hook-registrations.cjs` renders it into each runtime's config. Cursor and Codex stay unregistered: Cursor's `Fetch` post-tool payload carries only `url`, `status_code` and `content_length`, and Codex's hosted `web_search` never crosses a local hook.
 

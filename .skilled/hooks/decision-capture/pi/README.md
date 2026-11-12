@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 `hooks/decision-capture/pi/` holds the Pi extension for the decision capture concern. The extension listens at `tool_result` for the question tools Pi can raise, rebuilds the event as the two session-file lines the Pi sweep reads, and appends the recovered records under the same key.
 
-A second handler runs at `turn_end`. When the session is interactive and `takeNudge` reports waiting answers, it calls `ui.notify` once with the save reminder. `.pi/extensions/` symlinks to the real file under `.skilled/hooks/decision-capture/pi/`.
+A second handler runs at `turn_end`. When the session is interactive and `takeNudge` reports waiting answers, it calls `ui.notify` once with the save reminder. `.pi/extensions/` holds a one-line entry file that re-exports the real file under `.skilled/hooks/decision-capture/pi/`.
 
 ---
 

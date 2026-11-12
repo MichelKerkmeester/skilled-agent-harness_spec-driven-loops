@@ -101,7 +101,7 @@ A failed bind never blocks a session: Devin and Cursor write one stderr line for
 
 Claude and Codex have no goal record to bind and are handled by their own commands.
 
-OpenCode's real plugin cannot live in this tree because its loader globs `.opencode/plugins/` by a flat pattern, so `opencode/opencode-goal.js` is a browsability-only symlink back into that folder and nothing loads through it. Pi loads in the other direction: the real `pi/goal-context.ts` lives here, and `.pi/extensions/` holds the relative symlink Pi discovers.
+OpenCode's real plugin cannot live in this tree because its loader globs `.opencode/plugins/` by a flat pattern, so `opencode/opencode-goal.js` is a browsability-only symlink back into that folder and nothing loads through it. Pi loads in the other direction: the real `pi/goal-context.ts` lives here, and `.pi/extensions/` holds a one-line entry file that re-exports it.
 
 ---
 
@@ -119,7 +119,7 @@ goal/
 |   `-- goal.test.cjs              # CLI binding, privacy, concurrency, legacy action coverage
 +-- cursor/   goal-inject.mjs       # sessionStart-only injection plus the resend reminder
 +-- devin/    goal-inject.mjs       # SessionStart + UserPromptSubmit injection plus the resend reminder
-+-- pi/       goal-context.ts       # Pi native lifecycle + /goal-pi command (real file; `.pi/extensions/` symlinks to it)
++-- pi/       goal-context.ts       # Pi native lifecycle + /goal-pi command (real file; `.pi/extensions/` holds a one-line entry file that re-exports it)
 `-- opencode/ opencode-goal.js      # browsability symlink -> ../../../plugins/opencode-goal.js
 ```
 

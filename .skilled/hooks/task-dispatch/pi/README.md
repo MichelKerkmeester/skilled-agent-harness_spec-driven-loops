@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`pi/` holds the real Pi extension for the Task Dispatch concern, and `.pi/extensions/` links to the same file. Pi wires it to `tool_call` on the `subagent` tool. The extension loads the shared core from its own folder or, through the extension link, from the hook library. Every verdict is advisory here. A reject returns a `reason` and never blocks the call.
+`pi/` holds the real Pi extension for the Task Dispatch concern, and `.pi/extensions/task-dispatch-guard.ts` is a one-line entry file that re-exports it. Pi wires it to `tool_call` on the `subagent` tool. The extension loads the shared core from its own folder, and the long specifier beside it is left from the link-based layout; it resolves only through the test alias. Every verdict is advisory here. A reject returns a `reason` and never blocks the call.
 
 ---
 

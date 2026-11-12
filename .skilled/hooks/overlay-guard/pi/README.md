@@ -30,4 +30,4 @@ version: 1.0.0.0
 
 - [`../README.md`](../README.md): the concern README with the decision table and the per-runtime matrix.
 - [`../lib/overlay-guard.cjs`](../lib/overlay-guard.cjs): the shared core this extension imports.
-- [`../../../../.pi/extensions/overlay-guard.ts`](../../../../.pi/extensions/overlay-guard.ts): the link Pi discovers.
+- [`../../../../.pi/extensions/overlay-guard.ts`](../../../../.pi/extensions/overlay-guard.ts): the one-line entry file Pi discovers.

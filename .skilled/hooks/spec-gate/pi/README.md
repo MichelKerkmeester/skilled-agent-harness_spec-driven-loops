@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`pi/` holds the Pi links for the Spec Gate concern. Both files are relative symlinks to the real extensions in `system-spec-kit/runtime/hooks/pi/`, and `.pi/extensions/` symlinks back to those same files. Pi wires classify to `input` and enforce to `tool_call` on `bash`, `write` and `edit`. Pi is the one runtime that can ask the operator directly, so enforce opens a `ctx.ui.select` dialog at the first undelivered write or edit.
+`pi/` holds the Pi links for the Spec Gate concern. Both files are relative symlinks to the real extensions in `system-spec-kit/runtime/hooks/pi/`, and `.pi/extensions/` holds one-line entry files that re-export those same files. Pi wires classify to `input` and enforce to `tool_call` on `bash`, `write` and `edit`. Pi is the one runtime that can ask the operator directly, so enforce opens a `ctx.ui.select` dialog at the first undelivered write or edit.
 
 ---
 

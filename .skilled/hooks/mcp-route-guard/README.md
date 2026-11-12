@@ -58,7 +58,7 @@ Every runtime evaluates the **same** `lib/mcp-route-guard.cjs` core. What differ
 
 The three CommonJS adapters (`claude`, `codex`, `devin`) share one stdin parser, `../../shared/hook-adapter-shared.cjs`, which collects raw stdin and fail-open-parses the JSON. Cursor deliberately does not reimplement the decision: it reshapes its payload and shells out to the Claude adapter, so a future change to the advisory logic lands in both without a second edit.
 
-Two runtimes are mirrored rather than hosted here. OpenCode's real plugin cannot live in this tree because its loader globs `.opencode/plugins/` by a flat pattern, so `opencode/mcp-route-guard.js` is a browsability-only symlink back into that folder and nothing loads through it. Pi loads in the other direction: the real `pi/mcp-route-guard.ts` lives here, and `.pi/extensions/mcp-route-guard.ts` is the symlink Pi discovers.
+Two runtimes are mirrored rather than hosted here. OpenCode's real plugin cannot live in this tree because its loader globs `.opencode/plugins/` by a flat pattern, so `opencode/mcp-route-guard.js` is a browsability-only symlink back into that folder and nothing loads through it. Pi loads in the other direction: the real `pi/mcp-route-guard.ts` lives here, and `.pi/extensions/mcp-route-guard.ts` is the one-line entry file Pi discovers.
 
 ---
 
@@ -73,7 +73,7 @@ mcp-route-guard/
 +-- codex/    mcp-route-guard.cjs  # Codex hook adapter
 +-- devin/    mcp-route-guard.cjs  # Devin hook adapter
 +-- cursor/   mcp-route-guard.mjs  # beforeMCPExecution adapter (recombines + spawnSync)
-+-- pi/       mcp-route-guard.ts   # Pi tool_call extension (symlinked from .pi/extensions/)
++-- pi/       mcp-route-guard.ts   # Pi tool_call extension (re-exported from .pi/extensions/)
 `-- opencode/ mcp-route-guard.js   # browsability symlink -> .opencode/plugins/mcp-route-guard.js
 ```
 

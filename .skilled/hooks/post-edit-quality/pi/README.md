@@ -30,4 +30,4 @@ version: 1.0.0.0
 
 - [`../README.md`](../README.md): the concern README with the dispatch table and the per-runtime matrix.
 - [`../lib/post-edit-router.cjs`](../lib/post-edit-router.cjs): the shared router this extension imports.
-- [`../../../../.pi/extensions/post-edit-quality.ts`](../../../../.pi/extensions/post-edit-quality.ts): the link Pi discovers.
+- [`../../../../.pi/extensions/post-edit-quality.ts`](../../../../.pi/extensions/post-edit-quality.ts): the one-line entry file Pi discovers.

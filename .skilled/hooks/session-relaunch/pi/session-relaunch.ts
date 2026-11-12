@@ -180,9 +180,9 @@ function asModule<T>(value: unknown): T {
 }
 
 // `../lib/` resolves from this file's own folder, where Pi loads it through its
-// one-line `.pi/extensions/` entry file. The longer specifier resolves only from
-// that folder itself, for a checkout whose entry is still a symlink under a Pi
-// older than 1.5.1. The `as string` assertion keeps the typechecker from
+// one-line `.pi/extensions/` entry file. The longer specifier is left from the
+// link-based layout and resolves only through the hooks vitest alias, in tests.
+// The `as string` assertion keeps the typechecker from
 // resolving either path while transpilers still emit the literal specifier for
 // the module loader.
 function checkedCore(core: CoreModule): CoreModule {
@@ -298,12 +298,12 @@ async function resolveRepoRoot(): Promise<string> {
   return modules.nudge.resolveRepoRoot(process.env);
 }
 
-// The killer script sits beside the lib modules this adapter loads, but `import.meta`
-// cannot anchor it: in a checkout whose entry is still a symlink, a Pi older than
-// 1.5.1 loads this file by the link's path. The extension only runs inside the repository
-// that owns `.pi/`, so walking up from the session cwd reaches the lib directory the
-// dual-base imports resolved. The trailing join falls back to the root the nudge module
-// resolves, which is the repository holding those modules even from an outside cwd.
+// The killer script sits beside the lib modules this adapter loads. It is found by walking
+// up from the session cwd and not from `import.meta`, a choice kept from the link-based
+// layout, where Pi could load this file by a link's path. The extension only runs inside the
+// repository that owns `.pi/`, so walking up from the session cwd reaches the lib directory the
+// dual-base imports resolved. The trailing join falls back to the root the nudge module resolves,
+// which is the repository holding those modules even from an outside cwd.
 async function resolveKillerPath(cwd: string): Promise<string> {
   const fs = asModule<{ existsSync(candidate: string): boolean }>(
     await import('node:fs' as string),
