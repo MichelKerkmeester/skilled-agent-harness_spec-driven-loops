@@ -125,6 +125,7 @@ All commands ran from the repository root on 2026-11-12 with Node v26.13.0.
 1. **The eleven-path list is maintained by hand.** A new gate-critical suite runs only in the report-only step until someone adds it to the job and to the run record. Adding one means re-running the census first and confirming it passes.
 2. **The CI Node version differs from the machine that produced the counts.** CI uses Node 22 and the local run used Node 26.13.0, so the first workflow run is the real confirmation. A suite that fails only on 22 moves to the report-only list by name.
 3. **The report-only step still has no install.** `run-node-tests.mjs` skips the node suites when the dependency trees are absent, so on a fresh runner the two known-failing suites may not run at all. The new job installs its own dependencies; repairing the report-only step belongs to the successor phase.
+4. **The stdin deadline suite is not blocking.** `hook-stdin-deadline.test.mjs` was added to the job after the build and then removed. It writes a payload 800 ms after spawning a hook and expects the hook's 500 ms deadline to have passed, which failed on one of six runner runs with no code change. The job blocks on 12 suites. Making that suite blocking needs a wider margin in the test first.
 <!-- /ANCHOR:limitations -->
 
 ---
