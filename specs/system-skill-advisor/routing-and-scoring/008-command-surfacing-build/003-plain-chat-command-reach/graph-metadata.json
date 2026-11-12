@@ -19,6 +19,7 @@
       "plain chat command reach plan",
       "plain chat command reach tasks",
       "plain chat command reach acceptance criteria",
+      "003-plain-chat-command-reach operator decisions",
       "plain chat command reach implementation summary"
     ],
     "key_topics": [
@@ -42,8 +43,8 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "scratch/after.json",
       ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
       ".skilled/skills/system-spec-kit/command-metadata.json",
       ".skilled/skills/sk-prompt/command-metadata.json",
@@ -57,7 +58,7 @@
       ".skilled/skills/sk-doc/changelog/v2.9.13.0.md",
       ".skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/hub-command-attachment.md",
       "scratch/logs/w8.out",
-      "scratch/routes-with-doctor-phrases.yaml"
+      "scratch/after.json"
     ],
     "entities": [
       {
@@ -85,15 +86,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "after.json",
-        "kind": "config",
-        "path": "scratch/after.json",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -163,9 +164,9 @@
         "source": "derived"
       },
       {
-        "name": "routes-with-doctor-phrases.yaml",
+        "name": "after.json",
         "kind": "config",
-        "path": "scratch/routes-with-doctor-phrases.yaml",
+        "path": "scratch/after.json",
         "source": "derived"
       },
       {
@@ -207,23 +208,25 @@
     ],
     "causal_summary": "The advisor reaches a plain-chat prompt with a skill and never with the command that owns the job",
     "created_at": "2026-11-12T12:27:35Z",
-    "last_save_at": "2026-11-12T17:50:44.233Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-12T18:28:28.782Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2edd667f9bf7b6352fa5b3a9281b97c3d4b0ce21fe6649b138f2b0442ef438ae",
+    "source_fingerprint": "sha256:c09c21890329d51a753cbd31578a2dffdae66b2ff46934410d656c2210fac240",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17fd46a11536c137b53094140c3c4899b7e9071f8779bea3f16e11842a7826fa",
-      "plan.md": "954a1a26907ede0dbdb8a1fe27353fd384bcc161e3be5dd3c515adafd306c956",
-      "tasks.md": "feb73069c19ba7af65c659ccdd4e54166e12de7bad58b71a723ab3ed0416c868",
-      "implementation-summary.md": "b904f1af809ca510bf1fc6a227316d64b62bb68a7344d8e6f1c0620ba6724d8b"
+      "spec.md": "d93785983b4ff2f98dd60ba832ef7052cbfc85f4d7a0810ef98c6a5be858ae97",
+      "plan.md": "f17607412c9ba509e1b3c58fbdbebd829b9bf3db3156edc681e76be153ccdee8",
+      "tasks.md": "c56b32bbd3c759e6a1f5c6165c8f76ed8ba3eaf2eead0ec1c41822c02597dcef",
+      "decision-record.md": "b2f082a63d741c5f000e95246991049115ff5df509533a1eceb58702946e4f53",
+      "implementation-summary.md": "c94b23c5fa2cc664cc2e8a7d3b4bcf6261e2ef696053bdfb089f669b75de8f84"
     },
     "last_active_at": null
   }

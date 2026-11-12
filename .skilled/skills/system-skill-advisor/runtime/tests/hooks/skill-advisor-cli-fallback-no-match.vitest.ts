@@ -151,4 +151,27 @@ describe('skill advisor CLI fallback no-match diagnostics', () => {
     expect(result.status).toBe('ok');
     expect(result.diagnostics).toBeNull();
   });
+
+  it('carries the command a recommendation names through to the hook result', () => {
+    const carried = resultFromCliData({
+      data: {
+        freshness: 'live',
+        recommendations: [
+          { skillId: 'sk-doc', confidence: 0.95, uncertainty: 0.1, command: '/create:readme' },
+          { skillId: 'sk-git', confidence: 0.9, uncertainty: 0.1, command: '   ' },
+          { skillId: 'sk-code', confidence: 0.9, uncertainty: 0.1 },
+        ],
+      } as never,
+      options: OPTIONS,
+      startedAt: 0,
+      now: () => 1,
+    }) as unknown as { recommendations: Array<{ skill: string; command?: string }> };
+
+    const bySkill = new Map(carried.recommendations.map((row) => [row.skill, row]));
+    expect(bySkill.get('sk-doc')?.command).toBe('/create:readme');
+    // A blank command would render an empty prompt, so it is dropped with the key.
+    expect(bySkill.get('sk-git')).toBeDefined();
+    expect('command' in (bySkill.get('sk-git') ?? {})).toBe(false);
+    expect('command' in (bySkill.get('sk-code') ?? {})).toBe(false);
+  });
 });

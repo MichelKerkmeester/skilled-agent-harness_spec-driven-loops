@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.4.4.0
+version: 2.4.5.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -180,7 +180,7 @@ INTENT_SIGNALS = {
     "PLAYBOOK_CONVERSATION": {"weight": 8, "keywords": ["playbook conversation", "multi-turn conversation script", "json conversation", "conversation runner", "run-conversation-scenario"]},
     "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog", "feature inventory", "catalog of features", "features overview", "capabilities", "catalog package", "per-feature files", "source anchors", "root catalog", "capability inventory", "/create:feature-catalog"]},
     "README_CREATION": {"weight": 4, "keywords": ["create a readme", "readme for", "a readme", "front-page overview", "project overview", "getting started doc", "intro doc", "overview doc", "landing doc", "create readme", "readme", "folder readme", "write readme", "readme.md", "code folder readme", "/create:readme"]},
-    "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "version notes", "release summary", "what shipped", "since the last version", "changelog entry", "nested changelog", "packet changelog", "packet-local changelog", "create changelog", "global changelog", "--bump", "--release", "vx.y.z.b", "/create:changelog"]},
+    "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "version notes", "release summary", "what shipped", "since the last version", "changelog entry", "nested changelog", "packet changelog", "packet-local changelog", "create changelog", "global changelog", "vx.y.z.b", "/create:changelog"]},
     "BENCHMARK": {"weight": 4, "keywords": ["create a benchmark", "author a benchmark", "benchmark suite", "benchmark authoring", "behavior benchmark", "benchmark-report.md", "source.md", "mcp-server/benchmarks", "behavior-benchmark.md", "scenario contract", "claude-baseline", "benchmark/readme.md", "run-label folder", "benchmark package", "benchmark fixture", "benchmark profile", "reviewer-prompt fixture", "agent quality dimensions", "new benchmark", "promote benchmark folder", "create benchmark", "behavior_benchmark"]},
     "DIFF": {"weight": 4, "keywords": ["document diff", "doc diff", "diff document", "before and after diff", "before/after diff", "visual document diff", "create diff report", "document before after review", "before after document diff", "document change report", "before and after document", "document before/after review", "before/after document diff", "review document edits", "docx diff", "pdf diff"]},
     "REPO_RULE": {"weight": 4, "keywords": ["repo rule", "repo-rules", "repo rules", "project rule", "repo rule file", "REPO RULES.md", "trigger table", "rule router", "retire a rule", "retire a repo rule", "revise a rule", "revise a repo rule", "add a repo rule", "always-loaded rule", "rule that binds", "create repo rule", "new repo rule", "repo-local rule", "we should always", "stop doing", "add a rule", "/create:repo-rule"]},

@@ -349,8 +349,6 @@
         "packet-local changelog",
         "nested changelog",
         "since the last version",
-        "--bump",
-        "--release",
         "vX.Y.Z.B",
         "/create:changelog"
       ]

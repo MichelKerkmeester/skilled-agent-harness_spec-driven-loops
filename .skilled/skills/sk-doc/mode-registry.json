@@ -344,8 +344,6 @@
         "global changelog",
         "packet-local changelog",
         "nested changelog",
-        "--bump",
-        "--release",
         "vx.y.z.b"
       ],
       "advisorRouting": {

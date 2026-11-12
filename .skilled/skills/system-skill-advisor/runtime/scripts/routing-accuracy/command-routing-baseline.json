@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "fa525f9a3f",
-  "corpusSha256": "sha256:da8feba1fd79d63a67a9df695d7571632531bf70e96913c705f6755d15d53c5a",
+  "capturedAtSha": "b1aee9dee6",
+  "corpusSha256": "sha256:698da57b02159a756dbba5d6a2c9a3c6d14588d07e96be268567835cf36448b8",
   "bridgeCounts": {
     "commandMetadata": 23,
     "allowList": 4,
@@ -23,7 +23,7 @@
     "plain_recall_at_1": {
       "tune": {
         "correct": 2,
-        "total": 44
+        "total": 45
       },
       "holdout": {
         "correct": 0,
@@ -33,7 +33,7 @@
     "plain_reach_top3": {
       "tune": {
         "correct": 3,
-        "total": 44
+        "total": 45
       },
       "holdout": {
         "correct": 0,
@@ -83,7 +83,7 @@
       },
       "plain": {
         "tune": {
-          "rows": 1,
+          "rows": 2,
           "top1": 0,
           "top3": 1
         },
@@ -927,9 +927,16 @@
       "top3": true,
       "offered": true
     },
-    "cmd-create-agent-plain-holdout-01": {
+    "cmd-create-agent-plain-tune-02": {
       "expected_command": "/create:agent",
       "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-create-agent-plain-holdout-01": {
+      "expected_command": "/create:agent",
+      "top": "sk-code",
       "top1": false,
       "top3": false,
       "offered": false
@@ -2145,7 +2152,7 @@
         "own": 2,
         "attached": 7,
         "combined": 9,
-        "total": 44
+        "total": 45
       },
       "holdout": {
         "own": 0,
@@ -2160,7 +2167,7 @@
           "own": 0,
           "attached": 4,
           "combined": 4,
-          "total": 13
+          "total": 14
         },
         "holdout": {
           "own": 0,
@@ -2248,7 +2255,6 @@
       "cmd-create-agent-typed-01"
     ],
     "attachedRows": {
-      "cmd-create-agent-plain-holdout-01": "/create:changelog",
       "cmd-create-benchmark-typed-01": "/create:benchmark",
       "cmd-create-benchmark-plain-tune-01": "/create:benchmark",
       "cmd-create-changelog-typed-01": "/create:changelog",

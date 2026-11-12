@@ -101,7 +101,7 @@ N/A as a fix. The table lists every reader of what this phase changes, because a
 | `.skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` | Fails when a declared doctor phrase reaches neither the top pick nor the first doctor bridge behind it | unchanged code, must exit 0 after each doctor regeneration | T051 |
 | `ADV/tests/doctor-routing-slice.vitest.ts` | Pins the top and second pick of each doctor slice row | unchanged | T051 |
 | `.skilled/commands/doctor/scripts/route-validate.sh` | Validates the manifest schema, including three or more words per phrase | unchanged | T046 to T050 |
-| `AGENTS.md:89` | Names `command-spec-kit` in Gate 4 | not this phase's: phase 005 | `git diff --stat AGENTS.md` prints nothing at close |
+| `AGENTS.md:89` | Names `command-spec-kit` in Gate 4 | not this phase's: phase 006 | `git diff --stat AGENTS.md` prints nothing at close |
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -300,14 +300,14 @@ W1 harness (neutral) ──► W2 attach ──► W3 phrases ──► W4 activ
 
 **Decision**: This phase replaces the three umbrella ids with one row per command and relabels the 17 gold lines that name them, each relabel listed with file, id, old and new value for the operator.
 
-**As built**: four ids were retired, `command-spec-kit`, `memory:save`, `command-memory-save` and `command-prompt-improver`, and their four rows were deleted from `allow-list.json`. The four `/speckit` allow-list rows remain. `scratch/relabel-list.txt` lists 16 `memory:save` labels moved to `command-speckit-save` and 1 `command-spec-kit` label moved to `command-spec-kit-plan`. The pinned numbers read `[159,49,20,5]` before the relabel and `[159,50,20,5]` after it. Removing allow-list rows was placed in phase 004 by the review's L1, so this part of L1 moved forward into this phase.
+**As built**: four ids were retired, `command-spec-kit`, `memory:save`, `command-memory-save` and `command-prompt-improver`, and their four rows were deleted from `allow-list.json`. The four `/speckit` allow-list rows remain. `scratch/relabel-list.txt` lists 16 `memory:save` labels moved to `command-speckit-save` and 1 `command-spec-kit` label moved to `command-spec-kit-plan`. The pinned numbers read `[159,49,20,5]` before the relabel and `[159,50,20,5]` after it. Removing allow-list rows was placed in phase 005 by the review's L1, so this part of L1 moved forward into this phase.
 
 **Consequences**:
 - One live id per command, so the same-owner collapse and the pinned numbers see one candidate per command.
 - One holdout gold label is edited although holdout prompts are otherwise never read. Mitigation: the edit is a mechanical id rename listed in `relabels.tsv`, and the pinned numbers are reported before and after the relabel as two runs.
 
 **Alternatives Rejected**:
-- Keep the umbrella rows beside the new ones until phase 004: leaves two live ids for one command through this phase's measurements.
+- Keep the umbrella rows beside the new ones until phase 005: leaves two live ids for one command through this phase's measurements.
 
 ### ADR-006: Doctor plain-chat reach in this phase
 
@@ -406,7 +406,7 @@ W1 harness (neutral) ──► W2 attach ──► W3 phrases ──► W4 activ
 
 **Context**: Holdout plain reach is 0 of 44. The holdout rows are paraphrases, and command rows match whole phrases only. The semantic lane is live at weight 0.05, both harnesses replace it with a word-overlap stand-in, and commands have no vectors. Packet `specs/system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement`, with five Draft phases, owns that work and scopes command rows out.
 
-**Decision**: Add meaning-based matching as the next step. Where it is built is not yet decided.
+**Decision**: Add meaning-based matching as the next step. On 2026-11-12 the operator placed it in this packet as phase 004, `../004-command-meaning-matching/`, with the later phases renumbered.
 
 **Consequences**:
 - This phase stays In Progress until holdout reach rises.
@@ -450,7 +450,7 @@ W1 harness (neutral) ──► W2 attach ──► W3 phrases ──► W4 activ
 
 **Status**: Accepted. Decided by the operator on 2026-11-12.
 
-**Context**: `AGENTS.md` Gate 4, the root `README.md`, the orchestrate agent and its runtime mirrors and the `/doctor:agents-md` manifest named `command-spec-kit`, which this phase retired. The plan had left `AGENTS.md` to phase 005.
+**Context**: `AGENTS.md` Gate 4, the root `README.md`, the orchestrate agent and its runtime mirrors and the `/doctor:agents-md` manifest named `command-spec-kit`, which this phase retired. The plan had left `AGENTS.md` to phase 006.
 
 **Decision**: Name the deep-loop command rows there instead.
 
@@ -459,7 +459,7 @@ W1 harness (neutral) ──► W2 attach ──► W3 phrases ──► W4 activ
 - This phase now edits `AGENTS.md`, which its scope had excluded, so task T043 is unmet as written.
 
 **Alternatives Rejected**:
-- Wait for phase 005: the files would name a dead id until then.
+- Wait for phase 006: the files would name a dead id until then.
 
 ---
 

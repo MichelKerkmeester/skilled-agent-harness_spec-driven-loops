@@ -37,9 +37,9 @@ A user who describes a job in plain words never gets the slash command that owns
 | **Created** | 2026-11-12 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 6 |
+| **Phase** | 3 of 7 |
 | **Predecessor** | 002-command-inventory-and-risk-metadata |
-| **Successor** | 004-recommendation-contract-and-brief |
+| **Successor** | 004-command-meaning-matching |
 | **Handoff Criteria** | Command recall rises against the phase 1 baseline with no drop in the four existing numbers, and no typed command is ambiguous with its own owner |
 **Status note**: built on 2026-11-12, but plain recall on holdout stayed at 0 of 44, so the exit check is unmet.
 <!-- /ANCHOR:metadata -->
@@ -51,7 +51,7 @@ A user who describes a job in plain words never gets the slash command that owns
 
 This is **Phase 3** of the Build command surfacing in the skill advisor so every tracked slash command reaches the model with a run-or-ask policy and a chat-only request reaches a proper workflow specification.
 
-**Scope Boundary**: Scoring, attachment and measurement only. This phase adds an optional `command` field to a recommendation, phrases for 8 commands, more diagnostic phrases on the doctor routes and the activation and ranking rules that follow from the metadata. It renders nothing new in the brief, which is phase 004, and it does not edit `AGENTS.md`, which is phase 005.
+**Scope Boundary**: Scoring, attachment and measurement only. This phase adds an optional `command` field to a recommendation, phrases for 8 commands, more diagnostic phrases on the doctor routes and the activation and ranking rules that follow from the metadata. It renders nothing new in the brief, which is phase 005, and it does not edit `AGENTS.md`, which is phase 006.
 
 **Dependencies**:
 - Phase 001: `command-prompts.jsonl`, `capture-command-routing-baseline.mjs`, `command-routing-baseline.json` and `tests/command-routing-slice.vitest.ts`.
@@ -129,11 +129,11 @@ Plain recall at 1 is 0 of 44 on both splits and plain top 3 is 1 of 44 on tune a
 - Author more diagnostic phrases per doctor route, standalone command and `/doctor:mcp` sub-action in `.skilled/commands/doctor/_routes.yaml`, as words users type, checked against tune rows only.
 
 ### Out of Scope
-- Any new line or field in the brief - phase 004 owns the output contract and the brief wording.
-- Editing `AGENTS.md`, including `AGENTS.md:89`, which names `command-spec-kit` - phase 005 owns the binding. Superseded in part on 2026-11-12: the operator had the retired id renamed in Gate 4 (plan ADR-015).
+- Any new line or field in the brief - phase 005 owns the output contract and the brief wording.
+- Editing `AGENTS.md`, including `AGENTS.md:89`, which names `command-spec-kit` - phase 006 owns the binding. Superseded in part on 2026-11-12: the operator had the retired id renamed in Gate 4 (plan ADR-015).
 - A penalty on an owner skill to let a doctor route win - the fix for a diagnostic question is a phrase on the route.
 - Changing the hand-written doctor activation entries in `scoring-compatibility.json` - every doctor bridge is already active.
-- Retiring the four `/speckit` allow-list rows and the file - review L1, placed in phase 004. The four umbrella rows were removed in this phase under ADR-005.
+- Retiring the four `/speckit` allow-list rows and the file - review L1, placed in phase 005. The four umbrella rows were removed in this phase under ADR-005.
 - Making the 17 disabled hub rows scoring candidates - part A keeps the owner skill as the scored candidate.
 - Reading any holdout row's prompt - holdout rows are scored, never read, so phrases are checked against tune rows only.
 
@@ -268,7 +268,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Risk | 18/25 | Auth: N, API: Y (a public recommendation field), Breaking: N for the optional field, Y for gold labels under option A |
 | Research | 8/20 | Phrases need tune rows read, and the deep-loop depth wording needs the D3 rows |
 | Multi-Agent | 11/15 | Workstreams: 7, three shared files and every deriver run in sequence |
-| Coordination | 12/15 | Dependencies: phases 001 and 002, the doctor probe and slice, phases 004 and 005 read the result |
+| Coordination | 12/15 | Dependencies: phases 001 and 002, the doctor probe and slice, phases 005 and 006 read the result |
 | **Total** | **69/100** | **Level 3+** |
 
 ---
@@ -335,7 +335,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Stakeholder | Role | Interest | Communication |
 |-------------|------|----------|---------------|
-| Operator | Product | High | The end-of-turn status of each session, and the answers to the three open questions |
+| Operator | Product | High | The end-of-turn status of each session, and the answers to the two open questions |
 | Operator | Engineering | High | `implementation-summary.md` of this phase, with the reach numbers and the relabel list |
 <!-- /ANCHOR:stakeholder-matrix -->
 
@@ -363,7 +363,7 @@ Operator answers: umbrella ids replaced now, doctor plain-chat reach added as wo
 ## 16. OPEN QUESTIONS
 
 - Questions 1 and 2 were answered by the operator on 2026-11-12: replace the umbrella ids now, and bring doctor plain-chat reach into this phase. Both are recorded in `plan.md` as ADR-005 and ADR-006.
-- **5. Where meaning-based matching is built.** The operator answered the holdout gap on 2026-11-12 with "Add meaning-based matching now" (plan ADR-012). It is not started. Packet `specs/system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement` owns the semantic lane and scopes command rows out. Does this phase extend that packet's scope, or does the work happen here?
+- Question 5 was answered by the operator on 2026-11-12: command-level meaning matching is built as phase 004 of this packet, `../004-command-meaning-matching/`, and the later phases moved to 005, 006 and 007.
 - **6. Doctor plain-chat reach after the revert.** Tune-only phrases on the doctor routes moved no doctor row and broke the helper guard (plan ADR-007). What is the next approach, and does it stay in this phase?
 - Question 3, the hook latency budget, was closed on 2026-11-12 by the operator's choice of a top-only route lookup (plan ADR-013). One run measured median 235.04 ms and p95 318.96 ms, against 194.35 ms and 281.15 ms before.
 - **4. The two hand-kept hub rows.** `create:agent` and `create:manual-testing-playbook` are active TypeScript rows today, and their `scoring-compatibility.json` entries carry `keywords` and `intentSignals`, not only `order`. This plan leaves both rows and their entries unchanged, so the compatibility file keeps scored fields for them. Should a later phase disable them once attach covers their commands?

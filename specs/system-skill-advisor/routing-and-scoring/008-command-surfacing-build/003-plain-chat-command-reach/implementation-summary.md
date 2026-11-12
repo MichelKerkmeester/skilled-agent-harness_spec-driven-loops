@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "A plain-chat prompt now reaches its slash command on 9 of 44 tune rows, up from 0, with no new false offer and the four pinned numbers no worse. Holdout reach stayed at 0 of 44 and doctor reach at 0 of 17, so the phase is in progress."
+description: "A plain-chat prompt now reaches its slash command on 9 of 45 tune rows, up from 0, with no new false offer and the four pinned numbers no worse. Holdout reach stayed at 0 of 44 and doctor reach at 0 of 17, so the phase is in progress."
 trigger_phrases:
   - "plain chat command reach implementation summary"
 importance_tier: "normal"
@@ -8,22 +8,31 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach"
-    last_updated_at: "2026-11-12T12:27:36Z"
-    last_updated_by: "template-author"
-    recent_action: "Built and measured the plain-chat command reach phase"
-    next_safe_action: "Decide where meaning-based matching is built, then close the holdout gap"
-    blockers: []
+    last_updated_at: "2026-11-12T18:28:28Z"
+    last_updated_by: "generate-context"
+    recent_action: "Fixed alignment findings and planned phase 004 meaning matching"
+    next_safe_action: "Review the four open questions in phase 004 spec.md"
+    blockers:
+      - "Holdout plain reach 0 of 44"
+      - "Doctor plain-chat reach open"
     key_files:
       - ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
-      - ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs"
-      - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs"
-      - ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
-      - ".skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts"
+      - ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
+      - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json"
+      - ".skilled/skills/sk-doc/hub-router.json"
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-003-plain-chat-command-reach"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "fddcf466-8e1f-44cf-a132-6f846b676c18"
+      workspace: "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research"
+      savedAt: "2026-11-12T18:28:28Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 70
     open_questions: []
     answered_questions: []
 ---
@@ -50,13 +59,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A prompt typed in plain words now reaches its slash command on 9 of 44 tune rows, up from 0. No new false offer appeared, and full corpus top 1 rose from 158 to 159. The paraphrased holdout rows still reach nothing, and the doctor rows reach nothing on either split, so the phase's exit check is not met.
+A prompt typed in plain words now reaches its slash command on 9 of 45 tune rows, up from 0 of 44. No new false offer appeared, and full corpus top 1 rose from 158 to 159. The paraphrased holdout rows still reach nothing, and the doctor rows reach nothing on either split, so the phase's exit check is not met.
 
 ### Phase 3: plain-chat-command-reach
 
 When you ask for a README, a changelog or a chart in your own words, the advisor's `sk-doc` or `sk-design` recommendation now carries the command that runs that mode, such as `/create:readme`. The 7 `/speckit` commands and `/prompt:improve` each have their own scored row with phrases written as users type, so a typed `/speckit:plan` returns its own row and is no longer ambiguous with `system-spec-kit`. The three umbrella ids and the old `/prompt` id are gone, and every command row now has to find one of its own phrases in the prompt before it can pass.
 
-Measured in `scratch/after.json`, own row plus attached reach on tune is 9 of 44: own 2 and attached 7. By family on tune: create 4 of 13, design 3 of 3, prompt 1 of 1, speckit 1 of 7, deep 0 of 3, doctor 0 of 17. Holdout is 0 of 44. Typed recall at 1 went from 19 to 24 of 44, and slash variants reached from 2 to 5 of 8.
+Measured in `command-routing-baseline.json` after today's later fixes, own row plus attached reach on tune is 9 of 45: own 2 and attached 7. Holdout is 0 of 44, and doctor is 0 of 17 on tune. Typed recall at 1 went from 19 to 24 of 44, and slash variants reached from 2 to 5 of 8. The corpus now holds 176 rows: 45 tune, 44 holdout and 87 with no split.
 
 ### Files Changed
 
@@ -128,7 +137,11 @@ The doctor phrases were built, measured and reverted. An independent review then
 | Remove 13 worker-written phrases | They were fragments copied from tune prompts, which would score tune rows and nothing else |
 | Revert the doctor phrases | They moved no doctor row and raised the helper count to 11 against a guard of 7 (plan ADR-007) |
 | Re-pin the tests and both baselines | Approved by the operator on 2026-11-12 (plan ADR-011) |
-| Add meaning-based matching | The operator's answer to the holdout gap. Not started, and its placement is open question 5 (plan ADR-012) |
+| Add meaning-based matching | The operator's answer to the holdout gap. Planned as phase 004 of this packet by operator decision on 2026-11-12, with the later phases renumbered (plan ADR-012) |
+| Remove `--release` and `--bump` from the sk-doc router | The flag keywords matched the bare word `release` and sent an agent request to the changelog mode |
+| Add `persona file` to the sk-doc agent aliases, then remove it again | It attached `/create:agent` to an unrelated prompt, "update the customer persona file for the marketing site". The row `cmd-create-agent-plain-tune-02` now gets no command where it once got the wrong one, and tune combined reach went from 10 to 9 of 45 |
+| Move the holdout row that showed the router bug to the tune split, and have a separate agent author its replacement unseen by the tuner | The row was read during the fix by operator decision, so it could no longer count as unseen |
+| Leave the published v4.0.2.1 release unsynced until merge | Operator decision, 2026-11-12 |
 | Look up the compiled route for the top recommendation only | Operator decision, 2026-11-12. One run measured median 235.04 ms against 251.21 ms with three lookups (plan ADR-013) |
 | `/create:changelog` asks first | Operator decision, 2026-11-12. Its `--release` path pushes a tag and publishes a release (plan ADR-014) |
 | Rename the retired id in `AGENTS.md` Gate 4, the root README, the orchestrate agent and the doctor manifest | Operator decision, 2026-11-12. No instruction file should name an id the scorer no longer has (plan ADR-015) |
@@ -145,10 +158,10 @@ The doctor phrases were built, measured and reverted. An independent review then
 |-------|--------|
 | Harness neutral before scorer changes | PASS for the existing keys: `diff` printed nothing. Attached reach read 7, not 0, because `MODE_COMMANDS` was already filled by a parallel worker |
 | Pinned numbers | `[159,50,20,5]` from `capture-scorer-eval-baseline.mjs` in the final state. Phase 1 had `[158,50,20,5]` |
-| Plain reach, `scratch/after.json` | Tune 9 of 44 (own 2, attached 7). Holdout 0 of 44. Ceiling 44 |
+| Plain reach, `command-routing-baseline.json` | Tune 9 of 45 (own 2, attached 7). Holdout 0 of 44. `scratch/after.json` held 9 of 44 before the router fix |
 | False offers | 0 of 35, attached false offers 0 of 35, no `mns-d3-*` row offered |
 | Typed same-owner ambiguity | 1 row left, `cmd-create-agent-typed-01`. 8 rows mid-build |
-| Wrong attached command | `cmd-create-agent-plain-holdout-01` got `/create:changelog` attached in `scratch/after.json`, against an expected `/create:agent`. No metric counts this, and it was not re-checked after the review fixes |
+| Wrong attached command | Fixed. The sk-doc router matched the flag keywords `--release` and `--bump` against the bare words, so a prompt containing `release` routed to the changelog mode. Both keywords were removed from `sk-doc/hub-router.json` and `sk-doc/mode-registry.json`. A `persona file` alias was added and then removed because it attached `/create:agent` to an unrelated prompt. The moved row `cmd-create-agent-plain-tune-02` now gets no command, and no attached row names a command other than its expected one |
 | Read-only from the class | `/speckit:search` carries `readOnly: true`. The review's prompt `show me which packets mention the token cap` returns no recommendation. FAIL for that proof |
 | `advisor_recommend` on `create a readme for the utils folder` | `sk-doc` with `command` `/create:readme` |
 | Depth gate | `what is caching` attaches nothing, `research caching strategies in depth over several iterations` attaches `/deep:research` |
@@ -158,10 +171,10 @@ The doctor phrases were built, measured and reverted. An independent review then
 | Doctor phrase probe and doctor slice | Probe exits 0 and the slice passes, per the orchestrator |
 | Skill root metadata gate | `checked=14 passed=14 failed=0 fixed=0` |
 | `lib/render.ts` and `AGENTS.md` | Unchanged |
-| Full suite | Final state, per the orchestrator: 165 files, 1,410 passed, 8 skipped, exit 0. Typecheck clean. An earlier run had 1 failure in `tests/skill-advisor-launcher-orphan-reaping.vitest.ts`, which passed 10 of 10 twice alone. Its cause was not traced |
-| Baselines after the review fixes | Re-captured with metrics unchanged: typed 24 of 44, plain tune combined 9 of 44, holdout 0 of 44, false offers 0 of 35 |
+| Full suite | Final state, per the orchestrator: 165 files, 1,411 passed, 8 skipped, exit 0. Typecheck clean. An earlier run had 1 failure in `tests/skill-advisor-launcher-orphan-reaping.vitest.ts`, which passed 10 of 10 twice alone. Its cause was not traced |
+| Baselines after the later fixes | Re-captured: typed 24 of 44, plain tune own 2 of 45, attached 7, combined 9 of 45, holdout 0 of 44, false offers 0 of 35 |
 | Policy rollup | `{"ask":17,"run":7,"start":20}` from `commandPolicies` in the generated file |
-| Acceptance criteria | 21 rows: 11 Met, 10 Unmet. See `acceptance-criteria.md` |
+| Acceptance criteria | 21 rows: 12 Met, 9 Unmet. See `acceptance-criteria.md` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -171,13 +184,13 @@ The doctor phrases were built, measured and reverted. An independent review then
 
 1. **Holdout reach is 0 of 44.** The holdout rows are paraphrases, and a command row matches only a whole phrase. Meaning-based matching is the decided next step and is not started.
 2. **Doctor reach is 0 of 17 on both splits.** Two probes failed on it. The phrase approach did not move it and was reverted. The phrases are kept in `scratch/routes-with-doctor-phrases.yaml`.
-3. **The brief does not print the command.** A recommendation such as `command-prompt-improve` appears as that raw id, and an attached `command` is not shown, until phase 004 renders commands.
+3. **The brief does not print the command.** A recommendation such as `command-prompt-improve` appears as that raw id, and an attached `command` is not shown, until phase 005 renders commands.
 4. **Hook time rose.** With the top-only lookup the median went from 194.35 ms to 235.04 ms on one run on a shared machine.
 5. **`rr-iter3-105` is a recorded routing miss.** The prompt types `/memory:save`, and TypeScript now picks `system-spec-kit`.
-6. **The published v4.0.2.1 release notes are not synced.** The repository file `.skilled/changelog/skilled/v4.0.2.1.md` changed in this build, and the published release was not updated.
-7. **No test passes a stubbed `command` through the hook.** `recommendationFromCli` keeps the field, but only by reading the code.
+6. **The published v4.0.2.1 release notes are not synced.** The repository file `.skilled/changelog/skilled/v4.0.2.1.md` changed in this build. The operator decided on 2026-11-12 to leave the published release unsynced until the merge.
+7. **Holdout reach needs meaning, not more words.** Command-level meaning matching is planned as phase 004, `../004-command-meaning-matching/`.
 8. **Four `/speckit` hand rows remain in the Python activation list.** `command-spec-kit-plan`, `-complete`, `-implement` and `-resume`.
-9. **Meaning-based matching is not started.** Its placement is open question 5.
+9. **Meaning-based matching is not started.** It is planned in `../004-command-meaning-matching/`.
 <!-- /ANCHOR:limitations -->
 
 ---
