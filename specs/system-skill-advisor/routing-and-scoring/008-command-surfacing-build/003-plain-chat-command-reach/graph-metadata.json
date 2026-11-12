@@ -19,8 +19,10 @@
       "plain chat command reach plan",
       "plain chat command reach tasks",
       "plain chat command reach acceptance criteria",
-      "003-plain-chat-command-reach operator decisions",
-      "plain chat command reach implementation summary"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "plain",
@@ -43,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
@@ -57,8 +60,7 @@
       ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.16.0.0.md",
       ".skilled/skills/sk-doc/changelog/v2.9.13.0.md",
       ".skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/hub-command-attachment.md",
-      "scratch/logs/w8.out",
-      "scratch/after.json"
+      "scratch/logs/w8.out"
     ],
     "entities": [
       {
@@ -83,6 +85,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -164,12 +172,6 @@
         "source": "derived"
       },
       {
-        "name": "after.json",
-        "kind": "config",
-        "path": "scratch/after.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,7 +210,7 @@
     ],
     "causal_summary": "The advisor reaches a plain-chat prompt with a skill and never with the command that owns the job",
     "created_at": "2026-11-12T12:27:35Z",
-    "last_save_at": "2026-11-12T20:16:22.519Z",
+    "last_save_at": "2026-11-12T22:05:30.657Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +218,11 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43e4639a3e2ee9f2751aaf5c7674d1fe8a595ff144b01fbd530095052cc073cf",
+    "source_fingerprint": "sha256:7b0ab2657c1384a5405eba2b91b803d5359943c3c44a180b5db37f5947a0e360",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "51874495cc39c219828f049cf1cf08c4c0f63b23f082cc832a49e35fa46b7cc9",

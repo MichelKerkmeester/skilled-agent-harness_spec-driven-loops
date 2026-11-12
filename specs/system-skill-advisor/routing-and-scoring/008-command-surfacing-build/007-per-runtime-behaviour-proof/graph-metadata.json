@@ -17,6 +17,10 @@
       "per runtime behaviour proof plan",
       "per runtime behaviour proof tasks",
       "per runtime behaviour proof acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "per runtime behaviour proof implementation summary"
     ],
     "key_topics": [
@@ -40,6 +44,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/scratch/incident-chat-started-loop.md",
       ".skilled/hooks/shared/session-readers/index.mjs",
@@ -73,6 +78,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -188,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every check this build has so far reads the advisor's output, never the model's behaviour",
     "created_at": "2026-11-12T12:27:38Z",
-    "last_save_at": "2026-11-12T21:54:41.889Z",
+    "last_save_at": "2026-11-12T22:05:01.507Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +211,10 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:12b578339f6c5cb3c97f770f7dc3cd4ddc71b610912cf1651e6c9eb389c0f2f0",
+    "source_fingerprint": "sha256:e41dbbfa5ef24212c48c3b0311206f08e48492b68a28b81d09d7bccc943272d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0fee6d70e999fc270642449e7a72ab000c09668e5ba33a35cbba2be0e979d45d",

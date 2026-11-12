@@ -21,6 +21,10 @@
   "derived": {
     "trigger_phrases": [
       "command surfacing build phase parent spec",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "008-command-surfacing-build operator decisions"
     ],
     "key_topics": [
@@ -29,27 +33,42 @@
       "phase",
       "parent",
       "spec",
-      "008-command-surfacing-build",
-      "operator",
-      "decisions",
-      "repository",
-      "ships",
-      "tracked",
-      "slash"
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "goal.md",
       "decision-record.md",
       ".skilled/commands/doctor/_routes.yaml",
-      ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts"
+      ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      "001-command-routing-baseline-corpus/goal.md",
+      "002-command-inventory-and-risk-metadata/goal.md",
+      "003-plain-chat-command-reach/goal.md",
+      "004-command-meaning-matching/goal.md",
+      "005-recommendation-contract-and-brief/goal.md",
+      "006-gate-2-binding-and-runtime-pointers/goal.md",
+      "007-per-runtime-behaviour-proof/goal.md",
+      "008-embedder-setup-and-cost/goal.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -107,6 +126,42 @@
         "source": "derived"
       },
       {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "each",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -135,24 +190,19 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-12T20:58:41.856Z",
+    "last_save_at": "2026-11-12T22:06:02.470Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:81b0e452e88e2356561f4d9fed83626031576187d1e2d974e2940657e22d68a8",
+    "source_fingerprint": "sha256:c95cf92c81edff23237c0408c41fc4a1793e5eb1fc94f935c6a885e8ed8f3c78",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f47b0d41bc9a7b2fffb046dfc348df976161d3876416a4ef1ebddd93955be6b",
