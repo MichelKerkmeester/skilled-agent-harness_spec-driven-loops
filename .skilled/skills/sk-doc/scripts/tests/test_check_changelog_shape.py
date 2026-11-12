@@ -57,10 +57,10 @@ def test_the_model_entry_passes_every_rule():
     assert notes == []
 
 
-def test_file_total_fails_one_line_past_240():
+def test_file_total_fails_one_line_past_280():
     base = expanded()
-    at_ceiling = base + "Filler line.\n" * (240 - body_lines(base))
-    assert body_lines(at_ceiling) == 240
+    at_ceiling = base + "Filler line.\n" * (280 - body_lines(base))
+    assert body_lines(at_ceiling) == 280
     assert rules(at_ceiling) == []
     assert rules(at_ceiling + "One more.\n") == ["file-total"]
 
@@ -70,15 +70,15 @@ def test_a_compact_entry_has_no_file_total_or_h4_rule():
     assert rules(compact + "Filler line.\n" * 300) == []
 
 
-def test_h4_items_fail_past_26():
-    assert rules(expanded(sections=[("Alpha", 13), ("Beta", 13)])) == []
-    assert rules(expanded(sections=[("Alpha", 14), ("Beta", 13)])) == ["h4-items"]
+def test_h4_items_fail_past_32():
+    assert rules(expanded(sections=[("Alpha", 16), ("Beta", 16)])) == []
+    assert rules(expanded(sections=[("Alpha", 17), ("Beta", 16)])) == ["h4-items"]
 
 
-def test_glance_bullets_fail_past_12():
-    bullets = [f"- **Gain {n}.** It helps." for n in range(12)]
+def test_glance_bullets_fail_past_14():
+    bullets = [f"- **Gain {n}.** It helps." for n in range(14)]
     assert rules(expanded(glance=bullets)) == []
-    assert rules(expanded(glance=bullets + ["- **Gain 13.** It helps."])) == ["glance-bullets"]
+    assert rules(expanded(glance=bullets + ["- **Gain 15.** It helps."])) == ["glance-bullets"]
 
 
 def test_glance_order_follows_the_tagged_sections():
