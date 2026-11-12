@@ -100,8 +100,8 @@ Trigger: the FIRST write of the session, in any repository whose root holds a `R
 
 #### GATE 6: REPLY RULES LOAD [HARD] BLOCK
 Trigger: before EVERY substantive reply, read-only turns included, since Gate 5 fires only on a write.
-1. LOAD `communication.md` and `communication-prose.md` from `.skilled/repo-rules/`.
-2. Also LOAD `communication-decisions.md` before a recommendation or long stretch, `communication-handoff.md` before ending a turn, and `answer-the-actual-request.md` before warning about, narrowing, declining or pricing a request.
+1. LOAD `communication.md` from `.skilled/repo-rules/`.
+2. Also LOAD `communication-handoff.md` before ending a turn.
 - A file already in context is not re-read.
 
 #### CONSOLIDATED QUESTION PROTOCOL

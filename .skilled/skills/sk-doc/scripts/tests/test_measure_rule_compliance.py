@@ -18,7 +18,6 @@ spec.loader.exec_module(mrc)
 LONG = "This reply is long enough to count as substantive prose for the analyzer. " * 7
 RULE_HEADINGS = {
     "communication.md": "# Rule: Communication",
-    "communication-prose.md": "# Rule: Communication prose",
     "scope-discipline.md": "# Rule: Scope discipline",
 }
 
@@ -144,7 +143,6 @@ def test_reply_rule_miss_is_scoped_to_the_compaction_window(tmp_path: Path) -> N
     cwd = str(repo)
     write_jsonl(tmp_path / "claude" / "s1.jsonl", [
         tool(0, "Read", {"file_path": str(repo / ".skilled/repo-rules/communication.md")}, cwd),
-        tool(1, "Read", {"file_path": str(repo / ".skilled/repo-rules/communication-prose.md")}, cwd),
         reply(2, LONG),
         boundary(3),
         reply(4, LONG),

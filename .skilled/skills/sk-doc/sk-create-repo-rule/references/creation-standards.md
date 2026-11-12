@@ -10,7 +10,7 @@ trigger_phrases:
   - "reviewing a draft rule"
 importance_tier: important
 contextType: reference
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # Creation Standards: Is This Rule Worth Loading?
@@ -133,8 +133,7 @@ the examples below are rules whose surface reading permits *less* work:
 |------|---------------------------|
 | `prevent-overengineering.md` | "build less" becoming licence to under-deliver frozen scope |
 | `delegation-and-orchestration.md` | "orchestrate it" becoming licence to delegate everything |
-| `communication.md` | "match length to the question" becoming licence to omit what the reader needs |
-| `communication-decisions.md` | "verdict first" becoming licence to reason less before writing |
+| `communication.md` | "match length to the question" becoming licence to omit what the reader needs, and "verdict first" becoming licence to reason less before writing |
 | `communication-handoff.md` | "name what is left" becoming licence to ask more, or to hand back your own unfinished work |
 
 Rules without one are rules that only ever demand *more* rigour — nobody misreads

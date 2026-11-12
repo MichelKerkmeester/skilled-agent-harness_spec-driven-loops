@@ -447,7 +447,7 @@ TypeScript sources compile to `.skilled/skills/system-spec-kit/runtime/cli/dist/
 
 #### Gate System
 
-Six mandatory gates run before acting. Gates 1 to 5 run before any file change, and Gate 6 runs before every substantive reply, read-only turns included. Gates 5 and 6 load the 13 rule files in `.skilled/repo-rules/`: `REPO RULES.md` routes the write rules, and Gate 6 names the five reply rules. Four more rules sit under the post-execution gates: final-state verification, completion verification, the memory save rule and the always-on goal posture rule.
+Six mandatory gates run before acting. Gates 1 to 5 run before any file change, and Gate 6 runs before every substantive reply, read-only turns included. Gates 5 and 6 load the 10 rule files in `.skilled/repo-rules/`: `REPO RULES.md` routes the write rules, and Gate 6 names the two reply rules. Four more rules sit under the post-execution gates: final-state verification, completion verification, the memory save rule and the always-on goal posture rule.
 
 ```
   User message arrives

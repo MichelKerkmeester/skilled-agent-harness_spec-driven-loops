@@ -7,7 +7,8 @@
     "agents-md/repo-rule-operations/001-turn-closeout-next-steps",
     "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing",
     "agents-md/repo-rule-operations/003-communication-rules-consolidation",
-    "agents-md/repo-rule-operations/004-router-file-rule-alignment"
+    "agents-md/repo-rule-operations/004-router-file-rule-alignment",
+    "agents-md/repo-rule-operations/005-reply-rule-pruning"
   ],
   "manual": {
     "depends_on": [],

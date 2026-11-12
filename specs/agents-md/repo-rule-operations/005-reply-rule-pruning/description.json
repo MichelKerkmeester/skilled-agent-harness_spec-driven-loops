@@ -1,0 +1,25 @@
+{
+  "specFolder": "agents-md/repo-rule-operations/005-reply-rule-pruning",
+  "description": "Retire three low-value reply rules and fold their unique clauses into the surviving rules",
+  "keywords": [
+    "retire",
+    "three",
+    "low-value",
+    "reply",
+    "rules",
+    "fold",
+    "unique",
+    "clauses",
+    "surviving"
+  ],
+  "lastUpdated": "2026-11-12T07:38:04.817Z",
+  "specId": "005",
+  "folderSlug": "reply-rule-pruning",
+  "parentChain": [
+    "agents-md",
+    "repo-rule-operations"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

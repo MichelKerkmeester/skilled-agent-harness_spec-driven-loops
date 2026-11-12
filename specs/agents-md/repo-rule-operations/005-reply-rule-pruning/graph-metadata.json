@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/repo-rule-operations/005-reply-rule-pruning",
+  "spec_folder": "agents-md/repo-rule-operations/005-reply-rule-pruning",
+  "parent_id": "agents-md/repo-rule-operations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reply rule pruning",
+      "retire three low value reply rules and fold",
+      "reply rule pruning plan",
+      "reply rule pruning tasks",
+      "reply rule pruning implementation summary"
+    ],
+    "key_topics": [
+      "reply",
+      "rule",
+      "pruning",
+      "retire",
+      "three",
+      "low",
+      "value",
+      "rules",
+      "fold",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/repo-rules/communication.md",
+      ".skilled/repo-rules/uncertainty-and-honesty.md",
+      ".skilled/repo-rules/communication-handoff.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_rule_experiment.py",
+      ".skilled/commands/doctor/assets/agents-md-manifest.json",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/card-generator-sync.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/card-arm-run.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/experiment-environment-build.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+      "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/007-table-wording-experiment/experiment/arms.json",
+      "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/008-gate5-card-pilot/experiment/arms.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "uncertainty-and-honesty.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/uncertainty-and-honesty.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-handoff.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "measure-rule-compliance.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py",
+        "source": "derived"
+      },
+      {
+        "name": "rule-experiment.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_measure_rule_compliance.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_rule_experiment.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_rule_experiment.py",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "creation-standards.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "card-generator-sync.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/card-generator-sync.md",
+        "source": "derived"
+      },
+      {
+        "name": "card-arm-run.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/card-arm-run.md",
+        "source": "derived"
+      },
+      {
+        "name": "experiment-environment-build.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/experiment-environment-build.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "arms.json",
+        "kind": "config",
+        "path": "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/007-table-wording-experiment/experiment/arms.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Gate 6 in `AGENTS.md` named five reply rules, and a session that followed it read all five around its replies",
+    "created_at": "2026-11-12T07:38:04Z",
+    "last_save_at": "2026-11-12T07:55:03.399Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:45b9230937dbb4acca8d5d79fc4e8697fbfa251b43135d5608128d21a51e6c37",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "80e43a7db93ece620269752e510c336fcfc37cca7e324e43b3de4d7528031f27",
+      "plan.md": "5a8b08f0b110b35cfde0dd3e8d85edd63fb094a03be2ec9b130a0c3e2731fdc9",
+      "tasks.md": "f6774e1207cb84df19d2ed9d7b2d5ad1fb7d5ddc1ebe9a37a43f56cde4332863",
+      "implementation-summary.md": "dc486d8ed57d17dada1a667d43633b02433fe551bf20b9db2bac769002c8c3c8"
+    },
+    "last_active_at": null
+  }
+}

@@ -21,9 +21,11 @@ trigger_phrases:
   - "made up a path"
   - "settled stays settled"
   - "reopen a settled conclusion"
+  - "invented restriction"
+  - "policy that does not exist"
 importance_tier: important
 contextType: reference
-version: 1.0.1.5
+version: 1.0.1.6
 ---
 
 # Rule: Uncertainty and honest reporting
@@ -39,6 +41,7 @@ version: 1.0.1.5
 - The operator asserts something you believe is wrong.
 - Two things that must both be true are not.
 - About to change a checked answer after pushback or doubt, or drop an approach before it concludes.
+- About to cite a rule, restriction, policy, limit or permission, or to decline a request.
 
 ## The rule
 
@@ -74,6 +77,11 @@ Write `UNKNOWN: <what you don't know>` and add what would resolve it.
 Verify a thing exists before relying on it. When working from recollection rather than
 the file in front of you, say which. Flag a claim shakier than the prose around it
 inline: `I'M UNCERTAIN ABOUT THIS: ...`
+
+**Never cite a rule, restriction, policy, limit or permission you cannot point to.** A
+restriction that changes shape or disappears under pushback was never one: withdraw it and
+give the real reason. Declining is a legitimate answer, and it is honest only when it names
+that real reason.
 
 **Check a fast-moving name live.** Model ids, CLI flags and tool versions change within
 weeks. Before naming one as current, check the live tool: its model list, `--help` or
@@ -159,4 +167,5 @@ flip under pressure and settled steps get re-checked until a correct result is t
 - [ ] Every hedge I wrote changes what the reader should do next.
 - [ ] Where I did not know, I wrote UNKNOWN with what would resolve it, rather than a plausible fill.
 - [ ] A correction to my own earlier claim was stated once and plainly, without a retraction narrative.
+- [ ] Every rule, restriction or policy I cited points to its source, and a decline carries its real reason.
 - [ ] Anything I reopened had a named reason, and nothing flipped on pushback or doubt alone.

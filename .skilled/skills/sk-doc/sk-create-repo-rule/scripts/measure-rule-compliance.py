@@ -10,7 +10,7 @@ Reads Claude Code and Codex session transcripts (JSONL) and reports, per runtime
 delivery receipts by channel and compaction window, the Gate 5 miss rate (a
 non-exempt write with no REPO RULES.md delivery earlier in its window), the reply
 rule miss rate (the first substantive reply of a window without communication.md
-and communication-prose.md delivered in that window), and five reply prohibitions
+delivered in that window), and five reply prohibitions
 split by whether their rule was delivered, by the rule's git blob version, and,
 for tables, by whether a table was asked for. Every rate carries its denominator
 and a Wilson 95% interval.
@@ -55,7 +55,7 @@ from typing import Dict, Iterator, List, Optional, Tuple
 
 MIN_REPLY_CHARS = 400
 INDEX_RULE = "REPO RULES.md"
-REPLY_RULES = ("communication.md", "communication-prose.md")
+REPLY_RULES = ("communication.md",)
 CHANNELS = ("read", "shell", "other", "inject")
 DEFAULT_CHANNELS = ("read", "shell", "inject")
 DECAY_BUCKETS = [(1, 3), (4, 10), (11, 30), (31, 10**9)]
@@ -89,8 +89,8 @@ CHECKS = {
     "table": ("communication.md", lambda t, p: bool(TABLE.search(t))),
     "empty_opener": ("communication.md", lambda t, p: bool(OPENER.search(t))),
     "label_first_line": ("communication.md", lambda t, p: bool(LABEL_FIRST_LINE.match(first_line(t)))),
-    "em_dash": ("communication-prose.md", lambda t, p: "—" in p),
-    "semicolon": ("communication-prose.md", lambda t, p: ";" in p),
+    "em_dash": ("communication.md", lambda t, p: "—" in p),
+    "semicolon": ("communication.md", lambda t, p: ";" in p),
 }
 
 # ───────────────────────────────────────────────────────────────

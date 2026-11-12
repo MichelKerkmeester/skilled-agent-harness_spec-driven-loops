@@ -1,7 +1,7 @@
 ---
 title: "create-repo-rule: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the create-repo-rule sk-doc workflow packet."
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # create-repo-rule: Manual Testing Playbook
@@ -400,9 +400,9 @@ Verify that every experiment arm builds as its own git repository, passes the co
 #### Scenario Contract
 Prompt: `Build the table wording and card pilot experiment environments in a temp directory and check that every arm is a sound test bed before we spend executor runs on it.`
 
-Deterministic and executor-free. The `cards` arm fails check 2 alone by design, because its trigger rows point at cards. An arms edit whose find text matches twice must abort the build with `found 2`.
+Deterministic and executor-free. All four arms pass the corpus checker, the `cards` arm with a card sync count. An arms edit whose find text matches twice must abort the build with `found 2`.
 
-Desired user-visible outcome: the operator knows the arms are fit to run and that the one checker failure is designed.
+Desired user-visible outcome: the operator knows the arms are fit to run.
 
 #### Test Execution
 > **Feature File:** [RRX-001](rule-loading-experiments/experiment-environment-build.md)
@@ -431,7 +431,7 @@ Desired user-visible outcome: the harness is shown to produce every number the d
 ### RRX-003 | Card arm run
 
 #### Description
-Verify that write tasks against the full-rule and card arms report Gate 5 miss, reply-rule miss, card fallback rate and mean delivered rule bytes, and that the resident-card arm stays dropped because it would exceed the instruction byte budget.
+Verify that write tasks against the full-rule and card arms report Gate 5 miss, reply-rule miss, card fallback rate and mean delivered rule bytes, and that the byte total of `AGENTS.md` plus the reply cards is compared with the instruction byte budget that dropped the resident-card arm.
 
 #### Scenario Contract
 Prompt: `Run a few write tasks against the full and cards arms and tell me the Gate 5 miss, reply-rule miss, card fallback and rule bytes for each arm.`

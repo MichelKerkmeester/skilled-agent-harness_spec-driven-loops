@@ -40,7 +40,6 @@ def test_devin_reply_after_reading_the_rule_scores_table_and_delivery(tmp_path: 
     rules = f"{run_dir}/.skilled/repo-rules"
     export = devin_export(tmp_path / "t.json", run_dir, [
         read_step(f"{rules}/communication.md"),
-        read_step(f"{rules}/communication-prose.md"),
         {"source": "agent", "message": TABLE_REPLY},
     ])
     record = {"exit": 0, "transcript": export, "run_dir": run_dir, "executor": "deepseek", "asked_table": False}
