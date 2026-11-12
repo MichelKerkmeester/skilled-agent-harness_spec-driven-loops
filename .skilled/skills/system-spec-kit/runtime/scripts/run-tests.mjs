@@ -3,7 +3,7 @@
 // ║ MODULE: Test Runner — bounded Vitest test invocations                    ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 // Route `npm test -- --run ...` to the requested Vitest lane without running the full core suite first.
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const args = process.argv.slice(2);
@@ -97,6 +97,43 @@ function run(command, commandArgs) {
   return result.status ?? 1;
 }
 
+function runLane(script) {
+  const startedAt = Date.now();
+  return new Promise((resolve) => {
+    const child = spawn('python3', [
+      '-c',
+      PROCESS_GROUP_RUNNER,
+      String(testRunTimeoutMs),
+      'npm',
+      'run',
+      script,
+    ], {
+      stdio: ['ignore', 'pipe', 'pipe'],
+      shell: false,
+    });
+    const chunks = [];
+    child.stdout.on('data', (chunk) => chunks.push(chunk));
+    child.stderr.on('data', (chunk) => chunks.push(chunk));
+    child.on('error', (error) => {
+      console.error(`[test-bound] failed to start ${script}: ${error.message}`);
+      resolve(1);
+    });
+    child.on('close', (code) => {
+      const status = code ?? 1;
+      const elapsedMs = Date.now() - startedAt;
+      process.stdout.write(`\n[test-bound] ${script} output follows\n`);
+      process.stdout.write(Buffer.concat(chunks));
+      console.error(
+        status === 0
+          ? `[test-bound] ${script} completed in ${elapsedMs}ms; `
+            + `bound ${testRunTimeoutMs}ms; margin ${testRunTimeoutMs - elapsedMs}ms`
+          : `[test-bound] ${script} exited ${status} after ${elapsedMs}ms`,
+      );
+      resolve(status);
+    });
+  });
+}
+
 const selectedLane = laneSelectors.get(args[0]);
 if (selectedLane) {
   process.exit(run(vitestBin, [...selectedLane, ...args.slice(1)]));
@@ -106,15 +143,12 @@ if (args.length > 0) {
   process.exit(run(vitestBin, args));
 }
 
-let status = run('npm', ['run', 'test:core']);
-if (status !== 0) {
-  process.exit(status);
-}
-
-status = run('npm', ['run', 'test:cli']);
-if (status !== 0) {
-  process.exit(status);
-}
-
-status = run('npm', ['run', 'test:spec-validation']);
-process.exit(status);
+// The three lanes share no state, so they start together and the wait is the
+// slowest lane instead of the sum. Each keeps its own bound. A lane's output is
+// held and printed as one block when it ends, so a failure reads in one piece.
+const statuses = await Promise.all([
+  runLane('test:core'),
+  runLane('test:cli'),
+  runLane('test:spec-validation'),
+]);
+process.exit(statuses.find((status) => status !== 0) ?? 0);

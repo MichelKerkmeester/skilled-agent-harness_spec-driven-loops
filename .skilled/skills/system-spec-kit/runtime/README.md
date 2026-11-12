@@ -207,7 +207,7 @@ Main flow, validation:
 | `hooks/<runtime>/*.mjs`, `hooks/<runtime>/*.cjs` | Hook scripts | Directly-runnable adapters with no build step. |
 | `scripts/finalize-dist.mjs` | Script | Post-build step that records freshness entries and prunes stale dist roots. |
 | `npm run build` | Command | Runs the freshness prepare step, `tsc --build`, then `finalize-dist.mjs`. |
-| `npm test` | Command | Runs the bounded Vitest runner in `scripts/run-tests.mjs`. |
+| `npm test` | Command | Runs the bounded Vitest runner in `scripts/run-tests.mjs`, which starts the core, cli and spec-validation lanes together and prints each lane's output as one block when it ends. |
 
 ---
 

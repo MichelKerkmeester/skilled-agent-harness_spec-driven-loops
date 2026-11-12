@@ -16,6 +16,8 @@ This folder contains the executable test surface for the runtime. The suites cov
 
 The tests document contracts through assertions. They do not define a separate public runtime API.
 
+Every test run skips the flush to disk. The setup file `_support/skip-fsync.ts` replaces `fsyncSync` and `fdatasyncSync` with no-ops in the test worker and in any `node` child a test spawns, because durable writes were most of the suite's run time and no test can observe durability. Writes and renames still happen. Remove that setup line from `vitest.config.ts` to run against real fsync.
+
 ---
 
 ## 2. DIRECTORY TREE

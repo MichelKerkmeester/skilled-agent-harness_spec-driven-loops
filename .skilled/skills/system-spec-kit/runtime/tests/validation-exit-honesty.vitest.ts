@@ -17,7 +17,12 @@ const validateScript = path.join(cliRoot, 'spec', 'validate.sh');
 const placeholderScript = path.join(cliRoot, 'spec', 'check-placeholders.sh');
 const sourceTagsRule = path.join(cliRoot, 'rules', 'check-source-tags.sh');
 const roots: string[] = [];
-const validateProbe = spawnSync('bash', [validateScript, os.tmpdir()], { encoding: 'utf8' });
+// The probe reads only the stale-build message, so it validates an empty folder.
+// The shared temp folder can hold tens of thousands of leftover entries, and
+// validating it at import time held the whole lane open for minutes.
+const probeRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'validation-exit-honesty-probe-'));
+const validateProbe = spawnSync('bash', [validateScript, probeRoot], { encoding: 'utf8' });
+fs.rmSync(probeRoot, { recursive: true, force: true });
 const compiledValidationIsFresh = !validateProbe.stderr.includes('compiled validation orchestrator is stale');
 
 function packet(files: Record<string, string>): string {
