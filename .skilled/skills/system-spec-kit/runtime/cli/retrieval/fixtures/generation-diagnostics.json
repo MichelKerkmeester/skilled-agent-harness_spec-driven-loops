@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 6690,
-    "ok": 17815,
+    "missing-frontmatter": 6692,
+    "ok": 17816,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26134,
+  "documentsScanned": 26137,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "1c639d5a307866575525eb015adab54bd00d1833988d965d0c149d1748263368",
+  "manifestHash": "656c0be728a0b08a70a63f0e5fafe7a21008740978684bf515443fe570ce3c8e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42319,
+      "ok": 42323,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -32677,6 +32677,18 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/stale-lock-takeover.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/stale-root-file-fails-status.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-audit-lists-unowned-drift.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {

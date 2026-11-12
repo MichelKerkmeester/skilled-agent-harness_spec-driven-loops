@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1c639d5a307866575525eb015adab54bd00d1833988d965d0c149d1748263368",
+  "manifestHash": "656c0be728a0b08a70a63f0e5fafe7a21008740978684bf515443fe570ce3c8e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -77026,6 +77026,9 @@
     "overlay guard test": [
       "overlay guard test"
     ],
+    "overlay lock takeover": [
+      "overlay lock takeover"
+    ],
     "overlay owned file": [
       "overlay owned file"
     ],
@@ -77061,6 +77064,9 @@
     ],
     "overlay replaced subtree repin tasks": [
       "overlay replaced subtree repin tasks"
+    ],
+    "overlay status audit and relayout": [
+      "overlay status audit and relayout"
     ],
     "overlay sync repin failure modes": [
       "overlay sync repin failure modes"
@@ -118058,6 +118064,9 @@
     "system skilled doctor 1 1 5 0": [
       "system-skilled-doctor 1.1.5.0"
     ],
+    "system skilled doctor 1 1 6 0": [
+      "system-skilled-doctor 1.1.6.0"
+    ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
     ],
@@ -118111,6 +118120,9 @@
     ],
     "system skilled doctor v1 1 5 0": [
       "system-skilled-doctor v1.1.5.0"
+    ],
+    "system skilled doctor v1 1 6 0": [
+      "system-skilled-doctor v1.1.6.0"
     ],
     "system spec gate": [
       "system-spec-gate"
