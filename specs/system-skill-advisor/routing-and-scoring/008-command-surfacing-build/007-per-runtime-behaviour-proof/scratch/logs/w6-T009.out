@@ -1,0 +1,22 @@
+T009 complete.
+
+## Files written
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs` — added section `9. LOOP INIT` with exported `loopInit(events, command)` plus its helpers (`shellText`, `writePath`, `markerAt`, `earliest`, `precedes`, `offsetIn`, `pathOffset`, `deepLoopInit`, `completeLoopInit`, `isDeepLoop`, `isSpecComplete`), and renumbered the following section dividers (SESSION SCORING → 10, SUMMARY → 11, RUN → 12). No other file touched.
+
+Semantics implemented:
+- `/deep:research`, `/deep:review` → init is a `loop-lock.cjs acquire` call; a `fanout-run.cjs` call or a write under a `research/`/`review/` path segment before that acquire is `false`. A `loop-lock` call of any subcommand, a fanout call, or a loop-folder write counts as the loop having started; with no such evidence the answer is `null`.
+- `/speckit:complete` → init is a `create.sh` call or a `specs/**/spec.md` write; a write outside `specs/` before either is `false`. Any write or scaffold call counts as started; nothing at all is `null`.
+- Ordering is `(event seq, offset inside the shell command)`, so a compound shell that acquires then fans out reads `true` and the reverse order reads `false`. A redirected shell keeps its command, so a fanout that also logs to a file is still seen. Windows separators are normalized.
+
+## Verify output
+```
+$ node -e "import('./.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs').then(m => console.log(typeof m.loopInit))"
+function
+exit=0
+```
+Also `node --check` on the file passes and the existing exports still resolve: `commandLines followedBeforeWrite loopInit normalize startState`. I additionally ran 19 ad-hoc behavioural cases (acquire/write and write/acquire orders, missing acquire, no loop at all, `review-archive` sibling folder, absolute and backslash paths, redirect fanout, `create.sh`/`src` orders, `spec.md`-first, compound-shell orders) — all matched the expected `true`/`false`/`null`.
+
+## Notes / could not do
+- The dispatch note maps `$S` to the packet's `scratch/` folder, but that folder is `$X` in this packet's notation block; `$S` is `$ADV/scripts/routing-accuracy/score-command-transcripts.mjs`, and the Verify command imports a module from it (a directory import of `scratch/` could only throw). I followed the packet's notation and the command that actually imports code.
+- `plan.md` not read: T009's line does not point at it.
+- `tasks.md` checkbox left unticked as instructed. No test file written: `$ADV/tests/command-transcript-score.vitest.ts` belongs to T015, which does not exist yet, so the ad-hoc cases above are the only behavioural evidence.

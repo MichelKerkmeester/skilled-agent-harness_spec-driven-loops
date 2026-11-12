@@ -8,17 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof"
-    last_updated_at: "2026-11-12T21:30:00Z"
-    last_updated_by: "markdown-planner"
-    recent_action: "Planned the phase at Level 2"
-    next_safe_action: "Run tasks T001 to T015 and T022, then the pre-change arm T023 to T028"
+    last_updated_at: "2026-11-12T20:58:41Z"
+    last_updated_by: "generate-context"
+    recent_action: "Planned phases 005 to 008 and started the phase 007 harness build"
+    next_safe_action: "Run the smoke run and the before arm once the scorer and runner are built"
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/tasks.md"
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md"
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-007-per-runtime-behaviour-proof"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "fddcf466-8e1f-44cf-a132-6f846b676c18"
+      workspace: "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research"
+      savedAt: "2026-11-12T20:58:41Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 5
     open_questions: []
     answered_questions: []
 ---

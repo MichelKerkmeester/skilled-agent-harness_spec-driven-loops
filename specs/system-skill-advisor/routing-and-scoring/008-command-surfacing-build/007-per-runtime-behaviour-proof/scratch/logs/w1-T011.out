@@ -1,0 +1,26 @@
+T011 done.
+
+## Files written
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs` (new, the only file I touched; `R` in the task notation)
+
+Contents: a `RUNTIMES` table with one argv builder per runtime from plan §3 and each `cli-*/SKILL.md` default — claude (`-p --model claude-sonnet-5-5 --output-format stream-json --verbose`, prompt in argv), codex (`exec --json --model gpt-6-luna -c model_reasoning_effort=medium -c service_tier=fast -c approval_policy=never --sandbox workspace-write -`, prompt on stdin), opencode (`run --model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json --dir <root>`), pi (`-p --offline --model llmgateway/deepseek-v4.1-flash-1017`), devin (`-p --model swe-2-max --permission-mode dangerous -- <prompt>`), dsh (`--profile headless`, the three `.dsh/patches` route/lineage/guards patches, `--json --session-id <id> --permission-mode workspace-write --approval-policy never -`, prompt on stdin), plus cursor recorded as not measured. Caps: `chat: 300_000`, `started: 900_000` behind `SET_TIMEOUT_MS`/`capForSet`. Unattended tool approval is pre-set inside each builder (a permission stall would read downstream as a model that chose not to write). Interface: `--print-argv <runtime>` prints the argv as a JSON array, exit 2 for an unmeasured or unknown runtime, a missing value, or an unknown option.
+
+## Verify output
+
+```
+$ node $R --print-argv claude
+["-p","sample prompt for argv inspection","--model","claude-sonnet-5-5","--output-format","stream-json","--verbose","--permission-mode","bypassPermissions"]
+holds -p and stream-json: true
+claude exit: 0
+
+$ node $R --print-argv cursor
+run-command-behaviour.mjs: runtime cursor is not measured: its session reader is gated, so no produced transcript can be scored
+cursor exit: 2
+```
+
+Also checked: `node --check` clean; all six measured runtimes build without throwing; prompt asserted absent from argv for the two stdin runtimes; `hermes`, bare `--print-argv`, `--bogus` and no-arg all exit 2. `git status` shows only my new file plus other workers' changes.
+
+## Not done (out of scope by the task line)
+- No `--dry-run`/`--out`/worktree guard (T012), no `--set chat|g2`/`--list` (T013), no locator capture (T014), no README (T016).
+- `capForSet` is consumed by T012, not by `--print-argv`, so it is currently unreferenced at runtime.
+- Checkbox in `tasks.md` left unticked as instructed.

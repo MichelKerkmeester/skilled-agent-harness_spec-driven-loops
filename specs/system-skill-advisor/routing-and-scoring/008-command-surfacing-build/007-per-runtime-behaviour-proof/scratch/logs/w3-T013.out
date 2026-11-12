@@ -1,0 +1,29 @@
+Done. One file written, all three verify checks pass.
+
+## File written
+`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs` (`R`) — only file touched.
+
+What changed in it:
+- **`--set chat` / `--set g2` / `--list <set>`** parsed, with a `SETS` registry. `chat` reads `command-prompts.jsonl` labels only (a `rowLabels()` pass that returns no prompt) and picks by sorted id: 8 `start`, 4 `run`, 4 `ask` tune plain rows then 8 `must-not-start` rows. A short bucket refuses with `set_short` instead of quietly shrinking an arm.
+- **`g2`**: six fixed prompts, ids `g2-deep-{research,review}-{ask,typed}` and `g2-speckit-complete-{ask,typed}`. Typed rows carry `:auto`, the two deep loops carry `--max-iterations=1`, and all six aim at a `{fixture}` placeholder rendered to the fixture folder.
+- **`--fixture <dir>`** added, defaulting to the `--out` folder plus `g2-fixture`, so the documented call `--out $X/runs-g2.jsonl` aims exactly at `$X/g2-fixture/`. This also keeps every spec path out of the script, so the phase's `rg "specs/"` check stays clean.
+- The holdout guard moved into `findRow`, which `lookupPrompt` and selection both use, so a holdout id is refused wherever it arrives, including on the command line alone.
+- The cap now follows the prompt (`capForRow`) rather than the invocation: `SET_TIMEOUT_MS`/`capForSet` became `CAP_MS`/`capForRow`, since the set names are now `chat` and `g2`, not `chat` and `started`.
+- `--arm` defaults to `g2` when `--set g2` is given, so a started-command run cannot land in the pre/post comparison by omission.
+
+## Verify output
+```
+--- node $R --list chat | wc -l
+      24
+--- node $R --list g2 | wc -l
+       6
+--- node $R --row-id cmd-create-agent-plain-holdout-01
+{"ok":false,"code":"holdout_row","detail":"cmd-create-agent-plain-holdout-01: a holdout row is never run"}
+exit=2
+```
+Also re-ran the earlier tasks' gates that this file owes: `node --check` clean, `--print-argv claude` still prints `-p` + `stream-json`, `--print-argv cursor` exits 2, and `rg "T0[0-9]{2}|REQ-0|specs/"` over `R` prints nothing.
+
+## Not done / flagged
+- **No live arm was run.** The worktree currently holds other workers' uncommitted paths, so T012's `worktree_dirty` guard refuses before a `--dry-run` would start. I did not clean or stash anything. Prompt rendering and the `g2` arm label are therefore verified by reading and by the exercised code paths, not by a dry-run line on disk.
+- Holdout id used for check three was extracted by reading only its `id` field, never its prompt. No holdout prompt text was read or printed anywhere.
+- `tasks.md` checkbox for T013 left unticked, as instructed.

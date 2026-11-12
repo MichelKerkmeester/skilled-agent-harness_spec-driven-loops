@@ -1,0 +1,30 @@
+Done.
+
+## Files written
+
+`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs` — the only file touched.
+
+- Added section `6. COMMAND LINE FACTS` between `normalize` and the former section 6, with renumbering of `SESSION SCORING` → 7, `SUMMARY` → 8, `RUN` → 9.
+- `COMMAND_LINE` matches `COMMAND: /<name> → <started|offered|declined>` (`→` or `->`), matched anywhere in a line because models wrap it in list markers, bold or code spans, and requiring a letter-or-digit after the slash so a reply quoting the instruction's `[/name]` placeholder is not counted.
+- `export function commandLines(events)` splits each `text` event by line and returns one `{seq, command, state, count}` per matching line in printed order, where `count` is that command's total across the session.
+
+## Verify output
+
+```
+$ node -e "import('./.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs').then(m => console.log(typeof m.commandLines))"
+function
+```
+
+Behaviour check on synthetic events (0, 1 and 2 lines, duplicated command, quoted `[/name]` placeholder, `->`, inline token, non-text events, empty/null/undefined input):
+
+```
+[{"seq":1,"command":"/deep:research","state":"started","count":2},{"seq":2,"command":"/deep:review","state":"offered","count":1},{"seq":3,"command":"/deep:research","state":"started","count":2},{"seq":4,"command":"/speckit:complete","state":"declined","count":1}]
+empty: [] null: [] undefined: []
+```
+
+Regression checks on the file I edited (unchanged behaviour, new section numbering inert): `--runtime cursor --locator '{"sessionId":"x"}'` → `{"ok":false,"code":"capability_gated"}`, exit 2; `--summary /dev/null --json` → `{}`, exit 0; `node --check` syntax OK; `rg "T0[0-9]{2}|REQ-0|specs/"` on the file exits 1 (no match).
+
+## Not done
+
+- `tasks.md` checkbox left unticked, as instructed.
+- No git action taken. `git status` shows this script as untracked (`??`), which predates my edit — it was created by the earlier worker on this file and remains uncommitted.

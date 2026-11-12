@@ -1,0 +1,51 @@
+## Report
+
+**File written** (only one touched): `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs`
+
+### What changed
+
+| Location | Change |
+|---|---|
+| `childEnv(ghConfig)` | Deletes `GH_TOKEN`, `GITHUB_TOKEN`, `GH_ENTERPRISE_TOKEN`; sets `GH_CONFIG_DIR`, `GIT_TERMINAL_PROMPT='0'`, and `GIT_CONFIG_COUNT=1` with `GIT_CONFIG_KEY_0='credential.helper'` / `GIT_CONFIG_VALUE_0=''` |
+| `ghConfigDir(outPath)` | New: empty folder beside the run log, created once in `runArm` *before* the first snapshot so it is never read back as a path the turn changed |
+| `spawnTurn(...)` / `job` | Threads `ghConfig` to the child env |
+| `remoteNames()` + `runTurn` first-prompt block | Non-`--dry-run` run exits `2` with `remote_present` when `git remote` prints any name, before the dirty check and before any spawn |
+| Module header + "Worktree guards" divider | WHY updated: network reach removed before the model has it, and why the remote check precedes the dirty check |
+
+### Verify output
+
+```
+$ node $R --runtime claude --row-id mns-chat-01 --out $X/remote-check.jsonl
+{"ok":false,"code":"remote_present","remotes":["origin"]}
+exit=2
+
+$ node $R --dry-run --runtime claude --row-id mns-chat-01 --out $X/dry.jsonl
+{"ok":false,"code":"worktree_dirty","paths":[".skilled/.../run-command-behaviour.mjs",".../score-command-transcripts.mjs",".../command-transcript-score.vitest.ts",".../007-per-runtime-behaviour-proof/acceptance-criteria.md",... 8 more]}
+exit=2
+
+$ rg -n "GH_CONFIG_DIR|credential.helper|GIT_TERMINAL_PROMPT" $R
+35:// empty GitHub CLI config, no credential helper and no terminal to be prompted on.
+624:// rather than the operator's authenticated one, and an empty credential helper
+631:  GIT_CONFIG_KEY_0: 'credential.helper',
+645:  env.GH_CONFIG_DIR = ghConfig;
+646:  env.GIT_TERMINAL_PROMPT = '0';
+rg exit=0
+```
+
+**Item 2 reading (honest caveat):** the dry run reported `worktree_dirty`, not `remote_present`, so it passed the remote gate — the remote block sits strictly above the dirty block in `runTurn`, so `worktree_dirty` can only be reached with the remote condition skipped. It did **not** append a run line, because the tree is dirty: other workers' uncommitted packet edits plus the untracked harness files. Per T012's own contract, a dry run appends a line only "on a clean tree". That clean-tree assertion is not provable from this checkout right now, and I did not revert anyone's files to force it.
+
+### Extra confirmation I ran (not required by the line)
+
+The override genuinely disables credentials rather than merely appearing in the file — `git config --get-all credential.helper` still lists the system `osxkeychain` value, so I checked the effective behaviour:
+
+```
+$ printf 'protocol=https\nhost=github.com\n\n' | GIT_TERMINAL_PROMPT=0 GIT_CONFIG_COUNT=1 \
+    GIT_CONFIG_KEY_0=credential.helper GIT_CONFIG_VALUE_0= git credential fill
+fatal: could not read Username for 'https://github.com': terminal prompts disabled   (exit 128)
+
+$ ... same, without the override ...
+username=MichelKerkmeester
+password=<redacted>                                                                  (exit 0)
+```
+
+Also confirmed `--print-argv claude` still prints `-p` … `stream-json` (T011's contract intact) and `node --check` passes. No task id, spec path, ADR or REQ id in any added comment; no git state touched; checkbox left unticked. The `scratch/gh-config-empty` folder my run created was removed, since the runner recreates it per arm.

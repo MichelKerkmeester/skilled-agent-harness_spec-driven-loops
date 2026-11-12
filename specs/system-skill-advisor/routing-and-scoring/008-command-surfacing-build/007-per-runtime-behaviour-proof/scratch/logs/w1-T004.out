@@ -1,0 +1,16 @@
+T004 done.
+
+**File written** (the only file I touched, new):
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`
+
+What it holds: the CLI shell with `--runtime`, `--locator <json>`, `--row-id`, `--summary <run-log>...` and `--json`; `loadSession` from `.skilled/hooks/shared/session-readers/index.mjs` fed the locator object plus the runtime unchanged; on `ok: false` one `{"ok":false,"code":"..."}` line on stdout and exit 2; success prints runtime, session id and record count only (no prompt or reply text). `--summary` accepts several logs and currently projects `{}`, text mode is silent for an empty projection. The CLI runs only when the file is the entry point, so later `import` checks and the test file can read its exports without the host argv being parsed.
+
+**Verify output** (`node $S --runtime cursor --locator '{"sessionId":"x"}'`):
+```
+{"ok":false,"code":"capability_gated"}
+EXIT=2
+```
+
+Extra checks I ran: `node --check` → syntax ok; `node -e "import('./$S')..."` → import side-effect free, exit 0; `node $S --summary /dev/null --json` → `{}`, exit 0; `--runtime claude --locator '{"sessionId":"x"}'` → `{"ok":false,"code":"locator_unavailable"}`, exit 2; malformed locator, combined `--summary` + `--runtime`, and unknown option each exit 2 with usage; `rg "T0[0-9]{2}|REQ-0|specs/|CHK-"` and `rg '^\s*//.*(—|;)'` both print nothing.
+
+`tasks.md` is unticked. Could not do: nothing out of scope, and I left the other workers' phase 006 modifications alone.

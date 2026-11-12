@@ -1,0 +1,38 @@
+T014 done.
+
+## File written
+`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs` (untracked new file from earlier waves, 875 lines)
+
+## What changed
+- **Runtime table, one `locator` entry per runtime:**
+  - `claude: { kind: 'stream', field: 'session_id' }`
+  - `opencode: { kind: 'stream', field: 'sessionID' }`
+  - `codex: { kind: 'stream', field: 'thread_id' }`
+  - `dsh: { kind: 'runner' }` (id minted and passed with `--session-id`)
+  - `pi: 'UNKNOWN'`, `devin: 'UNKNOWN'`
+- **`streamLocator(field)`** — incremental per-line scanner over the child's output. Holds a partial line until its newline arrives, stops at the first match, tolerates non-JSON chatter, and reads a trailing line with no newline at turn close.
+- **`readId(line, field)`** — parses one line, returns the field when it is a non-empty string, else `null`.
+- **`dshHome()`** — `process.env.DSH_HOME || ~/.dsh`, recorded in the DSH locator alongside the minted id.
+- **`locatorFor(runtime, sessionId, streamId)`** replaces the old DSH-only stub: string source → that string, `runner` source → `{ sessionId, dshHome }`, stream source → `{ sessionId: streamId }` or `null` when the CLI printed no id.
+- **`spawnTurn`** — stdout changed from `inherit` to `pipe`; the same bytes are still echoed to the terminal and fed to the scanner. `stdin` stays `'ignore'` (reads `/dev/null`) and `AI_SESSION_CHILD` is still deleted.
+- **`runTurn`** — dry runs pass `streamId: null`; the log line reads `locator: locatorFor(job.runtime, sessionId, turn.streamId)`.
+
+## Verify output (task's exact command)
+```
+$ rg -n "UNKNOWN" .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs
+162:    locator: 'UNKNOWN',
+179:    locator: 'UNKNOWN',
+```
+Only the Pi row (line 157 block) and the Devin row (line 174 block).
+
+## Extra checks run
+- `node --check $R` → `SYNTAX OK`
+- `node $R --print-argv claude` still emits `-p` + `stream-json`; `--print-argv dsh` still carries `--session-id`
+- `node $R --list g2 | wc -l` → `6`, `--list chat | wc -l` → `24`
+- Throwaway `/tmp` copy of the module, imported to exercise the new functions: split-chunk, missing trailing newline, non-JSON line, DSH null-field, and all five `locatorFor` branches → all PASS (`dsh` yields `{"sessionId":"minted","dshHome":"/Users/michelkerkmeester/.dsh"}`)
+- `rg -n "T0[0-9]{2}|REQ-0|specs/" $R` → no matches; no em dashes or semicolons in added comment prose
+
+## Not done
+- No live or `--dry-run` turn executed: a run would append to a run log under `scratch/` (T012's evidence file, not mine), and the worktree currently holds other workers' edits, so the runner's own `worktree_dirty` guard would refuse anyway.
+- No test file named by the task, so no vitest run.
+- `tasks.md` checkbox left unticked. No git state touched.

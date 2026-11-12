@@ -1,0 +1,17 @@
+T005 is done: `normalize` is in `S` and the task's verify command prints `function`.
+
+**File written (one):** `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs` — new section `5. TOOL NORMALIZATION` (later sections renumbered to 6/7/8, no other edit). It holds six `TOOL_TABLES` rows (claude, codex, opencode, pi, devin, dsh), seeded from `measure-rule-compliance.py`'s Claude and Codex sets, plus `PATCH_HEADER`, `DISCARDED_TARGET`, `APPLY_PATCH`, `tableFor`, `kindOf`, `firstString`, `patchPaths`, `redirectTargets`, `writePaths`, `addEvent`, and the exported `normalize(records, runtime)`.
+
+**Receipts (observed):**
+- `node --check <S>` → `SYNTAX OK`.
+- Task verify, `node -e "import('./<S>').then(m => console.log(typeof m.normalize))"` → `function`.
+- Direct exercise of `normalize` on built records returned `text,read,write,shell,skill,write` for Claude: a user prompt was not an event, `Grep` was not a read, `Bash` `echo hi > out/report.md` became a write with `out/report.md`, `git commit -m "a > b" 2>&1` stayed a shell (quoted `>` and a descriptor dup are not writes), `Skill` carried the skill name, `Write` carried `file_path`. Codex `apply_patch` in a heredoc produced a write with the patch header path, and an empty-args patch produced a write with `path: null`. `normalize([], 'cursor')` threw `TypeError: normalize: no tool table for runtime cursor`.
+- `git status --porcelain`: `S` is untracked (created by T004), `tasks.md` is untouched and no other file I named moved. `graph-metadata.json` shows modified by another worker, not me.
+
+**Inferred, not observed:** the `Skill` name on codex, pi, devin and dsh, and `powershell` on pi, come from the repository's hooks, reader fixtures and CLI docs rather than a live run. T022's smoke run records each runtime's actual tool names, which is where those confirm. Also inferred: a Codex `apply_patch` write will carry `path: null` today, because the reader at `.skilled/hooks/shared/session-readers/codex.mjs:111` parses `payload.arguments` while a `custom_tool_call` body travels in `payload.input`, so T007 and T009 must tolerate a null write path.
+
+**Adjacent defect, not fixed (out of scope):** `.skilled/hooks/shared/session-readers/codex.mjs:111`, a `custom_tool_call`'s body is dropped, so no patch targets reach any consumer of the reader.
+
+**Design note for the next `S` worker:** T006–T009 code belongs in section `6. SESSION SCORING`; events are `{seq, kind, path, command, text}` with assistant prose only as `text`, and `seq` is the event's index in the flattened stream.
+
+**State:** edited, not committed, not pushed, one untracked file under `.skilled/`. Residual risk is the inferred tool names above. Nothing is the operator's to do for this task.

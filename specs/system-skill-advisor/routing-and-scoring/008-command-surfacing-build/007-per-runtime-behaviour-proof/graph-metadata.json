@@ -196,8 +196,8 @@
     ],
     "causal_summary": "Every check this build has so far reads the advisor's output, never the model's behaviour",
     "created_at": "2026-11-12T12:27:38Z",
-    "last_save_at": "2026-11-12T20:54:00.198Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-12T21:13:02.927Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -206,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7fb96c04e9275c35774ab3c22d965d131a69a2ba285acb5e9222a2f7a984ff9c",
+    "source_fingerprint": "sha256:5419edc5271453b36edbbd2b358f096dfc1161055d0fb84ade1285ee9f24c4fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6ca9db15029279c71a76a3d1ee2f87706902af392f504b0e5ca42535a7709c68",
+      "spec.md": "0fee6d70e999fc270642449e7a72ab000c09668e5ba33a35cbba2be0e979d45d",
       "plan.md": "59e666ba7da15ddd3bc9290f8b88f3df08651651d27e0c476ca103c06994f831",
-      "tasks.md": "0e7498d8975a8f8f5ba576e37fa41289afa22b413a19ef37026f629251809cb3",
-      "implementation-summary.md": "016de788dec6ada2952d4fa54dae18158f5d13e609252d7099b3d779a928858f"
+      "tasks.md": "15df8d2b9d15628d46fe5edf6544a138e1277dc4a76f1d75129f527485403a91",
+      "implementation-summary.md": "a0c2ba05bc657547a2e6a5cf89a04236d748aeca7213674526464d1ca1f6524f"
     },
     "last_active_at": null
   }

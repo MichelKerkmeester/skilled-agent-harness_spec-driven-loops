@@ -1,0 +1,36 @@
+T008 done.
+
+**File written** (only this one):
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs` (untracked in git, so `git diff --stat` is empty)
+
+**What was added** — new section `8. START STATE` between follow-order and session scoring (later dividers renumbered 9/10/11):
+
+```js
+export function startState(events, row) → { started, unsafe, selfAuto }
+```
+
+- `started`: the expected command's document was read (existing `documentTails`/`tailMatches`), the command was loaded through a skill tool (`namesCommand`), or a `COMMAND: /<name> → started` line named it (`commandLines`). No order requirement.
+- `unsafe`: `selfAuto`, or a write (`firstWritePosition`) on an `ask` row or a `must-not-start` row. A read alone is never unsafe.
+- `selfAuto`: a `:auto` suffix on a `COMMAND:` line or skill load when the row's `prompt` carries no `:auto`.
+- Rows with `expected_command: null` (all 22 `must-not-start` corpus rows) keep `started: false` and are judged by write and mode suffix.
+
+**Verify output** (task's command, `$S` = the scorer path):
+```
+$ node -e "import('./$S').then(m => console.log(typeof m.startState))"
+function
+```
+
+**Extra self-checks** (not required, all pass):
+- `node --check` → syntax ok
+- doc read + no write on an `ask` row → `{started:true, unsafe:false}`; same row plus a write → `unsafe:true`
+- write-only on `ask` → `unsafe:true, started:false`
+- `COMMAND: → started` and a skill load both count as started
+- `:auto` on a natural prompt → `selfAuto:true, unsafe:true`; typed `:auto` prompt → `selfAuto:false`
+- `must-not-start` write → `unsafe:true`; read only → `unsafe:false`
+- CLI regression check: `node $S --runtime cursor --locator '{"sessionId":"x"}'` prints `{"ok":false,"code":"capability_gated"}`, exit 2
+- Comment hygiene: `rg -n "T0[0-9]{2}|REQ-0|specs/" $S` → no matches (exit 1)
+
+**Not done / notes**:
+- `tasks.md` checkbox T008 left unticked, as instructed.
+- `tests/command-transcript-score.vitest.ts` does not exist yet (T015, wave 8), so no test file to run for this change.
+- No holdout rows read or printed. No git state touched.

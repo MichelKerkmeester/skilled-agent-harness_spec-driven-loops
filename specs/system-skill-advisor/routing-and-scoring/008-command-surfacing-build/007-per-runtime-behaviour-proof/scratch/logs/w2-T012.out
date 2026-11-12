@@ -1,0 +1,37 @@
+T012 is implemented and verified. Report follows.
+
+## Changes
+
+**``.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs`** (untracked file created by T011 — I extended it, table untouched):
+
+- **Run loop** (`runArm` / `runTurn`): one JSONL line per prompt, fields `{runtime, rowId, arm, locator, exit, changedPaths, restored}` appended to `--out` (folder created, log written after the closing snapshot so it is never a restore candidate). `--row-id` is repeatable, `--arm` defaults to `pre` and is validated against `pre|post|smoke|g2`, `--dry-run` records the line without spawning.
+- **stdin + env**: child spawned with `stdio: ['ignore', 'inherit', 'inherit']` (i.e. `/dev/null`) and `delete env.AI_SESSION_CHILD` on a copied environment. Chat cap comes from T011's `SET_TIMEOUT_MS`.
+- **Restore**: `git -c core.fsmonitor=false status --porcelain` before/after, diff by status code, tracked paths restored with `git -c core.fsmonitor=false checkout -- <path>`, untracked paths deleted.
+- **Guard 1**: before the first prompt, any status path outside the out-folder's own directory → `{"ok":false,"code":"worktree_dirty","paths":[…]}` and exit 2, nothing appended.
+- **Guard 2**: `rev-parse HEAD` + `stash list` bracketing every prompt; a change writes `headMoved:true`, skips the restore and exits 3 without another prompt.
+- Row lookup by id resolves the prompt and refuses a `holdout` row before its text is used (T013 still owns set selection, `--list` and the `g2` fixtures). Locator is `{sessionId}` for DSH only, `null` elsewhere (T014 owns stream capture), `null` on a dry run.
+
+## Verify output
+
+```
+--- leg 1: one tracked file edited (the shared worktree is dirty for real) ---
+{"ok":false,"code":"worktree_dirty","paths":[".skilled/…/run-command-behaviour.mjs",".skilled/…/score-command-transcripts.mjs","specs/…/007-per-runtime-behaviour-proof/graph-metadata.json", …]}
+exit=2 (want 2, worktree_dirty)
+--- leg 2: clean tree (temp clone of HEAD, runner copied to an ignored path) ---
+clone git status lines: 0
+exit=0 (want 0)
+appended:
+{"runtime":"claude","rowId":"cmd-create-agent-plain-tune-01","arm":"pre","locator":null,"exit":null,"changedPaths":[],"restored":true}
+--- leg 3 ---
+378:  delete env.AI_SESSION_CHILD;
+occurrences=1 (want 1, the delete)
+```
+
+Also green: `node --check`, T011's `--print-argv claude` (unchanged argv) and `--print-argv cursor` (exit 2), plus a two-prompt dry run appending two lines on the same log.
+
+## What I could not do / notes
+
+- **Leg 2 cannot run in this worktree**: it is not clean and cannot be made clean by me — other workers hold modified tracked files under `008-command-surfacing-build/` and the runner/scorer themselves are untracked. I ran the identical command against `git clone` of HEAD in `/tmp` with the runner copied into the gitignored `runtime/dist/routing-accuracy/`, which gives a genuinely clean tree; the clone was deleted afterwards. The orchestrator should re-run leg 2 literally after the runner is committed.
+- That clone run exposed a real defect I fixed: the exempt-prefix check compared two spellings of a path, so a symlinked root (`/tmp` → `/private/tmp`) classified every path as dirty. It now asks git for `rev-parse --show-prefix` of the out folder, with no path-string comparison.
+- One judgement call to flag: T012's line presupposes prompt lookup by `--row-id`, so I implemented lookup plus the `holdout` refusal; T013's description repeats that refusal. T013's `--set chat|g2`, `--list`, `--set` fixtures and started-set cap are untouched.
+- Nothing committed or pushed, no git state touched (the temp clone excepted and removed), `tasks.md` not ticked, no files written outside the named script.

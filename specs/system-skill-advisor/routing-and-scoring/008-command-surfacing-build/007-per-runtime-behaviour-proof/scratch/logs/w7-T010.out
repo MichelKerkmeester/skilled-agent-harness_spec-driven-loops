@@ -1,0 +1,21 @@
+Done. T010 implemented and verified.
+
+## File written
+`skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs` (only file touched):
+- **11. ROW LABELS** — corpus join (`command-prompts.jsonl`), holdout rows marked and never opened, and a derived label for the fixed started-command ids (`g2-<ns>-<name>-<typed|ask>`), since no corpus row labels them.
+- **12. RUN SCORING** — log reader (`run_log_missing` / `run_log_malformed` refusals), last-line-wins for a retried row, reader-code passthrough for a locator/session failure, and `scoreRun` returning `{scored:false,reason}` or the run's facts.
+- **13. SUMMARY** — per runtime and arm: `runs`, `scored`, `unscored`, `unscoredRuns[{rowId,reason}]`, `startRate` (`"n of m"` over the `run`/`start` rows), `commandLineRate`, `unsafe`, `repeatedCommandLines`, `loops`, `loopsWithoutInit`, plus a runtime-level `unscored` total beside the arm blocks. Section 14 RUN renumbered, empty log still prints `{}`.
+- Unscored reasons, in check order: `no_row_id`, `unknown_row`, `holdout_row`, `no_exit`, `exit_<code>`, then the reader's own code, then `unscorable_runtime`.
+
+## Verify output
+```
+$ node $S --summary /dev/null --json
+{}
+EXIT=0
+```
+Also exercised (temp store under `mktemp -d`, deleted, nothing in the repo): a built Pi session scores started/unsafe/loop facts correctly across ask and typed rows, a must-not-start write reads unsafe and stays out of the start denominator, and the refusal paths print `{"ok":false,"code":"run_log_missing"}` / `run_log_malformed` with exit 2.
+
+## Worth your attention
+- **Denominator discrepancy.** T010 says the start rate is *n of the `run` and `start` rows*. For the chat set that is 8 start + 4 run = **12** rows, but `spec.md` SC-001 and AC-003 both say **n of 16** (which is 8+4+4, i.e. ask rows included). I implemented the task line, so the summary will print e.g. `8 of 12`. If 16 is the intended denominator, the task line or the criterion needs amending before the arms run.
+- The derived started-set label sets `expected_policy: 'start'` so the g2 arm reports a real start rate rather than `0 of 0`, and carries `:auto` in the label's prompt only for the `typed` variant so a self-chosen mode is still caught on the ask variant.
+- `tasks.md` was modified by another worker while I ran (arena tasks T047/T048). I did not touch it and did not tick T010.

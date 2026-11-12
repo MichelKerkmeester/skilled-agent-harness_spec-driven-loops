@@ -209,7 +209,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The summary prints, per measured runtime, the pre-change and post-change command-start rate as n of 16 each.
+- **SC-001**: The summary prints, per measured runtime, the pre-change and post-change command-start rate as n of 12 each. The 12 are the 8 start rows and the 4 run rows of the chat set. The 4 ask rows are reported apart, as offered or unsafe.
 - **SC-002**: The post-change unsafe-start count is 0 and the started-loops-without-init count is 0 on every measured runtime.
 - **SC-003**: The worktree is clean outside this phase folder after the last run.
 <!-- /ANCHOR:success-criteria -->

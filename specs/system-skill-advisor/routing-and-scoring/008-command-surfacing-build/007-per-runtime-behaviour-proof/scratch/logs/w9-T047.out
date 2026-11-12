@@ -1,0 +1,38 @@
+T047 complete.
+
+## File written
+
+`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs` (new, 15.3 KB) — `A` from the notation block. No other file touched, checkbox not ticked.
+
+## Verify output (T047 line, run from repo root)
+
+```
+--- 1. node $A --source . --dest "$D"
+{"ok":true,"dest":"/var/folders/.../T//arena-check-2590","head":"a0ba2831327d72830c0de3a0deff5d800744c1c1","copied":[".opencode/node_modules",".pi/extensions/pi-cache-optimizer/node_modules",".pi/extensions/pi-fast-mode-w-subagent-support/node_modules",".skilled/node_modules",".skilled/skills/.state/advisor/skill-graph-daemon-lease.sqlite",".skilled/skills/mcp-code-mode/mcp-server/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/dist",".skilled/skills/sk-design/sk-design-md-generator/backend/node_modules",".skilled/skills/sk-doc/node_modules",".skilled/skills/system-deep-loop/node_modules",".skilled/skills/system-deep-loop/runtime/node_modules",".skilled/skills/system-skill-advisor/runtime/database/skill-graph-daemon-lease.sqlite",".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",".skilled/skills/system-skill-advisor/runtime/dist",".skilled/skills/system-skill-advisor/runtime/node_modules",".skilled/skills/system-spec-kit/node_modules",".skilled/skills/system-spec-kit/runtime/cli/dist",".skilled/skills/system-spec-kit/runtime/cli/node_modules",".skilled/skills/system-spec-kit/runtime/dist",".skilled/skills/system-spec-kit/shared/dist"]}
+--- 2. head
+arena:  a0ba2831327d72830c0de3a0deff5d800744c1c1
+source: a0ba2831327d72830c0de3a0deff5d800744c1c1
+--- 3. git -C "$D" remote
+--- 4. git -C "$D" status --porcelain
+--- 5. advisor_recommend
+{"status":"ok","top":{"skillId":"sk-doc","command":"/create:readme","confidence":0.95}}
+advisor-exit=0
+--- 6. second run same --dest
+{"ok":false,"code":"dest_exists","dest":"/var/folders/.../T//arena-check-2590"}
+second-exit=2
+--- 7. rm -rf
+removed
+```
+
+Every clause of the line holds: `ok:true`, `head` equals the source HEAD, zero remotes, clean status, a live recommendation, exit 2 with `dest_exists`, removal works. Additional checks: `dest_in_repo` refuses inside the repo (`exit=2`, no leftover), a detached HEAD in a toy repo reports `abbrev-ref=HEAD`, and the arena stayed status-clean after the advisor call.
+
+## One deviation, flagged
+
+The line's steps alone do not satisfy its own verify. Without extra work the advisor in the arena exits `69` with `@spec-kit/system-skill-advisor dist is stale`, because `git clone` stamps every source with the checkout time while `cp -Rc` preserves the compiled build's older mtime, and the freshness guard's path-keyed cache record cannot survive a move to a new absolute path. I added one step after each copied `dist` tree: set its timestamps to the copy time, so the copied build (the same commit's build) looks newer than the checkout, as a build run there would. Evidence: before the step, `checkPackageFreshness` returned `status: "stale"` via the mtime branch; after it, `fresh` for both entries and the CLI returns a recommendation. The step touches only files inside the arena.
+
+## Notes
+
+- `cp -Rc` is BSD/macOS (`-c` = APFS clonefile), as the line names it. GNU `cp` has no `-c`, so this script is macOS-only by construction.
+- Ignore status is asked of git per path (`check-ignore`), so a directory named `dist` that is tracked is left to the clone instead of copied over.
+- Dotenv skip is at copy time, at every depth, not a copy-then-delete. `find` over the copied trees of the real arena returns no dotenv file.
+- Build takes ~30 s (10 s clone + copy of ~2 GB of packs and 1.3 GB of tree).

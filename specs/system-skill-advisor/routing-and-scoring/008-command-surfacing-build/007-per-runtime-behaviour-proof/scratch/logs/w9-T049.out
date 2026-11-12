@@ -1,0 +1,21 @@
+T049 done.
+
+**Files written**
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs` — `COMMAND_LINE` now allows a backtick, a square bracket or both on each side of the command name and of the state word (`[\t`\[`]*` before the name, `[\t`\]]*` after it, `[\t`\[`]*` before the state word). The three state words, the arrow and the `\b` before/after are unchanged, so `maybe` still fails. The adjacent comment was extended to state the markup tolerance and its reason.
+- `.skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts` — three cases added to `describe('commandLines')`: backtick-wrapped spelling, square-bracket spelling, and the `maybe` control that must yield `[]`.
+
+**Verify** (in `$ADV`, i.e. `.skilled/skills/system-skill-advisor/runtime`)
+```
+$ npx vitest run tests/command-transcript-score.vitest.ts
+ RUN  v4.1.12 .../runtime
+
+ Test Files  1 passed (1)
+      Tests  42 passed (42)
+```
+Baseline before the change was 39 passed, so the gate's "0 failed and 42 or more passed" is met at exactly 42.
+
+**Extra check** (no side effects): both spellings and the combined ``[`/create:readme`] → [`started`]`` each produce one `{command: '/create:readme', state: 'started', count: 1}` line, and `COMMAND: /create:readme → maybe` produces `[]`.
+
+**Not done / caveats**
+- `tasks.md` checkbox left unticked, as instructed.
+- Both edited files show as untracked in `git status` (sibling workers created them uncommitted); I ran no command that touches git state, and the working copies are the only ones changed by me.

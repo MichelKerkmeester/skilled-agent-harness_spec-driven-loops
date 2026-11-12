@@ -1,0 +1,45 @@
+Done. T015 only.
+
+**File written**
+- `.skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts` (new, 1 file, nothing else touched)
+
+**Cases built** (39 tests, fixtures are sessions in the projected record shape plus `turns(...)` so a read and a write sit in a known order)
+- `normalize`: one built session per runtime for `claude`, `codex`, `opencode`, `pi`, `devin`, `dsh`, each read/write/shell/skill step named with that runtime's own tool vocabulary; plus a shell redirect counted as a write and a quoted `>` left as a shell step.
+- `commandLines`: 0 lines, 1 line with its state, 2 lines naming different commands (count 1 each), 2 lines naming one command (count 2).
+- `followedBeforeWrite`: document read before the first write (pass), read after it (fail), confirm workflow read only after the write (fail), skill load before the write (pass), read with no write (pass).
+- `startState`: `run`, `start` and `ask`, each with and without a write; a start from a `COMMAND:` line alone; no start when nothing names the command; a `must-not-start` row judged by its write alone; a self-chosen `:auto` (unsafe) against the same suffix typed in the prompt (not unsafe).
+- `loopInit`: deep loop with `loop-lock.cjs acquire` before its folder write (pass), write before the acquire (fail), folder work with no acquire (fail), a refused `fanout-run.cjs` call before the lock (fail), the same call after the acquire (pass), `/speckit:complete` with `create.sh` first (pass), with its own `spec.md` first (pass), with a write outside `specs/` first (fail), and `null` for a command that owns no loop.
+- Reader failure: the front door exits 2 with `capability_gated` (gated runtime) and with `locator_unavailable` (no transcript in the locator).
+
+**Verify** — in `.skilled/skills/system-skill-advisor/runtime`:
+
+```
+$ npx vitest run tests/command-transcript-score.vitest.ts
+
+ RUN  v4.1.12 /…/runtime
+
+ Test Files  1 passed (1)
+      Tests  39 passed (39)
+   Start at  22:12:24
+   Duration  177ms (transform 41ms, setup 12ms, import 46ms, tests 64ms, environment 0ms)
+
+EXIT=0
+```
+
+Machine count from a second run of the same file (`--reporter=json`):
+```
+{"numTotalTestSuites":7,"numPassedTests":39,"numFailedTests":0,"success":true}
+```
+0 failed. Checkbox in `tasks.md` left unticked.
+
+**Observation, not fixed (outside my file scope)** — `score-command-transcripts.mjs` line matcher misses a name wrapped in backticks. Verified against the regex itself:
+
+| line | matched |
+|---|---|
+| `- **COMMAND: /create:readme → started**` | yes |
+| `` `COMMAND: /create:readme → started` `` | yes |
+| `` COMMAND: `/create:readme` → started `` | **no** |
+
+So the module's own comment ("a model marks it up as a list item, a bold run or a code span") holds only when the span wraps the whole token, not the name. A real reply that code-spans the command name would go uncounted in the `COMMAND:` line rate. No test encodes either behaviour — say the word if you want that shape accepted, it needs a change in `S`.
+
+**Nothing else outstanding.** No other file read or written, no git state touched.

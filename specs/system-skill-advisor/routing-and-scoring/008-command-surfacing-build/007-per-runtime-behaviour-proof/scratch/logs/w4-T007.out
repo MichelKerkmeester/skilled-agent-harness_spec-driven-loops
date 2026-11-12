@@ -1,0 +1,20 @@
+T007 done.
+
+## Files written
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs` — added section **7. FOLLOW ORDER** exporting `followedBeforeWrite(events, command)`; renumbered the following section headers to 8/9/10. No other file touched.
+
+What it does: strips the leading slash and a `:auto|:confirm|:autopilot|:unattended` suffix, then finds the first `write` position. It is true when a `read` (or `skill`) event names the command's document before that boundary, either as `.skilled/commands/<ns>/<name>.md`, a runtime mirror (`.claude/...`, flat `.cursor/commands/<ns>-<name>.md`), or a skill event naming `<ns>:<name>`. A read of the command's `-confirm.yaml`/`.yml` asset at or after the first write makes it false. Whether a command ships a confirm workflow is not read from disk, so a checkout file cannot turn a clean transcript into a failure; a run that wrote nothing is decided by its document read alone. Paths match on the `commands/...` tail so every runtime root works without a per-runtime path table.
+
+## Verify output
+```
+$ node -e "import('./.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs').then(m => console.log(typeof m.followedBeforeWrite))"
+function
+exit: 0
+```
+
+Extra read-only checks: `node --check` passes, `node <S> --summary /dev/null --json` still prints `{}` with exit 0. A behaviour probe over built event streams gave: doc after write `false`, doc before write `true`, no write `true`, Claude/Cursor mirrors `true`, skill-name load `true`, confirm read before `true`, confirm read after `false`, unrelated read `false`, empty/null command `false`, `/speckit:complete` doc `true`, `/create:skill` not confused by `create/skill-parent.md` `false`.
+
+## Deviation to flag
+I read `plan.md` section 3 although the T007 line does not point there. I needed its exact document convention to stay compatible with T008 and the T015 test another worker will write. It confirms `.skilled/commands/<ns>/<name>.md` or its runtime mirror, and "the document and, when the command has one, its confirm workflow file were read before the first write", which is what I implemented.
+
+Not done, as instructed: checkbox in `tasks.md` left unticked, no git operations.
