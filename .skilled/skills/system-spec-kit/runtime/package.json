@@ -28,8 +28,7 @@
     "test:council:full": "bash cli/test-council-matrix.sh",
     "test:task-enrichment": "npx vitest run cli/tests/task-enrichment.vitest.ts --config ../vitest.config.ts",
     "test:watch": "vitest",
-    "typecheck:tests": "tsc --noEmit --composite false -p tsconfig.tests.json",
-    "test:sharded": "node scripts/run-tests-sharded.mjs"
+    "typecheck:tests": "tsc --noEmit --composite false -p tsconfig.tests.json"
   },
   "keywords": [
     "spec-kit",
