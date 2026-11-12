@@ -8,18 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs"
-    last_updated_at: "2026-11-12T10:51:49Z"
-    last_updated_by: "code-agent"
-    recent_action: "Split the three serial suite steps into three parallel jobs and verified the workflow locally"
-    next_safe_action: "Push the branch and open the pull request, then read the three job durations"
+    last_updated_at: "2026-11-12T17:43:48Z"
+    last_updated_by: "generate-context"
+    recent_action: "Proved the parallel jobs on pull request 97 and merged them to main"
+    next_safe_action: "Verify the Spec-Kit Check job durations on later main pushes"
     blockers: []
     key_files:
+      - "specs/system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs/implementation-summary.md"
       - ".github/workflows/spec-kit-check.yml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:4480d0c96a2689009bc5eb079e8b8b1b184692ee5b0e67a40f1b52a38b1d3626"
       session_id: "scaffold-008-spec-kit-check-parallel-jobs"
       parent_session_id: null
-    completion_pct: 92
+    session_ref:
+      runtime: "claude"
+      sessionId: "af05cd33-c1ff-46c9-825e-70281e3ca6f1"
+      workspace: "/Users/michelkerkmeester/worktrees/public/354-test-ci-alignment-fixes"
+      savedAt: "2026-11-12T17:43:48Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 008-spec-kit-check-parallel-jobs |
-| **Completed** | 2026-11-12, local build only; the pull-request run is pending |
+| **Completed** | 2026-11-12, proven on pull request 97: the slowest job took 384 to 627 s on three runs against 867 s for the single job |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
