@@ -38,6 +38,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".github/workflows/hook-vitest-suites.yml",
       ".github/workflows/dispatch-enforcement-guard.yml",
       ".github/workflows/README.md",
       ".skilled/skills/sk-code/sk-code-ci/repository/ci.json",
@@ -66,6 +67,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-vitest-suites.yml",
+        "kind": "config",
+        "path": ".github/workflows/hook-vitest-suites.yml",
         "source": "derived"
       },
       {
@@ -181,17 +188,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`dispatch-enforcement-guard.yml` holds two jobs: `dispatch-enforcement-guard` runs `node --test` over one dispatch rule suite, and `hooks-vitest` runs the whole `.skilled/hooks` vitest tree (Measured Behavior)",
     "created_at": "2026-11-12T08:22:00Z",
-    "last_save_at": "2026-11-12T10:21:25.642Z",
+    "last_save_at": "2026-11-12T11:37:29.890Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00201892e65e7ba873fb17af213b1b1a5419cecae1ae9f8be2deac1fe5250fda",
+    "source_fingerprint": "sha256:901c77a1692189bd2e3a307f13a4db565d0f4c5a9702840c1b0d50d325f2a53e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e73bf856cab98432a8bcf4d05568a5bb73ccd998e5fc3e177d7027592b64e505",
-      "plan.md": "48c1c45927ab7cc36cf135764dc1b14fa75993951cb6bedc611ad1c90308e2ff",
-      "tasks.md": "55cf8c75c8ad3c46f1534242c64a7754fd3e54eb21898e519cff9610e60c5c98",
-      "implementation-summary.md": "85e091c440272e77d9bbd912a107528ab9a4af6b25e4c7d92afd427e660350a9"
+      "spec.md": "f6f2db400f6a78efac67a5ccdad7290b9a6996d3eccb44cf8ff266bbdcfaff42",
+      "plan.md": "74d4dd266cc2adb4caff9298b02484e804ea0d82d30fb775ee33f1f26147066d",
+      "tasks.md": "f3df4b14be2661129d7fc0504820f7534a18d4f27e106e252356966029c229ca",
+      "implementation-summary.md": "b9912a929bec09c3a278904b5db646ef221d82a2f6d69443560864d100010c1e"
     },
     "last_active_at": null
   }
