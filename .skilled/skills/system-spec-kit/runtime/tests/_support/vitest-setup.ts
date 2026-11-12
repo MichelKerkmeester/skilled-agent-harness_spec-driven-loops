@@ -57,7 +57,10 @@ function isolateProductionDatabase(): void {
   // once per test file, so remove the dir when the file finishes; otherwise every
   // suite run leaves thousands of them in the system temp dir.
   if (!memEnv && !dirEnv) {
-    const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-test-db-'));
+    // The run-level setup names one root for every scratch dir and removes it when
+    // the run ends, which covers a file that never reaches its afterAll hook.
+    const scratchRoot = process.env.SPECKIT_TEST_DB_ROOT || os.tmpdir();
+    const scratch = fs.mkdtempSync(path.join(scratchRoot, 'speckit-test-db-'));
     process.env.SPEC_KIT_DB_DIR = scratch;
     afterAll(() => {
       fs.rmSync(scratch, { recursive: true, force: true });

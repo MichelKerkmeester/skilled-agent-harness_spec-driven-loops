@@ -45,6 +45,9 @@ export default {
             'tests/**/*.vitest.ts',
             'runtime/tests/**/*.vitest.ts',
           ],
+          globalSetup: [
+            path.resolve(__dirname, 'runtime', 'tests', '_support', 'vitest-global-setup.ts'),
+          ],
           setupFiles: [
             path.resolve(__dirname, 'runtime', 'tests', '_support', 'vitest-setup.ts'),
           ],
@@ -61,6 +64,9 @@ export default {
           root: path.resolve(__dirname, 'runtime', 'cli'),
           include: [
             'tests/**/*.vitest.ts',
+          ],
+          globalSetup: [
+            path.resolve(__dirname, 'runtime', 'tests', '_support', 'vitest-global-setup.ts'),
           ],
           setupFiles: [
             path.resolve(__dirname, 'runtime', 'tests', '_support', 'vitest-setup.ts'),
