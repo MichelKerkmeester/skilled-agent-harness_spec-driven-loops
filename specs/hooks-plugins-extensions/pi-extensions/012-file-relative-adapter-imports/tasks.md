@@ -69,7 +69,7 @@ contextType: "general"
 - [x] T020 [P] Run the doctor script tests (`.skilled/commands/doctor/scripts/tests/`). Verify: `node --test tests/` passes 1152, 0 failed.
 - [x] T021 [P] Run the advisor hook test (`.skilled/skills/system-skill-advisor/runtime/tests/hooks/prompt-advisor.vitest.ts`). Verify: vitest passes 13.
 - [x] T022 Run the Pi type check (`tsconfig.pi.json`). Verify: `tsc -p tsconfig.pi.json` exits 0.
-- [x] T023 Reword the documents and comments an alignment round found (`.skilled/hooks/`, `.skilled/skills/`, `README.md`). Verify: `rg -n "still a symlink under a Pi older" .skilled README.md -g '!**/changelog/**'` prints nothing, and the round's recheck lists 1 finding open, in `.skilled/hooks/env-secret-guard/README.md`.
+- [x] T023 Reword the documents and comments an alignment round found (`.skilled/hooks/`, `.skilled/skills/`, `README.md`). Verify: `rg -n "still a symlink under a Pi older" .skilled README.md -g '!**/changelog/**'` prints nothing, and the round's last recheck lists 0 findings open.
 <!-- /ANCHOR:phase-3 -->
 
 ---

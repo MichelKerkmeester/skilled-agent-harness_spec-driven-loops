@@ -6,7 +6,7 @@ trigger_phrases:
   - "git advisory runtime matrix"
   - "SKGIT_ADVISORY"
   - "git hook fail open"
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 # hooks: Git Preflight Advisory Runtime Adapters
@@ -183,7 +183,7 @@ Import: .skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs (specifier relati
 
 ```text
 File: .pi/extensions/git-preflight-advisory.ts
-Symlink target: pi/git-preflight-advisory.ts
+Re-exports: ../../.skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts
 ```
 
 **DSH**: `.dsh/plugins/repo-guards/adapters/git-preflight-advisory.mjs`

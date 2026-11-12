@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`pi/` holds the real Pi extensions for the session lifecycle. Pi discovers each one through the one-line entry file in `.pi/extensions/`, which re-exports it, so it loads from this folder and the imports are relative to that file's own folder. The start and stop extensions bridge to the compiled Claude hooks through `runClaudeHookAdapter`. The compaction extension is a native port of Devin's post-compaction chain, and the advisory extension runs the same warn-only startup guards the other runtimes use.
+`pi/` holds links to the real Pi extensions for the session lifecycle, which live in `system-spec-kit/runtime/hooks/pi/`. Pi discovers each one through the one-line entry file in `.pi/extensions/`, which re-exports the real file, so it loads from that spec-kit folder and its imports are relative to that folder. The start and stop extensions bridge to the compiled Claude hooks through `runClaudeHookAdapter`. The compaction extension is a native port of Devin's post-compaction chain, and the advisory extension runs the same warn-only startup guards the other runtimes use.
 
 ---
 

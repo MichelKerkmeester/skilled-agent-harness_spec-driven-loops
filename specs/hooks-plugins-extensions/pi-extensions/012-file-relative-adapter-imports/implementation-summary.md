@@ -72,9 +72,9 @@ The folder name still says "file-relative-adapter-imports". That half of the fix
 | `.skilled/hooks/env-secret-guard/lib/env-secret-guard.test.cjs` | Modified | Imports the adapter file itself. One unused constant removed. |
 | READMEs: `.skilled/hooks/` root, `overlay-guard`, `overlay-guard/pi`, `post-edit-quality/pi`, `session-lifecycle/pi`, `mcp-route-guard/pi`, `dispatch`, `.skilled/skills/sk-git/scripts/hooks/pi/`, `.skilled/skills/system-skill-advisor/hooks/pi/`, `.skilled/skills/system-spec-kit/runtime/hooks/`, its `pi/` and `pi/lib/` | Modified | Say "one-line entry file" where they said symlink. |
 | `.pi/extensions/README.md` | Modified | Each entry is a one-line re-export, and Pi 1.5.0 and Pi 1.5.2 both load the adapter from its real folder. |
-| `.skilled/hooks/vitest.config.ts`, `.skilled/skills/system-spec-kit/vitest.config.ts`, `.skilled/skills/system-spec-kit/runtime/vitest.config.ts` | Modified | Alias comments only. The alias stays because it serves the long fallback specifiers. |
+| `.skilled/hooks/vitest.config.ts`, `.skilled/skills/system-spec-kit/vitest.config.ts`, `.skilled/skills/system-spec-kit/runtime/vitest.config.ts` | Modified | Alias comments only. The alias stays because it serves the long literal specifiers. |
 | `.skilled/changelog/skilled/v4.0.2.1.md` | Modified | One fix bullet, sentences in the hook suites bullet, the doctor test count. |
-| About 50 documents and five comment blocks: READMEs under `.skilled/hooks/` and `.skilled/skills/`, the root `README.md`, `.pi/extensions/README.md`, two playbook scenarios, two feature catalog entries, `hook-registry.json`, three vitest configs and `session-relaunch.ts` | Modified | An alignment round after the fix found sentences that still called an entry a symlink, and a false reason for the long fallback specifiers. Each now says one-line entry file, and the specifiers are described as left from the link-based layout. |
+| About 50 documents and five comment blocks: READMEs under `.skilled/hooks/` and `.skilled/skills/`, the root `README.md`, `.pi/extensions/README.md`, two playbook scenarios, two feature catalog entries, `hook-registry.json`, three vitest configs and `session-relaunch.ts` | Modified | An alignment round after the fix found sentences that still called an entry a symlink, and a false reason for the long fallback specifiers. Each now says one-line entry file, and the specifiers are described as left from the link-based layout. The dotenv guard's own README was changed by one agent run with the guard switched off, at the operator's choice. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -128,10 +128,9 @@ A script computed each new import from the old one and the adapter's real folder
 
 1. **No live guard decision.** No guard decision was driven through a live Pi session. The proof is the load test on both versions plus the adapter suites.
 2. **Default export only.** An entry forwards only the default export. Import a named export from the adapter file itself.
-3. **Dead fallback specifiers.** The long fallback specifiers left in a few adapters come from the link-based layout. They resolve only through the test alias and serve no load path under Pi.
+3. **Dead long specifiers.** The long `../../.skilled/...` specifiers left in a few adapters come from the link-based layout. Some are tried first and some second. None resolves from the adapter's own folder, so none serves a load path under Pi. A literal one resolves in tests through the vitest alias. `DISCOVERY_CORE_PATH` in `goal-context.ts` is held in a constant, which the alias does not reach, so an import of it resolves nowhere. `ADVISOR_HOOK_MODULE` in `prompt-advisor.ts` is also a constant, and one test resolves it against `.pi/extensions/prompt-advisor.ts`.
 4. **Projects with their own symlinks.** A project that keeps its own symlinks in `.pi/extensions/` must convert them to one-line entry files. `sync-hook-registrations.cjs` reports each one.
 5. **Spec-kit suite.** The whole `npm test` run in `.skilled/skills/system-spec-kit` was repeated on 2026-11-12, after the document round. It exited 0. The runtime core project passed 1,649 tests in 126 files and the cli project passed 2,521 in 206.
-6. **One README still says link.** `.skilled/hooks/env-secret-guard/README.md` lines 65 and 85 call the Pi entry a link. The dotenv guard refuses an agent's write to its own files, so a person changes them.
 <!-- /ANCHOR:limitations -->
 
 ---

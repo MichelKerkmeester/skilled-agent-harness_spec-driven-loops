@@ -7,7 +7,7 @@ trigger_phrases:
   - "operator decisions"
   - "capture askuserquestion answers"
   - "verbatim operator answers"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Operator decision capture
@@ -56,7 +56,7 @@ The Claude Stop hook counts the answers still waiting for a record and reports a
 |------|-------|------|
 | `.skilled/hooks/decision-capture/lib/capture-core.mjs` | Hook core | Normalizes answers, filters process questions, appends to the locked queue and computes the Stop-hook count. |
 | `.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs` | Claude adapter | PostToolUse entry point for `AskUserQuestion`. |
-| `.skilled/hooks/decision-capture/pi/decision-capture.ts` | Pi extension | `tool_result` entry point for `ask_user_question` and `question`, linked from `.pi/extensions/`. |
+| `.skilled/hooks/decision-capture/pi/decision-capture.ts` | Pi extension | `tool_result` entry point for `ask_user_question` and `question`, re-exported by a one-line entry file in `.pi/extensions/`. |
 | `.opencode/plugins/decision-capture.js` | OpenCode plugin | `tool.execute.after` capture and the pending-answer system line. |
 | `.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs` | Devin adapter | PostToolUse entry point for `ask_user_question`. |
 | `.skilled/hooks/decision-capture/dsh/decision-capture.mjs` | DSH adapter | `tools/result`, late-reply and idle-nudge entry points, linked from `.dsh/plugins/repo-guards/adapters/`. |

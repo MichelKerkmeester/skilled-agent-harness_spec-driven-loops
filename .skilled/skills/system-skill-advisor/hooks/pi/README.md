@@ -4,7 +4,7 @@ description: "Pi extension factory that injects the skill-advisor recommendation
 trigger_phrases:
   - "pi prompt advisor"
   - "pi skill advisor hook"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Pi Hooks: Skill-Advisor Prompt Bridge
@@ -13,7 +13,7 @@ version: 1.0.2.0
 
 ## 1. OVERVIEW
 
-`hooks/pi/` holds the real file behind the `.pi/extensions/prompt-advisor.ts` entry file. Pi discovers it through that one-line entry file, which re-exports it, so it loads from this folder. `ADVISOR_HOOK_FALLBACK_MODULE` is the folder-relative specifier that resolves there. `ADVISOR_HOOK_MODULE` is the long form left from the link-based layout, tried first, and it resolves only through the test alias.
+`hooks/pi/` holds the real file behind the `.pi/extensions/prompt-advisor.ts` entry file. Pi discovers it through that one-line entry file, which re-exports it, so it loads from this folder. `ADVISOR_HOOK_FALLBACK_MODULE` is the folder-relative specifier that resolves there. `ADVISOR_HOOK_MODULE` is the long form left from the link-based layout. It is tried first and does not resolve from this folder, so under Pi the fallback is the one that loads. One test resolves the long form against `.pi/extensions/prompt-advisor.ts`, where it still points at the compiled hook.
 
 ---
 
