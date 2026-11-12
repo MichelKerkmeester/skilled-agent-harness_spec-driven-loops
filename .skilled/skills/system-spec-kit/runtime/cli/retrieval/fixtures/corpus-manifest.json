@@ -1,5 +1,5 @@
 {
-  "corpusHash": "94c610955dfd7eee12248064f4cc654dc7c499ead66fc56b971f262458a4f821",
+  "corpusHash": "90ec0b7225eb5a2e9e212778b23afff4b908abd331024b3c225be1723be126fe",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26349,
+  "includedPathCount": 26353,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -25609,6 +25609,10 @@
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards/plan.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards/spec.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups/tasks.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/decision-record.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/implementation-summary.md",
@@ -26381,7 +26385,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c243be4138be26b030af5a965ddc587955809ebe6ccd694e69601c9e81a327a8",
+  "manifestHash": "3095523242336397424bc6122c880e4b14d1f25ad272c8e4bb3a0d8ae5f29c00",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36785,6 +36789,10 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups/scratch",
       "reason": "excluded directory"
     },
     {

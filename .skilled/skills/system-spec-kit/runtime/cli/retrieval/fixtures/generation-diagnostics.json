@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6735,
-    "ok": 17985,
+    "ok": 17989,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26349,
+  "documentsScanned": 26353,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c243be4138be26b030af5a965ddc587955809ebe6ccd694e69601c9e81a327a8",
+  "manifestHash": "3095523242336397424bc6122c880e4b14d1f25ad272c8e4bb3a0d8ae5f29c00",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42555,
+      "ok": 42560,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -62262,6 +62262,10 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups/scratch",
       "reason": "excluded directory"
     },
     {

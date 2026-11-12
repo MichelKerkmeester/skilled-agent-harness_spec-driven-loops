@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c243be4138be26b030af5a965ddc587955809ebe6ccd694e69601c9e81a327a8",
+  "manifestHash": "3095523242336397424bc6122c880e4b14d1f25ad272c8e4bb3a0d8ae5f29c00",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -64364,6 +64364,18 @@
     "local skill link discovery": [
       "local skill link discovery"
     ],
+    "local test speedups": [
+      "local test speedups"
+    ],
+    "local test speedups implementation summary": [
+      "local test speedups implementation summary"
+    ],
+    "local test speedups plan": [
+      "local test speedups plan"
+    ],
+    "local test speedups tasks": [
+      "local test speedups tasks"
+    ],
     "local test timing profile": [
       "local test timing profile"
     ],
@@ -80293,6 +80305,9 @@
     ],
     "phase 19 implementation summary": [
       "phase 19 implementation summary"
+    ],
+    "phase 19 local test speedups": [
+      "phase 19 local test speedups"
     ],
     "phase 19 plan": [
       "phase 19 plan"
