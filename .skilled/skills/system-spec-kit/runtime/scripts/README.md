@@ -41,7 +41,7 @@ This folder holds scripts only; its one test suite (`resource-map-extractor.vite
 |---|---|---|
 | `finalize-dist.mjs` | Completes `npm run build` after `tsc --build` | Records the package build and source-hash cache through `../cli/lib/dist-freshness.cjs`, copies JSON assets into `dist/`, prunes stale dist roots, and checks the required artifacts are present. |
 | `run-cli-tests.sh` | Backs `npm run test:cli` | Runs the `cli` Vitest project as one process from the `cli` folder. `npm test` runs this lane through `run-tests.mjs`. |
-| `run-tests.mjs` | Backs `npm test` | Routes `npm test -- --run ...` to the requested Vitest lane without running the full core suite first, under a process-group timeout that terminates the whole group on overrun. |
+| `run-tests.mjs` | Backs `npm test` | With no arguments it starts the core, cli and spec-validation lanes together, each under its own process-group timeout, and exits with the first failing lane's status. It routes `npm test -- --run ...` to the requested Vitest lane without running the full core suite first. |
 
 ---
 

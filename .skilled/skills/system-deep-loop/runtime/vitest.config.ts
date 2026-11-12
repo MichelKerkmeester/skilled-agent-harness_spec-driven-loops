@@ -26,6 +26,7 @@ const shared = {
   environment: 'node' as const,
   setupFiles: [
     path.resolve(import.meta.dirname, 'tests', '_support', 'hermetic-opencode-path.ts'),
+    path.resolve(import.meta.dirname, 'tests', '_support', 'skip-fsync.ts'),
   ],
   testTimeout: TEST_TIMEOUT_MS,
   teardownTimeout: TEARDOWN_TIMEOUT_MS,
