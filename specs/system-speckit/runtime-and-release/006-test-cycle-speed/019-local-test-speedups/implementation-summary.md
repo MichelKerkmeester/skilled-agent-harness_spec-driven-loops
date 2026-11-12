@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups"
-    last_updated_at: "2026-11-12T20:07:27Z"
+    last_updated_at: "2026-11-12T20:58:03Z"
     last_updated_by: "generate-context"
     recent_action: "Proved the three speed-ups on pull request 100 and closed the phase"
     next_safe_action: "Verify the local timings again after the next test suite change"
@@ -18,14 +18,14 @@ _memory:
       - ".skilled/skills/system-deep-loop/runtime/vitest.config.ts"
       - ".skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs"
     session_dedup:
-      fingerprint: "sha256:d3ee4c9d8265b1b8a72bf941d8fc01c6c165be1331dbb7d41918b24378ccbd0d"
+      fingerprint: "sha256:c5679567d690369f148bbe7dd53f8307ac4f41bfa9aa3d80aae611fcbe6120fb"
       session_id: "scaffold-019-local-test-speedups"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "af05cd33-c1ff-46c9-825e-70281e3ca6f1"
-      workspace: "/Users/michelkerkmeester/worktrees/public/355-local-test-speedups"
-      savedAt: "2026-11-12T20:07:27Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/357-test-speed-followups"
+      savedAt: "2026-11-12T20:58:03Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

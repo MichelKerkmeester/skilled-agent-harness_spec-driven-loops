@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups",
+  "spec_folder": "system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups",
+  "parent_id": "system-speckit/runtime-and-release/006-test-cycle-speed",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "test speed followups",
+      "phase 20 test speed followups",
+      "npm ci retry wrapper",
+      "test temp folder leak",
+      "test speed followups plan",
+      "test speed followups tasks",
+      "test speed followups implementation summary"
+    ],
+    "key_topics": [
+      "test",
+      "speed",
+      "followups",
+      "phase",
+      "npm",
+      "retry",
+      "wrapper",
+      "temp",
+      "folder",
+      "leak",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".github/scripts/npm-ci-retry.sh",
+      ".github/scripts/tests/npm-ci-retry.test.sh",
+      ".github/workflows/spec-kit-check.yml",
+      ".github/workflows/advisory-checks.yml",
+      ".github/workflows/README.md",
+      ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs",
+      ".skilled/skills/sk-git/scripts/lib/message-contract.test.mjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-authority-composition.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/embedders/hf-local-client.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/dist-freshness.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/inline-gate-renderer.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-spec-kit/runtime/vitest.config.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "npm-ci-retry.sh",
+        "kind": "script",
+        "path": ".github/scripts/npm-ci-retry.sh",
+        "source": "derived"
+      },
+      {
+        "name": "npm-ci-retry.test.sh",
+        "kind": "script",
+        "path": ".github/scripts/tests/npm-ci-retry.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "job-shape-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-stdin-deadline.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/lib/message-contract.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-authority-composition.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-authority-composition.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local-client.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/embedders/hf-local-client.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/dist-freshness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/inline-gate-renderer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A red check that a rerun turns green costs the operator a second wait of several minutes",
+    "created_at": "2026-11-12T20:58:30Z",
+    "last_save_at": "2026-11-12T21:15:47.316Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:08102a9674e7fe9a053a5de07ea5b902988c4cec5f4e11bb083459dc144da7a5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ead74942c6940fe71c1f7162ee9216599b6795e74ac5589ecc7e28ced24780d2",
+      "plan.md": "6b85a630c3dd9378a5d8e2d06c5c57512b8bb33b8991c30a384468c83400eba0",
+      "tasks.md": "6374506070f2160c0698ea0aabc87b2585c85b4a76e862b6c489f055913adcfb",
+      "implementation-summary.md": "c6f0b5ee7347d0a6ac062e1c525310c5bc322cd1d9e77b230c4586f1d09001d6"
+    },
+    "last_active_at": null
+  }
+}

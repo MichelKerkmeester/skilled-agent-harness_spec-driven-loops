@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups",
+  "description": "Phase 20: test-speed-followups",
+  "keywords": [
+    "phase",
+    "test-speed-followups"
+  ],
+  "lastUpdated": "2026-11-12T21:15:47.316Z",
+  "specId": "020",
+  "folderSlug": "test-speed-followups",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_22-15__test-speed-followups-for-the-test-cycle-speed.md"
+  ]
+}
