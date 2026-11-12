@@ -77,6 +77,7 @@ and findings belong here.
 | Build, six dispatches | Done | DeepSeek V4.1 Flash max through OpenCode Go: code, documents, playbooks and changelog, routing, and two follow-ups. `scratch/red.txt` and `scratch/red-2.txt` hold the failing runs |
 | Suites | Done | Relaunch suite 868 of 868, OpenCode plugin 65 of 65, Pi 59 of 59, advisor routing suites 75 of 75, each exit 0 |
 | Probes | Done | 8 of 10 pass in `scratch/probes-after.json`, against 4 of 10 in the report |
+| Routing signal regression after the merge | Done | The added signals moved three prompts off their owners and failed doctor-routing-slice and doctor-bridge-isolation. Commit 351d849a71 rewords three signals and drops the bare runtime mirrors one. Advisor suite 1394 pass, 1 fail that also fails on main before the merge (lane-weight-sweep corpus size 26 against 25). Probes 7 of 10, P10 unrouted now |
 
 ### Deviations and findings
 

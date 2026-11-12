@@ -6,7 +6,7 @@
     "phase",
     "alignment-findings"
   ],
-  "lastUpdated": "2026-11-12T18:49:24.731Z",
+  "lastUpdated": "2026-11-12T19:55:12.645Z",
   "specId": "008",
   "folderSlug": "alignment-findings",
   "parentChain": [
@@ -15,8 +15,9 @@
     "002-session-relaunch-loop",
     "036-review-remediation"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "12-11-26_19-49__phase-008-fixed-the-findings-of-the-2026-11-12.md"
+    "12-11-26_19-49__phase-008-fixed-the-findings-of-the-2026-11-12.md",
+    "12-11-26_20-55__reworded-three-routing-signals-that-moved-doctor.md"
   ]
 }

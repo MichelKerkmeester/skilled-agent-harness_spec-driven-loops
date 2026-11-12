@@ -205,7 +205,7 @@
     ],
     "causal_summary": "`skilledlooprealpath` follows a symlink at the wrapper path with no hop bound, so a cyclic pair of links hangs the sourced shell with no output",
     "created_at": "2026-11-12T17:23:38Z",
-    "last_save_at": "2026-11-12T19:15:08.408Z",
+    "last_save_at": "2026-11-12T19:55:12.645Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47ea5bf992838563ad6d083447941ef2ea97023d6146f6548efc11d2afc2a8b0",
+    "source_fingerprint": "sha256:591c773036d7ed1cad04fa9322f283f06e0730ea98f1295cf74d610c5b030317",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "06b2bd14a962c1673ad1976f53cf319c6db110040fe9e672f64ccec581b34b4b",
