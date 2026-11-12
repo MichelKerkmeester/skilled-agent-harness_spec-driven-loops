@@ -1,5 +1,5 @@
 {
-  "corpusHash": "eff403c7a57de1abc2ed2d1b330787510a39fd39ee0ade696c84903fcaee9189",
+  "corpusHash": "1d20d53951c8df30c487960f4b74c97d47437949562e08ae27824d15753621c3",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26138,
+  "includedPathCount": 26229,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7478,6 +7478,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.22.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.23.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.24.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.25.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.3.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.4.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.5.0.md",
@@ -8707,6 +8708,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.50.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.51.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.52.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.53.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.7.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.8.0.md",
@@ -25783,7 +25785,96 @@
     "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/review/fanout-attribution.md",
     "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/review/review-report.md",
     "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/decision-record.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research/research.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T19-50-01Z/auto-workflow-pt-03/fanout-attribution.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T19-50-01Z/auto-workflow-pt-03/research.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T19-50-01Z/fanout-attribution.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T19-50-01Z/hardening-pt-02/fanout-attribution.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T19-50-01Z/hardening-pt-02/research.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T19-50-01Z/research.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/deep-research-dashboard.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/deep-research-strategy.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/iterations/iteration-001.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/iterations/iteration-002.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/iterations/iteration-003.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/iterations/iteration-004.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/iterations/iteration-005.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/iterations/iteration-006.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/iterations/iteration-007.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/iterations/iteration-008.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/iterations/iteration-009.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/iterations/iteration-010.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/prompts/iteration-1.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/prompts/iteration-10.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/prompts/iteration-2.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/prompts/iteration-3.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/prompts/iteration-4.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/prompts/iteration-5.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/prompts/iteration-6.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/prompts/iteration-7.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/prompts/iteration-8.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/prompts/iteration-9.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/research.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T20-11-35Z/resource-map.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/004-name-file-in-plan-phase-lines/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/004-name-file-in-plan-phase-lines/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/004-name-file-in-plan-phase-lines/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/004-name-file-in-plan-phase-lines/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/004-name-file-in-plan-phase-lines/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/004-name-file-in-plan-phase-lines/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/007-fix-deep-review-p2-findings-for-plan-check-builds/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/007-fix-deep-review-p2-findings-for-plan-check-builds/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/007-fix-deep-review-p2-findings-for-plan-check-builds/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/007-fix-deep-review-p2-findings-for-plan-check-builds/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/007-fix-deep-review-p2-findings-for-plan-check-builds/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/007-fix-deep-review-p2-findings-for-plan-check-builds/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/deep-review-dashboard.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/deep-review-strategy.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/iterations/iteration-001.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/iterations/iteration-002.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/iterations/iteration-003.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/iterations/iteration-004.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/iterations/iteration-005.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/prompts/iteration-1.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/prompts/iteration-2.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/prompts/iteration-3.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/prompts/iteration-4.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/prompts/iteration-5.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/resource-map.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/review-report.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/synthesis.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/plan.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/spec.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/tasks.md",
@@ -26170,7 +26261,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1bfef01a164e2bef679dfd98c6c14b627ad14fd25d4d8ac595a4a42ea2c35ad3",
+  "manifestHash": "6101453e5be058980c311afef6718202452d76f890dd56cb1683748dea0e0b80",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36682,6 +36773,50 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T19-50-01Z/auto-workflow-pt-03/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T19-50-01Z/hardening-pt-02/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research_archive/2026-11-11T19-50-01Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/004-name-file-in-plan-phase-lines/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/007-fix-deep-review-p2-findings-for-plan-check-builds/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch",
       "reason": "excluded directory"
     },
     {

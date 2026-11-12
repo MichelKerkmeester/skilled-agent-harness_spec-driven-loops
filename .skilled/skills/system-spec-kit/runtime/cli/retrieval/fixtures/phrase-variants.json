@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1bfef01a164e2bef679dfd98c6c14b627ad14fd25d4d8ac595a4a42ea2c35ad3",
+  "manifestHash": "6101453e5be058980c311afef6718202452d76f890dd56cb1683748dea0e0b80",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1365,6 +1365,9 @@
     ],
     "005 fix remaining priority findings resource map": [
       "005-fix-remaining-priority-findings resource map"
+    ],
+    "005 goldfish cold read plan review operator decisions": [
+      "005-goldfish-cold-read-plan-review operator decisions"
     ],
     "005 graph impact and affordance changelog index": [
       "005-graph-impact-and-affordance changelog index"
@@ -11370,6 +11373,12 @@
     "allocator stale lock": [
       "allocator stale lock"
     ],
+    "allow single lineage acceptance": [
+      "allow-single-lineage acceptance"
+    ],
+    "allow single lineage flag": [
+      "allow single lineage flag"
+    ],
     "allowed socket root canonicalize": [
       "allowed socket root canonicalize"
     ],
@@ -13245,6 +13254,12 @@
     "authoring card documentation alignment": [
       "authoring card documentation alignment"
     ],
+    "authoring card example acceptance": [
+      "authoring card example acceptance"
+    ],
+    "authoring card pointer": [
+      "authoring card pointer"
+    ],
     "authoring checklist": [
       "authoring checklist"
     ],
@@ -14654,6 +14669,18 @@
     ],
     "bind packet goal": [
       "bind packet goal"
+    ],
+    "bind single entry executors to single path": [
+      "bind single entry executors to single path"
+    ],
+    "bind single entry executors to single path implementation summary": [
+      "bind single entry executors to single path implementation summary"
+    ],
+    "bind single entry executors to single path plan": [
+      "bind single entry executors to single path plan"
+    ],
+    "bind single entry executors to single path tasks": [
+      "bind single entry executors to single path tasks"
     ],
     "binding block check": [
       "binding block check"
@@ -19719,6 +19746,9 @@
     ],
     "claimadjudicationgate": [
       "claimAdjudicationGate"
+    ],
+    "clarification markers per pass": [
+      "clarification markers per pass"
     ],
     "clarifies validation coverage": [
       "clarifies validation coverage"
@@ -33730,6 +33760,9 @@
     "decision extraction": [
       "decision extraction"
     ],
+    "decision free implementation readiness": [
+      "decision free implementation readiness"
+    ],
     "decision gate not implementation": [
       "decision gate not implementation"
     ],
@@ -37756,6 +37789,15 @@
     "deep review p1 remediation": [
       "deep-review p1 remediation"
     ],
+    "deep review p2 closure gate": [
+      "deep review p2 closure gate"
+    ],
+    "deep review p2 plan check build implementation summary": [
+      "deep review p2 plan check build implementation summary"
+    ],
+    "deep review p2 plan check build summary": [
+      "deep review p2 plan check build summary"
+    ],
     "deep review packet 013": [
       "deep-review packet 013"
     ],
@@ -37849,6 +37891,9 @@
     "deep review remediation adr": [
       "deep review remediation ADR",
       "deep review remediation adr"
+    ],
+    "deep review remediation edit packets": [
+      "deep review remediation edit packets"
     ],
     "deep review remediation goal": [
       "deep review remediation goal"
@@ -44889,6 +44934,9 @@
     "either root verification evidence": [
       "either root verification evidence"
     ],
+    "elephant goldfish model spec kit": [
+      "elephant goldfish model spec kit"
+    ],
     "eleven p1 fixed at source": [
       "eleven P1 fixed at source"
     ],
@@ -47135,6 +47183,9 @@
     "executor kind routing tasks": [
       "executor kind routing tasks"
     ],
+    "executor matrix acceptance criteria": [
+      "executor matrix acceptance criteria"
+    ],
     "executor matrix audit checklist": [
       "executor matrix audit checklist"
     ],
@@ -47152,6 +47203,9 @@
     ],
     "executor parity final state": [
       "executor parity final state"
+    ],
+    "executor routing closure criteria": [
+      "executor routing closure criteria"
     ],
     "executor selection contract": [
       "executor selection contract"
@@ -48453,6 +48507,9 @@
     "fan out loop dispatch": [
       "fan-out loop dispatch"
     ],
+    "fan out opt in closure criteria": [
+      "fan-out opt-in closure criteria"
+    ],
     "fan out pair census": [
       "fan-out pair census"
     ],
@@ -48815,6 +48872,9 @@
     ],
     "fanout run failure propagation": [
       "fanout-run failure propagation"
+    ],
+    "fanout run refusal traceability": [
+      "fanout-run refusal traceability"
     ],
     "fanout run two lineages": [
       "fanout run two lineages"
@@ -50361,6 +50421,18 @@
     "fix deep review p1 findings for lifecycle and sidecar changelog": [
       "fix deep review p1 findings for lifecycle and sidecar changelog"
     ],
+    "fix deep review p2 findings acceptance criteria": [
+      "fix deep review p2 findings acceptance criteria"
+    ],
+    "fix deep review p2 findings for plan check builds": [
+      "fix deep review p2 findings for plan check builds"
+    ],
+    "fix deep review p2 findings for plan check builds plan": [
+      "fix deep review p2 findings for plan check builds plan"
+    ],
+    "fix deep review p2 findings for plan check builds tasks": [
+      "fix deep review p2 findings for plan check builds tasks"
+    ],
     "fix deferred p2s for test only and shared exports changelog": [
       "fix deferred p2s for test only and shared exports changelog"
     ],
@@ -51580,6 +51652,9 @@
     ],
     "fresh context iteration": [
       "fresh-context iteration"
+    ],
+    "fresh context plan comprehension check": [
+      "fresh context plan comprehension check"
     ],
     "fresh context review cycle": [
       "fresh-context review cycle"
@@ -55002,6 +55077,24 @@
     ],
     "golden snapshot verification task": [
       "golden snapshot verification task"
+    ],
+    "goldfish cold read plan review": [
+      "goldfish cold read plan review"
+    ],
+    "goldfish cold read plan review implementation summary": [
+      "goldfish cold read plan review implementation summary"
+    ],
+    "goldfish cold read plan review phase parent spec": [
+      "goldfish cold read plan review phase parent spec"
+    ],
+    "goldfish cold read plan review plan": [
+      "goldfish cold read plan review plan"
+    ],
+    "goldfish cold read plan review tasks": [
+      "goldfish cold read plan review tasks"
+    ],
+    "goldfish plan check synthesis": [
+      "goldfish plan-check synthesis"
     ],
     "good and weak example": [
       "good and weak example"
@@ -58867,6 +58960,9 @@
     ],
     "implement workflow doctrine": [
       "implement workflow doctrine"
+    ],
+    "implement write intent": [
+      "IMPLEMENT write intent"
     ],
     "implementation": [
       "implementation"
@@ -72216,6 +72312,18 @@
     "name": [
       "name"
     ],
+    "name file in plan phase lines": [
+      "name file in plan phase lines"
+    ],
+    "name file in plan phase lines implementation summary": [
+      "name file in plan phase lines implementation summary"
+    ],
+    "name file in plan phase lines plan": [
+      "name file in plan phase lines plan"
+    ],
+    "name file in plan phase lines tasks": [
+      "name file in plan phase lines tasks"
+    ],
     "named colour tokens": [
       "named colour tokens"
     ],
@@ -74627,8 +74735,14 @@
     "one line pitch": [
       "one-line pitch"
     ],
+    "one lineage executor matrix": [
+      "one-lineage executor matrix"
+    ],
     "one lineage fan out refused": [
       "one-lineage fan-out refused"
+    ],
+    "one lineage refusal synthesis": [
+      "one-lineage refusal synthesis"
     ],
     "one mode classifier hub": [
       "one-mode classifier hub"
@@ -80426,6 +80540,9 @@
     "phase 3 quality mode": [
       "phase 3 quality mode"
     ],
+    "phase 3 refuse single lineage fanout run": [
+      "phase 3 refuse single lineage fanout run"
+    ],
     "phase 3 repin": [
       "phase 3 repin"
     ],
@@ -80633,6 +80750,9 @@
     "phase 4 mcp code mode": [
       "phase 4 mcp code mode"
     ],
+    "phase 4 name file in plan phase lines": [
+      "phase 4 name file in plan phase lines"
+    ],
     "phase 4 opencode devin live capture": [
       "phase 4 opencode devin live capture"
     ],
@@ -80735,6 +80855,9 @@
     "phase 5 advisor negation and routing": [
       "phase 5 advisor negation and routing"
     ],
+    "phase 5 authoring card routing": [
+      "phase 5 authoring card routing"
+    ],
     "phase 5 barter parity": [
       "phase 5 barter parity"
     ],
@@ -80827,6 +80950,9 @@
     ],
     "phase 5 persisted hops validation": [
       "phase 5 persisted hops validation"
+    ],
+    "phase 5 point chat sessions at authoring card": [
+      "phase 5 point chat sessions at authoring card"
     ],
     "phase 5 readme node floor": [
       "phase 5 readme node floor"
@@ -81032,6 +81158,9 @@
     "phase 6 remediation deep review": [
       "phase 6 remediation deep review"
     ],
+    "phase 6 repair speckit workflow gates": [
+      "phase 6 repair speckit workflow gates"
+    ],
     "phase 6 research lineage reducer path": [
       "phase 6 research lineage reducer path"
     ],
@@ -81148,6 +81277,9 @@
     ],
     "phase 7 doctor ux research": [
       "phase 7 doctor ux research"
+    ],
+    "phase 7 fix deep review p2 findings": [
+      "phase 7 fix deep review p2 findings"
     ],
     "phase 7 gap closure": [
       "phase 7 gap closure"
@@ -83233,6 +83365,9 @@
     "plan adherence validation gates": [
       "plan adherence validation gates"
     ],
+    "plan clarity gate criteria": [
+      "plan clarity gate criteria"
+    ],
     "plan contract optimization": [
       "plan contract optimization"
     ],
@@ -83251,6 +83386,12 @@
     "plan phase duplication": [
       "plan phase duplication"
     ],
+    "plan phase file naming acceptance criteria": [
+      "plan phase file naming acceptance criteria"
+    ],
+    "plan phase names its file": [
+      "plan phase names its file"
+    ],
     "plan preflight nested packet": [
       "plan preflight nested packet"
     ],
@@ -83268,6 +83409,9 @@
     ],
     "plan preflight track packets": [
       "plan preflight track packets"
+    ],
+    "plan template example closure criteria": [
+      "plan template example closure criteria"
     ],
     "plan template phase reduction": [
       "plan template phase reduction"
@@ -84058,6 +84202,21 @@
     "plugins we support": [
       "plugins we support"
     ],
+    "point chat sessions at authoring card": [
+      "point chat sessions at authoring card"
+    ],
+    "point chat sessions at authoring card implementation summary": [
+      "point chat sessions at authoring card implementation summary"
+    ],
+    "point chat sessions at authoring card plan": [
+      "point chat sessions at authoring card plan"
+    ],
+    "point chat sessions at authoring card tasks": [
+      "point chat sessions at authoring card tasks"
+    ],
+    "point chat sessions authoring card": [
+      "point chat sessions authoring card"
+    ],
     "point cloud chart": [
       "point cloud chart"
     ],
@@ -84822,6 +84981,9 @@
     ],
     "pre existing test triage tasks": [
       "pre existing test triage tasks"
+    ],
+    "pre implementation design choice stop": [
+      "pre-implementation design-choice stop"
     ],
     "pre migration inventory": [
       "pre-migration inventory"
@@ -89299,6 +89461,18 @@
     "refuse a refuted claim": [
       "refuse a refuted claim"
     ],
+    "refuse single lineage fanout run": [
+      "refuse single lineage fanout run"
+    ],
+    "refuse single lineage fanout run implementation summary": [
+      "refuse single lineage fanout run implementation summary"
+    ],
+    "refuse single lineage fanout run plan": [
+      "refuse single lineage fanout run plan"
+    ],
+    "refuse single lineage fanout run tasks": [
+      "refuse single lineage fanout run tasks"
+    ],
     "refuse symlink traversal at open": [
       "refuse symlink traversal at open"
     ],
@@ -91636,6 +91810,21 @@
     "repair scan to write gap": [
       "repair scan to write gap"
     ],
+    "repair speckit workflow gates": [
+      "repair speckit workflow gates"
+    ],
+    "repair speckit workflow gates acceptance": [
+      "repair speckit workflow gates acceptance"
+    ],
+    "repair speckit workflow gates implementation summary": [
+      "repair speckit workflow gates implementation summary"
+    ],
+    "repair speckit workflow gates plan": [
+      "repair speckit workflow gates plan"
+    ],
+    "repair speckit workflow gates tasks": [
+      "repair speckit workflow gates tasks"
+    ],
     "repair the five checks that fail on main": [
       "repair the five checks that fail on main"
     ],
@@ -93024,6 +93213,9 @@
     ],
     "research resource map": [
       "research resource map"
+    ],
+    "research review contract acceptance": [
+      "research review contract acceptance"
     ],
     "research review graph signals": [
       "research review graph signals"
@@ -98414,6 +98606,9 @@
     "scaffold sk create frontmatter": [
       "scaffold sk-create-frontmatter"
     ],
+    "scaffold snapshot regeneration acceptance": [
+      "scaffold snapshot regeneration acceptance"
+    ],
     "scaffold spec folder steps": [
       "scaffold spec folder steps"
     ],
@@ -102334,6 +102529,12 @@
     ],
     "single lineage contested containment": [
       "single-lineage contested containment"
+    ],
+    "single lineage executor acceptance": [
+      "single-lineage executor acceptance"
+    ],
+    "single lineage refusal acceptance criteria": [
+      "single-lineage refusal acceptance criteria"
     ],
     "single lineage sol xhigh decision": [
       "single lineage sol xhigh decision"
@@ -112539,6 +112740,9 @@
     "spec gate migration tasks": [
       "spec gate migration tasks"
     ],
+    "spec gate mutation notice": [
+      "spec gate mutation notice"
+    ],
     "spec gate opencode plugin": [
       "spec gate opencode plugin"
     ],
@@ -114332,6 +114536,9 @@
     ],
     "speckit template source sweep": [
       "SPECKIT_TEMPLATE_SOURCE sweep"
+    ],
+    "speckit test failure stop": [
+      "speckit test-failure stop"
     ],
     "speckit test run timeout ms env": [
       "SPECKIT_TEST_RUN_TIMEOUT_MS env"
@@ -117257,6 +117464,9 @@
     "system deep loop 1 6 24 0": [
       "system-deep-loop 1.6.24.0"
     ],
+    "system deep loop 1 6 25 0": [
+      "system-deep-loop 1.6.25.0"
+    ],
     "system deep loop 1 6 3 0": [
       "system-deep-loop 1.6.3.0"
     ],
@@ -117454,6 +117664,9 @@
     ],
     "system deep loop v1 6 24 0": [
       "system-deep-loop v1.6.24.0"
+    ],
+    "system deep loop v1 6 25 0": [
+      "system-deep-loop v1.6.25.0"
     ],
     "system deep loop v1 6 3 0": [
       "system-deep-loop v1.6.3.0"
@@ -118511,6 +118724,9 @@
     "system spec kit 2 12 52 0": [
       "system-spec-kit 2.12.52.0"
     ],
+    "system spec kit 2 12 53 0": [
+      "system-spec-kit 2.12.53.0"
+    ],
     "system spec kit 2 12 6 0": [
       "system-spec-kit 2.12.6.0"
     ],
@@ -119134,6 +119350,9 @@
     ],
     "system spec kit v2 12 52 0": [
       "system-spec-kit v2.12.52.0"
+    ],
+    "system spec kit v2 12 53 0": [
+      "system-spec-kit v2.12.53.0"
     ],
     "system spec kit v2 12 6 0": [
       "system-spec-kit v2.12.6.0"
