@@ -8,27 +8,27 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak"
-    last_updated_at: "2026-11-12T22:31:33Z"
+    last_updated_at: "2026-11-12T22:50:30Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed the test db temp leak and proved it with a full spec-kit run"
-    next_safe_action: "Verify the pull request checks pass, then close the phase"
+    recent_action: "Proved the test db temp leak fix on pull request 102 and closed the phase"
+    next_safe_action: "Verify a later spec-kit run still leaves no scratch folder"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/tests/_support/vitest-global-setup.ts"
       - ".skilled/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts"
       - "specs/system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak/spec.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:c6515e9f0698ba193fe98468529e8dc1e4d53be7b58334c066df81f1e81d41da"
       session_id: "scaffold-021-test-db-temp-leak"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "af05cd33-c1ff-46c9-825e-70281e3ca6f1"
       workspace: "/Users/michelkerkmeester/worktrees/public/359-test-db-temp-leak"
-      savedAt: "2026-11-12T22:31:33Z"
+      savedAt: "2026-11-12T22:50:30Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 021-test-db-temp-leak |
-| **Completed** | Not yet: the pull request checks are still to be read |
+| **Completed** | 2026-11-12 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -107,6 +107,7 @@ The setup file was changed for one run to write the test file's path next to eac
 | `npm test` in the spec-kit runtime folder | Exit 0. Runtime lane 126 files passed and 3 skipped, 1,649 tests passed. CLI lane 206 files passed and 3 skipped, 2,521 tests passed |
 | `speckit-test-db` entries newer than the start of that run | 0 |
 | `npx tsc --noEmit -p .` in the runtime folder | No output |
+| Pull request 102 | 37 checks pass, 0 fail, 2 Dependabot jobs skip, after one rerun |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -116,7 +117,8 @@ The setup file was changed for one run to write the test file's path next to eac
 
 1. **A killed run still leaves one folder.** The teardown does not run when the vitest process is killed, so the root folder stays with whatever was in it.
 2. **The timing of the verifying run says nothing.** Its lanes took 388 s and 338 s while the temp folder cleanup ran next to it. Phase 19 measured 256 s for the whole suite, and this phase did not repeat that measurement.
-3. **About 31,000 temp entries remain.** Most carry prefixes of the skill-advisor tests and other suites that were not traced.
+3. **One check needed a rerun for a reason outside this change.** The checkout step of `OpenCode plugin and hook node:test suites` took 8 min 39 s, which ran the job into its 10 minute limit. That workflow checks out the whole repository. The rerun passed.
+4. **About 31,000 temp entries remain.** Most carry prefixes of the skill-advisor tests and other suites that were not traced.
 <!-- /ANCHOR:limitations -->
 
 ---

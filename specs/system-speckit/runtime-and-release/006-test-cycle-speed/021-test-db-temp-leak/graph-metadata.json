@@ -32,7 +32,7 @@
       "file"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -128,12 +128,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -153,6 +147,12 @@
       },
       {
         "name": "Test Cycle Speed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The spec-kit vitest setup file creates a scratch database folder per test file and removes it in an `afterAll` hook",
     "created_at": "2026-11-12T22:12:29Z",
-    "last_save_at": "2026-11-12T22:31:33.521Z",
+    "last_save_at": "2026-11-12T22:50:30.784Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f932f9426b380228fb78453d29e007266c6add0d442855ff3bdbc73f212e8f2",
+    "source_fingerprint": "sha256:452c6db0ad2181500e809d0580147633fc0a82447cd72dd6ecd8596edee16b26",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "632618106e3456996b8e6fa0796e5e6f3e13edc4e23ca044b98429d1435276dd",
-      "plan.md": "1a0ba80ded464a7d10826a14c1a78f581e22e6842e4cf4a458dc685c9ec23ff9",
-      "tasks.md": "059a11b20b2c9ed3fed9bcd46160c8a80970957efd5ce785c6a53af90c8127e1",
-      "implementation-summary.md": "3f42023284655c499aa16390b24cac3ea90bc3534edf1dd8f14f0a6753c04d96"
+      "spec.md": "0a2269684d5409648fad08ab167e32cca3c62b2658ddf13eec68b677e4635526",
+      "plan.md": "b690e7d7d541280ccd526646db9adae03f65b9ed547f0833b7e7b82e7833d53a",
+      "tasks.md": "c480f178845cf39ec17e164d7548c73ac2ad34e928828165f2a2c4eb1819f02a",
+      "implementation-summary.md": "53731fe70e16b75acd1f560bc2447204256d1860c48149d81effa28f32c6fe0a"
     },
     "last_active_at": null
   }

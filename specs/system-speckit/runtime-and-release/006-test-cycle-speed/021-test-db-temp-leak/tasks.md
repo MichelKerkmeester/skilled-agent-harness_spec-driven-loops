@@ -58,7 +58,7 @@ contextType: "implementation"
 - [x] T006 Run the six files that leaked (`.skilled/skills/system-spec-kit/runtime/cli/tests/graph-aware-stop.vitest.ts`). Verify: the folder count is unchanged. Evidence: 3,360 before and 3,360 after.
 - [x] T007 Run the whole suite from the final state (`.skilled/skills/system-spec-kit/runtime/package.json`). Verify: `npm test` exits 0 and no `speckit-test-db` entry is newer than the start stamp. Evidence: exit 0, 0 new entries. Runtime lane 126 files passed and 3 skipped, CLI lane 206 passed and 3 skipped.
 - [x] T008 List the new file in the support README (`.skilled/skills/system-spec-kit/runtime/tests/_support/README.md`). Verify: `grep -c 'vitest-global-setup.ts' .skilled/skills/system-spec-kit/runtime/tests/_support/README.md` prints 2.
-- [ ] T009 Push the branch and read the checks on the runner (`.github/workflows/spec-kit-check.yml`). Verify: `gh pr checks` shows every check passing.
+- [x] T009 Push the branch and read the checks on the runner (`.github/workflows/spec-kit-check.yml`). Verify: `gh pr checks` shows every check passing. Evidence: pull request 102, 37 checks pass, 0 fail and 2 Dependabot jobs skip, after one rerun. The first attempt of `OpenCode plugin and hook node:test suites` was cancelled at its 10 minute limit because the checkout step took 8 min 39 s.
 
 <!-- /ANCHOR:phase-3 -->
 
@@ -67,9 +67,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

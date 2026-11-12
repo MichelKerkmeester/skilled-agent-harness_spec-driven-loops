@@ -145,20 +145,20 @@
     ],
     "causal_summary": "The Skilled test suites took too long to run locally",
     "created_at": "2026-11-10T18:27:35Z",
-    "last_save_at": "2026-11-12T22:31:33.574Z",
+    "last_save_at": "2026-11-12T22:50:33.979Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:33b8c500650053cb221fbad018a661b27c5a6c6a852849b98b5b398540f46ded",
+    "source_fingerprint": "sha256:a0d9e56661c4084ac4af257b238e0fb536b59451d8cdf09641cbfa13a6ee0d4a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9483d488317b1c29439426da134bea51bdea5b0b376e6471b494a47f955dd8f6",
+      "spec.md": "565e807a021553882367db8ef0496115ec471f97a94c8931fa26434b3ad25039",
       "decision-record.md": "0857d0af3bf7cacbf31e4614115e4a22287c2a76507e577230e7cdad31b49ceb"
     },
     "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak",
-    "last_active_at": "2026-11-12T22:31:33.574Z"
+    "last_active_at": "2026-11-12T22:50:30.815Z"
   }
 }
