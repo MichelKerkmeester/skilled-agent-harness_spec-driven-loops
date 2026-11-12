@@ -140,6 +140,10 @@ jobs:
     if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 51
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -171,12 +175,12 @@ jobs:
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ripgrep
 
       # No single file dominates the cli project's run time, so the project
-      # runs as one process.
+      # splits by file count: each matrix entry runs one third of the files.
       - name: CLI vitest project
         run: |
           set -uo pipefail
           cd .opencode/skills/system-spec-kit/runtime/cli
-          npx vitest run --config ../../vitest.config.ts --project cli
+          npx vitest run --config ../../vitest.config.ts --project cli --shard=${{ matrix.shard }}/3
 
   legacy-lanes:
     name: Legacy module lanes and the bash validation suites

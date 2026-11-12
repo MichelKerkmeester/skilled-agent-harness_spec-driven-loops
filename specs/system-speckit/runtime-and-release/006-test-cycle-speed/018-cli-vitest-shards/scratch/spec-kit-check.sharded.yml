@@ -1,0 +1,340 @@
+name: Spec-Kit Check
+
+on:
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/skills/system-spec-kit/**'
+      - '.skilled/skills/system-spec-kit/**'
+      - '.github/workflows/spec-kit-check.yml'
+      # The root instruction files are the shipped template the manifest copies, so an
+      # edit to either one has to run the suite that keeps that copy fresh.
+      - 'AGENTS.md'
+      - 'REPO RULES.md'
+      # The rebuild workflow's own suite pins the commit message it writes, so a
+      # change to that workflow has to run the suite that guards it.
+      - '.github/workflows/trigger-index-rebuild.yml'
+      # The mirror-parity job compares generated mirrors against their sources.
+      # Triggering on the spec-kit runtime alone let a mirror drift on a command
+      # or agent commit, ship unseen, and fail here later on whoever next touched
+      # the runtime. Every mirror source and every mirror output triggers it now.
+      - '.opencode/commands/**'
+      - '.skilled/commands/**'
+      - '.opencode/agents/**'
+      - '.skilled/agents/**'
+      - '.opencode/skills/*/command-metadata.json'
+      - '.skilled/skills/*/command-metadata.json'
+      - '.opencode/package.json'
+      - '.skilled/package.json'
+      - '.opencode/package-lock.json'
+      - '.skilled/package-lock.json'
+      # The plugins-folder purity test imports every plugin entrypoint.
+      - '.opencode/plugins/**'
+      - '.codex/**'
+      - '.claude/**'
+      - '.cursor/**'
+      - '.devin/**'
+      - '.pi/**'
+      # The orphan sweeper and session cleanup scripts are tested by this
+      # workflow's runtime suite, so a change to them has to run it.
+      - '.opencode/scripts/**'
+      - '.skilled/scripts/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.opencode/skills/system-spec-kit/**'
+      - '.skilled/skills/system-spec-kit/**'
+      - '.github/workflows/spec-kit-check.yml'
+      # The root instruction files are the shipped template the manifest copies, so an
+      # edit to either one has to run the suite that keeps that copy fresh.
+      - 'AGENTS.md'
+      - 'REPO RULES.md'
+      # The rebuild workflow's own suite pins the commit message it writes, so a
+      # change to that workflow has to run the suite that guards it.
+      - '.github/workflows/trigger-index-rebuild.yml'
+      # The mirror-parity job compares generated mirrors against their sources.
+      # Triggering on the spec-kit runtime alone let a mirror drift on a command
+      # or agent commit, ship unseen, and fail here later on whoever next touched
+      # the runtime. Every mirror source and every mirror output triggers it now.
+      - '.opencode/commands/**'
+      - '.skilled/commands/**'
+      - '.opencode/agents/**'
+      - '.skilled/agents/**'
+      - '.opencode/skills/*/command-metadata.json'
+      - '.skilled/skills/*/command-metadata.json'
+      - '.opencode/package.json'
+      - '.skilled/package.json'
+      - '.opencode/package-lock.json'
+      - '.skilled/package-lock.json'
+      # The plugins-folder purity test imports every plugin entrypoint.
+      - '.opencode/plugins/**'
+      - '.codex/**'
+      - '.claude/**'
+      - '.cursor/**'
+      - '.devin/**'
+      - '.pi/**'
+      # The orphan sweeper and session cleanup scripts are tested by this
+      # workflow's runtime suite, so a change to them has to run it.
+      - '.opencode/scripts/**'
+      - '.skilled/scripts/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  # Every model load runs on the CPU, so the onnxruntime-node install skips its Linux CUDA
+  # provider download: unused here, and the install step that fails when that host times out.
+  ONNXRUNTIME_NODE_INSTALL_CUDA: skip
+
+jobs:
+  check:
+    name: Typecheck, import policy and test suites for the spec-kit packages
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 51
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      # Only the package root carries a lockfile; shared, runtime and
+      # runtime/cli are workspaces of it, so the root install provisions all
+      # three. The CLI's check gate maps dist files back to sources, so every
+      # package is built before it runs.
+      - name: Install and build the spec-kit packages
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          # The runtime project imports the OpenCode plugin entrypoints, which depend
+          # on the plugin SDK declared in .skilled/package.json.
+          npm --prefix .skilled ci
+          # The skill-advisor plugin imports the advisor server's compiled output in the
+          # same way; its build also compiles the shared package it depends on.
+          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-spec-kit/runtime run build
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+
+      # The CLI check is the only gate that rejects a reverse import into the
+      # engine's internals; before this workflow nothing ran it outside a
+      # developer's shell.
+      - name: CLI check gate and typecheck
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run check
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run typecheck
+
+      - name: Shared package tests
+        run: npm --prefix .opencode/skills/system-spec-kit/shared test
+
+  cli-vitest:
+    name: CLI vitest project
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 51
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      # Each job builds its own workspace: the install and the dist files are
+      # runner-local, so no step can reuse a sibling job's build.
+      - name: Install and build the spec-kit packages
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          # The runtime project imports the OpenCode plugin entrypoints, which depend
+          # on the plugin SDK declared in .skilled/package.json.
+          npm --prefix .skilled ci
+          # The skill-advisor plugin imports the advisor server's compiled output in the
+          # same way; its build also compiles the shared package it depends on.
+          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-spec-kit/runtime run build
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+
+      # The ripgrep recipe and residue-sweep suites spawn rg; the runner image
+      # does not ship it, and without it every recipe exits 2.
+      - name: Install ripgrep
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ripgrep
+
+      # No single file dominates the cli project's run time, so the project is
+      # split into three file shards, one per matrix entry.
+      - name: CLI vitest project
+        run: |
+          set -uo pipefail
+          cd .opencode/skills/system-spec-kit/runtime/cli
+          npx vitest run --config ../../vitest.config.ts --project cli --shard=${{ matrix.shard }}/3
+
+  legacy-lanes:
+    name: Legacy module lanes and the bash validation suites
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 51
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      # Each job builds its own workspace: the install and the dist files are
+      # runner-local, so no step can reuse a sibling job's build.
+      - name: Install and build the spec-kit packages
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          # The runtime project imports the OpenCode plugin entrypoints, which depend
+          # on the plugin SDK declared in .skilled/package.json.
+          npm --prefix .skilled ci
+          # The skill-advisor plugin imports the advisor server's compiled output in the
+          # same way; its build also compiles the shared package it depends on.
+          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-spec-kit/runtime run build
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+
+      - name: Legacy module lanes and the bash validation suites
+        # These lanes are what `npm test` runs after the vitest project, and they
+        # rotted unseen while only the vitest project ran here.
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run test:legacy
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run test:validation
+
+  runtime-vitest:
+    name: Runtime vitest project
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 51
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      # Each job builds its own workspace: the install and the dist files are
+      # runner-local, so no step can reuse a sibling job's build.
+      - name: Install and build the spec-kit packages
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          # The runtime project imports the OpenCode plugin entrypoints, which depend
+          # on the plugin SDK declared in .skilled/package.json.
+          npm --prefix .skilled ci
+          # The skill-advisor plugin imports the advisor server's compiled output in the
+          # same way; its build also compiles the shared package it depends on.
+          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-spec-kit/runtime run build
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+
+      - name: Runtime vitest project
+        # The runtime's own suites, which failed in seven files for months while
+        # only the CLI project ran here.
+        run: |
+          set -euo pipefail
+          cd .opencode/skills/system-spec-kit/runtime
+          npx vitest run --config ../vitest.config.ts --project root
+
+  mirrors:
+    name: Runtime mirrors agree with their sources
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      # The same read-only checks /doctor runtime-mirrors runs on demand. The
+      # agent-mirror workflow covers agents only; these cover commands, prompts,
+      # the agent roster and the command catalog, so prompt and command drift
+      # stops being invisible to CI.
+      # The sync scripts require @spec-kit/shared through the workspace link,
+      # which only an install creates on a clean runner.
+      - name: Install the workspace and build its shared package
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+
+      - name: Mirror parity checks
+        run: |
+          set -euo pipefail
+          node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check
+          node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs
+          node .opencode/commands/doctor/scripts/command-catalog-mirror-check.cjs
+          node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check
+
+  doctor-scripts:
+    name: Doctor script test suites
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      - name: Setup Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: .github/workflows/spec-kit-check.yml
+
+      # The mutation-class guard parses its manifest with PyYAML. The mirror
+      # checks require @spec-kit/shared through the workspace link, the hub
+      # check loads sk-doc's contract libraries, which import the same package
+      # through sk-doc's own install, and the freshness panel suite runs on the
+      # advisor runtime's vitest. The advisor route-contract test parses the
+      # route manifest with the yaml package declared in .skilled/package.json.
+      # The doctor update integration test runs upgrade-legacy, which imports the built runtime.
+      - name: Install test dependencies
+        run: |
+          set -euo pipefail
+          python3 -m pip install pyyaml==6.0.3
+          npm --prefix .skilled ci
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/sk-doc ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+          npm --prefix .opencode/skills/system-spec-kit/runtime run build
+
+      # One runner, so CI and a developer execute the same set of suites.
+      - name: Run every doctor script suite
+        run: bash .opencode/commands/doctor/scripts/tests/run-all.sh

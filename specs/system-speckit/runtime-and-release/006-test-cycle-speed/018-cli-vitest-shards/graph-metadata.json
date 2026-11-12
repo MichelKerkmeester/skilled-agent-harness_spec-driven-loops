@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards",
+  "spec_folder": "system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards",
+  "parent_id": "system-speckit/runtime-and-release/006-test-cycle-speed",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli vitest shards",
+      "phase 18 cli vitest shards",
+      "cli vitest shards plan",
+      "cli vitest shards tasks",
+      "cli vitest shards implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "vitest",
+      "shards",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "cli-vitest",
+      "job",
+      "github",
+      "workflows"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".github/workflows/spec-kit-check.yml",
+      ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
+      ".opencode/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
+      ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+      ".opencode/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/package.json",
+      "scratch/spec-kit-check.sharded.yml",
+      ".skilled/skills/system-spec-kit/vitest.config.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "ci-workflow-standards.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "job-shape-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.sharded.yml",
+        "kind": "config",
+        "path": "scratch/spec-kit-check.sharded.yml",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Cycle Speed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `cli-vitest` job in `.github/workflows/spec-kit-check.yml` is the slowest check a spec-kit push waits on",
+    "created_at": "2026-11-12T14:48:38Z",
+    "last_save_at": "2026-11-12T15:14:12.505Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3cf3369855d0d58aa8fdab04f6c8214f97416099363bb327d570bc9c1fcaeed6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "393144c4d8f1887fa883c42a321ee4fcf615f6b1c1ed509c8c0df14a054bc791",
+      "plan.md": "8e977addd32ec50e5ec516aa843f657150b299a5c5502c75624085a2a1a3b753",
+      "tasks.md": "dcf98d4a36dac0fc8fccf36a6f02883b3148b947f3fd353d27db8261162b2a2b",
+      "implementation-summary.md": "e36e9371effae8f086b6df5c504a228234b63c5e202984aae2b899b1ae411759"
+    },
+    "last_active_at": null
+  }
+}
