@@ -42,7 +42,7 @@ Worker waves. Tasks in one wave touch different files and can run in parallel.
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Re-read the before numbers (`$S/before.txt`). Verify: `$CHK | grep -E "^A(4|6) |^STATUS"` prints `44 current`, `15629 of 16384` and `STATUS=OK`, `node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check` prints `30 pins`, `node $SYNC --check` exits 0 and `node $S/measure-policies.mjs | head -1` prints `commands 44 {"start":20,"ask":17,"run":7}`.
+- [x] T001 Re-read the before numbers (`$S/before.txt`). Verify: `$CHK | grep -E "^A(4|6) |^STATUS"` prints `44 current`, `15629 of 16384` and `STATUS=OK`, `node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check` prints `30 pins`, `node $SYNC --check` exits 0 and `node $S/measure-policies.mjs | head -1` prints `commands 44 {"start":20,"ask":17,"run":7}`.
 - [ ] T002 Confirm phase 005 shipped the brief line (`$S/phase005-check.txt`). Verify: `bash $S/hook-first-line.sh "create a readme for the utils folder"` prints a line holding `/create:readme` and `(start)`. If it does not, mark T014, T015, T023, T026 and T033 `[B]` with the line it printed, and carry on with the rest.
 <!-- /ANCHOR:phase-1 -->
 

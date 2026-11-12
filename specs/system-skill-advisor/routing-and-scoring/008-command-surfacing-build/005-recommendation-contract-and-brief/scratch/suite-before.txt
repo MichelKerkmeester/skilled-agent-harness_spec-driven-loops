@@ -1,0 +1,20 @@
+
+> test
+> vitest run
+
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/.skilled/skills/system-skill-advisor/runtime
+
+[system-skill-advisor-launcher] skill-advisor reap skipped; pid 4239 executable 'node' != recorded 'some-unrelated-daemon' (pid reused)
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=719341
+[system-skill-advisor-launcher] ownerLeaseReclaimed: unreadable
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=404530
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+[system-skill-advisor-launcher] reclaimed stale bootstrap lock at ../../../../../var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/system-skill-advisor-launcher-SaH5Vg/runtime/database/.system-skill-advisor-launcher.lockdir (10s old)
+
+ Test Files  167 passed (167)
+      Tests  1482 passed | 6 skipped (1488)
+   Start at  00:32:37
+   Duration  169.18s (transform 1.13s, setup 545ms, import 5.44s, tests 154.12s, environment 5ms)
+

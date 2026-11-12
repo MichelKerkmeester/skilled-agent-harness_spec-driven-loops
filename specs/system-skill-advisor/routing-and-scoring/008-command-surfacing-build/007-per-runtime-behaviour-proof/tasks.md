@@ -110,12 +110,12 @@ Worker waves. Tasks in one wave touch different files and can run in parallel.
 Before phase 005's first code commit, one at a time:
 
 - [x] T022 Smoke run: one tune start row on each measured runtime with its default model from `plan.md` section 3 (6 live runs, `$X/runs-smoke.jsonl`). Record the Pi and Devin locator source in `R`. The Codex smoke run follows the GPT rule: the Codex CLI with the operator's ChatGPT account only, never DevPass, and on an exhausted quota stop and ask the operator. Verify: `node $S --summary $X/runs-smoke.jsonl --json | jq -c 'map_values(.unscored)'` prints 0 for every runtime, and `rg -n "UNKNOWN" $R` prints nothing.
-- [ ] T023 Pre-change arm, Claude Code, `claude-sonnet-5-5`, 24 prompts (`$X/runs-pre.jsonl`). Verify: `jq -s '[.[] | select(.runtime=="claude" and .arm=="pre")] | length' $X/runs-pre.jsonl` prints 24.
-- [ ] T024 Pre-change arm, Codex, `gpt-6-luna` medium fast, 24 prompts (`$X/runs-pre.jsonl`). GPT rule: the Codex CLI with the operator's ChatGPT account only, never DevPass, and on an exhausted quota stop and ask the operator. Verify: the same count for `codex` prints 24.
-- [ ] T025 Pre-change arm, OpenCode, `llmgateway/deepseek-v4.1-flash-1017` max, 24 prompts (`$X/runs-pre.jsonl`). Verify: the same count for `opencode` prints 24.
-- [ ] T026 Pre-change arm, Pi, `deepseek-v4.1-flash-1017` on `llmgateway`, 24 prompts (`$X/runs-pre.jsonl`). Verify: the same count for `pi` prints 24.
-- [ ] T027 Pre-change arm, Devin, `swe-2-max`, 24 prompts (`$X/runs-pre.jsonl`). Verify: the same count for `devin` prints 24.
-- [ ] T028 Pre-change arm, DSH, default roster route, 24 prompts (`$X/runs-pre.jsonl`). Verify: the same count for `dsh` prints 24, and `git -c core.fsmonitor=false status --porcelain` lists nothing outside this phase folder.
+- [x] T023 Pre-change arm, Claude Code, `claude-sonnet-5-5`, 24 prompts (`$X/runs-pre.jsonl`). Verify: `jq -s '[.[] | select(.runtime=="claude" and .arm=="pre")] | length' $X/runs-pre.jsonl` prints 24.
+- [x] T024 Pre-change arm, Codex, `gpt-6-luna` medium fast, 24 prompts (`$X/runs-pre.jsonl`). GPT rule: the Codex CLI with the operator's ChatGPT account only, never DevPass, and on an exhausted quota stop and ask the operator. Verify: the same count for `codex` prints 24.
+- [x] T025 Pre-change arm, OpenCode, `llmgateway/deepseek-v4.1-flash-1017` max, 24 prompts (`$X/runs-pre.jsonl`). Verify: the same count for `opencode` prints 24.
+- [x] T026 Pre-change arm, Pi, `deepseek-v4.1-flash-1017` on `llmgateway`, 24 prompts (`$X/runs-pre.jsonl`). Verify: the same count for `pi` prints 24.
+- [x] T027 Pre-change arm, Devin, `swe-2-max`, 24 prompts (`$X/runs-pre.jsonl`). Verify: the same count for `devin` prints 24.
+- [x] T028 Pre-change arm, DSH, default roster route, 24 prompts (`$X/runs-pre.jsonl`). Verify: the same count for `dsh` prints 24, and `git -c core.fsmonitor=false status --porcelain` lists nothing outside this phase folder.
 
 After phase 006 lands, one at a time:
 

@@ -1,0 +1,17 @@
+# Before numbers
+Date: 2026-11-12  Commit: 49281dd652
+
+$ node .skilled/commands/doctor/scripts/agents-md-check.cjs | grep -E "^A(4|6) |^STATUS"
+A4 section currency: 44 current, 0 stale-known, 0 edited, 0 unknown-base   (PASS)
+A6 delivery budget: 15629 of 16384 bytes to the last anchor, 27112 of 32768 bytes total   (PASS)
+STATUS=OK rows=12 findings=0 unknown=0
+exit=
+$ node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check
+[agents-md-manifest] PASS: 44 sections, 30 pins, derived matches AGENTS.md
+[agents-md-manifest] Budget: 15629 / 16384 bytes to the last anchor, 27112 / 32768 bytes total, 20 history bodies
+exit=
+$ node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check
+[gate1-pointer-sync] PASS: 1 instruction files carry the root Gate 1 lookup.
+exit=
+$ node $S/measure-policies.mjs | head -1
+commands 44 {"start":20,"ask":17,"run":7}

@@ -1,0 +1,12 @@
+claude: 0 unscored
+  pre: 24 of 24 scored, start 3 of 12, COMMAND: line 0 of 24, capped 0, unsafe 0, repeated 0, loops without init 0 of 0
+codex: 0 unscored
+  pre: 24 of 24 scored, start 0 of 12, COMMAND: line 0 of 24, capped 0, unsafe 0, repeated 0, loops without init 0 of 0
+pi: 0 unscored
+  pre: 24 of 24 scored, start 0 of 12, COMMAND: line 0 of 24, capped 2, unsafe 3, repeated 0, loops without init 0 of 0
+devin: 0 unscored
+  pre: 24 of 24 scored, start 3 of 12, COMMAND: line 0 of 24, capped 6, unsafe 3, repeated 0, loops without init 0 of 1
+opencode: 0 unscored
+  pre: 24 of 24 scored, start 5 of 12, COMMAND: line 0 of 24, capped 7, unsafe 2, repeated 0, loops without init 0 of 0
+dsh: 0 unscored
+  pre: 24 of 24 scored, start 5 of 12, COMMAND: line 1 of 24, capped 0, unsafe 1, repeated 0, loops without init 1 of 1

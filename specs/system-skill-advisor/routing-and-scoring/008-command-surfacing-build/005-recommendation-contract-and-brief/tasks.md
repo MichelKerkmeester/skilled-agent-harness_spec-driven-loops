@@ -64,9 +64,9 @@ Worker waves. Tasks in one wave touch different files and can run in parallel. A
 
 - [x] T001 Record the before numbers (`$S/before.txt`). Verify: `$P` prints `[159,50,20,5]`, `node $C | $M` prints `{"correct":24,"total":44}`, the plain block with tune combined 9 and holdout combined 0, `{"count":0,"total":35}` and `["cmd-create-agent-typed-01"]`, and `$ROLL` prints `{"ask":17,"run":7,"start":20}`.
 - [x] T002 Write `$S/brief-heads.mjs`, which pipes six prompts through `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js` and prints the first line of each `additionalContext`, and save its output (`$S/brief-heads-before.txt`). The prompts are the five non-skipped hook prompts in the `spec.md` measured block plus `research caching strategies in depth over several iterations`. Verify: the file has six lines, and the first reads `Advisor: live; use command-spec-kit-plan 0.82/0.16 pass.`
-- [ ] T003 Copy `../003-plain-chat-command-reach/scratch/hook-latency.mjs` to `$S/hook-latency.mjs` and run it three times (`$S/hook-latency-before-{1,2,3}.json`). Verify: `jq -c '[.n,.medianMs,.p95Ms]'` on each file prints 44 and two numbers.
+- [x] T003 Copy `../003-plain-chat-command-reach/scratch/hook-latency.mjs` to `$S/hook-latency.mjs` and run it three times (`$S/hook-latency-before-{1,2,3}.json`). Verify: `jq -c '[.n,.medianMs,.p95Ms]'` on each file prints 44 and two numbers.
 - [x] T004 Run the reach check with Ollama up (`$S/reach-before.txt`). Verify: `curl -s localhost:11434/api/tags | jq -r '.models[].name'` lists `nomic-embed-text:v1.5`, and `node $RC --hub sk-doc` exits 1 with `outranked=4` and `RESULT: FAILED`.
-- [ ] T005 Run the suite once (`$S/suite-before.txt`). Verify: `npm test` in `ADV` prints a summary line, and the file records its failed count.
+- [x] T005 Run the suite once (`$S/suite-before.txt`). Verify: `npm test` in `ADV` prints a summary line, and the file records its failed count.
 - [x] T054 Write `$S/nm-sk-doc-probe.mjs`, which sets `VITEST`, imports `scoreAdvisorPrompt` from `$ADV/dist/runtime/lib/scorer/fusion.js` and prints, for `sk-doc`, `system-skilled-doctor`, `sk-code` and `sk-design`, the confidence, the score and each positive lane contribution with its evidence, for the prompt of row `nm-sk-doc-01`. Save the output (`$S/nm-sk-doc-before.txt`). Verify: the output matches the probe block in `spec.md`, with `sk-doc` absent and `sk-code` holding `token:typo` and `token:heading`.
 - [x] T055 Trace each token in `$S/nm-sk-doc-before.txt` to the source file and field it is projected from, by reading how `$ADV/lib/scorer/lanes/lexical.ts` and `$ADV/lib/scorer/projection.ts` build a skill's token list, and record why `sk-doc` holds no documentation-edit token (`$S/nm-sk-doc-source.txt`). Verify: the file has one line per token `typo`, `heading`, `guide`, `setup` and `debug`, each naming skill, file and field, and one line naming the `sk-doc` source field that should carry documentation-edit vocabulary.
 <!-- /ANCHOR:phase-1 -->
@@ -202,10 +202,10 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved pinned num
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The before numbers, brief heads, reach check, timing and suite are in `$S` (T001 to T005).
+- [x] CHK-001 [P0] The before numbers, brief heads, reach check, timing and suite are in `$S` (T001 to T005). Evidence: `before.txt`, `brief-heads-before.txt`, `reach-before.txt`, `hook-latency-before-{1,2,3}.json` (middle median 179.86 ms, middle p95 240.23 ms) and `suite-before.txt` (1482 passed, 0 failed).
 - [x] CHK-002 [P0] The four design questions have an operator answer. Evidence: 2026-11-12, each the recommended option, recorded in `spec.md` section 10.
 - [x] CHK-003 [P1] The operator keeps CARRY-003. Evidence: "Carry three, settle five (Recommended)".
-- [ ] CHK-004 [P0] The coordinator confirmed phase 007's before-measurement is done before wave 1 started.
+- [x] CHK-004 [P0] The coordinator confirmed phase 007's before-measurement is done before wave 1 started. Evidence: 144 of 144 runs in `../007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`, last runtime finished 2026-11-12T23:30:58Z, wave 1 dispatched after it.
 <!-- /ANCHOR:pre-impl -->
 
 ---
