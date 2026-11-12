@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1d3d5a685e2d9b5d91ebe8fac76406fc5c604a57826554f894165d43dbd2a62b",
+  "corpusHash": "580dae55d89ce666e2d0df22963f316f373d4eecbf99b1442a7ab12ceb731002",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26357,
+  "includedPathCount": 26361,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -25617,6 +25617,10 @@
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups/plan.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups/spec.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups/tasks.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/decision-record.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/implementation-summary.md",
@@ -26389,7 +26393,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3c7a4259592580a1531c38889471de99b9bab12132e398be9dcb228eb251aa8b",
+  "manifestHash": "95f1d0240aa9e287b5aaa197b48e4b6b269458ca51fc262922c2d50258026d8e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36801,6 +36805,10 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups/scratch",
       "reason": "excluded directory"
     },
     {
