@@ -94,7 +94,7 @@ string, not these files.
 - [x] The system-spec-kit `runtime/cli` suite passes with the regenerated scaffold snapshot
 - [x] `review/review-report.md` covers 5 iterations and no P0 or P1 finding stays open after remediation
 - [x] `synthesis.md` by Opus exists and `local-skilled-alignment` reports no open finding
-- [ ] `git ls-remote --tags origin v4.0.2.1` names the commit holding this work, and the v4.0.2.1 changelog lists it
+- [x] `git ls-remote --tags origin v4.0.2.1` names the commit holding this work, and the v4.0.2.1 changelog lists it
 <!-- /ANCHOR:completion -->
 
 ---
