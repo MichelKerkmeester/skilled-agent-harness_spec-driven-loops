@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # system-skilled-doctor
@@ -41,7 +41,7 @@ Doctor commands about a single skill's own checks stay with that skill, such as 
 | `/doctor:agents-md` | Checks the sections Skilled ships in a project's `AGENTS.md`, and embeds or restores them after showing the plan |
 | `/doctor:runtime-mirrors` | Checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled` and names the repair command |
 | `/doctor:env` | Shows the switches documented in `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` and every other setting in the root `.env.example`, with where each is set. It saves a preference after you approve the exact line |
-| `/doctor:setup` | Lists every doctor command and target, runs five read-only setup checks, names the repair command for each failing one and shows the last session hop, any unclaimed handoff note and the orphaned processes still running |
+| `/doctor:setup` | Lists every doctor command and target, runs five read-only setup checks, names the repair command for each failing one and shows the last session hop, any unclaimed handoff note, the Claude context window the relaunch nudge measures against and the orphaned processes still running |
 | `/doctor:helper` | Takes a described problem and ranks the doctor commands that fit, with why, ready to run |
 | `/doctor:speckit` | Checks that the trigger index is fresh and that its lookup and the ripgrep recipes return results |
 | `/doctor:mcp` | Installs or debugs Code Mode with its UTCP configuration and runtime registration |

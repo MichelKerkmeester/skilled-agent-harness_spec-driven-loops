@@ -119,6 +119,7 @@ Each child phase fixes one finding, or two that share one switch, with a test th
 | 5 | 005-subagent-guard-cancel-consume/ | Finding 5, P2: the sub-agent guard also denies `cancel`, `consume` and `hand-over` | Complete |
 | 6 | 006-append-lock-stale-reclaim/ | Finding 6, P2: one waiter at a time reclaims a stale append lock and reads its age again before removing it | Complete |
 | 7 | 007-loop-start-record-cleanup/ | Finding 7, P2: the wrapper removes its own leftover record before the first launch | Complete |
+| 8 | 008-alignment-findings/ | The 28 findings of the 2026-11-12 alignment report: two wrapper defects, stale documents, env rows, playbook scenarios, routing signals and the changelog shape ceilings | Complete |
 
 ### Dependencies and Parallel Waves
 
@@ -147,6 +148,7 @@ Phases 001 to 005 change separate source files and can start together. Phase 006
 | 004-claude-window-unknown | 005-subagent-guard-cancel-consume | No code dependency | `validate.sh 004-claude-window-unknown --strict` prints `RESULT: PASSED` |
 | 005-subagent-guard-cancel-consume | 006-append-lock-stale-reclaim | Phase 002's edits to `relaunch-core.cjs` are in, because phase 006 changes the same file | `validate.sh 002-state-dir-read-check --strict` prints `RESULT: PASSED`, and `node --test .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs` exits 0 |
 | 006-append-lock-stale-reclaim | 007-loop-start-record-cleanup | Phase 003's edits to `skilled-loop` are in, because phase 007 changes the same file | `validate.sh 003-launch-flag-replay --strict` prints `RESULT: PASSED`, and `node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs` exits 0 |
+| 007-loop-start-record-cleanup | 008-alignment-findings | Phases 001 to 007 are committed, because the alignment report read that range | `git log --oneline 5dafa313e8..HEAD` lists commit `e744e80a17` |
 <!-- /ANCHOR:phase-map -->
 
 ---

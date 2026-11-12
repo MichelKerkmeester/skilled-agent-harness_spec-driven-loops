@@ -652,6 +652,11 @@ test('Cursor first launch arguments are replayed', (t) => {
     (seed) => [seed, '--api-key', 'token', '--trust']);
 });
 
+test('an attached short option value keeps the next word as the prompt', (t) => {
+  assertHopReplaysArguments(t, 'cursor', ['-HAuthorization: Bearer t', 'first prompt'],
+    (seed) => [seed, '-HAuthorization: Bearer t']);
+});
+
 test('Devin first launch arguments are replayed', (t) => {
   assertHopReplaysArguments(t, 'devin', ['--config', '/tmp/devin.json', '--sandbox', 'first prompt'],
     (seed) => ['--config', '/tmp/devin.json', '--sandbox', '--', seed]);

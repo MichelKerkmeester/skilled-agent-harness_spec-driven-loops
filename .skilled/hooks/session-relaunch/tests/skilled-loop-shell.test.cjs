@@ -110,6 +110,16 @@ function resolveWithShim(shell, shim, directory, runtime = 'claude', env = clean
   return result.stdout;
 }
 
+// A cyclic link never resolves, so the walk has to give up instead of spinning.
+function realPath(shell, directory, entry) {
+  const script = 'source "$1" || exit 90; cd "$2" || exit 91; skilled_loop_real_path "$3"';
+  return spawnSync(
+    shell.command,
+    [...shell.flags, script, 'skilled-loop-shell-test', SHIM, directory, entry],
+    { encoding: 'utf8', env: cleanEnv(), timeout: 5000 },
+  );
+}
+
 function label(shell, runtime, args) {
   return `${shell.name} ${runtime} ${JSON.stringify(args)}`;
 }
@@ -248,6 +258,19 @@ for (const shell of SHELLS) {
     const box = sandbox(t);
     assert.equal(resolve(shell, box.repo, 'cursor-agent', []), '');
     assert.equal(resolve(shell, box.repo, 'gemini', []), '');
+  });
+
+  test(`${shell.name}: a symlink cycle at the wrapper path returns 1`, (t) => {
+    const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'skilled-loop-cycle-')));
+    t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+    const bin = path.join(root, '.skilled', 'bin');
+    fs.mkdirSync(bin, { recursive: true });
+    fs.symlinkSync('second-link', path.join(bin, 'skilled-loop'));
+    fs.symlinkSync('skilled-loop', path.join(bin, 'second-link'));
+    const result = realPath(shell, root, '.skilled/bin/skilled-loop');
+    assert.equal(result.error, undefined, `${shell.name} resolver did not return`);
+    assert.equal(result.stdout, '');
+    assert.equal(result.status, 1, `${shell.name} exit`);
   });
 }
 

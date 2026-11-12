@@ -1,0 +1,10 @@
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation
+
+
+ Test Files  1 passed (1)
+      Tests  59 passed (59)
+   Start at  19:39:11
+   Duration  417ms (tests 89%, transform 5%, import 5%, worker 1%)
+
+exit=0

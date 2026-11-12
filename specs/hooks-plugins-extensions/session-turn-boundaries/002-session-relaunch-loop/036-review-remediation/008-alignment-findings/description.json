@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/008-alignment-findings",
+  "description": "Phase 8: alignment-findings",
+  "keywords": [
+    "phase",
+    "alignment-findings"
+  ],
+  "lastUpdated": "2026-11-12T18:49:24.731Z",
+  "specId": "008",
+  "folderSlug": "alignment-findings",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "036-review-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_19-49__phase-008-fixed-the-findings-of-the-2026-11-12.md"
+  ]
+}

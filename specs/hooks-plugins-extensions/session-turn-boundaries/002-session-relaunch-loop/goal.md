@@ -92,7 +92,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] All eleven phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
+- [x] All 36 phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
 - [x] `validate.sh` on this packet with `--recursive --strict` prints `RESULT: PASSED`
 - [x] A live Claude Code relaunch through `skilled-loop` is recorded with its `relaunch.log` hop line
 - [x] `sync-hook-registrations.cjs --check`, `sync-runtime-mirrors.cjs --check` and `run-all-drift-guards.sh` all exit 0
@@ -122,6 +122,7 @@ and findings belong here.
 | Phase 010 complete | Done | 010 acceptance-criteria 4/4 Met; 20 findings verified (6 worth fixing); recursive strict eleven PASSED |
 | Phase 011 complete | Done | 011 acceptance-criteria 6/6 Met; node 566/566, Pi 39/39; red swap 82 and 2; recursive strict PASSED |
 | Phase 007 complete | Done | 007 acceptance-criteria 9/9 Met. Live run 10 on Claude, Pi and OpenCode with zero operator prompts (`007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/`). Recursive strict PASSED |
+| Criterion 1 count | Done | 2026-11-12: the alignment report on phase 036 found the criterion still said eleven phase folders while the folder holds 36. It now says 36. The slice is 3,993 characters at packet_budget=ok and changed, so it is printed for the operator with goal.cjs packet |
 
 ### Deviations and findings
 

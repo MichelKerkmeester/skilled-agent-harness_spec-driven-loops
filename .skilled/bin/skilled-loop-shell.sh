@@ -25,7 +25,10 @@ skilled_loop_real_path() {
   local entry="$1"
   local directory
   local target
+  local hops=0
   while [ -L "$entry" ]; do
+    hops=$((hops + 1))
+    [ "$hops" -le 40 ] || return 1
     directory=${entry%/*}
     if [ "$directory" = "$entry" ]; then
       directory=.

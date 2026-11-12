@@ -52,7 +52,13 @@
     "my agents overlay",
     "my skilled overlay",
     "my overlays back into the vendored copy",
-    "take over the overlay lock"
+    "take over the overlay lock",
+    "doctor setup diagnostic",
+    "what doctor setup prints",
+    "doctor setup",
+    "repository health legs",
+    "runtime mirrors",
+    "repair the failing runtime mirrors"
   ],
   "derived": {
     "trigger_phrases": [
@@ -95,7 +101,8 @@
       ".skilled/skills/system-skilled-doctor/SKILL.md",
       ".skilled/skills/system-skilled-doctor/README.md",
       ".skilled/commands/doctor/install.md",
-      ".skilled/commands/doctor/helper.md"
+      ".skilled/commands/doctor/helper.md",
+      ".skilled/commands/doctor/setup.md"
     ],
     "entities": [
       {

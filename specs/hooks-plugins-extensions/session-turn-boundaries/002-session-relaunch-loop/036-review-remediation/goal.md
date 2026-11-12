@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation"
     last_updated_at: "2026-11-12T14:45:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Fixed the four second-review findings and reran the gate"
-    next_safe_action: "Merge worktree 351 once the operator decides"
+    recent_action: "Closed phase 008 and reran the goal gate"
+    next_safe_action: "Await the alignment recheck, then the local merge of worktree 351"
     blockers: []
     key_files: []
     session_dedup:
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** The session relaunch loop runs only a wrapper it can trust, reads only a state directory it has checked, keeps a session's launch flags across a hop, measures Claude's fill against a known window, denies every lifecycle command to a sub-agent, reclaims a stale lock once and starts without a leftover record.
+**Objective:** The session relaunch loop runs only a wrapper it can trust, reads only a state directory it has checked, keeps a session's launch flags across a hop, measures Claude's fill against a known window, denies every lifecycle command to a sub-agent, reclaims a stale lock once and starts without a leftover record, and every document, env row, routing signal and release note that describes it matches what shipped.
 
 ### Decisions
 
@@ -47,6 +47,7 @@ Frozen choices. Changing one is an amendment.
 | D1 | One child phase per review finding, in the order of the phase map. Findings 4 and 8 share phase 004. Each code change lands with a test that failed before it |
 | D2 | Phases 001 to 005 start together. Phase 006 waits for 002 and phase 007 waits for 003, because each pair edits one file |
 | D3 | No phase changes the relaunch record format or adds a module |
+| D4 | Phase 008 fixes every finding of the 2026-11-12 alignment report in one child, after phases 001 to 007 |
 
 <!-- /ANCHOR:directive -->
 
@@ -67,6 +68,7 @@ phase and binds as if written here.
 | 005-subagent-guard-cancel-consume | `005-subagent-guard-cancel-consume/goal.md` |
 | 006-append-lock-stale-reclaim | `006-append-lock-stale-reclaim/goal.md` |
 | 007-loop-start-record-cleanup | `007-loop-start-record-cleanup/goal.md` |
+| 008-alignment-findings | `008-alignment-findings/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -80,7 +82,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation --recursive --strict` prints `RESULT: PASSED` for the parent and each of the seven children
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation --recursive --strict` prints `RESULT: PASSED` for the parent and each of the eight children
 - [x] `rg -c '\| Unmet \|' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/*/acceptance-criteria.md` prints no line
 - [x] `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs` exits 0
 - [x] `node --test .opencode/plugins/tests/session-relaunch.test.cjs` exits 0
@@ -120,6 +122,11 @@ and findings belong here.
 | Operator decision: trigger index | Done | 2026-11-12, asked when the trigger index is rebuilt: answered Rebuild with the commit, as its own chore commit |
 | Second review | Done | 2026-11-12, SWE through Devin, read-only, on the later passes of phases 004 to 007: PASS with four P2. The orchestrator confirmed each one, two by a probe against the unchanged checkout and one by removing the cleanup from the wrapper. DeepSeek V4.1 Flash fixed them in two passes, test first |
 | Goal gate, repeated | Done | 2026-11-12, from the final working tree after the second review: the relaunch suite ran 865 of 865, the OpenCode plugin suite 65 of 65 and the Pi suite 59 of 59, each exit 0, and the three `scratch/final-*.txt` files hold these runs |
+| Operator decision: alignment findings | Done | 2026-11-12, asked through the question tool which of the 28 alignment findings are fixed: answered Fix all. Phase 008 holds them, built by DeepSeek V4.1 Flash max through OpenCode Go |
+| Operator decision: changelog ceilings | Done | 2026-11-12, asked whether the shape ceilings are raised so the v4.0.2.1 note passes: answered Raise the ceilings. They are 280 lines, 32 H4 items and 14 glance bullets |
+| Operator decision: merge | Done | 2026-11-12, asked when worktree 351 is merged: answered After fixes and recheck, locally and with no push |
+| Goal amended for phase 008 | Done | 2026-11-12: the objective gained its last clause, decision D4 and the 008 binding row were added and criterion 1 says eight children. The chat slice was resent in the session |
+| Phase 008-alignment-findings | Done | 2026-11-12: 11 of 11 criteria Met, relaunch suite 868 of 868, OpenCode plugin 65 of 65, Pi 59 of 59, advisor routing suites 75 of 75, probes 8 of 10 with two read-only explainer prompts floored by the scorer |
 
 ### Deviations and findings
 

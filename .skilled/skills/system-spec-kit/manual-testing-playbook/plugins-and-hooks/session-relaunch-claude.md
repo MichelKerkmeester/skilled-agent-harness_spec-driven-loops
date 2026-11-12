@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.18.0
+version: 1.0.19.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -722,6 +722,32 @@ Evidence: exit code 0 and these cases pass.
 
 PASS when every named case passes. FAIL when a case is missing from the run or fails.
 
+#### CL-8 The window subcommand names the window or says none is configured (Automatable)
+
+Run both commands from the repository root, and note that the second one runs outside the repository with an empty home directory and no window.
+
+~~~bash
+repo_root="$(git rev-parse --show-toplevel)"
+cli() { node "$repo_root/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs" "$@"; }
+empty_cwd="$(mktemp -d)"
+empty_home="$(mktemp -d)"
+SESSION_RELAUNCH_WINDOW_TOKENS=200000 cli window; echo "exit $?"
+(cd "$empty_cwd" && env -u SESSION_RELAUNCH_WINDOW_TOKENS HOME="$empty_home" node "$repo_root/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs" window); echo "exit $?"
+rm -rf "$empty_cwd" "$empty_home"
+~~~
+
+Evidence: the two output lines and their exit codes. PASS when the first prints exactly `Claude context window: 200000 tokens` with exit 0, and the second prints a line that starts `Claude context window: none configured.` with exit 0. FAIL when either command prints another line or returns a non-zero exit.
+
+#### CL-9 An unknown window skips the nudge and says so in the hook log (Automatable)
+
+Run the adapter case that drives the Claude context nudge with a transcript and no window, then read the skip line in the log it writes.
+
+~~~bash
+node --test --test-name-pattern 'context-nudge skips and logs when the window is unknown' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
+~~~
+
+Evidence: the named case passes and its sandbox `relaunch.log` holds one `context-nudge-skipped` line with `reason=window-unknown`. PASS when the case passes and that line carries the reason. FAIL when the case fails, the hook emits context or the log holds no skip line.
+
 ### Goal Carry-Over Checks
 
 A hand-over note can carry the sender's goal as a `goal_packet` line, and a Claude receiver then starts on `/goal <slice>` with the claim delivered through `SessionStart` context. These checks follow that goal through a real hop and show that it stays out when it should. They run in a throwaway checkout that holds copies of the real hooks, wrapper and goal command, because a goal sent to a receiver in this repository would start real work. The harness is kept with the packet that recorded the runs: `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/`. The relaunch CLI is refused to a sub-agent, so from an agent session the harness script is what runs `prepare`, against its own note and its own runtime directory.
@@ -841,7 +867,7 @@ Capture each command exit code. Save the tmux pane, handoff note path and status
 | .skilled/hooks/session-relaunch/lib/hop-history.cjs | Records each hop event and sends the opt-in hand-over notice. |
 | .skilled/hooks/session-relaunch/lib/withdraw.cjs | Calls off a prepared hand-over for every runtime and `cancel`: a guarded disarm, the extra nudge and the withdrawn history line. |
 | .skilled/bin/skilled-loop | Checks relaunch eligibility and starts Claude with a handoff seed. |
-| .skilled/bin/skilled-loop-shell.sh | Starts a plain `claude` launch under the nearest wrapper, a symlinked `.skilled` included. |
+| .skilled/bin/skilled-loop-shell.sh | Starts a plain `claude` launch under a trusted wrapper, a symlinked `.skilled` included. Trusted means inside the sourced checkout, a linked worktree registered to it or a checkout in `SKILLED_LOOP_TRUSTED_CHECKOUTS`. |
 | .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs | Automates the outside-loop note-only check for every Node adapter. |
 | .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs | Automates the shell shim's resolution and terminal hand-off. |
 | .skilled/hooks/session-relaunch/tests/context-usage.test.cjs | Covers transcript usage reads, settings fallback and I/O handling. |

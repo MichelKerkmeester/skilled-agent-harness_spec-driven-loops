@@ -953,7 +953,7 @@ while ((index < original_argument_count)); do
           optional_value=1 ;;
       esac
       value_count=0
-      if [[ "$argument" != *=* ]]; then
+      if [[ "$argument" != *=* ]] && ((option_value_attached == 0)); then
         while ((index + 1 < original_argument_count)) \
           && { [[ "${original_arguments[$((index + 1))]}" != -* ]] \
             || { ((takes_many == 0 && optional_value == 0)) \

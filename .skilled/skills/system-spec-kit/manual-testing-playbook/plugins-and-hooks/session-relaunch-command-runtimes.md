@@ -7,7 +7,7 @@ trigger_phrases:
   - "Devin session relaunch"
   - "session-relaunch-command-runtimes"
   - "skilled-loop codex"
-version: 1.0.17.0
+version: 1.0.18.0
 id: session-relaunch-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -476,7 +476,7 @@ Codex 0.164.0, Devin 3000.11.205. Evidence lives in `specs/hooks-plugins-extensi
 | `.skilled/hooks/session-relaunch/lib/withdraw.cjs` | Calls off a prepared hand-over for every runtime and `cancel`: a guarded disarm, the extra nudge and the withdrawn history line. |
 | `.skilled/hooks/session-relaunch/codex/stop-arm.mjs` | Codex `Stop` arm and killer spawn. |
 | `.skilled/bin/skilled-loop` | Runtime selection, environment export and relaunch arguments. |
-| `.skilled/bin/skilled-loop-shell.sh` | Starts a plain `codex`, `cursor-agent` or `devin` launch under the nearest wrapper, a symlinked `.skilled` included. |
+| `.skilled/bin/skilled-loop-shell.sh` | Starts a plain `codex`, `cursor-agent` or `devin` launch under a trusted wrapper, a symlinked `.skilled` included. Trusted means inside the sourced checkout, a linked worktree registered to it or a checkout in `SKILLED_LOOP_TRUSTED_CHECKOUTS`. |
 | `.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` | Shell shim resolution and terminal hand-off tests. |
 | `.skilled/hooks/session-relaunch/tests/codex-adapters.test.cjs` | Codex adapter regression suite. |
 | `.skilled/hooks/session-relaunch/tests/nudge.test.cjs` | Shared nudge text and level suite. |

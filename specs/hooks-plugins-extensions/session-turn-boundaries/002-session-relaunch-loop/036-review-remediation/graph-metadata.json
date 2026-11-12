@@ -10,7 +10,8 @@
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/004-claude-window-unknown",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim",
-    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup"
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/008-alignment-findings"
   ],
   "manual": {
     "depends_on": [],
@@ -64,7 +65,7 @@
       "005-subagent-guard-cancel-consume/goal.md",
       "006-append-lock-stale-reclaim/goal.md",
       "007-loop-start-record-cleanup/goal.md",
-      "scratch/final-relaunch.txt"
+      "008-alignment-findings/goal.md"
     ],
     "entities": [
       {
@@ -131,12 +132,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/hooks/session-relaunch/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "final-relaunch.txt",
-        "kind": "file",
-        "path": "scratch/final-relaunch.txt",
         "source": "derived"
       },
       {
@@ -210,11 +205,17 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A code review of the session relaunch loop on 2026-11-12 read 18 files and returned eight findings",
     "created_at": "2026-11-12T08:28:52Z",
-    "last_save_at": "2026-11-12T15:11:53.115Z",
+    "last_save_at": "2026-11-12T18:49:24.795Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +223,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:f8754afe3273a14917c47ec3dfd18e462c2bb18dc40c1c769902495048a6c221",
+    "source_fingerprint": "sha256:8ca0b4102b4ddb433118e8465173772c050befc52319adc2ef695638a085abc7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e228b2e5eb4a065b1fd5a1794d8430da0123bada248a1ff61cd844193994c754",
-      "decision-record.md": "cf73b1032f11c17a90db74dfb5fc1f04a040549ec42e855827fc0616f4d86a18"
+      "spec.md": "53c6e962608a41676b3cd47ca3d178ac8eff3212612cdfb2daad33497584852b",
+      "decision-record.md": "13c3cad1fc00e03f73f56476c1b02d3c4f559fe76b45c22eacceb678effccf42"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim",
-    "last_active_at": "2026-11-12T15:11:53.115Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/008-alignment-findings",
+    "last_active_at": "2026-11-12T18:49:24.795Z"
   }
 }

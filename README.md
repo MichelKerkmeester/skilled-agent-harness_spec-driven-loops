@@ -1052,7 +1052,7 @@ To turn it on for every runtime, set the flag in `.skilled/hooks/hook-flags.env`
 echo 'SYSTEM_SESSION_RELAUNCH_ENABLED=1' >> .skilled/hooks/hook-flags.env
 ```
 
-Then add this line to `~/.zshrc` or `~/.bashrc` with your checkout's absolute path and open a new terminal, so plain runtime launches start under the wrapper:
+Then add this line to `~/.zshrc` or `~/.bashrc` with your checkout's absolute path and open a new terminal, so plain runtime launches start under the wrapper. The shim runs only a wrapper inside that checkout, a linked worktree registered to it or a checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS` (colon-separated absolute paths), so a linked worktree needs no extra setting:
 
 ```bash
 source /abs/path/to/skilled-agent-harness_spec-driven-loops/.skilled/bin/skilled-loop-shell.sh
@@ -1311,7 +1311,7 @@ Ranks the doctor commands against a problem in your own words and shows at most 
 
 **`/doctor:setup`** - read-only onboarding and health check
 
-Runs the sk-code, sk-git, trigger index, runtime mirror and skill advisor checks, and names one repair command for each failure. It shows the last session hop from the hop history, and any handoff note nobody claimed. It counts orphaned helper processes, including a model server whose launcher died, and prints the command that lists them. It lists every other doctor command, and writes nothing.
+Runs the sk-code, sk-git, trigger index, runtime mirror and skill advisor checks, and names one repair command for each failure. It shows the last session hop from the hop history, and any handoff note nobody claimed. It shows the Claude context window the relaunch nudge measures against, or the two settings that supply one when none is configured. It counts orphaned helper processes, including a model server whose launcher died, and prints the command that lists them. It lists every other doctor command, and writes nothing.
 
 **`/doctor:install [--root <dir>] [--runtimes <list>] [--json]`** - the ordered steps that install Skilled in your own project repo. The [install guide](INSTALL-SKILLED.md#3-link-it-into-your-project) walks through every step
 

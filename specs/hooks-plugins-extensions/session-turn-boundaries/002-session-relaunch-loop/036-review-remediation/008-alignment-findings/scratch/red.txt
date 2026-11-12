@@ -1,0 +1,110 @@
+✖ bash: a symlink cycle at the wrapper path returns 1 (5004.124792ms)
+✖ zsh: a symlink cycle at the wrapper path returns 1 (5002.1185ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10056.555292
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:263:3
+✖ bash: a symlink cycle at the wrapper path returns 1 (5004.124792ms)
+  AssertionError [ERR_ASSERTION]: bash resolver did not return
+  + actual - expected
+  
+  + Error: spawnSync /bin/bash ETIMEDOUT
+  +     at Object.spawnSync (node:internal/child_process:1175:20)
+  +     at spawnSync (node:child_process:976:24)
+  +     at realPath (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:116:10)
+  +     at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:270:20)
+  +     at Test.runInAsyncScope (node:async_hooks:226:14)
+  +     at Test.run (node:internal/test_runner/test:1402:25)
+  +     at Test.start (node:internal/test_runner/test:1262:17)
+  +     at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+  +   code: 'ETIMEDOUT',
+  +   errno: -60,
+  +   path: '/bin/bash',
+  +   spawnargs: [
+  +     '-c',
+  +     'source "$1" || exit 90; cd "$2" || exit 91; skilled_loop_real_path "$3"',
+  +     'skilled-loop-shell-test',
+  +     '/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/bin/skilled-loop-shell.sh',
+  +     '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-loop-cycle-QUDHf1',
+  +     '.skilled/bin/skilled-loop'
+  +   ],
+  +   syscall: 'spawnSync /bin/bash'
+  + }
+  - undefined
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:271:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: spawnSync /bin/bash ETIMEDOUT
+        at Object.spawnSync (node:internal/child_process:1175:20)
+        at spawnSync (node:child_process:976:24)
+        at realPath (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:116:10)
+        at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:270:20)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.start (node:internal/test_runner/test:1262:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:263:3
+✖ zsh: a symlink cycle at the wrapper path returns 1 (5002.1185ms)
+  AssertionError [ERR_ASSERTION]: zsh resolver did not return
+  + actual - expected
+  
+  + Error: spawnSync /bin/zsh ETIMEDOUT
+  +     at Object.spawnSync (node:internal/child_process:1175:20)
+  +     at spawnSync (node:child_process:976:24)
+  +     at realPath (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:116:10)
+  +     at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:270:20)
+  +     at Test.runInAsyncScope (node:async_hooks:226:14)
+  +     at Test.run (node:internal/test_runner/test:1402:25)
+  +     at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+  +   code: 'ETIMEDOUT',
+  +   errno: -60,
+  +   path: '/bin/zsh',
+  +   spawnargs: [
+  +     '-f',
+  +     '-c',
+  +     'source "$1" || exit 90; cd "$2" || exit 91; skilled_loop_real_path "$3"',
+  +     'skilled-loop-shell-test',
+  +     '/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/bin/skilled-loop-shell.sh',
+  +     '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-loop-cycle-7CKWFy',
+  +     '.skilled/bin/skilled-loop'
+  +   ],
+  +   syscall: 'spawnSync /bin/zsh'
+  + }
+  - undefined
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:271:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: spawnSync /bin/zsh ETIMEDOUT
+        at Object.spawnSync (node:internal/child_process:1175:20)
+        at spawnSync (node:child_process:976:24)
+        at realPath (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:116:10)
+        at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:270:20)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -93,7 +93,14 @@
     "ripgrep wrapper",
     "trigger index",
     "trigger phrase",
-    "unindexed spec"
+    "unindexed spec",
+    "session relaunch",
+    "relaunch nudge",
+    "context window the nudge measures against",
+    "relaunch my session with the same flags",
+    "relaunch my claude session",
+    "skilled-loop wrapper",
+    "skilled-loop wrapper declined a hop"
   ],
   "derived": {
     "trigger_phrases": [

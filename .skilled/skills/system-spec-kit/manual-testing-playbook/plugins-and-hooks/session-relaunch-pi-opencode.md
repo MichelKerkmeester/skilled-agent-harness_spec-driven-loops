@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.19.0
+version: 1.0.20.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -549,7 +549,7 @@ Pi 1.4.0 with `openai/gpt-6-luna` and OpenCode 2.1.4, live in tmux with a privat
 | `.skilled/hooks/session-relaunch/lib/nudge.cjs` | Shared nudge and seed text. |
 | `.skilled/hooks/session-relaunch/lib/context-usage.cjs` | Shared runtime usage and window calculations. |
 | `.skilled/bin/skilled-loop` | Runtime selection, environment export and relaunch arguments. |
-| `.skilled/bin/skilled-loop-shell.sh` | Starts a plain `pi` or `opencode` launch under the nearest wrapper, a symlinked `.skilled` included. |
+| `.skilled/bin/skilled-loop-shell.sh` | Starts a plain `pi` or `opencode` launch under a trusted wrapper, a symlinked `.skilled` included. Trusted means inside the sourced checkout, a linked worktree registered to it or a checkout in `SKILLED_LOOP_TRUSTED_CHECKOUTS`. |
 | `.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` | Shell shim resolution and terminal hand-off tests. |
 | `.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` | Pi adapter regression suite. |
 | `.opencode/plugins/tests/session-relaunch.test.cjs` | OpenCode adapter regression suite. |

@@ -1,0 +1,36 @@
+✖ an attached short option value keeps the next word as the prompt (671.762458ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 721.622
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:655:1
+✖ an attached short option value keeps the next word as the prompt (671.762458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-U4KOLu/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+      '-HAuthorization: Bearer t',
+  +   'first prompt'
+    ]
+  
+      at assertHopReplaysArguments (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:622:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:656:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-U4KOLu/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md', '-HAuthorization: Bearer t', 'first prompt' ],
+    expected: [ '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-U4KOLu/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md', '-HAuthorization: Bearer t' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
