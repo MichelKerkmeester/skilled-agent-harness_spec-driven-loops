@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 6692,
+    "missing-frontmatter": 6693,
     "ok": 17816,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26137,
+  "documentsScanned": 26138,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "656c0be728a0b08a70a63f0e5fafe7a21008740978684bf515443fe570ce3c8e",
+  "manifestHash": "40f4cbdfe4ad4a75138ea8bf3e4c991377bec946a950d37a22c03dcbcccfb640",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32659,6 +32659,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/dropped-item-is-removed.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {

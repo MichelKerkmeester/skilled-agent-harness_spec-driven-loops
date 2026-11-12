@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3fcc158e92638340d521d2a5ac4f20c8cf50fff402119ca3484cb46d50185bc5",
+  "corpusHash": "541e709d3ae9d0cf381bef9e84115cb7ff00cc2f7e6d0f3d04a84f5e856cf41d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26137,
+  "includedPathCount": 26138,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8394,6 +8394,7 @@
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-an-unowned-file.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md",
+    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/dropped-item-is-removed.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/pre-commit-refuses-unowned-change.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/relayout-moves-sources.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/stale-lock-takeover.md",
@@ -26169,7 +26170,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "656c0be728a0b08a70a63f0e5fafe7a21008740978684bf515443fe570ce3c8e",
+  "manifestHash": "40f4cbdfe4ad4a75138ea8bf3e4c991377bec946a950d37a22c03dcbcccfb640",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
