@@ -9,7 +9,7 @@ trigger_phrases:
   - "ci switch condition"
 importance_tier: normal
 contextType: general
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # Job Shape Rules
@@ -41,19 +41,23 @@ A job with no `timeout-minutes` runs until GitHub stops it at 360 minutes, so a 
 
 **Formula.** `max(<floor>, ceil(3 x job p50 minutes), ceil(2 x job p100 minutes))` with a floor of 10 minutes. Pull at least 40 recent runs of job-level timings (`gh run view --json jobs`), compute p50 and p100 per job and state the observed p100 next to the chosen value in the commit or the workflow comment. A successful job in the sample should never exceed half of its new timeout.
 
-**Today.** `44 of 44` jobs in the 32 workflows carry a timeout, on one job-level line each. `35` of them sit at the 10 minute floor. The other **9 jobs** sit above it.
+**Today.** `50 of 50` jobs in the 34 workflows carry a timeout, on one job-level line each. `37` of them sit at the 10 minute floor. The other **13 jobs** sit above it.
 
 | Workflow | Job | Line | Value |
 |---|---|---|---|
-| `skill-doc-frontmatter.yml` | `doc-version-raise` | `:69` | 15 |
+| `skill-doc-frontmatter.yml` | `doc-version-raise` | `:74` | 15 |
+| `advisory-checks.yml` | `gate-critical` | `:111` | 15 |
 | `message-contract.yml` | `message-contract` | `:25` | 20 |
-| `changed-packet-validation.yml` | `changed-packets` | `:21` | 20 |
-| `skill-advisor-stress.yml` | `skill-advisor-stress` | `:53` | 25 |
-| `advisory-checks.yml` | `advisory` | `:29` | 28 |
-| `deep-loop-runtime.yml` | `deep-loop-runtime` | `:41` | 34 |
-| `routing-registry-drift.yml` | `golden-prompt-gate` | `:258` | 37 |
-| `spec-kit-check.yml` | `check` | `:77` | 51 |
-| `strict-pass-freshness-report.yml` | `strict-pass-freshness` | `:30` | 143 |
+| `changed-packet-validation.yml` | `changed-packets` | `:26` | 20 |
+| `skill-advisor-stress.yml` | `skill-advisor-stress` | `:58` | 25 |
+| `advisory-checks.yml` | `advisory` | `:33` | 28 |
+| `deep-loop-runtime.yml` | `deep-loop-runtime` | `:46` | 34 |
+| `routing-registry-drift.yml` | `golden-prompt-gate` | `:263` | 37 |
+| `spec-kit-check.yml` | `check` | `:98` | 51 |
+| `spec-kit-check.yml` | `cli-vitest` | `:142` | 51 |
+| `spec-kit-check.yml` | `legacy-lanes` | `:185` | 51 |
+| `spec-kit-check.yml` | `runtime-vitest` | `:223` | 51 |
+| `strict-pass-freshness-report.yml` | `strict-pass-freshness` | `:35` | 143 |
 
 Enforcement: honour-system. Re-run `grep -n 'timeout-minutes' .github/workflows/*.yml` to refresh the table.
 
@@ -68,7 +72,7 @@ Least privilege is the default. A workflow declares `permissions: contents: read
 - **A write scope belongs only to a job that runs no repository code.** The rebuild job installs, builds and runs the repository's generator, so it holds no write scope and no secret. The push job runs `gh` and `git` only and is the one place the push token is visible. Splitting the two keeps repository code away from the token.
 - **A job that holds a write scope, or pushes, checks out with `persist-credentials: false`.** The checkout then leaves no token in the git config for a later step to reuse, and the job passes its token only to the command that needs it, as in `.github/workflows/trigger-index-rebuild.yml:203`. Enforcement: honour-system.
 
-Today all 32 workflows declare `permissions:` at the top. Thirty grant `contents: read` and nothing else. `strict-pass-freshness-report.yml` adds `actions: read` at `:19` and `trigger-index-rebuild.yml` grants nothing at the top. Four jobs set a scope of their own: the two jobs of `trigger-index-rebuild.yml` above, the `metadata` job of `dependabot-auto-merge.yml` with `contents: read` and `pull-requests: read` at `:20-21` and its `auto-merge` job with `contents: write` and `pull-requests: write` at `:41-42`.
+Today all 34 workflows declare `permissions:` at the top. Thirty-two grant `contents: read` and nothing else. `strict-pass-freshness-report.yml` adds `actions: read` at `:19` and `trigger-index-rebuild.yml` grants nothing at the top. Four jobs set a scope of their own: the two jobs of `trigger-index-rebuild.yml` above, the `metadata` job of `dependabot-auto-merge.yml` with `contents: read` and `pull-requests: read` at `:20-21` and its `auto-merge` job with `contents: write` and `pull-requests: write` at `:41-42`.
 
 Enforcement: honour-system.
 
@@ -88,7 +92,7 @@ The recommended default cancels a superseded run on a pull request and never can
 
 A workflow whose runs must queue instead of cancel sets `cancel-in-progress: false` and says why. `.github/workflows/trigger-index-rebuild.yml:21-23` does, because a newer pending run replaces an older pending one and the run for the newest push is never dropped.
 
-Today 32 of 32 workflows carry a `concurrency:` block. Thirty use the pull-request-only value above. Two use `false`: the rebuild workflow, and `dependabot-auto-merge.yml`, because a cancelled run could stop before it turns auto-merge on.
+Today 34 of 34 workflows carry a `concurrency:` block. Thirty-two use the pull-request-only value above. Two use `false`: the rebuild workflow, and `dependabot-auto-merge.yml`, because a cancelled run could stop before it turns auto-merge on.
 
 Enforcement: honour-system.
 
@@ -112,7 +116,7 @@ The action is `.github/actions/setup/action.yml`. The rules it follows:
 - **Bun comes from a SHA-pinned setup action**, never from an `npm install` of bun in the workflow.
 - **The scan reads it.** `.github/scripts/check-gate-inputs.sh:499-503` (the `if [[ -d "$ROOT/.github/actions" ]]` block) scans `.github/actions/**` with the workflow parser, so a path in an action is held to the twin rule.
 
-Today five jobs in three workflows call the action: `opencode-dual-version.yml` at `:113` and `:192`, `opencode-plugin-tests.yml` at `:92` and `routing-registry-drift.yml` at `:141` and `:248`. A new provisioning workflow calls the action and does not copy its steps.
+Today five jobs in three workflows call the action: `opencode-dual-version.yml` at `:110` and `:181`, `opencode-plugin-tests.yml` at `:92` and `routing-registry-drift.yml` at `:141` and `:248`. A new provisioning workflow calls the action and does not copy its steps.
 
 ---
 
