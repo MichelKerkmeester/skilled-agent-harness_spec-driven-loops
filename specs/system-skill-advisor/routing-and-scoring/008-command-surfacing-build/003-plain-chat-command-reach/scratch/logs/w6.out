@@ -1,0 +1,24 @@
+Done. Both verification gates pass.
+
+**File written:** `.skilled/commands/doctor/_routes.yaml` (only file touched, trigger_phrases additions only)
+
+| Route | Added phrases |
+|---|---|
+| `/doctor:runtime-mirrors` → runtime-mirrors (read-only) | are the runtime mirrors in sync · my claude and codex files diverge · hook mirrors do not match skilled · command mirror is missing entries |
+| `/doctor:ci` → report (read-only) | which github actions workflows are enabled · list the workflows and their state · which workflows are disabled right now · is my ci pipeline switch on |
+| `/doctor:ci` → scaffold (mutates) | add a github actions workflow file · write a new github actions workflow · start a ci workflow from scratch · generate the workflow file for ci |
+| `/doctor:ci` → toggle (mutates) | enable or disable a ci workflow · flip one workflow switch off · pause a github actions workflow · turn off the release workflow |
+| `/doctor:agents-md` → check (read-only) | are the agents md sections current · did agents md drift from template · agents md block size over budget · do these agents sections still match |
+| `/doctor:agents-md` → embed (mutates) | make agents md match the template · fill in the agents md sections · create the agents md file here · add repo rules into agents md |
+| `/doctor:agents-md` → restore (mutates) | undo the agents md rewrite · recover agents md from backup folder · bring back the old agents md · restore every file the embed touched |
+| `/doctor:overlay` → status (read-only) | are my local edits still applied · did the update clobber my overlays · which of my overlays are stale · does my vendored tree still match |
+| `/doctor:overlay` → apply (mutates) | restore my overlays after pulling skilled · keep my edits when applying overlays · adopt a vendored file into overlays · make the overlays take effect again |
+| `/doctor:overlay` → repin (mutates) | bump the pin to latest commit · recover a re-pin that failed · pull upstream changes into vendored skilled · sync the vendored copy with upstream |
+
+**Verify output**
+- `bash .skilled/commands/doctor/scripts/route-validate.sh` → `OK: route-validate — 31 routes validated, 11 warnings`, `EXIT=0` (all 17 PASS assertions, incl. G1 trigger phrases and G2 lead_phrases).
+- `git diff --stat` → `1 file changed, 40 insertions(+)` — 0 deletions.
+
+**Extra checks I ran:** all 40 additions are phrase items only (no other key, comment or `lead_phrases` line changed); every phrase is lowercase, 3–6 words, no phrase duplicates any existing one anywhere in the file (the 5 duplicate lines the scan reports — `ci switch report`, `ci workflow switch state`, `which ci workflow switches are off`, `check my environment variables`, `disable comment hygiene gate` — were duplicates before the edit and are unrelated to this change).
+
+**Could not do / not run:** the deriver and `doctor-phrase-reach.cjs` (excluded by the brief), and no git state touched.

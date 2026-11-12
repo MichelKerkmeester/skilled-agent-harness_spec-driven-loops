@@ -1,0 +1,24 @@
+**File written:** `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/scratch/hook-latency.mjs` — one file, nothing else touched.
+
+**VERIFY output** (exit 0):
+```
+{"n":44,"medianMs":142.14,"p95Ms":254.75,"minMs":122.63,"maxMs":321.56,"nonZeroExits":0,"emptyOutputs":0}
+[44,142.14,254.75,0,0]
+```
+The `jq` line prints `44` first, as required.
+
+**Stdin shape sent:** a JSON object on stdin —
+```json
+{"prompt":"<row prompt>","cwd":"<repo root>","hook_event_name":"UserPromptSubmit","session_id":"latency-probe"}
+```
+Evidence it is the right shape:
+- `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:275-282` — `parseClaudeUserPromptSubmitInput` JSON-parses the whole raw stdin buffer into a record (a non-object or unparseable payload becomes `null`, i.e. fail-open).
+- Same file, line 95 reads `input.prompt`, line 96 `input.cwd`, line 87 `input.hook_event_name`, line 84 `input.session_id`.
+- The `dist` shim (`.../system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js`) does not parse stdin at all; it forwards the buffer verbatim to the advisor at `TARGET_REL = skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js`. So the payload had to match the advisor's contract, not the shim's.
+- Confirmed live: a manual single call produced a routed `additionalContext`, not `{}`. `emptyOutputs: 0` and `nonZeroExits: 0` over all 44 rows corroborate it.
+
+**One caveat you should carry forward:** the hook output in this worktree is currently `Advisor: outage (fail_open); route by hand: ...`. The stdin shape is correct — the prompt is parsed and a directive is rendered — but the advisor backend is not answering, so **the 142.14 ms median measures the fail-open path, not a healthy advisor round trip.** Treat it as a floor, and re-run this same script once the advisor is live before comparing anything against it. Also, `minMs 122.63` vs `maxMs 321.56` sits far below the 2500 ms child budget in the shim (`CHILD_TIMEOUT_MS`, shim line 20) and the 500 ms stdin deadline, so no sample was clamped by either limit.
+
+**Repo-root resolution:** the script walks up from its own `import.meta.url` (max 14 levels) to the nearest ancestor containing `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js`, never the CWD; the rows file is resolved next to the script. Missing rows file or hook file exits 2 with a stderr message.
+
+**Things I could not do:** nothing in scope was blocked. Two notes for you, not mine and not touched: this worktree has pre-existing changes from other workers — modified `.skilled/skills/sk-prompt/command-metadata.json` and `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts`, plus untracked `runtime/lib/command-attach.ts` and `system-skill-advisor/system-skill-advisor/`. I ran no git mutation.

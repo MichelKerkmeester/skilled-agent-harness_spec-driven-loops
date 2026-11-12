@@ -1,0 +1,33 @@
+Done. Report:
+
+## File written (one file, nothing else touched)
+`.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` — all edits sit **outside** the `# BEGIN/END GENERATED COMMAND BRIDGES` block (lines 2384–2967).
+
+Three changes, no spec/task/REQ ids or paths in any comment:
+
+**Defect 1 — owner normalization for a typed save command**
+- New `EXPLICIT_INVOCATION_BRIDGE_OWNER_NORMALIZATION = {"command-speckit-save": "system-spec-kit"}` (line 2977), applied in `normalize_command_bridge_recommendations()` only when `_is_typed_command_invocation()` sees a slash spelling of the command. Plain chat keeps `command-speckit-save` on top; the existing `_should_guard_command_bridge_normalization` guard still runs unchanged, so a quoted/implementation prompt never normalizes.
+- `_command_bridge_references()` now folds in `SKILL_ALIAS_GROUPS.get(command_name)` → `command-speckit-save` references include `/memory:save`, `memory:save`, `command-memory-save` (the alias group already carried them, so no second copy of the list).
+
+**Defect 2 — iteration-loop tiebreaker**
+- `SPECKIT_COMMAND_BRIDGE_PREFIXES` no longer licenses the demotion; new `ITERATION_LOOP_COMMAND_BRIDGES = {"command-spec-kit-deep-research", "command-spec-kit-deep-review"}` (line 4059). Docstring/comments rewritten to describe the rule as it now is.
+
+**Deviation from the brief (flag, not absorbed):** the bridge restriction alone does **not** fix the fallback test. On `run a deep research loop with the cli-pi executor`, `command-spec-kit-deep-research` *is* a recommendation (0.95), so a loop-only restriction still demotes `cli-external-orchestration` 0.95 → 0.75, under the 0.8 threshold, and it drops out of the top two. I added one condition inside the same function: skip when `_resolve_executor_delegation()` says `route`, because `_apply_workflow_owner_guard()` already orders owner-first / hub-directly-below for those prompts (same precedent as `_apply_code_edit_cli_disambiguation`). Probe: with the tiebreaker disabled entirely the prompt returns `[system-deep-loop 0.95, cli-external-orchestration 0.949]`, matching the native order. Current failure before the fix was `ranked[1] = command-spec-kit-deep-research`.
+
+## Verify
+- `npx vitest run tests/compat/python-compat.vitest.ts tests/scorer/executor-delegation.vitest.ts` → **Test Files 2 passed (2), Tests 39 passed (39)**. Baseline before the edit on the same command: 2 failed | 37 passed (python suite `fail=1` on T243-SA-017; executor fallback `expected ["system-deep-loop","cli-external-orchestration"], received ["system-deep-loop","command-spec-kit-deep-research"]`).
+- `python3 -c "import ast; ast.parse(...)"` → exit 0.
+- Top results:
+  - `run /memory:save for this packet` → `system-spec-kit` 0.95/0.2, reason ends `[command-normalized: command-speckit-save->system-spec-kit]` (T243-SA-017, T243-SA-018 both pass)
+  - `save context for this packet` → `command-speckit-save` 0.95/0.15 (plain chat stays)
+  - `run a deep research loop with the cli-pi executor` → `system-deep-loop` 0.95/0.15, then `cli-external-orchestration` 0.949 (below threshold = false, but ranked second as the test requires)
+
+## Collateral I could not fix (test files are off-limits to me)
+Established by swapping the pre-edit file back in and re-running the whole `tests/scorer tests/parity tests/legacy` set: baseline 1 failed / 495 passed, with my change 4 failed / 492 passed. The three new failures are all the same root cause — typed `/memory:save` rows whose gold is `command-speckit-save` now answer `system-spec-kit`, which is exactly what the brief's rule requires:
+
+- `tests/legacy/advisor-corpus-parity.vitest.ts:177` — `expect(pythonCorrect).toBe(116)`, received 113
+- `tests/parity/python-ts-parity.vitest.ts:268` — `expect(pythonCorrect).toBe(112)`, received 109
+- `tests/parity/local-native-divergence-ratchet.vitest.ts` — new divergences `rr-iter2-029` and `rr-iter3-117` (`local=system-spec-kit native=command-speckit-save`, gold `command-speckit-save`), plus ledger entry `rr-iter3-105` no longer diverges. Exactly 3 corpus rows flip: `rr-iter2-029`, `rr-iter3-105`, `rr-iter3-117` (measured by running the pre-edit and post-edit scorer over all 195 labeled rows in one process).
+- Everything else with my change: `npx vitest run tests --exclude tests/scorer/** --exclude tests/parity/** --exclude tests/legacy/**` → 107 files passed, 906 passed | 4 skipped.
+
+Note the golds conflict across fixtures: native itself answers `command-speckit-save` for `rr-iter2-029`/`rr-iter3-117` but `system-spec-kit` for `rr-iter3-105`, and the corpora were relabelled mechanically to the merged command id. Those ledgers/corpus expectations need your call; I did not touch them.

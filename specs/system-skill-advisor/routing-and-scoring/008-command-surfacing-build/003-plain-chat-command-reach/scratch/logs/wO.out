@@ -1,0 +1,21 @@
+Done.
+
+**File written** — `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs` (single 2-line change):
+
+```js
+function modeCommandRecords(skillsRoot = SKILLS_ROOT, commandsRoot = COMMANDS_ROOT) {
+  const commandNames = new Set(commandTreeNames(commandsRoot));
+```
+
+Confirmed first by reading line 329 that `commandTreeNames(commandsRoot = COMMANDS_ROOT)` already accepts and uses the parameter for both its root listing and per-group `readdirSync`.
+
+**Verify output**
+```
+$ node .../derive-command-bridges.cjs --check | jq -r .status
+fresh
+$ node -e "...console.log(d.modeCommandRecords().length)"
+19
+exit=0
+```
+
+Untouched: every other call site (`commandTreeNames()` in `main()` and the other `modeCommandRecords()` use) keeps the live-root default, so behavior is unchanged; nothing else was edited. No commits, no git state touched. Nothing I could not do.

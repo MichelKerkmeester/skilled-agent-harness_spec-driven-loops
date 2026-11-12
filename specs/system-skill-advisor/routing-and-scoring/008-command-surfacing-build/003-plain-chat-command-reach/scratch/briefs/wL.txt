@@ -1,0 +1,34 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: one decision applied in TWO files under `.skilled/skills/system-skill-advisor/runtime`: `scripts/skill_advisor.py` (the Python scorer; NEVER edit between `# BEGIN GENERATED COMMAND BRIDGES` and `# END GENERATED COMMAND BRIDGES`) and `tests/python/test_skill_advisor.py`. All commands run from `.skilled/skills/system-skill-advisor/runtime`.
+
+Background: the ids `memory:save` and `command-memory-save` were merged into ONE id `command-speckit-save`. A previous edit today made the Python scorer normalize `command-speckit-save` to its owner `system-spec-kit` whenever the prompt types the slash command (`/memory:save` or `/speckit:save`). That fixed test `T243-SA-017` but contradicts the gold labels and the TypeScript scorer: for corpus rows `rr-iter2-029` and `rr-iter3-117` (prompts that type `/memory:save`) the gold answer and the TypeScript answer are both `command-speckit-save`, and the Python-correct counts fell from 116 to 113 and from 112 to 109.
+
+Decision: a typed save command returns the save command row, in both scorers. So:
+1. In `scripts/skill_advisor.py`, remove ONLY the owner normalization of `command-speckit-save` on explicit slash invocation that was added today (use `git diff -- scripts/skill_advisor.py` to find it). KEEP today's other two changes: `_command_bridge_references("command-speckit-save")` including the residual spellings `/memory:save` and `command-memory-save`, and the iteration-loop tiebreaker restricted to the deep research and deep review bridges.
+2. In `tests/python/test_skill_advisor.py`, test `T243-SA-017` ("command bridge winners normalize to owning skills"): change only the case for the prompt `run /memory:save for this packet` so it expects the top to be `command-speckit-save`, with a short comment that the save command is one merged row and a typed save returns it. Leave every other case in that test as it is: owner normalization for the other bridges must stay asserted.
+Comments say why, and never contain a spec path, task id or requirement id.
+
+VERIFY: `npx vitest run tests/compat/python-compat.vitest.ts tests/scorer/executor-delegation.vitest.ts tests/legacy/advisor-corpus-parity.vitest.ts tests/parity/python-ts-parity.vitest.ts tests/parity/local-native-divergence-ratchet.vitest.ts` reports 0 failed. If any fails, report expected and actual and edit nothing further.

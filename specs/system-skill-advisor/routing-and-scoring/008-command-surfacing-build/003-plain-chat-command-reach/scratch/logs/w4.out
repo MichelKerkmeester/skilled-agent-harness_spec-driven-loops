@@ -1,0 +1,30 @@
+**File written (the only one touched):** `.skilled/skills/system-spec-kit/command-metadata.json` — `git diff --stat` shows `1 file changed, 49 insertions(+), 7 deletions(-)`.
+
+**Phrases added per command** (existing slash command kept first; 6 appended each, 3–5 words, lowercase, no punctuation):
+
+| Command | Appended phrases |
+|---|---|
+| `/speckit:plan` | into a technical design · before any code gets written · write a spec first · spec out this feature · write the spec and plan · plan before coding |
+| `/speckit:implement` | execute the plan · the approved build steps · start changing code now · implement the plan · start the implementation · build what was planned |
+| `/speckit:complete` | from docs through implementation · end to end · all the way through · the whole spec workflow · take it all the way · everything from spec to code |
+| `/speckit:resume` | where did we leave off · where we left off · pick up the work · where did we stop · continue the previous work · what was i doing |
+| `/speckit:save` | copy everything from our chat · into the spec notes files · save this conversation · save the context · record this session · write it into the spec |
+| `/speckit:search` | look through our spec notes · for anything mentioning · find the spec packet · which spec covers this · search the spec docs · is this already documented |
+| `/speckit:handoff` | write down where we stopped · hand this off · write a handoff note · for the next session · wrap up this session · running out of context |
+
+**Verify output (final state, all three gates):**
+```
+V1 length>=6 all: true
+V2 duplicate signals: 0
+V3 gate: checked=14 passed=14 failed=0 fixed=0
+```
+`failed=0` (baseline before my edit was an identical `checked=14 passed=14 failed=0`).
+
+**Additional confirmations I ran:**
+- Structure untouched: `jq 'map(del(.userIntent.ownedSignals))'` of HEAD vs. working copy compares byte-identical → no other key, no reordering; key order is `command,ownerMode,description,argumentHint,mutating,gate3_location,userIntent,choreography`, 7 entries, file ends `]\n` with one newline, 2-space indentation preserved.
+- Redundant constraints: no phrase fails `^[a-z0-9 ]+$` or the 2–5 word bound.
+- Tune-row reach (read only `scratch/tune-rows.jsonl`, `command-prompts.jsonl` never opened): every one of the 7 `/speckit:` rows contains at least one of its command's phrases contiguously — `complete` "from docs through implementation"; `handoff` "write down where we stopped"; `implement` "the approved build steps" + "start changing code now"; `plan` "into a technical design" + "before any code gets written"; `resume` "where did we leave off"; `save` "copy everything from our chat" + "into the spec notes files"; `search` "look through our spec notes" + "for anything mentioning". No phrase of one command appears in another command's tune prompt.
+
+**Correction to my own evidence:** my first tune-hit check (a bash `read -ra`/IFS loop) reported `NO HIT` for all 7. That was a quoting artifact in my loop, not the data — the node re-check above is the load-bearing result.
+
+**Not done (outside my edit authority):** I did not run the deriver that projects these `ownedSignals` into the generated scorer blocks (`ADV/lib/scorer/projection.ts`, `ADV/scripts/skill_advisor.py`), and did not touch any generated manifest, spec doc, or git state — the brief binds me to this one file. Latent risk worth flagging: `/speckit:save` "save the context" and `/speckit:resume` "pick up the work" sit closest to each other in vocabulary; they are distinct strings and the verbs differ, but if the projected rows are scored with stemming or fuzzy matching rather than the contiguous word-boundary rule, that pair is the first to re-measure.

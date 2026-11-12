@@ -80,6 +80,7 @@
         "manual-testing-playbook/lifecycle-routing/supersession.md",
         "manual-testing-playbook/native-cli-tools/advisor-status-rebuild-separation.md",
         "manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md",
+        "manual-testing-playbook/native-cli-tools/hub-command-attachment.md",
         "manual-testing-playbook/native-cli-tools/lifecycle-redirect-metadata.md",
         "manual-testing-playbook/native-cli-tools/native-recommend-happy-path.md",
         "manual-testing-playbook/native-cli-tools/native-status-transitions.md",

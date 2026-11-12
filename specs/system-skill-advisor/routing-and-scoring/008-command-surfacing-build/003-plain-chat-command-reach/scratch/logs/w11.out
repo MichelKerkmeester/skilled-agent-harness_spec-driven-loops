@@ -1,0 +1,32 @@
+## Report
+
+**File written (only one):** `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts` — untracked/new in this phase, `git status` shows `??`. The two modified siblings (`handlers/advisor-recommend.ts`, `schemas/advisor-tool-schemas.ts`) are pre-existing sibling-worker writes; I made no write call to either. Code sits outside the `BEGIN/END GENERATED MODE COMMANDS` markers, which are still intact (count 2).
+
+**What changed**
+- `export const DEPTH_WORDING: readonly string[]` — 15 phrases: `in depth`, `deep dive`, `deep research`, `deep review`, `thorough`, `thoroughly`, `exhaustive`, `iteratively`, `multiple passes`, `many passes`, `several passes`, `council`, `several models`, `final verdict`, `everything you can`. No bare topic words. `thorough`/`thoroughly` are separate entries because whole-word matching does not stem.
+- `escapePhrase()` + module-level `DEPTH_REQUEST = new RegExp('\\b(?:…)\\b')` — one alternation, one test per prompt, whole-word on both ends so `thorough` cannot fire inside a longer word.
+- `_prompt` renamed to `prompt`; the `system-deep-loop` gate sits after the own-key table lookup and returns `undefined` unless the prompt contains `/deep:` (lowercased) or matches `DEPTH_REQUEST`. Every other hub is untouched.
+
+**Verify — from `.skilled/skills/system-skill-advisor/runtime`**
+
+`npm run build` → `BUILD_EXIT=0` (tsc clean, no type or unused-parameter error).
+
+The one-liner printed exactly the required line:
+```
+undefined undefined /deep:research /deep:research /create:readme
+VERIFY_EXIT=0
+```
+
+**The three `/deep:` tune prompts — all three pass** (run against `dist`, not reasoned about):
+| row | prompt | result | phrase that fires |
+|---|---|---|---|
+| `cmd-deep-ai-council-plain-tune-01` | "Get several models to debate the tradeoffs and give us a final verdict" | PASS → `/deep:ai-council` | `several models`, `final verdict` |
+| `cmd-deep-research-plain-tune-01` | "Go find out everything you can about incremental indexing approaches and report back" | PASS → `/deep:research` | `everything you can` |
+| `cmd-deep-review-plain-tune-01` | "Audit this codebase over many passes until the findings stop changing" | PASS → `/deep:review` | `many passes` |
+
+Extra spot checks through `dist`: `what does the review loop do` → `undefined`; `review this thoroughly` → `/deep:review`; `should I trust depos?` → `undefined` (no substring leak).
+
+**What I could not do / judgment calls**
+- `npm test` (vitest) was not run: it is not in the brief's verify set, and `rg` shows no test file imports `command-attach` yet, so the suite has no coverage of this module to break or confirm.
+- The 15-phrase list is authored against the measured rows; whether a phrase *other* than those three tune prompts should qualify is judgment, not evidence — the only hard evidence is the three rows above plus the five one-liner cases.
+- I touched no git state, no commit, no dispatch, no other file.

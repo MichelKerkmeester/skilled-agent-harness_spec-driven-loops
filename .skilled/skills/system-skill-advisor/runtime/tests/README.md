@@ -96,6 +96,8 @@ fixtures -> generated runtime state without an explicit test setup
 tests/
 +-- affordance-normalizer.test.ts
 +-- advisor-rebuild.vitest.ts
++-- command-policy-derivation.vitest.ts
++-- command-routing-slice.vitest.ts
 +-- cross-skill-edges.vitest.ts
 +-- daemon-freshness-foundation.vitest.ts
 +-- daemon-watcher-resource-leaks-049-005.vitest.ts
@@ -151,6 +153,8 @@ tests/
 | `manual-testing-playbook.vitest.ts` | Verifies manual testing playbook routing fixtures. |
 | `skill-advisor-cli-stale-daemon-retry.vitest.ts` | Verifies the stale-daemon retry in the CLI entrypoint. |
 | `prompt-policy-gold-replay.vitest.ts` | Replays the prompt gate over the labeled and golden corpora. |
+| `command-policy-derivation.vitest.ts` | Pins the `derivePolicy` ladder and the closed risk-key vocabularies, and checks that the command tree and its declarations agree. |
+| `command-routing-slice.vitest.ts` | Holds live command routing to `scripts/routing-accuracy/command-routing-baseline.json` row by row, pins the corpus hash and requires a typed row and both plain splits for every command file. |
 | `embedders/` | Covers embedder schema, registry and shared-factory parity. |
 | `skill-graph/` | Covers focused skill-graph refresh round trips. |
 | `tsconfig.tests.json` | Type-checks the CLI and launcher test files listed in its `include`, extending the runtime `tsconfig.json`, with no emit. |

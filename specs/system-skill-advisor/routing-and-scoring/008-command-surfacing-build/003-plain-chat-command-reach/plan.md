@@ -279,7 +279,7 @@ W1 harness (neutral) ──► W2 attach ──► W3 phrases ──► W4 activ
 
 ### ADR-004: Depth gate for deep-loop attachment
 
-**Status**: Proposed
+**Status**: Accepted. Built as `DEPTH_WORDING` in `ADV/lib/command-attach.ts`
 
 **Context**: Decision D3 offers a deep loop to a chat user only on depth wording. The compiled route for `system-deep-loop` can resolve a mode for a plain question.
 
@@ -299,6 +299,8 @@ W1 harness (neutral) ──► W2 attach ──► W3 phrases ──► W4 activ
 **Context**: `command-spec-kit`, `memory:save` and `command-memory-save` are live ids that stand for several commands or for one command twice. Once each `/speckit` command has its own row, two live ids for one command is where a pinned number would drop. Gold labels name the umbrella ids on 13 lines of `labeled-prompts.jsonl`, 1 of `holdout-prompts.jsonl` and 3 of `ambiguity-prompts.jsonl`.
 
 **Decision**: This phase replaces the three umbrella ids with one row per command and relabels the 17 gold lines that name them, each relabel listed with file, id, old and new value for the operator.
+
+**As built**: four ids were retired, `command-spec-kit`, `memory:save`, `command-memory-save` and `command-prompt-improver`, and their four rows were deleted from `allow-list.json`. The four `/speckit` allow-list rows remain. `scratch/relabel-list.txt` lists 16 `memory:save` labels moved to `command-speckit-save` and 1 `command-spec-kit` label moved to `command-spec-kit-plan`. The pinned numbers read `[159,49,20,5]` before the relabel and `[159,50,20,5]` after it. Removing allow-list rows was placed in phase 004 by the review's L1, so this part of L1 moved forward into this phase.
 
 **Consequences**:
 - One live id per command, so the same-owner collapse and the pinned numbers see one candidate per command.
@@ -321,6 +323,143 @@ W1 harness (neutral) ──► W2 attach ──► W3 phrases ──► W4 activ
 
 **Alternatives Rejected**:
 - A penalty on the owner skill: moves skill routing for every prompt that mentions the skill, which the pinned numbers guard.
+
+
+### ADR-007: Revert the doctor phrases
+
+**Status**: Accepted. Decided during the build on 2026-11-12.
+
+**Context**: Workstream 7 added 136 phrase lines to 34 doctor entries in `_routes.yaml`. With them, doctor plain recall at 1 stayed 0 of 17 on both splits, and `command-doctor-helper` topped 11 rows of other commands, one of them a non-doctor request, against the guard of 7. The count was 6 before the doctor work.
+
+**Decision**: Revert `_routes.yaml` to its committed state and keep the phrases in `scratch/routes-with-doctor-phrases.yaml`.
+
+**Consequences**:
+- Doctor plain-chat reach stays at 0 of 17 per split, and the requirements for it stay unmet.
+- The phrase reach probe exits 0 and the doctor slice passes on the committed manifest.
+
+**Alternatives Rejected**:
+- Keep the phrases: they moved no doctor row and broke the helper guard.
+
+### ADR-008: Every command row needs its own phrase to pass
+
+**Status**: Accepted
+
+**Context**: After the 8 standalone commands gained phrases, the lexical lane matched single everyday words from them, and a bug-fix prompt was offered `/prompt:improve`. False offers went from 0 to 1 (`$S/after-w3-full.json`).
+
+**Decision**: Widen the doctor-only gate `requireDoctorPhraseAnchor` in `fusion.ts` to `requireCommandPhraseAnchor`, so every command row passes only on one of its own phrases or its slash string.
+
+**Consequences**:
+- False offers went back to 0 of 35 (`$S/after-w3b-full.json`).
+- A command row now needs a whole phrase in the prompt, which is one reason holdout paraphrases reach nothing.
+
+**Alternatives Rejected**:
+- Remove the words that matched: the next phrase set would bring the same failure back.
+
+### ADR-009: The hook asks for every compiled route
+
+**Status**: Superseded by ADR-013 on 2026-11-12
+
+**Context**: The plan asked for the route of the top passing hub only. The recommend call has no option to limit enrichment.
+
+**Decision**: The hook sends `includeCompiledRoute: true` and adds no new option.
+
+**Consequences**:
+- No new option on a public tool.
+- Hook time rose (see `implementation-summary.md`). Mitigation: the latency budget stays open question 3.
+
+**Alternatives Rejected**:
+- A top-only option: a new public option before a budget exists to justify it.
+
+### ADR-010: A typed save command returns the save row in both scorers
+
+**Status**: Accepted. An operator-facing choice made by the orchestrator during the build.
+
+**Context**: After the merge to one save id, that id cannot both normalize to its owner skill in Python and match the 16 relabelled gold lines.
+
+**Decision**: A typed save command returns `command-speckit-save` in both scorers. The save case of Python test `T243-SA-017` changed with it, and the iteration-loop tiebreaker is limited to the deep research and deep review bridges.
+
+**Consequences**:
+- One answer for a typed save in both scorers.
+- `rr-iter3-105`, a prompt typing `/memory:save`, now resolves to `system-spec-kit` in TypeScript and is recorded as an accepted regression in both parity tests.
+
+**Alternatives Rejected**:
+- Normalize the save id to `system-spec-kit` in Python: the relabelled gold lines would then fail in Python.
+
+### ADR-011: Re-pin the tests and the accuracy baseline
+
+**Status**: Accepted. Approved by the operator on 2026-11-12.
+
+**Context**: Retiring ids and adding rows moved pinned expectations in tests, fixtures and both captured baselines.
+
+**Decision**: Re-pin every affected test, both baselines and the ratchet baseline. The files are listed in `implementation-summary.md`.
+
+**Consequences**:
+- The suite measures the new routing.
+- A re-pin can hide a real regression. Mitigation: each re-pinned number is listed with its old and new value, and `rr-iter3-105` is named as a miss.
+
+**Alternatives Rejected**:
+- Keep the old pins: they name ids that no longer exist.
+
+### ADR-012: Meaning-based matching for holdout reach
+
+**Status**: Accepted by the operator on 2026-11-12, answer "Add meaning-based matching now". Not started.
+
+**Context**: Holdout plain reach is 0 of 44. The holdout rows are paraphrases, and command rows match whole phrases only. The semantic lane is live at weight 0.05, both harnesses replace it with a word-overlap stand-in, and commands have no vectors. Packet `specs/system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement`, with five Draft phases, owns that work and scopes command rows out.
+
+**Decision**: Add meaning-based matching as the next step. Where it is built is not yet decided.
+
+**Consequences**:
+- This phase stays In Progress until holdout reach rises.
+- The work crosses into another packet's scope. Mitigation: decide placement with the operator before any build.
+
+**Alternatives Rejected**:
+- More hand-written phrases: tune-only phrases did not move holdout, and phrases copied from tune prompts were removed as overfit.
+
+
+### ADR-013: The hook looks up the route for the top recommendation only
+
+**Status**: Accepted. Decided by the operator on 2026-11-12.
+
+**Context**: Asking for every compiled route raised the hook's median from 194.35 ms to 251.21 ms and p95 from 281.15 ms to 450.47 ms on one run of 44 tune prompts.
+
+**Decision**: Add the request option `compiledRouteTopOnly`. The hook sends it, and `enrichCompiledRoutes` then looks up the route for the first recommendation alone.
+
+**Consequences**:
+- One run measured median 235.04 ms and p95 318.96 ms (`scratch/hook-latency-top-only.json`). This closes the hook-budget open question.
+- A new optional field on a public tool. Mitigation: the daemon retry path lists it with `includeCompiledRoute`, and `tests/handlers/advisor-recommend-compiled-route-option.vitest.ts` covers it.
+
+**Alternatives Rejected**:
+- Keep three lookups: the measured cost with no use for the extra routes.
+
+### ADR-014: `/create:changelog` asks first
+
+**Status**: Accepted. Decided by the operator on 2026-11-12.
+
+**Context**: Phase 002 recorded that `/create:changelog --release` pushes a tag and publishes a GitHub release, while its class derived `start`.
+
+**Decision**: Its metadata entry gains `ask_first: ["outside-repo"]`, and its `gate3_location` names the tag and the release.
+
+**Consequences**:
+- The per-command rollup is now 17 ask, 7 run and 20 start, against phase 002's 16, 7 and 21.
+- The three corpus rows for `/create:changelog` now expect `ask`, which changes the corpus hash the phase 1 slice pins.
+
+**Alternatives Rejected**:
+- A per-route class: the record holds one class per command.
+
+### ADR-015: Rename the retired id where instruction files named it
+
+**Status**: Accepted. Decided by the operator on 2026-11-12.
+
+**Context**: `AGENTS.md` Gate 4, the root `README.md`, the orchestrate agent and its runtime mirrors and the `/doctor:agents-md` manifest named `command-spec-kit`, which this phase retired. The plan had left `AGENTS.md` to phase 005.
+
+**Decision**: Name the deep-loop command rows there instead.
+
+**Consequences**:
+- No instruction file names an id the scorer no longer has.
+- This phase now edits `AGENTS.md`, which its scope had excluded, so task T043 is unmet as written.
+
+**Alternatives Rejected**:
+- Wait for phase 005: the files would name a dead id until then.
 
 ---
 

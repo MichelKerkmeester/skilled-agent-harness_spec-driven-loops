@@ -1,0 +1,49 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: create ONE new file, `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`.
+
+Purpose: one pure function that says which slash command belongs to a hub skill's recommendation, given the compiled route for that hub.
+
+Write it with the same header-banner style as `.skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts` (read that file first). No imports. Contents:
+
+1. A generated block, exactly these lines, with an empty object for now (a generator fills it later):
+// BEGIN GENERATED MODE COMMANDS
+export const MODE_COMMANDS: Readonly<Record<string, Readonly<Record<string, string>>>> = {};
+// END GENERATED MODE COMMANDS
+   The outer key is a hub skill id, the inner key a workflow mode, the value a slash command such as `/create:readme`.
+
+2. `export function attachCommand(skillId: string, compiledRoute: unknown, prompt: string, modeCommands = MODE_COMMANDS): string | undefined`
+   Return the command only when ALL hold, else `undefined`:
+   - `compiledRoute` is a non-null, non-array object
+   - its `action` is the string `route` and its `selectionKind` is the string `single`
+   - its `targets` is an array of exactly one object whose `workflowMode` is a non-empty string
+   - `modeCommands[skillId]` has that workflow mode as an own key
+   `prompt` is accepted and unused for now: keep the parameter, mark it `_prompt` if lint needs it. Never throw.
+
+Comments explain why, in plain sentences. Never write a spec path, task id or requirement id in a comment.
+
+VERIFY (run from `.skilled/skills/system-skill-advisor/runtime`): `npm run build` exits 0, then
+`node --input-type=module -e "const m=await import(process.cwd()+'/dist/runtime/lib/command-attach.js');const r={action:'route',selectionKind:'single',targets:[{workflowMode:'sk-create-readme'}]};const t={'sk-doc':{'sk-create-readme':'/create:readme'}};console.log(m.attachCommand('sk-doc',r,'x'),m.attachCommand('sk-doc',r,'x',t),m.attachCommand('sk-doc',{...r,selectionKind:'multi'},'x',t),m.attachCommand('sk-doc',{...r,action:'ask'},'x',t),m.attachCommand('sk-code',r,'x',t),m.attachCommand('sk-doc',null,'x',t))"`
+must print `undefined /create:readme undefined undefined undefined undefined`.

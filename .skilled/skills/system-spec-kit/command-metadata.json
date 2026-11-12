@@ -9,7 +9,11 @@
     "userIntent": {
       "job": "I want the spec and plan documents written for a feature before any code is touched.",
       "ownedSignals": [
-        "/speckit:plan"
+        "/speckit:plan",
+        "write a spec first",
+        "spec out this feature",
+        "write the spec and plan",
+        "plan before coding"
       ]
     },
     "choreography": [
@@ -49,7 +53,11 @@
     "userIntent": {
       "job": "I want the already-planned work in plan.md executed and verified.",
       "ownedSignals": [
-        "/speckit:implement"
+        "/speckit:implement",
+        "execute the plan",
+        "implement the plan",
+        "start the implementation",
+        "build what was planned"
       ]
     },
     "choreography": [
@@ -89,7 +97,10 @@
     "userIntent": {
       "job": "I want the whole spec-driven change carried end to end, from spec through plan to verified implementation.",
       "ownedSignals": [
-        "/speckit:complete"
+        "/speckit:complete",
+        "the whole spec workflow",
+        "take it all the way",
+        "everything from spec to code"
       ]
     },
     "choreography": [
@@ -129,7 +140,13 @@
     "userIntent": {
       "job": "I want to pick up where a spec packet left off, recovered from its own documents.",
       "ownedSignals": [
-        "/speckit:resume"
+        "/speckit:resume",
+        "where did we leave off",
+        "where we left off",
+        "pick up the work",
+        "where did we stop",
+        "continue the previous work",
+        "what was i doing"
       ]
     },
     "choreography": [
@@ -169,7 +186,14 @@
     "userIntent": {
       "job": "I want this conversation captured into the spec packet so the next session can resume from it.",
       "ownedSignals": [
-        "/speckit:save"
+        "/speckit:save",
+        "save this conversation",
+        "save the context",
+        "record this session",
+        "write it into the spec",
+        "save context",
+        "save memory",
+        "preserve session context"
       ]
     },
     "choreography": [
@@ -197,7 +221,11 @@
     "userIntent": {
       "job": "I want to find which spec packet or skill doc already covers what I am asking about.",
       "ownedSignals": [
-        "/speckit:search"
+        "/speckit:search",
+        "find the spec packet",
+        "which spec covers this",
+        "search the spec docs",
+        "is this already documented"
       ]
     },
     "choreography": [
@@ -234,7 +262,11 @@
     "userIntent": {
       "job": "I want to stop cleanly and hand this work to a fresh session through a written handoff note.",
       "ownedSignals": [
-        "/speckit:handoff"
+        "/speckit:handoff",
+        "hand this off",
+        "write a handoff note",
+        "wrap up this session",
+        "running out of context"
       ]
     },
     "choreography": [

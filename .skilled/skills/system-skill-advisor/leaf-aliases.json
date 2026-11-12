@@ -391,6 +391,11 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/native-cli-tools/hub-command-attachment.md",
+    "diskPath": "manual-testing-playbook/native-cli-tools/hub-command-attachment.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/native-cli-tools/lifecycle-redirect-metadata.md",
     "diskPath": "manual-testing-playbook/native-cli-tools/lifecycle-redirect-metadata.md"
   },

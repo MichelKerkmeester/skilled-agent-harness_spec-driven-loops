@@ -1,0 +1,37 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: edit ONE file, `.skilled/commands/doctor/_routes.yaml`. Read its header comment (the first 62 lines) before anything else: it defines `trigger_phrases` and the three sections `routes`, `standalone` and `mcp_subroutes`.
+
+Add diagnostic `trigger_phrases` for these twelve commands only: `/doctor:deep-loop`, `/doctor:env`, `/doctor:git`, `/doctor:sk-code`, `/doctor:sk-skill`, `/doctor:skill-advisor`, `/doctor:mcp`, `/doctor:install`, `/doctor:setup`, `/doctor:speckit`, `/doctor:symlink`, `/doctor:update`. Find each command's entries wherever they sit (a command may have several routes under `routes`, one entry under `standalone`, or entries under `mcp_subroutes`). Today a plain question about them lands on a general skill or on nothing.
+
+For each entry of those commands, append 3 to 5 new phrases to its existing `trigger_phrases` list:
+- each phrase is 3 to 6 lowercase words a person would type when they have that entry's problem, without knowing the command exists
+- the phrase must fit that one entry. Read the entry's `description` and the command file `.skilled/commands/doctor/<name>.md` (first 40 lines). A read-only check entry gets question wording, a mutating entry gets action wording
+- a phrase must name the doctor subject, not only a general topic: `which hook gates are switched on` fits `/doctor:git`, while `fix my git commit` does not, because ordinary git work belongs to another skill
+- no phrase may repeat one already in the file, anywhere
+- for example prompts, read ONLY `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/scratch/tune-rows.jsonl` (rows whose `expected_command` is one of the twelve). Do NOT open `command-prompts.jsonl`. Do not copy a whole tune prompt: pick the 3 to 6 word core
+- do NOT add or change `lead_phrases`, and touch no other command's entries (the file already has new phrases for `/doctor:agents-md`, `/doctor:ci`, `/doctor:overlay` and `/doctor:runtime-mirrors`: leave them), no comment and no other key. Add nothing to `/doctor:helper`
+
+VERIFY: `bash .skilled/commands/doctor/scripts/route-validate.sh` prints a line starting with `OK`, and `git diff --stat .skilled/commands/doctor/_routes.yaml` shows insertions only (0 deletions). Do not run the deriver and do not run `npm run build`. Report the phrases you added per entry.

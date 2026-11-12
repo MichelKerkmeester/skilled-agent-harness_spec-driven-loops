@@ -272,7 +272,7 @@ GRAPH_ONLY_SKILL_IDS = {"system-skill-advisor"}
 GRAPHLESS_INLINE_SKILL_IDS = {
     "create:agent",
     "create:manual-testing-playbook",
-    "memory:save",
+    "command-speckit-save",
 }
 
 SKILL_ALIAS_GROUPS = {
@@ -282,7 +282,10 @@ SKILL_ALIAS_GROUPS = {
         "/create:manual-testing-playbook",
         "create:manual-testing-playbook",
     },
-    "memory:save": {"command-memory-save", "/memory:save", "memory:save"},
+    # The save command is scored under its own id; the spellings users still type
+    # and the retired bridge id stay aliases so an older record or a packet's
+    # recommendation history folds onto the live command instead of a dead id.
+    "command-speckit-save": {"command-memory-save", "/memory:save", "memory:save"},
     "deep-research": {
         "command-spec-kit-deep-research",
         "/deep:research",
@@ -497,6 +500,11 @@ def emit_routing_projection(check_only: bool = False) -> int:
     return 0
 
 
+# Every /speckit command is scored under its own bridge id, so the family is
+# matched by prefix; the umbrella id that used to name the whole family is gone.
+SPECKIT_COMMAND_BRIDGE_PREFIXES = ("command-spec-kit-", "command-speckit-")
+
+
 def _command_bridge_owner(command_name: str, command: str) -> Dict[str, str]:
     """Normalize a live Python bridge owner to the generated projection shape."""
     command_config = COMMAND_BRIDGES.get(command_name, {})
@@ -510,7 +518,7 @@ def _command_bridge_owner(command_name: str, command: str) -> Dict[str, str]:
     if command.startswith("/deep:"):
         mode = command.split(":", 1)[1]
         return {"skillId": "system-deep-loop", "ownerMode": mode}
-    if command_name.startswith("command-spec-kit") or command == "/memory:save":
+    if command_name.startswith(SPECKIT_COMMAND_BRIDGE_PREFIXES) or command == "/memory:save":
         return {"skillId": "system-spec-kit", "ownerMode": "system-spec-kit"}
     if command.startswith("/create:"):
         return {"skillId": "sk-doc", "ownerMode": f"sk-create-{command.split(':', 1)[1]}"}
@@ -2143,12 +2151,12 @@ PHRASE_INTENT_BOOSTERS = {
     "create a testing playbook": [("create:manual-testing-playbook", 1.8), ("command-create-manual-testing-playbook", 1.2), ("sk-doc", 0.2)],
     "create test playbook": [("create:manual-testing-playbook", 1.8), ("command-create-manual-testing-playbook", 1.2), ("sk-doc", 0.2)],
     "create testing playbook": [("create:manual-testing-playbook", 1.8), ("command-create-manual-testing-playbook", 1.2), ("sk-doc", 0.2)],
-    "save context": [("system-spec-kit", 1.6), ("memory:save", 1.0), ("command-memory-save", 0.8)],
-    "save memory": [("system-spec-kit", 1.6), ("memory:save", 1.0), ("command-memory-save", 0.8)],
-    "save this context": [("system-spec-kit", 1.6), ("memory:save", 1.0), ("command-memory-save", 0.8)],
-    "save conversation": [("system-spec-kit", 1.6), ("memory:save", 1.0), ("command-memory-save", 0.8)],
-    "save conversation context": [("system-spec-kit", 1.6), ("memory:save", 1.0), ("command-memory-save", 0.8)],
-    "save this conversation context": [("system-spec-kit", 1.6), ("memory:save", 1.0), ("command-memory-save", 0.8)],
+    "save context": [("system-spec-kit", 1.6), ("command-speckit-save", 1.0)],
+    "save memory": [("system-spec-kit", 1.6), ("command-speckit-save", 1.0)],
+    "save this context": [("system-spec-kit", 1.6), ("command-speckit-save", 1.0)],
+    "save conversation": [("system-spec-kit", 1.6), ("command-speckit-save", 1.0)],
+    "save conversation context": [("system-spec-kit", 1.6), ("command-speckit-save", 1.0)],
+    "save this conversation context": [("system-spec-kit", 1.6), ("command-speckit-save", 1.0)],
     "code review": [("sk-code", 2.4)],
     "pr review": [("sk-code", 2.3), ("sk-git", 0.4)],
     "security review": [("sk-code", 2.2)],
@@ -2295,15 +2303,14 @@ DEFAULT_UNCERTAINTY_THRESHOLD = NATIVE_DEFAULT_UNCERTAINTY_THRESHOLD
 
 HAND_AUTHORED_COMMAND_BRIDGES = {
     # ─────────────────────────────────────────────────────────────────
-    # Per-subcommand bridges for /spec_kit family.
-    # Previously all /speckit:* subcommands collapsed to `command-spec-kit`
-    # at `kind_priority=2`, so `/deep:research` lost its owning-skill
-    # signal (should route to `deep-research`, not `command-spec-kit`).
+    # Per-subcommand bridges for the /spec_kit family.
+    # Each /speckit:* subcommand keeps its own bridge instead of collapsing into
+    # one family id at `kind_priority=2`, because the owning skill is the signal:
+    # `/deep:research` must route to `deep-research`, not to a spec-kit command.
     # `detect_explicit_command_intent()` lets a matching marker replace the
     # current best only when it contains it, so a specific subcommand marker
-    # beats the deprecated generic bridge it contains. Keep the specific
-    # markers BEFORE the generic bridge anyway: for markers that do not contain
-    # each other, dict insertion order decides.
+    # beats a shorter marker it contains. Keep the specific markers first for
+    # markers that do not contain each other, where dict insertion order decides.
     # Execution-mode suffixes (:auto, :confirm, :with-phases, :with-research)
     # are substring-matched inside each bridge and do NOT need separate entries.
     # ─────────────────────────────────────────────────────────────────
@@ -2337,26 +2344,6 @@ HAND_AUTHORED_COMMAND_BRIDGES = {
         "slash_markers": ["/speckit:resume", "spec_kit:resume"],
         "owning_skill": "system-spec-kit",
     },
-    # Legacy bridge retained for 1-release compatibility; deprecated.
-    # MUST come AFTER the per-subcommand bridges so specific markers win.
-    "command-spec-kit": {
-        "description": "[DEPRECATED: use per-subcommand bridges] /spec_kit slash-command family; routes generic /spec_kit or spec_kit: prompts without a specific subcommand.",
-        "slash_markers": ["/spec_kit", "spec_kit:"],
-        "deprecated": True,
-        "owning_skill": "system-spec-kit",
-    },
-    "command-memory-save": {
-        "description": "Save conversation context to memory using /memory:save.",
-        "slash_markers": ["/memory:save", "memory:save"],
-        "owning_skill": "system-spec-kit",
-    },
-    "command-prompt-improver": {
-        "description": "Create or improve AI prompts using /prompt.",
-        # Only the literal slash invocation is an explicit-command signal. The
-        # bare word "prompt" appears in ordinary requests ("improve this prompt")
-        # and must NOT trigger the command bridge over the owning skill sk-prompt.
-        "slash_markers": ["/prompt"],
-    },
     "command-create-agent": {
         "description": "Create a new OpenCode agent using /create:agent.",
         "slash_markers": ["/create:agent", "create:agent"],
@@ -2386,10 +2373,7 @@ HAND_AUTHORED_COMMAND_BRIDGES = {
 
 HAND_AUTHORED_COMMAND_BRIDGE_OWNER_NORMALIZATION = {
     # An explicit /X:y slash command routes to the skill that OWNS the workflow,
-    # not to a command-bridge alias. The memory-save workflow is owned by
-    # system-spec-kit (its toolchain performs the save), so /memory:save
-    # normalizes there rather than to the inline `memory:save` bridge record.
-    "command-memory-save": "system-spec-kit",
+    # not to a command-bridge alias.
     "command-create-agent": "create:agent",
     "command-create-manual-testing-playbook": "create:manual-testing-playbook",
     "command-spec-kit-resume": "system-spec-kit",
@@ -2457,36 +2441,6 @@ GENERATED_COMMAND_BRIDGES = {
         "command": "/speckit:resume",
         "skill_id": "system-spec-kit",
         "owner_mode": "system-spec-kit",
-        "routing_enabled": True,
-    },
-    "command-spec-kit": {
-        "description": "[DEPRECATED: use per-subcommand bridges] /spec_kit slash-command family; routes generic /spec_kit or spec_kit: prompts without a specific subcommand.",
-        "slash_markers": ["/spec_kit", "spec_kit:"],
-        "deprecated": True,
-        "owning_skill": "system-spec-kit",
-        "inventory_id": "command-spec-kit",
-        "command": "/spec_kit",
-        "skill_id": "system-spec-kit",
-        "owner_mode": "system-spec-kit",
-        "routing_enabled": True,
-    },
-    "command-memory-save": {
-        "description": "Save conversation context to memory using /memory:save.",
-        "slash_markers": ["/memory:save", "memory:save"],
-        "owning_skill": "system-spec-kit",
-        "inventory_id": "command-memory-save",
-        "command": "/memory:save",
-        "skill_id": "system-spec-kit",
-        "owner_mode": "system-spec-kit",
-        "routing_enabled": True,
-    },
-    "command-prompt-improver": {
-        "description": "Create or improve AI prompts using /prompt.",
-        "slash_markers": ["/prompt"],
-        "inventory_id": "command-prompt-improver",
-        "command": "/prompt",
-        "skill_id": "sk-prompt",
-        "owner_mode": "sk-prompt",
         "routing_enabled": True,
     },
     "command-create-agent": {
@@ -2862,6 +2816,46 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
+    "command-prompt-improve": {
+        "description": "Improve or create AI prompts via sk-prompt: one-pass checklist, CLEAR screening. Modes :auto, :confirm.",
+        "slash_markers": ["/prompt:improve", "prompt:improve"],
+        "owning_skill": "sk-prompt",
+        "inventory_id": "command-prompt-improve",
+        "command": "/prompt:improve",
+        "skill_id": "sk-prompt",
+        "owner_mode": "sk-prompt",
+        "routing_enabled": True,
+    },
+    "command-speckit-handoff": {
+        "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+        "slash_markers": ["/speckit:handoff", "speckit:handoff"],
+        "owning_skill": "system-spec-kit",
+        "inventory_id": "command-speckit-handoff",
+        "command": "/speckit:handoff",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
+    "command-speckit-save": {
+        "description": "Save current conversation context into canonical spec-doc continuity surfaces",
+        "slash_markers": ["/speckit:save", "speckit:save"],
+        "owning_skill": "system-spec-kit",
+        "inventory_id": "command-speckit-save",
+        "command": "/speckit:save",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
+    "command-speckit-search": {
+        "description": "Continuity retrieval front door: trigger-index lookup plus the ripgrep recipes over spec docs and skill docs.",
+        "slash_markers": ["/speckit:search", "speckit:search"],
+        "owning_skill": "system-spec-kit",
+        "inventory_id": "command-speckit-search",
+        "command": "/speckit:search",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
     "command-create-benchmark": {
         "description": "",
         "slash_markers": ["/create:benchmark"],
@@ -2961,55 +2955,9 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "sk-design-md-generator",
         "routing_enabled": False,
     },
-    "command-prompt-improve": {
-        "description": "",
-        "slash_markers": ["/prompt:improve"],
-        "inventory_id": "command-prompt-improve",
-        "command": "/prompt:improve",
-        "skill_id": "sk-prompt",
-        "owner_mode": "sk-prompt",
-        "routing_enabled": False,
-    },
-    "command-speckit-handoff": {
-        "description": "",
-        "slash_markers": ["/speckit:handoff"],
-        "inventory_id": "command-speckit-handoff",
-        "command": "/speckit:handoff",
-        "skill_id": "system-spec-kit",
-        "owner_mode": "system-spec-kit",
-        "routing_enabled": False,
-    },
-    "command-speckit-save": {
-        "description": "",
-        "slash_markers": ["/speckit:save"],
-        "inventory_id": "command-speckit-save",
-        "command": "/speckit:save",
-        "skill_id": "system-spec-kit",
-        "owner_mode": "system-spec-kit",
-        "routing_enabled": False,
-    },
-    "command-speckit-search": {
-        "description": "",
-        "slash_markers": ["/speckit:search"],
-        "inventory_id": "command-speckit-search",
-        "command": "/speckit:search",
-        "skill_id": "system-spec-kit",
-        "owner_mode": "system-spec-kit",
-        "routing_enabled": False,
-    },
-    "memory:save": {
-        "description": "",
-        "slash_markers": ["/memory:save"],
-        "inventory_id": "memory:save",
-        "command": "/memory:save",
-        "skill_id": "system-spec-kit",
-        "owner_mode": "system-spec-kit",
-        "routing_enabled": False,
-    },
 }
 
 GENERATED_COMMAND_BRIDGE_OWNER_NORMALIZATION = {
-    "command-memory-save": "system-spec-kit",
     "command-create-agent": "create:agent",
     "command-create-manual-testing-playbook": "create:manual-testing-playbook",
     "command-spec-kit-resume": "system-spec-kit",
@@ -3020,13 +2968,6 @@ GENERATED_COMMAND_BRIDGE_OWNER_NORMALIZATION = {
 
 COMMAND_BRIDGES = GENERATED_COMMAND_BRIDGES
 COMMAND_BRIDGE_OWNER_NORMALIZATION = GENERATED_COMMAND_BRIDGE_OWNER_NORMALIZATION
-
-COMMAND_BRIDGE_EXPLICIT_ALIASES = {
-    # The canonical Python regression contract treats /speckit:plan as the
-    # command family bridge. Deep loop/resume subcommands keep their narrower
-    # owners because they enforce distinct skill-owned state machines.
-    "command-spec-kit-plan": "command-spec-kit",
-}
 
 COMMAND_TARGET_IMPLEMENTATION_MARKERS = (
     "add",
@@ -3081,7 +3022,7 @@ INTENT_NORMALIZATION_RULES = {
     "memory": {
         "phrases": ["save context", "save memory", "remember this", "restore checkpoint"],
         "tokens": {"memory", "context", "checkpoint", "remember", "restore", "session", "preserve"},
-        "boosts": [("memory:save", 0.6)],
+        "boosts": [("command-speckit-save", 0.6)],
     },
     "tooling": {
         "phrases": ["use mcp", "code mode", "chrome devtools", "use external tool"],
@@ -3251,14 +3192,6 @@ def get_skills(force_refresh: bool = False) -> Dict[str, Dict[str, Any]]:
     """Return skill + command records with cached discovery metadata."""
     skills = get_cached_skill_records(SKILLS_DIR, STOP_WORDS, force_refresh=force_refresh)
 
-    skills["memory:save"] = _build_inline_record(
-        name="memory:save",
-        description="Memory save command bridge for /memory:save context preservation.",
-        kind="skill",
-        source="bridge",
-        path=None,
-        extra_variants={"/memory:save", "save context", "save memory"},
-    )
     skills["create:agent"] = _build_inline_record(
         name="create:agent",
         description="Create command bridge for /create:agent OpenCode agent scaffolding.",
@@ -3287,6 +3220,22 @@ def get_skills(force_refresh: bool = False) -> Dict[str, Dict[str, Any]]:
             path=None,
             extra_variants=markers,
         )
+
+    # /speckit:save is asked for in plain words as often as it is typed, and
+    # those prompts want the save itself, so the record is scored as a routable
+    # skill record like the other plain-language bridges (create:agent,
+    # create:manual-testing-playbook): a command record ranks below its owning
+    # skill system-spec-kit on the very prompts that ask for the save. Its own
+    # description and markers are literal for the same reason those two are:
+    # the record must survive a caller that swaps or empties the bridge table.
+    skills["command-speckit-save"] = _build_inline_record(
+        name="command-speckit-save",
+        description="Memory save command bridge for /speckit:save context preservation.",
+        kind="skill",
+        source="bridge",
+        path=None,
+        extra_variants={"/speckit:save", "save context", "save memory"},
+    )
 
     return skills
 
@@ -3324,9 +3273,9 @@ def detect_explicit_command_intent(prompt_lower: str) -> Optional[str]:
             if best_marker is None or (best_marker in marker and len(marker) > len(best_marker)):
                 best_command = command_name
                 best_marker = marker
-    if best_command is None:
-        return None
-    return COMMAND_BRIDGE_EXPLICIT_ALIASES.get(best_command, best_command)
+    # Each /speckit subcommand is scored under its own bridge id, so the marker
+    # that matched IS the answer; no umbrella id folds the family back together.
+    return best_command
 
 
 def _command_bridge_references(command_name: str) -> Set[str]:
@@ -3336,6 +3285,10 @@ def _command_bridge_references(command_name: str) -> Set[str]:
     for marker in command_config.get("slash_markers", []):
         if isinstance(marker, str) and marker:
             references.add(marker.lower())
+    # A prompt that names the command by a spelling it was previously typed or
+    # written under is still talking about this bridge, so the quoted-reference
+    # guard has to recognise those forms too.
+    references.update(SKILL_ALIAS_GROUPS.get(command_name, set()))
     return references
 
 
@@ -3534,7 +3487,7 @@ def _apply_memory_save_file_operation_cap(
     if not _is_plain_file_save_prompt(prompt_lower):
         return
     for recommendation in recommendations:
-        if recommendation.get("skill") in {"memory:save", "command-memory-save"}:
+        if recommendation.get("skill") == "command-speckit-save":
             recommendation["confidence"] = min(float(recommendation.get("confidence", 0.0)), 0.49)
 
 
@@ -4063,7 +4016,8 @@ def filter_recommendations(
 
 
 # Iteration-loop phrases that imply skill-owned workflow (deep-research / deep-review)
-# When these match AND command-spec-kit is a candidate alongside cli-*, promote the command.
+# When these match AND a loop-owning command bridge is a candidate alongside cli-*, promote
+# the command.
 # See CLAUDE.md / AGENTS.md Gate 4: SKILL-OWNED WORKFLOW ENFORCEMENT.
 ITERATION_LOOP_PHRASES = (
     "deep-research", "deep research", "deep-review", "deep review",
@@ -4073,6 +4027,15 @@ ITERATION_LOOP_PHRASES = (
     "/deep:research", "/deep:review",
     "deep:research", "deep:review",
 )
+
+# Only the bridges that own an iteration loop may license demoting a CLI
+# executor: a plan, save or complete bridge runs no loop for an executor to work
+# inside, so treating it as the loop's owner would pull the route away from the
+# skill that actually runs the iterations.
+ITERATION_LOOP_COMMAND_BRIDGES = {
+    "command-spec-kit-deep-research",
+    "command-spec-kit-deep-review",
+}
 
 # Deep-research disambiguation phrases. When the prompt
 # contains one of these and both `deep-research` and `sk-code`
@@ -4867,18 +4830,23 @@ def _apply_iteration_loop_tiebreaker(
     recommendations: List[Dict[str, Any]],
     prompt_lower: str,
 ) -> None:
-    """Promote command-spec-kit over cli-* when iteration-loop phrases are present.
+    """Promote a loop-owning command bridge over cli-* when iteration-loop phrases are present.
 
     Background: when a user asks to run iterations of deep-research or deep-review with
     a specific CLI executor (e.g. "use cli-opencode for 50 iterations"), the skill advisor
-    previously returned command-spec-kit and the cli-* peer with similar confidence. Picking
-    the cli-* peer as the primary route bypasses the skill's state machine, convergence
-    detection, and deltas.
+    previously returned the loop's command bridge and the cli-* peer with similar
+    confidence. Picking the cli-* peer as the primary route bypasses the skill's state
+    machine, convergence detection, and deltas.
 
-    Rule: if the prompt contains iteration-loop phrases AND both a command-spec-kit
-    recommendation and a cli-* skill recommendation are present, penalize the cli-*
+    Rule: if the prompt contains iteration-loop phrases AND both a bridge that owns an
+    iteration loop and a cli-* skill recommendation are present, penalize the cli-*
     confidence so the command wins the primary slot. The CLI executor is still a valid
     tool INSIDE the command's YAML workflow — it just can't BE the workflow.
+
+    A prompt that hands the work to a named executor is ordered by the workflow-owner
+    guard instead, which puts the owner first and the executor directly below it. There
+    the executor is the tool the owner runs, so demoting it would only push it under the
+    confidence threshold and leave the caller a workflow with nothing to run it.
     """
     if not prompt_lower:
         return
@@ -4887,21 +4855,27 @@ def _apply_iteration_loop_tiebreaker(
     if not has_iteration_phrase:
         return
 
-    has_command = any(r.get("skill") == "command-spec-kit" for r in recommendations)
+    delegation = _resolve_executor_delegation(prompt_lower)
+    if delegation is not None and delegation[1] == "route":
+        return
+
+    has_command = any(
+        r.get("skill") in ITERATION_LOOP_COMMAND_BRIDGES for r in recommendations
+    )
     cli_recs = [r for r in recommendations if r.get("skill", "").startswith("cli-")]
     if not has_command or not cli_recs:
         return
 
-    # Penalize cli-* confidence by 0.20 (capped at 0.60 floor) so command-spec-kit
-    # ranks ahead. This preserves the cli-* as an available tool for the command's
-    # internal use but removes it as a competing primary route.
+    # Penalize cli-* confidence by 0.20 (capped at 0.60 floor) so the command
+    # bridge ranks ahead. This preserves the cli-* as an available tool for the
+    # command's internal use but removes it as a competing primary route.
     for rec in cli_recs:
         current = rec.get("confidence", 0.0)
         penalized = max(0.60, current - 0.20)
         if penalized < current:
             rec["confidence"] = round(penalized, 2)
             reason = rec.get("reason", "")
-            rec["reason"] = f"{reason} [iteration-loop tiebreaker: -0.20; command-spec-kit owns loop, cli-* is tool inside it]"
+            rec["reason"] = f"{reason} [iteration-loop tiebreaker: -0.20; the command owns the loop, cli-* is a tool inside it]"
 
 
 # ───────────────────────────────────────────────────────────────
@@ -4959,8 +4933,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
 
     if _is_memory_preservation_session_intent(prompt_lower):
         for skill, boost in (
-            ("memory:save", 1.2),
-            ("command-memory-save", 0.8),
+            ("command-speckit-save", 1.2),
             ("system-spec-kit", 0.3),
         ):
             skill_boosts[skill] = skill_boosts.get(skill, 0.0) + boost
@@ -5107,7 +5080,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
             score=score,
             has_intent_boost=has_boost,
         )
-        if name in {"memory:save", "command-memory-save"} and _is_plain_file_save_prompt(prompt_lower):
+        if name == "command-speckit-save" and _is_plain_file_save_prompt(prompt_lower):
             confidence = min(confidence, 0.49)
 
         num_matches = len(matches)
@@ -5158,9 +5131,10 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     _apply_deep_skill_routing_layer(recommendations, prompt)
 
     # Iteration-loop tiebreaker: when the query mentions iterative investigation/review
-    # phrases AND command-spec-kit matches alongside a cli-* executor skill, promote
-    # command-spec-kit. The CLI executor is a tool INSIDE the command's workflow, not
-    # a replacement for it. Prevents custom bash dispatchers bypassing skill-owned state.
+    # phrases AND a bridge that owns an iteration loop matches alongside a cli-* executor
+    # skill, promote the command bridge. The CLI executor is a tool INSIDE the command's
+    # workflow, not a replacement for it. Prevents custom bash dispatchers from
+    # bypassing skill-owned state.
     # See CLAUDE.md / AGENTS.md Gate 4: SKILL-OWNED WORKFLOW ENFORCEMENT.
     _apply_iteration_loop_tiebreaker(recommendations, prompt_lower)
 

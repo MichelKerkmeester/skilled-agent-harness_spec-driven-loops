@@ -1,0 +1,23 @@
+**Files**
+- Edited: `.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts`
+- Created: `.skilled/skills/system-skill-advisor/runtime/tests/scorer/same-owner-ambiguity.vitest.ts` (5 cases: owner pair both orders, two unrelated skills, command row + non-owner skill, third-skill re-tie)
+- No change to `fusion.ts` — its inputs allowed the fix inside `ambiguity.ts`.
+
+**Verify** (`npx vitest run tests/scorer/same-owner-ambiguity.vitest.ts tests/scorer/ambiguity-slice.vitest.ts`):
+```
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 7 passed (8)
+FAIL  tests/scorer/ambiguity-slice.vitest.ts > ambiguity slice gate > holds top-1 at or above the committed baseline
+AssertionError: ambiguity top-1 regressed: live=17/24 baseline=20
+```
+So: **not 0 failed — but the one failure is not mine.** My 5 tests pass (and `advisor-quality-049-003`, `native-scorer`, `doctor-bridge-isolation`, `typed-command-routing` = 100 passed). The slice gate measured `17/24` three ways: with my change, with my filter short-circuited out, and with `ambiguity.ts` restored from `HEAD` — identical `17/24` each time. It is a pre-existing ratchet failure in this worktree (concurrent workers have modified `projection.ts`, `derive-command-bridges.cjs`, `command-metadata.json`, `projection` regeneration). Out of my scope.
+
+**Owner relation: the field you expected is NOT there.** `CommandBridgeProjection` (`lib/scorer/projection.ts`) carries only `inventoryId`, `routingEnabled`, `readOnly` — still, after the other worker's in-flight regeneration. The owning skill exists only in `scripts/command-bridges/scoring-compatibility.json` (python `owningSkill`) and in each skill's `command-metadata.json` (`{command, ownerMode}`); the TS generator drops it. So I derived it from the ids: a bridge id is its owner's id behind the `command` marker, and a skill owns a bridge only when its own id carries every bridge token (`command-spec-kit` → `system-spec-kit`). Token-set containment, not a hard-coded id list.
+
+**Two things you should know before this lands**
+1. That derivation is conservative by construction: it catches the brief's measured pair and nothing looser. It **misses** owners whose id shares no token with the bridge (`memory:save` → `system-spec-kit`), and it cannot distinguish `command-doctor-sk-code-setup` from `sk-code`, which is why I did not add the reverse (bridge-extends-skill) direction — it would suppress a real tie.
+2. The live prompt you measured no longer produces that pair in this tree. A temporary probe (since deleted; `git status` shows only my two files) now returns `ambiguous: true`, top `command-spec-kit-plan`, cluster = six **sibling command bridges** (`-implement`, `-complete`, `-resume`, `command-speckit-handoff`, `-save`, `-search`) — command↔command, no owner skill present. Verdict is byte-identical with `HEAD`'s `ambiguity.ts`, i.e. my rule is currently inert there and does not fix that prompt. The durable fix is one field: emit `owningSkill` into `CommandBridgeProjection` (generator already has it in `command-metadata.json`) and let `ambiguity.ts` read it instead of matching ids — that covers both naming shapes and also lets sibling bridges of one owner collapse, which the brief's rule text implies ("its own command bridge rows") but my inputs could not express.
+
+**Consequences of the single-source-of-truth choice:** `applyAmbiguity` and `wideAmbiguityMembers` share the cluster, so they changed with it (intentional). One visible effect: when a third unrelated skill ties, the owner row is no longer listed in `ambiguousWith` — asserted in the test so it is a decision, not a drift.
+
+**Operator's one thing:** decide whether to extend `CommandBridgeProjection` with the owning skill (generator + type, outside my two-file mandate), because the id-derived relation alone will not survive the per-command bridge ids now being generated.

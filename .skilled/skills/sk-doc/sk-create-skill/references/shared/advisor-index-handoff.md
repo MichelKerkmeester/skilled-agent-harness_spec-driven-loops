@@ -9,7 +9,7 @@ trigger_phrases:
   - "create doctor shared vocabulary"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Advisor Index Handoff
@@ -45,7 +45,7 @@ Four files carry advisor-relevant metadata on a skill root. Each has exactly one
 | `description.json` | authored | Descriptive hub-doctor metadata | **None.** Not discovered or validated by the graph compiler. Never becomes advisor input, and never validated against graph vocabulary — see §5 Guardrail. |
 | `graph-metadata.json` | authored | Sole hub advisor identity | The only file `skill_graph_scan` discovers and `skill_graph_validate` checks. |
 | `leaf-manifest.json` | **generated** | Leaf/resource projection derived from the registry and packet corpus | Never hand-edited. State is `fresh`, `stale`, or `missing` — see §4. |
-| `command-metadata.json` | authored, H-only, optional | Slash-command-to-mode binding | Present and validated when the hub owns commands; omitted (not empty) when it owns none. |
+| `command-metadata.json` | authored, optional on H and S | Slash-command-to-mode binding | Present and validated when the root owns commands, omitted (not empty) when it owns none. On a standalone root each entry's `ownerMode` is the skill's own id. |
 
 Full generated-versus-authored rules and the H/S class matrix live in `skill-root-metadata-contract.md` in this same directory — this document only states the subset relevant to the create → advisor handoff.
 
@@ -101,7 +101,7 @@ Doctor severity derivation for `skill_graph_validate` (`pass`/`warn`/`fail`/`una
 
 ## 5. CLASS APPLICABILITY
 
-H-only fields render **omitted**, not `N/A` or a false negative, on standalone (class-S) roots — `description.json`, `mode-registry.json`, `hub-router.json`, and `command-metadata.json` are structurally forbidden there (`skill-root-metadata-contract.md` §3). A standalone `/create:skill` result that reported `description.json: MISSING` would be wrong; it should not mention the field at all.
+H-only fields render **omitted**, not `N/A` or a false negative, on standalone (class-S) roots — `description.json`, `mode-registry.json` and `hub-router.json` are structurally forbidden there (`skill-root-metadata-contract.md` §3). `command-metadata.json` is optional on both classes, so a standalone result reports it only when the root ships it. A standalone `/create:skill` result that reported `description.json: MISSING` would be wrong; it should not mention the field at all.
 
 **Guardrail (do not build this):** `description.json` stays descriptive and is never validated against graph vocabulary, and standalone `/create:skill` never asserts parent-hub metadata files. This boundary was raised and re-confirmed across nine iterations of research (Theme C, research.md) specifically because it is the mistake future maintainers are most likely to reintroduce — resist adding a `description.json` ↔ `graph-metadata.json` equality check or a parent-file requirement to a standalone assertion, however tempting it looks as a "consistency" improvement.
 

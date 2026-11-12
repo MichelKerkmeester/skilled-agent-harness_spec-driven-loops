@@ -285,6 +285,9 @@ export const AdvisorRecommendInputSchema = z.object({
     confidenceThreshold: z.number().min(0).max(1).optional(),
     uncertaintyThreshold: z.number().min(0).max(1).optional(),
     includeCompiledRoute: z.boolean().optional(),
+    // Limits the per-hub route lookup to the first recommendation, for a caller
+    // on a tight time budget that acts on the top pick alone.
+    compiledRouteTopOnly: z.boolean().optional(),
     // Forwarded to the compiled-route front door as --surface-hint; a value
     // that names no known surface is ignored there.
     surfaceHint: z.string().min(1).max(64).optional(),
@@ -306,6 +309,8 @@ export const AdvisorRecommendationSchema = z.object({
   status: z.enum(['active', 'deprecated', 'archived', 'future']).optional(),
   workflowMode: z.string().min(1).optional(),
   compiledRoute: z.record(z.string(), z.unknown()).optional(),
+  // Names the slash command that runs the recommended skill's resolved mode.
+  command: z.string().min(1).optional(),
 }).strict();
 
 export const AdvisorRecommendOutputSchema = z.object({

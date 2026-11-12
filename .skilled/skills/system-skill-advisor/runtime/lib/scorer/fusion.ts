@@ -779,10 +779,10 @@ function primaryIntentBonus(
   }
   if (promptLower.includes('/speckit:resume')) {
     if (recommendation.skill === 'system-spec-kit') return R.speckitResumeSpecKitBonus;
-    if (recommendation.skill === 'command-spec-kit') return R.speckitResumeCommandPenalty;
+    if (recommendation.skill === 'command-spec-kit-resume') return R.speckitResumeCommandPenalty;
   }
   if (promptLower.includes('/speckit:plan')) {
-    if (recommendation.skill === 'command-spec-kit') return R.speckitPlanCommandBonus;
+    if (recommendation.skill === 'command-spec-kit-plan') return R.speckitPlanCommandBonus;
     if (recommendation.skill === 'sk-doc') return R.speckitPlanSkDocPenalty;
   }
   // External-tool-chain ("call_tool_chain") vocabulary belongs to mcp-code-mode,
@@ -816,7 +816,7 @@ function primaryIntentBonus(
     if (isAdvisorSelfRecommendationSkill(recommendation.skill)) return R.auditRecsAdvisorPenalty;
   }
   if (/\b(save context|save memory)\b/.test(promptLower)) {
-    if (recommendation.skill === 'memory:save') return R.saveContextMemorySaveBonus;
+    if (recommendation.skill === 'command-speckit-save') return R.saveContextMemorySaveBonus;
     if (recommendation.skill === 'system-spec-kit') return R.saveContextMemorySpecKitPenalty;
   }
   if (/\b(create (a )?new agent|create agent)\b/.test(promptLower) || promptLower.includes('/create:agent')) {
@@ -838,19 +838,19 @@ function primaryIntentBonus(
 // 5. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
-// A doctor bridge passes only on its own wording: one of its manifest phrases or
-// its runnable slash string, which the explicit-author lane reports. A doctor
-// bridge that passed on shared single tokens alone stays scored but stops passing.
-// A doctor problem in other words reaches /doctor:helper through
-// applyDoctorHelperHandoff instead.
-export function requireDoctorPhraseAnchor(
+// A command bridge passes only on its own wording: one of its authored phrases or
+// its runnable slash string, which the explicit-author lane reports. A bridge
+// that passed on shared single tokens alone stays scored but stops passing,
+// because its phrases are everyday words and a command must not be offered for a
+// prompt that merely shares some of them. A doctor problem in other words reaches
+// /doctor:helper through applyDoctorHelperHandoff instead.
+export function requireCommandPhraseAnchor(
   ranked: readonly AdvisorScoredRecommendation[],
 ): AdvisorScoredRecommendation[] {
   return ranked.map((recommendation) => {
     if (
       !recommendation.passes_threshold
       || recommendation.kind !== 'command'
-      || !recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
     ) {
       return recommendation;
     }
@@ -1157,7 +1157,7 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     });
     let confidence = confidenceResult.value;
     let confidenceFloored = confidenceResult.floored;
-    if ((skill.id === 'memory:save' || skill.id === 'command-memory-save') && isPlainFileSavePrompt(promptLower)) {
+    if (skill.id === 'command-speckit-save' && isPlainFileSavePrompt(promptLower)) {
       const clamped = Math.min(confidence, 0.49);
       if (clamped < confidence) confidenceFloored = false;
       confidence = clamped;
@@ -1366,7 +1366,7 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     return doctorFreeRun[doctorFreeIndex++]!;
   });
 
-  ranked = requireDoctorPhraseAnchor(ranked);
+  ranked = requireCommandPhraseAnchor(ranked);
   const leadPhrasesById = new Map<string, readonly string[]>();
   for (const skill of projection.skills) {
     if (!skill.id.startsWith(DOCTOR_BRIDGE_PREFIX) || !skill.leadPhrases?.length) continue;

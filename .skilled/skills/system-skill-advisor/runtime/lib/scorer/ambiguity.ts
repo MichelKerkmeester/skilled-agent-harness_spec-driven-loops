@@ -2,6 +2,7 @@
 // MODULE: Advisor Ambiguity
 // ───────────────────────────────────────────────────────────────
 
+import { COMMAND_BRIDGES } from './projection.js';
 import type { AdvisorScoredRecommendation } from './types.js';
 
 export const AMBIGUITY_MARGIN = 0.05;
@@ -29,6 +30,34 @@ export const AMBIGUITY_CONFIDENCE_MARGIN = 0.05;
 // confidence from its own evidence, a member whose confidence only reached a
 // floor clusters on the score margin alone.
 
+// A command bridge row and the skill that owns that command are one answer, so
+// their near-tie is a single route rather than a choice between two. Two
+// different skills, or a command row and a skill that does not own it, stay a
+// real tie.
+
+// The owner comes from the generated bridge data, never from the shape of an
+// id: a bridge id says nothing reliable about which skill runs the command.
+const OWNER_BY_BRIDGE_ID: ReadonlyMap<string, string> = new Map(
+  COMMAND_BRIDGES.flatMap((bridge) => (bridge.ownerSkill ? [[bridge.id, bridge.ownerSkill] as const] : [])),
+);
+
+function ownsCommandBridge(skillId: string, bridgeId: string): boolean {
+  return OWNER_BY_BRIDGE_ID.get(bridgeId) === skillId;
+}
+
+function answersSameRoute(
+  top: AdvisorScoredRecommendation,
+  recommendation: AdvisorScoredRecommendation,
+): boolean {
+  if (top.kind === 'command' && recommendation.kind === 'skill') {
+    return ownsCommandBridge(recommendation.skill, top.skill);
+  }
+  if (top.kind === 'skill' && recommendation.kind === 'command') {
+    return ownsCommandBridge(top.skill, recommendation.skill);
+  }
+  return false;
+}
+
 function clustersWithTop(
   top: AdvisorScoredRecommendation,
   recommendation: AdvisorScoredRecommendation,
@@ -54,7 +83,12 @@ function ambiguousCluster(
   const passing = recommendations.filter((recommendation) => recommendation.passes_threshold);
   const [top] = passing;
   if (!top) return [];
-  return passing.filter((recommendation) => clustersWithTop(top, recommendation, applyFloorException));
+  // A member that answers the top's own route is the same recommendation written
+  // twice, so it never counts as the rival that makes the top a coin flip.
+  return passing.filter((recommendation) => (
+    clustersWithTop(top, recommendation, applyFloorException)
+    && !answersSameRoute(top, recommendation)
+  ));
 }
 
 export function isAmbiguousTopTwo(recommendations: readonly AdvisorScoredRecommendation[]): boolean {

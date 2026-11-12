@@ -52,13 +52,13 @@ scorer/
 
 | File | Responsibility |
 |---|---|
-| `fusion.ts` | Combines lane scores into final advisor ranking signals through RRF fusion, with a conflict-match rerank seam and a self-recommendation guard that penalizes advisor self-recommendations. |
+| `fusion.ts` | Combines lane scores into final advisor ranking signals through RRF fusion, with a conflict-match rerank seam and a self-recommendation guard that penalizes advisor self-recommendations. `requireCommandPhraseAnchor` keeps a passing command row passing only when the explicit-author lane matched one of its own phrases or its slash string. |
 | `lane-registry.ts` | Registers available scoring lanes. |
 | `aliases.ts` | Canonicalizes explicit command/skill alias groups for route comparisons. |
 | `attribution.ts` | Builds prompt-safe lane attribution details. |
-| `ambiguity.ts` | Detects close or unclear recommendation states. |
+| `ambiguity.ts` | Detects close or unclear recommendation states. A command row and its `ownerSkill` count as one answer, so they never make each other ambiguous. |
 | `feedback-calibration.ts` | Reduces advisor feedback into shadow calibration reports. |
-| `projection.ts` | Projects scorer internals into caller-facing output. |
+| `projection.ts` | Projects scorer internals into caller-facing output. Its `COMMAND_BRIDGES` list is the generated block that `derive-command-bridges.cjs` writes, with an `ownerSkill` on each row. |
 | `weights-config.ts` | Stores configurable lane and scorer weights. |
 | `types.ts` | Defines scorer input, output and lane types. |
 

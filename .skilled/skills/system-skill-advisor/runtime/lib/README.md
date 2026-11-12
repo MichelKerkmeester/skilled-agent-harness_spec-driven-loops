@@ -100,6 +100,7 @@ subfolders -> handlers for runtime behavior
 lib/
 +-- advisor-runtime-values.ts
 +-- affordance-normalizer.ts
++-- command-attach.ts
 +-- error-diagnostics.ts
 +-- freshness.ts
 +-- generation.ts
@@ -128,6 +129,7 @@ lib/
 |---|---|
 | `advisor-runtime-values.ts` | Runtime constants and defaults used by advisor paths. |
 | `affordance-normalizer.ts` | Normalizes prompt affordance signals before scoring. |
+| `command-attach.ts` | `attachCommand()` names the slash command for a hub recommendation whose compiled route picks one `workflowMode`. It reads the `MODE_COMMANDS` table that `derive-command-bridges.cjs` generates from each hub's `mode-registry.json`. A `system-deep-loop` command needs `/deep:` or a `DEPTH_WORDING` phrase in the prompt. The module has no imports. |
 | `prompt-policy.ts` | Applies prompt-safe routing and rendering policy. |
 | `render.ts` | Renders advisor results into prompt-safe output. |
 | `skill-advisor-brief.ts` | Builds concise advisor recommendation briefs. |

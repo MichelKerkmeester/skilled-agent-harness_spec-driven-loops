@@ -1,0 +1,40 @@
+Both files updated, both green.
+
+## Files written
+- `.skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts`
+
+## Verify
+`npx vitest run tests/parity/python-ts-parity.vitest.ts tests/legacy/advisor-corpus-parity.vitest.ts`
+```
+Test Files  2 passed (2)
+     Tests  3 passed (3)
+EXIT=0
+```
+Live parity report: `pythonCorrect 112, tsAlsoCorrect 107, regressions 5, tsCorrect 159, tsUnknown 13, tsImproves 52, goldNoneFalseFire 5, holdoutCorrect 30, tsAbstains 0`.
+Legacy regime (ambient graph): `pythonCorrect 116, hookPreservedPythonCorrect 111, py/hook goldNoneFalseFire 5/5`.
+
+## Every number changed
+| File | Pin | Old | New | Case |
+|---|---|---|---|---|
+| python-ts-parity | `pythonCorrect` | 109 | **112** | (a) 17 gold labels renamed off retired ids, Python re-pointed → same behaviour, new names |
+| python-ts-parity | `tsAlsoCorrect` | 105 | **107** | (a) TS now preserves *two more* Python-correct rows; parity intent unharmed |
+| python-ts-parity | `regressions` | 4 | **5** | follows `ACCEPTED_PARITY_REGRESSION_IDS.length` automatically |
+| python-ts-parity | prose `tsImproves` | 53 | 52 | comment only, no assertion |
+| advisor-corpus-parity | `pythonCorrect` | 114 | **116** | (a) same rename, legacy regime |
+| advisor-corpus-parity | `hookPreservedPythonCorrect` | 110 | **111** | (a) one more preserved |
+
+Unchanged and still passing: `tsAbstainsOnPythonCorrect 0`, `tsCorrect 159` (≥95), `tsUnknown 13` (≤13), `goldNoneFalseFire 5` (≤10), `holdoutCorrect 30` (≥17), `rows` 195, hook gold-none ≤ python gold-none.
+
+## Case (b) — one new divergence, pinned in the explicit allowed-list only
+**`rr-iter3-105`** — bucket `memory_save_resume`
+- prompt: `/memory:save the routing-accuracy packet with the current first-100 confusion matrix.`
+- gold: `command-speckit-save` · Python top: `command-speckit-save` · **TS top: `system-spec-kit`** (0.6245) vs `command-speckit-save` (0.56)
+- New prompt Python gets right, TS gets wrong. Both scorers agree on the classification, so this is not a regime artifact. I added it to `ACCEPTED_PARITY_REGRESSION_IDS` in **both** files (the tests declare those lists must stay identical — verified identical, same order), with a comment naming the actual behaviour and stating it is recorded, not accepted as correct. Nothing hidden; the two lists now hold 5 ids each.
+
+Two pre-existing prose lines contradicted the new entries (`pythonCorrect holds at 109 and no new id joins…`, `The accepted regression list is unchanged.`) — reworded to past tense so the comments don't lie. Legacy prose also said "preserves 108" while pinning 110; aligned to the live 111.
+
+## Not done / notes
+- No scorer source touched; my diff is exactly those two files (+36/−11). Other modified files in `git status` are other workers' in-flight work, not mine.
+- No git state touched, no agents dispatched.
+- Judgement call worth your eye: `rr-iter3-105` is arguably a real bug, not a tolerable divergence — a prompt that *names* `/memory:save` should not lose to the hub that owns its topic. Pinning it stops the gate going red but does not fix routing; it stays visible as an id the tests tolerate.

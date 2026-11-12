@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 import {
   isDoctorCommandTyped,
   keepPassingSkillsAboveDoctorBridges,
-  requireDoctorPhraseAnchor,
+  requireCommandPhraseAnchor,
 } from '../../lib/scorer/fusion.js';
 import type { AdvisorScoredRecommendation } from '../../lib/scorer/types.js';
 
@@ -319,7 +319,7 @@ describe('doctor bridge ordering', () => {
   });
 });
 
-describe('requireDoctorPhraseAnchor', () => {
+describe('requireCommandPhraseAnchor', () => {
   const withLanes = (
     recommendation: AdvisorScoredRecommendation,
     laneContributions: AdvisorScoredRecommendation['laneContributions'],
@@ -339,7 +339,7 @@ describe('requireDoctorPhraseAnchor', () => {
       ]),
     ];
 
-    const result = requireDoctorPhraseAnchor(ranked);
+    const result = requireCommandPhraseAnchor(ranked);
 
     expect(result[0].passes_threshold).toBe(false);
   });
@@ -358,12 +358,15 @@ describe('requireDoctorPhraseAnchor', () => {
       ]),
     ];
 
-    const result = requireDoctorPhraseAnchor(ranked);
+    const result = requireCommandPhraseAnchor(ranked);
 
     expect(result[0].passes_threshold).toBe(true);
   });
 
-  it('leaves skills and non-doctor commands alone', () => {
+  it('leaves skills alone while every command needs its own phrase', () => {
+    // Command phrases are everyday words, so a command row that matched only
+    // shared tokens would offer itself on vocabulary alone. The anchor applies
+    // to every command family, not to doctor bridges only.
     const lexicalOnly: AdvisorScoredRecommendation['laneContributions'] = [
       {
         lane: 'lexical',
@@ -374,15 +377,26 @@ describe('requireDoctorPhraseAnchor', () => {
         shadowOnly: false,
       },
     ];
+    const authored: AdvisorScoredRecommendation['laneContributions'] = [
+      {
+        lane: 'explicit_author',
+        rawScore: 1,
+        weightedScore: 0,
+        weight: 0,
+        evidence: ['author:save the session context'],
+        shadowOnly: false,
+      },
+    ];
 
     const ranked = [
       withLanes(rec('sk-git', 'skill', true), lexicalOnly),
       withLanes(rec('memory:save', 'command', true), lexicalOnly),
+      withLanes(rec('create:agent', 'command', true), authored),
     ];
 
-    const result = requireDoctorPhraseAnchor(ranked);
+    const result = requireCommandPhraseAnchor(ranked);
 
-    expect(result.map((recommendation) => recommendation.passes_threshold)).toEqual([true, true]);
+    expect(result.map((recommendation) => recommendation.passes_threshold)).toEqual([true, false, true]);
   });
 
   it('does not revive a doctor bridge that was not passing', () => {
@@ -399,7 +413,7 @@ describe('requireDoctorPhraseAnchor', () => {
       ]),
     ];
 
-    const result = requireDoctorPhraseAnchor(ranked);
+    const result = requireCommandPhraseAnchor(ranked);
 
     expect(result[0].passes_threshold).toBe(false);
   });

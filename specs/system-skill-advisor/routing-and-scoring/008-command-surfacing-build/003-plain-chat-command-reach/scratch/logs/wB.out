@@ -1,0 +1,35 @@
+**Both failures were case (a) — retired-id lookups, not scorer regressions. Nothing was loosened; the file is 22/22 with the original thresholds intact.**
+
+File written (only file touched): `.skilled/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` (+24/−40).
+
+Verify, from `.skilled/skills/system-skill-advisor/runtime`:
+
+```
+npx vitest run tests/scorer/native-scorer.vitest.ts
+Test Files  1 passed (1)
+     Tests  22 passed (22)
+```
+
+Baseline before the edit, same command: `Tests 2 failed | 20 passed (22)`.
+
+**Verdict per failing test**
+
+- `keeps ordinary file-save prompts below memory-save routing confidence` → **(a)**. It looked up `memory:save`. The clamp that implements this test's intent is `fusion.ts:1160`, `if (skill.id === 'command-speckit-save' && isPlainFileSavePrompt(...))`, so a fixture labelled `memory:save` never got clamped and fell through to the generic task-intent floor 0.82 (`scoring-constants.ts:192`), which is exactly the `expected 0.82 to be less than 0.5`. With the id fixed, observed confidence is **0.49** against the unchanged `< 0.5`.
+- `routes next-session preservation phrasing to memory-save` → **(a)**. The session-preservation signal is pushed onto `command-speckit-save` (`explicit.ts:343`, +1.2; phrase boosts at `explicit.ts:95` and `174` also target it), so the `memory:save` label collected only weak generic evidence → 0.5582. With the id fixed, observed confidence is **0.82 at rank 1**, against the unchanged `>= 0.6` and `< 3`.
+
+**What changed in the test**
+
+- Both fixtures that encoded the retired pair `memory:save` + `command-memory-save` now carry the single surviving id `command-speckit-save`; the duplicate competitor fixture is gone because the two ids collapsed into one.
+- Assertions and `find`/`findIndex` lookups now name `command-speckit-save`.
+- Fixture descriptions, keywords and intent signals point at `/speckit:save`, not the removed `/memory:save`.
+- The two test names no longer say "memory-save": `routes save-context and create-agent touchstone prompts to command bridges`, `…below save-command routing confidence`, `…to the save command`.
+
+No other retired id was present: `command-prompt-improver` and the `command-spec-kit` umbrella do not appear in this file, and the surviving `command-spec-kit-deep-review` at line 335 is a current generated alias (`aliases.ts:40`).
+
+**Observed, left alone as outside this file**
+
+- `fusion.ts:85` — `MEMORY_SAVE_CONTEXT_ANCHOR` still matches the prompt spellings `/memory:save` and `memory:save`. It is read as an anchor, so a prompt typed with the removed command still suppresses the plain-file-save clamp. Barely reachable now that the command file is gone.
+- `projection.ts:97` and `112` — `HAND_AUTHORED_COMMAND_BRIDGES` still lists `memory:save` and `command-memory-save` (and `command-spec-kit` at :82), while the live `COMMAND_BRIDGES` is `GENERATED_COMMAND_BRIDGES` (:1298) and ships `command-speckit-save`. `npx vitest run tests/command-bridges-drift-guard.vitest.ts` passed 5/5, so I am not calling this a defect — but the retired ids are still printed in that frozen block.
+- Pre-existing `065/002`-style numeric prefixes remain in several test names, including the two I renamed; they are not retired ids, so I preserved them rather than widen the rename.
+
+Nothing blocked; no scorer or projection file was edited, no git state touched. Your call on the two scorer/projection literals above: say the word and I will strip them in a follow-up.

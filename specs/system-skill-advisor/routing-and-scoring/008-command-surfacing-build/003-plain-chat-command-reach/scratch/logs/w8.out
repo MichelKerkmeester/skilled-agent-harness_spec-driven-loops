@@ -1,0 +1,25 @@
+Done. One file changed, all three verifications pass.
+
+## File written
+`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs` (+140/−1). Nothing else touched — the other entries in `git status` belong to parallel workers, not me.
+
+What it does now: for each corpus row whose top recommendation is in `COMPILED_ROUTING_HUBS`, it spawns the front door (`execFileSync('node', [<root>/.skilled/bin/compiled-route.cjs, '--hub', topId, '--prompt-stdin'], { cwd: workspaceRoot, input: prompt, timeout: 5000, stdio: ['pipe','pipe','ignore'] })`), treats any throw/timeout/unparsable output as no route, and calls `attachCommand(topId, route, row.prompt)`. Both new dist modules are imported via `pathToFileURL` after an `existsSync` guard in the existing `built … file missing:` style; a missing front door fails the capture instead of reporting a silent zero. `attachedMetrics` is appended after `rows`.
+
+## Verify output
+
+1. `diff <(node …capture-command-routing-baseline.mjs | jq -c '{rows,metrics,commands,unreachable}') …/scratch/baseline-before.json` → **no output, exit 0** (the four existing values and their key order are byte-identical; top-level key order is `schemaVersion, capturedAt, capturedAtSha, corpusSha256, bridgeCounts, metrics, unreachable, commands, rows, attachedMetrics`).
+
+2. `jq -c '.attachedMetrics | del(.attachedRows)'`, verbatim:
+```
+{"plain":{"tune":{"own":0,"attached":7,"combined":7,"total":44},"holdout":{"own":0,"attached":0,"combined":0,"total":44}},"plain_by_family":{"create":{"tune":{"own":0,"attached":4,"combined":4,"total":13},"holdout":{"own":0,"attached":0,"combined":0,"total":13}},"deep":{"tune":{"own":0,"attached":0,"combined":0,"total":3},"holdout":{"own":0,"attached":0,"combined":0,"total":3}},"design":{"tune":{"own":0,"attached":3,"combined":3,"total":3},"holdout":{"own":0,"attached":0,"combined":0,"total":3}},"doctor":{"tune":{"own":0,"attached":0,"combined":0,"total":17},"holdout":{"own":0,"attached":0,"combined":0,"total":17}},"prompt":{"tune":{"own":0,"attached":0,"combined":0,"total":1},"holdout":{"own":0,"attached":0,"combined":0,"total":1}},"speckit":{"tune":{"own":0,"attached":0,"combined":0,"total":7},"holdout":{"own":0,"attached":0,"combined":0,"total":7}}},"false_offer_attached":{"count":1,"total":35},"typed_same_owner_ambiguous":["cmd-create-agent-typed-01","cmd-doctor-deep-loop-typed-01","cmd-doctor-git-typed-01","cmd-doctor-sk-code-typed-01","cmd-doctor-skill-advisor-typed-01"]}
+```
+The lookup table is filled in the current build, so attached is above 0: the one silent row that received an attached command is `nm-system-deep-loop-01` (`/deep:research`).
+
+3. `npx vitest run tests/command-routing-slice.vitest.ts` → `Test Files 1 passed (1)`, `Tests 4 passed (4)`, `Duration 5.43s`, 0 failed.
+
+Cross-check (independent recomputation over the corpus, not the harness's own counters): tune/ holdout `own` and `attached` match a fresh count (tune 0 / 7 of 44, holdout 0 / 0), `total` 35 for the silent set matches the existing `false_offer` total, no row in `attachedRows` is also a top1 hit, and family tune counts sum to 7.
+
+## Note
+My very first run of the harness exited 2 with `@spec-kit/system-skill-advisor dist is stale (source content differs from the attested build)`; a standalone `checkPackageFreshness` a second later reported `fresh`, and every run since is clean. The cause was a parallel worker's build (`lib/command-attach.ts`, `derive-command-bridges.cjs`, `MODE_COMMANDS` went from empty to populated) landing mid-run — which is also why attached counts are non-zero now. Nothing for me to fix; flagged so a later `dist is stale` on this harness is not read as my change.
+
+Nothing I could not do: no build run, no `--write`, no git action.

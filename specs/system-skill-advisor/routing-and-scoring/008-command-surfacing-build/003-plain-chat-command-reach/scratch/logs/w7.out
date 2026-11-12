@@ -1,0 +1,32 @@
+## Report
+
+**File written:** `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs` (+108/−2, the one file I hand-edited). The deriver then rewrote the generated block of `runtime/lib/command-attach.ts` as expected.
+
+**What I added to the deriver**
+1. `modeCommandRecords(skillsRoot = SKILLS_ROOT)` — walks hub dirs, reads `mode-registry.json`, returns `{ hubId, workflowMode, command }` for each mode with a non-empty string `command`, sorted by `hubId` then `workflowMode`. Throws `[command-bridges] …` on a duplicate `workflowMode` within one hub and on a `command` absent from `commandTreeNames()` (command set built once, not per record). Same `local-`/symlink folder filter as the sibling metadata readers.
+2. `renderModeCommands(records)` — hub-then-mode nesting, 2-space indent, `tsString` everywhere, trailing commas.
+3. Fourth `generatedSources` entry for `command-attach.ts`, with `COMMAND_ATTACH_PATH` / `…_GENERATED_START` / `…_GENERATED_END` beside the RENDER constants; `main()` now derives `modeCommands` and passes it in.
+4. `modeCommandRecords` added to `module.exports`.
+
+**Verify output (from repo root)**
+- `derive … | jq -r .status` → `generated` (changed: only `runtime/lib/command-attach.ts`); steady-state run now `fresh`, exit 0
+- `--check` → `fresh`, exit 0
+- `rg -o "'/(create|design|deep):[a-z-]+'" … | sort -u | wc -l` → `19`
+- **stale proof:** hand-edited `'sk-create-goal': '/create:goal-handedited'` → `--check` printed `stale`, exit 1; reran deriver → `generated`; `--check` → `fresh`, exit 0; hand-edit count now 0
+- Throw paths proven against scratch roots in `/tmp` (deleted): `Duplicate workflow mode m-a in …/mode-registry.json`, and `… modes[0] names /create:no-such-command, which has no command file`
+- `node --check` on the deriver: ok
+
+**Generated block content:** hubs `sk-design` (3), `sk-doc` (13), `system-deep-loop` (3) = 19 rows; the all-`null` hubs (`cli-classifier`, `cli-external-orchestration`, `mcp-tooling`) and `sk-code` (no `command` key) contribute none.
+
+**Git status — two entries are not mine.** Baseline before I started was: `sk-prompt/command-metadata.json`, `hooks/lib/skill-advisor-cli-fallback.ts`, `runtime/schemas/advisor-tool-schemas.ts`, `system-spec-kit/command-metadata.json`, plus untracked `command-attach.ts`. My run adds only `derive-command-bridges.cjs`. Two further modified files appeared that I never wrote and have left untouched:
+
+```
+ .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts          | 10 ++-
+ .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs | 83 +++++++++++++++++++++-
+```
+
+Both are sibling-worker writes: `advisor-recommend.ts` imports `attachCommand` from `../lib/command-attach.js`, mtime 16:19:08 and 16:19:29, and neither path is one the deriver writes.
+
+**The four named outputs did not change:** `git status --short` over `scorer/projection.ts`, `scripts/skill_advisor.py`, `lib/render.ts`, `command-bridges.generated.json` returned nothing, so their content is byte-identical (the `.json` mtime moved because the deriver rewrites it unconditionally, content unchanged).
+
+**Not done:** no `npm run build`, no typecheck of `command-attach.ts` (no repo-wide gate was authorised or run), no git commit/push, and no other file touched by hand.

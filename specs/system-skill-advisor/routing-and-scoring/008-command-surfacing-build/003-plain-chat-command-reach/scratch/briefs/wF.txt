@@ -1,0 +1,33 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: edit ONE file, `tests/compat/shim.vitest.ts` (path under `.skilled/skills/system-skill-advisor/runtime`).
+
+Background: three legacy command bridge ids were retired from the advisor in both scorers (TypeScript and Python). `memory:save` and `command-memory-save` are replaced by ONE id `command-speckit-save` (the `/speckit:save` command). The umbrella id `command-spec-kit` is gone: a typed `/speckit:plan` returns `command-spec-kit-plan`, `/speckit:resume` returns `command-spec-kit-resume`, one id per command. `command-prompt-improver` is replaced by `command-prompt-improve`. The slash command `/memory:save` no longer exists as a command file, though a user may still type it. The scorers are already updated and measured: do NOT edit any scorer source file. Your job is one test or fixture file that still pins the old state.
+Rule for every expectation you touch: run the test, read the actual value, and decide (a) it pins a retired id or an old count and the new value is the same behaviour under a new name or an improvement: update the pin; or (b) the new behaviour is worse than the test intends: do NOT change the pin, leave the test failing and report the prompt, expected, actual and why. Say (a) or (b) for each.
+All commands run from `.skilled/skills/system-skill-advisor/runtime`.
+
+Failing today: "routes to native advisor_recommend when forced native and keeps legacy JSON array shape".
+
+VERIFY: `npx vitest run tests/compat/shim.vitest.ts`. Report totals and each remaining failure with its verdict.

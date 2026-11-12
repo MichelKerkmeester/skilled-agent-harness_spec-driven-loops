@@ -310,7 +310,8 @@
     "description": "Create a global changelog entry. Topology-aware, optional GitHub release. :auto/:confirm.",
     "argumentHint": "<spec-folder-or-component> [--bump <major|minor|patch|build>] [--release] [:auto|:confirm]",
     "mutating": "mutates",
-    "gate3_location": "a changelog entry under .skilled/changelog/",
+    "gate3_location": "a changelog entry under .skilled/changelog/, plus a pushed tag and a published GitHub release when --release is passed",
+    "ask_first": ["outside-repo"],
     "userIntent": {
       "job": "I want to create a global component changelog with release notes.",
       "ownedSignals": [

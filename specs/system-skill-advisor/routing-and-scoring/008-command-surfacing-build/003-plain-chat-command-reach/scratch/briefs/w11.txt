@@ -1,0 +1,34 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: edit ONE file, `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`. Read it in full first. Never edit between the `// BEGIN GENERATED MODE COMMANDS` and `// END GENERATED MODE COMMANDS` markers.
+
+Background: `attachCommand(skillId, compiledRoute, prompt)` returns the slash command for a hub skill's routed mode. The deep-loop commands (`/deep:research`, `/deep:review`, `/deep:ai-council`) start long, costly loops. The operator decided they may be offered only when the prompt itself asks for depth, never for an ordinary question about the topic. Measured failure today: the prompt `how does the research loop decide when it has enough` gets `/deep:research` attached, and it must not.
+
+Change: add a depth gate. When `skillId` is `system-deep-loop`, return the command only if the prompt (lowercased) asks for depth: it contains, on word boundaries, at least one phrase from a short exported constant list `DEPTH_WORDING`. Write that list yourself, 10 to 16 entries, as wording a person uses to ask for a long multi-pass effort, for example `in depth`, `deep research`, `deep review`, `deep dive`, `thorough`, `exhaustive`, `iteratively`, `multiple passes`, `ai council`, `council`. Do not include bare topic words such as `research`, `review`, `loop` or `investigate`. For example prompts read ONLY `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/scratch/tune-rows.jsonl` (the three rows whose `expected_command` starts with `/deep:`). Do NOT open `command-prompts.jsonl`. A prompt that types the slash command itself (contains `/deep:`) also passes the gate. Rename the `_prompt` parameter to `prompt` now that it is used. Every other hub is unaffected.
+Comments say why, and never contain a spec path, task id or requirement id.
+
+VERIFY, from `.skilled/skills/system-skill-advisor/runtime`: `npm run build` exits 0, then
+`node --input-type=module -e "const m=await import(process.cwd()+'/dist/runtime/lib/command-attach.js');const r={action:'route',selectionKind:'single',targets:[{workflowMode:'research'}]};const d={action:'route',selectionKind:'single',targets:[{workflowMode:'sk-create-readme'}]};console.log(m.attachCommand('system-deep-loop',r,'how does the research loop decide when it has enough'),m.attachCommand('system-deep-loop',r,'what is caching'),m.attachCommand('system-deep-loop',r,'research caching strategies in depth over several passes'),m.attachCommand('system-deep-loop',r,'/deep:research caching'),m.attachCommand('sk-doc',d,'create a readme'))"`
+must print `undefined undefined /deep:research /deep:research /create:readme`. Also report, for each of the three `/deep:` tune prompts, whether your list lets it pass.

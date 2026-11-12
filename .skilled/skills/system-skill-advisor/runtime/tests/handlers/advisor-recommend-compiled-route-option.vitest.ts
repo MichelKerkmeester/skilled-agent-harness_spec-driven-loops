@@ -11,6 +11,7 @@ const mockedChild = vi.hoisted(() => ({ execFileSync: vi.fn() }));
 vi.mock('node:child_process', () => ({ execFileSync: mockedChild.execFileSync }));
 
 import { frontDoorReadsPromptFromStdin, handleAdvisorRecommend } from '../../handlers/advisor-recommend.js';
+import { MODE_COMMANDS } from '../../lib/command-attach.js';
 
 const COMPILED_ROUTING_FLAG = 'SPECKIT_COMPILED_ROUTING';
 const prompt = 'Implement a TypeScript feature with focused tests.';
@@ -18,7 +19,7 @@ const prompt = 'Implement a TypeScript feature with focused tests.';
 type RecommendResponse = Awaited<ReturnType<typeof handleAdvisorRecommend>>;
 type ResponsePayload = {
   data?: {
-    recommendations?: Array<{ skillId: string }>;
+    recommendations?: Array<{ skillId: string; command?: string }>;
     cache?: { hit: boolean };
   };
 };
@@ -27,13 +28,17 @@ function responseData(response: RecommendResponse): ResponsePayload {
   return JSON.parse(response.content[0]?.text ?? '{}') as ResponsePayload;
 }
 
-function callsCompiledRoute(): boolean {
-  return mockedChild.execFileSync.mock.calls.some(([, args]) => (
+function compiledRouteCallCount(): number {
+  return mockedChild.execFileSync.mock.calls.filter(([, args]) => (
     Array.isArray(args)
       && args.some((argument) => (
         typeof argument === 'string' && argument.endsWith('compiled-route.cjs')
       ))
-  ));
+  )).length;
+}
+
+function callsCompiledRoute(): boolean {
+  return compiledRouteCallCount() > 0;
 }
 
 describe('advisor_recommend compiled-route option', () => {
@@ -98,6 +103,52 @@ describe('advisor_recommend compiled-route option', () => {
     expect(args).toContain('--prompt-stdin');
     expect(args).not.toContain(prompt);
     expect(options.input).toBe(prompt);
+  });
+
+  it('looks up the route for the first recommendation alone when asked to', async () => {
+    const hubPrompt = 'create a new agent for code review';
+    await handleAdvisorRecommend({ prompt: hubPrompt, options: { includeCompiledRoute: true } });
+    const everyHub = compiledRouteCallCount();
+    expect(everyHub, 'the prompt ranks more than one hub').toBeGreaterThan(1);
+
+    mockedChild.execFileSync.mockClear();
+    const topOnly = responseData(await handleAdvisorRecommend({
+      prompt: hubPrompt,
+      options: { includeCompiledRoute: true, compiledRouteTopOnly: true },
+    })).data?.recommendations ?? [];
+    expect(compiledRouteCallCount()).toBeLessThanOrEqual(1);
+    expect(topOnly.slice(1).every((row) => !('compiledRoute' in row))).toBe(true);
+  });
+
+  it('never offers one command through both its own row and the owning hub', async () => {
+    const command = '/create:agent';
+    const mode = Object.entries(MODE_COMMANDS['sk-doc']).find(([, value]) => value === command)?.[0];
+    expect(mode, 'sk-doc declares a mode for /create:agent').toBeTruthy();
+    mockedChild.execFileSync.mockReturnValue(JSON.stringify({
+      action: 'route',
+      hubId: 'sk-doc',
+      selectionKind: 'single',
+      targets: [{ workflowMode: mode }],
+    }));
+
+    // The command row ranks beside the hub here, so the hub stays silent.
+    const both = responseData(await handleAdvisorRecommend({
+      prompt: 'create a new agent for code review',
+      options: { includeCompiledRoute: true },
+    })).data?.recommendations ?? [];
+    expect(both.map((row) => row.skillId)).toContain('create:agent');
+    const hubBesideRow = both.find((row) => row.skillId === 'sk-doc');
+    expect(hubBesideRow, 'the hub still ranks').toBeDefined();
+    expect(hubBesideRow?.command).toBeUndefined();
+
+    // With no command row in the result the same route does carry the command,
+    // which is what proves the silence above came from the collision.
+    const hubOnly = responseData(await handleAdvisorRecommend({
+      prompt: 'Write a README for the payments module',
+      options: { includeCompiledRoute: true },
+    })).data?.recommendations ?? [];
+    expect(hubOnly.map((row) => row.skillId)).not.toContain('create:agent');
+    expect(hubOnly.find((row) => row.skillId === 'sk-doc')?.command).toBe(command);
   });
 
   it('recognizes only a front door that reads the prompt from stdin', () => {

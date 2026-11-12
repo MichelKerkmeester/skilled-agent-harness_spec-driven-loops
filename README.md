@@ -482,7 +482,7 @@ Six mandatory gates run before acting. Gates 1 to 5 run before any file change, 
   ┌─────────────────────────────────────────────┐
   │  Gate 4: Workflow Tiebreakers               │
   │  Executor CLI never overrides skill route   │
-  │  command-spec-kit wins on ambiguity         │
+  │  Deep-loop command row wins on ambiguity    │
   └──────────────────┬──────────────────────────┘
                      │
                      ▼
@@ -677,6 +677,8 @@ When the daemon is unreachable, the CLI answers from the Python scorer at `.skil
 When there is no brief, the prompt hooks and the OpenCode plugin still say why in one line above the directives. The line reads `Advisor: outage (...)` with the command to route by hand, or `Advisor: no skill matched.`, or `Advisor: prompt skipped.` for casual prompts such as `thanks`, which never reach the CLI. A setup, install, configure or check-the-tooling prompt with no match also gets `For setup or health checks, run /doctor:setup.`
 
 The advisor also suggests doctor commands. A setup or health prompt that no skill answers gets a runnable `/doctor:<command> <target>` line. When a skill also matches, the skill comes first and the brief adds `Also: /doctor:<command> <target>` on a second line.
+
+A hub skill can also name the command to type. When the hub routes a prompt to one mode, its recommendation carries that mode's slash command in a `command` field. For "create a readme for the scripts folder", `sk-doc` comes back with `/create:readme`. A deep-loop command is added only when the prompt asks for depth, such as "in depth" or "thorough". Each `/speckit` command and `/prompt:improve` also has its own row, which passes only on its own phrases or its slash string. The hook brief does not print the command yet.
 
 &nbsp;
 

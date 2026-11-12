@@ -10,11 +10,13 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync, realpathSync } from 'node:fs';
 import { resolve } from 'node:path';
 
+import { attachCommand } from '../lib/command-attach.js';
 import { advisorPromptCache } from '../lib/prompt-cache.js';
 import {
   resolveAdvisorThresholdConfig,
 } from '../lib/skill-advisor-brief.js';
 import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
+import { COMMAND_BRIDGES } from '../lib/scorer/projection.js';
 import {
   DEEP_ROUTING_PROJECTION_HASH,
   MERGED_DEEP_SKILL_ID,
@@ -412,11 +414,21 @@ function compiledRouteForRecommendation(
   }
 }
 
+// Every command row lists its slash string among its keywords, which is the one
+// place the row states what a reader types.
+const BRIDGE_COMMAND_BY_ID: ReadonlyMap<string, string> = new Map(
+  COMMAND_BRIDGES.flatMap((bridge) => {
+    const command = bridge.keywords.find((keyword) => keyword.startsWith('/'));
+    return command ? [[bridge.id, command] as const] : [];
+  }),
+);
+
 function enrichCompiledRoutes(
   output: AdvisorRecommendOutput,
   prompt: string,
   workspaceRoot: string,
   surfaceHint?: string,
+  topOnly = false,
 ): AdvisorRecommendOutput {
   const mode = parseCompiledRoutingFlagMode(process.env.SPECKIT_COMPILED_ROUTING);
   if (mode === 'invalid') {
@@ -432,9 +444,19 @@ function enrichCompiledRoutes(
   // returned unchanged.
   const anyEligible = output.recommendations.some((r) => compiledRoutingEnabledForHub(r.skillId));
   if (!anyEligible) return output;
+  // A command row that already ranks in this result offers its command by itself,
+  // so the owning hub must not offer the same one again and spend a second slot on it.
+  const alreadyOffered = new Set<string>();
+  for (const recommendation of output.recommendations) {
+    const command = BRIDGE_COMMAND_BY_ID.get(recommendation.skillId);
+    if (command) alreadyOffered.add(command);
+  }
   return AdvisorRecommendOutputSchema.parse({
     ...output,
-    recommendations: output.recommendations.map((recommendation) => {
+    recommendations: output.recommendations.map((recommendation, index) => {
+      // Each lookup is a subprocess, so a caller that acts on the top pick alone
+      // pays for that one and no more.
+      if (topOnly && index > 0) return recommendation;
       if (!compiledRoutingEnabledForHub(recommendation.skillId)) return recommendation;
       const compiledRoute = compiledRouteForRecommendation(
         recommendation.skillId,
@@ -442,7 +464,14 @@ function enrichCompiledRoutes(
         workspaceRoot,
         surfaceHint,
       );
-      return compiledRoute ? { ...recommendation, compiledRoute } : recommendation;
+      if (!compiledRoute) return recommendation;
+      // The route answers which mode the hub would take; the command is what a reader
+      // types to run it, so it rides along only when the route names exactly one mode
+      // that has a command. A broader route leaves the key off rather than guessing.
+      const command = attachCommand(recommendation.skillId, compiledRoute, prompt);
+      return command && !alreadyOffered.has(command)
+        ? { ...recommendation, compiledRoute, command }
+        : { ...recommendation, compiledRoute };
     }),
   });
 }
@@ -554,7 +583,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     });
     return input.options?.includeCompiledRoute === false
       ? parsedCachedOutput
-      : enrichCompiledRoutes(parsedCachedOutput, input.prompt, workspaceRoot, input.options?.surfaceHint);
+      : enrichCompiledRoutes(parsedCachedOutput, input.prompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true);
   }
 
   const topK = input.options?.topK ?? 3;
@@ -623,7 +652,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
   });
   return input.options?.includeCompiledRoute === false
     ? parsed
-    : enrichCompiledRoutes(parsed, input.prompt, workspaceRoot, input.options?.surfaceHint);
+    : enrichCompiledRoutes(parsed, input.prompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true);
 }
 
 // ───────────────────────────────────────────────────────────────────

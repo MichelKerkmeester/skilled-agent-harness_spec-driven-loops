@@ -43,7 +43,7 @@ handlers/
 
 | File | Responsibility |
 |---|---|
-| `advisor-recommend-compiled-route-option.vitest.ts` | Verifies that `includeCompiledRoute: false` skips enrichment on fresh and cached returns. |
+| `advisor-recommend-compiled-route-option.vitest.ts` | Verifies that `includeCompiledRoute: false` skips enrichment on fresh and cached returns, that `compiledRouteTopOnly: true` looks up the route for the first recommendation alone and that a command ranking through its own row is not offered again by its hub. |
 | `advisor-recommend.vitest.ts` | Verifies recommendation payloads, attribution, freshness and dispatch integration. |
 | `advisor-status.vitest.ts` | Verifies live, stale, absent and unavailable status output. |
 | `advisor-validate.vitest.ts` | Covers validation handler behavior for advisor regression checks. |

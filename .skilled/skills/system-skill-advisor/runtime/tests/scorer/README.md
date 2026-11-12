@@ -30,6 +30,7 @@ scorer/
 +-- advisor-quality-049-003.vitest.ts       # Advisor quality-card scorer coverage
 +-- native-scorer.vitest.ts                 # Native scorer behavior tests
 +-- projection-fallback-049-005.vitest.ts   # Projection fallback regression coverage
++-- same-owner-ambiguity.vitest.ts          # Command row and owner skill ambiguity
 `-- README.md
 ```
 
@@ -42,6 +43,7 @@ scorer/
 | `native-scorer.vitest.ts` | Exercises native scorer behavior and expected ranking signals. |
 | `advisor-quality-049-003.vitest.ts` | Covers quality-card scoring behavior for advisor results. |
 | `projection-fallback-049-005.vitest.ts` | Verifies fallback projection data remains usable when richer metadata is absent. |
+| `same-owner-ambiguity.vitest.ts` | Checks that a command row and the skill that owns it never read as ambiguous, while two unrelated skills or a command next to a non-owner still do. |
 
 ---
 

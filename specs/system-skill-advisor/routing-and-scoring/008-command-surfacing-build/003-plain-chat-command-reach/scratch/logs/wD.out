@@ -1,0 +1,39 @@
+Done. Both files rewritten, verification green.
+
+## Files written (only these two)
+
+**`.skilled/skills/system-skill-advisor/runtime/tests/scorer/same-owner-ambiguity.vitest.ts`**
+- Owner is now resolved from the generated bridge data at test time: `resolveOwnedBridge()` filters `COMMAND_BRIDGES` for `id === 'command-spec-kit-plan'` **with** an `ownerSkill`, throws a loud error if the data stops carrying an owner, and yields `BRIDGE_ID` / `OWNER_SKILL` (currently `command-spec-kit-plan` → `system-spec-kit`). Non-owner is the real skill `sk-code`. No ids are guessed from shape.
+- Kept the three intents: command row leads / owner leads → not ambiguous (both orders, plus `ambiguousWith` undefined on both); two unrelated skills within 0.05 → ambiguous; command row + non-owner skill → ambiguous.
+
+**`.skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-ordering.vitest.ts`**
+- Renamed `'leaves skills and non-doctor commands alone'` → `'leaves skills alone while every command needs its own phrase'`, and it now states the widened rule: `sk-git` (skill, lexical-only) stays `true`; `memory:save` (command, lexical-only, non-doctor) flips to `false`; `create:agent` (command, non-doctor, `explicit_author` rawScore 1) stays `true` → `[true, false, true]`. Added a durable WHY comment (everyday-word phrases; all command families, not doctor only).
+
+## The "third unrelated skill ties" case — what it returns now
+
+With the real bridge/owner pair, `ambiguity.ts` returns:
+- `isAmbiguousTopTwo` → **true**
+- `command-spec-kit-plan` → `ambiguousWith: ['sk-code']`
+- `sk-code` → `ambiguousWith: ['command-spec-kit-plan']`
+- owner `system-spec-kit` → `ambiguousWith: undefined`
+
+Coherent, so I asserted it: `answersSameRoute` drops the owner from the cluster (the top command row's own workflow, "the same answer written twice"), while the rival skill is a genuine second route, leaving a size-2 cluster. The old failure was exactly the missing owner link — the hand-authored `command-spec-kit` bridge carries no `ownerSkill`, so `system-spec-kit` was not excluded and the row reported `['system-spec-kit','sk-code']`.
+
+## Verify output
+
+From `.skilled/skills/system-skill-advisor/runtime`:
+
+```
+npx vitest run tests/scorer/same-owner-ambiguity.vitest.ts tests/scorer/doctor-ordering.vitest.ts
+
+ Test Files  2 passed (2)
+      Tests  37 passed (37)
+   Duration  1.23s          (EXIT=0)
+```
+
+0 failed, 37 passed (was 4 failed / 33 passed before the edit).
+
+## Caveats / not done
+- Typecheck is not a gate here: both `tsconfig.json` and `tsconfig.build.json` exclude `tests`, so no `tsc` pass covers these files.
+- My first attempt to probe `ambiguity.ts` through a throwaway `node --experimental-strip-types -e` script failed on the `.js`-specifier imports; I read the actual values from the vitest assertion diffs instead (no scratch files created).
+- Pre-existing modifications elsewhere in the tree (`scorer/*.ts`, fixtures, scratch JSON) are not mine; I touched no file outside the two tests and no git state.

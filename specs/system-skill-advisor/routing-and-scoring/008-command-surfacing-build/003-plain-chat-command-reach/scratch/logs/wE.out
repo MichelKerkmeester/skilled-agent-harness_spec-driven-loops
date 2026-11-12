@@ -1,0 +1,41 @@
+**File written:** `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` (only file touched; diff is exactly 5 hunks)
+
+## Verify
+
+```
+npx vitest run tests/compat/python-compat.vitest.ts
+Summary: pass=88, fail=1      (was pass=87, fail=2)
+Tests  1 failed (1) | Test Files  1 failed (1)
+```
+
+Remaining failure: **T243-SA-017** only. T243-SA-018 now passes; T243-SA-016 and T243-SA-027 still pass.
+
+## Per-expectation verdicts
+
+**(a) T243-SA-016 — `cmd = by_skill.get("command-spec-kit")` → `command-spec-kit-deep-research`.**
+Retired umbrella id, so `cmd` was permanently `None` and the guard was dead code. Measured: the loser among `("/deep:research", "run /deep:research on packet 016", "kick off /deep:research :auto …")` is `system-deep-loop` 0.62/0.7 while `deep-research` is 0.95 first; the bridge never survives normalization. Retargeted to the successor bridge so the branch measures the real competitor. Same behaviour, live id. Label parenthetical updated (`(not its command bridge)`); `T243-SA-016:` handle kept.
+
+**(a) T243-SA-018, cases 1–2 — `command-memory-save` → `command-speckit-save`, and case 1's prompt `` `[/memory:save]` `` → `` `[/speckit:save]` ``.**
+Root cause of the failure was `_command_bridge_references("command-memory-save")` returning `['command memory save','command-memory-save']` because the id is no longer in `COMMAND_BRIDGES`, so the quoted `` `/memory:save` `` matched no reference. Measured: with the live id, `_command_bridge_references("command-speckit-save")` = `['/speckit:save','command speckit save','command-speckit-save','speckit:save']`, and `explain \`/speckit:save\` without changing files` → `True`; `add tests for command-speckit-save normalization guard` → `True`. Guard intent ("a quoted or implementation-target command is not normalized") preserved on the live surface.
+
+**(a) T243-SA-018, case 3 — prompt `/memory:save` kept, id → `command-speckit-save`.** Measured `False` (the guard must not fire on a workflow invocation). Keeping the residual spelling keeps coverage of what a user may still type, since `SKILL_ALIAS_GROUPS["command-speckit-save"]` still folds `"/memory:save"`.
+
+**(a) T243-SA-027 fixture row — `"skillId": "memory:save"` → `"command-speckit-save"`.** A fake native payload naming a retired id; the assertions only order `command-doctor-env`. Measured green after change.
+
+**(b) T243-SA-017, case 1 — NOT changed, deliberately left failing.**
+Prompt `run /memory:save for this packet`; expected top `system-spec-kit` + `[command-normalized: …]`; actual top `command-speckit-save` (kind `skill`, confidence 0.95), tied with `system-spec-kit` 0.95 and sorted first.
+
+The owner normalization for the save command was **lost in the scorer, not retargeted**. Exact removed lines:
+- `scripts/command-bridges/scoring-compatibility.json` → `pythonOwnerNormalization`: `"command-memory-save": "system-spec-kit"` deleted, no `"command-speckit-save"` added. This is the generator's source of truth (`derive-command-bridges.cjs` line 834 reads it, and validates each key is an *active* bridge id).
+- hence `scripts/skill_advisor.py` line 2960 `GENERATED_COMMAND_BRIDGE_OWNER_NORMALIZATION = {` (2961–2965) has no save entry, and `normalize_command_bridge_recommendations()` bails at line 3346–3348.
+- the same deletion occurred in `HAND_AUTHORED_COMMAND_BRIDGE_OWNER_NORMALIZATION` (working tree lines 2374–2381), together with the rationale comment ("The memory-save workflow is owned by system-spec-kit … so /memory:save normalizes there").
+
+Why this is a regression, not a rename:
+1. Pre-rename, this prompt returned `system-spec-kit` with `[command-normalized: command-memory-save->system-spec-kit]`. Proven without editing the scorer: injecting `COMMAND_BRIDGE_OWNER_NORMALIZATION['command-speckit-save'] = 'system-spec-kit'` in memory restores exactly that output for `/memory:save`, `/speckit:save` and `save context`.
+2. The same change *added* `SPECKIT_COMMAND_BRIDGE_PREFIXES = ("command-spec-kit-", "command-speckit-")` and kept `or command == "/memory:save"` in `_command_bridge_owner()` (line 521). So the author's own new rule and the bridge's own projection metadata (`skillId: system-spec-kit`, `ownerMode: system-spec-kit`) both say the save bridge is owned by `system-spec-kit` — only the runtime normalization map disagrees.
+3. TS disagreeing is measurable, not inferred: `scratch/score.mjs` (current `dist`, no retired ids) gives `system-spec-kit` 0.773 first vs `command-speckit-save` 0.700 for the identical prompt — the parity this compat suite enforces.
+4. `scripts/fixtures/skill-advisor-regression-cases.jsonl` P0-CMD-003 (`/memory:save this context`) declares `expected_top_any: ["system-spec-kit"], allow_command_bridge: false`.
+
+## Could not do / needs your call
+
+The retarget is not a blind one-liner, because the map is unconditional: adding `"command-speckit-save": "system-spec-kit"` also moves plain chat `save context` from `command-speckit-save` to `system-spec-kit` (measured). If this build wants the bridge on top for plain chat and the owner on top only for a typed slash command, the fix is a normalization gate on explicit invocation (like the existing `_should_guard_command_bridge_normalization`) **plus** the map entry; otherwise the single map entry per point 1 above. Either belongs in the scorer files, which this brief forbids me to edit. Secondary observation, same root cause, not fixed here: `_command_bridge_references("command-speckit-save")` no longer contains `/memory:save` or `command-memory-save`, even though the bridge still scores `/memory:save` as an explicit invocation and aliases the retired id, so the guard cannot see a quoted residual `/memory:save` as a reference to the save bridge.

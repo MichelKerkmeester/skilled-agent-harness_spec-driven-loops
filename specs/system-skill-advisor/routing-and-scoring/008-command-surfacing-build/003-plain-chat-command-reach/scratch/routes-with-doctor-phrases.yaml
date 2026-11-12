@@ -1,0 +1,932 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR ROUTER — CANONICAL ROUTE MANIFEST
+# ─────────────────────────────────────────────────────────────────
+# Source of truth for the routed doctor commands. Each route names the command
+# that owns it, so one manifest serves every router. The list below is every one of
+# the 17 router files in this folder, in no particular order:
+#   /doctor:speckit         .skilled/commands/doctor/speckit.md
+#   /doctor:skill-advisor   .skilled/commands/doctor/skill-advisor.md
+#   /doctor:deep-loop       .skilled/commands/doctor/deep-loop.md
+#   /doctor:runtime-mirrors .skilled/commands/doctor/runtime-mirrors.md
+#   /doctor:sk-code         .skilled/commands/doctor/sk-code.md
+#   /doctor:git             .skilled/commands/doctor/git.md
+#   /doctor:ci              .skilled/commands/doctor/ci.md
+#   /doctor:sk-skill        .skilled/commands/doctor/sk-skill.md
+#   /doctor:agents-md       .skilled/commands/doctor/agents-md.md
+#   /doctor:setup           .skilled/commands/doctor/setup.md
+#   /doctor:helper          .skilled/commands/doctor/helper.md
+#   /doctor:env             .skilled/commands/doctor/env.md
+#   /doctor:update          .skilled/commands/doctor/update.md
+#   /doctor:mcp             .skilled/commands/doctor/mcp.md
+#   /doctor:symlink         .skilled/commands/doctor/symlink.md
+#   /doctor:install         .skilled/commands/doctor/install.md
+#   /doctor:overlay         .skilled/commands/doctor/overlay.md
+# A command that owns one route needs no positional target.
+# Validated by: .skilled/commands/doctor/scripts/route-validate.sh
+# Consumed by: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs
+#   turns every route, every standalone command and every mcp_subroutes
+#   entry into one advisor command bridge, copies its trigger_phrases into
+#   the TypeScript scorer and its runnable command into the Python slash
+#   markers and the brief's lookup. A bridge routes only once
+#   scoring-compatibility.json beside the deriver activates it. Doctor
+#   dispatch itself stays argv-driven (see each router).
+#
+# Schema (per route):
+#   command:          string — the doctor command that owns the route
+#   target:           string — positional name the user types
+#   yaml:             string — YAML asset filename in assets/
+#   setup_vars:       list   — variables the router resolves and passes to YAML
+#   allowed_flags:    list   — per-target flag schema (target-first parsing)
+#   mutating:         enum   — read-only | add-only | mutates
+#   gate3_location:   string — concrete mutation target (or "n/a" for read-only)
+#   write_scope:      enum   — optional; spec-folder marks an add-only route whose every write lands in the bound spec folder
+#   mcp_tools:        list   — subset of router's frontmatter allowed-tools union
+#   trigger_phrases:  list   — diagnostic routing phrases for this target, three or
+#                              more words each; the bridge deriver copies them
+#                              into the advisor (see "Consumed by" above)
+#   default_target:   bool   — optional; true marks the read-only target a bare typed command
+#                              should suggest (the router's no-token target, or its read-only
+#                              entry point), so /doctor:ci alone also reaches this route's
+#                              advisor bridge. At most one per command, only on a command with
+#                              several targets, and never on a mutating route.
+#   lead_phrases:     list   — optional subset of trigger_phrases that puts this bridge ahead of a passing skill when the prompt contains the phrase. Use it only where the doctor command must lead the skill.
+#
+# Skill-advisor recommendation tools are registered through system-skill-advisor.
+# To add a new target:
+#   1. Append the route here with its owning command and trigger_phrases of three or more words. Add lead_phrases only for a phrase where the doctor command must rank above a passing skill.
+#   2. List the target in that command's router and presentation, and add its row to the /doctor:setup target list in .skilled/commands/doctor/assets/doctor-setup-presentation.txt.
+#   3. To let the advisor suggest it, add its activation entry to both the "typescript" and "python" lists in .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json. A bridge without one stays inactive.
+#   4. Rerun node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs, then bash .skilled/commands/doctor/scripts/route-validate.sh and node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs.
+#   5. /doctor:helper needs no edit: it ranks this manifest at run time, and its contract test fails until the new route is reachable and listed in the /doctor:setup target list.
+# To remove a target: delete the route AND its corresponding assets/doctor-<target>.yaml.
+# ─────────────────────────────────────────────────────────────────
+schema_version: 1
+routes:
+  - command: /doctor:speckit
+    target: speckit-retrieval
+    yaml: doctor-speckit-retrieval.yaml
+    setup_vars: [execution_mode, intent]
+    allowed_flags: []
+    mutating: add-only
+    write_scope: spec-folder
+    gate3_location: "<packet_scratch>/doctor-speckit-retrieval-report.<timestamp>.md + <packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json + <packet_scratch>/doctor-speckit-retrieval-moved.<timestamp>.txt"
+    mcp_tools: []   # file-and-script diagnostic; no MCP calls and no background service
+    script_invocations:
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json  # the staleness verdict: exit 0 = fresh, 1 = stale documents named, 2+ = unreadable index; writes nothing'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "resume work session context"  # index present AND lookup runs: exit 0 = hits, 1 = clean no-hit, 2+ = missing or unreadable index, reported with stderr and never as a no-hit'
+      - "rg --no-config --hidden --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' -- 'trigger index generator' specs .skilled  # the section 2.2 recipe, flags verbatim"
+      - 'node .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs --corpus <all|skills> --moved  # the citation-drift census, run only when the operator picks a scope at the citation_drift_scope gate; zero model calls, writes nothing, exit 2 = bad invocation or unreadable redirect table'
+    trigger_phrases:
+      - "trigger index drift"
+      - "trigger index lookup fails"
+      - "retrieval conventions doctor"
+      - "ripgrep recipe check"
+      - "citation drift summary"
+      - "is the trigger index fresh"
+      - "spec search finds nothing"
+      - "trigger index missed some documents"
+      - "citation links point at moved files"
+      - "ripgrep lookup misses my spec"
+
+  - command: /doctor:deep-loop
+    target: deep-loop
+    yaml: doctor-deep-loop.yaml
+    setup_vars: [execution_mode, intent, scope]
+    allowed_flags: ["--scope=research|review|council|both|all"]
+    mutating: add-only
+    write_scope: spec-folder
+    gate3_location: "<active-spec-folder>/scratch/doctor-deep-loop-state.<timestamp>.json"
+    mcp_tools: []
+    script_invocations:
+      - 'node .skilled/skills/system-deep-loop/runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --read-only'
+      - 'node .skilled/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --query-type "{query_type}" --limit 50 --read-only'
+      - 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --iteration "{latest_iteration}" --read-only'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs "{spec_folder}"  # [SOURCE:] tag resolution per lineage; writes nothing, zero model calls'
+    trigger_phrases:
+      - "deep-loop coverage graph check"
+      - "deep-loop graph empty or stale"
+      - "deep-research convergence drift"
+      - "deep-review iteration graph"
+      - "deep loop convergence check"
+      - "research loop never converges"
+      - "deep research keeps looping without progress"
+      - "review loop iterations stopped improving"
+      - "iteration graph shows no progress"
+
+  - command: /doctor:skill-advisor
+    target: tune
+    yaml: doctor-skill-advisor-tune.yaml
+    setup_vars: [execution_mode, scope, skip_tests, dry_run]
+    allowed_flags: ["--skip-tests", "--dry-run", "--scope=all|explicit|derived|lexical"]
+    mutating: mutates
+    gate3_location: ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts + .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts + .skilled/skills/*/graph-metadata.json"
+    cli_commands:
+      - 'node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "<prompt>" --format json --warm-only'
+      - 'node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --warm-only'
+      - 'node .skilled/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json'
+      - 'node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --format json'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_validate --format json --warm-only'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_query --queryType <depends_on|dependents|enhances|enhanced_by|family_members|conflicts|transitive_path|hub_skills|orphans|subgraph> --format json'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_status --format json --warm-only'
+    mcp_tools: []   # CLI front door only, no MCP calls
+    script_invocations:
+      - 'Warm-only: probe the existing system-skill-advisor IPC socket first. Only when it answers, run node .skilled/bin/skill-advisor.cjs skill_graph_status --format json --warm-only. The flag guarantees no daemon start. Exit 75 means backend unavailable and retryable.'
+    trigger_phrases:
+      - "skill advisor scoring"
+      - "advisor recommendation tuning"
+      - "skill advisor recommends the wrong skill"
+      - "skill routing picks the wrong one"
+      - "retune the advisor scoring lanes"
+      - "advisor scores look off lately"
+      - "tune how the advisor scores prompts"
+
+  - command: /doctor:skill-advisor
+    target: rebuild
+    yaml: doctor-skill-advisor-rebuild.yaml
+    setup_vars: [execution_mode, dry_run]
+    allowed_flags: ["--dry-run"]
+    mutating: mutates
+    gate3_location: ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite (backed up beside itself before the rebuild)"
+    cli_commands:
+      - 'node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --warm-only'
+      - 'node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --format json'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_validate --format json --warm-only'
+    mcp_tools: []   # CLI front door only, no MCP calls
+    trigger_phrases:
+      - "skill advisor rebuild"
+      - "rebuild the skill graph database"
+      - "rerun the skill_graph scan"
+      - "new skill not appearing in advisor results"
+      - "advisor daemon is stale"
+      - "skill graph database is missing"
+      - "rebuild the advisor from scratch"
+      - "advisor results are out of date"
+      - "rescan every skill into the graph"
+
+  - command: /doctor:skill-advisor
+    target: skill-budget
+    yaml: doctor-skill-budget.yaml
+    setup_vars: [execution_mode, json_output, top_n, fail_over, project_ceiling]
+    allowed_flags: ["--json", "--top-n=N", "--fail-over=N", "--project-ceiling=N"]
+    mutating: read-only
+    gate3_location: "n/a (read-only audit; no spec folder required)"
+    mcp_tools: []   # script-only audit; no MCP calls
+    script_invocations:
+      - 'python3 .skilled/commands/doctor/scripts/audit_descriptions.py --repo-root "$PWD"  # description-budget audit. The workflow adds --json, --top-n, --fail-over, and --project-ceiling from the resolved flags'
+      - 'Warm-only: probe the existing system-skill-advisor IPC socket first; only when it answers, run node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
+    trigger_phrases:
+      - "skill budget audit"
+      - "description budget check"
+      - "skill char count drift"
+      - "frontmatter description trim"
+      - "skill description too long"
+      - "description longer than the limit"
+      - "description budget headroom report"
+      - "which skill exceeds the description budget"
+      - "how many description characters remain"
+      - "am I near the description ceiling"
+
+  - command: /doctor:skill-advisor
+    target: parent-skill
+    yaml: doctor-parent-skill.yaml
+    setup_vars: [execution_mode, parent_skill_dir]
+    allowed_flags: ["--dir=<path>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only structural audit; inspects a parent skill's graph-metadata/registry and reports, no writes)"
+    mcp_tools: []   # script-only structural audit; no MCP calls
+    script_invocations:
+      # The fleet class gate runs first: it starts from SKILL.md, so it is the only
+      # check that can report a metadata file a root never wrote. The per-hub audit
+      # then goes deep on the one directory the operator named.
+      - 'node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs'
+      - 'node .skilled/commands/doctor/scripts/parent-skill-check.cjs "{parent_skill_dir}"'
+    trigger_phrases:
+      - "parent skill structure audit"
+      - "nested mode packet check"
+      - "mode-registry drift guard"
+      - "single graph-metadata identity"
+      - "skill root metadata contract"
+      - "missing skill json files"
+      - "parent skill folder structure is wrong"
+      - "hub skill is missing metadata"
+      - "are my hub modes registered"
+      - "check a hub's mode packets"
+
+  - command: /doctor:skill-advisor
+    target: skill-graph-freshness
+    yaml: doctor-skill-graph-freshness.yaml
+    setup_vars: [execution_mode]
+    allowed_flags: []
+    mutating: read-only
+    gate3_location: "n/a (read-only diagnostic; 3-way diffs the skill-graph representations and reports drift, writes nothing)"
+    mcp_tools: []   # script-only read; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/skill-graph-freshness.cjs'
+    trigger_phrases:
+      - "skill graph freshness"
+      - "skill-graph zombie ghost nodes"
+      - "compiled vs sqlite vs disk graph drift"
+      - "reindex staleness check"
+      - "graph lists skills that vanished"
+      - "does the compiled graph match disk"
+      - "stale nodes in the skill graph"
+      - "which graph copy is stale"
+
+  - command: /doctor:skill-advisor
+    target: router-reach
+    yaml: doctor-router-reach.yaml
+    setup_vars: [execution_mode, hub, concurrency]
+    allowed_flags: ["--hub=<skill-id>", "--concurrency=<n>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only routing diagnostic; probes the live advisor for every declared phrase and reports, writes nothing)"
+    mcp_tools: []   # spawns the advisor CLI per phrase; no MCP calls
+    script_invocations:
+      - 'node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs'
+      - 'node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs  # doctor bridges: every admitted manifest phrase reaches its /doctor:x bridge as the top pick or the second line; scores in process, writes nothing tracked (the freshness check may refresh a cached build record in the ignored dist folder)'
+    trigger_phrases:
+      - "router reach check"
+      - "does a declared phrase reach its hub"
+      - "router vocabulary reach"
+      - "phrase reaches nobody"
+      - "routing residue allowlist"
+      - "a trigger phrase routes nowhere"
+      - "which hub phrases never match"
+      - "probe every declared routing phrase"
+      - "hub router vocabulary is dead"
+
+  - command: /doctor:runtime-mirrors
+    target: runtime-mirrors
+    yaml: doctor-runtime-mirrors.yaml
+    setup_vars: [execution_mode]
+    allowed_flags: []
+    mutating: read-only
+    gate3_location: "n/a (read-only mirror-parity diagnostic; every checker runs in its check-only form and writes nothing)"
+    mcp_tools: []   # script-only mirror parity read; no MCP calls
+    script_invocations:
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check  # n/a, not run, while .dsh/ is absent'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --check  # n/a, not run, while .dsh/ is absent'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check  # n/a, not run, while .dsh/ is absent'
+      - 'node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs'
+      - 'node .skilled/bin/check-agent-mirror-sync.cjs --all'
+      - 'node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs'
+      - 'node .skilled/bin/install-codex-hooks.mjs --check --allow-worktree'
+    trigger_phrases:
+      - "runtime mirror drift"
+      - "agent command mirror parity"
+      - "command catalog drift"
+      - "cursor devin codex sync check"
+      - "discovery mirror out of sync"
+      - "runtime copies drift from source"
+      - "are the runtime mirrors in sync"
+      - "my claude and codex files diverge"
+      - "hook mirrors do not match skilled"
+      - "command mirror is missing entries"
+      - "runtime prompts out of date after a pull"
+      - "check the runtime mirrors match skilled"
+      - "runtime mirrors match .skilled"
+
+  - command: /doctor:sk-code
+    target: setup
+    default_target: true
+    yaml: doctor-sk-code-setup.yaml
+    setup_vars: [execution_mode, prompt]
+    allowed_flags: ["--prompt=<text>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only setup battery; runs each check in its check-only form and prints repair commands, writes nothing)"
+    mcp_tools: []   # script-only battery; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs  # the workflow adds --prompt=<text> when the operator passed one'
+    trigger_phrases:
+      - "sk-code setup check"
+      - "verify my sk-code surface"
+      - "sk-code battery fails"
+      - "does my sk-code surface route"
+      - "is the sk-code battery passing"
+      - "run every sk-code setup check"
+      - "sk-code setup keeps failing"
+      - "which sk-code checks are red"
+
+  - command: /doctor:sk-code
+    target: quality
+    yaml: doctor-sk-code-quality.yaml
+    setup_vars: [execution_mode, dry_run]
+    allowed_flags: ["--dry-run"]
+    mutating: mutates
+    gate3_location: ".skilled/skills/sk-code/sk-code-quality/repository/quality.json, where init --apply creates it once and never overwrites it"
+    mcp_tools: []   # script-only, no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs status --json'
+      - 'node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs init --json  # a dry run, with --apply only after approval'
+      - 'node .skilled/commands/doctor/scripts/sk-code-quality-config.cjs check --json'
+    trigger_phrases:
+      - "sk-code quality config"
+      - "create the quality config file"
+      - "quality json is missing"
+      - "which checks does the quality gate run"
+      - "add my lint command to the quality gate"
+      - "where does quality json live"
+      - "configure the quality gate checks"
+      - "set up repository quality settings"
+      - "quality config is out of date"
+
+  - command: /doctor:git
+    target: hooks
+    yaml: doctor-git-hooks.yaml
+    setup_vars: [execution_mode, dry_run]
+    allowed_flags: ["--dry-run"]
+    mutating: mutates
+    gate3_location: "git config speckit.hooks.<key> in the repository's local config or the operator's global config"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/git-hook-gates.cjs list --json'
+      - 'node .skilled/commands/doctor/scripts/git-hook-gates.cjs set <key> on|off --scope local|global --json  # a dry run; the workflow adds --apply only after the plan is approved'
+      - 'bash .skilled/scripts/install-git-hooks.sh --status'
+    trigger_phrases:
+      - "turn off a git hook check"
+      - "disable comment hygiene gate"
+      - "pre-commit gate keeps blocking"
+      - "git hook settings"
+      - "which git hook gates are enabled"
+      - "switch a git hook gate off"
+      - "hook gate blocks my commit"
+      - "where do hook gates get stored"
+    lead_phrases:
+      - "disable comment hygiene gate"
+
+  - command: /doctor:git
+    target: standards
+    yaml: doctor-git-standards.yaml
+    setup_vars: [execution_mode, dry_run]
+    allowed_flags: ["--dry-run"]
+    mutating: mutates
+    gate3_location: ".sk-git/ at the repository root (or the directory git config skgit.contractDir names); the shipped sk-git templates are never written"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs status --json'
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs init --json  # a dry run; --apply after approval'
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs set <kind> <dotted.path> <json-value> --json  # a dry run; --apply after approval'
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs disable <kind> --json  # a dry run; --apply after approval'
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs check --json'
+      - 'node .skilled/skills/sk-git/scripts/validate-message.mjs --explain'
+    trigger_phrases:
+      - "change commit message rules"
+      - "allow longer commit subjects"
+      - "stop checking pr descriptions"
+      - "branch name pattern rules"
+      - "customize sk-git standards"
+      - "edit our commit message standard"
+      - "sk-git rules file not found"
+      - "branch naming rule is wrong"
+      - "which commit rules apply here"
+
+  - command: /doctor:git
+    target: setup
+    default_target: true
+    yaml: doctor-git-setup.yaml
+    setup_vars: [execution_mode, tool]
+    allowed_flags: ["--tool=<claude|codex|devin|cursor|opencode|pi|dsh>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only setup battery; inspects each sk-git surface in its check-only form and prints repair commands, writes nothing)"
+    mcp_tools: []   # script-only battery; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/git-setup-check.cjs  # the workflow adds --tool=<name> for the AI tool running it'
+    trigger_phrases:
+      - "sk-git setup check"
+      - "is my sk-git setup working"
+      - "which git rules are live"
+      - "check my git hooks setup"
+      - "my hooks are not firing"
+      - "git hooks not firing"
+      - "hooks stopped firing"
+      - "is sk-git wired into this repo"
+      - "diagnose my git setup surfaces"
+      - "which git surfaces are misconfigured"
+      - "check every sk-git surface at once"
+
+  - command: /doctor:setup
+    target: setup
+    yaml: doctor-setup.yaml
+    setup_vars: [execution_mode]
+    allowed_flags: []
+    mutating: read-only
+    gate3_location: "n/a (read-only umbrella; lists every doctor target and runs each existing check in its check-only form, writes nothing)"
+    cli_commands:
+      - 'node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500 --warm-only'
+    mcp_tools: []   # script-only umbrella; the advisor leg goes through the CLI front door with --warm-only
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs'
+      - 'node .skilled/commands/doctor/scripts/git-setup-check.cjs  # the workflow adds --tool=<name> for the AI tool running it, when the battery knows that tool'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json  # staleness verdict only; writes nothing'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check'
+    trigger_phrases:
+      - "set up skilled"
+      - "help me set up skilled"
+      - "is my skilled install healthy"
+      - "skilled setup check"
+      - "run the doctor setup checks"
+      - "getting started with skilled"
+      - "overview of every doctor command"
+      - "model server or helper process still running after the session closed"
+      - "list every doctor check at once"
+      - "run all the doctor checks here"
+      - "which doctor checks fail here"
+      - "which setup check is failing"
+
+  - command: /doctor:ci
+    target: report
+    default_target: true
+    yaml: doctor-ci-report.yaml
+    setup_vars: [execution_mode, json_output, sha, use_gh, profile_path]
+    allowed_flags: ["--json", "--sha=<sha>", "--no-gh", "--profile=<path>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only report; writes nothing)"
+    mcp_tools: []
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/ci-report.cjs'
+    trigger_phrases:
+      - "ci workflow status report"
+      - "which ci workflow switches are off"
+      - "github actions drift report"
+      - "ci workflow inventory"
+      - "ci workflow switch state"
+      - "ci switch report"
+      - "which github actions workflows are enabled"
+      - "list the workflows and their state"
+      - "which workflows are disabled right now"
+      - "is my ci pipeline switch on"
+    lead_phrases:
+      - "which ci workflow switches are off"
+      - "ci workflow switch state"
+      - "ci switch report"
+
+  - command: /doctor:ci
+    target: scaffold
+    yaml: doctor-ci-scaffold.yaml
+    setup_vars: [execution_mode, dry_run, workflow_name, profile_path]
+    allowed_flags: ["--dry-run", "--name=<file>", "--profile=<path>"]
+    mutating: mutates
+    gate3_location: "the new .github/workflows/ file named by --name, written only after an explicit yes"
+    mcp_tools: []
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/ci-scaffold.cjs'
+    trigger_phrases:
+      - "scaffold a github actions workflow"
+      - "create a workflow from the ci template"
+      - "new workflow with timeout and switch"
+      - "scaffold a new ci workflow"
+      - "add a github actions workflow file"
+      - "write a new github actions workflow"
+      - "start a ci workflow from scratch"
+      - "generate the workflow file for ci"
+
+  - command: /doctor:ci
+    target: toggle
+    yaml: doctor-ci-toggle.yaml
+    setup_vars: [execution_mode, variable, state, profile_path]
+    allowed_flags: ["--variable=<name>", "--state=<on|off>", "--profile=<path>"]
+    mutating: mutates
+    gate3_location: "the repository variable named by --variable, set only after an explicit yes"
+    mcp_tools: []
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/ci-toggle.cjs'
+    trigger_phrases:
+      - "turn off a ci workflow"
+      - "set a ci switch variable"
+      - "disable a workflow group"
+      - "turn the ci switch"
+      - "enable or disable a ci workflow"
+      - "flip one workflow switch off"
+      - "pause a github actions workflow"
+      - "turn off the release workflow"
+
+  - command: /doctor:sk-skill
+    target: check
+    default_target: true
+    yaml: doctor-sk-skill-check.yaml
+    setup_vars: [execution_mode, skill_target, json_output, into_hub]
+    allowed_flags: ["--json", "--into-hub <hub>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only diagnostic; every validator runs in its check-only form and the route writes nothing)"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/sk-skill-check.cjs  # the workflow adds the skill name or path, --json and --into-hub <hub> only when the operator passed them'
+    trigger_phrases:
+      - "how far is a skill from the skilled format"
+      - "check a skill against the skilled format"
+      - "skill format check report"
+      - "skill fleet format summary"
+      - "skill frontmatter shape check"
+      - "does my skill follow the format"
+      - "which skills break the format"
+      - "check every skill for format"
+      - "skill folder layout is invalid"
+
+  - command: /doctor:helper
+    target: helper
+    yaml: doctor-helper.yaml
+    setup_vars: [execution_mode, problem_text, json_output, area, intent]
+    allowed_flags: ["--json"]
+    mutating: read-only
+    gate3_location: "n/a (read-only matcher; it ranks the manifest, runs a read-only pick under that command's own router and prints a writing pick as one line for the operator)"
+    mcp_tools: []   # no MCP calls and no background service; one script reads one YAML file
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/doctor-helper-match.cjs --json -- "<problem text>"  # also --table and --areas; the matcher reads the manifest and writes nothing'
+    trigger_phrases:
+      - "which doctor command should I run"
+      - "find the right doctor command"
+      - "what doctor command fixes this"
+      - "which doctor command fits my problem"
+
+  - command: /doctor:sk-skill
+    target: convert
+    yaml: doctor-sk-skill-convert.yaml
+    setup_vars: [execution_mode, skill_target, dry_run, scratch_dir]
+    allowed_flags: ["--dry-run"]
+    mutating: mutates
+    gate3_location: "the staged or converted skill folder .skilled/skills/<name>/ (its SKILL.md, ROUTER.md, graph-metadata.json, leaf-manifest.config.json, scaffold files and renamed resources, or an in-place SKILL.md rewrite beside a new sibling ROUTER.md and the approved edge in its own graph-metadata.json), its backups under .skilled/skills/.state/doctor-sk-skill/<name>/<timestamp>/, the one scratch root the plain-skill path uses beside them at .skilled/skills/.state/doctor-sk-skill/<name>/scratch/ and deletes, the skill's changelog folder with its .skilled/changelog/<name> link, and the integration targets the plan records: the advisor graph .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite, the compiled skill-graph.json and the advisor cases file"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/sk-skill-convert.cjs plan "{skill_target}"  # read-only: resolves the target, classifies the input and prints the plan, the follow-ups and the backup folder; a plain skill refuses here until its intent phrases are approved'
+      - 'node .skilled/commands/doctor/scripts/sk-skill-convert.cjs apply "{skill_target}" <the approved flags>  # the plan rerun: the same call without the write switch prints the plan and writes nothing, so the workflow reruns with repeated --approved-phrase, --description-trim, --allowed-tools, --edge and --agent-output and shows that plan'
+      - 'node .skilled/commands/doctor/scripts/sk-skill-convert.cjs preserve --snapshot "{scratch_dir}/snapshot" "{scratch_dir}/staging"  # read-only: proves the agent-produced prose kept every original body line before the format gate, from the one scratch root'
+      - 'node .skilled/commands/doctor/scripts/sk-skill-convert.cjs apply "{skill_target}" --apply  # the same plan, then the backup and the writes; the workflow adds the approved --approved-phrase, --description-trim, --allowed-tools, --edge and --agent-output flags and runs it only after an explicit yes'
+      - 'node .skilled/commands/doctor/scripts/sk-skill-check.cjs .skilled/skills/<name> --json  # the post-write re-read through the read-only check engine, at the converted root: the staged root for a plain skill, the skill folder for an in-place conversion'
+    trigger_phrases:
+      - "convert a skill to the skilled format"
+      - "convert a plain agent skill"
+      - "turn my old skill into a skilled skill"
+      - "skill format conversion plan"
+      - "move the machine router out of a skill"
+      - "skill folder conversion with a backup"
+      - "migrate my skill folder to skilled"
+      - "my skill predates the skilled format"
+      - "keep a backup when converting"
+      - "skill has no router file yet"
+
+  - command: /doctor:agents-md
+    target: check
+    default_target: true
+    yaml: doctor-agents-md-check.yaml
+    setup_vars: [execution_mode, root, json_output]
+    allowed_flags: ["--json", "--root <dir>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only diagnostic; the engine reads the root instruction file, its runtime copies and its REPO RULES.md and writes nothing)"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/agents-md-check.cjs  # the workflow adds --root <dir> and --json only when the operator passed them'
+    trigger_phrases:
+      - "check the shipped agents instruction file"
+      - "agents md section check"
+      - "which agents md sections are stale"
+      - "agents md delivery budget report"
+      - "agents md template drift report"
+      - "are the agents md sections current"
+      - "did agents md drift from template"
+      - "agents md block size over budget"
+      - "do these agents sections still match"
+
+  - command: /doctor:agents-md
+    target: embed
+    yaml: doctor-agents-md-embed.yaml
+    setup_vars: [execution_mode, root, dry_run, plan_digest, digest_confirmation, keep_claude_md, create_router]
+    allowed_flags: ["--dry-run", "--root <dir>", "--plan-digest <digest>", "--keep-claude-md", "--remove-claude-md", "--create-router"]
+    mutating: mutates
+    gate3_location: "AGENTS.md (created when absent, replaced with the shipped sections plus the composed block), CLAUDE.md and .codex/AGENTS.md (folded into the block and removed, unless --keep-claude-md), .cursor/rules/repo-local.md (the generated mirror of a non-empty block) and REPO RULES.md (missing shipped rows appended, or the file created behind --create-router), with a copy of every touched path taken to the plan's backup folder under .skilled/output/doctor-agents-md/<timestamp>/ before the first byte, and .cursor/rules/skill-routing.md rewritten by the pointer generator the engine calls; the write runs only against the plan digest the operator approved"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan  # read-only: composes every target in memory and prints the targets, the diffs, the block, the budget, the preservation ledger, the backup folder and the plan digest; the workflow adds --root <dir>, --keep-claude-md, --create-router and --dry-run only when the operator passed them'
+      - 'node .skilled/commands/doctor/scripts/agents-md-embed.cjs apply --plan-digest <digest>  # recomposes, refuses a digest that no longer matches, backs up, writes only inside its own allowlist and proves the composition against the bytes on disk; the workflow runs it only after the operator approves the plan that printed that digest'
+      - 'node .skilled/commands/doctor/scripts/agents-md-check.cjs  # the post-write re-read of the written repository; the workflow adds --root <dir> only when this run was pointed at another repository'
+    trigger_phrases:
+      - "embed the shipped instructions into agents md"
+      - "add the agents md repository block"
+      - "fold claude md into agents md"
+      - "write the agents md repository block"
+      - "replace agents md with the shipped template"
+      - "update agents md from the shipped template"
+      - "embed the shipped agents md sections"
+      - "embed the shipped AGENTS.md sections"
+      - "make agents md match the template"
+      - "fill in the agents md sections"
+      - "create the agents md file here"
+      - "add repo rules into agents md"
+
+  - command: /doctor:agents-md
+    target: restore
+    yaml: doctor-agents-md-restore.yaml
+    setup_vars: [execution_mode, run_dir, yes, dry_run]
+    allowed_flags: ["--run <dir>", "--yes", "--dry-run"]
+    mutating: mutates
+    gate3_location: "the paths one run's own manifest.json under its backup directory records, each one re-checked against the engine's write allowlist before it is touched: a recorded file is copied back from its copy and a path the recorded run created (an AGENTS.md, CLAUDE.md, .codex/AGENTS.md, .cursor/rules/repo-local.md or REPO RULES.md it created) is removed along with each folder the run created for it that is empty again, and the backup directory itself is read and kept"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<dir> --dry-run  # prints the restore plan the record and its copies describe and writes nothing'
+      - 'node .skilled/commands/doctor/scripts/agents-md-embed.cjs restore --run=<dir> --yes  # puts the recorded paths back and checks every restored file against its recorded hash; the workflow passes --yes only after its own yes'
+      - 'node .skilled/commands/doctor/scripts/agents-md-check.cjs  # the post-restore re-read of the restored repository, adding --root <the recorded root> when that root is not this repository'
+    trigger_phrases:
+      - "undo an agents md embed run"
+      - "restore agents md from the backup"
+      - "roll back the agents md instruction file write"
+      - "revert agents md to the file before the embed"
+      - "undo the agents md rewrite"
+      - "recover agents md from backup folder"
+      - "bring back the old agents md"
+      - "restore every file the embed touched"
+
+  - command: /doctor:symlink
+    target: check
+    default_target: true
+    yaml: doctor-symlink-check.yaml
+    setup_vars: [execution_mode, root, runtimes, include, link_instructions, json_output]
+    allowed_flags: ["--json", "--root <dir>", "--runtimes <list>", "--include <list>", "--link-instructions"]
+    mutating: read-only
+    gate3_location: "n/a (read-only diagnostic; the engine classifies every framework entry in the target repository and writes nothing)"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root <dir>  # the workflow adds --runtimes, --include, --link-instructions and --json only when the operator passed them'
+    trigger_phrases:
+      - "check skilled symlinks in a repo"
+      - "find broken skilled symlinks"
+      - "which runtime folders are linked"
+      - "is skilled linked into my project"
+      - "the skilled links are broken"
+      - "broken skilled links in my project"
+      - "skilled links in my project"
+      - "does this repo link to skilled"
+      - "why is skilled not linked here"
+      - "are the runtime folders linked correctly"
+      - "diagnose the skilled link setup"
+
+  - command: /doctor:symlink
+    target: link
+    yaml: doctor-symlink-link.yaml
+    setup_vars: [execution_mode, root, runtimes, mode, include, link_instructions, ignore, dry_run, plan_digest, digest_confirmation]
+    allowed_flags: ["--root <dir>", "--runtimes <list>", "--mode <shape>", "--include <list>", "--link-instructions", "--ignore <where>", "--dry-run", "--plan-digest <digest>"]
+    mutating: mutates
+    gate3_location: "the target repository's framework links (whole-folder links, or real folders holding one link per entry), the broken links into the Skilled checkout that the plan replaces or removes, and the ignore lines in <git-dir>/info/exclude (or .gitignore behind --ignore gitignore), with the run record written to the checkout's .skilled/output/doctor-symlink/<first 16 hex of the digest>/manifest.json, or the next free <prefix>-2, <prefix>-3 folder when an earlier run holds it, before the first action; no real file or folder is ever overwritten, and the write runs only against the plan digest the operator approved"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/symlink-engine.cjs plan --root <dir>  # read-only: prints every action, every refusal and the plan digest; the workflow adds --runtimes, --mode, --include, --link-instructions and --ignore only when the operator passed them'
+      - 'node .skilled/commands/doctor/scripts/symlink-engine.cjs apply --root <dir> --plan-digest <digest>  # recomposes with the same flags, refuses a digest that no longer matches, records the run, applies the actions and reruns check; the workflow runs it only after the operator approves the plan that printed that digest'
+    trigger_phrases:
+      - "symlink skilled into my project"
+      - "link the claude folder into my repo"
+      - "repair broken skilled symlinks"
+      - "create the skilled links in a repo"
+      - "link skilled into my repo"
+      - "link skilled into another project"
+      - "link my skilled checkout into another project"
+      - "point this project at the checkout"
+      - "use folder links instead of copies"
+      - "stop duplicating files from the checkout"
+      - "relink after moving the checkout"
+
+  - command: /doctor:symlink
+    target: unlink
+    yaml: doctor-symlink-unlink.yaml
+    setup_vars: [execution_mode, run_dir, yes, dry_run]
+    allowed_flags: ["--run <dir>", "--yes", "--dry-run"]
+    mutating: mutates
+    gate3_location: "only the links, the folders and the ignore lines one run's manifest.json records, each re-checked against the recorded state before it is touched; a path that changed since the apply is skipped and reported, and the run directory itself is read and kept"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/symlink-engine.cjs unlink --run <dir> --dry-run  # prints what the unlink would remove or restore and writes nothing'
+      - 'node .skilled/commands/doctor/scripts/symlink-engine.cjs unlink --run <dir> --yes  # removes the recorded links and empty folders and the recorded ignore lines; the workflow passes --yes only after its own yes'
+    trigger_phrases:
+      - "undo a skilled symlink run"
+      - "remove the skilled symlinks again"
+      - "unlink skilled from my project"
+      - "take the skilled links back out"
+      - "this repo should stop linking skilled"
+      - "remove the runtime folder links"
+      - "undo the link run from before"
+
+  - command: /doctor:install
+    target: guide
+    yaml: doctor-install.yaml
+    setup_vars: [execution_mode, root, runtimes, json_output]
+    allowed_flags: ["--json", "--root <dir>", "--runtimes <list>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only guide; it checks the two builds, runs the symlink engine's check once and prints the ordered writing commands for the operator to run)"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'test -d .skilled/skills/system-spec-kit/runtime/dist  # the spec-kit build the session hooks load'
+      - 'node .skilled/bin/skill-advisor.cjs list-tools --format json  # the advisor build; exit 0 means built'
+      - 'node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root <dir>  # the workflow adds --runtimes and --link-instructions only when the operator chose them'
+    trigger_phrases:
+      - "install skilled into my project"
+      - "set up skilled in another repo"
+      - "use skilled in my own project"
+      - "onboard a project repo to skilled"
+      - "guide me through installing skilled"
+      - "walk me through a first install of skilled"
+      - "first install of skilled in my project"
+      - "skilled in my other repository"
+      - "skilled in another repository"
+      - "skilled install steps for my project"
+      - "which commands install skilled here"
+      - "what install steps are left"
+      - "skilled install checklist for a project"
+
+  - command: /doctor:overlay
+    target: status
+    default_target: true
+    yaml: doctor-overlay-status.yaml
+    setup_vars: [execution_mode, root, json_output, audit_output]
+    allowed_flags: ["--json", "--audit", "--root <dir>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only diagnostic; the engine classifies every overlay destination in the vendored tree, runs the overlay manifest's read-only verify checks and writes nothing)"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # exit 0 = in sync, 1 = something out of sync, 2 = a failed precondition; the workflow adds --root <dir>, --json and --audit only when the operator passed them, and --audit prints one AUDIT line per unowned path that differs from upstream at the pin, is missing from the tree or is tracked there and never upstream, then the audit count. A finding fails the status'
+    trigger_phrases:
+      - "check my vendored skilled overlays"
+      - "are my skilled overlays in sync"
+      - "which overlay destinations are out of sync"
+      - "vendored skilled overlay status"
+      - "does my vendored skilled tree still carry its overlays"
+      - "vendored skilled overlays out of sync"
+      - "does my vendored skilled copy still carry its overlays"
+      - "adopt the skilled overlay engine in my project"
+      - "migrate my own overlay folder to doctor overlay"
+      - "check whether my overlay sources sit on their layout path"
+      - "audit my vendored skilled tree for unowned files"
+      - "which root files my overlays own drifted upstream at the pinned commit"
+      - "we copy skilled into our repo and lose our edits on update"
+      - "agents overlay stale after a re-pin"
+      - "which overlay do I rebase"
+      - "rebase the overlay"
+      - "are my local edits still applied"
+      - "did the update clobber my overlays"
+      - "which of my overlays are stale"
+      - "does my vendored tree still match"
+
+  - command: /doctor:overlay
+    target: apply
+    yaml: doctor-overlay-apply.yaml
+    setup_vars: [execution_mode, root, capture_path, adopt_path, relayout]
+    allowed_flags: ["--root <dir>", "--capture <path>", "--adopt <path>", "--relayout"]
+    mutating: mutates
+    gate3_location: "the overlay destinations and layout links the overlay manifest names inside the vendored tree, the outputs of the manifest's regenerate steps, and <overlay folder>/sync-state.json, all under the engine's own <overlay folder>/.build-lock; with --capture <path>, only the one overlay source that path maps to plus sync-state.json; with --adopt <path>, the copy of that vendored path in the overlay folder and one new entry in <overlay folder>/overlay-manifest.json, followed by the same apply; with --relayout, the overlay sources the manifest keeps off their layout paths, moved inside the overlay folder to the same path with the leading dot dropped, the layout-link targets that reach them, the source, fragment and base fields of <overlay folder>/overlay-manifest.json, and the backup in <overlay folder>/relayout-runs/<stamp>/, followed by the same apply; the write runs only after the operator approved the status report this run printed, or the LAYOUT lines in it when --relayout carries the run"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # read-only: the report the run shows as its plan before the question, and the re-read after the write'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply  # applies every overlay under the engine lock, then regenerates and verifies; writes nothing while a destination is live-edited, both-changed or upstream-moved; run only after the apply yes'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --capture <path>  # moves one live edit into its overlay source; run only after the capture yes'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --adopt <path>  # copies one unowned vendored path into the overlay folder, appends its manifest entry and applies; exit 0 = adopted and applied, 1 = the apply was blocked, 2 = a refusal with nothing written; run only after the adopt yes'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout  # moves every off-layout copy onto its layout path under the engine lock, backs up what it leaves in relayout-runs/, points the manifest fields and layout links there, retargets each live link that named a moved copy with its relinked line, and prints one moved line per path, then names the apply that follows; exit 0 = done, 2 = a refusal with nothing written, such as a target that already exists; run only after the relayout yes, followed by apply'
+    trigger_phrases:
+      - "apply the skilled overlays"
+      - "put my overlays back into vendored skilled"
+      - "capture a live edit into its overlay"
+      - "reapply overlays after copying skilled"
+      - "apply the overlays back onto the vendored copy"
+      - "put the overlays back on vendored skilled"
+      - "move my overlay sources onto the layout folder"
+      - "take over the overlay lock a dead run left behind"
+      - "restore my overlays after pulling skilled"
+      - "keep my edits when applying overlays"
+      - "adopt a vendored file into overlays"
+      - "make the overlays take effect again"
+
+  - command: /doctor:overlay
+    target: repin
+    yaml: doctor-overlay-repin.yaml
+    setup_vars: [execution_mode, root, upstream, to_commit, rollback_run_id]
+    allowed_flags: ["--root <dir>", "--upstream <dir>", "--to <commit>", "--rollback <run-id>"]
+    mutating: mutates
+    gate3_location: "inside the vendored tree, the .skilled paths upstream added, changed or deleted between the pin the overlay manifest records and --to, plus each runtime folder whole, less the manifest's repin.exclude list and never a root file such as AGENTS.md; the manifest's pin, set to --to; the overlay destinations, layout links, regenerate outputs and <overlay folder>/sync-state.json the apply that follows writes; and the backup in <overlay folder>/repin-runs/<run-id>/, written before the first copy; all under the engine's own <overlay folder>/.build-lock; with --rollback <run-id>, only the paths that run's backup records, restored byte for byte, and the files that run created, removed; the --stage plan writes only a fresh temporary folder outside the tree, and the live write runs only after the operator approved the stage report this run printed"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --upstream <dir> --to <commit> --stage <dir>  # the plan: the same steps on a copy in a fresh temporary folder, live tree untouched; exit 0 = RESULT: STAGED, 1 = blocked overlays or a failed check, 2 = a refusal before any write'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --upstream <dir> --to <commit>  # the live run under the engine lock: backs up every path it touches, copies, sets the pin, applies and checks; run only after the repin yes'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --rollback <run-id>  # restores the backup of one run byte for byte; run only after the rollback yes'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # read-only: the re-read after the re-pin or the rollback'
+    trigger_phrases:
+      - "re-pin my vendored Skilled"
+      - "repin vendored skilled to a new commit"
+      - "move my vendored skilled copy to a newer upstream commit"
+      - "roll back a vendored skilled re-pin"
+      - "bump the pin to latest commit"
+      - "recover a re-pin that failed"
+      - "pull upstream changes into vendored skilled"
+      - "sync the vendored copy with upstream"
+
+# ─────────────────────────────────────────────────────────────────
+# COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)
+# ─────────────────────────────────────────────────────────────────
+# /doctor:mcp dispatches via its own command (.skilled/commands/doctor/mcp.md).
+# These rows are tracked here for advisor + CI visibility only — the mcp.md
+# command parses its own sub-action argv and dispatches to the right YAML.
+# ─────────────────────────────────────────────────────────────────
+mcp_subroutes:
+  - sub_action: install
+    yaml: doctor-mcp-install.yaml
+    allowed_flags: ["--runtime <name>"]
+    mutating: mutates
+    gate3_location: "Code Mode build output, .utcp_config.json and the runtime MCP configs"
+    trigger_phrases:
+      - "install the MCP servers"
+      - "Code Mode fresh install"
+      - "reinstall Code Mode MCP"
+      - "install code mode in my project"
+      - "set up Code Mode here"
+      - "build the Code Mode package"
+      - "wire Code Mode into my runtime"
+      - "Code Mode is missing entirely"
+
+  - sub_action: debug
+    yaml: doctor-mcp-debug.yaml
+    allowed_flags: ["--fix"]
+    mutating: mutates
+    gate3_location: "Code Mode configuration and runtime registration repair"
+    trigger_phrases:
+      - "Code Mode broken"
+      - "debug an MCP connection"
+      - "MCP connection failure"
+      - "utcp config is broken"
+      - "debug the code mode utcp config"
+      - "mcp-doctor.sh diagnostic script"
+      - "mcp tools are missing"
+      - "Code Mode tools stopped loading"
+      - "MCP server will not connect"
+      - "why does utcp fail to start"
+      - "MCP registration is broken"
+
+# ─────────────────────────────────────────────────────────────────
+# STANDALONE COMMANDS (own routers, tracked here for visibility)
+# ─────────────────────────────────────────────────────────────────
+standalone:
+  - command: /doctor:update
+    file: .skilled/commands/doctor/update.md
+    yaml: doctor-update-check.yaml
+    mutating: mutates
+    actions:
+      check:
+        yaml: doctor-update-check.yaml
+        mutating: read-only
+      align:
+        yaml: doctor-update-align.yaml
+        mutating: add-only
+      apply:
+        yaml: doctor-update-apply.yaml
+        mutating: mutates
+      rollback:
+        yaml: doctor-update-rollback.yaml
+        mutating: mutates
+      record-base:
+        yaml: doctor-update-record-base.yaml
+        mutating: mutates
+      compat:
+        yaml: doctor-update-compat-action.yaml
+        mutating: mutates
+        trigger_phrases:
+          - "spec-kit version migration"
+          - "pre-v4 spec folder upgrade"
+          - "move .opencode/specs to specs"
+    trigger_phrases:
+      - "doctor update command"
+      - "update skills to latest release"
+      - "skilled release update"
+      - "update skilled to the latest release"
+      - "check for skilled updates"
+      - "is there a newer skilled release"
+      - "update my project to a newer skilled release"
+      - "move my project to the newer spec-kit release"
+      - "what changed in the new release"
+      - "which release is this project on"
+      - "align my project with the release"
+      - "roll back a failed release update"
+
+  - command: /doctor:env
+    file: .skilled/commands/doctor/env.md
+    yaml: doctor-env.yaml
+    mutating: mutates
+    actions:
+      list:
+        yaml: doctor-env.yaml
+        mutating: read-only
+      select:
+        yaml: doctor-env.yaml
+        mutating: mutates
+    # With no selector the router stops at a menu, so the runnable form names `list`.
+    runnable: /doctor:env list
+    trigger_phrases:
+      - "check my environment variables"
+      - "which environment variable switches are set"
+      - "skilled environment switch values"
+      - "environment switch inventory"
+      - "which environment switches are set and where"
+      - "which skilled env variables exist"
+      - "where do I set skilled variables"
+      - "change a skilled environment preference"
+      - "skilled env switch default values"
+    lead_phrases:
+      - "check my environment variables"

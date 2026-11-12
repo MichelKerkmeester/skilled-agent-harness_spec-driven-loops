@@ -217,17 +217,17 @@ describe('027/003 native scorer units', () => {
     expect(result.unknown).toBe(true);
   });
 
-  it('routes memory-save and create-agent touchstone prompts to command bridges', () => {
+  it('routes save-context and create-agent touchstone prompts to command bridges', () => {
     const projection = createFixtureProjection([
       skill({ id: 'system-spec-kit', description: 'Spec folders and memory workflow' }),
       skill({ id: 'sk-doc', description: 'Documentation and agent creation guidance' }),
       skill({
-        id: 'memory:save',
+        id: 'command-speckit-save',
         kind: 'command',
-        description: 'Memory save command bridge for /memory:save context preservation.',
-        keywords: ['/memory:save', 'save context', 'save memory'],
+        description: 'Memory save command bridge for /speckit:save context preservation.',
+        keywords: ['/speckit:save', 'save context', 'save memory'],
         domains: ['memory', 'command'],
-        intentSignals: ['/memory:save', 'save context', 'save memory'],
+        intentSignals: ['/speckit:save', 'save context', 'save memory'],
       }),
       skill({
         id: 'create:agent',
@@ -239,28 +239,20 @@ describe('027/003 native scorer units', () => {
       }),
     ]);
 
-    expect(scoreAdvisorPrompt('save context', { workspaceRoot: process.cwd(), projection }).topSkill).toBe('memory:save');
+    expect(scoreAdvisorPrompt('save context', { workspaceRoot: process.cwd(), projection }).topSkill).toBe('command-speckit-save');
     expect(scoreAdvisorPrompt('create new agent', { workspaceRoot: process.cwd(), projection }).topSkill).toBe('create:agent');
   });
 
-  it('065/002 keeps ordinary file-save prompts below memory-save routing confidence', () => {
+  it('065/002 keeps ordinary file-save prompts below save-command routing confidence', () => {
     const projection = createFixtureProjection([
       skill({ id: 'system-spec-kit', description: 'Spec folders and memory workflow' }),
       skill({
-        id: 'memory:save',
+        id: 'command-speckit-save',
         kind: 'command',
-        description: 'Memory save command bridge for /memory:save context preservation.',
-        keywords: ['/memory:save', 'save context', 'save memory', 'preserve session context'],
+        description: 'Memory save command bridge for /speckit:save context preservation.',
+        keywords: ['/speckit:save', 'save context', 'save memory', 'preserve session context'],
         domains: ['memory', 'command'],
-        intentSignals: ['/memory:save', 'save context', 'save memory', 'preserve session context'],
-      }),
-      skill({
-        id: 'command-memory-save',
-        kind: 'command',
-        description: 'Memory save command bridge for /memory:save context preservation.',
-        keywords: ['/memory:save', 'save context', 'save memory'],
-        domains: ['memory', 'command'],
-        intentSignals: ['/memory:save', 'save context', 'save memory'],
+        intentSignals: ['/speckit:save', 'save context', 'save memory', 'preserve session context'],
       }),
     ]);
 
@@ -269,30 +261,22 @@ describe('027/003 native scorer units', () => {
       projection,
       includeAllCandidates: true,
     });
-    const memorySave = result.recommendations.find((recommendation) => recommendation.skill === 'memory:save');
+    const saveCommand = result.recommendations.find((recommendation) => recommendation.skill === 'command-speckit-save');
 
-    expect(memorySave?.confidence).toBeLessThan(0.5);
-    expect(result.topSkill).not.toBe('memory:save');
+    expect(saveCommand?.confidence).toBeLessThan(0.5);
+    expect(result.topSkill).not.toBe('command-speckit-save');
   });
 
-  it('065/002 routes next-session preservation phrasing to memory-save', () => {
+  it('065/002 routes next-session preservation phrasing to the save command', () => {
     const projection = createFixtureProjection([
       skill({ id: 'system-spec-kit', description: 'Spec folders and memory workflow' }),
       skill({
-        id: 'memory:save',
+        id: 'command-speckit-save',
         kind: 'command',
-        description: 'Memory save command bridge for /memory:save context preservation.',
-        keywords: ['/memory:save', 'save context', 'save memory', 'preserve session context'],
+        description: 'Memory save command bridge for /speckit:save context preservation.',
+        keywords: ['/speckit:save', 'save context', 'save memory', 'preserve session context'],
         domains: ['memory', 'command'],
-        intentSignals: ['/memory:save', 'save context', 'save memory', 'preserve session context'],
-      }),
-      skill({
-        id: 'command-memory-save',
-        kind: 'command',
-        description: 'Memory save command bridge for /memory:save context preservation.',
-        keywords: ['/memory:save', 'save context', 'save memory'],
-        domains: ['memory', 'command'],
-        intentSignals: ['/memory:save', 'save context', 'save memory'],
+        intentSignals: ['/speckit:save', 'save context', 'save memory', 'preserve session context'],
       }),
     ]);
 
@@ -301,12 +285,12 @@ describe('027/003 native scorer units', () => {
       projection,
       includeAllCandidates: true,
     });
-    const memorySaveIndex = result.recommendations.findIndex((recommendation) => recommendation.skill === 'memory:save');
-    const memorySave = result.recommendations[memorySaveIndex];
+    const saveCommandIndex = result.recommendations.findIndex((recommendation) => recommendation.skill === 'command-speckit-save');
+    const saveCommand = result.recommendations[saveCommandIndex];
 
-    expect(memorySaveIndex).toBeGreaterThanOrEqual(0);
-    expect(memorySaveIndex).toBeLessThan(3);
-    expect(memorySave.confidence).toBeGreaterThanOrEqual(0.6);
+    expect(saveCommandIndex).toBeGreaterThanOrEqual(0);
+    expect(saveCommandIndex).toBeLessThan(3);
+    expect(saveCommand.confidence).toBeGreaterThanOrEqual(0.6);
   });
 
   it('065/003 routes testing-playbook creation to the dedicated command bridge', () => {

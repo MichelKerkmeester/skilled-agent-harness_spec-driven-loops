@@ -1,0 +1,4 @@
+wD exit=0
+wC exit=0
+wB exit=0
+wA exit=0

@@ -7,7 +7,7 @@ trigger_phrases:
   - "ambiguous brief"
   - "0.05 ambiguity window"
   - "dual-margin ambiguity"
-version: 0.8.0.15
+version: 0.8.1.0
 ---
 
 # Top-2 Ambiguity Window
@@ -24,6 +24,8 @@ Avoid silently picking a single winner when two candidates are tied or near-tied
 
 - `AMBIGUITY_MARGIN = 0.05` on aggregate `score` (keeps cluster aligned with the score-based fusion ranking, F-012-C2-04 invariant).
 - `AMBIGUITY_CONFIDENCE_MARGIN = 0.05` on `confidence` (catches user-visible near-ties when score gap just exceeds margin, Packet 084, SAD-002 fix).
+
+A command bridge row and the skill that owns that command count as one answer, so neither joins the other's cluster. The owner comes from the `ownerSkill` field on the generated `COMMAND_BRIDGES` rows, never from the shape of an id. Two different skills, or a command row next to a skill that does not own it, still form a real tie.
 
 If either gap is within margin, the response carries an ambiguity signal that the render path surfaces as an ambiguous brief. A candidate is unambiguously ranked only when **both** gaps exceed margin.
 

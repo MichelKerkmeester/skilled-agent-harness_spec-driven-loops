@@ -1,0 +1,32 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: one change in TWO files under `.skilled/skills/system-skill-advisor/runtime`: `scripts/routing-accuracy/capture-command-routing-baseline.mjs` (the "harness") and `tests/command-routing-slice.vitest.ts`. All commands run from `.skilled/skills/system-skill-advisor/runtime`.
+
+A code review found two gaps:
+1. The harness creates a temporary database directory with `mkdtempSync(...)` and never removes it, and the slice test runs the harness, so every run leaves one behind. Remove it in the harness's existing `finally` block with `rmSync(dir, { recursive: true, force: true })`, after everything that needs it has finished. Keep the variable in scope for the `finally`.
+2. The slice test compares `metrics`, `unreachable`, `commands` and `rows` against the stored baseline `scripts/routing-accuracy/command-routing-baseline.json`, but not the newer `attachedMetrics` key (reach through a command attached to the owner skill, attached false offers, typed same-owner ambiguity, attached rows). Add an assertion that the live `attachedMetrics` deep-equals the baseline's, in the style of the existing assertions and with the same kind of failure message that tells the reader to re-capture when the change is intended. The stored baseline already holds `attachedMetrics`.
+Comments say why, and never contain a spec path, task id or requirement id. Do NOT run the harness with `--write`.
+
+VERIFY: count temp directories before and after one harness run: find the prefix the harness passes to `mkdtempSync`, then `ls -d "$TMPDIR"/<prefix>* 2>/dev/null | wc -l` before and after `node scripts/routing-accuracy/capture-command-routing-baseline.mjs > /dev/null` must print the same number. `npx vitest run tests/command-routing-slice.vitest.ts` reports 0 failed. Then prove the new assertion bites: change one number inside `attachedMetrics` in the baseline json by hand, run the test (it must fail), restore the file with `git checkout`-free means (save a copy to your scratch folder first, copy it back, confirm with `cmp`). Report all runs.

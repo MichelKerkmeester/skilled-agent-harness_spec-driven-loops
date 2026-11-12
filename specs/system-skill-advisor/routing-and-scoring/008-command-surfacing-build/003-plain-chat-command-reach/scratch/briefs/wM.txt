@@ -1,0 +1,38 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: create ONE new test file, `.skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts`. Edit no other file. All commands run from `.skilled/skills/system-skill-advisor/runtime`.
+
+A code review found that nothing tests the new command attach path. Read these first: `lib/command-attach.ts` (exports `MODE_COMMANDS`, `DEPTH_WORDING`, `attachCommand(skillId, compiledRoute, prompt, modeCommands?)`), the recommendation schema `AdvisorRecommendationSchema` in `schemas/advisor-tool-schemas.ts` (optional `command`), and `recommendationFromCli` in `../hooks/lib/skill-advisor-cli-fallback.ts` (keeps a non-empty string `command`). Model the file's layout and imports on an existing test such as `tests/command-policy-derivation.vitest.ts`.
+
+Cover, each as its own `it`:
+1. attach rule: a route with `action: 'route'`, `selectionKind: 'single'` and one target whose `workflowMode` is in the table returns the command. Use the REAL generated table for one case (pick any hub and mode from `MODE_COMMANDS` at test time, never a hard-coded command string) and an injected table for the rest.
+2. it returns `undefined` for: `selectionKind: 'multi'`, `action: 'ask'`, two targets, a mode not in the table, a hub not in the table, `null`, an array, and a route whose mode name is an inherited object key such as `constructor`.
+3. depth gate: for `system-deep-loop` with a real mode from `MODE_COMMANDS['system-deep-loop']`, a prompt with no depth wording returns `undefined`, a prompt containing an entry of `DEPTH_WORDING` returns the command, and a prompt that types the slash command returns the command. Another hub is not affected by the gate.
+4. generated table sanity: every command in `MODE_COMMANDS` starts with `/` and names a file under `.skilled/commands/<namespace>/<name>.md` (resolve the repository root the way a neighbouring test does).
+5. schema: a recommendation object valid without `command` stays valid with `command: '/create:readme'` and is rejected with `command: ''`. Build the minimal valid object by reading the schema's required fields.
+6. hook carry-through: only if `recommendationFromCli` is exported, a CLI recommendation with `command: '/create:readme'` keeps it, and one with `command: ''` or a non-string drops it. If it is not exported, do NOT edit the hook file: leave this case out and say so in your report.
+Test names say the behaviour. No spec path, task id or requirement id in a comment or test name.
+
+VERIFY: `npx vitest run tests/command-attach.vitest.ts` reports 0 failed. Then prove the depth test bites: in `lib/command-attach.ts` temporarily make the depth gate always pass, run the test (the depth case must fail), restore the file exactly (`git diff --stat lib/command-attach.ts` must show nothing new compared with before your change: the file is untracked, so save a copy to your scratch folder first and `cmp` afterwards). Report both runs.

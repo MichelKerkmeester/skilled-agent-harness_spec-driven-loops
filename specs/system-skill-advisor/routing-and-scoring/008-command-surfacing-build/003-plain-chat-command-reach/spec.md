@@ -33,7 +33,7 @@ A user who describes a job in plain words never gets the slash command that owns
 |-------|-------|
 | **Level** | 3+ |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-12 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
@@ -41,6 +41,7 @@ A user who describes a job in plain words never gets the slash command that owns
 | **Predecessor** | 002-command-inventory-and-risk-metadata |
 | **Successor** | 004-recommendation-contract-and-brief |
 | **Handoff Criteria** | Command recall rises against the phase 1 baseline with no drop in the four existing numbers, and no typed command is ambiguous with its own owner |
+**Status note**: built on 2026-11-12, but plain recall on holdout stayed at 0 of 44, so the exit check is unmet.
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -129,10 +130,10 @@ Plain recall at 1 is 0 of 44 on both splits and plain top 3 is 1 of 44 on tune a
 
 ### Out of Scope
 - Any new line or field in the brief - phase 004 owns the output contract and the brief wording.
-- Editing `AGENTS.md`, including `AGENTS.md:89`, which names `command-spec-kit` - phase 005 owns the binding.
+- Editing `AGENTS.md`, including `AGENTS.md:89`, which names `command-spec-kit` - phase 005 owns the binding. Superseded in part on 2026-11-12: the operator had the retired id renamed in Gate 4 (plan ADR-015).
 - A penalty on an owner skill to let a doctor route win - the fix for a diagnostic question is a phrase on the route.
 - Changing the hand-written doctor activation entries in `scoring-compatibility.json` - every doctor bridge is already active.
-- Retiring the allow-list rows and the file - review L1, placed in phase 004.
+- Retiring the four `/speckit` allow-list rows and the file - review L1, placed in phase 004. The four umbrella rows were removed in this phase under ADR-005.
 - Making the 17 disabled hub rows scoring candidates - part A keeps the owner skill as the scored candidate.
 - Reading any holdout row's prompt - holdout rows are scored, never read, so phrases are checked against tune rows only.
 
@@ -158,8 +159,11 @@ Plain recall at 1 is 0 of 44 on both splits and plain top 3 is 1 of 44 on tune a
 | `ADV/scripts/routing-accuracy/scorer-eval-baseline.json`, `command-routing-baseline.json` | Modify | Re-captured after the operator reads the delta |
 | `ADV/tests/command-bridges-drift-guard.vitest.ts` | Modify | The pinned 5 and 15 active non-doctor counts follow the generated activation |
 | `ADV/tests/scorer/native-scorer.vitest.ts`, `ADV/tests/python/test_skill_advisor.py`, `ADV/tests/parity/fixtures/local-native-approved-divergences.json` | Modify (A) | Umbrella ids replaced by the per-command ids |
-| `ADV/tests/command-attach.vitest.ts` | Create | The attach rule, the hook carry-through and the same-owner rule |
-| `.skilled/commands/doctor/_routes.yaml` | Modify | More `trigger_phrases` per doctor route, standalone command and `/doctor:mcp` sub-action, and `lead_phrases` only where the doctor command must lead a passing skill |
+| `ADV/tests/command-attach.vitest.ts` | Create | Planned for the attach rule and the hook carry-through. Not created |
+| `ADV/tests/scorer/same-owner-ambiguity.vitest.ts` | Create | Built in its place for the same-owner rule |
+| `.skilled/commands/doctor/_routes.yaml` | Modify, then reverted | More `trigger_phrases` per doctor entry. Built, measured and reverted under plan ADR-007, so the file matches its committed state |
+
+Files changed in the build that the plan did not name, listed for the operator's review: `ADV/scripts/command-bridges/allow-list.json` (four umbrella rows deleted), `ADV/lib/scorer/aliases.ts` (one id re-pointed), `ADV/scripts/fixtures/gate2-golden-prompts.jsonl` and `ADV/scripts/fixtures/skill-advisor-regression-cases.jsonl` (labels re-pointed), and the re-pinned tests `tests/scorer/doctor-ordering.vitest.ts`, `tests/compat/shim.vitest.ts`, `tests/legacy/advisor-graph-health.vitest.ts`, `tests/legacy/advisor-corpus-parity.vitest.ts`, `tests/parity/python-ts-parity.vitest.ts` and `tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts`.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -331,7 +335,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Stakeholder | Role | Interest | Communication |
 |-------------|------|----------|---------------|
-| Operator | Product | High | The end-of-turn status of each session, and the answer to the two open questions |
+| Operator | Product | High | The end-of-turn status of each session, and the answers to the three open questions |
 | Operator | Engineering | High | `implementation-summary.md` of this phase, with the reach numbers and the relabel list |
 <!-- /ANCHOR:stakeholder-matrix -->
 
@@ -339,6 +343,12 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 <!-- ANCHOR:change-log -->
 ## 15. CHANGE LOG
+
+### v1.3 (2026-11-12)
+Final verified state recorded: the full suite passes, the review fixes landed, and the operator decided a top-only route lookup, an ask-first `/create:changelog` and the rename of the retired id in instruction files (plan ADR-013 to ADR-015). Status stays In Progress for the holdout gap.
+
+### v1.2 (2026-11-12)
+Built and measured. Status set to In Progress because holdout plain recall stayed at 0 of 44. The doctor phrases were reverted, and the build decisions are recorded in `plan.md` as ADR-007 to ADR-012.
 
 ### v1.1 (2026-11-12)
 Operator answers: umbrella ids replaced now, doctor plain-chat reach added as workstream 7, build executor set to DeepSeek V4.1 Flash through cli-pi.
@@ -353,7 +363,9 @@ Operator answers: umbrella ids replaced now, doctor plain-chat reach added as wo
 ## 16. OPEN QUESTIONS
 
 - Questions 1 and 2 were answered by the operator on 2026-11-12: replace the umbrella ids now, and bring doctor plain-chat reach into this phase. Both are recorded in `plan.md` as ADR-005 and ADR-006.
-- **3. Hook latency budget.** No budget is set for the added compiled-route call. This phase measures and records the cost, and the operator sets the budget.
+- **5. Where meaning-based matching is built.** The operator answered the holdout gap on 2026-11-12 with "Add meaning-based matching now" (plan ADR-012). It is not started. Packet `specs/system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement` owns the semantic lane and scopes command rows out. Does this phase extend that packet's scope, or does the work happen here?
+- **6. Doctor plain-chat reach after the revert.** Tune-only phrases on the doctor routes moved no doctor row and broke the helper guard (plan ADR-007). What is the next approach, and does it stay in this phase?
+- Question 3, the hook latency budget, was closed on 2026-11-12 by the operator's choice of a top-only route lookup (plan ADR-013). One run measured median 235.04 ms and p95 318.96 ms, against 194.35 ms and 281.15 ms before.
 - **4. The two hand-kept hub rows.** `create:agent` and `create:manual-testing-playbook` are active TypeScript rows today, and their `scoring-compatibility.json` entries carry `keywords` and `intentSignals`, not only `order`. This plan leaves both rows and their entries unchanged, so the compatibility file keeps scored fields for them. Should a later phase disable them once attach covers their commands?
 <!-- /ANCHOR:questions -->
 

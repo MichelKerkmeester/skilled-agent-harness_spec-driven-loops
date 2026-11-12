@@ -9,7 +9,14 @@
     "userIntent": {
       "job": "I want my prompt or topic turned into a structured, checked AI prompt with a CLEAR screening.",
       "ownedSignals": [
-        "/prompt:improve"
+        "/prompt:improve",
+        "improve my prompt",
+        "rewrite my prompt",
+        "fix my system prompt",
+        "make this prompt better",
+        "sharpen this prompt",
+        "help me write a prompt",
+        "tighten up this instruction"
       ]
     },
     "choreography": [

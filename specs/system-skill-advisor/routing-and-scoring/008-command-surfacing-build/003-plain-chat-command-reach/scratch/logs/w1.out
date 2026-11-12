@@ -1,0 +1,24 @@
+Done.
+
+**File written** (the only source file I touched):
+`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`
+
+- Header banner matching `compiled-routing-flag.ts` style, no imports.
+- Generated block exactly as specified: `// BEGIN/END GENERATED MODE COMMANDS` bracketing `export const MODE_COMMANDS: Readonly<Record<string, Readonly<Record<string, string>>>> = {};`
+- `attachCommand(skillId, compiledRoute: unknown, _prompt: string, modeCommands = MODE_COMMANDS): string | undefined` — returns the command only for a non-array object route with `action === 'route'`, `selectionKind === 'single'`, exactly one object target carrying a non-empty string `workflowMode`, and an own-key entry in `modeCommands[skillId]`. Every other input returns `undefined`; no throw path exists.
+- Comments explain the why (why single-mode only, why own-key lookups, why the shape is narrowed) and carry no spec path, task id or requirement id.
+
+**Verify output** — both commands run from `.skilled/skills/system-skill-advisor/runtime`:
+
+`npm run build` → exit 0 (prebuild, `tsc -p tsconfig.build.json`, postbuild all clean).
+
+```
+undefined /create:readme undefined undefined undefined undefined
+EXIT=0
+```
+
+That is the required string exactly: default empty table → `undefined`; injected table → `/create:readme`; `selectionKind: 'multi'`, `action: 'ask'`, a different hub, and `null` → `undefined`. Emitted JS confirmed at `dist/runtime/lib/command-attach.js`.
+
+**What I did not do:** no test file, no wiring of `attachCommand` into the recommend path, no edits anywhere else — none was in the brief. `git status` shows two modified files (`sk-prompt/command-metadata.json`, `runtime/schemas/advisor-tool-schemas.ts`, the latter adding an advisor `command` field) and several untracked `scratch/` artifacts; their mtimes precede my write (16:15:09/16:15:11 vs 16:15:37) and my only write call targeted `command-attach.ts`, so they belong to a sibling worker, not me. `dist/` is gitignored, so the build left no tracked change. No git state, no commit, no push, no dispatch.
+
+One thing for you, not me: whoever wires this next needs a generator that fills `MODE_COMMANDS` from each hub's command files, plus the call site that passes `prompt` through — the empty table means `attachCommand` currently always returns `undefined` in production.

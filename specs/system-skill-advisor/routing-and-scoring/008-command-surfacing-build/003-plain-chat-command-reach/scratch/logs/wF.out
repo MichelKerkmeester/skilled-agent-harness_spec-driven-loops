@@ -1,0 +1,39 @@
+Done.
+
+## File written
+`.skilled/skills/system-skill-advisor/runtime/tests/compat/shim.vitest.ts` — 2 lines changed, no other file touched (the other entries in `git status` are the pre-existing scorer/bridge updates from the upstream work, not mine).
+
+## Verdicts
+
+**1. Line 65 pin `skill: 'memory:save'` → `'command-speckit-save'` — (a)**
+
+Observed actual value (shim run, same prompt and env as the test):
+
+```
+system-spec-kit       | skill   | native | 0.745551
+command-speckit-save  | command | native | 0.7
+```
+
+Same behaviour under a new name. The test's intent is "a save-context prompt co-surfaces the skill plus the save command, in the legacy array shape" — that intent still holds exactly; only the id the save command reports under changed when the legacy bridge ids were retired. Nothing about the routing or the shape got worse: the save command is still the second native recommendation, still `source: 'native'`, still inside the unchanged array. So the pin was stale, not the behaviour.
+
+**2. Line 94 comment `(system-spec-kit plus memory:save)` → `command-speckit-save` — (a)**
+
+Same reasoning: the comment is prose describing which two entries co-surface, and it named the retired id. Left alone it would have described a recommendation that no longer appears. Durable WHY (the leak checks are the load-bearing invariant, not the count) untouched.
+
+No `command-spec-kit`, `command-memory-save` or `command-prompt-improver` pins exist in this file — `memory:save` was the only retired id in it.
+
+## Verify output
+
+```
+npx vitest run tests/compat/shim.vitest.ts
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Duration  2.52s
+EXIT=0
+```
+
+**Totals: 8 passed, 0 failed, 0 skipped-by-failure.** (The three `--force-native` cases ran for real here rather than taking the probe-skip return — the probe returned a JSON array, so no `console.warn` skip fired.) No remaining failures.
+
+## Could not do
+Nothing in scope was blocked. Out of scope by brief and left alone: no scorer source edited, no git state touched (no commit, push, branch or stash), no other test file swept for the same retired ids — `scripts/fixtures/*.jsonl` and the routing-accuracy corpora already carry their updates from the upstream work.

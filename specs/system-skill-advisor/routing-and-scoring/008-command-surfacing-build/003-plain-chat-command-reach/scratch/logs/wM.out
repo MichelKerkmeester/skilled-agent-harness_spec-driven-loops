@@ -1,0 +1,30 @@
+Done.
+
+## File written
+`.skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts` — new, the only file created. `lib/command-attach.ts` is byte-identical to before my mutation check.
+
+Five `it` cases in one `describe('command attach for a single routed mode')`:
+1. **names the command the routed mode maps to** — picks a hub/mode from the real `MODE_COMMANDS` at test time (default table param, first hub that isn't `system-deep-loop`), plus an injected table whose value `/injected:readme` differs from the real mapping, plus a hub the generated table never names.
+2. **offers no command unless the route names exactly one mode the table holds** — table-driven over `selectionKind: 'multi'`, `action: 'ask'`, two targets, unknown mode, unknown hub, `null`, an array, mode `constructor`, hub `constructor`, and both-inherited. Injected table keeps these independent of today's generated rows.
+3. **offers a deep-loop command only when the prompt asks for that effort** — loops every real `MODE_COMMANDS['system-deep-loop']` mode: quiet prompt → `undefined`, prompt containing `DEPTH_WORDING[0]` → command, prompt typing the real command → command; plus `sk-doc` answering the same quiet prompt with its command, so the gate is provably scoped to one hub. Guards that the quiet probe really is vocabulary-free.
+4. **names a real command file behind every generated row** — every row matches `/<ns>:<name>` and `existsSync(.skilled/commands/<ns>/<name>.md)` from `findAdvisorWorkspaceRoot(import.meta.dirname)`; asserts non-empty hub/mode counts so it can't pass vacuously.
+5. **accepts a named command on a recommendation and refuses an empty one** — minimal object of the schema's required keys only (`skillId`, `score`, `confidence`, `uncertainty`, `dominantLane`), valid bare, valid with `command: '/create:readme'`, rejected with `command: ''`.
+
+## Verification
+```
+npx vitest run tests/command-attach.vitest.ts
+ Test Files  1 passed (1)
+      Tests  5 passed (5)     exit 0
+```
+
+Mutation check on `lib/command-attach.ts` (depth gate forced to `if (false && ...)`):
+```
+ Tests  1 failed | 4 passed (5)     exit 1
+ FAIL … > offers a deep-loop command only when the prompt asks for that effort
+ AssertionError: ai-council: expected '/deep:ai-council' to be undefined
+```
+Exactly the depth case, and nothing else. Backup taken to a scratch dir first; after restore `cmp` reported IDENTICAL, sha256 unchanged (`4980229f…1097f3a` before and after), zero mutation markers, and `git diff --stat` on the file is empty both before and after (the file is untracked). Final rerun after restore: 5/5 passed, exit 0.
+
+## Not done
+- **Case 6 (hook carry-through) is omitted, as instructed.** `recommendationFromCli` is a module-private `function` at `hooks/lib/skill-advisor-cli-fallback.ts:357` — not exported. I did not edit the hook file, so the `command: ''`/non-string drop has no unit test from this file. The nearest exported seam is `resultFromCliData` (line 445), which is where that filtering happens; if the reviewer wants the coverage, the cheap route is exposing `recommendationFromCli` as a test seam like `resultFromCliData` already is, or asserting through `resultFromCliData`.
+- Nothing else was edited; no git state touched. `git status` shows many pre-existing modified files from earlier work in this packet — none are mine.

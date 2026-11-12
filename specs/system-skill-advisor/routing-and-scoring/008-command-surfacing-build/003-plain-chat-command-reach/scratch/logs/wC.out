@@ -1,0 +1,26 @@
+Done.
+
+## File written
+`.skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts` (+267/−44) — only file edited.
+
+What changed, all expectations now derived from the sources the generator reads (`command-metadata.json` folders, `allow-list.json`, `_routes.yaml`, `scoring-compatibility.json`):
+
+- **`metadataProjection()`** now emits `description`, `ownedSignals`, `standalone`, `mutating`, matching the generator's `metadataEntries` shape, so test 1's whole-entry equality holds again.
+- **New shared derivations**: `inventoryProjection()`, `handRows(platform)` (from `scoring-compatibility.json`, order-sorted), `standaloneCommands()` (metadata commands matched by command to their inventory row), `generatedRows(platform)` (standalone commands with no hand row), `activeInventoryIds(platform)`, `typescriptEvidence()`, `pythonEvidence()`.
+- **Test 1**: same assertions, expectation now the derived inventory (metadata + residual allow-list + doctor).
+- **Test 2** (renamed to "…scores exactly the compatibility rows plus the standalone commands"): kept `typescriptInventoryIds == inventoryIds`; replaced the `toEqual(HAND_AUTHORED…)` snapshot and the `toHaveLength(5)` / `toHaveLength(15)` literals with field-level equality of active non-doctor TS rows against `typescriptEvidence()`, and id-for-id equality of both runtimes' enabled flags against `activeInventoryIds()`; kept the derived `COMMAND_BRIDGES.length` containment check.
+- **Test 3**: probe now reports only the live `GENERATED_COMMAND_BRIDGES` + owner map; asserted byte-for-byte against `pythonEvidence()` in runtime order (hand rows in compat order, then generated rows after the highest hand order by inventory id) and the owner map against `pythonOwnerNormalization` including dict key order.
+
+## Verify output
+- `npx vitest run tests/command-bridges-drift-guard.vitest.ts` → **Tests 5 passed (5)**, Test Files 1 passed.
+- Guard bites: deleted `'save this conversation', ` from the `command-speckit-save` `keywords` inside the generated block of `lib/scorer/projection.ts` → **Tests 1 failed | 4 passed (5)**, failing test "generates all inventory ids for both runtimes and scores exactly the compatibility rows plus the standalone commands".
+- Restored: `node scripts/command-bridges/derive-command-bridges.cjs` → `status: generated`, only `projection.ts` in `changed`; file then byte-identical to its pre-sabotage copy (`cmp` YES). Then `--check` → `"status": "fresh"`, `changed: []`, exit 0. Final test run: 5 passed.
+
+## What I could not do / is stale but out of my scope
+`lib/scorer/projection.ts:80` `HAND_AUTHORED_COMMAND_BRIDGES` (as instructed, not edited). It is stale in three ways:
+1. It still carries three retired ids: `command-spec-kit` (umbrella replaced by `command-spec-kit-plan` / `-complete` / `-implement` / `-resume`), and both `memory:save` and `command-memory-save` (both replaced by the single `command-speckit-save`).
+2. It is missing 8 active bridges with no hand row: `command-spec-kit-plan`, `-complete`, `-implement`, `-resume`, `command-prompt-improve`, `command-speckit-save`, `command-speckit-search`, `command-speckit-handoff`.
+3. No row carries the newer `ownerSkill` field that every generated row now emits.
+After this change it has no consumer left (`rg HAND_AUTHORED_COMMAND_BRIDGES` finds only its definition and the unrelated Python dict).
+
+Related observation, also not edited: `scripts/skill_advisor.py:2296` `HAND_AUTHORED_COMMAND_BRIDGES` and `:2387` `HAND_AUTHORED_COMMAND_BRIDGE_OWNER_NORMALIZATION` are likewise stale (retired `command-spec-kit`, `command-memory-save`, `command-prompt-improver`; owner map still maps `command-memory-save`) and unread by that module — dead data awaiting removal.

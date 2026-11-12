@@ -1,0 +1,42 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: edit ONE file, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` (the Python scorer). NEVER edit between the lines `# BEGIN GENERATED COMMAND BRIDGES` and `# END GENERATED COMMAND BRIDGES`: that block is generated and already correct.
+
+Background: three legacy command bridge ids were retired from the advisor. `memory:save` and `command-memory-save` are replaced by ONE id `command-speckit-save` (the `/speckit:save` command). The umbrella id `command-spec-kit` (for `/spec_kit`) is gone: a typed `/speckit:plan` now returns `command-spec-kit-plan`, `/speckit:resume` returns `command-spec-kit-resume`, and so on, one id per command. `command-prompt-improver` (`/prompt`) is replaced by `command-prompt-improve` (`/prompt:improve`). The slash command `/memory:save` no longer exists as a command file. The TypeScript scorer was already updated.
+
+The hand-written Python code outside the generated block still uses the retired ids, so the Python scorer returns `memory:save` where the TypeScript scorer returns `command-speckit-save`, and parity tests fail (Python-correct decisions fell from 114 to 105 on one test and 109 to 101 on another).
+
+Change: re-point every hand-written reference to a retired id so the Python scorer emits the same ids as the generated block.
+- List them first: `rg -n "memory:save|command-memory-save|command-prompt-improver|command-spec-kit\b" .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` and ignore hits inside the generated block and ids that continue with a dash such as `command-spec-kit-plan`.
+- `memory:save` and `command-memory-save` as a scored id become `command-speckit-save`. Where both appeared side by side with two weights (for example `("memory:save", 1.0), ("command-memory-save", 0.8)`), keep ONE entry for `command-speckit-save` with the higher weight.
+- The inline record built at `skills["memory:save"] = _build_inline_record(...)`: the generated block now defines `command-speckit-save`. Read how generated bridge records and inline records are merged into `skills`, then make the result one record with id `command-speckit-save` that keeps the inline record's plain variants (`save context`, `save memory`). Say in your report how you merged them.
+- Text that matches what a USER types, such as the regex alternatives `/memory:save|memory:save`, stays: users may still type the old command.
+- Hand-written legacy dictionary entries for `command-spec-kit`, `command-memory-save` and `command-prompt-improver` (around the comment about /speckit subcommands) are removed when the generated block supersedes them, and the code path that promotes `command-spec-kit` over cli tools must look for any id starting with `command-spec-kit-` or `command-speckit-` instead of the retired umbrella id. Update comments that name a retired id so they stay true.
+Comments say why, and never contain a spec path, task id or requirement id.
+
+VERIFY from `.skilled/skills/system-skill-advisor/runtime`:
+- `python3 scripts/skill_advisor.py "save context for this packet" 2>/dev/null | head -c 600` (read the file's CLI usage if the argument form differs) shows `command-speckit-save` or `system-spec-kit` and no `memory:save`
+- `npx vitest run tests/legacy/advisor-corpus-parity.vitest.ts tests/parity/python-ts-parity.vitest.ts`: report the two counts in the output (expected 114 and 109 or better). Do NOT edit any test file. If a count is still short, list which prompts differ and why.
+- `python3 -c "import ast,sys; ast.parse(open('scripts/skill_advisor.py').read())"` exits 0.

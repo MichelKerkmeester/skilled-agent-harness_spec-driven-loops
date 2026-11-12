@@ -86,7 +86,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 #### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS
 Trigger-phrase routing is Gate 2's, deep-loop state discipline the deep-mode `SKILL.md`'s; both fire before the owning skill loads:
 - **Executor CLI ≠ skill route.** "Use cli-opencode gpt-5.5 high" is the HOW: it runs inside the skill's workflow and never overrides the skill-owned route.
-- **Skill advisor ambiguity.** When the advisor's `command-spec-kit` bridge, keyed to `/speckit:plan`, `/speckit:resume`, `/deep:research` and `/deep:review`, matches alongside `cli-*` for iteration phrases, `command-spec-kit` wins.
+- **Skill advisor ambiguity.** When the advisor's command row for `/deep:research` or `/deep:review` matches alongside `cli-*` for iteration phrases, the command row wins.
 
 #### GATE 5: REPO RULES LOAD [HARD] BLOCK
 Trigger: the FIRST write of the session, in any repository whose root holds a `REPO RULES.md`. Read-only turns never fire it; where that file is absent this document alone governs.

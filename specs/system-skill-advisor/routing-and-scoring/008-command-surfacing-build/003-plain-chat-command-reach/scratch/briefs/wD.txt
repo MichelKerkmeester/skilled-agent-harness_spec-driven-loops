@@ -1,0 +1,31 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: edit TWO test files under `.skilled/skills/system-skill-advisor/runtime/tests/scorer/`: `same-owner-ambiguity.vitest.ts` and `doctor-ordering.vitest.ts`. Read `lib/scorer/ambiguity.ts` in full and the function `requireCommandPhraseAnchor` in `lib/scorer/fusion.ts` first. Do not edit any file outside the two tests.
+
+Two scorer rules changed after these tests were written:
+1. `ambiguity.ts` no longer guesses a command row's owner from the shape of its id. It reads the owner from the generated bridge data: `COMMAND_BRIDGES` in `lib/scorer/projection.ts`, where each bridge has `id` and `ownerSkill`. A command row and a skill are "the same answer" only when that bridge's `ownerSkill` equals the skill id. In `same-owner-ambiguity.vitest.ts` three tests fail because their made-up ids are not real bridges. Rewrite the cases to use a real bridge and its real owner, read from `COMMAND_BRIDGES` at test time (for example the bridge whose id is `command-spec-kit-plan` and its `ownerSkill`), plus one real skill that does not own it. Keep the three intents: command row and its owner within 0.05 is not ambiguous (either order), two unrelated skills within 0.05 is ambiguous, a command row and a non-owner skill within 0.05 is ambiguous. For the case "a third unrelated skill ties": run it, read what `ambiguity.ts` returns now, and assert that behaviour only if it is coherent with the rule above. Say in your report what it returns and why.
+2. `requireCommandPhraseAnchor` used to apply to doctor command rows only. It now applies to EVERY row of kind `command`: a command row passes only when its `explicit_author` lane contribution has a raw score above 0, because command phrases are everyday words and a command must not be offered on shared single words alone. In `doctor-ordering.vitest.ts` the test "leaves skills and non-doctor commands alone" fails. Rewrite it to state the new rule: skills are left alone, and a non-doctor command row without an explicit-author hit stops passing while one with a hit keeps passing. Rename the test accordingly.
+
+VERIFY from `.skilled/skills/system-skill-advisor/runtime`: `npx vitest run tests/scorer/same-owner-ambiguity.vitest.ts tests/scorer/doctor-ordering.vitest.ts` reports 0 failed. Report the totals.

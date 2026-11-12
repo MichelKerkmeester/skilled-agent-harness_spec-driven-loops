@@ -1,0 +1,46 @@
+Done. Verification passes from a clean run.
+
+## File written (only file touched)
+
+`.skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json` (28 +/28 −)
+
+```
+$ npx vitest run tests/parity/local-native-divergence-ratchet.vitest.ts
+ Test Files  1 passed (1)
+      Tests  9 passed (9)   (0 failed)
+```
+
+Ledger after edit: 74 entries (74 before), `scoringInstant` left at `2026-11-05T00:00:00Z`, no entry whose `localTop`/`nativeTop`/`gold` names a retired id (`memory:save`, `command-memory-save`, `command-prompt-improver`, bare `command-spec-kit`).
+
+## Entries REMOVED — decision (a): the divergence resolved into agreement
+
+| id | ledger local / native / gold | what the ratchet reports now |
+|---|---|---|
+| `rr-iter2-029` | `system-spec-kit` / `memory:save` / `memory:save` | no longer diverges; both sides now return `command-speckit-save` (= corpus gold after the rename). Local confirmed by a direct `analyze_prompt` run; native equality is the ratchet's own rule-(b) machine check. |
+| `rr-iter3-117` | `system-spec-kit` / `memory:save` / `memory:save` | same: both sides now `command-speckit-save` (gold). |
+
+Removal is required by rule (b); the replacement behaviour (`/memory:save` → `command-speckit-save`) is a rename of the same bridge *and* closes a gold miss, so it is an improvement, not a regression.
+
+## Entries CHANGED — decision (a): same behaviour under the new id
+
+| id | gold | localTop old → new | nativeTop | change |
+|---|---|---|---|---|
+| `rr-iter3-085` | `system-spec-kit` | `memory:save` → `command-speckit-save` | `system-spec-kit` (unchanged) | rename only; native still = gold. `promptHash` unchanged. Reason rewritten. |
+| `rr-iter3-163` | `system-deep-loop` | `memory:save` → `command-speckit-save` | `system-spec-kit` (unchanged) | rename only; neither side reaches gold, as before. `promptHash` unchanged. Reason rewritten. |
+| `rr-iter2-030` | `system-spec-kit` | `memory:save` → `command-speckit-save` | `system-spec-kit` (unchanged) | rename only; native still = gold. `promptHash` unchanged. Reason rewritten (it previously described `memory:save` as a live local id). |
+
+No `promptHash` updates were needed — the ratchet reported top mismatches only, never a hash mismatch.
+
+## Entries ADDED — decision (a): new state, both entries approved with a supported reason
+
+| id | corpus | gold | localTop | nativeTop | reason basis |
+|---|---|---|---|---|---|
+| `rr-iter3-100` | labeled | `sk-code` | `sk-prompt` | `sk-code` | native = gold; local prefers `sk-prompt` 0.90 over `sk-code` 0.88 (measured locally), so a 0.02 local margin is the divergence. |
+| `rr-iter3-105` | labeled | `command-speckit-save` | `command-speckit-save` | `system-spec-kit` | local = gold on a typed `/memory:save`; local scores it 0.95 dead level with `system-spec-kit` and picks the command, native picks the umbrella skill. The *why* for native is marked "not traced" in the reason rather than guessed. |
+
+`approvedAt` for both is `2026-11-05`, the ledger's own pin date: the gate asserts `scoringInstant >= newest approvedAt`, so today's date (2026-11-12) would fail that rule, and moving `scoringInstant` would re-score all 74 entries at a new instant — out of this brief's remit.
+
+## Caveats / what I could not do
+
+- I could not reproduce the harness regime outside vitest: an out-of-process native probe on `dist` returns `command-speckit-save` for `rr-iter3-105` and `none` for `rr-iter3-100`, i.e. a different regime than the test. That is why the second reason says "not traced" instead of naming a native-side cause. All recorded tops come from the ratchet and the existing capture script, which independently agreed on the exact added/resolved/changed sets.
+- No scorer source, no test source edited; no git operations performed. (`git status` shows other modified test files under `tests/`; those were already dirty before this task — my diff is confined to the one fixture, 1 file changed.)

@@ -1,0 +1,97 @@
+Done. One file edited, verified.
+
+## File written
+`.skilled/commands/doctor/_routes.yaml` — 96 new `trigger_phrases` (4 per entry) across 24 entries of the twelve named commands. Nothing else touched: no `lead_phrases` change, no comment/key change, `/doctor:helper` and the previously-added `/doctor:agents-md`, `/doctor:ci`, `/doctor:overlay`, `/doctor:runtime-mirrors` phrases untouched.
+
+## Phrases added per entry
+
+**/doctor:speckit → speckit-retrieval** (add-only report; question wording)
+`spec search finds nothing` · `trigger index missed some documents` · `citation links point at moved files` · `ripgrep lookup misses my spec`
+
+**/doctor:deep-loop → deep-loop** (add-only report)
+`research loop never converges` · `deep research keeps looping without progress` · `review loop iterations stopped improving` · `iteration graph shows no progress`
+
+**/doctor:skill-advisor → tune** (mutates)
+`skill routing picks the wrong one` · `retune the advisor scoring lanes` · `advisor scores look off lately` · `tune how the advisor scores prompts`
+
+**/doctor:skill-advisor → rebuild** (mutates)
+`skill graph database is missing` · `rebuild the advisor from scratch` · `advisor results are out of date` · `rescan every skill into the graph`
+
+**/doctor:skill-advisor → skill-budget** (read-only)
+`description budget headroom report` · `which skill exceeds the description budget` · `how many description characters remain` · `am I near the description ceiling`
+
+**/doctor:skill-advisor → parent-skill** (read-only)
+`parent skill folder structure is wrong` · `hub skill is missing metadata` · `are my hub modes registered` · `check a hub's mode packets`
+
+**/doctor:skill-advisor → skill-graph-freshness** (read-only)
+`graph lists skills that vanished` · `does the compiled graph match disk` · `stale nodes in the skill graph` · `which graph copy is stale`
+
+**/doctor:skill-advisor → router-reach** (read-only)
+`a trigger phrase routes nowhere` · `which hub phrases never match` · `probe every declared routing phrase` · `hub router vocabulary is dead`
+
+**/doctor:sk-code → setup** (read-only)
+`is the sk-code battery passing` · `run every sk-code setup check` · `sk-code setup keeps failing` · `which sk-code checks are red`
+
+**/doctor:sk-code → quality** (mutates)
+`where does quality json live` · `configure the quality gate checks` · `set up repository quality settings` · `quality config is out of date`
+
+**/doctor:git → hooks** (mutates)
+`which git hook gates are enabled` · `switch a git hook gate off` · `hook gate blocks my commit` · `where do hook gates get stored`
+
+**/doctor:git → standards** (mutates)
+`edit our commit message standard` · `sk-git rules file not found` · `branch naming rule is wrong` · `which commit rules apply here`
+
+**/doctor:git → setup** (read-only)
+`is sk-git wired into this repo` · `diagnose my git setup surfaces` · `which git surfaces are misconfigured` · `check every sk-git surface at once`
+
+**/doctor:setup → setup** (read-only umbrella)
+`list every doctor check at once` · `run all the doctor checks here` · `which doctor checks fail here` · `which setup check is failing`
+
+**/doctor:sk-skill → check** (read-only)
+`does my skill follow the format` · `which skills break the format` · `check every skill for format` · `skill folder layout is invalid`
+
+**/doctor:sk-skill → convert** (mutates)
+`migrate my skill folder to skilled` · `my skill predates the skilled format` · `keep a backup when converting` · `skill has no router file yet`
+
+**/doctor:symlink → check** (read-only)
+`does this repo link to skilled` · `why is skilled not linked here` · `are the runtime folders linked correctly` · `diagnose the skilled link setup`
+
+**/doctor:symlink → link** (mutates)
+`point this project at the checkout` · `use folder links instead of copies` · `stop duplicating files from the checkout` · `relink after moving the checkout`
+
+**/doctor:symlink → unlink** (mutates)
+`take the skilled links back out` · `this repo should stop linking skilled` · `remove the runtime folder links` · `undo the link run from before`
+
+**/doctor:install → guide** (read-only)
+`skilled install steps for my project` · `which commands install skilled here` · `what install steps are left` · `skilled install checklist for a project`
+
+**/doctor:mcp → mcp_subroutes install** (mutates)
+`set up Code Mode here` · `build the Code Mode package` · `wire Code Mode into my runtime` · `Code Mode is missing entirely`
+
+**/doctor:mcp → mcp_subroutes debug** (mutates)
+`Code Mode tools stopped loading` · `MCP server will not connect` · `why does utcp fail to start` · `MCP registration is broken`
+
+**/doctor:update → standalone** (top-level phrases; the nested `compat` action untouched)
+`what changed in the new release` · `which release is this project on` · `align my project with the release` · `roll back a failed release update`
+
+**/doctor:env → standalone** (`lead_phrases` left intact)
+`which skilled env variables exist` · `where do I set skilled variables` · `change a skilled environment preference` · `skilled env switch default values`
+
+## Verify output
+
+```
+OK: route-validate — 31 routes validated, 11 warnings      (exit 0; 11 H1 flag-overlap warnings were already there)
+```
+
+```
+136  0  .skilled/commands/doctor/_routes.yaml      (git diff --numstat; 0 deletions)
+```
+
+136 = my 96 lines + the 40 insertions already uncommitted in this tree from the earlier `/doctor:agents-md`, `/doctor:ci`, `/doctor:overlay`, `/doctor:runtime-mirrors` work. Proof of isolation: stripping exactly my 96 phrase lines from the current file reproduces a file that is HEAD + exactly those 40 lines.
+
+Extra checks run (parsed YAML vs `HEAD`): all 96 phrases are 4 per entry, 3–6 words, unique in the file, and no entry outside the twelve changed; `update`'s nested `compat` action and the `/doctor:helper` route are byte-identical to `HEAD`.
+
+## Not done (outside this brief)
+- Did not run `derive-command-bridges.cjs`, `doctor-phrase-reach.cjs`, or `npm run build`, per instructions — so the new phrases are not yet in the advisor's compiled bridges and are not reach-verified.
+- Did not touch git state or any other file.
+

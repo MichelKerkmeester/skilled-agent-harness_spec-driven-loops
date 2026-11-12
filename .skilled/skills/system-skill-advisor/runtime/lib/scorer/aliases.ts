@@ -12,7 +12,7 @@ export const BASE_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Ob
     '/create:manual-testing-playbook',
     'create:manual-testing-playbook',
   ],
-  'memory:save': ['command-memory-save', '/speckit:save', 'memory:save'],
+  'command-speckit-save': ['command-memory-save', '/speckit:save', 'memory:save'],
 });
 
 // BEGIN GENERATED DEEP ROUTING PROJECTION

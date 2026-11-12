@@ -90,10 +90,11 @@ describe('skill advisor CLI fallback no-match diagnostics', () => {
 
       const payload = JSON.parse(child.stdin.written) as {
         prompt?: string;
-        options?: { includeCompiledRoute?: boolean };
+        options?: { includeCompiledRoute?: boolean; compiledRouteTopOnly?: boolean };
       };
       expect(payload.prompt).toBe('Inspect the hook');
-      expect(payload.options?.includeCompiledRoute).toBe(false);
+      expect(payload.options?.includeCompiledRoute).toBe(true);
+      expect(payload.options?.compiledRouteTopOnly).toBe(true);
     } finally {
       mockedChild.spawn.mockReset();
     }

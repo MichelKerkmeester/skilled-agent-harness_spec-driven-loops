@@ -1,28 +1,28 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "fd6533c621",
-  "corpusSha256": "sha256:4aaecd7352db059becdab59cec8fd23862e9e9efc24fed96d0bd169e001ac8ce",
+  "capturedAtSha": "fa525f9a3f",
+  "corpusSha256": "sha256:da8feba1fd79d63a67a9df695d7571632531bf70e96913c705f6755d15d53c5a",
   "bridgeCounts": {
     "commandMetadata": 23,
-    "allowList": 8,
+    "allowList": 4,
     "doctorRoutes": 35,
-    "generated": 66,
-    "typescriptActive": 40,
-    "pythonActive": 50
+    "generated": 62,
+    "typescriptActive": 45,
+    "pythonActive": 51
   },
   "metrics": {
     "typed_recall_at_1": {
-      "correct": 19,
+      "correct": 24,
       "total": 44
     },
     "typed_reach_top3": {
-      "correct": 19,
+      "correct": 27,
       "total": 44
     },
     "plain_recall_at_1": {
       "tune": {
-        "correct": 0,
+        "correct": 2,
         "total": 44
       },
       "holdout": {
@@ -32,7 +32,7 @@
     },
     "plain_reach_top3": {
       "tune": {
-        "correct": 1,
+        "correct": 3,
         "total": 44
       },
       "holdout": {
@@ -45,14 +45,14 @@
       "total": 35
     },
     "slash_variant": {
-      "reached_top3": 2,
+      "reached_top3": 5,
       "named_total": 8,
       "offered_on_partial": 0,
       "partial_total": 4
     },
     "agreement": {
       "correct": 7,
-      "total": 12
+      "total": 9
     }
   },
   "unreachable": [
@@ -72,15 +72,7 @@
     "/deep:review",
     "/design:chart",
     "/design:diagram",
-    "/design:extract",
-    "/prompt:improve",
-    "/speckit:complete",
-    "/speckit:handoff",
-    "/speckit:implement",
-    "/speckit:plan",
-    "/speckit:resume",
-    "/speckit:save",
-    "/speckit:search"
+    "/design:extract"
   ],
   "commands": {
     "/create:agent": {
@@ -771,13 +763,13 @@
       "typed": {
         "rows": 1,
         "top1": 0,
-        "top3": 0
+        "top3": 1
       },
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
@@ -789,8 +781,8 @@
     "/speckit:complete": {
       "typed": {
         "rows": 1,
-        "top1": 0,
-        "top3": 0
+        "top1": 1,
+        "top3": 1
       },
       "plain": {
         "tune": {
@@ -808,8 +800,8 @@
     "/speckit:handoff": {
       "typed": {
         "rows": 1,
-        "top1": 0,
-        "top3": 0
+        "top1": 1,
+        "top3": 1
       },
       "plain": {
         "tune": {
@@ -827,8 +819,8 @@
     "/speckit:implement": {
       "typed": {
         "rows": 1,
-        "top1": 0,
-        "top3": 0
+        "top1": 1,
+        "top3": 1
       },
       "plain": {
         "tune": {
@@ -846,8 +838,8 @@
     "/speckit:plan": {
       "typed": {
         "rows": 1,
-        "top1": 0,
-        "top3": 0
+        "top1": 1,
+        "top3": 1
       },
       "plain": {
         "tune": {
@@ -866,13 +858,13 @@
       "typed": {
         "rows": 1,
         "top1": 0,
-        "top3": 0
+        "top3": 1
       },
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
@@ -885,7 +877,7 @@
       "typed": {
         "rows": 1,
         "top1": 0,
-        "top3": 0
+        "top3": 1
       },
       "plain": {
         "tune": {
@@ -903,8 +895,8 @@
     "/speckit:search": {
       "typed": {
         "rows": 1,
-        "top1": 0,
-        "top3": 0
+        "top1": 1,
+        "top3": 1
       },
       "plain": {
         "tune": {
@@ -1577,7 +1569,7 @@
       "top": "system-deep-loop",
       "top1": false,
       "top3": false,
-      "offered": true
+      "offered": false
     },
     "cmd-deep-research-plain-tune-01": {
       "expected_command": "/deep:research",
@@ -1598,7 +1590,7 @@
       "top": "system-deep-loop",
       "top1": false,
       "top3": false,
-      "offered": true
+      "offered": false
     },
     "cmd-deep-review-plain-tune-01": {
       "expected_command": "/deep:review",
@@ -1681,15 +1673,15 @@
       "expected_command": "/prompt:improve",
       "top": "sk-prompt",
       "top1": false,
-      "top3": false,
-      "offered": false
+      "top3": true,
+      "offered": true
     },
     "cmd-prompt-improve-plain-tune-01": {
       "expected_command": "/prompt:improve",
-      "top": null,
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-prompt-improve",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-prompt-improve-plain-holdout-01": {
       "expected_command": "/prompt:improve",
@@ -1700,10 +1692,10 @@
     },
     "cmd-speckit-complete-typed-01": {
       "expected_command": "/speckit:complete",
-      "top": "system-spec-kit",
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-spec-kit-complete",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-speckit-complete-plain-tune-01": {
       "expected_command": "/speckit:complete",
@@ -1721,10 +1713,10 @@
     },
     "cmd-speckit-handoff-typed-01": {
       "expected_command": "/speckit:handoff",
-      "top": "system-spec-kit",
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-speckit-handoff",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-speckit-handoff-plain-tune-01": {
       "expected_command": "/speckit:handoff",
@@ -1742,9 +1734,9 @@
     },
     "cmd-speckit-implement-typed-01": {
       "expected_command": "/speckit:implement",
-      "top": "system-spec-kit",
-      "top1": false,
-      "top3": false,
+      "top": "command-spec-kit-implement",
+      "top1": true,
+      "top3": true,
       "offered": true
     },
     "cmd-speckit-implement-plain-tune-01": {
@@ -1763,9 +1755,9 @@
     },
     "cmd-speckit-plan-typed-01": {
       "expected_command": "/speckit:plan",
-      "top": "command-spec-kit",
-      "top1": false,
-      "top3": false,
+      "top": "command-spec-kit-plan",
+      "top1": true,
+      "top3": true,
       "offered": true
     },
     "cmd-speckit-plan-plain-tune-01": {
@@ -1786,15 +1778,15 @@
       "expected_command": "/speckit:resume",
       "top": "system-spec-kit",
       "top1": false,
-      "top3": false,
+      "top3": true,
       "offered": true
     },
     "cmd-speckit-resume-plain-tune-01": {
       "expected_command": "/speckit:resume",
-      "top": null,
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-spec-kit-resume",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-speckit-resume-plain-holdout-01": {
       "expected_command": "/speckit:resume",
@@ -1807,7 +1799,7 @@
       "expected_command": "/speckit:save",
       "top": "system-spec-kit",
       "top1": false,
-      "top3": false,
+      "top3": true,
       "offered": true
     },
     "cmd-speckit-save-plain-tune-01": {
@@ -1826,10 +1818,10 @@
     },
     "cmd-speckit-search-typed-01": {
       "expected_command": "/speckit:search",
-      "top": "system-spec-kit",
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-speckit-search",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-speckit-search-plain-tune-01": {
       "expected_command": "/speckit:search",
@@ -2095,13 +2087,13 @@
       "top": "system-deep-loop",
       "top1": false,
       "top3": false,
-      "offered": true
+      "offered": false
     },
     "sv-06": {
       "expected_command": "/speckit:plan",
-      "top": "command-spec-kit",
-      "top1": false,
-      "top3": false,
+      "top": "command-spec-kit-plan",
+      "top1": true,
+      "top3": true,
       "offered": true
     },
     "sv-07": {
@@ -2122,7 +2114,7 @@
       "expected_command": "/speckit:resume",
       "top": "system-spec-kit",
       "top1": false,
-      "top3": false,
+      "top3": true,
       "offered": true
     },
     "sv-10": {
@@ -2141,10 +2133,144 @@
     },
     "sv-12": {
       "expected_command": "/prompt:improve",
-      "top": "sk-prompt",
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-prompt-improve",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    }
+  },
+  "attachedMetrics": {
+    "plain": {
+      "tune": {
+        "own": 2,
+        "attached": 7,
+        "combined": 9,
+        "total": 44
+      },
+      "holdout": {
+        "own": 0,
+        "attached": 0,
+        "combined": 0,
+        "total": 44
+      }
+    },
+    "plain_by_family": {
+      "create": {
+        "tune": {
+          "own": 0,
+          "attached": 4,
+          "combined": 4,
+          "total": 13
+        },
+        "holdout": {
+          "own": 0,
+          "attached": 0,
+          "combined": 0,
+          "total": 13
+        }
+      },
+      "deep": {
+        "tune": {
+          "own": 0,
+          "attached": 0,
+          "combined": 0,
+          "total": 3
+        },
+        "holdout": {
+          "own": 0,
+          "attached": 0,
+          "combined": 0,
+          "total": 3
+        }
+      },
+      "design": {
+        "tune": {
+          "own": 0,
+          "attached": 3,
+          "combined": 3,
+          "total": 3
+        },
+        "holdout": {
+          "own": 0,
+          "attached": 0,
+          "combined": 0,
+          "total": 3
+        }
+      },
+      "doctor": {
+        "tune": {
+          "own": 0,
+          "attached": 0,
+          "combined": 0,
+          "total": 17
+        },
+        "holdout": {
+          "own": 0,
+          "attached": 0,
+          "combined": 0,
+          "total": 17
+        }
+      },
+      "prompt": {
+        "tune": {
+          "own": 1,
+          "attached": 0,
+          "combined": 1,
+          "total": 1
+        },
+        "holdout": {
+          "own": 0,
+          "attached": 0,
+          "combined": 0,
+          "total": 1
+        }
+      },
+      "speckit": {
+        "tune": {
+          "own": 1,
+          "attached": 0,
+          "combined": 1,
+          "total": 7
+        },
+        "holdout": {
+          "own": 0,
+          "attached": 0,
+          "combined": 0,
+          "total": 7
+        }
+      }
+    },
+    "false_offer_attached": {
+      "count": 0,
+      "total": 35
+    },
+    "typed_same_owner_ambiguous": [
+      "cmd-create-agent-typed-01"
+    ],
+    "attachedRows": {
+      "cmd-create-agent-plain-holdout-01": "/create:changelog",
+      "cmd-create-benchmark-typed-01": "/create:benchmark",
+      "cmd-create-benchmark-plain-tune-01": "/create:benchmark",
+      "cmd-create-changelog-typed-01": "/create:changelog",
+      "cmd-create-changelog-plain-tune-01": "/create:changelog",
+      "cmd-create-command-typed-01": "/create:command",
+      "cmd-create-diff-typed-01": "/create:diff",
+      "cmd-create-feature-catalog-typed-01": "/create:feature-catalog",
+      "cmd-create-feature-catalog-plain-tune-01": "/create:feature-catalog",
+      "cmd-create-readme-typed-01": "/create:readme",
+      "cmd-create-repo-rule-typed-01": "/create:repo-rule",
+      "cmd-create-skill-typed-01": "/create:skill",
+      "cmd-create-skill-plain-tune-01": "/create:skill",
+      "cmd-create-with-human-voice-typed-01": "/create:with-human-voice",
+      "cmd-deep-ai-council-typed-01": "/deep:ai-council",
+      "cmd-design-chart-typed-01": "/design:chart",
+      "cmd-design-chart-plain-tune-01": "/design:chart",
+      "cmd-design-diagram-typed-01": "/design:diagram",
+      "cmd-design-diagram-plain-tune-01": "/design:diagram",
+      "cmd-design-extract-typed-01": "/design:extract",
+      "cmd-design-extract-plain-tune-01": "/design:extract",
+      "sv-07": "/create:skill",
+      "sv-10": "/design:chart"
     }
   }
 }

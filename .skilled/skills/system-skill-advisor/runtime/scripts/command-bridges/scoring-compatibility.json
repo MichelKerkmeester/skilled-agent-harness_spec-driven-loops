@@ -2,73 +2,6 @@
   "schemaVersion": 1,
   "typescript": [
     {
-      "inventoryId": "command-spec-kit",
-      "order": 0,
-      "id": "command-spec-kit",
-      "name": "command-spec-kit",
-      "description": "Spec Kit command bridge for /spec_kit workflows.",
-      "keywords": [
-        "/speckit:plan",
-        "/speckit:resume",
-        "/deep:research",
-        "/deep:review"
-      ],
-      "domains": [
-        "spec-kit",
-        "command"
-      ],
-      "intentSignals": [
-        "/speckit:plan",
-        "/speckit:resume",
-        "/deep:research",
-        "/deep:review"
-      ]
-    },
-    {
-      "inventoryId": "memory:save",
-      "order": 1,
-      "id": "memory:save",
-      "name": "memory:save",
-      "description": "Memory save command bridge for /speckit:save context preservation (the retired /memory:save id is kept as the scorer key).",
-      "keywords": [
-        "/speckit:save",
-        "save context",
-        "save memory",
-        "preserve session context"
-      ],
-      "domains": [
-        "memory",
-        "command"
-      ],
-      "intentSignals": [
-        "/speckit:save",
-        "save context",
-        "save memory",
-        "preserve session context"
-      ]
-    },
-    {
-      "inventoryId": "command-memory-save",
-      "order": 2,
-      "id": "command-memory-save",
-      "name": "command-memory-save",
-      "description": "Memory save command bridge for /speckit:save context preservation (the retired /memory:save id is kept as the scorer key).",
-      "keywords": [
-        "/speckit:save",
-        "save context",
-        "save memory"
-      ],
-      "domains": [
-        "memory",
-        "command"
-      ],
-      "intentSignals": [
-        "/speckit:save",
-        "save context",
-        "save memory"
-      ]
-    },
-    {
       "inventoryId": "command-create-agent",
       "order": 3,
       "id": "create:agent",
@@ -398,38 +331,6 @@
       "owningSkill": "system-spec-kit"
     },
     {
-      "inventoryId": "command-spec-kit",
-      "order": 6,
-      "id": "command-spec-kit",
-      "description": "[DEPRECATED: use per-subcommand bridges] /spec_kit slash-command family; routes generic /spec_kit or spec_kit: prompts without a specific subcommand.",
-      "slashMarkers": [
-        "/spec_kit",
-        "spec_kit:"
-      ],
-      "deprecated": true,
-      "owningSkill": "system-spec-kit"
-    },
-    {
-      "inventoryId": "command-memory-save",
-      "order": 7,
-      "id": "command-memory-save",
-      "description": "Save conversation context to memory using /memory:save.",
-      "slashMarkers": [
-        "/memory:save",
-        "memory:save"
-      ],
-      "owningSkill": "system-spec-kit"
-    },
-    {
-      "inventoryId": "command-prompt-improver",
-      "order": 9,
-      "id": "command-prompt-improver",
-      "description": "Create or improve AI prompts using /prompt.",
-      "slashMarkers": [
-        "/prompt"
-      ]
-    },
-    {
       "inventoryId": "command-create-agent",
       "order": 10,
       "id": "command-create-agent",
@@ -702,7 +603,6 @@
     }
   ],
   "pythonOwnerNormalization": {
-    "command-memory-save": "system-spec-kit",
     "command-create-agent": "create:agent",
     "command-create-manual-testing-playbook": "create:manual-testing-playbook",
     "command-spec-kit-resume": "system-spec-kit",

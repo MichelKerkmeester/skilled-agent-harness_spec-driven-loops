@@ -344,9 +344,9 @@
       "corpus": "labeled",
       "promptHash": "sha256:bb8a1034dea33d544c65e8a79919b9ac6b153b79630e3aaa223b1f23ca3e6a36",
       "gold": "system-spec-kit",
-      "localTop": "memory:save",
+      "localTop": "command-speckit-save",
       "nativeTop": "system-spec-kit",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=memory:save, native=system-spec-kit)",
+      "reason": "reviewed 2026-11-05: the save-command bridge now reports the consolidated command-speckit-save id for 'save memory', so local names the command it fires while native keeps the spec-kit owner skill, which is the gold label on this explain-why prompt",
       "approvedAt": "2026-06-13"
     },
     {
@@ -573,9 +573,9 @@
       "prompt": "Run another automated research cycle for the routing corpus and preserve the same lineage.",
       "gold": "system-deep-loop",
       "promptHash": "sha256:fdbff56355f1f78508a39aca210cc297428bbc93c7803c31d45b13a9310ee4f2",
-      "localTop": "memory:save",
+      "localTop": "command-speckit-save",
       "nativeTop": "system-spec-kit",
-      "reason": "reviewed 2026-09-23: cli-jev dropped its bare run keyword, so native moved from cli-jev to system-spec-kit. Local fires memory:save and gold is system-deep-loop, which neither side reaches",
+      "reason": "reviewed 2026-11-05: cli-jev dropped its bare run keyword, so native sits on system-spec-kit; local fires the consolidated save-command bridge command-speckit-save, and the gold system-deep-loop is still reached by neither side",
       "approvedAt": "2026-09-23"
     },
     {
@@ -653,28 +653,6 @@
       "approvedAt": "2026-09-22"
     },
     {
-      "id": "rr-iter2-029",
-      "corpus": "labeled",
-      "prompt": "Use `/memory:save` to capture the current blockers and next focus.",
-      "gold": "memory:save",
-      "promptHash": "sha256:32571abd1e4ea9076cfab6da355a992aae4c45be4fe113060b898124c4d74723",
-      "localTop": "system-spec-kit",
-      "nativeTop": "memory:save",
-      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
-      "approvedAt": "2026-08-15"
-    },
-    {
-      "id": "rr-iter3-117",
-      "corpus": "labeled",
-      "prompt": "/memory:save this routing baseline before the overnight worker exits.",
-      "gold": "memory:save",
-      "promptHash": "sha256:d66a5602ba0eafaacbe59c15b67b3ddfec7150220aa884ffa2e765dcfcdaaf44",
-      "localTop": "system-spec-kit",
-      "nativeTop": "memory:save",
-      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
-      "approvedAt": "2026-08-15"
-    },
-    {
       "id": "rr-iter3-128",
       "corpus": "labeled",
       "prompt": "Audit the packet docs, then generate a corrected `iteration-004.md` stub.",
@@ -724,9 +702,9 @@
       "prompt": "Resume the phase folder and rebuild context from implementation-summary continuity.",
       "gold": "system-spec-kit",
       "promptHash": "sha256:2993a157cc6bda8dd0047ea3e087ce51d537a35f37fccb66bc72875889171077",
-      "localTop": "memory:save",
+      "localTop": "command-speckit-save",
       "nativeTop": "system-spec-kit",
-      "reason": "reviewed 2026-09-07: native matches gold (system-spec-kit) after the retired /memory:save slash token in its command bridge was re-pointed to /speckit:save; the local Python scorer still carries the memory:save bridge and fires it on resume-and-rebuild-context phrasing",
+      "reason": "reviewed 2026-11-05: native matches gold (system-spec-kit); the local Python scorer still carries the save-command bridge and fires it, now under the consolidated command-speckit-save id, on resume-and-rebuild-context phrasing",
       "approvedAt": "2026-09-07"
     },
     {
@@ -771,6 +749,28 @@
       "nativeTop": "mcp-tooling",
       "reason": "reviewed 2026-10-27: local abstains at strict thresholds (sk-doc 0.79 on markdown, mcp-tooling 0.78 on its declared phrase markdown notes) with or without the bare-word repeat skip; native routes to the declaring hub",
       "approvedAt": "2026-10-27"
+    },
+    {
+      "id": "rr-iter3-100",
+      "corpus": "labeled",
+      "prompt": "Audit the prompt IDs and confirm they stay stable across iterations.",
+      "gold": "sk-code",
+      "promptHash": "sha256:3a853ab7f72c2d60716485de9640be97c216ac090ea39777719e3bb9157ebe25",
+      "localTop": "sk-prompt",
+      "nativeTop": "sk-code",
+      "reason": "reviewed 2026-11-05: native reaches the gold sk-code on a request to audit prompt IDs, while local ranks sk-prompt 0.90 against sk-code 0.88 on the prompt and engineering vocabulary, so a 0.02 local margin is the whole divergence",
+      "approvedAt": "2026-11-05"
+    },
+    {
+      "id": "rr-iter3-105",
+      "corpus": "labeled",
+      "prompt": "/memory:save the routing-accuracy packet with the current first-100 confusion matrix.",
+      "gold": "command-speckit-save",
+      "promptHash": "sha256:87486f05f0141ce521f829839be411256624649f68adb640092a65abe55ae1d2",
+      "localTop": "command-speckit-save",
+      "nativeTop": "system-spec-kit",
+      "reason": "reviewed 2026-11-05: local returns the gold command-speckit-save on a typed /memory:save at a dead-level 0.95 against system-spec-kit and breaks that tie toward the command, while native breaks the same tie toward the umbrella skill; why native resolves this prompt to the owner is not traced",
+      "approvedAt": "2026-11-05"
     }
   ]
 }

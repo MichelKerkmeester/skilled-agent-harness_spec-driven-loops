@@ -1,0 +1,43 @@
+## Report
+
+**File written: none.** Verdict is **(b) – the rule now fires wrongly**, so per the brief I left the test and every scorer untouched.
+
+### VERIFY: `npx vitest run tests/scorer/executor-delegation.vitest.ts`
+```
+Test Files  1 failed (1)
+     Tests  1 failed | 37 passed (38)
+```
+Failing case: `executor delegation never overrides a workflow-owned route > keeps the same order on the Python fallback`, at `tests/scorer/executor-delegation.vitest.ts:350`.
+
+### Both lists, full (each is `recs[:2]`; prompt `run a deep research loop with the cli-pi executor`)
+- **expected** `['system-deep-loop', 'cli-external-orchestration']`
+- **actual** `['system-deep-loop', 'command-spec-kit-deep-research']`
+
+### Python scorer output for that prompt
+`python3 scripts/skill_advisor.py --threshold 0.8 --uncertainty 0.35 "run a deep research loop with the cli-pi executor"` (with `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1`):
+
+| skill | confidence | uncertainty | passes |
+|---|---|---|---|
+| system-deep-loop | 0.95 | 0.15 | true |
+| command-spec-kit-deep-research | 0.95 | 0.30 | true |
+
+Pre-filter `analyze_request` shows what happened under the hood: `cli-external-orchestration 0.75 (pass=false)` sits at #2, and `command-spec-kit-deep-research 0.95` is **#6**. It reaches the second slot only because the strict filter deletes the hub.
+
+### Mechanism
+`_apply_iteration_loop_tiebreaker` (`scripts/skill_advisor.py:4839-4858`) now fires here: the prefix match `("command-spec-kit-", "command-speckit-")` sees `command-spec-kit-deep-research`, so every `cli-*` rec takes the unconditional `-0.20` (floor 0.60). The lifted hub drops **0.95 → 0.75**, below the strict 0.80 threshold, so `filter_recommendations` drops it. With the tiebreaker disabled in-process (isolating its contribution) the same prompt restores `['system-deep-loop' 0.95, 'cli-external-orchestration' 0.949]` – the prefix broadening is the sole cause, not a rename.
+
+### (b) evidence
+1. It contradicts the scorer's own documented design for **this exact prompt**: `_apply_workflow_owner_guard` (`:4496-4541`) whose docstring quotes `"run a deep research loop with the cli-pi executor"` and states "the hub sits directly below it", setting `hub.confidence = owner - 0.001` (`:4533-4536`). The tiebreaker re-penalizes that hub and erases it from the passed set.
+2. It violates its own stated contract ("preserves the cli-\* as an available tool"): on the fallback the executor is no longer recommended **at all** for a prompt whose content is "with the cli-pi executor".
+3. The predicate is over-broad. Probes: `run a review loop and then save this context using cli-opencode` fires the rule off `command-speckit-save` (hub 0.949 → 0.75, executor gone), and `command-spec-kit-plan/-complete/-implement` also satisfy it. It should match loop-owning bridges only.
+4. Even re-pinning the id could not pass line 351: prompt 1 ends at **0.95 vs 0.95**, so `ranked[1][1] < ranked[0][1]` fails too – the new "second" is a filter artifact, not an ordering.
+5. The failure is wider than one prompt: `run a deep review with cli-codex as the executor` now yields `['system-deep-loop' 0.93, 'sk-code' 0.83, 'command-spec-kit-deep-review' 0.81]` with the hub at 0.75, so the `[owner, cli-external-orchestration]` pin fails there as well.
+
+### What the rule should check (edit belongs to whoever owns `skill_advisor.py`, not me)
+- `:4841-4844` – restrict the command side to bridges that own an iteration loop (`command-spec-kit-deep-research`, `command-spec-kit-deep-review`, i.e. owner normalisation yields a `deep-*` mode), not the whole `command-spec-kit-*`/`command-speckit-*` family; a save/plan/complete bridge must not license demoting a CLI executor.
+- `:4849-4858` – stop the blanket `-0.20`/0.60-floor penalty when `_apply_workflow_owner_guard` already ran, or cap it so the hub lands at `owner - _WORKFLOW_OWNER_CONFIDENCE_GAP` and stays at/above the strict threshold instead of falling under it.
+
+### Could not do
+- Reproducing HEAD's scorer end-to-end (running the pre-change script) would require writing a copy of the file; I isolated the tiebreaker in-process instead, which gave the same attribution.
+
+No other test pins the new firing (`tests/parity/fixtures/executor-delegation-cases.json` pins top-1 only and still passes), and no packet doc in `003-plain-chat-command-reach` mandates the new order. Suite stays red by design until the scorer rule is fixed.

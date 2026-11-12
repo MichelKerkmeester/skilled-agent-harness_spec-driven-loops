@@ -62,7 +62,7 @@ describe('skill_advisor.py compat shim', () => {
         source: 'native',
       }),
       expect.objectContaining({
-        skill: 'memory:save',
+        skill: 'command-speckit-save',
         source: 'native',
       }),
     ]));
@@ -91,7 +91,7 @@ describe('skill_advisor.py compat shim', () => {
     expect(result.stdout).not.toContain(secretPrompt);
     expect(result.stdout).not.toContain('private-address@example.com');
     // Native co-surfaces the save-context prompt to more than one recommendation
-    // (system-spec-kit plus memory:save). The load-bearing invariant is the two
+    // (system-spec-kit plus command-speckit-save). The load-bearing invariant is the two
     // leak checks above; assert every returned entry is prompt-safe native
     // metadata rather than pinning an exact recommendation count.
     const parsedNative = parseJson(result.stdout);

@@ -1,0 +1,44 @@
+Done.
+
+## File written (one file only)
+
+`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
+
+1. **Import** (line 13): `import { attachCommand } from '../lib/command-attach.js';` — same `../lib/*.js` style as its neighbours.
+2. **`enrichCompiledRoutes`** (lines 447–453): the `compiledRoute ? … : recommendation` ternary became an early return plus an attach step, so a recommendation with no compiled route returns unchanged and gets no `command` key:
+
+```ts
+      if (!compiledRoute) return recommendation;
+      // The route answers which mode the hub would take; the command is what a reader
+      // types to run it, so it rides along only when the route names exactly one mode
+      // that has a command. A broader route leaves the key off rather than guessing.
+      const command = attachCommand(recommendation.skillId, compiledRoute, prompt);
+      return command
+        ? { ...recommendation, compiledRoute, command }
+        : { ...recommendation, compiledRoute };
+```
+
+3. **`publicRecommendation` trace — no change needed, and I verified why.** It builds its return object field by field, but it runs *before* enrichment: `computeRecommendationOutput` maps scored → public recommendations, then `enrichCompiledRoutes` spreads `command` onto those *already-public* objects, and the closing `AdvisorRecommendOutputSchema.parse` in `enrichCompiledRoutes` keeps it because `AdvisorRecommendationSchema` declares `command: z.string().min(1).optional()` (`.strict()`, so only declared keys survive). The cache is written from the pre-enrichment `parsed`, so no cached object can carry a stale `command`; on a cache hit enrichment re-derives it. Downstream, `handleAdvisorRecommend` only `JSON.stringify`s `data`, and the CLI's `renderPayload` → `renderJson` passes the payload through unchanged for `--format json`.
+
+## Verify output
+
+`npm run build` from `.skilled/skills/system-skill-advisor/runtime`: **exit 0**, twice (tsc clean; `dist/runtime/handlers/advisor-recommend.js:10,359` contains the import and the call).
+
+From the repo root, final run, verbatim:
+
+```
+[{"skillId":"sk-doc","command":"/create:readme","mode":"sk-create-readme"},{"skillId":"sk-doc","command":null,"mode":null},{"skillId":"system-spec-kit","command":null,"mode":null},{"skillId":"mcp-tooling","command":null,"mode":null},{"skillId":"sk-doc","command":null,"mode":null},{"skillId":"system-spec-kit","command":null,"mode":null},{"skillId":"mcp-tooling","command":null,"mode":null}]
+```
+
+(The 7 rows are 3 live + 3 `_shadow` + the one repeated `sk-doc`; the live strip is `sk-doc` `/create:readme`, `system-spec-kit` no route, `mcp-tooling` route but no command.)
+
+## Two states you asked me to name
+
+- **Lookup table:** at my first read and first build it was `{}` — `MODE_COMMANDS … = {}`. It was filled *concurrently*, at 15:19:30 UTC, by something outside this brief (`lib/command-attach.ts` plus `scripts/command-bridges/*` have that mtime; I wrote none of them). It now maps `sk-doc → sk-create-readme → /create:readme` (plus `sk-design`, `system-deep-loop`). So `command` was `null` on my first CLI run and `/create:readme` after the rebuild — the code was never the reason for the first `null`.
+- **Daemon:** not older code. The serving daemon is pid 42885, lease `startedAt` 15:19:40 UTC, entrypoint mtime 15:19:37 UTC → `predatesBuild: false`, i.e. the CLI's stale-daemon recycle replaced the pre-build daemon before answering. (`liveDaemonPredatesBuild`, `skill-advisor-cli.ts`.)
+
+## Not done / caveats
+
+- I did not touch `lib/command-attach.ts`, its generator, or the other concurrently-modified files; the table arriving mid-task means its generation state is another worker's, and a fuller table (more hubs) may land after my last build.
+- I did not run the vitest suite — the brief scoped verification to `npm run build` plus the CLI call, and I stayed there.
+- No git state touched.

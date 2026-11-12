@@ -1,0 +1,3 @@
+wO exit=0
+wM exit=0
+wN exit=0

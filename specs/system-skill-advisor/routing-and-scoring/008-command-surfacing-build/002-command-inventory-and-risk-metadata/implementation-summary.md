@@ -131,6 +131,8 @@ Three edits were made by the orchestrating session: one corrected comment in the
 3. **Nothing reads `commandPolicies` yet.** Phase 004 joins it to a recommendation by command and route.
 4. **`counts.commandMetadata` is 23, not 27.** It counts the metadata entries that become bridge entries, and four are carried by allow-list rows.
 5. **One whole-suite run failed mid-way.** Restoring source files during a proof left the build older than its source, and two CLI test files failed until a rebuild. The final run is from a fresh build.
+
+**Note added 2026-11-12 by phase 003.** The evidence above is as recorded for this phase and is not rewritten. Phase 003 later gave `/create:changelog` `ask_first: ["outside-repo"]` by operator decision, which addresses the `--release` risk in limitation 1. The per-command rollup is now 17 ask, 7 run and 20 start, against the 16, 7 and 21 recorded here. See `../003-plain-chat-command-reach/plan.md` ADR-014.
 <!-- /ANCHOR:limitations -->
 
 ---

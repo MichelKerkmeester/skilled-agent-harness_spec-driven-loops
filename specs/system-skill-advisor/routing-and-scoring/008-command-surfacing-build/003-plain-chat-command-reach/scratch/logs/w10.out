@@ -1,0 +1,35 @@
+Done — one file edited.
+
+## File written
+`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`
+
+1. **Payload** (line ~221): `includeCompiledRoute: false` → `true`, with the stale "the hook never reads compiled routing data" comment replaced by why it is requested now:
+   > The hook reads nothing out of the compiled route itself. It asks for the route only because the advisor derives the slash command from it, and a recommendation with no command cannot tell the reader which mode to run.
+2. **Type** (`CliAdvisorRecommendation`, declared in this same file, lines 332–338): added `readonly command?: string;` with a why-comment (absent when no single mode; never derived here).
+3. **Parser** (`recommendationFromCli`, line 361): `…(typeof value.command === 'string' && value.command.trim() !== '' ? { command: value.command } : {}),` — same spread-guard shape as `heldBelow`.
+4. `compiledRoute` is never read or forwarded: `rg -n "compiledRoute" <file>` prints nothing. Brief rendering untouched. No spec/task/requirement ids in any comment.
+
+## Verify output
+```
+--- verify 1 ---                      # rg -n 'includeCompiledRoute: false' <file>
+exit=1                                # no output — as required
+--- verify 2 ---                      # rg -n "typeof value.command === 'string'" <file>
+361:    ...(typeof value.command === 'string' && value.command.trim() !== '' ? { command: value.command } : {}),
+exit=0                                # exactly one line
+```
+
+## Type-check
+The file is compiled only by the `@spec-kit/system-skill-advisor` package (`runtime/tsconfig.build.json` includes `../hooks/**/*.ts`, `rootDir: ".."`); `runtime/tsconfig.json` alone does not cover `hooks/`. The package already ships this exact command as its `typecheck` script.
+
+```
+cd .skilled/skills/system-skill-advisor/runtime
+../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json
+TSC_EXIT=0
+```
+No diagnostics. `--noEmit` only; no `npm run build` run. Diffed `*.tsbuildinfo` before/after: `NO NEW TSBUILDINFO` (the only three that exist, all pre-existing under `system-spec-kit/*/dist`, are untouched).
+
+`git status` scoped to the target: ` M .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` — nothing else.
+
+## Out of scope, needs a follow-up owner
+- `.skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts:96` now contradicts this change: `expect(payload.options?.includeCompiledRoute).toBe(false);` must become `toBe(true)`. That test will fail until patched (I did not run vitest and did not edit the test).
+- Docs still asserting the hook sends `false` (now stale): `system-skill-advisor/ARCHITECTURE.md:142`, `README.md:135`, `hooks/skill-advisor-cli-fallback` line in `hooks/lib/README.md:21`, `hooks/skill-advisor-hook.md:38`, `feature-catalog/hooks-and-plugin/claude-hook.md:26`, `feature-catalog/cli-surface/advisor-recommend.md:33`.

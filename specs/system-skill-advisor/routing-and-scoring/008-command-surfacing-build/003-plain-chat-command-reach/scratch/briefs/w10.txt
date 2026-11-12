@@ -1,0 +1,37 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: edit ONE file, `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`. Read it in full first.
+
+Background: the prompt hook asks the advisor CLI for recommendations. The advisor can now return an optional string `command` on a recommendation (the slash command that runs the recommended hub skill's resolved mode), but only when the request sets `includeCompiledRoute: true`. Today this file sends `includeCompiledRoute: false` and its parser `recommendationFromCli` drops every field it does not name.
+
+Change:
+1. Send `includeCompiledRoute: true` in the payload, and rewrite the comment beside it ("The hook never reads compiled routing data") to say what is true now: the hook asks for the route only so the advisor can name the command, and reads nothing else from it.
+2. In `recommendationFromCli`, keep `command` when it is a non-empty string (`typeof value.command === 'string'`), following how `heldBelow` is kept. Add the optional field to the type that function returns, wherever that type is declared. If the type lives in another file, do NOT edit that file: report its path and the one line it needs.
+3. Do not read, keep or forward `compiledRoute` itself.
+Do not change how the brief text is rendered. Comments say why, and never contain a spec path, task id or requirement id.
+
+Do NOT run `npm run build` in `system-skill-advisor/runtime` (another worker is building it).
+
+VERIFY: `rg -n 'includeCompiledRoute: false' .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` prints nothing, `rg -n "typeof value.command === 'string'" .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` prints one line. Find which package compiles this file (search for a tsconfig that includes `hooks/`) and report the type-check command and its result, run with `--noEmit` only. If a type-check writes a `tsbuildinfo` file anywhere, delete that new file and say so.

@@ -128,7 +128,7 @@ export interface RoutingCalibration {
   readonly speckitResumeSpecKitBonus: number;
   readonly speckitResumeCommandPenalty: number;
   // explicit /speckit:plan command-bridge intent: the literal slash command must
-  // route to the command-spec-kit bridge even when the prompt also carries a
+  // route to the command-spec-kit-plan bridge even when the prompt also carries a
   // strong skill signal like "docs".
   readonly speckitPlanCommandBonus: number;
   readonly speckitPlanSkDocPenalty: number;

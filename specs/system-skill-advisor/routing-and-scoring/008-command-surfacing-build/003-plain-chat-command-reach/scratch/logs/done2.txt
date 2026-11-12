@@ -1,0 +1,4 @@
+w10 exit=0
+w7 exit=0
+w9 exit=0
+w8 exit=0

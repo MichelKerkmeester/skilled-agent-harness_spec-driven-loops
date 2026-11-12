@@ -1,0 +1,39 @@
+Done.
+
+## File written
+`.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-graph-health.vitest.ts` — one line, one pin:
+
+```diff
+- expect(payload.inventory_parity.graphless_inline).toEqual(['create:agent', 'create:manual-testing-playbook', 'memory:save']);
++ expect(payload.inventory_parity.graphless_inline).toEqual(['command-speckit-save', 'create:agent', 'create:manual-testing-playbook']);
+```
+
+`git diff --stat`: 1 file changed, 1 insertion(+), 1 deletion(-). No other file touched.
+
+## What the list is, and why it moved
+`_compare_inventories` in `scripts/skill_advisor.py:5226` builds it as `sorted(missing_in_graph & GRAPHLESS_INLINE_SKILL_IDS)` — a set intersection over the module constant at line 272, alphabetically sorted. So two things changed at once:
+
+1. **Membership** — the constant replaces `"memory:save"` with `"command-speckit-save"` (the same save-command bridge, live id). Set size stays 3.
+2. **Order** — purely the `sorted()` sort, not a semantic reordering. `command-speckit-save` precedes `create:agent` because `"com" < "cre"`. The other two entries kept their relative order.
+
+Neither `in_sync` nor `status` changed: the id is still tolerated as graphless-inline, so health stays `ok` / `in_sync: true`.
+
+## Verdict
+**(a) — update the pin.** It pins a retired id; the replacement is the same behaviour under the new name (`/speckit:save` scores as `command-speckit-save`, still graphless-inline by design and still tolerated). The order change is an artifact of the sort, not a regression. Nothing was weakened: the three-member count and the exact id set remain asserted, so a genuine fourth graphless node or a lost tolerated id still fails the test.
+
+## Verify output
+```
+ RUN  v4.1.12
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+```
+Raw payload cross-check (evidence, not inferred from the test):
+```
+status=ok in_sync=True ['command-speckit-save', 'create:agent', 'create:manual-testing-playbook']
+```
+
+**Remaining failures: none.** All other expectations in the file (compiler validation passed, no zero-edge warnings, empty `missing_in_discovery` / `missing_in_graph` / `graph_only`) already matched the new state and were left untouched.
+
+## Could not do
+Nothing blocked. No scorer source, git state, or other file was modified; no agent or CLI was dispatched.

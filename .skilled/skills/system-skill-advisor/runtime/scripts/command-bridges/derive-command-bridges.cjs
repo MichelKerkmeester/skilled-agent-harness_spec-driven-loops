@@ -57,6 +57,15 @@ const WRITE_SCOPES = ['spec-folder'];
 const RENDER_PATH = join(SKILLS_ROOT, 'system-skill-advisor', 'runtime', 'lib', 'render.ts');
 const RENDER_GENERATED_START = '// BEGIN GENERATED DOCTOR COMMANDS';
 const RENDER_GENERATED_END = '// END GENERATED DOCTOR COMMANDS';
+const COMMAND_ATTACH_PATH = join(
+  SKILLS_ROOT,
+  'system-skill-advisor',
+  'runtime',
+  'lib',
+  'command-attach.ts',
+);
+const COMMAND_ATTACH_GENERATED_START = '// BEGIN GENERATED MODE COMMANDS';
+const COMMAND_ATTACH_GENERATED_END = '// END GENERATED MODE COMMANDS';
 
 // Manifest-derived runnable strings, trigger phrases and precedence phrases per doctor bridge id.
 // The inventory entries keep their five-key shape; the projection merge reads here.
@@ -97,6 +106,9 @@ function metadataEntries(skillsRoot = SKILLS_ROOT) {
     const filePath = join(skillsRoot, skillId, 'command-metadata.json');
     if (!existsSync(filePath)) continue;
 
+    // A skill with no mode registry has no hub to route its commands, so its
+    // metadata is the whole declaration of what each command reaches.
+    const standalone = !existsSync(join(skillsRoot, skillId, 'mode-registry.json'));
     const metadata = readJson(filePath);
     if (!Array.isArray(metadata)) {
       throw new Error(`[command-bridges] ${sourcePath(filePath)} must contain a JSON array`);
@@ -111,11 +123,29 @@ function metadataEntries(skillsRoot = SKILLS_ROOT) {
           `[command-bridges] ${sourcePath(filePath)}[${index}] requires string command and ownerMode`,
         );
       }
+      const description = entry.description === undefined ? '' : entry.description;
+      if (typeof description !== 'string') {
+        throw new Error(
+          `[command-bridges] ${sourcePath(filePath)}[${index}] description must be a string`,
+        );
+      }
+      // The phrases a person types instead of the command are declared once, in
+      // the metadata, so the bridge reads them here instead of restating them.
+      const ownedSignals = entry.userIntent && entry.userIntent.ownedSignals !== undefined
+        ? stringArray(
+          entry.userIntent.ownedSignals,
+          `${sourcePath(filePath)}[${index}].userIntent.ownedSignals`,
+        )
+        : [];
       entries.push({
         id: bridgeId(command),
         command,
         skillId,
         ownerMode,
+        description,
+        ownedSignals: [...ownedSignals],
+        standalone,
+        mutating: entry.mutating,
         source: sourcePath(filePath),
       });
     }
@@ -314,6 +344,67 @@ function commandTreeNames(commandsRoot = COMMANDS_ROOT) {
     commands.push(...files);
   }
   return commands.sort();
+}
+
+// A hub's mode registry is the only place that pairs a workflow mode with the
+// command that runs it, so the reader's reverse lookup is derived from the hubs
+// themselves rather than transcribed into the consumer and left to drift.
+function modeCommandRecords(skillsRoot = SKILLS_ROOT, commandsRoot = COMMANDS_ROOT) {
+  const commandNames = new Set(commandTreeNames(commandsRoot));
+  const records = [];
+  const hubIds = readdirSync(skillsRoot, { withFileTypes: true })
+    // The same skill folders as the bridge metadata, for the same reason: a
+    // private skill is local to one checkout and a linked folder is not a skill
+    // source.
+    .filter((entry) => !entry.name.startsWith('local-') && !entry.isSymbolicLink())
+    .map((entry) => entry.name)
+    .sort();
+  for (const hubId of hubIds) {
+    const filePath = join(skillsRoot, hubId, 'mode-registry.json');
+    if (!existsSync(filePath)) continue;
+
+    const registry = readJson(filePath);
+    const modes = registry && registry.modes;
+    if (!Array.isArray(modes)) {
+      throw new Error(`[command-bridges] ${sourcePath(filePath)} must contain a modes array`);
+    }
+    const seen = new Set();
+    for (const [index, mode] of modes.entries()) {
+      const label = `${sourcePath(filePath)} modes[${index}]`;
+      const workflowMode = mode && mode.workflowMode;
+      if (typeof workflowMode !== 'string' || !workflowMode) {
+        throw new Error(`[command-bridges] ${label} requires a non-empty string workflowMode`);
+      }
+      // One key per hub: a repeated workflow mode would leave the lookup holding
+      // whichever row the table happened to keep, so the registry has to say it
+      // once.
+      if (seen.has(workflowMode)) {
+        throw new Error(
+          `[command-bridges] Duplicate workflow mode ${workflowMode} in ${sourcePath(filePath)}`,
+        );
+      }
+      seen.add(workflowMode);
+
+      const { command } = mode;
+      // A null command is a mode with no dedicated slash command, which is a
+      // declared state rather than a mistake, so it contributes no row.
+      if (typeof command !== 'string' || !command) continue;
+      // A command with no router file is one the reader cannot type, so naming
+      // it here would promise a surface that does not exist.
+      if (!commandNames.has(command)) {
+        throw new Error(
+          `[command-bridges] ${label} names ${command}, which has no command file`,
+        );
+      }
+      records.push({ hubId, workflowMode, command });
+    }
+  }
+  // The generated file is compared byte for byte, so the order has to be total.
+  return records.sort((left, right) => (
+    left.hubId === right.hubId
+      ? left.workflowMode.localeCompare(right.workflowMode)
+      : left.hubId.localeCompare(right.hubId)
+  ));
 }
 
 // The policy ladder reads only these keys, so a wrong value has to fail here
@@ -649,7 +740,82 @@ function compatibilityByInventoryId(entries, inventoryIds, platform) {
   return byInventoryId;
 }
 
-function runtimeCompatibility(entries) {
+// A standalone skill has no hub registry, so the only record of what its
+// commands reach is its own metadata. The match is by command rather than by id
+// because one command can enter the inventory under a row that carries its own
+// historical id.
+function standaloneCommandRecords(entries, metadata) {
+  const byCommand = new Map();
+  for (const record of metadata) {
+    if (record.standalone) byCommand.set(record.command, record);
+  }
+  return entries
+    .filter((entry) => byCommand.has(entry.command))
+    .sort((left, right) => left.id.localeCompare(right.id))
+    .map((entry) => ({ entry, record: byCommand.get(entry.command) }));
+}
+
+// A generated row is the command's only reach, so one phrase would leave it
+// indistinguishable from every other command and the activation would claim a
+// surface the scorer cannot actually offer.
+function assertPlainChatSignals(records) {
+  for (const { entry, record } of records) {
+    if (record.ownedSignals.length < 2) {
+      throw new Error(
+        `[command-bridges] ${entry.command} needs at least two userIntent.ownedSignals `
+          + `in ${record.source}, found ${record.ownedSignals.length}`,
+      );
+    }
+  }
+}
+
+function commandNamespace(command) {
+  return command.slice(1, command.indexOf(':'));
+}
+
+// A standalone skill's commands are active by construction: the metadata already
+// names the phrases a person types, so a hand row would be a second copy left to
+// drift. A hand row still wins where one exists, because a curated row can carry
+// phrases the metadata cannot know. Orders start past the highest hand-written
+// one so a later hand row never has to renumber a generated one.
+function activateStandaloneCommands(byInventoryId, records, platform) {
+  let nextOrder = 0;
+  for (const row of byInventoryId.values()) {
+    nextOrder = Math.max(nextOrder, row.order + 1);
+  }
+  for (const { entry, record } of records) {
+    if (byInventoryId.has(entry.id)) continue;
+    byInventoryId.set(entry.id, standaloneRuntimeRow(entry, record, nextOrder, platform));
+    nextOrder += 1;
+  }
+}
+
+function standaloneRuntimeRow(entry, record, order, platform) {
+  if (platform === 'typescript') {
+    return {
+      inventoryId: entry.id,
+      order,
+      id: entry.id,
+      name: entry.id,
+      description: record.description,
+      keywords: [...record.ownedSignals],
+      domains: [commandNamespace(entry.command), 'command'],
+      intentSignals: [...record.ownedSignals],
+      // The class decides this for every command, not only a doctor route.
+      ...(isReadOnlyRoute(record) ? { readOnly: true } : {}),
+    };
+  }
+  return {
+    inventoryId: entry.id,
+    order,
+    id: entry.id,
+    description: record.description,
+    slashMarkers: [entry.command, entry.command.slice(1)],
+    owningSkill: record.skillId,
+  };
+}
+
+function runtimeCompatibility(entries, metadata) {
   const compatibility = readJson(COMPATIBILITY_PATH);
   if (!compatibility || typeof compatibility !== 'object' || compatibility.schemaVersion !== 1) {
     throw new Error('[command-bridges] scoring-compatibility.json requires schemaVersion 1');
@@ -661,6 +827,10 @@ function runtimeCompatibility(entries) {
     'typescript',
   );
   const python = compatibilityByInventoryId(compatibility.python, inventoryIds, 'python');
+  const standalone = standaloneCommandRecords(entries, metadata);
+  assertPlainChatSignals(standalone);
+  activateStandaloneCommands(typescript, standalone, 'typescript');
+  activateStandaloneCommands(python, standalone, 'python');
   const pythonOwnerNormalization = compatibility.pythonOwnerNormalization;
   if (
     !pythonOwnerNormalization
@@ -739,6 +909,7 @@ function renderTypescriptBridge(entry) {
   const lines = [
     '  {',
     `    inventoryId: ${tsString(entry.id)},`,
+    `    ownerSkill: ${tsString(entry.skillId)},`,
     `    routingEnabled: ${active},`,
     `    id: ${tsString(id)},`,
     "    kind: 'command',",
@@ -851,10 +1022,31 @@ function renderDoctorCommandStrings(entries) {
   ].join('\n');
 }
 
-function generatedSources(entries, pythonOwnerNormalization) {
+// Hub-then-mode nesting so a reader scans one hub's modes together, and the
+// records arrive already ordered so the block is byte-identical between runs.
+function renderModeCommands(records) {
+  const lines = [
+    'export const MODE_COMMANDS: Readonly<Record<string, Readonly<Record<string, string>>>> = {',
+  ];
+  let hubId = null;
+  for (const record of records) {
+    if (record.hubId !== hubId) {
+      if (hubId !== null) lines.push('  },');
+      hubId = record.hubId;
+      lines.push(`  ${tsString(hubId)}: {`);
+    }
+    lines.push(`    ${tsString(record.workflowMode)}: ${tsString(record.command)},`);
+  }
+  if (hubId !== null) lines.push('  },');
+  lines.push('};');
+  return lines.join('\n');
+}
+
+function generatedSources(entries, pythonOwnerNormalization, modeCommands) {
   const typescript = readFileSync(TS_PROJECTION_PATH, 'utf8');
   const python = readFileSync(PY_ADVISOR_PATH, 'utf8');
   const render = readFileSync(RENDER_PATH, 'utf8');
+  const commandAttach = readFileSync(COMMAND_ATTACH_PATH, 'utf8');
   return [
     {
       path: TS_PROJECTION_PATH,
@@ -889,6 +1081,17 @@ function generatedSources(entries, pythonOwnerNormalization) {
         RENDER_PATH,
       ),
     },
+    {
+      path: COMMAND_ATTACH_PATH,
+      current: commandAttach,
+      next: replaceMarkedBlock(
+        commandAttach,
+        COMMAND_ATTACH_GENERATED_START,
+        COMMAND_ATTACH_GENERATED_END,
+        renderModeCommands(modeCommands),
+        COMMAND_ATTACH_PATH,
+      ),
+    },
   ];
 }
 
@@ -911,10 +1114,13 @@ function main() {
   const metadata = metadataEntries();
   const allowList = allowListEntries();
   const doctor = doctorRouteEntries();
-  // Allow-list rows name legacy ids that are retired separately, so they stay out of the identity check.
+  // The identity check compares command names against the declarations that make
+  // a command real; an allow-list row only repeats an ownership id for a command
+  // the tree and the metadata already name, so it adds nothing there.
   const tree = commandTreeNames();
   const metadataRisk = metadataRiskRecords();
   const doctorRisk = doctorRiskRecords();
+  const modeCommands = modeCommandRecords();
   const violations = identityViolations({
     treeCommands: tree,
     metadataCommands: metadataRisk.map((record) => record.command),
@@ -930,7 +1136,7 @@ function main() {
   const inventory = [...bridgedMetadata, ...allowList, ...doctor]
     .sort((left, right) => left.id.localeCompare(right.id));
   assertUniqueIds(inventory);
-  const compatibility = runtimeCompatibility(inventory);
+  const compatibility = runtimeCompatibility(inventory, metadata);
   const entries = inventory.map((entry) => {
     const isDoctor = entry.id.startsWith(DOCTOR_PREFIX);
     const typescript = compatibility.typescript.get(entry.id);
@@ -966,7 +1172,7 @@ function main() {
     commandPolicies: commandPolicies(),
   };
   const output = `${JSON.stringify(projection, null, 2)}\n`;
-  const sources = generatedSources(entries, compatibility.pythonOwnerNormalization);
+  const sources = generatedSources(entries, compatibility.pythonOwnerNormalization, modeCommands);
   const changed = [
     ...(readFileSync(OUTPUT_PATH, 'utf8') === output ? [] : [OUTPUT_PATH]),
     ...sources.filter(({ current, next }) => current !== next).map(({ path }) => path),
@@ -994,6 +1200,7 @@ if (require.main === module) main();
 module.exports = {
   metadataEntries,
   commandTreeNames,
+  modeCommandRecords,
   validateRiskKeys,
   derivePolicy,
   metadataRiskRecords,

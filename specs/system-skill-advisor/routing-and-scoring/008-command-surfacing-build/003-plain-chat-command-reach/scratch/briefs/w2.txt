@@ -1,0 +1,36 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: create ONE new file, `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/scratch/hook-latency.mjs`. Then run it once.
+
+It times the Claude prompt hook. For each line of `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/scratch/tune-rows.jsonl` (JSON per line, field `prompt`; read ONLY this file for prompts):
+- spawn `node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js` from the repository root with `child_process.spawnSync`, a 30 second timeout
+- First find out what the hook expects on stdin: read `.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts` (or the nearest source of that dist file). If it expects a JSON object, send `{"prompt": <the prompt>, "cwd": <repo root>, "hook_event_name": "UserPromptSubmit", "session_id": "latency-probe"}` adjusted to the field names the source reads. Say in your report which shape you sent and the source line that told you.
+- record wall time in milliseconds with `performance.now()`, and the exit status
+
+Run the prompts one after another, not in parallel. Print ONE JSON object to stdout: `{"n": <count>, "medianMs": <number>, "p95Ms": <number>, "minMs": <number>, "maxMs": <number>, "nonZeroExits": <count>, "emptyOutputs": <count>}`. Resolve the repository root from the script's own location, not from the current directory. Exit 2 with a message on stderr if the rows file or the hook file is missing.
+
+VERIFY: from the repository root run
+`node specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/scratch/hook-latency.mjs > specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/scratch/hook-latency-before.json`
+It must exit 0, and `jq -c '[.n,.medianMs,.p95Ms,.nonZeroExits,.emptyOutputs]'` on that output file must print 44 first. Report that line. If most outputs are empty or most exits are non-zero, say so plainly: that means the stdin shape is wrong.

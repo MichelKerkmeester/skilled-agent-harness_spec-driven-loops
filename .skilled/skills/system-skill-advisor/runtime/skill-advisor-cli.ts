@@ -1484,6 +1484,9 @@ function degradedRecommendations(entries: readonly AdvisorRecommendation[]): Arr
     }));
 }
 
+// Request options added after the daemon protocol was fixed, oldest first.
+const COMPILED_ROUTE_OPTION_KEYS = ['includeCompiledRoute', 'compiledRouteTopOnly'] as const;
+
 async function invokeAdvisorRecommendPayload(
   args: Record<string, unknown>,
   timeoutMs: number,
@@ -1495,17 +1498,19 @@ async function invokeAdvisorRecommendPayload(
   } catch (error: unknown) {
     let failure = error;
     const options = args.options;
-    if (
-      error instanceof JsonRpcError
-      && error.code === -32602
-      && error.message.includes('includeCompiledRoute')
-      && isRecord(options)
-      && Object.prototype.hasOwnProperty.call(options, 'includeCompiledRoute')
-    ) {
-      // A daemon started before this option existed rejects it, and the
-      // protocol handshake cannot distinguish the two builds.
+    const rejected = error instanceof JsonRpcError && error.code === -32602 && isRecord(options)
+      ? COMPILED_ROUTE_OPTION_KEYS.filter((key) => (
+        error.message.includes(key) && Object.prototype.hasOwnProperty.call(options, key)
+      ))
+      : [];
+    if (rejected.length > 0 && isRecord(options)) {
+      // A daemon started before these options existed rejects them, and the
+      // protocol handshake cannot distinguish the builds. A daemon too old for
+      // the first option is too old for the later one as well, and it may name
+      // only one of them, so both go together in that case.
       const retryOptions: Record<string, unknown> = { ...options };
-      delete retryOptions.includeCompiledRoute;
+      const drop = rejected.includes('includeCompiledRoute') ? COMPILED_ROUTE_OPTION_KEYS : rejected;
+      for (const key of drop) delete retryOptions[key];
       const retryArgs: Record<string, unknown> = { ...args, options: retryOptions };
       try {
         return await invokeToolPayload('advisor_recommend', retryArgs, timeoutMs, trusted, warmOnly);

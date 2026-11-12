@@ -750,10 +750,10 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-015: conflict penalty only applies on mutual declaration", str(exc))
 
-    # — `/deep:research` must route
-    # to `deep-research`, NOT collapse to the generic `command-spec-kit`. The
-    # Owning-skill signal was lost for slash subcommands before
-    # skill_advisor.py line 1312 fix; this regression pins the subcommand map.
+    # — `/deep:research` must route to the owning
+    # `deep-research` skill rather than to its own command bridge. The
+    # owning-skill signal was lost for slash subcommands once before, so this
+    # regression pins the subcommand map.
     try:
         failures = []
         # Multi-prompt check: the slash command alone AND typical phrasing that
@@ -772,10 +772,10 @@ description: Fixture helper for routing tests
             )
             by_skill = {r.get("skill"): r for r in recs if isinstance(r, dict)}
             dr = by_skill.get("deep-research")
-            cmd = by_skill.get("command-spec-kit")
-            # deep-research MUST be present as a recommendation. command-spec-kit
-            # may also appear, but deep-research must rank at least as high
-            # (higher confidence OR equal with deep-research listed first).
+            cmd = by_skill.get("command-spec-kit-deep-research")
+            # deep-research MUST be present as a recommendation. Its command
+            # bridge may also appear, but deep-research must rank at least as
+            # high (higher confidence OR equal with deep-research listed first).
             if dr is None:
                 failures.append(f"{prompt!r}: deep-research missing from recs")
                 continue
@@ -783,17 +783,17 @@ description: Fixture helper for routing tests
                 dr_conf = float(dr.get("confidence", 0.0))
                 cmd_conf = float(cmd.get("confidence", 0.0))
                 if dr_conf + 1e-9 < cmd_conf:
-                    failures.append(f"{prompt!r}: deep-research={dr_conf:.2f} < command-spec-kit={cmd_conf:.2f}")
+                    failures.append(f"{prompt!r}: deep-research={dr_conf:.2f} < command-spec-kit-deep-research={cmd_conf:.2f}")
         if not failures:
-            ok("T243-SA-016: /deep:research routes to deep-research (not command-spec-kit)")
+            ok("T243-SA-016: /deep:research routes to deep-research (not its command bridge)")
         else:
             fail_test(
-                "T243-SA-016: /deep:research routes to deep-research (not command-spec-kit)",
+                "T243-SA-016: /deep:research routes to deep-research (not its command bridge)",
                 "; ".join(failures),
             )
     except Exception as exc:
         fail_test(
-            "T243-SA-016: /deep:research routes to deep-research (not command-spec-kit)",
+            "T243-SA-016: /deep:research routes to deep-research (not its command bridge)",
             str(exc),
         )
 
@@ -801,7 +801,6 @@ description: Fixture helper for routing tests
     try:
         failures = []
         expected_routes = [
-            ("run /memory:save for this packet", "system-spec-kit"),
             ("run /speckit:resume for the 019 hardening packet", "system-spec-kit"),
             ("run /deep:research :auto on this packet", "deep-research"),
             ("run /deep:review :auto on this packet", "deep-review"),
@@ -820,6 +819,20 @@ description: Fixture helper for routing tests
                 continue
             if "command-normalized:" not in str(top.get("reason", "")):
                 failures.append(f"{prompt!r}: missing normalization reason {top.get('reason')!r}")
+        # Saving context is a single command row, so a prompt that types the save
+        # is asking for that command and gets it back; only the workflows that a
+        # separate owning skill executes fold onto their owner.
+        save_prompt = "run /memory:save for this packet"
+        save_recs = advisor.analyze_prompt(
+            prompt=save_prompt,
+            confidence_threshold=0.5,
+            uncertainty_threshold=1.0,
+            confidence_only=True,
+            show_rejections=True,
+        )
+        save_top = save_recs[0] if isinstance(save_recs, list) and save_recs else None
+        if not isinstance(save_top, dict) or save_top.get("skill") != "command-speckit-save":
+            failures.append(f"{save_prompt!r}: top={save_top}")
         if not failures:
             ok("T243-SA-017: command bridge winners normalize to owning skills")
         else:
@@ -833,10 +846,10 @@ description: Fixture helper for routing tests
     # Quoted commands and command-target implementation refs are guarded.
     try:
         guard_cases = [
-            ("explain `/memory:save` without changing files", "command-memory-save", True),
-            ("add tests for command-memory-save normalization guard", "command-memory-save", True),
+            ("explain `/speckit:save` without changing files", "command-speckit-save", True),
+            ("add tests for command-speckit-save normalization guard", "command-speckit-save", True),
             ("modify command-spec-kit-deep-review mapping", "command-spec-kit-deep-review", True),
-            ("run /memory:save for this packet", "command-memory-save", False),
+            ("run /memory:save for this packet", "command-speckit-save", False),
             ("run /deep:review :auto", "command-spec-kit-deep-review", False),
         ]
         failures = []
@@ -1130,7 +1143,7 @@ description: Fixture helper for routing tests
                         "uncertainty": 0.12,
                     },
                     {
-                        "skillId": "memory:save",
+                        "skillId": "command-speckit-save",
                         "kind": "command",
                         "score": 0.85,
                         "confidence": 0.85,

@@ -11,11 +11,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { parse as parseYaml } from 'yaml';
 
-import {
-  COMMAND_BRIDGES,
-  GENERATED_COMMAND_BRIDGES,
-  HAND_AUTHORED_COMMAND_BRIDGES,
-} from '../lib/scorer/projection.js';
+import { COMMAND_BRIDGES, GENERATED_COMMAND_BRIDGES } from '../lib/scorer/projection.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 
 interface CommandBridgeEntry {
@@ -23,6 +19,10 @@ interface CommandBridgeEntry {
   readonly command: string;
   readonly skillId: string;
   readonly ownerMode: string;
+  readonly description?: string;
+  readonly ownedSignals?: readonly string[];
+  readonly standalone?: boolean;
+  readonly mutating?: string;
   readonly source: string;
   readonly runtime?: {
     readonly typescript: { readonly enabled: boolean };
@@ -39,6 +39,65 @@ interface AllowListEntry extends Omit<CommandBridgeEntry, 'source'> {
   readonly reason: string;
 }
 
+type Runtime = 'typescript' | 'python';
+
+interface CompatibilityRow {
+  readonly inventoryId: string;
+  readonly order: number;
+  readonly id: string;
+  readonly description: string;
+  readonly name?: string;
+  readonly keywords?: readonly string[];
+  readonly domains?: readonly string[];
+  readonly intentSignals?: readonly string[];
+  readonly slashMarkers?: readonly string[];
+  readonly leadPhrases?: readonly string[];
+  readonly readOnly?: boolean;
+  readonly deprecated?: boolean;
+  readonly owningSkill?: string;
+}
+
+interface CompatibilitySnapshot {
+  readonly typescript: readonly CompatibilityRow[];
+  readonly python: readonly CompatibilityRow[];
+  readonly pythonOwnerNormalization: Readonly<Record<string, string>>;
+}
+
+// A standalone skill's command paired with the inventory row it enters under.
+interface StandaloneCommand {
+  readonly inventoryId: string;
+  readonly inventorySkillId: string;
+  readonly command: string;
+  readonly description: string;
+  readonly ownedSignals: readonly string[];
+  readonly mutating: string;
+  readonly recordSkillId: string;
+}
+
+interface TypescriptEvidence {
+  readonly inventoryId: string;
+  readonly ownerSkill: string;
+  readonly id: string;
+  readonly name: string;
+  readonly description: string;
+  readonly keywords: readonly string[];
+  readonly domains: readonly string[];
+  readonly intentSignals: readonly string[];
+  readonly readOnly: boolean;
+}
+
+interface ProjectionRow {
+  readonly id: string;
+  readonly inventoryId?: string;
+  readonly ownerSkill?: string;
+  readonly name?: string;
+  readonly description?: string;
+  readonly keywords?: readonly string[];
+  readonly domains?: readonly string[];
+  readonly intentSignals?: readonly string[];
+  readonly readOnly?: boolean;
+}
+
 const REPO_ROOT = findAdvisorWorkspaceRoot(import.meta.dirname);
 const SKILLS_ROOT = join(REPO_ROOT, '.skilled', 'skills');
 const DOCTOR_DIR = join(REPO_ROOT, '.skilled', 'commands', 'doctor');
@@ -53,6 +112,7 @@ const COMMAND_BRIDGES_DIR = join(
 );
 const GENERATED_PATH = join(COMMAND_BRIDGES_DIR, 'command-bridges.generated.json');
 const ALLOW_LIST_PATH = join(COMMAND_BRIDGES_DIR, 'allow-list.json');
+const COMPATIBILITY_PATH = join(COMMAND_BRIDGES_DIR, 'scoring-compatibility.json');
 const ADVISOR_SCRIPT = join(COMMAND_BRIDGES_DIR, '..', 'skill_advisor.py');
 
 function bridgeId(command: string): string {
@@ -64,17 +124,27 @@ function metadataProjection(): CommandBridgeEntry[] {
   for (const skillId of readdirSync(SKILLS_ROOT).sort()) {
     const metadataPath = join(SKILLS_ROOT, skillId, 'command-metadata.json');
     if (!existsSync(metadataPath)) continue;
-    const metadata = JSON.parse(readFileSync(metadataPath, 'utf8')) as Array<{
+    const metadata = JSON.parse(readFileSync(metadataPath, 'utf8')) as ReadonlyArray<{
       readonly command: string;
       readonly ownerMode: string;
+      readonly description?: string;
+      readonly mutating?: string;
+      readonly userIntent?: { readonly ownedSignals?: readonly string[] };
     }>;
     const source = `.skilled/skills/${skillId}/command-metadata.json`;
+    // A skill with no mode registry has no hub to route its commands, so its
+    // metadata is the whole declaration of what each command reaches.
+    const standalone = !existsSync(join(SKILLS_ROOT, skillId, 'mode-registry.json'));
     for (const entry of metadata) {
       entries.push({
         id: bridgeId(entry.command),
         command: entry.command,
         skillId,
         ownerMode: entry.ownerMode,
+        description: entry.description ?? '',
+        ownedSignals: [...(entry.userIntent?.ownedSignals ?? [])],
+        standalone,
+        mutating: entry.mutating,
         source,
       });
     }
@@ -159,21 +229,169 @@ function inventoryEntry(entry: CommandBridgeEntry): CommandBridgeEntry {
   return inventory;
 }
 
+function allowListEntries(): readonly AllowListEntry[] {
+  return JSON.parse(readFileSync(ALLOW_LIST_PATH, 'utf8')) as readonly AllowListEntry[];
+}
+
+// Every bridge the generated file holds: one per declaration, plus the residual
+// allow-list rows and the doctor routes the same inventory is built from.
+function inventoryProjection(): CommandBridgeEntry[] {
+  const allowList = allowListEntries();
+  // A command the allow-list already carries keeps that row's id, so its
+  // metadata entry adds no second bridge for the same command.
+  const allowListCommands = new Set(allowList.map((entry) => entry.command));
+  return sorted([
+    ...metadataProjection().filter((entry) => !allowListCommands.has(entry.command)),
+    ...allowList.map(({ reason: _reason, ...entry }) => ({
+      ...entry,
+      source: 'scripts/command-bridges/allow-list.json',
+    })),
+    ...doctorProjection(),
+  ]);
+}
+
+function compatibilitySnapshot(): CompatibilitySnapshot {
+  return JSON.parse(readFileSync(COMPATIBILITY_PATH, 'utf8')) as CompatibilitySnapshot;
+}
+
+// A compatibility row is hand-curated: its order, runtime id and phrases are the
+// curation itself, so the expectation reads them verbatim.
+function handRows(platform: Runtime): CompatibilityRow[] {
+  return compatibilitySnapshot()[platform]
+    .filter((row) => !row.inventoryId.startsWith(DOCTOR_PREFIX))
+    .sort((left, right) => left.order - right.order);
+}
+
+// A standalone skill's command is the one bridge its metadata declares, matched by
+// command rather than by id because a command can enter the inventory under a row
+// carrying its own historical id.
+function standaloneCommands(): StandaloneCommand[] {
+  const records = new Map(
+    metadataProjection()
+      .filter((entry) => entry.standalone === true)
+      .map((entry) => [entry.command, entry] as const),
+  );
+  return inventoryProjection()
+    .filter((entry) => records.has(entry.command))
+    .map((entry) => {
+      const record = records.get(entry.command) as CommandBridgeEntry;
+      return {
+        inventoryId: entry.id,
+        inventorySkillId: entry.skillId,
+        command: entry.command,
+        description: record.description ?? '',
+        ownedSignals: [...(record.ownedSignals ?? [])],
+        mutating: record.mutating ?? '',
+        recordSkillId: record.skillId,
+      };
+    });
+}
+
+// A hand row still wins where one exists, because a curated row can carry phrases
+// the metadata cannot know. Only the commands without one are generated.
+function generatedRows(platform: Runtime): StandaloneCommand[] {
+  const hand = new Set(compatibilitySnapshot()[platform].map((row) => row.inventoryId));
+  return standaloneCommands().filter((command) => !hand.has(command.inventoryId));
+}
+
+function activeInventoryIds(platform: Runtime): string[] {
+  return [
+    ...handRows(platform).map((row) => row.inventoryId),
+    ...generatedRows(platform).map((command) => command.inventoryId),
+  ].sort();
+}
+
+function commandNamespace(command: string): string {
+  return command.slice(1, command.indexOf(':'));
+}
+
+// The active TypeScript half of the surface: a hand row passes its curated entry
+// through unchanged, and a generated row takes its phrases, description and
+// read-only class from the standalone skill's metadata.
+function typescriptEvidence(): TypescriptEvidence[] {
+  const inventorySkill = new Map(
+    inventoryProjection().map((entry) => [entry.id, entry.skillId] as const),
+  );
+  return [
+    ...handRows('typescript').map((row) => ({
+      inventoryId: row.inventoryId,
+      ownerSkill: inventorySkill.get(row.inventoryId) ?? '',
+      id: row.id,
+      name: row.name ?? '',
+      description: row.description,
+      keywords: [...(row.keywords ?? [])],
+      domains: [...(row.domains ?? [])],
+      intentSignals: [...(row.intentSignals ?? [])],
+      readOnly: row.readOnly === true,
+    })),
+    ...generatedRows('typescript').map((command) => ({
+      inventoryId: command.inventoryId,
+      ownerSkill: command.inventorySkillId,
+      id: command.inventoryId,
+      name: command.inventoryId,
+      description: command.description,
+      keywords: [...command.ownedSignals],
+      domains: [commandNamespace(command.command), 'command'],
+      intentSignals: [...command.ownedSignals],
+      readOnly: command.mutating === 'read-only',
+    })),
+  ];
+}
+
+function typescriptView(entry: ProjectionRow): TypescriptEvidence {
+  return {
+    inventoryId: entry.inventoryId ?? entry.id,
+    ownerSkill: entry.ownerSkill ?? '',
+    id: entry.id,
+    name: entry.name ?? '',
+    description: entry.description ?? '',
+    keywords: [...(entry.keywords ?? [])],
+    domains: [...(entry.domains ?? [])],
+    intentSignals: [...(entry.intentSignals ?? [])],
+    readOnly: entry.readOnly === true,
+  };
+}
+
+function byInventoryId(
+  left: { readonly inventoryId: string },
+  right: { readonly inventoryId: string },
+): number {
+  return left.inventoryId.localeCompare(right.inventoryId);
+}
+
+// The live Python dict is rendered in runtime order, so the expectation keeps the
+// hand rows in their compatibility order and appends the generated rows the way the
+// generator numbers them: after the highest hand order, by inventory id.
+function pythonEvidence(): Array<[string, Record<string, unknown>]> {
+  const hand: Array<[string, Record<string, unknown>]> = handRows('python').map((row) => [
+    row.id,
+    {
+      description: row.description,
+      slash_markers: [...(row.slashMarkers ?? [])],
+      ...(row.leadPhrases !== undefined && row.leadPhrases.length > 0
+        ? { lead_phrases: [...row.leadPhrases] }
+        : {}),
+      ...(row.deprecated === true ? { deprecated: true } : {}),
+      ...(typeof row.owningSkill === 'string' ? { owning_skill: row.owningSkill } : {}),
+    },
+  ]);
+  const generated: Array<[string, Record<string, unknown>]> = generatedRows('python').map(
+    (command) => [
+      command.inventoryId,
+      {
+        description: command.description,
+        slash_markers: [command.command, command.command.slice(1)],
+        owning_skill: command.recordSkillId,
+      },
+    ],
+  );
+  return [...hand, ...generated];
+}
+
 describe('command-bridges drift guard', () => {
   it('generated projection exactly equals JSON-derived ids union the residual allow-list and the doctor routes', () => {
     const generated = JSON.parse(readFileSync(GENERATED_PATH, 'utf8')) as CommandBridgeDump;
-    const allowList = JSON.parse(readFileSync(ALLOW_LIST_PATH, 'utf8')) as readonly AllowListEntry[];
-    // A command the allow-list already carries keeps that row's id, so its
-    // metadata entry adds no second bridge for the same command.
-    const allowListCommands = new Set(allowList.map((entry) => entry.command));
-    const expected = sorted([
-      ...metadataProjection().filter((entry) => !allowListCommands.has(entry.command)),
-      ...allowList.map(({ reason: _reason, ...entry }) => ({
-        ...entry,
-        source: 'scripts/command-bridges/allow-list.json',
-      })),
-      ...doctorProjection(),
-    ]);
+    const expected = inventoryProjection();
     const expectedIds = new Set(expected.map((entry) => entry.id));
     const generatedInventory = generated.entries.map(inventoryEntry);
     const generatedIds = new Set(generatedInventory.map((entry) => entry.id));
@@ -187,34 +405,37 @@ describe('command-bridges drift guard', () => {
     expect(sorted(generatedInventory)).toEqual(expected);
   });
 
-  it('generates all inventory ids for both runtimes while scoring only the compatibility snapshots', () => {
+  it('generates all inventory ids for both runtimes and scores exactly the compatibility rows plus the standalone commands', () => {
     const generated = JSON.parse(readFileSync(GENERATED_PATH, 'utf8')) as CommandBridgeDump;
     const inventoryIds = generated.entries.map((entry) => entry.id).sort();
     const typescriptInventoryIds = GENERATED_COMMAND_BRIDGES
       .map((entry) => entry.inventoryId ?? entry.id)
       .sort();
-    // The doctor bridges are generated from the doctor route manifest and have no
-    // hand-authored counterpart, so the frozen hand-authored snapshot is compared
-    // against the other bridges only.
-    const typescriptActive = GENERATED_COMMAND_BRIDGES.filter(
-      (entry) => entry.routingEnabled !== false && !entry.id.startsWith(DOCTOR_PREFIX),
-    ).map(({ inventoryId: _inventoryId, routingEnabled: _routingEnabled, ...entry }) => entry);
-    const handAuthored = HAND_AUTHORED_COMMAND_BRIDGES.map(
-      ({ inventoryId: _inventoryId, routingEnabled: _routingEnabled, ...entry }) => entry,
-    );
 
     expect(typescriptInventoryIds).toEqual(inventoryIds);
-    expect(typescriptActive).toEqual(handAuthored);
+
+    // Two rules turn a row on: a compatibility row names its runtime id, order and
+    // phrases by hand, and a standalone skill's command carries the same kind of
+    // declaration in its own metadata, so it needs no hand row to become reachable.
+    // Both halves are read out of the source files, never out of the current output.
     expect(
-      generated.entries.filter(
-        (entry) => !entry.id.startsWith(DOCTOR_PREFIX) && entry.runtime?.typescript.enabled,
-      ),
-    ).toHaveLength(5);
-    expect(
-      generated.entries.filter(
-        (entry) => !entry.id.startsWith(DOCTOR_PREFIX) && entry.runtime?.python.enabled,
-      ),
-    ).toHaveLength(15);
+      GENERATED_COMMAND_BRIDGES.filter(
+        (entry) => entry.routingEnabled !== false && !entry.id.startsWith(DOCTOR_PREFIX),
+      )
+        .map(typescriptView)
+        .sort(byInventoryId),
+    ).toEqual(typescriptEvidence().sort(byInventoryId));
+
+    const enabledIds = (platform: Runtime): string[] => generated.entries
+      .filter(
+        (entry) => !entry.id.startsWith(DOCTOR_PREFIX) && entry.runtime?.[platform].enabled === true,
+      )
+      .map((entry) => entry.id)
+      .sort();
+
+    expect(enabledIds('typescript')).toEqual(activeInventoryIds('typescript'));
+    expect(enabledIds('python')).toEqual(activeInventoryIds('python'));
+
     // Derived, not literal. This was a hardcoded total and went stale twice: once
     // when a hub deprecation removed commands, once when new ones were added. The
     // export may alias either the active subset or the whole inventory, so accept
@@ -235,9 +456,7 @@ describe('command-bridges drift guard', () => {
       '            for key, value in records.items() if value.get("routing_enabled", True)',
       '            and not key.startswith("command-doctor-")]',
       'print(json.dumps({',
-      '    "hand": cleaned(module["HAND_AUTHORED_COMMAND_BRIDGES"]),',
       '    "generated": cleaned(module["GENERATED_COMMAND_BRIDGES"]),',
-      '    "handOwners": module["HAND_AUTHORED_COMMAND_BRIDGE_OWNER_NORMALIZATION"],',
       '    "generatedOwners": module["GENERATED_COMMAND_BRIDGE_OWNER_NORMALIZATION"],',
       '}))',
     ].join('\n');
@@ -246,14 +465,18 @@ describe('command-bridges drift guard', () => {
       encoding: 'utf8',
     });
     const runtime = JSON.parse(output) as {
-      readonly hand: unknown;
       readonly generated: unknown;
-      readonly handOwners: unknown;
       readonly generatedOwners: unknown;
     };
 
-    expect(runtime.generated).toEqual(runtime.hand);
-    expect(runtime.generatedOwners).toEqual(runtime.handOwners);
+    expect(runtime.generated).toEqual(pythonEvidence());
+
+    const expectedOwners = compatibilitySnapshot().pythonOwnerNormalization;
+    expect(runtime.generatedOwners).toEqual(expectedOwners);
+    // Dict order is what the runtime walks, so it is part of the record too.
+    expect(Object.keys(runtime.generatedOwners as Record<string, string>)).toEqual(
+      Object.keys(expectedOwners),
+    );
   });
 
   it('live Python bridges match the generated projection exactly', () => {

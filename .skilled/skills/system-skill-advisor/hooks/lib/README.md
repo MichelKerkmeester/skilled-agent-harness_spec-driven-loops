@@ -1,7 +1,7 @@
 ---
 title: "Hooks Lib: Skill Advisor CLI Fallback"
 description: "Warm-daemon CLI fallback that the skill-advisor prompt hook falls back to when the in-process advisor brief comes back empty."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Hooks Lib: Skill Advisor CLI Fallback
@@ -18,7 +18,7 @@ version: 1.0.0.0
 
 | File | Purpose |
 |------|---------|
-| `skill-advisor-cli-fallback.ts` | Resolves the CLI, IPC bridge and database paths from one root (`.skilled`, then `.opencode`), spawns the advisor CLI with a bounded timeout. It sends the request on stdin with `--json -`, so the prompt never appears in the child's argv. The request it sends carries `options.includeCompiledRoute: false`, so the daemon skips compiled-route enrichment and starts no `compiled-route.cjs` child. It runs the CLI with `--no-warm-only`, because the CLI is the component that starts the daemon on a cold socket. It parses its JSON payload and normalizes the result (and retryable exit/reason codes) into an `AdvisorHookResult`. |
+| `skill-advisor-cli-fallback.ts` | Resolves the CLI, IPC bridge and database paths from one root (`.skilled`, then `.opencode`), spawns the advisor CLI with a bounded timeout. It sends the request on stdin with `--json -`, so the prompt never appears in the child's argv. The request it sends carries `options.includeCompiledRoute: true`, because the advisor derives a recommendation's slash command from the compiled route, and `options.compiledRouteTopOnly: true`, so only the top pick gets a route lookup. `recommendationFromCli` keeps a non-empty `command` on each recommendation and reads nothing from the route itself. It runs the CLI with `--no-warm-only`, because the CLI is the component that starts the daemon on a cold socket. It parses its JSON payload and normalizes the result (and retryable exit/reason codes) into an `AdvisorHookResult`. |
 
 ---
 

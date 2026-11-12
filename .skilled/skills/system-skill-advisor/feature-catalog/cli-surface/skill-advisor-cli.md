@@ -6,7 +6,7 @@ trigger_phrases:
   - "advisor cli fallback"
   - "trusted mutation gate"
   - "SYSTEM_SKILL_ADVISOR_CLI_TRUSTED"
-version: 0.8.0.2
+version: 0.8.1.0
 ---
 
 # Daemon-backed skill-advisor CLI
@@ -29,7 +29,7 @@ Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `sk
 
 ### Stale-daemon compatibility retry
 
-A resident daemon started from an older build rejects the `includeCompiledRoute` request option with JSON-RPC error -32602. The protocol handshake cannot tell the two builds apart. When the error message names `includeCompiledRoute` and the request carried that key, the CLI retries the call exactly once without it (`runtime/skill-advisor-cli.ts:1495-1515`). Every other error path is unchanged. The retry keeps the answer but costs one extra round trip per call until the old daemon stops. After an upgrade the operator should stop the old daemon once and let the next CLI call start a current one.
+A resident daemon started from an older build rejects the newer request options `includeCompiledRoute` and `compiledRouteTopOnly` with JSON-RPC error -32602. The protocol handshake cannot tell the builds apart. When the error message names one of those options and the request carried it, the CLI retries the call exactly once without the named option. A daemon that rejects `includeCompiledRoute` is too old for `compiledRouteTopOnly` as well, so that retry drops both. The keys live in `COMPILED_ROUTE_OPTION_KEYS` in `runtime/skill-advisor-cli.ts`. Every other error path is unchanged. The retry keeps the answer but costs one extra round trip per call until the old daemon stops. After an upgrade the operator should stop the old daemon once and let the next CLI call start a current one.
 
 ### JSON payload on stdin
 

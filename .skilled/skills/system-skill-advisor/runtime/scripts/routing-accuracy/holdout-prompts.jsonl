@@ -25,7 +25,7 @@
 {"id":"P0-CHROME-001","prompt":"debug console errors in chrome devtools","skill_top_1":"mcp-tooling","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
 {"id":"P0-CHROME-002","prompt":"inspect network waterfall in browser","skill_top_1":"mcp-tooling","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
 {"id":"P0-UNC-001","prompt":"api chain mcp","skill_top_1":"none","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
-{"id":"P0-CMD-002","prompt":"/speckit:plan create docs","skill_top_1":"command-spec-kit","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
+{"id":"P0-CMD-002","prompt":"/speckit:plan create docs","skill_top_1":"command-spec-kit-plan","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
 {"id":"P0-CMD-003","prompt":"/memory:save this context","skill_top_1":"system-spec-kit","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
 {"id":"P0-ABSTAIN-001","prompt":"find where this function is defined","skill_top_1":"none","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}
 {"id":"P1-MCP-001","prompt":"update notion page using code mode toolchain","skill_top_1":"mcp-code-mode","source_type":"holdout-regression","origin_fixture":"scripts/fixtures/skill-advisor-regression-cases.jsonl"}

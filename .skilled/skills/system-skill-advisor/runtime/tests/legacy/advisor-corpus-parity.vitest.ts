@@ -44,6 +44,13 @@ const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
   // rr-hub6-204 and rr-hub6-207 left this list once the native scorer
   // answered both Python-correctly again, so neither is a regression now.
   // Re-add an id only after checking it against gold.
+  //
+  // rr-iter3-105 typed "/memory:save" outright and carries the save gold. The
+  // Python reference answers it; the native scorer gives the packet vocabulary
+  // enough weight to hand the row to system-spec-kit (0.625) ahead of the save
+  // command (0.56). Recorded as a divergence, not accepted as correct: a named
+  // command must outrank the hub that owns its topic.
+  'rr-iter3-105',
 ];
 
 const workspaceRoot = findAdvisorWorkspaceRoot(import.meta.dirname);
@@ -141,8 +148,8 @@ describe('advisor 195-prompt corpus regression-protection parity', () => {
       }
 
       // On the current 195-row corpus the Python reference scorer (built-in
-      // semantic disabled for determinism) makes 114 gold-correct top-1 calls;
-      // the native/hook scorer preserves 108 of them (re-baselined 2026-09-07
+      // semantic disabled for determinism) makes 116 gold-correct top-1 calls;
+      // the native/hook scorer preserves 111 of them (re-baselined 2026-09-07
       // after the deep-loop and design consolidations moved both numbers up). The remaining
       // Python-correct rows the native scorer diverges on are enumerated and
       // reviewed-accepted above.
@@ -160,9 +167,15 @@ describe('advisor 195-prompt corpus regression-protection parity', () => {
       // 113 -> 114 and 109 -> 110: the sk-prompt description no longer claims
       // scoring, so a duplicated-intent scoring prompt reaches its sk-code gold
       // in the Python reference, and the native scorer keeps it. The accepted
-      // regression list is unchanged.
-      expect(pythonCorrect).toBe(114);
-      expect(hookPreservedPythonCorrect).toBe(110);
+      // regression list was unchanged at that step.
+      // 114 -> 116 and 110 -> 111: the retired command bridges collapsed into one
+      // save id and one prompt-improve id, and a typed /speckit:plan or
+      // /speckit:resume now resolves to its own command id instead of an umbrella.
+      // Seventeen gold labels moved to the surviving names and the Python
+      // reference follows them, so it answers two more prompts correctly and the
+      // native scorer keeps one of them; rr-iter3-105 is the row it loses.
+      expect(pythonCorrect).toBe(116);
+      expect(hookPreservedPythonCorrect).toBe(111);
       expect(hookGoldNoneFalseFire).toBeLessThanOrEqual(pythonGoldNoneFalseFire);
       expect(
         regressions.map((regression) => regression.id),

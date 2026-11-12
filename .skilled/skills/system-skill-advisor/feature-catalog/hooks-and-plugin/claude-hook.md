@@ -6,7 +6,7 @@ trigger_phrases:
   - "claude user-prompt-submit"
   - "hookSpecificOutput claude"
   - "claude advisor hook"
-version: 0.11.3.0
+version: 0.11.4.0
 ---
 
 # Claude Code user-prompt-submit Hook
@@ -23,7 +23,7 @@ Surface skill recommendations in Claude Code sessions at prompt time, without bl
 
 `hooks/claude/user-prompt-submit.ts` reads the prompt from stdin, calls the native advisor and returns a JSON envelope with `hookSpecificOutput.additionalContext`. The hook honors `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and fails open on any daemon-level failure. As a default-off, fail-open shadow it also records post-emission advisor-policy delivery (`observeEmittedAdvisorPolicy`), an observed receipt with `lifecycleEpoch >= 1`, as the final step before returning, leaving the emitted envelope byte-identical. Freshness vocabulary is `live / stale / absent / unavailable`. Status vocabulary is `ok / skipped / degraded / fail_open`.
 
-Before any CLI spawn the hook runs the casual-prompt gate. `/help`, short acknowledgements and prompts below the length threshold return `skipped` without spawning the CLI. The CLI request sends `includeCompiledRoute: false`, so no compiled-route child process starts.
+Before any CLI spawn the hook runs the casual-prompt gate. `/help`, short acknowledgements and prompts below the length threshold return `skipped` without spawning the CLI. The CLI request sends `includeCompiledRoute: true`, because the advisor derives a recommendation's slash command from the compiled route. It also sends `compiledRouteTopOnly: true`, so only the top pick gets a route lookup and only the top pick can carry a command. The hook keeps the `command` field on each recommendation and reads nothing from the route itself.
 
 ### Fallback And Repeats
 

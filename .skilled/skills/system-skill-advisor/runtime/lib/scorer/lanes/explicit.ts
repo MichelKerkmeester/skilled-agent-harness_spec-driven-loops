@@ -92,11 +92,11 @@ export const PHRASE_BOOST_BOUND = { min: -1.0, max: 2.0 } as const;
 export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   '/create:agent': [['create:agent', 1.6], ['sk-doc', 0.45]],
   '/create:manual-testing-playbook': [['create:manual-testing-playbook', 1.8], ['command-create-manual-testing-playbook', 1.2], ['sk-doc', 0.2]],
-  '/memory:save': [['memory:save', 1.6], ['command-memory-save', 1], ['system-spec-kit', 0.45]],
-  '/speckit:save': [['memory:save', 1.6], ['command-memory-save', 1], ['system-spec-kit', 0.45]],
-  '/deep:research': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
-  '/deep:review': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
-  '/speckit:resume': [['system-spec-kit', 0.9], ['command-spec-kit', 0.75]],
+  '/memory:save': [['command-speckit-save', 1.6], ['system-spec-kit', 0.45]],
+  '/speckit:save': [['command-speckit-save', 1.6], ['system-spec-kit', 0.45]],
+  '/deep:research': [['system-deep-loop', 1.6]],
+  '/deep:review': [['system-deep-loop', 1.6]],
+  '/speckit:resume': [['system-spec-kit', 0.9], ['command-spec-kit-resume', 0.75]],
   'auto review release readiness': [['system-deep-loop', 1]],
   // Colon-command syntax (":review:auto") is a deep-review LOOP invocation,
   // distinct from natural-language "auto review this PR" (which routes to
@@ -171,8 +171,8 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   'create new agent': [['create:agent', 1.6], ['sk-doc', 0.45]],
   'create test playbook': [['create:manual-testing-playbook', 1.8], ['command-create-manual-testing-playbook', 1.2], ['sk-doc', 0.2]],
   'create testing playbook': [['create:manual-testing-playbook', 1.8], ['command-create-manual-testing-playbook', 1.2], ['sk-doc', 0.2]],
-  'save context': [['memory:save', 1.6], ['command-memory-save', 1], ['system-spec-kit', 0.45]],
-  'save memory': [['memory:save', 1.6], ['command-memory-save', 1], ['system-spec-kit', 0.45]],
+  'save context': [['command-speckit-save', 1.6], ['system-spec-kit', 0.45]],
+  'save memory': [['command-speckit-save', 1.6], ['system-spec-kit', 0.45]],
   'source-type mix': [['system-spec-kit', 0.35]],
   'system prompt': [['sk-prompt', 0.8]],
   'prompt variant': [['sk-prompt', 1]],
@@ -340,13 +340,12 @@ export function scoreExplicitLane(
     push(scores, 'sk-git', 0.9, 'tagged-release-intent');
   }
   if (MEMORY_PRESERVATION_SESSION_INTENT.test(lower)) {
-    push(scores, 'memory:save', 1.2, 'memory-preservation-session-intent');
-    push(scores, 'command-memory-save', 0.8, 'memory-preservation-session-intent');
+    push(scores, 'command-speckit-save', 1.2, 'memory-preservation-session-intent');
     push(scores, 'system-spec-kit', 0.3, 'memory-preservation-session-intent');
   }
   if (lower.includes('/speckit:resume')) {
     push(scores, 'system-spec-kit', 0.4, 'speckit-resume-skill-disambiguation');
-    push(scores, 'command-spec-kit', -1.0, 'speckit-resume-skill-disambiguation');
+    push(scores, 'command-spec-kit-resume', -1.0, 'speckit-resume-skill-disambiguation');
   }
   // Review-plus-write intent. When the prompt contains the word `review`
   // AND an explicit write/edit verb (`update|edit|fix|modify`), the request

@@ -2,6 +2,10 @@
 // MODULE: Skill Advisor CLI Fallback
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
+
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
@@ -15,6 +19,10 @@ import type {
 } from '../../runtime/lib/skill-advisor-brief.js';
 import type { AdvisorRecommendation } from '../../runtime/lib/subprocess.js';
 import { ADVISOR_PROMPT_MAX_CHARS } from '../../runtime/schemas/advisor-tool-schemas.js';
+
+// ───────────────────────────────────────────────────────────────
+// 2. TYPES
+// ───────────────────────────────────────────────────────────────
 
 interface CliFallbackPaths {
   readonly repoRoot: string;
@@ -73,6 +81,10 @@ interface SkillAdvisorCliFallbackDependencies {
   readonly now?: () => number;
 }
 
+// ───────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────
+
 const DEFAULT_CLI_FALLBACK_TIMEOUT_MS = 250;
 const EXIT_RETRYABLE = 75;
 const EXIT_SETTLE_GRACE_MS = 25;
@@ -89,6 +101,10 @@ const RETRYABLE_REASONS = new Set([
   'timeout',
   'warm_daemon_unavailable',
 ]);
+
+// ───────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -216,9 +232,13 @@ function runCliRecommend(args: {
       topK: 3,
       includeAttribution: false,
       includeAbstainReasons: true,
-      // The hook never reads compiled routing data, so requesting it only
-      // spends the hook's budget on a subprocess.
-      includeCompiledRoute: false,
+      // The hook reads nothing out of the compiled route itself. It asks for the
+      // route only because the advisor derives the slash command from it, and a
+      // recommendation with no command cannot tell the reader which mode to run.
+      includeCompiledRoute: true,
+      // Each route is a subprocess inside the hook's time budget, and the brief
+      // leads with the top pick, so only that one is looked up.
+      compiledRouteTopOnly: true,
       // Forward caller thresholds so the CLI scorer applies them; without this
       // the scorer uses its own defaults and thresholdsFrom trusts the echoed
       // defaults, silently discarding a caller's stricter thresholds.
@@ -332,6 +352,9 @@ function thresholdsFrom(data: CliRecommendData, options: SkillAdvisorCliFallback
 type CliAdvisorRecommendation = AdvisorRecommendation & {
   readonly ambiguousWith?: readonly string[];
   readonly heldBelow?: string;
+  // The slash command that runs the mode the advisor routed this skill to. Absent
+  // when the route names no single mode, and never derived here: the CLI owns it.
+  readonly command?: string;
 };
 
 function recommendationFromCli(value: unknown, thresholds: { readonly confidenceThreshold: number; readonly uncertaintyThreshold: number }): CliAdvisorRecommendation | null {
@@ -352,6 +375,9 @@ function recommendationFromCli(value: unknown, thresholds: { readonly confidence
     // The brief re-derives ambiguity from these fields, so the typed-command hold
     // must survive the trip or a pair the command already ranked reads as a tie.
     ...(typeof value.heldBelow === 'string' ? { heldBelow: value.heldBelow } : {}),
+    // Kept only when it names something: an empty command would render a blank
+    // prompt where the reader expects a slash command to type.
+    ...(typeof value.command === 'string' && value.command.trim() !== '' ? { command: value.command } : {}),
   };
 }
 
@@ -411,6 +437,10 @@ function failOpenResult(args: {
 type CliFallbackHookResult = AdvisorHookResult & {
   readonly ambiguous?: boolean;
 };
+
+// ───────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────
 
 // Exported as a test seam. The diagnostics this builds are the only signal a
 // reader gets about why no brief appeared, and a wrong one here sends them

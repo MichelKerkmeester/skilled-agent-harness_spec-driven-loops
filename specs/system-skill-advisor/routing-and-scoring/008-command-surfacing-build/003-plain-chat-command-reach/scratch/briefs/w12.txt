@@ -1,0 +1,47 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: one change across THREE files in `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/`: `derive-command-bridges.cjs` (the "deriver"), `allow-list.json` and `scoring-compatibility.json`. Running the deriver rewrites generated files (`command-bridges.generated.json`, `runtime/lib/scorer/projection.ts`, `runtime/scripts/skill_advisor.py`), which is expected. Edit no other file by hand. Read the deriver's `metadataEntries`, `allowListEntries`, `compatibilityByInventoryId`, `runtimeCompatibility`, `renderTypescriptBridge`, `renderPythonBridge` and `main` first.
+
+Background: a slash command becomes a scored row only when `scoring-compatibility.json` has a hand-written row for its bridge id. Eight commands belong to standalone skills (a skill folder with a `command-metadata.json` and NO `mode-registry.json`): the seven `/speckit:*` commands of `system-spec-kit` and `/prompt:improve` of `sk-prompt`. Each has plain-chat phrases in its metadata entry at `userIntent.ownedSignals`. Today they are covered by three legacy umbrella rows instead of one row per command.
+
+Change:
+1. In `allow-list.json` delete the four legacy rows with ids `command-spec-kit`, `command-memory-save`, `memory:save` and `command-prompt-improver`. Keep the other four.
+2. In `scoring-compatibility.json` delete every `typescript` and `python` row whose `inventoryId` is one of those four ids, and the `pythonOwnerNormalization` key `command-memory-save`. Leave every other row and key untouched, including `order` values.
+3. In the deriver, make `metadataEntries` also carry each entry's `description` (string, default empty) and `ownedSignals` (`userIntent.ownedSignals`, default empty array), and a boolean `standalone` that is true when the skill folder has no `mode-registry.json`.
+4. In the deriver, activate standalone-skill commands by construction. After the hand rows are loaded in `runtimeCompatibility`, for every inventory entry whose command has a standalone metadata entry (match by `command`, because four of them enter the inventory through `allow-list.json` under ids like `command-spec-kit-plan`) and that has no hand row for a platform, add a generated row for that platform:
+   - typescript: `{ inventoryId: <entry id>, order: <next unused order>, id: <entry id>, name: <entry id>, description: <metadata description>, keywords: <ownedSignals>, domains: [<command namespace, e.g. "speckit">, "command"], intentSignals: <ownedSignals> }`
+   - python: `{ inventoryId: <entry id>, order: <next unused order>, id: <entry id>, description: <metadata description>, slashMarkers: [<command>, <command without its leading slash>], owningSkill: <skill id> }`
+   Assign generated orders after the highest hand-written order, in ascending entry id, so output is stable. A hand row always wins over a generated one. Throw `[command-bridges] ...` when a standalone command has fewer than two `ownedSignals`.
+5. `runtimeCompatibility` needs the metadata, so pass it in from `main`. The identity check comment in `main` about allow-list rows stays true for the four kept rows: adjust its wording only if it names a deleted id.
+Follow the file's style. Comments say why, and never contain a spec path, task id or requirement id.
+
+Do NOT run `npm run build` and do NOT edit tests: several tests pin the old ids and are updated separately.
+
+VERIFY, from the repository root (`D` = `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs`, `G` = the generated json beside it):
+- `node $D | jq -r .status` prints `generated`, then `node $D --check | jq -r .status` prints `fresh`
+- `jq -c '[.entries[] | select(.command | test("^/(speckit|prompt):")) | select(.runtime.typescript.enabled and .runtime.python.enabled) | .id]' $G` lists exactly 8 ids. Report them.
+- `jq '[.entries[] | select(.id == "command-spec-kit" or .id == "memory:save" or .id == "command-memory-save" or .id == "command-prompt-improver")] | length' $G` prints 0
+- `jq -c '.entries[] | select(.id=="command-speckit-save") | .runtime.typescript.intentSignals' $G` shows the phrases from the metadata file
+- `jq -c .counts $G`: report it, and report `git diff --stat` for the three generated files. Doctor rows must be untouched: `git diff $G | grep -c 'command-doctor'` should print 0, and if it does not, show why.

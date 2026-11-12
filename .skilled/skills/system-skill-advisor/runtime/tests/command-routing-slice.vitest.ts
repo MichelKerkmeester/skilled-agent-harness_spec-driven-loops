@@ -56,6 +56,7 @@ interface CommandRoutingBaseline {
   readonly unreachable: readonly string[];
   readonly commands: Readonly<Record<string, CommandTally>>;
   readonly rows: Readonly<Record<string, CommandRow>>;
+  readonly attachedMetrics: Readonly<Record<string, unknown>>;
 }
 
 // The capture script is plain JavaScript with no declaration file of its own, so
@@ -112,6 +113,13 @@ describe('command routing slice', () => {
     // `capturedAtSha` is deliberately not compared: it names the commit of the
     // checkout that ran the capture, not anything the scorer decided.
     expect(live.commands).toEqual(baseline.commands);
+    // The attached keys sit outside `metrics` and `commands` by design: they
+    // measure what a hub's own compiled route adds on the same rows, kept apart
+    // so the bridge numbers above cannot absorb a row the route reached.
+    expect(
+      live.attachedMetrics,
+      `command routing attached reach drifted from the committed baseline; re-capture with \`${RECAPTURE}\` when the change is intended`,
+    ).toEqual(baseline.attachedMetrics);
   });
 
   it('pins the corpus the baseline was captured against', () => {

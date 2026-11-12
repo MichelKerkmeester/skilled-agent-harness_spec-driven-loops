@@ -1,0 +1,37 @@
+Done. Both edits are on disk and the verification gate is green.
+
+**Files written**
+
+1. `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
+   - Removed the explicit-invocation owner normalization added earlier: the `EXPLICIT_INVOCATION_BRIDGE_OWNER_NORMALIZATION` table (and its comment), the `_is_typed_command_invocation()` helper, and the lookup line in `normalize_command_bridge_recommendations()`.
+   - Kept the other changes: `_command_bridge_references()` still folds in `SKILL_ALIAS_GROUPS` (so `/memory:save` and `command-memory-save` still count as references to `command-speckit-save`), and `_apply_iteration_loop_tiebreaker()` still restricts promotion to `ITERATION_LOOP_COMMAND_BRIDGES` (deep research / deep review only).
+   - The `# BEGIN/END GENERATED COMMAND BRIDGES` region was not touched.
+
+2. `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py`
+   - In `T243-SA-017`, moved the `run /memory:save for this packet` case out of the owner-normalizing table into its own assertion expecting top `command-speckit-save`, with a why-comment (one merged save row; a typed save returns the command). The three other cases, including their `command-normalized:` reason assertion, are unchanged.
+
+**Observed behaviour change**
+
+- `run /memory:save for this packet` → `command-speckit-save` (was `system-spec-kit`)
+- `run /speckit:save for this packet` → `command-speckit-save`
+- `/speckit:resume`, `/deep:research`, `/deep:review` → still normalize to `system-spec-kit`, `deep-research`, `deep-review`
+
+**Verify output**
+
+```
+ RUN  v4.1.12 .../.skilled/skills/system-skill-advisor/runtime
+
+ Test Files  5 passed (5)
+      Tests  51 passed (51)
+   Start at  17:17:44
+   Duration  32.29s
+```
+0 failed. Python-suite spot check also green: `Summary: pass=89, fail=0` with `PASS: T243-SA-017` and `PASS: T243-SA-018`. `python3 -m py_compile scripts/skill_advisor.py` → ok.
+
+**Not done / not mine**
+
+- No git state touched (no commit, stash, or branch operations); `git diff` was read-only.
+- No git state touched (no commit, stash, or branch operations); `git diff` was read-only.
+- The working tree still carries other pre-existing uncommitted edits to both files (e.g. `T243-SA-016` marker updates; retargeting of guard cases and the native-output fixture from `memory:save`/`command-memory-save` to `command-speckit-save`) that were present before this brief and were left as they were.
+
+Nothing is the operator's to do here beyond reviewing/diffing the two files in their existing branch workflow.

@@ -17,13 +17,15 @@ trigger_phrases:
 
 The doctor commands are a third source: the deriver reads `.skilled/commands/doctor/_routes.yaml` and writes one bridge per doctor route and per standalone doctor command and per MCP sub-route.
 
+Each hub's `mode-registry.json` is a fourth source: the deriver reads the `command` of every mode and writes the `MODE_COMMANDS` table the advisor uses to attach a slash command to a hub recommendation.
+
 ---
 
 ## 2. CONTENTS
 
 | File | Responsibility | Authority |
 |---|---|---|
-| `allow-list.json` | Records compatibility bridges for live commands without command metadata. | Authored input |
+| `allow-list.json` | Keeps the four `command-spec-kit-*` bridge ids for `/speckit:plan`, `/speckit:implement`, `/speckit:complete` and `/speckit:resume`. The deriver keeps these rows in place of the matching metadata entries. | Authored input |
 | `command-bridges.generated.json` | Stores the derived command-bridge projection. | Generated, do not edit |
 | `derive-command-bridges.cjs` | Reads live metadata and authored inputs, validates uniqueness and writes the projection. | Authored deriver |
 | `scoring-compatibility.json` | Holds TypeScript and Python scoring compatibility mappings. | Authored input |
@@ -37,6 +39,7 @@ The doctor commands are a third source: the deriver reads `.skilled/commands/doc
 skill command metadata files
 allow-list.json + scoring-compatibility.json
 .skilled/commands/doctor/_routes.yaml
+hub mode-registry.json files
                          |
                          v
               derive-command-bridges.cjs
@@ -45,7 +48,7 @@ allow-list.json + scoring-compatibility.json
               command-bridges.generated.json
 ```
 
-The deriver also updates generated projection blocks in the live TypeScript and Python scoring sources. It writes a generated block of runnable doctor command strings into `lib/render.ts`. The generated JSON and generated source blocks are outputs, not hand-edited inputs.
+The deriver also updates generated projection blocks in the live TypeScript and Python scoring sources. It writes a generated block of runnable doctor command strings into `lib/render.ts`. It writes the `MODE_COMMANDS` block into `lib/command-attach.ts`, one row per hub mode that names a command, and fails when a mode names a command with no file under `.skilled/commands/`. Each TypeScript bridge in `lib/scorer/projection.ts` carries an `ownerSkill`, the skill that owns its command. The generated JSON and generated source blocks are outputs, not hand-edited inputs.
 
 ---
 
@@ -65,15 +68,28 @@ Each `mcp_subroutes` entry becomes the bridge `command-doctor-mcp-<sub_action>`,
 
 Check every admitted phrase with `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs`.
 
+Every command bridge, not only a doctor bridge, passes on its own wording. `requireCommandPhraseAnchor` in `lib/scorer/fusion.ts` drops a passing command row below threshold unless the explicit-author lane matched one of its phrases or its slash string.
+
 ---
 
-## 5. HUMAN EDIT BOUNDARY
+## 5. STANDALONE SKILL COMMANDS
+
+A standalone skill has a `command-metadata.json` and no `mode-registry.json`, as `sk-prompt` and `system-spec-kit` do. Its commands are active in both scorers by construction and need no row in `scoring-compatibility.json`. The deriver builds each row from the metadata entry:
+
+- TypeScript: the `userIntent.ownedSignals` phrases become the keywords and intent signals, the command's namespace and `command` become the domains, and a `read-only` `mutating` class sets `readOnly: true`.
+- Python: the slash markers are the command with and without its leading slash, and `owningSkill` is the skill.
+
+A command needs at least two `userIntent.ownedSignals`, or the deriver fails. A hand row in `scoring-compatibility.json` still wins where one exists. Generated rows take orders after the highest hand-written order.
+
+---
+
+## 6. HUMAN EDIT BOUNDARY
 
 Humans may edit `allow-list.json`, `derive-command-bridges.cjs`, `scoring-compatibility.json` and `shadow-diff.md`. Regenerate `command-bridges.generated.json` after changing an authored input or the deriver. Do not edit the generated JSON directly.
 
 ---
 
-## 6. VALIDATION
+## 7. VALIDATION
 
 Run the deriver in check mode from the repository root:
 
@@ -83,7 +99,7 @@ node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive
 
 ---
 
-## 7. RISK KEYS AND COMMAND POLICY
+## 8. RISK KEYS AND COMMAND POLICY
 
 The command tree `.skilled/commands/<namespace>/<name>.md` owns which commands exist. The deriver fails when a command file has no `command-metadata.json` entry and no doctor route. It fails again when a declaration names a command with no file. Allow-list rows sit outside this check.
 
@@ -112,6 +128,6 @@ A metadata entry for a command that an allow-list row already carries adds no se
 
 ---
 
-## 8. RELATED
+## 9. RELATED
 
 - [`Skill-advisor scripts`](../README.md)

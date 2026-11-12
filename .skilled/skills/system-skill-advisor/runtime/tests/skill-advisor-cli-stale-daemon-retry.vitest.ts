@@ -124,7 +124,7 @@ async function runRecommend(scope: IsolatedCliScope) {
     exitCode = await runSkillAdvisorCli([
       'advisor_recommend',
       '--json',
-      JSON.stringify({ prompt: 'Recommend a skill.', options: { includeCompiledRoute: false } }),
+      JSON.stringify({ prompt: 'Recommend a skill.', options: { includeCompiledRoute: false, compiledRouteTopOnly: true } }),
       '--format',
       'json',
       '--timeout-ms',
@@ -174,6 +174,8 @@ describe('skill-advisor CLI stale-daemon retry', () => {
     expect(daemon.calls).toHaveLength(2);
     expect((daemon.calls[0]?.options as Record<string, unknown>)?.includeCompiledRoute).toBe(false);
     expect(Object.prototype.hasOwnProperty.call(daemon.calls[1]?.options ?? {}, 'includeCompiledRoute')).toBe(false);
+    // A daemon that old knows neither option, so the retry carries neither.
+    expect(Object.prototype.hasOwnProperty.call(daemon.calls[1]?.options ?? {}, 'compiledRouteTopOnly')).toBe(false);
   });
 
   it('does not retry unrelated invalid-parameter errors', async () => {

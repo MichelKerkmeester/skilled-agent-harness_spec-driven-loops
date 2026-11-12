@@ -1,0 +1,6 @@
+wI exit=0
+wF exit=0
+wJ exit=0
+wG exit=0
+wE exit=0
+wH exit=0

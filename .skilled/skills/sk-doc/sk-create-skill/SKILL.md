@@ -2,7 +2,7 @@
 name: sk-create-skill
 description: Scaffold OpenCode skills and two-axis sk-doc parent hubs, including standalone, nested workflow, and surface packets.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.15.1.0
+version: 1.16.0.0
 ---
 
 # Create Skill
@@ -104,6 +104,7 @@ skill-name/
 ├── graph-metadata.json
 ├── leaf-manifest.config.json
 ├── leaf-scopes.json                # optional: narrows the leaf roots to scopes
+├── command-metadata.json           # optional: only when the skill owns slash commands
 ├── leaf-manifest.json              # generated
 ├── leaf-aliases.json               # generated identity projection
 ├── README.md

@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the likely verification path and 
 
 | Metric | Value |
 |---|---:|
-| Code files | 7 |
+| Code files | 9 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -69,7 +69,7 @@ Run individual scripts from the repository root with the documented arguments.
 | `gate3-corpus-runner.mjs` | MJS source file in this folder. |
 | `score-routing-corpus.py` | PY source file in this folder. |
 | `command-prompts.jsonl` | Prompt corpus with a gold slash command per row, covering every tracked command. |
-| `capture-command-routing-baseline.mjs` | Scores `command-prompts.jsonl` under the pinned regime and prints or writes the baseline. |
+| `capture-command-routing-baseline.mjs` | Scores `command-prompts.jsonl` under the pinned regime and prints or writes the baseline. Its `attachedMetrics` key holds own-row, attached and combined plain reach per split and per command family, attached false offers, the typed rows where a command and its owner skill read as ambiguous, and the command attached to each row. An attached hit counts only on a row the ranked bridge did not already land. |
 | `command-routing-baseline.json` | Captured command routing numbers that `tests/command-routing-slice.vitest.ts` holds the scorer to. |
 
 ---

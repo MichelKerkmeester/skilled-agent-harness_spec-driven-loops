@@ -1,0 +1,27 @@
+Both edits are in place. The runtime verification is blocked by a stale `dist/` that another uncommitted change caused, and I did not rebuild it: `dist/` is gitignored generated output outside my write scope, and a rebuild would bake in another worker's in-flight `lib/scorer` edits.
+
+**Files written** (nothing else touched; no commit, push or git write):
+
+- `scripts/routing-accuracy/capture-command-routing-baseline.mjs` — `rmSync` added to the `node:fs` import; the scratch directory is now created by `const dbDir = mkdtempSync(...)` *before* the `try` (so a failure to create it cannot reach a `finally` with nothing to remove, and no `undefined` guard is needed) and is removed in the existing `finally` after the clock restore with `rmSync(dbDir, { recursive: true, force: true })`. `SYSTEM_SKILL_ADVISOR_DB_DIR` now points at `dbDir`.
+- `tests/command-routing-slice.vitest.ts` — `attachedMetrics` added to the `CommandRoutingBaseline` interface, plus a 7-line assertion block in `matches the captured totals` comparing `live.attachedMetrics` to `baseline.attachedMetrics` with the same `re-capture with \`${RECAPTURE}\`` message as the rows test.
+
+**What ran, and what it returned**
+
+- Temp-dir count, exactly as specified: `ls -d "$TMPDIR"/advisor-command-routing-* | wc -l` printed `58` before and `58` after `node scripts/routing-accuracy/capture-command-routing-baseline.mjs > /dev/null`. The harness exited `2` with `@spec-kit/system-skill-advisor dist is stale (source content differs from the attested build)`. Still `58` after the vitest run.
+- Proof the directory really is created and then removed on that failing path: with `TMPDIR` pointed at a fresh isolated directory the run again exited `2` and that directory was empty afterwards; with `TMPDIR` pointed at a nonexistent path the run failed with `ENOENT: no such file or directory, mkdtemp '/tmp/.../advisor-command-routing-XXXXXX'`. So `mkdtempSync` with that prefix runs on this path, before the freshness throw, and the directory it created is gone by the time the process exits.
+- `npx vitest run tests/command-routing-slice.vitest.ts`: `1 failed (1)`, `4 skipped (4)`. The failure is in `beforeAll` at `tests/command-routing-slice.vitest.ts:88`, thrown from `scripts/routing-accuracy/capture-command-routing-baseline.mjs:338` — the same staleness error. No test body ran, so `attachedMetrics` was compared by nothing.
+- `git --no-optional-locks status`: watched sources are dirty from work that is not mine — `hooks/lib/skill-advisor-cli-fallback.ts`, `runtime/handlers/advisor-recommend.ts`, `runtime/lib/scorer/{aliases,ambiguity,fusion,projection,lanes/explicit}.ts`, `runtime/schemas/advisor-tool-schemas.ts`. The build record in `dist/runtime/.dist-freshness-*.json` and `dist/runtime/advisor-server.js` are dated 17:24, `lib/scorer/projection.ts` is dated 17:24, and `scripts/routing-accuracy/command-routing-baseline.json` was captured at 17:24 — a peer built, captured, then edited a watched source. My edits landed at 17:36.
+
+**Inferred, not observed**
+
+The staleness both predates my change and cannot be caused by it. The registry entry for `system-skill-advisor/runtime` in `dist-freshness.cjs` watches `package.json`, `tsconfig*.json`, `../hooks`, `handlers`, `lib`, `schemas`, `tools`, `data` and the three root `.ts` files — not `scripts` and not `tests`, and `.mjs` is not a watched extension. The freshness hash is 139 watched files; neither of my two files can be among them, and both `dist` and the build record are older than my first edit. What would confirm it: a `npm run build` followed by zero errors, then my two verify runs.
+
+**Not done**
+
+- The success path of the harness, the `0 failed` vitest result, and the mutate-the-baseline probe that proves the new assertion bites are all unrunnable while `dist/` is stale. I left them unrun rather than fake them.
+- I never ran `--write`; the baseline json's mtime (17:24) is older than my session, so no copy-and-`cmp` restore was needed.
+- The 58 directories already accumulated are untouched, and the same leak exists in `scripts/routing-accuracy/derive-ambiguity-slice.mjs:46` and `tests/routing-golden-prompts.vitest.ts:34` — named, not fixed.
+
+**Residual risk:** after a call, `SYSTEM_SKILL_ADVISOR_DB_DIR` still names a deleted path. Every call re-creates its own directory first, so the next scorer run in the same process is unaffected, but a consumer that reads that variable between calls now sees a missing directory.
+
+Your move: run `cd .skilled/skills/system-skill-advisor/runtime && npm run build` once the peer's `lib/scorer` edits are settled, then re-run `npx vitest run tests/command-routing-slice.vitest.ts` and the count pair. If the build makes the suite red on `metrics`/`rows`/`attachedMetrics` drift, that is the peer's capture and not my edit — but it needs your `--write` re-capture to settle, which I did not run.

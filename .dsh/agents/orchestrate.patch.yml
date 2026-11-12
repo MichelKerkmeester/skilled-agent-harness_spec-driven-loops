@@ -482,7 +482,7 @@
       
       1. **Opt-in only.** NEVER select an external executor on your own initiative. An advisor score, a hook hint, or a "this would be faster" judgment is not a user request. No executor named → dispatch a native LEAF agent as usual.
       2. **The skill route still owns the work.** AGENTS.md GATE 4, verbatim: "Executor CLI ≠ skill route. 'Use cli-opencode gpt-5.5 high' is the HOW — it still runs INSIDE the skill's workflow. Never let the executor name override the skill-owned route."
-         Its companion tiebreaker binds too: when `command-spec-kit` matches alongside `cli-*` for iteration phrases, `command-spec-kit` wins — the CLI executor is a tool inside the command's workflow, not a replacement for it.
+         Its companion tiebreaker binds too: when the command row for `/deep:research` or `/deep:review` matches alongside `cli-*` for iteration phrases, the command row wins — the CLI executor is a tool inside the command's workflow, not a replacement for it.
       3. **Read the mode's own contract first.** Before composing ANY `cli-X` prompt you MUST `Read` `.skilled/skills/cli-external-orchestration/cli-X/SKILL.md`. The advisor recommendation alone does not waive this. The hub's persona-injection rule applies too: attach the resolved agent persona to every external-CLI dispatch — the right agent per subtask, never a bare task.
       4. **An external run is a LEAF at depth 1.** It inherits the frozen scope, cannot widen it, and cannot dispatch further. Never let a mode dispatch itself — the self-invocation guard is packet-owned and non-negotiable.
       5. **The brief pre-resolves every gate the external run cannot ask about.** Nobody is at its prompt, so a gate that stops and waits stops forever and then reports success.

@@ -1,0 +1,38 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: edit ONE file, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` (the Python scorer). NEVER edit between `# BEGIN GENERATED COMMAND BRIDGES` and `# END GENERATED COMMAND BRIDGES`. All commands run from `.skilled/skills/system-skill-advisor/runtime`.
+
+Background: earlier today the legacy ids `memory:save` and `command-memory-save` were merged into ONE id `command-speckit-save`, and the umbrella id `command-spec-kit` was retired in favour of one id per command (`command-spec-kit-plan`, `command-spec-kit-resume`, `command-speckit-save` and so on). Two behaviours of the Python scorer changed by accident in that re-point. Restore both. Use `git diff -- scripts/skill_advisor.py` and `git show HEAD:.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` (read only, from the repository root) to see the code before the change.
+
+Defect 1, owner normalization for a typed save command. Before: the slash bridge `command-memory-save` (typed `/memory:save`) normalized to its owning skill `system-spec-kit` through the owner normalization map, while the plain-chat record `memory:save` (for "save context") stayed on top as itself. Now both are one id and the map entry is gone, so the prompt `run /memory:save for this packet` returns `command-speckit-save` where the test `T243-SA-017` expects the owner. Restore the old split on the merged id: when the prompt explicitly types the slash command (`/memory:save` or `/speckit:save`), `command-speckit-save` normalizes to `system-spec-kit`; in plain chat (`save context for this packet`) it stays `command-speckit-save`. The file already has a guard for explicit command invocation (search `_should_guard_command_bridge_normalization` and `detect_explicit_command_intent`): reuse what exists. Also make `_command_bridge_references("command-speckit-save")` include the residual spellings `/memory:save` and `command-memory-save`, so a quoted old command is still seen as a reference to the save bridge (test `T243-SA-018`).
+
+Defect 2, the iteration-loop tiebreaker (search `iteration-loop tiebreaker`). Before: it demoted `cli-*` skills only when the umbrella id `command-spec-kit` was among the recommendations. It was changed to fire for ANY id starting with `command-spec-kit-` or `command-speckit-`, so a save, plan or complete bridge now licenses demoting a CLI executor, and the test "keeps the same order on the Python fallback" (prompt `run a deep research loop with the cli-pi executor`) fails. Restrict the command side to the bridges that own an iteration loop: the deep research and deep review bridges only (find their exact Python ids in the generated block). Update the docstring and comments so they describe the rule as it is.
+
+Comments say why, and never contain a spec path, task id or requirement id. Edit no test file.
+
+VERIFY:
+- `npx vitest run tests/compat/python-compat.vitest.ts tests/scorer/executor-delegation.vitest.ts`: report totals and any remaining failure with the test's expected and actual values
+- `python3 -c "import ast; ast.parse(open('scripts/skill_advisor.py').read())"` exits 0
+- report the Python scorer's top result for each of: `run /memory:save for this packet`, `save context for this packet`, `run a deep research loop with the cli-pi executor`

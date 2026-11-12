@@ -11,6 +11,11 @@
 // not routed as if it were complete, and a bridge ranked below the top skill
 // is owned by that skill.
 //
+// It also measures what the compiled route adds on top of that: a hub can name
+// the slash command its own routing would take, which reaches a reader who never
+// types a slash command. That reach is reported under its own key so every
+// existing number keeps the value and the comparability it had before.
+//
 // The result is the ratchet baseline: the gate re-scores live under the same
 // environment and holds every count to it, so any scoring or bridge-metadata
 // change that moves a number forces a conscious re-capture rather than
@@ -30,9 +35,9 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-import { spawnSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { existsSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -51,6 +56,8 @@ const OUTPUT_JSON = resolve(HERE, 'command-routing-baseline.json');
 const DIST = resolve(HERE, '../../dist/runtime');
 const FUSION_MODULE = resolve(DIST, 'lib/scorer/fusion.js');
 const WORKSPACE_ROOT_MODULE = resolve(DIST, 'lib/utils/workspace-root.js');
+const COMMAND_ATTACH_MODULE = resolve(DIST, 'lib/command-attach.js');
+const COMPILED_ROUTING_FLAG_MODULE = resolve(DIST, 'lib/compiled-routing-flag.js');
 const DIST_FRESHNESS_MODULE = resolve(HERE, '../../../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs');
 
 const SENTINEL = '.skilled/skills/system-spec-kit/SKILL.md';
@@ -59,6 +66,11 @@ const COMMANDS_DIR = '.skilled/commands';
 // beside the commands is itself a command, so the skip is case-sensitive.
 const COMMAND_DOC_SKIP = 'README.md';
 const COMMAND_DOC_SUFFIX = '.md';
+// The compiled route is asked for through the public front door a hub's SKILL.md
+// calls, so this measures the decision the runtime actually serves rather than a
+// second derivation of it that could disagree with the first.
+const COMPILED_ROUTE_CLI = '.skilled/bin/compiled-route.cjs';
+const COMPILED_ROUTE_TIMEOUT_MS = 5000;
 
 // ───────────────────────────────────────────────────────────────────
 // 3. RUNTIME SETUP
@@ -155,6 +167,38 @@ function commandOf(idToCommand, id) {
   return idToCommand.get(id)?.command ?? null;
 }
 
+// The route arrives from a separate process, so a spawn that fails, times out or
+// prints anything unparsable yields no route: a broken read must degrade to "no
+// command offered" rather than to an invented one.
+function readCompiledRoute(workspaceRoot, hubId, prompt) {
+  try {
+    const stdout = execFileSync('node', [join(workspaceRoot, COMPILED_ROUTE_CLI), '--hub', hubId, '--prompt-stdin'], {
+      cwd: workspaceRoot,
+      input: prompt,
+      encoding: 'utf8',
+      timeout: COMPILED_ROUTE_TIMEOUT_MS,
+      stdio: ['pipe', 'pipe', 'ignore'],
+    });
+    const route = JSON.parse(stdout);
+    return typeof route === 'object' && route !== null ? route : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+// A bridge that outranks nothing still stays reachable: when the two leaders are
+// a bridge and the skill that owns it, the reader gets the command without the
+// bridge displacing the skill the prompt actually asked for. The order is
+// irrelevant because the scorer's tie-break says nothing about ownership.
+function isBridgeOwnerPair(idToCommand, ids, expected) {
+  const [first, second] = ids;
+  if (first === undefined || second === undefined) return false;
+  const leading = idToCommand.get(first);
+  if (leading && leading.command === expected && leading.skillId === second) return true;
+  const trailing = idToCommand.get(second);
+  return Boolean(trailing && trailing.command === expected && trailing.skillId === first);
+}
+
 // The scorer reports ranked recommendations when the projection produced a
 // list, and only a top pick otherwise; both shapes have to be scorable.
 function recommendationIds(result) {
@@ -174,6 +218,43 @@ function addRow(tally, top1Hit, top3Hit) {
   if (top3Hit) tally.top3 += 1;
 }
 
+// Attached reach is kept apart from bridge reach and only ever counts a row the
+// ranked bridge did not already land, so `own` and `attached` partition the rows
+// and their sum is real reach rather than one row claimed twice.
+function emptyAttachedTally() {
+  return { own: 0, attached: 0, total: 0 };
+}
+
+function addAttachedRow(tally, ownHit, attachedHit) {
+  tally.total += 1;
+  if (ownHit) tally.own += 1;
+  if (attachedHit) tally.attached += 1;
+}
+
+function attachedTallyJson(tally) {
+  return { own: tally.own, attached: tally.attached, combined: tally.own + tally.attached, total: tally.total };
+}
+
+// Commands are named `<namespace>:<name>`, so the namespace is the workflow
+// family a reach number belongs to.
+function commandNamespace(command) {
+  if (typeof command !== 'string' || !command.startsWith('/')) return null;
+  const colon = command.indexOf(':');
+  return colon > 1 ? command.slice(1, colon) : null;
+}
+
+// Individual rows roll up to a family only when their command names one, so a
+// command outside the `<namespace>:<name>` grammar still counts in the split
+// total without inventing a family for itself.
+function attachedFamilyTally(byFamily, command) {
+  const namespace = commandNamespace(command);
+  if (namespace === null) return undefined;
+  if (!byFamily.has(namespace)) {
+    byFamily.set(namespace, { tune: emptyAttachedTally(), holdout: emptyAttachedTally() });
+  }
+  return byFamily.get(namespace);
+}
+
 function readHeadSha(workspaceRoot) {
   const spawned = spawnSync('git', ['rev-parse', '--short', 'HEAD'], { cwd: workspaceRoot, encoding: 'utf8' });
   return spawned.status === 0 ? spawned.stdout.trim() : 'unknown';
@@ -185,11 +266,16 @@ function readHeadSha(workspaceRoot) {
 
 export async function scoreCommandCorpus() {
   const RealDate = Date;
+  // The projection needs an existing, empty cache directory, and that directory
+  // is scratch space this run owns. It is created before the `try` so a failure
+  // to create it has nothing left to remove, and removed in the `finally` so
+  // repeated captures do not leave one behind per run.
+  const dbDir = mkdtempSync(join(tmpdir(), 'advisor-command-routing-'));
   try {
-    // Environment projection. The cache directory is empty so the SQLite
-    // loader returns null and the projection is built from committed metadata
-    // alone, which is the only state a clean checkout can reproduce.
-    process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-command-routing-'));
+    // Environment projection. That empty directory makes the SQLite loader
+    // return null, so the projection is built from committed metadata alone,
+    // which is the only state a clean checkout can reproduce.
+    process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = dbDir;
     process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
     process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
     process.env.PYTHONDONTWRITEBYTECODE = '1';
@@ -222,13 +308,26 @@ export async function scoreCommandCorpus() {
     if (!existsSync(FUSION_MODULE)) {
       throw new Error(`built scorer file missing: ${FUSION_MODULE}`);
     }
+    for (const modulePath of [COMMAND_ATTACH_MODULE, COMPILED_ROUTING_FLAG_MODULE]) {
+      if (!existsSync(modulePath)) {
+        throw new Error(`built command-attach file missing: ${modulePath}`);
+      }
+    }
 
     // Imported after the clock is pinned so the compiled scorer initializes
     // against the pinned date, and only after it is known to exist so a missing
     // build is reported as such rather than as a module-resolution failure.
     const { scoreAdvisorPrompt } = await import(pathToFileURL(FUSION_MODULE).href);
     const { findAdvisorWorkspaceRoot } = await import(pathToFileURL(WORKSPACE_ROOT_MODULE).href);
+    const { attachCommand } = await import(pathToFileURL(COMMAND_ATTACH_MODULE).href);
+    const { COMPILED_ROUTING_HUBS } = await import(pathToFileURL(COMPILED_ROUTING_FLAG_MODULE).href);
     const workspaceRoot = findAdvisorWorkspaceRoot(HERE, { maxDepth: 14, sentinel: SENTINEL });
+
+    // A missing front door would make every spawn fail and report the same zero
+    // as a hub with nothing to attach, so it fails the capture instead.
+    if (!existsSync(resolve(workspaceRoot, COMPILED_ROUTE_CLI))) {
+      throw new Error(`compiled route front door missing: ${resolve(workspaceRoot, COMPILED_ROUTE_CLI)}`);
+    }
 
     // A build older than its source scores code that no longer exists, so its
     // numbers would describe a scorer nobody can read. Refuse it, and likewise
@@ -272,6 +371,14 @@ export async function scoreCommandCorpus() {
     // while one row is gained and another lost, and a changed label has to
     // surface under the id of the row it belongs to.
     const rows = {};
+    // Attached reach: what a hub's own route adds on the same rows, split the
+    // same way, plus the rows that had to stay silent and the ties a bridge
+    // leaves with its own owner.
+    const attachedRows = {};
+    const plainAttached = { tune: emptyAttachedTally(), holdout: emptyAttachedTally() };
+    const plainAttachedByFamily = new Map();
+    const sameOwnerAmbiguous = [];
+    let falseOfferAttached = 0;
 
     for (const row of corpus) {
       const result = scoreAdvisorPrompt(row.prompt, { workspaceRoot });
@@ -283,8 +390,25 @@ export async function scoreCommandCorpus() {
       const offered = landed.some((command) => command !== null);
       const isPlainSplit = row.row_type === 'plain' && (row.split === 'tune' || row.split === 'holdout');
 
+      // A hub can name the slash command its route would take, which is reach a
+      // reader otherwise gets only by translating the workflow mode by hand.
+      const topId = ids[0];
+      const attached = topId !== undefined && COMPILED_ROUTING_HUBS.has(topId)
+        ? attachCommand(topId, readCompiledRoute(workspaceRoot, topId, row.prompt), row.prompt)
+        : undefined;
+      const attachedHit = attached !== undefined && attached === expected && !top1Hit;
+
       if (row.row_type === 'typed') addRow(typed, top1Hit, top3Hit);
-      if (isPlainSplit) addRow(plain[row.split], top1Hit, top3Hit);
+      if (isPlainSplit) {
+        addRow(plain[row.split], top1Hit, top3Hit);
+        addAttachedRow(plainAttached[row.split], top1Hit, attachedHit);
+        const family = attachedFamilyTally(plainAttachedByFamily, expected);
+        if (family) addAttachedRow(family[row.split], top1Hit, attachedHit);
+      }
+      if (attached !== undefined) attachedRows[row.id] = attached;
+      if (row.row_type === 'typed' && result?.ambiguous === true && isBridgeOwnerPair(idToCommand, ids, expected)) {
+        sameOwnerAmbiguous.push(row.id);
+      }
 
       const commandTally = expected === null ? undefined : perCommand.get(expected);
       if (commandTally) {
@@ -303,6 +427,7 @@ export async function scoreCommandCorpus() {
       if (wantsSilence) {
         falseOfferTotal += 1;
         if (offered) falseOfferCount += 1;
+        if (attached !== undefined) falseOfferAttached += 1;
       }
 
       if (isSlashVariant) {
@@ -336,6 +461,15 @@ export async function scoreCommandCorpus() {
     for (const value of idToCommand.values()) reachableCommands.add(value.command);
     const unreachable = commandNames.filter((command) => !reachableCommands.has(command)).sort();
 
+    const plainByFamily = {};
+    for (const namespace of [...plainAttachedByFamily.keys()].sort()) {
+      const family = plainAttachedByFamily.get(namespace);
+      plainByFamily[namespace] = {
+        tune: attachedTallyJson(family.tune),
+        holdout: attachedTallyJson(family.holdout),
+      };
+    }
+
     return {
       schemaVersion: 1,
       capturedAt,
@@ -365,9 +499,23 @@ export async function scoreCommandCorpus() {
       unreachable,
       commands,
       rows,
+      attachedMetrics: {
+        plain: {
+          tune: attachedTallyJson(plainAttached.tune),
+          holdout: attachedTallyJson(plainAttached.holdout),
+        },
+        plain_by_family: plainByFamily,
+        false_offer_attached: { count: falseOfferAttached, total: falseOfferTotal },
+        typed_same_owner_ambiguous: sameOwnerAmbiguous.sort(),
+        attachedRows,
+      },
     };
   } finally {
     globalThis.Date = RealDate;
+    // Removal comes last, after every read that needs the directory has
+    // finished; `force` keeps an already-swept directory from turning a
+    // completed capture into a failure.
+    rmSync(dbDir, { recursive: true, force: true });
   }
 }
 

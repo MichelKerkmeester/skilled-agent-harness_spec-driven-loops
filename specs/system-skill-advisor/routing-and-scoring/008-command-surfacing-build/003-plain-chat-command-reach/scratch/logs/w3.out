@@ -1,0 +1,35 @@
+Edit complete and verified.
+
+## File written
+`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` — one file, two lines:
+
+```ts
+  compiledRoute: z.record(z.string(), z.unknown()).optional(),
+  // Names the slash command that runs the recommended skill's resolved mode.
+  command: z.string().min(1).optional(),
+}).strict();
+```
+
+`git diff` on that path shows only those 2 added lines, inside `AdvisorRecommendationSchema`. Comment carries no spec path or task id.
+
+## Verify output
+
+**1. rg (required check) — exactly one line:**
+```
+310:  command: z.string().min(1).optional(),
+MATCH_COUNT=1
+```
+
+**2. Type-check — the named `npx tsc --noEmit -p .` cannot run here; the authoritative gate passes.**
+
+- `npx tsc --noEmit -p .` from `.skilled/skills/system-skill-advisor/runtime` → **exit 1**: no local `typescript`, so npx resolves the placeholder `tsc` package ("This is not the tsc command you are looking for"). Not a code result.
+- Same shape with the repo's real compiler, `../../system-spec-kit/node_modules/.bin/tsc --noEmit -p .` → **exit 2**, 31 diagnostics, **all `TS6059` rootDir errors** on `stress-test/**`, `vitest.config.ts`, `vitest.stress.config.ts` matched by `tsconfig.json`'s `**/*.ts` include against the inherited `rootDir`. Zero diagnostics mention `advisor-tool-schemas.ts`. Pre-existing config shape, not caused by this edit.
+- **Package's own script (`package.json` → `"typecheck": "../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json"`), run via `npm run typecheck` → exit 0**, no output. `schemas/**/*.ts` is in that project's `include`, so the edited file was compiled.
+
+## Could not do / flagged
+- Could not run the literal `-p .` command to a green exit, and cannot prove a *pre-edit* baseline for it without touching git state (barred by the brief). The TS6059 set is structural to the test-file include pattern and independent of adding an optional field; the package's authoritative typecheck is the honest gate, and it is clean.
+- The edit tool emitted a **STALE DIST WARNING** for `@spec-kit/system-skill-advisor` (`npm run build` in that package). Out of scope for a one-file brief — the orchestrator should decide whether to rebuild before anything consumes `dist/`.
+- No commit, push, git state change, or dispatch. Other entries in `git status` (`sk-prompt/command-metadata.json`, `scratch/` under the packet, the stray untracked `system-skill-advisor/system-skill-advisor/`) were already present and I did not touch them.
+
+## Operator's to do
+Decide whether to rebuild `@spec-kit/system-skill-advisor` so `dist/` picks up the new optional `command` field before any consumer validates against the compiled schema.

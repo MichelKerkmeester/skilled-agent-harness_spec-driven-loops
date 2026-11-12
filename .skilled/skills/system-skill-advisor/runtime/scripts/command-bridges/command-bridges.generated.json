@@ -3,11 +3,11 @@
   "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
   "counts": {
     "commandMetadata": 23,
-    "allowList": 8,
+    "allowList": 4,
     "doctorRoutes": 35,
-    "generated": 66,
-    "typescriptActive": 40,
-    "pythonActive": 50
+    "generated": 62,
+    "typescriptActive": 45,
+    "pythonActive": 51
   },
   "entries": [
     {
@@ -15,6 +15,14 @@
       "command": "/create:agent",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-agent",
+      "description": "Create a new OpenCode agent with frontmatter, tool permissions, behavioral rules. Modes :auto, :confirm.",
+      "ownedSignals": [
+        "create an OpenCode agent",
+        "define agent permissions",
+        "write an agent persona"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -62,6 +70,14 @@
       "command": "/create:benchmark",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-benchmark",
+      "description": "Author or update family-keyed benchmark packages. Modes :auto, :confirm.",
+      "ownedSignals": [
+        "author benchmark artifacts",
+        "create a conformance benchmark",
+        "write benchmark fixtures"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -77,6 +93,14 @@
       "command": "/create:changelog",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-changelog",
+      "description": "Create a global changelog entry. Topology-aware, optional GitHub release. :auto/:confirm.",
+      "ownedSignals": [
+        "write release notes",
+        "create a packet changelog",
+        "bump a component version"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -100,6 +124,14 @@
       "command": "/create:command",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-command",
+      "description": "Create or update OpenCode slash command sets with :auto/:confirm workflow assets.",
+      "ownedSignals": [
+        "create a slash command",
+        "scaffold command routing",
+        "write command frontmatter"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -115,6 +147,14 @@
       "command": "/create:diff",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-diff",
+      "description": "Create a self-contained before/after document diff report via the create-diff engine. Modes :auto, :confirm.",
+      "ownedSignals": [
+        "compare document versions",
+        "review a document diff",
+        "make an HTML diff report"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -130,6 +170,14 @@
       "command": "/create:feature-catalog",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-feature-catalog",
+      "description": "Create or update feature catalog packages via one unified command. Modes :auto, :confirm.",
+      "ownedSignals": [
+        "build a feature catalog",
+        "inventory system capabilities",
+        "add per-feature documentation"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -153,6 +201,15 @@
       "command": "/create:goal",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-goal",
+      "description": "Author or revise a packet goal.md: top-level, phase-parent, child, retrofit, phase-add, amend. :auto/:confirm.",
+      "ownedSignals": [
+        "write a goal.md for a packet",
+        "author a phase parent goal",
+        "add a goal to a packet",
+        "author a nested child goal"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -168,6 +225,14 @@
       "command": "/create:manual-testing-playbook",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-manual-testing-playbook",
+      "description": "Create or update manual testing playbook packages via one unified command. Modes :auto, :confirm.",
+      "ownedSignals": [
+        "create a testing playbook",
+        "write deterministic test scenarios",
+        "plan evidence collection"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -215,6 +280,13 @@
       "command": "/create:readme",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-readme",
+      "description": "Folder README creation, general or code-folder, with sk-doc quality standards. Modes :auto, :confirm.",
+      "ownedSignals": [
+        "write a folder README",
+        "document a project folder"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -238,6 +310,15 @@
       "command": "/create:repo-rule",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-repo-rule",
+      "description": "Create, revise or retire a repo rule under repo-rules/, wired into REPO RULES.md. :auto/:confirm.",
+      "ownedSignals": [
+        "create a repo rule",
+        "add a project rule",
+        "retire a repo rule",
+        "wire a rule into REPO RULES.md"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -253,6 +334,14 @@
       "command": "/create:skill",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-skill",
+      "description": "Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.",
+      "ownedSignals": [
+        "create an OpenCode skill",
+        "scaffold a skill package",
+        "update a skill definition"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -276,6 +365,14 @@
       "command": "/create:skill-parent",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-skill-parent",
+      "description": "Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth). :auto/:confirm.",
+      "ownedSignals": [
+        "create a parent skill hub",
+        "add nested mode packets",
+        "scaffold a skill router"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -291,6 +388,15 @@
       "command": "/create:with-human-voice",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-with-human-voice",
+      "description": "Apply or score prose against the Human Voice Rules with a scope gate and a re-scan. :auto/:confirm.",
+      "ownedSignals": [
+        "make this sound human",
+        "it reads like AI wrote it",
+        "apply the human voice rules",
+        "score this against HVR"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -306,6 +412,14 @@
       "command": "/deep:ai-council",
       "skillId": "system-deep-loop",
       "ownerMode": "ai-council",
+      "description": "Multi-topic deep-ai-council session loop with adjudicator-verdict stability. Modes :auto, :confirm.",
+      "ownedSignals": [
+        "convene an AI council",
+        "run multi-seat deliberation",
+        "make a planning decision with several perspectives"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/system-deep-loop/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -321,6 +435,14 @@
       "command": "/deep:research",
       "skillId": "system-deep-loop",
       "ownerMode": "research",
+      "description": "Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.",
+      "ownedSignals": [
+        "investigate a topic iteratively",
+        "run a research convergence loop",
+        "gather deep technical findings"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/system-deep-loop/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -345,6 +467,14 @@
       "command": "/deep:review",
       "skillId": "system-deep-loop",
       "ownerMode": "review",
+      "description": "Autonomous deep-review loop: iterative code audit with convergence detection. Modes :auto, :confirm.",
+      "ownedSignals": [
+        "audit code iteratively",
+        "run a deep code review",
+        "find P0 P1 P2 issues"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/system-deep-loop/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -369,6 +499,15 @@
       "command": "/design:chart",
       "skillId": "sk-design",
       "ownerMode": "sk-design-chart",
+      "description": "Author a standalone HTML chart from a catalog of 29 forms, one per reader question. :auto/:confirm.",
+      "ownedSignals": [
+        "plot this data as a chart",
+        "make a treemap, heatmap or waterfall",
+        "which chart form answers this question",
+        "chart the split, the spread or the trend"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-design/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -384,6 +523,15 @@
       "command": "/design:diagram",
       "skillId": "sk-design",
       "ownerMode": "sk-design-diagram",
+      "description": "Create an HTML/SVG diagram (27 types), ASCII/markdown flowchart, or draw.io/Mermaid redraw. :auto/:confirm.",
+      "ownedSignals": [
+        "draw an architecture or sequence diagram",
+        "redraw a draw.io or Mermaid source",
+        "export a generated diagram to PNG or SVG",
+        "create an ASCII or box-drawing flowchart in markdown"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-design/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -399,6 +547,16 @@
       "command": "/design:extract",
       "skillId": "sk-design",
       "ownerMode": "sk-design-md-generator",
+      "description": "Style Reference DESIGN.md extraction: live CSS and measured tokens. The sk-design-md-generator skill.",
+      "ownedSignals": [
+        "extract design tokens",
+        "build a design.md",
+        "style reference from a site",
+        "validate this design.md",
+        "measure this surface"
+      ],
+      "standalone": false,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-design/command-metadata.json",
       "runtime": {
         "typescript": {
@@ -1927,128 +2085,68 @@
       }
     },
     {
-      "id": "command-memory-save",
-      "command": "/memory:save",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
-      "source": "scripts/command-bridges/allow-list.json",
-      "runtime": {
-        "typescript": {
-          "enabled": true,
-          "inventoryId": "command-memory-save",
-          "order": 2,
-          "id": "command-memory-save",
-          "name": "command-memory-save",
-          "description": "Memory save command bridge for /speckit:save context preservation (the retired /memory:save id is kept as the scorer key).",
-          "keywords": [
-            "/speckit:save",
-            "save context",
-            "save memory"
-          ],
-          "domains": [
-            "memory",
-            "command"
-          ],
-          "intentSignals": [
-            "/speckit:save",
-            "save context",
-            "save memory"
-          ]
-        },
-        "python": {
-          "enabled": true,
-          "inventoryId": "command-memory-save",
-          "order": 7,
-          "id": "command-memory-save",
-          "description": "Save conversation context to memory using /memory:save.",
-          "slashMarkers": [
-            "/memory:save",
-            "memory:save"
-          ],
-          "owningSkill": "system-spec-kit"
-        }
-      }
-    },
-    {
       "id": "command-prompt-improve",
       "command": "/prompt:improve",
       "skillId": "sk-prompt",
       "ownerMode": "sk-prompt",
+      "description": "Improve or create AI prompts via sk-prompt: one-pass checklist, CLEAR screening. Modes :auto, :confirm.",
+      "ownedSignals": [
+        "/prompt:improve",
+        "improve my prompt",
+        "rewrite my prompt",
+        "fix my system prompt",
+        "make this prompt better",
+        "sharpen this prompt",
+        "help me write a prompt",
+        "tighten up this instruction"
+      ],
+      "standalone": true,
+      "mutating": "mutates",
       "source": ".skilled/skills/sk-prompt/command-metadata.json",
       "runtime": {
         "typescript": {
-          "enabled": false
-        },
-        "python": {
-          "enabled": false
-        }
-      }
-    },
-    {
-      "id": "command-prompt-improver",
-      "command": "/prompt",
-      "skillId": "sk-prompt",
-      "ownerMode": "sk-prompt",
-      "source": "scripts/command-bridges/allow-list.json",
-      "runtime": {
-        "typescript": {
-          "enabled": false
-        },
-        "python": {
           "enabled": true,
-          "inventoryId": "command-prompt-improver",
-          "order": 9,
-          "id": "command-prompt-improver",
-          "description": "Create or improve AI prompts using /prompt.",
-          "slashMarkers": [
-            "/prompt"
-          ]
-        }
-      }
-    },
-    {
-      "id": "command-spec-kit",
-      "command": "/spec_kit",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
-      "source": "scripts/command-bridges/allow-list.json",
-      "runtime": {
-        "typescript": {
-          "enabled": true,
-          "inventoryId": "command-spec-kit",
-          "order": 0,
-          "id": "command-spec-kit",
-          "name": "command-spec-kit",
-          "description": "Spec Kit command bridge for /spec_kit workflows.",
+          "inventoryId": "command-prompt-improve",
+          "order": 40,
+          "id": "command-prompt-improve",
+          "name": "command-prompt-improve",
+          "description": "Improve or create AI prompts via sk-prompt: one-pass checklist, CLEAR screening. Modes :auto, :confirm.",
           "keywords": [
-            "/speckit:plan",
-            "/speckit:resume",
-            "/deep:research",
-            "/deep:review"
+            "/prompt:improve",
+            "improve my prompt",
+            "rewrite my prompt",
+            "fix my system prompt",
+            "make this prompt better",
+            "sharpen this prompt",
+            "help me write a prompt",
+            "tighten up this instruction"
           ],
           "domains": [
-            "spec-kit",
+            "prompt",
             "command"
           ],
           "intentSignals": [
-            "/speckit:plan",
-            "/speckit:resume",
-            "/deep:research",
-            "/deep:review"
+            "/prompt:improve",
+            "improve my prompt",
+            "rewrite my prompt",
+            "fix my system prompt",
+            "make this prompt better",
+            "sharpen this prompt",
+            "help me write a prompt",
+            "tighten up this instruction"
           ]
         },
         "python": {
           "enabled": true,
-          "inventoryId": "command-spec-kit",
-          "order": 6,
-          "id": "command-spec-kit",
-          "description": "[DEPRECATED: use per-subcommand bridges] /spec_kit slash-command family; routes generic /spec_kit or spec_kit: prompts without a specific subcommand.",
+          "inventoryId": "command-prompt-improve",
+          "order": 51,
+          "id": "command-prompt-improve",
+          "description": "Improve or create AI prompts via sk-prompt: one-pass checklist, CLEAR screening. Modes :auto, :confirm.",
           "slashMarkers": [
-            "/spec_kit",
-            "spec_kit:"
+            "/prompt:improve",
+            "prompt:improve"
           ],
-          "deprecated": true,
-          "owningSkill": "system-spec-kit"
+          "owningSkill": "sk-prompt"
         }
       }
     },
@@ -2060,7 +2158,28 @@
       "source": "scripts/command-bridges/allow-list.json",
       "runtime": {
         "typescript": {
-          "enabled": false
+          "enabled": true,
+          "inventoryId": "command-spec-kit-complete",
+          "order": 41,
+          "id": "command-spec-kit-complete",
+          "name": "command-spec-kit-complete",
+          "description": "End-to-end SpecKit workflow, 14+ steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers.",
+          "keywords": [
+            "/speckit:complete",
+            "the whole spec workflow",
+            "take it all the way",
+            "everything from spec to code"
+          ],
+          "domains": [
+            "speckit",
+            "command"
+          ],
+          "intentSignals": [
+            "/speckit:complete",
+            "the whole spec workflow",
+            "take it all the way",
+            "everything from spec to code"
+          ]
         },
         "python": {
           "enabled": true,
@@ -2084,7 +2203,30 @@
       "source": "scripts/command-bridges/allow-list.json",
       "runtime": {
         "typescript": {
-          "enabled": false
+          "enabled": true,
+          "inventoryId": "command-spec-kit-implement",
+          "order": 42,
+          "id": "command-spec-kit-implement",
+          "name": "command-spec-kit-implement",
+          "description": "Implementation workflow, 9 steps: execute pre-planned work from plan.md. Modes :auto, :confirm, :autopilot.",
+          "keywords": [
+            "/speckit:implement",
+            "execute the plan",
+            "implement the plan",
+            "start the implementation",
+            "build what was planned"
+          ],
+          "domains": [
+            "speckit",
+            "command"
+          ],
+          "intentSignals": [
+            "/speckit:implement",
+            "execute the plan",
+            "implement the plan",
+            "start the implementation",
+            "build what was planned"
+          ]
         },
         "python": {
           "enabled": true,
@@ -2108,7 +2250,30 @@
       "source": "scripts/command-bridges/allow-list.json",
       "runtime": {
         "typescript": {
-          "enabled": false
+          "enabled": true,
+          "inventoryId": "command-spec-kit-plan",
+          "order": 43,
+          "id": "command-spec-kit-plan",
+          "name": "command-spec-kit-plan",
+          "description": "Planning workflow, 8 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
+          "keywords": [
+            "/speckit:plan",
+            "write a spec first",
+            "spec out this feature",
+            "write the spec and plan",
+            "plan before coding"
+          ],
+          "domains": [
+            "speckit",
+            "command"
+          ],
+          "intentSignals": [
+            "/speckit:plan",
+            "write a spec first",
+            "spec out this feature",
+            "write the spec and plan",
+            "plan before coding"
+          ]
         },
         "python": {
           "enabled": true,
@@ -2132,7 +2297,34 @@
       "source": "scripts/command-bridges/allow-list.json",
       "runtime": {
         "typescript": {
-          "enabled": false
+          "enabled": true,
+          "inventoryId": "command-spec-kit-resume",
+          "order": 44,
+          "id": "command-spec-kit-resume",
+          "name": "command-spec-kit-resume",
+          "description": "Resume or recover work on a spec folder: canonical continuity recovery with one next step.",
+          "keywords": [
+            "/speckit:resume",
+            "where did we leave off",
+            "where we left off",
+            "pick up the work",
+            "where did we stop",
+            "continue the previous work",
+            "what was i doing"
+          ],
+          "domains": [
+            "speckit",
+            "command"
+          ],
+          "intentSignals": [
+            "/speckit:resume",
+            "where did we leave off",
+            "where we left off",
+            "pick up the work",
+            "where did we stop",
+            "continue the previous work",
+            "what was i doing"
+          ]
         },
         "python": {
           "enabled": true,
@@ -2153,13 +2345,55 @@
       "command": "/speckit:handoff",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
+      "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+      "ownedSignals": [
+        "/speckit:handoff",
+        "hand this off",
+        "write a handoff note",
+        "wrap up this session",
+        "running out of context"
+      ],
+      "standalone": true,
+      "mutating": "mutates",
       "source": ".skilled/skills/system-spec-kit/command-metadata.json",
       "runtime": {
         "typescript": {
-          "enabled": false
+          "enabled": true,
+          "inventoryId": "command-speckit-handoff",
+          "order": 45,
+          "id": "command-speckit-handoff",
+          "name": "command-speckit-handoff",
+          "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+          "keywords": [
+            "/speckit:handoff",
+            "hand this off",
+            "write a handoff note",
+            "wrap up this session",
+            "running out of context"
+          ],
+          "domains": [
+            "speckit",
+            "command"
+          ],
+          "intentSignals": [
+            "/speckit:handoff",
+            "hand this off",
+            "write a handoff note",
+            "wrap up this session",
+            "running out of context"
+          ]
         },
         "python": {
-          "enabled": false
+          "enabled": true,
+          "inventoryId": "command-speckit-handoff",
+          "order": 52,
+          "id": "command-speckit-handoff",
+          "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+          "slashMarkers": [
+            "/speckit:handoff",
+            "speckit:handoff"
+          ],
+          "owningSkill": "system-spec-kit"
         }
       }
     },
@@ -2168,13 +2402,64 @@
       "command": "/speckit:save",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
+      "description": "Save current conversation context into canonical spec-doc continuity surfaces",
+      "ownedSignals": [
+        "/speckit:save",
+        "save this conversation",
+        "save the context",
+        "record this session",
+        "write it into the spec",
+        "save context",
+        "save memory",
+        "preserve session context"
+      ],
+      "standalone": true,
+      "mutating": "mutates",
       "source": ".skilled/skills/system-spec-kit/command-metadata.json",
       "runtime": {
         "typescript": {
-          "enabled": false
+          "enabled": true,
+          "inventoryId": "command-speckit-save",
+          "order": 46,
+          "id": "command-speckit-save",
+          "name": "command-speckit-save",
+          "description": "Save current conversation context into canonical spec-doc continuity surfaces",
+          "keywords": [
+            "/speckit:save",
+            "save this conversation",
+            "save the context",
+            "record this session",
+            "write it into the spec",
+            "save context",
+            "save memory",
+            "preserve session context"
+          ],
+          "domains": [
+            "speckit",
+            "command"
+          ],
+          "intentSignals": [
+            "/speckit:save",
+            "save this conversation",
+            "save the context",
+            "record this session",
+            "write it into the spec",
+            "save context",
+            "save memory",
+            "preserve session context"
+          ]
         },
         "python": {
-          "enabled": false
+          "enabled": true,
+          "inventoryId": "command-speckit-save",
+          "order": 53,
+          "id": "command-speckit-save",
+          "description": "Save current conversation context into canonical spec-doc continuity surfaces",
+          "slashMarkers": [
+            "/speckit:save",
+            "speckit:save"
+          ],
+          "owningSkill": "system-spec-kit"
         }
       }
     },
@@ -2183,49 +2468,56 @@
       "command": "/speckit:search",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
+      "description": "Continuity retrieval front door: trigger-index lookup plus the ripgrep recipes over spec docs and skill docs.",
+      "ownedSignals": [
+        "/speckit:search",
+        "find the spec packet",
+        "which spec covers this",
+        "search the spec docs",
+        "is this already documented"
+      ],
+      "standalone": true,
+      "mutating": "read-only",
       "source": ".skilled/skills/system-spec-kit/command-metadata.json",
       "runtime": {
         "typescript": {
-          "enabled": false
-        },
-        "python": {
-          "enabled": false
-        }
-      }
-    },
-    {
-      "id": "memory:save",
-      "command": "/memory:save",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
-      "source": "scripts/command-bridges/allow-list.json",
-      "runtime": {
-        "typescript": {
           "enabled": true,
-          "inventoryId": "memory:save",
-          "order": 1,
-          "id": "memory:save",
-          "name": "memory:save",
-          "description": "Memory save command bridge for /speckit:save context preservation (the retired /memory:save id is kept as the scorer key).",
+          "inventoryId": "command-speckit-search",
+          "order": 47,
+          "id": "command-speckit-search",
+          "name": "command-speckit-search",
+          "description": "Continuity retrieval front door: trigger-index lookup plus the ripgrep recipes over spec docs and skill docs.",
           "keywords": [
-            "/speckit:save",
-            "save context",
-            "save memory",
-            "preserve session context"
+            "/speckit:search",
+            "find the spec packet",
+            "which spec covers this",
+            "search the spec docs",
+            "is this already documented"
           ],
           "domains": [
-            "memory",
+            "speckit",
             "command"
           ],
           "intentSignals": [
-            "/speckit:save",
-            "save context",
-            "save memory",
-            "preserve session context"
-          ]
+            "/speckit:search",
+            "find the spec packet",
+            "which spec covers this",
+            "search the spec docs",
+            "is this already documented"
+          ],
+          "readOnly": true
         },
         "python": {
-          "enabled": false
+          "enabled": true,
+          "inventoryId": "command-speckit-search",
+          "order": 54,
+          "id": "command-speckit-search",
+          "description": "Continuity retrieval front door: trigger-index lookup plus the ripgrep recipes over spec docs and skill docs.",
+          "slashMarkers": [
+            "/speckit:search",
+            "speckit:search"
+          ],
+          "owningSkill": "system-spec-kit"
         }
       }
     }
@@ -2249,8 +2541,10 @@
       "command": "/create:changelog",
       "route": null,
       "mutating": "mutates",
-      "askFirst": [],
-      "policy": "start"
+      "askFirst": [
+        "outside-repo"
+      ],
+      "policy": "ask"
     },
     {
       "command": "/create:command",
