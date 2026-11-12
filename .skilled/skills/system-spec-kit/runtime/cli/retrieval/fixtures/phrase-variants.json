@@ -1,5 +1,5 @@
 {
-  "manifestHash": "36984f0f828cdc3befe0ae99585c98a56b3902d5f61cec67745192fd136d9152",
+  "manifestHash": "fb64f63c1d5836b0efbf9cd9af9e81a60d7b7e547585331bc0e576dc734eb4f0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11172,6 +11172,12 @@
     "alignment executor implementation": [
       "alignment executor implementation"
     ],
+    "alignment findings": [
+      "alignment findings"
+    ],
+    "alignment findings acceptance criteria": [
+      "alignment findings acceptance criteria"
+    ],
     "alignment findings fixes": [
       "alignment findings fixes"
     ],
@@ -11189,6 +11195,18 @@
     ],
     "alignment findings fixes tasks": [
       "alignment findings fixes tasks"
+    ],
+    "alignment findings goal": [
+      "alignment findings goal"
+    ],
+    "alignment findings implementation summary": [
+      "alignment findings implementation summary"
+    ],
+    "alignment findings plan": [
+      "alignment findings plan"
+    ],
+    "alignment findings tasks": [
+      "alignment findings tasks"
     ],
     "alignment fixes": [
       "alignment fixes"
@@ -22836,6 +22854,9 @@
     "cli opencode 1 5 1 0": [
       "cli-opencode 1.5.1.0"
     ],
+    "cli opencode 1 5 10 0": [
+      "cli-opencode 1.5.10.0"
+    ],
     "cli opencode 1 5 2 0": [
       "cli-opencode 1.5.2.0"
     ],
@@ -23093,6 +23114,9 @@
     ],
     "cli opencode v1 5 1 0": [
       "cli-opencode v1.5.1.0"
+    ],
+    "cli opencode v1 5 10 0": [
+      "cli-opencode v1.5.10.0"
     ],
     "cli opencode v1 5 2 0": [
       "cli-opencode v1.5.2.0"
@@ -75570,6 +75594,9 @@
     "opencode provider auth pre flight": [
       "opencode provider auth pre-flight"
     ],
+    "opencode provider key guard": [
+      "opencode provider key guard"
+    ],
     "opencode provider row": [
       "opencode provider row"
     ],
@@ -81472,6 +81499,9 @@
     ],
     "phase 8 ai systems migration": [
       "phase 8 ai systems migration"
+    ],
+    "phase 8 alignment findings": [
+      "phase 8 alignment findings"
     ],
     "phase 8 authored classifier fixture": [
       "phase 8 authored classifier fixture"

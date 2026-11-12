@@ -1,5 +1,5 @@
 {
-  "corpusHash": "94d06e657e1dbb9ffbb54354c8eb2500cf47df3c03190ce65cab2380c9132fcf",
+  "corpusHash": "e5b9da929aa8874d6046d12b456a7d6ce0c8c52952e9eb952bee7c1cd85dab6b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26284,
+  "includedPathCount": 26291,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1631,6 +1631,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.9.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.1.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.10.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.4.0.md",
@@ -11835,6 +11836,12 @@
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup/plan.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/008-alignment-findings/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/008-alignment-findings/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/008-alignment-findings/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/008-alignment-findings/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/008-alignment-findings/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/008-alignment-findings/tasks.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/decision-record.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/spec.md",
@@ -26316,7 +26323,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "36984f0f828cdc3befe0ae99585c98a56b3902d5f61cec67745192fd136d9152",
+  "manifestHash": "fb64f63c1d5836b0efbf9cd9af9e81a60d7b7e547585331bc0e576dc734eb4f0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29648,6 +29655,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/008-alignment-findings/scratch",
       "reason": "excluded directory"
     },
     {
