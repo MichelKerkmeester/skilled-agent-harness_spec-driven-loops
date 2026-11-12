@@ -44,7 +44,7 @@
 //   node run-command-behaviour.mjs --runtime <runtime> (--set <set> | --row-id <id>...)
 //     --out <run-log> [--arm <arm>] [--fixture <dir>] [--dry-run]
 
-import { appendFileSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
+import { appendFileSync, mkdirSync, readFileSync, realpathSync, rmSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { homedir } from 'node:os';
 import { randomUUID } from 'node:crypto';
@@ -54,6 +54,10 @@ import { fileURLToPath } from 'node:url';
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(HERE, '../../../../../..');
 const DSH_PATCH_DIR = resolve(REPO_ROOT, '.dsh/patches');
+// A stored session is found by its id plus the directory the turn ran in, and the
+// scorer reads it back from another checkout, so the locator records the resolved
+// directory instead of letting each reader compare the id against its own root.
+const PROJECT_DIR = realpathSync(REPO_ROOT);
 const PROMPTS_PATH = resolve(HERE, 'command-prompts.jsonl');
 
 const EXIT_REFUSED = 2;
@@ -68,7 +72,8 @@ const CAP_MS = Object.freeze({
 
 const CLAUDE_MODEL = 'claude-sonnet-5-5';
 const CODEX_MODEL = 'gpt-6-luna';
-const OPENCODE_MODEL = 'llmgateway/deepseek-v4.1-flash-1017';
+// The variant rides the model string, because `opencode run` has no flag for it.
+const OPENCODE_MODEL = 'llmgateway/deepseek-v4.1-flash-1017#max';
 const PI_MODEL = 'llmgateway/deepseek-v4.1-flash-1017';
 const DEVIN_MODEL = 'swe-2-max';
 const DSH_MODEL = 'deepseek-v4.1-flash-1017';
@@ -146,15 +151,13 @@ const RUNTIMES = {
     // The turn's own events carry the id of the session it created.
     locator: { kind: 'stream', field: 'sessionID' },
     buildArgv: ({ prompt }) => [
+      // `opencode run` takes no --dir, and the child already starts in the
+      // checkout, so passing the directory a second time would only fail.
       'run',
       '--model',
       OPENCODE_MODEL,
-      '--variant',
-      'max',
       '--format',
       'json',
-      '--dir',
-      REPO_ROOT,
       // Auto-approve everything not explicitly denied. A run that stalls on a
       // permission prompt reads as a model that declined to act.
       '--auto',
@@ -165,16 +168,20 @@ const RUNTIMES = {
     command: 'pi',
     model: PI_MODEL,
     promptOnStdin: false,
-    // Nothing a Pi turn prints names the log it writes, so the run log says the
-    // locator is not known yet rather than pointing at a guessed file.
-    locator: 'UNKNOWN',
-    buildArgv: ({ prompt }) => [
+    // Print mode never reports the session it wrote, so the runner mints the id
+    // and passes it on the command line instead of recovering it from the stream.
+    locator: { kind: 'runner' },
+    buildArgv: ({ prompt, sessionId }) => [
       '-p',
       // Without it a non-interactive Pi probes the network on startup and can
       // hang before it ever reads the prompt.
       '--offline',
       '--model',
       PI_MODEL,
+      // Without a minted id the log would have to be guessed from whatever
+      // file is newest, which can open a neighbouring turn's transcript.
+      '--session-id',
+      sessionId,
       prompt,
     ],
   },
@@ -183,8 +190,8 @@ const RUNTIMES = {
     model: DEVIN_MODEL,
     promptOnStdin: false,
     // A Devin turn keeps its session in a store its own output does not name, so
-    // the locator is not known yet.
-    locator: 'UNKNOWN',
+    // the id comes from the listing of the directory the turn ran in.
+    locator: { kind: 'listing', args: ['list', '--format', 'json'] },
     buildArgv: ({ prompt }) => [
       '-p',
       '--model',
@@ -193,6 +200,14 @@ const RUNTIMES = {
       // so a headless turn explores its whole budget and writes nothing.
       '--permission-mode',
       'dangerous',
+      // A fresh checkout has never been trusted interactively, and print mode has
+      // nobody to answer the trust prompt, so the turn would refuse to start.
+      '--respect-workspace-trust',
+      'false',
+      // No `--sandbox` here. That flag forces a permission mode that ignores
+      // `dangerous` and rejects every write in print mode, so a turn would write
+      // nothing and read as a model that declined. Containment comes from the
+      // arena instead.
       // The separator keeps a prompt that opens with a dash from parsing as a flag.
       '--',
       prompt,
@@ -237,9 +252,10 @@ const RUNTIMES = {
 //
 // A run log is only evidence if it leads back to the exact transcript the turn
 // wrote, and each runtime exposes that handle in its own way. Three sources
-// exist: an id the CLI prints in its output, an id the runner hands the CLI
-// before it starts, or no recorded source at all, which the log states rather
-// than filling with the newest file in the store.
+// exist: an id the CLI reports after the turn, either in its output or in the
+// session listing it keeps, an id the runner hands the CLI before it starts, or
+// no recorded source at all, which the log states rather than filling with the
+// newest file in the store.
 
 // Output arrives in chunks that cut a line in half, so a line is parsed only
 // once its newline has come through. Parsing stops at the first match, because
@@ -278,6 +294,52 @@ function readId(line, field) {
   return typeof id === 'string' && id !== '' ? id : null;
 }
 
+// A runtime that keeps its sessions in a store its output never names still lists
+// them for the directory the turn ran in, so two listings taken around a turn
+// reduce the store to a set difference. The listing runs in the child's
+// environment, because that is the store the turn itself wrote to.
+const LISTING_CAP_MS = 60_000;
+
+function listingIds(runtime, ghConfig) {
+  const source = runtime.locator;
+  if (source.kind !== 'listing') return null;
+  const result = spawnSync(runtime.command, source.args, {
+    cwd: REPO_ROOT,
+    env: childEnv(ghConfig),
+    encoding: 'utf8',
+    timeout: LISTING_CAP_MS,
+  });
+  if (result.error) return null;
+  return result.status === 0 ? listedSessionIds(result.stdout) : null;
+}
+
+// The listing is a JSON array of session objects whose `id` field is the value
+// the CLI's own resume takes, so that field is the one that leads back to a
+// transcript. Any other shape names no session, which the caller reads as no id
+// rather than as a failed run.
+function listedSessionIds(text) {
+  let entries;
+  try {
+    entries = JSON.parse(text);
+  } catch {
+    return null;
+  }
+  if (!Array.isArray(entries)) return null;
+  return entries
+    .map((entry) => (entry !== null && typeof entry === 'object' ? entry.id : null))
+    .filter((id) => typeof id === 'string' && id !== '');
+}
+
+// A session another operator opened while the turn ran is not this turn's, and a
+// listing that reports none or several added entries has no id it can name with
+// confidence, so only a single added entry becomes the locator.
+function addedSessionId(before, after) {
+  if (before === null || after === null) return null;
+  const known = new Set(before);
+  const added = [...new Set(after.filter((id) => !known.has(id)))];
+  return added.length === 1 ? added[0] : null;
+}
+
 // DSH keeps its session logs under DSH_HOME, which an operator can move, so the
 // locator records the home the run used and the transcript stays findable from
 // the log alone.
@@ -285,14 +347,12 @@ function dshHome() {
   return process.env.DSH_HOME || join(homedir(), '.dsh');
 }
 
-function locatorFor(runtime, sessionId, streamId) {
+function locatorFor(runtime, sessionId, reportedId) {
   const source = runtime.locator;
-  // A bare string stands in for a runtime whose locator source is not recorded
-  // yet. Writing that fact down keeps a scorer from opening a neighbouring
-  // transcript that happens to be newer.
-  if (typeof source === 'string') return source;
-  if (source.kind === 'runner') return { sessionId, dshHome: dshHome() };
-  return streamId === null ? null : { sessionId: streamId };
+  if (source.kind === 'runner') return { sessionId, dshHome: dshHome(), projectDir: PROJECT_DIR };
+  // A runtime that reported no id records none, which keeps a scorer from opening
+  // a neighbouring transcript that happens to be newer.
+  return reportedId === null ? null : { sessionId: reportedId, projectDir: PROJECT_DIR };
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -648,18 +708,28 @@ function childEnv(ghConfig) {
   return env;
 }
 
-function spawnTurn(runtime, argv, capMs, ghConfig) {
+function spawnTurn(runtime, argv, prompt, capMs, ghConfig) {
   return new Promise((settle) => {
+    // A CLI that reads the prompt from stdin gets a pipe to write it into. Every other
+    // runtime keeps stdin ignored, because an open stdin leaves that CLI waiting on
+    // input nobody types until the cap runs out into an empty transcript.
     const child = spawn(runtime.command, argv, {
       cwd: REPO_ROOT,
       env: childEnv(ghConfig),
-      // Ignored means the child reads /dev/null. A live stdin leaves a CLI waiting on
-      // input nobody types, which times out into an empty transcript.
-      stdio: ['ignore', 'pipe', 'inherit'],
+      // Ignored means the child reads /dev/null rather than blocking on a terminal.
+      stdio: [runtime.promptOnStdin ? 'pipe' : 'ignore', 'pipe', 'inherit'],
       // A chat turn still running after its cap is stuck, while a started workflow
       // legitimately needs the longer one. The prompt decides which it gets.
       timeout: capMs,
     });
+    // The prompt is written and the stream closed at once, so a CLI that reads until
+    // the end of input sees a whole prompt. A CLI that exits before reading leaves a
+    // broken pipe behind, and that write error is the CLI's failure to report rather
+    // than an uncaught error that would end the run early.
+    if (child.stdin !== null) {
+      child.stdin.on('error', () => {});
+      child.stdin.end(prompt);
+    }
     const locator = streamLocator(runtime.locator.field ?? null);
     // The turn's own output is still shown, and the locator is read out of the
     // same bytes, so watching a run and recording it never diverge.
@@ -834,9 +904,17 @@ async function runTurn(job, options, exempt, isFirst) {
 
   const sessionId = randomUUID();
   const argv = job.runtime.buildArgv({ prompt: job.prompt, sessionId });
+  // A runtime that names its session only in its own store is bracketed by a
+  // listing, and the entry the turn added is the session it wrote. A dry run
+  // starts no CLI, so it has nothing to list.
+  const listed = !options.dryRun && job.runtime.locator.kind === 'listing';
+  const listingBefore = listed ? listingIds(job.runtime, job.ghConfig) : null;
   const turn = options.dryRun
     ? { exit: null, error: null, streamId: null }
-    : await spawnTurn(job.runtime, argv, job.cap, job.ghConfig);
+    : await spawnTurn(job.runtime, argv, job.prompt, job.cap, job.ghConfig);
+  const reportedId = listed
+    ? addedSessionId(listingBefore, listingIds(job.runtime, job.ghConfig))
+    : turn.streamId;
 
   const after = { status: statusPaths(), ...gitSnapshot() };
   const headMoved = before.head !== after.head || before.stash !== after.stash;
@@ -845,7 +923,7 @@ async function runTurn(job, options, exempt, isFirst) {
     runtime: job.runtimeName,
     rowId: job.rowId,
     arm: options.arm,
-    locator: locatorFor(job.runtime, sessionId, turn.streamId),
+    locator: locatorFor(job.runtime, sessionId, reportedId),
     exit: turn.exit,
     changedPaths: changed,
   };

@@ -1,0 +1,23 @@
+T050 done.
+
+**File written** (only one, as the task names `R`):
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs`
+  - added `realpathSync` to the `node:fs` import
+  - added `const PROJECT_DIR = realpathSync(REPO_ROOT)` with a durable why-comment
+  - `locatorFor` now stamps `projectDir: PROJECT_DIR` on both object locators it returns (the `runner` kind and the `streamId` kind). The bare-string locator and the `streamId === null` case have no session id and are untouched.
+
+**Verify output** (from the repository root):
+```
+$ node --check $R
+node --check exit: 0
+$ rg -n "projectDir" $R
+298:  if (source.kind === 'runner') return { sessionId, dshHome: dshHome(), projectDir: PROJECT_DIR };
+299:  return streamId === null ? null : { sessionId: streamId, projectDir: PROJECT_DIR };
+rg exit: 0
+```
+`node --check` passes and `rg` prints two lines — both clauses of the verify hold. As an extra read-only sanity check the module still loads and prints argv (`--print-argv claude` exits 0 with `-p` and `stream-json` present), so the new top-level constant does not break startup.
+
+**Not done / caveats:**
+- Did not tick the `T050` checkbox, per the brief.
+- No tests were run: the task names none, and the locator is exercised only by live runs.
+- One thing worth flagging for the operator: `locatorFor` is also reached by dry runs, so a dry-run log line now carries a `projectDir` too. That is deliberate — a dry run spawns no session, and the field is only read once a reader is asked for a session — but no existing dry-run log has it, so a scorer reading an older log falls back to the reader's own default. Nothing to change unless older logs must be scorable.

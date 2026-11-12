@@ -1,0 +1,32 @@
+T052 done: the OpenCode argv no longer passes a flag that opencode 2.2.7 does not have, and the variant now rides the model string.
+
+**File changed** (only this one)
+`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs`
+- `OPENCODE_MODEL` is now `'llmgateway/deepseek-v4.1-flash-1017#max'`, with a one-line comment saying the variant rides the model string because `opencode run` has no flag for it.
+- Removed `'--variant', 'max'` and `'--dir', REPO_ROOT` from the opencode `buildArgv`. Kept `run`, `--model`, `--format json`, `--auto`, and the prompt last, with a short comment noting the child already starts in the checkout.
+
+**Verify** (`node $R --print-argv opencode`, run from the repo root, final state)
+```
+["run","--model","llmgateway/deepseek-v4.1-flash-1017#max","--format","json","--auto","sample prompt for argv inspection"]
+exit=0
+```
+Grep assertions on that output: `--variant` 0 matches, `--dir` 0 matches, `llmgateway/deepseek-v4.1-flash-1017#max` 1 match.
+
+Negative control, captured before the edit, same command:
+```
+["run","--model","llmgateway/deepseek-v4.1-flash-1017","--variant","max","--format","json","--dir","/Users/.../352-command-surfacing-research","--auto","sample prompt for argv inspection"]
+```
+So the check does discriminate on both removed tokens.
+
+**Additional checks**
+- `node --check <R>` exits 0.
+- `grep -n "'--variant'\|'--dir'" <R>` prints nothing (exit 1), so no residual literal in the file.
+- `--print-argv claude` and `--print-argv pi` still print their previous argv, which is expected since the table rows are shared.
+
+**State of the work**: edited, uncommitted, dirty on the current worktree branch, one file. `git diff` on that path also shows the earlier uncommitted T050 (`projectDir`) and T051 (stdin) changes from the previous waves, which I left untouched. The `- [ ] T052` checkbox is not ticked, as instructed. No git state touched.
+
+**Inferred, not verified**: `model` in the `RUNTIMES` table is declarative only, so the `#max` suffix on the opencode row has no runtime effect. I confirmed this by grepping every read of the table in `R` (only `command`, `promptOnStdin`, `locator`, `buildArgv` are consumed), not by a test.
+
+**Residual risk**: none known for this task. The argv is only proven by `--print-argv`, not by a live opencode turn, so the claim that opencode 2.2.7 accepts the `#max` model string rests on the task brief and stays unproven until the repeated smoke run T022.
+
+**Your next step**: dispatch T053 (Pi `--session-id`), the next wave, which edits the same file and therefore runs after this one.

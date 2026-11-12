@@ -1,0 +1,40 @@
+**Files written** — one file only:
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs` (`R`)
+
+**What changed**
+
+1. **Devin argv** — added `--respect-workspace-trust false` and `--sandbox` before the `--` separator, each with a durable WHY (untrusted fresh checkout + print mode has nobody to answer the trust prompt; operator files and credentials sit outside the clone).
+2. **Devin locator** — replaced the `'UNKNOWN'` placeholder with `{ kind: 'listing', args: ['list', '--format', 'json'] }`.
+3. **Listing capture** — new `listingIds(runtime, ghConfig)` runs that listing with `cwd: REPO_ROOT` (the checkout the turn ran in) and in `childEnv()`, so it reads the store the turn wrote; `listedSessionIds(text)` reads the `id` field of the JSON array; `addedSessionId(before, after)` returns the single id in the second list but not the first, and `null` on none, several, or a failed listing.
+4. **`runTurn`** — brackets a `listing`-kind runtime with a before/after listing (`listed` is false for a dry run, which starts no CLI), and passes the resulting `reportedId` to `locatorFor`. A no-id or ambiguous case yields a `null` locator, per T050's "a locator that has no session id stays as it is today".
+5. **`locatorFor`** — parameter renamed `streamId → reportedId` (the id can now come from a listing), and the bare-string branch removed since it existed only for the placeholder T054 deletes. No behaviour change for the other runtimes.
+6. Section header comment updated: the sources are now "the CLI reports after the turn, either in its output or in the session listing it keeps", a runner-minted id, or none.
+
+**Verify (task line, run from repo root)**
+
+```
+$ ADV=.skilled/skills/system-skill-advisor/runtime
+$ R=$ADV/scripts/routing-accuracy/run-command-behaviour.mjs
+
+$ node $R --print-argv devin
+["-p","--model","swe-2-max","--permission-mode","dangerous","--respect-workspace-trust","false","--sandbox","--","sample prompt for argv inspection"]
+exit=0
+
+$ rg -n "UNKNOWN" $R
+exit=1            # no output, clean no-match
+```
+
+Extra evidence I ran:
+- `node --check $R` → OK.
+- Argv holds all three tokens: `jq -e 'index("--respect-workspace-trust") and index("false") and index("--sandbox")'` → `true`.
+- No regression in the other rows: `--print-argv` for claude/codex/opencode/pi/dsh unchanged in shape, `--list chat` → 24, `--list g2` → 6, `--print-argv cursor` still exits 2.
+- The two pure helpers were exercised from their shipped line range in a `mktemp -d` probe (one new id → id, none → null, two → null, duplicate new → id, parse/array failure → null): all passed, probe removed.
+- No test file in the runtime references the runner, so no vitest run applies (the task names none).
+
+**What I could not do, and one risk the operator must settle**
+
+- **`--sandbox` conflict flagged, not silently resolved.** `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` (~L2789-2812) records a live-grounded finding: `--sandbox` forces an `autonomous` permission mode that ignores `--permission-mode dangerous` and, in non-interactive print mode, rejects every write tool call. The task line explicitly orders both flags, so I added them exactly as written. If that finding still holds on `devin 3000.12.43`, the T022 Devin smoke turn may explore and write nothing — which would make must-not-start rows pass for the wrong reason. This needs an operator decision before T022, not a worker deviation.
+- **`devin list --format json` shape is inferred, not observed live.** The task forbids starting a runtime CLI, so the shape comes from repo evidence (archive playbook `DV-016` output starts `[   {`, and wave-2 evidence records the `.id` slug field). Any other shape, a parse failure or a non-zero exit yields no id rather than a guess, and the scorer then reports `locator_unavailable`.
+- Checkbox `T054` in `tasks.md` left unticked; no git state, no other file touched (verified with `git status --porcelain`: the only file I modified is `run-command-behaviour.mjs`).
+
+The one thing that is the operator's to do: rule on whether Devin keeps `--sandbox` (with `--permission-mode dangerous`) before the T022 smoke run, given the write-rejection finding.

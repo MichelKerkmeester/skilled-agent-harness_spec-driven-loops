@@ -1,0 +1,21 @@
+T053 done.
+
+**File written** (single file, single row changed):
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs` (`R`) — Pi row only:
+  - `locator: 'UNKNOWN'` → `locator: { kind: 'runner' }`, matching the dsh row.
+  - `buildArgv: ({ prompt })` → `({ prompt, sessionId })`, with `--session-id` / `sessionId` placed after `--model PI_MODEL` and before the positional prompt.
+  - Removed the comment saying Pi's locator is not known; replaced with the durable why (print mode never reports its session, so the runner mints the id instead of guessing the newest file).
+
+**Verify output (task's two commands):**
+```
+$ node $R --print-argv pi
+["-p","--offline","--model","llmgateway/deepseek-v4.1-flash-1017","--session-id","sample-session-id","sample prompt for argv inspection"]
+$ rg -n "UNKNOWN" $R
+194:    locator: 'UNKNOWN',
+```
+`--print-argv pi` holds `--session-id`; the only remaining `UNKNOWN` hit is line 194, the Devin row's locator. Also ran `node --check` on the file — passes.
+
+**Notes**
+- `sessionId` is already minted per turn (`randomUUID()` before `buildArgv`), so nothing else needed plumbing.
+- The `kind: 'runner'` branch of `locatorFor` also emits `dshHome` for Pi; left untouched since the readers resolve home from `DSH_HOME`/`~`, and the task scoped the change to the Pi row.
+- `git diff` shows other workers' T050/T051/T052 hunks already present in this file; I did not touch or reformat them. No checkbox ticked in `tasks.md`, no git state touched.

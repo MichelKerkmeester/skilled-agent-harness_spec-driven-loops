@@ -1,0 +1,34 @@
+Done. T051 implemented in one file.
+
+## Files written
+
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs`
+  - `spawnTurn(runtime, argv, prompt, capMs, ghConfig)` now takes the prompt and sets `stdio[0]` to `'pipe'` when the runtime's row has `promptOnStdin: true`, `'ignore'` otherwise.
+  - When a stdin pipe exists: one `error` listener (a CLI that exits before reading leaves a broken pipe, which must not surface as an uncaught write error), then `child.stdin.end(prompt)` — written and closed in one call so a CLI reading to end-of-input sees the whole prompt.
+  - Call site updated: `spawnTurn(job.runtime, argv, job.prompt, job.cap, job.ghConfig)`.
+  - Comment hygiene kept: WHY only, no spec/phase/task ids.
+
+## Verify output
+
+```
+$ node --check $R
+check exit=0
+
+$ rg -n "stdin.end\(" $R
+675:      child.stdin.end(prompt);
+(1 line)
+
+$ node $R --print-argv codex
+["exec","--json","--model","gpt-6-luna","-c","model_reasoning_effort=medium","-c","service_tier=fast","-c","approval_policy=never","--sandbox","workspace-write","-"]
+codex exit=0            # ends with "-"
+```
+
+All three verify clauses pass: `node --check` passes (exit 0), the `stdin.end(` match prints exactly one line, and the codex argv still ends with `-`.
+
+## Extra checks (cheap, read-only)
+
+- `node $R --print-argv dsh` → exit 0, argv carries `--session-id sample-session-id` and ends with `-`; the sample prompt is not in argv (existing guard in `writeArgv` still holds).
+- `node $R --print-argv cursor` → exit 2 with `runtime cursor is not measured`, unchanged.
+- `git status` / `git diff --stat`: the only file I changed is the one named above. `tasks.md`, `graph-metadata.json` and the `scratch/` files are other workers'/orchestrator's and were left untouched. Checkbox not ticked, no git state written.
+
+Nothing I could not do. Note for the orchestrator: the prompt-on-stdin path is proven by argv inspection only — no live codex or dsh turn was started, since the task line names none.

@@ -1,0 +1,6 @@
+claude: 2.1.322 (Claude Code)
+codex: codex-cli 0.167.2
+opencode: opencode v2.2.7
+pi: 1.5.2
+devin: devin 3000.12.43 (517d03d73926)
+dsh: 0.2.2-rc.1
