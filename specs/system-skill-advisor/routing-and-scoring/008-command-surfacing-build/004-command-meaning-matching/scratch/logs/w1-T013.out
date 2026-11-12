@@ -1,0 +1,33 @@
+**File written** (only file touched):
+`/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs`
+
+What it now does with `--real-embedding`: leaves `VITEST`, `SYSTEM_SKILL_ADVISOR_DB_DIR` and `SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC` unset, takes no scratch DB dir, resolves `dist/runtime/lib/scorer/lanes/semantic-shadow.js` + `lib/skill-graph/skill-graph-db.js` from the same build the scorer comes from, and wraps each `scoreAdvisorPrompt` call in `withSemanticShadowPromptEmbedding(prompt, () => score...)` the way `advisor-recommend.ts` does. Preflight runs after the dist-freshness gate: `GET http://localhost:11434/api/tags` must answer and list a `nomic-embed-text*` model, then a read-only handle must see a populated `vec_cmd_*` table (`GLOB`, so the trailing `_` stays literal). Flag added to `rejectUnknownOptions`; `--write` + `--real-embedding` refuses before scoring. Default path is unchanged — no wrapper, no probe, direct sync call.
+
+**Verify outputs**
+
+1. Default capture:
+```
+{"correct":24,"total":44}
+{"own":2,"attached":7,"combined":9,"total":45}
+{"own":0,"attached":0,"combined":0,"total":44}
+{"count":0,"total":35}
+```
+2. `--real-embedding --write`:
+```
+capture-command-routing-baseline.mjs: --write cannot be combined with --real-embedding; the committed baseline is captured under the fixture regime only
+exit=2
+```
+3. `--real-embedding`:
+```
+capture-command-routing-baseline.mjs: real embedding needs command vectors: no vec_cmd_* table in .../runtime/database/skill-graph.sqlite
+exit=2
+```
+4. `npx vitest run tests/command-routing-slice.vitest.ts` → `Test Files 1 passed (1) / Tests 4 passed (4)`, 0 failed.
+
+Extra checks (no service stopped): stubbed `fetch` in a throwaway process exercises the embedder branch — wrong model `real embedding needs an embedder serving nomic-embed-text*: ... lists llama3:latest`, unreachable `... needs a live embedder: GET ... failed (fetch failed: ECONNREFUSED)`, HTTP 503 `... failed (HTTP 503)`. Against a temp copy of the DB with a populated `vec_cmd_768` the full real run completes (exit 0) and the JSON shape is byte-identical to the default run's key structure (`top, metrics, row, command, family` all equal, diff empty). Unknown-option guard now prints `usage: ... [--write] [--real-embedding]`.
+
+**Things I could not do / worth knowing**
+
+- Mid-run another worker rebuilt `dist` in this shared checkout (`lib/scorer/fusion.ts`, `lib/embedders/schema.ts`, ... changed 19:44–19:46, `.pending` attestations at 19:46:45). One capture and one test run failed on `dist is stale` during that window. I re-ran everything after the build settled; all four verifies above are from the post-settle tree. I did not rebuild or touch `dist`/`lib`.
+- With the command-vector gate satisfied only in a temp copy, the real run emits per-row `[semantic-shadow] Prompt embedding failed; cosine lane disabled for this call (active embedder is not registered: nomic-ai/nomic-embed-text-v1.5)`. That is the local skill-graph `vec_metadata` pointer naming a model the registry lacks — outside this brief's two checks, surfaced by the existing warn, scoring still completes fail-open. Whoever runs the real probe after `vec_cmd_<dim>` exists will hit it unless that pointer is fixed.
+- `command-routing-baseline.json` was not rewritten (no `--write` run reached the write path).

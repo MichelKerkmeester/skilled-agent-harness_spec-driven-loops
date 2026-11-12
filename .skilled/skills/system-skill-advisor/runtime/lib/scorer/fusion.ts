@@ -670,9 +670,13 @@ function hasExplicitWorkflowSignal(contributions: readonly LaneContribution[], s
   ));
 }
 
+// Wording that asks for an answer and rules out a change. One pattern serves
+// every gate that has to honour it, so a new gate cannot drift from the first.
+const NO_EDIT_REQUEST = /\b(no edits?|without making changes|do not (change|edit|modify|touch)|read-only only|no edits yet|only; do not|just show|just list)\b/;
+
 export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection): boolean {
   const skillId = skill.id;
-  if (/\b(no edits?|without making changes|do not (change|edit|modify|touch)|read-only only|no edits yet|only; do not|just show|just list)\b/.test(promptLower)) {
+  if (NO_EDIT_REQUEST.test(promptLower)) {
     return false;
   }
   // The explainer floor exists to stop an ambiguous read-only question from
@@ -838,26 +842,97 @@ function primaryIntentBonus(
 // 5. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
-// A command bridge passes only on its own wording: one of its authored phrases or
-// its runnable slash string, which the explicit-author lane reports. A bridge
-// that passed on shared single tokens alone stays scored but stops passing,
-// because its phrases are everyday words and a command must not be offered for a
-// prompt that merely shares some of them. A doctor problem in other words reaches
-// /doctor:helper through applyDoctorHelperHandoff instead.
+// The bar sits above the highest cosine any prompt that must stay silent reached
+// against a command row, with headroom, because a command offered for the wrong
+// prompt costs more than one that stays quiet. The margin asks for a small lead
+// over the next command and over the top skill, which is what kept a wrong
+// command out of first place on the tuning rows. Raise the bar before the
+// margin if a false offer appears.
+export const COMMAND_MEANING_MIN_COSINE = 0.72;
+export const COMMAND_MEANING_MARGIN = 0.02;
+
+// The lane reports a real embedder cosine as "cosine:", while the word-overlap
+// stand-in used under test reports "shadow:". Only a real cosine may carry a
+// command on meaning, because the stand-in measures shared words rather than
+// shared meaning.
+function commandMeaningCosine(contribution: LaneContribution | undefined): number | null {
+  if (!contribution) return null;
+  return contribution.evidence.some((entry) => entry.startsWith('cosine:'))
+    ? contribution.rawScore
+    : null;
+}
+
+// A command bridge passes on its own wording: one of its authored phrases or its
+// runnable slash string, which the explicit-author lane reports. A bridge that
+// passed on shared single tokens alone stays scored but stops passing, because
+// its phrases are everyday words and a command must not be offered for a prompt
+// that merely shares some of them. A paraphrase shares no words at all, so the
+// second way in is meaning: a real prompt embedding that clears both bars above.
+// Meaning-passed ids are collected so a later ordering step can tell them apart,
+// and a doctor problem in other words reaches /doctor:helper through
+// applyDoctorHelperHandoff instead.
+// A question that only wants an answer must not be handed a command that
+// changes things, however close the meaning. Phrase matches are already held to
+// this by the read-only confidence floor, and a meaning match lifts confidence
+// past that floor, so it has to ask the same question itself. A command whose
+// route only reads stays eligible for a plain explainer, because running it is
+// the answer. An explicit no-edit request rules out every command.
+export function commandMeaningEligible(
+  promptLower: string,
+  readOnlyExplainer: boolean,
+  skill: SkillProjection | undefined,
+): boolean {
+  if (NO_EDIT_REQUEST.test(promptLower)) return false;
+  if (!readOnlyExplainer) return true;
+  return skill !== undefined && skill.kind === 'command' && 'readOnly' in skill && skill.readOnly === true;
+}
+
 export function requireCommandPhraseAnchor(
   ranked: readonly AdvisorScoredRecommendation[],
+  confidenceThreshold: number = DEFAULT_CONFIDENCE_THRESHOLD,
+  meaningPassed: Set<string> = new Set(),
+  meaningEligible: (skillId: string) => boolean = () => true,
 ): AdvisorScoredRecommendation[] {
-  return ranked.map((recommendation) => {
-    if (
-      !recommendation.passes_threshold
-      || recommendation.kind !== 'command'
-    ) {
-      return recommendation;
+  const cosineByCommandId = new Map<string, number>();
+  for (const recommendation of ranked) {
+    if (recommendation.kind !== 'command') continue;
+    const cosine = commandMeaningCosine(
+      recommendation.laneContributions.find((contribution) => contribution.lane === 'semantic_shadow'),
+    );
+    if (cosine !== null) cosineByCommandId.set(recommendation.skill, cosine);
+  }
+  // A command row with no cosine counts as 0, so the bar is the strongest other
+  // command row, not the strongest row overall: a skill row never decides this.
+  const leadingOtherCosine = (skillId: string): number => {
+    let lead = 0;
+    for (const [otherSkillId, cosine] of cosineByCommandId) {
+      if (otherSkillId !== skillId && cosine > lead) lead = cosine;
     }
+    return lead;
+  };
+  return ranked.map((recommendation) => {
+    if (recommendation.kind !== 'command') return recommendation;
     const anchored = recommendation.laneContributions.some((contribution) => (
       contribution.lane === 'explicit_author' && contribution.rawScore > 0
     ));
-    return anchored ? recommendation : { ...recommendation, passes_threshold: false };
+    if (anchored) return recommendation;
+    const cosine = cosineByCommandId.get(recommendation.skill);
+    if (cosine !== undefined
+      && cosine >= COMMAND_MEANING_MIN_COSINE
+      && cosine - leadingOtherCosine(recommendation.skill) >= COMMAND_MEANING_MARGIN
+      && meaningEligible(recommendation.skill)) {
+      // A meaning match alone rarely clears the threshold on its lane weight, so
+      // the anchor lifts the row to it rather than leaving it scored but unpassed.
+      meaningPassed.add(recommendation.skill);
+      return {
+        ...recommendation,
+        confidence: Math.max(recommendation.confidence, confidenceThreshold),
+        passes_threshold: true,
+      };
+    }
+    return recommendation.passes_threshold
+      ? { ...recommendation, passes_threshold: false }
+      : recommendation;
   });
 }
 
@@ -978,6 +1053,46 @@ export function keepPassingSkillsAboveDoctorBridges(
     ...remaining.slice(0, insertionIndex),
     ...passingDoctorBridges,
     ...remaining.slice(insertionIndex),
+  ];
+}
+
+// A command that passed on meaning was chosen by the prompt's own words rather
+// than by a typed name, so the doctor ordering above can leave a skill's row in
+// front of it. The command only takes the front when its cosine leads the top
+// passing skill's cosine by the margin, so the margin alone decides how close a
+// skill may sit and still keep its place. With no passing skill there is nothing
+// for the command to outrank.
+export function rankMeaningPassedCommandFirst(
+  ranked: readonly AdvisorScoredRecommendation[],
+  meaningPassed: ReadonlySet<string>,
+): AdvisorScoredRecommendation[] {
+  if (meaningPassed.size === 0) return [...ranked];
+  const shadowCosine = (recommendation: AdvisorScoredRecommendation): number | null => commandMeaningCosine(
+    recommendation.laneContributions.find((contribution) => contribution.lane === 'semantic_shadow'),
+  );
+  let commandIndex = -1;
+  let commandCosine = Number.NEGATIVE_INFINITY;
+  for (const [index, recommendation] of ranked.entries()) {
+    if (recommendation.kind !== 'command' || !meaningPassed.has(recommendation.skill)) continue;
+    const cosine = shadowCosine(recommendation);
+    if (cosine === null || cosine <= commandCosine) continue;
+    commandIndex = index;
+    commandCosine = cosine;
+  }
+  if (commandIndex < 0) return [...ranked];
+  const leadingPassingRow = ranked.find((recommendation) => (
+    recommendation.kind !== 'command' && recommendation.passes_threshold
+  ));
+  if (leadingPassingRow) {
+    // A row with no cosine of its own contributes nothing to meaning, so it counts
+    // as 0 and the command's own cosine decides against it.
+    const leadingCosine = shadowCosine(leadingPassingRow) ?? 0;
+    if (commandCosine - leadingCosine < COMMAND_MEANING_MARGIN) return [...ranked];
+  }
+  return [
+    ranked[commandIndex]!,
+    ...ranked.slice(0, commandIndex),
+    ...ranked.slice(commandIndex + 1),
   ];
 }
 
@@ -1366,13 +1481,21 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     return doctorFreeRun[doctorFreeIndex++]!;
   });
 
-  ranked = requireCommandPhraseAnchor(ranked);
+  const commandMeaningPassed = new Set<string>();
+  const projectionSkillById = new Map(projection.skills.map((skill) => [skill.id, skill]));
+  ranked = requireCommandPhraseAnchor(
+    ranked,
+    options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD,
+    commandMeaningPassed,
+    (skillId) => commandMeaningEligible(promptLower, readOnlyExplainer, projectionSkillById.get(skillId)),
+  );
   const leadPhrasesById = new Map<string, readonly string[]>();
   for (const skill of projection.skills) {
     if (!skill.id.startsWith(DOCTOR_BRIDGE_PREFIX) || !skill.leadPhrases?.length) continue;
     leadPhrasesById.set(skill.id, skill.leadPhrases);
   }
   ranked = keepPassingSkillsAboveDoctorBridges(ranked, promptLower, leadPhrasesById);
+  ranked = rankMeaningPassedCommandFirst(ranked, commandMeaningPassed);
   ranked = applyDoctorHelperHandoff(ranked, {
     prompt,
     promptLower,

@@ -71,6 +71,12 @@ const COMMAND_ATTACH_GENERATED_END = '// END GENERATED MODE COMMANDS';
 // The inventory entries keep their five-key shape; the projection merge reads here.
 const DOCTOR_DETAILS = new Map();
 
+// Meaning text per command, taken from the metadata record that already states
+// what the command does in the words a person uses. Keyed by command rather than
+// by id because an allow-list row keeps its own historical id while the metadata
+// it came from still names the command.
+const METADATA_MEANING = new Map();
+
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ───────────────────────────────────────────────────────────────────
@@ -95,6 +101,7 @@ function sourcePath(filePath) {
 }
 
 function metadataEntries(skillsRoot = SKILLS_ROOT) {
+  METADATA_MEANING.clear();
   const entries = [];
   const skillIds = readdirSync(skillsRoot, { withFileTypes: true })
     // A private skill is local to one checkout and must never reach a tracked bridge file.
@@ -137,6 +144,13 @@ function metadataEntries(skillsRoot = SKILLS_ROOT) {
           `${sourcePath(filePath)}[${index}].userIntent.ownedSignals`,
         )
         : [];
+      // The job is prose about the outcome a person wants, so it describes the
+      // command in words none of the identifiers do. An absent job is a record
+      // that says less, not a broken one.
+      const job = entry.userIntent && typeof entry.userIntent.job === 'string'
+        ? entry.userIntent.job
+        : '';
+      METADATA_MEANING.set(command, { description, job, ownedSignals });
       entries.push({
         id: bridgeId(command),
         command,
@@ -192,6 +206,37 @@ function doctorSkillAgent(name) {
   return tag[1];
 }
 
+// A router names its own purpose in the frontmatter sentence a person reads
+// before anything else, so the bridge embeds that sentence rather than a second
+// copy written for the scorer to drift from.
+function doctorCommandDescription(name) {
+  const routerPath = join(DOCTOR_COMMANDS_DIR, `${name}.md`);
+  const match = existsSync(routerPath)
+    ? /^---\r?\n([\s\S]*?)\r?\n---/.exec(readFileSync(routerPath, 'utf8'))
+    : null;
+  // Required lazily for the same reason as the route manifest: an
+  // argument-rejecting run must exit before this module needs a YAML parser.
+  const YAML = require('yaml');
+  let frontmatter = null;
+  if (match) {
+    try {
+      frontmatter = YAML.parse(match[1]);
+    } catch (error) {
+      throw new Error(
+        `[command-bridges] Failed to read the frontmatter of ${sourcePath(routerPath)}: ${error.message}`,
+      );
+    }
+  }
+  const description = frontmatter && frontmatter.description;
+  if (typeof description !== 'string' || !description.trim()) {
+    throw new Error(
+      `[command-bridges] ${sourcePath(routerPath)} has no frontmatter description; `
+        + 'a doctor bridge needs the sentence it embeds',
+    );
+  }
+  return description.trim();
+}
+
 function doctorCommandName(command, label) {
   const match = /^\/doctor:([a-z0-9-]+)$/.exec(command);
   if (!match) {
@@ -243,6 +288,7 @@ function doctorRouteEntries() {
     DOCTOR_DETAILS.set(id, {
       runnable: multiTarget ? `${route.command} ${route.target}` : route.command,
       bareCommand: doctorDefaultTarget(route, label, multiTarget),
+      description: doctorCommandDescription(names[index]),
       phrases,
       leadPhrases,
       readOnly: isReadOnlyRoute(route),
@@ -275,6 +321,7 @@ function doctorRouteEntries() {
       : item.command;
     DOCTOR_DETAILS.set(`command-doctor-${name}`, {
       runnable,
+      description: doctorCommandDescription(name),
       phrases,
       leadPhrases,
       readOnly: isReadOnlyRoute(item),
@@ -305,6 +352,7 @@ function doctorRouteEntries() {
     const leadPhrases = doctorLeadPhrases(item, label, phrases);
     DOCTOR_DETAILS.set(id, {
       runnable,
+      description: doctorCommandDescription(commandName),
       phrases,
       leadPhrases,
       readOnly: isReadOnlyRoute(item),
@@ -638,6 +686,38 @@ function stringArray(value, label) {
     throw new Error(`[command-bridges] ${label} must be an array of non-empty strings`);
   }
   return value;
+}
+
+// A vector has to describe the job a command does, so the slash form is dropped
+// before the text is built. A name left in would hand the scorer a second copy
+// of the token it already matches literally.
+function commandEmbeddingText({ description, job, ownedSignals }) {
+  // Each part is cleaned before the join: a part that was only a slash command,
+  // or one that already ends in a full stop, would otherwise leave stray
+  // punctuation in text whose only reader is an embedder.
+  // A prompt is written in the asker's voice, and so are the job sentence and
+  // the owned phrases. The description is written in the command's voice and
+  // carries mode and step notes no asker types, so it stands in only when a
+  // record states no job.
+  const lead = typeof job === 'string' && job.trim() ? job : description;
+  return [lead, ...ownedSignals]
+    .filter((part) => typeof part === 'string')
+    .map((part) => part
+      .replace(/\/?[a-z-]+:[a-z-]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .replace(/[.\s]+$/, ''))
+    .filter(Boolean)
+    .join('. ');
+}
+
+// Only a bridge a scorer can offer carries meaning text, and where it comes from
+// depends on the row: a metadata row states it in its own record, while a doctor
+// row states it in the router sentence and the route phrases it already declares.
+function entryMeaning(entryId, command, isDoctor) {
+  if (!isDoctor) return METADATA_MEANING.get(command);
+  const { description, phrases } = DOCTOR_DETAILS.get(entryId);
+  return { description, ownedSignals: phrases };
 }
 
 // Only a route the manifest classes as read-only may answer a list or show
@@ -1141,6 +1221,9 @@ function main() {
     const isDoctor = entry.id.startsWith(DOCTOR_PREFIX);
     const typescript = compatibility.typescript.get(entry.id);
     const python = compatibility.python.get(entry.id);
+    // A command nothing describes has nothing written to embed, so the field
+    // appears only where a source sentence exists for it.
+    const meaning = typescript ? entryMeaning(entry.id, entry.command, isDoctor) : undefined;
     const runtime = { typescript: { enabled: false }, python: { enabled: false } };
     if (typescript) {
       runtime.typescript = {
@@ -1154,7 +1237,11 @@ function main() {
         ...(isDoctor ? doctorRuntime(entry.id, 'python', python) : python),
       };
     }
-    return { ...entry, runtime };
+    return {
+      ...entry,
+      ...(meaning ? { embeddingText: commandEmbeddingText(meaning) } : {}),
+      runtime,
+    };
   });
 
   const projection = {

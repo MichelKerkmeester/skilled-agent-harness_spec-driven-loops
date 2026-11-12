@@ -52,6 +52,7 @@ _memory:
 | Q016 | Verify the risk class of all 16 hub commands against their workflows. | Not stated. | None | 002 implementation-summary.md |
 | Q017 | Build command-level meaning matching as a new phase 004 in packet 008 and renumber the later phases. | Not stated. | None | 004-command-meaning-matching/spec.md |
 | Q018 | Leave the published v4.0.2.1 release unsynced until the branch is merged. | Not stated. | None | 003 implementation-summary.md known limitations |
+| Q019 | Commit the open-item fixes and the phase 004 plan as two local commits. | Not stated. | None | commits fcbe10b4d3 and 005dea00ae |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -412,6 +413,26 @@ Push branch and sync now
 Answer:
 ```text
 Leave it for the merge (Recommended)
+```
+
+### Q019
+<!-- source: claude:fddcf466-8e1f-44cf-a132-6f846b676c18:toolu_01R51Kkdo6BaCwXFNC82u3he:0 -->
+
+Question:
+```text
+The open-item fixes, the 27 recorded decisions and the phase 004 plan are uncommitted in the worktree. Full advisor suite passes (165 files, 1,411 tests) and all packet folders pass strict validation. Commit them?
+```
+
+Options:
+```text
+Two local commits (Recommended)
+One local commit
+Do not commit yet
+```
+
+Answer:
+```text
+Two local commits (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

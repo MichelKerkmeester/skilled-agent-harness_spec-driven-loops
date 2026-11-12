@@ -7,6 +7,8 @@
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
 import { basename, dirname, join, relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import { createPrivateSkillLinkCheck } from '../private-skill-target.js';
 
 import Database from 'better-sqlite3';
@@ -19,6 +21,8 @@ import Database from 'better-sqlite3';
 import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory.js';
 
 import {
+  commandVecTableNameForDim,
+  ensureCommandVecTableForDim,
   ensureVecMetadataTable,
   ensureVecTableForDim,
   getActiveEmbedder,
@@ -126,6 +130,18 @@ interface ParsedSkillMetadata {
   edges: SkillEdge[];
 }
 
+interface CommandEmbeddingSource {
+  commandId: string;
+  embeddingText: string;
+}
+
+interface CommandEmbeddingRefreshResult {
+  embedded: number;
+  skipped: number;
+  failed: number;
+  pruned: number;
+}
+
 type JsonRecord = Record<string, unknown>;
 
 // ───────────────────────────────────────────────────────────────
@@ -137,6 +153,22 @@ export const SCHEMA_VERSION = 1;
 export const DB_FILENAME = 'skill-graph.sqlite';
 
 const SKILL_METADATA_FILENAME = 'graph-metadata.json';
+// The command-bridge projection is a generated artifact owned by
+// scripts/command-bridges/derive-command-bridges.cjs, so the embedding refresh
+// reads it rather than recomputing command identities. A missing copy means no
+// command can be embedded yet, never a failed skill refresh.
+const COMMAND_BRIDGES_FILENAME = 'command-bridges.generated.json';
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+// scripts/ lives at the runtime root and is NOT copied into dist, so the path is
+// resolved from both the TypeScript source layout and the compiled dist layout
+// (dist nests inside runtime, so the deeper walk reaches the same real scripts/).
+// The first existing candidate wins.
+const COMMAND_BRIDGES_DIR_CANDIDATES: readonly string[] = [
+  join(HERE, '..', '..', 'scripts', 'command-bridges'),             // source: lib/skill-graph -> runtime/scripts/command-bridges
+  join(HERE, '..', '..', '..', '..', 'scripts', 'command-bridges'), // dist: dist/runtime/lib/skill-graph -> runtime/scripts/command-bridges
+];
+
 // Directories never descended when discovering skill metadata: dependency,
 // build, and VCS trees can carry their own graph-metadata.json (e.g. a vendored
 // package) that must never be ingested as a skill identity, and walking them is
@@ -711,6 +743,74 @@ function skillDescriptionForEmbedding(sourcePath: string): string {
   return parsed.frontmatter.description || '';
 }
 
+/**
+ * Read the generated command-bridge projection into the texts the refresh embeds.
+ *
+ * Returns null when the projection is absent, unparsable or shaped differently
+ * than expected. A regenerated artifact must never be able to fail a skill
+ * refresh, so every one of those cases reads as "no commands to embed".
+ */
+function readCommandEmbeddingSources(): CommandEmbeddingSource[] | null {
+  const filePath = COMMAND_BRIDGES_DIR_CANDIDATES
+    .map((dir) => join(dir, COMMAND_BRIDGES_FILENAME))
+    .find((candidate) => existsSync(candidate));
+  if (!filePath) {
+    return null;
+  }
+
+  let raw: string;
+  try {
+    raw = readFileSync(filePath, 'utf8');
+  } catch {
+    return null;
+  }
+
+  let parsedJson: unknown;
+  try {
+    parsedJson = JSON.parse(raw) as unknown;
+  } catch {
+    return null;
+  }
+
+  if (!isRecord(parsedJson) || !Array.isArray(parsedJson.entries)) {
+    return null;
+  }
+
+  const sources: CommandEmbeddingSource[] = [];
+  const seenIds = new Set<string>();
+  for (const entry of parsedJson.entries) {
+    if (!isRecord(entry) || typeof entry.embeddingText !== 'string') {
+      continue;
+    }
+    const embeddingText = entry.embeddingText.trim();
+    if (!embeddingText) {
+      continue;
+    }
+    // Only a command the TypeScript router serves is ever a scoring candidate,
+    // so a python-only or disabled row would pay for a vector nobody reads.
+    if (!isRecord(entry.runtime) || !isRecord(entry.runtime.typescript)) {
+      continue;
+    }
+    const typescriptRuntime = entry.runtime.typescript;
+    if (typescriptRuntime.enabled !== true) {
+      continue;
+    }
+    const commandId = typescriptRuntime.id;
+    if (typeof commandId !== 'string' || commandId.trim().length === 0) {
+      continue;
+    }
+    // One command can be projected from more than one authored source. The
+    // vector is keyed by runtime id, so a repeat would pay twice for one row.
+    if (seenIds.has(commandId)) {
+      continue;
+    }
+    seenIds.add(commandId);
+    sources.push({ commandId, embeddingText });
+  }
+
+  return sources;
+}
+
 export function providerModelId(profile: { provider: string; model: string; dim: number; dtype?: string | null; slug?: string }): string {
   return profile.slug ?? [profile.provider, profile.model, profile.dim, profile.dtype ?? null]
     .filter((part): part is string | number => part !== null && part !== undefined && part !== '')
@@ -1228,6 +1328,7 @@ async function refreshSkillEmbeddingsViaAdapter(
 ): Promise<SkillEmbeddingRefreshResult> {
   const active = getActiveEmbedder(database);
   ensureVecTableForDim(database, active.dim);
+  ensureCommandVecTableForDim(database, active.dim);
   const tableName = vecTableNameForDim(active.dim);
   let adapter: EmbedderAdapter;
   try {
@@ -1355,7 +1456,131 @@ async function refreshSkillEmbeddingsViaAdapter(
     }
   }
 
+  // Commands share the skill vector space, so a backend the skill loop has
+  // already proved dead is not asked again for them. Their counts stay out of
+  // the returned totals, which report the skill corpus this refresh exists for.
+  const commands = await refreshCommandEmbeddings(database, adapter, active.dim, modelId, backendOutage);
+  if (commands) {
+    console.warn(
+      `[skill-graph] Command embeddings: ${commands.embedded} embedded, ${commands.skipped} skipped,`
+      + ` ${commands.failed} failed, ${commands.pruned} pruned`,
+    );
+  }
+
   return { embedded, skipped, failed, warnings };
+}
+
+/**
+ * Embed the command-bridge projection into its own per-dimension table.
+ *
+ * Commands are the queries the router matches, not skills, so their vectors live
+ * in the command table. That table carries no foreign key into skill_nodes, so a
+ * command the projection drops leaves its vector behind unless the refresh prunes
+ * it here.
+ *
+ * A row whose text hash and model id both still match is never re-sent to the
+ * backend, so a rerun over an unchanged projection refreshes nothing.
+ */
+async function refreshCommandEmbeddings(
+  database: Database.Database,
+  adapter: EmbedderAdapter,
+  dim: number,
+  modelId: string,
+  inheritedOutage: string | null,
+): Promise<CommandEmbeddingRefreshResult | null> {
+  const sources = readCommandEmbeddingSources();
+  if (sources === null) {
+    // A missing or unreadable projection is a regeneration gap, not a refresh
+    // failure, so the stored command vectors stay untouched until it is rebuilt.
+    const warning = `COMMAND-BRIDGES-UNAVAILABLE: ${COMMAND_BRIDGES_FILENAME} is missing or unreadable, skipped command embeddings`;
+    console.warn(`[skill-graph] ${warning}`);
+    return null;
+  }
+
+  const commandTable = commandVecTableNameForDim(dim);
+  const storedRows = new Map(
+    (database.prepare(`
+      SELECT command_id, embedding, model_id, content_hash
+      FROM ${commandTable}
+    `).all() as Array<{
+      command_id: string;
+      embedding: Buffer | null;
+      model_id: string;
+      content_hash: string;
+    }>).map((row) => [row.command_id, row]),
+  );
+
+  const upsertEmbedding = database.prepare(`
+    INSERT INTO ${commandTable} (command_id, embedding, model_id, content_hash, updated_at)
+    VALUES (?, ?, ?, ?, datetime('now'))
+    ON CONFLICT(command_id) DO UPDATE SET
+      embedding = excluded.embedding,
+      model_id = excluded.model_id,
+      content_hash = excluded.content_hash,
+      updated_at = datetime('now')
+  `);
+  const deleteEmbedding = database.prepare(`DELETE FROM ${commandTable} WHERE command_id = ?`);
+
+  const result: CommandEmbeddingRefreshResult = { embedded: 0, skipped: 0, failed: 0, pruned: 0 };
+  const liveIds = new Set(sources.map((source) => source.commandId));
+  for (const storedId of storedRows.keys()) {
+    if (!liveIds.has(storedId)) {
+      result.pruned += deleteEmbedding.run(storedId).changes;
+    }
+  }
+
+  // The same outage rule as the skill loop: give up once the backend, not the
+  // row, is the proven problem, and count what was never tried as failed so the
+  // next refresh retries it.
+  let consecutiveFailures = 0;
+  let backendOutage = inheritedOutage;
+
+  for (const source of sources) {
+    const contentHash = computeContentHash(source.embeddingText);
+    const stored = storedRows.get(source.commandId);
+    if (
+      stored
+      && stored.embedding
+      && stored.model_id === modelId
+      && stored.content_hash === contentHash
+    ) {
+      result.skipped++;
+      continue;
+    }
+
+    if (backendOutage !== null) {
+      result.failed++;
+      deleteEmbedding.run(source.commandId);
+      continue;
+    }
+
+    try {
+      const vectors = await adapter.embed([source.embeddingText], { inputType: 'document' });
+      const vector = vectors[0];
+      if (!vector || vector.length !== dim) {
+        throw new Error(`adapter returned vector of length ${vector?.length ?? 0}, expected ${dim}`);
+      }
+      upsertEmbedding.run(source.commandId, encodeEmbedding(vector), modelId, contentHash);
+      result.embedded++;
+      consecutiveFailures = 0;
+    } catch (error: unknown) {
+      result.failed++;
+      consecutiveFailures++;
+      deleteEmbedding.run(source.commandId);
+      const message = error instanceof Error ? error.message : String(error);
+      const warning = `COMMAND-EMBEDDING-FAILED: ${source.commandId} (${message})`;
+      console.warn(`[skill-graph] ${warning}`);
+      if (consecutiveFailures >= EMBEDDING_BACKEND_OUTAGE_STREAK) {
+        backendOutage = message;
+        const outageWarning = `COMMAND-EMBEDDING-BACKEND-OUTAGE: stopped after ${consecutiveFailures}`
+          + ` consecutive failures (${message}); the remaining commands are counted as`
+          + ' failed and retried on the next refresh';
+        console.warn(`[skill-graph] ${outageWarning}`);
+      }
+    }
+  }
+
+  return result;
 }
 
 async function refreshSkillEmbeddingsLegacy(
@@ -1478,7 +1703,9 @@ export function loadSkillEmbeddings(skillIds?: readonly string[]): SkillEmbeddin
   if (activeName && Number.isInteger(activeDim) && activeDim > 0) {
     const tableName = vecTableNameForDim(activeDim);
     if (!hasTable(tableName)) {
-      return [];
+      // Skill vectors are absent, but an explicit id list can still name
+      // command rows, which live in their own table.
+      return appendCommandEmbeddingRows(database, activeDim, skillIds, [], hasTable);
     }
 
     const activeRows = skillIds && skillIds.length > 0
@@ -1494,7 +1721,7 @@ export function loadSkillEmbeddings(skillIds?: readonly string[]): SkillEmbeddin
           ORDER BY skill_id ASC
         `).all();
 
-    return (activeRows as Array<{
+    const skillRows = (activeRows as Array<{
       skill_id: string;
       embedding: Buffer;
       model_id: string;
@@ -1512,6 +1739,8 @@ export function loadSkillEmbeddings(skillIds?: readonly string[]): SkillEmbeddin
           : null;
       })
       .filter((row): row is SkillEmbeddingRow => row !== null);
+
+    return appendCommandEmbeddingRows(database, activeDim, skillIds, skillRows, hasTable);
   }
 
   const rows = skillIds && skillIds.length > 0
@@ -1547,6 +1776,65 @@ export function loadSkillEmbeddings(skillIds?: readonly string[]): SkillEmbeddin
         : null;
     })
     .filter((row): row is SkillEmbeddingRow => row !== null);
+}
+
+/**
+ * Append the command vectors stored beside the skill vectors for `dim`.
+ *
+ * A no-argument read is the skill corpus the routing lanes rank over, so the
+ * sibling table is consulted only for an explicit id list. Command ids are not
+ * rows of `skill_nodes`, so their vectors carry no foreign key and live in
+ * their own table: an id list that names a command finds it there and nothing
+ * else changes. The table is absent until a refresh builds it and can fail on
+ * its own, so both cases return the skill rows untouched rather than turning a
+ * partial read into a routing outage.
+ */
+function appendCommandEmbeddingRows(
+  database: Database.Database,
+  dim: number,
+  skillIds: readonly string[] | undefined,
+  skillRows: SkillEmbeddingRow[],
+  hasTable: (tableName: string) => boolean,
+): SkillEmbeddingRow[] {
+  if (!skillIds || skillIds.length === 0) {
+    return skillRows;
+  }
+  try {
+    const commandTable = commandVecTableNameForDim(dim);
+    if (!hasTable(commandTable)) {
+      return skillRows;
+    }
+
+    const commandRows = (database.prepare(`
+      SELECT command_id, embedding, model_id, content_hash
+      FROM ${commandTable}
+      WHERE command_id IN (${skillIds.map(() => '?').join(', ')})
+      ORDER BY command_id ASC
+    `).all(...skillIds) as Array<{
+      command_id: string;
+      embedding: Buffer;
+      model_id: string;
+      content_hash: string;
+    }>)
+      .map((row) => {
+        const embedding = decodeEmbedding(row.embedding);
+        return embedding
+          ? {
+              skillId: row.command_id,
+              embedding,
+              modelId: row.model_id,
+              contentHash: row.content_hash,
+            }
+          : null;
+      })
+      .filter((row): row is SkillEmbeddingRow => row !== null);
+
+    return [...skillRows, ...commandRows];
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[skill-graph] Command embedding load failed; command rows omitted (${message})`);
+    return skillRows;
+  }
 }
 
 // ───────────────────────────────────────────────────────────────

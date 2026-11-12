@@ -1,0 +1,52 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit only the files this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK (file: .skilled/skills/system-skill-advisor/runtime/tests/command-meaning-anchor.vitest.ts only, a NEW file)
+Write vitest tests for two exported functions of .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts: `requireCommandPhraseAnchor(ranked, confidenceThreshold, meaningPassed)` and `rankMeaningPassedCommandFirst(ranked, meaningPassed)`, plus the exported constants `COMMAND_MEANING_MIN_COSINE` and `COMMAND_MEANING_MARGIN`. Read both functions first. Build the ranked rows by hand as small objects with injected `semantic_shadow` lane contributions (evidence `cosine:<n>` for a real cosine, `shadow:test-fallback` for the stand-in). The constants are tuned later, so never hard-code their values: derive each case's cosines from the constants (for example MIN + 0.01), and when MIN is above 1 (the switched-off state) assert the switched-off behaviour instead: nothing passes on meaning. Use `vi.doMock` or a small injected-threshold approach only if the functions cannot be exercised otherwise, and prefer plain calls.
+Cases, each its own `it`:
+1. a command with a real cosine at or above the bar and a clear lead passes, its confidence is raised to the threshold and its id lands in the Set
+2. a cosine under the bar does not pass
+3. a cosine above the bar but inside the margin of another command row does not pass
+4. `shadow:` evidence never passes, whatever its score
+5. a command row with no `semantic_shadow` contribution does not pass
+6. a row anchored by `explicit_author` passes as before and is not added to the Set
+7. a non-command row is returned unchanged
+8. rank: a meaning-passed command that beats the top passing skill's cosine by the margin moves to first place
+9. rank: one inside the margin keeps its place
+10. rank: a doctor command row (id starting `command-doctor`) moves first over a passing skill when it clears the margin
+11. rank: an empty Set returns the input order
+Put a header comment in the file's existing-suite style that lists the matrix axes these cases cover (evidence kind, bar, margin, anchor, row kind, rank outcome) and the row count. Model the file layout on .skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts.
+
+VERIFY (run all, paste outputs)
+1. cd ADV && npx vitest run tests/command-meaning-anchor.vitest.ts   -> 0 failed
+2. cd ADV && npm run typecheck   -> no errors
+3. Show that the tests can fail: temporarily change one expectation, run, see it fail, restore it, run again. Paste both tails.
+
+RULES
+- ADV is .skilled/skills/system-skill-advisor/runtime. Run commands from the repository root unless told otherwise.
+- Code comments explain the durable WHY. Never write a spec path, phase number, task id, ADR or REQ id in a comment.
+- Follow the file's existing style: section dividers, naming, quoting. No em dashes or semicolons in comment prose.
+- Never read or print rows of command-prompts.jsonl whose split is holdout.
+- Do not weaken or delete an existing test. If a verify step fails after three fix attempts, stop and report the output.
+- Other workers edit other files in this checkout at the same time. If a command fails with "dist is stale", run `npm run build` in ADV once and retry. Two tests fail for reasons outside this work and are not yours to fix: tests/scorer/lane-weight-sweep.vitest.ts (corpus length 26) and the AC-6 latency test.

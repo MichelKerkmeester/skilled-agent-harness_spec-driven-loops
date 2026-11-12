@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.16.0
+version: 0.12.17.0
 ---
 
 # system-skill-advisor
@@ -172,6 +172,8 @@ A scan follows a top-level `local-*` link only when the link's real path resolve
 ### The Embedder
 
 The `semantic_shadow` lane runs against the pluggable embedder layer in `@spec-kit/shared/embeddings/`, which the advisor owns. The registry holds text-tuned embedding models and defaults through a local-first cascade to a local model when no embedder is explicitly set. For the full model registry, the cascade tier table and the swap workflow, see `INSTALL-GUIDE.md` §12.
+
+Command rows use the same embedder. The bridge deriver writes an `embeddingText` for each of the 45 command rows the TypeScript scorer serves, and `skill_graph_scan` embeds it into its own `vec_cmd_<dim>` table beside the skill vectors. The scan skips a row whose text has not changed and prunes a row that is no longer generated. A command row normally passes only on one of its own phrases or its slash string. It can also pass on meaning: the prompt's real embedding has to reach a cosine of 0.72 against the row and lead the next command row by 0.02. A command that passed this way ranks first only when it leads the top passing skill by the same 0.02. A prompt that asks for no change, such as "no edits" or "just list", rules out every command on meaning. A read-only question lets only a command whose route only reads pass on meaning. Without the local embedder (Ollama serving `nomic-embed-text`) no cosine exists, so command rows pass on their phrases alone.
 
 ### The Nine Commands
 

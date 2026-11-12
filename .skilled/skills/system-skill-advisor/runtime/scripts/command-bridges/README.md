@@ -50,6 +50,8 @@ hub mode-registry.json files
 
 The deriver also updates generated projection blocks in the live TypeScript and Python scoring sources. It writes a generated block of runnable doctor command strings into `lib/render.ts`. It writes the `MODE_COMMANDS` block into `lib/command-attach.ts`, one row per hub mode that names a command, and fails when a mode names a command with no file under `.skilled/commands/`. Each TypeScript bridge in `lib/scorer/projection.ts` carries an `ownerSkill`, the skill that owns its command. The generated JSON and generated source blocks are outputs, not hand-edited inputs.
 
+Each bridge row with TypeScript enabled also carries an `embeddingText`, the plain sentence a scoring vector is built from. A Python-only row carries none. A metadata row leads with its `userIntent.job` sentence and adds every `userIntent.ownedSignals` phrase, because both are written in the asker's voice. The entry `description` stands in for the job only when the record states no job. A doctor row builds it from the router frontmatter `description` and the `trigger_phrases` of the route. The deriver drops each slash command string before the parts are joined, because a name left in would hand the scorer a second copy of the token it already matches literally. The field is derived on every run and never authored, so edit the sources rather than the JSON.
+
 ---
 
 ## 4. DOCTOR BRIDGES
@@ -68,7 +70,7 @@ Each `mcp_subroutes` entry becomes the bridge `command-doctor-mcp-<sub_action>`,
 
 Check every admitted phrase with `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs`.
 
-Every command bridge, not only a doctor bridge, passes on its own wording. `requireCommandPhraseAnchor` in `lib/scorer/fusion.ts` drops a passing command row below threshold unless the explicit-author lane matched one of its phrases or its slash string.
+Every command bridge, not only a doctor bridge, passes on its own wording. `requireCommandPhraseAnchor` in `lib/scorer/fusion.ts` drops a passing command row below threshold unless the explicit-author lane matched one of its phrases or its slash string. The one other way in is meaning: a real embedder cosine of at least 0.72 against the row's `embeddingText` vector, with a 0.02 lead over the next command row. That needs the local embedder, so without it every command row passes on its wording alone. A prompt that asks for no change rules out every command on meaning, and a read-only question admits only a bridge marked `readOnly`.
 
 ---
 

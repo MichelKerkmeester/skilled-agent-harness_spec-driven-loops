@@ -1,0 +1,56 @@
+Done. One file changed: `.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts` (+223, −0).
+
+**What it does**
+- `refreshSkillEmbeddingsViaAdapter` now calls `ensureCommandVecTableForDim(database, active.dim)` right beside `ensureVecTableForDim`.
+- New `readCommandEmbeddingSources()` resolves `command-bridges.generated.json` through two candidates (source `runtime/lib/skill-graph` → `runtime/scripts/…`, dist → `runtime/scripts/…`, mirroring `route-exclusions.ts`). Missing/unparsable/wrong-shape returns `null`, so the skill refresh still completes.
+- New `refreshCommandEmbeddings()` runs after the skill loop: same `computeContentHash` skip rule (hash + `model_id` both match ⇒ no embed call), same `modelId = active.name` column, same dim mismatch guard, same 3-failure outage streak (seeded from the skill loop's outage so a proven-dead backend is not asked again), same delete-on-failure write. Prunes command ids the projection no longer names, since `command_id` has no foreign key.
+- Legacy path and the skill loop body are unchanged. `SkillEmbeddingRefreshResult` has no natural field for command counts and folding them into `embedded`/`skipped`/`failed` would misreport the skill corpus, so they are logged the way the function logs today: `[skill-graph] Command embeddings: N embedded, N skipped, N failed, N pruned` (plus `COMMAND-BRIDGES-UNAVAILABLE` / `COMMAND-EMBEDDING-FAILED` / `COMMAND-EMBEDDING-BACKEND-OUTAGE` prefixes).
+
+**VERIFY 1** `cd ADV && npm run typecheck`
+```
+> ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json
+```
+exit 0, no errors.
+
+**VERIFY 2** `cd ADV && npx vitest run tests/skill-graph tests/skill-graph-db.vitest.ts tests/skill-graph-embedding-outage.vitest.ts`
+```
+ Test Files  7 passed (7)
+      Tests  28 passed (28)
+   Duration  34.75s
+```
+(`--reporter=verbose` also proves both layouts and the skip rule against TS source: `45 embedded, 0 skipped` on a cold run, `0 embedded, 45 skipped` on the rerun; the legacy-path and the two early-return tests emit no command line at all.)
+
+**VERIFY 3/4 — scan command used** (built first with `npm run build`):
+```
+node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
+```
+Run 1, exit 0: `embeddings: {"embedded": 14, "skipped": 0, "failed": 0, "warnings": []}`, generation 62→63.
+```
+$ sqlite3 .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite "select name from sqlite_master where name like 'vec_cmd_%';"
+vec_cmd_768
+$ … "select count(*) from vec_cmd_768;"
+45
+```
+45 rows (the projection now carries `embeddingText` for all 45 ts-enabled entries, so the "45 once doctor entries carry text" case already holds), one model, 3072 bytes each (= 768 floats).
+
+Run 2 (same command), exit 0: `embeddings: {"embedded": 0, "skipped": 14, "failed": 0}`, generation 63→64. Command table dump of `command_id, model_id, content_hash, updated_at` before and after is byte-identical (`diff` → `IDENTICAL: no command row rewritten`), i.e. no command row was embedded or rewritten. (The scan JSON reports skill counts only, so the per-row diff is the proof; a rerun after the final rebuild reproduced it at generations 66→67.)
+
+Direct counter evidence from the built dist, against a `.backup` copy of the real DB (`SYSTEM_SKILL_ADVISOR_DB_DIR=/tmp/skill-graph-copy`), run twice:
+```
+[skill-graph] Command embeddings: 0 embedded, 45 skipped, 0 failed, 0 pruned
+run1 result {"embedded":0,"skipped":14,"failed":0,"warnings":[]}
+[skill-graph] Command embeddings: 0 embedded, 45 skipped, 0 failed, 0 pruned
+run2 result {"embedded":0,"skipped":14,"failed":0,"warnings":[]}
+```
+No "active embedder is not registered" message appeared; `vec_metadata`:
+```
+active_embedder_name|nomic-embed-text-v1.5|2026-11-12 09:27:04
+active_embedder_dim|768|2026-11-12 09:27:04
+active_embedder_provider|ollama|2026-11-12 09:27:04
+```
+The database was never edited by hand.
+
+**Could not do / notes**
+- No test added: the brief restricts me to this one file. Existing suites exercise the new path (the round-trip "idempotent" test and the outage "adapter table" test both now drive the command loop and still pass unmodified).
+- Command counts are absent from the returned object by design (see above), so they are only visible on stderr. The daemon does not persist its console output anywhere I could find, which is why run 2 is evidenced by the row diff plus the in-process log rather than by a log file.
+- Left untouched: `lib/embedders/{index,schema}.ts`, `lib/scorer/fusion.ts`, `scripts/command-bridges/*`, `tests/command-bridges-drift-guard.vitest.ts` are modified in this checkout by other workers, not by me.

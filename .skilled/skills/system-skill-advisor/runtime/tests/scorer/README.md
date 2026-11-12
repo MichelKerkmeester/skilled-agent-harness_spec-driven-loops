@@ -45,6 +45,8 @@ scorer/
 | `projection-fallback-049-005.vitest.ts` | Verifies fallback projection data remains usable when richer metadata is absent. |
 | `same-owner-ambiguity.vitest.ts` | Checks that a command row and the skill that owns it never read as ambiguous, while two unrelated skills or a command next to a non-owner still do. |
 
+The meaning anchor for command rows in `fusion.ts` is tested one level up, in `../command-meaning-anchor.vitest.ts`.
+
 ---
 
 ## 4. BOUNDARIES AND FLOW

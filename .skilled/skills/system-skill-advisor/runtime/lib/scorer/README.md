@@ -52,7 +52,7 @@ scorer/
 
 | File | Responsibility |
 |---|---|
-| `fusion.ts` | Combines lane scores into final advisor ranking signals through RRF fusion, with a conflict-match rerank seam and a self-recommendation guard that penalizes advisor self-recommendations. `requireCommandPhraseAnchor` keeps a passing command row passing only when the explicit-author lane matched one of its own phrases or its slash string. |
+| `fusion.ts` | Combines lane scores into final advisor ranking signals through RRF fusion, with a conflict-match rerank seam and a self-recommendation guard that penalizes advisor self-recommendations. `requireCommandPhraseAnchor` keeps a passing command row passing only when the explicit-author lane matched one of its own phrases or its slash string, or when it passes on meaning: a real embedder cosine of at least `COMMAND_MEANING_MIN_COSINE` (0.72) with a lead of `COMMAND_MEANING_MARGIN` (0.02) over the next command row. The word-overlap stand-in used under test never counts. `commandMeaningEligible` decides who may pass on meaning: a prompt matching `NO_EDIT_REQUEST`, the pattern `readOnlyRouteAllowed` also reads, rules out every command, and a read-only explainer admits only a command whose route only reads. `rankMeaningPassedCommandFirst` moves a meaning-passed command ahead of the top passing skill only when its cosine leads that skill's by the same margin. |
 | `lane-registry.ts` | Registers available scoring lanes. |
 | `aliases.ts` | Canonicalizes explicit command/skill alias groups for route comparisons. |
 | `attribution.ts` | Builds prompt-safe lane attribution details. |

@@ -1,11 +1,12 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching",
   "description": "Phase 4: command-meaning-matching",
   "keywords": [
     "phase",
     "command-meaning-matching"
   ],
-  "lastUpdated": "2026-11-12T18:13:57.599Z",
+  "lastUpdated": "2026-11-12T19:56:55.527Z",
   "specId": "004",
   "folderSlug": "command-meaning-matching",
   "parentChain": [
@@ -13,7 +14,8 @@
     "routing-and-scoring",
     "008-command-surfacing-build"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_20-56__built-meaning-based-matching-for-command-rows.md"
+  ]
 }

@@ -201,6 +201,11 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/scorer-fusion/command-meaning-matching.md",
+    "diskPath": "feature-catalog/scorer-fusion/command-meaning-matching.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/scorer-fusion/doctor-command-routing.md",
     "diskPath": "feature-catalog/scorer-fusion/doctor-command-routing.md"
   },

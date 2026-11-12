@@ -24,6 +24,7 @@
       "standalone": false,
       "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
+      "embeddingText": "I want to create an OpenCode agent with explicit permissions and behavioral rules. create an OpenCode agent. define agent permissions. write an agent persona",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -234,6 +235,7 @@
       "standalone": false,
       "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
+      "embeddingText": "I want to author a deterministic manual testing playbook with evidence capture. create a testing playbook. write deterministic test scenarios. plan evidence collection",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -573,6 +575,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Check, embed or restore the shipped AGENTS.md sections, plan first. check the shipped agents instruction file. agents md section check. which agents md sections are stale. agents md delivery budget report. agents md template drift report",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -617,6 +620,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Check, embed or restore the shipped AGENTS.md sections, plan first. embed the shipped instructions into agents md. add the agents md repository block. fold claude md into agents md. write the agents md repository block. replace agents md with the shipped template. update agents md from the shipped template. embed the shipped agents md sections. embed the shipped AGENTS.md sections",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -661,6 +665,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Check, embed or restore the shipped AGENTS.md sections, plan first. undo an agents md embed run. restore agents md from the backup. roll back the agents md instruction file write. revert agents md to the file before the embed",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -701,6 +706,7 @@
       "skillId": "sk-code",
       "ownerMode": "sk-code",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "List GitHub Actions workflows with their switch state, scaffold a new workflow, or toggle one CI switch. ci workflow status report. which ci workflow switches are off. github actions drift report. ci workflow inventory. ci workflow switch state. ci switch report",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -756,6 +762,7 @@
       "skillId": "sk-code",
       "ownerMode": "sk-code",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "List GitHub Actions workflows with their switch state, scaffold a new workflow, or toggle one CI switch. scaffold a github actions workflow. create a workflow from the ci template. new workflow with timeout and switch. scaffold a new ci workflow",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -796,6 +803,7 @@
       "skillId": "sk-code",
       "ownerMode": "sk-code",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "List GitHub Actions workflows with their switch state, scaffold a new workflow, or toggle one CI switch. turn off a ci workflow. set a ci switch variable. disable a workflow group. turn the ci switch",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -836,6 +844,7 @@
       "skillId": "system-deep-loop",
       "ownerMode": "system-deep-loop",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Diagnose deep-loop coverage graphs and convergence for research, review and council runs. deep-loop coverage graph check. deep-loop graph empty or stale. deep-research convergence drift. deep-review iteration graph. deep loop convergence check",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -877,6 +886,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Inspect documented environment switches and confirm preference changes. check my environment variables. which environment variable switches are set. skilled environment switch values. environment switch inventory. which environment switches are set and where",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -924,6 +934,7 @@
       "skillId": "sk-git",
       "ownerMode": "sk-git",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Switch sk-git hook gates, edit the commit, PR and branch rules in .sk-git/ and check which settings are live. turn off a git hook check. disable comment hygiene gate. pre-commit gate keeps blocking. git hook settings",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -970,6 +981,7 @@
       "skillId": "sk-git",
       "ownerMode": "sk-git",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Switch sk-git hook gates, edit the commit, PR and branch rules in .sk-git/ and check which settings are live. sk-git setup check. is my sk-git setup working. which git rules are live. check my git hooks setup. my hooks are not firing. git hooks not firing. hooks stopped firing",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1016,6 +1028,7 @@
       "skillId": "sk-git",
       "ownerMode": "sk-git",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Switch sk-git hook gates, edit the commit, PR and branch rules in .sk-git/ and check which settings are live. change commit message rules. allow longer commit subjects. stop checking pr descriptions. branch name pattern rules. customize sk-git standards",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1057,6 +1070,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Describe a problem and get the doctor command that fits, with why, ranked and ready to run. which doctor command should I run. find the right doctor command. what doctor command fixes this. which doctor command fits my problem",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1098,6 +1112,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Get the ordered steps that put Skilled into your own project repo, ready to run. install skilled into my project. set up skilled in another repo. use skilled in my own project. onboard a project repo to skilled. guide me through installing skilled. walk me through a first install of skilled. first install of skilled in my project. skilled in my other repository. skilled in another repository",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1144,6 +1159,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Install or debug Code Mode, its UTCP configuration, and runtime registration. Code Mode broken. debug an MCP connection. MCP connection failure. utcp config is broken. debug the code mode utcp config. mcp-doctor.sh diagnostic script. mcp tools are missing",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1187,6 +1203,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Install or debug Code Mode, its UTCP configuration, and runtime registration. install the MCP servers. Code Mode fresh install. reinstall Code Mode MCP. install code mode in my project",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1227,6 +1244,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Check whether a vendored Skilled tree still carries its overlays, put them back, or re-pin it, after one yes. apply the skilled overlays. put my overlays back into vendored skilled. capture a live edit into its overlay. reapply overlays after copying skilled. apply the overlays back onto the vendored copy. put the overlays back on vendored skilled. move my overlay sources onto the layout folder. take over the overlay lock a dead run left behind",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1271,6 +1289,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Check whether a vendored Skilled tree still carries its overlays, put them back, or re-pin it, after one yes. re-pin my vendored Skilled. repin vendored skilled to a new commit. move my vendored skilled copy to a newer upstream commit. roll back a vendored skilled re-pin",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1311,6 +1330,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Check whether a vendored Skilled tree still carries its overlays, put them back, or re-pin it, after one yes. check my vendored skilled overlays. are my skilled overlays in sync. which overlay destinations are out of sync. vendored skilled overlay status. does my vendored skilled tree still carry its overlays. vendored skilled overlays out of sync. does my vendored skilled copy still carry its overlays. adopt the skilled overlay engine in my project. migrate my own overlay folder to doctor overlay. check whether my overlay sources sit on their layout path. audit my vendored skilled tree for unowned files. which root files my overlays own drifted upstream at the pinned commit. we copy skilled into our repo and lose our edits on update. agents overlay stale after a re-pin. which overlay do I rebase. rebase the overlay",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1366,6 +1386,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Check that the agent, command, prompt and hook mirrors in each runtime directory match .skilled. runtime mirror drift. agent command mirror parity. command catalog drift. cursor devin codex sync check. discovery mirror out of sync. runtime copies drift from source. runtime prompts out of date after a pull. check the runtime mirrors match skilled. runtime mirrors match .skilled",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1412,6 +1433,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "List every doctor target and run the read-only setup checks, naming the repair command for each failing leg. set up skilled. help me set up skilled. is my skilled install healthy. skilled setup check. run the doctor setup checks. getting started with skilled. overview of every doctor command. model server or helper process still running after the session closed",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1457,6 +1479,7 @@
       "skillId": "sk-code",
       "ownerMode": "sk-code",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Run the sk-code setup battery, or check and create the repository quality config, naming each repair. sk-code quality config. create the quality config file. quality json is missing. which checks does the quality gate run. add my lint command to the quality gate",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1498,6 +1521,7 @@
       "skillId": "sk-code",
       "ownerMode": "sk-code",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Run the sk-code setup battery, or check and create the repository quality config, naming each repair. sk-code setup check. verify my sk-code surface. sk-code battery fails. does my sk-code surface route",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1541,6 +1565,7 @@
       "skillId": "sk-doc",
       "ownerMode": "sk-doc",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Check a skill against the Skilled format, or convert one to it, plan first. how far is a skill from the skilled format. check a skill against the skilled format. skill format check report. skill fleet format summary. skill frontmatter shape check",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1585,6 +1610,7 @@
       "skillId": "sk-doc",
       "ownerMode": "sk-doc",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Check a skill against the Skilled format, or convert one to it, plan first. convert a skill to the skilled format. convert a plain agent skill. turn my old skill into a skilled skill. skill format conversion plan. move the machine router out of a skill. skill folder conversion with a backup",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1627,6 +1653,7 @@
       "skillId": "system-skill-advisor",
       "ownerMode": "system-skill-advisor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Tune and rebuild the skill advisor, and audit graph freshness, router reach, budgets and parent hubs. parent skill structure audit. nested mode packet check. mode-registry drift guard. single graph-metadata identity. skill root metadata contract. missing skill json files",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1670,6 +1697,7 @@
       "skillId": "system-skill-advisor",
       "ownerMode": "system-skill-advisor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Tune and rebuild the skill advisor, and audit graph freshness, router reach, budgets and parent hubs. skill advisor rebuild. rebuild the skill graph database. rerun the skill_graph scan. new skill not appearing in advisor results. advisor daemon is stale",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1711,6 +1739,7 @@
       "skillId": "system-skill-advisor",
       "ownerMode": "system-skill-advisor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Tune and rebuild the skill advisor, and audit graph freshness, router reach, budgets and parent hubs. router reach check. does a declared phrase reach its hub. router vocabulary reach. phrase reaches nobody. routing residue allowlist",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1753,6 +1782,7 @@
       "skillId": "system-skill-advisor",
       "ownerMode": "system-skill-advisor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Tune and rebuild the skill advisor, and audit graph freshness, router reach, budgets and parent hubs. skill budget audit. description budget check. skill char count drift. frontmatter description trim. skill description too long. description longer than the limit",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1796,6 +1826,7 @@
       "skillId": "system-skill-advisor",
       "ownerMode": "system-skill-advisor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Tune and rebuild the skill advisor, and audit graph freshness, router reach, budgets and parent hubs. skill graph freshness. skill-graph zombie ghost nodes. compiled vs sqlite vs disk graph drift. reindex staleness check",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1837,6 +1868,7 @@
       "skillId": "system-skill-advisor",
       "ownerMode": "system-skill-advisor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Tune and rebuild the skill advisor, and audit graph freshness, router reach, budgets and parent hubs. skill advisor scoring. advisor recommendation tuning. skill advisor recommends the wrong skill",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1876,6 +1908,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Diagnose spec-kit retrieval: the generated trigger index, its lookup and the ripgrep recipes. trigger index drift. trigger index lookup fails. retrieval conventions doctor. ripgrep recipe check. citation drift summary. is the trigger index fresh",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1918,6 +1951,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Check, link or unlink the Skilled checkout in a project repo, plan first. check skilled symlinks in a repo. find broken skilled symlinks. which runtime folders are linked. is skilled linked into my project. the skilled links are broken. broken skilled links in my project. skilled links in my project",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1964,6 +1998,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Check, link or unlink the Skilled checkout in a project repo, plan first. symlink skilled into my project. link the claude folder into my repo. repair broken skilled symlinks. create the skilled links in a repo. link skilled into my repo. link skilled into another project. link my skilled checkout into another project",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2007,6 +2042,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Check, link or unlink the Skilled checkout in a project repo, plan first. undo a skilled symlink run. remove the skilled symlinks again. unlink skilled from my project",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2046,6 +2082,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Route check, align, apply, rollback, record-base or compat operations for a spec-kit release. doctor update command. update skills to latest release. skilled release update. update skilled to the latest release. check for skilled updates. is there a newer skilled release. update my project to a newer skilled release. move my project to the newer spec-kit release",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2103,6 +2140,7 @@
       "standalone": true,
       "mutating": "mutates",
       "source": ".skilled/skills/sk-prompt/command-metadata.json",
+      "embeddingText": "I want my prompt or topic turned into a structured, checked AI prompt with a CLEAR screening. improve my prompt. rewrite my prompt. fix my system prompt. make this prompt better. sharpen this prompt. help me write a prompt. tighten up this instruction",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2156,6 +2194,7 @@
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
       "source": "scripts/command-bridges/allow-list.json",
+      "embeddingText": "I want the whole spec-driven change carried end to end, from spec through plan to verified implementation. the whole spec workflow. take it all the way. everything from spec to code",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2201,6 +2240,7 @@
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
       "source": "scripts/command-bridges/allow-list.json",
+      "embeddingText": "I want the already-planned work in plan.md executed and verified. execute the plan. implement the plan. start the implementation. build what was planned",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2248,6 +2288,7 @@
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
       "source": "scripts/command-bridges/allow-list.json",
+      "embeddingText": "I want the spec and plan documents written for a feature before any code is touched. write a spec first. spec out this feature. write the spec and plan. plan before coding",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2295,6 +2336,7 @@
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
       "source": "scripts/command-bridges/allow-list.json",
+      "embeddingText": "I want to pick up where a spec packet left off, recovered from its own documents. where did we leave off. where we left off. pick up the work. where did we stop. continue the previous work. what was i doing",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2356,6 +2398,7 @@
       "standalone": true,
       "mutating": "mutates",
       "source": ".skilled/skills/system-spec-kit/command-metadata.json",
+      "embeddingText": "I want to stop cleanly and hand this work to a fresh session through a written handoff note. hand this off. write a handoff note. wrap up this session. running out of context",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2416,6 +2459,7 @@
       "standalone": true,
       "mutating": "mutates",
       "source": ".skilled/skills/system-spec-kit/command-metadata.json",
+      "embeddingText": "I want this conversation captured into the spec packet so the next session can resume from it. save this conversation. save the context. record this session. write it into the spec. save context. save memory. preserve session context",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2479,6 +2523,7 @@
       "standalone": true,
       "mutating": "read-only",
       "source": ".skilled/skills/system-spec-kit/command-metadata.json",
+      "embeddingText": "I want to find which spec packet or skill doc already covers what I am asking about. find the spec packet. which spec covers this. search the spec docs. is this already documented",
       "runtime": {
         "typescript": {
           "enabled": true,

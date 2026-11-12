@@ -1,0 +1,22 @@
+Done. Both file changes are on disk and all three verification steps pass.
+
+**File written:** `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` (only file I touched)
+
+1. New export `rankMeaningPassedCommandFirst(ranked, meaningPassed)` placed directly after `keepPassingSkillsAboveDoctorBridges`: empty Set returns the order untouched; the meaning-passed command with the highest `commandMeaningCosine` wins; the top passing non-command row's own `semantic_shadow` cosine (`?? 0` when absent) must be beaten by at least `COMMAND_MEANING_MARGIN`; no passing row means the command leads; the move preserves every other row's relative order.
+2. Call site: `ranked = rankMeaningPassedCommandFirst(ranked, commandMeaningPassed);` immediately after `keepPassingSkillsAboveDoctorBridges` in `scoreAdvisorPrompt`.
+
+**Verify output**
+
+1. `npm run typecheck` → clean, exit 0 (no diagnostics).
+2. `npx vitest run tests/scorer` → `Test Files 1 failed | 36 passed (37)`, `Tests 1 failed | 347 passed | 2 skipped (350)`. The only failure is the known unrelated one: `lane-weight-sweep.vitest.ts` → `expected 26 to be less than or equal to 25`. The AC-6 latency test is not part of `tests/scorer`, so it did not run here.
+3. `npm run build` then the baseline capture → `{"correct":24,"total":44}`, `{"own":2,"attached":7,"combined":9,"total":45}`, `{"own":0,"attached":0,"combined":0,"total":44}`, `{"count":0,"total":35}` — typed 24/44, tune 9/45, holdout 0/44, false offers 0/35, all as expected. No holdout rows were printed, only aggregate counters.
+
+**Behaviour check beyond the verify list:** I exercised the new function directly against `dist` with nine synthetic cases (empty set, command beats/trails the skill, absent skill cosine, no passing skill, word-overlap `shadow:` evidence not counted, higher-cosine command chosen, other rows' order kept, already-first). All produced the specified orders. The scratch script lived in `/tmp` and is deleted.
+
+**Two things worth your call, not changed by me:**
+- `COMMAND_MEANING_MARGIN` is 0 today, so a command that exactly ties the top passing skill does move ahead of it. That is the rule as briefed ("at least the margin"). I worded the comment so it does not claim otherwise, and raising the margin will tighten the ordering with no code change.
+- `applyDoctorHelperHandoff` runs after my call and can re-apply doctor ordering itself on its handoff path. It only reaches that path when it adds a passing helper bridge, which requires no passing bridge and a strong doctor cue, and a passing meaning command then counts as a passing row that usually makes it return early. Left as briefed.
+
+Other modifications in the checkout (`embedders/*`, `command-bridges/*`, `capture-command-routing-baseline.mjs`, the tests, the earlier `requireCommandPhraseAnchor` meaning work in `fusion.ts`) are other workers' and I did not touch them.
+
+**Status:** complete within scope, verified. Nothing is blocking from my side.

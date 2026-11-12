@@ -1,0 +1,21 @@
+.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:26:  vecTableNameForDim,  # safe
+.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1206: * (`loadSkillEmbeddings`) already prefers `vec_<dim>` when the pointer is set,  # safe
+.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1231:  const tableName = vecTableNameForDim(active.dim);  # safe
+.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1454:export function loadSkillEmbeddings(skillIds?: readonly string[]): SkillEmbeddingRow[] {  # needs skill-only filter (reads the command table only for requested ids)
+.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:1479:    const tableName = vecTableNameForDim(activeDim);  # needs skill-only filter (reads the command table only for requested ids)
+.skilled/skills/system-skill-advisor/runtime/lib/embedders/index.ts:31:  vecTableNameForDim,  # safe
+.skilled/skills/system-skill-advisor/runtime/lib/embedders/schema.ts:80:export function vecTableNameForDim(dim: number): string {  # safe
+.skilled/skills/system-skill-advisor/runtime/lib/embedders/schema.ts:118:  const tableName = vecTableNameForDim(dim);  # safe
+.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:10:import { getDbReadOnly, loadSkillEmbeddings } from '../../skill-graph/skill-graph-db.js';  # safe
+.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:218:        loadSkillEmbeddings(orderedSkillIds)  # safe (passes ids, command ids included by design)
+.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:293:      loadSkillEmbeddings(projection.skills.map((skill) => skill.id))  # safe (passes ids, command ids included by design)
+.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-trust-gate.vitest.ts:20:  loadSkillEmbeddings,  # safe
+.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-trust-gate.vitest.ts:204:    expect(loadSkillEmbeddings()).toEqual([]);  # safe
+.skilled/skills/system-skill-advisor/runtime/tests/skill-graph/refresh-roundtrip.vitest.ts:12:// SCOPE: refresh + loadSkillEmbeddings round-trip; not a full  # safe
+.skilled/skills/system-skill-advisor/runtime/tests/skill-graph/refresh-roundtrip.vitest.ts:81:  loadSkillEmbeddings,  # safe
+.skilled/skills/system-skill-advisor/runtime/tests/skill-graph/refresh-roundtrip.vitest.ts:146:    const loaded = loadSkillEmbeddings();  # safe
+.skilled/skills/system-skill-advisor/runtime/tests/skill-graph/refresh-roundtrip.vitest.ts:212:    const loaded = loadSkillEmbeddings();  # safe
+.skilled/skills/system-skill-advisor/runtime/tests/scorer/lane-weight-sweep.vitest.ts:526:    vi.spyOn(skillGraphDb, 'loadSkillEmbeddings').mockImplementation((skillIds?: readonly string[]) => {  # safe
+.skilled/skills/system-skill-advisor/runtime/tests/scorer/lane-weight-sweep.vitest.ts:630:      'Seeded cosine lane produced no raw semantic score; loadSkillEmbeddings spy/injection is not flowing through',  # safe
+.skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts:192:    vi.spyOn(skillGraphDb, 'loadSkillEmbeddings').mockImplementation((skillIds?: readonly string[]) => {  # safe
+.skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts:270:      'seeded cosine lane produced no raw semantic score; loadSkillEmbeddings injection is not flowing through',  # safe

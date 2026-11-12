@@ -75,7 +75,7 @@ The scan reads each command's embedding text from the generated bridge file, has
 | `requireCommandPhraseAnchor` | Drops a command row with no `explicit_author` anchor | Update | `tests/command-meaning-anchor.vitest.ts` |
 | `applyDoctorHelperHandoff` (`fusion.ts:988`) | Sends a doctor problem in other words to `/doctor:helper` | Unchanged. It already steps aside when any doctor row passes (`fusion.ts:1003`) | Doctor slice test and the doctor holdout count |
 | `keepPassingSkillsAboveDoctorBridges` (`fusion.ts:906`) | Keeps a passing skill above a doctor row | Unchanged. The meaning rank step runs after it (ADR-005) | The capture's own reach on doctor rows and the T016 doctor rank case |
-| `readOnlyRouteAllowed` (`fusion.ts:673`) | Floors a read-only route | Unchanged | A test row: a meaning anchor alone never sets it |
+| `readOnlyRouteAllowed` (`fusion.ts:673`) | Floors a read-only route | Unchanged | It stayed unchanged, but a meaning match could still lift a mutating command past the read-only floor. `commandMeaningEligible` closes that (ADR-011) |
 | `refreshSkillEmbeddings`, `loadSkillEmbeddings` | Embed and load skill vectors | Update | A rescan reports zero re-embeds when text is unchanged |
 | Readers of the `vec_<dim>` table | Assume skill rows | Check, then update or leave | `rg -n "vecTableNameForDim\|loadSkillEmbeddings" ADV --glob '*.ts' --glob '!dist'` |
 | Committed baselines and ratchets | Run under `VITEST` with an empty database | Unchanged | The default capture and `capture-scorer-eval-baseline.mjs` print the before numbers |
@@ -223,4 +223,91 @@ Setup ──► Implementation ──► Verification
 
 **Alternatives Rejected**:
 - Keep the score position always: a row at the threshold confidence would rarely be top, and holdout reach could stay at 0.
+
+### ADR-006: First bar 0.74 with no margin
+
+**Status**: Accepted by the operator on 2026-11-12, "0.74, no margin (Recommended)"
+
+**Context**: The round one sweep (`scratch/tune-threshold-round1.out`) scored the 45 tune rows and the 35 must-stay-silent rows only. At 0.74 with no margin it read 6 own tune hits, 0 wrong first commands and 0 false offers. The script's own pick, 0.70 with no margin, read 12 hits but 3 wrong first commands.
+
+**Decision**: Set the bar to 0.74 and the margin to 0. The operator chose it from the sweep before any holdout measurement.
+
+**Consequences**:
+- Round one measured holdout 4 of 44 against the target of 5 (`scratch/real-embedding-round1.json`).
+
+**Alternatives Rejected**:
+- 0.70 with no margin: more tune hits, but 3 prompts got the wrong command first.
+
+### ADR-007: One more improvement round
+
+**Status**: Accepted by the operator on 2026-11-12, "One more improvement round"
+
+**Context**: Round one reached 4 of 44 on holdout, one short of the target.
+
+**Decision**: Run one more round. The deriver now leads each command's embedding text with the user-voice `userIntent.job` sentence and the owned phrases. The `description` stands in only when a record states no job. The sweep was then run again on the same tune and silent rows.
+
+**Consequences**:
+- The holdout set was measured a second time, which weakens it as an unseen check.
+
+**Alternatives Rejected**:
+- Close at round one with 4 of 44.
+
+### ADR-008: Second bar 0.72 with margin 0.02
+
+**Status**: Accepted by the operator on 2026-11-12, "0.72, margin 0.02 (Recommended)"
+
+**Context**: The round two sweep (`scratch/tune-threshold.out`) read 9 own tune hits, 0 wrong first commands and 0 false offers at 0.72 with margin 0.02.
+
+**Decision**: Set `COMMAND_MEANING_MIN_COSINE` to 0.72 and `COMMAND_MEANING_MARGIN` to 0.02.
+
+**Consequences**:
+- The full scorer delivered 7 own tune hits, not the 9 the sweep predicted, because scorer steps after the gate still apply and the sweep does not replay them.
+
+**Alternatives Rejected**:
+- 0.72 with no margin: 10 hits but 2 wrong first commands.
+
+### ADR-009: Keep round two and close with the holdout miss
+
+**Status**: Accepted by the operator on 2026-11-12, "Keep round two, close with the miss (Recommended)"
+
+**Context**: Round two read holdout combined 3 of 44, under round one's 4 and under the target of 5. Tune combined rose to 14 of 45, and false offers stayed at 0 of 35.
+
+**Decision**: Keep the round two text and bar, close the phase as Complete, and record holdout reach as missing its target. AC-003 carries this ADR as its waiver.
+
+**Consequences**:
+- The handoff criterion to phase 005, holdout above 0 of 44, holds. The phase's own target of 5 does not.
+- After ADR-011 the recorded number is 2 of 44 (`scratch/real-embedding.json`). The round two capture with 3 of 44 is kept as `scratch/real-embedding-round2.json`. The decision stands.
+
+**Alternatives Rejected**:
+- Revert to round one for 4 of 44: still under the target, with a lower tune reach of 13 of 45.
+
+### ADR-010: Raise the sweep corpus bound to 26
+
+**Status**: Accepted by the operator on 2026-11-12, "Raise the bound to 26 (Recommended)". Committed separately as `5fc383f83a`
+
+**Context**: With a live embedder, `tests/scorer/lane-weight-sweep.vitest.ts` failed because its fixture has held 26 prompts while the test allowed at most 25. The test is skipped when no embedder runs, so the mismatch showed only now.
+
+**Decision**: Raise the bound to 26 to match the fixture.
+
+**Consequences**:
+- The change is outside this phase's file list and lives in its own commit.
+
+**Alternatives Rejected**:
+- Trim the fixture to 25 prompts: it would drop a case for no reason the phase can name.
+
+### ADR-011: A meaning match respects a no-change or read-only request
+
+**Status**: Accepted on 2026-11-12. A review finding, fixed at source
+
+**Context**: The coordinator found the earlier AC-008 reasoning did not hold. `readOnlyRouteAllowed` was unchanged, but a meaning match raised a command's confidence past the read-only floor, so a mutating command was offered for a no-change question. Live CLI probes showed `command-doctor-env` passing at 0.80 for a prompt ending "do not change anything" and for one asking "just show me" something read-only.
+
+**Decision**: `fusion.ts` gains an exported `commandMeaningEligible(promptLower, readOnlyExplainer, skill)` and a shared `NO_EDIT_REQUEST` pattern. A no-change request rules out every command on meaning. A read-only question lets only a read-only command pass on meaning. `requireCommandPhraseAnchor` takes the check as a fourth parameter. A command that passes on its own authored phrase is not affected.
+
+**Consequences**:
+- The two no-change probes no longer return `command-doctor-env`.
+- One holdout row changed, `cmd-speckit-resume-plain-holdout-01`. Its top moved from `command-spec-kit-resume` to `system-spec-kit`. The scorer classes that prompt as a read-only question and it does not match the no-edit pattern, as the coordinator reported without reading the prompt text, while `/speckit:resume` is not a read-only command, so the read-only half of the check removed it. Holdout went from 3 to 2 of 44.
+- `tests/command-meaning-anchor.vitest.ts` grew from 11 to 17 cases.
+
+**Alternatives Rejected**:
+- Leave the gate as built: it would offer a mutating command to someone who asked for no change.
 <!-- /ANCHOR:decisions -->

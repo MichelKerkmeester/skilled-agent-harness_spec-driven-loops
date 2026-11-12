@@ -96,6 +96,7 @@ fixtures -> generated runtime state without an explicit test setup
 tests/
 +-- affordance-normalizer.test.ts
 +-- advisor-rebuild.vitest.ts
++-- command-meaning-anchor.vitest.ts
 +-- command-policy-derivation.vitest.ts
 +-- command-routing-slice.vitest.ts
 +-- cross-skill-edges.vitest.ts
@@ -153,6 +154,7 @@ tests/
 | `manual-testing-playbook.vitest.ts` | Verifies manual testing playbook routing fixtures. |
 | `skill-advisor-cli-stale-daemon-retry.vitest.ts` | Verifies the stale-daemon retry in the CLI entrypoint. |
 | `prompt-policy-gold-replay.vitest.ts` | Replays the prompt gate over the labeled and golden corpora. |
+| `command-meaning-anchor.vitest.ts` | 17 cases on the meaning way in for a command row: a real cosine has to clear the bar and lead the other command rows by the margin, stand-in evidence never passes, a skill row is left alone, a meaning-passed command moves ahead of a passing skill only by the margin, and eligibility rules out every command on a no-edit request and all but read-only commands on a read-only question. |
 | `command-policy-derivation.vitest.ts` | Pins the `derivePolicy` ladder and the closed risk-key vocabularies, and checks that the command tree and its declarations agree. |
 | `command-routing-slice.vitest.ts` | Holds live command routing to `scripts/routing-accuracy/command-routing-baseline.json` row by row, pins the corpus hash and requires a typed row and both plain splits for every command file. |
 | `embedders/` | Covers embedder schema, registry and shared-factory parity. |

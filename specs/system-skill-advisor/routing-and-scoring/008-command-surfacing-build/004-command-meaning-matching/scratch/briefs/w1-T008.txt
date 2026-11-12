@@ -1,0 +1,38 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit only the files this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK (file: .skilled/skills/system-skill-advisor/runtime/lib/embedders/schema.ts only)
+Add an exported function `ensureCommandVecTableForDim(db, dim)` next to `ensureVecTableForDim`. It creates a table named `vec_cmd_<dim>` with the same columns and the same indexes as the table `ensureVecTableForDim` creates, but the `skill_id` column has NO `REFERENCES` clause, because command ids are not rows of skill_nodes. Add an exported helper `commandVecTableNameForDim(dim)` beside `vecTableNameForDim` that returns the name, with the same dim validation. Leave `ensureVecTableForDim` and `vecTableNameForDim` unchanged. Export both new names from .skilled/skills/system-skill-advisor/runtime/lib/embedders/index.ts ONLY if schema.ts names are re-exported there by an explicit list (that one-line export is allowed).
+
+VERIFY (run all, paste outputs)
+1. rg -n "REFERENCES" .skilled/skills/system-skill-advisor/runtime/lib/embedders/schema.ts   -> only the existing vec_<dim> line
+2. cd ADV && npx vitest run tests/embedders   -> 0 failed
+3. cd ADV && npm run typecheck   -> no errors
+
+RULES
+- ADV is .skilled/skills/system-skill-advisor/runtime. Run commands from the repository root unless told otherwise.
+- Code comments explain the durable WHY. Never write a spec path, phase number, task id, ADR or REQ id in a comment.
+- Follow the file's existing style: section dividers, naming, quoting. No em dashes or semicolons in comment prose.
+- Never read or print rows of command-prompts.jsonl whose split is holdout.
+- Do not weaken or delete an existing test. If a verify step fails after three fix attempts, stop and report the output.

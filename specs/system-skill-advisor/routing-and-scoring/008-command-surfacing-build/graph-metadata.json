@@ -144,20 +144,20 @@
     ],
     "causal_summary": "The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-12T18:28:28.829Z",
+    "last_save_at": "2026-11-12T19:56:55.568Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:7fb77c19a126442d7e5c7f129a7d520b14b1453e0bd5f3eed41a3bef8ff1b10a",
+    "source_fingerprint": "sha256:905f27c951cde24eee3e2c335cea7aebd5d0018a73e26a336f315326555c2f35",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "123e7217ed081efc3b0fb563311742a1cd3883f232835cc81a7535014d164c75",
-      "decision-record.md": "d0e3ead08f5657472069bbb219ecea2eb252a164a277d858e34877d5dd2fbcf5"
+      "spec.md": "feb7f43335a9c7aeabaeb253be6eba9be2861534ffcb2cea085888571e87656e",
+      "decision-record.md": "e505f240f21b67e85939e598e145b354bb97d55bd2cb90ca5baa3534cfebac6b"
     },
-    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach",
-    "last_active_at": "2026-11-12T18:28:28.829Z"
+    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching",
+    "last_active_at": "2026-11-12T19:56:55.568Z"
   }
 }

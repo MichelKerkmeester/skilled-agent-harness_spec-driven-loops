@@ -225,7 +225,9 @@ function sorted(entries: readonly CommandBridgeEntry[]): CommandBridgeEntry[] {
 }
 
 function inventoryEntry(entry: CommandBridgeEntry): CommandBridgeEntry {
-  const { runtime: _runtime, ...inventory } = entry;
+  // Both fields are derived for a consumer, never authored, so neither is part
+  // of the inventory this guard compares against its sources.
+  const { runtime: _runtime, embeddingText: _embeddingText, ...inventory } = entry;
   return inventory;
 }
 

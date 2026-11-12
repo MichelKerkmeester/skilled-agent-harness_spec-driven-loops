@@ -8,7 +8,7 @@ trigger_phrases:
   - "advisor daemon"
   - "skill graph"
 importance_tier: "important"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Architecture: system-skill-advisor
@@ -123,7 +123,7 @@ The advisor treats its SQLite skill graph as the durable record. Recommendations
 
 The daemon is composed of focused subsystems that share the IPC layer and the SQLite skill graph.
 
-**Scorer.** Five lanes fuse into a single calibrated score: explicit author signals, lexical overlap, skill-graph causality, derived metadata, and a semantic shadow lane. The fusion respects per-lane weights and emits per-lane attribution alongside the final score. Command detail lives in `references/runtime/cli-front-door-contract.md`, and lane semantics live in `references/scoring/advisor-scorer.md`.
+**Scorer.** Five lanes fuse into a single calibrated score: explicit author signals, lexical overlap, skill-graph causality, derived metadata, and a semantic shadow lane. The fusion respects per-lane weights and emits per-lane attribution alongside the final score. Command detail lives in `references/runtime/cli-front-door-contract.md`, and lane semantics live in `references/scoring/advisor-scorer.md`. Command rows get vectors of their own in a `vec_cmd_<dim>` table that the skill-graph scan fills from each row's generated `embeddingText`. The semantic lane's real cosine against those vectors is the second way a command row can pass, beside its own phrases. The pass needs a cosine of at least 0.72 and a 0.02 lead over the next command row. A no-edit prompt rules out every command on meaning, and a read-only question admits only a read-only command. With no live embedder the rule never fires.
 
 **Shadow-delta sink.** `advisor_recommend` returns shadow comparison data without writing by default. Durable JSONL deltas are recorded only when `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` points to a workspace-contained file or `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED=1` / `true` enables the default sink; the launcher allowlist forwards both env names to the daemon child.
 

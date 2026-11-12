@@ -1,0 +1,32 @@
+Done.
+
+**File written:** `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md` (one paragraph added at line 53, inside §3 DERIVATION FLOW, right after the paragraph that describes what the deriver writes into the generated projections). No frontmatter change, no version bump, no other file touched (`git diff --stat` on that path: 2 insertions, 1 file).
+
+What the paragraph says, all read off the deriver first:
+- Which rows get it: only rows with TypeScript enabled (`entryMeaning` is called only when a TypeScript compatibility row exists, and the field is spread in only when a meaning resolves).
+- Metadata row text: entry `description`, `userIntent.job`, every `userIntent.ownedSignals` phrase (`METADATA_MEANING`).
+- Doctor row text: the router frontmatter `description` (`doctorCommandDescription`) and the route `trigger_phrases` (`DOCTOR_DETAILS`).
+- Slash command strings are dropped in `commandEmbeddingText` because a name left in hands the scorer a second copy of a token it already matches literally.
+- Derived on every run, never authored.
+
+Claims checked against the generated JSON: TypeScript-enabled rows = 45, rows carrying `embeddingText` = 45, and they are the same set (no Python-only or disabled row carries it).
+
+**Verify output**
+
+1. `rg -n "embeddingText" .../command-bridges/README.md`
+```
+53:Each bridge row with TypeScript enabled also carries an `embeddingText`, the plain sentence a scoring vector is built from. A Python-only row carries none. A metadata row builds the text from the entry `description`, its `userIntent.job` and every `userIntent.ownedSignals` phrase. A doctor row builds it from the router frontmatter `description` and the `trigger_phrases` of the route. The deriver drops each slash command string before the parts are joined, because a name left in would hand the scorer a second copy of the token it already matches literally. The field is derived on every run and never authored, so edit the sources rather than the JSON.
+```
+
+2. `python3 .skilled/skills/sk-doc/scripts/validate_document.py .../command-bridges/README.md`
+```
+✅ VALID: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md
+Document type: readme
+Total issues: 0
+EXIT=0
+```
+Both scripts exist under sk-doc (`scripts/` and `shared/scripts/`); I ran the `scripts/` one.
+
+**Could not do / not mine:** nothing blocked. The deriver check mode and the vitest suites were not in the verify list and the README is not an input to `--check`, so I did not run them. The other modified files in `git status` belong to other workers in this checkout.
+
+The one thing left for the orchestrator: fold this row into the packet's evidence once the sibling doc rows are in.

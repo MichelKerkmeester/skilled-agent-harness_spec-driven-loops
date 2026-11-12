@@ -1,0 +1,40 @@
+Done. Both files written, all three verify steps green.
+
+## Files written
+
+**1. `.skilled/skills/system-skill-advisor/runtime/lib/embedders/schema.ts`**
+- `commandVecTableNameForDim(dim)` added directly after `vecTableNameForDim`, same `validateDim(dim)` guard, returns `vec_cmd_${dim}`.
+- `ensureCommandVecTableForDim(db, dim)` added directly after `ensureVecTableForDim`: same column set/order, same two indexes (`idx_<table>_model`, `idx_<table>_hash`), `command_id TEXT PRIMARY KEY` with **no** `REFERENCES` clause.
+- `ensureVecTableForDim` and `vecTableNameForDim` untouched.
+
+**2. `.skilled/skills/system-skill-advisor/runtime/lib/embedders/index.ts`**
+- The schema surface there is an explicit re-export list, so the two new names were appended in its existing case-insensitive order: `commandVecTableNameForDim` and `ensureCommandVecTableForDim`.
+
+Comments state the durable why (commands are not `skill_nodes` rows, so a foreign key would reject every insert; separate per-dim table keeps the two id spaces from mixing). No spec paths, phase/task ids, em dashes or semicolons in comment prose.
+
+## Verify output
+
+1. `rg -n "REFERENCES" .../embedders/schema.ts`
+```
+131:      skill_id TEXT PRIMARY KEY REFERENCES skill_nodes(id) ON DELETE CASCADE,
+```
+Only the pre-existing `vec_<dim>` line.
+
+2. `cd ADV && npx vitest run tests/embedders`
+```
+ Test Files  5 passed (5)
+      Tests  30 passed (30)
+   Duration  455ms
+exit=0
+```
+
+3. `cd ADV && npm run typecheck`
+```
+> ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json
+exit=0
+```
+
+## Notes / not done
+- `git status` shows only those two code files modified. The untracked `specs/.../004-command-meaning-matching/scratch/*` entries were already present and are not mine.
+- Not done and out of brief: no runtime wiring of `ensureCommandVecTableForDim` into the daemon start or any command-embedding path, and no new test covering the command table. `tests/embedders/schema.vitest.ts` has no `vec_cmd_*` case, so the new surface is typechecked and exported but not directly asserted by a test. Say the word and I can add one happy-path + one dim-validation case there.
+- An edit-warning noted a stale sibling `dist` bundle (`@spec-kit/system-skill-advisor`); I did not run `npm run build` since it was outside the named verify steps.

@@ -21,8 +21,10 @@ export {
   NotImplementedError,
 } from './registry.js';
 export {
+  commandVecTableNameForDim,
   DEFAULT_ACTIVE_EMBEDDER,
   ensureActiveEmbedder,
+  ensureCommandVecTableForDim,
   ensureVecMetadataTable,
   ensureVecTableForDim,
   getActiveEmbedder,

@@ -139,7 +139,7 @@ lib/
 | `route-exclusions.ts` | Loads the operator denylist of skill ids the advisor never routes: `config/route-exclusions.json`, fully replaced by a gitignored `route-exclusions.local.json` when present, or the directory in `SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR`. A missing or malformed file yields an empty set and never throws. |
 | `caller-context.ts` | Holds the per-request caller context (session id, transport, caller pid, `trusted` flag) in `AsyncLocalStorage`, read by the trusted-caller gate. |
 | `cross-skill-edges/` | Detects and optionally applies inbound `enhances` graph edges. |
-| `embedders/` | Owns advisor vector schema helpers and shared embedder shims. |
+| `embedders/` | Owns advisor vector schema helpers and shared embedder shims. It names and creates both the skill vector table and the `vec_cmd_<dim>` command vector table, which has no foreign key into `skill_nodes`. |
 | `ipc/` | Owns launcher socket bridge and idle-timeout helpers. |
 | `shared/` | Keeps advisor-local shared helpers and compatibility shims. |
 

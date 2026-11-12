@@ -16,6 +16,7 @@
       "command meaning matching plan",
       "command meaning matching tasks",
       "command meaning matching acceptance criteria",
+      "004-command-meaning-matching operator decisions",
       "command meaning matching implementation summary"
     ],
     "key_topics": [
@@ -27,19 +28,29 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary",
-      "plain",
-      "prompt"
+      "004-command-meaning-matching",
+      "operator",
+      "decisions",
+      "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "feature-catalog/feature-catalog.md",
+      "scratch/before.json",
+      "scratch/real-embedding-round1.json",
+      "scratch/real-embedding-round2.json",
+      "scratch/real-embedding.json",
+      "scratch/tune-threshold.out",
+      "scratch/tune-threshold-round1.out",
+      "scratch/vec-readers.txt",
+      "scratch/tune-threshold.mjs"
     ],
     "entities": [
       {
@@ -67,9 +78,69 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.json",
+        "kind": "config",
+        "path": "scratch/before.json",
+        "source": "derived"
+      },
+      {
+        "name": "real-embedding-round1.json",
+        "kind": "config",
+        "path": "scratch/real-embedding-round1.json",
+        "source": "derived"
+      },
+      {
+        "name": "real-embedding-round2.json",
+        "kind": "config",
+        "path": "scratch/real-embedding-round2.json",
+        "source": "derived"
+      },
+      {
+        "name": "real-embedding.json",
+        "kind": "config",
+        "path": "scratch/real-embedding.json",
+        "source": "derived"
+      },
+      {
+        "name": "tune-threshold.out",
+        "kind": "file",
+        "path": "scratch/tune-threshold.out",
+        "source": "derived"
+      },
+      {
+        "name": "tune-threshold-round1.out",
+        "kind": "file",
+        "path": "scratch/tune-threshold-round1.out",
+        "source": "derived"
+      },
+      {
+        "name": "vec-readers.txt",
+        "kind": "file",
+        "path": "scratch/vec-readers.txt",
+        "source": "derived"
+      },
+      {
+        "name": "tune-threshold.mjs",
+        "kind": "file",
+        "path": "scratch/tune-threshold.mjs",
         "source": "derived"
       },
       {
@@ -125,87 +196,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Second",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 made a plain prompt reach its command when the prompt reuses the command's own words",
     "created_at": "2026-11-12T18:13:56Z",
-    "last_save_at": "2026-11-12T18:41:21.519Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-12T19:56:55.527Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff13a83b3a767559654b4ad178918852962aa99de39abc463518e6342b04fe2c",
+    "source_fingerprint": "sha256:e59f262d4238c3f668c73ff6403f69a829f289ab28cf876915f90dd95d19bf2c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b99de9f1e41dd4ecee75ba7aafd222b5070de30416364e0fdd07887264ac9714",
-      "plan.md": "a7935f519b1af60f82c56b3f7060256fc09fe18e6838c2fcd4dc9291b55859c4",
-      "tasks.md": "5b846ddeb590a138f234c8a11f876f800a6c233cb57dd0cdffa2e31843d1e94e",
-      "implementation-summary.md": "fadcd90fa64f3546adf3cf8fc0b818414bf951f1817ff74c32ec4dc0c9eb2570"
+      "spec.md": "d13134509c5b58427173bd801d8a6445765eeb2bf5b18a0ad0e18b09bb87f71e",
+      "plan.md": "3bd09436264998dd0e0daf082e61500060cff775fd297e98a1dae2b45b26122a",
+      "tasks.md": "3522758a72ba93f13493cdac507bb8aad668082ff3e0122d1c9766b6569c44e6",
+      "decision-record.md": "11bb1db01f3efb3c02ae6de8687bfa7e7ec1e8cdadaba94d0cb05d400b77aee3",
+      "implementation-summary.md": "640ba677895dbc1e51e7b4bdc230c91d4f681a3e76d790dfc592d4d7d4f8e15c"
     },
     "last_active_at": null
   }

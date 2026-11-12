@@ -1,0 +1,38 @@
+File written: `.skilled/skills/system-skill-advisor/runtime/tests/command-meaning-anchor.vitest.ts` (new, 278 lines, 11 `it`s, untracked `??` in git status).
+
+Verify 1 — `npx vitest run tests/command-meaning-anchor.vitest.ts`:
+```
+ ✓ ... requireCommandPhraseAnchor > passes a command whose real cosine clears the bar with a clear lead
+ ✓ ... refuses a cosine under the bar and drops a pass it cannot justify
+ ✓ ... refuses a cosine above the bar that sits inside the margin of another command
+ ✓ ... never passes a command on stand-in evidence, whatever its score
+ ✓ ... refuses a command row with no semantic contribution at all
+ ✓ ... keeps an authored command passing and out of the meaning set
+ ✓ ... returns a skill row unchanged even at a cosine above the bar
+ ✓ ... rankMeaningPassedCommandFirst > moves a meaning-passed command ahead of a passing skill it leads by the margin
+ ✓ ... keeps the order when the lead sits inside the margin
+ ✓ ... moves a doctor command first over a passing skill when it clears the margin
+ ✓ ... returns the input order when nothing passed on meaning
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+```
+
+Verify 2 — `npm run typecheck`: exit 0, no output after the command line (`tsc --noEmit ... -p tsconfig.build.json`). Note the project's build config excludes `tests`, so this gate does not typecheck the new file; an ad-hoc `tsc --noEmit --strict` over the file reported no diagnostics on it (only pre-existing `TS7016` errors from better-sqlite3/`.cjs` in the imported graph, absent from the project run).
+
+Verify 3 — can fail, both tails:
+```
+FAIL  tests/command-meaning-anchor.vitest.ts > rankMeaningPassedCommandFirst > moves a meaning-passed command ahead of a passing skill it leads by the margin
+AssertionError: expected [ 'create:agent', 'sk-git' ] to deeply equal [ 'sk-git', 'create:agent' ]
+ Tests  1 failed | 10 passed (11)
+```
+restored:
+```
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+```
+Second probe (reverted): forcing `MEANING_REACHABLE = true` fails case 1 with `expected true, received false` at `passes_threshold`, which shows the meaning-pass assertions are live rather than vacuous.
+
+Constants are derived, never pinned: `AT_BAR = min(BAR + 0.01, 1)`, `UNDER_BAR = min(max(BAR - 0.01, 0), 0.99)`, `INSIDE_MARGIN = max(MARGIN, 0.02) / 2`, rank leads `0.4 + MARGIN + 0.05` and `0.4 + MARGIN - 0.01`. With the current `MIN = 1.01` the bar is unreachable, so case 1 asserts the switched-off behaviour (no pass, confidence untouched, empty Set) and switches to the pass assertions once the bar is tuned at or below 1.
+
+Not done / outside my authority: `lib/scorer/fusion.ts` shows as modified in `git status` (110 insertions) — not mine, I never wrote it, another worker owns it. No commit, push, or other file touched.

@@ -1,0 +1,23 @@
+Done. Report:
+
+**File written:** `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` (only file touched)
+
+- Added `COMMAND_MEANING_MIN_COSINE = 1.01` and `COMMAND_MEANING_MARGIN = 0` (exported, with a comment saying both are unreachable today so the phrase anchor alone decides until tuned).
+- Added `commandMeaningCosine()`, which only accepts a `semantic_shadow` contribution whose evidence starts `cosine:` (`shadow:` stand-in returns null).
+- `requireCommandPhraseAnchor(ranked, confidenceThreshold = DEFAULT_CONFIDENCE_THRESHOLD, meaningPassed = new Set())` now lets a command row pass on meaning when the cosine clears the min bar and leads every *other* command row's `semantic_shadow` rawScore (absent = 0) by the margin. Such a row gets `passes_threshold: true`, `confidence: max(confidence, confidenceThreshold)`, and its id is added to the caller-supplied `meaningPassed` Set. Anchored rows, skill rows, the demote path of unanchored passing rows, and `readOnlyRouteAllowed` are untouched. Return type is still `AdvisorScoredRecommendation[]`, so the public shape is unchanged.
+- Call site (now `fusion.ts:1419`) creates `commandMeaningPassed` and passes `options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD`, so a later ordering step in this file can read the Set.
+
+**Verify**
+
+1. `cd ADV && npm run typecheck` → `TYPECHECK_EXIT=0`, no diagnostics.
+2. `cd ADV && npx vitest run tests/scorer` → `Test Files  1 failed | 36 passed (37)` / `Tests  1 failed | 347 passed | 2 skipped (350)`. The single failure is pre-existing and unrelated: `tests/scorer/lane-weight-sweep.vitest.ts:651` asserts `HARDER_INTENT_PROMPT_CORPUS.length <= 25` while the committed fixture `tests/scorer/fixtures/harder-intent-prompt-corpus.ts` holds 26 entries. Confirmed by swapping in `git show HEAD:.../fusion.ts`, rerunning that file (same `1 failed | 2 passed`), then restoring my file (sha256 verified identical) — so it is not caused by this change. Both files are unmodified in the worktree, and no fusion code path reaches that fixture. I did not edit the test or fixture (out of scope, no test may be weakened).
+3. `node .skilled/.../capture-command-routing-baseline.mjs | jq -c ...` →
+```
+{"correct":24,"total":44}
+{"own":2,"attached":7,"combined":9,"total":45}
+{"own":0,"attached":0,"combined":0,"total":44}
+{"count":0,"total":35}
+```
+Matches the expected T001 numbers exactly. The capture first exited on a stale-dist guard, so I ran `npm run build` in `ADV` (dist is gitignored) and re-ran it; `BUILD_EXIT=0`.
+
+**Could not do / needs the orchestrator:** step 2's "0 failed" is blocked by the pre-existing `lane-weight-sweep` corpus-length assertion, which lives in files outside my brief — someone with the right scope has to reconcile the fixture (26 entries) with the literal `25` in that test.

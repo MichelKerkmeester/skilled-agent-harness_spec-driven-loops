@@ -23,6 +23,11 @@
 // was captured against, so a corpus edit changes the hash and forces
 // re-baselining.
 //
+// The same corpus can also be scored against the operator's own skill graph and
+// embedder under `--real-embedding`, which is a live probe of this machine rather
+// than a reproducible projection. Its numbers describe an environment, so it never
+// writes the baseline and never runs under the fixture regime the ratchet replays.
+//
 // Setup runs on call, never on import: the environment projection, the clock
 // pin and the scorer import all live inside scoreCommandCorpus(), so a harness
 // may import this module and score in-process without inheriting either.
@@ -30,6 +35,7 @@
 // Usage:
 //   node capture-command-routing-baseline.mjs            # print JSON to stdout
 //   node capture-command-routing-baseline.mjs --write    # also write the baseline
+//   node capture-command-routing-baseline.mjs --real-embedding   # score live vectors
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -58,6 +64,8 @@ const FUSION_MODULE = resolve(DIST, 'lib/scorer/fusion.js');
 const WORKSPACE_ROOT_MODULE = resolve(DIST, 'lib/utils/workspace-root.js');
 const COMMAND_ATTACH_MODULE = resolve(DIST, 'lib/command-attach.js');
 const COMPILED_ROUTING_FLAG_MODULE = resolve(DIST, 'lib/compiled-routing-flag.js');
+const SEMANTIC_SHADOW_MODULE = resolve(DIST, 'lib/scorer/lanes/semantic-shadow.js');
+const SKILL_GRAPH_DB_MODULE = resolve(DIST, 'lib/skill-graph/skill-graph-db.js');
 const DIST_FRESHNESS_MODULE = resolve(HERE, '../../../../system-spec-kit/runtime/cli/lib/dist-freshness.cjs');
 
 const SENTINEL = '.skilled/skills/system-spec-kit/SKILL.md';
@@ -71,6 +79,15 @@ const COMMAND_DOC_SUFFIX = '.md';
 // second derivation of it that could disagree with the first.
 const COMPILED_ROUTE_CLI = '.skilled/bin/compiled-route.cjs';
 const COMPILED_ROUTE_TIMEOUT_MS = 5000;
+
+// A real capture talks to the same embedder the recommend path does, so the probe
+// asks that daemon directly and names the model family the routing vectors come
+// from. The command vectors sit beside the skill vectors in the skill graph, in a
+// table whose name carries the embedder dimension.
+const EMBEDDER_TAGS_URL = 'http://localhost:11434/api/tags';
+const EMBEDDER_MODEL_PREFIX = 'nomic-embed-text';
+const EMBEDDER_PROBE_TIMEOUT_MS = 5000;
+const COMMAND_VECTOR_TABLE_PREFIX = 'vec_cmd_';
 
 // ───────────────────────────────────────────────────────────────────
 // 3. RUNTIME SETUP
@@ -105,7 +122,68 @@ function readPinnedScoringDate() {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 4. HELPERS
+// 4. REAL EMBEDDING PREFLIGHT
+// ───────────────────────────────────────────────────────────────────
+//
+// A real capture scores whatever this machine's cosine lane can see, so both
+// halves of that lane are proved before a single row is scored: an embedder that
+// answers and a populated command vector table. Each half is named as itself when
+// it is missing, because a silent cosine lane reads exactly like a scoring change.
+
+async function assertEmbedderAnswers() {
+  const listed = [];
+  try {
+    const response = await fetch(EMBEDDER_TAGS_URL, { signal: AbortSignal.timeout(EMBEDDER_PROBE_TIMEOUT_MS) });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = await response.json();
+    for (const model of Array.isArray(payload?.models) ? payload.models : []) {
+      if (typeof model?.name === 'string') listed.push(model.name);
+    }
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`real embedding needs a live embedder: GET ${EMBEDDER_TAGS_URL} failed (${message})`);
+  }
+  // The stored vectors were built with this model family, so a daemon serving some
+  // other model cannot answer them no matter how well the dimensions line up.
+  if (!listed.some((name) => name.startsWith(EMBEDDER_MODEL_PREFIX))) {
+    throw new Error(`real embedding needs an embedder serving ${EMBEDDER_MODEL_PREFIX}*: GET ${EMBEDDER_TAGS_URL} lists ${listed.length > 0 ? listed.join(', ') : 'no models'}`);
+  }
+}
+
+function assertCommandVectorsPresent(database, databasePath) {
+  if (!database) {
+    throw new Error(`real embedding needs command vectors: the skill graph database is absent (${databasePath})`);
+  }
+  // GLOB keeps the trailing underscore of the prefix literal, so the match is the
+  // `vec_cmd_<dim>` family alone rather than any name shaped like it.
+  const tables = database
+    .prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name GLOB ?")
+    .all(`${COMMAND_VECTOR_TABLE_PREFIX}*`)
+    .map((table) => table.name);
+  if (tables.length === 0) {
+    throw new Error(`real embedding needs command vectors: no ${COMMAND_VECTOR_TABLE_PREFIX}* table in ${databasePath}`);
+  }
+  const populated = tables.filter((name) => database.prepare(`SELECT COUNT(*) AS rowCount FROM "${name}"`).get().rowCount > 0);
+  if (populated.length === 0) {
+    throw new Error(`real embedding needs command vectors: ${tables.join(', ')} has no rows in ${databasePath}`);
+  }
+}
+
+// The wrapper, the embedder and the command vectors are resolved together because
+// a real capture needs all three or it measures nothing worth reporting.
+async function prepareRealEmbeddingScoring() {
+  if (!existsSync(SEMANTIC_SHADOW_MODULE)) {
+    throw new Error(`built semantic-shadow file missing: ${SEMANTIC_SHADOW_MODULE}`);
+  }
+  const { withSemanticShadowPromptEmbedding } = await import(pathToFileURL(SEMANTIC_SHADOW_MODULE).href);
+  const { getDbReadOnly, getSkillGraphDbPath } = await import(pathToFileURL(SKILL_GRAPH_DB_MODULE).href);
+  await assertEmbedderAnswers();
+  assertCommandVectorsPresent(getDbReadOnly(), getSkillGraphDbPath());
+  return withSemanticShadowPromptEmbedding;
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
 // ───────────────────────────────────────────────────────────────────
 
 function sha256File(path) {
@@ -261,29 +339,35 @@ function readHeadSha(workspaceRoot) {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 5. CORE LOGIC
+// 6. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
-export async function scoreCommandCorpus() {
+export async function scoreCommandCorpus(options = {}) {
+  const realEmbedding = options.realEmbedding === true;
   const RealDate = Date;
   // The projection needs an existing, empty cache directory, and that directory
   // is scratch space this run owns. It is created before the `try` so a failure
   // to create it has nothing left to remove, and removed in the `finally` so
-  // repeated captures do not leave one behind per run.
-  const dbDir = mkdtempSync(join(tmpdir(), 'advisor-command-routing-'));
+  // repeated captures do not leave one behind per run. A real capture reads the
+  // operator's own skill graph, so it owns no scratch directory and sweeps none.
+  const dbDir = realEmbedding ? null : mkdtempSync(join(tmpdir(), 'advisor-command-routing-'));
   try {
     // Environment projection. That empty directory makes the SQLite loader
     // return null, so the projection is built from committed metadata alone,
-    // which is the only state a clean checkout can reproduce.
-    process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = dbDir;
-    process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
+    // which is the only state a clean checkout can reproduce. A real capture reads
+    // the operator's own skill graph and embedder instead, so the three variables
+    // that select the projection are exactly the three it leaves unset.
+    if (!realEmbedding) {
+      process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = dbDir;
+      process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
+      // Match the test-harness regime: the semantic-shadow lane substitutes
+      // deterministic fixture vectors under the harness flag (real embeddings are
+      // not reproducible in CI), so every scorer gate runs this way. The baseline
+      // must be captured under the same regime the ratchet re-scores it in.
+      process.env.VITEST = 'true';
+    }
     process.env.SPECKIT_SKILL_ADVISOR_FORCE_LOCAL = '1';
     process.env.PYTHONDONTWRITEBYTECODE = '1';
-    // Match the test-harness regime: the semantic-shadow lane substitutes
-    // deterministic fixture vectors under the harness flag (real embeddings are
-    // not reproducible in CI), so every scorer gate runs this way. The baseline
-    // must be captured under the same regime the ratchet re-scores it in.
-    process.env.VITEST = 'true';
     delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
     delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;
     delete process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW;
@@ -338,6 +422,11 @@ export async function scoreCommandCorpus() {
       throw new Error(freshness.message);
     }
 
+    // Real scoring is the only mode that reads this machine, so it is the only one
+    // that has to prove the machine can answer before walking the corpus. Without
+    // the flag nothing here runs and the prompt embedding is the direct call below.
+    const embedPrompt = realEmbedding ? await prepareRealEmbeddingScoring() : null;
+
     const commandNames = readCommandFileNames(workspaceRoot);
     const commandSet = new Set(commandNames);
     const { bridgeCounts, idToCommand } = readBridgeMap(BRIDGES_JSON);
@@ -381,7 +470,12 @@ export async function scoreCommandCorpus() {
     let falseOfferAttached = 0;
 
     for (const row of corpus) {
-      const result = scoreAdvisorPrompt(row.prompt, { workspaceRoot });
+      // The recommend path supplies the semantic lane's prompt vector through this
+      // wrapper, so a real capture threads the same path rather than scoring with
+      // the lane blind. Under the fixture regime the lane derives its own
+      // deterministic vector and the direct call is the whole behavior.
+      const score = () => scoreAdvisorPrompt(row.prompt, { workspaceRoot });
+      const result = embedPrompt === null ? score() : await embedPrompt(row.prompt, score);
       const ids = recommendationIds(result);
       const landed = ids.map((id) => commandOf(idToCommand, id));
       const expected = row.expected_command ?? null;
@@ -515,19 +609,28 @@ export async function scoreCommandCorpus() {
     // Removal comes last, after every read that needs the directory has
     // finished; `force` keeps an already-swept directory from turning a
     // completed capture into a failure.
-    rmSync(dbDir, { recursive: true, force: true });
+    if (dbDir !== null) rmSync(dbDir, { recursive: true, force: true });
   }
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 6. CLI ENTRY
+// 7. CLI ENTRY
 // ───────────────────────────────────────────────────────────────────
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  rejectUnknownOptions(import.meta.url, ['--write']);
+  rejectUnknownOptions(import.meta.url, ['--write', '--real-embedding']);
+
+  const realEmbedding = process.argv.includes('--real-embedding');
+  // The committed baseline has to be reproducible on a clean checkout, so it may
+  // only come from the fixture regime. A real-embedding run measures this machine's
+  // embedder and graph, which is a live probe rather than a ratchet.
+  if (realEmbedding && process.argv.includes('--write')) {
+    process.stderr.write('capture-command-routing-baseline.mjs: --write cannot be combined with --real-embedding; the committed baseline is captured under the fixture regime only\n');
+    process.exit(2);
+  }
 
   try {
-    const baseline = await scoreCommandCorpus();
+    const baseline = await scoreCommandCorpus({ realEmbedding });
     const serialized = `${JSON.stringify(baseline, null, 2)}\n`;
     if (process.argv.includes('--write')) {
       writeFileSync(OUTPUT_JSON, serialized, 'utf8');

@@ -1,0 +1,48 @@
+Done.
+
+## File written
+
+`.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts` (only file touched by me)
+
+- `loadSkillEmbeddings(skillIds?)` — active-pointer branch now computes the skill rows into `skillRows` and returns `appendCommandEmbeddingRows(...)`. The existing skill SELECT/map/decode/filter code is byte-identical, just bound to a name. The `vec_<dim>`-missing early return now feeds `[]` as the skill rows into the same helper, so an id list can still find command rows.
+- New module-private `appendCommandEmbeddingRows(database, dim, skillIds, skillRows, hasTable)` placed after the function, matching the file's "helper follows its caller" precedent: returns `skillRows` unchanged when no ids are passed, when the `vec_cmd_<dim>` table is absent, or when the read throws (that last case logs one `[skill-graph] Command embedding load failed; command rows omitted (...)` warning). Otherwise it selects `command_id IN (...)` from the sibling table, maps `command_id → skillId` in the same `SkillEmbeddingRow` shape, and appends.
+- Legacy `skill_nodes.embedding` fallback path untouched (no active dim exists on that branch, so there is no sibling table name to derive).
+- Comment prose carries only the durable WHY: no spec path, phase, task id, ADR/REQ, em dash, or semicolon.
+
+## Verify outputs
+
+1. `cd ADV && npm run typecheck`
+```
+> typecheck
+> ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json
+```
+(no output, no errors)
+
+2. `npx vitest run tests/skill-graph tests/skill-graph-db.vitest.ts tests/skill-graph-embedding-outage.vitest.ts tests/handlers/advisor-trust-gate.vitest.ts`
+```
+ Test Files  8 passed (8)
+      Tests  37 passed (37)
+```
+Re-run after `npm run build`: same, `8 passed / 37 passed`.
+
+3. `npm run build` (clean, attestation recorded) then from repo root:
+```
+$ node -e "import('./.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/skill-graph/skill-graph-db.js').then(...)"
+sk-doc | command-speckit-save
+14
+```
+The import path and `x.skillId` field were correct as given. Live DB: `active_embedder_dim=768`, `vec_768` = 14 rows, `vec_cmd_768` = 45 rows, `skill_nodes.embedding` = 0 rows (so the 14 are the active path).
+
+Extra degradation proofs against a temp copy of the DB (`SYSTEM_SKILL_ADVISOR_DB_DIR`), using the built dist:
+```
+vec_cmd_768 dropped            -> withIds: 1 (sk-doc)   noArg: 14
+vec_cmd_768 unreadable shape   -> warn "no such column: command_id"; withIds: 1 (sk-doc)   noArg: 14
+vec_768 dropped                -> withIds: 1 (command-speckit-save)   noArg: 0
+```
+Also ran `tests/scorer/semantic-shadow-ablation.vitest.ts` as a consumer sanity check: 2 passed, 2 skipped, 0 failed.
+
+## Notes
+
+- Not run / not mine: `tests/scorer/lane-weight-sweep.vitest.ts` (corpus length 26) and the AC-6 latency test, per the brief.
+- The same file also carries another worker's uncommitted command-bridge refresh hunks (`refreshCommandEmbeddings`, `readCommandEmbeddingSources`). I did not touch them and did not run any git-mutating command.
+- No test was added or modified — the brief scoped me to the one source file.

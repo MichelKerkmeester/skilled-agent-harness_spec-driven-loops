@@ -678,7 +678,7 @@ When there is no brief, the prompt hooks and the OpenCode plugin still say why i
 
 The advisor also suggests doctor commands. A setup or health prompt that no skill answers gets a runnable `/doctor:<command> <target>` line. When a skill also matches, the skill comes first and the brief adds `Also: /doctor:<command> <target>` on a second line.
 
-A hub skill can also name the command to type. When the hub routes a prompt to one mode, its recommendation carries that mode's slash command in a `command` field. For "create a readme for the scripts folder", `sk-doc` comes back with `/create:readme`. A deep-loop command is added only when the prompt asks for depth, such as "in depth" or "thorough". Each `/speckit` command and `/prompt:improve` also has its own row, which passes only on its own phrases or its slash string. The hook brief does not print the command yet.
+A hub skill can also name the command to type. When the hub routes a prompt to one mode, its recommendation carries that mode's slash command in a `command` field. For "create a readme for the scripts folder", `sk-doc` comes back with `/create:readme`. A deep-loop command is added only when the prompt asks for depth, such as "in depth" or "thorough". Each `/speckit` command and `/prompt:improve` also has its own row, which passes on its own phrases or its slash string. When the local embedder runs, a command row can also pass on meaning, so a paraphrase that shares none of those words can still reach it. A prompt that asks for no change gets no command that way, and a plain question gets only a read-only one. The hook brief does not print the command yet.
 
 &nbsp;
 

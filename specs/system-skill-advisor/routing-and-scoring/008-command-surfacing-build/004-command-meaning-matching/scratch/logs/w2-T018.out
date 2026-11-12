@@ -1,0 +1,19 @@
+Done.
+
+**File written:** `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md` — extended the existing `capture-command-routing-baseline.mjs` row in §4 STRUCTURE. The added text covers: real skill-graph database and live embedder in place of the fixture vectors and word overlap the default run substitutes, refusal of `--write`, the two preflight checks (live embedder serving the `nomic-embed-text` family, and a populated `vec_cmd_*` table in the skill graph database) and exit 2 naming the missing piece. No frontmatter change, single line changed.
+
+**Verify 1:**
+```
+72:| `capture-command-routing-baseline.mjs` | … An attached hit counts only on a row the ranked bridge did not already land. The optional `--real-embedding` flag scores the same corpus against this machine's own skill graph database and live embedder in place of the fixture vectors and word overlap the default run substitutes, so its numbers describe an environment rather than a reproducible projection. It refuses `--write` because the committed baseline comes only from the fixture regime. Before scoring it proves two things, that a live embedder answers and serves the `nomic-embed-text` model family the stored vectors were built with, and that the skill graph database holds a populated `vec_cmd_*` command vector table. A missing piece exits 2 with a message that names it. |
+EXIT=0
+```
+
+**Verify 2:**
+```
+✅ VALID: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+Document type: readme
+Total issues: 0
+EXIT=0
+```
+
+**Not done / notes:** nothing outstanding. The `--write` refusal also exits 2, but I kept the exit-2 sentence scoped to the missing-piece preconditions as briefed. Source-level checks (`assertEmbedderAnswers`, `assertCommandVectorsPresent`, the CLI guard) were read directly from the script rather than assumed.

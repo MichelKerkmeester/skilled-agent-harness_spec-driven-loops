@@ -1,0 +1,46 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit only the files this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK (file: .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts only)
+`refreshSkillEmbeddingsViaAdapter` embeds every skill into the per-dimension vector table. Extend it to also embed commands into the sibling table:
+- Call `ensureCommandVecTableForDim(db, dim)` (exported from .skilled/skills/system-skill-advisor/runtime/lib/embedders/schema.ts, table name from `commandVecTableNameForDim`) where the function ensures the skill table.
+- After the skill loop, read .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json (resolve the path the way this package resolves its other data files, so it works from both source and dist). For each entry with a non-empty `embeddingText` and `runtime.typescript.enabled`, embed that text and upsert it into the command table keyed by `runtime.typescript.id`, using the same content-hash skip rule (unchanged hash and model means no embed call), the same model id column and the same outage streak handling the skill loop uses.
+- Delete command-table rows whose id is no longer in that set, because no foreign key removes them.
+- A missing or unreadable generated file must not fail the skill refresh: skip commands and continue.
+- Leave the legacy refresh path and the skill loop's behaviour unchanged. Include the command counts in the function's result only if the result type already has a natural place, otherwise log them the way the function logs today.
+Read the whole function and its helpers before editing.
+
+VERIFY (run all, paste outputs)
+1. cd ADV && npm run typecheck   -> no errors
+2. cd ADV && npx vitest run tests/skill-graph tests/skill-graph-db.vitest.ts tests/skill-graph-embedding-outage.vitest.ts   -> 0 failed
+3. Find how a skill-graph scan with embedding refresh is run from the command line in this repository (look at .skilled/bin/skill-advisor.cjs tools and the doctor skill-advisor command), run `npm run build` in ADV, then run the scan once against the real database with the local Ollama server (it is running on localhost:11434). Then: sqlite3 .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite "select name from sqlite_master where name like 'vec_cmd_%'; " and a row count of that table. Expected: one table and 10 rows or more (45 once doctor entries carry text). Run the scan a second time and show that no command row was embedded again.
+4. Report the exact scan command you used. If the scan logs "active embedder is not registered" or names a model the registry lacks, report the full message and the vec_metadata rows (select * from vec_metadata), and do NOT edit the database by hand.
+
+RULES
+- ADV is .skilled/skills/system-skill-advisor/runtime. Run commands from the repository root unless told otherwise.
+- Code comments explain the durable WHY. Never write a spec path, phase number, task id, ADR or REQ id in a comment.
+- Follow the file's existing style: section dividers, naming, quoting. No em dashes or semicolons in comment prose.
+- Never read or print rows of command-prompts.jsonl whose split is holdout.
+- Do not weaken or delete an existing test. If a verify step fails after three fix attempts, stop and report the output.
+- Other workers edit other files in this checkout at the same time. If a command fails with "dist is stale", run `npm run build` in ADV once and retry. Two tests fail for reasons outside this work and are not yours to fix: tests/scorer/lane-weight-sweep.vitest.ts (corpus length 26) and the AC-6 latency test.

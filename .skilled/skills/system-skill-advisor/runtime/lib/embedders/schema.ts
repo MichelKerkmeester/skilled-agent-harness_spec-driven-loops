@@ -82,6 +82,16 @@ export function vecTableNameForDim(dim: number): string {
   return `vec_${dim}`;
 }
 
+/**
+ * Name of the command-vector table for a given dimension. Commands are
+ * embedded from the same vector space as skills, so a separate table per dim
+ * keeps both searchable without mixing two id spaces in one file.
+ */
+export function commandVecTableNameForDim(dim: number): string {
+  validateDim(dim);
+  return `vec_cmd_${dim}`;
+}
+
 export function ensureVecMetadataTable(db: Database.Database): void {
   db.exec(`
     CREATE TABLE IF NOT EXISTS vec_metadata (
@@ -119,6 +129,27 @@ export function ensureVecTableForDim(db: Database.Database, dim: number): void {
   db.exec(`
     CREATE TABLE IF NOT EXISTS ${tableName} (
       skill_id TEXT PRIMARY KEY REFERENCES skill_nodes(id) ON DELETE CASCADE,
+      embedding BLOB NOT NULL,
+      model_id TEXT NOT NULL,
+      content_hash TEXT NOT NULL,
+      updated_at TEXT DEFAULT (datetime('now'))
+    );
+    CREATE INDEX IF NOT EXISTS idx_${tableName}_model ON ${tableName}(model_id);
+    CREATE INDEX IF NOT EXISTS idx_${tableName}_hash ON ${tableName}(content_hash);
+  `);
+}
+
+/**
+ * Create the command-vector table for a dimension. The shape mirrors the skill
+ * table so the same read and write paths work over both, but `command_id`
+ * carries no foreign key because command ids are not rows of `skill_nodes` and
+ * a reference there would reject every insert.
+ */
+export function ensureCommandVecTableForDim(db: Database.Database, dim: number): void {
+  const tableName = commandVecTableNameForDim(dim);
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS ${tableName} (
+      command_id TEXT PRIMARY KEY,
       embedding BLOB NOT NULL,
       model_id TEXT NOT NULL,
       content_hash TEXT NOT NULL,
