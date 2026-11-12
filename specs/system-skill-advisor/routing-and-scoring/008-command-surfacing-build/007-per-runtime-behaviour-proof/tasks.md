@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Phase 7: per-runtime-behaviour-proof"
-description: "Task Format: T### [P?] Description (file path). Verify: <command> prints <expected output>"
+description: "Ordered tasks to build a transcript scorer and a one-turn runner, run a pre-change and a post-change arm per runtime, check started heavy workflows for init and add the lead-phrase and once-per-command checks."
 trigger_phrases:
   - "per runtime behaviour proof tasks"
 importance_tier: "normal"
@@ -9,13 +9,12 @@ contextType: "general"
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.4 -->
 # Tasks: Phase 7: per-runtime-behaviour-proof
 
-<!-- SPECKIT_LEVEL: 3+ -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
 <!-- ANCHOR:notation -->
 ## Task Notation
-<!-- FILL: Keep the prefix table and add the two shell variables this task list uses. GOOD: `R` is `scripts/rotate-logs.sh`. `A` is `logs/archive/`. WEAK: Variables are defined below. -->
 
 | Prefix | Meaning |
 |--------|---------|
@@ -25,244 +24,224 @@ contextType: "general"
 | `[B]` | Blocked |
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
+
+Every command runs from the repository root unless a task says otherwise. `ADV` is `.skilled/skills/system-skill-advisor/runtime`. `S` is `$ADV/scripts/routing-accuracy/score-command-transcripts.mjs`. `R` is `$ADV/scripts/routing-accuracy/run-command-behaviour.mjs`. `T` is `$ADV/tests/command-transcript-score.vitest.ts`. `D` is `$ADV/scripts/command-bridges/derive-command-bridges.cjs`. `G` is `$ADV/scripts/command-bridges/command-bridges.generated.json`. `X` is this phase's `scratch/` folder. `P` is `node $ADV/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs | jq -c '[.metrics.full_corpus_top1.correct,.metrics.holdout_top1.correct,.metrics.ambiguity_top1.correct,.metrics.gold_none_false_fire.value]'`. `M` is `jq -c '.metrics.typed_recall_at_1, .attachedMetrics.plain, .metrics.false_offer' $ADV/scripts/routing-accuracy/command-routing-baseline.json`.
+
+Each task is one change to the files it names, small enough for a worker with a short brief. No task reads holdout prompt text. Live tasks run one at a time, because each run restores the worktree paths it changed.
+
+**Order.** The operator decided on 2026-11-12 that the pre-change arm runs on today's branch tip and that phase 005 waits for it.
+1. Before the pre-change arm, in this order: T001, T002, T003, then T004 to T015 by the waves below, then the smoke run T022. These build and test the scorer and the runner, which the arm needs.
+2. The pre-change arm: T023 to T028, one at a time. Phase 005's first code commit waits until T028 passes.
+3. Free to run any time before T029, and never blocking the arm: T016 to T021.
+4. Waits for phases 005 and 006 to land: T029 to T046.
+
+**Who runs what.** Workers that write the harness code (T004 to T019, T021) are DeepSeek v4.1 flash max through Pi, with Luna max fast through the Codex CLI as the fallback. This is about who builds the harness, not about which models the runs measure. GPT models (Luna, Terra) run only on the Codex CLI with the operator's ChatGPT account, never through DevPass. If a quota is exhausted, the task stops and the operator is asked. No task re-routes to another provider.
+
+Worker waves. Tasks in one wave touch different files and can run in parallel.
+- Wave 0: T001, T002, T003. Read-only setup.
+- Wave 1: T004 (`S`), T011 (`R`), T017 (`D`), T020 (`$X/g5/`, 2 live runs).
+- Wave 2: T005 (`S`), T012 (`R`), T018 (policy derivation test file), T021 (`$X/g2-fixture/`).
+- Wave 3: T006 (`S`), T013 (`R`), T019 (`D`, `G` regenerate).
+- Wave 4: T007 (`S`), T014 (`R`).
+- Wave 5: T008 (`S`), T016 (routing-accuracy README).
+- Wave 6: T009 (`S`).
+- Wave 7: T010 (`S`).
+- Wave 8: T015 (`T`).
+- Then one at a time, before phase 005's first code commit: T022, then the pre-change arm T023 to T028.
+- Then one at a time, after phase 006 lands: T029 to T046.
 <!-- /ANCHOR:notation -->
 
 ---
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
 
-- [ ] T001 Create project structure (`<folder>`). Verify: `ls <folder>` lists it.
-- [ ] T002 Install dependencies (`<manifest>`). Verify: `<install command>` exits 0.
-- [ ] T003 [P] Configure development tools (`<config>`). Verify: `<tool> --version` exits 0.
+- [ ] T001 Record the before numbers (`$X/before.txt`). Verify: `M` prints `{"correct":24,"total":44}`, a plain block with tune combined 9 and holdout combined 0, and `{"count":0,"total":35}`, `P` prints `[159,50,20,5]`, and `node .skilled/commands/doctor/scripts/agents-md-check.cjs --json | jq -r .status` prints `OK`.
+- [ ] T002 Record the pre-change commit (`$X/pre-change-commit.txt`). Verify: `git -c core.fsmonitor=false rev-parse HEAD > $X/pre-change-commit.txt` writes one 40-character SHA, and `rg -c "COMMAND:" AGENTS.md` exits 1 on that commit. If it exits 0, phase 005 has landed early: stop and ask the operator.
+- [ ] T003 Record the CLI version of each measured runtime (`$X/cli-versions.txt`). No model call. Verify: the file holds one line per runtime for the six measured runtimes, each from that CLI's `--version`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-<!-- FILL: Write one implementation task per file change. Add a `Verify:` line with the command and its expected output. GOOD: T002 Add the `--keep <n>` branch. Verify: `--keep 3` leaves 3 archives. WEAK: T002 Implement the feature. -->
 
-- [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
-- [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
-- [ ] T006 [YOUR_VALUE_HERE: Implement core feature 3]
-- [ ] T007 [YOUR_VALUE_HERE: Add error handling]
+- [ ] T004 Create `S` with the CLI shell: flags `--runtime`, `--locator <json>`, `--row-id`, `--summary <run-log>` and `--json`, a call to `loadSession` from `.skilled/hooks/shared/session-readers/index.mjs`, and exit 2 with the reader's `code` on `ok: false`. Verify: `node $S --runtime cursor --locator '{"sessionId":"x"}'` exits 2 and prints `capability_gated`.
+- [ ] T005 In `S`, add `normalize(records, runtime)`, which turns each record into `{seq, kind, path, command, text}` with `kind` one of `read`, `write`, `shell`, `skill` or `text`, using one tool-name table per runtime that starts from the sets in `.skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py`. A shell command counts as a write when it redirects into a file or runs `apply_patch`. Verify: `node -e "import('./$S').then(m => console.log(typeof m.normalize))"` prints `function`.
+- [ ] T006 In `S`, add `commandLines(events)`, which returns every assistant line matching `COMMAND: /<name> → <started|offered|declined>` with its count per command. Verify: `node -e "import('./$S').then(m => console.log(typeof m.commandLines))"` prints `function`.
+- [ ] T007 In `S`, add `followedBeforeWrite(events, command)`, true when a `read` or `skill` event names the command's document, and its confirm workflow file when it has one, before the first `write`. Verify: `node -e "import('./$S').then(m => console.log(typeof m.followedBeforeWrite))"` prints `function`.
+- [ ] T008 In `S`, add `startState(events, row)`, which returns `started`, `unsafe` and `selfAuto` per the definitions in `plan.md` section 3, joining the row's `expected_policy` and `row_type`. Verify: `node -e "import('./$S').then(m => console.log(typeof m.startState))"` prints `function`.
+- [ ] T009 In `S`, add `loopInit(events, command)`. For `/deep:research` and `/deep:review` it is false when a write under a `research/` or `review/` folder, or a `fanout-run.cjs` call, comes before a `loop-lock.cjs acquire` call. For `/speckit:complete` it is false when a write outside `specs/` comes before `create.sh` or a `spec.md` write. It returns `null` when the run started no loop. Verify: `node -e "import('./$S').then(m => console.log(typeof m.loopInit))"` prints `function`.
+- [ ] T010 In `S`, implement `--summary <run-log>`: per runtime and arm, the start rate as n of the `run` and `start` rows, the `COMMAND:` line rate, the unsafe count, the count of commands with more than one `COMMAND:` line, loops without init and unscored runs with their reasons. Verify: `node $S --summary /dev/null --json` exits 0 and prints `{}`.
+- [ ] T011 Create `R` with the `RUNTIMES` table from `plan.md` section 3: one argv builder per runtime, each taken from that runtime's `.skilled/skills/cli-external-orchestration/cli-*/SKILL.md` defaults, plus a 300 s cap for chat runs and a 900 s cap for started-command runs. Verify: `node $R --print-argv claude` prints an argv that holds `-p` and `stream-json`, and `node $R --print-argv cursor` exits 2.
+- [ ] T012 In `R`, run each prompt with stdin from `/dev/null` and `AI_SESSION_CHILD` removed from the environment (operator approval of 2026-11-12), record `git -c core.fsmonitor=false status --porcelain` before and after, restore each tracked path that changed during the run with `git checkout --` and delete each untracked path the run created, then append `{runtime, rowId, arm, locator, exit, changedPaths, restored}` to `--out`. Two guards protect work that is not the run's own. Before the first prompt, `R` exits 2 with `worktree_dirty` when `git -c core.fsmonitor=false status --porcelain` lists any path outside this phase's `scratch/` folder, so a restore can never discard another worker's uncommitted edit. Before and after each prompt, `R` records `git -c core.fsmonitor=false rev-parse HEAD` and the output of `git -c core.fsmonitor=false stash list`, and when either changed it writes `headMoved: true` on the line, skips the restore and exits 3 without running another prompt. Verify: with one tracked file edited, `node $R --dry-run --runtime claude --row-id <first tune start id> --out $X/dry.jsonl` exits 2 and prints `worktree_dirty`. On a clean tree, `node $R --dry-run --runtime claude --row-id <first tune start id> --out $X/dry.jsonl` appends one line with `changedPaths` `[]`, and `rg -n "AI_SESSION_CHILD" $R` shows only the delete.
+- [ ] T013 In `R`, add `--set chat` and `--set g2`. `chat` reads `command-prompts.jsonl`, refuses with exit 2 any row whose `split` is `holdout` before reading its prompt, and picks by sorted id the first 8 `start`, 4 `run` and 4 `ask` tune plain rows and the first 8 must-not-start rows. `g2` holds six fixed prompts: a natural ask and a typed `:auto` command for each of `/deep:research`, `/deep:review` and `/speckit:complete`, the two deep loops capped at one iteration, all aimed at `$X/g2-fixture/`. Verify: `node $R --list chat | wc -l` prints 24, `node $R --list g2 | wc -l` prints 6, and `node $R --row-id <any holdout id>` exits 2 without printing prompt text.
+- [ ] T014 In `R`, capture the locator per runtime: Claude Code `session_id` from the stream, OpenCode `sessionID` from the events, Codex the thread id from `--json`, DSH the id the runner passes with `--session-id` and its `DSH_HOME`. Pi and Devin keep `UNKNOWN` until T022 records their locator source. Verify: `rg -n "UNKNOWN" $R` lists only the Pi and Devin rows.
+- [ ] T015 Create `T` with built sessions in the projected record shape, one per runtime, and cases for: 0, 1 and 2 `COMMAND:` lines, a document read before and after the first write, each policy with and without a write, a self-chosen `:auto`, a deep loop with and without `loop-lock.cjs acquire`, a refused `fanout-run.cjs` call, `/speckit:complete` with and without a spec folder first and a reader failure. Verify: in `$ADV`, `npx vitest run tests/command-transcript-score.vitest.ts` reports 0 failed.
+- [ ] T016 [P] Document both scripts, their flags and exit 2 in `$ADV/scripts/routing-accuracy/README.md`. Verify: `rg -n "score-command-transcripts|run-command-behaviour" $ADV/scripts/routing-accuracy/README.md` prints at least two lines.
+- [ ] T017 In `doctorLeadPhrases` (`D`), reject a lead phrase that holds no state or health word (`check`, `state`, `status`, `report`, `health`, `off`, `on`, `which`, `show`, `list`, `inventory`, `drift`, `stale`, `missing`, `failing`, `broken`) unless its route's derived policy is `ask`. Verify: `node $D --check` prints `fresh`.
+- [ ] T018 Add two cases to `$ADV/tests/command-policy-derivation.vitest.ts`: a fixture `read-only` route with lead phrase `disable the gate` fails the deriver, and the same phrase on a `mutates` route passes. Verify: in `$ADV`, `npx vitest run tests/command-policy-derivation.vitest.ts` reports 0 failed.
+- [ ] T019 Run `node $D` to regenerate `G`. Verify: `git -c core.fsmonitor=false diff --stat -- $G $ADV/lib/scorer/projection.ts $ADV/scripts/skill_advisor.py` prints nothing, and in `$ADV`, `npx vitest run tests/doctor-routing-slice.vitest.ts` reports 0 failed.
+- [ ] T020 Confirm the G5 cause in two copies outside the repository, so no parent `.claude/` folder is found: in a directory from `mktemp -d`, copy `.skilled/commands/create/readme.md` and `skill.md` into `a/.claude/commands/create/`, and into `b/.claude/commands/create/` with `skill.md` renamed to `new-skill.md`. In each, run Claude Code once, model `claude-sonnet-5-5`, prompt "List the names of every entry your Skill tool offers, one per line, and nothing else." (2 live runs). Save the two outputs to `$X/g5/listing-a.txt` and `$X/g5/listing-b.txt` and delete the temp directory. Verify: both files exist, and the result line in `implementation-summary.md` names which listing shows `create:readme`.
+- [ ] T021 Create the started-command fixture (`$X/g2-fixture/`): `spec.md` naming one question about `src/parse.mjs`, and `src/parse.mjs` with one exported function. Verify: `ls $X/g2-fixture` lists `spec.md` and `src`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `ls logs/archive | wc -l` prints 3 and 10. WEAK: T003 Test everything. -->
 
-- [ ] T008 Test happy path manually (`<file>`). Verify: `<command>` prints <expected output>.
-- [ ] T009 Test edge cases (`<test>`). Verify: `<test command>` exits 0.
-- [ ] T010 Update documentation (`<doc>`). Verify: `rg -n '<term>' <doc>` prints one line.
+Before phase 005's first code commit, one at a time:
+
+- [ ] T022 Smoke run: one tune start row on each measured runtime with its default model from `plan.md` section 3 (6 live runs, `$X/runs-smoke.jsonl`). Record the Pi and Devin locator source in `R`. The Codex smoke run follows the GPT rule: the Codex CLI with the operator's ChatGPT account only, never DevPass, and on an exhausted quota stop and ask the operator. Verify: `node $S --summary $X/runs-smoke.jsonl --json | jq -c 'map_values(.unscored)'` prints 0 for every runtime, and `rg -n "UNKNOWN" $R` prints nothing.
+- [ ] T023 Pre-change arm, Claude Code, `claude-sonnet-5-5`, 24 prompts (`$X/runs-pre.jsonl`). Verify: `jq -s '[.[] | select(.runtime=="claude" and .arm=="pre")] | length' $X/runs-pre.jsonl` prints 24.
+- [ ] T024 Pre-change arm, Codex, `gpt-6-luna` medium fast, 24 prompts (`$X/runs-pre.jsonl`). GPT rule: the Codex CLI with the operator's ChatGPT account only, never DevPass, and on an exhausted quota stop and ask the operator. Verify: the same count for `codex` prints 24.
+- [ ] T025 Pre-change arm, OpenCode, `llmgateway/deepseek-v4.1-flash-1017` max, 24 prompts (`$X/runs-pre.jsonl`). Verify: the same count for `opencode` prints 24.
+- [ ] T026 Pre-change arm, Pi, `deepseek-v4.1-flash-1017` on `llmgateway`, 24 prompts (`$X/runs-pre.jsonl`). Verify: the same count for `pi` prints 24.
+- [ ] T027 Pre-change arm, Devin, `swe-2-max`, 24 prompts (`$X/runs-pre.jsonl`). Verify: the same count for `devin` prints 24.
+- [ ] T028 Pre-change arm, DSH, default roster route, 24 prompts (`$X/runs-pre.jsonl`). Verify: the same count for `dsh` prints 24, and `git -c core.fsmonitor=false status --porcelain` lists nothing outside this phase folder.
+
+After phase 006 lands, one at a time:
+
+- [ ] T029 Confirm both binding phases are in the worktree (`AGENTS.md`, read only). Verify: `rg -c "COMMAND:" AGENTS.md` prints at least 1, `node .skilled/commands/doctor/scripts/agents-md-check.cjs --json | jq -r .status` prints `OK`, and `../006-gate-2-binding-and-runtime-pointers/implementation-summary.md` names the commit that landed the bullet.
+- [ ] T030 Read the Gate 2 bullet phase 006 wrote. If it already says the `COMMAND:` line is printed once per command per session and a brief naming a command already started or declined is ignored, mark T031 and T032 not needed. Verify: `rg -n "once per command" AGENTS.md` prints one line, or the task notes that it printed none.
+- [ ] T031 Only if T030 found no clause: append to the Gate 2 command bullet in `AGENTS.md` the sentence "Print it once per command per session, and ignore a brief that names a command already started or declined." Verify: `node .skilled/commands/doctor/scripts/agents-md-check.cjs --json | jq -r '.rows[] | select(.id=="A6") | .detail'` shows the last anchor at or under 16384 bytes.
+- [ ] T032 Only if T031 ran: refresh the Gate 2 section entry in `.skilled/commands/doctor/assets/agents-md-manifest.json` the way phase 003 did. Verify: `node .skilled/commands/doctor/scripts/agents-md-check.cjs --json | jq -r .status` prints `OK`.
+- [ ] T033 Post-change arm, Claude Code, `claude-sonnet-5-5`, 24 prompts (`$X/runs-post.jsonl`). Verify: the post count for `claude` prints 24.
+- [ ] T034 Post-change arm, Codex, `gpt-6-luna` medium fast, 24 prompts (`$X/runs-post.jsonl`). GPT rule: the Codex CLI with the operator's ChatGPT account only, never DevPass, and on an exhausted quota stop and ask the operator. Verify: the post count for `codex` prints 24.
+- [ ] T035 Post-change arm, OpenCode, `llmgateway/deepseek-v4.1-flash-1017` max, 24 prompts (`$X/runs-post.jsonl`). Verify: the post count for `opencode` prints 24.
+- [ ] T036 Post-change arm, Pi, `deepseek-v4.1-flash-1017` on `llmgateway`, 24 prompts (`$X/runs-post.jsonl`). Verify: the post count for `pi` prints 24.
+- [ ] T037 Post-change arm, Devin, `swe-2-max`, 24 prompts (`$X/runs-post.jsonl`). Verify: the post count for `devin` prints 24.
+- [ ] T038 Post-change arm, DSH, default roster route, 24 prompts (`$X/runs-post.jsonl`). Verify: the post count for `dsh` prints 24.
+- [ ] T039 Started-command set, Claude Code, `claude-sonnet-5-5`, 6 prompts (`$X/runs-g2.jsonl`). Verify: `jq -s '[.[] | select(.runtime=="claude")] | length' $X/runs-g2.jsonl` prints 6.
+- [ ] T040 Started-command set, Codex, `gpt-6-luna` medium fast, 6 prompts (`$X/runs-g2.jsonl`). GPT rule: the Codex CLI with the operator's ChatGPT account only, never DevPass, and on an exhausted quota stop and ask the operator. Verify: the count for `codex` prints 6.
+- [ ] T041 Started-command set, OpenCode, `llmgateway/deepseek-v4.1-flash-1017` max, 6 prompts (`$X/runs-g2.jsonl`). Verify: the count for `opencode` prints 6.
+- [ ] T042 Started-command set, Pi, `deepseek-v4.1-flash-1017` on `llmgateway`, 6 prompts (`$X/runs-g2.jsonl`). Verify: the count for `pi` prints 6.
+- [ ] T043 Started-command set, Devin, `swe-2-max`, 6 prompts (`$X/runs-g2.jsonl`). Verify: the count for `devin` prints 6.
+- [ ] T044 Started-command set, DSH, default roster route, 6 prompts (`$X/runs-g2.jsonl`). Verify: the count for `dsh` prints 6, and `git -c core.fsmonitor=false status --porcelain` lists nothing outside this phase folder.
+- [ ] T045 Score all three logs (`$X/summary.json`). Verify: `node $S --summary $X/runs-pre.jsonl $X/runs-post.jsonl $X/runs-g2.jsonl --json > $X/summary.json` exits 0, the file shows a pre and a post start rate per runtime, `unsafe` 0 in every post row, `loopsWithoutInit` 0 in every g2 row and no command with more than one `COMMAND:` line.
+- [ ] T046 Check the floors and the suite, then write `implementation-summary.md` and mark each row in `acceptance-criteria.md` with its evidence. Verify: `M` and `P` print the T001 numbers, `node $D --check` prints `fresh`, in `$ADV` `npx tsc --noEmit` exits 0 and `npm test` reports 0 failed, and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-<!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
+- [ ] All tasks marked `[x]`, or T031 and T032 marked not needed by T030
 - [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] `$X/summary.json` shows a pre and a post start rate per measured runtime, zero unsafe starts and zero loops without init
 <!-- /ANCHOR:completion -->
 
 ---
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-<!-- FILL: Name the spec and plan files. Add the decision record when the packet has one. GOOD: Specification: `spec.md`. Plan: `plan.md`. WEAK: See the other docs. -->
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Acceptance criteria**: See `acceptance-criteria.md`
+- **Review**: `../../007-command-surfacing-and-workflow-enforcement/research/synthesis-review.md` R8, G2, G5, R10c and R10d
 <!-- /ANCHOR:cross-refs -->
 
 ---
 
 ## Verification Checklist
-<!-- FILL: Fill each checklist section below. GOOD: Each CHK line names the command that answers it. WEAK: The checklist is done. -->
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
-<!-- FILL: Keep the three rows and add the rule this packet uses for a blocked task. GOOD: P0 blocks close. P1 needs a recorded reason. WEAK: Follow the priorities. -->
 
 | Priority | Handling | Completion Impact |
 |----------|----------|-------------------|
 | **[P0]** | HARD BLOCKER | Cannot claim done until complete |
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
+
+A blocked task gets `[B]` and one line naming what blocks it. An unsafe start or a loop without init in the post-change runs blocks the phase and returns decision D1 to the operator.
 <!-- /ANCHOR:protocol -->
 
 ---
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-<!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in `goal.md` section 4. WEAK: Setup is ready. -->
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] The four questions in `spec.md` have an operator answer. Evidence: answered 2026-11-12, each as the planned option.
+- [ ] CHK-002 [P0] The before numbers are in `$X/before.txt` (T001).
+- [ ] CHK-003 [P0] The pre-change commit holds no `COMMAND:` line (T002).
 <!-- /ANCHOR:pre-impl -->
 
 ---
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-<!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] `bash -n scripts/rotate-logs.sh` exits 0. WEAK: Code is clean. -->
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [ ] CHK-010 [P0] In `$ADV`, `npx tsc --noEmit` exits 0.
+- [ ] CHK-011 [P0] No code comment names a spec path, a phase number or a task id: `rg -n "T0[0-9]{2}|REQ-0|specs/" $S $R $T` prints nothing.
+- [ ] CHK-012 [P1] A reader failure yields exit 2 with the reader's code (T004, T015).
+- [ ] CHK-013 [P1] The runner reads no holdout prompt: `rg -n "holdout" $R` shows only the refusal (T013).
 <!-- /ANCHOR:code-quality -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## Testing Checklist
-<!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [ ] CHK-020 [P0] Every scorer fact has a test row (T015).
+- [ ] CHK-021 [P0] Zero unsafe starts and zero loops without init in the post-change and started-command logs (T045).
+- [ ] CHK-022 [P1] The floors are unchanged (T046).
+- [ ] CHK-023 [P1] The lead-phrase check fails and passes on its fixtures (T018).
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
-<!-- FILL: Write this section when the packet fixes a reported finding. Delete it otherwise. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [ ] CHK-FIX-001 [P0] The gap is class `matrix/evidence`: no check observes model behaviour.
+- [ ] CHK-FIX-002 [P0] Every runtime with a `ready` reader is measured or named as not measured with its reason.
+- [ ] CHK-FIX-003 [P1] The matrix axes in `plan.md` are listed in the header of `T`.
+- [ ] CHK-FIX-004 [P1] Evidence names the commit each arm ran on.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
 
 <!-- ANCHOR:security -->
 ## Security
-<!-- FILL: Write one check per security surface. Write `N/A` with a reason when none applies. GOOD: CHK-030 [P0] `scripts/rotate-logs.sh` reads no credential. WEAK: Security is fine. -->
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [ ] CHK-030 [P0] No credential appears in an argv or a run log: `rg -n -i "api[_-]?key|token=" $X/*.jsonl` prints nothing.
+- [ ] CHK-031 [P0] The summary prints no prompt or reply text beyond `COMMAND:` lines.
 <!-- /ANCHOR:security -->
 
 ---
 
 <!-- ANCHOR:docs -->
 ## Documentation
-<!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` both name `--keep <n>`. WEAK: Docs are updated. -->
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [ ] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md` state the same runtimes and run counts.
+- [ ] CHK-041 [P1] `$ADV/scripts/routing-accuracy/README.md` names both scripts and their exit 2.
 <!-- /ANCHOR:docs -->
 
 ---
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-<!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [ ] CHK-050 [P1] Run logs, listings, the fixture and the summary live in `scratch/` only.
+- [ ] CHK-051 [P1] `scratch/` holds only the evidence files the summary cites at completion.
 <!-- /ANCHOR:file-org -->
 
 ---
 
 <!-- ANCHOR:summary -->
 ## Verification Summary
-<!-- FILL: Count the boxes by priority and write the three totals. GOOD: P0 12, P1 13, P2 1. WEAK: Most items done. -->
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | [X] | [ ]/[X] |
-| P1 Items | [Y] | [ ]/[Y] |
-| P2 Items | [Z] | [ ]/[Z] |
+| P0 Items | 11 | 1/11 |
+| P1 Items | 10 | 0/10 |
+| P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-11-12
 <!-- /ANCHOR:summary -->
 
 ---
-
-<!-- ANCHOR:arch-verify -->
-## L3+: Architecture Verification
-<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per ADR, or delete the section when the packet records no ADR. GOOD: CHK-100 [P0] ADR-001 is followed by T002. WEAK: Architecture is verified. -->
-
-- [ ] CHK-100 [P0] Architecture decisions documented in `plan.md`'s ARCHITECTURE DECISION RECORD section, or in `decision-record.md` when the packet has one
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
-- [ ] CHK-103 [P2] Migration path documented (if applicable)
-<!-- /ANCHOR:arch-verify -->
-
----
-
-<!-- ANCHOR:perf-verify -->
-## L3+: Performance Verification
-<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per performance claim, or delete the section when the packet makes none. GOOD: CHK-110 [P1] `--keep 3` adds under 5 ms to a run. WEAK: Performance is verified. -->
-
-- [ ] CHK-110 [P1] Response time targets met (NFR-P01)
-- [ ] CHK-111 [P1] Throughput targets met (NFR-P02)
-- [ ] CHK-112 [P2] Load testing completed
-- [ ] CHK-113 [P2] Performance benchmarks documented
-<!-- /ANCHOR:perf-verify -->
-
----
-
-<!-- ANCHOR:deploy-ready -->
-## L3+: Deployment Readiness
-<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per deployment step, or delete the section when the packet ships no service. GOOD: CHK-120 [P0] The rollback command was run in a copy. WEAK: Ready to deploy. -->
-
-- [ ] CHK-120 [P0] Rollback procedure documented and tested
-- [ ] CHK-121 [P1] [YOUR_VALUE_HERE: one deployment check this packet needs, or delete this row]
-- [ ] CHK-123 [P1] Runbook created
-- [ ] CHK-124 [P2] Deployment runbook reviewed
-<!-- /ANCHOR:deploy-ready -->
-
----
-
-<!-- ANCHOR:compliance-verify -->
-## L3+: Compliance Verification
-<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per compliance surface, or delete the section when none applies. GOOD: CHK-130 [P1] No license changed. WEAK: Compliance is verified. -->
-
-- [ ] CHK-130 [P1] Security review completed
-- [ ] CHK-131 [P1] Dependency licenses compatible
-- [ ] CHK-132 [P2] OWASP Top 10 checklist completed
-- [ ] CHK-133 [P2] Data handling compliant with requirements
-<!-- /ANCHOR:compliance-verify -->
-
----
-
-<!-- ANCHOR:docs-verify -->
-## L3+: Documentation Verification
-<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Write one check per document pair that must agree, or delete the section when the packet holds no paired documents. GOOD: CHK-140 [P1] `plan.md` and `tasks.md` agree on the three phases. WEAK: Docs are verified. -->
-
-- [ ] CHK-140 [P1] All spec documents synchronized
-- [ ] CHK-141 [P1] API documentation complete (if applicable)
-- [ ] CHK-142 [P2] User-facing documentation updated
-- [ ] CHK-143 [P2] Knowledge transfer documented
-<!-- /ANCHOR:docs-verify -->
-
----
-
-<!-- ANCHOR:sign-off -->
-## L3+: Sign-Off
-<!-- FILL: L3+ means Level 3 and above, so this section stays at Level 3. Name the real approver. Add a row only for a second approver who signs. Write `N/A` or delete the section when no sign-off applies. GOOD: Operator, merges the commit. WEAK: Signed off. -->
-
-| Approver | Role | Status | Date |
-|----------|------|--------|------|
-| [YOUR_VALUE_HERE: Name] | [YOUR_VALUE_HERE: Role] | [ ] Approved | |
-<!-- /ANCHOR:sign-off -->
-

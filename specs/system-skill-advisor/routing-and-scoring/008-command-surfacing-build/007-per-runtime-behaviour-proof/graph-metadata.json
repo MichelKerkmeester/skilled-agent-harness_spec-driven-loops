@@ -13,6 +13,7 @@
     "trigger_phrases": [
       "per runtime behaviour proof",
       "phase 7 per runtime behaviour proof",
+      "command start rate per runtime",
       "per runtime behaviour proof plan",
       "per runtime behaviour proof tasks",
       "per runtime behaviour proof acceptance criteria",
@@ -24,13 +25,13 @@
       "behaviour",
       "proof",
       "phase",
+      "command",
+      "start",
+      "rate",
       "plan",
       "tasks",
       "acceptance",
-      "criteria",
-      "implementation",
-      "summary",
-      "yourvaluehere"
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -39,7 +40,13 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/scratch/incident-chat-started-loop.md",
+      ".skilled/hooks/shared/session-readers/index.mjs",
+      ".skilled/commands/doctor/assets/agents-md-manifest.json",
+      ".pi/settings.json",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py",
+      ".skilled/commands/create/readme.md"
     ],
     "entities": [
       {
@@ -73,25 +80,43 @@
         "source": "derived"
       },
       {
+        "name": "incident-chat-started-loop.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/scratch/incident-chat-started-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "measure-rule-compliance.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py",
+        "source": "derived"
+      },
+      {
+        "name": "readme.md",
+        "kind": "doc",
+        "path": ".skilled/commands/create/readme.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Status Draft",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,6 +134,24 @@
         "source": "derived"
       },
       {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -121,7 +164,7 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Pattern Run",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,21 +176,9 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -157,39 +188,15 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Every check this build has so far reads the advisor's output, never the model's behaviour",
     "created_at": "2026-11-12T12:27:38Z",
-    "last_save_at": "2026-11-12T18:21:43.877Z",
+    "last_save_at": "2026-11-12T20:54:00.198Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1438beeff4270720be0e0898c7d7f7a60fc2d52f837e1b8ad14dbe3fba422eb4",
+    "source_fingerprint": "sha256:7fb96c04e9275c35774ab3c22d965d131a69a2ba285acb5e9222a2f7a984ff9c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "244bb27fcb116dcb7b83ca2b9f5d1858849ee4465e78e8a50b588443aab78890",
-      "plan.md": "9c39e80d358ea38edc5fa172b438ff7fb7e0402e23c6094c21f617411eeeeaca",
-      "tasks.md": "3d63e3d09af47562074023b9ed72d3af9ed0e8d350f2207b2ba1ed656fcba070",
-      "implementation-summary.md": "8b3b206843d49a2c3d2fcc9864acf1e9f45c17cce24eb8b0b612ef51a92467e6"
+      "spec.md": "6ca9db15029279c71a76a3d1ee2f87706902af392f504b0e5ca42535a7709c68",
+      "plan.md": "59e666ba7da15ddd3bc9290f8b88f3df08651651d27e0c476ca103c06994f831",
+      "tasks.md": "0e7498d8975a8f8f5ba576e37fa41289afa22b413a19ef37026f629251809cb3",
+      "implementation-summary.md": "016de788dec6ada2952d4fa54dae18158f5d13e609252d7099b3d779a928858f"
     },
     "last_active_at": null
   }
