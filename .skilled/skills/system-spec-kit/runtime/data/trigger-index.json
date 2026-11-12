@@ -1,5 +1,5 @@
 {
-  "manifestHash": "31ef0aeffe514094d80ff8b8ae474e7eed69e02fcc42e9fd0cdbb9f50ed5a68c",
+  "manifestHash": "36984f0f828cdc3befe0ae99585c98a56b3902d5f61cec67745192fd136d9152",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -126048,6 +126048,9 @@
     ],
     "session health schema bypass": [
       13473
+    ],
+    "session hop trust checks": [
+      62
     ],
     "session id dfs bound": [
       13427

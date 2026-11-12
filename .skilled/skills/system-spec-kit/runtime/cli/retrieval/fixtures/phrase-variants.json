@@ -1,5 +1,5 @@
 {
-  "manifestHash": "31ef0aeffe514094d80ff8b8ae474e7eed69e02fcc42e9fd0cdbb9f50ed5a68c",
+  "manifestHash": "36984f0f828cdc3befe0ae99585c98a56b3902d5f61cec67745192fd136d9152",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -100765,6 +100765,9 @@
     ],
     "session health schema bypass": [
       "session_health schema bypass"
+    ],
+    "session hop trust checks": [
+      "session hop trust checks"
     ],
     "session id dfs bound": [
       "session id dfs bound"
