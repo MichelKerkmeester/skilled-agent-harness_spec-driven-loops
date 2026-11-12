@@ -110,16 +110,16 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 5 | 005-ci-runner-timing/ | Read CI's own run times and decide a worker cap | Complete: no cap needed |
 | 6 | 006-overlay-replaced-subtree-repin/ | Overlay engine: a re-pin copy's file inside a replaced folder is not a live edit | Complete |
 | 7 | 007-test-and-ci-bloat-research/ | Research which tests, CI workflows and hook checks are bloat, and rank the cuts by time saved. Research only | Complete: the wait is the slowest workflow, three changes shorten it |
-| 8 | 008-spec-kit-check-parallel-jobs/ | [Phase 8 scope] | Pending |
-| 9 | 009-legacy-lane-overlap-measurement/ | [Phase 9 scope] | Pending |
-| 10 | 010-sk-doc-tests-path-filter/ | [Phase 10 scope] | Pending |
-| 11 | 011-sparse-checkout-rollout/ | [Phase 11 scope] | Pending |
-| 12 | 012-advisor-suite-parallel-trial/ | [Phase 12 scope] | Pending |
-| 13 | 013-advisory-checks-blocking-gates/ | [Phase 13 scope] | Pending |
-| 14 | 014-dead-runner-and-step-cleanup/ | [Phase 14 scope] | Pending |
-| 15 | 015-hook-suite-job-split/ | [Phase 15 scope] | Pending |
-| 16 | 016-local-test-timing-profile/ | [Phase 16 scope] | Pending |
-| 17 | 017-specs-artifact-tracking-decision/ | [Phase 17 scope] | Pending |
+| 8 | 008-spec-kit-check-parallel-jobs/ | Run the three sequential `Spec-Kit Check` suites as parallel jobs | Built: CI proof waits on a pull request |
+| 9 | 009-legacy-lane-overlap-measurement/ | Measure how far the legacy lanes repeat the CLI vitest project | Measured: 6 overlapping tests, keep the lanes |
+| 10 | 010-sk-doc-tests-path-filter/ | Run 54 of the sk-doc script tests only when sk-doc paths change | Built: CI proof waits on a pull request |
+| 11 | 011-sparse-checkout-rollout/ | Sparse checkout for workflows that read only named paths | Built for five workflows, two reverted: CI proof waits on a pull request |
+| 12 | 012-advisor-suite-parallel-trial/ | Trial the advisor suite with files in parallel | Rejected: 213 s to about 100 s, but one timing test failed two of three runs, reverted |
+| 13 | 013-advisory-checks-blocking-gates/ | Make the 13 gate-critical node suites blocking | Built: CI proof waits on a pull request |
+| 14 | 014-dead-runner-and-step-cleanup/ | Remove the sharded runner nothing calls and one duplicated workflow step | Built |
+| 15 | 015-hook-suite-job-split/ | Move the hook vitest suites into their own workflow | Built: CI proof waits on a pull request |
+| 16 | 016-local-test-timing-profile/ | Time the three local test commands once each | Measured: 914 s, 211 s and 527 s |
+| 17 | 017-specs-artifact-tracking-decision/ | Measure the tracked research and scratch files and write the options | Measured: 88,151 files, decision is the operator's |
 
 ### Phase Transition Rules
 
@@ -137,16 +137,16 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 004-split-fanout-run | 005-ci-runner-timing | Phase 1 is pushed and CI has run at least twice | `gh run list` shows the runs |
 | 005-ci-runner-timing | 006-overlay-replaced-subtree-repin | Independent; added to the series at the operator's request | The overlay test files pass |
 | 006-overlay-replaced-subtree-repin | 007-test-and-ci-bloat-research | Independent; added to the series at the operator's request | `007-test-and-ci-bloat-research/research/` holds a `research.md` |
-| 007-test-and-ci-bloat-research | 008-spec-kit-check-parallel-jobs | [Criteria TBD] | [Verification TBD] |
-| 008-spec-kit-check-parallel-jobs | 009-legacy-lane-overlap-measurement | [Criteria TBD] | [Verification TBD] |
-| 009-legacy-lane-overlap-measurement | 010-sk-doc-tests-path-filter | [Criteria TBD] | [Verification TBD] |
-| 010-sk-doc-tests-path-filter | 011-sparse-checkout-rollout | [Criteria TBD] | [Verification TBD] |
-| 011-sparse-checkout-rollout | 012-advisor-suite-parallel-trial | [Criteria TBD] | [Verification TBD] |
-| 012-advisor-suite-parallel-trial | 013-advisory-checks-blocking-gates | [Criteria TBD] | [Verification TBD] |
-| 013-advisory-checks-blocking-gates | 014-dead-runner-and-step-cleanup | [Criteria TBD] | [Verification TBD] |
-| 014-dead-runner-and-step-cleanup | 015-hook-suite-job-split | [Criteria TBD] | [Verification TBD] |
-| 015-hook-suite-job-split | 016-local-test-timing-profile | [Criteria TBD] | [Verification TBD] |
-| 016-local-test-timing-profile | 017-specs-artifact-tracking-decision | [Criteria TBD] | [Verification TBD] |
+| 007-test-and-ci-bloat-research | 008-spec-kit-check-parallel-jobs | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 008-spec-kit-check-parallel-jobs | 009-legacy-lane-overlap-measurement | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 009-legacy-lane-overlap-measurement | 010-sk-doc-tests-path-filter | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 010-sk-doc-tests-path-filter | 011-sparse-checkout-rollout | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 011-sparse-checkout-rollout | 012-advisor-suite-parallel-trial | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 012-advisor-suite-parallel-trial | 013-advisory-checks-blocking-gates | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 013-advisory-checks-blocking-gates | 014-dead-runner-and-step-cleanup | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 014-dead-runner-and-step-cleanup | 015-hook-suite-job-split | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 015-hook-suite-job-split | 016-local-test-timing-profile | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 016-local-test-timing-profile | 017-specs-artifact-tracking-decision | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
 <!-- /ANCHOR:phase-map -->
 
 ---
