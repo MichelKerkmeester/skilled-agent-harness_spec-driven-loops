@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:197a5cd6dc1f8f271c435d76c96222d8dffbf6028f471c58feba4c6ebc6fa3d1"
       session_id: "scaffold-009-overlay-write-checks-follow-up"
       parent_session_id: null
     completion_pct: 100
