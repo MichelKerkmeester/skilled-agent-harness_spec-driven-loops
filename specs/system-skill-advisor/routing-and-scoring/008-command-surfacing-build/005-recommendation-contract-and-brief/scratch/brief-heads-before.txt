@@ -1,0 +1,6 @@
+Advisor: live; use command-spec-kit-plan 0.82/0.16 pass.
+Advisor: live; use command-speckit-save 0.89/0.12 pass.
+Advisor: live; use sk-prompt 0.89/0.12 pass.
+Advisor: live; use sk-doc 0.95/0.12 pass.
+Advisor: live; ambiguous: /doctor:git hooks 0.82/0.12 vs sk-git 0.86/0.16 pass.
+Advisor: live; use system-deep-loop 0.82/0.16 pass.

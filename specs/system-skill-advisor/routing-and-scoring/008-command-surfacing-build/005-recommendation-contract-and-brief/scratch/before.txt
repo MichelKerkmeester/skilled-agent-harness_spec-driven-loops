@@ -1,0 +1,23 @@
+# Before numbers
+
+Date: 2026-11-12
+Commit: 2920b1abef
+Branch tree: public/352-command-surfacing-research
+
+## Scorer eval baseline
+
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs | jq -c '[.metrics.full_corpus_top1.correct,.metrics.holdout_top1.correct,.metrics.ambiguity_top1.correct,.metrics.gold_none_false_fire.value]'
+[159,50,20,5]
+
+## Command routing baseline
+
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs | jq -c '.metrics.typed_recall_at_1, .attachedMetrics.plain, .metrics.false_offer, .attachedMetrics.typed_same_owner_ambiguous'
+{"correct":24,"total":44}
+{"tune":{"own":2,"attached":7,"combined":9,"total":45},"holdout":{"own":0,"attached":0,"combined":0,"total":44}}
+{"count":0,"total":35}
+["cmd-create-agent-typed-01"]
+
+## Policy rollup
+
+$ jq -c '[.commandPolicies | group_by(.command)[] | (map(.policy) | if index("ask") then "ask" elif index("start") then "start" else "run" end)] | group_by(.) | map({(.[0]): length}) | add' .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json
+{"ask":17,"run":7,"start":20}

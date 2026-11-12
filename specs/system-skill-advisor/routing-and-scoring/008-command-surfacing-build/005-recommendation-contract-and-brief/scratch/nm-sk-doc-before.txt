@@ -1,0 +1,4 @@
+system-skilled-doctor 0.82 0.1301 [["lexical",0.056,["token:setup"]],["derived_generated",0.0661,["derived:setup"]],["semantic_shadow",0.008,["shadow:test-fallback"]]]
+sk-code 0.82 0.0969 [["lexical",0.0812,["token:typo","token:heading","token:debug"]],["graph_causal",0.0157,["edge:mcp-tooling->sk-code:enhances","edge:sk-design->sk-code:enhances"]]]
+sk-design 0.82 0.0640 [["lexical",0.056,["token:guide"]],["semantic_shadow",0.008,["shadow:test-fallback"]]]
+count 4 skdoc index -1

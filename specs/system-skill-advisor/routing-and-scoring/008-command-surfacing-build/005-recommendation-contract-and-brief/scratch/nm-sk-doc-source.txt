@@ -1,0 +1,26 @@
+# nm-sk-doc-01 token source trace
+
+Date: 2026-11-12
+Input: scratch/nm-sk-doc-before.txt, probe prompt "fix the typo in the heading of the setup guide"
+Code read: `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts` and `.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts`
+
+## How a skill's token list is built
+
+`scoreLexicalLane` builds each skill's candidate strings from `id`, `name`, `description`, `domains`, `intentSignals` and `keywords`. It scores them with `scoreTokenOverlap` and harvests `token:<x>` evidence with a plain `haystack.includes(token)` over the same joined candidates.
+`projectionFromRow` fills `name`, `description` and `keywords` from the skill's `SKILL.md` through `parseSkillMarkdown`, and `domains` and `intentSignals` from the `skill_nodes` row. `indexSkillMetadata` reads that row from the skill's `graph-metadata.json` fields `domains` and `intent_signals`, so an edit to `graph-metadata.json` reaches the SQLite projection only after a re-index.
+
+## Token sources
+
+typo | sk-code | .skilled/skills/sk-code/graph-metadata.json | field domains | "typography" gives token:typo by substring only, while scoreTokenOverlap tokenizes and does not score typo against typography
+heading | sk-code | .skilled/skills/sk-code/graph-metadata.json | field intent_signals | "text-wrap balance headings" gives token:heading by substring and scores 0.45 through the heading to headings suffix extension
+guide | sk-design | .skilled/skills/sk-design/graph-metadata.json | field intent_signals | "style guide from" and "style guide from a url" give token:guide as an exact token
+setup | system-skilled-doctor | .skilled/skills/system-skilled-doctor/graph-metadata.json | field intent_signals | "doctor setup", "doctor setup diagnostic" and "what doctor setup prints" give token:setup. The separate derived:setup evidence comes from field derived.key_files, ".skilled/commands/doctor/setup.md" reduced to "setup"
+debug | sk-code | .skilled/skills/sk-code/SKILL.md | field description | "Implement, debug and verify code..." gives token:debug as an exact token. The same token is also in the SKILL.md Keywords block and in graph-metadata.json intent_signals "debug the ci"
+
+## Why sk-doc holds no documentation-edit token
+
+`sk-doc` projects documentation artifacts and authoring actions (`documentation`, `markdown`, `authoring`, `readme`, `feature catalog`, `frontmatter`, `create`, `validate`, `review the docs`) but no term for editing existing prose, such as typo, heading, spelling, proofread or wording. The prompt's scorable tokens are `fix`, `typo`, `heading`, `setup` and `guide`, plus the synonyms `debug`, `correct` and `patch` that `fix` injects. None is a whole token in `sk-doc`'s candidate strings. The only literal "fix" sits inside "fixture" in `intent_signals` ("benchmark fixture" and "reviewer-prompt fixture"). Scoring is whole-token, so the 3-letter prompt token `fix` does not match `fixture`, `sk-doc` scores 0, and `scoreLexicalLane` drops a row at score <= 0.05 before it can harvest evidence. That is why `sk-doc` carries no token and never enters the recommendation list.
+
+## sk-doc source field that should carry documentation-edit vocabulary
+
+sk-doc source field: .skilled/skills/sk-doc/graph-metadata.json -> intent_signals

@@ -1,0 +1,9 @@
+FAIL sk-doc                       declared=257 wrong-hub=  0 outranked=  4 no-reach=  0 allowed=  6 probe-error=  0 operator-local=  0
+       outranked  create an agent                            create:agent=0.8200, sk-doc=0.8265
+       outranked  opencode agent                             create:agent=0.8000, sk-code=0.9069
+       outranked  deterministic scenario                     create:manual-testing-playbook=0.8000, sk-doc=0.8329
+       outranked  manual test scenario                       create:manual-testing-playbook=0.8200, sk-doc=0.9204
+
+checked=1 hub(s), wrong-hub=0, outranked=4, no-reach=0, allowed=6, probe-error=0, operator-local=0
+advisor generation: 85
+RESULT: FAILED
