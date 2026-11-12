@@ -38,6 +38,11 @@ const CLAUDE_BUDGET_FLOOR_MS = 1700;
 const SHORT_HOST_FLOOR_MS = 400;
 const SHORT_HOST_LATEST_EXIT_MS = 2500;
 const LATEST_EXIT_MS = 10000;
+// A late payload is written only once the latest allowed exit has passed. The
+// 500 ms deadline runs from the moment the hook starts reading, not from the
+// spawn, so an earlier write can still arrive in time on a host that starts the
+// process slowly. A hook still reading this late fails the exit bound instead.
+const LATE_WRITE_MS = SHORT_HOST_LATEST_EXIT_MS;
 const SHORT_HOST = { floor: SHORT_HOST_FLOOR_MS, latest: SHORT_HOST_LATEST_EXIT_MS };
 const KILL_AFTER_MS = 15000;
 
@@ -112,17 +117,19 @@ function runHook(file, { args = [], input, env, holdOpen = false, writeDelayMs =
     });
     let stdout = '';
     let stderr = '';
+    let lateWrite;
     child.stdout.on('data', (chunk) => { stdout += chunk; });
     child.stderr.on('data', (chunk) => { stderr += chunk; });
     // A hook that stops reading early closes the pipe under the writer.
     child.stdin.on('error', () => {});
     if (input !== undefined && holdOpen) {
-      if (writeDelayMs > 0) setTimeout(() => child.stdin.write(input), writeDelayMs);
+      if (writeDelayMs > 0) lateWrite = setTimeout(() => child.stdin.write(input), writeDelayMs);
       else child.stdin.write(input);
     } else if (input !== undefined) child.stdin.end(input);
     const killer = setTimeout(() => child.kill('SIGKILL'), KILL_AFTER_MS);
     child.on('close', (code, signal) => {
       clearTimeout(killer);
+      clearTimeout(lateWrite);
       resolve({ code, signal, stdout: stdout.trim(), stderr, elapsedMs: Date.now() - started });
     });
   });
@@ -320,7 +327,7 @@ test('every short-deadline entry still acts on a payload its host writes but nev
 
 test('every short-deadline entry drops a payload its host writes after the deadline', async (t) => {
   const rows = shortHostFixture(t, 'short-host-late-', 'late');
-  const results = await Promise.all(rows.map((row) => runHook(row.file, { input: JSON.stringify(row.input), holdOpen: true, writeDelayMs: 800, env: row.env })));
+  const results = await Promise.all(rows.map((row) => runHook(row.file, { input: JSON.stringify(row.input), holdOpen: true, writeDelayMs: LATE_WRITE_MS, env: row.env })));
   for (const [index, row] of rows.entries()) {
     await t.test(row.file, () => {
       const result = results[index];

@@ -7,6 +7,9 @@ on:
       - '.opencode/skills/system-spec-kit/**'
       - '.skilled/skills/system-spec-kit/**'
       - '.github/workflows/spec-kit-check.yml'
+      # Every install step in this workflow runs through the retry wrapper.
+      - '.github/scripts/npm-ci-retry.sh'
+      - '.github/scripts/tests/npm-ci-retry.test.sh'
       # The root instruction files are the shipped template the manifest copies, so an
       # edit to either one has to run the suite that keeps that copy fresh.
       - 'AGENTS.md'
@@ -45,6 +48,9 @@ on:
       - '.opencode/skills/system-spec-kit/**'
       - '.skilled/skills/system-spec-kit/**'
       - '.github/workflows/spec-kit-check.yml'
+      # Every install step in this workflow runs through the retry wrapper.
+      - '.github/scripts/npm-ci-retry.sh'
+      - '.github/scripts/tests/npm-ci-retry.test.sh'
       # The root instruction files are the shipped template the manifest copies, so an
       # edit to either one has to run the suite that keeps that copy fresh.
       - 'AGENTS.md'
@@ -99,6 +105,9 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
+      - name: Test the install retry wrapper against a stand-in npm
+        run: bash .github/scripts/tests/npm-ci-retry.test.sh
+
       - name: Setup Node
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
@@ -111,13 +120,13 @@ jobs:
       - name: Install and build the spec-kit packages
         run: |
           set -euo pipefail
-          npm --prefix .opencode/skills/system-spec-kit ci
+          bash .github/scripts/npm-ci-retry.sh .opencode/skills/system-spec-kit
           # The runtime project imports the OpenCode plugin entrypoints, which depend
           # on the plugin SDK declared in .skilled/package.json.
-          npm --prefix .skilled ci
+          bash .github/scripts/npm-ci-retry.sh .skilled
           # The skill-advisor plugin imports the advisor server's compiled output in the
           # same way; its build also compiles the shared package it depends on.
-          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          bash .github/scripts/npm-ci-retry.sh .opencode/skills/system-skill-advisor/runtime
           npm --prefix .opencode/skills/system-skill-advisor/runtime run build
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
           npm --prefix .opencode/skills/system-spec-kit/runtime run build
@@ -157,13 +166,13 @@ jobs:
       - name: Install and build the spec-kit packages
         run: |
           set -euo pipefail
-          npm --prefix .opencode/skills/system-spec-kit ci
+          bash .github/scripts/npm-ci-retry.sh .opencode/skills/system-spec-kit
           # The runtime project imports the OpenCode plugin entrypoints, which depend
           # on the plugin SDK declared in .skilled/package.json.
-          npm --prefix .skilled ci
+          bash .github/scripts/npm-ci-retry.sh .skilled
           # The skill-advisor plugin imports the advisor server's compiled output in the
           # same way; its build also compiles the shared package it depends on.
-          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          bash .github/scripts/npm-ci-retry.sh .opencode/skills/system-skill-advisor/runtime
           npm --prefix .opencode/skills/system-skill-advisor/runtime run build
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
           npm --prefix .opencode/skills/system-spec-kit/runtime run build
@@ -200,13 +209,13 @@ jobs:
       - name: Install and build the spec-kit packages
         run: |
           set -euo pipefail
-          npm --prefix .opencode/skills/system-spec-kit ci
+          bash .github/scripts/npm-ci-retry.sh .opencode/skills/system-spec-kit
           # The runtime project imports the OpenCode plugin entrypoints, which depend
           # on the plugin SDK declared in .skilled/package.json.
-          npm --prefix .skilled ci
+          bash .github/scripts/npm-ci-retry.sh .skilled
           # The skill-advisor plugin imports the advisor server's compiled output in the
           # same way; its build also compiles the shared package it depends on.
-          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          bash .github/scripts/npm-ci-retry.sh .opencode/skills/system-skill-advisor/runtime
           npm --prefix .opencode/skills/system-skill-advisor/runtime run build
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
           npm --prefix .opencode/skills/system-spec-kit/runtime run build
@@ -238,13 +247,13 @@ jobs:
       - name: Install and build the spec-kit packages
         run: |
           set -euo pipefail
-          npm --prefix .opencode/skills/system-spec-kit ci
+          bash .github/scripts/npm-ci-retry.sh .opencode/skills/system-spec-kit
           # The runtime project imports the OpenCode plugin entrypoints, which depend
           # on the plugin SDK declared in .skilled/package.json.
-          npm --prefix .skilled ci
+          bash .github/scripts/npm-ci-retry.sh .skilled
           # The skill-advisor plugin imports the advisor server's compiled output in the
           # same way; its build also compiles the shared package it depends on.
-          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          bash .github/scripts/npm-ci-retry.sh .opencode/skills/system-skill-advisor/runtime
           npm --prefix .opencode/skills/system-skill-advisor/runtime run build
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
           npm --prefix .opencode/skills/system-spec-kit/runtime run build
@@ -280,7 +289,7 @@ jobs:
       - name: Install the workspace and build its shared package
         run: |
           set -euo pipefail
-          npm --prefix .opencode/skills/system-spec-kit ci
+          bash .github/scripts/npm-ci-retry.sh .opencode/skills/system-spec-kit
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
 
       - name: Mirror parity checks
@@ -327,11 +336,11 @@ jobs:
         run: |
           set -euo pipefail
           python3 -m pip install pyyaml==6.0.3
-          npm --prefix .skilled ci
-          npm --prefix .opencode/skills/system-spec-kit ci
+          bash .github/scripts/npm-ci-retry.sh .skilled
+          bash .github/scripts/npm-ci-retry.sh .opencode/skills/system-spec-kit
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
-          npm --prefix .opencode/skills/sk-doc ci
-          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          bash .github/scripts/npm-ci-retry.sh .opencode/skills/sk-doc
+          bash .github/scripts/npm-ci-retry.sh .opencode/skills/system-skill-advisor/runtime
           npm --prefix .opencode/skills/system-skill-advisor/runtime run build
           npm --prefix .opencode/skills/system-spec-kit/runtime run build
 

@@ -131,12 +131,11 @@ jobs:
           npm --prefix .skilled/skills/system-skill-advisor/runtime run build
       # These suites read the spec-gate environment switches, so a shell that sets
       # AI_SESSION_CHILD or SYSTEM_SPEC_GATE_ENFORCE fails them. A runner sets neither.
-      # hook-stdin-deadline.test.mjs is left out on purpose: it races a 500 ms
-      # deadline against an 800 ms write, and a busy runner loses that race.
       - name: Gate-critical node suites
         run: |
           set -euo pipefail
           node --test --test-reporter=tap \
+            .skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs \
             .skilled/skills/system-spec-kit/runtime/cli/tests/sync-agents-dsh.test.mjs \
             .skilled/skills/system-spec-kit/runtime/cli/tests/sync-prompts-dsh.test.mjs \
             .skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs \
