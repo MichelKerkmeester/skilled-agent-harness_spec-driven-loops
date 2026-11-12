@@ -32,7 +32,7 @@
       "system-spec-kit"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs` is 44 lines that split the suite into twelve serial shards by default, and nothing invokes it: the only executable reference is its `test:sharded` entry in `package.json`, and the rest are prose",
     "created_at": "2026-11-12T08:22:00Z",
-    "last_save_at": "2026-11-12T11:29:06.926Z",
+    "last_save_at": "2026-11-12T14:46:45.851Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04535b3201e1c5d5a730ed29fde417c399d5842d9062bf039ecdccfcf4662208",
+    "source_fingerprint": "sha256:03dd495224b4cd96378a40ccd36a3353b62ff1a2f57a5817c6ed98dedcec519d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ef2ae2ac7847beb2edfcc0e46cf663f06841e7e41691ff8cafabfbf86eb8e746",
+      "spec.md": "2548cb360f049adf6e85af7e6b2e974762793450213bdefd037dca35b4eba9bc",
       "plan.md": "d9bb67bb0a0cf1e6da51e030aca15dda87bf2f504dcf5c939ce7cc26b38e1fcb",
       "tasks.md": "276f4fb824ba5555137c2ff8bd5a8e217463286f2457c7a8128df6c61e821522",
-      "implementation-summary.md": "88d7d1f7cd637d1adf8ba81c8a48865fbdf79368deb911e45c6c1650b853d44d"
+      "implementation-summary.md": "4b953963c9f97bcdfeaecdb5db2c1e2c0da9d90178bec6ac1f9c7a35fc75143f"
     },
     "last_active_at": null
   }

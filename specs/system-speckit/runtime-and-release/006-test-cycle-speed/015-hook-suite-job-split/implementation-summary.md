@@ -9,9 +9,9 @@ _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/006-test-cycle-speed/015-hook-suite-job-split"
     last_updated_at: "2026-11-12T08:22:01Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_by: "orchestrator"
+    recent_action: "Moved the hook vitest job out of the dispatch guard workflow into its own workflow"
+    next_safe_action: "None. Both workflows pass on the pull request"
     blockers: []
     key_files: []
     session_dedup:

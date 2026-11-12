@@ -64,8 +64,8 @@ Run every command from the repository root with `T=.opencode/skills/sk-doc/scrip
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 - [x] T008 printed `SAME 56 FILES` and T009 printed `RESULT: PASSED`
 <!-- /ANCHOR:completion -->

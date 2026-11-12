@@ -110,14 +110,14 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 5 | 005-ci-runner-timing/ | Read CI's own run times and decide a worker cap | Complete: no cap needed |
 | 6 | 006-overlay-replaced-subtree-repin/ | Overlay engine: a re-pin copy's file inside a replaced folder is not a live edit | Complete |
 | 7 | 007-test-and-ci-bloat-research/ | Research which tests, CI workflows and hook checks are bloat, and rank the cuts by time saved. Research only | Complete: the wait is the slowest workflow, three changes shorten it |
-| 8 | 008-spec-kit-check-parallel-jobs/ | Run the three sequential `Spec-Kit Check` suites as parallel jobs | Built: CI proof waits on a pull request |
+| 8 | 008-spec-kit-check-parallel-jobs/ | Run the three sequential `Spec-Kit Check` suites as parallel jobs | Complete: slowest job 384 to 627 s on three runs against 867 s |
 | 9 | 009-legacy-lane-overlap-measurement/ | Measure how far the legacy lanes repeat the CLI vitest project | Measured: 6 overlapping tests, keep the lanes |
-| 10 | 010-sk-doc-tests-path-filter/ | Run 54 of the sk-doc script tests only when sk-doc paths change | Built: CI proof waits on a pull request |
-| 11 | 011-sparse-checkout-rollout/ | Sparse checkout for workflows that read only named paths | Built for five workflows, two reverted: CI proof waits on a pull request |
+| 10 | 010-sk-doc-tests-path-filter/ | Run 54 of the sk-doc script tests only when sk-doc paths change | Complete: both workflows pass on the pull request |
+| 11 | 011-sparse-checkout-rollout/ | Sparse checkout for workflows that read only named paths | Complete for five workflows, two reverted: checkout 2 to 6 s against 55 to 74 s |
 | 12 | 012-advisor-suite-parallel-trial/ | Trial the advisor suite with files in parallel | Rejected: 213 s to about 100 s, but one timing test failed two of three runs, reverted |
-| 13 | 013-advisory-checks-blocking-gates/ | Make the 13 gate-critical node suites blocking | Built: CI proof waits on a pull request |
-| 14 | 014-dead-runner-and-step-cleanup/ | Remove the sharded runner nothing calls and one duplicated workflow step | Built |
-| 15 | 015-hook-suite-job-split/ | Move the hook vitest suites into their own workflow | Built: CI proof waits on a pull request |
+| 13 | 013-advisory-checks-blocking-gates/ | Make the 13 gate-critical node suites blocking | Complete: the job passes once it also builds the skill advisor |
+| 14 | 014-dead-runner-and-step-cleanup/ | Remove the sharded runner nothing calls and one duplicated workflow step | Complete |
+| 15 | 015-hook-suite-job-split/ | Move the hook vitest suites into their own workflow | Complete: both workflows pass on the pull request |
 | 16 | 016-local-test-timing-profile/ | Time the three local test commands once each | Measured: 914 s, 211 s and 527 s |
 | 17 | 017-specs-artifact-tracking-decision/ | Measure the tracked research and scratch files and write the options | Measured: 88,151 files, decision is the operator's |
 

@@ -32,7 +32,7 @@
       "holds"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "`dispatch-enforcement-guard.yml` holds two jobs: `dispatch-enforcement-guard` runs `node --test` over one dispatch rule suite, and `hooks-vitest` runs the whole `.skilled/hooks` vitest tree (Measured Behavior)",
     "created_at": "2026-11-12T08:22:00Z",
-    "last_save_at": "2026-11-12T11:37:29.890Z",
+    "last_save_at": "2026-11-12T14:46:48.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:901c77a1692189bd2e3a307f13a4db565d0f4c5a9702840c1b0d50d325f2a53e",
+    "source_fingerprint": "sha256:38685370378d9a8083c984fab8f2dde9d0509ff39285e8d50072a439d192b1e3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f6f2db400f6a78efac67a5ccdad7290b9a6996d3eccb44cf8ff266bbdcfaff42",
+      "spec.md": "07583cca60e39d7ecf4167dff4476300491fe0dd4ea69363275b213ecaced813",
       "plan.md": "74d4dd266cc2adb4caff9298b02484e804ea0d82d30fb775ee33f1f26147066d",
       "tasks.md": "f3df4b14be2661129d7fc0504820f7534a18d4f27e106e252356966029c229ca",
-      "implementation-summary.md": "b9912a929bec09c3a278904b5db646ef221d82a2f6d69443560864d100010c1e"
+      "implementation-summary.md": "3e8333c51d0911a84e4e39ee31f6b2e2beae86a20812ae56a6daa4b02ec0e452"
     },
     "last_active_at": null
   }

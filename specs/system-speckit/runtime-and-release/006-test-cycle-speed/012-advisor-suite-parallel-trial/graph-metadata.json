@@ -32,7 +32,7 @@
       "run"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "All 161 advisor test files run one at a time, because `.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:40` sets `fileParallelism: false`",
     "created_at": "2026-11-12T08:21:58Z",
-    "last_save_at": "2026-11-12T12:31:05.946Z",
+    "last_save_at": "2026-11-12T14:46:42.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3ccf0b7b0b28327d8dca1bc06eb48d680172a6ced4cebef5e660512e185de03",
+    "source_fingerprint": "sha256:5fae916a41da403be8e889c592b04fe82465ba2cb2de54e1fb8b513e3134a2b5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6c18b88bd767edfe1fb5a6581fe2fe4c60bd5fc625bf8e83a482f58ad2dfd15f",
+      "spec.md": "ff8fcb3e8c636328eec4d634b88336137f7a28c445fe2f5aef4a0bfa82898f7c",
       "plan.md": "67b78dca5ca41e5f460c6d5ece7af885c6c6d2a1f9b95348bfd33a703aa842d9",
       "tasks.md": "13d23bbd7457100f723631b7bdbae424a17a3c8951fffba7af43ae76ff0e4ab0",
-      "implementation-summary.md": "503bce9e69cc5d2671a706d6a44210f96fd7e5cdbeaf7b20faacdc02091e6132"
+      "implementation-summary.md": "49a8a9c36e9fa0e19833e12f8f58a5a89425dc90f817dc8ee9f8fa627a3e6bb3"
     },
     "last_active_at": null
   }

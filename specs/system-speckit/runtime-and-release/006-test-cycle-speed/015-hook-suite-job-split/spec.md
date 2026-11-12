@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-12 |
 | **Branch** | `worktrees/350-test-ci-wait-cuts` |
 | **Parent Spec** | ../spec.md |
