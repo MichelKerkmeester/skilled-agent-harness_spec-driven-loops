@@ -15,6 +15,7 @@
       "retire three low value reply rules and fold",
       "reply rule pruning plan",
       "reply rule pruning tasks",
+      "005-reply-rule-pruning operator decisions",
       "reply rule pruning implementation summary"
     ],
     "key_topics": [
@@ -29,7 +30,7 @@
       "fold",
       "plan",
       "tasks",
-      "implementation"
+      "005-reply-rule-pruning"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -37,6 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/repo-rules/communication.md",
       ".skilled/repo-rules/uncertainty-and-honesty.md",
@@ -49,10 +51,10 @@
       ".skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md",
       ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/card-generator-sync.md",
       ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/card-arm-run.md",
-      ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/experiment-environment-build.md",
-      ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
-      "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/007-table-wording-experiment/experiment/arms.json",
-      "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/008-gate5-card-pilot/experiment/arms.json"
+      ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.8.0.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md",
+      ".skilled/changelog/skilled/v4.0.2.1.md"
     ],
     "entities": [
       {
@@ -71,6 +73,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -146,21 +154,27 @@
         "source": "derived"
       },
       {
-        "name": "experiment-environment-build.md",
+        "name": "v1.1.8.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/experiment-environment-build.md",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.8.0.md",
         "source": "derived"
       },
       {
-        "name": "manual-testing-playbook.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "arms.json",
-        "kind": "config",
-        "path": "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/007-table-wording-experiment/experiment/arms.json",
+        "name": "agents-md-integration.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.2.1.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.2.1.md",
         "source": "derived"
       },
       {
@@ -186,38 +200,28 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Gate 6 in `AGENTS.md` named five reply rules, and a session that followed it read all five around its replies",
     "created_at": "2026-11-12T07:38:04Z",
-    "last_save_at": "2026-11-12T07:55:03.399Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-12T09:00:18.318Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45b9230937dbb4acca8d5d79fc4e8697fbfa251b43135d5608128d21a51e6c37",
+    "source_fingerprint": "sha256:be944899221a1c8d1fd92945b0db9dcfadd5f6ad37913050cfc8863caefab085",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80e43a7db93ece620269752e510c336fcfc37cca7e324e43b3de4d7528031f27",
+      "spec.md": "92a627011664c413c8faa164591ceb30c8401390c1364c7519d76ef97cc54f89",
       "plan.md": "5a8b08f0b110b35cfde0dd3e8d85edd63fb094a03be2ec9b130a0c3e2731fdc9",
-      "tasks.md": "f6774e1207cb84df19d2ed9d7b2d5ad1fb7d5ddc1ebe9a37a43f56cde4332863",
-      "implementation-summary.md": "dc486d8ed57d17dada1a667d43633b02433fe551bf20b9db2bac769002c8c3c8"
+      "tasks.md": "32887d2c49cd5736b271d5869f51f3aa548fea06c855c9524cf2e346f1b7c53e",
+      "decision-record.md": "18ca6fc9b4909788470ea60d1466e02b6aa29938d103efb41acb3ad7bccc82eb",
+      "implementation-summary.md": "f21791078f654362ca77bf56a31a9f5e96ce56d4e435369b7470faad0c955bd9"
     },
     "last_active_at": null
   }

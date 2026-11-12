@@ -55,6 +55,8 @@ contextType: "general"
 - [x] T018 Make the current arm rebuild the long wording, since the short wording is live (`specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/007-table-wording-experiment/experiment/arms.json`). Verify: the same build command on that file prints `built current` and `built short`, and `diff -r -x .git` on the two templates prints the one hunk `82,86c82,84`.
 - [x] T019 Rewrite the expected output of the build scenario from a real run (`.skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/experiment-environment-build.md`). Verify: `rg -c 'check 2' .skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/experiment-environment-build.md` prints 1.
 - [x] T020 Restore the reader-triage sentence (`.skilled/repo-rules/communication.md`). Verify: `rg -c 'Decide who will read this' .skilled/repo-rules/communication.md` prints 1.
+- [x] T021 Fold the retirement into the open sections of the release entry (`.skilled/changelog/skilled/v4.0.2.1.md`). Verify: `python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/changelog/skilled/v4.0.2.1.md` prints `pass=1 fail=0`.
+- [x] T022 Write the packet's changelog entry and raise its version (`.skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.8.0.md`). Verify: the same shape check on that file prints `pass=1 fail=0`, and `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc` prints `all hard invariants passed`.
 <!-- /ANCHOR:phase-2 -->
 
 ---

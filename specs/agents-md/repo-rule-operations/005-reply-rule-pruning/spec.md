@@ -91,6 +91,10 @@ $ node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs
 | `.skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md` | Modify | Index entries for the two scenarios |
 | `specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/007-table-wording-experiment/experiment/arms.json` | Modify | The current arm rebuilds the long wording, since the short wording is live |
 | `specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/008-gate5-card-pilot/experiment/arms.json` | Modify | Three rows for retired rules removed |
+| `.skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.8.0.md` | Create | The packet's own changelog entry |
+| `.skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md` | Modify | Version 1.1.8.0 |
+| `.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md` | Modify | The retire path has been performed once |
+| `.skilled/changelog/skilled/v4.0.2.1.md` | Modify | Release entry covers the retirement |
 | `README.md` | Modify | Rule counts |
 <!-- /ANCHOR:scope -->
 
