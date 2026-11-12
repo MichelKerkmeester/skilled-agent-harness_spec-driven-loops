@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak",
+  "description": "Phase 21: test-db-temp-leak",
+  "keywords": [
+    "phase",
+    "test-db-temp-leak"
+  ],
+  "lastUpdated": "2026-11-12T22:31:33.521Z",
+  "specId": "021",
+  "folderSlug": "test-db-temp-leak",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_23-31__test-db-temp-leak-phase-of-the-test-cycle-speed.md"
+  ]
+}
