@@ -113,6 +113,7 @@ and findings belong here.
 | Phases 001 to 004 | Done | Each validates with `RESULT: PASSED`, status Complete |
 | Phases 005 to 008 | In Progress | Planned and committed 2026-11-12. Phase 007 harness built, smoke run three in flight |
 | Rebase onto main | Done | 2026-11-12, full suite 167 files 1,478 passed |
+| Phase 007 smoke run | Done | Third run: all six runtimes ran in arenas and scored, start rate 0 of 1 each, one capped (opencode). runs-smoke.jsonl |
 
 ### Deviations and findings
 
