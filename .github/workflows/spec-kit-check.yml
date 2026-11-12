@@ -135,6 +135,36 @@ jobs:
       - name: Shared package tests
         run: npm --prefix .opencode/skills/system-spec-kit/shared test
 
+  cli-vitest:
+    name: CLI vitest project
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 51
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      # Each job builds its own workspace: the install and the dist files are
+      # runner-local, so no step can reuse a sibling job's build.
+      - name: Install and build the spec-kit packages
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          # The runtime project imports the OpenCode plugin entrypoints, which depend
+          # on the plugin SDK declared in .skilled/package.json.
+          npm --prefix .skilled ci
+          # The skill-advisor plugin imports the advisor server's compiled output in the
+          # same way; its build also compiles the shared package it depends on.
+          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-spec-kit/runtime run build
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+
       # The ripgrep recipe and residue-sweep suites spawn rg; the runner image
       # does not ship it, and without it every recipe exits 2.
       - name: Install ripgrep
@@ -148,6 +178,36 @@ jobs:
           cd .opencode/skills/system-spec-kit/runtime/cli
           npx vitest run --config ../../vitest.config.ts --project cli
 
+  legacy-lanes:
+    name: Legacy module lanes and the bash validation suites
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 51
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      # Each job builds its own workspace: the install and the dist files are
+      # runner-local, so no step can reuse a sibling job's build.
+      - name: Install and build the spec-kit packages
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          # The runtime project imports the OpenCode plugin entrypoints, which depend
+          # on the plugin SDK declared in .skilled/package.json.
+          npm --prefix .skilled ci
+          # The skill-advisor plugin imports the advisor server's compiled output in the
+          # same way; its build also compiles the shared package it depends on.
+          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-spec-kit/runtime run build
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
+
       - name: Legacy module lanes and the bash validation suites
         # These lanes are what `npm test` runs after the vitest project, and they
         # rotted unseen while only the vitest project ran here.
@@ -155,6 +215,36 @@ jobs:
           set -euo pipefail
           npm --prefix .opencode/skills/system-spec-kit/runtime/cli run test:legacy
           npm --prefix .opencode/skills/system-spec-kit/runtime/cli run test:validation
+
+  runtime-vitest:
+    name: Runtime vitest project
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 51
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      # Each job builds its own workspace: the install and the dist files are
+      # runner-local, so no step can reuse a sibling job's build.
+      - name: Install and build the spec-kit packages
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          # The runtime project imports the OpenCode plugin entrypoints, which depend
+          # on the plugin SDK declared in .skilled/package.json.
+          npm --prefix .skilled ci
+          # The skill-advisor plugin imports the advisor server's compiled output in the
+          # same way; its build also compiles the shared package it depends on.
+          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-spec-kit/runtime run build
+          npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 
       - name: Runtime vitest project
         # The runtime's own suites, which failed in seven files for months while
