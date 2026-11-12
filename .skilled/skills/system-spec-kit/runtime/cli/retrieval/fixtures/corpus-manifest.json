@@ -1,5 +1,5 @@
 {
-  "corpusHash": "039effb2b5e4864f0f41d4cc008695611eca4fa21f133c922136f1fc28e51acf",
+  "corpusHash": "2a9ea70790bea8068c2a4dd3dc9509b5a0d93a026bd441b70626a7fe4476d188",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26133,
+  "includedPathCount": 26134,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -17848,6 +17848,7 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/handover-to-barter.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/implementation-summary.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/review/review-report.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/research.md",
@@ -26165,7 +26166,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5e8dccc69d0348e332715ab25c3867fc3b4b8d00ba9d04383e6036bab25bb10e",
+  "manifestHash": "1c639d5a307866575525eb015adab54bd00d1833988d965d0c149d1748263368",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33225,6 +33226,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/review/lineages",
       "reason": "excluded directory"
     },
     {

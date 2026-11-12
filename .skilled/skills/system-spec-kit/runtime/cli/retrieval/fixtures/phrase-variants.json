@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5e8dccc69d0348e332715ab25c3867fc3b4b8d00ba9d04383e6036bab25bb10e",
+  "manifestHash": "1c639d5a307866575525eb015adab54bd00d1833988d965d0c149d1748263368",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -77010,6 +77010,9 @@
     ],
     "overlay first write checks tasks": [
       "overlay first write checks tasks"
+    ],
+    "overlay follow up review synthesis": [
+      "overlay follow up review synthesis"
     ],
     "overlay guard": [
       "overlay guard"
