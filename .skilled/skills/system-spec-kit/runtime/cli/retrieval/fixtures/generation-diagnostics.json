@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6735,
-    "ok": 17876,
+    "ok": 17927,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26240,
+  "documentsScanned": 26291,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4bdd3513bdfdc987f05385e152c4d05c03a5181c8f04213e1b9c367fe79e9729",
+  "manifestHash": "de19dac4ee0ec7a768c212426c4f9220287658dcf9f014320b8833f756bc491f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42415,
+      "ok": 42483,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -62158,6 +62158,70 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/010-sk-doc-tests-path-filter/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/012-advisor-suite-parallel-trial/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/014-dead-runner-and-step-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/015-hook-suite-job-split/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/016-local-test-timing-profile/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards/scratch",
       "reason": "excluded directory"
     },
     {

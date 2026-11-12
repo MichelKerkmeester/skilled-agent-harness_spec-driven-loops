@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4bdd3513bdfdc987f05385e152c4d05c03a5181c8f04213e1b9c367fe79e9729",
+  "manifestHash": "de19dac4ee0ec7a768c212426c4f9220287658dcf9f014320b8833f756bc491f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1737,6 +1737,9 @@
     ],
     "006 tasks cocoindex dedup": [
       "006 tasks cocoindex dedup"
+    ],
+    "006 test cycle speed operator decisions": [
+      "006-test-cycle-speed operator decisions"
     ],
     "007 agents implementation summary": [
       "007-agents implementation summary"
@@ -9605,6 +9608,18 @@
     "advisor suite green": [
       "advisor suite green"
     ],
+    "advisor suite parallel trial": [
+      "advisor suite parallel trial"
+    ],
+    "advisor suite parallel trial implementation summary": [
+      "advisor suite parallel trial implementation summary"
+    ],
+    "advisor suite parallel trial plan": [
+      "advisor suite parallel trial plan"
+    ],
+    "advisor suite parallel trial tasks": [
+      "advisor suite parallel trial tasks"
+    ],
     "advisor suite reconciliation chronology": [
       "advisor suite reconciliation chronology"
     ],
@@ -9796,6 +9811,18 @@
     ],
     "advisory cd prefix env steps tasks": [
       "advisory cd prefix env steps tasks"
+    ],
+    "advisory checks blocking gates": [
+      "advisory checks blocking gates"
+    ],
+    "advisory checks blocking gates implementation summary": [
+      "advisory checks blocking gates implementation summary"
+    ],
+    "advisory checks blocking gates plan": [
+      "advisory checks blocking gates plan"
+    ],
+    "advisory checks blocking gates tasks": [
+      "advisory checks blocking gates tasks"
     ],
     "advisory deduplication": [
       "advisory deduplication"
@@ -23808,6 +23835,18 @@
     "cli vitest shard adr": [
       "cli vitest shard adr"
     ],
+    "cli vitest shards": [
+      "cli vitest shards"
+    ],
+    "cli vitest shards implementation summary": [
+      "cli vitest shards implementation summary"
+    ],
+    "cli vitest shards plan": [
+      "cli vitest shards plan"
+    ],
+    "cli vitest shards tasks": [
+      "cli vitest shards tasks"
+    ],
     "cli vs mcp transport": [
       "cli vs mcp transport"
     ],
@@ -33537,6 +33576,18 @@
     ],
     "dead row disposal decision": [
       "dead row disposal decision"
+    ],
+    "dead runner and step cleanup": [
+      "dead runner and step cleanup"
+    ],
+    "dead runner and step cleanup implementation summary": [
+      "dead runner and step cleanup implementation summary"
+    ],
+    "dead runner and step cleanup plan": [
+      "dead runner and step cleanup plan"
+    ],
+    "dead runner and step cleanup tasks": [
+      "dead runner and step cleanup tasks"
     ],
     "dead socket reap hardening": [
       "dead-socket reap hardening"
@@ -57764,6 +57815,18 @@
     "hook stdin deadlines tasks": [
       "hook stdin deadlines tasks"
     ],
+    "hook suite job split": [
+      "hook suite job split"
+    ],
+    "hook suite job split implementation summary": [
+      "hook suite job split implementation summary"
+    ],
+    "hook suite job split plan": [
+      "hook suite job split plan"
+    ],
+    "hook suite job split tasks": [
+      "hook suite job split tasks"
+    ],
     "hook suites": [
       "hook suites"
     ],
@@ -61262,6 +61325,9 @@
     "keep off flag roadmap verdict": [
       "keep off flag roadmap verdict"
     ],
+    "keep or untrack research folders": [
+      "keep or untrack research folders"
+    ],
     "keep rules as docs": [
       "keep rules as docs"
     ],
@@ -62763,6 +62829,18 @@
     "legacy import question source": [
       "legacy-import question source"
     ],
+    "legacy lane overlap measurement": [
+      "legacy lane overlap measurement"
+    ],
+    "legacy lane overlap measurement implementation summary": [
+      "legacy lane overlap measurement implementation summary"
+    ],
+    "legacy lane overlap measurement plan": [
+      "legacy lane overlap measurement plan"
+    ],
+    "legacy lane overlap measurement tasks": [
+      "legacy lane overlap measurement tasks"
+    ],
     "legacy lane repaired": [
       "legacy lane repaired"
     ],
@@ -64196,6 +64274,18 @@
     "local skill link discovery": [
       "local skill link discovery"
     ],
+    "local test timing profile": [
+      "local test timing profile"
+    ],
+    "local test timing profile implementation summary": [
+      "local test timing profile implementation summary"
+    ],
+    "local test timing profile plan": [
+      "local test timing profile plan"
+    ],
+    "local test timing profile tasks": [
+      "local test timing profile tasks"
+    ],
     "local webflow local obsidian": [
       "local-webflow local-obsidian"
     ],
@@ -64399,6 +64489,9 @@
     ],
     "loop repeat state": [
       "loop repeat state"
+    ],
+    "loop state tracking decision": [
+      "loop state tracking decision"
     ],
     "loop termination cause event": [
       "loop termination cause event"
@@ -77059,6 +77152,9 @@
     "overdue task filter": [
       "overdue task filter"
     ],
+    "overengineered tests and workflows": [
+      "overengineered tests and workflows"
+    ],
     "overengineering assessment": [
       "overengineering assessment"
     ],
@@ -79640,6 +79736,9 @@
     "phase 10 sk create manual testing playbook": [
       "phase 10 sk create manual testing playbook"
     ],
+    "phase 10 sk doc tests path filter": [
+      "phase 10 sk doc tests path filter"
+    ],
     "phase 10 sk prompt": [
       "phase 10 sk prompt"
     ],
@@ -79706,6 +79805,9 @@
     "phase 11 sk create repo rule": [
       "phase 11 sk create repo rule"
     ],
+    "phase 11 sparse checkout rollout": [
+      "phase 11 sparse checkout rollout"
+    ],
     "phase 11 spec kit doc drift": [
       "phase 11 spec kit doc drift"
     ],
@@ -79720,6 +79822,9 @@
     ],
     "phase 12 advisor doc target and engines": [
       "phase 12 advisor doc target and engines"
+    ],
+    "phase 12 advisor suite parallel trial": [
+      "phase 12 advisor suite parallel trial"
     ],
     "phase 12 align cli orca": [
       "phase 12 align cli orca"
@@ -79790,6 +79895,9 @@
     "phase 13 addon removal and speed refinements": [
       "phase 13 addon removal and speed refinements"
     ],
+    "phase 13 advisory checks blocking gates": [
+      "phase 13 advisory checks blocking gates"
+    ],
     "phase 13 agents md delivery budget": [
       "phase 13 agents md delivery budget"
     ],
@@ -79837,6 +79945,9 @@
     ],
     "phase 14 closure gate": [
       "phase 14 closure gate"
+    ],
+    "phase 14 dead runner and step cleanup": [
+      "phase 14 dead runner and step cleanup"
     ],
     "phase 14 doctor and ci gate honesty": [
       "phase 14 doctor and ci gate honesty"
@@ -79910,6 +80021,9 @@
     "phase 15 goal legacy resume and budget notice": [
       "phase 15 goal legacy resume and budget notice"
     ],
+    "phase 15 hook suite job split": [
+      "phase 15 hook suite job split"
+    ],
     "phase 15 lane rules as heal modes": [
       "phase 15 lane rules as heal modes"
     ],
@@ -79951,6 +80065,9 @@
     ],
     "phase 16 handover trigger review": [
       "phase 16 handover trigger review"
+    ],
+    "phase 16 local test timing profile": [
+      "phase 16 local test timing profile"
     ],
     "phase 16 plan": [
       "phase 16 plan"
@@ -80000,6 +80117,9 @@
     "phase 17 release changelog": [
       "phase 17 release changelog"
     ],
+    "phase 17 specs artifact tracking decision": [
+      "phase 17 specs artifact tracking decision"
+    ],
     "phase 17 status": [
       "phase 17 status"
     ],
@@ -80011,6 +80131,9 @@
     ],
     "phase 18 benchmark redesign and remeasure": [
       "phase 18 benchmark redesign and remeasure"
+    ],
+    "phase 18 cli vitest shards": [
+      "phase 18 cli vitest shards"
     ],
     "phase 18 closure gate": [
       "phase 18 closure gate"
@@ -81368,6 +81491,9 @@
     "phase 7 spec kit hook deadlines": [
       "phase 7 spec kit hook deadlines"
     ],
+    "phase 7 test and ci bloat research": [
+      "phase 7 test and ci bloat research"
+    ],
     "phase 7 web only frontend": [
       "phase 7 web only frontend"
     ],
@@ -81479,6 +81605,9 @@
     "phase 8 sk doc": [
       "phase 8 sk doc"
     ],
+    "phase 8 spec kit check parallel jobs": [
+      "phase 8 spec kit check parallel jobs"
+    ],
     "phase 8 surface hint hub root": [
       "phase 8 surface hint hub root"
     ],
@@ -81529,6 +81658,9 @@
     ],
     "phase 9 gate3 and continuity root": [
       "phase 9 gate3 and continuity root"
+    ],
+    "phase 9 legacy lane overlap measurement": [
+      "phase 9 legacy lane overlap measurement"
     ],
     "phase 9 mcp refero": [
       "phase 9 mcp refero"
@@ -88964,6 +89096,9 @@
     ],
     "reduce spec kit doc templates": [
       "reduce spec-kit doc templates"
+    ],
+    "reduce test and workflow run time": [
+      "reduce test and workflow run time"
     ],
     "reduced motion section": [
       "reduced motion section"
@@ -101367,9 +101502,6 @@
     "sharded flag removed": [
       "sharded flag removed"
     ],
-    "sharded test runner": [
-      "sharded test runner"
-    ],
     "share url": [
       "share url"
     ],
@@ -102090,6 +102222,9 @@
     ],
     "short smart routing summary": [
       "short smart routing summary"
+    ],
+    "shorten the wait after a push": [
+      "shorten the wait after a push"
     ],
     "shorter repo rules": [
       "shorter repo rules"
@@ -108071,6 +108206,18 @@
     "sk doc template traces advisor": [
       "sk-doc template traces advisor"
     ],
+    "sk doc tests path filter": [
+      "sk doc tests path filter"
+    ],
+    "sk doc tests path filter implementation summary": [
+      "sk doc tests path filter implementation summary"
+    ],
+    "sk doc tests path filter plan": [
+      "sk doc tests path filter plan"
+    ],
+    "sk doc tests path filter tasks": [
+      "sk doc tests path filter tasks"
+    ],
     "sk doc tooling followups": [
       "sk doc tooling followups"
     ],
@@ -111761,6 +111908,9 @@
     "slow and failing tests tasks": [
       "slow and failing tests tasks"
     ],
+    "slowest workflow sets the wait": [
+      "slowest workflow sets the wait"
+    ],
     "small model doc contract evidence": [
       "small model doc contract evidence"
     ],
@@ -112211,6 +112361,18 @@
     ],
     "spark trend with no axis": [
       "spark trend with no axis"
+    ],
+    "sparse checkout rollout": [
+      "sparse checkout rollout"
+    ],
+    "sparse checkout rollout implementation summary": [
+      "sparse checkout rollout implementation summary"
+    ],
+    "sparse checkout rollout plan": [
+      "sparse checkout rollout plan"
+    ],
+    "sparse checkout rollout tasks": [
+      "sparse checkout rollout tasks"
     ],
     "spawn cjs helper": [
       "spawn cjs helper"
@@ -112880,6 +113042,18 @@
     ],
     "spec kit check on push": [
       "spec-kit check on push"
+    ],
+    "spec kit check parallel jobs": [
+      "spec kit check parallel jobs"
+    ],
+    "spec kit check parallel jobs implementation summary": [
+      "spec kit check parallel jobs implementation summary"
+    ],
+    "spec kit check parallel jobs plan": [
+      "spec kit check parallel jobs plan"
+    ],
+    "spec kit check parallel jobs tasks": [
+      "spec kit check parallel jobs tasks"
     ],
     "spec kit check triggers": [
       "spec-kit check triggers"
@@ -114614,6 +114788,21 @@
     ],
     "specs alias runbook": [
       "specs alias runbook"
+    ],
+    "specs artifact tracking decision": [
+      "specs artifact tracking decision"
+    ],
+    "specs artifact tracking decision implementation summary": [
+      "specs artifact tracking decision implementation summary"
+    ],
+    "specs artifact tracking decision plan": [
+      "specs artifact tracking decision plan"
+    ],
+    "specs artifact tracking decision tasks": [
+      "specs artifact tracking decision tasks"
+    ],
+    "specs artifact tracking options": [
+      "specs artifact tracking options"
     ],
     "specs folder outside opencode": [
       "specs folder outside opencode"
@@ -120620,6 +120809,18 @@
     ],
     "terse arch conform": [
       "terse arch conform"
+    ],
+    "test and ci bloat research": [
+      "test and ci bloat research"
+    ],
+    "test and ci bloat research implementation summary": [
+      "test and ci bloat research implementation summary"
+    ],
+    "test and ci bloat research plan": [
+      "test and ci bloat research plan"
+    ],
+    "test and ci bloat research tasks": [
+      "test and ci bloat research tasks"
     ],
     "test bloat": [
       "test bloat"
@@ -127079,6 +127280,9 @@
     ],
     "which system uses cocoindex or mk spec memory": [
       "which system uses cocoindex or mk-spec-memory"
+    ],
+    "which tests and workflows to cut": [
+      "which tests and workflows to cut"
     ],
     "which voice reference to load": [
       "which voice reference to load"
