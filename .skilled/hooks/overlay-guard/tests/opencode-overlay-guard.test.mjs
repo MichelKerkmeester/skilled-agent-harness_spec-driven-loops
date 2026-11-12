@@ -24,6 +24,9 @@ const OWNED = path.posix.join('.skilled', 'owned', 'target.txt');
 const NEW_FILE = path.posix.join('.skilled', 'fresh', 'new.txt');
 const OUTSIDE = 'notes.md';
 const OVERLAY_SOURCE = 'files/owned.txt';
+// The plugin logs under the tree's source root. A fixture's authored skill tree
+// arrives as the .opencode link, so that is the source root it picks.
+const LOG_RELATIVE = path.join('.opencode', 'logs', 'overlay-guard.log');
 // Point the flag resolver at an absent config so nothing persisted on this
 // machine can silence the guard and hide the refusal these tests assert on.
 const ABSENT_FLAGS_CONFIG = path.join(os.tmpdir(), 'overlay-guard-opencode-absent-hook-flags.env');
@@ -80,8 +83,10 @@ function writeFile(root, relative, text) {
 /**
  * A vendored tree with the engine, the hook tree, the plugin where OpenCode
  * loads it, and an overlay that owns one file.
- * @param {{overlays?: boolean, manifest?: object}} [options] - `overlays: false`
- *   leaves out the setting and the folder, so the tree carries no manifest.
+ * @param {{overlays?: boolean, manifest?: object, manifestText?: string}} [options]
+ *   `overlays: false` leaves out the setting and the folder, so the tree
+ *   carries no manifest; `manifestText` writes that text verbatim instead of a
+ *   serialised manifest, which is how a tree carries an unreadable one.
  * @returns {string} The tree root, realpath-resolved.
  */
 function makeTree(options = {}) {
@@ -109,8 +114,8 @@ function makeTree(options = {}) {
   if (options.overlays !== false) {
     writeFile(root, '.skilled-overlays.json', JSON.stringify({ overlayDir: 'skilled-overlays' }) + '\n');
     writeFile(root, path.join('skilled-overlays', OVERLAY_SOURCE), 'overlay version\n');
-    const manifest = options.manifest ?? MANIFEST;
-    writeFile(root, path.join('skilled-overlays', 'overlay-manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
+    const manifestText = options.manifestText ?? JSON.stringify(options.manifest ?? MANIFEST, null, 2) + '\n';
+    writeFile(root, path.join('skilled-overlays', 'overlay-manifest.json'), manifestText);
   }
   return root;
 }
@@ -163,4 +168,35 @@ test('a tool that writes no file is allowed without consulting the core', async 
 test('a tree with no overlay manifest is left alone', async () => {
   const hooks = await loadHooks(makeTree({ overlays: false }));
   await fire(hooks, 'write', { filePath: OWNED });
+});
+
+test('an apply_patch call whose patch body names an overlay-owned file is refused with the engine line', async () => {
+  const hooks = await loadHooks(makeTree());
+  const patchText = '*** Begin Patch\n*** Update File: .skilled/owned/target.txt\n@@\n-owned\n+changed\n*** End Patch';
+  await assert.rejects(fire(hooks, 'apply_patch', { patchText }), {
+    message: /^refuse: \.skilled\/owned\/target\.txt is owned by skilled-overlays\/files\/owned\.txt/u,
+  });
+});
+
+test('an apply_patch call whose patch body names only a file outside every vendored root is allowed', async () => {
+  const hooks = await loadHooks(makeTree({ manifest: STRICT_MANIFEST }));
+  await fire(hooks, 'apply_patch', { patchText: `*** Begin Patch\n*** Add File: ${OUTSIDE}\n+note\n*** End Patch` });
+});
+
+test('a write tool whose content looks like a patch naming an overlay-owned file is allowed', async () => {
+  const hooks = await loadHooks(makeTree({ manifest: STRICT_MANIFEST }));
+  const content = `*** Begin Patch\n*** Update File: ${OWNED}\n*** End Patch\n`;
+  // The same body through a patch tool is refused on this very tree, so a
+  // write tool that read its content as a patch would refuse the call below.
+  await assert.rejects(fire(hooks, 'apply_patch', { patchText: content }), REFUSAL);
+  await fire(hooks, 'write', { filePath: OUTSIDE, content });
+});
+
+test('a manifest the core cannot read allows the write and logs the reason once', async () => {
+  const root = makeTree({ manifestText: '{"schemaVersion": 1,"overlays": [\n' });
+  const hooks = await loadHooks(root);
+  await fire(hooks, 'write', { filePath: OWNED });
+  const lines = fs.readFileSync(path.join(root, LOG_RELATIVE), 'utf8').split('\n').filter(Boolean);
+  assert.equal(lines.length, 1);
+  assert.match(lines[0], /could not judge/u);
 });

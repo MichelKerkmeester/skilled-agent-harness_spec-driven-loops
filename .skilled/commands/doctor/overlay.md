@@ -1,6 +1,6 @@
 ---
 description: "Check whether a vendored Skilled tree still carries its overlays, put them back, or re-pin it, after one yes."
-argument-hint: "[status|apply|repin] [--json|--audit] [--root <dir>] [--capture|--adopt <path>|--relayout] [--upstream|--to|--rollback <value>] | list | ?"
+argument-hint: "[status|apply|repin] [--json] [--audit] [--root <dir>] [--capture|--adopt <path>|--relayout] [--upstream|--to|--rollback <value>] | list | ?"
 allowed-tools: Read, Bash
 ---
 <!-- skill_agent: system-skilled-doctor -->

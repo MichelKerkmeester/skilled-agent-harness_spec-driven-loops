@@ -161,7 +161,8 @@ hooks/
 |   +-- claude/, devin/, codex/      overlay-guard.cjs
 |   +-- cursor/   overlay-guard.mjs
 |   +-- pi/       overlay-guard.ts (real file; `.pi/extensions/` symlinks to it)
-|   `-- dsh/      overlay-guard.mjs (real file; the DSH adapters folder symlinks to it)
+|   +-- dsh/      overlay-guard.mjs (real file; the DSH adapters folder symlinks to it)
+|   `-- opencode/ overlay-guard.js (browsability symlink -> .opencode/plugins/)
 +-- post-edit-quality/               # comment-hygiene + dist-staleness findings on edit/write
 |   +-- lib/post-edit-router.cjs
 |   +-- claude/   claude-posttooluse.cjs

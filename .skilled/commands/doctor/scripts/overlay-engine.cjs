@@ -21,7 +21,7 @@
 //   2. Applying twice writes nothing the second time.
 //
 // Usage:
-//   node overlay-engine.cjs status [--root <tree>] [--json]
+//   node overlay-engine.cjs status [--root <tree>] [--json] [--audit]
 //     Read-only. One line per destination not in sync, then the full check.
 //     Exit 0 when everything is in sync, 1 when anything is not, 2 on error.
 //   node overlay-engine.cjs apply [--root <tree>]
@@ -4524,6 +4524,10 @@ function auditVendoredTree(ctx, manifest) {
   if (typeof pin.checkout !== 'string' || typeof pin.commit !== 'string' || !isDirectory(pin.checkout)) {
     return { isAvailable: false, findings: [] };
   }
+  // A folder that is not a repository, or one that never fetched the pinned
+  // commit, holds no copy to compare against. The audit reports itself skipped
+  // instead of letting the unreadable pin fail the whole status run.
+  if (resolveCommit(pin.checkout, pin.commit) === null) return { isAvailable: false, findings: [] };
   const settings = writeCheckSettings(manifest);
   const isManaged = managedPathTest(ctx, manifest);
   // A generated path is one of the project's own outputs and a managed one is

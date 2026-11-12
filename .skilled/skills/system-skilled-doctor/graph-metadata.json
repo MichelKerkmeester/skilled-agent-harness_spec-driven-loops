@@ -36,7 +36,13 @@
     "keep my changes to vendored skilled",
     "skilled overlays in a vendored copy",
     "link my local skilled checkout into a project",
-    "move my vendored skilled copy forward"
+    "move my vendored skilled copy forward",
+    "move overlay sources onto the layout path",
+    "audit unowned files in my vendored skilled tree",
+    "audit unowned files that drifted from the pin",
+    "take over a stale overlay lock",
+    "refuse writes that no overlay owns",
+    "block a commit that stages an unowned vendored change"
   ],
   "derived": {
     "trigger_phrases": [
@@ -47,7 +53,18 @@
       "re-pin vendored skilled",
       "skilled overlays",
       "link the skilled checkout into my project",
-      "keep my changes to vendored skilled"
+      "keep my changes to vendored skilled",
+      "overlay layout path",
+      "layout path",
+      "overlay sources",
+      "overlay audit",
+      "overlay lock",
+      "stale overlay lock",
+      "unowned vendored files",
+      "unowned vendored change",
+      "vendored skilled tree",
+      "vendored tree",
+      "no overlay owns"
     ],
     "key_topics": [
       "skilled-project-integration",

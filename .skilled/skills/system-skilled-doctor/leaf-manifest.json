@@ -7,6 +7,8 @@
         "manual-testing-playbook/overlays/pre-commit-refuses-unowned-change.md",
         "manual-testing-playbook/overlays/relayout-moves-sources.md",
         "manual-testing-playbook/overlays/stale-lock-takeover.md",
+        "manual-testing-playbook/overlays/stale-root-file-fails-status.md",
+        "manual-testing-playbook/overlays/status-audit-lists-unowned-drift.md",
         "manual-testing-playbook/overlays/status-without-overlays.md",
         "manual-testing-playbook/overlays/strict-guard-refuses-unowned-write.md",
         "manual-testing-playbook/routing/integration-request-routing.md",

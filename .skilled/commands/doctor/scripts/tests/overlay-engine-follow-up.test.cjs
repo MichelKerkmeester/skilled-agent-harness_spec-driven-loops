@@ -531,6 +531,34 @@ test('apply keeps a dropped item that upstream ships at the pin', (t) => {
   assert.deepEqual(fixture.recordedItems(), []);
 });
 
+test('apply removes a dropped item that sits at the head of the live array', (t) => {
+  const fixture = createItemsFixture(t, [UPSTREAM_HOOK, BETA_HOOK], [ALPHA_HOOK]);
+  // A head insert puts the added item before upstream's own line, so the comma
+  // that has to go with it is the one after it rather than the one before.
+  writeFile(fixture.overlayDir, 'json/registry.json', JSON.stringify({
+    target: 'registry.json',
+    style: { indent: 2, primitiveArrays: 'multiline' },
+    operations: [{
+      op: 'insertItems',
+      path: ['hooks'],
+      identityKey: 'id',
+      before: UPSTREAM_HOOK,
+      items: [ALPHA_HOOK],
+    }],
+  }, null, 2) + '\n');
+
+  const seeded = fixture.run(['apply']);
+  assert.equal(seeded.code, 0, seeded.output);
+  assert.deepEqual(fixture.readHooks(), [ALPHA_HOOK, UPSTREAM_HOOK, BETA_HOOK]);
+
+  fixture.writeEntries([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.deepEqual(JSON.parse(fs.readFileSync(fixture.livePath, 'utf8')),
+    { hooks: [UPSTREAM_HOOK, BETA_HOOK] });
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 6. ROOT FILES AN OVERLAY WAS PINNED FROM
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1149,4 +1177,62 @@ test('status --audit names the vendored drift no overlay owns and plain status s
   ], audited.output);
   assert.match(audited.stdout, /^audit=3$/m);
   assert.match(audited.stdout, /^RESULT: FAILED$/m);
+});
+
+const AUDIT_SKIP_LINE = 'AUDIT    skipped: no upstream checkout at the pin';
+
+/**
+ * Build a tree whose manifest pins a commit the checkout cannot hand back:
+ * either the folder is no repository at all, or it never fetched the commit.
+ * @param {object} t The node:test context.
+ * @param {'no-repository'|'no-commit'} kind Which way the pin cannot be read.
+ * @returns {object} Fixture paths and a `run` helper.
+ */
+function createUnreadablePinFixture(t, kind) {
+  const fixture = createWorkspace(t, 'overlay-engine-audit-pin-');
+  const upstream = path.join(fixture.workspace, 'upstream');
+  fs.mkdirSync(upstream);
+  writeFile(upstream, '.skilled/skills/hub/a.md', 'a upstream\n');
+  let commit = '0'.repeat(40);
+  if (kind === 'no-commit') {
+    git(upstream, ['init', '-q']);
+    commitAll(upstream, 'pin');
+    commit = 'f'.repeat(40);
+  }
+  writeFile(fixture.tree, '.skilled/skills/hub/a.md', 'a upstream\n');
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', checkout: upstream, commit },
+    layoutLinks: [],
+    overlays: [],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  fixture.run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+  return fixture;
+}
+
+function auditLines(output) {
+  return output.split('\n').filter((line) => line.startsWith('AUDIT'));
+}
+
+test('status --audit skips the audit when the pinned checkout is no repository', (t) => {
+  const fixture = createUnreadablePinFixture(t, 'no-repository');
+
+  const audited = fixture.run(['status', '--audit']);
+
+  assert.equal(audited.code, 0, audited.output);
+  assert.deepEqual(auditLines(audited.stdout), [AUDIT_SKIP_LINE], audited.output);
+  assert.match(audited.stdout, /^audit=0$/m);
+});
+
+test('status --audit skips the audit when the checkout lacks the pinned commit', (t) => {
+  const fixture = createUnreadablePinFixture(t, 'no-commit');
+
+  const audited = fixture.run(['status', '--audit']);
+
+  assert.equal(audited.code, 0, audited.output);
+  assert.deepEqual(auditLines(audited.stdout), [AUDIT_SKIP_LINE], audited.output);
+  assert.match(audited.stdout, /^audit=0$/m);
 });

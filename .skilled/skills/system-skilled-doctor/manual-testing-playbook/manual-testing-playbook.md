@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-doctor playbook"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # system-skilled-doctor Manual Testing Playbook
@@ -21,7 +21,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-The walked tree holds 9 deterministic scenarios in 2 categories, covering advisor routing for Skilled integration requests, the behavior of the doctor commands this skill owns, the overlay engine on a tree with no overlays, the engine's per-entry protected-file refusal, the guard's strict write checks, adopting an unowned upstream file, the commit check, a stale lock takeover and the move of an off-layout source. The doctor contract tests remain authoritative for each command's full behavior. These scenarios check what an operator sees.
+The walked tree holds 11 deterministic scenarios in 2 categories, covering advisor routing for Skilled integration requests, the behavior of the doctor commands this skill owns, the overlay engine on a tree with no overlays, the engine's per-entry protected-file refusal, the guard's strict write checks, adopting an unowned upstream file, the commit check, a stale lock takeover, the move of an off-layout source, the audit of vendored drift no overlay owns and a root file upstream changed after the pin. The doctor contract tests remain authoritative for each command's full behavior. These scenarios check what an operator sees.
 
 ### Realistic Test Model
 
@@ -92,6 +92,7 @@ Record each verdict under the skill's `benchmark/reports/` directory with the tr
 | 1 | Routing | `SKD-001`, `SKD-002` | Confirm integration requests route here and the owned commands kept their behavior. |
 | 2 | Overlays | `SKD-003`, `SKD-004` | Confirm the overlay check names a missing manifest and writes nothing, and that a directory entry refuses an unprotected token-named file. |
 | 3 | Overlays | `SKD-005`, `SKD-006`, `SKD-007`, `SKD-008`, `SKD-009` | Confirm the guard refuses an unowned write and allows a generated or excluded path, that adopt and the commit check close the gap, that a stale lock is taken over, and that an off-layout source moves. |
+| 4 | Overlays | `SKD-010`, `SKD-011` | Confirm the audit lists the drift no overlay owns and fails, and that an owned root file upstream changed after the pin fails status. |
 
 ---
 
@@ -173,6 +174,22 @@ Prompt: `move my overlay sources onto the layout folder`
 
 > **Feature File:** [SKD-009](overlays/relayout-moves-sources.md)
 
+### SKD-010 | Audit lists the vendored drift no overlay owns
+
+Verify plain `status` passes while `status --audit` prints one `AUDIT` line for an unowned vendored file whose bytes differ from upstream and one for a tracked file upstream never had, prints `audit=2` and fails.
+
+Prompt: `list the vendored files that drifted from upstream without an agent touching them`
+
+> **Feature File:** [SKD-010](overlays/status-audit-lists-unowned-drift.md)
+
+### SKD-011 | Status names a root file upstream changed since the pin
+
+Verify `status` passes while an overlay's pinned root file matches upstream's copy at the pin, then prints one `STALE    root-file` line and fails once a re-pin moves the pin onto a commit that changed the file.
+
+Prompt: `why does status call my agents overlay stale after a re-pin`
+
+> **Feature File:** [SKD-011](overlays/stale-root-file-fails-status.md)
+
 ---
 
 ## 9. AUTOMATED TEST CROSS-REFERENCE
@@ -181,4 +198,4 @@ Prompt: `move my overlay sources onto the layout folder`
 |---|---|---|
 | Advisor routing | [Skill graph metadata](../graph-metadata.json) | `SKD-001` |
 | Doctor command contracts | `.skilled/commands/doctor/scripts/tests/` | `SKD-002` |
-| Overlay engine | `.skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` | `SKD-003`, `SKD-004`, `SKD-005`, `SKD-006`, `SKD-007`, `SKD-008`, `SKD-009` |
+| Overlay engine | `.skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` | `SKD-003`, `SKD-004`, `SKD-005`, `SKD-006`, `SKD-007`, `SKD-008`, `SKD-009`, `SKD-010`, `SKD-011` |

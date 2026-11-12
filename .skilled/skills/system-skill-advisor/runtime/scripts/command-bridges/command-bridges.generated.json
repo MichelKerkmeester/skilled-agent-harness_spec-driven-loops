@@ -1083,7 +1083,9 @@
             "capture a live edit into its overlay",
             "reapply overlays after copying skilled",
             "apply the overlays back onto the vendored copy",
-            "put the overlays back on vendored skilled"
+            "put the overlays back on vendored skilled",
+            "move my overlay sources onto the layout folder",
+            "take over the overlay lock a dead run left behind"
           ],
           "intentSignals": [
             "/doctor:overlay apply"
@@ -1169,6 +1171,8 @@
             "does my vendored skilled copy still carry its overlays",
             "adopt the skilled overlay engine in my project",
             "migrate my own overlay folder to doctor overlay",
+            "check whether my overlay sources sit on their layout path",
+            "audit my vendored skilled tree for unowned files",
             "we copy skilled into our repo and lose our edits on update",
             "/doctor:overlay"
           ],

@@ -26,6 +26,16 @@
   },
   {
     "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/overlays/stale-root-file-fails-status.md",
+    "diskPath": "manual-testing-playbook/overlays/stale-root-file-fails-status.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/overlays/status-audit-lists-unowned-drift.md",
+    "diskPath": "manual-testing-playbook/overlays/status-audit-lists-unowned-drift.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
     "leafResourceId": "manual-testing-playbook/overlays/status-without-overlays.md",
     "diskPath": "manual-testing-playbook/overlays/status-without-overlays.md"
   },

@@ -186,8 +186,8 @@ workflow:
       - name: overlay_status
         when: "Only when the tree carries overlays: overlay-manifest.json exists in the folder .skilled-overlays.json names, or in skilled-overlays/ when that file is absent."
         command: "node .skilled/commands/doctor/scripts/overlay-engine.cjs status"
-        pass_rule: "Exit 0 means every overlay destination is in sync. Exit 1 is a finding: the update replaced or moved a file an overlay owns. Exit 2 is a precondition that failed, such as an invalid .skilled-overlays.json."
-        repair: "This check has no write mode here. Show the engine's lines and name /doctor:overlay apply, which runs under its own plan and yes."
+        pass_rule: "Exit 0 means every overlay destination is in sync. Exit 1 is a finding: the update replaced or moved a file an overlay owns. A STALE    root-file line means upstream changed a root file an overlay owns, which no destination line reports. Exit 2 is a precondition that failed, such as an invalid .skilled-overlays.json."
+        repair: "This check has no write mode here. Show the engine's lines and name /doctor:overlay apply, which runs under its own plan and yes, for every other state. For a STALE    root-file line, rebase that overlay on the new upstream file and set its pinnedSha256, as .skilled/skills/system-skilled-doctor/references/overlays.md describes."
       - name: hook_installers
         when: "Only when followUps.reinstallHooks is true."
         commands:

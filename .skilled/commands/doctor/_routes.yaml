@@ -634,8 +634,7 @@ routes:
     gate3_location: "n/a (read-only diagnostic; the engine classifies every overlay destination in the vendored tree, runs the overlay manifest's read-only verify checks and writes nothing)"
     mcp_tools: []   # script-only; no MCP calls
     script_invocations:
-      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # exit 0 = in sync, 1 = something out of sync, 2 = a failed precondition; the workflow adds --root <dir>, --json and --audit only when the operator passed them'
-      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status --audit  # read-only: the same report plus one AUDIT line per unowned path that differs from upstream at the pin, is missing from the tree or is tracked there and never upstream, then the audit count. A finding fails the status. Run only after the operator asked for --audit'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # exit 0 = in sync, 1 = something out of sync, 2 = a failed precondition; the workflow adds --root <dir>, --json and --audit only when the operator passed them, and --audit prints one AUDIT line per unowned path that differs from upstream at the pin, is missing from the tree or is tracked there and never upstream, then the audit count. A finding fails the status'
     trigger_phrases:
       - "check my vendored skilled overlays"
       - "are my skilled overlays in sync"
@@ -646,6 +645,8 @@ routes:
       - "does my vendored skilled copy still carry its overlays"
       - "adopt the skilled overlay engine in my project"
       - "migrate my own overlay folder to doctor overlay"
+      - "check whether my overlay sources sit on their layout path"
+      - "audit my vendored skilled tree for unowned files"
       - "we copy skilled into our repo and lose our edits on update"
 
   - command: /doctor:overlay
@@ -669,6 +670,8 @@ routes:
       - "reapply overlays after copying skilled"
       - "apply the overlays back onto the vendored copy"
       - "put the overlays back on vendored skilled"
+      - "move my overlay sources onto the layout folder"
+      - "take over the overlay lock a dead run left behind"
 
   - command: /doctor:overlay
     target: repin

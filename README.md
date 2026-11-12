@@ -1082,11 +1082,11 @@ In linked projects, each project keeps its answers in its own folder under `.ski
 
 #### OpenCode Plugins
 
-Twenty JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds them. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
+Twenty-one JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds them. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
 
 - **Gates:** the spec-folder gate and two completion checks that ask for evidence before a task is called done
 - **Routing:** the skill advisor's prompt-time brief, and a guard that suggests Code Mode when a native MCP call should go through it
-- **Quality and safety:** post-edit code checks, git commit advisories and the commit message gate, deep-loop and build-freshness guards, a Codex hook watchdog, a CLI dispatch audit, a screen for instructions hidden in fetched web pages, a dotenv guard that refuses reading or writing `.env` files, undoes a dotenv write a shell call made anyway, reports a dotenv value in its output and offers three value-free inspection tools instead, and a guard that sends a turn ending in a typed option menu back to ask through the question tool
+- **Quality and safety:** post-edit code checks, git commit advisories and the commit message gate, deep-loop and build-freshness guards, a Codex hook watchdog, a CLI dispatch audit, a screen for instructions hidden in fetched web pages, a dotenv guard that refuses reading or writing `.env` files, undoes a dotenv write a shell call made anyway, reports a dotenv value in its output and offers three value-free inspection tools instead, an overlay guard that refuses a write to a file an overlay owns in a vendored tree, and a guard that sends a turn ending in a typed option menu back to ask through the question tool
 - **Sessions:** the goal plugin, session cleanup, the in-session handover relaunch and the history lookup offer after a compaction
 
 Every plugin except the git message gate has an off switch, listed in the [hooks README](.skilled/hooks/README.md). `SYSTEM_HOOKS_DISABLED=1` turns them all off at once.
@@ -1382,13 +1382,13 @@ A flag the chosen sub-action does not accept is refused before any workflow load
 
 Checks what a release changes, applies it after your approval and can roll it back. `compat` moves a v3 checkout to the v4 `specs/` layout, and `--dry-run` previews the move.
 
-**`/doctor:overlay [status|apply|repin] [--json|--audit] [--root <dir>] [--capture|--adopt <path>|--relayout] [--upstream|--to|--rollback <value>]`** - a vendored Skilled copy's own changes. The [install guide](INSTALL-SKILLED.md#4-copy-it-into-your-project) says when a project needs them
+**`/doctor:overlay [status|apply|repin] [--json] [--audit] [--root <dir>] [--capture|--adopt <path>|--relayout] [--upstream|--to|--rollback <value>]`** - a vendored Skilled copy's own changes. The [install guide](INSTALL-SKILLED.md#4-copy-it-into-your-project) says when a project needs them
 
 - `status` (the default, read-only) prints one line for each destination that is not in sync, with the fix the engine names. It writes nothing. `--json` prints the engine's report and nothing else, and `--audit` adds one line per unowned vendored path that drifted from upstream at the pin
 - `apply` shows the `status` report as its plan, asks once, then writes the overlays and runs the manifest's regenerate and verify steps. It writes nothing while a destination holds an edit made in the live copy or a conflict, and the run names the fix for each
 - `apply --capture <path>` moves one live edit into its overlay source and asks only when that path is a live edit
 - `apply --adopt <path>` brings one vendored file or folder that no overlay owns under a new manifest entry, then applies. With `"strictWrites": true` in the overlay manifest, the guard refuses a write to such a path until it is adopted
-- `apply --relayout` shows the engine's `LAYOUT` lines as its plan and asks once, then moves each overlay source kept off its layout path onto it, with a backup in the overlay folder's `relayout-runs/` and the manifest pointed at the new path, then applies so the destinations catch up
+- `apply --relayout` shows the engine's `LAYOUT` lines as its plan and asks once, then moves each overlay source kept off its layout path onto it, with a backup in the overlay folder's relayout-runs folder and the manifest pointed at the new path, then applies so the destinations catch up
 - `repin --upstream <dir> --to <commit>` stages the move to a newer upstream commit on a temporary copy and shows that report first. A staged report that lists a blocked overlay stops the run before the question. After your yes it backs up every path it touches before its first write
 - `repin --rollback <run-id>` restores that backup after its own yes
 

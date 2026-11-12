@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # Vendored Skilled Overlays
@@ -86,7 +86,7 @@ Two more `status` lines name work no destination state covers.
 | The line | What happened | What resolves it |
 |----------|---------------|------------------|
 | `STALE    root-file <path>` | Upstream changed a file named in `repin.rootFiles` since the overlay that owns it was pinned. A re-pin never copies a root file, so no destination line reports it | Rebase the overlay onto the new upstream file, then update its `pinnedSha256` |
-| `LAYOUT   <overlay>: source <from> belongs at <to>` | The copy the entry names sits off its layout path, which is the entry's destination path with the leading dot dropped | `/doctor:overlay apply --relayout` |
+| `LAYOUT   <overlay>: <field> <from> belongs at <to>` | The copy the entry names sits off its layout path, which is the entry's destination path with the leading dot dropped. `<field>` is `source`, `fragment` or `base`, and a `marked-section` entry can print one line for each. The `base` path carries `.base` before the extension | `/doctor:overlay apply --relayout` |
 
 `apply --relayout` moves each off-layout copy onto its layout path, and with it a `marked-section` entry's `fragment` and `base`. It copies every path it moves into `<overlayDir>/relayout-runs/<stamp>/` first, then points the entry's fields and the manifest's layout links at the new path. It refuses rather than overwrite a path that already exists, and then it writes nothing. The plain `apply` that follows retargets the live links and puts the destinations on the moved copies.
 
@@ -146,7 +146,7 @@ With `strictWrites` on, the engine's `--guard` also refuses a write under `.skil
 
 A path matching a `generated` glob is allowed, because a generator writes it and no overlay can own it. In a glob, `*` stays inside one path segment and `**` crosses segments. A `**/` matches zero or more whole segments, so `.skilled/**/graph-metadata.json` covers that file at any depth, the top level included, and never a longer name beside it. A path git ignores is allowed too.
 
-A path under a `repin.exclude` folder is never copied by a re-pin, so a write there cannot be lost. With `strictWrites` on, neither the guard nor the commit check judges it.
+A path under a `repin.exclude` folder is never copied by a re-pin, so a write there cannot be lost. With `strictWrites` on, the guard, the commit check and the audit all leave it alone.
 
 `/doctor:overlay apply --adopt <path>` turns the path into a manifest entry. It copies the file or folder into the overlay folder, at the same path without its leading dot, appends a `file` or `directory` entry and applies. An upstream file is pinned to upstream's bytes at the manifest's pin, read from the checkout `pin.checkout` names, so a later re-pin reports it as `upstream-moved`. A folder's token-named source files go into the entry's `protectedPaths`. Adopt refuses a generated path, a path an overlay already owns, a `.env` file, a token-named file that is not source or prose, and a folder that holds upstream files.
 
@@ -166,7 +166,7 @@ The write checks judge a write as it is made. A vendored file that already diffe
 - `missing`: upstream has the path at the pin and the tree does not.
 - `extra`: the tree tracks the path and upstream never had it.
 
-A generated path, a path an overlay owns and a `.env` name are not judged. `audit=<n>` counts the findings and any finding fails the status. With no checkout at the pin the run prints `AUDIT    skipped` and judges nothing.
+A generated path, a path an overlay owns, a path under a `repin.exclude` folder and a `.env` name are not judged. `audit=<n>` counts the findings and any finding fails the status. With no checkout at the pin the run prints `AUDIT    skipped: no upstream checkout at the pin` and judges nothing.
 
 ---
 
