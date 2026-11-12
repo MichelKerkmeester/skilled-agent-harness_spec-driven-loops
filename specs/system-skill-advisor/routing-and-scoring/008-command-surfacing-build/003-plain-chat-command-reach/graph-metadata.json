@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The advisor reaches a plain-chat prompt with a skill and never with the command that owns the job",
     "created_at": "2026-11-12T12:27:35Z",
-    "last_save_at": "2026-11-12T18:28:28.782Z",
+    "last_save_at": "2026-11-12T20:07:36.635Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c09c21890329d51a753cbd31578a2dffdae66b2ff46934410d656c2210fac240",
+    "source_fingerprint": "sha256:1add4077a3d5a4970043150854156c70ee5e113ff9b4de386c75d9bbe52f1ec0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d93785983b4ff2f98dd60ba832ef7052cbfc85f4d7a0810ef98c6a5be858ae97",
       "plan.md": "f17607412c9ba509e1b3c58fbdbebd829b9bf3db3156edc681e76be153ccdee8",
       "tasks.md": "c56b32bbd3c759e6a1f5c6165c8f76ed8ba3eaf2eead0ec1c41822c02597dcef",
-      "decision-record.md": "b2f082a63d741c5f000e95246991049115ff5df509533a1eceb58702946e4f53",
+      "decision-record.md": "041f2969ac42b414ee38fd29a1ca6a3ba438e4dc9441f88f4b8911c2a10c5a23",
       "implementation-summary.md": "c94b23c5fa2cc664cc2e8a7d3b4bcf6261e2ef696053bdfb089f669b75de8f84"
     },
     "last_active_at": null

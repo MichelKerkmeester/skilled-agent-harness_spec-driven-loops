@@ -43,6 +43,7 @@ _memory:
 | Q007 | The hook looks up the compiled route for the top recommendation only. | Not stated. | None | 003 plan.md ADR-013, T015 |
 | Q008 | /create:changelog asks first because its release path publishes outside the repo. | Not stated. | None | 003 plan.md ADR-014 |
 | Q009 | Investigate and fix the wrong attachment on the holdout row, move it to tune and author a fresh holdout row. | Not stated. | None | 003 implementation-summary.md decisions |
+| ADR-016 | Waive AC-007 on its holdout half. Holdout plain recall stays at 0 of 44 with phrase matching alone, while tune reached 9 of 45 with false offers at 0 of 35. Phase 004 carries the holdout criterion and reached 2 of 44 with real embeddings (`../004-command-meaning-matching/scratch/real-embedding.json`), where its own target of 5 is waived by its ADR-009. 17 of the 44 holdout rows name hub-only commands with no scored row, so phrase or meaning matching cannot reach them. Operator answer, 2026-11-12: "Close with the same accepted miss (Recommended)". | Phrase matching cannot reach a paraphrase that shares no words with its command, and phase 004 measured the meaning-based answer. | None | 003 acceptance-criteria.md AC-007 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
