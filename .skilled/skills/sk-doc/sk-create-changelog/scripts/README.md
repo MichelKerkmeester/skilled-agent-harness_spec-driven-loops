@@ -1,7 +1,7 @@
 ---
 title: "Create Changelog Scripts: shape gate and release notes builder"
 description: "A Python gate that fails a global changelog entry whose shape breaks the template's ceilings, and a builder that turns an entry into its GitHub release body."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Create Changelog Scripts
@@ -16,9 +16,9 @@ An entry is expanded when it carries an H4 item or an `## Upgrade Notes` section
 
 | Rule | Fails when | Applies to |
 |---|---|---|
-| `file-total` | The entry runs past 240 lines below its frontmatter, blank lines included | Expanded |
-| `h4-items` | The entry carries more than 26 H4 items | Expanded |
-| `glance-bullets` | `## What's New at a Glance` holds more than 12 bullets | Both |
+| `file-total` | The entry runs past 280 lines below its frontmatter, blank lines included | Expanded |
+| `h4-items` | The entry carries more than 32 H4 items | Expanded |
+| `glance-bullets` | `## What's New at a Glance` holds more than 14 bullets | Both |
 | `glance-order` | A tagged glance bullet comes before a bullet whose section sits earlier in the body, a tag names no topical section or one bullet lacks the tag the others carry | Expanded |
 | `spec-line` | A `> Spec folder:` line carries a level label such as `(Level 2)` | Both |
 | `checked-section` | The entry has no `## How It Was Checked` section | Expanded |

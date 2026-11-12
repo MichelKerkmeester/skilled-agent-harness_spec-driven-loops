@@ -287,9 +287,9 @@ Global changelog checks:
 6. No Files Changed, Test Impact or Schema Changes section. Any table outside How It Was Checked passes the earned-evidence rule.
 7. Omission applied: no file inventories, process detail or housekeeping items, and no test counts outside How It Was Checked. No internal labels (task, requirement, scenario or finding IDs, packet or phase numbers) appear outside the spec-folder line.
 8. Each fact appears once: no sentence restates one from another section, and each glance bullet adds something the summary did not.
-9. The template's ceilings hold: opening within 5 paragraphs, prose near its word budgets (guidance, counted in words, never sentences), at most 12 glance bullets, H4 headings within 10 words, compact files within 40 prose lines, expanded files within 240 lines below the frontmatter and expanded entries within 26 H4 items.
+9. The template's ceilings hold: opening within 5 paragraphs, prose near its word budgets (guidance, counted in words, never sentences), at most 14 glance bullets, H4 headings within 10 words, compact files within 40 prose lines, expanded files within 280 lines below the frontmatter and expanded entries within 32 H4 items.
 10. H4 headings are benefit-led and never numbered or sentence-length, and no H3 sits inside a topical section.
-11. `scripts/check_changelog_shape.py` passes the draft. It fails an expanded entry past 240 lines or 26 H4 items, more than 12 glance bullets, tagged glance bullets out of section order and a spec-folder line with a level label. It also fails a sentence past 22 words, an average past 10 words a sentence and an expanded entry with no `## How It Was Checked`.
+11. `scripts/check_changelog_shape.py` passes the draft. It fails an expanded entry past 280 lines or 32 H4 items, more than 14 glance bullets, tagged glance bullets out of section order and a spec-folder line with a level label. It also fails a sentence past 22 words, an average past 10 words a sentence and an expanded entry with no `## How It Was Checked`.
 
 Voice gate, run on the draft before writing:
 

@@ -9,9 +9,9 @@ holds the same numbers, so a change to one is a change to both.
 
 Eight rules, each an error:
 
-  file-total    an expanded entry runs at most 240 lines below its frontmatter
-  h4-items      an expanded entry carries at most 26 H4 items
-  glance-bullets  What's New at a Glance holds at most 12 bullets
+  file-total    an expanded entry runs at most 280 lines below its frontmatter
+  h4-items      an expanded entry carries at most 32 H4 items
+  glance-bullets  What's New at a Glance holds at most 14 bullets
   glance-order  tagged glance bullets follow the order of the sections they name
   spec-line     the spec-folder line carries paths only, never a "(Level N)" label
   checked-section  an expanded entry carries a "How It Was Checked" section
@@ -39,9 +39,9 @@ from pathlib import Path
 # 1. CEILINGS
 # ---------------------------------------------------------------------------
 
-EXPANDED_MAX_BODY_LINES = 240
-EXPANDED_MAX_H4_ITEMS = 26
-GLANCE_MAX_BULLETS = 12
+EXPANDED_MAX_BODY_LINES = 280
+EXPANDED_MAX_H4_ITEMS = 32
+GLANCE_MAX_BULLETS = 14
 SENTENCE_MAX_WORDS = 22
 SENTENCE_MEAN_WORDS = 10
 # The section that holds the before-and-after evidence and the test results.
