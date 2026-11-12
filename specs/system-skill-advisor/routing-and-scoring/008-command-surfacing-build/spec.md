@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Build command surfacing in the skill advisor so every tracked slash command reaches the model with a run-or-ask policy and a chat-only request reaches a proper workflow"
-description: "Six phases that make the skill advisor surface every tracked slash command with a run-or-ask policy and bring a chat-only request onto a proper workflow."
+description: "Seven phases that make the skill advisor surface every tracked slash command with a run-or-ask policy and bring a chat-only request onto a proper workflow."
 trigger_phrases:
   - "command surfacing build phase parent spec"
 importance_tier: "important"
@@ -78,6 +78,7 @@ Deliver the review's recommendation set (R1 to R10, L1 to L12, G1 to G7) in the 
 - Measure command routing before changing it: a command prompt corpus and a baseline for the 44 tracked commands.
 - Generate one command inventory with a risk class and a derived policy per command and per doctor route.
 - Make plain chat reach a command: attach the command to its owner skill for hub commands, and author intent phrases for commands with no hub mode.
+- Reach a command from a paraphrase that shares no words with it, by matching the prompt's meaning against a vector per command.
 - Extend the recommendation and the brief with the command, its policy and its owner skill.
 - Bind the behaviour in `AGENTS.md` Gate 2 and in a generated pointer for runtimes with no brief.
 - Prove the behaviour per runtime from transcripts.
@@ -89,7 +90,7 @@ Deliver the review's recommendation set (R1 to R10, L1 to L12, G1 to G7) in the 
 - Adding a command front door to a skill that has none.
 
 ### Files to Change
-Audit trail only. Each child's `plan.md` holds the detail, and phases 2 to 6 are not planned yet, so their rows name the area the review points at.
+Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are not planned yet, so their rows name the area the review points at.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
@@ -97,9 +98,10 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 2 to 6 are
 | `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/` | Modify | 002 | One generated inventory, risk class and policy, retired ids |
 | `.skilled/skills/*/command-metadata.json`, `.skilled/commands/doctor/_routes.yaml` | Modify, Create | 002 | Risk class and write target per command and route |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/`, `advisor/handlers/` | Modify | 003 | Command attached to the owner skill, authored phrases, one row per command |
-| `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts`, `lib/render.ts` | Modify | 004 | New recommendation fields and the brief line |
-| `AGENTS.md`, generated runtime pointer blocks | Modify | 005 | The Gate 2 sentence, the Gate 4 retirement and the static pointer |
-| Per-runtime transcript checks | Create | 006 | Behaviour proof and the started-command-is-followed check |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/`, `lib/skill-graph/`, `scripts/command-bridges/`, `scripts/routing-accuracy/` | Modify | 004 | A vector per command, a meaning anchor in scoring and a capture that uses the real embedding |
+| `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts`, `lib/render.ts` | Modify | 005 | New recommendation fields and the brief line |
+| `AGENTS.md`, generated runtime pointer blocks | Modify | 006 | The Gate 2 sentence, the Gate 4 retirement and the static pointer |
+| Per-runtime transcript checks | Create | 007 | Behaviour proof and the started-command-is-followed check |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -113,10 +115,11 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 2 to 6 are
 |-------|--------|-------|--------|
 | 1 | 001-command-routing-baseline-corpus/ | Command prompt corpus and baseline, no scorer change (R8, L8, L9) | Complete |
 | 2 | 002-command-inventory-and-risk-metadata/ | One generated inventory, risk class and derived policy, private command excluded (R1, R4, G4) | Complete |
-| 3 | 003-plain-chat-command-reach/ | Attach commands to owner skills, authored phrases, one activation source (R2, L2, L3, R10 precedence) | Pending |
-| 4 | 004-recommendation-contract-and-brief/ | Recommendation fields, brief line, degraded path, retired ids (R3, L6, L12, G6, L1, L7) | Pending |
-| 5 | 005-gate-2-binding-and-runtime-pointers/ | Gate 2 sentence, typed override, static pointer, child authority (R6, L5, R5, L4, G1, G3, L10) | Pending |
-| 6 | 006-per-runtime-behaviour-proof/ | Transcript proof per runtime and the started-command-is-followed check (R8 transcripts, G2, G5) | Pending |
+| 3 | 003-plain-chat-command-reach/ | Attach commands to owner skills, authored phrases, one activation source (R2, L2, L3, R10 precedence) | In Progress |
+| 4 | 004-command-meaning-matching/ | A vector per command and a meaning anchor, so a paraphrase reaches its command (operator decision, 2026-11-12) | Planned |
+| 5 | 005-recommendation-contract-and-brief/ | Recommendation fields, brief line, degraded path, retired ids (R3, L6, L12, G6, L1, L7) | Pending |
+| 6 | 006-gate-2-binding-and-runtime-pointers/ | Gate 2 sentence, typed override, static pointer, child authority (R6, L5, R5, L4, G1, G3, L10) | Pending |
+| 7 | 007-per-runtime-behaviour-proof/ | Transcript proof per runtime and the started-command-is-followed check (R8 transcripts, G2, G5) | Pending |
 
 ### Phase Transition Rules
 
@@ -131,9 +134,10 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 2 to 6 are
 |------|-----|----------|--------------|
 | 001-command-routing-baseline-corpus | 002-command-inventory-and-risk-metadata | Corpus rows exist for all 44 tracked commands and a baseline records per-command recall, with the four existing numbers unchanged | The baseline file exists and the existing routing-accuracy run still reports 158/195, 50/66 and 20/24 |
 | 002-command-inventory-and-risk-metadata | 003-plain-chat-command-reach | Every tracked command and doctor route has a risk class and a derived policy | The deriver's check mode is fresh and exits 1 on a fixture command with no metadata |
-| 003-plain-chat-command-reach | 004-recommendation-contract-and-brief | Command recall rises against the phase 1 baseline with no drop in the four existing numbers | The phase 1 scorer run, and no typed command is ambiguous with its own owner |
-| 004-recommendation-contract-and-brief | 005-gate-2-binding-and-runtime-pointers | The recommendation and the brief carry the command and its policy | Schema test and golden briefs pass, and `save context` returns one entry |
-| 005-gate-2-binding-and-runtime-pointers | 006-per-runtime-behaviour-proof | The Gate 2 sentence and the generated pointer are in place | `/doctor:agents-md check` passes and the pointer generator's check exits 0 |
+| 003-plain-chat-command-reach | 004-command-meaning-matching | Command recall rises against the phase 1 baseline with no drop in the four existing numbers | The phase 1 scorer run, and no typed command is ambiguous with its own owner |
+| 004-command-meaning-matching | 005-recommendation-contract-and-brief | Holdout plain recall rises above 0 of 44 with false offers at 0 of 35 and typed recall at least 24 of 44, measured with the real embedding | The real-embedding capture and the full advisor suite |
+| 005-recommendation-contract-and-brief | 006-gate-2-binding-and-runtime-pointers | The recommendation and the brief carry the command and its policy | Schema test and golden briefs pass, and `save context` returns one entry |
+| 006-gate-2-binding-and-runtime-pointers | 007-per-runtime-behaviour-proof | The Gate 2 sentence and the generated pointer are in place | `/doctor:agents-md check` passes and the pointer generator's check exits 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -141,8 +145,8 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 2 to 6 are
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Phase 6 needs runs on runtimes the research never exercised live (Pi, Cursor, Devin, DSH, Codex, OpenCode). Which of them the operator wants proven is decided when phase 6 is planned.
-- The review's G2 check, that a started command actually runs its own setup, is a condition of decision D1. If phase 6 shows setup being skipped, D1 returns to the operator.
+- Phase 7 needs runs on runtimes the research never exercised live (Pi, Cursor, Devin, DSH, Codex, OpenCode). Which of them the operator wants proven is decided when phase 7 is planned.
+- The review's G2 check, that a started command actually runs its own setup, is a condition of decision D1. If phase 7 shows setup being skipped, D1 returns to the operator.
 <!-- /ANCHOR:questions -->
 
 ---

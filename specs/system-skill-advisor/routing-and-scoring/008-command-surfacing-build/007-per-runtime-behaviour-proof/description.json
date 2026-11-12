@@ -1,12 +1,12 @@
 {
-  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-per-runtime-behaviour-proof",
-  "description": "Phase 6: per-runtime-behaviour-proof",
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof",
+  "description": "Phase 7: per-runtime-behaviour-proof",
   "keywords": [
     "phase",
     "per-runtime-behaviour-proof"
   ],
   "lastUpdated": "2026-11-12T12:27:39.490Z",
-  "specId": "006",
+  "specId": "007",
   "folderSlug": "per-runtime-behaviour-proof",
   "parentChain": [
     "system-skill-advisor",

@@ -254,7 +254,7 @@ command list + bridge map ──► corpus ──► capture script ──► ba
 
 **Context**: The review asks for the doctor row shape plus `expected_command` and `expected_policy`. Under decision D2 the command is surfaced beside its owner skill and the order between them is not fixed.
 
-**Decision**: The row carries `expected_top` as the owner skill and `expected_command`. Reach is measured at 1 and in the top three, which replaces `expected_second`. `expected_policy` is stored now and scored from phase 4, when a recommendation carries a policy.
+**Decision**: The row carries `expected_top` as the owner skill and `expected_command`. Reach is measured at 1 and in the top three, which replaces `expected_second`. `expected_policy` is stored now and scored from phase 5, when a recommendation carries a policy.
 
 **Consequences**:
 - The corpus does not need relabeling when phase 3 changes where the command sits.

@@ -38,7 +38,7 @@ The advisor's four prompt corpora score skills, and only the doctor slice scores
 | **Created** | 2026-11-12 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 6 |
+| **Phase** | 1 of 7 |
 | **Predecessor** | None |
 | **Successor** | 002-command-inventory-and-risk-metadata |
 | **Handoff Criteria** | Corpus rows exist for all 44 tracked commands and a baseline records per-command recall, with the four existing numbers unchanged |
@@ -105,11 +105,11 @@ The listing shows no command corpus. The second line is the floor this phase mus
 - List the three new files in the routing-accuracy `README.md`.
 
 ### Out of Scope
-- Any change to the scorer, the command bridges, the recommendation schema or the brief - that is phases 2 to 4, and a change here would spoil the baseline.
+- Any change to the scorer, the command bridges, the recommendation schema or the brief - that is phases 2, 3 and 5, and a change here would spoil the baseline.
 - Editing `labeled-prompts.jsonl`, `holdout-prompts.jsonl`, `ambiguity-prompts.jsonl` or `doctor-prompts.jsonl` - their hashes are pinned and the doctor slice has its own gate.
 - Scoring the Python scorer - the ratchet and the doctor slice measure the TypeScript scorer, and the Python difference has its own ledger.
-- Scoring the policy label - no recommendation field carries a policy until phase 4, so the label is stored and not scored.
-- Transcript-based behaviour runs - that layer is phase 6.
+- Scoring the policy label - no recommendation field carries a policy until phase 5, so the label is stored and not scored.
+- Transcript-based behaviour runs - that layer is phase 7.
 - Rows for the private `/local-skilled-alignment` command - decision D5 excludes it.
 
 ### Files to Change
@@ -214,7 +214,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Risk | 4/25 | Auth: N, API: N, Breaking: N |
 | Research | 6/20 | Row authoring needs the review's per-command table and the bridge inventory |
 | Multi-Agent | 2/15 | Workstreams: 1 |
-| Coordination | 6/15 | Dependencies: 2, and phases 2 to 6 all read the baseline |
+| Coordination | 6/15 | Dependencies: 2, and phases 2 to 7 all read the baseline |
 | **Total** | **28/100** | **Level 3+** |
 
 The level was set by the parent scaffold for all six children. The helper would score this phase lower, and the level is kept so the six children share one shape.

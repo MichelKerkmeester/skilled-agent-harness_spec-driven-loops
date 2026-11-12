@@ -2,21 +2,21 @@
 title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "gate 2 binding and runtime pointers implementation summary"
+  - "command meaning matching implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-gate-2-binding-and-runtime-pointers"
-    last_updated_at: "2026-11-12T12:27:38Z"
+    packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching"
+    last_updated_at: "2026-11-12T18:13:57Z"
     last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 plus template"
+    recent_action: "Initialized Level 2 template"
     next_safe_action: "Replace continuity placeholders"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-005-gate-2-binding-and-runtime-pointers"
+      session_id: "scaffold-004-command-meaning-matching"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -25,7 +25,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 3+ -->
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
@@ -36,9 +36,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 005-gate-2-binding-and-runtime-pointers |
+| **Spec Folder** | 004-command-meaning-matching |
 | **Completed** | 2026-11-12 |
-| **Level** | 3+ |
+| **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -49,7 +49,7 @@ _memory:
 
 [YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
 
-### Phase 5: gate-2-binding-and-runtime-pointers
+### Phase 4: command-meaning-matching
 
 [What this feature does and why it exists. 1-2 paragraphs. Use direct address.
 Explain what the user gains, not what files you touched.]
@@ -102,4 +102,5 @@ Explain what the user gains, not what files you touched.]
 <!-- /ANCHOR:limitations -->
 
 ---
+
 

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 5: gate-2-binding-and-runtime-pointers"
+title: "Implementation Plan: Phase 6: gate-2-binding-and-runtime-pointers"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "gate 2 binding and runtime pointers plan"
@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
-# Implementation Plan: Phase 5: gate-2-binding-and-runtime-pointers
+# Implementation Plan: Phase 6: gate-2-binding-and-runtime-pointers
 
 <!-- SPECKIT_LEVEL: 3+ -->
 

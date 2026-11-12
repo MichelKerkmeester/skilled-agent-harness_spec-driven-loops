@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 6: per-runtime-behaviour-proof"
+title: "Implementation Plan: Phase 7: per-runtime-behaviour-proof"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "per runtime behaviour proof plan"
@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
-# Implementation Plan: Phase 6: per-runtime-behaviour-proof
+# Implementation Plan: Phase 7: per-runtime-behaviour-proof
 
 <!-- SPECKIT_LEVEL: 3+ -->
 

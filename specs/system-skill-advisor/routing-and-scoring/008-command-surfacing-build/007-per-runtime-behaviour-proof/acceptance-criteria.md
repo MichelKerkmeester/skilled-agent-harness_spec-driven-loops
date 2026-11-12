@@ -1,14 +1,14 @@
 ---
-title: "Acceptance Criteria: Phase 5: gate-2-binding-and-runtime-pointers"
+title: "Acceptance Criteria: Phase 7: per-runtime-behaviour-proof"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "gate 2 binding and runtime pointers acceptance criteria"
+  - "per runtime behaviour proof acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-gate-2-binding-and-runtime-pointers"
-    last_updated_at: "2026-11-12T12:27:38Z"
+    packet_pointer: "scaffold/007-per-runtime-behaviour-proof"
+    last_updated_at: "2026-11-12T12:27:39Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
@@ -16,14 +16,14 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-005-gate-2-binding-and-runtime-pointers"
+      session_id: "scaffold-007-per-runtime-behaviour-proof"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.4 -->
-# Acceptance Criteria: Phase 5: gate-2-binding-and-runtime-pointers
+# Acceptance Criteria: Phase 7: per-runtime-behaviour-proof
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 

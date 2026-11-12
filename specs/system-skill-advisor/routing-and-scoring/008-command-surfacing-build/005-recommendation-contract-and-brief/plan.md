@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 4: recommendation-contract-and-brief"
+title: "Implementation Plan: Phase 5: recommendation-contract-and-brief"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "recommendation contract and brief plan"
@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
-# Implementation Plan: Phase 4: recommendation-contract-and-brief
+# Implementation Plan: Phase 5: recommendation-contract-and-brief
 
 <!-- SPECKIT_LEVEL: 3+ -->
 

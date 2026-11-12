@@ -247,7 +247,7 @@ doctor manifest keys ───────────────────�
 
 **Consequences**:
 - No scorer input changes, so the phase 1 baseline holds by construction.
-- Phase 004 must join a recommendation to its policy by command and route. Mitigation: the list is sorted and keyed on both.
+- Phase 005 must join a recommendation to its policy by command and route. Mitigation: the list is sorted and keyed on both.
 
 **Alternatives Rejected**:
 - Fields on each entry: breaks the drift guard and feeds the generated blocks before anything reads them.
@@ -273,7 +273,7 @@ doctor manifest keys ───────────────────�
 
 **Context**: Four allow-list rows carry commands that gain metadata in this phase, and three name commands with no file. Their ids are active in the scorers.
 
-**Decision**: A metadata entry whose command an allow-list row carries adds no second entry, and allow-list rows are exempt from the orphan check. Retirement stays in phase 004.
+**Decision**: A metadata entry whose command an allow-list row carries adds no second entry, and allow-list rows are exempt from the orphan check. Retirement stays in phase 005.
 
 **Consequences**:
 - No active id changes, so routing holds still.

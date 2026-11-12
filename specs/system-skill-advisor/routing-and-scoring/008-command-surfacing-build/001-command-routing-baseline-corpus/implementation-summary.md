@@ -88,7 +88,7 @@ Two edits to the capture script were made by the orchestrating session after the
 | Ratchet on a captured baseline, not on exact picks per row | Most commands cannot be reached yet, so exact-row assertions would fail on day one or be switched off |
 | Hold out half of the plain rows | Phase 3 writes phrases this corpus scores, and a gain on rows it never read shows the phrases generalise |
 | Record a result per row in the baseline | A total can hold still while one row is gained and another lost, and a changed label is then named by its row id |
-| Drop `expected_second`, store `expected_policy` unscored | Decision D2 leaves the order of skill and command open, and no recommendation carries a policy before phase 4 |
+| Drop `expected_second`, store `expected_policy` unscored | Decision D2 leaves the order of skill and command open, and no recommendation carries a policy before phase 5 |
 | Let DeepSeek author the rows | The operator chose the executor. The rows were read one by one before the merge, and their source is recorded in each row |
 <!-- /ANCHOR:decisions -->
 
@@ -115,7 +115,7 @@ Two edits to the capture script were made by the orchestrating session after the
 ## Known Limitations
 
 1. **One author wrote the prompts.** All 175 rows come from one model in one sitting, so they may share a style the scorer happens to like or dislike. The `source` field marks them, and rows from real transcripts can be added before phase 3 with a re-capture.
-2. **The policy label is not scored.** `expected_policy` is stored and nothing compares it until a recommendation carries a policy in phase 4.
+2. **The policy label is not scored.** `expected_policy` is stored and nothing compares it until a recommendation carries a policy in phase 5.
 3. **Only the TypeScript scorer is measured.** The Python scorer has 50 active bridges against 40 and is not scored here.
 4. **The stale-build check can fail the slice test on a developer machine.** A source file newer than `dist` makes it fail with the rebuild message. Run `npm run build` first.
 5. **Pi 1.5.2 cannot load this worktree's extensions.** The swarm ran on Pi pinned to 1.5.0 and the pin was restored to 1.5.2 afterwards.

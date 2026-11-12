@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-recommendation-contract-and-brief"
+    packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief"
     last_updated_at: "2026-11-12T12:27:37Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 plus template"
@@ -16,7 +16,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-004-recommendation-contract-and-brief"
+      session_id: "scaffold-005-recommendation-contract-and-brief"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 004-recommendation-contract-and-brief |
+| **Spec Folder** | 005-recommendation-contract-and-brief |
 | **Completed** | 2026-11-12 |
 | **Level** | 3+ |
 <!-- /ANCHOR:metadata -->
@@ -49,7 +49,7 @@ _memory:
 
 [YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
 
-### Phase 4: recommendation-contract-and-brief
+### Phase 5: recommendation-contract-and-brief
 
 [What this feature does and why it exists. 1-2 paragraphs. Use direct address.
 Explain what the user gains, not what files you touched.]

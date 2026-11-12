@@ -1,13 +1,13 @@
 ---
-title: "Tasks: Phase 4: recommendation-contract-and-brief"
+title: "Tasks: Phase 6: gate-2-binding-and-runtime-pointers"
 description: "Task Format: T### [P?] Description (file path). Verify: <command> prints <expected output>"
 trigger_phrases:
-  - "recommendation contract and brief tasks"
+  - "gate 2 binding and runtime pointers tasks"
 importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.4 -->
-# Tasks: Phase 4: recommendation-contract-and-brief
+# Tasks: Phase 6: gate-2-binding-and-runtime-pointers
 
 <!-- SPECKIT_LEVEL: 3+ -->
 

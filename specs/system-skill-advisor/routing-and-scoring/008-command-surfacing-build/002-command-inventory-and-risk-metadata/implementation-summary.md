@@ -128,7 +128,7 @@ Three edits were made by the orchestrating session: one corrected comment in the
 
 1. **Three hub commands carry a risky route their one class cannot express.** `/create:changelog --release` pushes a tag and publishes a GitHub release, and its `:auto` workflow has no stop before it. `/create:skill-parent` rewrites shared advisor routing source when a mode is lexical. `/design:diagram` runs a local browser on PNG export. Each stays `start`, which is safe only while a model-started command opens in confirming mode. `/create:agent` also stays `start`: its workflow tells the model to dispatch one context agent and, in the same file, never to dispatch agents. The audit read each command's router and auto workflow and searched the rest by keyword, so a step worded outside those terms could be missed.
 2. **Three orphan ids remain.** `/spec_kit`, `/memory:save` and `/prompt` name no command file and are exempt from the identity check until the allow-list is retired.
-3. **Nothing reads `commandPolicies` yet.** Phase 004 joins it to a recommendation by command and route.
+3. **Nothing reads `commandPolicies` yet.** Phase 005 joins it to a recommendation by command and route.
 4. **`counts.commandMetadata` is 23, not 27.** It counts the metadata entries that become bridge entries, and four are carried by allow-list rows.
 5. **One whole-suite run failed mid-way.** Restoring source files during a proof left the build older than its source, and two CLI test files failed until a rebuild. The final run is from a fresh build.
 

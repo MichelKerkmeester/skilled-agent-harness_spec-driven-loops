@@ -1,14 +1,14 @@
 ---
-title: "Acceptance Criteria: Phase 4: recommendation-contract-and-brief"
+title: "Acceptance Criteria: Phase 6: gate-2-binding-and-runtime-pointers"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "recommendation contract and brief acceptance criteria"
+  - "gate 2 binding and runtime pointers acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-recommendation-contract-and-brief"
-    last_updated_at: "2026-11-12T12:27:37Z"
+    packet_pointer: "scaffold/006-gate-2-binding-and-runtime-pointers"
+    last_updated_at: "2026-11-12T12:27:38Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
@@ -16,14 +16,14 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-004-recommendation-contract-and-brief"
+      session_id: "scaffold-006-gate-2-binding-and-runtime-pointers"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.4 -->
-# Acceptance Criteria: Phase 4: recommendation-contract-and-brief
+# Acceptance Criteria: Phase 6: gate-2-binding-and-runtime-pointers
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 

@@ -1,15 +1,15 @@
 ---
-title: "Feature Specification: Phase 6: per-runtime-behaviour-proof"
+title: "Feature Specification: Phase 5: recommendation-contract-and-brief"
 description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
-  - "per runtime behaviour proof"
-  - "phase 6 per runtime behaviour proof"
+  - "recommendation contract and brief"
+  - "phase 5 recommendation contract and brief"
 importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3-plus-govern | v2.4 -->
 <!-- SPECKIT_LEVEL: 3+ -->
-# Feature Specification: Phase 6: per-runtime-behaviour-proof
+# Feature Specification: Phase 5: recommendation-contract-and-brief
 
 
 
@@ -36,11 +36,11 @@ contextType: "general"
 | **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
 | **Status** | Draft |
 | **Created** | 2026-11-12 |
-| **Branch** | `scaffold/006-per-runtime-behaviour-proof` |
+| **Branch** | `scaffold/005-recommendation-contract-and-brief` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 6 |
-| **Predecessor** | 005-gate-2-binding-and-runtime-pointers |
-| **Successor** | None |
+| **Phase** | 5 of 7 |
+| **Predecessor** | 004-command-meaning-matching |
+| **Successor** | 006-gate-2-binding-and-runtime-pointers |
 | **Handoff Criteria** | [To be defined during planning] |
 <!-- /ANCHOR:metadata -->
 
@@ -49,7 +49,7 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 6** of the Build command surfacing in the skill advisor so every tracked slash command reaches the model with a run-or-ask policy and a chat-only request reaches a proper workflow specification.
+This is **Phase 5** of the Build command surfacing in the skill advisor so every tracked slash command reaches the model with a run-or-ask policy and a chat-only request reaches a proper workflow specification.
 
 **Scope Boundary**: [To be defined during planning]
 

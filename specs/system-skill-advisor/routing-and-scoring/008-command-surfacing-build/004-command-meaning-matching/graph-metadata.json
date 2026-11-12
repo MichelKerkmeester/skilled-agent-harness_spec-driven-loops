@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-per-runtime-behaviour-proof",
-  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-per-runtime-behaviour-proof",
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching",
   "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
   "children_ids": [],
   "manual": {
@@ -11,18 +11,17 @@
   },
   "derived": {
     "trigger_phrases": [
-      "per runtime behaviour proof",
-      "phase 6 per runtime behaviour proof",
-      "per runtime behaviour proof plan",
-      "per runtime behaviour proof tasks",
-      "per runtime behaviour proof acceptance criteria",
-      "per runtime behaviour proof implementation summary"
+      "command meaning matching",
+      "phase 4 command meaning matching",
+      "command meaning matching plan",
+      "command meaning matching tasks",
+      "command meaning matching acceptance criteria",
+      "command meaning matching implementation summary"
     ],
     "key_topics": [
-      "per",
-      "runtime",
-      "behaviour",
-      "proof",
+      "command",
+      "meaning",
+      "matching",
       "phase",
       "plan",
       "tasks",
@@ -30,7 +29,8 @@
       "criteria",
       "implementation",
       "summary",
-      "yourvaluehere"
+      "plain",
+      "prompt"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -79,24 +79,6 @@
         "source": "derived"
       },
       {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Status Draft",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -104,6 +86,24 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,7 +121,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Second",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,25 +139,19 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
-    "created_at": "2026-11-12T12:27:38Z",
-    "last_save_at": "2026-11-12T12:27:40.988Z",
+    "causal_summary": "Phase 003 made a plain prompt reach its command when the prompt reuses the command's own words",
+    "created_at": "2026-11-12T18:13:56Z",
+    "last_save_at": "2026-11-12T18:41:21.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:abc168aeac69593a9c605520c644b0904404776a93c5ed263b83bb1a22bb13ac",
+    "source_fingerprint": "sha256:ff13a83b3a767559654b4ad178918852962aa99de39abc463518e6342b04fe2c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f5db2f698d2941e2006a9fbdb635a6c35482a3b977a98122ecfb382660213566",
-      "plan.md": "e3d4b15c220c98384f556f95c57a14eeba882d8f9f4e64b5e9c11e5f62c462f3",
-      "tasks.md": "32381068686785e1998232002363d20710f1e1aaa2e09107ba0624c4a05fdca8",
-      "implementation-summary.md": "48379c724c6eaa24e03ab47308235773c7fd4bb0bf662a867fb17f2e4db3e95e"
+      "spec.md": "b99de9f1e41dd4ecee75ba7aafd222b5070de30416364e0fdd07887264ac9714",
+      "plan.md": "a7935f519b1af60f82c56b3f7060256fc09fe18e6838c2fcd4dc9291b55859c4",
+      "tasks.md": "5b846ddeb590a138f234c8a11f876f800a6c233cb57dd0cdffa2e31843d1e94e",
+      "implementation-summary.md": "fadcd90fa64f3546adf3cf8fc0b818414bf951f1817ff74c32ec4dc0c9eb2570"
     },
     "last_active_at": null
   }

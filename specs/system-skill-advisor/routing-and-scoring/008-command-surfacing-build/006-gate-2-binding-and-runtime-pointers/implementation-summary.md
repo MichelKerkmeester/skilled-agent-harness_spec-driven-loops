@@ -2,13 +2,13 @@
 title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "per runtime behaviour proof implementation summary"
+  - "gate 2 binding and runtime pointers implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-per-runtime-behaviour-proof"
-    last_updated_at: "2026-11-12T12:27:39Z"
+    packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers"
+    last_updated_at: "2026-11-12T12:27:38Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 plus template"
     next_safe_action: "Replace continuity placeholders"
@@ -16,7 +16,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-006-per-runtime-behaviour-proof"
+      session_id: "scaffold-006-gate-2-binding-and-runtime-pointers"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 006-per-runtime-behaviour-proof |
+| **Spec Folder** | 006-gate-2-binding-and-runtime-pointers |
 | **Completed** | 2026-11-12 |
 | **Level** | 3+ |
 <!-- /ANCHOR:metadata -->
@@ -49,7 +49,7 @@ _memory:
 
 [YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
 
-### Phase 6: per-runtime-behaviour-proof
+### Phase 6: gate-2-binding-and-runtime-pointers
 
 [What this feature does and why it exists. 1-2 paragraphs. Use direct address.
 Explain what the user gains, not what files you touched.]

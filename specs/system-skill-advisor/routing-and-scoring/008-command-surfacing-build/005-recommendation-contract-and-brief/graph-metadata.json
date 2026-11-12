@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-gate-2-binding-and-runtime-pointers",
-  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-gate-2-binding-and-runtime-pointers",
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief",
   "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
   "children_ids": [],
   "manual": {
@@ -11,18 +11,17 @@
   },
   "derived": {
     "trigger_phrases": [
-      "gate 2 binding and runtime pointers",
-      "phase 5 gate 2 binding and runtime pointers",
-      "gate 2 binding and runtime pointers plan",
-      "gate 2 binding and runtime pointers tasks",
-      "gate 2 binding and runtime pointers acceptance criteria",
-      "gate 2 binding and runtime pointers implementation summary"
+      "recommendation contract and brief",
+      "phase 5 recommendation contract and brief",
+      "recommendation contract and brief plan",
+      "recommendation contract and brief tasks",
+      "recommendation contract and brief acceptance criteria",
+      "recommendation contract and brief implementation summary"
     ],
     "key_topics": [
-      "gate",
-      "binding",
-      "runtime",
-      "pointers",
+      "recommendation",
+      "contract",
+      "brief",
       "phase",
       "plan",
       "tasks",
@@ -30,7 +29,8 @@
       "criteria",
       "implementation",
       "summary",
-      "yourvaluehere"
+      "yourvaluehere",
+      "broken"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -188,8 +188,8 @@
       }
     ],
     "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
-    "created_at": "2026-11-12T12:27:37Z",
-    "last_save_at": "2026-11-12T12:27:40.817Z",
+    "created_at": "2026-11-12T12:27:36Z",
+    "last_save_at": "2026-11-12T18:21:40.443Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:640561fabaa23a576f11faecfee41e2c7e8ab2e9cb1461571310f8291ec4d67d",
+    "source_fingerprint": "sha256:f723f85759cc383baf2da1099e6642b865ad3a91efa60546b6d4c3f2cd6a6d6c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "795e492f2cfdc1304a316d5430e35913e8d790af97f87ab80cd07b1bc6228ff1",
-      "plan.md": "8b3e825be5ff12433faa75d123b7a9ff4885fd6c9207d594515c090b08f437b1",
-      "tasks.md": "027931592d69084bf2416af646c149504cded88e7aeb1d4ec0de1725f3e2289e",
-      "implementation-summary.md": "3ba0b8f470e4d17849ccad8c5da1cdf2a653aab1ffa4ea23127c0da0bf2cd927"
+      "spec.md": "ca67499febdb02690bd88ec2348ff5485bc9bde05fedec35eb908ddbbca5e139",
+      "plan.md": "bb54bb4acc456a1fc7bc20b54d3bbd1ff204b642af86627ecb1c16982bc50535",
+      "tasks.md": "5b122858dc3f478c90947ee71503190b57082d9901dc77063db5059aa3aa899e",
+      "implementation-summary.md": "27740004eaf38649671b57cc6786e12a658034bf3f5c1f1d778d0ebabe2ec98f"
     },
     "last_active_at": null
   }

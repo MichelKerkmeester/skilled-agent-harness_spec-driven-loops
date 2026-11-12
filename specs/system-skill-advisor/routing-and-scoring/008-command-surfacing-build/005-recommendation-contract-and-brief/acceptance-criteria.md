@@ -1,14 +1,14 @@
 ---
-title: "Acceptance Criteria: Phase 6: per-runtime-behaviour-proof"
+title: "Acceptance Criteria: Phase 5: recommendation-contract-and-brief"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "per runtime behaviour proof acceptance criteria"
+  - "recommendation contract and brief acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-per-runtime-behaviour-proof"
-    last_updated_at: "2026-11-12T12:27:39Z"
+    packet_pointer: "scaffold/005-recommendation-contract-and-brief"
+    last_updated_at: "2026-11-12T12:27:37Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
@@ -16,14 +16,14 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-006-per-runtime-behaviour-proof"
+      session_id: "scaffold-005-recommendation-contract-and-brief"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.4 -->
-# Acceptance Criteria: Phase 6: per-runtime-behaviour-proof
+# Acceptance Criteria: Phase 5: recommendation-contract-and-brief
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 

@@ -1,15 +1,15 @@
 ---
-title: "Feature Specification: Phase 5: gate-2-binding-and-runtime-pointers"
+title: "Feature Specification: Phase 6: gate-2-binding-and-runtime-pointers"
 description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "gate 2 binding and runtime pointers"
-  - "phase 5 gate 2 binding and runtime pointers"
+  - "phase 6 gate 2 binding and runtime pointers"
 importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3-plus-govern | v2.4 -->
 <!-- SPECKIT_LEVEL: 3+ -->
-# Feature Specification: Phase 5: gate-2-binding-and-runtime-pointers
+# Feature Specification: Phase 6: gate-2-binding-and-runtime-pointers
 
 
 
@@ -36,11 +36,11 @@ contextType: "general"
 | **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
 | **Status** | Draft |
 | **Created** | 2026-11-12 |
-| **Branch** | `scaffold/005-gate-2-binding-and-runtime-pointers` |
+| **Branch** | `scaffold/006-gate-2-binding-and-runtime-pointers` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 6 |
-| **Predecessor** | 004-recommendation-contract-and-brief |
-| **Successor** | 006-per-runtime-behaviour-proof |
+| **Phase** | 6 of 7 |
+| **Predecessor** | 005-recommendation-contract-and-brief |
+| **Successor** | 007-per-runtime-behaviour-proof |
 | **Handoff Criteria** | [To be defined during planning] |
 <!-- /ANCHOR:metadata -->
 
@@ -49,7 +49,7 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 5** of the Build command surfacing in the skill advisor so every tracked slash command reaches the model with a run-or-ask policy and a chat-only request reaches a proper workflow specification.
+This is **Phase 6** of the Build command surfacing in the skill advisor so every tracked slash command reaches the model with a run-or-ask policy and a chat-only request reaches a proper workflow specification.
 
 **Scope Boundary**: [To be defined during planning]
 

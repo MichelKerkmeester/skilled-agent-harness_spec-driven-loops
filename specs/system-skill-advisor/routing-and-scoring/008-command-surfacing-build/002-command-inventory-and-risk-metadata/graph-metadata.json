@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The deriver builds its inventory from `command-metadata.json` files, an allow-list and the doctor manifest, and it never reads `.skilled/commands/`",
     "created_at": "2026-11-12T12:27:34Z",
-    "last_save_at": "2026-11-12T17:50:46.194Z",
+    "last_save_at": "2026-11-12T18:21:35.948Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a4ff6fee1793fcd320ccf7ca54e5cd53c6b14edc4be73ae37433d89de237775",
+    "source_fingerprint": "sha256:cf9ca28d02ae142dd20f3015a8b4e97a0b8b0597c2c49b9afe3cb70d7a80e698",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9effc2bf7d59b7bed4b4946e2e81d35385b8a9e4c3bf2d73091dc4d507925776",
-      "plan.md": "e844192f6c7823f1baca5989e4cd3226aef93ed7eab9d15e73bf022df31a9c10",
+      "spec.md": "6f2e1150c9c3d7e885bd8eb040247b7531b23792adb9e79c5ba1080c257c0795",
+      "plan.md": "99e3fc947de1262a5c99e2adbacc732572e509d59e2e920ab25906990c40b7db",
       "tasks.md": "1f7db29cfa04765ac945347a6d14b32df67a31bf93178fc65a8e1d4d90049e6c",
-      "implementation-summary.md": "a70f239b904fb18c5461d0ff3037777295e8243de9f26b0786872aaffae236a6"
+      "implementation-summary.md": "af866e36bdca7dd787115923c2786882e3f128e82899d71b4e0dc580650a313a"
     },
     "last_active_at": null
   }

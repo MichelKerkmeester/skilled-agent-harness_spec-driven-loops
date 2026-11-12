@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The advisor is scored against three pinned skill corpora and one doctor slice, and none of them holds a gold label for a non-doctor command",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-12T13:18:05.729Z",
+    "last_save_at": "2026-11-12T18:21:34.496Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ba6109d55e33fea1eafeb187edc2735155e30609b0012024f79951132ddc84a5",
+    "source_fingerprint": "sha256:6d9751d83cabfcc006e86060228f6a2496e89210e20bc8b3f27ded8b17686a5c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d1d3301779315d9283f1f3cc583d8cf238b2b9c19358d5eda11fb3c7296e1810",
-      "plan.md": "bdce3b1e1110d6da1a6b6a31f06a13881920718c8f6b1d41145f5d4c2aceb215",
+      "spec.md": "cde82ad07dc894ea0f880e9561c27d5a4be7deddf238ee55859c73705eb7dc14",
+      "plan.md": "b020164993970ba7c46af945dabb6f7ab52fb8b242246f84d58b0c5929747b6f",
       "tasks.md": "d30053a0fb8df8a7d9e67e69d5fe5270a0275405b8c83d814abadccd473f598b",
-      "implementation-summary.md": "101cf899b1049d44bc6ca45ca0aebf9ba25809cbc9b6951412600de25d36fda1"
+      "implementation-summary.md": "b3a4b05e826ab2788b03cf4801d89282368f279f49ef27db2f7a9ef04bc24197"
     },
     "last_active_at": null
   }

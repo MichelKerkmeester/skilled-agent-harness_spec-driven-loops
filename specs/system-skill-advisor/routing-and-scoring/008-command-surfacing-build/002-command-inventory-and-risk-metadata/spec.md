@@ -38,7 +38,7 @@ The bridge deriver merges three hand-kept sources and never looks at the command
 | **Created** | 2026-11-12 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 6 |
+| **Phase** | 2 of 7 |
 | **Predecessor** | 001-command-routing-baseline-corpus |
 | **Successor** | 003-plain-chat-command-reach |
 | **Handoff Criteria** | Every tracked command and doctor route has a risk class and a derived policy |
@@ -105,8 +105,8 @@ The check reports `fresh` while 4 command files have no entry, because it compar
 
 ### Out of Scope
 - Activating any bridge or changing `scoring-compatibility.json` - that is phase 003, and this phase must leave routing untouched.
-- Retiring the allow-list rows and the ids `/spec_kit`, `/memory:save` and `/prompt` - the review places that after the contract change in phase 004.
-- Carrying the policy in a recommendation or the brief - phase 004.
+- Retiring the allow-list rows and the ids `/spec_kit`, `/memory:save` and `/prompt` - the review places that after the contract change in phase 005.
+- Carrying the policy in a recommendation or the brief - phase 005.
 - Real intent phrases for the 8 newly described commands - phase 003. Their `ownedSignals` hold the command string only.
 - The private `/local-skilled-alignment` command - decision D5.
 
@@ -221,7 +221,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Risk | 12/25 | Auth: N, API: N, Breaking: a shared contract changes |
 | Research | 6/20 | Classes for 19 hub commands need each workflow file read |
 | Multi-Agent | 6/15 | Workstreams: 3 |
-| Coordination | 8/15 | Dependencies: 3, and phases 3 to 5 read the policy list |
+| Coordination | 8/15 | Dependencies: 3, and phases 3, 5 and 6 read the policy list |
 | **Total** | **48/100** | **Level 3+** |
 
 ---
@@ -233,7 +233,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | R-001 | A routing number moves | H | L | No activation change, and REQ-008 is rerun after each regeneration |
 | R-002 | The contract amendment lets an incoherent file through | M | L | The owner rule for registry-less roots, with a failing fixture in the contract test |
 | R-003 | A command is classed safer than it is | H | M | Unconfirmed means `mutates`, and REQ-012 compares the rollup with the review |
-| R-004 | The allow-list exemption hides a real orphan | L | L | The exemption is one named constant with a comment, removed in phase 004 |
+| R-004 | The allow-list exemption hides a real orphan | L | L | The exemption is one named constant with a comment, removed in phase 005 |
 
 ---
 

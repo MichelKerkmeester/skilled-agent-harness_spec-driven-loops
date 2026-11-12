@@ -1,12 +1,12 @@
 {
-  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-recommendation-contract-and-brief",
-  "description": "Phase 4: recommendation-contract-and-brief",
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief",
+  "description": "Phase 5: recommendation-contract-and-brief",
   "keywords": [
     "phase",
     "recommendation-contract-and-brief"
   ],
   "lastUpdated": "2026-11-12T12:27:37.617Z",
-  "specId": "004",
+  "specId": "005",
   "folderSlug": "recommendation-contract-and-brief",
   "parentChain": [
     "system-skill-advisor",

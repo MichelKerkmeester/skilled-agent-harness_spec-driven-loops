@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 6: per-runtime-behaviour-proof"
+title: "Tasks: Phase 7: per-runtime-behaviour-proof"
 description: "Task Format: T### [P?] Description (file path). Verify: <command> prints <expected output>"
 trigger_phrases:
   - "per runtime behaviour proof tasks"
@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.4 -->
-# Tasks: Phase 6: per-runtime-behaviour-proof
+# Tasks: Phase 7: per-runtime-behaviour-proof
 
 <!-- SPECKIT_LEVEL: 3+ -->
 

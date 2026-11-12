@@ -1,12 +1,12 @@
 {
-  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-gate-2-binding-and-runtime-pointers",
-  "description": "Phase 5: gate-2-binding-and-runtime-pointers",
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers",
+  "description": "Phase 6: gate-2-binding-and-runtime-pointers",
   "keywords": [
     "phase",
     "gate-2-binding-and-runtime-pointers"
   ],
   "lastUpdated": "2026-11-12T12:27:38.542Z",
-  "specId": "005",
+  "specId": "006",
   "folderSlug": "gate-2-binding-and-runtime-pointers",
   "parentChain": [
     "system-skill-advisor",
