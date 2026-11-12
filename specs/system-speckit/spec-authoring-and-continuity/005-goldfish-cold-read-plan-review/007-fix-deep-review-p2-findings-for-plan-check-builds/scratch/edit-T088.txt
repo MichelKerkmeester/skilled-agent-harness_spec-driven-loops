@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy-containment.vitest.ts
+HOW: Replace the single occurrence.
+=====OLD=====
+import { DIRTY_PACKET, sandbox, copy, runUpgrade,
+=====NEW=====
+import { DIRTY_PACKET, sandbox, runUpgrade,
+=====END=====

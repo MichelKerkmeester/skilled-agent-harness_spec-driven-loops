@@ -1,0 +1,9 @@
+EDIT FILE: .skilled/skills/system-spec-kit/runtime/cli/tests/validate-subtrack.vitest.ts
+HOW: Replace the single occurrence.
+=====OLD=====
+    const { entries, specs } = buildSubtrackTree(root);
+    const result = runValidate(path.join(specs, 'demo'), ['--recursive', '--json']);
+=====NEW=====
+    const { specs } = buildSubtrackTree(root);
+    const result = runValidate(path.join(specs, 'demo'), ['--recursive', '--json']);
+=====END=====

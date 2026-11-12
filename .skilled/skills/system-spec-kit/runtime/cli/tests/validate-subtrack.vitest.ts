@@ -83,7 +83,7 @@ describe('recursive validation for declared sub-tracks', () => {
   });
 
   it('includes sub-track packets at track depth while skipping archives and symlinks', () => {
-    const { entries, specs } = buildSubtrackTree(root);
+    const { specs } = buildSubtrackTree(root);
     const result = runValidate(path.join(specs, 'demo'), ['--recursive', '--json']);
     const folders = relativeFolders(specs, result.stdout);
 

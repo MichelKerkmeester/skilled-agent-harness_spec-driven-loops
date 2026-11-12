@@ -10,7 +10,7 @@ import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 
 import { recordFindings } from '../spec/upgrade-legacy.mjs';
 
-import { DIRTY_PACKET, sandbox, copy, runUpgrade, manifest, upgradeManifestPath, clearUpgradeManifest, resetSandbox, commitChanges, writeLegacyPacket, prepareDirtyManifest, nestedQuestionsSpec, treeFingerprint, setupSandbox, teardownSandbox } from './helpers/upgrade-legacy-harness';
+import { DIRTY_PACKET, sandbox, runUpgrade, manifest, upgradeManifestPath, clearUpgradeManifest, resetSandbox, commitChanges, writeLegacyPacket, prepareDirtyManifest, nestedQuestionsSpec, treeFingerprint, setupSandbox, teardownSandbox } from './helpers/upgrade-legacy-harness';
 
 beforeAll(setupSandbox, 180_000);
 afterAll(teardownSandbox);

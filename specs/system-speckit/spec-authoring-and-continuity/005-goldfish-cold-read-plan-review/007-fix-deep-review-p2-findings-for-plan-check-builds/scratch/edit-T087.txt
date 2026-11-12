@@ -1,0 +1,8 @@
+EDIT FILE: .skilled/skills/system-spec-kit/runtime/cli/tests/rg-wrapper-recipes.vitest.ts
+HOW: Replace the single occurrence.
+=====OLD=====
+import { stableStringify } from '../retrieval/lib/artifact.mjs';
+import { shapeRankedMatches }
+=====NEW=====
+import { shapeRankedMatches }
+=====END=====

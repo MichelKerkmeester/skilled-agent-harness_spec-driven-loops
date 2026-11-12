@@ -8,7 +8,6 @@ import path from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { stableStringify } from '../retrieval/lib/artifact.mjs';
 import { shapeRankedMatches } from '../retrieval/lib/rg-lane.mjs';
 import {
   DEFAULT_SEARCH_ROOTS,
