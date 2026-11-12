@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up"
-    last_updated_at: "2026-11-12T17:52:23Z"
+    last_updated_at: "2026-11-12T20:00:25Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed alignment round nine"
-    next_safe_action: "Fix round ten findings"
+    recent_action: "Fixed round twelve finding, waived criterion 5"
+    next_safe_action: "Run release republish step"
     blockers: []
     key_files:
       - "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/goal.md"
@@ -20,14 +20,14 @@ _memory:
       - ".skilled/commands/doctor/scripts/overlay-engine.cjs"
       - ".skilled/changelog/skilled/v4.0.2.1.md"
     session_dedup:
-      fingerprint: "sha256:7f69b26927536d43416bb0af6683f4e6e27c92898a2f3ab76856ea8d0bac482d"
+      fingerprint: "sha256:eff91b2e19862dc8f19983ebbee908f49f163a0c9977f8c32c3d2be7af806381"
       session_id: "scaffold-009-overlay-write-checks-follow-up"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "e881d253-bd2e-467f-a00f-6be078d10e1c"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-12T17:52:23Z"
+      savedAt: "2026-11-12T20:00:25Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 90
@@ -188,8 +188,9 @@ The review found no P0.
 | Run 10, over `2aa53ef3df..e4f3963384`, 7 findings: the Pi extension README had a wrong tree line, an entrypoints table with 13 of 22 exports and a false sentence about which session adapters use the shared proxy, the cross-CLI map counted 18 Pi extensions, two Pi CLI references counted 11 and 6, and three playbook scenarios expected eleven extensions or ran a search of the entry files that matches nothing since the entries became one-line re-exports | 7 P2 | Fixed | Scenario PI-015's new command prints 35 handlers over 12 events, checked by running it. The first version of that command missed three cast registrations in `session-relaunch.ts`, and the orchestrating session caught that. The round's recheck lists 2 resolved, 0 still open, 0 new and 5 for a reviewer |
 | Run 11, over `5f4f5b9f42..b45a7ab4d0`, the first with the range-only scope, 5 document findings: the cross-CLI map counted a git-ignored local prompt for Codex and Pi, scenario PI-016 said 19 adapters carry a `Fail open` comment where its command shows 18, the env-secret guard row named a module path that resolves nowhere, a paragraph still said 9 adapters above a table of 15, and one reference sentence said all 22 adapters call the shared guard cores | 5 P2 after the critic's regrade | Fixed | The counts are of committed files: `git ls-files` prints 44 for `.codex/prompts` and 45 for `.pi/prompts`, one of them the native command. The round's recheck lists 2 resolved, 0 still open, 0 new and 5 for a reviewer |
 | Run 11, two routing probes the critic upheld: a request to list the Pi extension entries reached no skill and a request to run the Pi auto-discovery scenario reached `sk-doc`, both expected at the Pi CLI skill | 2 P1 | Rejected | The operator chose to reject both. The advisor is built not to send a request that names a runtime as the owner of a surface to the CLI hub: `demoteSurfaceOnlyHub` in `runtime/lib/scorer/executor-delegation.ts` drops the hub below the next passing skill, and a read-only prompt is held at 0.25. A DeepSeek agent added four phrases, the hub's score rose and its rank did not, and the phrases were discarded uncommitted |
+| Run 12, over `a961553364..fa65df23ec`, 1 finding: the Pi extension README said every one of the 15 tool-call adapters calls a core that both the Cursor and the Devin hook registries call, but Cursor calls neither the injection-screen core nor the answer-capture core | 1 P1 | Fixed | The sentence now says the sibling runtimes' bridges under the same concern folders import these cores. `rg -l "classifier-injection-advisory\|capture-core" .cursor .skilled/hooks/*/cursor` prints nothing, and the Devin bridges import both. Three lanes found nothing. The critic overturned nothing. The round's recheck lists 0 still open, 0 new and 1 for a reviewer, this finding, which the orchestrator checked against the tree |
 
-Eleven lane runs were made by the end of round eleven. Each raised new findings after the fixes of the run before it: 18, 11, 10, 10, 11, 21, 13, 7, 5, 7 and 7. No lane-based report with zero findings exists yet. The fifth run's critic overturned one finding. Its recheck lists 2 resolved, 2 still open and 7 for a reviewer. The two still open are literal matches: one sentence in the adopt section that the verifier found accurate, and one re-pin row that became true when the engine was fixed. The sixth round reworded both. The sixth run's critic overturned nothing. Its last recheck, run after the last fix, lists 10 resolved, 0 still open, 0 new and 11 for a reviewer, and exits 0. The eleventh is a sentence the verifier had reworded again. A fresh Opus verifier checked the reviewer's findings against the tree in three passes, and each defect it found was fixed. Rounds seven to eleven each closed with a recheck that lists 0 still open and 0 new. On 2026-11-12 the operator chose to keep running full rounds until one lists 0 findings, and to tell the lanes from round eleven on to report only what the range changed.
+Twelve lane runs were made. Each raised new findings after the fixes of the run before it: 18, 11, 10, 10, 11, 21, 13, 7, 5, 7, 7 and 1. No lane-based report with zero findings exists. After round twelve the operator stopped the runs and waived the fifth criterion, with the twelfth run's one finding fixed and rechecked. The fifth run's critic overturned one finding. Its recheck lists 2 resolved, 2 still open and 7 for a reviewer. The two still open are literal matches: one sentence in the adopt section that the verifier found accurate, and one re-pin row that became true when the engine was fixed. The sixth round reworded both. The sixth run's critic overturned nothing. Its last recheck, run after the last fix, lists 10 resolved, 0 still open, 0 new and 11 for a reviewer, and exits 0. The eleventh is a sentence the verifier had reworded again. A fresh Opus verifier checked the reviewer's findings against the tree in three passes, and each defect it found was fixed. Rounds seven to eleven each closed with a recheck that lists 0 still open and 0 new. On 2026-11-12 the operator chose to keep running full rounds until one lists 0 findings, and to tell the lanes from round eleven on to report only what the range changed.
 <!-- /ANCHOR:verification -->
 
 ---

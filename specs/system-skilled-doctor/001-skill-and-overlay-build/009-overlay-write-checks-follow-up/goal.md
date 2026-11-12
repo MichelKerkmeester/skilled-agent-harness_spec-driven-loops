@@ -63,7 +63,7 @@ Frozen choices. Changing one is an amendment.
 - [x] Every task in `tasks.md` is `[x]`, and `node --test tests/` in `.skilled/commands/doctor/scripts` prints `fail 0`.
 - [x] The packet's `review/` folder holds 5 deep-review iteration records and a synthesis report written by a fresh Opus agent at high effort.
 - [x] Every P0 and P1 finding in that report is listed in `implementation-summary.md` as fixed, with the command that proves it, or as rejected, with the evidence against it.
-- [ ] The `/local-skilled-alignment` findings report for this work, run after the last fix, lists 0 open findings.
+- [x] The `/local-skilled-alignment` findings report for this work, run after the last fix, lists 0 open findings. Waived by the operator on 2026-11-12 after run 12, whose one finding was fixed and rechecked.
 - [x] `validate.sh --strict` prints `RESULT: PASSED` for this packet and for `specs/system-skilled-doctor/001-skill-and-overlay-build`.
 - [ ] `.skilled/changelog/skilled/v4.0.2.1.md` names this work and passes `check_changelog_shape.py`. On origin, tag `v4.0.2.1` and `main` name the same commit, and the published release body equals the output of `build_release_notes.py` for that entry.
 <!-- /ANCHOR:completion -->
@@ -97,6 +97,8 @@ and findings belong here.
 | Operator answers of 2026-11-12 on the tag, Dependabot, the changelog and pushes | Done | The tag moves once more, at the end. Both Dependabot pull requests are merged after GitHub updates their branches: 95 is merged as ff5c668fc4, 96 conflicts with it and waits for Dependabot to recreate it. The advisor's routing phrases go into its existing v0.18.7.0 entry with no version change. Each round's commits are pushed once its recheck is clean. From round eleven the review lanes report... |
 | The seventh criterion is open again | Open | The tag v4.0.2.1 is at 9c24bbdddd and main has moved past it with the fixes of rounds seven to nine and a merged Dependabot pull request. The operator chose one more tag move, at the end, so the box stays open until then. |
 | Round eleven ran with the range-only scope | Done | It covered 5f4f5b9f42..b45a7ab4d0 and found 7 findings. Five were defects the round-ten fix commit wrote, and DeepSeek fixed them. Two were routing probes for the Pi CLI skill. The operator chose to reject both, because the scorer drops a CLI hub when a prompt names the runtime as the owner of a surface. From round twelve a lane writes a probe only for a route the range changed. |
+| Dependabot PR 98 | merged | squash e7974750f5 after branch update, 38 checks green, operator chose Merge 98 (Q012) |
+| Criterion 5 | waived | operator stopped runs after round 12 (1 P1, fixed by DeepSeek, recheck 0 open 0 new) |
 
 ### Deviations and findings
 

@@ -44,6 +44,9 @@ _memory:
 | Q008 | D1 is amended: the operator is asked through the question tool when a choice changes what gets published, merged or recorded as done. | Not stated. | D1 as first written (the operator is not asked anything) | D1, goal.md |
 | Q009 | The fifth criterion is unticked until a full alignment run lists 0 findings. | Not stated. | None | goal.md criterion 5 |
 | Q010 | From round eleven the review lanes and the critic report only defects the commits under review introduced. | Not stated. | None | goal.md log |
+| Q011 | Round eleven's two routing probes for the Pi extension layer are rejected, and the hub vocabulary added for them is reverted. | Not stated. | None | goal.md log, implementation-summary.md round eleven |
+| Q012 | Dependabot pull request 98, which replaced the closed 96, is merged into main before the final tag move. | Not stated. | None | goal.md log |
+| Q013 | Alignment runs stop after round twelve; its finding is fixed and rechecked, criterion 5 is recorded as waived, and v4.0.2.1 is republished once on final main. | Not stated. | None | goal.md criterion 5, implementation-summary.md alignment table |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -249,6 +252,66 @@ Whole surface, one last sweep
 Answer:
 ```text
 Only what the range changed (Recommended)
+```
+
+### Q011
+<!-- source: claude:e881d253-bd2e-467f-a00f-6be078d10e1c:toolu_016kzogatt4HJJqcB1WbkQCG:0 -->
+
+Question:
+```text
+Round eleven's critic upheld two routing probes as P1: 'List each Pi extension entry and the adapter it re-exports...' and 'Run the Pi extension auto-discovery scenario...' were expected at the Pi CLI skill (cli-external-orchestration, cli-pi mode). A DeepSeek agent added vocabulary, but both still miss, because the advisor's scorer deliberately demotes a CLI hub when the runtime is named as the owner of a surface ('Pi extension', executor-delegation.ts:422) and caps read-only 'List ...' prompts at 0.25. No keyword can change that. How should these two findings be closed?
+```
+
+Options:
+```text
+Reject both, revert vocabulary (Recommended)
+Change the scorer
+Keep vocabulary, reject probes
+```
+
+Answer:
+```text
+Reject both, revert vocabulary (Recommended)
+```
+
+### Q012
+<!-- source: claude:e881d253-bd2e-467f-a00f-6be078d10e1c:toolu_01FNcaZ7L9BN8ZSvuhVrNwdq:0 -->
+
+Question:
+```text
+You chose to merge Dependabot pull requests 95 and 96. 95 is merged. Dependabot then closed 96 itself and opened 98 in its place: the same npm-runtime updates across 4 directories (@types/node, vitest, rolldown, @opencode-ai/plugin, pi-coding-agent 1.4.0 to 1.5.0), with 34 checks green and none failed. Should 98 be merged into main in 96's place?
+```
+
+Options:
+```text
+Merge 98 (Recommended)
+Leave 98 open
+Merge 98 after the tag
+```
+
+Answer:
+```text
+Merge 98 (Recommended)
+```
+
+### Q013
+<!-- source: claude:e881d253-bd2e-467f-a00f-6be078d10e1c:toolu_01WSo9ts3XJnS3i2gD99PvHz:0 -->
+
+Question:
+```text
+You said to stop runs after this one. Round twelve found one P1, a README sentence claiming Cursor calls two cores it does not. DeepSeek has fixed it in the working tree, and the critic is rerunning. With no round thirteen, criterion 5 (a full alignment run listing 0 open findings) cannot be met as written. How should the goal close?
+```
+
+Options:
+```text
+Recheck, waive, ship (Recommended)
+Ship, leave 5 open
+Stop everything now
+```
+
+Answer:
+```text
+Recheck, waive, ship (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
