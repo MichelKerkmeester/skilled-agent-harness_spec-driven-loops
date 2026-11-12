@@ -38,7 +38,10 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".github/workflows/spec-kit-check.yml"
+      ".github/workflows/spec-kit-check.yml",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs/tasks.md",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs/implementation-summary.md",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs/graph-metadata.json"
     ],
     "entities": [
       {
@@ -56,19 +59,25 @@
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs/tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs/implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "spec-kit-check.yml",
         "kind": "config",
         "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -178,17 +187,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `check` job in `.github/workflows/spec-kit-check.yml` runs the `CLI vitest project`, `Legacy module lanes and the bash validation suites` and `Runtime vitest project` steps one after another",
     "created_at": "2026-11-12T08:21:54Z",
-    "last_save_at": "2026-11-12T08:37:20.643Z",
+    "last_save_at": "2026-11-12T10:53:27.183Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:78a08a8629b7f94184dabffd22b0bd85d98ee989f005497da34e6d0380d7ad24",
+    "source_fingerprint": "sha256:4373cbf02cbb58ca7f8969c7282c1e96c8985c99841984fffe2d8ceea4a899a5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b3855f04e2ae553d1dc1bf04109b153cd8a2318f245ec397c5f531bac621e305",
       "plan.md": "50c67312745cad87297a643c94d4509b3b82369e4b0f7555bd81002ddc861eb6",
-      "tasks.md": "1a6d85eba0ac8c958529caaba38e01a6f3a49f924b7dae30a9c4e6862ec1f240",
-      "implementation-summary.md": "217799c1c14cfd2742dedd31b9d037a3a937938deb65b366059120241422b90b"
+      "tasks.md": "0e3d23dec73f0d051829c438ee9bd955c6bfc2b8a49f6f8011a917205328c9a9",
+      "implementation-summary.md": "90cdbb1d6df84007777b4ff4d435b7d9760837c9c4db0048f48b4365a872d8b6"
     },
     "last_active_at": null
   }
