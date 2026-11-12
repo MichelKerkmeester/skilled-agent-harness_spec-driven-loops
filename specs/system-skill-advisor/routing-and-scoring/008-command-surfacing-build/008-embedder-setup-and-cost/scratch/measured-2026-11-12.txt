@@ -1,0 +1,57 @@
+$ curl -s localhost:11434/api/version
+{"version":"0.40.15"}
+$ curl -s localhost:11434/api/tags | jq -c '[.models[] | {name, size}]'
+[{"name":"nomic-embed-text:v1.5","size":274302450},{"name":"jina/jina-embeddings-v3:latest","size":410413681}]
+$ curl -s localhost:11434/api/ps | jq -c '[.models[] | {name, size, size_vram}]'
+[{"name":"nomic-embed-text:v1.5","size":335733063,"size_vram":335733063}]
+$ ps -axo rss,command | rg "ollama serve|llama-server" | rg -v "rg " | cut -c1-60
+  1328 /bin/zsh -c source /Users/michelkerkmeester/.claude/s
+ 46256 ollama serve
+352144 /opt/homebrew/Cellar/ollama/0.40.15/libexec/lib/ollam
+$ node specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/embed-probe.mjs "$PWD"
+{"case":"warm","n":30,"medianMs":6.57,"p95Ms":10.99,"maxMs":29.14}
+{"case":"server_absent","ok":false,"ms":0.21,"error":"OllamaBackendUnreachableError","message":"Ollama backend unreachable at http://127.0.0.1:9: fetch failed"}
+{"case":"model_not_pulled","ok":false,"ms":1.25,"error":"OllamaModelNotLoadedError","message":"Ollama model is not loaded: not-a-pulled-model:v0"}
+{"case":"model_not_pulled_probe","available":false,"reason":"Ollama model is not loaded: not-a-pulled-model:v0"}
+{"case":"deadline_1ms","ok":false,"ms":2.53,"error":"OllamaRequestTimeoutError","message":"Ollama backend unreachable at http://127.0.0.1:11434: request to /api/embed timed out after 1ms"}
+$ node specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/cli-timing.cjs
+[{"ms":71.3,"exit":0,"warnings":null},{"ms":65,"exit":0,"warnings":null},{"ms":62.7,"exit":0,"warnings":null},{"ms":64.3,"exit":0,"warnings":null},{"ms":63.9,"exit":0,"warnings":null}]
+$ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --include-semantic-health true --format json --warm-only | jq -c '.data.semanticLaneHealth | del(.checkedAt)'
+{"activeEmbedder":{"name":"nomic-embed-text-v1.5","dim":768,"adapterDim":768},"vectorCoverage":{"embedded":14,"total":14,"ratio":1},"dimMismatch":false,"lastRefresh":"2026-11-12 18:52:52","disabledReason":null,"laneEnabled":true}
+$ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --include-embeddings-health true --format json --warm-only | jq -c '.data.embeddingsHealth | del(.checkedAt)'
+{"provider":{"state":"resolved","requestedProvider":"hf-local","effectiveProvider":"hf-local","fallbackReason":null,"dimensionChanged":false,"reason":"Local fallback provider"},"modelServer":{"state":"unavailable","target":"/tmp/system-skill-advisor/hf-embed.sock","errorClass":"unreachable","error":"connect ENOENT /tmp/system-skill-advisor/hf-embed.sock"}}
+$ sqlite3 -readonly .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite 'select count(*) from vec_768; select count(*) from vec_cmd_768;'
+14
+45
+$ git check-ignore -v .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite
+.skilled/skills/system-skill-advisor/runtime/database/.gitignore:2:*.sqlite	.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite
+$ rg -n "OLLAMA_QUERY_TIMEOUT_MS =|DEFAULT_CLAUDE_HOOK_TIMEOUT_MS =|DEFAULT_CLI_FALLBACK_TIMEOUT_MS =" .skilled/skills --glob '*.ts' --glob '!**/node_modules/**' --glob '!**/dist/**'
+.skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:110:const OLLAMA_QUERY_TIMEOUT_MS = 5_000;
+.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:88:const DEFAULT_CLI_FALLBACK_TIMEOUT_MS = 250;
+.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:143:export const DEFAULT_CLAUDE_HOOK_TIMEOUT_MS = 2500;
+$ rg -n -i "ollama|nomic|embedder" INSTALL-SKILLED.md .skilled/commands/doctor --glob '!**/tests/**' -c; echo "exit=$?"
+exit=1
+$ uptime
+21:24  up 35 days, 12:25, 8 users, load averages: 7.95 6.74 7.51
+$ date +%H:%M:%S; curl -s localhost:11434/api/ps | jq -r '.models[] | .name + " " + .expires_at'
+21:25:08
+nomic-embed-text:v1.5 2026-11-12T21:29:57.207757+01:00
+$ for f in 004-command-meaning-matching/scratch/hook-latency-*.json; do echo "$f $(jq -c '[.n,.medianMs,.p95Ms]' $f)"; done
+004-command-meaning-matching/scratch/hook-latency-after-1.json [44,206.23,269.27]
+004-command-meaning-matching/scratch/hook-latency-after-2.json [44,194.83,259.04]
+004-command-meaning-matching/scratch/hook-latency-after-3.json [44,205.09,261.92]
+004-command-meaning-matching/scratch/hook-latency-before-1.json [44,199.16,231.35]
+004-command-meaning-matching/scratch/hook-latency-before-2.json [44,199.26,234.76]
+004-command-meaning-matching/scratch/hook-latency-before-3.json [44,199.01,224.33]
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs | jq -c '.metrics.typed_recall_at_1, .attachedMetrics.plain, .metrics.false_offer'
+{"correct":24,"total":44}
+{"tune":{"own":2,"attached":7,"combined":9,"total":45},"holdout":{"own":0,"attached":0,"combined":0,"total":44}}
+{"count":0,"total":35}
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs --real-embedding | jq -c '.metrics.typed_recall_at_1, .attachedMetrics.plain, .metrics.false_offer'
+{"correct":24,"total":44}
+{"tune":{"own":7,"attached":7,"combined":14,"total":45},"holdout":{"own":2,"attached":0,"combined":2,"total":44}}
+{"count":0,"total":35}
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs | jq -c '[.metrics.full_corpus_top1.correct,.metrics.holdout_top1.correct,.metrics.ambiguity_top1.correct,.metrics.gold_none_false_fire.value]'
+[159,50,20,5]
+$ jq -c '<phase 002 rollup query>' .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json
+{"ask":17,"run":7,"start":20}

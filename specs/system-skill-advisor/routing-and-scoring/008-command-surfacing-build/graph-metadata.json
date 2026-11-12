@@ -10,7 +10,8 @@
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers",
-    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof"
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost"
   ],
   "manual": {
     "depends_on": [],
@@ -144,17 +145,17 @@
     ],
     "causal_summary": "The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-12T20:16:23.893Z",
+    "last_save_at": "2026-11-12T20:22:21.232Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:78550046332e0bcadc05a83868d7d8cfa4b22faf362dcc44f75e58ef69d9614b",
+    "source_fingerprint": "sha256:6f756ce6e66e38ca1655c34d019942413d3331778b684abe1b19119d4a3afc0b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "faad16849a8d2fd3c250798936b3acc628fe9842c7e6526cb0849a0624cb91b9",
+      "spec.md": "9abfed2a50d5583d197b1edcd6e6ec0e7e12a9f4f982e6728e74ba27c2176748",
       "decision-record.md": "e505f240f21b67e85939e598e145b354bb97d55bd2cb90ca5baa3534cfebac6b"
     },
     "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching",

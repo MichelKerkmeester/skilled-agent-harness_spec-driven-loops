@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "embedder setup and cost",
+      "phase 8 embedder setup and cost",
+      "ollama setup for external repositories",
+      "meaning matching memory cost",
+      "embedder setup and cost plan",
+      "embedder setup and cost tasks",
+      "embedder setup and cost acceptance criteria",
+      "embedder setup and cost implementation summary"
+    ],
+    "key_topics": [
+      "embedder",
+      "setup",
+      "cost",
+      "phase",
+      "ollama",
+      "external",
+      "repositories",
+      "meaning",
+      "matching",
+      "memory",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/measured-2026-11-12.txt",
+      "scratch/embed-probe.mjs",
+      "scratch/cli-timing.cjs",
+      ".skilled/skills/system-skill-advisor/INSTALL-GUIDE.md",
+      ".skilled/skills/system-spec-kit/shared/dist/embeddings/adapters/ollama.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "measured-2026-11-12.txt",
+        "kind": "file",
+        "path": "scratch/measured-2026-11-12.txt",
+        "source": "derived"
+      },
+      {
+        "name": "embed-probe.mjs",
+        "kind": "file",
+        "path": "scratch/embed-probe.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-timing.cjs",
+        "kind": "file",
+        "path": "scratch/cli-timing.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL-GUIDE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/INSTALL-GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/shared/dist/embeddings/adapters/ollama.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Meaning",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Probe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow At",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Meaning matching only works with a local Ollama server serving `nomic-embed-text:v1.5` and with vectors written by a skill graph scan",
+    "created_at": "2026-11-12T20:22:20Z",
+    "last_save_at": "2026-11-12T20:54:40.171Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:edc8336a9b2232aba6287479290ee7d2f872fd6049df6044f3d7cc2b30c3f259",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9d6791ba05588154f83569ac148a32f5601fcf3eccd8280ac00ceec97399dd97",
+      "plan.md": "d18456585df7d840e3adb2939c399d640093a0e3f4da2773ff972e1c0275dced",
+      "tasks.md": "e27da0801115f38d70933164af5fc73d6838a837e9e805bccc0c9e6467853401",
+      "implementation-summary.md": "c13b770f391865fbc20e113bca8a0d6adda9b403aa09dcc3601a74d98b3d9e0b"
+    },
+    "last_active_at": null
+  }
+}

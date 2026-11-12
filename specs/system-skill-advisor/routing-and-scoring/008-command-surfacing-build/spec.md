@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Build command surfacing in the skill advisor so every tracked slash command reaches the model with a run-or-ask policy and a chat-only request reaches a proper workflow"
-description: "Seven phases that make the skill advisor surface every tracked slash command with a run-or-ask policy and bring a chat-only request onto a proper workflow."
+description: "Eight phases that make the skill advisor surface every tracked slash command with a run-or-ask policy and bring a chat-only request onto a proper workflow."
 trigger_phrases:
   - "command surfacing build phase parent spec"
 importance_tier: "important"
@@ -120,6 +120,7 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 | 5 | 005-recommendation-contract-and-brief/ | Recommendation fields, brief line, degraded path, retired ids (R3, L6, L12, G6, L1, L7) | Pending |
 | 6 | 006-gate-2-binding-and-runtime-pointers/ | Gate 2 sentence, typed override, static pointer, child authority (R6, L5, R5, L4, G1, G3, L10) | Pending |
 | 7 | 007-per-runtime-behaviour-proof/ | Transcript proof per runtime and the started-command-is-followed check (R8 transcripts, G2, G5) | Pending |
+| 8 | 008-embedder-setup-and-cost/ | The embedder for external repositories: visible state, a plan-first doctor route, the measured memory and latency cost in the install guides and defined absent, cold and slow behaviour (operator requirement, 2026-11-12) | Pending |
 
 ### Phase Transition Rules
 
@@ -138,6 +139,7 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 | 004-command-meaning-matching | 005-recommendation-contract-and-brief | Holdout plain recall rises above 0 of 44 with false offers at 0 of 35 and typed recall at least 24 of 44, measured with the real embedding | The real-embedding capture and the full advisor suite |
 | 005-recommendation-contract-and-brief | 006-gate-2-binding-and-runtime-pointers | The recommendation and the brief carry the command and its policy | Schema test and golden briefs pass, and `save context` returns one entry |
 | 006-gate-2-binding-and-runtime-pointers | 007-per-runtime-behaviour-proof | The Gate 2 sentence and the generated pointer are in place | `/doctor:agents-md check` passes and the pointer generator's check exits 0 |
+| 007-per-runtime-behaviour-proof | 008-embedder-setup-and-cost | Phase 005 is merged and the per-runtime proof is recorded, so this phase edits the final recommendation handler and bridge activation list | `rg -n "ownerSkillId" .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` prints a line and phase 007 validates under `validate.sh --strict` |
 <!-- /ANCHOR:phase-map -->
 
 ---
