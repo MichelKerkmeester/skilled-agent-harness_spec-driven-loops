@@ -42,7 +42,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The operator is not asked anything. An open choice is decided, recorded in the log and work continues. Stop only for a missing credential, an exhausted model quota or a gate that still fails after three fixes. |
+| D1 | The operator is asked, through the question tool, when a choice changes what gets published, merged or recorded as done. A routine choice is decided, recorded in the log and work continues. Stop only for a missing credential, an exhausted model quota or a gate that still fails after three fixes. |
 | D2 | These actions are approved in advance: commits on `main`, pushes to `origin/main`, editing the `v4.0.2.1` release, and deleting and republishing the `v4.0.2.1` tag and release once, as the last step. The old tag object is kept under `refs/backup-tags/` first. |
 | D3 | The work list comes from the fresh Fable 5.2 review of the Barter handover, Barter's nested repository and Skilled. Every recommendation becomes a task or a rejection with its reason. |
 | D4 | Code and documentation changes, in implementation and in remediation, are written by DeepSeek v4.1 flash agents at max thinking through `pi` on llmgateway. The orchestrating session plans, briefs and verifies. It edits a file itself only after three failed agent attempts, and logs that. |
@@ -63,9 +63,9 @@ Frozen choices. Changing one is an amendment.
 - [x] Every task in `tasks.md` is `[x]`, and `node --test tests/` in `.skilled/commands/doctor/scripts` prints `fail 0`.
 - [x] The packet's `review/` folder holds 5 deep-review iteration records and a synthesis report written by a fresh Opus agent at high effort.
 - [x] Every P0 and P1 finding in that report is listed in `implementation-summary.md` as fixed, with the command that proves it, or as rejected, with the evidence against it.
-- [x] The `/local-skilled-alignment` findings report for this work, run after the last fix, lists 0 open findings.
+- [ ] The `/local-skilled-alignment` findings report for this work, run after the last fix, lists 0 open findings.
 - [x] `validate.sh --strict` prints `RESULT: PASSED` for this packet and for `specs/system-skilled-doctor/001-skill-and-overlay-build`.
-- [x] `.skilled/changelog/skilled/v4.0.2.1.md` names this work and passes `check_changelog_shape.py`. On origin, tag `v4.0.2.1` and `main` name the same commit, and the published release body equals the output of `build_release_notes.py` for that entry.
+- [ ] `.skilled/changelog/skilled/v4.0.2.1.md` names this work and passes `check_changelog_shape.py`. On origin, tag `v4.0.2.1` and `main` name the same commit, and the published release body equals the output of `build_release_notes.py` for that entry.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -89,9 +89,13 @@ and findings belong here.
 | Deep review, 5 iterations | Done | `review/lineages/deepseek/iterations` holds 3 records and `review/lineages/opus/iterations` holds 2 |
 | Opus synthesis | Done | `review/review-report.md`: CONDITIONAL, 0 P0, 3 P1, 9 P2 |
 | Remediation | Done | Six briefs. `node --test tests/` printed 1136 passed and 0 failed |
-| Alignment | Done | Six full runs, each followed by fixes. Every run found new defects after the fixes of the run before it. No lane run has reported zero findings. The sixth run's last recheck lists 0 open and exits 0, and a fresh Opus verifier checked the findings it left for a reviewer. `implementation-summary.md` lists each finding. `node --test tests/` printed 1150 passed and 0 failed, 124 of them engine tests |
+| Alignment | Open | Ten full runs, each followed by fixes. Every run found new defects after the fixes of the run before it. No lane run has reported zero findings. Each of the last five runs closed with a recheck that lists 0 still open. The operator chose to keep running full rounds until one lists 0. `implementation-summary.md` lists each finding. `node --test tests/` printed 1150 passed and 0 failed, 124 of them engine tests |
 | Changelog | Done | `check_changelog_shape.py` printed `PASS` for the entry and for the v1.1.6.0 note |
 | Decision record | Done | `decision-record.md` holds the operator's two answers of this session: the reviewer route and the guard README choice |
+| D1 amended by the operator on 2026-11-12 | Done | The operator told the session three times to use the question tool. Asked how to treat open choices, the operator chose that a choice which changes what gets published, merged or recorded as done is asked, and routine choices are decided and logged. |
+| The fifth criterion is open again | Open | The operator chose to keep running full alignment rounds until one lists 0 findings, and to untick the box until then. Rounds seven, eight and nine found 13, 7 and 5 findings. Each round's recheck lists 0 still open. Round ten is running over 2aa53ef3df..e4f3963384. |
+| Operator answers of 2026-11-12 on the tag, Dependabot, the changelog and pushes | Done | The tag moves once more, at the end. Both Dependabot pull requests are merged after GitHub updates their branches: 95 is merged as ff5c668fc4, 96 conflicts with it and waits for Dependabot to recreate it. The advisor's routing phrases go into its existing v0.18.7.0 entry with no version change. Each round's commits are pushed once its recheck is clean. From round eleven the review lanes report... |
+| The seventh criterion is open again | Open | The tag v4.0.2.1 is at 9c24bbdddd and main has moved past it with the fixes of rounds seven to nine and a merged Dependabot pull request. The operator chose one more tag move, at the end, so the box stays open until then. |
 
 ### Deviations and findings
 
