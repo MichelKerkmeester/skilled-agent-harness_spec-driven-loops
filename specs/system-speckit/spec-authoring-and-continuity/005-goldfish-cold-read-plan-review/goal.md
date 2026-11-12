@@ -88,12 +88,12 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `validate.sh <packet> --recursive --strict` prints `RESULT: PASSED`
-- [ ] Children 002 to 007 have Status Complete and every `acceptance-criteria.md` row `Met`
-- [ ] `fanout-run.cjs` exits non-zero on a one-lineage research matrix without `--allow-single-lineage`, and the deep-loop unit and stress suites pass
-- [ ] The system-spec-kit `runtime/cli` suite passes with the regenerated scaffold snapshot
-- [ ] `review/review-report.md` covers 5 iterations and no P0 or P1 finding stays open after remediation
-- [ ] `synthesis.md` by Opus exists and `local-skilled-alignment` reports no open finding
+- [x] `validate.sh <packet> --recursive --strict` prints `RESULT: PASSED`
+- [x] Children 002 to 007 have Status Complete and every `acceptance-criteria.md` row `Met`
+- [x] `fanout-run.cjs` exits non-zero on a one-lineage research matrix without `--allow-single-lineage`, and the deep-loop unit and stress suites pass
+- [x] The system-spec-kit `runtime/cli` suite passes with the regenerated scaffold snapshot
+- [x] `review/review-report.md` covers 5 iterations and no P0 or P1 finding stays open after remediation
+- [x] `synthesis.md` by Opus exists and `local-skilled-alignment` reports no open finding
 - [ ] `git ls-remote --tags origin v4.0.2.1` names the commit holding this work, and the v4.0.2.1 changelog lists it
 <!-- /ANCHOR:completion -->
 

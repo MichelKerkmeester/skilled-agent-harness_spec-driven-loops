@@ -168,14 +168,14 @@
     ],
     "causal_summary": "SpecKit planning can let the same session write and judge a plan, while a chat-started deep loop can bypass the workflow steps that enforce it",
     "created_at": "2026-11-11T21:06:04Z",
-    "last_save_at": "2026-11-12T07:18:07.086Z",
+    "last_save_at": "2026-11-12T07:20:37.871Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:dbd4d22b793b9529d49009207d752784227c716ab0c03ac713286f04dd30c6cf",
+    "source_fingerprint": "sha256:b77d9cd5f93456aa0ba2862f730cae572d18584a8951fcf08cab07efc65ce2bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "91a746c909fe50ee0c025e63ba4d2af9f8d9fdfb70284fa01cff575b49221751"

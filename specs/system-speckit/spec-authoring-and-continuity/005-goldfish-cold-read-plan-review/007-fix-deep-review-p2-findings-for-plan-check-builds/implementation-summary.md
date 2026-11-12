@@ -120,6 +120,7 @@ The earlier contract `--write` commands and their exit statuses are recorded at 
 | Shell and card checks | `bash -n` and scoped `git diff --check` exited 0; card sync printed `CARD SYNC OK` (exit 0). |
 | Strict packet validation | The quiet strict run after this reconciliation printed an explicit `RESULT: PASSED` line and exited 0. |
 | Historical edit-packet replay audit | The earlier audit reported FAIL: `edit-T014.txt` NEW/OLD 0/0, `edit-T015.txt` NEW/OLD 0/0, `edit-T019.txt` NEW/OLD 0/0, `edit-T024.txt` NEW/OLD 0/0, and `edit-T028.txt` NEW 0 (each expected count 1). The remediation record says the edits matched exactly when applied, then later closeout text superseded them. CHK-002 and CHK-040 are now checked. |
+| Alignment recheck | `local-skilled-alignment --recheck` against the pushed tree: 6 literal findings resolved, 0 new, 0 still open; each of the 17 judgment findings was checked by a direct search of the pushed files and found fixed. The one still-open battery row, `S1-package-check` on the spec-kit runtime, is three unused-variable lint errors in test files last changed by `6f114c396b`, `c7a60be68a` and `47cfb9bb28`; the critic marked it pre-existing and the report places it outside the scope. |
 <!-- /ANCHOR:verification -->
 
 ---

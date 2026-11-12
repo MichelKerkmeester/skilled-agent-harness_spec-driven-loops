@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The finished review found a duplicated loop-type allowlist, an undocumented one-lineage opt-in whose value form is refused, and an unvalidated Claude config directory in the direct review path",
     "created_at": "2026-11-12T00:30:47Z",
-    "last_save_at": "2026-11-12T07:18:37.544Z",
+    "last_save_at": "2026-11-12T07:20:38.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:983fe7dc439f4c4ea4728499cebbd984fafd81ac7ce863f37020d01ac42013f2",
+    "source_fingerprint": "sha256:72931b0ca9be42cd4a985734732198ab02736ea14edd34557a18d73ec16c84e7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5597035f596718df93fb58df00042e55d06766cf4509d074a899832a07941601",
       "plan.md": "da2db90b815ac9d55b99ea9ac8a780a5d379611094708b74621f64573745fcdb",
       "tasks.md": "d3cbbfa57099f0e9044693e99152d18baefc204a006562fb59d13bcc3b2d55b9",
-      "implementation-summary.md": "3d438a5a6d28d61c23395d60d234a5488e1e7bcf2d2fd9bbc8f5fe98d1210590"
+      "implementation-summary.md": "8f15be43849b752519a7c95f59ec81f8d418190d93b3719d7e6059d099f45b55"
     },
     "last_active_at": null
   }
