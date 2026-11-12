@@ -7,7 +7,7 @@ trigger_phrases:
   - "Devin session relaunch"
   - "session-relaunch-command-runtimes"
   - "skilled-loop codex"
-version: 1.0.19.0
+version: 1.0.20.0
 id: session-relaunch-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -486,7 +486,7 @@ Codex 0.164.0, Devin 3000.11.205. Evidence lives in `specs/hooks-plugins-extensi
 | `.skilled/hooks/goal/devin/goal-inject.mjs` | Devin hook that binds the hand-over packet before its usual goal read. |
 | `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/` | The harness behind the goal carry-over checks and their recorded runs. |
 
-Provenance: .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs
+Provenance: .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs
 
 ---
 
