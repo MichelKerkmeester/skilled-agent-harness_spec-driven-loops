@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards",
+  "description": "Phase 18: cli-vitest-shards",
+  "keywords": [
+    "phase",
+    "cli-vitest-shards"
+  ],
+  "lastUpdated": "2026-11-12T17:43:59.654Z",
+  "specId": "018",
+  "folderSlug": "cli-vitest-shards",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_18-43__the-alignment-findings-for-cli-vitest-shards.md"
+  ]
+}

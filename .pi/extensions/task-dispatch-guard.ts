@@ -1,1 +1,1 @@
-../../.skilled/hooks/task-dispatch/pi/task-dispatch-guard.ts
+export { default } from '../../.skilled/hooks/task-dispatch/pi/task-dispatch-guard.ts';

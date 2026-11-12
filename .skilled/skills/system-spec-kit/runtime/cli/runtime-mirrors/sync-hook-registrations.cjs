@@ -7,12 +7,14 @@
 // nesting, matcher dialect and wrapper convention, and each file used to be
 // kept by hand. hook-registry.json names every hook once with its concern, its
 // script and its per-runtime bindings; this script renders the four files from
-// it. Pi registers by symlink under .pi/extensions, so for Pi the registry is
-// verified against the directory instead of rendered.
+// it. Pi registers through a one-line re-export entry file under
+// .pi/extensions, so for Pi the registry is verified against the directory
+// instead of rendered.
 //
 // Usage:
 //   node sync-hook-registrations.cjs [--check] [--root <repo-root>]
-// Exit: 0 in sync (or written), 1 drift or a missing Pi symlink under --check,
+// Exit: 0 in sync (or written), 1 drift or a Pi extension entry that is not a
+//       resolvable re-export under --check,
 //       2 usage or a registry the renderer cannot honour.
 
 // ───────────────────────────────────────────────────────────────────
@@ -36,6 +38,12 @@ const ENVELOPE_REJECTS_UNKNOWN_KEYS = new Set(['codex']);
 // context; Stop and PreCompact reject it and discard the whole response, so
 // their fallback carries the message as a plain `systemMessage` instead.
 const SYSTEM_MESSAGE_EVENTS = new Set(['codex:Stop', 'codex:PreCompact']);
+// A Pi extension entry has to be a plain file holding exactly one re-export of
+// the adapter, because Pi 1.5.1 and later resolve a symlinked entry to the real
+// adapter first while older Pi resolves the entry's imports from the entry's own
+// folder: no symlink plus static import loads on both. Any other content in the
+// entry registers nothing, so the shape is checked, not just the file's presence.
+const PI_REEXPORT_PATTERN = /^export \{ default \} from (['"])([^'"]+)\1;\r?\n?$/u;
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -215,18 +223,22 @@ function renderRuntimeFile(registry, runtime, current) {
 // 6. PI VERIFICATION
 // ───────────────────────────────────────────────────────────────────
 
-/** Every Pi extension the registry names must be a symlink that resolves to a file. */
+/** Every Pi extension the registry names must be a one-line re-export file whose adapter exists. */
 function verifyPiExtensions(registry, repoRoot) {
-  const dir = path.join(repoRoot, registry.runtimes.pi.extensionsDir);
+  const directory = registry.runtimes.pi.extensionsDir;
+  const dir = path.join(repoRoot, directory);
   const problems = [];
   const expected = new Set(registry.hooks.map((hook) => hook.pi?.extension).filter(Boolean));
   for (const extension of [...expected].sort()) {
-    const link = path.join(dir, extension);
+    const entry = path.join(dir, extension);
     let stat;
-    try { stat = fs.lstatSync(link); } catch { problems.push(`${registry.runtimes.pi.extensionsDir}/${extension}: missing`); continue; }
-    if (!stat.isSymbolicLink()) { problems.push(`${registry.runtimes.pi.extensionsDir}/${extension}: not a symlink`); continue; }
-    const target = path.resolve(dir, fs.readlinkSync(link));
-    if (!fs.existsSync(target) || !fs.statSync(target).isFile()) problems.push(`${registry.runtimes.pi.extensionsDir}/${extension}: dangling -> ${path.relative(repoRoot, target)}`);
+    try { stat = fs.lstatSync(entry); } catch { problems.push(`${directory}/${extension}: missing`); continue; }
+    if (stat.isSymbolicLink()) { problems.push(`${directory}/${extension}: a symlink, which Pi before 1.5.1 cannot load; make it a one-line re-export file`); continue; }
+    const source = stat.isFile() ? fs.readFileSync(entry, 'utf8') : null;
+    const match = source === null ? null : PI_REEXPORT_PATTERN.exec(source);
+    if (match === null) { problems.push(`${directory}/${extension}: not a one-line re-export of the adapter`); continue; }
+    const target = path.resolve(dir, match[2]);
+    if (!fs.existsSync(target) || !fs.statSync(target).isFile()) problems.push(`${directory}/${extension}: dangling -> ${path.relative(repoRoot, target)}`);
   }
   return { checked: expected.size, problems };
 }

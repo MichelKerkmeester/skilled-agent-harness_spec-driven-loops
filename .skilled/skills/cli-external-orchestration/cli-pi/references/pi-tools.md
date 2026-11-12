@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi tool surface"
 importance_tier: normal
 contextType: implementation
-version: 1.5.4.0
+version: 1.5.5.0
 ---
 
 # Pi CLI Unique Capabilities
@@ -66,7 +66,7 @@ None of the other 5 CLI executors in this hub expose an equivalent persistent, b
 
 ### What It Is
 
-**Confirmed** (phases 012/015): Pi auto-discovers `.pi/extensions/*.ts` files with no settings-file registration required. This repo has 11 real extension files: 6 guard-core bridges (`spec-gate-enforce`, `spec-gate-classify`, `dispatch-preflight-lint`, `dispatch-audit`, `post-edit-quality`, `mcp-route-guard`) plus 5 session-lifecycle bridges (`session-start-context`, `session-start-advisories`, `session-stop-context`, `prompt-advisor`, `session-compact-context`), each a plain `ExtensionFactory` registering via `pi.on(event, handler)`. The extension API's lifecycle-event surface (33 named events including block-capable `tool_call`) is confirmed via a direct read of the installed package's `types.d.ts`, and live firing was traced end to end against an authenticated provider — `session_start`, `session_shutdown(quit)`, the `input` transform chain, `tool_call`, and `tool_result` all fired with side-effect evidence (playbook scenario PI-020). Only `session_compact` remains untraced (it fires solely in long interactive sessions); see [native-skills-and-extensions.md](./native-skills-and-extensions.md) §5 for the confidence boundary.
+**Confirmed** (phases 012/015): Pi auto-discovers `.pi/extensions/*.ts` files with no settings-file registration required. This repo has 22 entry files, each a one-line re-export of an adapter kept under `.skilled/`, the adapter being a plain `ExtensionFactory` registering via `pi.on(event, handler)`; [`.pi/extensions/README.md`](../../../../../.pi/extensions/README.md) holds the roster. The extension API's lifecycle-event surface (33 named events including block-capable `tool_call`) is confirmed via a direct read of the installed package's `types.d.ts`, and live firing was traced end to end against an authenticated provider — `session_start`, `session_shutdown(quit)`, the `input` transform chain, `tool_call`, and `tool_result` all fired with side-effect evidence (playbook scenario PI-020). Only `session_compact` remains untraced (it fires solely in long interactive sessions); see [native-skills-and-extensions.md](./native-skills-and-extensions.md) §5 for the confidence boundary.
 
 ### Capabilities
 

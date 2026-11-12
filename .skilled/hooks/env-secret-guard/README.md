@@ -62,7 +62,7 @@ env-secret-guard/
 │   ├── env-secret-guard.cjs        # Claude Code, Codex, Cursor and Devin, before a call
 │   └── env-secret-guard-after.cjs  # the same adapter under its own path, for the after-call registration
 ├── pi/
-│   └── env-secret-guard.ts         # linked from .pi/extensions/
+│   └── env-secret-guard.ts         # re-exported by a one-line entry in .pi/extensions/
 ├── dsh/
 │   └── env-secret-guard.mjs        # linked into .dsh/plugins/repo-guards/adapters/
 ├── opencode/
@@ -82,7 +82,7 @@ env-secret-guard/
 | Cursor | `command-hook/env-secret-guard.cjs` | `hook-registry.json`, rendered into `.cursor/hooks.json`, no matcher | every tool, filtered in the core | `permission: deny`, exit 2, chosen by `hook_event_name: preToolUse`, `conversation_id` or `workspace_roots` |
 | Devin | `command-hook/env-secret-guard.cjs` | `hook-registry.json`, rendered into `.devin/hooks.v1.json` | `read`, `edit`, `write`, `multiedit`, `patch`, `apply_patch`, `grep`, `exec`, `bash`, `run_command` | `permissionDecision: deny` |
 | OpenCode | `.opencode/plugins/env-secret-guard.js` | OpenCode's plugin folder | `read`, `write`, `edit`, `multiedit`, `patch`, `apply_patch`, `grep`, `bash` | a thrown error |
-| Pi | `pi/env-secret-guard.ts` | symlink in `.pi/extensions/` | `read`, `write`, `edit`, `grep`, `bash`, `powershell` | `{ block: true, reason }` |
+| Pi | `pi/env-secret-guard.ts` | one-line entry file in `.pi/extensions/` | `read`, `write`, `edit`, `grep`, `bash`, `powershell` | `{ block: true, reason }` |
 | DSH | `dsh/env-secret-guard.mjs` | `.dsh/plugins/repo-guards/index.mjs` | `read`, `write`, `edit`, `apply_patch`, `grep`, `bash` | `{ kind: 'deny', reason }` |
 
 OpenCode also registers the tools `env_secret_list_keys`, `env_secret_validate` and `env_secret_fingerprint`. On the other runtimes the deny message names the CLI instead.

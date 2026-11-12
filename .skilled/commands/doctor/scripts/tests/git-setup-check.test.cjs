@@ -1401,13 +1401,18 @@ test('opencode and pi pass only when the adapter registers its event and imports
       `${tool}: ${stub.details.join(' | ')}`,
     );
 
-    // The real adapter comes from this checkout, whose pi path is a symlink into .skilled.
+    // The real wiring comes from this checkout. The Pi entry only re-exports an adapter
+    // kept under .skilled, so the fixture links that tree for the re-export to resolve.
     fs.writeFileSync(target, fs.readFileSync(path.join(REAL_ROOT, file), 'utf8'));
-    const adapterSource = fs.readFileSync(target, 'utf8');
-    const importSpecifier = adapterSource.match(/(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*)['"]([^'"]*git-rule-checks\.mjs)['"]/)[1];
-    const importedFile = path.resolve(path.dirname(target), importSpecifier);
-    fs.mkdirSync(path.dirname(importedFile), { recursive: true });
-    fs.writeFileSync(importedFile, '');
+    if (tool === 'pi') {
+      fs.symlinkSync(OWN_ROOT, path.join(f.repo, '.skilled'), 'dir');
+    } else {
+      const adapterSource = fs.readFileSync(target, 'utf8');
+      const importSpecifier = adapterSource.match(/(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*)['"]([^'"]*git-rule-checks\.mjs)['"]/)[1];
+      const importedFile = path.resolve(path.dirname(target), importSpecifier);
+      fs.mkdirSync(path.dirname(importedFile), { recursive: true });
+      fs.writeFileSync(importedFile, '');
+    }
     const real = rowOf(reportOf(f.run(['--tool', tool, '--json'])), 'ai-tool-hooks');
     assert.equal(real.result, 'PASS', `${tool}: ${real.details.join(' | ')}`);
     assert.ok(
@@ -1415,6 +1420,94 @@ test('opencode and pi pass only when the adapter registers its event and imports
       `${tool}: ${real.details.join(' | ')}`,
     );
   }
+});
+
+test('pi resolves a linked adapter\'s imports from the file the link points at', (t) => {
+  const f = fixture(t);
+  const link = path.join(f.repo, TOOL_FILES.pi);
+  const realAdapter = path.join(
+    f.repo,
+    '.skilled',
+    'skills',
+    'sk-git',
+    'scripts',
+    'hooks',
+    'pi',
+    'git-preflight-advisory.ts',
+  );
+  fs.mkdirSync(path.dirname(realAdapter), { recursive: true });
+  fs.writeFileSync(
+    realAdapter,
+    "import { GIT_CHECKS } from '../../lib/git-rule-checks.mjs';\n"
+      + "export default function ext(pi) { pi.on('tool_call', async (event) => {}); }\n",
+  );
+  const sharedModule = path.join(f.repo, '.skilled', 'skills', 'sk-git', 'scripts', 'lib', 'git-rule-checks.mjs');
+  fs.mkdirSync(path.dirname(sharedModule), { recursive: true });
+  fs.writeFileSync(sharedModule, '');
+
+  // The link is relative and the folder holding it has no lib of its own, so only the
+  // real adapter's folder can resolve the shared module.
+  fs.mkdirSync(path.dirname(link), { recursive: true });
+  fs.symlinkSync(path.relative(path.dirname(link), realAdapter), link);
+
+  const row = rowOf(reportOf(f.run(['--tool', 'pi', '--json'])), 'ai-tool-hooks');
+  assert.equal(row.result, 'PASS', `pi: ${row.details.join(' | ')}`);
+  assert.ok(
+    row.details.includes(`pi (active): registered (${TOOL_FILES.pi})`),
+    `pi: ${row.details.join(' | ')}`,
+  );
+});
+
+test('pi reads a re-exported adapter from the file the entry names', (t) => {
+  const f = fixture(t);
+  const adapter = path.join(
+    f.repo,
+    '.skilled',
+    'skills',
+    'sk-git',
+    'scripts',
+    'hooks',
+    'pi',
+    'git-preflight-advisory.ts',
+  );
+  fs.mkdirSync(path.dirname(adapter), { recursive: true });
+  fs.writeFileSync(
+    adapter,
+    "import { GIT_CHECKS } from '../../lib/git-rule-checks.mjs';\n"
+      + "export default function ext(pi) { pi.on('tool_call', async (event) => {}); }\n",
+  );
+  const sharedModule = path.join(f.repo, '.skilled', 'skills', 'sk-git', 'scripts', 'lib', 'git-rule-checks.mjs');
+  fs.mkdirSync(path.dirname(sharedModule), { recursive: true });
+  fs.writeFileSync(sharedModule, '');
+
+  // The entry carries neither the handler nor the import itself, and its folder holds no
+  // lib of its own, so only the re-exported file's folder can resolve the shared module.
+  const entry = path.join(f.repo, TOOL_FILES.pi);
+  fs.mkdirSync(path.dirname(entry), { recursive: true });
+  fs.writeFileSync(entry, `export { default } from '${path.relative(path.dirname(entry), adapter)}';\n`);
+
+  const row = rowOf(reportOf(f.run(['--tool', 'pi', '--json'])), 'ai-tool-hooks');
+  assert.equal(row.result, 'PASS', `pi: ${row.details.join(' | ')}`);
+  assert.ok(
+    row.details.includes(`pi (active): registered (${TOOL_FILES.pi})`),
+    `pi: ${row.details.join(' | ')}`,
+  );
+});
+
+test('pi fails a re-export whose named file does not exist', (t) => {
+  const f = fixture(t);
+  const entry = path.join(f.repo, TOOL_FILES.pi);
+  fs.mkdirSync(path.dirname(entry), { recursive: true });
+  fs.writeFileSync(entry, "export { default } from '../../.skilled/missing/git-preflight-advisory.ts';\n");
+
+  const row = rowOf(reportOf(f.run(['--tool', 'pi', '--json'])), 'ai-tool-hooks');
+  assert.equal(row.result, 'FAIL', `pi: ${row.details.join(' | ')}`);
+  assert.ok(
+    row.details.includes(
+      `pi (active): ${TOOL_FILES.pi} re-exports ../../.skilled/missing/git-preflight-advisory.ts, which does not exist`,
+    ),
+    `pi: ${row.details.join(' | ')}`,
+  );
 });
 
 test('opencode concise arrows and pi default functions register supported handlers', (t) => {
@@ -1675,10 +1768,16 @@ test('opencode and pi fail an adapter whose git-rule-checks.mjs import does not 
       `${tool}: ${missing.details.join(' | ')}`,
     );
 
-    const importSpecifier = adapter.match(/(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*)['"]([^'"]*git-rule-checks\.mjs)['"]/)[1];
-    const importedFile = path.resolve(path.dirname(target), importSpecifier);
-    fs.mkdirSync(path.dirname(importedFile), { recursive: true });
-    fs.writeFileSync(importedFile, '');
+    // The Pi entry re-exports an adapter kept under .skilled, so linking that tree is
+    // what supplies the shared module the adapter imports.
+    if (tool === 'pi') {
+      fs.symlinkSync(OWN_ROOT, path.join(f.repo, '.skilled'), 'dir');
+    } else {
+      const importSpecifier = adapter.match(/(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*)['"]([^'"]*git-rule-checks\.mjs)['"]/)[1];
+      const importedFile = path.resolve(path.dirname(target), importSpecifier);
+      fs.mkdirSync(path.dirname(importedFile), { recursive: true });
+      fs.writeFileSync(importedFile, '');
+    }
 
     const present = rowOf(reportOf(f.run(['--tool', tool, '--json'])), 'ai-tool-hooks');
     assert.equal(present.result, 'PASS', `${tool}: ${present.details.join(' | ')}`);

@@ -38,7 +38,14 @@ jobs:
     outputs:
       extensions: ${{ steps.list.outputs.extensions }}
     steps:
+      # Discovery walks .pi/extensions and each leg installs from the lockfile inside its
+      # own folder, so that tree is all either job needs on disk.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.pi/extensions/
+          sparse-checkout-cone-mode: false
 
       - name: List extension folders
         id: list
@@ -70,7 +77,13 @@ jobs:
       run:
         working-directory: .pi/extensions/${{ matrix.extension }}
     steps:
+      # Same cone as the discovery job: the matrix leg runs from its own extension folder.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.pi/extensions/
+          sparse-checkout-cone-mode: false
 
       - name: Setup Node
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0

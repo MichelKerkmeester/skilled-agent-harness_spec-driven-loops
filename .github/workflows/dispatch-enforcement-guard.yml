@@ -49,22 +49,3 @@ jobs:
             echo "::error::A dispatch rule is unreachable, undeclared, or does not discriminate — see the failures above."
             exit 1
           fi
-
-  hooks-vitest:
-    name: Every hook vitest suite passes
-    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
-        with:
-          node-version: '22'
-      - name: Install the hooks test runner
-        run: npm --prefix .skilled ci
-      # The runtime adapter suites, Pi's preflight lint and directive dedup and the
-      # Codex shell-tool names, ran in no job, so a rename upstream broke them
-      # unseen. The hooks config collects every vitest suite in the tree and skips
-      # the node:test files, which run on their own.
-      - name: Run the hooks vitest tree
-        run: .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts

@@ -239,7 +239,7 @@ Adopt this path now? [yes/no]
 
 ### Refusals Before Any Write
 
-The engine prints one `refuse:` line and exits 2. Nothing was written.
+The engine prints one `refuse:` line, for the one path an adopt takes, and exits 2. Nothing was written.
 
 | The engine refuses because | Fix |
 |----------------------------|-----|
@@ -293,7 +293,7 @@ The run prints one `skipped` line per file the backup did not copy, because the 
 
 ### Refusals Before Any Write
 
-The engine prints one `refuse:` line and exits 2. Nothing was written.
+The engine prints one `refuse:` line per refusal and exits 2. Nothing was written.
 
 | The engine refuses because | Fix |
 |----------------------------|-----|
@@ -302,7 +302,7 @@ The engine prints one `refuse:` line and exits 2. Nothing was written.
 | Two copies belong at one path, or one copy is claimed by two fields | Settle the manifest so one copy owns one path, then rerun |
 | A field or a link no longer holds the path the run planned against | Nothing moved. The manifest changed under the run, or two entries claim one copy. Fix the field or the link the `refuse:` line names, then rerun |
 | Two copies sit one inside the other | Move the outer copy in its own run, then the inner one |
-| The overlay lock is held | Wait for the other run to end, then remove the lock file the message names by hand. A lock whose owner has ended on this host is taken over by the next run, which prints a `note:` line, so this row covers a live owner, another host or a line with no pid |
+| The overlay lock is held | Wait for the other run to end, then remove the lock file the message names by hand. A lock whose owner has ended on this host is taken over by the next run, which prints a `note:` line, so this row covers a live owner, another host or a line with no pid. A refusal that names a takeover marker says to run it again in a minute: do that and leave the lock. |
 
 ## 8. Repin Plan and Approval
 
@@ -339,6 +339,7 @@ Now equal to upstream: [one equals-upstream <overlay-id> line per overlay, or no
 Not copied: [the engine's not-copied lines, upstream changes the re-pin leaves for the operator, or none]
 Root files: [the engine's root-file lines, one per file in repin.rootFiles that upstream changed, or none]
 Skipped on the copy: [the engine's stage skipped line, or none]
+Lock note: [the engine's `note: the overlay lock belongs to a run that has ended` line, or none]
 Stage result: RESULT: STAGED
 Then: the live run backs up every path it touches into [overlay folder]/repin-runs/<run-id>/, copies, sets the pin, applies the overlays and runs the full check
 Lock: the engine holds [overlay folder]/.build-lock for the whole run
@@ -362,7 +363,7 @@ An overlay that now equals upstream needs no change to re-pin. Its entry can be 
 
 | The engine refuses because | Fix |
 |----------------------------|-----|
-| The overlay lock is held | Wait for the other run to end, then remove the lock file the message names by hand. A lock whose owner has ended on this host is taken over by the next run, which prints a `note:` line, so this row covers a live owner, another host or a line with no pid |
+| The overlay lock is held | Wait for the other run to end, then remove the lock file the message names by hand. A lock whose owner has ended on this host does not stop a re-pin: the stage step reads it and prints a `note:` line, and the live step takes it over, so this row covers a live owner, another host or a line with no pid. A refusal that names a takeover marker says to run it again in a minute: do that and leave the lock. |
 | A destination is `live-edited`, `both-changed` or `upstream-moved` | Settle it first: `/doctor:overlay apply --capture <path>` for a live edit, or resolve the overlay by hand for the other two, then rerun `/doctor:overlay status` |
 | An overlay is refused, shown as `blocked <overlay-id>: refused ...` | Follow the fix the line names, usually adding a token-named file to that entry's `protectedPaths`, then rerun `/doctor:overlay status` |
 | An unowned file in the copied roots differs from the old pin, at the path the engine names | That file holds an edit made in place, which the copy would revert. Move the edit into an overlay or upstream, then rerun |
@@ -540,7 +541,7 @@ What each engine exit means for `Changed:`:
 | `not-copied` lines in a re-pin report | Upstream changed these paths, and a re-pin never copies them: they sit under `repin.exclude` or in a top-level file or folder outside the copied roots, such as `AGENTS.md`. Carry over what applies by hand. For the shipped `AGENTS.md` sections, run `/doctor:agents-md` |
 | `stage skipped ... regenerate and ... verify step(s)` | Expected. The stage has no project install, so the generators run only in the live re-pin |
 | `.skilled-overlays.json` is refused | The setting must name a relative folder inside the tree with forward slashes. Fix the file, then rerun `/doctor:overlay status` |
-| `refuse: the overlay lock is held` | Another run holds the lock. Wait for that run to end, then remove the lock file the message names by hand. A lock whose owner has ended on this host is taken over by the next run, which prints a `note:` line, so this row covers a live owner, another host or a line with no pid |
+| `refuse: the overlay lock is held` | Another run holds the lock. Wait for that run to end, then remove the lock file the message names by hand. A lock whose owner has ended on this host is taken over by the next run, which prints a `note:` line, so this row covers a live owner, another host or a line with no pid. A refusal that names a takeover marker says to run it again in a minute: do that and leave the lock. |
 | A `live-edited` line | Run `/doctor:overlay apply --capture <path>` for that path, then `/doctor:overlay apply` |
 | A `LAYOUT` line in a status report | Run `/doctor:overlay apply --relayout`, which moves each off-layout source and then applies. The copy still applies while it sits off its layout path |
 | A `STALE` line in a status report | Upstream changed a root file a `repin.rootFiles` overlay owns. Rebase the overlay onto the new bytes, then set its `pinnedSha256` to theirs and rerun `/doctor:overlay status` |

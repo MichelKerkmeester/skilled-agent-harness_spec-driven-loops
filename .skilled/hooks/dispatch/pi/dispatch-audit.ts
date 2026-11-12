@@ -2,7 +2,7 @@
 // MODULE: Pi Extension - Dispatch Audit
 // ───────────────────────────────────────────────────────────────────
 
-import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
+import { isHookEnabled } from '../../shared/hook-flags.mjs';
 
 import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
 
@@ -24,7 +24,7 @@ export default function dispatchAudit(pi: ExtensionAPI): void {
     try {
       if (event.toolName !== 'bash' || typeof event.input.command !== 'string') return;
 
-      const audit = await import('../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs');
+      const audit = await import('../lib/dispatch-audit.mjs');
       audit.recordDispatch({
         command: event.input.command,
         logPath: audit.resolveAuditLogPath(ctx.cwd),

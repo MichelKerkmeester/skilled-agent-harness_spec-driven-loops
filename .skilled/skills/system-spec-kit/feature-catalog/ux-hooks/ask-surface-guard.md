@@ -6,7 +6,7 @@ trigger_phrases:
   - "prose option menu guard"
   - "question tool enforcement"
   - "typed option menu"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Ask-surface guard
@@ -51,7 +51,7 @@ Every fire appends one line to the gitignored `.skilled/skills/.state/ask-surfac
 | `.skilled/hooks/ask-surface-guard/codex/ask-surface-stop.cjs` | Codex adapter | Advisory Stop entry point. |
 | `.skilled/hooks/ask-surface-guard/devin/ask-surface-stop.cjs` | Devin adapter | Advisory Stop entry point. |
 | `.skilled/hooks/ask-surface-guard/dsh/ask-surface-guard.mjs` | DSH adapter | `agent/turn-stopping` steer, linked from `.dsh/plugins/repo-guards/adapters/`. |
-| `.skilled/hooks/ask-surface-guard/pi/ask-surface-guard.ts` | Pi extension | `agent_end` follow-up turn, linked from `.pi/extensions/`. |
+| `.skilled/hooks/ask-surface-guard/pi/ask-surface-guard.ts` | Pi extension | `agent_end` follow-up turn, re-exported by a one-line entry file in `.pi/extensions/`. |
 | `.opencode/plugins/ask-surface-guard.js` | OpenCode plugin | `session.idle` re-prompt through `session.promptAsync`. |
 | `.opencode/plugins/lib/v2-bridge.js` | OpenCode bridge | Carries OpenCode 2 tool parts into the v1 message shape, so the plugin sees a `question` call. |
 | `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` | Registry | The Claude, Codex and Devin Stop entries and the Pi extension. |

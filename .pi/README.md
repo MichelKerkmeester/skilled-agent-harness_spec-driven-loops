@@ -9,7 +9,7 @@ trigger_phrases:
 
 # Pi CLI in Skilled
 
-> Pi runs the same guard cores as the other runtimes through TypeScript extensions that link straight into the shared hook code.
+> Pi runs the same guard cores as the other runtimes through TypeScript extensions that re-export adapters kept beside the shared hook code.
 
 ---
 
@@ -26,7 +26,7 @@ trigger_phrases:
 
 ### What You Get
 
-Pi has no hook configuration file. Its hooks are TypeScript extensions in `extensions/`, and each one links to the adapter its owning hook core keeps. A fix to a guard therefore reaches Pi without a copy to update.
+Pi has no hook configuration file. Its hooks are TypeScript extensions in `extensions/`, and each one is a one-line file that re-exports the adapter its owning hook core keeps. A fix to a guard therefore reaches Pi without a copy to update.
 
 A handler fails open when its hook core faults, so a bug in a guard never blocks the work it watches. Pi also reads the root `AGENTS.md` from its working directory and the folders above it, so the shared instructions arrive without a copy here.
 
@@ -40,7 +40,7 @@ A handler fails open when its hook core faults, so a bug in a guard never blocks
 | Skills | The `skills` link exposes the whole skill library |
 | Agents | Each shared agent in `agents/`, in Pi's dialect. No installed Pi surface reads them today, so the folder stays current for a consumer that returns |
 | Commands | One prompt template per command in `prompts/`. Each template points at its canonical command file. `goal-pi.md` is the native goal command |
-| Hooks and guards | 21 extensions. They cover the advisor, the spec-folder gate, dispatch lint and audit, the task-dispatch guard, the MCP route guard, post-edit quality, the injection screen, the overlay guard, decision capture, the ask-surface guard, the sk-git gate and preflight advisory, the session context hooks and the session-relaunch nudge |
+| Hooks and guards | 22 extensions. They cover the advisor, the spec-folder gate, dispatch lint and audit, the task-dispatch guard, the MCP route guard, post-edit quality, the injection screen, the overlay guard, the env-secret guard, completion evidence, decision capture, the ask-surface guard, the sk-git gate and preflight advisory, the session context hooks and the session-relaunch nudge |
 | Advisor | The `prompt-advisor` extension |
 | Goals | The `goal-context` extension, and `goal-pi.md` for the native command |
 | MCP | `mcp.json` registers the Code Mode server |
@@ -60,7 +60,7 @@ A handler fails open when its hook core faults, so a bug in a guard never blocks
 
 | Path | Kind | Notes |
 |---|---|---|
-| `extensions/*.ts` | Links | Each points into its owning hook core under `.skilled/` |
+| `extensions/*.ts` | One-line re-exports | Each re-exports an adapter from its owning hook core under `.skilled/` |
 | `extensions/pi-cache-optimizer/`, `extensions/pi-fast-mode-w-subagent-support/` | Packages | Third-party extensions loaded from local folders |
 | `prompts/*.md` | Generated, plus `goal-pi.md` | Written by `sync-prompts-pi.cjs`. `goal-pi.md` is authored |
 | `agents/*.md` | Generated | Written by `sync-agents-pi.cjs` from `.skilled/agents/` |
@@ -70,7 +70,7 @@ A handler fails open when its hook core faults, so a bug in a guard never blocks
 | `git/`, `npm/` | Package installs | Only their `.gitignore` files are tracked |
 | `types/` | Authored | Type declarations for the extensions |
 
-**The one rule:** never edit `prompts/` or `agents/` by hand. Change the source in `.skilled/`, then rerun the matching generator. To change what a guard does, change the hook core, because the extension only links to it.
+**The one rule:** never edit `prompts/` or `agents/` by hand. Change the source in `.skilled/`, then rerun the matching generator. To change what a guard does, change the hook core, because the extension only re-exports its adapter.
 
 ---
 
@@ -89,7 +89,7 @@ The first two print a `PASS` line with their counts. The third prints a `PASS` l
 ## 6. LIMITS AND KNOWN GAPS
 
 - **Generated agents are one way.** The permission-to-tool mapping does not round-trip, so `.skilled/agents/` stays the source.
-- **The extensions have no drift checker.** A change in a shared core shows up at runtime or in the manual testing playbook, not in a check.
+- **The extensions have no behavioral drift checker.** `sync-hook-registrations.cjs --check` verifies each entry is a one-line re-export whose adapter exists, but a change in a shared core shows up only at runtime or in the manual testing playbook.
 - **Editing a canonical agent gives no Pi reminder.** Only `--check` catches a stale `.pi` tree.
 
 ---

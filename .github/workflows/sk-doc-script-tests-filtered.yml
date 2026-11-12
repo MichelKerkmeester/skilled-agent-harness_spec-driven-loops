@@ -1,0 +1,78 @@
+name: sk-doc Script Tests (Filtered)
+
+# The sk-doc script tests that guard sk-doc's own scripts, so they run when an
+# sk-doc path changes rather than on every push. Two of them read beyond the sk-doc
+# tree: the frontmatter fleet test parses every tracked markdown file under
+# .skilled, and the consumer matrix test reads one manifest under specs. A change
+# to those paths alone does not start this workflow, which is an accepted gap. The two repository-walking tests,
+# the durable-directory manifest and the README verdict baseline, stay on every
+# push in sk-doc Script Tests, and the rename harness runs in its own workflow.
+on:
+  pull_request:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/skills/sk-doc/**'
+      - '.skilled/skills/sk-doc/**'
+      - '.github/workflows/sk-doc-script-tests-filtered.yml'
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/skills/sk-doc/**'
+      - '.skilled/skills/sk-doc/**'
+      - '.github/workflows/sk-doc-script-tests-filtered.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  # Every model load runs on the CPU, so the onnxruntime-node install skips its Linux CUDA
+  # provider download: unused here, and the install step that fails when that host times out.
+  ONNXRUNTIME_NODE_INSTALL_CUDA: skip
+
+jobs:
+  sk-doc-scripts:
+    name: sk-doc script tests
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.x'
+          cache: pip
+          cache-dependency-path: .github/workflows/sk-doc-script-tests-filtered.yml
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      # The packager validates frontmatter with PyYAML and falls back to a lenient
+      # parser without it, which accepts documents the tests expect it to reject.
+      - name: Install test dependencies
+        run: python3 -m pip install pytest==8.4.2 pyyaml==6.0.3
+
+      # The scaffolder's class gate reads frontmatter through @spec-kit/shared,
+      # and the root-name matrix loads a deep-loop script that resolves it through
+      # the deep-loop package, so both are installed and the shared package built.
+      - name: Install the packages the scripts load
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/sk-doc ci
+          npm --prefix .opencode/skills/system-deep-loop ci
+
+      # The rename harness and the two repository-walking tests are left out
+      # because each runs in its own job, the walking pair on every push.
+      - name: Run the sk-doc script tests
+        env:
+          SKIP_TESTS: test_rename_tooling_fixture_harness.py test_readme_manifest.py test_readme_verdict_parity.py
+        run: bash .opencode/skills/sk-doc/scripts/tests/run-script-tests.sh

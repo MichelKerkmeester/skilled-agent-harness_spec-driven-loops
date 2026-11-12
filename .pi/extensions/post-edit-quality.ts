@@ -1,1 +1,1 @@
-../../.skilled/hooks/post-edit-quality/pi/post-edit-quality.ts
+export { default } from '../../.skilled/hooks/post-edit-quality/pi/post-edit-quality.ts';

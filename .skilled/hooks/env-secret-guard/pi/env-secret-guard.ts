@@ -4,12 +4,12 @@
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
-type Guard = typeof import("../../.skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs");
-type Watch = typeof import("../../.skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs");
+type Guard = typeof import("../lib/env-secret-guard.cjs");
+type Watch = typeof import("../lib/env-secret-watch.cjs");
 
 async function load(): Promise<{ guard: Guard; watch: Watch }> {
-  const guard = await import("../../.skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs");
-  const watch = await import("../../.skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs");
+  const guard = await import("../lib/env-secret-guard.cjs");
+  const watch = await import("../lib/env-secret-watch.cjs");
   return { guard: guard.default ?? guard, watch: watch.default ?? watch };
 }
 

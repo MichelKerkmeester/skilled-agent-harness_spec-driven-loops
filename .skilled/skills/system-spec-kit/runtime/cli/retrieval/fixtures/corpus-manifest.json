@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e5b9da929aa8874d6046d12b456a7d6ce0c8c52952e9eb952bee7c1cd85dab6b",
+  "corpusHash": "920d0e770b0721a08b9d1b618ad2fb68223db01fcc4035bfb20f2c76bce4de5f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26291,
+  "includedPathCount": 26349,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7039,6 +7039,7 @@
     ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.5.0.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.6.0.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.7.0.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.8.0.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/router-bootstrap.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/rule-retirement.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/scope-boundary-halt.md",
@@ -9358,6 +9359,7 @@
     "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/plan.md",
     "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/spec.md",
     "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/tasks.md",
+    "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/decision-record.md",
     "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/implementation-summary.md",
     "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/plan.md",
     "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/spec.md",
@@ -11459,6 +11461,10 @@
     "specs/hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard/plan.md",
     "specs/hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard/spec.md",
     "specs/hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard/tasks.md",
+    "specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports/implementation-summary.md",
+    "specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports/plan.md",
+    "specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports/spec.md",
+    "specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports/tasks.md",
     "specs/hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction/acceptance-criteria.md",
     "specs/hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction/implementation-summary.md",
     "specs/hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction/plan.md",
@@ -17912,6 +17918,7 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/acceptance-criteria.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/decision-record.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/goal.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/handover-to-barter.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/implementation-summary.md",
@@ -25552,6 +25559,57 @@
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/plan.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/spec.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/research/research.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/010-sk-doc-tests-path-filter/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/010-sk-doc-tests-path-filter/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/010-sk-doc-tests-path-filter/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/010-sk-doc-tests-path-filter/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/012-advisor-suite-parallel-trial/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/012-advisor-suite-parallel-trial/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/012-advisor-suite-parallel-trial/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/012-advisor-suite-parallel-trial/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/014-dead-runner-and-step-cleanup/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/014-dead-runner-and-step-cleanup/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/014-dead-runner-and-step-cleanup/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/014-dead-runner-and-step-cleanup/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/015-hook-suite-job-split/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/015-hook-suite-job-split/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/015-hook-suite-job-split/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/015-hook-suite-job-split/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/016-local-test-timing-profile/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/016-local-test-timing-profile/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/016-local-test-timing-profile/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/016-local-test-timing-profile/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/decision-record.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/decision-record.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/plan.md",
@@ -26323,7 +26381,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "fb64f63c1d5836b0efbf9cd9af9e81a60d7b7e547585331bc0e576dc734eb4f0",
+  "manifestHash": "562717e6c6cddfcd0127cde7c077c96c4454d4bb7e9a1cdf5a491d69f6207666",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29311,6 +29369,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports/scratch",
       "reason": "excluded directory"
     },
     {
@@ -36659,6 +36721,70 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/010-sk-doc-tests-path-filter/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/012-advisor-suite-parallel-trial/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/014-dead-runner-and-step-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/015-hook-suite-job-split/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/016-local-test-timing-profile/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards/scratch",
       "reason": "excluded directory"
     },
     {

@@ -85,10 +85,10 @@ function makeTree(options = {}) {
   if (options.withHook) {
     fs.cpSync(HOOK_SOURCE, path.join(root, '.skilled', 'hooks', 'overlay-guard'), { recursive: true });
     fs.cpSync(SHARED_SOURCE, path.join(root, '.skilled', 'hooks', 'shared'), { recursive: true });
-    // Pi resolves an extension's imports against its .pi/extensions path, so
-    // the fixture carries a copy there rather than a symlink Node would follow.
+    // Pi reaches the adapter through a one-line entry file that re-exports it,
+    // so the fixture carries the same entry and the adapter loads from its own folder.
     writeFile(root, path.join('.pi', 'extensions', 'overlay-guard.ts'),
-      fs.readFileSync(path.join(HOOK_SOURCE, 'pi', 'overlay-guard.ts'), 'utf8'));
+      "export { default } from '../../.skilled/hooks/overlay-guard/pi/overlay-guard.ts';\n");
     writeFile(root, 'package.json', '{"type":"module"}\n');
   }
   return root;

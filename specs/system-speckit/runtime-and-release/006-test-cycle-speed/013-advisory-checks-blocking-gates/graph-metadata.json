@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates",
+  "spec_folder": "system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates",
+  "parent_id": "system-speckit/runtime-and-release/006-test-cycle-speed",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisory checks blocking gates",
+      "phase 13 advisory checks blocking gates",
+      "advisory checks blocking gates plan",
+      "advisory checks blocking gates tasks",
+      "advisory checks blocking gates implementation summary"
+    ],
+    "key_topics": [
+      "advisory",
+      "checks",
+      "blocking",
+      "gates",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "github",
+      "workflows",
+      "advisory-checks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/gate-critical-run.md",
+      ".github/workflows/advisory-checks.yml",
+      ".github/workflows/README.md",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/scratch/gate-critical-run.md",
+      "shared/dist/gate-3-classifier.js",
+      ".skilled/scripts/run-node-tests.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-agents-dsh.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-prompts-dsh.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-dsh.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/unactioned-recorded-failure-audit.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/permission-request-policy.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-claude.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-codex.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-critical-run.md",
+        "kind": "doc",
+        "path": "scratch/gate-critical-run.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.js",
+        "kind": "code",
+        "path": "shared/dist/gate-3-classifier.js",
+        "source": "derived"
+      },
+      {
+        "name": "run-node-tests.mjs",
+        "kind": "file",
+        "path": ".skilled/scripts/run-node-tests.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-dsh.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-agents-dsh.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts-dsh.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-prompts-dsh.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-dsh.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-dsh.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "unactioned-recorded-failure-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/unactioned-recorded-failure-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-stdin-deadline.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-menu-parity.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "permission-request-policy.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/permission-request-policy.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-claude.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-claude.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-codex.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-codex.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Advisory Checks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.github/workflows/advisory-checks.yml` runs its four steps with `continue-on-error: true`, so the job is green even when a step fails",
+    "created_at": "2026-11-12T08:21:59Z",
+    "last_save_at": "2026-11-12T17:43:56.952Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:39c12b330aa4b5215dcb012d86ebbeaa8867ff29eb02467d171acb5ee64c7ec4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9e5e4ab46a79757184f8648aea9bdbf34002e85c172a5360b757ad820f62d87f",
+      "plan.md": "597e367d09fc8c522bce45c4a639c51879edc4aedaaa3e7098141b36129cbe3b",
+      "tasks.md": "28284795c2d2a7a12d53ae76f0dd5b3c6bb180821667dd33a4eb2b1b10e15e12",
+      "implementation-summary.md": "5b1c131f9d6156c68df8eeca4f83cc851be70c8897959db5f03e8c7489f1abd6"
+    },
+    "last_active_at": null
+  }
+}

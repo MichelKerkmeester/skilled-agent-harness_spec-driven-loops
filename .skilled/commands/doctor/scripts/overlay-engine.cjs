@@ -2300,19 +2300,53 @@ function isLockOwnerGone(line) {
 }
 
 /**
+ * Delete a leftover file only when it is still the file that was judged stale.
+ * Deleting by the shared path would also delete whatever another run wrote
+ * there after the judgement. The file is renamed aside first: a rename is one
+ * step, so only one run can take a given file. A file that turns out to be
+ * another run's is put back, unless a newer one already stands in its place.
+ * @param {string} filePath The shared path of the leftover.
+ * @param {function(string): boolean} isJudgedStale Given the set-aside path,
+ *   says whether that file is the one judged stale.
+ * @returns {boolean} True when this run deleted the leftover.
+ */
+function removeLeftover(filePath, isJudgedStale) {
+  const claimPath = `${filePath}.${process.pid}.${crypto.randomBytes(4).toString('hex')}.claim`;
+  try {
+    fs.renameSync(filePath, claimPath);
+  } catch (error) {
+    if (error && error.code === 'ENOENT') return false;
+    throw error;
+  }
+  const isStale = isJudgedStale(claimPath);
+  if (!isStale) {
+    try {
+      fs.linkSync(claimPath, filePath);
+    } catch (linkError) {
+      if (!linkError || linkError.code !== 'EEXIST') throw linkError;
+    }
+  }
+  fs.unlinkSync(claimPath);
+  return isStale;
+}
+
+/**
  * Try to take the overlay lock.
  * A lock whose writer has ended is removed and taken over, with one note saying
  * whose lock it was; every other held lock is left alone and reported.
  * Two runs can find the same leftover, and if each removed it the later removal
  * would delete the lock the other run has just written, leaving both holding it.
- * The removal therefore happens behind a `<lock>.takeover` marker that only one
- * run can create: that run re-reads the lock, removes it only while it still
- * holds the line it judged stale, and creates the new lock before the marker
- * goes. A marker older than the timeout is what a run killed mid-takeover
- * leaves, and is cleared so it cannot block every later run for good.
+ * The removal therefore happens behind a `<lock>.takeover` marker: the run that
+ * creates it re-reads the lock and creates the new lock before the marker goes.
+ * A marker older than the timeout is what a run killed mid-takeover leaves, so
+ * it is cleared rather than blocking every later run for good. Neither leftover
+ * is deleted by its shared path: each is set aside first and deleted only when
+ * it is the file that was judged stale (see removeLeftover).
  * @param {object} ctx Engine context.
  * @param {string} owner Who takes it, written at the start of the owner line.
- * @returns {{isHeld: boolean, lockPath: string, ownerLine: string, release?: function}}
+ * @returns {{isHeld: boolean, lockPath: string, ownerLine: string, remedy?: string, release?: function}}
+ *   A refusal carries `remedy`: the sentence telling the operator what to do
+ *   about the thing that actually blocked the run.
  */
 function acquireLock(ctx, owner) {
   const ownerLine = `${owner} pid=${process.pid} host=${os.hostname()} ${new Date().toISOString()}`;
@@ -2322,10 +2356,18 @@ function acquireLock(ctx, owner) {
    * Report the lock as held by someone else.
    * @param {string} otherLine The line the lock file holds, or a sentence saying
    *   why no takeover could be made.
-   * @returns {{isHeld: boolean, lockPath: string, ownerLine: string}}
+   * @param {string} [remedy] What the operator has to do next; defaults to
+   *   removing the lock file by hand, which is wrong when the lock is not what
+   *   blocked the run.
+   * @returns {{isHeld: boolean, lockPath: string, ownerLine: string, remedy: string}}
    */
-  function refusal(otherLine) {
-    return { isHeld: false, lockPath: ctx.lockPath, ownerLine: otherLine };
+  function refusal(otherLine, remedy) {
+    return {
+      isHeld: false,
+      lockPath: ctx.lockPath,
+      ownerLine: otherLine,
+      remedy: remedy === undefined ? 'remove ' + ctx.lockPath + ' by hand once that run has ended' : remedy,
+    };
   }
 
   /**
@@ -2349,11 +2391,14 @@ function acquireLock(ctx, owner) {
     // No live run can still be behind a marker this old, so it is a leftover
     // that would otherwise block every takeover from here on.
     if (Date.now() - stats.mtimeMs <= LOCK_TAKEOVER_STALE_MS) return null;
-    try {
-      fs.unlinkSync(takeoverPath);
-    } catch (unlinkError) {
-      if (!unlinkError || unlinkError.code !== 'ENOENT') throw unlinkError;
-    }
+    // Two runs can judge the same marker stale at once. The one that comes
+    // second must not delete the fresh marker the first has just written, so
+    // only the file with the inode and timestamp judged above is removed.
+    const isCleared = removeLeftover(takeoverPath, (claimPath) => {
+      const claimed = fs.statSync(claimPath);
+      return claimed.ino === stats.ino && claimed.mtimeMs === stats.mtimeMs;
+    });
+    if (!isCleared) return null;
     try {
       return fs.openSync(takeoverPath, 'wx');
     } catch (retryError) {
@@ -2372,7 +2417,12 @@ function acquireLock(ctx, owner) {
     if (!current || !isLockOwnerGone(currentLine)) return refusal(currentLine);
     const takeoverFd = reserveTakeover();
     if (takeoverFd === null) {
-      return refusal('another run is taking the overlay lock over: ' + takeoverPath);
+      // The lock is not what blocked this run, so the take-over marker is not the
+      // operator's to delete: it is cleared by itself once it is old enough.
+      return refusal(
+        'another run is taking the overlay lock over: ' + takeoverPath,
+        'run it again in a minute: a takeover marker that old is cleared'
+      );
     }
     try {
       // The line was read before this run held the marker, so another run may
@@ -2381,12 +2431,13 @@ function acquireLock(ctx, owner) {
       const recheck = readBufferOrNull(ctx.lockPath);
       const recheckLine = recheck ? recheck.toString('utf8').trim() : '(empty lock file)';
       if (!recheck || recheckLine !== currentLine) return refusal(recheckLine);
-      console.log('note: took over the overlay lock of a run that has ended: ' + currentLine);
-      try {
-        fs.unlinkSync(ctx.lockPath);
-      } catch (unlinkError) {
-        if (!unlinkError || unlinkError.code !== 'ENOENT') throw unlinkError;
-      }
+      // A lock another run wrote after the read above is put back, and the
+      // create below then finds it and reports that run as the holder.
+      const isRemoved = removeLeftover(ctx.lockPath, (claimPath) => {
+        const claimed = readBufferOrNull(claimPath);
+        return Boolean(claimed) && claimed.equals(recheck);
+      });
+      if (isRemoved) console.log('note: took over the overlay lock of a run that has ended: ' + currentLine);
       try {
         fd = fs.openSync(ctx.lockPath, 'wx');
       } catch (retryError) {
@@ -2438,7 +2489,7 @@ function withLock(ctx, owner, run, options = {}) {
   const lock = acquireLock(ctx, owner);
   if (!lock.isHeld) {
     console.log('refuse: the overlay lock is held: ' + lock.ownerLine);
-    console.log('  remove ' + lock.lockPath + ' by hand once that run has ended');
+    console.log('  ' + lock.remedy);
     return EXIT_ERROR;
   }
   try {
@@ -3891,11 +3942,18 @@ function repinRun(liveCtx, options, report) {
     const stageDir = path.resolve(options.stage);
     const problem = stageFolderProblem(liveCtx.root, stageDir);
     if (problem) return refuseRepin([problem]);
-    // Reading the tree while another run writes it would stage a torn copy. The
-    // live lock is only read here: a stage writes nothing in the live tree.
+    // Reading the tree while another run writes it would stage a torn copy, so a
+    // lock that may still have a live owner is refused here as every other mode
+    // refuses it. A lock whose writer has ended on this host is only leftover
+    // state, and a stage writes nothing in the live tree, so the line is read and
+    // the file left where it is for the next writing run to take over.
     if (pathExists(liveCtx.lockPath)) {
-      const owner = (readBufferOrNull(liveCtx.lockPath) || Buffer.from('(empty lock file)')).toString('utf8').trim();
-      return refuseRepin(['refuse: the overlay lock is held: ' + owner, '  remove ' + liveCtx.lockPath + ' by hand once that run has ended']);
+      const current = readBufferOrNull(liveCtx.lockPath);
+      const owner = (current || Buffer.from('(empty lock file)')).toString('utf8').trim();
+      if (!current || !isLockOwnerGone(owner)) {
+        return refuseRepin(['refuse: the overlay lock is held: ' + owner, '  remove ' + liveCtx.lockPath + ' by hand once that run has ended']);
+      }
+      console.log('note: the overlay lock belongs to a run that has ended: ' + owner);
     }
     const skipped = copyTreeForStage(liveCtx.root, stageDir, liveCtx.lockPath);
     console.log('staged a copy of the tree in ' + stageDir + (skipped > 0 ? ` (${skipped} .env file(s) left out)` : ''));

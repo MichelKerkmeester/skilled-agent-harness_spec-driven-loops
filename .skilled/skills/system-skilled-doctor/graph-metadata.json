@@ -53,6 +53,12 @@
     "my skilled overlay",
     "my overlays back into the vendored copy",
     "take over the overlay lock",
+    "rebase my overlay",
+    "unowned files that drifted from the pinned commit",
+    "stage an overlay re-pin",
+    "staged overlay re-pin",
+    "take over an overlay lock",
+    "overlay lock whose owner has ended",
     "doctor setup diagnostic",
     "what doctor setup prints",
     "doctor setup",
@@ -88,7 +94,10 @@
       "changed a root file an overlay owns",
       "overlay rebase",
       "overlay no longer adds a json item",
-      "agents overlay stale"
+      "agents overlay stale",
+      "overlay re-pin",
+      "staged overlay re-pin",
+      "overlay lock whose owner has ended"
     ],
     "key_topics": [
       "skilled-project-integration",

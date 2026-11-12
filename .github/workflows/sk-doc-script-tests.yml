@@ -1,10 +1,10 @@
 name: sk-doc Script Tests
 
-# These tests ran nowhere, and four of them failed for weeks without anyone
-# seeing. Two of them walk the whole repository, the durable-directory manifest
-# and the README verdict baseline, so this runs on every push rather than only
-# when sk-doc changes. The rename harness takes ten minutes and runs in its own
-# workflow, scoped to the scripts it exercises.
+# Two of the sk-doc script tests walk the whole repository, the durable-directory
+# manifest and the README verdict baseline, so they run on every push rather than
+# only when sk-doc changes. The other 54 are in sk-doc Script Tests (Filtered),
+# which runs them when an sk-doc path changes. The rename harness takes ten
+# minutes and runs in its own workflow, scoped to the scripts it exercises.
 on:
   pull_request:
     branches: [main, 'skilled/**']
@@ -24,8 +24,8 @@ env:
   ONNXRUNTIME_NODE_INSTALL_CUDA: skip
 
 jobs:
-  sk-doc-scripts:
-    name: sk-doc script tests
+  sk-doc-repository-walk:
+    name: sk-doc repository walk tests
     if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -39,30 +39,14 @@ jobs:
           cache: pip
           cache-dependency-path: .github/workflows/sk-doc-script-tests.yml
 
-      - name: Setup Node
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
-        with:
-          node-version: '22'
+      # The verdict baseline reads frontmatter through the validator, which falls
+      # back to a lenient parser without PyYAML, and the baseline can then differ.
+      - name: Install the verdict baseline dependency
+        run: python3 -m pip install pyyaml==6.0.3
 
-      # The packager validates frontmatter with PyYAML and falls back to a lenient
-      # parser without it, which accepts documents the tests expect it to reject.
-      - name: Install test dependencies
-        run: python3 -m pip install pytest==8.4.2 pyyaml==6.0.3
-
-      # The scaffolder's class gate reads frontmatter through @spec-kit/shared,
-      # and the root-name matrix loads a deep-loop script that resolves it through
-      # the deep-loop package, so both are installed and the shared package built.
-      - name: Install the packages the scripts load
-        run: |
-          set -euo pipefail
-          npm --prefix .opencode/skills/system-spec-kit ci
-          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
-          npm --prefix .opencode/skills/sk-doc ci
-          npm --prefix .opencode/skills/system-deep-loop ci
-
-      - name: Run the sk-doc script tests
+      - name: Run the repository walk tests
         env:
-          SKIP_TESTS: test_rename_tooling_fixture_harness.py
+          ONLY_TESTS: test_readme_manifest.py test_readme_verdict_parity.py
         run: bash .opencode/skills/sk-doc/scripts/tests/run-script-tests.sh
 
   # The catalog validator passed all 29 packages on its first run, so it blocks

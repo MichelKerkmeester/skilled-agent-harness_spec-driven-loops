@@ -1,11 +1,11 @@
 ---
 title: "Pi Hooks: Git Preflight Advisory and Message Gate"
-description: "Pi extension factories bridging sk-git's warn-only git advisories and its blocking message-contract gate onto bash commands, each discovered through a relative symlink in .pi/extensions/."
+description: "Pi extension factories bridging sk-git's warn-only git advisories and its blocking message-contract gate onto bash commands, each discovered through a one-line entry file in .pi/extensions/ that re-exports it."
 trigger_phrases:
   - "pi git preflight"
   - "pi git advisory"
   - "pi git message gate"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Pi Hooks: Git Preflight Advisory and Message Gate
@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`hooks/pi/` holds the real files behind the `.pi/extensions/git-preflight-advisory.ts` and `.pi/extensions/git-message-gate.ts` symlinks. Pi resolves its imports against the symlink path, so each file's imports are written for the `.pi/extensions/` base. `git-message-gate.test.ts` is the vitest suite for the gate and is never linked.
+`hooks/pi/` holds the real files behind the `.pi/extensions/git-preflight-advisory.ts` and `.pi/extensions/git-message-gate.ts` entry files. Pi discovers each through its one-line entry file, which re-exports it, so it loads from this folder and its imports are relative to this folder. `git-message-gate.test.ts` is the vitest suite for the gate and is never linked.
 
 ---
 
@@ -32,4 +32,4 @@ Rule set and messages: [`../git-preflight-advisory.mjs`](../git-preflight-adviso
 
 - [`../git-preflight-advisory.mjs`](../git-preflight-advisory.mjs): the Claude-side hook carrying the same rule engine.
 - [`../git-message-gate.mjs`](../git-message-gate.mjs): the shared message-contract gate the Pi extension calls.
-- [`../../../../../../.pi/extensions/README.md`](../../../../../../.pi/extensions/README.md): the discovery mirror and symlink map.
+- [`../../../../../../.pi/extensions/README.md`](../../../../../../.pi/extensions/README.md): the discovery mirror and entry map.

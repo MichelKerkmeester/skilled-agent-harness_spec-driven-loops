@@ -21,8 +21,10 @@ function nodeTestFiles(): string[] {
     .map((rel) => path.relative(REPO_ROOT, path.join(HOOKS_ROOT, rel)));
 }
 
-// Hook sources load through runtime symlinks, so their relative imports are written
-// against the link's base; the alias resolves those same imports from the real tree.
+// Pi imports a hook source from the real folder its entry file re-exports it from, so the
+// relative imports are written for that folder; a few adapters also keep a long specifier left
+// from the link-based layout. A literal one resolves only through the alias below, in tests, never
+// from the adapter's own folder; one held in a constant resolves nowhere.
 export default defineConfig({
   root: REPO_ROOT,
   resolve: {

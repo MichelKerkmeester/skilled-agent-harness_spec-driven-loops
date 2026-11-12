@@ -74,7 +74,7 @@ function asGoalCore(module: unknown): GoalCore {
   return candidate.default ?? candidate as GoalCore;
 }
 
-/** Load correctly from both the canonical file and Pi's discovery symlink. */
+/** Load the core from this folder; the second path is left from the link-based layout. */
 async function loadGoalCore(): Promise<GoalCore> {
   try {
     return asGoalCore(await import('../lib/goal-core.cjs'));
@@ -199,8 +199,8 @@ function extractTurnEndText(event: TurnEndEvent): string {
  * session), and `turn_end` (heuristic verify -- observe-only, see NOTE).
  * Every handler dynamic-imports the runtime-neutral goal core at call time
  * and fails open on any error so a goal-state bug can never block a Pi turn
- * or session. Core loading supports both the canonical source path and Pi's
- * discovery symlink without assuming which path its loader preserves.
+ * or session. Core loading tries this folder's `../lib/` path first. A second, longer
+ * path is left from the link-based layout and does not resolve from this folder.
  *
  * NOTE: `turn_end`/`agent_end`/`agent_settled` are `void`-returning events
  * in Pi's extension API, so a handler cannot force continuation. The

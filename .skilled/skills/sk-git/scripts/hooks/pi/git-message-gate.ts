@@ -22,8 +22,8 @@ export default function gitMessageGate(pi: ExtensionAPI): void {
     let contract: ContractModule;
     try {
       [gate, contract] = await Promise.all([
-        import("../../.skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs") as Promise<GateModule>,
-        import("../../.skilled/skills/sk-git/scripts/lib/message-contract.mjs") as Promise<ContractModule>,
+        import("../git-message-gate.mjs") as Promise<GateModule>,
+        import("../../lib/message-contract.mjs") as Promise<ContractModule>,
       ]);
     } catch {
       // Fail open when the gate cannot load: the git hooks still enforce the contract.

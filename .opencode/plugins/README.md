@@ -30,7 +30,7 @@ Most plugins honor a per-concern kill switch through the shared `hook-flags.cjs`
 
 Most become full no-ops, while the goal tools and the advisor status tool stay registered and report that they are disabled. All advisory checks fail open.
 
-Three plugins reject by default by throwing from `tool.execute.before`: `sk-git-message-gate.js`, the dispatch guard in `cli-dispatch-audit.js` and `env-secret-guard.js`, which refuses a read or write of a dotenv file. Other rejection is opt-in: `SYSTEM_SPEC_GATE_ENFORCE` for spec-gate deny, and `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` or `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` for the deep-loop guard, which otherwise only warns.
+Four plugins reject by default by throwing from `tool.execute.before`: `sk-git-message-gate.js`, the dispatch guard in `cli-dispatch-audit.js`, `env-secret-guard.js`, which refuses a read or write of a dotenv file, and `overlay-guard.js`, which refuses a write to a file a vendored tree's overlay owns. Other rejection is opt-in: `SYSTEM_SPEC_GATE_ENFORCE` for spec-gate deny, and `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` or `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` for the deep-loop guard, which otherwise only warns.
 
 One plugin is an exception. `sk-git-message-gate.js` has no switch, because the commit, PR and branch rules carry no bypass on any surface.
 
@@ -251,7 +251,7 @@ Expected result: each exits 0, reporting all plugin files active on OpenCode 2 (
 - [`../skills/`](../skills/): the shared skill cores these plugins adapt.
 
 <!-- readme-check
-allow-count three plugins | the sentence counts the plugins that reject by default by behavior, not the plugin files in this folder
+allow-count four plugins | the sentence counts the plugins that reject by default by behavior, not the plugin files in this folder
 allow-count 17 plugin files | the sentence reports the 2026-10-19 battery run and names the plugins added since
 allow-count 17 plugins | the sentence reports the 2026-10-19 battery run, not the current folder
 -->

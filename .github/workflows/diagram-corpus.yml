@@ -36,7 +36,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      # The corpus check, both applicators and the mutation suite run inside the diagram
+      # packet and reach no other path, so the diagram tree plus the .opencode/skills link
+      # are all that is needed.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.opencode/skills
+            /.skilled/skills/sk-design/sk-design-diagram/
+          sparse-checkout-cone-mode: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '22'

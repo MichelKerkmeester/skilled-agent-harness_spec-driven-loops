@@ -109,6 +109,18 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 4 | 004-split-fanout-run/ | Split the largest serial deep-loop file and promote safe pieces | Rejected: about 5 percent when stable, reverted |
 | 5 | 005-ci-runner-timing/ | Read CI's own run times and decide a worker cap | Complete: no cap needed |
 | 6 | 006-overlay-replaced-subtree-repin/ | Overlay engine: a re-pin copy's file inside a replaced folder is not a live edit | Complete |
+| 7 | 007-test-and-ci-bloat-research/ | Research which tests, CI workflows and hook checks are bloat, and rank the cuts by time saved. Research only | Complete: the wait is the slowest workflow, three changes shorten it |
+| 8 | 008-spec-kit-check-parallel-jobs/ | Run the three sequential `Spec-Kit Check` suites as parallel jobs | Complete: slowest job 384 to 627 s on three runs against 867 s |
+| 9 | 009-legacy-lane-overlap-measurement/ | Measure how far the legacy lanes repeat the CLI vitest project | Measured: 6 overlapping tests, keep the lanes |
+| 10 | 010-sk-doc-tests-path-filter/ | Run 54 of the sk-doc script tests only when sk-doc paths change | Complete: both workflows pass on the pull request |
+| 11 | 011-sparse-checkout-rollout/ | Sparse checkout for workflows that read only named paths | Complete for five workflows, two reverted: checkout 2 to 6 s against 55 to 74 s |
+| 12 | 012-advisor-suite-parallel-trial/ | Trial the advisor suite with files in parallel | Rejected: 213 s to about 100 s, but one timing test failed two of three runs, reverted |
+| 13 | 013-advisory-checks-blocking-gates/ | Make the 13 gate-critical node suites blocking | Complete for 12 suites: the job also builds the skill advisor, and the stdin deadline suite went back to report-only after it lost a timing race on one of six runs |
+| 14 | 014-dead-runner-and-step-cleanup/ | Remove the sharded runner nothing calls and one duplicated workflow step | Complete |
+| 15 | 015-hook-suite-job-split/ | Move the hook vitest suites into their own workflow | Complete: both workflows pass on the pull request |
+| 16 | 016-local-test-timing-profile/ | Time the three local test commands once each | Measured: 914 s, 211 s and 527 s |
+| 17 | 017-specs-artifact-tracking-decision/ | Measure the tracked research and scratch files and write the options | Measured: 88,151 files, decision is the operator's |
+| 18 | 018-cli-vitest-shards/ | Run the CLI vitest job as three shards | Complete: shards at 170, 213 and 277 s against 384 to 627 s for the one job |
 
 ### Phase Transition Rules
 
@@ -125,6 +137,18 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 003-split-upgrade-legacy | 004-split-fanout-run | Phase 2 says go for phase 4 | Phase 2's summary names the number |
 | 004-split-fanout-run | 005-ci-runner-timing | Phase 1 is pushed and CI has run at least twice | `gh run list` shows the runs |
 | 005-ci-runner-timing | 006-overlay-replaced-subtree-repin | Independent; added to the series at the operator's request | The overlay test files pass |
+| 006-overlay-replaced-subtree-repin | 007-test-and-ci-bloat-research | Independent; added to the series at the operator's request | `007-test-and-ci-bloat-research/research/` holds a `research.md` |
+| 007-test-and-ci-bloat-research | 008-spec-kit-check-parallel-jobs | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 008-spec-kit-check-parallel-jobs | 009-legacy-lane-overlap-measurement | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 009-legacy-lane-overlap-measurement | 010-sk-doc-tests-path-filter | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 010-sk-doc-tests-path-filter | 011-sparse-checkout-rollout | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 011-sparse-checkout-rollout | 012-advisor-suite-parallel-trial | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 012-advisor-suite-parallel-trial | 013-advisory-checks-blocking-gates | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 013-advisory-checks-blocking-gates | 014-dead-runner-and-step-cleanup | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 014-dead-runner-and-step-cleanup | 015-hook-suite-job-split | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 015-hook-suite-job-split | 016-local-test-timing-profile | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 016-local-test-timing-profile | 017-specs-artifact-tracking-decision | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 017-specs-artifact-tracking-decision | 018-cli-vitest-shards | Independent; phase 18 follows the runner figures from pull request 97 | The earlier phase is committed on the branch |
 <!-- /ANCHOR:phase-map -->
 
 ---

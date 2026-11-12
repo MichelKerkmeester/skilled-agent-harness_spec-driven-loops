@@ -11,7 +11,7 @@ trigger_phrases:
   - "rule lifecycle"
 importance_tier: important
 contextType: reference
-version: 1.1.5.0
+version: 1.1.6.0
 ---
 
 # Integration and Lifecycle: Wiring, Revising and Retiring a Rule
@@ -117,8 +117,8 @@ alone until something forces the question. **This is a choice, not a finding.**
 
 ## 6. RETIRE
 
-**The rule set has never done this.** The path below is the create path inverted, and it
-has been dry-run rather than performed.
+**The rule set has done this once**, when three reply rules were retired together. The path
+below is the create path inverted.
 
 1. **Remove the pointer** from every governed `AGENTS.md` section.
 2. **Remove the index row.**

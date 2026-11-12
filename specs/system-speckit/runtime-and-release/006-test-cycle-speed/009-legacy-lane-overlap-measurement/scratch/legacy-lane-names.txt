@@ -1,0 +1,928 @@
+test-scripts-modules-js	T-001a: CONFIG object exists
+test-scripts-modules-js	T-001b: SKILL_VERSION defined
+test-scripts-modules-js	T-001c: PROJECT_ROOT defined
+test-scripts-modules-js	T-001d: TEMPLATE_DIR defined
+test-scripts-modules-js	T-001e: CONFIG has MAX_RESULT_PREVIEW
+test-scripts-modules-js	T-001f: CONFIG has MAX_CONVERSATION_MESSAGES
+test-scripts-modules-js	T-001g: getSpecsDirectories() returns non-empty array
+test-scripts-modules-js	T-001h: findActiveSpecsDir() returns string or null
+test-scripts-modules-js	T-001i: getAllExistingSpecsDirs() returns array
+test-scripts-modules-js	T-002a: runWorkflow exported
+test-scripts-modules-js	T-002f: extractKeyTopics exported
+test-scripts-modules-js	T-002k: extractKeyTopics extracts topics
+test-scripts-modules-js	T-003a: sanitizePath rejects null bytes (CWE-22)
+test-scripts-modules-js	T-003b: sanitizePath rejects empty path
+test-scripts-modules-js	T-003c: sanitizePath rejects null
+test-scripts-modules-js	T-003d: sanitizePath accepts valid cwd path
+test-scripts-modules-js	T-003e: sanitizePath rejects path outside allowed directories
+test-scripts-modules-js	T-003i: sanitizePath default bases accept a path inside a linked .skilled
+test-scripts-modules-js	T-003j: sanitizePath default bases accept a path inside a linked .opencode
+test-scripts-modules-js	T-003k: sanitizePath default bases reject /etc/passwd
+test-scripts-modules-js	T-003l: sanitizePath default bases reject a .. escape from a linked .skilled
+test-scripts-modules-js	T-003f: getPathBasename extracts filename
+test-scripts-modules-js	T-003g: getPathBasename handles Windows paths
+test-scripts-modules-js	T-003h: getPathBasename handles empty input
+test-scripts-modules-js	T-004a: normalizeInputData passes MCP data through
+test-scripts-modules-js	T-004b: normalizeInputData transforms manual format
+test-scripts-modules-js	T-004c: validateInputData throws on null
+test-scripts-modules-js	T-004d: validateInputData accepts valid MCP data
+test-scripts-modules-js	T-004e: validateInputData throws on invalid triggerPhrases
+test-scripts-modules-js	T-004f: transformKeyDecision handles string
+test-scripts-modules-js	T-004g: transformKeyDecision handles object
+test-scripts-modules-js	T-004h: buildSessionSummaryObservation creates observation
+test-scripts-modules-js	T-004i: transformOpenCodeCapture transforms capture data
+test-scripts-modules-js	T-005a: validateDataStructure adds HAS_ flags
+test-scripts-modules-js	T-005b: validateDataStructure sets false for empty arrays
+test-scripts-modules-js	T-005c: ensureArrayOfObjects converts strings
+test-scripts-modules-js	T-005d: ensureArrayOfObjects handles null
+test-scripts-modules-js	T-005e: hasArrayContent for non-empty array
+test-scripts-modules-js	T-005f: hasArrayContent for empty array
+test-scripts-modules-js	T-005g: ARRAY_FLAG_MAPPINGS exists
+test-scripts-modules-js	T-006a: structuredLog is a function
+test-scripts-modules-js	T-006b: structuredLog handles info level
+test-scripts-modules-js	T-006c: structuredLog handles warn level
+test-scripts-modules-js	T-006d: structuredLog handles error level
+test-scripts-modules-js	T-006e: structuredLog handles missing data parameter
+test-scripts-modules-js	T-007e: truncateToolOutput truncates long output
+test-scripts-modules-js	T-007f: truncateToolOutput preserves short output
+test-scripts-modules-js	T-007g: summarizeExchange creates complete summary
+test-scripts-modules-js	T-007h: extractKeyArtifacts export removed
+test-scripts-modules-js	T-008a: detectToolCall finds explicit tool mention
+test-scripts-modules-js	T-008b: detectToolCall finds function call syntax
+test-scripts-modules-js	T-008c: detectToolCall returns null for no match
+test-scripts-modules-js	T-008d: isProseContext detects prose usage
+test-scripts-modules-js	T-008e: classifyConversationPhase detects Research
+test-scripts-modules-js	T-008f: classifyConversationPhase detects Implementation
+test-scripts-modules-js	T-008g: classifyConversationPhase detects Debugging
+test-scripts-modules-js	T-009a: generate_anchor_id format
+test-scripts-modules-js	T-009d: categorize_section detects decision
+test-scripts-modules-js	T-009e: validate_anchor_uniqueness handles collisions
+test-scripts-modules-js	T-009g: slugify creates valid slug
+test-scripts-modules-js	T-010a: is_noise_content detects "User message"
+test-scripts-modules-js	T-010b: is_noise_content detects "Assistant response"
+test-scripts-modules-js	T-010c: is_noise_content allows real content
+test-scripts-modules-js	T-010d: create_filter_pipeline returns pipeline
+test-scripts-modules-js	T-010e: Pipeline filters noise prompts
+test-scripts-modules-js	T-010j: NOISE_PATTERNS constant exists
+test-scripts-modules-js	T-011a: detect_workflow_pattern returns linear
+test-scripts-modules-js	T-011b: detect_workflow_pattern returns parallel
+test-scripts-modules-js	T-011c: generate_workflow_flowchart creates ASCII art
+test-scripts-modules-js	T-011d: generate_workflow_flowchart returns null for empty
+test-scripts-modules-js	T-011e: build_phase_details creates detailed info
+test-scripts-modules-js	T-011f: extract_flowchart_features returns features
+test-scripts-modules-js	T-011g: get_pattern_use_cases returns array
+test-scripts-modules-js	T-011h: classify_diagram_pattern detects patterns
+test-scripts-modules-js	T-011i: PATTERNS constant exists
+test-scripts-modules-js	T-011j: DIAGRAM_PATTERNS constant exists
+test-scripts-modules-js	T-011k: COMPLEXITY constant exists
+test-scripts-modules-js	T-012a: classify_message detects intent
+test-scripts-modules-js	T-012b: classify_message detects implementation
+test-scripts-modules-js	T-012c: classify_message detects decision
+test-scripts-modules-js	T-012d: classify_message detects result
+test-scripts-modules-js	T-012e: classify_messages organizes by type
+test-scripts-modules-js	T-012f: extract_file_changes extracts file paths
+test-scripts-modules-js	T-012g: generate_implementation_summary creates summary
+test-scripts-modules-js	T-012h: format_summary_as_markdown creates markdown
+test-scripts-modules-js	T-012i: MESSAGE_TYPES constant exists
+test-scripts-modules-js	T-013a: create_session_data creates valid structure
+test-scripts-modules-js	T-013b: create_conversation_data creates messages
+test-scripts-modules-js	T-013c: create_decision_data creates decisions
+test-scripts-modules-js	T-013d: create_diagram_data creates diagrams
+test-scripts-modules-js	T-013f: requires_simulation detects null
+test-scripts-modules-js	T-013g: requires_simulation detects simulation flag
+test-scripts-modules-js	T-013h: requires_simulation allows real data
+test-scripts-modules-js	T-014a: ALIGNMENT_CONFIG exists with threshold
+test-scripts-modules-js	T-014b: extractConversationTopics extracts topics
+test-scripts-modules-js	T-014c: extractObservationKeywords extracts keywords
+test-scripts-modules-js	T-014d: parseSpecFolderTopic parses folder name
+test-scripts-modules-js	T-014e: calculateAlignmentScore computes score
+test-scripts-modules-js	T-014f: calculateAlignmentScore returns 0 for no match
+test-scripts-modules-js	T-015a: setupContextDirectory is a function
+test-scripts-modules-js	T-015b: setupContextDirectory rejects nonexistent paths
+test-scripts-modules-js	T-016a: detectSpecFolder is a function
+test-scripts-modules-js	T-016b: filterArchiveFolders removes archive folders
+test-scripts-modules-js	T-016c: ALIGNMENT_CONFIG has archive patterns
+test-scripts-modules-js	T-017a: loadCollectedData is a function
+test-scripts-modules-js	T-019a: detectObservationType detects bugfix
+test-scripts-modules-js	T-019b: detectObservationType detects feature
+test-scripts-modules-js	T-019c: detectObservationType preserves explicit type
+test-scripts-modules-js	T-019d: extractFilesFromData extracts from FILES
+test-scripts-modules-js	T-019e: enhanceFilesWithSemanticDescriptions enhances files
+test-scripts-modules-js	T-019f: buildObservationsWithAnchors adds anchors
+test-scripts-modules-js	T-020a: extractConversations is a function
+test-scripts-modules-js	T-020b: extractConversations returns simulation for null
+test-scripts-modules-js	T-020c: extractConversations processes real data
+test-scripts-modules-js	T-021a: extractDecisions is a function
+test-scripts-modules-js	T-021b: extractDecisions returns simulation for null
+test-scripts-modules-js	T-021c: extractDecisions processes manual decisions
+test-scripts-modules-js	T-021d: extractDecisions calculates confidence counts
+test-scripts-modules-js	T-022b: getChannel returns string
+test-scripts-modules-js	T-022c: detectContextType classifies implementation
+test-scripts-modules-js	T-022d: detectContextType classifies research
+test-scripts-modules-js	T-022e: detectImportanceTier detects critical
+test-scripts-modules-js	T-022f: detectProjectPhase classifies phase
+test-scripts-modules-js	T-022g: countToolsByType counts tools
+test-scripts-modules-js	T-022h: calculateSessionDuration computes duration
+test-scripts-modules-js	T-022i: extractKeyTopics extracts topics
+test-scripts-modules-js	T-023a: shouldAutoSave triggers at threshold
+test-scripts-modules-js	T-023b: shouldAutoSave returns false below threshold
+test-scripts-modules-js	T-023c: collectSessionData is a function
+test-scripts-modules-js	T-024a-neg: workflow omits retired helpers
+test-scripts-modules-js	T-026a: hasImplementationWork returns false for empty data
+test-scripts-modules-js	T-026b: hasImplementationWork returns true for implementation observations
+test-scripts-modules-js	T-026c: extractMainTopic extracts from spec folder
+test-scripts-modules-js	T-026d: extractMainTopic extracts from observations
+test-scripts-modules-js	T-026e: extractMainTopic returns fallback
+test-scripts-modules-js	T-026f: extractWhatBuilt extracts implementations
+test-scripts-modules-js	T-026g: extractWhatBuilt returns empty for non-impl obs
+test-scripts-modules-js	T-026h: extractKeyFilesWithRoles assigns roles
+test-scripts-modules-js	T-026i: extractKeyFilesWithRoles detects test file
+test-scripts-modules-js	T-026j: generateExtensionGuide returns guide items
+test-scripts-modules-js	T-026k: generateExtensionGuide detects API pattern
+test-scripts-modules-js	T-026l: extractCodePatterns returns array
+test-scripts-modules-js	T-026n: buildImplementationGuideData returns complete structure
+test-scripts-modules-js	T-026o: buildImplementationGuideData returns false for no impl
+test-scripts-modules-js	T-027a: extractActiveFile exported
+test-scripts-modules-js	T-027b: extractNextAction exported
+test-scripts-modules-js	T-027c: extractBlockers exported
+test-scripts-modules-js	T-027d: buildFileProgress exported
+test-scripts-modules-js	T-027e: calculateExpiryEpoch exported
+test-scripts-modules-js	T-027f: detectRelatedDocs exported
+test-scripts-modules-js	T-027g: detectSessionCharacteristics exported
+test-scripts-modules-js	T-027h: buildProjectStateSnapshot exported
+test-scripts-modules-js	T-027i: extractActiveFile finds file from observations
+test-scripts-modules-js	T-027j: extractActiveFile falls back to files array
+test-scripts-modules-js	T-027k: extractActiveFile returns N/A when no files
+test-scripts-modules-js	T-027l: extractNextAction extracts from facts
+test-scripts-modules-js	T-027m: extractNextAction returns default
+test-scripts-modules-js	T-027n: extractBlockers finds blockers
+test-scripts-modules-js	T-027o: extractBlockers returns None when no blockers
+test-scripts-modules-js	T-027p: buildFileProgress returns array
+test-scripts-modules-js	T-027q: buildFileProgress returns empty for null
+test-scripts-modules-js	T-027r: calculateExpiryEpoch returns 0 for critical
+test-scripts-modules-js	T-027s: calculateExpiryEpoch returns 0 for constitutional
+test-scripts-modules-js	T-027t: calculateExpiryEpoch returns 7 days for temporary
+test-scripts-modules-js	T-027u: calculateExpiryEpoch returns 90 days default
+test-scripts-modules-js	T-027v: detectRelatedDocs returns array
+test-scripts-modules-js	T-027w: detectSessionCharacteristics returns complete object
+test-scripts-modules-js	T-027x: buildProjectStateSnapshot returns complete object
+test-scripts-modules-js	T233-WR-001: wrapSectionsWithAnchors is exported
+test-scripts-modules-js	T233-WR-002: wrapSectionsWithAnchors returns content string
+test-scripts-modules-js	T233-WR-003: wrapSectionsWithAnchors returns anchorsAdded count
+test-scripts-modules-js	T233-WR-004: wrapSectionsWithAnchors returns anchorsPreserved count
+test-scripts-modules-js	T233-WR-005: wrapSectionsWithAnchors is idempotent
+test-scripts-modules-js	T233-WR-006: Module exports shipped functions
+test-scripts-modules-js	T-029a: create_simulation_phases returns array
+test-scripts-modules-js	T-029b: create_simulation_phases has required structure
+test-scripts-modules-js	T-029c: create_simulation_phases includes standard phases
+test-scripts-modules-js	T-029d: create_simulation_flowchart returns string
+test-scripts-modules-js	T-029e: create_simulation_flowchart contains ASCII art
+test-scripts-modules-js	T-029f: create_simulation_flowchart accepts custom request
+test-scripts-modules-js	T-030a: extract_spec_number extracts 042
+test-scripts-modules-js	T-030b: extract_spec_number extracts 123
+test-scripts-modules-js	T-030c: extract_spec_number returns 000 for no match
+test-scripts-modules-js	T-030d: extract_spec_number returns 000 for short prefix
+test-scripts-modules-js	T-030e: extract_spec_number preserves leading zeros
+test-scripts-modules-js	T-031a: extract_decisions is a function
+test-scripts-modules-js	T-031b: extract_decisions finds explicit choice
+test-scripts-modules-js	T-031c: extract_decisions captures question context
+test-scripts-modules-js	T-031d: extract_decisions handles option letter format
+test-scripts-modules-js	T-031e: extract_decisions returns empty for no decisions
+test-scripts-modules-js	T-031f: extract_decisions handles empty input
+test-scripts-modules-js	T-031g: extract_decisions handles "chose" pattern
+test-scripts-modules-js	T-031h: extract_decisions handles "user chose" pattern
+test-scripts-modules-js	T-033b: promptUser is a function
+test-scripts-modules-js	T-033c: promptUserChoice is a function
+test-scripts-modules-js	T-033d: promptUser returns a Promise
+test-scripts-modules-js	T-033e: promptUser returns default in non-interactive mode
+test-scripts-modules-js	T-033f: promptUserChoice returns 1 in non-interactive mode
+test-scripts-modules-js	T-034a: toRelativePath converts absolute to relative
+test-scripts-modules-js	T-034b: toRelativePath handles empty input
+test-scripts-modules-js	T-034c: toRelativePath handles null
+test-scripts-modules-js	T-034d: toRelativePath handles long paths
+test-scripts-modules-js	T-034e: isDescriptionValid rejects short descriptions
+test-scripts-modules-js	T-034f: isDescriptionValid rejects garbage patterns
+test-scripts-modules-js	T-034g: isDescriptionValid rejects heading patterns
+test-scripts-modules-js	T-034h: isDescriptionValid rejects placeholder
+test-scripts-modules-js	T-034i: isDescriptionValid accepts valid descriptions
+test-scripts-modules-js	T-034i2: validateDescription rejects generic recent-commit stub
+test-scripts-modules-js	T-034i3: validateDescription classifies low-context activity descriptions
+test-scripts-modules-js	T-034i4: validateDescription accepts semantic descriptions
+test-scripts-modules-js	T-034j: cleanDescription removes markdown
+test-scripts-modules-js	T-034k: cleanDescription truncates long descriptions
+test-scripts-modules-js	T-034l: cleanDescription capitalizes first letter
+test-scripts-modules-js	T-008h: phase-classifier compatibility wrapper prefers Debugging for grep+error
+test-scripts-modules-js	T-008i: phase-classifier preserves non-contiguous phase returns
+test-scripts-modules-js	T-008j: phase-classifier derives Iterative Loop flow pattern
+test-scripts-modules-js	T-036a: BOX constant exists with box characters
+test-scripts-modules-js	T-036b: pad_text pads text to width
+test-scripts-modules-js	T-036c: pad_text truncates long text
+test-scripts-modules-js	T-036d: pad_text centers text
+test-scripts-modules-js	T-036e: format_decision_header creates header
+test-scripts-modules-js	T-036f: format_option_box creates option box
+test-scripts-modules-js	T-036g: format_chosen_box creates chosen box
+test-scripts-modules-js	T-036h: format_caveats_box creates caveats box
+test-scripts-modules-js	T-036i: format_caveats_box returns empty for null
+test-scripts-modules-js	T-036j: format_follow_up_box creates follow-up box
+test-scripts-modules-js	T-036k: format_follow_up_box returns empty for empty array
+test-scripts-modules-js	T-037a: extractTriggerPhrases is exported
+test-scripts-modules-js	T-037b: extract_trigger_phrases is exported
+test-scripts-modules-js	T-037c: extractTriggerPhrases extracts phrases
+test-scripts-modules-js	T-037d: extractTriggerPhrases returns empty for null
+test-scripts-modules-js	T-037e: extractTriggerPhrases returns empty for short text
+test-scripts-modules-js	T-037f: CONFIG is exported
+test-scripts-modules-js	T-037g: STOP_WORDS_ENGLISH is exported
+test-scripts-modules-js	T-039a: validateContentAlignment is a function
+test-scripts-modules-js	T-039b: validateFolderAlignment is a function
+test-scripts-modules-js	T-039c: extractConversationTopics extracts OAuth topics
+test-scripts-modules-js	T-039d: extractObservationKeywords extracts keywords
+test-scripts-modules-js	T-039e: calculateAlignmentScore returns high score for match
+test-scripts-modules-js	T-039f: calculateAlignmentScore returns low score for non-match
+test-scripts-modules-js	T-039g: parseSpecFolderTopic parses nested names
+test-scripts-modules-js	T-039h: ALIGNMENT_CONFIG has STOPWORDS
+test-scripts-modules-js	T-040a: extractPhasesFromData is a function
+test-scripts-modules-js	T-040b: extractPhasesFromData returns array for null
+test-scripts-modules-js	T-040c: extractPhasesFromData returns empty for short sessions
+test-scripts-modules-js	T-040d: extractPhasesFromData extracts phases
+test-scripts-modules-js	T-040e: extractDiagrams is a function
+test-scripts-modules-js	T-040f: extractDiagrams returns simulation for null
+test-scripts-modules-js	T-040g: extractDiagrams processes real data
+test-scripts-modules-js	T-040h: extractDiagrams includes AUTO_CONVERSATION_FLOWCHART
+test-scripts-modules-js	T-041a: generateDecisionTree is a function
+test-scripts-modules-js	T-041b: generateDecisionTree handles legacy format
+test-scripts-modules-js	T-041c: generateDecisionTree handles object format
+test-scripts-modules-js	T-041d: generateDecisionTree handles empty options
+test-scripts-modules-js	T-041e: generateDecisionTree includes caveats
+test-scripts-modules-js	T-041f: generateDecisionTree includes follow-up
+test-scripts-modules-js	T-042a: parseArguments is a function
+test-scripts-modules-js	T-042b: validateArguments is a function
+test-scripts-modules-js	T-042c: isValidSpecFolder is a function
+test-scripts-modules-js	T-042d: SPEC_FOLDER_PATTERN is a RegExp
+test-scripts-modules-js	T-042e: SPEC_FOLDER_PATTERN matches valid folder names
+test-scripts-modules-js	T-042f: SPEC_FOLDER_PATTERN rejects invalid folder names
+test-scripts-modules-js	T-042g: isValidSpecFolder accepts valid folder
+test-scripts-modules-js	T-042h: isValidSpecFolder rejects invalid folder
+test-scripts-modules-js	T-042i: isValidSpecFolder rejects non-specs path
+test-scripts-modules-js	T-042j: SPEC_FOLDER_BASIC_PATTERN exists
+test-extractors-loaders-js	EXT-CSData-001: collectSessionData exported
+test-extractors-loaders-js	EXT-CSData-002: shouldAutoSave exported
+test-extractors-loaders-js	EXT-CSData-003: extractPreflightPostflightData exported
+test-extractors-loaders-js	EXT-CSData-004: calculateLearningIndex exported
+test-extractors-loaders-js	EXT-CSData-005: getScoreAssessment exported
+test-extractors-loaders-js	EXT-CSData-006: getTrendIndicator exported
+test-extractors-loaders-js	EXT-CSData-007: generateLearningSummary exported
+test-extractors-loaders-js	EXT-CSData-008: null score returns empty assessment
+test-extractors-loaders-js	EXT-CSData-009: undefined score returns empty assessment
+test-extractors-loaders-js	EXT-CSData-010: High score (90) is Strong
+test-extractors-loaders-js	EXT-CSData-011: Score 70 is Good
+test-extractors-loaders-js	EXT-CSData-012: Score 50 is Moderate
+test-extractors-loaders-js	EXT-CSData-013: Score 25 is Limited
+test-extractors-loaders-js	EXT-CSData-014: Score 10 is Minimal
+test-extractors-loaders-js	EXT-CSData-015: Low uncertainty score
+test-extractors-loaders-js	EXT-CSData-016: Medium-low uncertainty
+test-extractors-loaders-js	EXT-CSData-017: Moderate uncertainty
+test-extractors-loaders-js	EXT-CSData-018: High uncertainty
+test-extractors-loaders-js	EXT-CSData-019: Very high uncertainty
+test-extractors-loaders-js	EXT-CSData-020: Positive delta shows up arrow
+test-extractors-loaders-js	EXT-CSData-021: Negative delta shows down arrow
+test-extractors-loaders-js	EXT-CSData-022: Zero delta shows right arrow
+test-extractors-loaders-js	EXT-CSData-023: Null delta shows right arrow
+test-extractors-loaders-js	EXT-CSData-024: Positive reduction shows down (good)
+test-extractors-loaders-js	EXT-CSData-025: Negative reduction shows up (bad)
+test-extractors-loaders-js	EXT-CSData-026: Learning index calculation
+test-extractors-loaders-js	EXT-CSData-027: Zero deltas = zero index
+test-extractors-loaders-js	EXT-CSData-028: Null deltas handled as zero
+test-extractors-loaders-js	EXT-CSData-029: Index capped at 100
+test-extractors-loaders-js	EXT-CSData-030: Preflight knowledge score extracted
+test-extractors-loaders-js	EXT-CSData-031: Preflight knowledge score correct
+test-extractors-loaders-js	EXT-CSData-032: Postflight knowledge score correct
+test-extractors-loaders-js	EXT-CSData-033: Delta has correct format
+test-extractors-loaders-js	EXT-CSData-034: Learning index calculated
+test-extractors-loaders-js	EXT-CSData-035: Gaps closed is array
+test-extractors-loaders-js	EXT-CSData-036: New gaps is array
+test-extractors-loaders-js	EXT-CSData-037: Missing data returns null
+test-extractors-loaders-js	EXT-CSData-038: Learning summary provided even with no data
+test-extractors-loaders-js	EXT-CSData-039: Learning summary contains relevant keywords
+test-extractors-loaders-js	EXT-CSData-040: Low learning index generates message
+test-extractors-loaders-js	EXT-CSData-041: Zero messages no auto-save
+test-extractors-loaders-js	EXT-CSData-042: Object facts contribute to pending task extraction
+test-extractors-loaders-js	EXT-CSData-043: Observation truncation logs counts without content
+test-extractors-loaders-js	EXT-Session-001: generateSessionId exported
+test-extractors-loaders-js	EXT-Session-002: getChannel exported
+test-extractors-loaders-js	EXT-Session-003: detectContextType exported
+test-extractors-loaders-js	EXT-Session-004: detectImportanceTier exported
+test-extractors-loaders-js	EXT-Session-005: detectProjectPhase exported
+test-extractors-loaders-js	EXT-Session-006: extractActiveFile exported
+test-extractors-loaders-js	EXT-Session-007: extractNextAction exported
+test-extractors-loaders-js	EXT-Session-008: extractBlockers exported
+test-extractors-loaders-js	EXT-Session-009: buildFileProgress exported
+test-extractors-loaders-js	EXT-Session-010: countToolsByType exported
+test-extractors-loaders-js	EXT-Session-011: calculateSessionDuration exported
+test-extractors-loaders-js	EXT-Session-012: calculateExpiryEpoch exported
+test-extractors-loaders-js	EXT-Session-013: extractKeyTopics exported
+test-extractors-loaders-js	EXT-Session-014: detectSessionCharacteristics exported
+test-extractors-loaders-js	EXT-Session-015: buildProjectStateSnapshot exported
+test-extractors-loaders-js	EXT-Session-016: Session ID format correct
+test-extractors-loaders-js	EXT-Session-017: Session IDs are unique
+test-extractors-loaders-js	EXT-Session-018: getChannel returns string
+test-extractors-loaders-js	EXT-Session-019: Channel is non-empty
+test-extractors-loaders-js	EXT-Session-020: Empty tools = general
+test-extractors-loaders-js	EXT-Session-021: Read-heavy = research
+test-extractors-loaders-js	EXT-Session-022: Write-heavy = implementation
+test-extractors-loaders-js	EXT-Session-023: With decisions = planning
+test-extractors-loaders-js	EXT-Session-024: Web-heavy = research
+test-extractors-loaders-js	EXT-Session-025: Core path = critical
+test-extractors-loaders-js	EXT-Session-026: Security path = critical
+test-extractors-loaders-js	EXT-Session-027: Planning context = important
+test-extractors-loaders-js	EXT-Session-028: Normal path/context = normal
+test-extractors-loaders-js	EXT-Session-029: Empty + few messages = RESEARCH
+test-extractors-loaders-js	EXT-Session-030: Write-heavy = IMPLEMENTATION
+test-extractors-loaders-js	EXT-Session-031: Decisions + read-heavy = PLANNING
+test-extractors-loaders-js	EXT-Session-032: extractActiveFile returns string
+test-extractors-loaders-js	EXT-Session-033: extractNextAction returns string
+test-extractors-loaders-js	EXT-Session-034: extractBlockers detects blocker keywords
+test-extractors-loaders-js	EXT-Session-035: No blockers returns None
+test-extractors-loaders-js	EXT-Session-036: buildFileProgress returns array
+test-extractors-loaders-js	EXT-Session-037: File status is EXISTS
+test-extractors-loaders-js	EXT-Session-038: countToolsByType returns object
+test-extractors-loaders-js	EXT-Session-039: Read count exists
+test-extractors-loaders-js	EXT-Session-040: Edit count exists
+test-extractors-loaders-js	EXT-Session-041: Duration format correct
+test-extractors-loaders-js	EXT-Session-042: Empty prompts = N/A
+test-extractors-loaders-js	EXT-Session-043: Constitutional never expires
+test-extractors-loaders-js	EXT-Session-044: Critical never expires
+test-extractors-loaders-js	EXT-Session-045: Temporary expires in 7 days
+test-extractors-loaders-js	EXT-Session-046: Normal expires in 90 days
+test-extractors-loaders-js	EXT-Session-047: extractKeyTopics returns array
+test-extractors-loaders-js	EXT-Session-048: Relevant topics extracted
+test-extractors-loaders-js	EXT-Session-049: Stopwords filtered
+test-extractors-loaders-js	EXT-Session-050: contextType exists
+test-extractors-loaders-js	EXT-Session-051: importanceTier exists
+test-extractors-loaders-js	EXT-Session-052: decisionCount is number
+test-extractors-loaders-js	EXT-Session-053: toolCounts is object
+test-extractors-loaders-js	EXT-Session-054: Snapshot has projectPhase
+test-extractors-loaders-js	EXT-Session-055: Snapshot has activeFile
+test-extractors-loaders-js	EXT-Session-056: Snapshot has lastAction
+test-extractors-loaders-js	EXT-Session-057: Snapshot has nextAction
+test-extractors-loaders-js	EXT-Session-058: Snapshot has blockers
+test-extractors-loaders-js	EXT-Session-059: Snapshot has fileProgress array
+test-extractors-loaders-js	EXT-Decision-001: extractDecisions exported
+test-extractors-loaders-js	EXT-Decision-002: Simulation returns DECISIONS
+test-extractors-loaders-js	EXT-Decision-003: DECISION_COUNT is number
+test-extractors-loaders-js	EXT-Decision-004: DECISIONS is array
+test-extractors-loaders-js	EXT-Decision-005: Correct decision count
+test-extractors-loaders-js	EXT-Decision-006: Decision has TITLE
+test-extractors-loaders-js	EXT-Decision-007: Decision has CONTEXT
+test-extractors-loaders-js	EXT-Decision-008: Decision has OPTIONS array
+test-extractors-loaders-js	EXT-Decision-009: Decision has CHOSEN
+test-extractors-loaders-js	EXT-Decision-010: Decision has RATIONALE
+test-extractors-loaders-js	EXT-Decision-010a: CHOICE_CONFIDENCE is number
+test-extractors-loaders-js	EXT-Decision-010b: RATIONALE_CONFIDENCE is number
+test-extractors-loaders-js	EXT-Decision-011: CONFIDENCE is number
+test-extractors-loaders-js	EXT-Decision-012: Decision has ANCHOR_ID
+test-extractors-loaders-js	EXT-Decision-013: Decision has IMPORTANCE
+test-extractors-loaders-js	EXT-Decision-013a: CHOICE_CONFIDENCE normalized
+test-extractors-loaders-js	EXT-Decision-013b: RATIONALE_CONFIDENCE normalized
+test-extractors-loaders-js	EXT-Decision-014: HAS_PROS is boolean
+test-extractors-loaders-js	EXT-Decision-015: HAS_CONS is boolean
+test-extractors-loaders-js	EXT-Decision-016: PROS is array
+test-extractors-loaders-js	EXT-Decision-017: CONS is array
+test-extractors-loaders-js	EXT-Decision-018: HIGH_CONFIDENCE_COUNT is number
+test-extractors-loaders-js	EXT-Decision-019: MEDIUM_CONFIDENCE_COUNT is number
+test-extractors-loaders-js	EXT-Decision-020: LOW_CONFIDENCE_COUNT is number
+test-extractors-loaders-js	EXT-Decision-021: FOLLOWUP_COUNT is number
+test-extractors-loaders-js	EXT-Decision-022: Manual decisions count correct
+test-extractors-loaders-js	EXT-Decision-023: Manual decision has TITLE
+test-extractors-loaders-js	EXT-Decision-024: Manual decision has ANCHOR_ID
+test-extractors-loaders-js	EXT-Decision-025: Importance is valid tier
+test-extractors-loaders-js	EXT-Decision-026: Empty observations = 0 decisions
+test-extractors-loaders-js	EXT-Decision-027: _manualDecision enriches chosen approach and confidence
+test-extractors-loaders-js	EXT-Decision-028: split confidence derives legacy confidence conservatively
+test-extractors-loaders-js	EXT-Decision-029: _manualDecision observation is suppressed when authoritative manual decision exists
+test-extractors-loaders-js	EXT-File-001: detectObservationType exported
+test-extractors-loaders-js	EXT-File-002: extractFilesFromData exported
+test-extractors-loaders-js	EXT-File-003: enhanceFilesWithSemanticDescriptions exported
+test-extractors-loaders-js	EXT-File-004: buildObservationsWithAnchors exported
+test-extractors-loaders-js	EXT-File-005: Explicit type preserved
+test-extractors-loaders-js	EXT-File-006: Bug keywords = bugfix
+test-extractors-loaders-js	EXT-File-007: Implement keywords = feature
+test-extractors-loaders-js	EXT-File-008: Refactor keywords = refactor
+test-extractors-loaders-js	EXT-File-009: Decision keywords = decision
+test-extractors-loaders-js	EXT-File-010: Research keywords = research
+test-extractors-loaders-js	EXT-File-011: Discovery keywords = discovery
+test-extractors-loaders-js	EXT-File-012: Test keywords = test
+test-extractors-loaders-js	EXT-File-012b: Documentation keywords = documentation
+test-extractors-loaders-js	EXT-File-012c: Performance keywords = performance
+test-extractors-loaders-js	EXT-File-012d: No keywords = observation
+test-extractors-loaders-js	EXT-File-013: extractFilesFromData returns array
+test-extractors-loaders-js	EXT-File-014: File has FILE_PATH
+test-extractors-loaders-js	EXT-File-015: File has DESCRIPTION
+test-extractors-loaders-js	EXT-File-016: Duplicate files deduplicated
+test-extractors-loaders-js	EXT-File-016b: Normalized path-equivalent files deduplicated
+test-extractors-loaders-js	EXT-File-016c: Normalized path-equivalent files preserve canonical FILE_PATH
+test-extractors-loaders-js	EXT-File-017: Legacy format supported
+test-extractors-loaders-js	EXT-File-018: buildObservationsWithAnchors returns array
+test-extractors-loaders-js	EXT-File-019: Observation has TYPE
+test-extractors-loaders-js	EXT-File-020: Observation has TITLE
+test-extractors-loaders-js	EXT-File-021: Observation has NARRATIVE
+test-extractors-loaders-js	EXT-File-022: Observation has ANCHOR_ID
+test-extractors-loaders-js	EXT-File-023: HAS_FILES is boolean
+test-extractors-loaders-js	EXT-File-024: HAS_FACTS is boolean
+test-extractors-loaders-js	EXT-File-025: All anchor IDs unique
+test-extractors-loaders-js	EXT-File-026: Caller-side null filtering preserves valid observations
+test-extractors-loaders-js	EXT-File-027: Semantic description applied
+test-extractors-loaders-js	EXT-File-028: Object facts are rendered instead of dropped
+test-extractors-loaders-js	EXT-Conv-001: extractConversations exported
+test-extractors-loaders-js	EXT-Conv-002: Simulation returns MESSAGES
+test-extractors-loaders-js	EXT-Conv-003: MESSAGE_COUNT is number
+test-extractors-loaders-js	EXT-Conv-004: MESSAGES is array
+test-extractors-loaders-js	EXT-Conv-005: MESSAGE_COUNT is number
+test-extractors-loaders-js	EXT-Conv-006: DURATION exists
+test-extractors-loaders-js	EXT-Conv-007: FLOW_PATTERN exists
+test-extractors-loaders-js	EXT-Conv-008: PHASE_COUNT is number
+test-extractors-loaders-js	EXT-Conv-009: PHASES is array
+test-extractors-loaders-js	EXT-Conv-010: TOOL_COUNT is number
+test-extractors-loaders-js	EXT-Conv-011: Message has TIMESTAMP
+test-extractors-loaders-js	EXT-Conv-012: Message has ROLE
+test-extractors-loaders-js	EXT-Conv-013: Message has CONTENT
+test-extractors-loaders-js	EXT-Conv-014: Message has TOOL_CALLS array
+test-extractors-loaders-js	EXT-Conv-015: Valid FLOW_PATTERN
+test-extractors-loaders-js	EXT-Conv-016: AUTO_GENERATED_FLOW exists
+test-extractors-loaders-js	EXT-Conv-017: Empty data returns MESSAGES array
+test-extractors-loaders-js	EXT-Conv-018: Empty data MESSAGE_COUNT is 0
+test-extractors-loaders-js	EXT-Conv-019: DATE in ISO format
+test-extractors-loaders-js	EXT-Conv-020: Object facts still drive conversation tool-call detection
+test-extractors-loaders-js	EXT-Conv-021: UNIQUE_PHASE_COUNT is number
+test-extractors-loaders-js	EXT-Conv-022: TOPIC_CLUSTERS is array
+test-extractors-loaders-js	EXT-Conv-023: Non-contiguous phases remain separate segments
+test-extractors-loaders-js	EXT-Impl-001: hasImplementationWork exported
+test-extractors-loaders-js	EXT-Impl-002: extractMainTopic exported
+test-extractors-loaders-js	EXT-Impl-003: extractWhatBuilt exported
+test-extractors-loaders-js	EXT-Impl-004: extractKeyFilesWithRoles exported
+test-extractors-loaders-js	EXT-Impl-005: generateExtensionGuide exported
+test-extractors-loaders-js	EXT-Impl-006: extractCodePatterns exported
+test-extractors-loaders-js	EXT-Impl-007: buildImplementationGuideData exported
+test-extractors-loaders-js	EXT-Impl-008: Detects implementation work
+test-extractors-loaders-js	EXT-Impl-009: No work with empty data
+test-extractors-loaders-js	EXT-Impl-010: Research-only not implementation
+test-extractors-loaders-js	EXT-Impl-011: Topic from folder name
+test-extractors-loaders-js	EXT-Impl-012: Topic from observations is string
+test-extractors-loaders-js	EXT-Impl-013: extractWhatBuilt returns array
+test-extractors-loaders-js	EXT-Impl-014: Feature has FEATURE_NAME
+test-extractors-loaders-js	EXT-Impl-015: Feature has DESCRIPTION
+test-extractors-loaders-js	EXT-Impl-016: Duplicate features deduplicated
+test-extractors-loaders-js	EXT-Impl-017: extractKeyFilesWithRoles returns array
+test-extractors-loaders-js	EXT-Impl-018: Key file has FILE_PATH
+test-extractors-loaders-js	EXT-Impl-019: Key file has ROLE
+test-extractors-loaders-js	EXT-Impl-020: Test file role detected
+test-extractors-loaders-js	EXT-Impl-021: Config file role detected
+test-extractors-loaders-js	EXT-Impl-022: generateExtensionGuide returns array
+test-extractors-loaders-js	EXT-Impl-023: Guide has GUIDE_TEXT
+test-extractors-loaders-js	EXT-Impl-024: extractCodePatterns returns array
+test-extractors-loaders-js	EXT-Impl-027: Guide detected
+test-extractors-loaders-js	EXT-Impl-028: Guide has TOPIC
+test-extractors-loaders-js	EXT-Impl-029: Guide has IMPLEMENTATIONS
+test-extractors-loaders-js	EXT-Impl-030: Guide has IMPL_KEY_FILES
+test-extractors-loaders-js	EXT-Impl-031: Guide has EXTENSION_GUIDES
+test-extractors-loaders-js	EXT-Impl-032: Guide has PATTERNS
+test-extractors-loaders-js	EXT-Impl-033: No guide when no impl work
+test-extractors-loaders-js	EXT-Diag-001: extractPhasesFromData exported
+test-extractors-loaders-js	EXT-Diag-002: extractDiagrams exported
+test-extractors-loaders-js	EXT-Diag-003: extractPhasesFromData returns array
+test-extractors-loaders-js	EXT-Diag-004: Phase has PHASE_NAME
+test-extractors-loaders-js	EXT-Diag-005: Phase has DURATION
+test-extractors-loaders-js	EXT-Diag-006: Phase has ACTIVITIES array
+test-extractors-loaders-js	EXT-Diag-007: Null data returns simulation phases
+test-extractors-loaders-js	EXT-Diag-008: Short session returns array
+test-extractors-loaders-js	EXT-Diag-009: extractDiagrams returns DIAGRAMS array
+test-extractors-loaders-js	EXT-Diag-010: DIAGRAM_COUNT is number
+test-extractors-loaders-js	EXT-Diag-011: HAS_AUTO_GENERATED is true
+test-extractors-loaders-js	EXT-Diag-012: FLOW_TYPE exists
+test-extractors-loaders-js	EXT-Diag-013: AUTO_CONVERSATION_FLOWCHART exists
+test-extractors-loaders-js	EXT-Diag-014: AUTO_DECISION_TREES is array
+test-extractors-loaders-js	EXT-Diag-015: DIAGRAM_TYPES is array
+test-extractors-loaders-js	EXT-Diag-016: PATTERN_SUMMARY is array
+test-extractors-loaders-js	EXT-Diag-017: ASCII art processing works
+test-extractors-loaders-js	EXT-Diag-018: Simulation returns DIAGRAMS
+test-extractors-loaders-js	LOAD-001: loadCollectedData exported
+test-extractors-loaders-js	LOAD-003: loadCollectedData reads a data file inside a linked .skilled
+test-extractors-loaders-js	EXT-IDX-001: extractFilesFromData re-exported
+test-extractors-loaders-js	EXT-IDX-002: extractDiagrams re-exported
+test-extractors-loaders-js	EXT-IDX-003: extractConversations re-exported
+test-extractors-loaders-js	EXT-IDX-004: extractDecisions re-exported
+test-extractors-loaders-js	EXT-IDX-005: collectSessionData re-exported
+test-extractors-loaders-js	EXT-IDX-006: detectObservationType re-exported
+test-extractors-loaders-js	EXT-IDX-007: buildObservationsWithAnchors re-exported
+test-extractors-loaders-js	EXT-IDX-008: generateSessionId re-exported
+test-extractors-loaders-js	EXT-IDX-009: getChannel re-exported
+test-extractors-loaders-js	EXT-IDX-010: buildImplementationGuideData re-exported
+test-extractors-loaders-js	ERR-001: Empty object returns observation
+test-extractors-loaders-js	ERR-002: Null/undefined properties handled
+test-extractors-loaders-js	ERR-003: Null FILES handled
+test-extractors-loaders-js	ERR-004: Invalid file objects handled
+test-extractors-loaders-js	ERR-005: Empty arrays return object
+test-extractors-loaders-js	ERR-006: Null properties handled
+test-extractors-loaders-js	ERR-007: Null facts handled
+test-extractors-loaders-js	ERR-008: Empty narrative handled
+test-extractors-loaders-js	ERR-009: Empty string returns array
+test-extractors-loaders-js	ERR-010: Null summary returns array
+test-extractors-loaders-js	ERR-011: Invalid date handled
+test-extractors-loaders-js	INT-001: Files and observations extracted together
+test-extractors-loaders-js	INT-002: Decisions and diagrams extracted together
+test-extractors-loaders-js	INT-003: Conversations with phases extracted
+test-extractors-loaders-js	INT-004: Session characteristics detected
+test-extractors-loaders-js	INT-005: Implementation guide built
+test-phase-validation-js	phase-detection/below-threshold: recommended_phases
+test-phase-validation-js	phase-detection/below-threshold: phase_score
+test-phase-validation-js	phase-detection/below-threshold: suggested_phase_count
+test-phase-validation-js	phase-detection/boundary: recommended_phases
+test-phase-validation-js	phase-detection/boundary: phase_score
+test-phase-validation-js	phase-detection/boundary: suggested_phase_count
+test-phase-validation-js	phase-detection/above-threshold: recommended_phases
+test-phase-validation-js	phase-detection/above-threshold: phase_score
+test-phase-validation-js	phase-detection/above-threshold: suggested_phase_count
+test-phase-validation-js	phase-detection/extreme-scale: recommended_phases
+test-phase-validation-js	phase-detection/extreme-scale: phase_score
+test-phase-validation-js	phase-detection/extreme-scale: suggested_phase_count
+test-phase-validation-js	phase-detection/no-risk-factors: recommended_phases
+test-phase-validation-js	phase-detection/no-risk-factors: phase_score
+test-phase-validation-js	phase-detection/no-risk-factors: suggested_phase_count
+test-phase-validation-js	recommend-level default-on: recommended_phases field present without --recommend-phases
+test-phase-validation-js	recommend-level default-on: phase_score field present without --recommend-phases
+test-phase-validation-js	recommend-level default-on: suggested_phase_count field present without --recommend-phases
+test-phase-validation-js	phase-2/single-phase: PHASE_MODE true
+test-phase-validation-js	phase-2/single-phase: PHASE_COUNT
+test-phase-validation-js	phase-2/single-phase: creates 001-foundation/spec.md
+test-phase-validation-js	phase-2/multi-phase: PHASE_MODE true
+test-phase-validation-js	phase-2/multi-phase: PHASE_COUNT
+test-phase-validation-js	phase-2/multi-phase: creates 001-foundation/spec.md
+test-phase-validation-js	phase-2/multi-phase: creates 002-implementation/spec.md
+test-phase-validation-js	phase-2/multi-phase: creates 003-stabilization/spec.md
+test-phase-validation-js	phase-2/named-phases: PHASE_MODE true
+test-phase-validation-js	phase-2/named-phases: PHASE_COUNT
+test-phase-validation-js	phase-2/named-phases: creates 001-planning/spec.md
+test-phase-validation-js	phase-2/named-phases: creates 002-delivery/spec.md
+test-phase-validation-js	phase-2/error-cases: invalid args return non-zero exit
+test-phase-validation-js	phase-validation/flat-spec: validates the parent alone
+test-phase-validation-js	phase-validation/one-phase: validates every phase child
+test-phase-validation-js	phase-validation/one-phase: validate.sh auto-enables recursive mode when phase children exist
+test-phase-validation-js	phase-validation/three-phase: validates every phase child
+test-phase-validation-js	phase-validation/three-phase: validate.sh auto-enables recursive mode when phase children exist
+test-phase-validation-js	phase-validation/mixed-levels: validates every phase child
+test-phase-validation-js	phase-validation/mixed-levels: validate.sh auto-enables recursive mode when phase children exist
+test-phase-validation-js	phase-validation/empty-child: validates every phase child
+test-phase-validation-js	phase-validation/empty-child: empty child produces validation errors
+test-phase-validation-js	phase-validation/empty-child: validate.sh auto-enables recursive mode when phase children exist
+test-phase-validation-js	phase-validation/broken-links: validates every phase child
+test-phase-validation-js	phase-validation/broken-links: validate.sh auto-enables recursive mode when phase children exist
+test-phase-validation-js	path-safety: create.sh rejects outside --subfolder path
+test-phase-validation-js	path-safety: create.sh reports allowed root containment error
+test-phase-validation-js	path-safety: create.sh rejects symlink escape path
+test-phase-validation-js	path-safety: create.sh enforces canonical containment for symlink path
+test-phase-validation-js	path-safety: archive.sh rejects paths outside specs root
+test-phase-validation-js	path-safety: archive.sh reports outside-specs-root rejection
+test-phase-validation-js	path-safety: archive.sh rejects restore from non-archive path
+test-phase-validation-js	path-safety: archive.sh reports restore containment error
+test-phase-system-js	recommend-level below-threshold-no-phase: recommended_phases
+test-phase-system-js	recommend-level below-threshold-no-phase: phase_score
+test-phase-system-js	recommend-level below-threshold-no-phase: suggested_phase_count
+test-phase-system-js	recommend-level threshold-hit-level-gate-blocks: recommended_phases
+test-phase-system-js	recommend-level threshold-hit-level-gate-blocks: phase_score
+test-phase-system-js	recommend-level threshold-hit-level-gate-blocks: suggested_phase_count
+test-phase-system-js	recommend-level above-threshold-two-phase: recommended_phases
+test-phase-system-js	recommend-level above-threshold-two-phase: phase_score
+test-phase-system-js	recommend-level above-threshold-two-phase: suggested_phase_count
+test-phase-system-js	recommend-level extreme-scale-four-phase: recommended_phases
+test-phase-system-js	recommend-level extreme-scale-four-phase: phase_score
+test-phase-system-js	recommend-level extreme-scale-four-phase: suggested_phase_count
+test-phase-system-js	recommend-level no-risk-factors-level-gate: recommended_phases
+test-phase-system-js	recommend-level no-risk-factors-level-gate: phase_score
+test-phase-system-js	recommend-level no-risk-factors-level-gate: suggested_phase_count
+test-phase-system-js	create.sh parent mode: PHASE_MODE true
+test-phase-system-js	create.sh parent mode: first append phase count
+test-phase-system-js	create.sh parent mode: 001-foundation created
+test-phase-system-js	create.sh parent mode: 002-implementation created
+test-phase-system-js	create.sh parent mode: second append phase count
+test-phase-system-js	create.sh parent mode: 003-stabilization created
+test-phase-system-js	create.sh parent mode: phase-map section not duplicated
+test-phase-system-js	create.sh parent mode: appended phase row continues the phase-map table
+test-phase-system-js	create.sh parent mode: append updates handoff rows for new phase transition
+test-phase-system-js	create.sh parent mode: append removes single-phase placeholder handoff row
+test-phase-system-js	create.sh parent mode: absolute phase numbering in child header
+test-phase-system-js	create.sh parent mode: predecessor links to prior phase
+test-validation-system-cjs	Level detection: Bold level in table
+test-validation-system-cjs	Level detection: Bold level 2
+test-validation-system-cjs	Level detection: Bold level 3
+test-validation-system-cjs	Level detection: Non-bold level
+test-validation-system-cjs	Level detection: YAML frontmatter style
+test-validation-system-cjs	Level detection: Inline Level: N
+test-validation-system-cjs	Level detection: Inline Level N
+test-validation-system-cjs	Level inference: L1 from file absence
+test-validation-system-cjs	Level inference: L2 from merged verification
+test-validation-system-cjs	Level inference: L3 from decision-record.md
+test-validation-system-cjs	L1 required files present
+test-validation-system-cjs	L2 scaffolds no standalone checklist
+test-validation-system-cjs	L3 adds decision-record.md
+test-validation-system-cjs	Missing spec.md detected
+test-validation-system-cjs	Impl-summary required after completion
+test-validation-system-cjs	Placeholder pattern: YOUR_VALUE_HERE
+test-validation-system-cjs	Placeholder pattern: NEEDS CLARIFICATION
+test-validation-system-cjs	Placeholder pattern: Mustache placeholder
+test-validation-system-cjs	Placeholder in code block ignored
+test-validation-system-cjs	Placeholder in inline code detected
+test-validation-system-cjs	Valid content has no placeholders
+test-validation-system-cjs	Fixture 005 has placeholders
+test-validation-system-cjs	Valid anchor pairs
+test-validation-system-cjs	Unclosed anchor detection
+test-validation-system-cjs	Orphaned closing anchor detection
+test-validation-system-cjs	Nested anchors valid
+test-validation-system-cjs	Duplicate anchor IDs rejected
+test-validation-system-cjs	spec.md required sections present
+test-validation-system-cjs	Missing section detection
+test-validation-system-cjs	Case-insensitive section matching
+test-validation-system-cjs	Checklist P0/P1 sections
+test-validation-system-cjs	Decision-record ADR sections
+test-validation-system-cjs	Exit code 0 = PASS
+test-validation-system-cjs	Exit code 1 = WARN
+test-validation-system-cjs	Exit code 2 = ERROR
+test-validation-system-cjs	Compliant fixture: exit 0
+test-validation-system-cjs	Empty folder: exit 2 (ERROR)
+test-validation-system-cjs	Placeholder fixture: exit 2 (ERROR)
+test-validation-system-cjs	--strict mode: warnings become errors
+test-validation-system-cjs	SPECKIT_STRICT=true env var
+test-validation-system-cjs	--json produces valid JSON
+test-validation-system-cjs	JSON has required fields
+test-validation-system-cjs	JSON passed is boolean
+test-validation-system-cjs	JSON entries is array
+test-validation-system-cjs	JSON summary has error/warning counts
+test-validation-system-cjs	Level mismatch detection
+test-validation-system-cjs	File presence hint detection
+test-validation-system-cjs	L2 missing checklist.md detection
+test-validation-system-cjs	All 33 rule scripts exist
+test-validation-system-cjs	check-files.sh has run_check()
+test-validation-system-cjs	check-placeholders.sh has run_check()
+test-validation-system-cjs	check-comment-hygiene.sh has run_check()
+test-validation-system-cjs	check-scaffold-never-touched.sh has run_check()
+test-validation-system-cjs	check-status-cross-doc-consistency.sh has run_check()
+test-validation-system-cjs	check-level.sh has run_check()
+test-validation-system-cjs	check-ac-coverage.sh has run_check()
+test-validation-system-cjs	check-ac-closure.sh has run_check()
+test-validation-system-cjs	check-toc-policy.sh has run_check()
+test-validation-system-cjs	check-ai-protocols.sh has run_check()
+test-validation-system-cjs	check-complexity.sh has run_check()
+test-validation-system-cjs	check-folder-naming.sh has run_check()
+test-validation-system-cjs	check-frontmatter.sh has run_check()
+test-validation-system-cjs	check-frontmatter-values.sh has run_check()
+test-validation-system-cjs	check-source-tags.sh has run_check()
+test-validation-system-cjs	check-measured-behavior.sh has run_check()
+test-validation-system-cjs	check-grep-convention.sh has run_check()
+test-validation-system-cjs	check-level-match.sh has run_check()
+test-validation-system-cjs	check-graph-metadata.sh has run_check()
+test-validation-system-cjs	check-graph-metadata-child-drift.sh has run_check()
+test-validation-system-cjs	check-graph-metadata-child-identity.sh has run_check()
+test-validation-system-cjs	check-graph-metadata-shape.sh has run_check()
+test-validation-system-cjs	check-metadata-disk-consistency.sh has run_check()
+test-validation-system-cjs	check-description-shape.sh has run_check()
+test-validation-system-cjs	check-normalizer-lint.sh has run_check()
+test-validation-system-cjs	check-spec-doc-integrity.sh has run_check()
+test-validation-system-cjs	check-template-source.sh has run_check()
+test-validation-system-cjs	check-canonical-save-root-spec.sh has run_check()
+test-validation-system-cjs	check-canonical-save-source-docs.sh has run_check()
+test-validation-system-cjs	check-canonical-save-lineage.sh has run_check()
+test-validation-system-cjs	check-canonical-save-packet-identity.sh has run_check()
+test-validation-system-cjs	check-canonical-save-description-graph-freshness.sh has run_check()
+test-validation-system-cjs	check-links.sh has run_check()
+test-validation-system-cjs	validate.sh orchestrator exists
+test-validation-system-cjs	Sufficient fixture count
+test-validation-system-cjs	Fixtures for valid
+test-validation-system-cjs	Fixtures for invalid
+test-validation-system-cjs	Fixtures for anchors
+test-validation-system-cjs	Fixtures for evidence
+test-validation-system-cjs	Fixtures for priority
+test-validation-system-cjs	Fixtures for level
+test-validation-system-cjs	Fixtures for placeholder
+test-validation-system-cjs	Fixture exists: 001-empty-folder
+test-validation-system-cjs	Fixture exists: 002-valid-level1
+test-validation-system-cjs	Fixture exists: 003-valid-level2
+test-validation-system-cjs	Fixture exists: 004-valid-level3
+test-validation-system-cjs	Fixture exists: 005-unfilled-placeholders
+test-validation-system-cjs	Fixture exists: 006-missing-required-files
+test-validation-system-cjs	Fixture exists: 007-valid-anchors
+test-validation-system-cjs	Fixture exists: 008-invalid-anchors
+test-validation-system-cjs	Quiet mode minimal output
+test-validation-system-cjs	Quiet mode reduces output
+test-validation-sh	[Positive Tests (should PASS or WARN)] Compliant Level 2 template fixture
+test-validation-sh	[Positive Tests (should PASS or WARN)] Extra-header fixture warns without failing
+test-validation-sh	[Level Declaration Tests (should PASS or WARN)] Explicit level declaration on compliant fixture
+test-validation-sh	[Warning Tests (should WARN)] Template extra-header fixture warns
+test-validation-sh	[Sections Present Tests (should FAIL on missing)] Missing required spec header now fails
+test-validation-sh	[Negative Tests (should FAIL)] Missing required files (no spec.md)
+test-validation-sh	[Negative Tests (should FAIL)] Unfilled placeholders
+test-validation-sh	[Negative Tests (should FAIL)] Invalid anchors (unclosed, mismatched, orphaned)
+test-validation-sh	[Negative Tests (should FAIL)] Empty folder (all L1 files missing)
+test-validation-sh	[Negative Tests (should FAIL)] Missing plan.md (L1)
+test-validation-sh	[Negative Tests (should FAIL)] Missing tasks.md (L1)
+test-validation-sh	[Negative Tests (should FAIL)] Level 3 missing decision-record.md
+test-validation-sh	[Negative Tests (should FAIL)] Missing required header fails
+test-validation-sh	[Negative Tests (should FAIL)] Reordered required header fails
+test-validation-sh	[Negative Tests (should FAIL)] Missing required anchor fails
+test-validation-sh	[Negative Tests (should FAIL)] Reordered required anchor fails
+test-validation-sh	[Anchor Edge Cases] Compliant anchor order passes
+test-validation-sh	[Anchor Edge Cases] Missing required anchor fails
+test-validation-sh	[Anchor Edge Cases] Reordered required anchor fails
+test-validation-sh	[Placeholder Edge Cases] Compliant fixture stays placeholder-free
+test-validation-sh	[Placeholder Edge Cases] Multiple placeholders across files (all detected)
+test-validation-sh	[Placeholder Edge Cases] Placeholder case variations (detected)
+test-validation-sh	[CLI Options Tests] --json produces valid JSON with required fields
+test-validation-sh	[CLI Options Tests] --strict mode: warnings stay advisory
+test-validation-sh	[CLI Options Tests] --quiet mode: minimal output
+test-validation-sh	[CLI Options Tests] Env var: SPECKIT_STRICT=true
+test-validation-sh	[CLI Options Tests] Compliant fixture remains stable across default rule order
+test-validation-sh	[Exact Exit Code Tests] Exact exit 0: compliant fixture
+test-validation-sh	[Exact Exit Code Tests] Exact exit 1: unknown option
+test-validation-sh	[Exact Exit Code Tests] Exact exit 2: validation error
+test-validation-sh	[Exact Exit Code Tests] Exact exit 3: missing folder
+test-validation-extended-sh	[Individual Rule: FILE_EXISTS (check-files.sh)] L1: All files present
+test-validation-extended-sh	[Individual Rule: FILE_EXISTS (check-files.sh)] L2: All files present (includes checklist)
+test-validation-extended-sh	[Individual Rule: FILE_EXISTS (check-files.sh)] L3: All files present (includes decision-record)
+test-validation-extended-sh	[Individual Rule: FILE_EXISTS (check-files.sh)] L1: Missing spec.md
+test-validation-extended-sh	[Individual Rule: FILE_EXISTS (check-files.sh)] L1: Missing plan.md
+test-validation-extended-sh	[Individual Rule: FILE_EXISTS (check-files.sh)] L1: Missing tasks.md
+test-validation-extended-sh	[Individual Rule: FILE_EXISTS (check-files.sh)] L3: Missing decision-record.md
+test-validation-extended-sh	[Individual Rule: FILE_EXISTS (check-files.sh)] Empty folder (all missing)
+test-validation-extended-sh	[Individual Rule: FOLDER_NAMING (check-folder-naming.sh)] Outside spec roots: 002-valid-level1
+test-validation-extended-sh	[Individual Rule: FOLDER_NAMING (check-folder-naming.sh)] Outside spec roots: 003-valid-level2
+test-validation-extended-sh	[Individual Rule: FOLDER_NAMING (check-folder-naming.sh)] Outside spec roots: 045-valid-sections
+test-validation-extended-sh	[Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh)] No placeholders
+test-validation-extended-sh	[Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh)] [YOUR_VALUE_HERE:] detected
+test-validation-extended-sh	[Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh)] Template provenance token in a title detected
+test-validation-extended-sh	[Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh)] Multiple placeholders
+test-validation-extended-sh	[Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh)] Case variations ignored by canonical shell markers
+test-validation-extended-sh	[Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh)] In code block (ignored)
+test-validation-extended-sh	[Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh)] In inline code (ignored)
+test-validation-extended-sh	[Individual Rule: PLACEHOLDER_FILLED (check-placeholders.sh)] In memory/ (skipped)
+test-validation-extended-sh	[Individual Rule: COMMENT_HYGIENE_MARKER (check-comment-hygiene.sh)] No markers
+test-validation-extended-sh	[Individual Rule: COMMENT_HYGIENE_MARKER (check-comment-hygiene.sh)] Marker detected
+test-validation-extended-sh	[Individual Rule: SCAFFOLD_NEVER_TOUCHED (check-scaffold-never-touched.sh)] Scaffold marker with Complete status detected
+test-validation-extended-sh	[Individual Rule: SCAFFOLD_NEVER_TOUCHED (check-scaffold-never-touched.sh)] Genuinely complete docs pass
+test-validation-extended-sh	[Shared Status Classifier] Not Started classifies as planned
+test-validation-extended-sh	[Shared Enforcement Flag Parsing] Enforce flag matrix applies to both rules
+test-validation-extended-sh	[Metadata Parse Errors] Malformed generated metadata emits a warning
+test-validation-extended-sh	[Individual Rule: LEVEL_DECLARED (check-level.sh)] Level detection (isolated=inferred)
+test-validation-extended-sh	[Individual Rule: LEVEL_DECLARED (check-level.sh)] Inferred level (info)
+test-validation-extended-sh	[Individual Rule: LEVEL_DECLARED (check-level.sh)] Level 0 (fallback)
+test-validation-extended-sh	[Individual Rule: LEVEL_DECLARED (check-level.sh)] Level 5 out of range
+test-validation-extended-sh	[Individual Rule: LEVEL_DECLARED (check-level.sh)] Level without bold
+test-validation-extended-sh	[Individual Rule: AI_PROTOCOL (check-ai-protocols.sh)] L3 (missing protocol=warn)
+test-validation-extended-sh	[Individual Rule: AI_PROTOCOL (check-ai-protocols.sh)] L1 (skipped)
+test-validation-extended-sh	[Individual Rule: AI_PROTOCOL (check-ai-protocols.sh)] L2 (skipped)
+test-validation-extended-sh	[Individual Rule: LEVEL_MATCH (check-level-match.sh)] L1 (level declared)
+test-validation-extended-sh	[Individual Rule: LEVEL_MATCH (check-level-match.sh)] L2 (level consistency)
+test-validation-extended-sh	[Individual Rule: LEVEL_MATCH (check-level-match.sh)] L3 (level consistency)
+test-validation-extended-sh	[Individual Rule: COMPLEXITY_MATCH (check-complexity.sh)] L1 complexity check
+test-validation-extended-sh	[Individual Rule: COMPLEXITY_MATCH (check-complexity.sh)] L2 complexity check
+test-validation-extended-sh	[Individual Rule: COMPLEXITY_MATCH (check-complexity.sh)] L3 complexity check
+test-validation-extended-sh	[Orchestrator: Valid Fixtures (Exit 0 or 1)] 053-template-compliant-level2 passes cleanly
+test-validation-extended-sh	[Orchestrator: Warning Fixtures (Exit 0)] 054-template-extra-header warns
+test-validation-extended-sh	[Orchestrator: Error Fixtures (Exit 2)] 001-empty-folder fails
+test-validation-extended-sh	[Orchestrator: Error Fixtures (Exit 2)] 005-unfilled-placeholders fails
+test-validation-extended-sh	[Orchestrator: Error Fixtures (Exit 2)] 006-missing-required-files fails
+test-validation-extended-sh	[Orchestrator: Error Fixtures (Exit 2)] 008-invalid-anchors fails
+test-validation-extended-sh	[Orchestrator: Error Fixtures (Exit 2)] 028-level3-missing-decision fails
+test-validation-extended-sh	[Orchestrator: Error Fixtures (Exit 2)] 032-missing-plan fails
+test-validation-extended-sh	[Orchestrator: Error Fixtures (Exit 2)] 035-missing-tasks fails
+test-validation-extended-sh	[Orchestrator: Error Fixtures (Exit 2)] 036-multiple-placeholders fails
+test-validation-extended-sh	[Orchestrator: Error Fixtures (Exit 2)] 055-template-missing-header fails
+test-validation-extended-sh	[Orchestrator: Error Fixtures (Exit 2)] 056-template-reordered-header fails
+test-validation-extended-sh	[Orchestrator: Error Fixtures (Exit 2)] 057-template-missing-anchor fails
+test-validation-extended-sh	[Orchestrator: Error Fixtures (Exit 2)] 058-template-reordered-anchor fails
+test-validation-extended-sh	[Orchestrator: Error Fixtures (Exit 2)] 072 scaffold marker fails through default registry bridge
+test-validation-extended-sh	[Exit Code Verification] Exit 0: Compact compliant fixture returns pass
+test-validation-extended-sh	[Exit Code Verification] Exit 0: Warning fixture returns warn
+test-validation-extended-sh	[Exit Code Verification] Exit 2: Errors return fail
+test-validation-extended-sh	[Exit Code Verification] Exit 2: Missing files return fail
+test-validation-extended-sh	[Exit Code Verification] Exit 2: Missing required header returns fail
+test-validation-extended-sh	[Exit Code Verification] Exact exit 0: compliant fixture
+test-validation-extended-sh	[Exit Code Verification] Exact exit 1: unknown option
+test-validation-extended-sh	[Exit Code Verification] Exact exit 2: validation error
+test-validation-extended-sh	[Exit Code Verification] Exact exit 3: missing folder
+test-validation-extended-sh	[JSON Output Mode] --json compact compliant fixture produces valid JSON
+test-validation-extended-sh	[JSON Output Mode] --json warning fixture produces valid JSON
+test-validation-extended-sh	[JSON Output Mode] --json error fixture produces valid JSON
+test-validation-extended-sh	[CLI Options] --strict: warnings stay advisory
+test-validation-extended-sh	[CLI Options] --verbose: detailed compact output
+test-validation-extended-sh	[CLI Options] --quiet: minimal output (compact pass)
+test-validation-extended-sh	[CLI Options] --quiet: minimal output (warn)
+test-validation-extended-sh	[CLI Options] --quiet: minimal output (error)
+test-validation-extended-sh	[CLI Options] SPECKIT_STRICT=true env var
+test-validation-extended-sh	[Edge Cases: Anchor Scenarios] Compliant anchor order passes cleanly
+test-validation-extended-sh	[Edge Cases: Anchor Scenarios] Missing required anchor fails
+test-validation-extended-sh	[Edge Cases: Anchor Scenarios] Reordered required anchor fails
+test-validation-extended-sh	[Edge Cases: Evidence Patterns] Compliant evidence citations pass cleanly
+test-validation-extended-sh	[Edge Cases: Placeholder Contexts] Compliant fixture stays placeholder-free cleanly
+test-validation-extended-sh	[Edge Cases: Placeholder Contexts] Multiple across files detected
+test-validation-extended-sh	[Edge Cases: Placeholder Contexts] Case variations detected
+test-validation-extended-sh	[Edge Cases: Level Detection] Explicit level on compliant fixture passes cleanly
+test-validation-extended-sh	[Edge Cases: Level Detection] Level 0 invalid (error from mismatch)
+test-validation-extended-sh	[Edge Cases: Level Detection] Level 5 out of range (error from mismatch)
+test-validation-extended-sh	[Edge Cases: Special Directories] Compliant fixture stays stable without special directories
+check-ac-closure-sh	cutoff day itself is grandfathered
+check-ac-closure-sh	after cutoff, missing document blocks
+check-ac-closure-sh	before cutoff, missing document advisory
+check-ac-closure-sh	pre-cutoff completion claim stays advisory
+check-ac-closure-sh	pre-cutoff dangling waiver stays advisory
+check-ac-closure-sh	completion claim with unmet criterion
+check-ac-closure-sh	unmet criterion mid-flight does not block
+check-ac-closure-sh	all met is closeable
+check-ac-closure-sh	bold id still counts
+check-ac-closure-sh	backticked id still counts
+check-ac-closure-sh	lowercase id still counts
+check-ac-closure-sh	unparseable id is reported
+check-ac-closure-sh	unbalanced fence is reported
+check-ac-closure-sh	duplicate ids are reported
+check-ac-closure-sh	status 'Not Complete' is not a completion claim
+check-ac-closure-sh	status 'Incomplete' is not a completion claim
+check-ac-closure-sh	status 'Abandoned' is not a completion claim
+check-ac-closure-sh	status 'Blocked - nothing done yet' is not a completion
+check-ac-closure-sh	extra column does not shift Status
+check-ac-closure-sh	escaped pipe does not shift Status
+check-ac-closure-sh	fenced ADR does not satisfy a waiver
+check-ac-closure-sh	bold list ADR satisfies a waiver
+check-ac-closure-sh	table-row ADR satisfies a waiver
+check-ac-closure-sh	ADR-1 and ADR-001 are the same record
+check-ac-closure-sh	waiver citing a missing ADR fails
+check-ac-closure-sh	waiver naming no ADR fails
+check-ac-closure-sh	every cited ADR must exist
+check-ac-closure-sh	non-boolean flag keeps the gate on
+check-ac-closure-sh	malformed cutoff falls back, not grandfather-all
+check-ac-coverage-sh	prose verification counts as no evidence
+check-ac-coverage-sh	file:line in the Verification cell is evidence
+check-ac-coverage-sh	a waived criterion needs no citation
+check-ac-coverage-sh	a superseded criterion needs no citation
+check-ac-coverage-sh	cited and retired count, prose and blank do not
+check-ac-coverage-sh	an extra column does not shift Verification
+check-ac-coverage-sh	a column before AC-ID does not zero the count
+check-ac-coverage-sh	an Incomplete packet does not activate the gate
+check-ac-coverage-sh	a fenced example is not a criterion
+check-ac-coverage-sh	canonical doc alone activates the gate
+check-ac-coverage-sh	a criteria table with no rows is a no-op
+check-ac-coverage-sh	no criteria and no source is inactive
+check-ac-coverage-sh	the gate stays off below Level 2
+check-ac-coverage-sh	the merged tasks document is the traceability source
+check-ac-coverage-sh	a stray pre-merge copy is not a source
+check-ac-coverage-sh	tasks.md without the protocol anchor is not a source
+check-ac-coverage-sh	enforce fails a post-cutoff packet under the floor
+check-ac-coverage-sh	enforce stays advisory on or before the cutoff
+check-ac-coverage-sh	enforce stays advisory with no creation date
+check-ac-coverage-sh	a later cutoff grandfathers the packet
+check-ac-coverage-sh	a malformed cutoff falls back to the default
+check-ac-coverage-sh	without the switch a post-cutoff packet is advisory
+check-ac-coverage-sh	a Complete criteria document activates the gate alone
+check-ac-coverage-sh	a Draft criteria document with no summary stays inacti
+check-ac-coverage-sh	a Manual-infeasible row with a rationale counts, a bar
+check-ac-coverage-sh	the parser lists every citation of a counted row
+check-ac-coverage-sh	empty id and citation lists are written as -
+check-ac-coverage-sh	a citation inside the file resolves
+check-ac-coverage-sh	a missing file and line 0 or past the end do not
+check-ac-coverage-sh	a directory and an ellipsis path do not resolve
+check-ac-coverage-sh	the root is tried after the packet folder
+check-ac-coverage-sh	an empty list reports nothing
+check-ac-coverage-sh	unresolved citations are named with their AC id
+check-ac-coverage-sh	an unresolved citation still counts as coverage
+check-ac-coverage-sh	resolving citations add no detail
+check-ac-coverage-sh	the ratio before the cited file exists
+check-ac-coverage-sh	the ratio after the cited file exists is the same
+check-ac-coverage-sh	a path from the repository root resolves
+check-ac-coverage-sh	the legacy table names an unresolved citation
+check-ac-coverage-sh	the legacy ratio is unchanged
+check-ac-coverage-sh	a resolving legacy citation adds no detail
+check-ac-coverage-sh	citations joined by a comma or semicolon split cleanly
+check-ac-coverage-sh	a line number too long to be real does not resolve
+check-ac-coverage-sh	a citation that climbs out of the folder resolves only
+check-ac-coverage-sh	a legacy row naming two ids reports only real misses
+check-graph-metadata-child-drift-sh	missing child → advisory (status=pass, ADVISORY message, names 001-foo)
+check-graph-metadata-child-drift-sh	missing child + enforce → status=warn naming 001-foo (--strict escalates)
+check-graph-metadata-child-drift-sh	listed child → clean pass in advisory and enforce (no drift)
+check-graph-metadata-child-drift-sh	foreign other-parent/001-foo does not satisfy local 001-foo
+check-graph-metadata-child-drift-sh	cross-track track-b/900-shared-name/001-foo does not satisfy local track-a/900-shared-name/001-foo
+check-graph-metadata-child-drift-sh	own-track track-a/900-shared-name/001-foo correctly satisfies local child
+check-graph-metadata-child-drift-sh	underscore folder 010_experiment flagged (writer pattern, not strict slug)
+check-graph-metadata-child-drift-sh	extra listed entry 999-gone (not on disk) → still pass under enforce
+check-graph-metadata-child-drift-sh	leaf with no numbered children → pass under enforce (no false positive)
+check-graph-metadata-child-drift-sh	scanner unavailable → enforce warns (fail-closed), advisory stays clean
+check-graph-metadata-child-drift-sh	default path: flag OFF → orchestrator pass (advisory), flag ON → orchestrator warn
+check-graph-metadata-child-drift-sh	reconciled parent → orchestrator pass under enforce (no false positive)
+check-graph-metadata-shape-last-active-child-sh	Full packet_id whose basename resolves → status=pass (no spurious warn)
+check-graph-metadata-shape-last-active-child-sh	Stale pointer (neither full path nor basename exists) → status=warn
+test-phase-system-sh	create.sh --phase defaults to 3 phases
+test-phase-system-sh	Default phase run created 3 child folders
+test-phase-system-sh	New phase parent's map lists all 3 phases and keeps no row marker
+test-phase-system-sh	Append mode reports 2 newly created phases
+test-phase-system-sh	Append mode created sequential child folders under parent
+test-phase-system-sh	Appended phase child headers link predecessor and successor correctly
+test-phase-system-sh	Appended phase rows continue the parent's phase-map table
+test-phase-system-sh	New-parent creation still invokes the description generator for the parent
+test-phase-system-sh	Append mode never invokes the description generator against the existing parent's path
+test-phase-system-sh	Append mode still generates description.json for the newly created child phase
+test-phase-system-sh	A new parent's first child is labeled Phase 1
+test-phase-system-sh	Appended children carry Phase 2 and Phase 3 in description, graph metadata and spec title

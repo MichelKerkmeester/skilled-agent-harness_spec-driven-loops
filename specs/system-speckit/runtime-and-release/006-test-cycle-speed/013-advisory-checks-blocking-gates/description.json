@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates",
+  "description": "Phase 13: advisory-checks-blocking-gates",
+  "keywords": [
+    "phase",
+    "advisory-checks-blocking-gates"
+  ],
+  "lastUpdated": "2026-11-12T17:43:56.952Z",
+  "specId": "013",
+  "folderSlug": "advisory-checks-blocking-gates",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_18-43__the-alignment-findings-for-advisory-checks.md"
+  ]
+}

@@ -36,6 +36,13 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 1
+          # The guard scans .skilled/bin and its fixtures, so the rest of the tree is not
+          # needed on disk. A scan root the guard gains must be added here, or the guard
+          # scans no file and exits 2.
+          filter: blob:none
+          sparse-checkout: |
+            /.skilled/bin/
+          sparse-checkout-cone-mode: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '22'

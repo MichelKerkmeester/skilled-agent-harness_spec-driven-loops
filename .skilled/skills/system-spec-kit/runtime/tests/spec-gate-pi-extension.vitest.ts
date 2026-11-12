@@ -12,8 +12,8 @@ import { join } from "node:path";
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
-// The extensions resolve the shared core through the runtime symlink layout,
-// which the project's resolve alias bridges back to the real tree.
+// Points at the advisor's built policy-plan module, the file the guard core itself
+// imports; the check below turns an unbuilt checkout into a build hint.
 const advisorPolicyPlan = new URL(
   "../../../system-skill-advisor/runtime/dist/runtime/lib/policy-plan.js",
   import.meta.url,

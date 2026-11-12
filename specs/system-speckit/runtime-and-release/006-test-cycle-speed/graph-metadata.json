@@ -9,7 +9,19 @@
     "system-speckit/runtime-and-release/006-test-cycle-speed/003-split-upgrade-legacy",
     "system-speckit/runtime-and-release/006-test-cycle-speed/004-split-fanout-run",
     "system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing",
-    "system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin"
+    "system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/010-sk-doc-tests-path-filter",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/012-advisor-suite-parallel-trial",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/014-dead-runner-and-step-cleanup",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/015-hook-suite-job-split",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/016-local-test-timing-profile",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards"
   ],
   "manual": {
     "depends_on": [],
@@ -18,7 +30,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "test cycle speed phase parent spec"
+      "test cycle speed phase parent spec",
+      "006-test-cycle-speed operator decisions"
     ],
     "key_topics": [
       "test",
@@ -27,17 +40,18 @@
       "phase",
       "parent",
       "spec",
+      "006-test-cycle-speed",
+      "operator",
+      "decisions",
       "skilled",
       "suites",
-      "took",
-      "too",
-      "long",
-      "run"
+      "took"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "decision-record.md",
       ".github/workflows/spec-kit-check.yml"
     ],
     "entities": [
@@ -45,6 +59,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -88,22 +108,54 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gateway Alternate",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Skilled test suites took too long to run locally",
     "created_at": "2026-11-10T18:27:35Z",
-    "last_save_at": "2026-11-10T21:05:26.683Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-12T17:43:59.675Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:08947483b564d11c050537fad3160a09b9975c861a98fbdd5e3080627ea99d47",
+    "source_fingerprint": "sha256:7d5f6071065ea5338bb470daeb03b090d965dd22a8265b16360b4bd24effccb7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "daa724135a3dfb7449fb6e358696feed4fecf533f3ff91a97e56da74010c8261"
+      "spec.md": "707584fc2e9ce403f083642627d9db9504155bc27df34da00d883f5b750139d5",
+      "decision-record.md": "5c65b32226867609b1c1d790d508032502bf3cae1b822fb2f0dde2f9ba10de17"
     },
-    "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin",
-    "last_active_at": "2026-11-10T21:05:26.683Z"
+    "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards",
+    "last_active_at": "2026-11-12T17:43:59.675Z"
   }
 }

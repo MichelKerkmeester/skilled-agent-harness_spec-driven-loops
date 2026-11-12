@@ -17,7 +17,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.18.0
+version: 1.0.19.0
 ---
 
 # Session relaunch loop (skilled-loop)
@@ -68,7 +68,7 @@ Before it relaunches, the wrapper consumes the record and reads the note's state
 
 ### Pi And OpenCode Adapters
 
-Pi checks usage at message_end and holds the nudge text there rather than sending it, because the message that crosses the threshold usually carries the prepare call itself. agent_end re-checks the record and the hop cap, then delivers the held text with deliverAs: 'followUp', triggerTurn: true, so the nudge starts its own turn and needs no operator input. It captures a matching seed in before_agent_start and arms the Pi record on agent_end. Its killer-path resolver walks up from the current directory, so it can find killer.cjs from a repository subdirectory. tsconfig.pi.json includes the Pi extension entry for type-checking.
+Pi checks usage at message_end and holds the nudge text there rather than sending it, because the message that crosses the threshold usually carries the prepare call itself. agent_end re-checks the record and the hop cap, then delivers the held text with deliverAs: 'followUp', triggerTurn: true, so the nudge starts its own turn and needs no operator input. It captures a matching seed in before_agent_start and arms the Pi record on agent_end. Its killer-path resolver walks up from the current directory, so it can find killer.cjs from a repository subdirectory. tsconfig.pi.json includes the Pi adapter at its real path for type-checking.
 
 OpenCode reads message.updated and message.part.updated. It pushes the active nudge on every request while this session has no handoff. When `SKILLED_LOOP_ID` is set but names no record, it keeps pushing only until the handoff note exists. A matching claim seed stays in the system prompt on every request of the session until the note leaves the open state or a new non-seed user message arrives, because an auxiliary request can consume the first prompt. The seed enters through experimental.chat.system.transform. The relaunch record is armed on session.idle.
 
@@ -125,7 +125,7 @@ Both ways grant the session exactly one more context nudge, whatever level it ha
 | .skilled/hooks/session-relaunch/lib/killer.cjs | Script | Waits for transcript idle, gives up after a 1 s unreadable transcript, signals the target and guards stale-lock takeover. |
 | .skilled/bin/skilled-loop | Script | Wraps the six runtimes and launches eligible relaunches with runtime-specific seed arguments. |
 | .skilled/bin/skilled-loop-shell.sh | Script | Sourced shell shim that starts each interactive runtime launch under the nearest skilled-loop wrapper. |
-| tsconfig.pi.json | TypeScript config | Includes the Pi extension entry so the adapter is type-checked. |
+| tsconfig.pi.json | TypeScript config | Includes the Pi adapter at its real path so it is type-checked. |
 | .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json | Shared | Declares the Claude and Codex hook bindings rendered into each runtime's config. |
 
 ### Validation And Tests

@@ -19,7 +19,7 @@ function projectFilePath(input: Record<string, unknown>): string | undefined {
   return undefined;
 }
 
-type GateGuard = typeof import("../../.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs");
+type GateGuard = typeof import("../lib/spec-gate/spec-gate-core.mjs");
 type GateContext = Parameters<Parameters<ExtensionAPI["on"]>[1]>[1];
 
 interface DialogOutcome {
@@ -83,7 +83,7 @@ export default function specGateEnforce(pi: ExtensionAPI): void {
     try {
       if (event.toolName !== "bash" && event.toolName !== "write" && event.toolName !== "edit") return;
 
-      const guard = await import("../../.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs");
+      const guard = await import("../lib/spec-gate/spec-gate-core.mjs");
       // The session file stays stable across invocations of one conversation
       // while the session id is fresh per process; both hooks must key state
       // identically or classify's answer never reaches enforce's lookup.

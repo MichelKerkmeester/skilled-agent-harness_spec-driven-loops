@@ -1,0 +1,12 @@
+test:legacy	node tests/test-scripts-modules.js
+test:legacy	node tests/test-extractors-loaders.js
+test:legacy	node tests/test-phase-validation.js
+test:legacy	node tests/test-phase-system.js
+test:validation	node tests/test-validation-system.cjs
+test:validation	bash tests/test-validation.sh
+test:validation	bash tests/test-validation-extended.sh
+test:validation	bash tests/check-ac-closure.sh
+test:validation	bash tests/check-ac-coverage.sh
+test:validation	bash tests/check-graph-metadata-child-drift.sh
+test:validation	bash tests/check-graph-metadata-shape-last-active-child.sh
+test:validation	bash tests/test-phase-system.sh

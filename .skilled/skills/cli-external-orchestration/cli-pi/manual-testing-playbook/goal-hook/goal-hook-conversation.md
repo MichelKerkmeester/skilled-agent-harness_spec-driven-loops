@@ -3,7 +3,7 @@ title: "PI-024 -- Goal hook across a later turn and restart"
 description: "This scenario validates that Pi's session goal steers a later task and remains active after restart for `PI-024`."
 stage: routing
 id: "PI-024"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # PI-024 -- Goal hook across a later turn and restart
@@ -117,11 +117,11 @@ Use the `bind-goal` screen, the `later-task` and `post-restart-task` history fil
 
 ### Failure Triage
 
-Confirm that the copied `.pi/extensions/goal-context.ts` symlink resolves through the copied `.skilled` tree and that Pi exposed its session ID to the native command. Check that `OPENCODE_GOAL_STATE_DIR` resolves inside the scratch project. When setup reports the fixture or login missing, keep the run as SKIP rather than treating the missing provider as a goal-hook failure.
+Confirm that `cat` of the copied `.pi/extensions/goal-context.ts` prints one line, `export { default } from '<path>';`, that this path resolves through the copied `.skilled` tree, and that Pi exposed its session ID to the native command. Check that `OPENCODE_GOAL_STATE_DIR` resolves inside the scratch project. When setup reports the fixture or login missing, keep the run as SKIP rather than treating the missing provider as a goal-hook failure.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| PI-024 | Goal hook across a later turn and restart | Carry a session goal into later work and restore it after restart | `/goal-pi set Read the checkpoint token from .goal-checkpoint and return it exactly.` | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs --scenario .skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook-conversation.md --runtime pi --scratch <scratch-dir-outside-repository> --out <evidence-dir>` | Active goal record remains scoped to Pi; both later replies return the marker stored in `.goal-checkpoint` | Turn screens and scratch `.goal-state` JSON | PASS if both replies and state checks match; FAIL if the goal is absent, inactive, or lost; SKIP from setup if the fixture or Pi login is unavailable | Check the copied extension symlink, `.skilled` tree, and scratch goal-state directory before changing the session binding. |
+| PI-024 | Goal hook across a later turn and restart | Carry a session goal into later work and restore it after restart | `/goal-pi set Read the checkpoint token from .goal-checkpoint and return it exactly.` | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs --scenario .skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook-conversation.md --runtime pi --scratch <scratch-dir-outside-repository> --out <evidence-dir>` | Active goal record remains scoped to Pi; both later replies return the marker stored in `.goal-checkpoint` | Turn screens and scratch `.goal-state` JSON | PASS if both replies and state checks match; FAIL if the goal is absent, inactive, or lost; SKIP from setup if the fixture or Pi login is unavailable | Check the copied extension entry file, `.skilled` tree, and scratch goal-state directory before changing the session binding. |
 
 ---
 

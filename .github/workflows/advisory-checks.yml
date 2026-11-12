@@ -5,14 +5,18 @@ on:
   pull_request:
   workflow_dispatch:
 
-# Home for checks that are worth seeing but must not block, and that were previously
-# paid for on every commit or push locally. Neither belongs in a hook: one is advisory
-# by design, and the other has a known-failing backlog that predates it. Running them
-# here keeps the signal and gives the output somewhere readable, without taxing the
-# working loop or mailing anyone about rot they did not cause.
+# Two jobs share this file. `advisory` holds four report-only steps: checks worth seeing
+# that must not block, and that were previously paid for on every commit or push locally.
+# None of them belongs in a hook: one is advisory by design, and another has a
+# known-failing backlog that predates it. Running them here keeps the signal and gives the
+# output somewhere readable, without taxing the working loop or mailing anyone about rot
+# they did not cause. Their continue-on-error keeps that job green, because a red X nobody
+# is expected to act on is how a gate becomes background noise. Read the step output, not
+# the run status.
 #
-# continue-on-error keeps the job green: a red X nobody is expected to act on is how a
-# gate becomes background noise. Read the step output, not the run status.
+# `gate-critical` is the opposite case and carries no continue-on-error: it runs the
+# gate-critical node suites, so a regression in one of them turns the check red instead
+# of reporting the rot again.
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -20,6 +24,11 @@ concurrency:
 
 permissions:
   contents: read
+
+env:
+  # Every model load runs on the CPU, so the onnxruntime-node install skips its Linux CUDA
+  # provider download: unused here, and the install step that fails when that host times out.
+  ONNXRUNTIME_NODE_INSTALL_CUDA: skip
 
 jobs:
   advisory:
@@ -99,3 +108,44 @@ jobs:
             echo "::error::AGENTS.md manifest drift found; the operator records a released body with node $MANIFEST --write"
             exit 1
           fi
+
+  gate-critical:
+    name: Gate-critical node suites (blocking)
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      # The suite imports the built shared package and js-yaml from the spec-kit
+      # workspace, and the hook entries import the built skill advisor, so a fresh
+      # runner needs both workspaces installed and built first.
+      - name: Install and build the spec-kit and skill advisor workspaces
+        run: |
+          set -euo pipefail
+          npm --prefix .skilled/skills/system-spec-kit ci
+          npm --prefix .skilled/skills/system-spec-kit run build
+          npm --prefix .skilled/skills/system-skill-advisor/runtime ci
+          npm --prefix .skilled/skills/system-skill-advisor/runtime run build
+      # These suites read the spec-gate environment switches, so a shell that sets
+      # AI_SESSION_CHILD or SYSTEM_SPEC_GATE_ENFORCE fails them. A runner sets neither.
+      # hook-stdin-deadline.test.mjs is left out on purpose: it races a 500 ms
+      # deadline against an 800 ms write, and a busy runner loses that race.
+      - name: Gate-critical node suites
+        run: |
+          set -euo pipefail
+          node --test --test-reporter=tap \
+            .skilled/skills/system-spec-kit/runtime/cli/tests/sync-agents-dsh.test.mjs \
+            .skilled/skills/system-spec-kit/runtime/cli/tests/sync-prompts-dsh.test.mjs \
+            .skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs \
+            .skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-dsh.test.mjs \
+            .skilled/skills/system-spec-kit/runtime/cli/tests/unactioned-recorded-failure-audit.test.mjs \
+            .skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs \
+            .skilled/skills/system-spec-kit/runtime/tests/hooks/permission-request-policy.test.mjs \
+            .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-claude.test.mjs \
+            .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-codex.test.mjs \
+            .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs \
+            .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-devin.test.mjs \
+            .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-prebind.test.mjs

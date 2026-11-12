@@ -1488,7 +1488,8 @@ function checkAiToolHooks(ctx) {
       continue;
     }
     if (tool === 'opencode' || tool === 'pi') {
-      const read = readRepoFile(path.join(ctx.repoRoot, rel));
+      const adapterPath = path.join(ctx.repoRoot, rel);
+      const read = readRepoFile(adapterPath);
       if (read.text === null) {
         details.push(`${label}: cannot read ${rel}: ${read.problem || 'missing'}`);
         broken.push(tool);
@@ -1496,14 +1497,47 @@ function checkAiToolHooks(ctx) {
       }
       // The default export must carry the handler; an unused object elsewhere cannot
       // make an adapter look registered. Scan source without executing the adapter.
-      const code = read.text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:\\])\/\/.*$/gm, '$1');
+      let source = read.text;
+      let code = read.text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:\\])\/\/.*$/gm, '$1');
+      let adapterDir = path.dirname(adapterPath);
+      if (tool === 'pi') {
+        // Pi loads a linked entry from the file its link points at, and a regular entry
+        // that only re-exports its adapter from the file that statement names. Either way
+        // the handler and the adapter's own imports are read from that file's folder.
+        let isLinked = false;
+        try {
+          isLinked = fs.lstatSync(adapterPath).isSymbolicLink();
+        } catch {
+          isLinked = false;
+        }
+        if (isLinked) {
+          try {
+            adapterDir = path.dirname(fs.realpathSync(adapterPath));
+          } catch {
+            adapterDir = path.dirname(adapterPath);
+          }
+        } else {
+          const reexport = code.trim().match(/^export\s*\{\s*default\s*\}\s*from\s*['"](\.[^'"]+)['"];?$/);
+          if (reexport !== null) {
+            const targetPath = path.resolve(adapterDir, reexport[1]);
+            const target = readRepoFile(targetPath);
+            if (target.text === null) {
+              details.push(`${label}: ${rel} re-exports ${reexport[1]}, which does not exist`);
+              broken.push(tool);
+              continue;
+            }
+            source = target.text;
+            code = stripScriptComments(source);
+            adapterDir = path.dirname(targetPath);
+          }
+        }
+      }
       // A registration whose script is missing fails every shell call, so only one whose file exists counts.
       const importMatch = code.match(/(?:\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*)['"]([^'"]*git-rule-checks\.mjs)['"]/);
-      const registered = importMatch !== null && adapterExportsBinding(tool, read.text);
+      const registered = importMatch !== null && adapterExportsBinding(tool, source);
       if (registered) {
         const specifier = importMatch[1];
-        const adapterPath = path.join(ctx.repoRoot, rel);
-        const importPath = path.resolve(path.dirname(adapterPath), specifier);
+        const importPath = path.resolve(adapterDir, specifier);
         if (fs.existsSync(importPath)) {
           details.push(`${label}: registered (${rel})`);
         } else {

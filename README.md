@@ -1095,9 +1095,9 @@ Every plugin except the git message gate has an off switch, listed in the [hooks
 
 #### Pi Extensions
 
-`.pi/extensions/` holds Pi's discovery mirror: `*.ts` extension entries (relative symlinks into their owners' trees) plus two local extension packages.
+`.pi/extensions/` holds Pi's discovery mirror: `*.ts` extension entries (one-line files that re-export their adapter from its owner's tree) plus two local extension packages.
 
-`tsconfig.pi.json` at the repository root type-checks three of those entries, `session-relaunch.ts`, `spec-gate-classify.ts` and `spec-gate-enforce.ts`, against the local Pi type stubs in `.pi/types/`, with no emit.
+`tsconfig.pi.json` at the repository root type-checks three of those adapters at their real paths, `session-relaunch.ts`, `spec-gate-classify.ts` and `spec-gate-enforce.ts`, against the local Pi type stubs in `.pi/types/`, with no emit.
 
 ##### ⭐ `pi-cache-optimizer` ("Cache Pi")
 
@@ -1109,7 +1109,7 @@ Our custom extension, vendored in `.pi/extensions/` as the live runtime source. 
 - Read-only footer cache stats, plus `/cache-optimizer stats` showing input cost and savings against an uncached baseline
 - Stops paid retry loops by tracking tool-call batches and escalating only when a whole batch fails repeatedly
 
-`.pi/extensions/` also holds `pi-fast-mode-w-subagent-support`, for fast mode with subagent support. Its symlinked guard bridges run the same shared cores as the OpenCode plugins, from the spec gate and session context to the advisor brief, goal, git checks and the in-session handover relaunch. Community packages load via `.pi/settings.json`: `rpiv-ask-user-question`, `rpiv-todo`, `pi-blackhole`, `pi-statusline`, `pi-web-access`, `pi-btw`, `pi-plan-build`, `pi-claude-code-ui`.
+`.pi/extensions/` also holds `pi-fast-mode-w-subagent-support`, for fast mode with subagent support. Its re-exported guard bridges run the same shared cores as the OpenCode plugins, from the spec gate and session context to the advisor brief, goal, git checks and the in-session handover relaunch. Community packages load via `.pi/settings.json`: `rpiv-ask-user-question`, `rpiv-todo`, `pi-blackhole`, `pi-statusline`, `pi-web-access`, `pi-btw`, `pi-plan-build`, `pi-claude-code-ui`.
 
 &nbsp;
 

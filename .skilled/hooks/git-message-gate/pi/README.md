@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`git-message-gate/pi/` holds the Pi entry for the message contract gate. `git-message-gate.ts` is a relative symlink to `../../../skills/sk-git/scripts/hooks/pi/git-message-gate.ts`. Pi discovers extensions in `.pi/extensions/`, where another relative symlink points at the same real file. This folder keeps the hook tree navigable, and the real source stays under the sk-git scripts.
+`git-message-gate/pi/` holds the Pi entry for the message contract gate. `git-message-gate.ts` is a relative symlink to `../../../skills/sk-git/scripts/hooks/pi/git-message-gate.ts`. Pi discovers extensions in `.pi/extensions/`, where a one-line entry file re-exports the same real file. This folder keeps the hook tree navigable, and the real source stays under the sk-git scripts.
 
 The extension registers `tool_call` and returns early unless `event.toolName` is `bash` and `event.input.command` is a string. It dynamic-imports the shared gate and the contract module, calls `evaluateCommand` with `ctx.cwd` and returns `{ block: true, reason }` when the gate refuses. Pi reads only `.block` from a `tool_call` handler's return, so that shape is what makes the refusal visible.
 
@@ -32,5 +32,5 @@ The extension registers `tool_call` and returns early unless `event.toolName` is
 
 - [`../README.md`](../README.md): the concern index, with the per-runtime refusal channels and the contract rules.
 - [`../../../skills/sk-git/scripts/hooks/pi/git-message-gate.ts`](../../../skills/sk-git/scripts/hooks/pi/git-message-gate.ts): the real extension this link points at.
-- [`../../../../.pi/extensions/git-message-gate.ts`](../../../../.pi/extensions/git-message-gate.ts): the discovery symlink Pi loads.
+- [`../../../../.pi/extensions/git-message-gate.ts`](../../../../.pi/extensions/git-message-gate.ts): the one-line entry file Pi discovers.
 - [`../../../skills/sk-git/scripts/hooks/git-message-gate.mjs`](../../../skills/sk-git/scripts/hooks/git-message-gate.mjs): the shared gate that exports `evaluateCommand`.

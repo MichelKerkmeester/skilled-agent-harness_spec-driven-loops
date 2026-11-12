@@ -1,1 +1,1 @@
-../../.skilled/hooks/overlay-guard/pi/overlay-guard.ts
+export { default } from '../../.skilled/hooks/overlay-guard/pi/overlay-guard.ts';

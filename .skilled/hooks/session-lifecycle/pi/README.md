@@ -1,6 +1,6 @@
 ---
 title: "Session Lifecycle: Pi Extensions"
-description: "Pi session lifecycle extensions for start, stop, post-compaction and startup advisories, discovered through the .pi/extensions links."
+description: "Pi session lifecycle extensions for start, stop, post-compaction and startup advisories, discovered through the one-line entry files in .pi/extensions."
 trigger_phrases:
   - "pi session lifecycle"
   - "pi session start context"
@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`pi/` holds the real Pi extensions for the session lifecycle. Pi discovers each one through a relative symlink in `.pi/extensions/`, and the extension imports are written for that link base. The start and stop extensions bridge to the compiled Claude hooks through `runClaudeHookAdapter`. The compaction extension is a native port of Devin's post-compaction chain, and the advisory extension runs the same warn-only startup guards the other runtimes use.
+`pi/` holds links to the real Pi extensions for the session lifecycle, which live in `system-spec-kit/runtime/hooks/pi/`. Pi discovers each one through the one-line entry file in `.pi/extensions/`, which re-exports the real file, so it loads from that spec-kit folder and its imports are relative to that folder. The start and stop extensions bridge to the compiled Claude hooks through `runClaudeHookAdapter`. The compaction extension is a native port of Devin's post-compaction chain, and the advisory extension runs the same warn-only startup guards the other runtimes use.
 
 ---
 
@@ -33,4 +33,4 @@ version: 1.0.0.0
 
 - [`../README.md`](../README.md): the concern README with the per-runtime matrix.
 - [`../../../skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts`](../../../skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts): the real start extension.
-- [`../../../../.pi/extensions/`](../../../../.pi/extensions/): the links Pi discovers.
+- [`../../../../.pi/extensions/`](../../../../.pi/extensions/): the one-line entry files Pi discovers.

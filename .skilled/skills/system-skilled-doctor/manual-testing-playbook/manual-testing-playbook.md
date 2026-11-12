@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-doctor playbook"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # system-skilled-doctor Manual Testing Playbook
@@ -158,9 +158,9 @@ Prompt: `block the commit while a vendored file no overlay owns is staged`
 
 > **Feature File:** [SKD-007](overlays/pre-commit-refuses-unowned-change.md)
 
-### SKD-008 | Overlay apply takes over a lock a killed run left behind
+### SKD-008 | Overlay apply takes over a dead run's lock and repin --stage runs past it
 
-Verify `apply` takes over a lock naming a dead process on this host with one `note:` line and removes the file, and refuses a lock naming a live process.
+Verify `apply` takes over a lock naming a dead process on this host with one `note:` line and removes the file, and refuses a lock naming a live process. Verify `repin --stage` reads the same dead lock, prints its own `note:` line, stages and leaves the file in place.
 
 Prompt: `my overlay run died and left a lock file, can a new run take it over`
 

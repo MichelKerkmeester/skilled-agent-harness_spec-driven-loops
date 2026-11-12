@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`pi/` holds the real Pi extension for session relaunch and its vitest suite. Pi discovers the extension through the relative symlink `.pi/extensions/session-relaunch.ts`. The extension registers `message_end`, `before_agent_start`, `agent_start`, `agent_end`, `agent_settled` and `session_compact`. It holds a nudge until the run settles, arms the record at the settle, withdraws an arm when a new turn starts and points a compacted session back at its open note.
+`pi/` holds the real Pi extension for session relaunch and its vitest suite. Pi discovers the extension through the one-line entry file `.pi/extensions/session-relaunch.ts`. The extension registers `message_end`, `before_agent_start`, `agent_start`, `agent_end`, `agent_settled` and `session_compact`. It holds a nudge until the run settles, arms the record at the settle, withdraws an arm when a new turn starts and points a compacted session back at its open note.
 
 ---
 
@@ -31,4 +31,4 @@ version: 1.0.0.0
 
 - [`../README.md`](../README.md): the concern README with the runtime matrix and the handoff protocol.
 - [`../lib/nudge.cjs`](../lib/nudge.cjs): the text and threshold logic the extension imports.
-- [`../../../../.pi/extensions/session-relaunch.ts`](../../../../.pi/extensions/session-relaunch.ts): the link Pi discovers.
+- [`../../../../.pi/extensions/session-relaunch.ts`](../../../../.pi/extensions/session-relaunch.ts): the one-line entry file Pi discovers.

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement",
+  "spec_folder": "system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement",
+  "parent_id": "system-speckit/runtime-and-release/006-test-cycle-speed",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "legacy lane overlap measurement",
+      "phase 9 legacy lane overlap measurement",
+      "legacy lane overlap measurement plan",
+      "legacy lane overlap measurement tasks",
+      "legacy lane overlap measurement implementation summary"
+    ],
+    "key_topics": [
+      "legacy",
+      "lane",
+      "overlap",
+      "measurement",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "module",
+      "lanes",
+      "bash"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/lane-commands.txt",
+      "scratch/cli-vitest-names.txt",
+      "scratch/lane-name-sources.md",
+      "scratch/measure-overlap.sh",
+      "scratch/legacy-lane-names.txt",
+      "scratch/legacy-lane-overlap.md",
+      ".opencode/skills/system-spec-kit/runtime/cli/package.json",
+      ".github/workflows/spec-kit-check.yml",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/scratch/lane-commands.txt",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/scratch/cli-vitest-names.txt",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/scratch/lane-name-sources.md",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/scratch/measure-overlap.sh",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/scratch/legacy-lane-names.txt",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/scratch/legacy-lane-overlap.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane-commands.txt",
+        "kind": "file",
+        "path": "scratch/lane-commands.txt",
+        "source": "derived"
+      },
+      {
+        "name": "cli-vitest-names.txt",
+        "kind": "file",
+        "path": "scratch/cli-vitest-names.txt",
+        "source": "derived"
+      },
+      {
+        "name": "lane-name-sources.md",
+        "kind": "doc",
+        "path": "scratch/lane-name-sources.md",
+        "source": "derived"
+      },
+      {
+        "name": "measure-overlap.sh",
+        "kind": "script",
+        "path": "scratch/measure-overlap.sh",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-lane-names.txt",
+        "kind": "file",
+        "path": "scratch/legacy-lane-names.txt",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-lane-overlap.md",
+        "kind": "doc",
+        "path": "scratch/legacy-lane-overlap.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Collect",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `Legacy module lanes and the bash validation suites` step took 161 s in run 43174399120, and it chains twelve Node and bash harnesses",
+    "created_at": "2026-11-12T08:21:56Z",
+    "last_save_at": "2026-11-12T14:44:35.018Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2a79cb3d8616eecadad5a3a2e0d5dc31efa1ab1a7f3405be19e00ceb3a796226",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d9eefd833c8db1c17c2aa2e0671732516ffea0d21ea8f599db62068a8c5ceef8",
+      "plan.md": "8c01f4da0aa9b089ee003f5d7ff0f41946bc7096545e43a1d1242e5893ab5161",
+      "tasks.md": "914e3bade149fbfc0eb6b98dc4667fb899ae64ab6af9bcf9acf590ed69c6b701",
+      "implementation-summary.md": "650d7523891c73937ed7e6c445f9609dcb3920078196550bb0c7dba1fc376337"
+    },
+    "last_active_at": null
+  }
+}

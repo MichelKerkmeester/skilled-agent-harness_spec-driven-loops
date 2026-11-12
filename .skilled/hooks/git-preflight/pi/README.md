@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`git-preflight/pi/` holds the Pi entry for the git preflight advisory. `git-preflight-advisory.ts` is a relative symlink to `../../../skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts`. Pi discovers extensions in `.pi/extensions/`, where another relative symlink points at the same real file. This folder keeps the hook tree navigable, and the real source stays under the sk-git scripts.
+`git-preflight/pi/` holds the Pi entry for the git preflight advisory. `git-preflight-advisory.ts` is a relative symlink to `../../../skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts`. Pi discovers extensions in `.pi/extensions/`, where a one-line entry file re-exports the same real file. This folder keeps the hook tree navigable, and the real source stays under the sk-git scripts.
 
 The extension uses two events because Pi discards a bare `reason` from a `tool_call` handler. On `tool_call` it checks `isHookEnabled('git-preflight')`, gates the command on `GIT_SHAPE`, reads the hard rules from `ctx.cwd`, evaluates with the shared engine and stores the text in a map keyed by `event.toolCallId`. On `tool_result` it reads that key and appends one text block to the result content. The map holds at most 20 entries and drops the oldest.
 
@@ -32,5 +32,5 @@ The extension uses two events because Pi discards a bare `reason` from a `tool_c
 
 - [`../README.md`](../README.md): the concern index, with the suppression tiers and the 17 rule ids.
 - [`../../../skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts`](../../../skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts): the real extension this link points at.
-- [`../../../../.pi/extensions/git-preflight-advisory.ts`](../../../../.pi/extensions/git-preflight-advisory.ts): the discovery symlink Pi loads.
+- [`../../../../.pi/extensions/git-preflight-advisory.ts`](../../../../.pi/extensions/git-preflight-advisory.ts): the one-line entry file Pi discovers.
 - [`../../../skills/sk-git/scripts/hooks/git-preflight-advisory.mjs`](../../../skills/sk-git/scripts/hooks/git-preflight-advisory.mjs): the shared stdin hook and its rule engine.

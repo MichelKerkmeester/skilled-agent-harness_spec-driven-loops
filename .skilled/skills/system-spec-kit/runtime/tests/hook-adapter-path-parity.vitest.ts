@@ -13,7 +13,7 @@
 // `runtime/hooks/copilot/`, and no discoverable registration path for
 // GitHub Copilot CLI anywhere in this repository).
 
-import { existsSync, lstatSync, readdirSync, readFileSync, readlinkSync } from 'node:fs';
+import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs';
 import { dirname, isAbsolute, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
@@ -103,9 +103,12 @@ function cursorRegistrations(): Registration[] {
 }
 
 // Pi has no JSON registration: hooks are discovered by scanning
-// `.pi/extensions/` for symlinks back into the maintained source trees
-// (see runtime/hooks/pi/README.md). Subdirectories under `.pi/extensions/`
-// are unrelated Pi feature bundles, not spec-kit hook adapters.
+// `.pi/extensions/` for one-line re-export entries pointing back into the
+// maintained source trees (see runtime/hooks/pi/README.md). The entry has to
+// stay a plain file holding just that statement, because older Pi resolves the
+// entry's imports from the entry's folder while newer Pi resolves the entry to
+// its real file first. Subdirectories under `.pi/extensions/` are unrelated Pi
+// feature bundles, not spec-kit hook adapters.
 const PI_NON_ADAPTER_ENTRIES = new Set([
   'README.md',
   'lib',
@@ -113,16 +116,19 @@ const PI_NON_ADAPTER_ENTRIES = new Set([
   'pi-fast-mode-w-subagent-support',
 ]);
 
+const PI_REEXPORT_PATTERN = /^export \{ default \} from (['"])([^'"]+)\1;\r?\n?$/u;
+
 function piRegistrations(): Registration[] {
   const extensionsDir = resolve(repoRoot, '.pi/extensions');
   const out: Registration[] = [];
   for (const name of readdirSync(extensionsDir)) {
     if (PI_NON_ADAPTER_ENTRIES.has(name)) continue;
+    if (!name.endsWith('.ts')) continue;
     const entryPath = resolve(extensionsDir, name);
-    if (!lstatSync(entryPath).isSymbolicLink()) continue;
-    const target = readlinkSync(entryPath);
-    const resolvedTarget = isAbsolute(target) ? target : resolve(dirname(entryPath), target);
-    out.push({ runtime: 'pi', event: 'extension', path: resolvedTarget });
+    if (!lstatSync(entryPath).isFile()) continue;
+    const match = PI_REEXPORT_PATTERN.exec(readFileSync(entryPath, 'utf8'));
+    if (match === null) continue;
+    out.push({ runtime: 'pi', event: 'extension', path: resolve(dirname(entryPath), match[2]) });
   }
   return out;
 }
@@ -139,7 +145,7 @@ function openCodeRegistrations(): Registration[] {
 
 function resolveAgainstRepo(registration: Registration): string {
   // Pi and OpenCode registrations are already absolute (resolved via the
-  // symlink target or a literal repo-root join above); the JSON-driven
+  // re-export target or a literal repo-root join above); the JSON-driven
   // registrations carry a repo-relative path straight out of the config.
   return isAbsolute(registration.path) ? registration.path : resolve(repoRoot, registration.path);
 }

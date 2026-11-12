@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/006-test-cycle-speed/014-dead-runner-and-step-cleanup",
+  "spec_folder": "system-speckit/runtime-and-release/006-test-cycle-speed/014-dead-runner-and-step-cleanup",
+  "parent_id": "system-speckit/runtime-and-release/006-test-cycle-speed",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dead runner and step cleanup",
+      "phase 14 dead runner and step cleanup",
+      "dead runner and step cleanup plan",
+      "dead runner and step cleanup tasks",
+      "dead runner and step cleanup implementation summary"
+    ],
+    "key_topics": [
+      "dead",
+      "runner",
+      "step",
+      "cleanup",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "skilled",
+      "skills",
+      "system-spec-kit"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/package.json",
+      ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
+      ".skilled/skills/system-spec-kit/runtime/README.md",
+      ".skilled/skills/system-spec-kit/runtime/tests/README.md",
+      ".skilled/skills/system-spec-kit/ARCHITECTURE.md",
+      ".github/workflows/opencode-dual-version.yml",
+      "scripts/README.md",
+      "runtime/README.md",
+      "tests/README.md",
+      "runtime/data/trigger-index.json",
+      "references/workflows/execution-methods.md",
+      "feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md",
+      "runtime/cli/retrieval/fixtures/phrase-variants.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-version.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-dual-version.yml",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "execution-methods.md",
+        "kind": "doc",
+        "path": "references/workflows/execution-methods.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-lifecycle-automation.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-variants.json",
+        "kind": "config",
+        "path": "runtime/cli/retrieval/fixtures/phrase-variants.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Delete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deletion",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reference Census The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs` is 44 lines that split the suite into twelve serial shards by default, and nothing invokes it: the only executable reference is its `test:sharded` entry in `package.json`, and the rest are prose",
+    "created_at": "2026-11-12T08:22:00Z",
+    "last_save_at": "2026-11-12T14:46:45.851Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:03dd495224b4cd96378a40ccd36a3353b62ff1a2f57a5817c6ed98dedcec519d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2548cb360f049adf6e85af7e6b2e974762793450213bdefd037dca35b4eba9bc",
+      "plan.md": "d9bb67bb0a0cf1e6da51e030aca15dda87bf2f504dcf5c939ce7cc26b38e1fcb",
+      "tasks.md": "276f4fb824ba5555137c2ff8bd5a8e217463286f2457c7a8128df6c61e821522",
+      "implementation-summary.md": "4b953963c9f97bcdfeaecdb5db2c1e2c0da9d90178bec6ac1f9c7a35fc75143f"
+    },
+    "last_active_at": null
+  }
+}

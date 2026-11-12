@@ -1,1 +1,1 @@
-../../.skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.ts
+export { default } from '../../.skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.ts';

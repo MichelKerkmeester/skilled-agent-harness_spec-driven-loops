@@ -1,0 +1,1518 @@
+{
+  "sessionId": "fanout-opencode-go-1794468674878-lojzwl",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-12T07:50:03.157Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-ci-workflows-duplicate-a-local-hook-another-workflow-or-a-guard-that-fires",
+      "inboxId": null,
+      "text": "Which CI workflows duplicate a local hook, another workflow, or a guard that fires no unique regression, and how many minutes does each remove per push or PR?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-tests-under-skilled-skills-runtime-are-redundant-mirror-the-implementation",
+      "inboxId": null,
+      "text": "Which tests under .skilled/skills/*/runtime are redundant, mirror the implementation, or re-assert the framework, and what does each suite cost on the commit and push path?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-pre-commit-and-pre-push-hook-checks-cost-the-most-wall-clock-time-and-whic",
+      "inboxId": null,
+      "text": "Which pre-commit and pre-push hook checks cost the most wall-clock time, and which could move to CI or run only on changed paths?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-test-files-under-specs-guard-retired-or-closed-packet-code-rather-than-shi",
+      "inboxId": null,
+      "text": "Which test files under specs/ guard retired or closed-packet code rather than shipping behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-test-infrastructure-custom-harnesses-serial-lists-shared-fixtures-helper-l",
+      "inboxId": null,
+      "text": "Which test infrastructure (custom harnesses, serial lists, shared fixtures, helper layers) costs run time or maintenance without proportional coverage?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-ci-workflows-duplicate-a-local-hook-another-workflow-or-a-guard-that-fires",
+      "inboxId": null,
+      "text": "Which CI workflows duplicate a local hook, another workflow, or a guard that fires no unique regression, and how many minutes does each remove per push or PR?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-2-which-tests-under-skilled-skills-runtime-are-redundant-mirror-the-implementation",
+      "inboxId": null,
+      "text": "Which tests under .skilled/skills/*/runtime are redundant, mirror the implementation, or re-assert the framework, and what does each suite cost on the commit and push path?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-3-which-pre-commit-and-pre-push-hook-checks-cost-the-most-wall-clock-time-and-whic",
+      "inboxId": null,
+      "text": "Which pre-commit and pre-push hook checks cost the most wall-clock time, and which could move to CI or run only on changed paths?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-4-which-test-files-under-specs-guard-retired-or-closed-packet-code-rather-than-shi",
+      "inboxId": null,
+      "text": "Which test files under specs/ guard retired or closed-packet code rather than shipping behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-5-which-test-infrastructure-custom-harnesses-serial-lists-shared-fixtures-helper-l",
+      "inboxId": null,
+      "text": "Which test infrastructure (custom harnesses, serial lists, shared fixtures, helper layers) costs run time or maintenance without proportional coverage?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-pre-commit-is-1-056-lines-and-runs-13-named-gates-private-skill-guard-comment-hy",
+      "text": "`pre-commit` is 1,056 lines and runs 13 named gates: private-skill guard, comment hygiene, template phrase lint, agent mirror sync, doc version bump, mirror parity, skill authoring, prompt-card sync, MCP mutation class, compiled-route re-mint, deep command contract recompile, spec derived-metadata re-mint, tool ownership map. [SOURCE: .skilled/scripts/git-hooks/pre-commit:118]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:118`",
+        "`.skilled/scripts/git-hooks/pre-commit:151`",
+        "`.skilled/scripts/git-hooks/pre-commit:226`",
+        "`.skilled/scripts/git-hooks/pre-commit:244`",
+        "`.skilled/scripts/git-hooks/pre-commit:294`",
+        "`.skilled/scripts/git-hooks/pre-push:481`",
+        "`.skilled/scripts/git-hooks/pre-push:577`",
+        "`.skilled/package.json:1`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:82`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:113`",
+        "Measured wall-clock: comment hygiene 0.09s, phrase lint 0.09s, agent mirror sync 0.13s, route guard 0.09s, doc-version check 0.09s, contract drift 0.09s, track-root sweep 2.27s."
+      ]
+    },
+    {
+      "id": "finding-1-4-pre-push-no-longer-runs-any-test-suite-its-own-comment-records-that-the-suites-t",
+      "text": "`pre-push` no longer runs any test suite. Its own comment records that the suites that used to run there were report-only and moved to CI, so the push path is now structural gates only. [SOURCE: .skilled/scripts/git-hooks/pre-push:481]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:118`",
+        "`.skilled/scripts/git-hooks/pre-commit:151`",
+        "`.skilled/scripts/git-hooks/pre-commit:226`",
+        "`.skilled/scripts/git-hooks/pre-commit:244`",
+        "`.skilled/scripts/git-hooks/pre-commit:294`",
+        "`.skilled/scripts/git-hooks/pre-push:481`",
+        "`.skilled/scripts/git-hooks/pre-push:577`",
+        "`.skilled/package.json:1`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:82`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:113`",
+        "Measured wall-clock: comment hygiene 0.09s, phrase lint 0.09s, agent mirror sync 0.13s, route guard 0.09s, doc-version check 0.09s, contract drift 0.09s, track-root sweep 2.27s."
+      ]
+    },
+    {
+      "id": "finding-1-2-every-local-checker-measured-under-the-commit-hook-is-fast-comment-hygiene-0-09s",
+      "text": "Every local checker measured under the commit hook is fast: comment hygiene 0.09s, template phrase lint 0.09s, agent mirror sync 0.13s, compiled route guard 0.09s, doc version `--check` 0.09s, deep contract drift 0.09s. [SOURCE: .skilled/scripts/git-hooks/pre-commit:151][SOURCE: .skilled/scripts/git-hooks/pre-commit:226][SOURCE: .skilled/scripts/git-hooks/pre-commit:244][SOURCE: .skilled/scripts/git-hooks/pre-commit:294]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:118`",
+        "`.skilled/scripts/git-hooks/pre-commit:151`",
+        "`.skilled/scripts/git-hooks/pre-commit:226`",
+        "`.skilled/scripts/git-hooks/pre-commit:244`",
+        "`.skilled/scripts/git-hooks/pre-commit:294`",
+        "`.skilled/scripts/git-hooks/pre-push:481`",
+        "`.skilled/scripts/git-hooks/pre-push:577`",
+        "`.skilled/package.json:1`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:82`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:113`",
+        "Measured wall-clock: comment hygiene 0.09s, phrase lint 0.09s, agent mirror sync 0.13s, route guard 0.09s, doc-version check 0.09s, contract drift 0.09s, track-root sweep 2.27s."
+      ]
+    },
+    {
+      "id": "finding-1-3-the-commit-hook-pays-for-process-startup-rather-than-for-checking-it-spawns-at-l",
+      "text": "The commit hook pays for process startup rather than for checking: it spawns at least twelve `node` processes, and the measured per-process floor is 0.03–0.13s, so the whole local commit gate is roughly one second of process start plus the gate work itself. [INFERENCE: based on the twelve visible `node` spawn sites in the hook body and the 0.09s median measured for each checker above]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:118`",
+        "`.skilled/scripts/git-hooks/pre-commit:151`",
+        "`.skilled/scripts/git-hooks/pre-commit:226`",
+        "`.skilled/scripts/git-hooks/pre-commit:244`",
+        "`.skilled/scripts/git-hooks/pre-commit:294`",
+        "`.skilled/scripts/git-hooks/pre-push:481`",
+        "`.skilled/scripts/git-hooks/pre-push:577`",
+        "`.skilled/package.json:1`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:82`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:113`",
+        "Measured wall-clock: comment hygiene 0.09s, phrase lint 0.09s, agent mirror sync 0.13s, route guard 0.09s, doc-version check 0.09s, contract drift 0.09s, track-root sweep 2.27s."
+      ]
+    },
+    {
+      "id": "finding-1-7-the-hook-path-is-therefore-not-the-source-of-the-operator-s-multi-minute-waits-a",
+      "text": "The hook path is therefore not the source of the operator's multi-minute waits: a commit costs about a second and a push about three seconds, while the cheapest measured CI workflow costs 10s and the most expensive 595s. The premise \"minutes on every commit\" is unsupported for hooks and should be dropped from the cut list. [SOURCE: specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:82][SOURCE: specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:113]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:118`",
+        "`.skilled/scripts/git-hooks/pre-commit:151`",
+        "`.skilled/scripts/git-hooks/pre-commit:226`",
+        "`.skilled/scripts/git-hooks/pre-commit:244`",
+        "`.skilled/scripts/git-hooks/pre-commit:294`",
+        "`.skilled/scripts/git-hooks/pre-push:481`",
+        "`.skilled/scripts/git-hooks/pre-push:577`",
+        "`.skilled/package.json:1`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:82`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:113`",
+        "Measured wall-clock: comment hygiene 0.09s, phrase lint 0.09s, agent mirror sync 0.13s, route guard 0.09s, doc-version check 0.09s, contract drift 0.09s, track-root sweep 2.27s."
+      ]
+    },
+    {
+      "id": "finding-1-5-the-most-expensive-local-check-is-the-track-root-sweep-at-2-27s-and-it-runs-once",
+      "text": "The most expensive local check is the track-root sweep at 2.27s, and it runs once per pushed ref. It is pre-push only, so it adds about 2.3s to a push and nothing to a commit. [SOURCE: .skilled/scripts/git-hooks/pre-push:577]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:118`",
+        "`.skilled/scripts/git-hooks/pre-commit:151`",
+        "`.skilled/scripts/git-hooks/pre-commit:226`",
+        "`.skilled/scripts/git-hooks/pre-commit:244`",
+        "`.skilled/scripts/git-hooks/pre-commit:294`",
+        "`.skilled/scripts/git-hooks/pre-push:481`",
+        "`.skilled/scripts/git-hooks/pre-push:577`",
+        "`.skilled/package.json:1`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:82`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:113`",
+        "Measured wall-clock: comment hygiene 0.09s, phrase lint 0.09s, agent mirror sync 0.13s, route guard 0.09s, doc-version check 0.09s, contract drift 0.09s, track-root sweep 2.27s."
+      ]
+    },
+    {
+      "id": "finding-1-6-the-repository-has-no-root-package-json-and-skilled-package-json-declares-no-scr",
+      "text": "The repository has no root `package.json` and `.skilled/package.json` declares no `scripts` block, so there is no single \"run the tests\" command. Suites are invoked per package, which is why no local aggregate suite cost exists to cut. [SOURCE: .skilled/package.json:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:118`",
+        "`.skilled/scripts/git-hooks/pre-commit:151`",
+        "`.skilled/scripts/git-hooks/pre-commit:226`",
+        "`.skilled/scripts/git-hooks/pre-commit:244`",
+        "`.skilled/scripts/git-hooks/pre-commit:294`",
+        "`.skilled/scripts/git-hooks/pre-push:481`",
+        "`.skilled/scripts/git-hooks/pre-push:577`",
+        "`.skilled/package.json:1`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:82`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:113`",
+        "Measured wall-clock: comment hygiene 0.09s, phrase lint 0.09s, agent mirror sync 0.13s, route guard 0.09s, doc-version check 0.09s, contract drift 0.09s, track-root sweep 2.27s."
+      ]
+    },
+    {
+      "id": "finding-2-6-message-contract-yml-is-not-a-straight-delete-its-ci-body-adds-two-things-the-pu",
+      "text": "`message-contract.yml` is not a straight delete. Its CI body adds two things the push hook cannot do: it tests the validator itself with `node --test`, and it validates the PR description, which does not exist at push time. The duplicate part is the pushed-commit range check the hook already runs. [SOURCE: .github/workflows/message-contract.yml:48][SOURCE: .github/workflows/message-contract.yml:72]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:147`, `:240`, `:365`, `:584`, `:641`",
+        "`.skilled/scripts/git-hooks/pre-push:161`, `:378`, `:474`",
+        "`.github/workflows/comment-hygiene.yml:22`",
+        "`.github/workflows/agent-mirror-sync.yml:46`",
+        "`.github/workflows/naming-standard-guard.yml:19`, `:37`",
+        "`.github/workflows/message-contract.yml:48`, `:72`",
+        "`.github/workflows/routing-registry-drift.yml:176`",
+        "`specs/system-speckit/repo-operations/002-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md:1`",
+        "Measured: `git rev-list --count HEAD` = 13633; `git count-objects -vH` size-pack = 2.01 GiB."
+      ]
+    },
+    {
+      "id": "finding-2-5-naming-standard-guard-yml-is-the-cleanest-delete-the-push-hook-removed-its-namin",
+      "text": "`naming-standard-guard.yml` is the cleanest delete: the push hook removed its naming gate with the recorded reason that it never rejected a push the remote-permission gate would not already have allowed, so the CI workflow is the only remaining copy of a check the hook judged redundant with a stronger one. [SOURCE: .skilled/scripts/git-hooks/pre-push:378][SOURCE: .github/workflows/naming-standard-guard.yml:19]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:147`, `:240`, `:365`, `:584`, `:641`",
+        "`.skilled/scripts/git-hooks/pre-push:161`, `:378`, `:474`",
+        "`.github/workflows/comment-hygiene.yml:22`",
+        "`.github/workflows/agent-mirror-sync.yml:46`",
+        "`.github/workflows/naming-standard-guard.yml:19`, `:37`",
+        "`.github/workflows/message-contract.yml:48`, `:72`",
+        "`.github/workflows/routing-registry-drift.yml:176`",
+        "`specs/system-speckit/repo-operations/002-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md:1`",
+        "Measured: `git rev-list --count HEAD` = 13633; `git count-objects -vH` size-pack = 2.01 GiB."
+      ]
+    },
+    {
+      "id": "finding-2-7-routing-registry-drift-yml-is-the-largest-workflow-in-the-repository-at-357-line",
+      "text": "`routing-registry-drift.yml` is the largest workflow in the repository at 357 lines and 23 steps, and it is not a plain duplicate: the workflow job exists because it sees the pushed commit rather than a working tree, which the local gate cannot cover. A delete here would lose that commit-parity coverage, so the only defensible cut is narrower than deletion. [SOURCE: .github/workflows/routing-registry-drift.yml:176][SOURCE: .skilled/scripts/git-hooks/pre-push:474]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:147`, `:240`, `:365`, `:584`, `:641`",
+        "`.skilled/scripts/git-hooks/pre-push:161`, `:378`, `:474`",
+        "`.github/workflows/comment-hygiene.yml:22`",
+        "`.github/workflows/agent-mirror-sync.yml:46`",
+        "`.github/workflows/naming-standard-guard.yml:19`, `:37`",
+        "`.github/workflows/message-contract.yml:48`, `:72`",
+        "`.github/workflows/routing-registry-drift.yml:176`",
+        "`specs/system-speckit/repo-operations/002-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md:1`",
+        "Measured: `git rev-list --count HEAD` = 13633; `git count-objects -vH` size-pack = 2.01 GiB."
+      ]
+    },
+    {
+      "id": "finding-2-4-seventeen-of-the-32-workflows-install-dependencies-before-running-a-script-level",
+      "text": "Seventeen of the 32 workflows install dependencies before running a script-level check, and `naming-standard-guard.yml` installs `pytest==8.4.2` through pip for a filename check. [SOURCE: .github/workflows/naming-standard-guard.yml:37][SOURCE: .github/workflows/spec-kit-check.yml:114]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:147`, `:240`, `:365`, `:584`, `:641`",
+        "`.skilled/scripts/git-hooks/pre-push:161`, `:378`, `:474`",
+        "`.github/workflows/comment-hygiene.yml:22`",
+        "`.github/workflows/agent-mirror-sync.yml:46`",
+        "`.github/workflows/naming-standard-guard.yml:19`, `:37`",
+        "`.github/workflows/message-contract.yml:48`, `:72`",
+        "`.github/workflows/routing-registry-drift.yml:176`",
+        "`specs/system-speckit/repo-operations/002-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md:1`",
+        "Measured: `git rev-list --count HEAD` = 13633; `git count-objects -vH` size-pack = 2.01 GiB."
+      ]
+    },
+    {
+      "id": "finding-2-2-six-ci-workflows-re-run-a-gate-that-already-blocks-locally-comment-hygiene-yml-a",
+      "text": "Six CI workflows re-run a gate that already blocks locally: `comment-hygiene.yml` against the commit hook's comment hygiene gate, `prompt-card-sync.yml` against the commit hook's card-sync gate, `agent-mirror-sync.yml` against the commit hook's agent mirror gate and mirror-parity gate, `message-contract.yml` against the push hook's message-contract gate, `routing-registry-drift.yml` against the commit hook's route re-mint and the push hook's route guard, and `naming-standard-guard.yml` against a naming gate the push hook deliberately deleted. [SOURCE: .skilled/scripts/git-hooks/pre-commit:147][SOURCE: .skilled/scripts/git-hooks/pre-commit:240][SOURCE: .skilled/scripts/git-hooks/pre-commit:365][SOURCE: .skilled/scripts/git-hooks/pre-commit:584][SOURCE: .skilled/scripts/git-hooks/pre-commit:641][SOURCE: .skilled/scripts/git-hooks/pre-push:161][SOURCE: .skilled/scripts/git-hooks/pre-push:474][SOURCE: .skilled/scripts/git-hooks/pre-push:378]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:147`, `:240`, `:365`, `:584`, `:641`",
+        "`.skilled/scripts/git-hooks/pre-push:161`, `:378`, `:474`",
+        "`.github/workflows/comment-hygiene.yml:22`",
+        "`.github/workflows/agent-mirror-sync.yml:46`",
+        "`.github/workflows/naming-standard-guard.yml:19`, `:37`",
+        "`.github/workflows/message-contract.yml:48`, `:72`",
+        "`.github/workflows/routing-registry-drift.yml:176`",
+        "`specs/system-speckit/repo-operations/002-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md:1`",
+        "Measured: `git rev-list --count HEAD` = 13633; `git count-objects -vH` size-pack = 2.01 GiB."
+      ]
+    },
+    {
+      "id": "finding-2-3-the-duplicate-workflows-pay-for-setup-not-for-checking-comment-hygiene-yml-check",
+      "text": "The duplicate workflows pay for setup, not for checking. `comment-hygiene.yml` checks out full history to run a checker measured at 0.09s, and this repository's history is 13,633 commits with a 2.01 GiB pack. `agent-mirror-sync.yml` runs `npm ci` and a TypeScript build of the shared package to run a checker measured at 0.13s. [SOURCE: .github/workflows/comment-hygiene.yml:22][SOURCE: .github/workflows/agent-mirror-sync.yml:46]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:147`, `:240`, `:365`, `:584`, `:641`",
+        "`.skilled/scripts/git-hooks/pre-push:161`, `:378`, `:474`",
+        "`.github/workflows/comment-hygiene.yml:22`",
+        "`.github/workflows/agent-mirror-sync.yml:46`",
+        "`.github/workflows/naming-standard-guard.yml:19`, `:37`",
+        "`.github/workflows/message-contract.yml:48`, `:72`",
+        "`.github/workflows/routing-registry-drift.yml:176`",
+        "`specs/system-speckit/repo-operations/002-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md:1`",
+        "Measured: `git rev-list --count HEAD` = 13633; `git count-objects -vH` size-pack = 2.01 GiB."
+      ]
+    },
+    {
+      "id": "finding-2-1-the-repository-carries-32-workflows-plus-a-readme-thirteen-of-the-32-have-no-pat",
+      "text": "The repository carries 32 workflows plus a README. Thirteen of the 32 have no `paths:` filter at all, so they queue on every push and every pull request regardless of what changed. [SOURCE: .github/workflows/sk-doc-script-tests.yml:1][SOURCE: .github/workflows/message-contract.yml:1][SOURCE: .github/workflows/naming-standard-guard.yml:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:147`, `:240`, `:365`, `:584`, `:641`",
+        "`.skilled/scripts/git-hooks/pre-push:161`, `:378`, `:474`",
+        "`.github/workflows/comment-hygiene.yml:22`",
+        "`.github/workflows/agent-mirror-sync.yml:46`",
+        "`.github/workflows/naming-standard-guard.yml:19`, `:37`",
+        "`.github/workflows/message-contract.yml:48`, `:72`",
+        "`.github/workflows/routing-registry-drift.yml:176`",
+        "`specs/system-speckit/repo-operations/002-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md:1`",
+        "Measured: `git rev-list --count HEAD` = 13633; `git count-objects -vH` size-pack = 2.01 GiB."
+      ]
+    },
+    {
+      "id": "finding-3-7-run-the-tests-has-six-overlapping-entry-points-in-one-package-test-test-core-tes",
+      "text": "\"Run the tests\" has six overlapping entry points in one package (`test`, `test:core`, `test:cli`, `test:spec-validation`, `test:sharded`, `test:council`), so the local cost of the suite is defined by whichever one a person picks rather than by one contract. [SOURCE: .skilled/skills/system-spec-kit/runtime/package.json:23]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/package.json:23`, `:24`, `:32`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:18`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs:5`, `:76`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/README.md:23`",
+        "`.skilled/skills/system-spec-kit/runtime/tests/progressive-validation.vitest.ts:1`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts:1`",
+        "`.github/workflows/spec-kit-check.yml:99`, `:114`, `:151`",
+        "Measured: 352 test files / 92,362 lines; 214 files in `cli/tests`; 3,561 lines across the three legacy validation harnesses; total 64 vs 68 distinct test names with 0 shared."
+      ]
+    },
+    {
+      "id": "finding-3-4-run-tests-mjs-is-an-overengineered-timeout-120-lines-of-javascript-that-embed-a-",
+      "text": "`run-tests.mjs` is an overengineered timeout: 120 lines of JavaScript that embed a 40-line inline Python program solely to start the test process in its own process group and kill it at 10 minutes, then chain three more `npm run` lanes on top. [SOURCE: .skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs:5][SOURCE: .skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs:76]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/package.json:23`, `:24`, `:32`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:18`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs:5`, `:76`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/README.md:23`",
+        "`.skilled/skills/system-spec-kit/runtime/tests/progressive-validation.vitest.ts:1`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts:1`",
+        "`.github/workflows/spec-kit-check.yml:99`, `:114`, `:151`",
+        "Measured: 352 test files / 92,362 lines; 214 files in `cli/tests`; 3,561 lines across the three legacy validation harnesses; total 64 vs 68 distinct test names with 0 shared."
+      ]
+    },
+    {
+      "id": "finding-3-3-test-sharded-is-dead-infrastructure-a-12-shard-runner-that-no-workflow-and-no-sc",
+      "text": "`test:sharded` is dead infrastructure: a 12-shard runner that no workflow and no script invokes, referenced only by `package.json` and three READMEs. Because its shards run one at a time, running it is strictly slower than the unsharded suite it wraps. [SOURCE: .skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20][SOURCE: .skilled/skills/system-spec-kit/runtime/package.json:32]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/package.json:23`, `:24`, `:32`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:18`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs:5`, `:76`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/README.md:23`",
+        "`.skilled/skills/system-spec-kit/runtime/tests/progressive-validation.vitest.ts:1`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts:1`",
+        "`.github/workflows/spec-kit-check.yml:99`, `:114`, `:151`",
+        "Measured: 352 test files / 92,362 lines; 214 files in `cli/tests`; 3,561 lines across the three legacy validation harnesses; total 64 vs 68 distinct test names with 0 shared."
+      ]
+    },
+    {
+      "id": "finding-3-6-the-obvious-duplicate-test-hypothesis-is-wrong-the-three-shared-basenames-across",
+      "text": "The obvious duplicate-test hypothesis is wrong: the three shared basenames across `tests/` and `cli/tests/` are not duplicates. `progressive-validation` has 64 test names in one file and 68 in the other with zero overlap, so a delete based on the filename would remove distinct coverage. [SOURCE: .skilled/skills/system-spec-kit/runtime/tests/progressive-validation.vitest.ts:1][SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/package.json:23`, `:24`, `:32`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:18`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs:5`, `:76`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/README.md:23`",
+        "`.skilled/skills/system-spec-kit/runtime/tests/progressive-validation.vitest.ts:1`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts:1`",
+        "`.github/workflows/spec-kit-check.yml:99`, `:114`, `:151`",
+        "Measured: 352 test files / 92,362 lines; 214 files in `cli/tests`; 3,561 lines across the three legacy validation harnesses; total 64 vs 68 distinct test names with 0 shared."
+      ]
+    },
+    {
+      "id": "finding-3-2-the-slowest-workflow-s-cost-is-front-loaded-setup-not-test-count-its-check-job-p",
+      "text": "The slowest workflow's cost is front-loaded setup, not test count: its `check` job performs five `npm ci` installs and three package builds before the first test lane runs, under a 51-minute timeout. [SOURCE: .github/workflows/spec-kit-check.yml:114][SOURCE: .github/workflows/spec-kit-check.yml:99]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/package.json:23`, `:24`, `:32`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:18`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs:5`, `:76`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/README.md:23`",
+        "`.skilled/skills/system-spec-kit/runtime/tests/progressive-validation.vitest.ts:1`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts:1`",
+        "`.github/workflows/spec-kit-check.yml:99`, `:114`, `:151`",
+        "Measured: 352 test files / 92,362 lines; 214 files in `cli/tests`; 3,561 lines across the three legacy validation harnesses; total 64 vs 68 distinct test names with 0 shared."
+      ]
+    },
+    {
+      "id": "finding-3-1-the-tree-holds-352-test-files-and-92-362-lines-and-214-of-those-files-sit-in-cli",
+      "text": "The tree holds 352 test files and 92,362 lines, and 214 of those files sit in `cli/tests`, so the CLI project is 60% of the file count. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts:1][SOURCE: .skilled/skills/system-spec-kit/runtime/vitest.config.ts:18]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/package.json:23`, `:24`, `:32`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:18`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs:5`, `:76`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/README.md:23`",
+        "`.skilled/skills/system-spec-kit/runtime/tests/progressive-validation.vitest.ts:1`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts:1`",
+        "`.github/workflows/spec-kit-check.yml:99`, `:114`, `:151`",
+        "Measured: 352 test files / 92,362 lines; 214 files in `cli/tests`; 3,561 lines across the three legacy validation harnesses; total 64 vs 68 distinct test names with 0 shared."
+      ]
+    },
+    {
+      "id": "finding-3-5-three-legacy-shell-commonjs-harnesses-3-561-lines-test-validation-system-cjs-1-4",
+      "text": "Three legacy shell/CommonJS harnesses (3,561 lines: `test-validation-system.cjs` 1,478, `test-validation.sh` 937, `test-validation-extended.sh` 1,146) run as a separate lane beside the Vitest suites, and CI now runs both lanes explicitly. [SOURCE: .skilled/skills/system-spec-kit/runtime/package.json:24][SOURCE: .github/workflows/spec-kit-check.yml:151]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/package.json:23`, `:24`, `:32`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:18`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs:5`, `:76`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/README.md:23`",
+        "`.skilled/skills/system-spec-kit/runtime/tests/progressive-validation.vitest.ts:1`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts:1`",
+        "`.github/workflows/spec-kit-check.yml:99`, `:114`, `:151`",
+        "Measured: 352 test files / 92,362 lines; 214 files in `cli/tests`; 3,561 lines across the three legacy validation harnesses; total 64 vs 68 distinct test names with 0 shared."
+      ]
+    },
+    {
+      "id": "finding-4-6-deep-loop-runtime-yml-re-runs-the-compiled-contract-drift-check-that-the-commit-",
+      "text": "`deep-loop-runtime.yml` re-runs the compiled-contract drift check that the commit hook already runs before every commit that stages a deep-loop source, which is a duplicate guard but a cheap one at a measured 0.09s. [SOURCE: .github/workflows/deep-loop-runtime.yml:72][SOURCE: .skilled/scripts/git-hooks/pre-commit:859]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/package.json:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:10`, `:28`, `:40`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.stress.config.ts:14`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:16`, `:45`",
+        "`.github/workflows/skill-advisor-stress.yml:72`, `:94`",
+        "`.github/workflows/deep-loop-runtime.yml:61`, `:72`",
+        "`.github/workflows/routing-registry-drift.yml:277`",
+        "`.skilled/scripts/git-hooks/pre-commit:859`",
+        "Measured: 185 files / 35,199 lines (advisor), 174 files / 86,618 lines (deep-loop), 12 serial of 173 deep-loop files, 21 stress-test files."
+      ]
+    },
+    {
+      "id": "finding-4-7-both-slow-workflows-install-and-build-before-the-first-test-the-advisor-job-buil",
+      "text": "Both slow workflows install and build before the first test: the advisor job builds the shared package its stress suite loads, and the deep-loop job installs both the runtime and the shared package it links. In both, the suite is the payload and the install is the toll. [SOURCE: .github/workflows/skill-advisor-stress.yml:72][SOURCE: .github/workflows/deep-loop-runtime.yml:61]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/package.json:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:10`, `:28`, `:40`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.stress.config.ts:14`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:16`, `:45`",
+        "`.github/workflows/skill-advisor-stress.yml:72`, `:94`",
+        "`.github/workflows/deep-loop-runtime.yml:61`, `:72`",
+        "`.github/workflows/routing-registry-drift.yml:277`",
+        "`.skilled/scripts/git-hooks/pre-commit:859`",
+        "Measured: 185 files / 35,199 lines (advisor), 174 files / 86,618 lines (deep-loop), 12 serial of 173 deep-loop files, 21 stress-test files."
+      ]
+    },
+    {
+      "id": "finding-4-1-corrected-census-the-advisor-tree-is-185-test-files-and-35-199-lines-the-deep-lo",
+      "text": "Corrected census: the advisor tree is 185 test files and 35,199 lines, the deep-loop tree 174 files and 86,618 lines. A `find` that descends `node_modules` reports 381 and 370, so any inventory that skips the prune overstates these trees by roughly 2x. [SOURCE: .skilled/skills/system-skill-advisor/runtime/vitest.config.ts:28][SOURCE: .skilled/skills/system-deep-loop/runtime/vitest.config.ts:45]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/package.json:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:10`, `:28`, `:40`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.stress.config.ts:14`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:16`, `:45`",
+        "`.github/workflows/skill-advisor-stress.yml:72`, `:94`",
+        "`.github/workflows/deep-loop-runtime.yml:61`, `:72`",
+        "`.github/workflows/routing-registry-drift.yml:277`",
+        "`.skilled/scripts/git-hooks/pre-commit:859`",
+        "Measured: 185 files / 35,199 lines (advisor), 174 files / 86,618 lines (deep-loop), 12 serial of 173 deep-loop files, 21 stress-test files."
+      ]
+    },
+    {
+      "id": "finding-4-2-the-advisor-s-default-suite-disables-file-parallelism-across-its-whole-default-s",
+      "text": "The advisor's default suite disables file parallelism across its whole default set while the stress config carries the same setting for a documented reason (daemon, socket and lease churn); the default config carries no such rationale beside the setting. That makes serial execution of the ordinary suite the largest config-level cost multiplier in this tree. [SOURCE: .skilled/skills/system-skill-advisor/runtime/vitest.config.ts:40][SOURCE: .skilled/skills/system-skill-advisor/runtime/vitest.config.ts:10]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/package.json:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:10`, `:28`, `:40`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.stress.config.ts:14`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:16`, `:45`",
+        "`.github/workflows/skill-advisor-stress.yml:72`, `:94`",
+        "`.github/workflows/deep-loop-runtime.yml:61`, `:72`",
+        "`.github/workflows/routing-registry-drift.yml:277`",
+        "`.skilled/scripts/git-hooks/pre-commit:859`",
+        "Measured: 185 files / 35,199 lines (advisor), 174 files / 86,618 lines (deep-loop), 12 serial of 173 deep-loop files, 21 stress-test files."
+      ]
+    },
+    {
+      "id": "finding-4-5-the-deep-loop-serial-list-is-not-the-cost-driver-its-patterns-select-12-of-173-t",
+      "text": "The deep-loop serial list is not the cost driver: its patterns select 12 of 173 test files, so 93% of the suite already runs in the parallel project and only 7% is serialized. [SOURCE: .skilled/skills/system-deep-loop/runtime/vitest.config.ts:16]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/package.json:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:10`, `:28`, `:40`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.stress.config.ts:14`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:16`, `:45`",
+        "`.github/workflows/skill-advisor-stress.yml:72`, `:94`",
+        "`.github/workflows/deep-loop-runtime.yml:61`, `:72`",
+        "`.github/workflows/routing-registry-drift.yml:277`",
+        "`.skilled/scripts/git-hooks/pre-commit:859`",
+        "Measured: 185 files / 35,199 lines (advisor), 174 files / 86,618 lines (deep-loop), 12 serial of 173 deep-loop files, 21 stress-test files."
+      ]
+    },
+    {
+      "id": "finding-4-3-the-two-advisor-configs-partition-rather-than-stack-stress-opt-in-replaces-the-d",
+      "text": "The two advisor configs partition rather than stack: stress opt-in replaces the default set, and the stress files live in `stress-test/` (21 files) while the default set is `tests/**`. Running both in one CI job is therefore complete coverage, not a duplicate run. [SOURCE: .skilled/skills/system-skill-advisor/runtime/vitest.config.ts:28][SOURCE: .skilled/skills/system-skill-advisor/runtime/vitest.stress.config.ts:14]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/package.json:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:10`, `:28`, `:40`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.stress.config.ts:14`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:16`, `:45`",
+        "`.github/workflows/skill-advisor-stress.yml:72`, `:94`",
+        "`.github/workflows/deep-loop-runtime.yml:61`, `:72`",
+        "`.github/workflows/routing-registry-drift.yml:277`",
+        "`.skilled/scripts/git-hooks/pre-commit:859`",
+        "Measured: 185 files / 35,199 lines (advisor), 174 files / 86,618 lines (deep-loop), 12 serial of 173 deep-loop files, 21 stress-test files."
+      ]
+    },
+    {
+      "id": "finding-4-4-three-advisor-suites-do-run-twice-per-push-routing-registry-drift-yml-runs-tests",
+      "text": "Three advisor suites do run twice per push: `routing-registry-drift.yml` runs `tests/routing-golden-prompts.vitest.ts`, `tests/parity/scorer-eval-baseline-ratchet.vitest.ts` and `tests/parity/local-native-divergence-ratchet.vitest.ts` explicitly, and the stress workflow's default run collects the same three through `tests/**`. Each copy needs its own install and build first. [SOURCE: .github/workflows/routing-registry-drift.yml:277][SOURCE: .github/workflows/skill-advisor-stress.yml:94]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/package.json:1`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:10`, `:28`, `:40`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.stress.config.ts:14`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:16`, `:45`",
+        "`.github/workflows/skill-advisor-stress.yml:72`, `:94`",
+        "`.github/workflows/deep-loop-runtime.yml:61`, `:72`",
+        "`.github/workflows/routing-registry-drift.yml:277`",
+        "`.skilled/scripts/git-hooks/pre-commit:859`",
+        "Measured: 185 files / 35,199 lines (advisor), 174 files / 86,618 lines (deep-loop), 12 serial of 173 deep-loop files, 21 stress-test files."
+      ]
+    },
+    {
+      "id": "finding-5-2-86-of-those-94-files-91-sit-under-a-scratch-directory-2-under-fixtures-and-4-und",
+      "text": "86 of those 94 files (91%) sit under a `scratch/` directory, 2 under `fixtures/`, and 4 under `z_archive/`. Only 4 tracked files are tests in a live packet location, and those 4 are measurement harnesses under `specs/system-speckit/memory-search-and-knowledge/`. [SOURCE: specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs:1][SOURCE: specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:1]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111`",
+        "`specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/14.pre.vitest.ts:1`",
+        "`specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/15.pre.vitest.ts:1`",
+        "`specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs:1`",
+        "`specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:1`",
+        "`.skilled/vitest.config.bin.ts:7`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:18`",
+        "Measured: 94 tracked specs test-suffixed files / 53,629 lines; 86 under `scratch/`, 2 under `fixtures/`, 4 under `z_archive/`, 4 elsewhere; 9,869 files and 292 MB in the untracked orca context tree."
+      ]
+    },
+    {
+      "id": "finding-5-3-all-77-files-in-specs-cli-classifier-003-cli-jev-workflow-integration-are-scratc",
+      "text": "All 77 files in `specs/cli-classifier/003-cli-jev-workflow-integration` are scratch artifacts, not tests: they are numbered build logs such as `14.pre.vitest.ts` and `15.pre.vitest.ts` under `scratch/w3-build/logs/`. The census counted file suffixes, so a build log with a test-like name became a test. [SOURCE: specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/15.pre.vitest.ts:1]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111`",
+        "`specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/14.pre.vitest.ts:1`",
+        "`specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/15.pre.vitest.ts:1`",
+        "`specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs:1`",
+        "`specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:1`",
+        "`.skilled/vitest.config.bin.ts:7`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:18`",
+        "Measured: 94 tracked specs test-suffixed files / 53,629 lines; 86 under `scratch/`, 2 under `fixtures/`, 4 under `z_archive/`, 4 elsewhere; 9,869 files and 292 MB in the untracked orca context tree."
+      ]
+    },
+    {
+      "id": "finding-5-5-because-nothing-runs-them-deleting-them-saves-no-run-time-the-correct-correction",
+      "text": "Because nothing runs them, deleting them saves no run time. The correct correction is to the census: `spec.md`'s \"about 110 under specs/\" should read 4 real test files, and the phase's test-surface total should drop by the 90 scratch and fixture entries. [SOURCE: specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111`",
+        "`specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/14.pre.vitest.ts:1`",
+        "`specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/15.pre.vitest.ts:1`",
+        "`specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs:1`",
+        "`specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:1`",
+        "`.skilled/vitest.config.bin.ts:7`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:18`",
+        "Measured: 94 tracked specs test-suffixed files / 53,629 lines; 86 under `scratch/`, 2 under `fixtures/`, 4 under `z_archive/`, 4 elsewhere; 9,869 files and 292 MB in the untracked orca context tree."
+      ]
+    },
+    {
+      "id": "finding-5-4-no-runner-collects-any-of-them-no-vitest-config-in-the-repository-roots-an-inclu",
+      "text": "No runner collects any of them: no `vitest.config.*` in the repository roots an include at `specs/`, and no workflow runs a `specs/` test path. They cost zero CI minutes and zero commit minutes. [SOURCE: .skilled/vitest.config.bin.ts:7][SOURCE: .skilled/skills/system-spec-kit/runtime/vitest.config.ts:18]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111`",
+        "`specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/14.pre.vitest.ts:1`",
+        "`specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/15.pre.vitest.ts:1`",
+        "`specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs:1`",
+        "`specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:1`",
+        "`.skilled/vitest.config.bin.ts:7`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:18`",
+        "Measured: 94 tracked specs test-suffixed files / 53,629 lines; 86 under `scratch/`, 2 under `fixtures/`, 4 under `z_archive/`, 4 elsewhere; 9,869 files and 292 MB in the untracked orca context tree."
+      ]
+    },
+    {
+      "id": "finding-5-7-the-largest-untracked-context-tree-specs-cli-orca-002-consolidate-official-orca-",
+      "text": "The largest untracked context tree, `specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main`, is 292 MB and holds 9,869 test files, none tracked by git. It costs disk and editor indexing, never CI time, so it belongs in a workspace-weight finding rather than a run-time one. [INFERENCE: based on `git ls-files` returning 0 paths for that directory and `du -sh` reporting 292M]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111`",
+        "`specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/14.pre.vitest.ts:1`",
+        "`specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/15.pre.vitest.ts:1`",
+        "`specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs:1`",
+        "`specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:1`",
+        "`.skilled/vitest.config.bin.ts:7`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:18`",
+        "Measured: 94 tracked specs test-suffixed files / 53,629 lines; 86 under `scratch/`, 2 under `fixtures/`, 4 under `z_archive/`, 4 elsewhere; 9,869 files and 292 MB in the untracked orca context tree."
+      ]
+    },
+    {
+      "id": "finding-5-1-the-tracked-test-suffixed-surface-under-specs-is-94-files-and-53-629-lines-sourc",
+      "text": "The tracked test-suffixed surface under `specs/` is 94 files and 53,629 lines. [SOURCE: specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/14.pre.vitest.ts:1]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111`",
+        "`specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/14.pre.vitest.ts:1`",
+        "`specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/15.pre.vitest.ts:1`",
+        "`specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs:1`",
+        "`specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:1`",
+        "`.skilled/vitest.config.bin.ts:7`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:18`",
+        "Measured: 94 tracked specs test-suffixed files / 53,629 lines; 86 under `scratch/`, 2 under `fixtures/`, 4 under `z_archive/`, 4 elsewhere; 9,869 files and 292 MB in the untracked orca context tree."
+      ]
+    },
+    {
+      "id": "finding-5-6-there-is-a-latent-collection-hazard-in-the-naming-the-repository-s-own-configs-c",
+      "text": "There is a latent collection hazard in the naming: the repository's own configs collect `{vitest,test}.ts`, so a future config rooted at the repository root with a `**/*.vitest.ts` include would collect 86 numbered log files as tests and fail. The hazard is latent, not live. [INFERENCE: based on the include globs in the two runtime configs and the `.pre.vitest.ts` filenames in finding 3]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111`",
+        "`specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/14.pre.vitest.ts:1`",
+        "`specs/cli-classifier/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/15.pre.vitest.ts:1`",
+        "`specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs:1`",
+        "`specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion/measurements/phase-h-stress.test.ts:1`",
+        "`.skilled/vitest.config.bin.ts:7`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:18`",
+        "Measured: 94 tracked specs test-suffixed files / 53,629 lines; 86 under `scratch/`, 2 under `fixtures/`, 4 under `z_archive/`, 4 elsewhere; 9,869 files and 292 MB in the untracked orca context tree."
+      ]
+    },
+    {
+      "id": "finding-6-7-helper-sprawl-is-confined-to-two-small-files-the-deep-loop-runtime-carries-its-o",
+      "text": "Helper sprawl is confined to two small files: the deep-loop runtime carries its own 71-line hermetic path helper while the advisor loads the spec-kit setup, so there is no duplicated helper layer to delete. The \"shared helper layer is overengineered\" hypothesis is rejected on measurement. [SOURCE: .skilled/skills/system-deep-loop/runtime/vitest.config.ts:27][SOURCE: .skilled/skills/system-deep-loop/runtime/tests/_support/hermetic-opencode-path.ts:1]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:32`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:37`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:27`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/_support/hermetic-opencode-path.ts:1`",
+        "`.skilled/commands/doctor/scripts/tests/run-all.sh:1`",
+        "`.skilled/commands/doctor/scripts/tests/agent-roster-mirror-check.test.cjs:1`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-system.cjs:1`",
+        "`.github/workflows/spec-kit-check.yml:246`",
+        "`.github/workflows/opencode-dual-version.yml:123`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:69`",
+        "Measured: 1,173 tracked test files by framework suffix; spawn sites 464 / 128 / 85 / 176; doctor files 54 cjs + 4 sh + 1 py + 2 non-test entries."
+      ]
+    },
+    {
+      "id": "finding-6-3-process-spawning-is-the-dominant-per-test-cost-not-assertion-count-121-test-file",
+      "text": "Process spawning is the dominant per-test cost, not assertion count: 121 test files in the spec-kit runtime spawn a child process across 464 call sites, the deep-loop runtime has 128 sites in 43 files, the advisor 85 in 32, and the doctor scripts 176 in 36 files. A spawned `node` costs tens of milliseconds before the test asserts anything. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-system.cjs:1][INFERENCE: based on the measured 0.03–0.13s floor for a no-op node invocation reported in iteration 1]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:32`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:37`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:27`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/_support/hermetic-opencode-path.ts:1`",
+        "`.skilled/commands/doctor/scripts/tests/run-all.sh:1`",
+        "`.skilled/commands/doctor/scripts/tests/agent-roster-mirror-check.test.cjs:1`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-system.cjs:1`",
+        "`.github/workflows/spec-kit-check.yml:246`",
+        "`.github/workflows/opencode-dual-version.yml:123`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:69`",
+        "Measured: 1,173 tracked test files by framework suffix; spawn sites 464 / 128 / 85 / 176; doctor files 54 cjs + 4 sh + 1 py + 2 non-test entries."
+      ]
+    },
+    {
+      "id": "finding-6-5-the-doctor-folder-is-not-three-co-equal-frameworks-it-is-54-node-test-commonjs-s",
+      "text": "The doctor folder is not three co-equal frameworks: it is 54 `node:test` CommonJS suites, 4 bash suites and 1 Python suite, so the multi-language cost is two stragglers rather than a parallel test system. [SOURCE: .skilled/commands/doctor/scripts/tests/agent-roster-mirror-check.test.cjs:1]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:32`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:37`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:27`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/_support/hermetic-opencode-path.ts:1`",
+        "`.skilled/commands/doctor/scripts/tests/run-all.sh:1`",
+        "`.skilled/commands/doctor/scripts/tests/agent-roster-mirror-check.test.cjs:1`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-system.cjs:1`",
+        "`.github/workflows/spec-kit-check.yml:246`",
+        "`.github/workflows/opencode-dual-version.yml:123`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:69`",
+        "Measured: 1,173 tracked test files by framework suffix; spawn sites 464 / 128 / 85 / 176; doctor files 54 cjs + 4 sh + 1 py + 2 non-test entries."
+      ]
+    },
+    {
+      "id": "finding-6-4-the-doctor-suite-has-the-highest-spawn-density-in-the-repository-36-of-its-59-fi",
+      "text": "The doctor suite has the highest spawn density in the repository: 36 of its 59 files spawn, at 176 sites, and it runs them from one bash aggregator with a three-tool dependency contract (node, python3 and the advisor runtime's vitest) and a distinct exit code 2 for a missing tool. [SOURCE: .skilled/commands/doctor/scripts/tests/run-all.sh:1]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:32`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:37`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:27`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/_support/hermetic-opencode-path.ts:1`",
+        "`.skilled/commands/doctor/scripts/tests/run-all.sh:1`",
+        "`.skilled/commands/doctor/scripts/tests/agent-roster-mirror-check.test.cjs:1`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-system.cjs:1`",
+        "`.github/workflows/spec-kit-check.yml:246`",
+        "`.github/workflows/opencode-dual-version.yml:123`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:69`",
+        "Measured: 1,173 tracked test files by framework suffix; spawn sites 464 / 128 / 85 / 176; doctor files 54 cjs + 4 sh + 1 py + 2 non-test entries."
+      ]
+    },
+    {
+      "id": "finding-6-6-the-doctor-tree-is-wired-twice-spec-kit-check-yml-runs-the-aggregator-and-openco",
+      "text": "The doctor tree is wired twice: `spec-kit-check.yml` runs the aggregator, and `opencode-dual-version.yml` also runs `opencode-version-battery.test.cjs` explicitly, so one file is executed by two workflows with two separate installs. [SOURCE: .github/workflows/spec-kit-check.yml:246][SOURCE: .github/workflows/opencode-dual-version.yml:123]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:32`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:37`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:27`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/_support/hermetic-opencode-path.ts:1`",
+        "`.skilled/commands/doctor/scripts/tests/run-all.sh:1`",
+        "`.skilled/commands/doctor/scripts/tests/agent-roster-mirror-check.test.cjs:1`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-system.cjs:1`",
+        "`.github/workflows/spec-kit-check.yml:246`",
+        "`.github/workflows/opencode-dual-version.yml:123`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:69`",
+        "Measured: 1,173 tracked test files by framework suffix; spawn sites 464 / 128 / 85 / 176; doctor files 54 cjs + 4 sh + 1 py + 2 non-test entries."
+      ]
+    },
+    {
+      "id": "finding-6-2-the-repository-tracks-1-173-test-files-outside-specs-and-the-vendored-trees-702-",
+      "text": "The repository tracks 1,173 test files outside `specs/` and the vendored trees: 702 `vitest.ts`, 209 `test.cjs`, 97 `test.mjs`, 66 Python, 64 `test.ts` and 35 shell. Adding the 94 under `specs/` reproduces the packet's own ~1,270 figure, which confirms the census in `spec.md` for the tracked surface. [SOURCE: specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:69]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:32`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:37`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:27`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/_support/hermetic-opencode-path.ts:1`",
+        "`.skilled/commands/doctor/scripts/tests/run-all.sh:1`",
+        "`.skilled/commands/doctor/scripts/tests/agent-roster-mirror-check.test.cjs:1`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-system.cjs:1`",
+        "`.github/workflows/spec-kit-check.yml:246`",
+        "`.github/workflows/opencode-dual-version.yml:123`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:69`",
+        "Measured: 1,173 tracked test files by framework suffix; spawn sites 464 / 128 / 85 / 176; doctor files 54 cjs + 4 sh + 1 py + 2 non-test entries."
+      ]
+    },
+    {
+      "id": "finding-6-1-the-shared-setup-file-is-load-bearing-not-bloat-71-lines-that-force-an-absolute-",
+      "text": "The shared setup file is load-bearing, not bloat: 71 lines that force an absolute `TMPDIR` and refuse to run when `MEMORY_DB_PATH` or `SPEC_KIT_DB_DIR` points at the checked-in database directory, then hand each test file its own scratch directory. Three configs load it, so one copy serves three packages. [SOURCE: .skilled/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:32][SOURCE: .skilled/skills/system-skill-advisor/runtime/vitest.config.ts:37]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/tests/_support/vitest-setup.ts:32`",
+        "`.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:37`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:27`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/_support/hermetic-opencode-path.ts:1`",
+        "`.skilled/commands/doctor/scripts/tests/run-all.sh:1`",
+        "`.skilled/commands/doctor/scripts/tests/agent-roster-mirror-check.test.cjs:1`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-system.cjs:1`",
+        "`.github/workflows/spec-kit-check.yml:246`",
+        "`.github/workflows/opencode-dual-version.yml:123`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:69`",
+        "Measured: 1,173 tracked test files by framework suffix; spawn sites 464 / 128 / 85 / 176; doctor files 54 cjs + 4 sh + 1 py + 2 non-test entries."
+      ]
+    },
+    {
+      "id": "finding-7-4-agent-mirror-sync-yml-costs-85s-69s-checkout-10s-building-the-shared-package-and",
+      "text": "`agent-mirror-sync.yml` costs 85s: 69s checkout, 10s building the shared package, and roughly one second of actual mirror checking at the locally measured 0.13s. [SOURCE: .github/workflows/agent-mirror-sync.yml:46]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`gh run view 43174399120 --json jobs` (spec-kit-check, 1150s across 3 jobs)",
+        "`gh run view 42796769476` (comment-hygiene, 92s)",
+        "`gh run view 43176911930` (naming-standard-guard, 88s)",
+        "`gh run view 43176912101` (message-contract, 78s)",
+        "`gh run view 40780892829` (agent-mirror-sync, 85s)",
+        "`gh run view 43174399109` (routing-registry-drift, 256s)",
+        "`gh run view 43168892360` (skill-advisor-stress, 456s)",
+        "`gh run view 43174399019` (deep-loop-runtime, 395s)",
+        "`.github/workflows/spec-kit-check.yml:99`, `.github/workflows/comment-hygiene.yml:22`, `.github/workflows/naming-standard-guard.yml:24`, `.github/workflows/agent-mirror-sync.yml:46`, `.github/workflows/message-contract.yml:22`, `.github/workflows/routing-registry-drift.yml:273`, `.github/workflows/skill-advisor-stress.yml:94`, `.github/workflows/deep-loop-runtime.yml:75`"
+      ]
+    },
+    {
+      "id": "finding-7-2-comment-hygiene-yml-costs-92s-per-run-and-87s-of-that-is-the-full-history-checko",
+      "text": "`comment-hygiene.yml` costs 92s per run, and 87s of that is the full-history checkout; the hygiene checker itself runs in about one second, having measured 0.09s locally. [SOURCE: .github/workflows/comment-hygiene.yml:22]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`gh run view 43174399120 --json jobs` (spec-kit-check, 1150s across 3 jobs)",
+        "`gh run view 42796769476` (comment-hygiene, 92s)",
+        "`gh run view 43176911930` (naming-standard-guard, 88s)",
+        "`gh run view 43176912101` (message-contract, 78s)",
+        "`gh run view 40780892829` (agent-mirror-sync, 85s)",
+        "`gh run view 43174399109` (routing-registry-drift, 256s)",
+        "`gh run view 43168892360` (skill-advisor-stress, 456s)",
+        "`gh run view 43174399019` (deep-loop-runtime, 395s)",
+        "`.github/workflows/spec-kit-check.yml:99`, `.github/workflows/comment-hygiene.yml:22`, `.github/workflows/naming-standard-guard.yml:24`, `.github/workflows/agent-mirror-sync.yml:46`, `.github/workflows/message-contract.yml:22`, `.github/workflows/routing-registry-drift.yml:273`, `.github/workflows/skill-advisor-stress.yml:94`, `.github/workflows/deep-loop-runtime.yml:75`"
+      ]
+    },
+    {
+      "id": "finding-7-5-message-contract-yml-costs-78s-72s-of-it-checkout-its-real-work-is-small-so-narr",
+      "text": "`message-contract.yml` costs 78s, 72s of it checkout. Its real work is small, so narrowing the duplicate commit check inside the job saves no measurable time; only deleting the job does. [SOURCE: .github/workflows/message-contract.yml:22]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`gh run view 43174399120 --json jobs` (spec-kit-check, 1150s across 3 jobs)",
+        "`gh run view 42796769476` (comment-hygiene, 92s)",
+        "`gh run view 43176911930` (naming-standard-guard, 88s)",
+        "`gh run view 43176912101` (message-contract, 78s)",
+        "`gh run view 40780892829` (agent-mirror-sync, 85s)",
+        "`gh run view 43174399109` (routing-registry-drift, 256s)",
+        "`gh run view 43168892360` (skill-advisor-stress, 456s)",
+        "`gh run view 43174399019` (deep-loop-runtime, 395s)",
+        "`.github/workflows/spec-kit-check.yml:99`, `.github/workflows/comment-hygiene.yml:22`, `.github/workflows/naming-standard-guard.yml:24`, `.github/workflows/agent-mirror-sync.yml:46`, `.github/workflows/message-contract.yml:22`, `.github/workflows/routing-registry-drift.yml:273`, `.github/workflows/skill-advisor-stress.yml:94`, `.github/workflows/deep-loop-runtime.yml:75`"
+      ]
+    },
+    {
+      "id": "finding-7-3-naming-standard-guard-yml-costs-88s-of-which-72s-is-a-full-history-checkout-and-",
+      "text": "`naming-standard-guard.yml` costs 88s, of which 72s is a full-history checkout and the rest is a Python install plus a filename scan. [SOURCE: .github/workflows/naming-standard-guard.yml:24]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`gh run view 43174399120 --json jobs` (spec-kit-check, 1150s across 3 jobs)",
+        "`gh run view 42796769476` (comment-hygiene, 92s)",
+        "`gh run view 43176911930` (naming-standard-guard, 88s)",
+        "`gh run view 43176912101` (message-contract, 78s)",
+        "`gh run view 40780892829` (agent-mirror-sync, 85s)",
+        "`gh run view 43174399109` (routing-registry-drift, 256s)",
+        "`gh run view 43168892360` (skill-advisor-stress, 456s)",
+        "`gh run view 43174399019` (deep-loop-runtime, 395s)",
+        "`.github/workflows/spec-kit-check.yml:99`, `.github/workflows/comment-hygiene.yml:22`, `.github/workflows/naming-standard-guard.yml:24`, `.github/workflows/agent-mirror-sync.yml:46`, `.github/workflows/message-contract.yml:22`, `.github/workflows/routing-registry-drift.yml:273`, `.github/workflows/skill-advisor-stress.yml:94`, `.github/workflows/deep-loop-runtime.yml:75`"
+      ]
+    },
+    {
+      "id": "finding-7-6-routing-registry-drift-yml-costs-256s-across-two-jobs-136s-and-120s-provisioning",
+      "text": "`routing-registry-drift.yml` costs 256s across two jobs (136s and 120s). Provisioning is 73s, checkout 113s, and the actual ratchet suites 37s. The job that inspects the pushed commit is the one piece no local gate can replace. [SOURCE: .github/workflows/routing-registry-drift.yml:273]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`gh run view 43174399120 --json jobs` (spec-kit-check, 1150s across 3 jobs)",
+        "`gh run view 42796769476` (comment-hygiene, 92s)",
+        "`gh run view 43176911930` (naming-standard-guard, 88s)",
+        "`gh run view 43176912101` (message-contract, 78s)",
+        "`gh run view 40780892829` (agent-mirror-sync, 85s)",
+        "`gh run view 43174399109` (routing-registry-drift, 256s)",
+        "`gh run view 43168892360` (skill-advisor-stress, 456s)",
+        "`gh run view 43174399019` (deep-loop-runtime, 395s)",
+        "`.github/workflows/spec-kit-check.yml:99`, `.github/workflows/comment-hygiene.yml:22`, `.github/workflows/naming-standard-guard.yml:24`, `.github/workflows/agent-mirror-sync.yml:46`, `.github/workflows/message-contract.yml:22`, `.github/workflows/routing-registry-drift.yml:273`, `.github/workflows/skill-advisor-stress.yml:94`, `.github/workflows/deep-loop-runtime.yml:75`"
+      ]
+    },
+    {
+      "id": "finding-7-1-spec-kit-check-on-a-recent-successful-run-spent-867s-in-the-main-job-200s-in-the",
+      "text": "`spec-kit-check` on a recent successful run spent 867s in the main job, 200s in the doctor job and 83s in the mirrors job. Inside the main job the CLI Vitest project took 490s, the legacy module lanes and bash validation suites 161s, install and build 73s, checkout 27s and the runtime Vitest project 79s. [SOURCE: .github/workflows/spec-kit-check.yml:99]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`gh run view 43174399120 --json jobs` (spec-kit-check, 1150s across 3 jobs)",
+        "`gh run view 42796769476` (comment-hygiene, 92s)",
+        "`gh run view 43176911930` (naming-standard-guard, 88s)",
+        "`gh run view 43176912101` (message-contract, 78s)",
+        "`gh run view 40780892829` (agent-mirror-sync, 85s)",
+        "`gh run view 43174399109` (routing-registry-drift, 256s)",
+        "`gh run view 43168892360` (skill-advisor-stress, 456s)",
+        "`gh run view 43174399019` (deep-loop-runtime, 395s)",
+        "`.github/workflows/spec-kit-check.yml:99`, `.github/workflows/comment-hygiene.yml:22`, `.github/workflows/naming-standard-guard.yml:24`, `.github/workflows/agent-mirror-sync.yml:46`, `.github/workflows/message-contract.yml:22`, `.github/workflows/routing-registry-drift.yml:273`, `.github/workflows/skill-advisor-stress.yml:94`, `.github/workflows/deep-loop-runtime.yml:75`"
+      ]
+    },
+    {
+      "id": "finding-7-7-the-two-biggest-single-test-steps-are-the-advisor-default-suite-at-309s-and-the-",
+      "text": "The two biggest single test steps are the advisor default suite at 309s and the deep-loop runtime suite at 306s, against 27s for the advisor stress suite and 490s for the CLI Vitest project. Suite work, not setup, is what those three workflows actually buy. [SOURCE: .github/workflows/skill-advisor-stress.yml:94][SOURCE: .github/workflows/deep-loop-runtime.yml:75]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`gh run view 43174399120 --json jobs` (spec-kit-check, 1150s across 3 jobs)",
+        "`gh run view 42796769476` (comment-hygiene, 92s)",
+        "`gh run view 43176911930` (naming-standard-guard, 88s)",
+        "`gh run view 43176912101` (message-contract, 78s)",
+        "`gh run view 40780892829` (agent-mirror-sync, 85s)",
+        "`gh run view 43174399109` (routing-registry-drift, 256s)",
+        "`gh run view 43168892360` (skill-advisor-stress, 456s)",
+        "`gh run view 43174399019` (deep-loop-runtime, 395s)",
+        "`.github/workflows/spec-kit-check.yml:99`, `.github/workflows/comment-hygiene.yml:22`, `.github/workflows/naming-standard-guard.yml:24`, `.github/workflows/agent-mirror-sync.yml:46`, `.github/workflows/message-contract.yml:22`, `.github/workflows/routing-registry-drift.yml:273`, `.github/workflows/skill-advisor-stress.yml:94`, `.github/workflows/deep-loop-runtime.yml:75`"
+      ]
+    },
+    {
+      "id": "finding-8-3-agent-mirror-sync-yml-and-the-commit-hook-invoke-the-identical-checker-skilled-b",
+      "text": "`agent-mirror-sync.yml` and the commit hook invoke the identical checker, `.skilled/bin/check-agent-mirror-sync.cjs`; CI adds only the shared-package build the checker loads. [SOURCE: .github/workflows/agent-mirror-sync.yml:57][SOURCE: .skilled/scripts/git-hooks/pre-commit:244]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.github/workflows/comment-hygiene.yml:34`",
+        "`.github/workflows/agent-mirror-sync.yml:57`",
+        "`.github/workflows/naming-standard-guard.yml:54`, `:58`",
+        "`.skilled/scripts/git-hooks/pre-commit:151`, `:244`, `:149`",
+        "`.github/scripts/check-gate-inputs.sh:1`",
+        "`gh api repos/{owner}/{repo}/branches/main/protection` → HTTP 404 \"Branch not protected\""
+      ]
+    },
+    {
+      "id": "finding-8-2-comment-hygiene-yml-and-the-commit-hook-invoke-the-identical-checker-skilled-ski",
+      "text": "`comment-hygiene.yml` and the commit hook invoke the identical checker, `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`. The difference is scope only: CI diffs base to head across the whole pull request, the hook checks the staged index. [SOURCE: .github/workflows/comment-hygiene.yml:34][SOURCE: .skilled/scripts/git-hooks/pre-commit:151]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.github/workflows/comment-hygiene.yml:34`",
+        "`.github/workflows/agent-mirror-sync.yml:57`",
+        "`.github/workflows/naming-standard-guard.yml:54`, `:58`",
+        "`.skilled/scripts/git-hooks/pre-commit:151`, `:244`, `:149`",
+        "`.github/scripts/check-gate-inputs.sh:1`",
+        "`gh api repos/{owner}/{repo}/branches/main/protection` → HTTP 404 \"Branch not protected\""
+      ]
+    },
+    {
+      "id": "finding-8-1-main-is-unprotected-the-branch-protection-endpoint-returns-404-branch-not-protec",
+      "text": "`main` is unprotected: the branch-protection endpoint returns 404 \"Branch not protected\", so no status check is required to merge. Deleting a workflow removes enforcement but breaks no merge gate. [SOURCE: .github/workflows/comment-hygiene.yml:1][INFERENCE: based on `gh api repos/{owner}/{repo}/branches/main/protection` returning 404]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.github/workflows/comment-hygiene.yml:34`",
+        "`.github/workflows/agent-mirror-sync.yml:57`",
+        "`.github/workflows/naming-standard-guard.yml:54`, `:58`",
+        "`.skilled/scripts/git-hooks/pre-commit:151`, `:244`, `:149`",
+        "`.github/scripts/check-gate-inputs.sh:1`",
+        "`gh api repos/{owner}/{repo}/branches/main/protection` → HTTP 404 \"Branch not protected\""
+      ]
+    },
+    {
+      "id": "finding-8-4-naming-standard-guard-yml-carries-more-than-the-scan-it-runs-a-python-snake-case",
+      "text": "`naming-standard-guard.yml` carries more than the scan: it runs a Python snake_case guard against the changed range and then runs that guard's own pytest suite (two files). Deleting the workflow would delete the guard's regression tests as well, so this cut must keep those two test files somewhere. [SOURCE: .github/workflows/naming-standard-guard.yml:54][SOURCE: .github/workflows/naming-standard-guard.yml:58]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.github/workflows/comment-hygiene.yml:34`",
+        "`.github/workflows/agent-mirror-sync.yml:57`",
+        "`.github/workflows/naming-standard-guard.yml:54`, `:58`",
+        "`.skilled/scripts/git-hooks/pre-commit:151`, `:244`, `:149`",
+        "`.github/scripts/check-gate-inputs.sh:1`",
+        "`gh api repos/{owner}/{repo}/branches/main/protection` → HTTP 404 \"Branch not protected\""
+      ]
+    },
+    {
+      "id": "finding-8-7-deletion-is-the-only-cut-that-captures-the-checkout-cost-each-candidate-spends-7",
+      "text": "Deletion is the only cut that captures the checkout cost. Each candidate spends 72-87s cloning and 1-14s checking, so narrowing the check inside the job would leave the clone in place and save nothing measurable. [INFERENCE: based on the per-step durations recorded in iteration 7 and the check scope in findings 2 and 3]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.github/workflows/comment-hygiene.yml:34`",
+        "`.github/workflows/agent-mirror-sync.yml:57`",
+        "`.github/workflows/naming-standard-guard.yml:54`, `:58`",
+        "`.skilled/scripts/git-hooks/pre-commit:151`, `:244`, `:149`",
+        "`.github/scripts/check-gate-inputs.sh:1`",
+        "`gh api repos/{owner}/{repo}/branches/main/protection` → HTTP 404 \"Branch not protected\""
+      ]
+    },
+    {
+      "id": "finding-8-6-no-gate-inventory-enumerates-these-workflows-check-gate-inputs-sh-does-not-refer",
+      "text": "No gate inventory enumerates these workflows: `check-gate-inputs.sh` does not reference `comment-hygiene`, `agent-mirror-sync` or `naming-standard-guard`, so deleting one needs no manifest update. [SOURCE: .github/scripts/check-gate-inputs.sh:1]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.github/workflows/comment-hygiene.yml:34`",
+        "`.github/workflows/agent-mirror-sync.yml:57`",
+        "`.github/workflows/naming-standard-guard.yml:54`, `:58`",
+        "`.skilled/scripts/git-hooks/pre-commit:151`, `:244`, `:149`",
+        "`.github/scripts/check-gate-inputs.sh:1`",
+        "`gh api repos/{owner}/{repo}/branches/main/protection` → HTTP 404 \"Branch not protected\""
+      ]
+    },
+    {
+      "id": "finding-8-5-the-regression-each-deletion-stops-catching-is-exactly-the-no-hook-path-a-commit",
+      "text": "The regression each deletion stops catching is exactly the no-hook path: a commit made with `--no-verify`, from a clone without the machine-wide hooks installed, or by a tool that runs no hooks. That is narrow but real, and it is the whole of what the CI copies add. [SOURCE: .skilled/scripts/git-hooks/pre-commit:149][INFERENCE: based on the hook's own bypass surface and the identical checker paths in findings 2 and 3]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.github/workflows/comment-hygiene.yml:34`",
+        "`.github/workflows/agent-mirror-sync.yml:57`",
+        "`.github/workflows/naming-standard-guard.yml:54`, `:58`",
+        "`.skilled/scripts/git-hooks/pre-commit:151`, `:244`, `:149`",
+        "`.github/scripts/check-gate-inputs.sh:1`",
+        "`gh api repos/{owner}/{repo}/branches/main/protection` → HTTP 404 \"Branch not protected\""
+      ]
+    },
+    {
+      "id": "finding-9-6-changed-packet-validation-yml-costs-129s-for-under-8s-of-validation-79s-checkout",
+      "text": "`changed-packet-validation.yml` costs 129s for under 8s of validation: 79s checkout and 45s installing spec-kit dependencies. [SOURCE: .github/workflows/changed-packet-validation.yml:1]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`gh run view 43177390580` (gate-inputs, 170s)",
+        "`gh run view 43177390849` (trigger-index-rebuild, 119s)",
+        "`gh run view 43172983998` (opencode-dual-version, 440s)",
+        "`gh run view 43177390691` (command-tree-parity, 211s)",
+        "`gh run view 43177390587` (playbook-operator-contract, 93s)",
+        "`gh run view 43177390642` (changed-packet-validation, 129s)",
+        "`.github/workflows/gate-inputs.yml:29`, `.github/workflows/trigger-index-rebuild.yml:1`, `.github/workflows/opencode-dual-version.yml:123`, `.github/workflows/command-tree-parity.yml:86`, `.github/workflows/playbook-operator-contract.yml:1`, `.github/workflows/changed-packet-validation.yml:1`"
+      ]
+    },
+    {
+      "id": "finding-9-4-command-tree-parity-yml-costs-211s-across-two-jobs-120s-checkout-68s-installing-",
+      "text": "`command-tree-parity.yml` costs 211s across two jobs: 120s checkout, 68s installing the spec-kit workspace, and about 23s of comparison work. [SOURCE: .github/workflows/command-tree-parity.yml:86]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`gh run view 43177390580` (gate-inputs, 170s)",
+        "`gh run view 43177390849` (trigger-index-rebuild, 119s)",
+        "`gh run view 43172983998` (opencode-dual-version, 440s)",
+        "`gh run view 43177390691` (command-tree-parity, 211s)",
+        "`gh run view 43177390587` (playbook-operator-contract, 93s)",
+        "`gh run view 43177390642` (changed-packet-validation, 129s)",
+        "`.github/workflows/gate-inputs.yml:29`, `.github/workflows/trigger-index-rebuild.yml:1`, `.github/workflows/opencode-dual-version.yml:123`, `.github/workflows/command-tree-parity.yml:86`, `.github/workflows/playbook-operator-contract.yml:1`, `.github/workflows/changed-packet-validation.yml:1`"
+      ]
+    },
+    {
+      "id": "finding-9-1-gate-inputs-yml-costs-170s-64s-checkout-34s-installing-the-packages-the-hook-tes",
+      "text": "`gate-inputs.yml` costs 170s: 64s checkout, 34s installing the packages the hook tests load, 56s running the hook test scripts against the real hooks, and 10s of fixture tests. Its checking work is 66s, the largest genuine work share in this tier. [SOURCE: .github/workflows/gate-inputs.yml:29]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`gh run view 43177390580` (gate-inputs, 170s)",
+        "`gh run view 43177390849` (trigger-index-rebuild, 119s)",
+        "`gh run view 43172983998` (opencode-dual-version, 440s)",
+        "`gh run view 43177390691` (command-tree-parity, 211s)",
+        "`gh run view 43177390587` (playbook-operator-contract, 93s)",
+        "`gh run view 43177390642` (changed-packet-validation, 129s)",
+        "`.github/workflows/gate-inputs.yml:29`, `.github/workflows/trigger-index-rebuild.yml:1`, `.github/workflows/opencode-dual-version.yml:123`, `.github/workflows/command-tree-parity.yml:86`, `.github/workflows/playbook-operator-contract.yml:1`, `.github/workflows/changed-packet-validation.yml:1`"
+      ]
+    },
+    {
+      "id": "finding-9-3-opencode-dual-version-yml-costs-440s-across-three-jobs-183s-of-checkout-133s-pro",
+      "text": "`opencode-dual-version.yml` costs 440s across three jobs: 183s of checkout, 133s provisioning the plugin dependency trees, and 81s of actual battery work. The same \"config-shape, battery and cli-opencode doc unit tests\" step runs in both the v1 job and the v2 job at 19s each. [SOURCE: .github/workflows/opencode-dual-version.yml:123]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`gh run view 43177390580` (gate-inputs, 170s)",
+        "`gh run view 43177390849` (trigger-index-rebuild, 119s)",
+        "`gh run view 43172983998` (opencode-dual-version, 440s)",
+        "`gh run view 43177390691` (command-tree-parity, 211s)",
+        "`gh run view 43177390587` (playbook-operator-contract, 93s)",
+        "`gh run view 43177390642` (changed-packet-validation, 129s)",
+        "`.github/workflows/gate-inputs.yml:29`, `.github/workflows/trigger-index-rebuild.yml:1`, `.github/workflows/opencode-dual-version.yml:123`, `.github/workflows/command-tree-parity.yml:86`, `.github/workflows/playbook-operator-contract.yml:1`, `.github/workflows/changed-packet-validation.yml:1`"
+      ]
+    },
+    {
+      "id": "finding-9-5-playbook-operator-contract-yml-costs-93s-for-under-8s-of-checking-52s-checkout-a",
+      "text": "`playbook-operator-contract.yml` costs 93s for under 8s of checking: 52s checkout and 31s installing the spec-kit workspace plus building its shared package. [SOURCE: .github/workflows/playbook-operator-contract.yml:1]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`gh run view 43177390580` (gate-inputs, 170s)",
+        "`gh run view 43177390849` (trigger-index-rebuild, 119s)",
+        "`gh run view 43172983998` (opencode-dual-version, 440s)",
+        "`gh run view 43177390691` (command-tree-parity, 211s)",
+        "`gh run view 43177390587` (playbook-operator-contract, 93s)",
+        "`gh run view 43177390642` (changed-packet-validation, 129s)",
+        "`.github/workflows/gate-inputs.yml:29`, `.github/workflows/trigger-index-rebuild.yml:1`, `.github/workflows/opencode-dual-version.yml:123`, `.github/workflows/command-tree-parity.yml:86`, `.github/workflows/playbook-operator-contract.yml:1`, `.github/workflows/changed-packet-validation.yml:1`"
+      ]
+    },
+    {
+      "id": "finding-9-2-trigger-index-rebuild-yml-costs-119s-across-two-jobs-87s-to-rebuild-26s-checkout",
+      "text": "`trigger-index-rebuild.yml` costs 119s across two jobs: 87s to rebuild (26s checkout, 42s install and build, 10s verify and commit) and 32s for a second job that only pushes the rebuild, of which 25s is checking out the base commit. [SOURCE: .github/workflows/trigger-index-rebuild.yml:1]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`gh run view 43177390580` (gate-inputs, 170s)",
+        "`gh run view 43177390849` (trigger-index-rebuild, 119s)",
+        "`gh run view 43172983998` (opencode-dual-version, 440s)",
+        "`gh run view 43177390691` (command-tree-parity, 211s)",
+        "`gh run view 43177390587` (playbook-operator-contract, 93s)",
+        "`gh run view 43177390642` (changed-packet-validation, 129s)",
+        "`.github/workflows/gate-inputs.yml:29`, `.github/workflows/trigger-index-rebuild.yml:1`, `.github/workflows/opencode-dual-version.yml:123`, `.github/workflows/command-tree-parity.yml:86`, `.github/workflows/playbook-operator-contract.yml:1`, `.github/workflows/changed-packet-validation.yml:1`"
+      ]
+    },
+    {
+      "id": "finding-9-7-across-this-tier-the-checks-cost-10-66s-while-checkout-plus-install-costs-96-188",
+      "text": "Across this tier the checks cost 10-66s while checkout plus install costs 96-188s, so no test-level cut can shorten these workflows. Their remaining ceiling belongs to the settled setup and trigger work in `002-ci-workflow-efficiency` phases 003 and 004, and the only unpriced cut left here is the duplicated config-shape step in `opencode-dual-version.yml` at 19s. [INFERENCE: based on the nine per-step measurements above]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`gh run view 43177390580` (gate-inputs, 170s)",
+        "`gh run view 43177390849` (trigger-index-rebuild, 119s)",
+        "`gh run view 43172983998` (opencode-dual-version, 440s)",
+        "`gh run view 43177390691` (command-tree-parity, 211s)",
+        "`gh run view 43177390587` (playbook-operator-contract, 93s)",
+        "`gh run view 43177390642` (changed-packet-validation, 129s)",
+        "`.github/workflows/gate-inputs.yml:29`, `.github/workflows/trigger-index-rebuild.yml:1`, `.github/workflows/opencode-dual-version.yml:123`, `.github/workflows/command-tree-parity.yml:86`, `.github/workflows/playbook-operator-contract.yml:1`, `.github/workflows/changed-packet-validation.yml:1`"
+      ]
+    },
+    {
+      "id": "finding-10-3-command-confirmed-comment-hygiene-yml-and-agent-mirror-sync-yml-each-reference-a",
+      "text": "Command-confirmed: `comment-hygiene.yml` and `agent-mirror-sync.yml` each reference an existing checker file that the commit hook also invokes, so the duplicate is real and not a naming coincidence. [SOURCE: .github/workflows/comment-hygiene.yml:34][SOURCE: .github/workflows/agent-mirror-sync.yml:57]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.github/workflows/comment-hygiene.yml:34`",
+        "`.github/workflows/agent-mirror-sync.yml:57`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20`",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:24`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111`",
+        "Verification run: 2 checker references in `comment-hygiene.yml`, 3 in `agent-mirror-sync.yml`, 0 workflow callers of `test:sharded`, 3,561 legacy lines, 1,173 + 94 census."
+      ]
+    },
+    {
+      "id": "finding-10-4-command-confirmed-no-workflow-invokes-test-sharded-and-the-sharded-runner-has-ze",
+      "text": "Command-confirmed: no workflow invokes `test:sharded`, and the sharded runner has zero callers under `.github/workflows/`. The dead-runner finding survives verification. [SOURCE: .skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.github/workflows/comment-hygiene.yml:34`",
+        "`.github/workflows/agent-mirror-sync.yml:57`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20`",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:24`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111`",
+        "Verification run: 2 checker references in `comment-hygiene.yml`, 3 in `agent-mirror-sync.yml`, 0 workflow callers of `test:sharded`, 3,561 legacy lines, 1,173 + 94 census."
+      ]
+    },
+    {
+      "id": "finding-10-5-command-confirmed-the-three-legacy-harnesses-total-3-561-lines-and-the-census-re",
+      "text": "Command-confirmed: the three legacy harnesses total 3,561 lines, and the census recomputes as 1,173 tracked test files outside `specs/` plus 94 under `specs/`. [SOURCE: .skilled/skills/system-spec-kit/runtime/package.json:24]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.github/workflows/comment-hygiene.yml:34`",
+        "`.github/workflows/agent-mirror-sync.yml:57`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20`",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:24`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111`",
+        "Verification run: 2 checker references in `comment-hygiene.yml`, 3 in `agent-mirror-sync.yml`, 0 workflow callers of `test:sharded`, 3,561 legacy lines, 1,173 + 94 census."
+      ]
+    },
+    {
+      "id": "finding-10-6-still-inferred-not-confirmed-the-legacy-lane-s-overlap-with-the-cli-vitest-proje",
+      "text": "Still inferred, not confirmed: the legacy lane's overlap with the CLI Vitest project, and whether the advisor default suite can run files in parallel without failing on shared state. Both need a run that this research-only lineage must not start, and both are named as measurement gates rather than savings. [INFERENCE: based on the absence of any lane-by-lane comparison or parallel trial in this lineage]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.github/workflows/comment-hygiene.yml:34`",
+        "`.github/workflows/agent-mirror-sync.yml:57`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20`",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:24`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111`",
+        "Verification run: 2 checker references in `comment-hygiene.yml`, 3 in `agent-mirror-sync.yml`, 0 workflow callers of `test:sharded`, 3,561 legacy lines, 1,173 + 94 census."
+      ]
+    },
+    {
+      "id": "finding-10-1-the-five-largest-measured-run-time-costs-are-the-spec-kit-cli-vitest-project-at-",
+      "text": "The five largest measured run-time costs are: the spec-kit CLI Vitest project at 490s, the advisor default suite at 309s, the deep-loop runtime suite at 306s, the spec-kit legacy lane at 161s, and the doctor script suite at 110s. Together they are 1,376s (about 23 minutes) of the 3,762s measured across the fourteen workflows inspected. [INFERENCE: based on the per-step durations recorded in iterations 7 and 9]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.github/workflows/comment-hygiene.yml:34`",
+        "`.github/workflows/agent-mirror-sync.yml:57`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20`",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:24`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111`",
+        "Verification run: 2 checker references in `comment-hygiene.yml`, 3 in `agent-mirror-sync.yml`, 0 workflow callers of `test:sharded`, 3,561 legacy lines, 1,173 + 94 census."
+      ]
+    },
+    {
+      "id": "finding-10-2-the-four-guard-deletions-total-385s-per-pull-request-comment-hygiene-92s-naming-",
+      "text": "The four guard deletions total 385s per pull request: `comment-hygiene` 92s, `naming-standard-guard` 88s, `agent-mirror-sync` 85s, and the duplicate-map job of `routing-registry-drift` up to 120s. Adding the legacy lane's 161s upper bound takes the ceiling to 546s, about nine minutes per pull request. [INFERENCE: based on the measured job durations in iterations 7 and 9]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.github/workflows/comment-hygiene.yml:34`",
+        "`.github/workflows/agent-mirror-sync.yml:57`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20`",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:24`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111`",
+        "Verification run: 2 checker references in `comment-hygiene.yml`, 3 in `agent-mirror-sync.yml`, 0 workflow callers of `test:sharded`, 3,561 legacy lines, 1,173 + 94 census."
+      ]
+    },
+    {
+      "id": "finding-10-7-the-packet-s-census-needs-one-correction-before-any-later-phase-builds-on-it-spe",
+      "text": "The packet's census needs one correction before any later phase builds on it: `spec.md`'s \"about 110 test files under specs/\" is 4 real test files plus 90 scratch, fixture and archived entries, so the tracked test surface is 1,177 rather than 1,270 and the delete-eligible specs surface is 4 files, not 110. [SOURCE: specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.github/workflows/comment-hygiene.yml:34`",
+        "`.github/workflows/agent-mirror-sync.yml:57`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:20`",
+        "`.skilled/skills/system-spec-kit/runtime/package.json:24`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/spec.md:111`",
+        "Verification run: 2 checker references in `comment-hygiene.yml`, 3 in `agent-mirror-sync.yml`, 0 workflow callers of `test:sharded`, 3,561 legacy lines, 1,173 + 94 census."
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-241376af5350",
+      "text": "`parent-skill-check.cjs` timed with a bare skill path returned exit 2 (wrong argument shape), so its cost is not part of the measured set. The remaining checker costs are small enough that one missing sample does not change the conclusion. Candidate for promotion to \"exhausted approaches\" only if a later iteration needs a per-gate budget table.",
+      "contentHash": "241376af5350",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-9ded90af9d07",
+      "text": "Adding a `package.json` scripts block as a recommendation: it would change repository structure for no measured saving, and this packet is research only.",
+      "contentHash": "9ded90af9d07",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-68ae318c0839",
+      "text": "Reporting the hook gates as bloat without measurement: the measurements above show the opposite, so a \"delete pre-commit gates\" recommendation is ruled out on evidence.",
+      "contentHash": "68ae318c0839",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-8edd21d8e3d1",
+      "text": "Timing the whole hook end-to-end by running a real commit: forbidden, since this lineage may not write outside its directory and a commit writes the index and objects.",
+      "contentHash": "8edd21d8e3d1",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-32b2f7772b6a",
+      "text": "Per-job runner minutes for each workflow are not in the packet and are not derivable from `spec.md`'s per-workflow means, which include queue time. Any per-workflow saving claimed from here is an estimate bounded by the workflow mean, not a measured job time. Candidate for promotion to \"exhausted approaches\" if a later iteration keeps reaching for per-job attribution.",
+      "contentHash": "32b2f7772b6a",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1525e0f0316f",
+      "text": "Recommending a composite setup action or dependency caching: settled in `002-ci-workflow-efficiency/004-setup-caching-provisioning`.",
+      "contentHash": "1525e0f0316f",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-45f6432224c6",
+      "text": "Recommending path filters for the 13 unfiltered workflows: trigger hygiene is settled in `002-ci-workflow-efficiency/003-trigger-and-job-hygiene`.",
+      "contentHash": "45f6432224c6",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-c9397a0cff56",
+      "text": "Recommending that any two workflows be merged into one: settled as `D8 = no` in `002-ci-workflow-efficiency/008-consolidation-decision`. The cuts proposed here are deletions or narrowings of duplicate coverage, which is a different decision from merging job shapes.",
+      "contentHash": "c9397a0cff56",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-7f9eba721a48",
+      "text": "Treating `message-contract.yml` as a duplicate to delete after reading only its name; its body carries PR-only coverage.",
+      "contentHash": "7f9eba721a48",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-07dd75f7b3f1",
+      "text": "Deleting a `tests/` copy because its basename also exists under `cli/tests/`: measured zero shared test names for the one pair that looked most alike, so the basename-collision signal is rejected as evidence of duplication.",
+      "contentHash": "07dd75f7b3f1",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-be69cb2c7318",
+      "text": "No single test file dominates runtime; the package's own CI comment states that no file dominates the CLI project's run time. A \"delete the slowest test file\" strategy therefore has no target and is a dead end for this tree.",
+      "contentHash": "be69cb2c7318",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-93a9b10992e9",
+      "text": "Proposing that CI stop building before testing: the builds are prerequisites for `dist`-mapped checks, so the cost is real work, not waste. The cut belongs to a build-caching decision owned by `002-ci-workflow-efficiency/004-setup-caching-provisioning`.",
+      "contentHash": "93a9b10992e9",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6365db779cc5",
+      "text": "Re-measuring per-file vitest durations: settled in phases 001 to 005 of this packet.",
+      "contentHash": "6365db779cc5",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f98eb40f8d01",
+      "text": "Deleting the deep-loop serial list as overengineering: it serializes 12 of 173 files for a documented reason (tests that measure elapsed time, kill child processes or race the graph lock), so it buys determinism for 7% of the suite.",
+      "contentHash": "f98eb40f8d01",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a84ad7016fc5",
+      "text": "No measurement separated advisor install time from test time. The workflow mean of 457s bounds the total and includes queue time, so the split between install and suite remains estimated rather than measured.",
+      "contentHash": "a84ad7016fc5",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-92a47ac2375c",
+      "text": "Reporting the tree sizes from an unpruned `find`: 381 files would have overstated the advisor tree by 106%, so the inflated count is rejected.",
+      "contentHash": "92a47ac2375c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-e6f289fc5096",
+      "text": "Treating the advisor's two suites as a duplicate run: the include patterns are disjoint by design, and the config comment records that running them together fails on shared daemon state.",
+      "contentHash": "e6f289fc5096",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a1794a0f693d",
+      "text": "Deleting the 292 MB orca context tree as a test-bloat cut: it is untracked working material belonging to another packet, and deleting it is outside this research scope.",
+      "contentHash": "a1794a0f693d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-cc1becbd7d26",
+      "text": "Pricing a `specs/` test deletion as a run-time saving: there is no execution path, so the saving is 0 minutes and claiming otherwise would inflate the ranking.",
+      "contentHash": "cc1becbd7d26",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ed2e52f3e8dd",
+      "text": "Recommending that these files be wired into CI so they \"earn their keep\": that would add run time to a packet whose purpose is to remove it.",
+      "contentHash": "ed2e52f3e8dd",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-c170b3d3fb80",
+      "text": "Searching for a hidden runner by packet name (`cli-jev-workflow-integration`) found only benchmark scripts and fixture indices that reference packet paths as data, never a test command.",
+      "contentHash": "c170b3d3fb80",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-2d787374571d",
+      "text": "Calling the doctor folder \"three parallel test frameworks\": 54 of its 59 files are one framework, so the framing would overstate the maintenance cost.",
+      "contentHash": "2d787374571d",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-4cd1049a10a6",
+      "text": "Deleting or merging the shared Vitest setup: it prevents tests from writing the checked-in database and fails closed when the environment points there, so removing it trades a 71-line file for production-state corruption.",
+      "contentHash": "4cd1049a10a6",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-407f5831811c",
+      "text": "No shared-fixture duplication exists to cut. Both candidate helpers are single copies with distinct jobs, so the \"helper layer\" branch of key question 5 closes with a negative result.",
+      "contentHash": "407f5831811c",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-2c16a7453fde",
+      "text": "Treating spawn-heavy tests as overengineering by default: spawning is how a CLI is tested at all; the finding prices the cost without proposing removal.",
+      "contentHash": "2c16a7453fde",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-ce04bb67f7c7",
+      "text": "No further cut surfaced inside the 490s CLI Vitest project. Per-file timing is settled in phases 001 to 005, and iteration 3 confirmed that no single file dominates. That 490s is the work the repository actually wants to buy.",
+      "contentHash": "ce04bb67f7c7",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-d0edaa891343",
+      "text": "Pricing the `message-contract` narrowing in seconds: the job's cost is its checkout, so the honest number is zero and the benefit is maintenance, not time.",
+      "contentHash": "d0edaa891343",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-279daeaf6355",
+      "text": "Pricing the legacy-lane cut at its full 161s: the overlap with the CLI Vitest project is unmeasured, so the table carries it as an upper bound with a measurement gate rather than a saving.",
+      "contentHash": "279daeaf6355",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-0f4d1447b80b",
+      "text": "Recommending `fetch-depth` changes on the four cheap workflows: their full-history checkout is 70-95% of their cost, but setup provisioning is settled in `002-ci-workflow-efficiency/004-setup-caching-provisioning`, and the deletion above removes the checkout with the workflow.",
+      "contentHash": "0f4d1447b80b",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-f4e872ae0a3b",
+      "text": "Arguing from branch protection: there is none, so the \"required check\" objection does not apply here and is recorded as a verified negative rather than an assumption.",
+      "contentHash": "f4e872ae0a3b",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-579a6c0487a1",
+      "text": "Claiming that CI is unnecessary because the hooks exist: the hooks are machine-wide installs, not repository properties, so a contributor without them gets no enforcement at all. The finding keeps that regression and prices it as the cost of the deletion.",
+      "contentHash": "579a6c0487a1",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-bf736c6c65af",
+      "text": "Deleting `naming-standard-guard.yml` wholesale: it would take two pytest files with it, so the ranked cut must be \"delete the workflow, move its two guard tests into an existing script-test workflow\".",
+      "contentHash": "bf736c6c65af",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-89a721892b49",
+      "text": "No required-check list exists to inspect, because the branch is unprotected. The verification therefore ends at \"nothing requires it by name\", which is the strongest statement the repository supports.",
+      "contentHash": "89a721892b49",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-87260863e375",
+      "text": "Calling `trigger-index-rebuild`'s second job wasteful: it performs the push that makes the rebuild durable, and a rebuild that is not committed is not a rebuild.",
+      "contentHash": "87260863e375",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-9ae94b74cda5",
+      "text": "No second-tier workflow has a deletable duplicate. Their checks are unique, and the overlap found in iteration 2 was confined to the four guard workflows plus the routing workflow.",
+      "contentHash": "9ae94b74cda5",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-1dacdc93c379",
+      "text": "Recommending narrower checkout or shallower clone for them: that is the settled setup work in `002-ci-workflow-efficiency/004-setup-caching-provisioning`.",
+      "contentHash": "1dacdc93c379",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-14d3686e3f65",
+      "text": "Recommending that the six second-tier workflows run on a schedule instead of every push: that is trigger hygiene, settled in `002-ci-workflow-efficiency/003-trigger-and-job-hygiene`.",
+      "contentHash": "14d3686e3f65",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-ec5b1c3f82f5",
+      "text": "Recommending that these workflows drop their checks: the checks are 6-39% of each workflow, so a check cut saves seconds and loses coverage.",
+      "contentHash": "ec5b1c3f82f5",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-c4ca380871da",
+      "text": "Any recommendation that repeats settled work: path filters, dependency caching, composite setup, and workflow merging are all named as settled rather than re-proposed.",
+      "contentHash": "c4ca380871da",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-e6cce160db18",
+      "text": "Pricing the specs scratch logs or the dead sharded runner as time savings: both are 0s, and presenting them as minutes would inflate the ranking.",
+      "contentHash": "e6cce160db18",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 70,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.6,
+    "coverageBySources": {
+      "code": 65,
+      "other": 57
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/research/lineages/opencode-go/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

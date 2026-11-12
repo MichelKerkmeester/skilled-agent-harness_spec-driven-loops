@@ -8,8 +8,8 @@
 
 import { join } from 'node:path';
 
-import { executorSkill } from '../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs';
-import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
+import { executorSkill } from '../lib/dispatch-audit.mjs';
+import { isHookEnabled } from '../../shared/hook-flags.mjs';
 
 import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
 

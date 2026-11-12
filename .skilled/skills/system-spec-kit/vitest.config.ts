@@ -25,10 +25,12 @@ export default {
       path.join(path.dirname(testPath), 'snapshots', `${path.basename(testPath)}${snapExtension}`),
     projects: [
       {
-        // Hook sources load through runtime symlinks under `.pi`/`.opencode`, so
-        // their relative imports are written against the link's base; this alias
-        // resolves those same specifiers from the real tree, mirroring the
-        // hooks config.
+        // Pi adapters load from their real folders under `.skilled/`, which the one-line
+        // `.pi/extensions/` entry files re-export. A few of them still carry a long
+        // `../../.skilled/...` specifier left from the link-based layout. A test that loads one
+        // from the source tree resolves a literal specifier of that form only through this alias,
+        // which points it at the real tree, mirroring the hooks config. The pattern also matches
+        // the `.opencode/` form.
         resolve: {
           alias: [
             {

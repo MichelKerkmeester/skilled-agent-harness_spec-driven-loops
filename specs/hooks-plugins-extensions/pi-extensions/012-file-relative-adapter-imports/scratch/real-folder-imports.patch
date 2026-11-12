@@ -1,0 +1,832 @@
+diff --git a/.pi/extensions/README.md b/.pi/extensions/README.md
+index a93530f4af..b27a040b0c 100644
+--- a/.pi/extensions/README.md
++++ b/.pi/extensions/README.md
+@@ -103,7 +103,7 @@ Two devin/cursor hooks have no Pi equivalent because Pi's own architecture does
+ 
+ | Boundary | Rule |
+ |---|---|
+-| Imports | Each file imports only `ExtensionAPI` (type-only) plus its one shared guard-core module (dynamic `import()`) or `lib/claude-hook-adapter.ts` (static import), resolved via a relative path. |
++| Imports | Each file imports only `ExtensionAPI` (type-only) plus its one shared guard-core module (dynamic `import()`) or `lib/claude-hook-adapter.ts` (static import), resolved via a relative path. Pi 1.5.1 or newer is required: it loads each linked file from its real folder, and the imports are relative to that folder. |
+ | Exports | Exactly one default-exported `ExtensionFactory` per file. No named exports. |
+ | Ownership | Guard decisions belong to the shared `.mjs`/`.cjs` core modules under `.skilled/`. Session-lifecycle decisions belong to the Claude hook dist files under `system-spec-kit/runtime/dist/hooks/claude/`. These files own only event registration, payload construction, and the fail-open wrapper. |
+ | Fail-open | Every handler body is wrapped in try/catch. A caught error returns `undefined` (`prompt-advisor.ts`, all others) or `{ action: "continue" }` (`spec-gate-classify.ts` only) for `input` handlers, never a block. |
+diff --git a/.skilled/commands/doctor/scripts/git-setup-check.cjs b/.skilled/commands/doctor/scripts/git-setup-check.cjs
+index e3c61031df..a5cf383060 100644
+--- a/.skilled/commands/doctor/scripts/git-setup-check.cjs
++++ b/.skilled/commands/doctor/scripts/git-setup-check.cjs
+@@ -1503,7 +1503,17 @@ function checkAiToolHooks(ctx) {
+       if (registered) {
+         const specifier = importMatch[1];
+         const adapterPath = path.join(ctx.repoRoot, rel);
+-        const importPath = path.resolve(path.dirname(adapterPath), specifier);
++        let adapterDir = path.dirname(adapterPath);
++        if (tool === 'pi') {
++          // Pi runs a linked extension from the file its link points at, so the adapter's own
++          // imports resolve from the real file rather than from the folder holding the link.
++          try {
++            adapterDir = path.dirname(fs.realpathSync(adapterPath));
++          } catch {
++            adapterDir = path.dirname(adapterPath);
++          }
++        }
++        const importPath = path.resolve(adapterDir, specifier);
+         if (fs.existsSync(importPath)) {
+           details.push(`${label}: registered (${rel})`);
+         } else {
+diff --git a/.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs b/.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs
+index 11a7b4b2f3..7e661a1941 100644
+--- a/.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs
++++ b/.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs
+@@ -1417,6 +1417,42 @@ test('opencode and pi pass only when the adapter registers its event and imports
+   }
+ });
+ 
++test('pi resolves a linked adapter\'s imports from the file the link points at', (t) => {
++  const f = fixture(t);
++  const link = path.join(f.repo, TOOL_FILES.pi);
++  const realAdapter = path.join(
++    f.repo,
++    '.skilled',
++    'skills',
++    'sk-git',
++    'scripts',
++    'hooks',
++    'pi',
++    'git-preflight-advisory.ts',
++  );
++  fs.mkdirSync(path.dirname(realAdapter), { recursive: true });
++  fs.writeFileSync(
++    realAdapter,
++    "import { GIT_CHECKS } from '../../lib/git-rule-checks.mjs';\n"
++      + "export default function ext(pi) { pi.on('tool_call', async (event) => {}); }\n",
++  );
++  const sharedModule = path.join(f.repo, '.skilled', 'skills', 'sk-git', 'scripts', 'lib', 'git-rule-checks.mjs');
++  fs.mkdirSync(path.dirname(sharedModule), { recursive: true });
++  fs.writeFileSync(sharedModule, '');
++
++  // The link is relative and the folder holding it has no lib of its own, so only the
++  // real adapter's folder can resolve the shared module.
++  fs.mkdirSync(path.dirname(link), { recursive: true });
++  fs.symlinkSync(path.relative(path.dirname(link), realAdapter), link);
++
++  const row = rowOf(reportOf(f.run(['--tool', 'pi', '--json'])), 'ai-tool-hooks');
++  assert.equal(row.result, 'PASS', `pi: ${row.details.join(' | ')}`);
++  assert.ok(
++    row.details.includes(`pi (active): registered (${TOOL_FILES.pi})`),
++    `pi: ${row.details.join(' | ')}`,
++  );
++});
++
+ test('opencode concise arrows and pi default functions register supported handlers', (t) => {
+   const cases = [
+     [
+@@ -2051,6 +2087,12 @@ test('round trip: registering the advisory as README section 3 shows turns ai-to
+     // DSH registers through a link and the bundle entry rather than one file's content.
+     if (tool === 'dsh') {
+       plantDshBundle(f.repo);
++    } else if (tool === 'pi') {
++      // Pi registers through a relative link into the hook library too, and the
++      // adapter's imports resolve from the file that link points at.
++      const target = path.join(f.repo, file);
++      fs.mkdirSync(path.dirname(target), { recursive: true });
++      fs.symlinkSync(fs.readlinkSync(path.join(REAL_ROOT, file)), target);
+     } else {
+       const target = path.join(f.repo, file);
+       fs.mkdirSync(path.dirname(target), { recursive: true });
+diff --git a/.skilled/hooks/README.md b/.skilled/hooks/README.md
+index 922922acbc..5819329679 100644
+--- a/.skilled/hooks/README.md
++++ b/.skilled/hooks/README.md
+@@ -217,7 +217,7 @@ hooks/
+ 
+ **Skill-owned concerns are indexed here too**: the tree above shows only the concerns whose *real code* lives in this hub. Every skill-owned concern is additionally present as per-runtime symlinks under `<concern>/<runtime>/` (real code stays in the owning skill, as "Full index + kill-switches" above describes): `skill-advisor/`, `spec-gate/`, `session-lifecycle/`, `completion/`, `directive-lifecycle/`, `git-preflight/`, `git-message-gate/`, `dist-freshness/`, `codex-watchdog/`, and `permission-policy/`. The same pattern covers the bin-backed concerns: `git-live-follow/` and `git-primary-reconcile/` hold one symlink per runtime into `.skilled/bin/` and are indexed in the additional-hooks table below. DSH's skill-owned adapters follow it too: `skill-advisor/dsh/`, `spec-gate/dsh/`, `session-lifecycle/dsh/`, `completion/dsh/`, `git-preflight/dsh/` and `git-message-gate/dsh/` hold index links to the real files in `system-skill-advisor/hooks/dsh/`, `system-spec-kit/runtime/hooks/dsh/` and `sk-git/scripts/hooks/dsh/`.
+ 
+-Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `env-secret-guard/pi/`, `mcp-route-guard/pi/`, `overlay-guard/pi/`, `post-edit-quality/pi/`, `task-dispatch/pi/`, `classifier-injection-screen/pi/`, `decision-capture/pi/`, `goal/pi/`, `session-relaunch/pi/`), Pi auto-discovers `.pi/extensions/`, but its loader follows symlinks and resolves each extension's relative imports against the *symlink* path (probe-verified against the installed loader), so `.pi/extensions/` holds relative symlinks back to the real files and every import stays written for the `.pi/extensions/` base. OpenCode (`.opencode/plugins/*.js`) remains the runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder that its loader scans, so only their path to these cores changed. For browsability, each concern's `opencode/` subfolder holds a *relative symlink back into* `.opencode/plugins/`, the reverse of Pi's direction: nothing loads through the OpenCode symlink (verified: the loader globs only `.opencode/plugins/`, not the tree), it is a documentation mirror so the tree shows OpenCode beside the other runtimes. Cursor's multiplexed `post-tool-use.mjs` proxy is indexed under both `dispatch/cursor/` and `post-edit-quality/cursor/` because one live adapter serves both concerns.
++Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `env-secret-guard/pi/`, `mcp-route-guard/pi/`, `overlay-guard/pi/`, `post-edit-quality/pi/`, `task-dispatch/pi/`, `classifier-injection-screen/pi/`, `decision-capture/pi/`, `goal/pi/`, `session-relaunch/pi/`), Pi auto-discovers `.pi/extensions/`, and from 1.5.1 its loader imports the real file the link points at, so each adapter's imports are relative to its own folder and `.pi/extensions/` holds relative symlinks back to the real files. OpenCode (`.opencode/plugins/*.js`) remains the runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder that its loader scans, so only their path to these cores changed. For browsability, each concern's `opencode/` subfolder holds a *relative symlink back into* `.opencode/plugins/`, the reverse of Pi's direction: nothing loads through the OpenCode symlink (verified: the loader globs only `.opencode/plugins/`, not the tree), it is a documentation mirror so the tree shows OpenCode beside the other runtimes. Cursor's multiplexed `post-tool-use.mjs` proxy is indexed under both `dispatch/cursor/` and `post-edit-quality/cursor/` because one live adapter serves both concerns.
+ 
+ DSH follows Pi's layout. Each real adapter lives in a per-concern `dsh/` subfolder, or in its owning skill's `hooks/dsh/` folder with an index link here, and `.dsh/plugins/repo-guards/adapters/` holds one relative link per adapter aimed at the real file. The bundle entry `.dsh/plugins/repo-guards/index.mjs`, which the guards patch loads, imports every adapter through those links. Node is not Pi's loader: it resolves a link to its real path before it resolves the adapter's own imports, so each DSH adapter's imports are written for its real folder, and the adapters that find the checkout from their own file (`dispatch-audit`, `dispatch-preflight-lint`, `git-preflight-advisory`, `mcp-route-guard`, `session-start-advisories`) count up from there. `sync-runtime-mirrors.cjs --check`, which `/doctor:runtime-mirrors` runs, derives one expected link per `.mjs` file in a `dsh/` folder here and reports a missing link, a stale one or a real file in its place.
+ 
+@@ -268,7 +268,7 @@ node --test .skilled/hooks/shared/hook-adapter-shared.test.cjs .skilled/hooks/sh
+ # dispatch-audit is a vitest suite and cannot run under node --test
+ .skilled/node_modules/.bin/vitest run --root .skilled/hooks/dispatch/lib dispatch-audit.test.mjs
+ 
+-# The dispatch adapter suites are vitest files; the hooks config's alias resolves the Pi adapters' imports, written for the extension symlink base
++# The dispatch adapter suites are vitest files; the hooks config's alias serves the long specifiers a few Pi adapters keep as a fallback for a Pi older than 1.5.1
+ .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/dispatch/pi/directive-dedup.test.ts
+ ```
+ 
+diff --git a/.skilled/hooks/ask-surface-guard/pi/ask-surface-guard.ts b/.skilled/hooks/ask-surface-guard/pi/ask-surface-guard.ts
+index 4d8b6d8de7..180c4fdada 100644
+--- a/.skilled/hooks/ask-surface-guard/pi/ask-surface-guard.ts
++++ b/.skilled/hooks/ask-surface-guard/pi/ask-surface-guard.ts
+@@ -8,8 +8,8 @@
+ // keyed on the operator's last message: the follow-up arrives as a custom
+ // message, never a user one, so every loop of that turn shares the key.
+ 
+-import askSurfaceCore from '../../.skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs';
+-import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
++import askSurfaceCore from '../lib/ask-surface-core.cjs';
++import { isHookEnabled } from '../../shared/hook-flags.mjs';
+ 
+ import type { AgentEndEvent, ExtensionAPI } from '@earendil-works/pi-coding-agent';
+ 
+diff --git a/.skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.ts b/.skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.ts
+index 17a572c1c1..57c4f44e0b 100644
+--- a/.skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.ts
++++ b/.skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.ts
+@@ -13,8 +13,8 @@
+ // ───────────────────────────────────────────────────────────────────
+ 
+ import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
+-import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
+-import { fetchedText, screenAdvisory } from '../../.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs';
++import { isHookEnabled } from '../../shared/hook-flags.mjs';
++import { fetchedText, screenAdvisory } from '../lib/classifier-injection-advisory.mjs';
+ 
+ const FETCH_TOOL = 'fetch_content';
+ 
+diff --git a/.skilled/hooks/decision-capture/pi/decision-capture.ts b/.skilled/hooks/decision-capture/pi/decision-capture.ts
+index c5bb7c15d7..dac32754bd 100644
+--- a/.skilled/hooks/decision-capture/pi/decision-capture.ts
++++ b/.skilled/hooks/decision-capture/pi/decision-capture.ts
+@@ -2,9 +2,9 @@
+ // MODULE: Pi Extension - Decision Capture
+ // ───────────────────────────────────────────────────────────────────
+ 
+-import { appendRecords, takeNudge } from '../../.skilled/hooks/decision-capture/lib/capture-core.mjs';
+-import { QUESTION_TOOLS, recoveredRecords } from '../../.skilled/hooks/decision-capture/bin/sweep-pi.mjs';
+-import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
++import { appendRecords, takeNudge } from '../lib/capture-core.mjs';
++import { QUESTION_TOOLS, recoveredRecords } from '../bin/sweep-pi.mjs';
++import { isHookEnabled } from '../../shared/hook-flags.mjs';
+ 
+ import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
+ 
+diff --git a/.skilled/hooks/dispatch/README.md b/.skilled/hooks/dispatch/README.md
+index 92a7f03780..015ce836d4 100644
+--- a/.skilled/hooks/dispatch/README.md
++++ b/.skilled/hooks/dispatch/README.md
+@@ -164,7 +164,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
+ 
+ | Boundary | Rule |
+ |---|---|
+-| Imports | `lib/` cores import Node builtins only. Adapters import their own `../lib/` and `../../shared/hook-flags.mjs` (or `hook-flags.cjs` for the OpenCode plugin): nothing outside this tree. The Pi adapters are the exception: they import `../../.skilled/hooks/shared/hook-flags.mjs`, a path written for their `.pi/extensions/` symlink, so a test loads them only under `.skilled/hooks/vitest.config.ts`, whose alias maps that path to the real tree. The Cursor proxy imports `hook-flags.mjs` by a deep repo-relative path because its real home is under `system-spec-kit`. |
++| Imports | `lib/` cores import Node builtins only. Adapters import their own `../lib/` and `../../shared/hook-flags.mjs` (or `hook-flags.cjs` for the OpenCode plugin): nothing outside this tree. The Pi adapters are the exception: a few of them keep a long specifier such as `../../.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` as a fallback for a Pi older than 1.5.1, so a test loads them only under `.skilled/hooks/vitest.config.ts`, whose alias maps that path to the real tree. The Cursor proxy imports `hook-flags.mjs` by a deep repo-relative path because its real home is under `system-spec-kit`. |
+ | Decisions | Preflight may deny (`block` severity) or advise (`warn`). Audit never decides; it only records. Pi's preflight adds an authorization deny that is independent of the target skill's declared rules. |
+ | Failure | Every path fails open. A missing `SKILL.md`, malformed sidecar JSON, a throwing check, an unparsable payload, or an unwritable log resolves to allow/skip. |
+ | Output | The cores never write stdout or stderr. Each adapter owns its own transport. Audit writes only to the rotated log file. |
+@@ -179,7 +179,7 @@ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+ ```
+ 
+ ```bash
+-# The adapter suites are vitest files; run them under the hooks config, whose alias resolves the Pi adapters' link-relative imports
++# The adapter suites are vitest files; run them under the hooks config, whose alias serves the long specifiers a few Pi adapters keep as a fallback for a Pi older than 1.5.1
+ .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/dispatch/pi/directive-dedup.test.ts
+ ```
+ 
+@@ -202,4 +202,4 @@ Expected result: `ok`, with no module-resolution error (confirms the OpenCode ad
+ - [`../shared/README.md`](../shared/README.md): the shared kill-switch resolver the adapters use.
+ - [`../../skills/cli-external-orchestration/cli-opencode/SKILL.md`](../../skills/cli-external-orchestration/cli-opencode/SKILL.md): the primary hard-rule declarer these checks enforce.
+ 
+-<!-- The Pi adapters' specifier is written for their .pi/extensions/ symlink. -->
++<!-- A few Pi adapters keep a long specifier as a fallback for a Pi older than 1.5.1. -->
+diff --git a/.skilled/hooks/dispatch/pi/dispatch-audit.ts b/.skilled/hooks/dispatch/pi/dispatch-audit.ts
+index 42c7e024c9..2fc16bc170 100644
+--- a/.skilled/hooks/dispatch/pi/dispatch-audit.ts
++++ b/.skilled/hooks/dispatch/pi/dispatch-audit.ts
+@@ -2,7 +2,7 @@
+ // MODULE: Pi Extension - Dispatch Audit
+ // ───────────────────────────────────────────────────────────────────
+ 
+-import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
++import { isHookEnabled } from '../../shared/hook-flags.mjs';
+ 
+ import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
+ 
+@@ -24,7 +24,7 @@ export default function dispatchAudit(pi: ExtensionAPI): void {
+     try {
+       if (event.toolName !== 'bash' || typeof event.input.command !== 'string') return;
+ 
+-      const audit = await import('../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs');
++      const audit = await import('../lib/dispatch-audit.mjs');
+       audit.recordDispatch({
+         command: event.input.command,
+         logPath: audit.resolveAuditLogPath(ctx.cwd),
+diff --git a/.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts b/.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts
+index 5820067eaf..072d7932b7 100644
+--- a/.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts
++++ b/.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts
+@@ -8,8 +8,8 @@
+ 
+ import { join } from 'node:path';
+ 
+-import { executorSkill } from '../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs';
+-import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
++import { executorSkill } from '../lib/dispatch-audit.mjs';
++import { isHookEnabled } from '../../shared/hook-flags.mjs';
+ 
+ import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
+ 
+diff --git a/.skilled/hooks/env-secret-guard/lib/env-secret-guard.test.cjs b/.skilled/hooks/env-secret-guard/lib/env-secret-guard.test.cjs
+index fe2fc10648..341d00350c 100644
+--- a/.skilled/hooks/env-secret-guard/lib/env-secret-guard.test.cjs
++++ b/.skilled/hooks/env-secret-guard/lib/env-secret-guard.test.cjs
+@@ -18,7 +18,6 @@ const { pathToFileURL } = require('node:url');
+ const core = require('./env-secret-guard.cjs');
+ 
+ const HOOK_ROOT = path.resolve(__dirname, '..');
+-const SKILLED_ROOT = path.resolve(HOOK_ROOT, '..', '..');
+ const SECRET = 'sk-live-do-not-leak-4f9a';
+ 
+ /** The decision for one tool call; `cwd` defaults to the filesystem root. */
+@@ -501,14 +500,13 @@ test('command hook: the kill switch allows a call it would refuse', () => {
+ });
+ 
+ test('pi: read and bash on a dotenv file return a block', async (t) => {
+-  // Pi resolves an extension's imports against its .pi/extensions path, so the
+-  // test copies the extension into a root whose .skilled is the real tree.
++  // Pi loads an extension from the file its .pi/extensions link points at, so
++  // the test links the extension into a root and lets Node follow the link.
+   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'env-secret-guard-pi-'));
+   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+-  fs.symlinkSync(SKILLED_ROOT, path.join(root, '.skilled'));
+   fs.mkdirSync(path.join(root, '.pi', 'extensions'), { recursive: true });
+   const target = path.join(root, '.pi', 'extensions', 'env-secret-guard.ts');
+-  fs.copyFileSync(path.join(HOOK_ROOT, 'pi', 'env-secret-guard.ts'), target);
++  fs.symlinkSync(path.join(HOOK_ROOT, 'pi', 'env-secret-guard.ts'), target);
+   const extension = await import(pathToFileURL(target).href);
+   let handler;
+   extension.default({ on: (event, fn) => { if (event === 'tool_call') handler = fn; } });
+diff --git a/.skilled/hooks/env-secret-guard/pi/env-secret-guard.ts b/.skilled/hooks/env-secret-guard/pi/env-secret-guard.ts
+index db2dbed88d..74bb00e7fa 100644
+--- a/.skilled/hooks/env-secret-guard/pi/env-secret-guard.ts
++++ b/.skilled/hooks/env-secret-guard/pi/env-secret-guard.ts
+@@ -4,12 +4,12 @@
+ 
+ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+ 
+-type Guard = typeof import("../../.skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs");
+-type Watch = typeof import("../../.skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs");
++type Guard = typeof import("../lib/env-secret-guard.cjs");
++type Watch = typeof import("../lib/env-secret-watch.cjs");
+ 
+ async function load(): Promise<{ guard: Guard; watch: Watch }> {
+-  const guard = await import("../../.skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs");
+-  const watch = await import("../../.skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs");
++  const guard = await import("../lib/env-secret-guard.cjs");
++  const watch = await import("../lib/env-secret-watch.cjs");
+   return { guard: guard.default ?? guard, watch: watch.default ?? watch };
+ }
+ 
+diff --git a/.skilled/hooks/mcp-route-guard/pi/README.md b/.skilled/hooks/mcp-route-guard/pi/README.md
+index 1a5ba5d8a5..0034c53a1b 100644
+--- a/.skilled/hooks/mcp-route-guard/pi/README.md
++++ b/.skilled/hooks/mcp-route-guard/pi/README.md
+@@ -14,7 +14,7 @@ version: 1.0.0.0
+ 
+ ## 1. OVERVIEW
+ 
+-`pi/` holds the real Pi extension for the MCP route guard. Pi discovers it through the relative symlink `.pi/extensions/mcp-route-guard.ts`, and because Pi resolves imports against that link path, the file imports `hook-flags.mjs` through `../../.skilled/hooks/shared/`. The extension filters on the `mcp_` prefix, dynamic-imports `../lib/mcp-route-guard.cjs`, and returns the core's warnings as the `tool_call` reason.
++`pi/` holds the real Pi extension for the MCP route guard. Pi discovers it through the relative symlink `.pi/extensions/mcp-route-guard.ts`, and Pi loads it from this folder, so the file imports `hook-flags.mjs` through `../../shared/`. The extension filters on the `mcp_` prefix, dynamic-imports `../lib/mcp-route-guard.cjs`, and returns the core's warnings as the `tool_call` reason.
+ 
+ ---
+ 
+diff --git a/.skilled/hooks/mcp-route-guard/pi/mcp-route-guard.ts b/.skilled/hooks/mcp-route-guard/pi/mcp-route-guard.ts
+index ba61c1cf01..69935b062f 100644
+--- a/.skilled/hooks/mcp-route-guard/pi/mcp-route-guard.ts
++++ b/.skilled/hooks/mcp-route-guard/pi/mcp-route-guard.ts
+@@ -3,7 +3,7 @@
+ // ───────────────────────────────────────────────────────────────────
+ 
+ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+-import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.mjs";
++import { isHookEnabled } from "../../shared/hook-flags.mjs";
+ 
+ const MCP_TOOL_PREFIX = "mcp_";
+ 
+@@ -14,7 +14,7 @@ export default function mcpRouteGuard(pi: ExtensionAPI): void {
+       if (typeof event.toolName !== "string" || !event.toolName.startsWith(MCP_TOOL_PREFIX)) return;
+       if (!isHookEnabled("mcp-route-guard")) return undefined;
+ 
+-      const guard = await import("../../.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs");
++      const guard = await import("../lib/mcp-route-guard.cjs");
+       const result = guard.evaluateNativeMcpCall({
+         toolName: event.toolName,
+         projectDir: ctx.cwd,
+diff --git a/.skilled/hooks/overlay-guard/README.md b/.skilled/hooks/overlay-guard/README.md
+index 666fbfd8ae..ac00fcaafb 100644
+--- a/.skilled/hooks/overlay-guard/README.md
++++ b/.skilled/hooks/overlay-guard/README.md
+@@ -66,7 +66,7 @@ Shell commands are not parsed. A write made through `Bash`, `exec` or `Shell` is
+ 
+ The Cursor registration carries no fallback chain. Cursor blocks on exit 2, and a `|| { fallback }` chain would run on that exit, append an allow envelope and exit 0, so the refusal would never reach Cursor.
+ 
+-Pi loads through `.pi/extensions/overlay-guard.ts`, a relative symlink back to `pi/overlay-guard.ts`. Pi resolves the extension's imports against the symlink path, so they are written for the `.pi/extensions/` base. DSH loads through the repo-guards bundle, whose `adapters/overlay-guard.mjs` links back to `dsh/overlay-guard.mjs`. OpenCode loads its plugin from `.opencode/plugins/overlay-guard.js`, and `opencode/overlay-guard.js` is a relative symlink back to it. Nothing loads through that link, because the OpenCode loader globs only `.opencode/plugins/*.js`.
++Pi loads through `.pi/extensions/overlay-guard.ts`, a relative symlink back to `pi/overlay-guard.ts`. Pi loads it from this folder through the relative symlink, so its imports are relative to this folder. DSH loads through the repo-guards bundle, whose `adapters/overlay-guard.mjs` links back to `dsh/overlay-guard.mjs`. OpenCode loads its plugin from `.opencode/plugins/overlay-guard.js`, and `opencode/overlay-guard.js` is a relative symlink back to it. Nothing loads through that link, because the OpenCode loader globs only `.opencode/plugins/*.js`.
+ 
+ ---
+ 
+diff --git a/.skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs b/.skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs
+index bc8d2af688..9680a92b9a 100644
+--- a/.skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs
++++ b/.skilled/hooks/overlay-guard/lib/overlay-guard.test.cjs
+@@ -85,10 +85,11 @@ function makeTree(options = {}) {
+   if (options.withHook) {
+     fs.cpSync(HOOK_SOURCE, path.join(root, '.skilled', 'hooks', 'overlay-guard'), { recursive: true });
+     fs.cpSync(SHARED_SOURCE, path.join(root, '.skilled', 'hooks', 'shared'), { recursive: true });
+-    // Pi resolves an extension's imports against its .pi/extensions path, so
+-    // the fixture carries a copy there rather than a symlink Node would follow.
+-    writeFile(root, path.join('.pi', 'extensions', 'overlay-guard.ts'),
+-      fs.readFileSync(path.join(HOOK_SOURCE, 'pi', 'overlay-guard.ts'), 'utf8'));
++    // Pi loads an extension from the file its .pi/extensions link points at,
++    // so the fixture carries the same relative link and Node follows it.
++    fs.mkdirSync(path.join(root, '.pi', 'extensions'), { recursive: true });
++    fs.symlinkSync(path.join('..', '..', '.skilled', 'hooks', 'overlay-guard', 'pi', 'overlay-guard.ts'),
++      path.join(root, '.pi', 'extensions', 'overlay-guard.ts'));
+     writeFile(root, 'package.json', '{"type":"module"}\n');
+   }
+   return root;
+diff --git a/.skilled/hooks/overlay-guard/pi/README.md b/.skilled/hooks/overlay-guard/pi/README.md
+index 7bde547cf4..0bc92b1c80 100644
+--- a/.skilled/hooks/overlay-guard/pi/README.md
++++ b/.skilled/hooks/overlay-guard/pi/README.md
+@@ -14,7 +14,7 @@ version: 1.0.0.0
+ 
+ ## 1. OVERVIEW
+ 
+-`pi/` holds the real Pi extension for the overlay guard. Pi discovers it through the relative symlink `.pi/extensions/overlay-guard.ts`, and the imports are written for that link base. The extension handles the `edit` and `write` tools, resolves `event.input.path` against `ctx.cwd`, and returns `{block: true, reason}` when the overlay engine says the path is owned.
++`pi/` holds the real Pi extension for the overlay guard. Pi discovers it through the relative symlink `.pi/extensions/overlay-guard.ts`, and loads it from this folder, so its imports are relative to this folder. The extension handles the `edit` and `write` tools, resolves `event.input.path` against `ctx.cwd`, and returns `{block: true, reason}` when the overlay engine says the path is owned.
+ 
+ ---
+ 
+diff --git a/.skilled/hooks/overlay-guard/pi/overlay-guard.ts b/.skilled/hooks/overlay-guard/pi/overlay-guard.ts
+index 034866d4e6..6c0a6d74da 100644
+--- a/.skilled/hooks/overlay-guard/pi/overlay-guard.ts
++++ b/.skilled/hooks/overlay-guard/pi/overlay-guard.ts
+@@ -3,7 +3,7 @@
+ // ───────────────────────────────────────────────────────────────────
+ 
+ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+-import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.mjs";
++import { isHookEnabled } from "../../shared/hook-flags.mjs";
+ 
+ const WRITE_TOOLS = new Set(["edit", "write"]);
+ 
+@@ -14,7 +14,7 @@ export default function overlayGuard(pi: ExtensionAPI): void {
+       if (!WRITE_TOOLS.has(event.toolName)) return undefined;
+       if (!isHookEnabled("overlay-guard")) return undefined;
+ 
+-      const imported = await import("../../.skilled/hooks/overlay-guard/lib/overlay-guard.cjs");
++      const imported = await import("../lib/overlay-guard.cjs");
+       const guard = imported.default ?? imported;
+       const filePath = guard.fileFieldPath(event.input);
+       if (!filePath) return undefined;
+diff --git a/.skilled/hooks/post-edit-quality/pi/README.md b/.skilled/hooks/post-edit-quality/pi/README.md
+index 2553e6e7ea..7f13693c9a 100644
+--- a/.skilled/hooks/post-edit-quality/pi/README.md
++++ b/.skilled/hooks/post-edit-quality/pi/README.md
+@@ -14,7 +14,7 @@ version: 1.0.0.0
+ 
+ ## 1. OVERVIEW
+ 
+-`pi/` holds the real Pi extension for post-edit quality. Pi discovers it through the relative symlink `.pi/extensions/post-edit-quality.ts`, and the imports are written for that link base. The extension handles `edit` and `write` results, resolves `event.input.path` against `ctx.cwd`, runs `../lib/post-edit-router.cjs` and appends the findings as `{type: 'text', text}` content on the tool result, which makes them model-visible.
++`pi/` holds the real Pi extension for post-edit quality. Pi discovers it through the relative symlink `.pi/extensions/post-edit-quality.ts`, and loads it from this folder, so its imports are relative to this folder. The extension handles `edit` and `write` results, resolves `event.input.path` against `ctx.cwd`, runs `../lib/post-edit-router.cjs` and appends the findings as `{type: 'text', text}` content on the tool result, which makes them model-visible.
+ 
+ ---
+ 
+diff --git a/.skilled/hooks/post-edit-quality/pi/post-edit-quality.ts b/.skilled/hooks/post-edit-quality/pi/post-edit-quality.ts
+index eb4b77330c..2ad8be531d 100644
+--- a/.skilled/hooks/post-edit-quality/pi/post-edit-quality.ts
++++ b/.skilled/hooks/post-edit-quality/pi/post-edit-quality.ts
+@@ -5,7 +5,7 @@
+ import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
+ import { existsSync } from 'node:fs';
+ import { resolve } from 'node:path';
+-import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
++import { isHookEnabled } from '../../shared/hook-flags.mjs';
+ 
+ function resultText(findings: unknown[]): string {
+   return findings.map((finding) => {
+@@ -27,7 +27,7 @@ export default function postEditQuality(pi: ExtensionAPI): void {
+       const filePath = resolve(ctx.cwd, rawPath);
+       if (!existsSync(filePath)) return;
+ 
+-      const router = await import('../../.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs');
++      const router = await import('../lib/post-edit-router.cjs');
+       const entries = router.resolveDispatch(filePath, ctx.cwd);
+       const findings = router.runChecks(entries, router.CLAUDE_HOOK_BUDGET_MS, {
+         perChildTimeoutMs: router.CLAUDE_CHECKER_TIMEOUT_MS,
+diff --git a/.skilled/hooks/session-lifecycle/pi/README.md b/.skilled/hooks/session-lifecycle/pi/README.md
+index 2d3a5637f5..24ef4b9211 100644
+--- a/.skilled/hooks/session-lifecycle/pi/README.md
++++ b/.skilled/hooks/session-lifecycle/pi/README.md
+@@ -14,7 +14,7 @@ version: 1.0.0.0
+ 
+ ## 1. OVERVIEW
+ 
+-`pi/` holds the real Pi extensions for the session lifecycle. Pi discovers each one through a relative symlink in `.pi/extensions/`, and the extension imports are written for that link base. The start and stop extensions bridge to the compiled Claude hooks through `runClaudeHookAdapter`. The compaction extension is a native port of Devin's post-compaction chain, and the advisory extension runs the same warn-only startup guards the other runtimes use.
++`pi/` holds the real Pi extensions for the session lifecycle. Pi discovers each one through a relative symlink in `.pi/extensions/` and loads the real file, so the imports are relative to that file's own folder. The start and stop extensions bridge to the compiled Claude hooks through `runClaudeHookAdapter`. The compaction extension is a native port of Devin's post-compaction chain, and the advisory extension runs the same warn-only startup guards the other runtimes use.
+ 
+ ---
+ 
+diff --git a/.skilled/hooks/session-relaunch/pi/session-relaunch.ts b/.skilled/hooks/session-relaunch/pi/session-relaunch.ts
+index 867c764dab..628678fab6 100644
+--- a/.skilled/hooks/session-relaunch/pi/session-relaunch.ts
++++ b/.skilled/hooks/session-relaunch/pi/session-relaunch.ts
+@@ -10,7 +10,7 @@ import {
+   configPath,
+   isHookEnabled,
+   loadConfigFile,
+-} from '../../.skilled/hooks/shared/hook-flags.mjs';
++} from '../../shared/hook-flags.mjs';
+ 
+ // ─────────────────────────────────────────────────────────────────────────────
+ // 1. TYPES AND MODULES
+@@ -179,10 +179,11 @@ function asModule<T>(value: unknown): T {
+   return (moduleValue.default ?? value) as T;
+ }
+ 
+-// `../lib/` resolves only from the real `.skilled/hooks/session-relaunch/pi/`
+-// path, not the `.pi/extensions/` base this file is typechecked through. The
+-// `as string` assertion keeps the typechecker from resolving a missing path
+-// while transpilers still emit the literal specifier for the module loader.
++// `../lib/` resolves from this file's own folder, the base Pi 1.5.1 and newer
++// load it from. The longer specifier resolves only from the `.pi/extensions/`
++// link, the base an older Pi used. The `as string` assertion keeps the
++// typechecker from resolving either path while transpilers still emit the
++// literal specifier for the module loader.
+ function checkedCore(core: CoreModule): CoreModule {
+   const exports = core as unknown as Record<string, unknown>;
+   for (const name of CORE_FUNCTIONS) {
+@@ -199,7 +200,7 @@ async function loadCore(): Promise<CoreModule> {
+     core = asModule<CoreModule>(await import('../lib/relaunch-core.cjs' as string));
+   } catch {
+     core = asModule<CoreModule>(
+-      await import('../../.skilled/hooks/session-relaunch/lib/relaunch-core.cjs'),
++      await import('../../.skilled/hooks/session-relaunch/lib/relaunch-core.cjs' as string),
+     );
+   }
+   return checkedCore(core);
+@@ -210,7 +211,7 @@ async function loadContextUsage(): Promise<ContextUsageModule> {
+     return asModule<ContextUsageModule>(await import('../lib/context-usage.cjs' as string));
+   } catch {
+     return asModule<ContextUsageModule>(
+-      await import('../../.skilled/hooks/session-relaunch/lib/context-usage.cjs'),
++      await import('../../.skilled/hooks/session-relaunch/lib/context-usage.cjs' as string),
+     );
+   }
+ }
+@@ -220,7 +221,7 @@ async function loadNudge(): Promise<NudgeModule> {
+     return asModule<NudgeModule>(await import('../lib/nudge.cjs' as string));
+   } catch {
+     return asModule<NudgeModule>(
+-      await import('../../.skilled/hooks/session-relaunch/lib/nudge.cjs'),
++      await import('../../.skilled/hooks/session-relaunch/lib/nudge.cjs' as string),
+     );
+   }
+ }
+@@ -231,7 +232,7 @@ async function loadWithdraw(): Promise<WithdrawModule> {
+     withdraw = asModule<WithdrawModule>(await import('../lib/withdraw.cjs' as string));
+   } catch {
+     withdraw = asModule<WithdrawModule>(
+-      await import('../../.skilled/hooks/session-relaunch/lib/withdraw.cjs'),
++      await import('../../.skilled/hooks/session-relaunch/lib/withdraw.cjs' as string),
+     );
+   }
+   if (typeof withdraw.withdrawHandOver !== 'function') {
+@@ -297,8 +298,8 @@ async function resolveRepoRoot(): Promise<string> {
+ }
+ 
+ // The killer script sits beside the lib modules this adapter loads, but `import.meta`
+-// cannot anchor it: through the `.pi/extensions/` link this file typechecks as
+-// CommonJS, which rejects `import.meta`. The extension only runs inside the repository
++// cannot anchor it: loaded through the `.pi/extensions/` link, as a Pi older than
++// 1.5.1 does, it names the link's folder. The extension only runs inside the repository
+ // that owns `.pi/`, so walking up from the session cwd reaches the lib directory the
+ // dual-base imports resolved. The trailing join falls back to the root the nudge module
+ // resolves, which is the repository holding those modules even from an outside cwd.
+diff --git a/.skilled/hooks/task-dispatch/pi/task-dispatch-guard.ts b/.skilled/hooks/task-dispatch/pi/task-dispatch-guard.ts
+index 55c67e1927..ff5c8414c0 100644
+--- a/.skilled/hooks/task-dispatch/pi/task-dispatch-guard.ts
++++ b/.skilled/hooks/task-dispatch/pi/task-dispatch-guard.ts
+@@ -5,7 +5,7 @@
+ // rejection is intentionally advisory-only here.
+ 
+ import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
+-import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
++import { isHookEnabled } from '../../shared/hook-flags.mjs';
+ 
+ type DispatchCore = typeof import('../lib/dispatch-guard.cjs');
+ 
+diff --git a/.skilled/hooks/vitest.config.ts b/.skilled/hooks/vitest.config.ts
+index 61155b52df..181fd4e34c 100644
+--- a/.skilled/hooks/vitest.config.ts
++++ b/.skilled/hooks/vitest.config.ts
+@@ -21,8 +21,9 @@ function nodeTestFiles(): string[] {
+     .map((rel) => path.relative(REPO_ROOT, path.join(HOOKS_ROOT, rel)));
+ }
+ 
+-// Hook sources load through runtime symlinks, so their relative imports are written
+-// against the link's base; the alias resolves those same imports from the real tree.
++// Pi imports a hook source from the folder its symlink points at, so the relative imports are
++// written for that folder; a few adapters also keep a long specifier as a fallback for an older
++// Pi, and the alias resolves that one from the real tree.
+ export default defineConfig({
+   root: REPO_ROOT,
+   resolve: {
+diff --git a/.skilled/skills/sk-git/scripts/hooks/pi/README.md b/.skilled/skills/sk-git/scripts/hooks/pi/README.md
+index af0c903db8..ae925cba6e 100644
+--- a/.skilled/skills/sk-git/scripts/hooks/pi/README.md
++++ b/.skilled/skills/sk-git/scripts/hooks/pi/README.md
+@@ -14,7 +14,7 @@ version: 1.0.0.0
+ 
+ ## 1. OVERVIEW
+ 
+-`hooks/pi/` holds the real files behind the `.pi/extensions/git-preflight-advisory.ts` and `.pi/extensions/git-message-gate.ts` symlinks. Pi resolves its imports against the symlink path, so each file's imports are written for the `.pi/extensions/` base. `git-message-gate.test.ts` is the vitest suite for the gate and is never linked.
++`hooks/pi/` holds the real files behind the `.pi/extensions/git-preflight-advisory.ts` and `.pi/extensions/git-message-gate.ts` symlinks. Pi loads each file from this folder through its relative symlink, so its imports are relative to this folder. `git-message-gate.test.ts` is the vitest suite for the gate and is never linked.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.ts b/.skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.ts
+index e1acd05c1d..0886e6de74 100644
+--- a/.skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.ts
++++ b/.skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.ts
+@@ -22,8 +22,8 @@ export default function gitMessageGate(pi: ExtensionAPI): void {
+     let contract: ContractModule;
+     try {
+       [gate, contract] = await Promise.all([
+-        import("../../.skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs") as Promise<GateModule>,
+-        import("../../.skilled/skills/sk-git/scripts/lib/message-contract.mjs") as Promise<ContractModule>,
++        import("../git-message-gate.mjs") as Promise<GateModule>,
++        import("../../lib/message-contract.mjs") as Promise<ContractModule>,
+       ]);
+     } catch {
+       // Fail open when the gate cannot load: the git hooks still enforce the contract.
+diff --git a/.skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts b/.skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts
+index 4718a28db1..e6b876f2f5 100644
+--- a/.skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts
++++ b/.skilled/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts
+@@ -4,7 +4,7 @@
+ 
+ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+ import { join } from "node:path";
+-import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.mjs";
++import { isHookEnabled } from "../../../../../hooks/shared/hook-flags.mjs";
+ 
+ const MAX_ADVISORIES = 3;
+ 
+@@ -52,9 +52,9 @@ export default function gitPreflightAdvisory(pi: ExtensionAPI): void {
+       if (event.toolName !== "bash" || typeof event.input.command !== "string") return;
+ 
+       const [lint, gitChecks, gitContext] = await Promise.all([
+-        import("../../.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs"),
+-        import("../../.skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs"),
+-        import("../../.skilled/skills/sk-git/scripts/lib/git-context.mjs"),
++        import("../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs"),
++        import("../../lib/git-rule-checks.mjs"),
++        import("../../lib/git-context.mjs"),
+       ]);
+       const command = event.input.command;
+       if (!gitChecks.GIT_SHAPE.test(command)) return;
+diff --git a/.skilled/skills/system-skill-advisor/hooks/pi/README.md b/.skilled/skills/system-skill-advisor/hooks/pi/README.md
+index 8974591faf..a970ed05b5 100644
+--- a/.skilled/skills/system-skill-advisor/hooks/pi/README.md
++++ b/.skilled/skills/system-skill-advisor/hooks/pi/README.md
+@@ -13,7 +13,7 @@ version: 1.0.0.0
+ 
+ ## 1. OVERVIEW
+ 
+-`hooks/pi/` holds the real file behind the `.pi/extensions/prompt-advisor.ts` symlink. Pi resolves its imports against the symlink path, so the file's imports are written for the `.pi/extensions/` base.
++`hooks/pi/` holds the real file behind the `.pi/extensions/prompt-advisor.ts` symlink. Pi loads it from this folder through the relative symlink, so its imports are relative to this folder.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-spec-kit/runtime/hooks/README.md b/.skilled/skills/system-spec-kit/runtime/hooks/README.md
+index 74b4acb01a..cfb3f6a7fa 100644
+--- a/.skilled/skills/system-spec-kit/runtime/hooks/README.md
++++ b/.skilled/skills/system-spec-kit/runtime/hooks/README.md
+@@ -79,7 +79,7 @@ runtime/hooks/
+ |---|---|
+ | `claude/` | Claude Code lifecycle hooks (session prime, compact inject, session stop, transcript parsing) plus the Gate-3 pair. The other runtimes delegate their lifecycle semantics here. |
+ | `codex/`, `cursor/`, `devin/` | Per-runtime adapters that normalize each CLI's payload onto the Claude implementations, plus that runtime's spec-gate pair. Envelope shapes differ: Codex and Devin use `hookSpecificOutput`, and Cursor uses `{permission, user_message, agent_message}`. |
+-| `pi/` | Pi extension factories, discovered through relative symlinks at `.pi/extensions/`. Pi resolves their imports against the symlink path, so every import in those files is written for the `.pi/extensions/` base. |
++| `pi/` | Pi extension factories, discovered through relative symlinks at `.pi/extensions/`. Pi loads each file from this folder through its symlink, so every import in those files is relative to this folder. |
+ | `opencode/` | Browsability-only symlink to `.opencode/plugins/system-spec-gate.js`. OpenCode discovers plugins solely from `.opencode/plugins/`, so the real file stays there and nothing loads through this symlink. |
+ | `lib/spec-gate/spec-gate-core.mjs` | The Gate-3 policy core. Owns `classifyIntent()` and `evaluateMutation()`, the two orchestration calls every adapter makes (`runClassifyGate()` and `runEnforceGate()`, which build the delivery observation and the warning-log event once), and the persisted once-per-session delivery marker (`shouldDeliverGate3Deferral`, `recordGate3NoticeDelivered`, `bindGate3Answer`, `rearmGate3NoticeDelivery`). An adapter keeps only its payload parsing and its envelope. |
+ | `lib/hook-adapter-shared.mjs` | Deadline stdin reader and fail-open JSON parser for every plain `.mjs` and `.cjs` adapter. See [`lib/README.md`](./lib/README.md). |
+diff --git a/.skilled/skills/system-spec-kit/runtime/hooks/pi/README.md b/.skilled/skills/system-spec-kit/runtime/hooks/pi/README.md
+index 5d521c049c..464fa08a4e 100644
+--- a/.skilled/skills/system-spec-kit/runtime/hooks/pi/README.md
++++ b/.skilled/skills/system-spec-kit/runtime/hooks/pi/README.md
+@@ -12,7 +12,7 @@ trigger_phrases:
+ 
+ ## 1. OVERVIEW
+ 
+-`hooks/pi/` holds the real files behind the `.pi/extensions/` symlinks for this skill's Pi hooks. Pi discovers them through the symlinks and resolves their relative imports against the symlink path, so every import in these files is written for the `.pi/extensions/` base, not this folder.
++`hooks/pi/` holds the real files behind the `.pi/extensions/` symlinks for this skill's Pi hooks. Pi discovers them through the symlinks and loads each file from this folder, so every import in these files is relative to this folder.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-spec-kit/runtime/hooks/pi/completion-evidence.ts b/.skilled/skills/system-spec-kit/runtime/hooks/pi/completion-evidence.ts
+index 1d52849717..422f4f9acf 100644
+--- a/.skilled/skills/system-spec-kit/runtime/hooks/pi/completion-evidence.ts
++++ b/.skilled/skills/system-spec-kit/runtime/hooks/pi/completion-evidence.ts
+@@ -9,7 +9,7 @@ import { createHash } from "node:crypto";
+ import { readFileSync } from "node:fs";
+ import { tmpdir } from "node:os";
+ import { join } from "node:path";
+-import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.mjs";
++import { isHookEnabled } from "../../../../../hooks/shared/hook-flags.mjs";
+ 
+ type SentinelCore = typeof import("../lib/completion-evidence-sentinel.cjs");
+ 
+diff --git a/.skilled/skills/system-spec-kit/runtime/hooks/pi/lib/README.md b/.skilled/skills/system-spec-kit/runtime/hooks/pi/lib/README.md
+index 7d7c803870..be6f2ca2f3 100644
+--- a/.skilled/skills/system-spec-kit/runtime/hooks/pi/lib/README.md
++++ b/.skilled/skills/system-spec-kit/runtime/hooks/pi/lib/README.md
+@@ -17,7 +17,7 @@ trigger_phrases:
+ Current state:
+ 
+ - One file, two exported functions, no local state and no runtime-neutral policy of its own.
+-- Discovered by Pi only through the `.pi/extensions/lib/claude-hook-adapter.ts` symlink; Pi resolves the importing files' relative specifiers against that symlink base, not this folder's real path.
++- Discovered by Pi only through the `.pi/extensions/lib/claude-hook-adapter.ts` symlink; Pi loads it from this folder through that relative symlink, so the importers' specifiers are relative to this folder.
+ - Consumed by two callers today: `../session-start-context.ts` and `../session-stop-context.ts`.
+ 
+ ---
+@@ -120,4 +120,4 @@ There is no dedicated unit test for this file. Its two callers (`../session-star
+ ## 7. RELATED
+ 
+ - [`../README.md`](../README.md): the Pi session-lifecycle bridges that consume this file.
+-- [`../../../../../../../.pi/extensions/README.md`](../../../../../../../.pi/extensions/README.md): the discovery mirror and symlink map this file resolves imports against.
++- [`../../../../../../../.pi/extensions/README.md`](../../../../../../../.pi/extensions/README.md): the discovery mirror and symlink map that links to this file.
+diff --git a/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts b/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts
+index fb1843f7be..e3bc15185c 100644
+--- a/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts
++++ b/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts
+@@ -13,12 +13,12 @@ import { createHash } from "node:crypto";
+ import { readFileSync } from "node:fs";
+ import { join } from "node:path";
+ import { tmpdir } from "node:os";
+-import * as hookFlags from "../../.skilled/hooks/shared/hook-flags.mjs";
++import * as hookFlags from "../../../../../hooks/shared/hook-flags.mjs";
+ import {
+   historyHandle,
+   persistHistoryLocator,
+-} from "../../.skilled/skills/system-spec-kit/runtime/hooks/lib/history/locator-digest.ts";
+-import { buildHistoryLookupSection, fitRecoverySections, placeLookup } from "../../.skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts";
++} from "../lib/history/locator-digest.ts";
++import { buildHistoryLookupSection, fitRecoverySections, placeLookup } from "../lib/history/lookup-offer.ts";
+ 
+ const MAX_CONTEXT_BYTES = 4_096;
+ const HISTORY_LOCATOR_VERSION = 1;
+@@ -68,7 +68,7 @@ function stripControlCharacters(text: string): string {
+ 
+ async function loadHistoryCapability(runtime: string): Promise<boolean> {
+   try {
+-    const readers = (await import("../../.skilled/hooks/shared/session-readers/index.mjs")) as {
++    const readers = (await import("../../../../../hooks/shared/session-readers/index.mjs")) as {
+       capabilities?: Record<string, { status?: string } | undefined>;
+     };
+     return readers.capabilities?.[runtime]?.status === "ready";
+@@ -121,7 +121,7 @@ export function buildRecoveryPointer(): string {
+ async function persistLocator(locator: HistoryLocator): Promise<boolean> {
+   try {
+     const { ensureStateDir, updateState } = await import(
+-      "../../.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/hook-state.js"
++      "../../dist/hooks/claude/hook-state.js"
+     ) as {
+       ensureStateDir: () => void;
+       updateState: (
+diff --git a/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts b/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts
+index 642fa8b246..85eca4a768 100644
+--- a/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts
++++ b/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts
+@@ -3,7 +3,7 @@
+ // ───────────────────────────────────────────────────────────────────
+ 
+ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+-import * as hookFlags from "../../.skilled/hooks/shared/hook-flags.mjs";
++import * as hookFlags from "../../../../../hooks/shared/hook-flags.mjs";
+ 
+ function sessionLifecycleHookEnabled(): boolean {
+   try {
+diff --git a/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts b/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts
+index 4ae0016677..7ed172bb8c 100644
+--- a/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts
++++ b/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts
+@@ -3,7 +3,7 @@
+ // ───────────────────────────────────────────────────────────────────
+ 
+ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+-import * as hookFlags from "../../.skilled/hooks/shared/hook-flags.mjs";
++import * as hookFlags from "../../../../../hooks/shared/hook-flags.mjs";
+ import { existsSync } from "node:fs";
+ import { join } from "node:path";
+ import { runClaudeHookAdapter } from "./lib/claude-hook-adapter.ts";
+diff --git a/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-stop-context.ts b/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-stop-context.ts
+index c5b2b266c6..40cbe197cf 100644
+--- a/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-stop-context.ts
++++ b/.skilled/skills/system-spec-kit/runtime/hooks/pi/session-stop-context.ts
+@@ -3,7 +3,7 @@
+ // ───────────────────────────────────────────────────────────────────
+ 
+ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+-import * as hookFlags from "../../.skilled/hooks/shared/hook-flags.mjs";
++import * as hookFlags from "../../../../../hooks/shared/hook-flags.mjs";
+ import { runClaudeHookAdapter } from "./lib/claude-hook-adapter.ts";
+ 
+ const TIMEOUT_MS = 10_000;
+diff --git a/.skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts b/.skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts
+index 02b3255e9a..40440774d1 100644
+--- a/.skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts
++++ b/.skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts
+@@ -18,7 +18,7 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+ export default function specGateClassify(pi: ExtensionAPI): void {
+   pi.on("input", async (event, ctx) => {
+     try {
+-      const guard = await import("../../.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs");
++      const guard = await import("../lib/spec-gate/spec-gate-core.mjs");
+       // Input transforms chain across handlers, so this hook sees sibling
+       // injections (the advisor's directives capsule) and the harness's
+       // embedded conversation history appended to the user's own turn. The
+diff --git a/.skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts b/.skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts
+index 12627f2066..398e0fd573 100644
+--- a/.skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts
++++ b/.skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts
+@@ -19,7 +19,7 @@ function projectFilePath(input: Record<string, unknown>): string | undefined {
+   return undefined;
+ }
+ 
+-type GateGuard = typeof import("../../.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs");
++type GateGuard = typeof import("../lib/spec-gate/spec-gate-core.mjs");
+ type GateContext = Parameters<Parameters<ExtensionAPI["on"]>[1]>[1];
+ 
+ interface DialogOutcome {
+@@ -83,7 +83,7 @@ export default function specGateEnforce(pi: ExtensionAPI): void {
+     try {
+       if (event.toolName !== "bash" && event.toolName !== "write" && event.toolName !== "edit") return;
+ 
+-      const guard = await import("../../.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs");
++      const guard = await import("../lib/spec-gate/spec-gate-core.mjs");
+       // The session file stays stable across invocations of one conversation
+       // while the session id is fresh per process; both hooks must key state
+       // identically or classify's answer never reaches enforce's lookup.
+diff --git a/.skilled/skills/system-spec-kit/runtime/vitest.config.ts b/.skilled/skills/system-spec-kit/runtime/vitest.config.ts
+index 0bc72d6dcb..f85c58b15e 100644
+--- a/.skilled/skills/system-spec-kit/runtime/vitest.config.ts
++++ b/.skilled/skills/system-spec-kit/runtime/vitest.config.ts
+@@ -35,9 +35,10 @@ export default defineConfig({
+     alias: [
+       { find: '@lib', replacement: path.resolve(import.meta.dirname, 'lib') },
+       { find: '@spec-kit/shared', replacement: path.resolve(import.meta.dirname, '..', 'shared') },
+-      // Hook sources load through runtime symlinks under `.pi`/`.opencode`, so
+-      // their relative imports are written against the link's base; this alias
+-      // resolves those same specifiers from the real tree, mirroring the
++      // Hook sources load through runtime symlinks under `.pi`/`.opencode`, and
++      // Pi loads a linked file from its real folder, so a few hooks keep a long
++      // `../../.skilled/...` specifier as a fallback for Pi older than 1.5.1.
++      // This alias resolves those specifiers from the real tree, mirroring the
+       // hooks config.
+       {
+         find: /^(\.\.\/)+\.(?:skilled|opencode)\//,
+diff --git a/.skilled/skills/system-spec-kit/vitest.config.ts b/.skilled/skills/system-spec-kit/vitest.config.ts
+index b1d02d2590..f4d13e4366 100644
+--- a/.skilled/skills/system-spec-kit/vitest.config.ts
++++ b/.skilled/skills/system-spec-kit/vitest.config.ts
+@@ -25,9 +25,10 @@ export default {
+       path.join(path.dirname(testPath), 'snapshots', `${path.basename(testPath)}${snapExtension}`),
+     projects: [
+       {
+-        // Hook sources load through runtime symlinks under `.pi`/`.opencode`, so
+-        // their relative imports are written against the link's base; this alias
+-        // resolves those same specifiers from the real tree, mirroring the
++        // Hook sources load through runtime symlinks under `.pi`/`.opencode`, and
++        // Pi loads a linked file from its real folder, so a few hooks keep a long
++        // `../../.skilled/...` specifier as a fallback for Pi older than 1.5.1.
++        // This alias resolves those specifiers from the real tree, mirroring the
+         // hooks config.
+         resolve: {
+           alias: [
+diff --git a/tsconfig.pi.json b/tsconfig.pi.json
+index 6d059fb370..02f2063d53 100644
+--- a/tsconfig.pi.json
++++ b/tsconfig.pi.json
+@@ -6,13 +6,12 @@
+     "noEmit": true,
+     "strict": false,
+     "skipLibCheck": true,
+-    "allowJs": true,
+-    "preserveSymlinks": true
++    "allowJs": true
+   },
+   "include": [
+-    ".pi/extensions/session-relaunch.ts",
+-    ".pi/extensions/spec-gate-classify.ts",
+-    ".pi/extensions/spec-gate-enforce.ts",
++    ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
++    ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts",
++    ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts",
+     ".pi/types/pi-coding-agent.d.ts",
+     ".pi/types/node-globals.d.ts"
+   ]

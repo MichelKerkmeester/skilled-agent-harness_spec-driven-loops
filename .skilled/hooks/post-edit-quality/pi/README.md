@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`pi/` holds the real Pi extension for post-edit quality. Pi discovers it through the relative symlink `.pi/extensions/post-edit-quality.ts`, and the imports are written for that link base. The extension handles `edit` and `write` results, resolves `event.input.path` against `ctx.cwd`, runs `../lib/post-edit-router.cjs` and appends the findings as `{type: 'text', text}` content on the tool result, which makes them model-visible.
+`pi/` holds the real Pi extension for post-edit quality. Pi discovers it through the one-line entry file `.pi/extensions/post-edit-quality.ts`, which re-exports it, so it loads from this folder and its imports are relative to this folder. The extension handles `edit` and `write` results, resolves `event.input.path` against `ctx.cwd`, runs `../lib/post-edit-router.cjs` and appends the findings as `{type: 'text', text}` content on the tool result, which makes them model-visible.
 
 ---
 
@@ -30,4 +30,4 @@ version: 1.0.0.0
 
 - [`../README.md`](../README.md): the concern README with the dispatch table and the per-runtime matrix.
 - [`../lib/post-edit-router.cjs`](../lib/post-edit-router.cjs): the shared router this extension imports.
-- [`../../../../.pi/extensions/post-edit-quality.ts`](../../../../.pi/extensions/post-edit-quality.ts): the link Pi discovers.
+- [`../../../../.pi/extensions/post-edit-quality.ts`](../../../../.pi/extensions/post-edit-quality.ts): the one-line entry file Pi discovers.
