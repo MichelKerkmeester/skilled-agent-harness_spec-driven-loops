@@ -27,9 +27,9 @@
       "tasks",
       "implementation",
       "summary",
-      "yourvaluehere",
-      "broken",
-      "missing"
+      "github",
+      "workflows",
+      "advisory-checks"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -37,7 +37,23 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".github/workflows/advisory-checks.yml",
+      ".github/workflows/README.md",
+      "shared/dist/gate-3-classifier.js",
+      ".skilled/scripts/run-node-tests.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-agents-dsh.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-prompts-dsh.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-dsh.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/unactioned-recorded-failure-audit.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/permission-request-policy.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-claude.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-codex.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-devin.test.mjs"
     ],
     "entities": [
       {
@@ -65,13 +81,109 @@
         "source": "derived"
       },
       {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.js",
+        "kind": "code",
+        "path": "shared/dist/gate-3-classifier.js",
+        "source": "derived"
+      },
+      {
+        "name": "run-node-tests.mjs",
+        "kind": "file",
+        "path": ".skilled/scripts/run-node-tests.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-dsh.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-agents-dsh.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts-dsh.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-prompts-dsh.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-dsh.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-dsh.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "unactioned-recorded-failure-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/unactioned-recorded-failure-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-stdin-deadline.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-menu-parity.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "permission-request-policy.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/permission-request-policy.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-claude.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-claude.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-codex.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-codex.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-devin.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-devin.test.mjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "The Advisory Checks",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -87,107 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "`.github/workflows/advisory-checks.yml` runs its four steps with `continue-on-error: true`, so the job is green even when a step fails",
     "created_at": "2026-11-12T08:21:59Z",
-    "last_save_at": "2026-11-12T08:22:04.051Z",
+    "last_save_at": "2026-11-12T09:58:11.121Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:caca545b95672696a75b6bbdc4e9d624bf5d4bf3c7f74de674c4c1317b04fe9c",
+    "source_fingerprint": "sha256:d633f82b091ce11fe3f9c53949e1eeb14c1656f4e52ead811ee4a0f8ce7716c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "84f505812a255511de7c7ccbe631cf16b25177f0344fa5b62613888bf6333b57",
-      "plan.md": "bbdf3e23b3c990ceba984cd2c01762f900089353edffcf90caa65e31ba24d8a3",
-      "tasks.md": "1dabe292d33f53b58a91c4442157be32e5ac892bafbaf61ee4b72dbed34317eb",
-      "implementation-summary.md": "4d55043a52cefb9cb8ed304767e3b6ca9eff4bce1ca023b6192a263cd6b013a4"
+      "spec.md": "3f18bc7704cdea58135dc1318c11778fce3979b9c486e5c9a86ed173e808c03d",
+      "plan.md": "597e367d09fc8c522bce45c4a639c51879edc4aedaaa3e7098141b36129cbe3b",
+      "tasks.md": "dfc1236193ace018cbe8c2adabb2b81bed5e6301118bdeaee212d9491c5145e7",
+      "implementation-summary.md": "6027aa8385dd5f4da5274b75aff4fc923a0f95497300e98166cbf07a0c42e113"
     },
     "last_active_at": null
   }

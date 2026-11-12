@@ -26,10 +26,10 @@
       "tasks",
       "implementation",
       "summary",
-      "yourvaluehere",
-      "broken",
-      "missing",
-      "inefficient"
+      "every",
+      "job",
+      "checks",
+      "tracked"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -37,7 +37,17 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".github/workflows/rule-canary-sync.yml",
+      ".github/workflows/prompt-card-sync.yml",
+      ".github/workflows/repo-rules-corpus.yml",
+      ".github/workflows/runtime-no-spec-import.yml",
+      ".github/workflows/chart-corpus.yml",
+      ".github/workflows/diagram-corpus.yml",
+      ".github/workflows/pi-extension-tests.yml",
+      ".github/workflows/sk-code-script-tests.yml",
+      "specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json",
+      "specs/system-speckit/repo-operations/002-ci-workflow-efficiency/004-setup-caching-provisioning/decision-record.md"
     ],
     "entities": [
       {
@@ -65,13 +75,61 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "rule-canary-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/rule-canary-sync.yml",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "prompt-card-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/prompt-card-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "repo-rules-corpus.yml",
+        "kind": "config",
+        "path": ".github/workflows/repo-rules-corpus.yml",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-no-spec-import.yml",
+        "kind": "config",
+        "path": ".github/workflows/runtime-no-spec-import.yml",
+        "source": "derived"
+      },
+      {
+        "name": "chart-corpus.yml",
+        "kind": "config",
+        "path": ".github/workflows/chart-corpus.yml",
+        "source": "derived"
+      },
+      {
+        "name": "diagram-corpus.yml",
+        "kind": "config",
+        "path": ".github/workflows/diagram-corpus.yml",
+        "source": "derived"
+      },
+      {
+        "name": "pi-extension-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/pi-extension-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-code-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "routing-baseline.json",
+        "kind": "config",
+        "path": "specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -101,6 +159,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -113,7 +177,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Per",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -123,71 +193,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Every job checks out 134,068 tracked files, and 113,819 of them sit under `specs/`",
     "created_at": "2026-11-12T08:21:58Z",
-    "last_save_at": "2026-11-12T08:22:03.805Z",
+    "last_save_at": "2026-11-12T09:26:55.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c81f32140b89d01ba9cae20cdde3a191000e509b6c88f879ba890a07dbdd7659",
+    "source_fingerprint": "sha256:272cd93c8725a5d796ef6b0f2412c76fcab275b0d4567b839c359834dff14107",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0266ffe4379ab828adb94ce6ee6bfcfb76a6fae1736d43e4111b3a249cfa99e1",
-      "plan.md": "8451d1f564b1b9be878d0f32f224a449a9b3367b362ec332f4e91120c8a166af",
-      "tasks.md": "baf510a73578f16fa00fd123fc2afdb71dd051873f5231ea982d6700a40b86d7",
-      "implementation-summary.md": "091392e47f0f1fca59ccca857407ed68c2d4643c17856dcbcd672b4a503af369"
+      "spec.md": "9117e4992ebbee39f8c00347946db3e352a7fb972191c9d64e756803611e7947",
+      "plan.md": "6922f78c21ad5d3394834e0be89f2d669fb60f47d7a5a7587753d0ae56e42d59",
+      "tasks.md": "85aa2a02a36b5a160ace6678dfc35ec920a8a3a4716b11c383587facca15349b",
+      "implementation-summary.md": "f9d3a17714d1c2ecd3ab2a66e89ca66affcbb40cfb01c92e7571c8989c601eac"
     },
     "last_active_at": null
   }

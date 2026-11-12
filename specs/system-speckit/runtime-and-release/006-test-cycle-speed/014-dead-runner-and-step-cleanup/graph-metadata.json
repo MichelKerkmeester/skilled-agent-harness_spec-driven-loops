@@ -27,9 +27,9 @@
       "tasks",
       "implementation",
       "summary",
-      "yourvaluehere",
-      "broken",
-      "missing"
+      "skilled",
+      "skills",
+      "system-spec-kit"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -37,7 +37,21 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs",
+      ".github/workflows/opencode-dual-version.yml",
+      "runtime/README.md",
+      "scripts/README.md",
+      "tests/README.md",
+      ".skilled/skills/system-spec-kit/runtime/package.json",
+      "references/workflows/execution-methods.md",
+      "feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md",
+      "runtime/data/trigger-index.json",
+      "runtime/cli/retrieval/fixtures/phrase-variants.json",
+      ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
+      ".skilled/skills/system-spec-kit/runtime/README.md",
+      ".skilled/skills/system-spec-kit/runtime/tests/README.md",
+      ".skilled/skills/system-spec-kit/ARCHITECTURE.md"
     ],
     "entities": [
       {
@@ -65,13 +79,61 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "run-tests-sharded.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "opencode-dual-version.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-dual-version.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "execution-methods.md",
+        "kind": "doc",
+        "path": "references/workflows/execution-methods.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-lifecycle-automation.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-variants.json",
+        "kind": "config",
+        "path": "runtime/cli/retrieval/fixtures/phrase-variants.json",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -101,6 +163,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -113,7 +181,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Delete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deletion",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -123,71 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs` is 44 lines that split the suite into twelve serial shards by default, and nothing invokes it: the only executable reference is its `test:sharded` entry in `package.json`, and the rest are prose",
     "created_at": "2026-11-12T08:22:00Z",
-    "last_save_at": "2026-11-12T08:22:04.174Z",
+    "last_save_at": "2026-11-12T10:09:41.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d2187f4cf87a38cce632d69cc3341ecf11c8bf8be2cf6ca131b93a58d51a55e",
+    "source_fingerprint": "sha256:4cfdca8957d3f91d969ff8a37a3f3e01c37cf7391ade338ca51327cb2596eed9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4aed595bedc3e6f6d3c684b32e19d27b8bd1badf27827dc1edfd53b17d8f299e",
-      "plan.md": "461520b5ceb42098a8353dcad6164d0236c03e5bf87223c321216b96262294a7",
-      "tasks.md": "4182a6d551e4053d71bbdf3c5ad1e15dd09a0d37562b6edb078e92efd300d928",
-      "implementation-summary.md": "609ed8b048eb6b84e8cc7fc928b3478ab6b5a99a1c7dd28230be443a21bb666a"
+      "spec.md": "ef2ae2ac7847beb2edfcc0e46cf663f06841e7e41691ff8cafabfbf86eb8e746",
+      "plan.md": "d9bb67bb0a0cf1e6da51e030aca15dda87bf2f504dcf5c939ce7cc26b38e1fcb",
+      "tasks.md": "d0480c556c5ece434a4561730ce62bccf01fed8df5a0d7cab5f58793d7520ee8",
+      "implementation-summary.md": "ed9105576922aae6db2a367d9af66ef904514e1ed3d225c8ca4398e95ab97109"
     },
     "last_active_at": null
   }

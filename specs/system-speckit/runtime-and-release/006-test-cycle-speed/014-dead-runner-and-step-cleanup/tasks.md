@@ -15,7 +15,6 @@ contextType: "general"
 
 <!-- ANCHOR:notation -->
 ## Task Notation
-<!-- FILL: Keep the prefix table and add the two shell variables this task list uses. GOOD: `R` is `scripts/rotate-logs.sh`. `A` is `logs/archive/`. WEAK: Variables are defined below. -->
 
 | Prefix | Meaning |
 |--------|---------|
@@ -25,64 +24,69 @@ contextType: "general"
 | `[B]` | Blocked |
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
+
+Every path is written from the repository root. `R` is `.skilled/skills/system-spec-kit/runtime` and `W` is `.github/workflows/opencode-dual-version.yml`; commands spell both in full.
 <!-- /ANCHOR:notation -->
 
 ---
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
 
-- [ ] T001 Create project structure (`<folder>`). Verify: `ls <folder>` lists it.
-- [ ] T002 Install dependencies (`<manifest>`). Verify: `<install command>` exits 0.
-- [ ] T003 [P] Configure development tools (`<config>`). Verify: `<tool> --version` exits 0.
+- [ ] T001 Confirm the runner has no caller and count its references before deleting anything (`.skilled/skills/system-spec-kit/runtime/package.json`). Verify: `bash -c 'printf "refs=%s files=%s\n" "$(git grep -n -e run-tests-sharded -e test:sharded -- ":!specs" | wc -l | tr -d " ")" "$(git grep -l -e run-tests-sharded -e test:sharded -- ":!specs" | wc -l | tr -d " ")"'` prints `refs=8 files=4`.
+- [ ] T002 Confirm the config-shape step is one definition before the install over a two-entry matrix (`.github/workflows/opencode-dual-version.yml`). Verify: `python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/opencode-dual-version.yml')); b=d['jobs']['battery']; print('matrix entries:', [e['family'] for e in b['strategy']['matrix']['include']]); print('config-shape step index:', [i for i,s in enumerate(b['steps']) if 'config-shape' in str(s.get('name'))][0], 'of', len(b['steps']), 'steps')"` prints `matrix entries: ['v1', 'v2']` and `config-shape step index: 3 of 7 steps`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-<!-- FILL: Write one implementation task per file change. Add a `Verify:` line with the command and its expected output. GOOD: T002 Add the `--keep <n>` branch. Verify: `--keep 3` leaves 3 archives. WEAK: T002 Implement the feature. -->
 
-- [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
-- [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
-- [ ] T006 [YOUR_VALUE_HERE: Implement core feature 3]
-- [ ] T007 [YOUR_VALUE_HERE: Add error handling]
+- [ ] T003 Delete the 44-line sharded runner (`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs`). Verify: `bash -c 'test ! -e .skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs && echo RUNNER_GONE'` prints `RUNNER_GONE`.
+- [ ] T004 Remove the `test:sharded` entry from `scripts` (`.skilled/skills/system-spec-kit/runtime/package.json`). Verify: `node -e "const p=JSON.parse(require('fs').readFileSync('.skilled/skills/system-spec-kit/runtime/package.json','utf8')); console.log(p.scripts['test:sharded']===undefined?'test:sharded absent':'still present')"` prints `test:sharded absent`.
+- [ ] T005 Remove the five `sharded` lines and change "Two of them" to "One of them" (`.skilled/skills/system-spec-kit/runtime/scripts/README.md`). Verify: `bash -c '! rg -q -i sharded .skilled/skills/system-spec-kit/runtime/scripts/README.md && echo SCRIPTS_README_CLEAN'` prints `SCRIPTS_README_CLEAN`.
+- [ ] T006 Remove the `test:sharded` usage line and rewrite the lane paragraph to name only `test:spec-validation` (`.skilled/skills/system-spec-kit/runtime/README.md`). Verify: `bash -c '! rg -q -i sharded .skilled/skills/system-spec-kit/runtime/README.md && echo RUNTIME_README_CLEAN'` prints `RUNTIME_README_CLEAN`.
+- [ ] T007 Remove the entrypoint row, the "use the sharded command instead" advice and the shard paragraph (`.skilled/skills/system-spec-kit/runtime/tests/README.md`). Verify: `bash -c '! rg -q -i sharded .skilled/skills/system-spec-kit/runtime/tests/README.md && echo TESTS_README_CLEAN'` prints `TESTS_README_CLEAN`.
+- [ ] T008 Change the `scripts/` directory comment to name the build finalizer and the bounded runner only (`.skilled/skills/system-spec-kit/ARCHITECTURE.md`). Verify: `bash -c '! rg -q -i sharded .skilled/skills/system-spec-kit/ARCHITECTURE.md && echo ARCHITECTURE_CLEAN'` prints `ARCHITECTURE_CLEAN`.
+- [ ] T009 Remove the `SPECKIT_TEST_SHARDS` example line and keep `SPECKIT_TEST_RUN_TIMEOUT_MS` (`.env.example`). Verify: `bash -c '! rg -q SPECKIT_TEST_SHARDS .env.example && rg -q SPECKIT_TEST_RUN_TIMEOUT_MS .env.example && echo ENV_CLEAN'` prints `ENV_CLEAN`.
+- [ ] T010 Add `if: matrix.family == 'v1'` to the config-shape step and extend its comment to say one execution covers both entries (`.github/workflows/opencode-dual-version.yml`). Verify: `python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/opencode-dual-version.yml')); b=d['jobs']['battery']; s=[x for x in b['steps'] if 'config-shape' in str(x.get('name'))]; print('definitions=%d guard=%s entries=%s tests=%d' % (len(s), s[0].get('if'), [e['family'] for e in b['strategy']['matrix']['include']], s[0]['run'].count('.test.cjs')))"` prints `definitions=1 guard=matrix.family == 'v1' entries=['v1', 'v2'] tests=4`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `ls logs/archive | wc -l` prints 3 and 10. WEAK: T003 Test everything. -->
 
-- [ ] T008 Test happy path manually (`<file>`). Verify: `<command>` prints <expected output>.
-- [ ] T009 Test edge cases (`<test>`). Verify: `<test command>` exits 0.
-- [ ] T010 Update documentation (`<doc>`). Verify: `rg -n '<term>' <doc>` prints one line.
+- [ ] T011 Prove no file names the deleted runner (`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs`). Verify: `bash -c '! git grep -q run-tests-sharded -- ":!specs" && echo GREP_CLEAN'` prints `GREP_CLEAN`.
+- [ ] T012 Confirm the package JSON parses and the default entry point still resolves (`.skilled/skills/system-spec-kit/runtime/package.json`). Verify: `node -e "JSON.parse(require('fs').readFileSync('.skilled/skills/system-spec-kit/runtime/package.json','utf8'))" && node -e "const p=JSON.parse(require('fs').readFileSync('.skilled/skills/system-spec-kit/runtime/package.json','utf8')); console.log(p.scripts.test + ' / ' + Object.keys(p.scripts).length)"` prints `node scripts/run-tests.mjs / 17`.
+- [ ] T013 Confirm the workflow parses and still holds both jobs (`.github/workflows/opencode-dual-version.yml`). Verify: `python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/opencode-dual-version.yml')); print('jobs=' + ','.join(d['jobs'].keys()))"` prints `jobs=battery,both`.
+- [ ] T014 Confirm the four config-shape tests still run in the remaining execution (`.github/workflows/opencode-dual-version.yml`). Verify: `python3 -c "import yaml; s=[x for x in yaml.safe_load(open('.github/workflows/opencode-dual-version.yml'))['jobs']['battery']['steps'] if 'config-shape' in str(x.get('name'))][0]; print('tests=%d' % s['run'].count('.test.cjs'))"` prints `tests=4`.
+- [ ] T015 Confirm the diff is exactly the eight named paths (`.env.example`). Verify: `git status --short -- .skilled/skills/system-spec-kit/runtime .skilled/skills/system-spec-kit/ARCHITECTURE.md .env.example .github/workflows/opencode-dual-version.yml | wc -l | tr -d ' '` prints `8`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-<!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] `git grep -n run-tests-sharded -- ':!specs'` prints nothing
+- [ ] The runtime package JSON parses and `scripts.test` is `node scripts/run-tests.mjs` with 17 scripts
+- [ ] The dual-version workflow parses with one config-shape definition guarded to the `v1` entry, two matrix entries and four test paths
+- [ ] `git status --short -- .skilled/skills/system-spec-kit/runtime .skilled/skills/system-spec-kit/ARCHITECTURE.md .env.example .github/workflows/opencode-dual-version.yml` lists exactly the eight named paths
 <!-- /ANCHOR:completion -->
 
 ---
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-<!-- FILL: Name the spec and plan files. Add the decision record when the packet has one. GOOD: Specification: `spec.md`. Plan: `plan.md`. WEAK: See the other docs. -->
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Research**: See `../007-test-and-ci-bloat-research/research/research.md` section 4 rank 7, and `../007-test-and-ci-bloat-research/research/lineages/opencode-go/research.md` lines 54 and 55
+- **Runner**: See `.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs`
+- **Workflow**: See `.github/workflows/opencode-dual-version.yml`
 <!-- /ANCHOR:cross-refs -->
 
 ---
-
-
-

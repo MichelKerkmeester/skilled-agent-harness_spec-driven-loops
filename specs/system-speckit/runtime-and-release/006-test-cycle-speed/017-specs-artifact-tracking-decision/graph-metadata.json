@@ -27,9 +27,9 @@
       "tasks",
       "implementation",
       "summary",
-      "yourvaluehere",
-      "broken",
-      "missing"
+      "repository",
+      "tracks",
+      "files"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -71,12 +71,6 @@
         "source": "derived"
       },
       {
-        "name": "Status Draft",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -101,6 +95,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -113,7 +113,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Measure",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -127,12 +133,6 @@
       {
         "name": "Data Flow",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -161,13 +161,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "a",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -185,9 +185,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The repository tracks 134,068 files holding 2,242,571,276 bytes, and 88,151 of the 113,819 tracked files under `specs/` sit in `research/`, `review/`, `scratch/` or `zarchive/` folders",
     "created_at": "2026-11-12T08:22:02Z",
-    "last_save_at": "2026-11-12T08:22:04.548Z",
+    "last_save_at": "2026-11-12T10:44:10.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26a640520ed996646518b2d72fa91c0b06170005ad2fd35ffa22e5448aedfcda",
+    "source_fingerprint": "sha256:7623642d945b25713bde61275fa8bef58a5af61020956f6a6f07c511cc292b9b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "860ffef4d688dff5528e6626f4a18703ac00917064646e4972d83a682326d720",
-      "plan.md": "f0f6eca5b1dadc71ad234a82626928edd9b25330d1fc57214ac6495b3f3fdf9d",
-      "tasks.md": "7405012df03ae412478048c6216fda5f07f157abd97b8ac81e4e5284ebf15f1e",
-      "implementation-summary.md": "00f48a590f7d11f589b5821c996605789977d353edd9907a00d1e6139c622045"
+      "spec.md": "f9f48cb3ac4079dc9de7dc19f117abfdc42d72d7a4c7a98cf5e34bf8e50f5405",
+      "plan.md": "81f8941d29fc0ae239aad85dfde7b706d9ce518c25c4edcb7cb9535b8da35e70",
+      "tasks.md": "8325f37ecc74ad8e6e884453c2b13129a1458736c873a9d3002e76f4db88f9b6",
+      "implementation-summary.md": "f1eba09e57c8e6ba7b05388254822d8b3130913cb82fd9b49fe395e281531245"
     },
     "last_active_at": null
   }
