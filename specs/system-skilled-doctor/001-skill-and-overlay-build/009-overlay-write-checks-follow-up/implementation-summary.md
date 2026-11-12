@@ -67,7 +67,7 @@ A five-iteration deep review then found three P1 defects, all in `apply --relayo
 | `.skilled/skills/system-skilled-doctor/references/overlays.md` | Modified | Eight trigger phrases, then the new behaviour |
 | `.skilled/skills/system-skilled-doctor/graph-metadata.json`, `ROUTER.md`, `SKILL.md`, the advisor's generated bridges and skill graph | Modified | Routing words for the new work, skill version 1.1.6.0 |
 | `.skilled/changelog/skilled/v4.0.2.1.md`, `.skilled/skills/system-skilled-doctor/changelog/v1.1.6.0.md` | Modified, Created | The release entry and the skill note |
-| `.skilled/skills/system-skilled-doctor/manual-testing-playbook/` | Modified | Seven new scenarios |
+| `.skilled/skills/system-skilled-doctor/manual-testing-playbook/` | Modified | Eight new scenarios |
 | `.skilled/hooks/README.md`, `.skilled/hooks/overlay-guard/README.md`, `.skilled/commands/README.txt`, `README.md`, `command-contract.json` | Modified | The seventh adapter and the command hint |
 | `.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json`, `system-skilled-doctor/leaf-manifest.json`, `leaf-aliases.json` | Regenerated | The new folder and scenarios |
 <!-- /ANCHOR:what-built -->
@@ -111,7 +111,7 @@ The review ran as a two-lineage fan-out of the `/deep:review` workflow: three De
 | `route-validate.sh` | `OK: route-validate`, 31 routes |
 | `sync-runtime-mirrors.cjs --check` | `PASS: 256 mirrors across 10 trees are in sync` |
 | `check-skill-doc-frontmatter.sh . --coverage` | `violations=0`. It printed `violations=1` before task T004 |
-| `validate-playbook-package.cjs --package system-skilled-doctor` | `PASS`, `scenarios=11`. The baseline was 4 |
+| `validate-playbook-package.cjs --package system-skilled-doctor` | `PASS`, `scenarios=12`. The baseline was 4 |
 | `test_readme_manifest.py` | `manifest=reproducible`. It failed in CI on `e97ca56e8d` before the manifest was regenerated |
 
 ### Review findings
@@ -134,7 +134,7 @@ The review found no P0.
 
 ### Alignment findings
 
-`/local-skilled-alignment` ran twice with four DeepSeek lanes and a critic. The first run covered `790ced4732..dd58ccee3f`, the second `790ced4732..81513a220a`. A battery over the final range and a recheck of the second run followed. A fresh Opus agent then judged each finding the recheck could not judge.
+`/local-skilled-alignment` ran three times with four DeepSeek lanes and a critic: over `790ced4732..dd58ccee3f`, `790ced4732..81513a220a` and `790ced4732..3edaf16efa`. Each run was followed by fixes. After the second and third runs a recheck ran, and a fresh Opus agent judged each finding the recheck could not judge.
 
 | Finding | Severity | Outcome | Proof |
 |---------|----------|---------|-------|
@@ -147,7 +147,12 @@ The review found no P0.
 | Run 2 D-1, D-2: no routing words for the stale root file, and an audit paraphrase lost to `sk-git` | 1 P1, 1 P2 | Fixed | `run-probes.cjs` on the second run's probes: 11 pass. The verifier's own prompt selects `system-skilled-doctor` |
 | Probes P07 and P08 of run 2, which open with "Tell me" and "Explain" | P1 | Not a defect | The advisor hands a read-only question to the doctor helper by a rule this phase did not change. The helper lists `/doctor:overlay status` first for both |
 
-The final battery, over `790ced4732` to the last fix commit, reports `findings=0`.
+| Run 3: a root-file routing phrase with no overlay word took a plain git question | P1 | Fixed | The phrases name the overlay, and `sk-git` gained one signal with the word fetch. `run-probes.cjs` on the third run's probes: 13 pass |
+| Run 3: seven document statements, among them a re-pin said to refuse every drifted path, a relayout said to stop on a `MISS` or `STALE` line and a lock said never to be cleared | P2 | Fixed | The verifier checked each against the engine and listed nine of ten findings as resolved |
+| Run 3: no scenario for the dropped appended item | P2 | Fixed | `validate-playbook-package.cjs` prints `PASS`, `scenarios=12` |
+| The verifier's three notes on the fix: an exit code claim for the apply after a relayout, the same lock sentence in the re-pin workflow and a router keyword | P2 | Fixed | `route-validate.sh` and the contract test pass |
+
+The last report of the alignment command is a battery over `790ced4732` to the last fix commit. It reports `findings=0`. No lane run followed the last fix. Each lane run so far raised new findings, so the closing evidence for lane findings is the recheck plus the verifier.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -156,6 +161,7 @@ The final battery, over `790ced4732` to the last fix commit, reports `findings=0
 ## Known Limitations
 
 1. **The first commit of this phase carries another session's files.** Commit `c57b7e4cef` took 57 research files from `specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/`, which another session had staged in the shared index. They were not reviewed here.
+2. **One file outside the planned scope changed.** `.skilled/skills/sk-git/graph-metadata.json` gained one intent signal. The overlay vocabulary made the advisor recommend this skill for a plain upstream question, and no change on this side could undo that without losing the overlay request. `sk-git` now also competes on other upstream questions.
 2. **Nothing was run against Barter's tree after these changes.** The fixes are proven on fixtures. `handover-to-barter.md` lists what a Barter session does next.
 3. **A state file from an older engine has no link or item records.** Nothing is retargeted or removed until the first apply writes them, so an item dropped before the upgrade stays until it is removed by hand.
 4. **The Opus review lineage is recorded as failed.** Its session refused every `node` call, so it has no state log or findings registry. Its two iteration files and its report exist and were inputs to the synthesis.

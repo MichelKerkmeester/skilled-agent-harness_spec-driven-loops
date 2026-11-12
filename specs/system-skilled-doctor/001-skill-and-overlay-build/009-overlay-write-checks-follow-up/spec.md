@@ -121,6 +121,7 @@ The suite before the first edit: `node --test tests/` in `.skilled/commands/doct
 | `.skilled/hooks/overlay-guard/README.md` | Modify | The seventh adapter |
 | `.skilled/commands/doctor/overlay.md`, `_routes.yaml`, `assets/doctor-overlay-*.yaml`, `assets/doctor-overlay-presentation.txt` | Modify | `--relayout`, `--audit` and the new status lines |
 | `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` | Modify | The overlay hint and selector lines |
+| `.skilled/skills/sk-git/graph-metadata.json` | Modify | Scope amendment of 2026-11-12: one intent signal, so the overlay vocabulary does not take a plain upstream question from `sk-git` |
 | `.skilled/skills/system-skilled-doctor/manual-testing-playbook/` | Modify | Scenarios for strict writes, adopt, the commit check, root files and relayout |
 | `.skilled/commands/README.txt`, `README.md` | Modify | The overlay command's hint |
 | `.skilled/changelog/skilled/v4.0.2.1.md`, `.skilled/skills/system-skilled-doctor/changelog/v1.1.6.0.md`, `.skilled/skills/system-skilled-doctor/SKILL.md` | Modify, Create | The release entry, the skill note and its version |

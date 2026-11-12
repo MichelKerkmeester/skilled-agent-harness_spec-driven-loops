@@ -97,7 +97,7 @@ workflow:
       - "Exit 0 with RESULT: PASSED means the re-pin finished clean. Go to phase 6."
       - "Exit 2 with no rollback: line means the engine refused before any write, because the tree changed since the plan. Quote the lines and end with STATUS=FAIL. Nothing was written. Never retry the re-pin here."
       - "Exit 1, or exit 2 with a rollback: line, means the run failed after its backup: an apply was blocked, the check failed or an error stopped it. The tree is partly moved and the run folder stays. Show the lines and the rollback line, then go to phase 5."
-      - "Never remove the overlay lock inside this route. A held lock is the operator's to clear once the other run has ended, as the engine's message says."
+      - "Never remove the overlay lock inside this route. A lock whose owner has ended on this host needs no clearing, because the next run takes it over and prints a `note:` line. A live owner, a lock another host wrote and a lock whose line has no pid still refuse, and that lock is the operator's to clear once its run has ended."
 
   phase_5_rollback:
     purpose: "Ask the separate rollback question, and restore a run's backup only after its yes"

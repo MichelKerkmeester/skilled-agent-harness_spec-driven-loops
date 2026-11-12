@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-skilled-doctor/001-skill-and-overlay-build",
   "description": "Build system-skilled-doctor and the doctor overlay command",
   "keywords": [
@@ -7,13 +8,15 @@
     "overlay",
     "command"
   ],
-  "lastUpdated": "2026-11-06T07:23:07.720Z",
+  "lastUpdated": "2026-11-12T04:09:28.387Z",
   "specId": "001",
   "folderSlug": "skill-and-overlay-build",
   "parentChain": [
     "system-skilled-doctor"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "12-11-26_03-49__the-stop-check-was-right-on-two-points-and-i-am.md",
+    "12-11-26_05-09__the-first-of-the-two-briefs-is-still-running-its.md"
+  ]
 }

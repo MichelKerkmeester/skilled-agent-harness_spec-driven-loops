@@ -84,7 +84,8 @@
     "fsmonitor daemons",
     "fsmonitor daemon reaper",
     "gitlens start review",
-    "gitlens start work"
+    "gitlens start work",
+    "files changed upstream since my last fetch"
   ],
   "derived": {
     "trigger_phrases": [
