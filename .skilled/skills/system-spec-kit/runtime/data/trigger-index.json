@@ -1,5 +1,5 @@
 {
-  "manifestHash": "28cddb0f43af147c8838c5e660c34cd230390554f05661e1873ac26c8fa4e4ac",
+  "manifestHash": "4cc78d02740cf0e31f445b3d02ee0eda07d119d8ad883e58dff724b229544df4",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -116662,7 +116662,6 @@
       13735
     ],
     "repair graph metadata": [
-      3350,
       12317
     ],
     "repair graph metadata mjs": [
@@ -122480,6 +122479,9 @@
     ],
     "run check adapter technical approach": [
       16641
+    ],
+    "run cli tests": [
+      3350
     ],
     "run conversation scenario": [
       8028
