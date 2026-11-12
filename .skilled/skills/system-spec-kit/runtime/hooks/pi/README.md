@@ -1,6 +1,6 @@
 ---
 title: "Pi Hooks: Spec-Gate + Session-Lifecycle Bridges"
-description: "Pi extension factories for Gate-3 spec-gate enforcement and session-lifecycle context, discovered through relative symlinks in .pi/extensions/."
+description: "Pi extension factories for Gate-3 spec-gate enforcement and session-lifecycle context, discovered through one-line entry files in .pi/extensions/ that re-export them."
 trigger_phrases:
   - "pi spec gate"
   - "pi session lifecycle"
@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`hooks/pi/` holds the real files behind the `.pi/extensions/` symlinks for this skill's Pi hooks. Pi discovers them through the symlinks and resolves their relative imports against the symlink path, so every import in these files is written for the `.pi/extensions/` base, not this folder.
+`hooks/pi/` holds the real files behind the `.pi/extensions/` entry files for this skill's Pi hooks. Pi discovers each one through its one-line entry file, which re-exports it, so it loads from this folder and every import in these files is relative to this folder.
 
 ---
 
@@ -55,4 +55,4 @@ Exact injected strings and per-runtime visibility: [`injection-contract.md`](../
 
 - [`lib/README.md`](lib/README.md): the Claude-adapter proxy the session bridges call into.
 - [`../lib/spec-gate/README.md`](../lib/spec-gate/README.md): the shared Gate-3 policy core these bridges call.
-- [`../../../../../../.pi/extensions/README.md`](../../../../../../.pi/extensions/README.md): the discovery mirror and symlink map.
+- [`../../../../../../.pi/extensions/README.md`](../../../../../../.pi/extensions/README.md): the discovery mirror and entry map.

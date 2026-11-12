@@ -13,12 +13,12 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import * as hookFlags from "../../.skilled/hooks/shared/hook-flags.mjs";
+import * as hookFlags from "../../../../../hooks/shared/hook-flags.mjs";
 import {
   historyHandle,
   persistHistoryLocator,
-} from "../../.skilled/skills/system-spec-kit/runtime/hooks/lib/history/locator-digest.ts";
-import { buildHistoryLookupSection, fitRecoverySections, placeLookup } from "../../.skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts";
+} from "../lib/history/locator-digest.ts";
+import { buildHistoryLookupSection, fitRecoverySections, placeLookup } from "../lib/history/lookup-offer.ts";
 
 const MAX_CONTEXT_BYTES = 4_096;
 const HISTORY_LOCATOR_VERSION = 1;
@@ -68,7 +68,7 @@ function stripControlCharacters(text: string): string {
 
 async function loadHistoryCapability(runtime: string): Promise<boolean> {
   try {
-    const readers = (await import("../../.skilled/hooks/shared/session-readers/index.mjs")) as {
+    const readers = (await import("../../../../../hooks/shared/session-readers/index.mjs")) as {
       capabilities?: Record<string, { status?: string } | undefined>;
     };
     return readers.capabilities?.[runtime]?.status === "ready";
@@ -121,7 +121,7 @@ export function buildRecoveryPointer(): string {
 async function persistLocator(locator: HistoryLocator): Promise<boolean> {
   try {
     const { ensureStateDir, updateState } = await import(
-      "../../.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/hook-state.js"
+      "../../dist/hooks/claude/hook-state.js"
     ) as {
       ensureStateDir: () => void;
       updateState: (

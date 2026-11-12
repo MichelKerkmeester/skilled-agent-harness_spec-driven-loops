@@ -1,1 +1,1 @@
-../../.skilled/hooks/dispatch/pi/dispatch-audit.ts
+export { default } from '../../.skilled/hooks/dispatch/pi/dispatch-audit.ts';

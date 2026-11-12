@@ -121,7 +121,7 @@ dispatch/
 +-- devin/    (same pair)
 +-- codex/    (same pair), codex-shell-tool.test.mjs  # vitest, hooks config
 +-- cursor/   dispatch-preflight-lint.mjs (Shell preflight), post-tool-use.mjs  # multiplexed proxy (Shell -> dispatch audit, Write -> post-edit-quality)
-+-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real files; `.pi/extensions/` symlinks to them), dispatch-preflight-lint.test.ts, directive-dedup.test.ts  # vitest, hooks config
++-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real files; `.pi/extensions/` re-exports them), dispatch-preflight-lint.test.ts, directive-dedup.test.ts  # vitest, hooks config
 `-- opencode/ cli-dispatch-audit.js (browsability symlink -> .opencode/plugins/; real file loaded from .opencode/plugins/)
 ```
 
@@ -164,7 +164,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 
 | Boundary | Rule |
 |---|---|
-| Imports | `lib/` cores import Node builtins only. Adapters import their own `../lib/` and `../../shared/hook-flags.mjs` (or `hook-flags.cjs` for the OpenCode plugin): nothing outside this tree. The Pi adapters are the exception: they import `../../.skilled/hooks/shared/hook-flags.mjs`, a path written for their `.pi/extensions/` symlink, so a test loads them only under `.skilled/hooks/vitest.config.ts`, whose alias maps that path to the real tree. The Cursor proxy imports `hook-flags.mjs` by a deep repo-relative path because its real home is under `system-spec-kit`. |
+| Imports | `lib/` cores import Node builtins only. Adapters import their own `../lib/` and `../../shared/hook-flags.mjs` (or `hook-flags.cjs` for the OpenCode plugin): nothing outside this tree. The Pi adapters are the exception: a few of them keep a long specifier such as `../../.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` as a fallback for a checkout whose entry is still a symlink under a Pi older than 1.5.1, so a test loads them only under `.skilled/hooks/vitest.config.ts`, whose alias maps that path to the real tree. The Cursor proxy imports `hook-flags.mjs` by a deep repo-relative path because its real home is under `system-spec-kit`. |
 | Decisions | Preflight may deny (`block` severity) or advise (`warn`). Audit never decides; it only records. Pi's preflight adds an authorization deny that is independent of the target skill's declared rules. |
 | Failure | Every path fails open. A missing `SKILL.md`, malformed sidecar JSON, a throwing check, an unparsable payload, or an unwritable log resolves to allow/skip. |
 | Output | The cores never write stdout or stderr. Each adapter owns its own transport. Audit writes only to the rotated log file. |
@@ -179,7 +179,7 @@ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
 ```
 
 ```bash
-# The adapter suites are vitest files; run them under the hooks config, whose alias resolves the Pi adapters' link-relative imports
+# The adapter suites are vitest files; run them under the hooks config, whose alias serves the long specifiers a few Pi adapters keep as a fallback for a checkout whose entry is still a symlink under a Pi older than 1.5.1
 .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/dispatch/pi/directive-dedup.test.ts
 ```
 
@@ -202,4 +202,4 @@ Expected result: `ok`, with no module-resolution error (confirms the OpenCode ad
 - [`../shared/README.md`](../shared/README.md): the shared kill-switch resolver the adapters use.
 - [`../../skills/cli-external-orchestration/cli-opencode/SKILL.md`](../../skills/cli-external-orchestration/cli-opencode/SKILL.md): the primary hard-rule declarer these checks enforce.
 
-<!-- The Pi adapters' specifier is written for their .pi/extensions/ symlink. -->
+<!-- A few Pi adapters keep a long specifier as a fallback for a checkout whose entry is still a symlink under a Pi older than 1.5.1. -->

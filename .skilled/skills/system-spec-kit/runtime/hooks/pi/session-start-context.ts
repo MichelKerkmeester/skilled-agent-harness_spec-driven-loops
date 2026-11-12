@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import * as hookFlags from "../../.skilled/hooks/shared/hook-flags.mjs";
+import * as hookFlags from "../../../../../hooks/shared/hook-flags.mjs";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { runClaudeHookAdapter } from "./lib/claude-hook-adapter.ts";

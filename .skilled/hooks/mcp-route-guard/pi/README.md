@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`pi/` holds the real Pi extension for the MCP route guard. Pi discovers it through the relative symlink `.pi/extensions/mcp-route-guard.ts`, and because Pi resolves imports against that link path, the file imports `hook-flags.mjs` through `../../.skilled/hooks/shared/`. The extension filters on the `mcp_` prefix, dynamic-imports `../lib/mcp-route-guard.cjs`, and returns the core's warnings as the `tool_call` reason.
+`pi/` holds the real Pi extension for the MCP route guard. Pi discovers it through the one-line entry file `.pi/extensions/mcp-route-guard.ts`, which re-exports it, so it loads from this folder and the file imports `hook-flags.mjs` through `../../shared/`. The extension filters on the `mcp_` prefix, dynamic-imports `../lib/mcp-route-guard.cjs`, and returns the core's warnings as the `tool_call` reason.
 
 ---
 

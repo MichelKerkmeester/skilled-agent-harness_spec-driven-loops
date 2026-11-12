@@ -1,1 +1,1 @@
-../../.skilled/hooks/goal/pi/goal-context.ts
+export { default } from '../../.skilled/hooks/goal/pi/goal-context.ts';

@@ -1,0 +1,21 @@
+{
+  "specFolder": "hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports",
+  "description": "Pi adapters import relative to their own folder",
+  "keywords": [
+    "adapters",
+    "import",
+    "relative",
+    "own",
+    "folder"
+  ],
+  "lastUpdated": "2026-11-12T09:07:41.613Z",
+  "specId": "012",
+  "folderSlug": "file-relative-adapter-imports",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "pi-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

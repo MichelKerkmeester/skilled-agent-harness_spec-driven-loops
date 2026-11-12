@@ -14,7 +14,8 @@
     "hooks-plugins-extensions/pi-extensions/008-cache-optimizer-improvement-research",
     "hooks-plugins-extensions/pi-extensions/009-cache-optimizer-measurement-fixes",
     "hooks-plugins-extensions/pi-extensions/010-compat-opt-in-and-image-declaration",
-    "hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard"
+    "hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard",
+    "hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports"
   ],
   "manual": {
     "depends_on": [],

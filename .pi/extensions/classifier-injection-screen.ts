@@ -1,1 +1,1 @@
-../../.skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.ts
+export { default } from '../../.skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.ts';

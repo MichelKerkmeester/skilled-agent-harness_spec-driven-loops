@@ -2,9 +2,9 @@
 // MODULE: Hook Registration Synchronizer
 // ───────────────────────────────────────────────────────────────────
 // The registry must reproduce the committed registration files byte for byte,
-// --check must report a hand-edited file and a missing Pi symlink, and write
-// mode must restore a drifted file while leaving the settings file's other
-// keys alone.
+// --check must report a hand-edited file and a Pi extension entry that is not
+// a one-line re-export, and write mode must restore a drifted file while
+// leaving the settings file's other keys alone.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -24,7 +24,11 @@ function run(root: string, ...args: string[]): { status: number | null; stdout: 
   return { status: result.status, stdout: result.stdout, stderr: result.stderr };
 }
 
-/** A copy of the repository's four registration files plus a Pi extensions directory whose symlinks all resolve. */
+/**
+ * A copy of the repository's four registration files plus a Pi extensions
+ * directory whose re-export entries all resolve: the adapters live under
+ * `real/` and each entry is the one statement Pi loads on every version.
+ */
 function seed(root: string): void {
   for (const file of FILES) {
     fs.mkdirSync(path.dirname(path.join(root, file)), { recursive: true });
@@ -37,7 +41,10 @@ function seed(root: string): void {
   fs.mkdirSync(realDir, { recursive: true });
   for (const extension of new Set(registry.hooks.map((hook) => hook.pi?.extension).filter((value): value is string => Boolean(value)))) {
     fs.writeFileSync(path.join(realDir, extension), 'export default () => {};\n');
-    fs.symlinkSync(path.join('..', '..', 'real', extension), path.join(extensionsDir, extension));
+    fs.writeFileSync(
+      path.join(extensionsDir, extension),
+      `export { default } from '../../real/${extension}';\n`,
+    );
   }
 }
 
@@ -83,16 +90,31 @@ describe('sync-hook-registrations.cjs', () => {
   });
 
   it('reports a Pi extension the registry names but the directory does not carry', () => {
-    const link = path.join(root, '.pi', 'extensions', 'spec-gate-enforce.ts');
-    fs.unlinkSync(link);
+    const entry = path.join(root, '.pi', 'extensions', 'spec-gate-enforce.ts');
+    const reexport = fs.readFileSync(entry, 'utf8');
+    fs.rmSync(entry);
     const missing = run(root, '--check');
     expect(missing.status).toBe(1);
     expect(missing.stderr).toMatch(/spec-gate-enforce\.ts: missing/u);
-    fs.symlinkSync(path.join('..', '..', 'real', 'spec-gate-enforce.ts'), link);
-    fs.unlinkSync(path.join(root, 'real', 'spec-gate-enforce.ts'));
+    fs.writeFileSync(entry, reexport);
+    fs.rmSync(path.join(root, 'real', 'spec-gate-enforce.ts'));
     const dangling = run(root, '--check');
     expect(dangling.status).toBe(1);
     expect(dangling.stderr).toMatch(/spec-gate-enforce\.ts: dangling/u);
+    fs.writeFileSync(path.join(root, 'real', 'spec-gate-enforce.ts'), 'export default () => {};\n');
+  });
+
+  it('reports a Pi extension entry that is a symlink instead of a re-export file', () => {
+    const entry = path.join(root, '.pi', 'extensions', 'spec-gate-enforce.ts');
+    const reexport = fs.readFileSync(entry, 'utf8');
+    fs.rmSync(entry);
+    fs.symlinkSync(path.join('..', '..', 'real', 'spec-gate-enforce.ts'), entry);
+    const linked = run(root, '--check');
+    expect(linked.status).toBe(1);
+    expect(linked.stderr).toMatch(/spec-gate-enforce\.ts: a symlink, which Pi before 1\.5\.1 cannot load/u);
+    fs.rmSync(entry);
+    fs.writeFileSync(entry, reexport);
+    expect(run(root, '--check').status).toBe(0);
   });
 
   it('renders each runtime in its own wrapper dialect from one binding', () => {

@@ -1,10 +1,10 @@
 ---
 title: "Pi Hooks: Skill-Advisor Prompt Bridge"
-description: "Pi extension factory that injects the skill-advisor recommendation into each user turn, discovered through a relative symlink in .pi/extensions/."
+description: "Pi extension factory that injects the skill-advisor recommendation into each user turn, discovered through a one-line entry file in .pi/extensions/ that re-exports it."
 trigger_phrases:
   - "pi prompt advisor"
   - "pi skill advisor hook"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Pi Hooks: Skill-Advisor Prompt Bridge
@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`hooks/pi/` holds the real file behind the `.pi/extensions/prompt-advisor.ts` symlink. Pi resolves its imports against the symlink path, so the file's imports are written for the `.pi/extensions/` base.
+`hooks/pi/` holds the real file behind the `.pi/extensions/prompt-advisor.ts` entry file. Pi discovers it through that one-line entry file, which re-exports it, so it loads from this folder and its imports are relative to this folder.
 
 ---
 
@@ -30,4 +30,4 @@ Exact composition: `runtime/lib/render.ts` (`renderAdvisorBrief()`); visibility 
 ## 3. RELATED
 
 - [`../claude/`](../claude/): the Claude-side advisor hook this bridge proxies into.
-- [`../../../../../.pi/extensions/README.md`](../../../../../.pi/extensions/README.md): the discovery mirror and symlink map.
+- [`../../../../../.pi/extensions/README.md`](../../../../../.pi/extensions/README.md): the discovery mirror and entry map.

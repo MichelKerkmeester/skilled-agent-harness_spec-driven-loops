@@ -13,9 +13,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.pi/extensions/` is Pi's discovery mirror for this repository's hook extensions. Pi auto-discovers every `*.ts` entry here with no `.pi/settings.json` registration required, and calls each file's default export once at session start with an `ExtensionAPI` handle. Every `*.ts` entry is a **relative symlink** to the real file in its owner's tree (probe-verified: Pi's loader accepts symlinks and resolves each extension's relative imports against the symlink path, so imports stay written for this folder as base). The real files live with their owners:
+`.pi/extensions/` is Pi's discovery mirror for this repository's hook extensions. Pi auto-discovers every `*.ts` entry here with no `.pi/settings.json` registration required, and calls each file's default export once at session start with an `ExtensionAPI` handle. Every `*.ts` entry is a **one-line file that re-exports the real adapter** in its owner's tree; Pi discovers the adapter through that entry, so it loads from its real folder and its imports are relative to that folder. The real files live with their owners:
 
-| Symlink here | Real file |
+| Entry here | Real file |
 |---|---|
 | `dispatch-preflight-lint.ts`, `dispatch-audit.ts` | `.skilled/hooks/dispatch/pi/` |
 | `task-dispatch-guard.ts` | `.skilled/hooks/task-dispatch/pi/` |
@@ -57,7 +57,7 @@ extensions/
 +-- git-message-gate.ts         # Blocks a commit message, PR description or branch name that breaks the sk-git templates
 +-- lib/
 |   `-- claude-hook-adapter.ts  # Pi-specific spawnSync proxy into the Claude lifecycle-hook dist files
-`-- README.md                   # (this file and lib/README.md are the only real files here; all *.ts are symlinks)
+`-- README.md                   # (this file, lib/README.md and every *.ts entry are real files; only lib/claude-hook-adapter.ts is a symlink)
 ```
 
 ---
@@ -103,7 +103,7 @@ Two devin/cursor hooks have no Pi equivalent because Pi's own architecture does 
 
 | Boundary | Rule |
 |---|---|
-| Imports | Each file imports only `ExtensionAPI` (type-only) plus its one shared guard-core module (dynamic `import()`) or `lib/claude-hook-adapter.ts` (static import), resolved via a relative path. |
+| Imports | Each file imports only `ExtensionAPI` (type-only) plus its one shared guard-core module (dynamic `import()`) or `lib/claude-hook-adapter.ts` (static import), resolved via a relative path. Each entry is a one-line re-export, so Pi 1.5.0 and Pi 1.5.2 both load the adapter from its real folder. |
 | Exports | Exactly one default-exported `ExtensionFactory` per file. No named exports. |
 | Ownership | Guard decisions belong to the shared `.mjs`/`.cjs` core modules under `.skilled/`. Session-lifecycle decisions belong to the Claude hook dist files under `system-spec-kit/runtime/dist/hooks/claude/`. These files own only event registration, payload construction, and the fail-open wrapper. |
 | Fail-open | Every handler body is wrapped in try/catch. A caught error returns `undefined` (`prompt-advisor.ts`, all others) or `{ action: "continue" }` (`spec-gate-classify.ts` only) for `input` handlers, never a block. |

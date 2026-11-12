@@ -10,7 +10,7 @@ import {
   configPath,
   isHookEnabled,
   loadConfigFile,
-} from '../../.skilled/hooks/shared/hook-flags.mjs';
+} from '../../shared/hook-flags.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. TYPES AND MODULES
@@ -179,10 +179,12 @@ function asModule<T>(value: unknown): T {
   return (moduleValue.default ?? value) as T;
 }
 
-// `../lib/` resolves only from the real `.skilled/hooks/session-relaunch/pi/`
-// path, not the `.pi/extensions/` base this file is typechecked through. The
-// `as string` assertion keeps the typechecker from resolving a missing path
-// while transpilers still emit the literal specifier for the module loader.
+// `../lib/` resolves from this file's own folder, where Pi loads it through its
+// one-line `.pi/extensions/` entry file. The longer specifier resolves only from
+// that folder itself, for a checkout whose entry is still a symlink under a Pi
+// older than 1.5.1. The `as string` assertion keeps the typechecker from
+// resolving either path while transpilers still emit the literal specifier for
+// the module loader.
 function checkedCore(core: CoreModule): CoreModule {
   const exports = core as unknown as Record<string, unknown>;
   for (const name of CORE_FUNCTIONS) {
@@ -199,7 +201,7 @@ async function loadCore(): Promise<CoreModule> {
     core = asModule<CoreModule>(await import('../lib/relaunch-core.cjs' as string));
   } catch {
     core = asModule<CoreModule>(
-      await import('../../.skilled/hooks/session-relaunch/lib/relaunch-core.cjs'),
+      await import('../../.skilled/hooks/session-relaunch/lib/relaunch-core.cjs' as string),
     );
   }
   return checkedCore(core);
@@ -210,7 +212,7 @@ async function loadContextUsage(): Promise<ContextUsageModule> {
     return asModule<ContextUsageModule>(await import('../lib/context-usage.cjs' as string));
   } catch {
     return asModule<ContextUsageModule>(
-      await import('../../.skilled/hooks/session-relaunch/lib/context-usage.cjs'),
+      await import('../../.skilled/hooks/session-relaunch/lib/context-usage.cjs' as string),
     );
   }
 }
@@ -220,7 +222,7 @@ async function loadNudge(): Promise<NudgeModule> {
     return asModule<NudgeModule>(await import('../lib/nudge.cjs' as string));
   } catch {
     return asModule<NudgeModule>(
-      await import('../../.skilled/hooks/session-relaunch/lib/nudge.cjs'),
+      await import('../../.skilled/hooks/session-relaunch/lib/nudge.cjs' as string),
     );
   }
 }
@@ -231,7 +233,7 @@ async function loadWithdraw(): Promise<WithdrawModule> {
     withdraw = asModule<WithdrawModule>(await import('../lib/withdraw.cjs' as string));
   } catch {
     withdraw = asModule<WithdrawModule>(
-      await import('../../.skilled/hooks/session-relaunch/lib/withdraw.cjs'),
+      await import('../../.skilled/hooks/session-relaunch/lib/withdraw.cjs' as string),
     );
   }
   if (typeof withdraw.withdrawHandOver !== 'function') {
@@ -297,8 +299,8 @@ async function resolveRepoRoot(): Promise<string> {
 }
 
 // The killer script sits beside the lib modules this adapter loads, but `import.meta`
-// cannot anchor it: through the `.pi/extensions/` link this file typechecks as
-// CommonJS, which rejects `import.meta`. The extension only runs inside the repository
+// cannot anchor it: in a checkout whose entry is still a symlink, a Pi older than
+// 1.5.1 loads this file by the link's path. The extension only runs inside the repository
 // that owns `.pi/`, so walking up from the session cwd reaches the lib directory the
 // dual-base imports resolved. The trailing join falls back to the root the nudge module
 // resolves, which is the repository holding those modules even from an outside cwd.

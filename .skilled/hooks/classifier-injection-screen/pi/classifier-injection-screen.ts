@@ -13,8 +13,8 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
-import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
-import { fetchedText, screenAdvisory } from '../../.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs';
+import { isHookEnabled } from '../../shared/hook-flags.mjs';
+import { fetchedText, screenAdvisory } from '../lib/classifier-injection-advisory.mjs';
 
 const FETCH_TOOL = 'fetch_content';
 

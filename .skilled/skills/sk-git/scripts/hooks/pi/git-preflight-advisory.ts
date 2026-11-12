@@ -4,7 +4,7 @@
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { join } from "node:path";
-import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.mjs";
+import { isHookEnabled } from "../../../../../hooks/shared/hook-flags.mjs";
 
 const MAX_ADVISORIES = 3;
 
@@ -52,9 +52,9 @@ export default function gitPreflightAdvisory(pi: ExtensionAPI): void {
       if (event.toolName !== "bash" || typeof event.input.command !== "string") return;
 
       const [lint, gitChecks, gitContext] = await Promise.all([
-        import("../../.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs"),
-        import("../../.skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs"),
-        import("../../.skilled/skills/sk-git/scripts/lib/git-context.mjs"),
+        import("../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs"),
+        import("../../lib/git-rule-checks.mjs"),
+        import("../../lib/git-context.mjs"),
       ]);
       const command = event.input.command;
       if (!gitChecks.GIT_SHAPE.test(command)) return;

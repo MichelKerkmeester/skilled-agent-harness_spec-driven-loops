@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.mjs";
+import { isHookEnabled } from "../../shared/hook-flags.mjs";
 
 const WRITE_TOOLS = new Set(["edit", "write"]);
 
@@ -14,7 +14,7 @@ export default function overlayGuard(pi: ExtensionAPI): void {
       if (!WRITE_TOOLS.has(event.toolName)) return undefined;
       if (!isHookEnabled("overlay-guard")) return undefined;
 
-      const imported = await import("../../.skilled/hooks/overlay-guard/lib/overlay-guard.cjs");
+      const imported = await import("../lib/overlay-guard.cjs");
       const guard = imported.default ?? imported;
       const filePath = guard.fileFieldPath(event.input);
       if (!filePath) return undefined;

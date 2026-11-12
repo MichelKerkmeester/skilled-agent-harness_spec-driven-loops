@@ -17,7 +17,7 @@ trigger_phrases:
 Current state:
 
 - One file, two exported functions, no local state and no runtime-neutral policy of its own.
-- Discovered by Pi only through the `.pi/extensions/lib/claude-hook-adapter.ts` symlink; Pi resolves the importing files' relative specifiers against that symlink base, not this folder's real path.
+- Imported by the session adapters in `../` from this folder, so their specifiers are relative to this folder. The `.pi/extensions/lib/claude-hook-adapter.ts` symlink only serves a checkout whose entries are still symlinks.
 - Consumed by two callers today: `../session-start-context.ts` and `../session-stop-context.ts`.
 
 ---
@@ -120,4 +120,4 @@ There is no dedicated unit test for this file. Its two callers (`../session-star
 ## 7. RELATED
 
 - [`../README.md`](../README.md): the Pi session-lifecycle bridges that consume this file.
-- [`../../../../../../../.pi/extensions/README.md`](../../../../../../../.pi/extensions/README.md): the discovery mirror and symlink map this file resolves imports against.
+- [`../../../../../../../.pi/extensions/README.md`](../../../../../../../.pi/extensions/README.md): the discovery mirror and entry map that links to this file.

@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`pi/` holds the real Pi extension for the overlay guard. Pi discovers it through the relative symlink `.pi/extensions/overlay-guard.ts`, and the imports are written for that link base. The extension handles the `edit` and `write` tools, resolves `event.input.path` against `ctx.cwd`, and returns `{block: true, reason}` when the overlay engine says the path is owned.
+`pi/` holds the real Pi extension for the overlay guard. Pi discovers it through the one-line entry file `.pi/extensions/overlay-guard.ts`, which re-exports it, so it loads from this folder and its imports are relative to this folder. The extension handles the `edit` and `write` tools, resolves `event.input.path` against `ctx.cwd`, and returns `{block: true, reason}` when the overlay engine says the path is owned.
 
 ---
 

@@ -8,8 +8,8 @@
 // keyed on the operator's last message: the follow-up arrives as a custom
 // message, never a user one, so every loop of that turn shares the key.
 
-import askSurfaceCore from '../../.skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs';
-import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
+import askSurfaceCore from '../lib/ask-surface-core.cjs';
+import { isHookEnabled } from '../../shared/hook-flags.mjs';
 
 import type { AgentEndEvent, ExtensionAPI } from '@earendil-works/pi-coding-agent';
 

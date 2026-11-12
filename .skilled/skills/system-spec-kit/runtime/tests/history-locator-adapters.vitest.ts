@@ -19,7 +19,7 @@ import {
 } from '../hooks/lib/history/lookup-offer.js';
 import sessionCompactContext, {
   mintHistoryLocator as mintPiLocator,
-} from '../../../../../.pi/extensions/session-compact-context.js';
+} from '../hooks/pi/session-compact-context.js';
 import {
   composeCompactionContext,
   mintHistoryLocator as mintDshLocator,

@@ -2,9 +2,9 @@
 // MODULE: Pi Extension - Decision Capture
 // ───────────────────────────────────────────────────────────────────
 
-import { appendRecords, takeNudge } from '../../.skilled/hooks/decision-capture/lib/capture-core.mjs';
-import { QUESTION_TOOLS, recoveredRecords } from '../../.skilled/hooks/decision-capture/bin/sweep-pi.mjs';
-import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
+import { appendRecords, takeNudge } from '../lib/capture-core.mjs';
+import { QUESTION_TOOLS, recoveredRecords } from '../bin/sweep-pi.mjs';
+import { isHookEnabled } from '../../shared/hook-flags.mjs';
 
 import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
 

@@ -18,7 +18,6 @@ const { pathToFileURL } = require('node:url');
 const core = require('./env-secret-guard.cjs');
 
 const HOOK_ROOT = path.resolve(__dirname, '..');
-const SKILLED_ROOT = path.resolve(HOOK_ROOT, '..', '..');
 const SECRET = 'sk-live-do-not-leak-4f9a';
 
 /** The decision for one tool call; `cwd` defaults to the filesystem root. */
@@ -501,14 +500,11 @@ test('command hook: the kill switch allows a call it would refuse', () => {
 });
 
 test('pi: read and bash on a dotenv file return a block', async (t) => {
-  // Pi resolves an extension's imports against its .pi/extensions path, so the
-  // test copies the extension into a root whose .skilled is the real tree.
+  // Pi reaches the adapter through a one-line entry file that re-exports it, so
+  // the adapter always loads from its own folder and the test imports it there.
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'env-secret-guard-pi-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
-  fs.symlinkSync(SKILLED_ROOT, path.join(root, '.skilled'));
-  fs.mkdirSync(path.join(root, '.pi', 'extensions'), { recursive: true });
-  const target = path.join(root, '.pi', 'extensions', 'env-secret-guard.ts');
-  fs.copyFileSync(path.join(HOOK_ROOT, 'pi', 'env-secret-guard.ts'), target);
+  const target = path.join(HOOK_ROOT, 'pi', 'env-secret-guard.ts');
   const extension = await import(pathToFileURL(target).href);
   let handler;
   extension.default({ on: (event, fn) => { if (event === 'tool_call') handler = fn; } });

@@ -35,10 +35,11 @@ export default defineConfig({
     alias: [
       { find: '@lib', replacement: path.resolve(import.meta.dirname, 'lib') },
       { find: '@spec-kit/shared', replacement: path.resolve(import.meta.dirname, '..', 'shared') },
-      // Hook sources load through runtime symlinks under `.pi`/`.opencode`, so
-      // their relative imports are written against the link's base; this alias
-      // resolves those same specifiers from the real tree, mirroring the
-      // hooks config.
+      // Hook sources load from their real folder under `.pi`/`.opencode`, and Pi
+      // resolves a symlinked entry before its imports, so a few hooks keep a long
+      // `../../.skilled/...` specifier as a fallback for a checkout whose entry is
+      // still a symlink under a Pi older than 1.5.1. This alias resolves those
+      // specifiers from the real tree, mirroring the hooks config.
       {
         find: /^(\.\.\/)+\.(?:skilled|opencode)\//,
         replacement: `${path.resolve(import.meta.dirname, '..', '..', '..')}/`,

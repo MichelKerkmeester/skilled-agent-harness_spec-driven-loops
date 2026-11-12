@@ -66,7 +66,7 @@ Shell commands are not parsed. A write made through `Bash`, `exec` or `Shell` is
 
 The Cursor registration carries no fallback chain. Cursor blocks on exit 2, and a `|| { fallback }` chain would run on that exit, append an allow envelope and exit 0, so the refusal would never reach Cursor.
 
-Pi loads through `.pi/extensions/overlay-guard.ts`, a relative symlink back to `pi/overlay-guard.ts`. Pi resolves the extension's imports against the symlink path, so they are written for the `.pi/extensions/` base. DSH loads through the repo-guards bundle, whose `adapters/overlay-guard.mjs` links back to `dsh/overlay-guard.mjs`. OpenCode loads its plugin from `.opencode/plugins/overlay-guard.js`, and `opencode/overlay-guard.js` is a relative symlink back to it. Nothing loads through that link, because the OpenCode loader globs only `.opencode/plugins/*.js`.
+Pi loads through `.pi/extensions/overlay-guard.ts`, a one-line entry file that re-exports `pi/overlay-guard.ts`. Pi discovers it through that entry file and loads it from this folder, so its imports are relative to this folder. DSH loads through the repo-guards bundle, whose `adapters/overlay-guard.mjs` links back to `dsh/overlay-guard.mjs`. OpenCode loads its plugin from `.opencode/plugins/overlay-guard.js`, and `opencode/overlay-guard.js` is a relative symlink back to it. Nothing loads through that link, because the OpenCode loader globs only `.opencode/plugins/*.js`.
 
 ---
 
@@ -83,7 +83,7 @@ overlay-guard/
 +-- devin/    overlay-guard.cjs  # PreToolUse adapter
 +-- dsh/      overlay-guard.mjs  # tools/pre-execute adapter (linked from the .dsh repo-guards bundle)
 +-- opencode/ overlay-guard.js   # tool.execute.before adapter (symlink to .opencode/plugins/overlay-guard.js)
-+-- pi/       overlay-guard.ts   # Pi tool_call extension (symlinked from .pi/extensions/)
++-- pi/       overlay-guard.ts   # Pi tool_call extension (re-exported from .pi/extensions/)
 `-- tests/
     +-- dsh-overlay-guard.test.mjs  # node --test suite for the DSH adapter
     `-- opencode-overlay-guard.test.mjs  # node --test suite for the OpenCode plugin

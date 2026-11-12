@@ -6,13 +6,12 @@
     "noEmit": true,
     "strict": false,
     "skipLibCheck": true,
-    "allowJs": true,
-    "preserveSymlinks": true
+    "allowJs": true
   },
   "include": [
-    ".pi/extensions/session-relaunch.ts",
-    ".pi/extensions/spec-gate-classify.ts",
-    ".pi/extensions/spec-gate-enforce.ts",
+    ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+    ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts",
+    ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts",
     ".pi/types/pi-coding-agent.d.ts",
     ".pi/types/node-globals.d.ts"
   ]

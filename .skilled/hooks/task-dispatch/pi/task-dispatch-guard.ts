@@ -5,7 +5,7 @@
 // rejection is intentionally advisory-only here.
 
 import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
-import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
+import { isHookEnabled } from '../../shared/hook-flags.mjs';
 
 type DispatchCore = typeof import('../lib/dispatch-guard.cjs');
 
