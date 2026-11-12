@@ -40,9 +40,9 @@ A small shell wrapper repeats a failed `npm ci`, two tests get a deadline that n
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Every check on the pull request passes
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Every check on the pull request passes
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

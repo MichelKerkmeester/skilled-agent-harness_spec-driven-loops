@@ -64,7 +64,7 @@ contextType: "implementation"
 - [x] T012 Run the hook deadline suite under load (`.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs`). Verify: six copies started together, twice, exit 0. Evidence: 12 of 12 exit 0, each with 56 passed.
 - [x] T013 Count the temp folder prefixes before and after the patched files run (`.skilled/skills/sk-git/scripts/lib/message-contract.test.mjs`). Verify: the two counts match. Evidence: 5,193 before and 5,193 after the sk-git and core files, 404 before and 404 after the CLI file.
 - [x] T014 Update the documents that count the blocking suites and cite workflow lines (`.github/workflows/README.md`, `.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md`). Verify: `grep -c 'blocks on 13 gate-critical' .github/workflows/README.md` prints 1 and `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`.
-- [ ] T015 Push the branch and read the checks on the runner (`.github/workflows/advisory-checks.yml`). Verify: `gh pr checks` shows every check passing.
+- [x] T015 Push the branch and read the checks on the runner (`.github/workflows/advisory-checks.yml`). Verify: `gh pr checks` shows every check passing. Evidence: pull request 101, 39 checks pass, 0 fail and 2 Dependabot jobs skip. `Gate-critical node suites (blocking)` passed in 1m59s with the hook deadline suite in it.
 
 <!-- /ANCHOR:phase-3 -->
 
@@ -73,9 +73,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

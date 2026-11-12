@@ -122,7 +122,7 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 17 | 017-specs-artifact-tracking-decision/ | Measure the tracked research and scratch files and write the options | Measured: 88,151 files, decision is the operator's |
 | 18 | 018-cli-vitest-shards/ | Run the CLI vitest job as three shards | Complete: shards at 170, 213 and 277 s against 384 to 627 s for the one job |
 | 19 | 019-local-test-speedups/ | Cut local spec-kit and deep-loop test time without removing a test | Complete: spec-kit 667 s to 256 s and deep-loop 497 s to 225 s locally. The runner's deep-loop step is unchanged at about 350 s |
-| 20 | 020-test-speed-followups/ | Retry a failed install, fix two racy test deadlines and stop five test files leaving temp folders | In progress: all three proven locally, the pull request checks are still to be read |
+| 20 | 020-test-speed-followups/ | Retry a failed install, fix two racy test deadlines and stop five test files leaving temp folders | Complete: pull request 101 passed 39 checks with the hook deadline suite blocking again. The retry is proven against a stand-in npm only |
 
 ### Phase Transition Rules
 
