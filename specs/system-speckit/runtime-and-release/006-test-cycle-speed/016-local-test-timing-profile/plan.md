@@ -42,7 +42,7 @@ Time one `npm test` run in each of the three runtimes and write the command, wal
 ### Definition of Done
 - [ ] All acceptance criteria met
 - [ ] `rg -c '^\| \.skilled/skills/(system-spec-kit|system-skill-advisor|system-deep-loop)/runtime \| npm test \| [0-9]+(\.[0-9]+)? \| [0-9]+ \|$' specs/system-speckit/runtime-and-release/006-test-cycle-speed/016-local-test-timing-profile/scratch/local-test-timings.md` prints `3`
-- [ ] `git status --porcelain --untracked-files=no -- .skilled/skills` prints nothing
+- [ ] `git status --porcelain --untracked-files=no -- .skilled/skills` prints the same six pre-existing modifications as at setup
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/runtime-and-release/006-test-cycle-speed/016-local-test-timing-profile --strict --quiet` prints `RESULT: PASSED`
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
