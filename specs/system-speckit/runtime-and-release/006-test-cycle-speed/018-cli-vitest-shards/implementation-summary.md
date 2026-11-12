@@ -8,26 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards"
-    last_updated_at: "2026-11-12T15:16:41Z"
+    last_updated_at: "2026-11-12T17:43:59Z"
     last_updated_by: "generate-context"
-    recent_action: "Pushed the three-shard CLI vitest matrix to pull request 97"
-    next_safe_action: "Verify the three shard job durations on pull request 97"
+    recent_action: "Recorded the three shard durations and merged the matrix to main"
+    next_safe_action: "Verify the shard durations on later main pushes"
     blockers: []
     key_files:
-      - "specs/system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards/spec.md"
+      - "specs/system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards/implementation-summary.md"
       - ".github/workflows/spec-kit-check.yml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:9704ff86a6f5250408f5077bb852374ca2cc741bae36e15b43e4fad0544dc2f8"
       session_id: "scaffold-018-cli-vitest-shards"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "af05cd33-c1ff-46c9-825e-70281e3ca6f1"
-      workspace: "/Users/michelkerkmeester/worktrees/public/350-test-ci-wait-cuts"
-      savedAt: "2026-11-12T15:16:41Z"
+      workspace: "/Users/michelkerkmeester/worktrees/public/354-test-ci-alignment-fixes"
+      savedAt: "2026-11-12T17:43:59Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

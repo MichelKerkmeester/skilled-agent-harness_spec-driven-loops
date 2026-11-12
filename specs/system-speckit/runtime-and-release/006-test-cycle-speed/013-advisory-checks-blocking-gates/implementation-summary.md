@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "A blocking gate-critical job now runs the eleven spec-kit node suites that pass on the current tree, so a regression in them turns the advisory workflow red instead of reporting success."
+description: "A blocking gate-critical job now runs 12 spec-kit node suites, so a regression in them turns the advisory workflow red instead of reporting success."
 trigger_phrases:
   - "advisory checks blocking gates implementation summary"
 importance_tier: "normal"
@@ -8,22 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates"
-    last_updated_at: "2026-11-12T11:20:00Z"
-    last_updated_by: "code-agent"
-    recent_action: "Added the blocking gate-critical job"
-    next_safe_action: "Push the branch and read the first gate-critical run on CI Node 22"
+    last_updated_at: "2026-11-12T17:43:56Z"
+    last_updated_by: "generate-context"
+    recent_action: "Shipped the blocking job on 12 suites after two corrections"
+    next_safe_action: "Verify the gate-critical job stays green on later main pushes"
     blockers: []
     key_files:
+      - "specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/implementation-summary.md"
       - ".github/workflows/advisory-checks.yml"
-      - ".github/workflows/README.md"
-      - "specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/scratch/gate-critical-run.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:2a5a8f06cd60d4a53834a7d05ee4972aedab024550a808a9234b483525d625fd"
       session_id: "scaffold-013-advisory-checks-blocking-gates"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "af05cd33-c1ff-46c9-825e-70281e3ca6f1"
+      workspace: "/Users/michelkerkmeester/worktrees/public/354-test-ci-alignment-fixes"
+      savedAt: "2026-11-12T17:43:56Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
-    open_questions:
-      - "Whether all eleven suites pass on CI Node 22 is unknown until the first workflow run."
+    open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
@@ -49,6 +54,8 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
+> As shipped: the job blocks on 12 suites. The build chose eleven. A correction added the two it had excluded, which made 13, and a second correction removed `hook-stdin-deadline.test.mjs` after it lost a timing race on the runner. The job also installs and builds the skill advisor, which the hook entries import. Where the text below says eleven, read it as the build's first state.
+
 The advisory workflow no longer reports success while gate-critical suites fail. Eleven of the thirteen spec-kit node suites now run in a blocking `gate-critical` job, so a regression in any of them turns the check red. The two suites that fail on the current tree stay report-only and are named in the run record.
 
 ### Phase 13: advisory-checks-blocking-gates
@@ -64,7 +71,7 @@ The two suites that fail locally, `hook-stdin-deadline.test.mjs` and `spec-gate-
 | `.github/workflows/advisory-checks.yml` | Modified | Adds the blocking `gate-critical` job and rewrites the header comment so it no longer claims every check is report-only. |
 | `.github/workflows/README.md` | Modified | Replaces the "Reports without gating" sentence on the `advisory-checks.yml` row with the blocking job description. |
 | `specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/scratch/gate-critical-run.md` | Created | Records the 13-suite census, the per-suite pass and fail counts, and the eleven-in, two-out split. |
-> Correction after the build: `hook-stdin-deadline.test.mjs` and `spec-gate-core.test.mjs` failed only because the build ran with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0` set. With both unset they pass, 56 of 56 and 107 of 107 with 3 skipped. The blocking job therefore runs all 13 suites: 265 tests, 262 pass, 0 fail.
+> Correction after the build: `hook-stdin-deadline.test.mjs` and `spec-gate-core.test.mjs` failed only because the build ran with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0` set. With both unset they pass, 56 of 56 and 107 of 107 with 3 skipped. The blocking job therefore runs all 13 suites: 265 tests, 262 pass, 0 fail. Second correction, after the runner runs: `hook-stdin-deadline.test.mjs` lost a timing race on one of six runs and went back to report-only, so the job blocks on 12 suites.
 
 <!-- /ANCHOR:what-built -->
 
