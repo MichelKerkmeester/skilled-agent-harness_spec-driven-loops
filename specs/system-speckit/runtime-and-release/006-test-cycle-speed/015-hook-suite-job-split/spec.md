@@ -27,7 +27,7 @@ contextType: "general"
 | **Phase** | 15 of 17 |
 | **Predecessor** | 014-dead-runner-and-step-cleanup |
 | **Successor** | 016-local-test-timing-profile |
-| **Handoff Criteria** | `rg -l 'hooks/vitest\.config\.ts' .github/workflows` prints only `.github/workflows/hook-vitest-suites.yml`, each workflow file lists one job, the `/doctor:ci report` extraction prints `33 0 0`, and the packet validator prints `RESULT: PASSED`. |
+| **Handoff Criteria** | `rg -l 'hooks/vitest\.config\.ts' .github/workflows` prints only `.github/workflows/hook-vitest-suites.yml`, each workflow file lists one job, the `/doctor:ci report` extraction prints `34 0 0` (33 workflow files before the split plus the new one), and the packet validator prints `RESULT: PASSED`. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -86,6 +86,8 @@ $ ls .github/workflows/*.yml | wc -l
 ```
 
 Section 2 quotes the two-job list and the one-workflow census from this block.
+
+The 32-file count is the reading taken when this packet was planned. A sibling packet added a workflow file to the same worktree before this phase ran, so the pre-split tree carried 33 workflow files and the post-split report reads `34 0 0`. The two proof values that matter to this phase, the parse-error count and the flag count, stay at zero.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -137,7 +139,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-005 | The workflow inventory documents the new file | `rg -c 'hook-vitest-suites\.yml' .github/workflows/README.md` prints `3`: one contents row, one coverage-table entry and one `SKILLED_CI_FRESHNESS` entry |
-| REQ-006 | The workflow directory still parses and carries no drift flag | The `/doctor:ci report` extraction prints `33 0 0`, meaning 33 workflows, no parse error and no row, switch, timeout, permissions or pin flag |
+| REQ-006 | The workflow directory still parses and carries no drift flag | The `/doctor:ci report` extraction prints `34 0 0`, meaning 34 workflows (33 before the split plus the new file), no parse error and no row, switch, timeout, permissions or pin flag |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -146,7 +148,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The hook vitest command appears in exactly one workflow: `rg -l 'hooks/vitest\.config\.ts' .github/workflows` prints one line, `.github/workflows/hook-vitest-suites.yml`.
-- **SC-002**: Both workflow files parse and the directory carries no drift: `node .skilled/commands/doctor/scripts/ci-report.cjs --json --no-gh` piped into the flag counter prints `33 0 0`.
+- **SC-002**: Both workflow files parse and the directory carries no drift: `node .skilled/commands/doctor/scripts/ci-report.cjs --json --no-gh` piped into the flag counter prints `34 0 0`.
 - **SC-003**: The split is named for what it runs: the new file's `name` reads `Hook Vitest Suites` and its only job is `hooks-vitest`, while the guard file's only job is `dispatch-enforcement-guard`.
 <!-- /ANCHOR:success-criteria -->
 

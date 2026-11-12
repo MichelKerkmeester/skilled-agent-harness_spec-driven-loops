@@ -23,7 +23,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 
 | Workflow | Responsibility |
 |---|---|
-| `advisory-checks.yml` | Runs advisory test suites, doc-model references, the trigger index freshness check (`generate-trigger-index.mjs --check`) and the AGENTS.md manifest check (`agents-md-manifest.cjs --check`). Reports without gating. |
+| `advisory-checks.yml` | Runs advisory test suites, doc-model references, the trigger index freshness check (`generate-trigger-index.mjs --check`) and the AGENTS.md manifest check (`agents-md-manifest.cjs --check`) as report-only steps, then blocks on the 13 gate-critical node suites. |
 | `agent-mirror-sync.yml` | Keeps the `.skilled` and `.claude` agent mirrors aligned. |
 | `changed-packet-validation.yml` | Validates the spec packets a commit or pull request changed. Compares the set of failing rules at head against the merge base, or the previous tip on a push, and blocks when head fails a rule the base did not. |
 | `chart-corpus.yml` | Checks the chart corpus contract and runs its mutation suite. |
@@ -34,6 +34,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `diagram-corpus.yml` | Checks the diagram corpus contract, its mutation suite and both applicator gates. |
 | `dispatch-enforcement-guard.yml` | Checks that every declared dispatch rule is reachable and discriminates. |
 | `gate-inputs.yml` | Checks that every hook, workflow and composite-action input resolves and that every path filter names both `.opencode/` and `.skilled/`. |
+| `hook-vitest-suites.yml` | Runs the whole `.skilled/hooks` vitest tree: the runtime adapter suites, Pi's preflight lint and directive dedup, and the Codex shell-tool names. |
 | `markdown-link-integrity.yml` | Checks repository Markdown link integrity. |
 | `message-contract.yml` | Holds each pushed commit message, each new branch name and each pull request description to the sk-git templates, so neither a missing hook nor a skipped hook turns the check off. A fork's branch names and a Dependabot pull request's description are not checked. |
 | `naming-standard-guard.yml` | Enforces the repository filesystem naming standard. |
@@ -48,7 +49,8 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `runtime-no-spec-import.yml` | Prevents runtime code from importing the mutable spec tree. |
 | `sk-code-script-tests.yml` | Runs the sk-code script tests, among them the drift-guard runner test. |
 | `sk-doc-rename-harness.yml` | Runs the ten-minute rename tooling fixture harness when sk-doc's scripts change. |
-| `sk-doc-script-tests.yml` | Runs the other sk-doc script tests, among them the durable-directory manifest and README verdict baseline, which walk the whole repository. |
+| `sk-doc-script-tests-filtered.yml` | Runs the sk-doc script tests that read only the sk-doc tree, when an sk-doc path changes, and leaves out the two repository-walking tests and the rename harness. |
+| `sk-doc-script-tests.yml` | Runs the two sk-doc script tests that walk the whole repository on every push, the durable-directory manifest and the README verdict baseline. |
 | `sk-git-script-tests.yml` | Runs all five sk-git script suites in named steps, so a failure names its suite: worktree naming, allocation and provisioning, commit-id naming, legacy branch-name migration, branch stamping, and the message-hook git timeout. |
 | `skill-advisor-stress.yml` | Runs the skill advisor's stress suite, which needs `SPECKIT_RUN_STRESS` and so ran nowhere else, then scans the skill graph and runs the advisor's default suite, which includes the Python compatibility suite. |
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
@@ -62,10 +64,10 @@ The repository's documented flow pushes release lines directly, so a gate that r
 
 | Workflow | Push | Pull request | Why |
 |---|---|---|---|
-| `advisory-checks.yml`, `dispatch-enforcement-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` | yes | yes | Guards over the whole tree |
+| `advisory-checks.yml`, `dispatch-enforcement-guard.yml`, `hook-vitest-suites.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` | yes | yes | Guards over the whole tree |
 | `naming-standard-guard.yml` | `main` and release lines | yes | Runs on `main` and `skilled/v*` pushes and every pull request |
 | `gate-inputs.yml` | yes, no path filter | yes, no path filter | Guards a move of the source tree, the one change a path filter could miss |
-| `chart-corpus.yml`, `command-tree-parity.yml`, `deep-loop-runtime.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `pi-extension-tests.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `sk-code-script-tests.yml`, `sk-doc-rename-harness.yml`, `sk-git-script-tests.yml`, `skill-advisor-stress.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Run only when their inputs change |
+| `chart-corpus.yml`, `command-tree-parity.yml`, `deep-loop-runtime.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `pi-extension-tests.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `sk-code-script-tests.yml`, `sk-doc-rename-harness.yml`, `sk-doc-script-tests-filtered.yml`, `sk-git-script-tests.yml`, `skill-advisor-stress.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Run only when their inputs change |
 | `changed-packet-validation.yml` | yes | yes | Validates the packets a commit changed and blocks only when head fails a rule the base did not. On push it diffs against the previous tip |
 | `agent-mirror-sync.yml`, `comment-hygiene.yml`, `prompt-card-sync.yml` | no | yes | Review-time checks. agent-mirror-sync.yml runs only when an agent file, the mirror checker or the shared package it loads changes; the pre-commit hook runs the same checkers on every commit |
 | `dependabot-auto-merge.yml` | no | yes, Dependabot only | Acts only on Dependabot's own pull requests |
@@ -82,8 +84,8 @@ Every job except the two in `dependabot-auto-merge.yml` carries a job-level cond
 | Variable | Turns off | Workflows |
 |---|---|---|
 | `SKILLED_CI` | Every switched job | All workflows except `dependabot-auto-merge.yml` |
-| `SKILLED_CI_FRESHNESS` | The whole-tree guards, the naming guard, the gate-input check and the changed-packet check | `advisory-checks.yml`, `changed-packet-validation.yml`, `dispatch-enforcement-guard.yml`, `gate-inputs.yml`, `naming-standard-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` |
-| `SKILLED_CI_TESTS` | The path-filtered suites | `chart-corpus.yml`, `command-tree-parity.yml`, `deep-loop-runtime.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `pi-extension-tests.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `sk-code-script-tests.yml`, `sk-doc-rename-harness.yml`, `sk-git-script-tests.yml`, `skill-advisor-stress.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` |
+| `SKILLED_CI_FRESHNESS` | The whole-tree guards, the naming guard, the gate-input check and the changed-packet check | `advisory-checks.yml`, `changed-packet-validation.yml`, `dispatch-enforcement-guard.yml`, `gate-inputs.yml`, `hook-vitest-suites.yml`, `naming-standard-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` |
+| `SKILLED_CI_TESTS` | The path-filtered suites | `chart-corpus.yml`, `command-tree-parity.yml`, `deep-loop-runtime.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `pi-extension-tests.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `sk-code-script-tests.yml`, `sk-doc-rename-harness.yml`, `sk-doc-script-tests-filtered.yml`, `sk-git-script-tests.yml`, `skill-advisor-stress.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` |
 | `SKILLED_CI_REVIEW` | The review-time checks | `agent-mirror-sync.yml`, `comment-hygiene.yml`, `prompt-card-sync.yml` |
 | `SKILLED_CI_REPORTS` | The weekly report and the trigger index rebuild | `strict-pass-freshness-report.yml`, `trigger-index-rebuild.yml` |
 | `SKILLED_CI_MESSAGES` | The message contract | `message-contract.yml` |

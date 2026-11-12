@@ -42,7 +42,7 @@ Move one job, unchanged, into a workflow file named for it: `hooks-vitest` leave
 ### Definition of Done
 - [ ] All acceptance criteria met
 - [ ] `rg -l 'hooks/vitest\.config\.ts' .github/workflows` prints only `.github/workflows/hook-vitest-suites.yml`
-- [ ] The `/doctor:ci report` extraction prints `33 0 0`
+- [ ] The `/doctor:ci report` extraction prints `34 0 0`
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -72,7 +72,9 @@ A push or pull request matching `main` or `skilled/**`, or a manual dispatch, st
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-Setup records the two-job list, the one-workflow census and the 32-file baseline. Implementation creates `hook-vitest-suites.yml`, removes the job from the guard file and adds the three README entries. Verification reruns the parse, the census and the report and expects `33 0 0`.
+Setup records the two-job list, the one-workflow census and the 33-file baseline. Implementation creates `hook-vitest-suites.yml`, removes the job from the guard file and adds the three README entries. Verification reruns the parse, the census and the report and expects `34 0 0`.
+
+The baseline is 33 rather than the 32 this plan first recorded: a sibling packet added a workflow file to the same worktree before this phase ran. The counts in this plan and in `spec.md` were corrected to the tree this phase ran on, and the two drift values, parse errors and flags, stay at zero either way.
 <!-- /ANCHOR:phases -->
 
 ---
