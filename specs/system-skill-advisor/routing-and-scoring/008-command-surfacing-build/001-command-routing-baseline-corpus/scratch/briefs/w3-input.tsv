@@ -1,0 +1,9 @@
+command	owner_skill	policy	description
+/doctor:runtime-mirrors	system-skilled-doctor	run	Check that the agent, command, prompt and hook mirrors in each runtime directory match .skilled.
+/doctor:setup	system-skilled-doctor	run	List every doctor target and run the read-only setup checks, naming the repair command for each failing leg.
+/doctor:sk-code	sk-code	setup=run; quality=ask	Run the sk-code setup battery, or check and create the repository quality config, naming each repair.
+/doctor:sk-skill	sk-doc	check=run; convert=ask	Check a skill against the Skilled format, or convert one to it, plan first.
+/doctor:skill-advisor	system-skill-advisor	skill-budget,parent-skill,skill-graph-freshness,router-reach=run; tune,rebuild=ask	Tune and rebuild the skill advisor, and audit graph freshness, router reach, budgets and parent hubs.
+/doctor:speckit	system-skilled-doctor	run	Diagnose spec-kit retrieval: the generated trigger index, its lookup and the ripgrep recipes.
+/doctor:symlink	system-skilled-doctor	check=run; link,unlink=ask	Check, link or unlink the Skilled checkout in a project repo, plan first.
+/doctor:update	system-skilled-doctor	check=run; align=start; apply,rollback,record-base,compat=ask	Route /doctor:update check, align, apply, rollback, record-base or compat operations for a spec-kit release.

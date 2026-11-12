@@ -1,0 +1,23 @@
+Done.
+
+**File written** (only file touched):
+`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus/scratch/parts/w2.jsonl` — 27 single-line JSON objects, 9 commands × 3 rows.
+
+**Verify output**
+```
+jq -c . .../scratch/parts/w2.jsonl | wc -l
+      27
+exit=0
+```
+
+**Extra checks run**
+- Key set/order uniform across all rows: `id, prompt, row_type, split, expected_command, expected_top, expected_policy, source`
+- 3 rows per `expected_command`, all 9 commands from the TSV covered
+- Plain prompts: 10–16 words each (inside 6–20); grep for `/`, `command`, `doctor`, `subcommand` → clean
+- Route words placed immediately after the command on routed typed rows (`check`, `report`, `setup`, `debug`, `status`); unrouted typed rows (`deep-loop`, `env`, `helper`, `install`) carry a short realistic argument
+- Tune/holdout pairs express the same need in different wording and share `expected_policy`
+
+**Notes / judgment calls**
+- `/doctor:env` and `/doctor:agents-md` plain prompts necessarily use the nouns "environment variables" and "AGENTS.md" — used as domain nouns, not as command names, since the need can't be stated naturally without them.
+- `/doctor:git` plain prompts avoid the literal token "git" (they say "pre-commit hook", "hook that blocks commits") to keep zero lexical overlap with the command name.
+- Nothing else outstanding; no git state touched, no agents or CLIs dispatched.

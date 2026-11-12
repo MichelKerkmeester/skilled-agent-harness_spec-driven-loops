@@ -1,0 +1,57 @@
+{
+  "type": "iteration",
+  "iteration": 4,
+  "run": 4,
+  "runId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "sessionId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "lineageId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write"
+  },
+  "status": "complete",
+  "focus": "Angle 4: Run or ask. Separate workflow selection from required command inputs, execution modes, spec routing choices and high-impact approvals.",
+  "focusTrack": "run-or-ask",
+  "findingsCount": 5,
+  "newInfoRatio": 0.9,
+  "noveltyJustification": "Four findings add command-contract and effect-gate evidence; one extends the prior scoring/output boundary, yielding (4 + 0.5*1) / 5 = 0.90.",
+  "keyQuestions": [
+    "Which one canonical inventory reconciles command metadata, active bridge allow-list rows and doctor routing declarations for all 45 slash commands?",
+    "How should command intent and skill intent combine so plain planning and research prompts reach the matching workflow with acceptable recall and precision?",
+    "What should a command recommendation show, and which commands can the model invoke directly versus asking first?",
+    "How does a plain chat request reach the appropriate command workflow across supported runtimes, and how should skills link to command front doors?",
+    "What benchmark evidence, prior art and failure controls should validate the design?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Using advisor confidence alone to choose a command's execution mode; command routers define distinct startup and checkpoint behavior.",
+    "Inferring a missing positional target from conversation history where the command contract requires an explicit target."
+  ],
+  "edgeCase": "ambiguous-input",
+  "toolsUsed": [
+    "Read",
+    "Grep"
+  ],
+  "sourcesQueried": [
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-config.json",
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-strategy.md",
+    "AGENTS.md:63-84",
+    ".skilled/repo-rules/blast-radius.md:59-100",
+    ".skilled/commands/speckit/plan.md:29-35",
+    ".skilled/commands/speckit/plan.md:65-79",
+    ".skilled/commands/speckit/implement.md:29-60",
+    ".skilled/commands/speckit/complete.md:29-63",
+    ".skilled/commands/create/agent.md:35-70",
+    ".skilled/commands/doctor/git.md:12-20"
+  ],
+  "timestamp": "2026-11-12T09:56:38Z",
+  "durationMs": 100000,
+  "graphEvents": []
+}

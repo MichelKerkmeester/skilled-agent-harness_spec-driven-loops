@@ -1,0 +1,17 @@
+File written and verified.
+
+**File:** `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus/scratch/parts/w4.jsonl`
+
+**Verify output** (`jq -c . <file> | wc -l`): `42`
+
+Additional checks I ran beyond the required one:
+- `jq -e 'keys_unsorted == [...]'` → **OK on all 42 lines**; key order is exactly `id, prompt, row_type, split, expected_command, expected_top, expected_policy, source`.
+- 42 unique ids; 14 commands × 3 lines, each command present exactly once per row-type.
+- Command set in the output is identical to the 14 commands in `w4-input.tsv` (set difference empty), and `expected_top`/`expected_policy` match the TSV columns per command.
+- Scripted rule audit: typed lines start with the exact command token; plain lines are 6–20 words, contain no `/`, no `command` (case-insensitive), no `speckit` namespace token, and share no 4-word run with the command's description. Zero issues.
+
+**Things worth flagging (my judgment, not verified by any gate):**
+- The brief's `/doctor` route-word rule never fired — this shard contains no `/doctor` commands, so every typed prompt is `<command> <short argument>` with no route word.
+- `expected_policy` for `/speckit:search` is `run` per the TSV, while all other rows are `start`/`ask`; that is copied, not inferred.
+- Line 3 for `/speckit:save` ("dump this whole discussion into the packet continuity docs…") sits closest to `/speckit:handoff` in topic space of anything in this file. I differentiated on intent (conversation→docs persistence vs. writing a note plus relaunch prep), but if the corpus score reveals confusion in that pair, that prompt is the first one to reword.
+- Qualification of the plain rows "fits this command better than any other" is authored judgment; the corpus run itself is the only evidence that settles it.

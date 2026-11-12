@@ -1,0 +1,54 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Write exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: write ONE file, `.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts`. It is a vitest ratchet test.
+
+Read these three files first and no other:
+1. `.skilled/skills/system-skill-advisor/runtime/tests/doctor-routing-slice.vitest.ts` - copy its file-header comment style and import style.
+2. `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs` - it exports `scoreCommandCorpus()`, an async function
+   that returns the live baseline object. It sets up its own environment and clock. Do not repeat that setup in the test.
+3. `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json` - only the first 60 lines, to see the shape.
+
+The test file:
+- imports `scoreCommandCorpus` from `'../scripts/routing-accuracy/capture-command-routing-baseline.mjs'`. If TypeScript needs it,
+  put `// @ts-expect-error` is NOT allowed; instead declare the result type locally and cast the import result.
+- reads the committed baseline `scripts/routing-accuracy/command-routing-baseline.json` and the corpus
+  `scripts/routing-accuracy/command-prompts.jsonl` with readFileSync.
+- calls `scoreCommandCorpus()` ONCE in `beforeAll` with a 120000 ms timeout and keeps the result.
+
+One `describe('command routing slice', ...)` with exactly these four tests:
+1. 'matches the captured baseline row by row': build a list of strings, one per row id whose live entry in `rows` differs from the
+   baseline entry (compare with JSON.stringify), plus ids present on only one side. Each string is
+   `<id>: baseline <json> live <json>`. `expect(list, message).toEqual([])` where message says to re-capture with
+   `node scripts/routing-accuracy/capture-command-routing-baseline.mjs --write` when the change is intended.
+2. 'matches the captured totals': `expect(live.metrics).toEqual(baseline.metrics)`, `expect(live.unreachable).toEqual(baseline.unreachable)`
+   and `expect(live.commands).toEqual(baseline.commands)`. Never compare `capturedAtSha`.
+3. 'pins the corpus the baseline was captured against': `expect(live.corpusSha256).toBe(baseline.corpusSha256)`.
+4. 'has a typed row and both plain splits for every command file': for every key of `live.commands` collect the keys where
+   `typed.rows < 1` or `plain.tune.rows < 1` or `plain.holdout.rows < 1`, and expect that list toEqual([]).
+
+Code comments explain why, never name a spec folder, ticket, requirement or task id. No other tests, no helpers file.
+
+VERIFY from `.skilled/skills/system-skill-advisor/runtime`: `npx vitest run tests/command-routing-slice.vitest.ts` must report 4 passed and 0 failed. Fix the test file until it does.
+Do not edit the script, the corpus or the baseline. If the test cannot pass without editing them, stop and report why.

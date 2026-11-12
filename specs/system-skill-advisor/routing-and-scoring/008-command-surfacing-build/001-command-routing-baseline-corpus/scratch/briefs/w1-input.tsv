@@ -1,0 +1,14 @@
+command	owner_skill	policy	description
+/create:agent	sk-doc	start	Create a new OpenCode agent with frontmatter, tool permissions, behavioral rules. Modes :auto, :confirm.
+/create:benchmark	sk-doc	start	Author or update family-keyed benchmark packages. Modes :auto, :confirm.
+/create:changelog	sk-doc	start	Create a global changelog entry. Topology-aware, optional GitHub release. :auto/:confirm.
+/create:command	sk-doc	start	Create or update OpenCode slash command sets with :auto/:confirm workflow assets.
+/create:diff	sk-doc	start	Create a self-contained before/after document diff report via the create-diff engine. Modes :auto, :confirm.
+/create:feature-catalog	sk-doc	start	Create or update feature catalog packages via one unified command. Modes :auto, :confirm.
+/create:goal	sk-doc	start	Author or revise a packet goal.md: top-level, phase-parent, child, retrofit, phase-add, amend. :auto/:confirm.
+/create:manual-testing-playbook	sk-doc	start	Create or update manual testing playbook packages via one unified command. Modes :auto, :confirm.
+/create:readme	sk-doc	start	Folder README creation, general or code-folder, with sk-doc quality standards. Modes :auto, :confirm.
+/create:repo-rule	sk-doc	start	Create, revise or retire a repo rule under repo-rules/, wired into REPO RULES.md. :auto/:confirm.
+/create:skill-parent	sk-doc	start	Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth). :auto/:confirm.
+/create:skill	sk-doc	start	Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.
+/create:with-human-voice	sk-doc	start	Apply or score prose against the Human Voice Rules with a scope gate and a re-scan. :auto/:confirm.

@@ -1,0 +1,32 @@
+All ten iterations, the synthesis, and the gateway ledger are complete. Final state verified on disk:
+
+## Iteration cycle (10/10)
+
+**Focus coverage** — one distinct evidence surface per iteration: inventory → scoring → output contract → run/ask → invocation → chat-only → linkage → measurement → prior art → failure modes.
+
+**Findings**: 83 numbered findings, all cited (`[SOURCE:]`/`[INFERENCE:]`), 10 recorded `ruled_out` directions, 4 invariants, 3 observations.
+**newInfoRatio**: 1.00 mean (threshold 0.05 was telemetry only under `stopPolicy: max-iterations`).
+**Questions answered**: 8 of 9 strategy boxes ticked; Q1 (inventory) answered in the synthesis with the tick reconciliation recorded (its three clauses were answered across iterations 1/4/8, and the cap closed before a record could carry the exact text).
+
+**Headline results**
+- 45 commands; 62 bridge entries over 43 command strings; 5 unbridged commands, 3 dead bridge ids, 22 commands with no TS-enabled bridge — exactly the `/speckit:plan` and `/deep:research` families behind the spec's zero-recommendation measurement.
+- Prose reaches command ids through 8 hand-written phrase rows (3 command families); typed slashes *rank the skill above the bridge*. No "no-slash penalty" constant exists.
+- Public schema is strict with no `kind`/`command`/`policy`; the brief only says "use {label}"; runnable strings are doctor-only; the 218-char directive rides outside the 80/120-token cap.
+- `_routes.yaml` is the only machine-readable risk taxonomy (15 read-only / 2 add-only / 18 mutates) and feeds `readOnly` into the scorer but not the inventory; the blast-radius ladder already supplies the run/ask vocabulary.
+- The advisor path lacks the `AI_SESSION_CHILD` gate that Gate 3 has, and `/doctor:skill-advisor tune` closes a brief→command→advisor cycle.
+- Cursor documents its dynamic adapter as dormant, so the binding sentence must work with no brief at all.
+
+## Files written (all inside `…/research/lineages/pi-deepseek/`)
+
+- `iterations/iteration-001.md` … `iteration-010.md`
+- `deltas/iter-001.jsonl` … `iter-010.jsonl` (102 rows)
+- `research.md` (17 sections, 45-row per-command verdict table, Eliminated Alternatives, Divergence Map, Convergence Report)
+- `deep-research-config.json` (status `complete`), `deep-research-strategy.md`, `findings-registry.json` (83 key findings), `deep-research-dashboard.md`, `resource-map.md`
+- `deep-research-state.jsonl` — gateway-owned: 12 rows = 1 config + 10 iteration + 1 `synthesis_complete` (`stopReason: maxIterationsReached`, 10/10 iterations, answered 8/9)
+- Ledger receipts: seq 1 (run initialized) … seq 12 (synthesis); lock acquired and released (nonce `97469-…-4e002af817d8`)
+
+**Verification**: iteration files exist and are non-empty; every finding cited; one gateway record per iteration plus the synthesis, exit 0 each; reducer run after every iteration and at synthesis (`corruptionCount: 0`); reducer-owned files untouched by hand; no sub-agent dispatch; containment confirmed — the only tracked change outside the untracked packet is `routing-and-scoring/graph-metadata.json`, which is byte-identical to the containment baseline taken at spawn time, so it predates this lineage.
+
+**Deviations recorded (not absorbed)**: `step_writeback_spec_findings` would edit the packet `spec.md`, outside this lineage's write surface, so synthesis was delivered to `research.md` and the findback left to the merged run; iteration records carry no `executor` block (the fanout workflow owns provenance); `synthesis-closeout.cjs` stamped its event scope `runId: "pi-deepseek"` (artifact-dir derived) rather than the session id carried by the iteration records.
+
+FANOUT_LINEAGE_COMPLETE:pi-deepseek

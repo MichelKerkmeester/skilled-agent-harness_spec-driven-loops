@@ -1,0 +1,59 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "run": 2,
+  "runId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "sessionId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "lineageId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write"
+  },
+  "status": "complete",
+  "focus": "Angle 2: Scoring. Examine how command and skill intent combine, how plain-chat and typed-command evidence affect rank, and how eligibility and run-or-ask gates interact.",
+  "focusTrack": "scoring",
+  "findingsCount": 5,
+  "newInfoRatio": 0.7,
+  "noveltyJustification": "Two findings add new scoring/action-boundary evidence; three extend the inventory findings with routing-status, bridge-source and runtime-identity constraints, yielding (2 + 0.5*3) / 5 = 0.70.",
+  "keyQuestions": [
+    "Which one canonical inventory reconciles command metadata, active bridge allow-list rows and doctor routing declarations for all 45 slash commands?",
+    "How should command intent and skill intent combine so plain planning and research prompts reach the matching workflow with acceptable recall and precision?",
+    "What should a command recommendation show, and which commands can the model invoke directly versus asking first?",
+    "How does a plain chat request reach the appropriate command workflow across supported runtimes, and how should skills link to command front doors?",
+    "What benchmark evidence, prior art and failure controls should validate the design?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Using the command ranking adjustment as an authorization rule: the source applies it only inside result ordering.",
+    "Assuming every command file is an eligible bridge: projection distinguishes explicit disabled rows and runtime compatibility data contains identity divergence."
+  ],
+  "edgeCase": "contradictory-evidence",
+  "toolsUsed": [
+    "Read",
+    "Grep",
+    "Bash"
+  ],
+  "sourcesQueried": [
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-config.json",
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-strategy.md",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:548-570",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:660-690",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1196-1204",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:62-66",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1239-1242",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md:58-64",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json:368-387",
+    "AGENTS.md:63-70",
+    "AGENTS.md:86-89"
+  ],
+  "timestamp": "2026-11-12T09:49:55Z",
+  "durationMs": 123000,
+  "graphEvents": []
+}

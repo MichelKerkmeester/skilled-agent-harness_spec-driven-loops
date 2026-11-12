@@ -1,0 +1,23 @@
+**File written** (only this one): `.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts`
+
+**Verify output** — from `.skilled/skills/system-skill-advisor/runtime`:
+
+```
+npx vitest run tests/command-routing-slice.vitest.ts
+ RUN  v4.1.12 .../runtime
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Duration  3.97s
+EXIT: 0
+```
+
+**What the test does**
+- `beforeAll` reads `command-routing-baseline.json` and `command-prompts.jsonl` with `readFileSync`, then calls `scoreCommandCorpus()` once (120 s timeout) and keeps the result. No environment or clock setup is repeated — the capture script owns both.
+- The `.mjs` import is cast to a locally declared `CommandRoutingBaseline` shape (no `@ts-expect-error`).
+- Four tests exactly as specified: row-by-row `JSON.stringify` diff (ids from corpus ∪ baseline ∪ live, absent rows rendered `<missing>`, message names `node scripts/routing-accuracy/capture-command-routing-baseline.mjs --write`), metrics/unreachable/commands equality with `capturedAtSha` skipped, `corpusSha256` pin, and per-command non-empty typed/tune/holdout rows across all 44 `live.commands` keys.
+
+**Pre-check before writing** (node, no files touched): 175 corpus rows = 175 baseline rows = 175 live rows, 0 row diffs, all totals and the corpus hash identical, 0 commands with an empty split — so no script, corpus or baseline edit was needed.
+
+**Could not do / not done:** nothing in scope left undone. I did not run repo-wide typecheck (the runtime `tsconfig.json` excludes `tests/`), did not commit or touch git state, and touched no other file; `git status` shows only `?? .../tests/command-routing-slice.vitest.ts` as new from this task.
+
+**Operator's next step:** none for this file — it is ready for the orchestrator to wire into the routing gate.

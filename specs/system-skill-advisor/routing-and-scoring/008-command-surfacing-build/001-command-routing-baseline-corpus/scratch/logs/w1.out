@@ -1,0 +1,18 @@
+**File written:** `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus/scratch/parts/w1.jsonl` (untracked, 39 lines, one JSON object per line).
+
+**Verify output (the required command):**
+```
+jq -c . .../parts/w1.jsonl | wc -l
+39
+```
+
+**Other checks I ran, all passing:**
+- Key order exactly `id, prompt, row_type, split, expected_command, expected_top, expected_policy, source` on all 39 rows; 8 keys each.
+- 13 commands × exactly 3 rows, one per `typed` / `plain tune` / `plain holdout`; ids unique, no duplicate prompts.
+- Every typed prompt starts with its `expected_command` verbatim + a short argument.
+- Every plain prompt 11–20 words, no `/`, no `command`, 0 rows sharing a 3-consecutive-word run with its description (I reworded one row that sat at exactly 3 to clear even the permissive reading).
+- `expected_top` = `sk-doc` and `expected_policy` = `start` for all; `source` = `authored-deepseek`.
+
+**Deviations / notes:**
+- No `/doctor` rows exist in the input file (all 13 rows are `/create:*`, policy `start`), so the "/doctor route word after the command" rule had nothing to apply to; no expected_policy other than `start` appears.
+- The non-`/create:` entries in `git status` (spec 007 research artifacts) are pre-existing staged files from other work; my diff is only the untracked w1.jsonl. I touched no other file and ran no git mutation.

@@ -1,0 +1,63 @@
+{
+  "type": "iteration",
+  "iteration": 10,
+  "run": 10,
+  "runId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "sessionId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "lineageId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write"
+  },
+  "status": "complete",
+  "focus": "Angle 10: Failure modes. Inspect over/under-triggering, command-skill ambiguity, child recursion, loop stops and prompt-budget loss.",
+  "focusTrack": "failure-modes",
+  "findingsCount": 5,
+  "newInfoRatio": 0.8,
+  "noveltyJustification": "Three findings add one-sided prompt-gate coverage, explicit leaf-recursion controls and conflicting stop-policy configuration; two extend prior ambiguity and brief-budget evidence.",
+  "keyQuestions": [
+    "Which one canonical inventory reconciles command metadata, active bridge allow-list rows and doctor routing declarations for all 45 slash commands?",
+    "How should command intent and skill intent combine so plain planning and research prompts reach the matching workflow with acceptable recall and precision?",
+    "What should a command recommendation show, and which commands can the model invoke directly versus asking first?",
+    "How does a plain chat request reach the appropriate command workflow across supported runtimes, and how should skills link to command front doors?",
+    "What benchmark evidence, prior art and failure controls should validate the design?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Using prompt fire/no-fire coverage that checks only positive routeable examples as the sole overtrigger regression gate.",
+    "Treating confidence alone as execution authority.",
+    "Allowing a leaf executor to re-enter a parent loop or launch the same CLI from itself.",
+    "Treating the 80-token cap as a guarantee that the full rendered brief, including directives, remains within that token estimate."
+  ],
+  "edgeCase": "contradictory-evidence",
+  "toolsUsed": [
+    "Read",
+    "Grep",
+    "Bash"
+  ],
+  "sourcesQueried": [
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-config.json:3-9,96",
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-state.jsonl",
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-strategy.md:123-165,293-296",
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/steer.md (absent)",
+    "AGENTS.md:60-89",
+    ".skilled/skills/system-skill-advisor/runtime/tests/prompt-policy-gold-replay.vitest.ts:44-83",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-routing-corpus.py:142-181",
+    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/typed-command-routing.vitest.ts:59-101",
+    ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:97-100,185-191,517-563",
+    ".skilled/skills/system-skill-advisor/runtime/tests/doctor-brief-render.vitest.ts:57-64,103-112",
+    ".skilled/skills/system-deep-loop/deep-research/SKILL.md:82-90",
+    ".skilled/agents/deep-research.md:61-67",
+    ".skilled/commands/deep/assets/deep-research-auto.yaml:771-777"
+  ],
+  "timestamp": "2026-11-12T10:17:37Z",
+  "durationMs": 136000,
+  "graphEvents": []
+}

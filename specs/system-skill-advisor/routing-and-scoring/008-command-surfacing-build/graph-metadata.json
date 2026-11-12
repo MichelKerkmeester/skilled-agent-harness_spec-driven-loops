@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "parent_id": "system-skill-advisor/routing-and-scoring",
+  "children_ids": [
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/002-command-inventory-and-risk-metadata",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-recommendation-contract-and-brief",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-gate-2-binding-and-runtime-pointers",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-per-runtime-behaviour-proof"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command surfacing build phase parent spec"
+    ],
+    "key_topics": [
+      "command",
+      "surfacing",
+      "phase",
+      "parent",
+      "spec",
+      "repository",
+      "ships",
+      "tracked",
+      "slash",
+      "commands",
+      "own",
+      "complete"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills",
+    "created_at": "2026-11-12T12:27:33Z",
+    "last_save_at": "2026-11-12T14:06:34.771Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:87b42c4fedd8a4cab82f86b63fa18c064bc255e8ec2a6483455e3603bdae543a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f8cc802121fcaa581182df35308e274c217fbf385d92b8bb23bb9802b49ce735"
+    },
+    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/002-command-inventory-and-risk-metadata",
+    "last_active_at": "2026-11-12T14:06:31.759Z"
+  }
+}

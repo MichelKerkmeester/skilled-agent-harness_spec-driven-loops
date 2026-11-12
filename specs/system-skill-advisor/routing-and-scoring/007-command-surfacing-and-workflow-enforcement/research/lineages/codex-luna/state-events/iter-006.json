@@ -1,0 +1,56 @@
+{
+  "type": "iteration",
+  "iteration": 6,
+  "run": 6,
+  "runId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "sessionId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "lineageId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write"
+  },
+  "status": "complete",
+  "focus": "Angle 6: Plain-chat-only users. Determine how ordinary language reaches command routes and where the current fallback or runtime coverage leaves gaps.",
+  "focusTrack": "chat-only-routing",
+  "findingsCount": 5,
+  "newInfoRatio": 0.9,
+  "noveltyJustification": "Four findings establish the no-slash routing path and its gaps; one extends the prior runtime-mechanics evidence, yielding (4 + 0.5*1) / 5 = 0.90.",
+  "keyQuestions": [
+    "Which one canonical inventory reconciles command metadata, active bridge allow-list rows and doctor routing declarations for all 45 slash commands?",
+    "How should command intent and skill intent combine so plain planning and research prompts reach the matching workflow with acceptable recall and precision?",
+    "What should a command recommendation show, and which commands can the model invoke directly versus asking first?",
+    "How does a plain chat request reach the appropriate command workflow across supported runtimes, and how should skills link to command front doors?",
+    "What benchmark evidence, prior art and failure controls should validate the design?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Requiring users to type a slash command before command intent can be scored; active TypeScript bridges have natural-language phrase signals.",
+    "Assuming a plain phrase reaches every bridge identically across TypeScript and Python; doctor fallback behavior differs."
+  ],
+  "edgeCase": "contradictory-evidence",
+  "toolsUsed": [
+    "Read",
+    "Grep"
+  ],
+  "sourcesQueried": [
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-config.json",
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-strategy.md",
+    ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:33-43",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:377-410",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:4-10",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:14-45",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md:58-62",
+    "AGENTS.md:63-70",
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/iterations/iteration-001.md:12-14"
+  ],
+  "timestamp": "2026-11-12T10:03:26Z",
+  "durationMs": 125000,
+  "graphEvents": []
+}

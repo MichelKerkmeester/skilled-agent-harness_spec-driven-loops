@@ -1,0 +1,1667 @@
+{
+  "sessionId": "fanout-pi-deepseek-1794475749931-e4ukfw",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 8,
+    "totalQuestions": 9,
+    "timestamp": "2026-11-12T09:36:27.020Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-of-the-45-commands-in-skilled-commands-have-an-active-advisor-bridge-which",
+      "inboxId": null,
+      "text": "Which of the 45 commands in .skilled/commands have an active advisor bridge, which bridges point at retired or unmatched names, and what would one drift-proof inventory require?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-why-do-plain-planning-and-research-prompts-return-zero-recommendations-and-what-",
+      "inboxId": null,
+      "text": "Why do plain planning and research prompts return zero recommendations, and what do the no-slash penalty and the mutating-command gate cost in recall versus what they buy in precision?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-must-the-advisor-recommend-output-contract-carry-kind-runnable-brief-wordin",
+      "inboxId": null,
+      "text": "What must the advisor_recommend output contract carry (kind, runnable, brief wording, token budget) for a model to act on a surfaced command instead of a raw bridge id?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-commands-are-safe-to-start-without-asking-which-need-a-question-first-and-",
+      "inboxId": null,
+      "text": "Which commands are safe to start without asking, which need a question first, and where should that run-or-ask policy live?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-can-a-model-start-a-slash-command-by-itself-on-claude-code-opencode-codex-pi-cur",
+      "inboxId": null,
+      "text": "Can a model start a slash command by itself on Claude Code, OpenCode, Codex, Pi, Cursor, Devin and DSH, and what fallback exists where it cannot?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-6-which-mechanism-actually-brings-a-plain-chat-request-onto-the-command-workflow-o",
+      "inboxId": null,
+      "text": "Which mechanism actually brings a plain-chat request onto the command workflow on every runtime: advisor brief, AGENTS.md gate, hook, skill-to-command pointer, or runner refusal?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-7-which-command-workflows-never-load-the-mode-skill-md-their-metadata-names-and-sh",
+      "inboxId": null,
+      "text": "Which command workflows never load the mode SKILL.md their metadata names, and should a skill recommendation imply its command?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-8-which-benchmark-rows-and-metrics-separate-a-missed-command-from-a-wrongly-starte",
+      "inboxId": null,
+      "text": "Which benchmark rows and metrics separate a missed command from a wrongly started one?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    },
+    {
+      "id": "question-9-what-prior-art-exists-for-routing-free-text-to-a-packaged-workflow-and-which-fai",
+      "inboxId": null,
+      "text": "What prior art exists for routing free text to a packaged workflow, and which failure modes (over-trigger, command/skill ambiguity, child sessions starting commands, loops, brief budget) must a design guard against?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-which-of-the-45-commands-in-skilled-commands-have-an-active-advisor-bridge-which",
+      "inboxId": null,
+      "text": "Which of the 45 commands in .skilled/commands have an active advisor bridge, which bridges point at retired or unmatched names, and what would one drift-proof inventory require?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-2-why-do-plain-planning-and-research-prompts-return-zero-recommendations-and-what-",
+      "inboxId": null,
+      "text": "Why do plain planning and research prompts return zero recommendations, and what do the no-slash penalty and the mutating-command gate cost in recall versus what they buy in precision?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-what-must-the-advisor-recommend-output-contract-carry-kind-runnable-brief-wordin",
+      "inboxId": null,
+      "text": "What must the advisor_recommend output contract carry (kind, runnable, brief wording, token budget) for a model to act on a surfaced command instead of a raw bridge id?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-which-commands-are-safe-to-start-without-asking-which-need-a-question-first-and-",
+      "inboxId": null,
+      "text": "Which commands are safe to start without asking, which need a question first, and where should that run-or-ask policy live?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-can-a-model-start-a-slash-command-by-itself-on-claude-code-opencode-codex-pi-cur",
+      "inboxId": null,
+      "text": "Can a model start a slash command by itself on Claude Code, OpenCode, Codex, Pi, Cursor, Devin and DSH, and what fallback exists where it cannot?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-6-which-mechanism-actually-brings-a-plain-chat-request-onto-the-command-workflow-o",
+      "inboxId": null,
+      "text": "Which mechanism actually brings a plain-chat request onto the command workflow on every runtime: advisor brief, AGENTS.md gate, hook, skill-to-command pointer, or runner refusal?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-7-which-command-workflows-never-load-the-mode-skill-md-their-metadata-names-and-sh",
+      "inboxId": null,
+      "text": "Which command workflows never load the mode SKILL.md their metadata names, and should a skill recommendation imply its command?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "question-8-which-benchmark-rows-and-metrics-separate-a-missed-command-from-a-wrongly-starte",
+      "inboxId": null,
+      "text": "Which benchmark rows and metrics separate a missed command from a wrongly started one?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8
+    },
+    {
+      "id": "question-9-what-prior-art-exists-for-routing-free-text-to-a-packaged-workflow-and-which-fai",
+      "inboxId": null,
+      "text": "What prior art exists for routing free text to a packaged workflow, and which failure modes (over-trigger, command/skill ambiguity, child sessions starting commands, loops, brief budget) must a design guard against?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "9 of 9 key questions remain open; Q1 is two-thirds answered.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "8 of 9 remain open.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "7 of 9 remain open.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "6 of 9 remain open.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "5 of 9 remain open.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "4 of 9 remain open.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "3 of 9 remain open.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "2 of 9 remain open.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "1 of 9 remains open (failure modes, which this iteration touched but did not close).",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None of the nine key questions remains open. Two carry-forward uncertainties are recorded for synthesis: whether doctor YAML workflows load their `skill_agent` skill (iteration 7 edge case), and whether the child-session brief is delivered in practice on each runtime (this iteration's missing dependency).",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Which of the 45 commands in .skilled/commands have an active advisor bridge, which bridges point at retired or unmatched names, and what would one drift-proof inventory require?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-skilled-commands-holds-exactly-45-command-markdown-files-grouped-as-13-create-3-",
+      "text": "`.skilled/commands` holds exactly 45 command markdown files, grouped as 13 `create/`, 3 `deep/`, 3 `design/`, 17 `doctor/`, 1 `local-skilled-alignment.md`, 1 `prompt/improve.md`, and 7 `speckit/` [SOURCE: .skilled/commands/speckit/plan.md:1]. A naive recursive walk over the tree reports 90 files because `doctor/scripts/tests/fixtures/**` contains fixture \"commands\" that are not commands; any inventory count must exclude fixture paths or it doubles the denominator [SOURCE: .skilled/commands/doctor/scripts/tests/fixtures/sk-skill-check/hubs/hub-gap/SKILL.md:1].",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/ (groups: create 13, deep 3, design 3, doctor 17, local 1, prompt 1, speckit 7)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-1-4-five-shipped-commands-have-no-bridge-entry-under-their-own-command-string-local-",
+      "text": "Five shipped commands have no bridge entry under their own command string: `/local-skilled-alignment`, `/prompt:improve`, `/speckit:handoff`, `/speckit:save`, `/speckit:search` [SOURCE: .skilled/commands/speckit/handoff.md:1]. `/prompt:improve` is reachable only through the legacy `/prompt` id in the allow-list, whose own `reason` field says the Python scorer \"still recognizes legacy /prompt while JSON declares /prompt:improve\" [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json:51].",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/ (groups: create 13, deep 3, design 3, doctor 17, local 1, prompt 1, speckit 7)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-1-3-only-three-hubs-declare-command-metadata-json-at-all-system-deep-loop-sk-design-",
+      "text": "Only three hubs declare `command-metadata.json` at all — `system-deep-loop`, `sk-design`, `sk-doc` — so nine of the command groups reach the inventory only through hand-maintained allow-list entries or doctor routes [SOURCE: .skilled/skills/sk-doc/command-metadata.json:1].",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/ (groups: create 13, deep 3, design 3, doctor 17, local 1, prompt 1, speckit 7)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-1-7-ten-command-strings-carry-multiple-bridge-ids-all-of-them-doctor-routes-e-g-doct",
+      "text": "Ten command strings carry multiple bridge ids, all of them doctor routes, e.g. `/doctor:skill-advisor` → six ids (`…-tune`, `…-rebuild`, `…-skill-budget`, `…-skill-graph-freshness`, `…-router-reach`, `…-parent-skill`) [SOURCE: .skilled/commands/doctor/_routes.yaml:1]. So bridge ids are finer-grained than commands: one doctor command fronts 2-6 routable subcommands, while every other command is one id — a per-id recommendation surface cannot be turned into a per-command contract without a grouping key.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/ (groups: create 13, deep 3, design 3, doctor 17, local 1, prompt 1, speckit 7)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-bridge-inventory-is-generated-by-summing-three-sources-19-entries-from-the-t",
+      "text": "The bridge inventory is generated by summing three sources — 19 entries from the three hub `command-metadata.json` files, 8 from `allow-list.json`, and 35 from `doctor/_routes.yaml` — for 62 entries covering 43 distinct command strings [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1]. The `counts` block states this explicitly: `commandMetadata: 19, allowList: 8, doctorRoutes: 35, generated: 62` [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1].",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/ (groups: create 13, deep 3, design 3, doctor 17, local 1, prompt 1, speckit 7)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-1-8-the-brief-has-exactly-one-runnable-string-path-and-it-is-doctor-only-recommendat",
+      "text": "The brief has exactly one runnable-string path, and it is doctor-only: `recommendationLabel()` returns `doctorCommandString(skillId)` when the id starts with `command-doctor-`, else `sanitizeSkillLabel(skillId)` — the raw id — and the runnable strings come from a 35-entry hand-generated map `DOCTOR_COMMAND_STRINGS` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:228]. The map's own comment says it is \"Generated by derive-command-bridges.cjs from the doctor route manifest\" [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:109].",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/ (groups: create 13, deep 3, design 3, doctor 17, local 1, prompt 1, speckit 7)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-1-9-the-recommendation-payload-already-carries-a-kind-field-with-a-command-variant-i",
+      "text": "The recommendation payload already carries a `kind` field with a `command` variant internally — `kind: recommendation.kind === 'command' ? 'command' : 'skill'` — but nothing in the inventory model marks a bridge as a command kind; the field is only a rendering-time widening of what callers passed in [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:253].",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/ (groups: create 13, deep 3, design 3, doctor 17, local 1, prompt 1, speckit 7)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-typescript-scorer-enables-only-40-of-the-62-entries-and-22-distinct-commands",
+      "text": "The TypeScript scorer enables only 40 of the 62 entries, and 22 distinct commands therefore have no TS-enabled bridge: all 11 `/create:*` commands except `agent` and `manual-testing-playbook`, `/deep:ai-council`, `/deep:research`, `/deep:review`, `/design:chart`, `/design:diagram`, `/design:extract`, `/prompt`, and `/speckit:complete|implement|plan|resume` [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1]. The Python scorer enables 50. Overlap with the spec's measured behavior is exact: the two prompts that returned no recommendation in the spec (`plan a new feature…`, `research how our retrieval scoring works…`) belong to the two groups whose bridges are TS-disabled [SOURCE: specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md:43].",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/ (groups: create 13, deep 3, design 3, doctor 17, local 1, prompt 1, speckit 7)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-1-5-three-bridge-commands-have-no-command-file-at-all-memory-save-two-ids-command-me",
+      "text": "Three bridge commands have no command file at all: `/memory:save` (two ids: `command-memory-save` and `memory:save`), `/prompt`, and the deprecated `/spec_kit` [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json:37]. The allow-list's `/spec_kit` reason says the deprecated generic bridge \"remains live for one-release compatibility\", and `command-memory-save` reasons that `system-spec-kit` \"has no command-metadata.json yet\" [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json:41].",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/ (groups: create 13, deep 3, design 3, doctor 17, local 1, prompt 1, speckit 7)",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/allow-list.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        ".skilled/commands/doctor/_routes.yaml",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-2-5-even-a-typed-slash-command-ranks-the-owning-skill-above-the-bridge-deep-research",
+      "text": "Even a typed slash command ranks the owning *skill* above the bridge: `/deep:research` boosts `[['system-deep-loop', 1.6], ['command-spec-kit', 0.45]]`, `/deep:review` the same, and `/speckit:resume` boosts `[['system-spec-kit', 0.9], ['command-spec-kit', 0.75]]` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:97]. The typed-command path therefore *is* a skill recommendation by construction; the bridge id surfaces only as a lower-weight runner-up, which is what the spec's brief shows as a bare `command-spec-kit` [SOURCE: specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md:34].",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-2-6-one-rule-actively-pushes-a-bridge-down-after-speckit-resume-the-explicit-lane-em",
+      "text": "One rule actively pushes a bridge down: after `/speckit:resume`, the explicit lane emits `command-spec-kit` at -1.0 with evidence `speckit-resume-skill-disambiguation`, so the resume path deliberately removes the bridge instead of surfacing it [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:349].",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-2-8-only-15-of-the-62-generated-command-projections-carry-readonly-true-and-all-15-a",
+      "text": "Only 15 of the 62 generated command projections carry `readOnly: true`, and all 15 are doctor routes (`command-doctor-setup`, `…-agents-md-check`, `…-ci-report`, `…-install`, `…-overlay-status`, `…-symlink-check`, `…-sk-skill-check`, `…-helper`, two `…-git/sk-code setup`, six `…-skill-advisor-*`) [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:255]. No non-doctor command is declared read-only, so the read-only lift is unreachable for 30 of the 45 commands even where a bridge exists.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-2-4-plain-chat-does-reach-command-ids-on-exactly-one-path-and-it-is-hand-mapped-phra",
+      "text": "Plain chat does reach command ids on exactly one path, and it is hand-mapped: `PHRASE_BOOSTS` in the explicit lane contains 8 phrase rows that name a command id — `create:agent`, `create:manual-testing-playbook`/`command-create-manual-testing-playbook`, and `memory:save`/`command-memory-save` — out of roughly 100 rows. So 3 of the 45 shipped commands have any chat-only path at all, and the remaining 42 have none [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:169].",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-2-2-refines-iteration-1-s-finding-9-the-json-inventory-carries-no-kind-field-but-eve",
+      "text": "Refines iteration 1's finding 9: the JSON inventory carries no `kind` field, but every generated projection does (`kind: 'command'`) and the generator also stamps `routingEnabled` and `readOnly`. The information exists at build time and is dropped on the way into the JSON that humans and other runtimes read [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:81].",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-2-9-the-lane-weights-make-command-recall-structurally-expensive-on-top-of-that-expli",
+      "text": "The lane weights make command recall structurally expensive on top of that: `explicit_author 0.42`, `lexical 0.28`, `graph_causal 0.13`, `derived_generated 0.12`, `semantic_shadow 0.05` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:10]. A command that must be recognized from prose depends on lane 2 at 0.28 weight and has empty keywords; a typed command rides lane 1 at 0.42.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-mutating-command-gate-is-a-0-57-confidence-cliff-controlled-by-one-boolean-r",
+      "text": "The mutating-command gate is a 0.57 confidence cliff controlled by one boolean: `readOnlyRouteAllowed()` returns true for a command only when `kind === 'command'` and `readOnly === true` and one of its keywords matches at phrase boundary, and the comment states \"A mutating command never carries the flag and stays gated\" [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:688]. A gated route sits at `readOnlyExplainerFloor: 0.25`; an allowed one is lifted to `readOnlyRouteAllowedFloor: 0.82` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:183].",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-strongest-recall-blocker-is-not-enablement-but-vocabulary-a-command-projecti",
+      "text": "The strongest recall blocker is not enablement but vocabulary: a command projection's `keywords` and `intentSignals` are slash strings. `command-spec-kit` — the enabled id that fronts `/speckit:plan` — declares `keywords: ['/speckit:plan', '/speckit:resume', '/deep:research', '/deep:review']` and the identical `intentSignals`, so the lexical and derived lanes have nothing to match in the sentence \"plan a new feature for the login page\" [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:87].",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-typescript-scorer-holds-two-command-projection-sources-in-one-file-5-hand-au",
+      "text": "The TypeScript scorer holds two command-projection sources in one file: 5 `HAND_AUTHORED_COMMAND_BRIDGES` plus a `// BEGIN GENERATED COMMAND BRIDGES` block of exactly 62 generated projections, of which 40 carry `routingEnabled: true` and 22 carry `routingEnabled: false` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:78]. Those numbers match the generated inventory's `counts` block exactly, so the projection is a build-time mirror of `command-bridges.generated.json`, not a second independent inventory [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1].",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-3-4-a-non-doctor-recommendation-renders-as-its-skill-label-or-raw-id-never-as-a-comm",
+      "text": "A non-doctor recommendation renders as its skill label or raw id, never as a command: `topLabel` is `doctorCommandString(top.skill)` for doctor ids and `sanitizeSkillLabel(metadataSkillLabel(result) ?? top.skill)` otherwise, and the `Also:` companion line is only emitted for a recommendation that has a doctor command string [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:507]. The brief therefore has no syntax that could express \"the matching command is /speckit:plan\" for the 28 non-doctor commands.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-3-9-consumer-side-the-repository-tells-the-model-to-emit-skill-routing-result-from-w",
+      "text": "Consumer side: the repository tells the model to emit `SKILL ROUTING: [result]` from whatever the brief said [SOURCE: AGENTS.md:69]. With a brief that can only say \"use {label}\", the model's only faithful output is a skill name — the contract itself forbids the model from reporting a command it was never told.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-3-7-measured-composition-a-typical-normal-brief-is-268-characters-67-tokens-of-which",
+      "text": "Measured composition: a typical normal brief is 268 characters ≈ 67 tokens, of which the routing head is 50 characters ≈ 13 tokens. So the routing payload — everything the model is supposed to act on — is about a fifth of the brief, and the directive block dominates it. There is room to add roughly one command line without raising the cap [INFERENCE: from the 50-character observed head and the 320-character head cap in render.ts:99].",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-brief-has-exactly-two-sentence-forms-and-one-fallback-normal-advisor-freshne",
+      "text": "The brief has exactly two sentence forms and one fallback. Normal: `Advisor: {freshness}; use {label} {confidence}/{uncertainty} pass.`; ambiguous: `Advisor: {freshness}; ambiguous: {label} c/u vs {label} c/u pass.` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:567]. The operative verb is \"use\" in both, so the brief never instructs the model to run anything, and it never asks a question.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-cap-does-not-bound-the-emitted-brief-capwithcompanion-head-caps-only-the-rou",
+      "text": "The cap does not bound the emitted brief: `capWithCompanion(head, …)` caps only the routing head, and `DIRECTIVES_LABEL + HYGIENE_DIRECTIVE` (13 + 205 = 218 characters ≈ 54 tokens) is appended after the cap [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:569]. Worst case the brief reaches 80 + 54 ≈ 134 tokens, and in the ambiguous branch 120 + 54 ≈ 174 tokens — above both the stated 80 and the maximum 120.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-declared-budget-is-default-token-cap-80-ambiguous-token-cap-120-max-token-ca",
+      "text": "The declared budget is `DEFAULT_TOKEN_CAP = 80`, `AMBIGUOUS_TOKEN_CAP = 120`, `MAX_TOKEN_CAP = 120`, with `TOKEN_TO_CHAR_ESTIMATE = 4` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:99].",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-3-8-the-no-match-fallback-carries-no-command-either-advisor-no-skill-matched-plus-on",
+      "text": "The no-match fallback carries no command either: `Advisor: no skill matched.` plus, only for setup-shaped prompts, `For setup or health checks, run /doctor:setup.` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:589]. So the one place a command *is* named on a miss is hardcoded to a single doctor command.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-public-recommendation-object-is-a-closed-set-of-13-fields-skillid-score-conf",
+      "text": "The public recommendation object is a closed set of 13 fields — `skillId`, `score`, `confidence`, `uncertainty`, `dominantLane`, `laneBreakdown?`, `why_recommended?`, `matchedDocs?`, `redirectFrom?`, `redirectTo?`, `heldBelow?`, `status?`, `workflowMode?`, `compiledRoute?` — and the schema is `.strict()`, so a new `kind` or runnable field cannot appear without a schema change [SOURCE: .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:294].",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-3-2-there-is-no-kind-and-no-runnable-command-field-anywhere-in-the-public-response-t",
+      "text": "There is no `kind` and no runnable-command field anywhere in the public response; the only command-adjacent field is the optional `workflowMode`, which names a hub mode rather than a slash command [SOURCE: .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:307]. The internal `AdvisorRecommendation.kind` seen in iteration 2 is dropped at this boundary because it is optional and not in the schema [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:41].",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-4-3-routes-yaml-is-the-only-machine-readable-risk-declaration-in-the-tree-33-route-b",
+      "text": "`_routes.yaml` is the only machine-readable risk declaration in the tree: 33 route blocks plus 2 `mcp_subroutes` carry `mutating: read-only | add-only | mutates`, and most also carry `gate3_location`, a string naming the concrete file or database the route writes [SOURCE: .skilled/commands/doctor/_routes.yaml:41]. Tally across all 35 doctor bridges: 15 `read-only`, 2 `add-only`, 18 `mutates`.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/ (frontmatter of 45 files)",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json, .skilled/skills/sk-design/command-metadata.json, .skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/repo-rules/blast-radius.md"
+      ]
+    },
+    {
+      "id": "finding-4-2-25-of-the-45-commands-already-accept-an-execution-mode-suffix-in-their-own-argum",
+      "text": "25 of the 45 commands already accept an execution-mode suffix in their own `argument-hint` — `[:auto|:confirm]` — and the 20 that do not are exactly the 17 `/doctor:*` commands plus `/speckit:handoff`, `/speckit:save`, `/speckit:search` [SOURCE: .skilled/commands/speckit/plan.md:1]. So the run-or-ask vocabulary already exists per command, as free text, and the two families that lack it lack it for opposite reasons: doctor has a machine-readable manifest instead, and the three speckit commands have no mode at all.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/ (frontmatter of 45 files)",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json, .skilled/skills/sk-design/command-metadata.json, .skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/repo-rules/blast-radius.md"
+      ]
+    },
+    {
+      "id": "finding-4-7-a-three-tier-reversibility-ladder-already-governs-this-repository-trivially-reve",
+      "text": "A three-tier reversibility ladder already governs this repository: trivially reversible (working-tree edit, new untracked file, local commit) proceeds, reversible-with-effort states the undo cost, and irreversible (sent/published/deleted-remote/force-push/non-allowlisted push) needs a written rollback plus an explicit yes; an install still waits for a yes [SOURCE: .skilled/repo-rules/blast-radius.md:47]. That is the vocabulary a command policy should reuse instead of inventing `safe`/`unsafe`.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/ (frontmatter of 45 files)",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json, .skilled/skills/sk-design/command-metadata.json, .skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/repo-rules/blast-radius.md"
+      ]
+    },
+    {
+      "id": "finding-4-8-applying-the-ladder-to-the-declared-data-17-doctor-bridges-are-safe-to-start-una",
+      "text": "Applying the ladder to the declared data: 17 doctor bridges are safe to start unasked (15 read-only + 2 add-only to `scratch/`), 18 doctor bridges need a question first (`mutates`), and for the other 28 commands there is no declared answer — their writes are repo-tracked edits or in-repo artifacts (tier 1-2) except `/design:extract`, which fetches a live URL and writes outside the repo, and `/deep:*`, which spends model budget over up to 120 minutes [SOURCE: specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/pi-deepseek/deep-research-config.json:1].",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/ (frontmatter of 45 files)",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json, .skilled/skills/sk-design/command-metadata.json, .skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/repo-rules/blast-radius.md"
+      ]
+    },
+    {
+      "id": "finding-4-1-frontmatter-tool-grants-cannot-discriminate-risk-all-45-commands-declare-bash-33",
+      "text": "Frontmatter tool grants cannot discriminate risk: all 45 commands declare `Bash`, 33 also declare `Write`/`Edit`, and the 12 that declare neither still mutate through shell calls (`/doctor:install`, `/doctor:update`, `/doctor:symlink`, `/doctor:git`, `/doctor:overlay` …) [SOURCE: .skilled/commands/doctor/install.md:1]. A risk classifier built on `allowed-tools` would call every command mutating and learn nothing.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/ (frontmatter of 45 files)",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json, .skilled/skills/sk-design/command-metadata.json, .skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/repo-rules/blast-radius.md"
+      ]
+    },
+    {
+      "id": "finding-4-6-name-based-risk-judgement-fails-in-both-directions-doctor-install-s-only-route-i",
+      "text": "Name-based risk judgement fails in both directions: `/doctor:install`'s only route is `guide:read-only` (it prints an install guide, it does not install), while `/doctor:env`'s only route is `mutates` [SOURCE: .skilled/commands/doctor/_routes.yaml:707]. \"Install sounds dangerous\" and \"env sounds harmless\" are both wrong, which is the argument for a declared field over a heuristic.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/ (frontmatter of 45 files)",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json, .skilled/skills/sk-design/command-metadata.json, .skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/repo-rules/blast-radius.md"
+      ]
+    },
+    {
+      "id": "finding-4-5-no-non-doctor-source-declares-risk-at-all-mutating-appears-in-none-of-the-three-",
+      "text": "No non-doctor source declares risk at all: `mutating` appears in none of the three `command-metadata.json` files, and `allow-list.json` carries only a free-text `reason` [SOURCE: .skilled/skills/sk-doc/command-metadata.json:1]. The deriver's `readOnly` path is therefore starved for the other 28 commands because the data was never authored, not because the mechanism is missing.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/ (frontmatter of 45 files)",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json, .skilled/skills/sk-design/command-metadata.json, .skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/repo-rules/blast-radius.md"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-15-read-only-routes-are-the-same-15-entries-that-carry-readonly-true-in-the-",
+      "text": "The 15 `read-only` routes are the same 15 entries that carry `readOnly: true` in the TS projection, so the deriver's mapping `mutating === 'read-only' → readOnly: true` is verified end to end [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:305]. The risk signal already reaches the scorer; it stops before the JSON inventory and before the output contract.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/ (frontmatter of 45 files)",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/skills/sk-doc/command-metadata.json, .skilled/skills/sk-design/command-metadata.json, .skilled/skills/system-deep-loop/command-metadata.json",
+        ".skilled/repo-rules/blast-radius.md"
+      ]
+    },
+    {
+      "id": "finding-5-8-because-a-command-file-is-plain-repository-markdown-and-every-workflow-it-routes",
+      "text": "Because a command file is plain repository markdown and every workflow it routes to is also a repository file, a model can execute a command's workflow without the runtime expanding a slash — the command doc is the entry, the YAML/SKILL it names is the workflow. That path exists on all seven runtimes, including Devin, and is the only one that does [INFERENCE: from the mirror counts above plus the command files' router shape, e.g. .skilled/commands/doctor/skill-advisor.md:1].",
+      "addedAtIteration": 5,
+      "sources": [
+        ".claude/commands, .opencode/commands, .cursor/commands, .codex/prompts, .pi/prompts, .dsh/prompts, .devin/",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/hooks/skill-advisor/dsh/README.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        ".skilled/commands/doctor/skill-advisor.md"
+      ]
+    },
+    {
+      "id": "finding-5-4-delivery-channels-are-not-interchangeable-claude-codex-cursor-devin-emit-hookspe",
+      "text": "Delivery channels are not interchangeable: Claude/Codex/Cursor/Devin emit `hookSpecificOutput.additionalContext` JSON, OpenCode appends to `output.system` through `experimental.chat.system.transform`, Pi sends a model-visible message, and DSH adds a notice on the operator step [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:53]. One shared renderer (`renderAdvisorBrief`) feeds all of them, so brief wording is a single change point even though transports differ.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".claude/commands, .opencode/commands, .cursor/commands, .codex/prompts, .pi/prompts, .dsh/prompts, .devin/",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/hooks/skill-advisor/dsh/README.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        ".skilled/commands/doctor/skill-advisor.md"
+      ]
+    },
+    {
+      "id": "finding-5-2-devin-is-therefore-the-single-runtime-where-a-command-cannot-be-typed-even-by-th",
+      "text": "Devin is therefore the single runtime where a command cannot be typed even by the user; the only ways a Devin session reaches a command workflow are the advisor brief and a model following the command doc.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".claude/commands, .opencode/commands, .cursor/commands, .codex/prompts, .pi/prompts, .dsh/prompts, .devin/",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/hooks/skill-advisor/dsh/README.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        ".skilled/commands/doctor/skill-advisor.md"
+      ]
+    },
+    {
+      "id": "finding-5-1-every-runtime-except-devin-mirrors-the-command-tree-into-a-slash-surface-but-in-",
+      "text": "Every runtime except Devin mirrors the command tree into a slash surface, but in different shapes: `.claude/commands` holds 45 markdown files in group directories; `.opencode/commands` symlinks whole groups to `.skilled/commands/*`; `.cursor/commands` holds 46 flat files; `.codex/prompts` 45; `.pi/prompts` 46; `.dsh/prompts` 45 [SOURCE: .opencode/commands/create:1]. Devin has no `commands` or `prompts` directory at all — only `agents`, `hooks`, `skills`, `repo-rules` [SOURCE: .devin/SYNC.md:1].",
+      "addedAtIteration": 5,
+      "sources": [
+        ".claude/commands, .opencode/commands, .cursor/commands, .codex/prompts, .pi/prompts, .dsh/prompts, .devin/",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/hooks/skill-advisor/dsh/README.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        ".skilled/commands/doctor/skill-advisor.md"
+      ]
+    },
+    {
+      "id": "finding-5-5-no-model-facing-rule-anywhere-instructs-the-model-to-type-a-slash-command-agents",
+      "text": "No model-facing rule anywhere instructs the model to type a slash command. `AGENTS.md` Gate 2 tells the model to use the hook brief and to run `node .skilled/bin/skill-advisor.cjs advisor_recommend …`, and its output line is `SKILL ROUTING: …` [SOURCE: AGENTS.md:69]. The deep-research skill states it \"is invoked exclusively through `/deep:research:auto` or `/deep:research:confirm`\" — a statement about user entry, not model entry [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:1].",
+      "addedAtIteration": 5,
+      "sources": [
+        ".claude/commands, .opencode/commands, .cursor/commands, .codex/prompts, .pi/prompts, .dsh/prompts, .devin/",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/hooks/skill-advisor/dsh/README.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        ".skilled/commands/doctor/skill-advisor.md"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-advisor-brief-reaches-seven-runtimes-in-the-tree-claude-codex-cursor-devin-d",
+      "text": "The advisor brief reaches seven runtimes in the tree — `claude`, `codex`, `cursor`, `devin`, `dsh`, `opencode`, `pi` — but the hook reference's per-runtime table lists six and omits DSH entirely, even though `.skilled/hooks/skill-advisor/dsh/prompt-advisor.mjs` exists and its README documents an `agent/pre-step` adapter registered through `.dsh/plugins/repo-guards` [SOURCE: .skilled/hooks/skill-advisor/dsh/README.md:19]. This is documentation drift, not a missing capability: the adapter is present and fails open.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".claude/commands, .opencode/commands, .cursor/commands, .codex/prompts, .pi/prompts, .dsh/prompts, .devin/",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/hooks/skill-advisor/dsh/README.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        ".skilled/commands/doctor/skill-advisor.md"
+      ]
+    },
+    {
+      "id": "finding-5-7-the-only-agents-md-text-that-names-a-command-bridge-resolves-a-tie-in-the-bridge",
+      "text": "The only `AGENTS.md` text that names a command bridge resolves a tie in the bridge's favour — \"When the advisor's `command-spec-kit` bridge, keyed to `/speckit:plan`, `/speckit:resume`, `/deep:research` and `/deep:review`, matches alongside `cli-*` for iteration phrases, `command-spec-kit` wins\" [SOURCE: AGENTS.md:90]. So the model-facing rules know bridge ids and slash keys, never a command-to-workflow instruction.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".claude/commands, .opencode/commands, .cursor/commands, .codex/prompts, .pi/prompts, .dsh/prompts, .devin/",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/hooks/skill-advisor/dsh/README.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        ".skilled/commands/doctor/skill-advisor.md"
+      ]
+    },
+    {
+      "id": "finding-5-6-the-repository-already-has-a-precedent-for-the-model-executing-an-entry-point-it",
+      "text": "The repository already has a precedent for the model executing an *entry point it was told about*: the advisor's outage fallback prints the literal `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"<request>\"}' --format json` line, expecting the model to run it [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:590]. The precedent covers shell entry points, not slash commands.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".claude/commands, .opencode/commands, .cursor/commands, .codex/prompts, .pi/prompts, .dsh/prompts, .devin/",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/hooks/skill-advisor/dsh/README.md",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+        "AGENTS.md",
+        ".skilled/commands/doctor/skill-advisor.md"
+      ]
+    },
+    {
+      "id": "finding-6-2-agents-md-is-the-single-always-loaded-policy-document-the-agents-md-manifest-nam",
+      "text": "`AGENTS.md` is the single always-loaded policy document: the agents-md manifest names `AGENTS.md` as `root_file` and `REPO RULES.md` as `router_file`, with a 16 KiB prefix budget and 21 anchors [SOURCE: .skilled/commands/doctor/assets/agents-md-manifest.json:1]. There is no per-runtime copy (`CLAUDE.md`, `GEMINI.md`, `copilot-instructions.md` do not exist), so any binding rule has exactly one home.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "AGENTS.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        ".skilled/skills/sk-git/SKILL.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-6-7-combining-the-mechanisms-yields-a-three-layer-answer-with-no-new-list-the-brief-",
+      "text": "Combining the mechanisms yields a three-layer answer with no new list: the **brief** surfaces the command and its policy (iteration 3's contract addition), **`AGENTS.md`** binds the behavior in one sentence that points at the brief, and the **command file** is the executable workflow the model follows when it cannot type a slash (iteration 5). Each layer already exists; the work is contract + one rule line + one inventory field, not a new subsystem.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "AGENTS.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        ".skilled/skills/sk-git/SKILL.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-6-3-gates-2-and-4-are-that-home-today-and-they-are-skill-shaped-gate-2-asks-for-the-",
+      "text": "Gates 2 and 4 are that home today, and they are skill-shaped: Gate 2 asks for the hook brief or an advisor CLI call and a `SKILL ROUTING` line; Gate 4's only command sentence resolves a tie in favour of `command-spec-kit` [SOURCE: AGENTS.md:63]. A command rule added here would be the second sentence in the file that names commands at all.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "AGENTS.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        ".skilled/skills/sk-git/SKILL.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-6-8-rejected-alternatives-each-on-evidence-hook-enforcement-contradicts-the-fail-ope",
+      "text": "Rejected alternatives, each on evidence: hook enforcement contradicts the fail-open contract (finding 1); a new gate duplicates Gate 2, which already fires on every turn; a fifth registry would join the four hand-maintained sources that already drift (iteration 4, finding 5); and a runner refusal cannot fire before the runner loads (finding 5).",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "AGENTS.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        ".skilled/skills/sk-git/SKILL.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-6-5-runner-refusal-exists-only-as-normative-prose-not-enforcement-the-deep-research-",
+      "text": "Runner refusal exists only as normative prose, not enforcement: the deep-research skill says the loop is \"invoked exclusively through `/deep:research:auto` or `/deep:research:confirm`\" and never simulated \"with ad hoc shell dispatch, nested CLI loops, direct `@deep-research` Task dispatch\" [SOURCE: .skilled/skills/system-deep-loop/deep-research/SKILL.md:84]. A refusal only fires once that SKILL.md is in context, which is after the hand-roll decision would already have been made.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "AGENTS.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        ".skilled/skills/sk-git/SKILL.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-6-4-skill-to-command-linkage-is-nearly-absent-exactly-one-skill-md-in-the-tree-carri",
+      "text": "Skill-to-command linkage is nearly absent: exactly one SKILL.md in the tree carries a \"Command Integration\" table — deep-research's, which lists `/deep:research`, `/speckit:resume`, `/speckit:plan` and `/speckit:save` and their relationships [SOURCE: .skilled/skills/system-deep-loop/deep-research/SKILL.md:294]. The other skills have no pointer, and a skill only loads after routing, so a pointer can support execution but can never cause discovery.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "AGENTS.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        ".skilled/skills/sk-git/SKILL.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-6-1-the-brief-is-the-only-surface-that-fires-on-every-prompt-and-its-own-contract-fo",
+      "text": "The brief is the only surface that fires on every prompt, and its own contract forbids enforcement: it \"is advisory: it never replaces explicit skill loading, never persists raw prompt text, and never blocks the prompt on an advisor failure\", and every adapter returns `{}` on error [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:21]. So the brief can surface a command but cannot bind the model to run it.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "AGENTS.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        ".skilled/skills/sk-git/SKILL.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-6-9-the-concrete-chat-only-gap-today-speckit-plan-on-a-plan-shaped-prose-prompt-prod",
+      "text": "The concrete chat-only gap today: `/speckit:plan` on a plan-shaped prose prompt produces at best a `system-spec-kit` skill recommendation (iteration 2), and `system-spec-kit` carries no command-integration pointer (finding 4), so neither the skill nor the brief can lead the model to the plan workflow. That is the whole failure the packet is about, expressed in two existing artefacts.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "AGENTS.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        ".skilled/skills/sk-git/SKILL.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-6-6-the-ruleset-already-treats-hand-rolling-as-a-known-failure-mode-agents-md-carrie",
+      "text": "The ruleset already treats hand-rolling as a known failure mode: `AGENTS.md` carries PLAN-WORKFLOW LOCK (\"NEVER silently hand-roll a substitute for a plan-named purpose-built workflow\") and sk-git rule 16 forbids hand-rolling the publish path [SOURCE: AGENTS.md:13]. The gap the rules leave is discovery: they forbid substituting a known workflow, and say nothing about how a model learns the workflow exists when the user typed prose.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "AGENTS.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        ".skilled/skills/sk-git/SKILL.md",
+        "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/spec.md"
+      ]
+    },
+    {
+      "id": "finding-7-5-27-of-the-45-command-files-reference-no-skilled-skills-path-anywhere-so-for-most",
+      "text": "27 of the 45 command files reference no `.skilled/skills/` path anywhere, so for most commands the skill linkage exists only in a metadata file that no runtime reads when the command runs.",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/commands/ (all 45 files, frontmatter and skill references)",
+        ".skilled/skills/sk-doc/command-metadata.json, sk-design/command-metadata.json, system-deep-loop/command-metadata.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/commands/create/agent.md",
+        ".skilled/commands/speckit/plan.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-7-2-all-19-metadata-entries-declare-a-three-step-choreography-that-loads-a-hub-skill",
+      "text": "All 19 metadata entries declare a three-step choreography that loads a hub `SKILL.md`, a mode `SKILL.md` and a presentation contract, so the metadata asserts a skill-mediated execution path for every command it describes [SOURCE: .skilled/skills/sk-doc/command-metadata.json:1].",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/commands/ (all 45 files, frontmatter and skill references)",
+        ".skilled/skills/sk-doc/command-metadata.json, sk-design/command-metadata.json, system-deep-loop/command-metadata.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/commands/create/agent.md",
+        ".skilled/commands/speckit/plan.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-7-1-command-to-skill-linkage-is-carried-in-three-incompatible-ways-a-skill-agent-com",
+      "text": "Command-to-skill linkage is carried in three incompatible ways: a `skill_agent:` comment in the command file (17 commands, all `/doctor:*`), an `ownerMode` plus `choreography` block in metadata (19 commands), or nothing at all. No command carries both, and none carries a field the runtime reads at command time.",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/commands/ (all 45 files, frontmatter and skill references)",
+        ".skilled/skills/sk-doc/command-metadata.json, sk-design/command-metadata.json, system-deep-loop/command-metadata.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/commands/create/agent.md",
+        ".skilled/commands/speckit/plan.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-7-8-consequence-for-the-surfacing-design-a-model-that-routes-to-a-skill-and-hand-fol",
+      "text": "Consequence for the surfacing design: a model that routes to a skill and hand-follows it produces a different process from the same command's YAML workflow, because the command router never loads the skill and the skill never names the command. That is exactly the divergence the packet exists to close, and it is structural rather than a prompting problem.",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/commands/ (all 45 files, frontmatter and skill references)",
+        ".skilled/skills/sk-doc/command-metadata.json, sk-design/command-metadata.json, system-deep-loop/command-metadata.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/commands/create/agent.md",
+        ".skilled/commands/speckit/plan.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-7-3-of-those-19-ownermode-values-18-resolve-to-an-existing-skill-md-create-skill-par",
+      "text": "Of those 19 `ownerMode` values, 18 resolve to an existing `SKILL.md`; `/create:skill-parent` names `sk-create-skill-parent`, for which no directory and no `SKILL.md` exist, while the string still appears in `sk-doc/mode-registry.json` [SOURCE: .skilled/skills/sk-doc/mode-registry.json:1]. A second mapping is misleading rather than broken: `/design:extract` names `sk-design-md-generator`, an artefact generator rather than an extract mode [SOURCE: .skilled/skills/sk-design/command-metadata.json:1].",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/commands/ (all 45 files, frontmatter and skill references)",
+        ".skilled/skills/sk-doc/command-metadata.json, sk-design/command-metadata.json, system-deep-loop/command-metadata.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/commands/create/agent.md",
+        ".skilled/commands/speckit/plan.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-7-7-reverse-linkage-is-nearly-absent-exactly-one-skill-md-deep-research-names-its-co",
+      "text": "Reverse linkage is nearly absent: exactly one `SKILL.md` (deep-research) names its commands and their relationships, and 13 other skills name none [SOURCE: .skilled/skills/system-deep-loop/deep-research/SKILL.md:294]. So neither direction of the mapping is closed: skill→command fails for 13 skills, command→skill fails for 27 commands.",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/commands/ (all 45 files, frontmatter and skill references)",
+        ".skilled/skills/sk-doc/command-metadata.json, sk-design/command-metadata.json, system-deep-loop/command-metadata.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/commands/create/agent.md",
+        ".skilled/commands/speckit/plan.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-7-4-the-command-files-frequently-carry-none-of-that-choreography-skilled-commands-cr",
+      "text": "The command files frequently carry none of that choreography. `.skilled/commands/create/agent.md` contains zero occurrences of `sk-doc`, `sk-create-agent` or `SKILL.md` and routes only to a presentation contract and a workflow YAML in `commands/create/assets/` [SOURCE: .skilled/commands/create/agent.md:12], while its metadata declares the two-skill load. The metadata path and the executed path diverge at the first step.",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/commands/ (all 45 files, frontmatter and skill references)",
+        ".skilled/skills/sk-doc/command-metadata.json, sk-design/command-metadata.json, system-deep-loop/command-metadata.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/commands/create/agent.md",
+        ".skilled/commands/speckit/plan.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-7-6-the-flagship-chat-only-case-is-the-sharpest-example-speckit-plan-references-two-",
+      "text": "The flagship chat-only case is the sharpest example: `/speckit:plan` references two spec-kit reference cards and two spec-kit scripts, and never `system-spec-kit/SKILL.md` [SOURCE: .skilled/commands/speckit/plan.md:106]. Even a correct `system-spec-kit` recommendation therefore does not entail the plan command's mode or its gates.",
+      "addedAtIteration": 7,
+      "sources": [
+        ".skilled/commands/ (all 45 files, frontmatter and skill references)",
+        ".skilled/skills/sk-doc/command-metadata.json, sk-design/command-metadata.json, system-deep-loop/command-metadata.json",
+        ".skilled/skills/sk-doc/mode-registry.json",
+        ".skilled/commands/create/agent.md",
+        ".skilled/commands/speckit/plan.md",
+        ".skilled/skills/system-deep-loop/deep-research/SKILL.md"
+      ]
+    },
+    {
+      "id": "finding-8-4-coverage-is-half-built-inside-that-family-17-of-the-35-doctor-bridges-have-at-le",
+      "text": "Coverage is half-built inside that family: 17 of the 35 doctor bridges have at least one row, and 18 have none — including `command-doctor-ci-report`, `-ci-scaffold`, `-ci-toggle`, `-overlay-apply`, `-overlay-repin`, `-overlay-status`, `-sk-code-quality`, `-sk-skill-check`, `-sk-skill-convert`, `-symlink-link`, `-symlink-unlink`, `-skill-advisor-tune`, `-skill-advisor-rebuild`, `-skill-advisor-parent-skill`, `-skill-advisor-skill-graph-freshness`, `-speckit`, `-mcp-debug`, `-git-standards` [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1].",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts"
+      ]
+    },
+    {
+      "id": "finding-8-2-only-the-doctor-slice-asserts-a-command-expectation-so-command-level-routing-acc",
+      "text": "Only the doctor slice asserts a command expectation, so command-level routing accuracy is measured for one of seven command families; the other 195 skill rows carry `skill_top_1` and `skill_correct` and no command field at all [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl:1].",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts"
+      ]
+    },
+    {
+      "id": "finding-8-8-row-budget-for-the-remaining-28-commands-at-least-two-prose-rows-plus-one-contro",
+      "text": "Row budget for the remaining 28 commands: at least two prose rows plus one control row per command is 56 positive and 28 control rows, or 84 rows; adding the 18 uncovered doctor bridges and their controls brings the corpus to roughly 240 command rows, which is the same order as the 195 skill rows that already exist [INFERENCE: from the per-bridge counts above and the doctor slice's 78 rows for 17 bridges].",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts"
+      ]
+    },
+    {
+      "id": "finding-8-6-the-captured-baseline-records-only-skill-level-metrics-full-corpus-top1-158-195-",
+      "text": "The captured baseline records only skill-level metrics: `full_corpus_top1` 158/195 = 0.8103, `unknown_count` 13, `gold_none_false_fire` 5, `holdout_top1` 50/66 = 0.7576, `ambiguity_top1` 20/24 with tau 0.03 [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json:1]. A change that made every command unrecommendable would leave this baseline green, because no metric reads a command id.",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts"
+      ]
+    },
+    {
+      "id": "finding-8-3-the-doctor-slice-already-tests-the-chat-only-path-only-15-of-its-78-rows-contain",
+      "text": "The doctor slice already tests the chat-only path: only 15 of its 78 rows contain a literal `/doctor`, and the remaining 63 are prose prompts such as \"Help me set up skilled\" or \"set up skilled in a new repo\" [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl:2]. The corpus shape the spec asks for exists; it is just scoped to one command family.",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts"
+      ]
+    },
+    {
+      "id": "finding-8-7-the-metrics-that-separate-a-missed-command-from-a-wrongly-started-one-map-onto-n",
+      "text": "The metrics that separate a missed command from a wrongly started one map onto names that already exist: `command_recall` (expected command in top-2 — the analogue of top-1 accuracy plus `expected_second`), `wrong_command_rate` (a command surfaced where the label is a skill or `null` — the analogue of `gold_none_false_fire`), plus two that do not exist yet: `policy_precision` (the surfaced command's `run|ask` matches the row's label) and `brief_naming` (the rendered brief contains the command string for every true positive, which is the only end-to-end check that the contract change from iteration 3 actually reached the model).",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts"
+      ]
+    },
+    {
+      "id": "finding-8-1-the-repository-carries-four-prompt-corpora-labeled-prompts-jsonl-195-skill-level",
+      "text": "The repository carries four prompt corpora: `labeled-prompts.jsonl` 195 skill-level rows, `holdout-prompts.jsonl` 66, `ambiguity-prompts.jsonl` 24, and `doctor-prompts.jsonl` 78 rows whose `expected_top` is a command-bridge id [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl:1].",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts"
+      ]
+    },
+    {
+      "id": "finding-8-5-the-slice-also-carries-19-control-rows-whose-expectation-is-a-skill-or-null-crea",
+      "text": "The slice also carries 19 `control` rows whose expectation is a skill or `null` — \"create a git worktree for my feature\" → `sk-git`, \"review this pull request for bugs\" → `sk-code`, and a `null` expectation exists among them — which is exactly the wrongly-started guard, already authored, again doctor-scoped [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl:1].",
+      "addedAtIteration": 8,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/doctor-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/ambiguity-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts"
+      ]
+    },
+    {
+      "id": "finding-9-7-design-implication-and-the-reason-this-iteration-matters-the-binding-layer-canno",
+      "text": "Design implication, and the reason this iteration matters: the binding layer cannot assume a brief arrives. On Cursor and Devin the reliable surfaces are the static rule and `AGENTS.md`; the advisor CLI is callable from the model's own shell on every runtime. So the one-line rule from iteration 6 should be phrased to work when the brief is absent — \"if no brief arrived, ask the advisor before hand-rolling\" — and the command pointer should be generated into the static rule rather than hand-copied into it.",
+      "addedAtIteration": 9,
+      "sources": [
+        ".cursor/rules/skill-routing.md",
+        ".cursor/README.md",
+        ".codex/README.md",
+        ".pi/README.md",
+        ".devin/README.md",
+        ".dsh/README.md"
+      ]
+    },
+    {
+      "id": "finding-9-4-devin-inherits-the-same-rule-rather-than-carrying-its-own-its-readme-lists-the-r",
+      "text": "Devin inherits the same rule rather than carrying its own: its README lists \"the routing rule Devin inherits from Cursor\" under Instructions and \"No rules folder here\" under Rules [SOURCE: .devin/README.md:39]. Two of seven runtimes therefore share one hand-maintained static routing document, and neither has command pointers in it.",
+      "addedAtIteration": 9,
+      "sources": [
+        ".cursor/rules/skill-routing.md",
+        ".cursor/README.md",
+        ".codex/README.md",
+        ".pi/README.md",
+        ".devin/README.md",
+        ".dsh/README.md"
+      ]
+    },
+    {
+      "id": "finding-9-1-every-harness-converges-on-the-same-three-surfaces-a-root-instruction-file-agent",
+      "text": "Every harness converges on the same three surfaces: a root instruction file (`AGENTS.md`), a user-invoked prompt or command surface, and an optional hook. Codex calls `AGENTS.md` \"the shared instruction file for every runtime\" [SOURCE: .codex/README.md:39]; Pi \"reads the root `AGENTS.md` from its working directory and the folders above it\" [SOURCE: .pi/README.md:31]; Cursor tells the user to \"type `/` to see the commands\" [SOURCE: .cursor/README.md:19].",
+      "addedAtIteration": 9,
+      "sources": [
+        ".cursor/rules/skill-routing.md",
+        ".cursor/README.md",
+        ".codex/README.md",
+        ".pi/README.md",
+        ".devin/README.md",
+        ".dsh/README.md"
+      ]
+    },
+    {
+      "id": "finding-9-6-prior-art-from-outside-this-repository-marked-as-inference-because-no-external-p",
+      "text": "Prior art from outside this repository, marked as inference because no external page was fetched in this session: agent harnesses expose slash commands as user-invoked entries, not model-callable tools, and the `AGENTS.md` convention exists precisely so one instruction file can serve several harnesses [INFERENCE: from the per-runtime mirrors above plus the absence of any model-invoked command surface in seven adapters].",
+      "addedAtIteration": 9,
+      "sources": [
+        ".cursor/rules/skill-routing.md",
+        ".cursor/README.md",
+        ".codex/README.md",
+        ".pi/README.md",
+        ".devin/README.md",
+        ".dsh/README.md"
+      ]
+    },
+    {
+      "id": "finding-9-3-that-rule-states-the-dynamic-path-is-not-running-cursor-s-beforesubmitprompt-ada",
+      "text": "That rule states the dynamic path is not running: \"Cursor's `beforeSubmitPrompt` adapter is registered to call the shared advisor, but its dynamic per-turn delivery is dormant under the tested CLI build; this rule is a static complement, not a substitute for that brief\" [SOURCE: .cursor/rules/skill-routing.md:18]. So on at least one runtime the brief does not reach the model today, and the static rule is doing the routing.",
+      "addedAtIteration": 9,
+      "sources": [
+        ".cursor/rules/skill-routing.md",
+        ".cursor/README.md",
+        ".codex/README.md",
+        ".pi/README.md",
+        ".devin/README.md",
+        ".dsh/README.md"
+      ]
+    },
+    {
+      "id": "finding-9-2-the-only-always-applied-routing-rule-in-the-tree-is-cursor-rules-skill-routing-m",
+      "text": "The only always-applied routing rule in the tree is `.cursor/rules/skill-routing.md`, and it is static prose: eight skill pointers, one per skill family, loaded on every Cursor session via `alwaysApply: true` [SOURCE: .cursor/rules/skill-routing.md:1]. It names zero commands.",
+      "addedAtIteration": 9,
+      "sources": [
+        ".cursor/rules/skill-routing.md",
+        ".cursor/README.md",
+        ".codex/README.md",
+        ".pi/README.md",
+        ".devin/README.md",
+        ".dsh/README.md"
+      ]
+    },
+    {
+      "id": "finding-9-5-the-rule-also-shows-the-repository-s-own-pattern-for-keeping-a-duplicated-routin",
+      "text": "The rule also shows the repository's own pattern for keeping a duplicated routing block honest: its Gate 1 lookup paragraph sits inside a generated fence (`spec-kit:gate1-pointer:start`…`end`) produced by `sync-gate1-pointers.cjs` from the root `AGENTS.md` line, with the note \"edit the root `AGENTS.md` line, not this block\" [SOURCE: .cursor/rules/skill-routing.md:22]. That is the anti-drift mechanism a command pointer block should reuse.",
+      "addedAtIteration": 9,
+      "sources": [
+        ".cursor/rules/skill-routing.md",
+        ".cursor/README.md",
+        ".codex/README.md",
+        ".pi/README.md",
+        ".devin/README.md",
+        ".dsh/README.md"
+      ]
+    },
+    {
+      "id": "finding-10-5-a-brief-to-command-rule-creates-a-real-cycle-doctor-skill-advisor-tune-itself-ru",
+      "text": "**A brief-to-command rule creates a real cycle.** `/doctor:skill-advisor tune` itself runs `advisor_recommend` and `advisor_validate` [SOURCE: .skilled/commands/doctor/_routes.yaml:110]. If a brief can cause a command run, and a command can call the advisor, the graph is cyclic and nothing in the hooks counts depth or suppresses a re-entry.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json"
+      ]
+    },
+    {
+      "id": "finding-10-4-ambiguity-is-first-class-but-skill-shaped-the-output-carries-ambiguouswith-heldb",
+      "text": "**Ambiguity is first-class but skill-shaped.** The output carries `ambiguousWith`, `heldBelow` and a 120-token ambiguous brief form (iteration 3), and the baseline scores ambiguity top-1 at 20/24 with tau 0.03 [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json:1]; none of that machinery mentions commands, so a command/skill tie has to be expressed as a skill tie until the contract changes.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json"
+      ]
+    },
+    {
+      "id": "finding-10-3-bare-command-recall-is-bounded-by-design-default-target-is-allowed-at-most-once-",
+      "text": "**Bare-command recall is bounded by design.** `default_target` is allowed at most once per command, only on a multi-target command, and never on a mutating route, so a bare typed command never suggests a destructive target [SOURCE: .skilled/commands/doctor/_routes.yaml:52]. That is the existing precedent for \"one safe entry point per command\".",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json"
+      ]
+    },
+    {
+      "id": "finding-10-1-child-sessions-are-ungated-in-the-advisor-path-the-spec-gate-implements-child-se",
+      "text": "**Child sessions are ungated in the advisor path.** The spec gate implements `CHILD_SESSION_ENV = 'AI_SESSION_CHILD'` with `isChildSession(env)` and makes Gate 3 a no-op for a dispatched child [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:101], but the advisor hook library contains no equivalent check — no `child`, `CHILD` or `lineage` guard exists in `hooks/lib` or the Claude adapter [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:190]. So a dispatched child (this lineage, for example) still receives advisor briefs, and a rule that says \"run the command when the brief names one\" would let a child start commands by itself — the exact failure the spec names.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json"
+      ]
+    },
+    {
+      "id": "finding-10-8-dangling-linkage-is-checked-for-ids-and-not-for-owners-the-bridge-resolution-gua",
+      "text": "**Dangling linkage is checked for ids and not for owners.** The bridge-resolution guard sweeps slash ids in aliases, phrase boosts and the Python scorer for dead commands [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts:1], yet nothing checks `ownerMode`: `sk-create-skill-parent` has no `SKILL.md` (iteration 7), `/memory:save` and `/spec_kit` have no command file (iteration 1), and 18 doctor bridges have no benchmark row (iteration 8). Three dead-reference classes, one guard.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json"
+      ]
+    },
+    {
+      "id": "finding-10-7-dormant-delivery-turns-a-rule-into-a-dead-letter-cursor-documents-its-dynamic-ad",
+      "text": "**Dormant delivery turns a rule into a dead letter.** Cursor documents its dynamic adapter as dormant under the tested build and routes from a static rule (iteration 9), so any instruction conditioned on \"when the brief names a command\" silently does nothing on Cursor and Devin. The rule needs an explicit no-brief branch that asks the advisor directly.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json"
+      ]
+    },
+    {
+      "id": "finding-10-2-over-triggering-already-has-two-guards-keeppassingskillsabovedoctorbridges-demot",
+      "text": "**Over-triggering already has two guards.** `keepPassingSkillsAboveDoctorBridges()` demotes a doctor bridge below any passing skill unless one of its `lead_phrases` matches the prompt [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:945], and the deriver rejects a `lead_phrases` entry that is not also in `trigger_phrases` [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs:328]. Both guards are doctor-only today, so generalising them is cheaper than inventing new ones.",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json"
+      ]
+    },
+    {
+      "id": "finding-10-6-the-budget-is-headroom-not-cap-the-routing-head-is-capped-at-80-tokens-120-ambig",
+      "text": "**The budget is headroom, not cap.** The routing head is capped at 80 tokens (120 ambiguous) and the 218-character directive rides outside the cap (iteration 3), so one added `→ /command (ask)` clause fits inside the existing 320-character head budget and does not require a cap change [INFERENCE: from the measured 50-character typical head and the 320-character cap].",
+      "addedAtIteration": 10,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        ".skilled/commands/doctor/_routes.yaml",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-c1f16a7e853e",
+      "text": "Counting commands by recursive `find`: reports 90 vs the real 45 because the doctor fixture tree contains SKILL/ROUTER markdown. Rejected as an inventory method; group-level enumeration is the reliable count.",
+      "contentHash": "c1f16a7e853e",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-43d63f2b57c8",
+      "text": "None. The three bridge sources are readable and the diff is complete at the id/command level. What remains open is the *authority* question (which source wins when they disagree), which needs the drift-guard tests, not more enumeration.",
+      "contentHash": "43d63f2b57c8",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b9e729eaed18",
+      "text": "Treating the 62 bridge entries as \"62 commands\": entries over-count doctor subcommands and under-count five shipped commands. Rejected; command strings, not ids, are the unit that must be covered.",
+      "contentHash": "b9e729eaed18",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-973fc8c3fb56",
+      "text": "\"Enablement is the whole story\": if the 22 disabled bridges were enabled, plain prose would still not match, because their keywords are slash strings and their only plain-phrase path is the 8-row table. Enablement widens typed-slash recall only.",
+      "contentHash": "973fc8c3fb56",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-0faa748e0df0",
+      "text": "\"The advisor deliberately abstains on commands\": contradicted by the doctor family, which is fully enabled, read-only-flagged where appropriate, and renders runnable strings. Abstention is a property of non-doctor commands, not of commands as a class.",
+      "contentHash": "0faa748e0df0",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-08b8a97ab870",
+      "text": "Searching for a separate \"no-slash penalty\" constant: there is none. The effect the spec describes is produced by the *absence* of a plain-language key on command projections plus the explicit lane's slash-only boost table, not by a negative constant. Recorded so later iterations do not hunt for a penalty that does not exist.",
+      "contentHash": "08b8a97ab870",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1ceaa4d35801",
+      "text": "\"Emit the command only when the skill is a command owner\": this is what the doctor companion line already does, and it cannot express the mapping for non-doctor commands because no non-doctor id has a command string to give.",
+      "contentHash": "1ceaa4d35801",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-b6144de0c375",
+      "text": "\"Raise the token cap to make room for commands\": contradicted by the measurement — the routing head is ~13 tokens of an 80-token budget, and the one overrun comes from a directive appended outside the cap. Raising the cap would grow the directive budget, not the command payload.",
+      "contentHash": "b6144de0c375",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f86a4165fb4e",
+      "text": "None unresolved. The single open thread is that `workflowMode` exists publicly but is unpopulated for command bridges; whether it is the intended carrier is a question for the skill-linkage angle, not this one.",
+      "contentHash": "f86a4165fb4e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-95b44f349935",
+      "text": "Deriving risk from `allowed-tools`: Bash is declared by all 45 commands, so the signal is constant.",
+      "contentHash": "95b44f349935",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a302c236659e",
+      "text": "Deriving risk from the command name: `/doctor:install` is read-only by manifest and `/doctor:env` mutates, so names invert the truth on real examples.",
+      "contentHash": "a302c236659e",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a6e5a6420701",
+      "text": "Putting the policy in `AGENTS.md` as a second list: there are already four hand-maintained sources (three metadata hubs, `allow-list.json`, `_routes.yaml`, `scoring-compatibility.json`); a fifth would drift the same way.",
+      "contentHash": "a6e5a6420701",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-06fa9bba9949",
+      "text": "Searching for a `risk`, `writes`, or `danger` field in command metadata: none exists under any name. The only risk vocabulary in the tree is doctor's `mutating`.",
+      "contentHash": "06fa9bba9949",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-342a0a1bcf33",
+      "text": "\"Give the model the slash string and it will invoke it\": no runtime exposes slash commands as model tools, and no repository rule instructs the model to type one.",
+      "contentHash": "342a0a1bcf33",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-88eeb8e33278",
+      "text": "\"Runtime parity is a per-runtime brief problem\": one renderer feeds all transports, so divergence lives in command mirroring and DSH's missing documentation row, not in the brief.",
+      "contentHash": "88eeb8e33278",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-a5b46a47dea4",
+      "text": "Looking for a model-invocable command mechanism in the hooks: the adapters only inject context or notices; none can dispatch a command.",
+      "contentHash": "a5b46a47dea4",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-c17646e3442c",
+      "text": "A fifth inventory or a command registry: four hand-maintained sources already exist and iteration 1-2 showed the drift between them.",
+      "contentHash": "c17646e3442c",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-f8c167e770c4",
+      "text": "A new gate: Gate 2 already occupies the per-turn slot; a second gate would compete for the same prefix budget.",
+      "contentHash": "f8c167e770c4",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-9067075e5b08",
+      "text": "Hook-level enforcement of commands: the hook contract is fail-open by design and every adapter returns `{}` on failure.",
+      "contentHash": "9067075e5b08",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-48cdc82bd165",
+      "text": "Looking for an existing \"command discovery\" rule elsewhere in the ruleset: none. The closest text (`PLAN-WORKFLOW LOCK`, `sk-git` rule 16) forbids substitution but assumes the workflow is already named.",
+      "contentHash": "48cdc82bd165",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-9073acb68ec4",
+      "text": "Relying on skill-to-command pointers alone: 1 of ~14 skills has one, and pointers cannot trigger discovery.",
+      "contentHash": "9073acb68ec4",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-00806e73a041",
+      "text": "Inferring a command from a skill recommendation: unsound for 13 skills with no command pointer and for the 27 commands with no skill pointer.",
+      "contentHash": "00806e73a041",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-c1fee2aaad8a",
+      "text": "Searching for a single canonical command→skill field: there is none. The three existing carriers (`skill_agent`, `ownerMode`, `allow-list.skillId`) are the whole vocabulary, and only `allow-list.skillId` covers commands without metadata.",
+      "contentHash": "c1fee2aaad8a",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-3c490a98b2f4",
+      "text": "Treating metadata `choreography` as the executed path: contradicted by `/create:agent`, whose router loads only assets, and by `/speckit:plan`, which loads reference cards rather than the SKILL.md.",
+      "contentHash": "3c490a98b2f4",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-ce4e84995484",
+      "text": "A new benchmark harness: the doctor slice already has the exact shape (prose prompt → command id, `expected_second`, controls), and a second harness would duplicate its fixtures.",
+      "contentHash": "ce4e84995484",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-230996776c97",
+      "text": "Looking for a command-level metric anywhere in the captured baseline or the bench files: none. `scorer-bench.ts` and the baseline both speak skill ids only.",
+      "contentHash": "230996776c97",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-58dbee8d31bd",
+      "text": "Measuring command surfacing through the existing skill metrics: a command-only regression leaves all five baseline metrics unchanged, which is the failure this iteration exists to prevent.",
+      "contentHash": "58dbee8d31bd",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-2f2c9b39edc6",
+      "text": "Copying a command list into each runtime's static rule by hand: the tree already proves that pattern drifts (iteration 1's four sources) and already has a generator for the one block that stays in sync.",
+      "contentHash": "2f2c9b39edc6",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-c7825d82504e",
+      "text": "Searching for a non-Cursor static routing rule: none exists; Codex, Pi and DSH receive `AGENTS.md` directly and have no rules folder.",
+      "contentHash": "c7825d82504e",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-850504b1dc14",
+      "text": "Treating hook delivery as the parity guarantee: one runtime documents its adapter as dormant under the tested build.",
+      "contentHash": "850504b1dc14",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-32a0d40efe2b",
+      "text": "A separate \"command loop breaker\" subsystem: the cycle is one command calling the advisor, so a depth counter at the brief boundary is enough.",
+      "contentHash": "32a0d40efe2b",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-b28b4611228a",
+      "text": "Relying on the ambiguity brief form for command ties: it takes two skill labels and has no slot for a command string.",
+      "contentHash": "b28b4611228a",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-f3c20b3d1646",
+      "text": "Searching for an existing depth counter or re-entry guard in the hook stack: none. The only cycle protection in the tree is the fan-out lineage's own tool budget.",
+      "contentHash": "f3c20b3d1646",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 1,
+    "resolvedQuestions": 8,
+    "carriedForwardOpenQuestions": 10,
+    "keyFindings": 83,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "code": 1,
+      "other": 56
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/pi-deepseek/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [
+    {
+      "type": "event",
+      "event": "novelty_signal_inert",
+      "mode": "research",
+      "severity": "warning",
+      "metric": "newInfoRatio",
+      "run": 10,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "note": "newInfoRatio held flat at 1 across 3 iterations — the novelty signal is uninformative, so convergence and \"not exhausted\" claims derived from it are untrustworthy.",
+      "timestamp": "2026-11-12T09:35:44.517Z"
+    },
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "score",
+      "run": 10,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-11-12T09:35:44.517Z"
+    }
+  ],
+  "strategyWarnings": []
+}

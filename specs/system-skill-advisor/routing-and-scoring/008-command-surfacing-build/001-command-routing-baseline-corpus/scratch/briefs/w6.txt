@@ -1,0 +1,77 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Write exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: write ONE file, `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs`.
+It scores a prompt corpus against the built skill-advisor scorer and prints a JSON baseline.
+
+Read these two files first and no other:
+1. `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs` - copy its file-header style, its section banners,
+   its environment setup (section 3), its Date pin, and its dynamic imports of `scoreAdvisorPrompt` and `findAdvisorWorkspaceRoot`.
+2. `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json` - only the first 60 lines, to see one entry.
+
+INPUTS the script reads (HERE = the script's own directory):
+- corpus: HERE/command-prompts.jsonl. Rows have: id, prompt, row_type (typed|plain|near-miss|must-not-start|slash-variant),
+  split (tune|holdout|none), expected_command (string like "/create:agent" or null), expected_top, expected_policy, source.
+- command files: every `<WORKSPACE_ROOT>/.skilled/commands/<namespace>/<name>.md` exactly two levels deep. Each is the command "/<namespace>:<name>".
+  Skip README.md. Do not include files directly inside `.skilled/commands/`.
+- bridges: HERE/../command-bridges/command-bridges.generated.json. `entries[]` each have `command`, `skillId` and `runtime.typescript.enabled` and `runtime.typescript.id`.
+  Build idToCommand: for each entry with runtime.typescript.enabled === true, map runtime.typescript.id -> {command, skillId}.
+- scoring date: `capturedAt` from HERE/scorer-eval-baseline.json. Pin Date to that date at 00:00Z exactly as file 1 does.
+
+EXPORT: `export async function scoreCommandCorpus()` returning the baseline object. All environment setup, the Date pin and the
+dynamic imports happen INSIDE this function. Restore `globalThis.Date` before returning. The module must have NO side effects on import.
+
+SCORING, per row: `const result = scoreAdvisorPrompt(row.prompt, { workspaceRoot: WORKSPACE_ROOT })`.
+Take the first three ids: `result.recommendations.slice(0, 3).map((r) => r.skill)`. If `recommendations` is missing use `[result.topSkill]` without nulls.
+commandOf(id) = idToCommand.get(id)?.command or null.
+- top1 hit: commandOf(ids[0]) === row.expected_command. top3 hit: any of the three ids maps to row.expected_command.
+- false offer (must-not-start and near-miss rows, and slash-variant rows with null expected_command): any of the three ids maps to any command.
+- agreement: on rows where ids[0] is not a command id and a later id is a command id, total += 1, and correct += 1 when that command's skillId === ids[0].
+
+OUTPUT object, keys in this order:
+schemaVersion: 1, capturedAt, capturedAtSha (git rev-parse --short HEAD as in file 1), corpusSha256 ("sha256:" + hex of the corpus file),
+bridgeCounts: the `counts` object from the bridges file,
+metrics: {
+  typed_recall_at_1: {correct, total}, typed_reach_top3: {correct, total},
+  plain_recall_at_1: {tune: {correct, total}, holdout: {correct, total}},
+  plain_reach_top3: {tune: {correct, total}, holdout: {correct, total}},
+  false_offer: {count, total}, slash_variant: {reached_top3, named_total, offered_on_partial, partial_total}, agreement: {correct, total} },
+unreachable: sorted list of commands from the command files that no idToCommand value names,
+commands: an object keyed by command, sorted by key, one key for EVERY command file, each value
+  {typed: {rows, top1, top3}, plain: {tune: {rows, top1, top3}, holdout: {rows, top1, top3}}}
+
+ERRORS, each writes one line to stderr and exits 2: unknown CLI option (use `rejectUnknownOptions(import.meta.url, ['--write'])` from
+`./reject-unknown-options.mjs`, called only in the CLI entry), built scorer file missing, corpus file missing or empty,
+a row whose expected_command is not null and is not one of the command files (name the row id), invalid JSON line (name the line number).
+Inside scoreCommandCorpus throw an Error with the message. The CLI entry catches it, prints it and exits 2.
+
+CLI ENTRY at the bottom, run only when the file is executed directly:
+`if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) { ... }`
+With no flag: print JSON.stringify(baseline, null, 2). With --write: also write it plus a newline to HERE/command-routing-baseline.json.
+
+Code comments explain why, never name a spec folder, ticket, requirement or task id.
+
+VERIFY from `.skilled/skills/system-skill-advisor/runtime`: `node --check scripts/routing-accuracy/capture-command-routing-baseline.mjs` exits 0, and
+`node scripts/routing-accuracy/capture-command-routing-baseline.mjs --bogus; echo $?` prints 2.
+The corpus file does not exist yet, so a run with no flag must exit 2 with a message naming the corpus path. That is the expected result today.

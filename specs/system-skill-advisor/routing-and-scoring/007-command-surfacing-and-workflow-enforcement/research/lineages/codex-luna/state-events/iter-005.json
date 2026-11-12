@@ -1,0 +1,59 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "run": 5,
+  "runId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "sessionId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "lineageId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write"
+  },
+  "status": "complete",
+  "focus": "Angle 5: Invocation mechanics. Trace how plain prompts reach the advisor and how the resulting command or skill workflow can be loaded across supported runtimes.",
+  "focusTrack": "invocation-mechanics",
+  "findingsCount": 5,
+  "newInfoRatio": 0.9,
+  "noveltyJustification": "Four findings add runtime adapter, DSH command-loader and active-coverage evidence; one extends the prior output-contract analysis, yielding (4 + 0.5*1) / 5 = 0.90.",
+  "keyQuestions": [
+    "Which one canonical inventory reconciles command metadata, active bridge allow-list rows and doctor routing declarations for all 45 slash commands?",
+    "How should command intent and skill intent combine so plain planning and research prompts reach the matching workflow with acceptable recall and precision?",
+    "What should a command recommendation show, and which commands can the model invoke directly versus asking first?",
+    "How does a plain chat request reach the appropriate command workflow across supported runtimes, and how should skills link to command front doors?",
+    "What benchmark evidence, prior art and failure controls should validate the design?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Assuming every host has a slash-command invocation API: DSH documents no command loader and uses prompt stubs composed by its dispatcher.",
+    "Treating the advisor runtime enum or an old validation example as proof an active Copilot hook exists."
+  ],
+  "edgeCase": "contradictory-evidence",
+  "toolsUsed": [
+    "Read",
+    "Grep"
+  ],
+  "sourcesQueried": [
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-config.json",
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-strategy.md",
+    ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:21-60",
+    ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md:126-147",
+    ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:17-30",
+    ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:115-180",
+    ".skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs:80-121",
+    ".skilled/skills/system-skill-advisor/runtime/lib/advisor-runtime-values.ts:10-19",
+    ".skilled/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts:5-14",
+    ".dsh/SYNC.md:29-49",
+    ".dsh/README.md:43-48",
+    "AGENTS.md:63-70"
+  ],
+  "timestamp": "2026-11-12T10:00:49Z",
+  "durationMs": 200000,
+  "graphEvents": []
+}

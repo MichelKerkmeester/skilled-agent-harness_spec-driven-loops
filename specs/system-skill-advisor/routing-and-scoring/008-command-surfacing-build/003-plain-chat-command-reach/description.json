@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach",
+  "description": "Phase 3: plain-chat-command-reach",
+  "keywords": [
+    "phase",
+    "plain-chat-command-reach"
+  ],
+  "lastUpdated": "2026-11-12T12:27:36.626Z",
+  "specId": "003",
+  "folderSlug": "plain-chat-command-reach",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring",
+    "008-command-surfacing-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3+"
+}

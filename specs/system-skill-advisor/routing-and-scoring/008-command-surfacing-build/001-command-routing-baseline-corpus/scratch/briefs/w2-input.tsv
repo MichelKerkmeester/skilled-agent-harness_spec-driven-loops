@@ -1,0 +1,10 @@
+command	owner_skill	policy	description
+/doctor:agents-md	system-skilled-doctor	check=run; embed,restore=ask	Check, embed or restore the shipped AGENTS.md sections, plan first.
+/doctor:ci	sk-code	report=run; scaffold,toggle=ask	List GitHub Actions workflows with their switch state, scaffold a new workflow, or toggle one CI switch.
+/doctor:deep-loop	system-deep-loop	run	Diagnose deep-loop coverage graphs and convergence for research, review and council runs.
+/doctor:env	system-skilled-doctor	ask	Inspect documented environment switches and confirm preference changes.
+/doctor:git	sk-git	setup=run; hooks,standards=ask	Switch sk-git hook gates, edit the commit, PR and branch rules in .sk-git/ and check which settings are live.
+/doctor:helper	system-skilled-doctor	run	Describe a problem and get the doctor command that fits, with why, ranked and ready to run.
+/doctor:install	system-skilled-doctor	run	Get the ordered steps that put Skilled into your own project repo, ready to run.
+/doctor:mcp	system-skilled-doctor	install,debug=ask	Install or debug Code Mode, its UTCP configuration, and runtime registration.
+/doctor:overlay	system-skilled-doctor	status=run; apply,repin=ask	Check whether a vendored Skilled tree still carries its overlays, put them back, or re-pin it, after one yes.

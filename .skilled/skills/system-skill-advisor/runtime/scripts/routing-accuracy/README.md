@@ -68,6 +68,9 @@ Run individual scripts from the repository root with the documented arguments.
 |---|---|
 | `gate3-corpus-runner.mjs` | MJS source file in this folder. |
 | `score-routing-corpus.py` | PY source file in this folder. |
+| `command-prompts.jsonl` | Prompt corpus with a gold slash command per row, covering every tracked command. |
+| `capture-command-routing-baseline.mjs` | Scores `command-prompts.jsonl` under the pinned regime and prints or writes the baseline. |
+| `command-routing-baseline.json` | Captured command routing numbers that `tests/command-routing-slice.vitest.ts` holds the scorer to. |
 
 ---
 

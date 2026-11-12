@@ -1,0 +1,18 @@
+Done. File written and verified.
+
+**File written** (only file touched):
+`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus/scratch/parts/w3.jsonl`
+
+**Verify output** — `jq -c . <file> | wc -l` → `24` ✅
+
+Additional checks I ran on the same file:
+- Key order: all 24 lines are `id,prompt,row_type,split,expected_command,expected_top,expected_policy,source` (0 deviations).
+- Coverage: 3 lines per command for all 8 commands; 8 typed/`none`, 8 plain/`tune`, 8 plain/`holdout`.
+- Plain prompts: all 16 within 6–20 words (range 10–15).
+- Plain prompts contain no slash command, no `command`, no `doctor`, no colon-adjacent name (`runtime-mirrors`, `sk-code`, `sk-skill`, `skill-advisor`, `speckit`, `symlink`, `update`), and no 4-word runs copied from a description (checked by hand against each `description` cell).
+- Typed lines start with the command exactly as written; routed commands carry a route word after it and set `expected_policy` to that route's value (`sk-code`→`setup`/run, `sk-skill`→`convert`/ask, `skill-advisor`→`rebuild`/ask, `symlink`→`check`/run, `update`→`align`/start).
+
+**Not done / caveats:**
+- I did not execute the actual prompt router against these rows — the brief's verification was the `jq | wc -l` count, which passed. Router behaviour (whether each command actually wins top-1) is unmeasured.
+- Where a command lists multiple routes, only two routes are exercised across its three lines (typed takes one, both plain lines express the same need so share the other's policy). `sk-code`, `sk-skill`, `skill-advisor`, `symlink`, `update` therefore leave at least one route uncovered by this file.
+- Per the leaf-worker persona I read only the named input TSV and wrote only the one target file; no git state touched, nothing committed.

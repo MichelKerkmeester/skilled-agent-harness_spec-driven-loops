@@ -1,0 +1,59 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Write exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: write ONE file, `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus/scratch/parts/w5.jsonl`. It is test data for a prompt router that can offer slash commands.
+Read no file. Write exactly 43 single-line JSON objects, each with these 8 keys in this order:
+id, prompt, row_type, split, expected_command, expected_top, expected_policy, source
+In every row: split is "none", expected_policy is null.
+
+GROUP A, 22 rows, row_type "must-not-start", expected_command null, expected_top null. Prompts where NO workflow command should be offered:
+- A1, 10 rows, source "d3-plain", ids `mns-d3-01` to `mns-d3-10`: a plain research or review request answered in chat, such as
+  "what does the fusion scorer do with lane weights" or "look over this function and tell me if the loop is right".
+  These must NOT contain the words deep, deeply, depth, thorough, iterate, iteration, converge, exhaustive, comprehensive, loop of, rounds.
+- A2, 12 rows, source "authored-deepseek", ids `mns-chat-01` to `mns-chat-12`: greetings, thanks, a one-line code edit,
+  a question about a concept, a git question that is only a question, a request to explain an error message.
+
+GROUP B, 9 rows, row_type "near-miss", expected_command null, source "authored-deepseek", ids `nm-<skill>-01`.
+One row for each expected_top value: sk-code, sk-design, sk-doc, sk-git, sk-prompt, system-deep-loop, system-skill-advisor, system-skilled-doctor, system-spec-kit.
+The prompt is a small task that belongs to that skill and needs no command: sk-code = code edit or bug fix, sk-design = a design opinion,
+sk-doc = fix a typo in a document, sk-git = a commit message, sk-prompt = critique one sentence of a prompt,
+system-deep-loop = a question about how the research loop decides to stop, system-skill-advisor = a question about why a skill was recommended,
+system-skilled-doctor = a question about what the doctor commands are for, system-spec-kit = a question about what a spec folder level means.
+
+GROUP C, 12 rows, row_type "slash-variant", expected_top null, source "authored-deepseek", ids `sv-01` to `sv-12`:
+- 4 rows with a broken or partial slash, expected_command null: "/speckit", "/create: a thing", "/doctor", "/deep:".
+  Add a few natural words around each.
+- 4 rows that name a real command inside backticks in a question about it, expected_command is that command. Use
+  `/deep:research`, `/speckit:plan`, `/create:skill`, `/doctor:setup`. Example prompt: "what does `/deep:research` actually do".
+- 4 rows that mention a real command without backticks in a question, expected_command is that command. Use
+  /speckit:resume, /design:chart, /doctor:git, /prompt:improve. Example prompt: "is /speckit:resume safe to run twice".
+
+All prompts: 3 to 20 words, natural chat English, all different.
+
+Example rows:
+{"id":"mns-d3-01","prompt":"what does the fusion scorer do with lane weights","row_type":"must-not-start","split":"none","expected_command":null,"expected_top":null,"expected_policy":null,"source":"d3-plain"}
+{"id":"nm-sk-git-01","prompt":"write me a commit message for the staged change","row_type":"near-miss","split":"none","expected_command":null,"expected_top":"sk-git","expected_policy":null,"source":"authored-deepseek"}
+{"id":"sv-05","prompt":"what does `/deep:research` actually do","row_type":"slash-variant","split":"none","expected_command":"/deep:research","expected_top":null,"expected_policy":null,"source":"authored-deepseek"}
+
+VERIFY: run `jq -c . specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus/scratch/parts/w5.jsonl | wc -l` and it must print 43. Fix the file until it does.

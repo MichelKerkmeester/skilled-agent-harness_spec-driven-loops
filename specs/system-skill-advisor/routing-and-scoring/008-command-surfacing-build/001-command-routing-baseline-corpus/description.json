@@ -1,0 +1,24 @@
+{
+  "level": "3+",
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus",
+  "description": "Phase 1: command-routing-baseline-corpus",
+  "keywords": [
+    "phase",
+    "command-routing-baseline-corpus"
+  ],
+  "lastUpdated": "2026-11-12T13:18:05.729Z",
+  "specId": "001",
+  "folderSlug": "command-routing-baseline-corpus",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring",
+    "008-command-surfacing-build"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "12-11-26_13-35__planned-phase-1-of-the-command-surfacing-build-a.md",
+    "12-11-26_13-35__planned-phase-1-of-the-command-surfacing-build-a.md",
+    "12-11-26_14-17__implemented-the-command-routing-baseline-corpus.md",
+    "12-11-26_14-18__implemented-the-command-routing-baseline-corpus.md"
+  ]
+}

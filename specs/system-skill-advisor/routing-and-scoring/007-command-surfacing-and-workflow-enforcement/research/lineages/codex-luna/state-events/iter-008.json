@@ -1,0 +1,60 @@
+{
+  "type": "iteration",
+  "iteration": 8,
+  "run": 8,
+  "runId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "sessionId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "lineageId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write"
+  },
+  "status": "complete",
+  "focus": "Angle 8: Measurement. Assess available route corpora, scoring metrics, ambiguous cases, command coverage and runtime evidence.",
+  "focusTrack": "measurement",
+  "findingsCount": 5,
+  "newInfoRatio": 0.9,
+  "noveltyJustification": "Four findings add measurement evidence about command/action labels, ambiguity labels, threshold transfer and runtime coverage; one extends the runtime-parity gap already found.",
+  "keyQuestions": [
+    "Which one canonical inventory reconciles command metadata, active bridge allow-list rows and doctor routing declarations for all 45 slash commands?",
+    "How should command intent and skill intent combine so plain planning and research prompts reach the matching workflow with acceptable recall and precision?",
+    "What should a command recommendation show, and which commands can the model invoke directly versus asking first?",
+    "How does a plain chat request reach the appropriate command workflow across supported runtimes, and how should skills link to command front doors?",
+    "What benchmark evidence, prior art and failure controls should validate the design?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Treating exact skill top-1 accuracy as proof that the correct command and run/ask action were selected.",
+    "Copying the prior doctor slice's 12/14 and 0.05-margin gates as universal thresholds without a fresh command-routing baseline."
+  ],
+  "edgeCase": "contradictory-evidence",
+  "toolsUsed": [
+    "Read",
+    "Grep",
+    "Bash"
+  ],
+  "sourcesQueried": [
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-config.json",
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-state.jsonl",
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-strategy.md",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json:1-35",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-routing-corpus.py:95-181",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/derive-ambiguity-slice.mjs:5-94",
+    ".skilled/skills/system-skill-advisor/runtime/tests/prompt-policy-gold-replay.vitest.ts:9-83",
+    ".skilled/skills/system-skill-advisor/runtime/tests/hooks/runtime-parity.vitest.ts:2-72",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-binding-existence.vitest.ts:4-64",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:75-84,303-314",
+    "specs/system-skill-advisor/routing-and-scoring/003-doctor-command-surfacing/001-doctor-command-guidance/research/research.md:206,217-231",
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/iterations/iteration-005.md:8-16"
+  ],
+  "timestamp": "2026-11-12T10:09:22Z",
+  "durationMs": 162000,
+  "graphEvents": []
+}

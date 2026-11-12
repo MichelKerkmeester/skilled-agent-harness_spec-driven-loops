@@ -1,0 +1,35 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement",
+  "description": "The repository ships 45 slash commands that own complete workflows, but the skill advisor tells the model about skills, not commands",
+  "keywords": [
+    "repository",
+    "ships",
+    "slash",
+    "commands",
+    "own",
+    "complete",
+    "workflows",
+    "skill",
+    "advisor",
+    "tells",
+    "model",
+    "about",
+    "skills"
+  ],
+  "lastUpdated": "2026-11-12T14:44:01.123Z",
+  "specId": "007",
+  "folderSlug": "command-surfacing-and-workflow-enforcement",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "12-11-26_11-37__deep-research-completed-as-a-three-lineage-fan.md",
+    "12-11-26_11-37__deep-research-completed-as-a-three-lineage-fan.md",
+    "12-11-26_11-37__deep-research-completed-as-a-three-lineage-fan.md",
+    "12-11-26_11-37__command-surfacing-and-workflow-enforcement.md",
+    "12-11-26_15-43__command-surfacing-and-workflow-enforcement.md"
+  ]
+}

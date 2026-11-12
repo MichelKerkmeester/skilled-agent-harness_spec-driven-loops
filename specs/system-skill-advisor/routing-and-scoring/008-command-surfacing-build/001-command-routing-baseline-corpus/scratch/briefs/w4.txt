@@ -1,0 +1,56 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Write exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: write ONE file, `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus/scratch/parts/w4.jsonl`. It is test data for a prompt router.
+
+Read ONE file first and no other: `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus/scratch/briefs/w4-input.tsv`. It has 14 rows with the columns
+command, owner_skill, policy, description.
+
+For EACH command write exactly 3 JSON lines, each a single-line JSON object with these 8 keys in this order:
+id, prompt, row_type, split, expected_command, expected_top, expected_policy, source
+
+Line 1, typed: the prompt STARTS with the command exactly as written, then a short realistic argument.
+  For a /doctor command whose policy column lists routes, add one route word after the command.
+Line 2, plain, split "tune": a request a real user would type in chat who has never heard of the command.
+Line 3, plain, split "holdout": the same need in clearly different words from line 2.
+
+Rules for plain prompts:
+- 6 to 20 words, natural chat English, about work in a software repository.
+- NEVER contain a slash command, the text before or after the colon as a command name, or the word "command".
+- Do not copy more than three consecutive words from the description.
+- The request must fit this command better than any other command in the input file.
+
+Values:
+- id: `cmd-<namespace>-<name>-typed-01`, `cmd-<namespace>-<name>-plain-tune-01`, `cmd-<namespace>-<name>-plain-holdout-01`
+- row_type: "typed" or "plain". split: "none" for typed, "tune" or "holdout" for plain.
+- expected_command: the command column. expected_top: the owner_skill column.
+- expected_policy: "run", "start" or "ask". When the policy column lists routes, use the value of the route the prompt asks for.
+- source: "authored-deepseek"
+
+Example for one command:
+{"id":"cmd-create-agent-typed-01","prompt":"/create:agent code-reviewer for pull requests","row_type":"typed","split":"none","expected_command":"/create:agent","expected_top":"sk-doc","expected_policy":"start","source":"authored-deepseek"}
+{"id":"cmd-create-agent-plain-tune-01","prompt":"I need a new agent that reviews pull requests for us","row_type":"plain","split":"tune","expected_command":"/create:agent","expected_top":"sk-doc","expected_policy":"start","source":"authored-deepseek"}
+{"id":"cmd-create-agent-plain-holdout-01","prompt":"set up a specialist persona file that handles security audits","row_type":"plain","split":"holdout","expected_command":"/create:agent","expected_top":"sk-doc","expected_policy":"start","source":"authored-deepseek"}
+
+VERIFY: run `jq -c . specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus/scratch/parts/w4.jsonl | wc -l` and it must print 42. Fix the file until it does.

@@ -1,0 +1,17 @@
+**File written:** `specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus/scratch/parts/w5.jsonl` (43 lines)
+
+**Verification output:**
+```
+$ jq -c . .../scratch/parts/w5.jsonl | wc -l
+43
+```
+
+Extra checks (all clean, no fixes needed):
+- Key order identical on all 43 rows: `id,prompt,row_type,split,expected_command,expected_top,expected_policy,source`
+- Group counts: 10 `d3-plain` + 12 `authored-deepseek` must-not-start, 9 near-miss, 12 slash-variant
+- 43 distinct prompts, none outside 3–20 words
+- Zero banned terms (deep/deeply/depth/thorough/iterate/iteration/converge/exhaustive/comprehensive/loop of/rounds) in the d3 rows
+- `split` is `none` and `expected_policy` is `null` everywhere
+- `expected_top` covers exactly the 9 named skills; `expected_command` covers exactly the 8 named commands (4 backticked, 4 bare)
+
+**Could not do / notes:** nothing outstanding. Per brief I touched no other file, ran no git operations, dispatched nothing, and did not read any existing file (all checks above were run against the file I wrote).

@@ -1,0 +1,21 @@
+**File written** (the only file touched, untracked; no git actions):
+
+`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs`
+
+Structure mirrors `capture-scorer-eval-baseline.mjs`: header block, banners 1–6 (IMPORTS / CONSTANTS / RUNTIME SETUP / HELPERS / CORE LOGIC / CLI ENTRY), same env projection, same Date-pin class, same `readHeadSha`/`sha256File` idioms. Setup, clock pin and the two dynamic imports (`lib/scorer/fusion.js`, `lib/utils/workspace-root.js`) all execute inside the exported `scoreCommandCorpus()`; `globalThis.Date` is restored in a `finally`. `rejectUnknownOptions(import.meta.url, ['--write'])` runs only inside the `import.meta.url === pathToFileURL(...)` guard.
+
+**Verify** (from `runtime/`):
+```
+node --check scripts/routing-accuracy/capture-command-routing-baseline.mjs   → exit 0
+node scripts/.../capture-command-routing-baseline.mjs --bogus; echo $?       → 2
+  capture-command-routing-baseline.mjs: unknown option: --bogus
+  usage: capture-command-routing-baseline.mjs [--write]
+node scripts/.../capture-command-routing-baseline.mjs; echo $?               → 2 (expected today)
+  ...: corpus file missing: .../routing-accuracy/command-prompts.jsonl
+```
+
+Extra checks I ran (read-only, in-process): importing the module changes neither `SYSTEM_SKILL_ADVISOR_DB_DIR` nor `globalThis.Date` and exports only `scoreCommandCorpus`; after a failed call the real clock is back (100 ms delta, so no pinned-date leak). Command enumeration resolves 44 command files (`/create` 13, `/doctor` 17, `/speckit` 7, `/deep` 3, `/design` 3, `/prompt` 1), skipping `README.md` and `_routes.yaml` while correctly keeping `create/readme.md` as `/create:readme` (confirmed it is a real command doc, which is why the skip is case-sensitive).
+
+**Could not do:** no end-to-end scoring run — `command-prompts.jsonl` does not exist yet, so no `metrics`/`commands` numbers are observable today; the corpus-row validation, per-command tallies and `unreachable` list are therefore unexercised until that file lands.
+
+Beyond the two named files I read `reject-unknown-options.mjs` (to confirm it exits 2 itself rather than returning), `derive-command-bridges.cjs` and `create/readme.md` — all read-only.

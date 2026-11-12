@@ -1,0 +1,102 @@
+{
+ "/create:agent": [
+  "create:agent"
+ ],
+ "/create:benchmark": [],
+ "/create:changelog": [],
+ "/create:command": [],
+ "/create:diff": [],
+ "/create:feature-catalog": [],
+ "/create:goal": [],
+ "/create:manual-testing-playbook": [
+  "create:manual-testing-playbook"
+ ],
+ "/create:readme": [],
+ "/create:repo-rule": [],
+ "/create:skill-parent": [],
+ "/create:skill": [],
+ "/create:with-human-voice": [],
+ "/deep:ai-council": [],
+ "/deep:research": [],
+ "/deep:review": [],
+ "/design:chart": [],
+ "/design:diagram": [],
+ "/design:extract": [],
+ "/doctor:agents-md": [
+  "command-doctor-agents-md-check",
+  "command-doctor-agents-md-embed",
+  "command-doctor-agents-md-restore"
+ ],
+ "/doctor:ci": [
+  "command-doctor-ci-report",
+  "command-doctor-ci-scaffold",
+  "command-doctor-ci-toggle"
+ ],
+ "/doctor:deep-loop": [
+  "command-doctor-deep-loop"
+ ],
+ "/doctor:env": [
+  "command-doctor-env"
+ ],
+ "/doctor:git": [
+  "command-doctor-git-hooks",
+  "command-doctor-git-setup",
+  "command-doctor-git-standards"
+ ],
+ "/doctor:helper": [
+  "command-doctor-helper"
+ ],
+ "/doctor:install": [
+  "command-doctor-install"
+ ],
+ "/doctor:mcp": [
+  "command-doctor-mcp-debug",
+  "command-doctor-mcp-install"
+ ],
+ "/doctor:overlay": [
+  "command-doctor-overlay-apply",
+  "command-doctor-overlay-repin",
+  "command-doctor-overlay-status"
+ ],
+ "/doctor:runtime-mirrors": [
+  "command-doctor-runtime-mirrors"
+ ],
+ "/doctor:setup": [
+  "command-doctor-setup"
+ ],
+ "/doctor:sk-code": [
+  "command-doctor-sk-code-quality",
+  "command-doctor-sk-code-setup"
+ ],
+ "/doctor:sk-skill": [
+  "command-doctor-sk-skill-check",
+  "command-doctor-sk-skill-convert"
+ ],
+ "/doctor:skill-advisor": [
+  "command-doctor-skill-advisor-parent-skill",
+  "command-doctor-skill-advisor-rebuild",
+  "command-doctor-skill-advisor-router-reach",
+  "command-doctor-skill-advisor-skill-budget",
+  "command-doctor-skill-advisor-skill-graph-freshness",
+  "command-doctor-skill-advisor-tune"
+ ],
+ "/doctor:speckit": [
+  "command-doctor-speckit"
+ ],
+ "/doctor:symlink": [
+  "command-doctor-symlink-check",
+  "command-doctor-symlink-link",
+  "command-doctor-symlink-unlink"
+ ],
+ "/doctor:update": [
+  "command-doctor-update"
+ ],
+ "/prompt:improve": [],
+ "/speckit:complete": [],
+ "/speckit:handoff": [],
+ "/speckit:implement": [],
+ "/speckit:plan": [],
+ "/speckit:resume": [],
+ "/speckit:save": [],
+ "/speckit:search": []
+}

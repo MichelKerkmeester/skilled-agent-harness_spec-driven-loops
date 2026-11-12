@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command routing baseline corpus",
+      "phase 1 command routing baseline corpus",
+      "command prompts corpus",
+      "command recall baseline",
+      "command routing baseline corpus plan",
+      "command routing baseline corpus tasks",
+      "command routing baseline corpus acceptance criteria",
+      "command routing baseline corpus implementation summary"
+    ],
+    "key_topics": [
+      "command",
+      "routing",
+      "baseline",
+      "corpus",
+      "phase",
+      "prompts",
+      "recall",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      ".github/workflows/routing-registry-drift.yml",
+      ".github/workflows/skill-advisor-stress.yml",
+      "scratch/command-bridge-map.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-prompts.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "capture-command-routing-baseline.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-routing-baseline.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-routing-slice.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-stress.yml",
+        "kind": "config",
+        "path": ".github/workflows/skill-advisor-stress.yml",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridge-map.json",
+        "kind": "config",
+        "path": "scratch/command-bridge-map.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fixture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor is scored against three pinned skill corpora and one doctor slice, and none of them holds a gold label for a non-doctor command",
+    "created_at": "2026-11-12T12:27:33Z",
+    "last_save_at": "2026-11-12T13:18:05.729Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ba6109d55e33fea1eafeb187edc2735155e30609b0012024f79951132ddc84a5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d1d3301779315d9283f1f3cc583d8cf238b2b9c19358d5eda11fb3c7296e1810",
+      "plan.md": "bdce3b1e1110d6da1a6b6a31f06a13881920718c8f6b1d41145f5d4c2aceb215",
+      "tasks.md": "d30053a0fb8df8a7d9e67e69d5fe5270a0275405b8c83d814abadccd473f598b",
+      "implementation-summary.md": "101cf899b1049d44bc6ca45ca0aebf9ba25809cbc9b6951412600de25d36fda1"
+    },
+    "last_active_at": null
+  }
+}

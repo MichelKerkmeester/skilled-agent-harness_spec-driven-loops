@@ -1,0 +1,56 @@
+{
+  "type": "iteration",
+  "iteration": 3,
+  "run": 3,
+  "runId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "sessionId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "lineageId": "fanout-codex-luna-1794475749931-e4ukfw",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write"
+  },
+  "status": "complete",
+  "focus": "Angle 3: Output contract. Inspect the current advisor brief and command-rendering surfaces, then specify what a model needs to load or ask across all commands.",
+  "focusTrack": "output-contract",
+  "findingsCount": 5,
+  "newInfoRatio": 0.8,
+  "noveltyJustification": "Three findings extend the output contract beyond the doctor-only surface and two carry forward the prior doctor's rendering constraints; (3 + 0.5*2) / 5 = 0.80.",
+  "keyQuestions": [
+    "Which one canonical inventory reconciles command metadata, active bridge allow-list rows and doctor routing declarations for all 45 slash commands?",
+    "How should command intent and skill intent combine so plain planning and research prompts reach the matching workflow with acceptable recall and precision?",
+    "What should a command recommendation show, and which commands can the model invoke directly versus asking first?",
+    "How does a plain chat request reach the appropriate command workflow across supported runtimes, and how should skills link to command front doors?",
+    "What benchmark evidence, prior art and failure controls should validate the design?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Using the bridge id as the visible command label for all routes: only doctor ids have runnable-string rendering.",
+    "Adding a static table of all commands to every no-match or outage fallback: the prior doctor packet rejected broad hardcoded route guidance."
+  ],
+  "edgeCase": "ambiguous-input",
+  "toolsUsed": [
+    "Read",
+    "Grep"
+  ],
+  "sourcesQueried": [
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-config.json",
+    "specs/system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement/research/lineages/codex-luna/deep-research-strategy.md",
+    ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:109-149",
+    ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:218-230",
+    ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:493-564",
+    ".skilled/skills/system-skill-advisor/runtime/tests/doctor-brief-render.vitest.ts:48-64",
+    ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:21-43",
+    "AGENTS.md:63-70",
+    "specs/system-skill-advisor/routing-and-scoring/003-doctor-command-surfacing/001-doctor-command-guidance/research/research.md:156-179"
+  ],
+  "timestamp": "2026-11-12T09:53:42Z",
+  "durationMs": 82000,
+  "graphEvents": []
+}
