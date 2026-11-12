@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6735,
-    "ok": 17865,
+    "ok": 17869,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26229,
+  "documentsScanned": 26233,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "8d53523ad2913fb6e69bf84d151b6d87c9ac97e9ac37ab29ac28e61b79308d05",
+  "manifestHash": "45c6ceee2ed4218c4459cc10fc160d1481805dccf4246d9ab7c06f191c4de8fb",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42397,
+      "ok": 42403,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -52822,6 +52822,10 @@
     },
     {
       "path": "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/scratch",
       "reason": "excluded directory"
     },
     {

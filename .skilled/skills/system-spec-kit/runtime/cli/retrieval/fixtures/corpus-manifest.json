@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7347f67938bd1a494d9014f074efde304f734f5f5d92ceab7f1fce98403e58f2",
+  "corpusHash": "fc66b543eff3afb3480fc7fe1325f146356ec30b904f59d6370f9406c1f5520c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26229,
+  "includedPathCount": 26233,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9357,6 +9357,10 @@
     "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/plan.md",
     "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/spec.md",
     "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/tasks.md",
+    "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/implementation-summary.md",
+    "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/plan.md",
+    "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/spec.md",
+    "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/tasks.md",
     "specs/agents/001-orchestrator-inline-authority/acceptance-criteria.md",
     "specs/agents/001-orchestrator-inline-authority/implementation-summary.md",
     "specs/agents/001-orchestrator-inline-authority/plan.md",
@@ -26261,7 +26265,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8d53523ad2913fb6e69bf84d151b6d87c9ac97e9ac37ab29ac28e61b79308d05",
+  "manifestHash": "45c6ceee2ed4218c4459cc10fc160d1481805dccf4246d9ab7c06f191c4de8fb",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27225,6 +27229,10 @@
     },
     {
       "path": "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/scratch",
       "reason": "excluded directory"
     },
     {
