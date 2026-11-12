@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.4.16.0
+version: 1.4.17.0
 ---
 
 # OpenCode CLI - Integration Patterns
@@ -54,7 +54,7 @@ The calling AI is Claude Code, OpenCode, Copilot, or a raw shell. The task needs
 
 ### Smart-router signal
 
-ADR-001's detection signal does NOT trip (no OPENCODE_* env var, no opencode parent process, no live state lock).
+ADR-001's detection signal does NOT trip (no OPENCODE_* env var other than OPENCODE_API_KEY, no opencode parent process, no live state lock).
 
 ### Prompt template
 
@@ -265,7 +265,7 @@ INPUT: prompt + calling runtime
                 |
                 v
 [ADR-001 SELF-INVOCATION GUARD]
-- Layer 1: env var lookup (any OPENCODE_* env var present?)
+- Layer 1: env var lookup (any OPENCODE_* env var other than OPENCODE_API_KEY present?)
 - Layer 2: process ancestry (opencode in parent process tree?)
 - Layer 3: best-effort lock-file probe (~/.opencode/state/<id>/lock present? -- heuristic, not guaranteed on every install)
                 |

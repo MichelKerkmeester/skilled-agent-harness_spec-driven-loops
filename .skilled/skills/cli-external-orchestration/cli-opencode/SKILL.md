@@ -90,8 +90,8 @@ This skill's OpenCode 1 command lines name `opencode`, which is right on a v1-on
 OC=${OPENCODE_BIN:-}; if [ -z "$OC" ]; then OC=$(command -v opencode2 2>/dev/null); [ -z "$OC" ] && OC=$(command -v opencode 2>/dev/null); fi
 "$OC" --version   # `opencode v2.1.4` = OpenCode 2 (expected), `1.19.4` = OpenCode 1 (fallback); either major passes
 
-# Self-invocation guard
-env | grep -q '^OPENCODE_' && echo "ERROR: Already inside OpenCode session"
+# Self-invocation guard. OPENCODE_API_KEY is a provider key an operator exports, not a session marker.
+env | grep -v '^OPENCODE_API_KEY=' | grep -q '^OPENCODE_' && echo "ERROR: Already inside OpenCode session"
 
 # Authentication
 opencode providers
@@ -194,7 +194,7 @@ On OpenCode 1 (fallback), `--port <N>` serves explicit detached sessions and `--
 ### ✅ ALWAYS
 
 1. Verify OpenCode CLI is installed before first invocation. Confirm the version baseline for OpenCode 2 (2.1.4, the expected version) or OpenCode 1 (1.19.4, supported for now as a fallback), with drift handling per `references/cli-reference.md` §9.
-2. **Run the self-invocation guard before dispatch** (ADR-001): Layer 1 env-var lookup for any `OPENCODE_*`, Layer 2 process-ancestry probe for `opencode` parent, Layer 3 `~/.opencode/state/<id>/lock` probe. Trip on ANY positive. Refuse unless the prompt has explicit parallel-session keywords.
+2. **Run the self-invocation guard before dispatch** (ADR-001): Layer 1 env-var lookup for any `OPENCODE_*` other than `OPENCODE_API_KEY`, Layer 2 process-ancestry probe for `opencode` parent, Layer 3 `~/.opencode/state/<id>/lock` probe. Trip on ANY positive. Refuse unless the prompt has explicit parallel-session keywords.
 3. Pin model, variant, format and dir explicitly.
    - OpenCode 2 default: `-m llmgateway/deepseek-v4.1-flash-1017#max --format json` with a start-in-directory `cd`.
    - OpenCode 1 fallback: `--model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json --dir <repo-root>` (see [`references/cli-reference.md`](./references/cli-reference.md) §4).

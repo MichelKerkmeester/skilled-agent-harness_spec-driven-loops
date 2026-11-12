@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.24.0
+version: 1.4.25.0
 ---
 
 # cli-opencode
@@ -135,7 +135,7 @@ Two `opencode run` defaults punish operators who learn them the hard way.
 
 If the agent reading this skill is already inside OpenCode, the skill refuses to load. The guard checks three layers in order:
 
-1. The `$OPENCODE_CONFIG_DIR` env var and any `OPENCODE_*`-prefixed vars, which OpenCode sets on session start.
+1. The `$OPENCODE_CONFIG_DIR` env var and any `OPENCODE_*`-prefixed vars, which OpenCode sets on session start. `OPENCODE_API_KEY` is not counted, because it is the OpenCode Go provider key an operator exports in any shell.
 2. Process ancestry, where an `opencode` parent in the tree trips the guard.
 3. A best-effort lock-file probe under `~/.opencode/state/<id>/lock`, a heuristic layer since that path does not exist on every install.
 
@@ -250,7 +250,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | `--agent general` fails or warns | The default path is selected by omitting `--agent` | Omit `--agent general`. Use `orchestrate` only when it is the documented primary route and help-verified. Route `context`, `review`, `debug` and `ai-council` through the documented primary path (or, for `ai-council`, `/deep:ai-council`) instead of a direct top-level `--agent`. |
 | `provider/model not found` or `401 Unauthorized` | The default provider is not configured on this machine (`llmgateway` on both versions) | Run `opencode providers list` (OpenCode 1) or `opencode models --standalone` (OpenCode 2), then log in the missing provider |
 | Empty event stream | Output format defaulted to formatted instead of JSON | Force `--format json` |
-| `Self-invocation refused` | The caller is already inside OpenCode (`OPENCODE_*` env, `opencode` ancestry or a state lock) | Use a different runtime, exit the current session or restate with explicit parallel-detached keywords |
+| `Self-invocation refused` | The caller is already inside OpenCode (`OPENCODE_*` env other than `OPENCODE_API_KEY`, `opencode` ancestry or a state lock) | Use a different runtime, exit the current session or restate with explicit parallel-detached keywords |
 | Unknown `--variant` flag on OpenCode 1 | Binary older than the documented baseline | Run `opencode --version` and `opencode run --help`, then upgrade. It has no `run` form on OpenCode 2. See [`references/install-and-versions.md`](./references/install-and-versions.md) |
 | Context too large or truncated | The prompt references broad paths instead of specific files | Split large tasks and use `--file` for attachments |
 

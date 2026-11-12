@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/opencode-platform/004-self-invocation-guard-api-key",
+  "description": "Self-invocation guard ignores OPENCODE_API_KEY",
+  "keywords": [
+    "self-invocation",
+    "guard",
+    "ignores"
+  ],
+  "lastUpdated": "2026-11-12T15:11:57.523Z",
+  "specId": "004",
+  "folderSlug": "self-invocation-guard-api-key",
+  "parentChain": [
+    "cli-external-orchestration",
+    "opencode-platform"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "12-11-26_15-52__layer-1-of-the-cli-opencode-self-invocation-guard.md",
+    "12-11-26_16-11__layer-1-of-the-cli-opencode-self-invocation-guard.md"
+  ]
+}

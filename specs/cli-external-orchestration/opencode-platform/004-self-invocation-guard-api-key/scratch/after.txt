@@ -1,0 +1,29 @@
+# The guard line after the change: env | grep -v '^OPENCODE_API_KEY=' | grep -q '^OPENCODE_' && echo TRIPPED || echo clear
+[OPENCODE_API_KEY=x]                                 => clear
+[OPENCODE_API_KEY=x OPENCODE_CONFIG_DIR=/tmp/fake]   => TRIPPED
+[OPENCODE_CONFIG_DIR=/tmp/fake]                      => TRIPPED
+[no OPENCODE variable]                               => clear
+[OPENCODE_API_KEY_FILE=x]                            => TRIPPED
+[OPENCODE_BIN=/usr/local/bin/opencode]               => TRIPPED
+# Guard statements without the exemption under the skill hub (benchmark reports excluded). Expect no line.
+$ rg -n "grep -q '\^OPENCODE_'" .skilled/skills/cli-external-orchestration --glob '!**/benchmark/**' | rg -v OPENCODE_API_KEY
+exit=1 (1 means no line)
+# Files that now state the exemption
+.skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:1
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md:2
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cross-repo-cross-server/self-invocation-guard-nested.md:1
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/external-dispatch/from-claude-code.md:2
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/external-dispatch/self-invocation-refusal.md:2
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:3
+.skilled/skills/cli-external-orchestration/cli-opencode/README.md:2
+.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md:2
+.skilled/skills/cli-external-orchestration/cli-opencode/references/self-invocation-guard.md:4
+.skilled/skills/cli-external-orchestration/cli-opencode/ROUTER.md:1
+.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:3
+# Python reference check, same six environments
+['OPENCODE_API_KEY']                                 => None
+['OPENCODE_API_KEY', 'OPENCODE_CONFIG_DIR']          => ('env', 'OPENCODE_CONFIG_DIR')
+['OPENCODE_CONFIG_DIR']                              => ('env', 'OPENCODE_CONFIG_DIR')
+[]                                                   => None
+['OPENCODE_API_KEY_FILE']                            => ('env', 'OPENCODE_API_KEY_FILE')
+['OPENCODE_BIN']                                     => ('env', 'OPENCODE_BIN')

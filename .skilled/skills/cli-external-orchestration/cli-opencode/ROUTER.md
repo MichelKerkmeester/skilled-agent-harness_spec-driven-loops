@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-opencode routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -64,7 +64,7 @@ Install steps, side-by-side setup for both versions and the capability delta bet
 ### Self-Invocation Guard (ADR-001)
 
 Before any dispatch, run the layered ADR-001 detection:
-- Layer 1: any `OPENCODE_*` env var.
+- Layer 1: any `OPENCODE_*` env var other than `OPENCODE_API_KEY`, the OpenCode Go provider key an operator exports outside a session.
 - Layer 2: an `opencode` process ancestor.
 - Layer 3: the best-effort `~/.opencode/state/<id>/lock` probe.
 - Any positive means refuse unless the prompt carries explicit parallel-session keywords (use case 2), which permits a SEPARATE session id and state directory.

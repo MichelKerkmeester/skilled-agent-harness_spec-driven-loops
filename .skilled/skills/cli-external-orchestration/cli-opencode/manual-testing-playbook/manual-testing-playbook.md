@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.25.0
+version: 1.4.26.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -72,7 +72,7 @@ Coverage note (2026-04-26): The OpenCode 2 (recommended, 2.0.32) twins are `-m o
 2. OpenCode CLI is installed and on PATH: `command -v opencode` returns a non-empty path. If absent, install via `brew install opencode` (macOS) or `curl -fsSL https://opencode.ai/install | bash`.
 3. OpenCode 2 (recommended) is 2.0.32, a separate install ([install reference](../references/install-and-versions.md)). On OpenCode 1 (fallback), the CLI version is at or near the v1.3.17 baseline pinned in `references/cli-reference.md`. Drift handled per `references/cli-reference.md` §9.
 4. The default model resolves on both versions. On OpenCode 2 the same route is the default, so `opencode models --standalone` must list the `llmgateway/` prefix for `llmgateway/deepseek-v4.1-flash-1017`. On OpenCode 1 the LLM Gateway must resolve `llmgateway/deepseek-v4.1-flash-1017` (confirm via `opencode models llmgateway`). The `opencode-go/` route stays selectable but needs its own v2 login first (`opencode providers login opencode-go`). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
-5. The active runtime for use case 1 and 3 scenarios is NOT OpenCode itself. Confirm by checking no `OPENCODE_*` env vars are set: `env | grep -q '^OPENCODE_' && echo IN-OPENCODE || echo OK`. Use case 2 scenarios (CO-026, CO-027, CO-028) explicitly include the parallel-session keywords required to permit the dispatch from inside OpenCode.
+5. The active runtime for use case 1 and 3 scenarios is NOT OpenCode itself. Confirm by checking no `OPENCODE_*` env vars other than `OPENCODE_API_KEY` are set: `env | grep -v '^OPENCODE_API_KEY=' | grep -q '^OPENCODE_' && echo IN-OPENCODE || echo OK`. Use case 2 scenarios (CO-026, CO-027, CO-028) explicitly include the parallel-session keywords required to permit the dispatch from inside OpenCode.
 6. The skill's reference and asset files exist at `.skilled/skills/cli-external-orchestration/cli-opencode/{references,assets}/` so prompt-quality, template and routing scenarios resolve.
 7. The project's MCP servers (Skill Advisor, Code Graph Code) are registered in `opencode.json` so use case 1 (CO-006) can call `advisor_status` and Code Graph search. Use case 3 (CO-021) additionally needs `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` present on disk.
 8. The operator's repo root resolves via `REPO_ROOT="$(pwd)"` (run from the project root). OpenCode 2 has no `--dir`, so it starts in the directory instead (`cd <path> && opencode run ...`), while on OpenCode 1 most scenarios pass `--dir "$(pwd)"` directly so they portably target whichever repo the operator runs them in. The `<repo-root>` placeholders in prose refer to the same value. Adapt to a different absolute path only if a scenario explicitly requires a non-default repo (e.g., CO-029 cross-repo dispatch derives a sibling path via `dirname "$(pwd)"`).
@@ -121,7 +121,7 @@ Coverage note (2026-04-26): The OpenCode 2 (recommended, 2.0.32) twins are `-m o
 
 For each executed scenario, check:
 
-1. Preconditions were satisfied (especially `OPENCODE_*` env unset for use cases 1 and 3, parallel-session keywords present for use case 2 and the project MCP servers registered).
+1. Preconditions were satisfied (especially `OPENCODE_*` env unset for use cases 1 and 3, `OPENCODE_API_KEY` aside, parallel-session keywords present for use case 2 and the project MCP servers registered).
 2. Prompt and command sequence were executed as written, with the documented model + agent + variant + format + dir.
 3. Expected signals are present in the captured JSON event stream (`step_start`, `tool_use`, `text` and `step_finish` events, with the session id in `sessionID`).
 4. Evidence is complete and readable, including stderr captured via `2>&1` when documented.
@@ -206,7 +206,7 @@ OpenCode 2 has no `--dir` (start in the directory: `cd <repo-root> && opencode r
 
 Prompt summary: As an external-AI conductor dispatching a fresh OpenCode session via the cli-opencode default invocation shape, send a short request that exercises the full plugin/skill/MCP runtime. Verify the JSON event stream contains at least one `step_start` and at least one `text` event, carries the session id in `sessionID`, and the process exits 0.
 
-Expected signals: `command -v opencode` returns a path. No OPENCODE_* env vars set. JSON event stream contains at least one `step_start`, at least one `text` event and a `sessionID`. Exit 0. Runtime under 90s.
+Expected signals: `command -v opencode` returns a path. No OPENCODE_* env vars set other than OPENCODE_API_KEY. JSON event stream contains at least one `step_start`, at least one `text` event and a `sessionID`. Exit 0. Runtime under 90s.
 
 #### Test Execution
 

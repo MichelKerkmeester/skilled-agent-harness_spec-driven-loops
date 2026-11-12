@@ -6,7 +6,8 @@
   "children_ids": [
     "cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline",
     "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
-    "cli-external-orchestration/opencode-platform/003-opencode-worktree-confinement"
+    "cli-external-orchestration/opencode-platform/003-opencode-worktree-confinement",
+    "cli-external-orchestration/opencode-platform/004-self-invocation-guard-api-key"
   ],
   "manual": {
     "depends_on": [],

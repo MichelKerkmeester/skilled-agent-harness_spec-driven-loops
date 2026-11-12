@@ -1,0 +1,6 @@
+# The guard line on the base commit 5dafa313e8, run with only the provider key set
+$ git show 5dafa313e8:.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md | grep -nF "grep -q '^OPENCODE_'"
+94:env | grep -q '^OPENCODE_' && echo "ERROR: Already inside OpenCode session"
+$ env -i PATH=/usr/bin:/bin OPENCODE_API_KEY=x /bin/sh -c "env | grep -q '^OPENCODE_' && echo 'ERROR: Already inside OpenCode session'"
+ERROR: Already inside OpenCode session
+exit=0

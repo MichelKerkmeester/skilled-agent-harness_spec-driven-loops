@@ -8,7 +8,7 @@ trigger_phrases:
   - "opencode circular dispatch refusal"
 importance_tier: important
 contextType: implementation
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # OpenCode CLI - Self-Invocation Guard (ADR-001)
@@ -40,8 +40,8 @@ A running cli-opencode skill never dispatches itself. The guard trips on ANY pos
 command -v opencode || echo "Not installed. Run: brew install opencode (macOS) or curl -fsSL https://opencode.ai/install | bash"
 
 # SELF-INVOCATION GUARD (ADR-001 layered detection)
-# Layer 1: env var lookup — any OPENCODE_* variable
-env | grep -q '^OPENCODE_' && echo "ERROR: OPENCODE_* env detected — already inside OpenCode."
+# Layer 1: env var lookup — any OPENCODE_* variable except OPENCODE_API_KEY
+env | grep -v '^OPENCODE_API_KEY=' | grep -q '^OPENCODE_' && echo "ERROR: OPENCODE_* env detected — already inside OpenCode."
 # Layer 2: process ancestry — opencode in parent tree
 ps -o command= -p "$PPID" | grep -q opencode && echo "ERROR: opencode parent process detected."
 # Layer 3: state lock-file probe
@@ -55,9 +55,11 @@ ls ~/.opencode/state/*/lock 2>/dev/null | head -1 | grep -q lock && echo "ERROR:
 ```python
 def detect_self_invocation():
     """Returns a non-None signal when the orchestrator is already running inside OpenCode."""
-    # Layer 1: env var lookup — OpenCode sets OPENCODE_CONFIG_DIR and OPENCODE_* vars
+    # Layer 1: env var lookup — OpenCode sets OPENCODE_CONFIG_DIR and OPENCODE_* vars.
+    # OPENCODE_API_KEY is the OpenCode Go provider key an operator exports in any shell,
+    # so it says nothing about the caller and is skipped.
     for key in os.environ:
-        if key == 'OPENCODE_CONFIG_DIR' or key.startswith('OPENCODE_'):
+        if key != 'OPENCODE_API_KEY' and key.startswith('OPENCODE_'):
             return ('env', key)
     # Layer 2: process ancestry — opencode in parent tree
     try:
