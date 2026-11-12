@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a9cffdbb5bff52bab2852c1bbfe001d9f22af1b861ea4ca0ff93262a701b7e73",
+  "corpusHash": "99e5a9b6d6b5d8572decce099e22881263fa5bfeff8f394cbf5c35d5675a671d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26239,
+  "includedPathCount": 26240,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -17860,6 +17860,7 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/acceptance-criteria.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/decision-record.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/goal.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/handover-to-barter.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/implementation-summary.md",
@@ -26271,7 +26272,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "21e55200dd9d74871e1ccc5bc36e9a14094993f09f83856afe39c0a09d62bd9f",
+  "manifestHash": "4bdd3513bdfdc987f05385e152c4d05c03a5181c8f04213e1b9c367fe79e9729",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

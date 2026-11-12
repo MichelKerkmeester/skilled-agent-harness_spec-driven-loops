@@ -1,5 +1,5 @@
 {
-  "manifestHash": "21e55200dd9d74871e1ccc5bc36e9a14094993f09f83856afe39c0a09d62bd9f",
+  "manifestHash": "4bdd3513bdfdc987f05385e152c4d05c03a5181c8f04213e1b9c367fe79e9729",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2299,6 +2299,9 @@
     ],
     "009 memory search response policy": [
       "009 memory search response policy"
+    ],
+    "009 overlay write checks follow up operator decisions": [
+      "009-overlay-write-checks-follow-up operator decisions"
     ],
     "009 peck verification discipline": [
       "009 peck verification discipline"
