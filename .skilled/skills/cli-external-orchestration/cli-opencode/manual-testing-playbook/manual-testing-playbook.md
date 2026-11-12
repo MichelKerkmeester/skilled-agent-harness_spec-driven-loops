@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.26.0
+version: 1.4.27.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -324,7 +324,7 @@ Verify the cli-opencode self-invocation guard (ADR-001 layered detection: env + 
 
 Prompt summary: As an in-OpenCode operator simulating a self-dispatch attempt, export OPENCODE_CONFIG_DIR=/tmp/co-008-fake to trip the layer 1 detection signal, then attempt to invoke cli-opencode for a generic dispatch (no parallel-session keywords). Verify the skill refuses with the documented message including all three remediation options.
 
-Expected signals: Layer 1 (env var) detection trips. Refusal message in references/integration-patterns.md §5. All three remediation options documented (sibling cli-*, fresh shell, parallel-session keywords). No real opencode run dispatched.
+Expected signals: Layer 1 (env var) detection trips. A shell that exports only `OPENCODE_API_KEY=x` prints `LAYER_1_OK: key alone`. Refusal message in references/integration-patterns.md §5. All three remediation options documented (sibling cli-*, fresh shell, parallel-session keywords). No real opencode run dispatched.
 
 #### Test Execution
 
