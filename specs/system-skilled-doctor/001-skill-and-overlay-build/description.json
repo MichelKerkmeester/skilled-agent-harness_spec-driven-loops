@@ -8,17 +8,19 @@
     "overlay",
     "command"
   ],
-  "lastUpdated": "2026-11-12T05:50:50.264Z",
+  "lastUpdated": "2026-11-12T08:20:47.876Z",
   "specId": "001",
   "folderSlug": "skill-and-overlay-build",
   "parentChain": [
     "system-skilled-doctor"
   ],
-  "memorySequence": 4,
+  "memorySequence": 6,
   "memoryNameHistory": [
     "12-11-26_03-49__the-stop-check-was-right-on-two-points-and-i-am.md",
     "12-11-26_05-09__the-first-of-the-two-briefs-is-still-running-its.md",
     "12-11-26_05-39__the-stop-check-s-remaining-gap-is-real-on-one.md",
-    "12-11-26_06-50__the-routing-brief-is-still-working-it-last.md"
+    "12-11-26_06-50__the-routing-brief-is-still-working-it-last.md",
+    "12-11-26_08-50__i-answered-the-stop-hook-s-six-points-with-fresh.md",
+    "12-11-26_09-20__all-three-background-jobs-are-progressing-so-i.md"
   ]
 }

@@ -161,6 +161,11 @@ test('apply refuses while another run is taking the lock over, and clears a mark
 
   assert.equal(blocked.code, 2, blocked.output);
   assert.ok(blocked.output.includes(takeoverPath), blocked.output);
+  assert.ok(
+    blocked.output.includes('  run it again in a minute: a takeover marker that old is cleared'),
+    blocked.output
+  );
+  assert.ok(!blocked.output.includes('by hand once that run has ended'), blocked.output);
   assert.deepEqual(noteLines(blocked.output), [], blocked.output);
   assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), stale);
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'AGENTS.md'), 'utf8'), UPSTREAM_AGENTS);
@@ -210,6 +215,84 @@ test('a takeover refuses when another run replaces the stale lock in the gap bef
   assert.deepEqual(printed.filter((line) => line.startsWith(NOTE_PREFIX)), []);
   assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), competing);
   assert.equal(fs.existsSync(takeoverPath), false);
+});
+
+/**
+ * Take the lock while another run's writes land just before one set-aside.
+ * The engine deletes a leftover by renaming it aside first, so the instant
+ * before that rename is the last moment another run can change the file.
+ * @param {object} ctx Engine context of the fixture tree.
+ * @param {string} target The path whose set-aside the other run gets ahead of.
+ * @param {function} otherRun What the other run writes at that moment.
+ * @returns {{taken: object, printed: string[], isInterleaved: boolean}} The
+ *   lock result, the lines printed and whether the moment was reached.
+ */
+function acquireWithRace(ctx, target, otherRun) {
+  const realRenameSync = fs.renameSync;
+  let isInterleaved = false;
+  fs.renameSync = (from, to) => {
+    if (!isInterleaved && from === target) {
+      isInterleaved = true;
+      otherRun();
+    }
+    return realRenameSync.call(fs, from, to);
+  };
+  try {
+    const { result: taken, lines: printed } = quietly(() => engine.acquireLock(ctx, 'run-b'));
+    return { taken, printed, isInterleaved };
+  } finally {
+    fs.renameSync = realRenameSync;
+  }
+}
+
+function claimFiles(fixture) {
+  return fs.readdirSync(path.dirname(fixture.lockPath)).filter((name) => name.endsWith('.claim'));
+}
+
+test('a takeover puts back a marker another run wrote after the old one was judged stale', (t) => {
+  const fixture = createLockFixture(t);
+  const stale = writeLock(fixture, ownerLine(deadPid(), HOST));
+  const takeoverPath = fixture.lockPath + '.takeover';
+  fs.writeFileSync(takeoverPath, '');
+  const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+  fs.utimesSync(takeoverPath, fiveMinutesAgo, fiveMinutesAgo);
+  const ctx = engine.createContext(fixture.tree);
+
+  // The other run clears the same leftover marker and creates its own.
+  const raced = acquireWithRace(ctx, takeoverPath, () => {
+    fs.unlinkSync(takeoverPath);
+    fs.writeFileSync(takeoverPath, 'other run');
+  });
+
+  assert.equal(raced.isInterleaved, true);
+  assert.equal(raced.taken.isHeld, false);
+  assert.ok(raced.taken.ownerLine.includes(takeoverPath), raced.taken.ownerLine);
+  assert.deepEqual(raced.printed.filter((line) => line.startsWith(NOTE_PREFIX)), []);
+  assert.equal(fs.readFileSync(takeoverPath, 'utf8'), 'other run');
+  assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), stale);
+  assert.deepEqual(claimFiles(fixture), []);
+});
+
+test('a takeover puts back a lock another run wrote after the old one was read again', (t) => {
+  const fixture = createLockFixture(t);
+  writeLock(fixture, ownerLine(deadPid(), HOST));
+  const competing = ownerLine(process.pid, HOST) + '\n';
+  const ctx = engine.createContext(fixture.tree);
+
+  // The other run finishes its own takeover between this run's second read of
+  // the lock and the removal.
+  const raced = acquireWithRace(ctx, fixture.lockPath, () => {
+    fs.unlinkSync(fixture.lockPath);
+    fs.writeFileSync(fixture.lockPath, competing);
+  });
+
+  assert.equal(raced.isInterleaved, true);
+  assert.equal(raced.taken.isHeld, false);
+  assert.equal(raced.taken.ownerLine, competing.trim());
+  assert.deepEqual(raced.printed.filter((line) => line.startsWith(NOTE_PREFIX)), []);
+  assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), competing);
+  assert.equal(fs.existsSync(fixture.lockPath + '.takeover'), false);
+  assert.deepEqual(claimFiles(fixture), []);
 });
 
 test('a takeover leaves exactly the new owner line and no marker behind', (t) => {
@@ -277,6 +360,85 @@ test('apply refuses a lock naming a dead pid on another host and leaves the file
   assert.ok(applied.output.includes(REFUSAL), applied.output);
   assert.deepEqual(noteLines(applied.output), [], applied.output);
   assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), held);
+});
+
+// A stage reads the live tree, so any lock file at all used to stop it at the
+// plan stage, and a run killed mid-write then left a re-pin unable to recover.
+// The owner line is judged the way every other mode judges it: a lock whose
+// writer has ended on this host does not stop the stage, and the file is left
+// where it is because a stage writes nothing in the live tree.
+
+const ROUTER_V1 = 'router v1\n';
+const ROUTER_V2 = 'router v2\n';
+const STAGE_NOTE = 'note: the overlay lock belongs to a run that has ended: ';
+
+function stageNotes(output) {
+  return output.split('\n').filter((line) => line.startsWith(STAGE_NOTE));
+}
+
+/**
+ * Build a tree pinned one upstream commit behind the next, so a stage has a pin
+ * to move.
+ * @param {object} t The node:test context.
+ * @returns {object} Fixture paths, its commits and `run` and `stage` helpers.
+ */
+function createStageLockFixture(t) {
+  const fixture = createWorkspace(t, 'overlay-engine-stage-lock-');
+  const upstream = path.join(fixture.workspace, 'upstream');
+  fs.mkdirSync(upstream);
+  git(upstream, ['init', '-q']);
+  writeFile(upstream, '.skilled/skills/hub/ROUTER.md', ROUTER_V1);
+  const oldCommit = commitAll(upstream, 'pinned copy');
+  writeFile(upstream, '.skilled/skills/hub/ROUTER.md', ROUTER_V2);
+  const newCommit = commitAll(upstream, 'moved on');
+  writeFile(fixture.tree, '.skilled/skills/hub/ROUTER.md', ROUTER_V1);
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: oldCommit },
+    layoutLinks: [],
+    overlays: [],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  fixture.routerPath = path.join(fixture.tree, '.skilled/skills/hub/ROUTER.md');
+  fixture.run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+  fixture.stage = (stageDir) => fixture.run(['repin', '--upstream', upstream, '--to', newCommit, '--stage', stageDir]);
+  return fixture;
+}
+
+test('repin --stage stages over a lock whose writer has ended here and leaves the file alone', (t) => {
+  const fixture = createStageLockFixture(t);
+  const plain = fixture.stage(path.join(fixture.workspace, 'stage-plain'));
+  const held = writeLock(fixture, ownerLine(deadPid(), HOST));
+  const stageDir = path.join(fixture.workspace, 'stage-locked');
+
+  const staged = fixture.stage(stageDir);
+
+  assert.equal(staged.code, plain.code, staged.output);
+  assert.equal(staged.code, 0, staged.output);
+  assert.match(staged.output, /^RESULT: STAGED$/m);
+  assert.deepEqual(stageNotes(staged.output), [STAGE_NOTE + held.trim()], staged.output);
+  assert.deepEqual(stageNotes(plain.output), [], plain.output);
+  assert.equal(fs.readFileSync(path.join(stageDir, '.skilled/skills/hub/ROUTER.md'), 'utf8'), ROUTER_V2);
+  assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), held);
+  assert.equal(fs.readFileSync(fixture.routerPath, 'utf8'), ROUTER_V1);
+});
+
+test('repin --stage refuses a lock naming a live pid on this host and stages nothing', (t) => {
+  const fixture = createStageLockFixture(t);
+  const held = writeLock(fixture, ownerLine(process.pid, HOST));
+  const stageDir = path.join(fixture.workspace, 'stage');
+
+  const staged = fixture.stage(stageDir);
+
+  assert.equal(staged.code, 2, staged.output);
+  assert.ok(staged.output.includes(REFUSAL), staged.output);
+  assert.ok(staged.output.includes('  remove ' + fixture.lockPath + ' by hand once that run has ended'), staged.output);
+  assert.deepEqual(stageNotes(staged.output), [], staged.output);
+  assert.equal(fs.existsSync(stageDir), false);
+  assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), held);
+  assert.equal(fs.readFileSync(fixture.routerPath, 'utf8'), ROUTER_V1);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

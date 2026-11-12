@@ -293,7 +293,7 @@ The run prints one `skipped` line per file the backup did not copy, because the 
 
 ### Refusals Before Any Write
 
-The engine prints one `refuse:` line and exits 2. Nothing was written.
+The engine prints one `refuse:` line per refusal and exits 2. Nothing was written.
 
 | The engine refuses because | Fix |
 |----------------------------|-----|

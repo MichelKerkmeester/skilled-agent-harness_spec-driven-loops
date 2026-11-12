@@ -52,7 +52,9 @@
     "my agents overlay",
     "my skilled overlay",
     "my overlays back into the vendored copy",
-    "take over the overlay lock"
+    "take over the overlay lock",
+    "rebase my overlay",
+    "unowned files that drifted from the pinned commit"
   ],
   "derived": {
     "trigger_phrases": [

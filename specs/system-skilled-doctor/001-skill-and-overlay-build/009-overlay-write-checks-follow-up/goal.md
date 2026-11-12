@@ -89,7 +89,7 @@ and findings belong here.
 | Deep review, 5 iterations | Done | `review/lineages/deepseek/iterations` holds 3 records and `review/lineages/opus/iterations` holds 2 |
 | Opus synthesis | Done | `review/review-report.md`: CONDITIONAL, 0 P0, 3 P1, 9 P2 |
 | Remediation | Done | Six briefs. `node --test tests/` printed 1136 passed and 0 failed |
-| Alignment | Stopped under D1 | Four full runs, each followed by fixes. Every run found new defects after the fixes of the run before it. The last report is a battery with `findings=0`. No lane run has reported zero findings. `implementation-summary.md` lists each finding. `node --test tests/` printed 1142 passed and 0 failed |
+| Alignment | Stopped under D1 | Five full runs, each followed by fixes. Every run found new defects after the fixes of the run before it. No lane run has reported zero findings. `implementation-summary.md` lists each finding. `node --test tests/` printed 1150 passed and 0 failed, 124 of them engine tests |
 | Changelog | Done | `check_changelog_shape.py` printed `PASS` for the entry and for the v1.1.6.0 note |
 
 ### Deviations and findings
@@ -117,4 +117,9 @@ and findings belong here.
 | The last alignment report is battery-only | Each lane run raised new findings. Lane findings were closed by recheck and by a fresh Opus verifier. |
 | AC-017 is marked Met before the tag exists | A commit cannot hold the proof of its own tag. The release step checks it right after, and a failure reopens the row. |
 | The deep review ran as a two-lineage fan-out | The single-executor path is driven by hand through a 2,591-line workflow. The fan-out runner is the same workflow's own step and runs the loop itself. Records sit under `review/lineages/`. |
+| A fifth alignment round ran on 2026-11-12 | The fourth round's fixes and the other session's commits had moved `main`, so the round covered `790ced4732..483d0e8811`. It found 11 findings, 4 of them P1. One was the stale-lock refusal on `repin --stage`, the path Barter re-pins through. |
+| `pi` stopped loading this repository's extensions mid-round | The installed Pi moved from 1.5.0 to 1.5.2. Pi 1.5.1 loads a linked extension from the file the link points at, and 16 adapters imported relative to the link. Two briefs failed with no output. The fix is its own packet, `hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports`. This session did not change the installed Pi. Its version file went back to 1.5.0 at 10:26 from elsewhere, so the fix was made to load on both versions. |
+| The orchestrating session edited six files itself during the outage | D4's route was down. The edits: the lock's rename-aside removal in `overlay-engine.cjs` with two tests, the order of the output lines in the adopt scenario, the `SYSTEM_OVERLAY_GUARD_DISABLED` row, one sentence in `references/overlays.md` and the test counts in the changelog. A fresh Opus verifier then checked each. The last lock change, the refusal's remedy line, went back through a DeepSeek agent on the Pi 1.5.0 binary. |
+| The lock takeover is proven for two runs only | The verifier found a four-run schedule that ends with two holders. It needs a takeover marker more than a minute old. A third rewrite of the lock was not made: D1 stops a gate after three fixes, and the case is recorded as a known limitation and in the handover to Barter. |
+| The fifth criterion stays open | The fifth round's recheck lists 2 findings as still open. Both are literal matches on text that is now correct. No report of the alignment command lists 0 open findings, so the box is not ticked. |
 <!-- /ANCHOR:log -->

@@ -159,8 +159,15 @@ The review found no P0.
 | Verifier on round 4: a pin question reached the doctor helper, and three aliases with no overlay word took unrelated requests | P1 | Fixed | Five of six out-of-domain prompts now select nothing or another skill |
 | "Port an upstream skill into this repo" still selects this skill at confidence 0.82 | P2 | Left open | The score comes from the tokens upstream, repo and skill. Removing `repo` means editing the skill's description, which predates this phase |
 | Run 4 probes P14 and P15 expect `sk-code` and `sk-git` | P1 | Not fixable here | This skill no longer takes either prompt. Neither target skill carries a signal for it, and that is their vocabulary to add |
+| Run 5: `repin --stage` refused a lock whose run had ended, so the skill README and the re-pin refusal row promised a takeover the stage step did not make | P1 | Fixed | The stage pre-check now refuses only a live owner. A dead owner prints `note: the overlay lock belongs to a run that has ended` and the stage runs. Two tests |
+| Run 5: the OpenCode plugin README counted three plugins that reject by default | P1 | Fixed | It names four, with the overlay guard |
+| Run 5: two probes for the audit and the rebase landed on `sk-git` | P1 | Fixed | Two intent signals. `run-probes.cjs` on the fifth run's probes: 16 pass |
+| Run 5: a stale takeover marker was cleared by its shared path, so two runs could both take the lock | P2 | Fixed for two runs | A leftover lock or marker is renamed aside and deleted only when it is the file judged stale. A fresh Opus verifier ran 33,680 bounded and 8,000 random two-run schedules against the real `acquireLock`. None ended with two holders and none left a `.claim` file. Four runs at once with a marker more than a minute old can still end with two holders. See Known Limitations |
+| Run 5: `SECURITY.md` said the guard covers every runtime except OpenCode, the adopt scenario left out its two `LAYOUT` lines, the relayout section said one `refuse:` line, and the environment reference had no row for `SYSTEM_OVERLAY_GUARD_DISABLED` | P2 | Fixed | The verifier reran the adopt scenario and matched all six output lines byte for byte. It read every adapter and confirmed the switch stops the strict-writes refusal |
+| Run 5: `audit unowned files that drifted from the pin` scores `sk-code` at 0.41 | P2 | Left open | The score is under the 0.8 bar, so no skill is forced. The longer phrase with `pinned commit` selects this skill |
+| Verifier on round 5, second pass: the reference said only one run can create the marker and that a displaced file is always put back, and a marker put back after its run ended made the next takeover refuse with the advice to delete the lock | P2 | Fixed | `references/overlays.md` states both limits. The refusal now prints `run it again in a minute: a takeover marker that old is cleared`. `node --test tests/` prints `tests 1150`, `fail 0` |
 
-The last report of the alignment command is a battery over `790ced4732` to the last fix commit. It reports `findings=0`. No lane run followed the last fix. Each of the four lane runs raised new findings after the fixes of the run before it, so no lane-based report with zero findings exists. The closing evidence for lane findings is the fixes, the recheck and the verifier.
+Five lane runs were made. Each raised new findings after the fixes of the run before it: 18, 11, 10, 10 and 11. No lane-based report with zero findings exists. The fifth run's critic overturned one finding. Its recheck lists 2 resolved, 2 still open and 7 for a reviewer. The two still open are literal matches: one sentence in the adopt section that the verifier found accurate, and one re-pin row that became true when the engine was fixed. The closing evidence for lane findings is the fixes, the recheck and two passes of a fresh Opus verifier.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -174,6 +181,9 @@ The last report of the alignment command is a battery over `790ced4732` to the l
 3. **A state file from an older engine has no link or item records.** Nothing is retargeted or removed until the first apply writes them, so an item dropped before the upgrade stays until it is removed by hand.
 4. **The Opus review lineage is recorded as failed.** Its session refused every `node` call, so it has no state log or findings registry. Its two iteration files and its report exist and were inputs to the synthesis.
 5. **`--audit` walks every vendored file.** On a tree the size of Barter's that is about 20,000 files, so it runs only when asked.
+6. **A lock takeover is proven for two concurrent runs.** Four runs at once, with a takeover marker more than a minute old, can still end with two holders. The verifier scripted that schedule. No three-run schedule did it in 8,000 random tries, which is a test and not a proof.
+7. **A takeover can refuse for up to a minute after another run's takeover.** A marker put back after its run ended blocks the next takeover until it is a minute old. The refusal says to run it again.
+8. **A run can print the takeover note and still refuse.** Another run can create the lock in the instant the path is empty. That was so before this phase.
 <!-- /ANCHOR:limitations -->
 
 ---
