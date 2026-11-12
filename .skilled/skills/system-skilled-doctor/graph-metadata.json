@@ -39,7 +39,7 @@
     "bring my vendored skilled copy forward",
     "put overlay sources onto their layout path",
     "audit unowned files in my vendored skilled tree",
-    "unowned files",
+    "unowned vendored files",
     "audit unowned files that drifted from the pinned upstream commit",
     "refuse writes that no overlay owns",
     "block a commit that stages an unowned vendored change",
@@ -49,10 +49,9 @@
     "which overlay do I rebase",
     "overlay no longer adds a json item",
     "reapply my overlays",
-    "an upstream skill",
     "my agents overlay",
     "my skilled overlay",
-    "into the vendored copy",
+    "my overlays back into the vendored copy",
     "take over the overlay lock"
   ],
   "derived": {

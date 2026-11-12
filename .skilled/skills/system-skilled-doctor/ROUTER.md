@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-doctor routing"
 importance_tier: normal
 contextType: general
-version: 1.0.6.0
+version: 1.0.7.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -44,7 +44,7 @@ Otherwise keep one. A router may also route by pseudocode alone with no map at a
 its whole reference set on any match, because a hub's map is the one thing this flexibility never relaxes.
 
 - **`DOCTOR_COMMANDS`** fires on `put skilled into my project`, `install skilled`, `link the skilled checkout`, `update skilled`, `runtime mirrors`, `environment switches`, `doctor setup`, `which doctor command`, `agents md sections`, `trigger index fresh` and `code mode install` at weight 4. It loads `README.md`, the owned-command table, which is also the default resource.
-- **`OVERLAYS`** fires on `vendored skilled`, `skilled overlays`, `overlay status`, `apply the overlays`, `capture a live edit`, `re-pin`, `repin`, `overlay-edited`, `overlay layout path`, `relayout`, `overlay audit`, `overlay lock`, `overlay build lock`, `stale overlay lock`, `take over the overlay lock`, `reapply my overlays`, `strict overlay writes`, `no overlay owns`, `unowned vendored`, `unowned files`, `into the vendored copy`, `an upstream skill`, `overlay root files drifted upstream`, `changed the root files an overlay owns`, `agents overlay stale`, `agents overlay out of sync`, `my agents overlay`, `my skilled overlay`, `overlay rebase`, `overlay no longer adds a json item` and `drifted from the pinned upstream commit` at weight 4. It loads `references/overlays.md`, the sync states and what resolves each one.
+- **`OVERLAYS`** fires on `vendored skilled`, `skilled overlays`, `overlay status`, `apply the overlays`, `capture a live edit`, `re-pin`, `repin`, `overlay-edited`, `overlay layout path`, `relayout`, `overlay audit`, `overlay lock`, `overlay build lock`, `stale overlay lock`, `take over the overlay lock`, `reapply my overlays`, `strict overlay writes`, `no overlay owns`, `unowned vendored`, `unowned vendored files`, `my overlays back into the vendored copy`, `overlay root files drifted upstream`, `changed the root files an overlay owns`, `agents overlay stale`, `agents overlay out of sync`, `my agents overlay`, `my skilled overlay`, `overlay rebase`, `overlay no longer adds a json item` and `drifted from the pinned upstream commit` at weight 4. It loads `references/overlays.md`, the sync states and what resolves each one.
 
 ---
 
@@ -66,7 +66,7 @@ DEFAULT_RESOURCE = "README.md"
 
 INTENT_SIGNALS = {
     "DOCTOR_COMMANDS": {"weight": 4, "keywords": ["put skilled into my project", "install skilled", "link the skilled checkout", "update skilled", "runtime mirrors", "environment switches", "doctor setup", "which doctor command", "agents md sections", "trigger index fresh", "code mode install"]},
-    "OVERLAYS": {"weight": 4, "keywords": ["vendored skilled", "skilled overlays", "overlay status", "apply the overlays", "capture a live edit", "re-pin", "repin", "overlay-edited", "overlay layout path", "relayout", "overlay audit", "overlay lock", "overlay build lock", "stale overlay lock", "take over the overlay lock", "reapply my overlays", "strict overlay writes", "no overlay owns", "unowned vendored", "unowned files", "into the vendored copy", "an upstream skill", "overlay root files drifted upstream", "changed the root files an overlay owns", "agents overlay stale", "agents overlay out of sync", "my agents overlay", "my skilled overlay", "overlay rebase", "overlay no longer adds a json item", "drifted from the pinned upstream commit"]},
+    "OVERLAYS": {"weight": 4, "keywords": ["vendored skilled", "skilled overlays", "overlay status", "apply the overlays", "capture a live edit", "re-pin", "repin", "overlay-edited", "overlay layout path", "relayout", "overlay audit", "overlay lock", "overlay build lock", "stale overlay lock", "take over the overlay lock", "reapply my overlays", "strict overlay writes", "no overlay owns", "unowned vendored", "unowned vendored files", "my overlays back into the vendored copy", "overlay root files drifted upstream", "changed the root files an overlay owns", "agents overlay stale", "agents overlay out of sync", "my agents overlay", "my skilled overlay", "overlay rebase", "overlay no longer adds a json item", "drifted from the pinned upstream commit"]},
 }
 
 RESOURCE_MAP = {

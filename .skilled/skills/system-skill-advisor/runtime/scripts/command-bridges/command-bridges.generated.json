@@ -1173,7 +1173,7 @@
             "migrate my own overlay folder to doctor overlay",
             "check whether my overlay sources sit on their layout path",
             "audit my vendored skilled tree for unowned files",
-            "which root files my overlays own changed upstream since the pin",
+            "which root files my overlays own drifted upstream at the pinned commit",
             "we copy skilled into our repo and lose our edits on update",
             "agents overlay stale after a re-pin",
             "which overlay do I rebase",

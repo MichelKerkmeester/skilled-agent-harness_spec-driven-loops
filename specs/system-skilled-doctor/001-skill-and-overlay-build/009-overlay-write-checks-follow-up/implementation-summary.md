@@ -156,6 +156,8 @@ The review found no P0.
 | Run 4: a dropped JSON item request missed the skill | P1 | Fixed | The fourth run's probe P04 passes |
 | Run 4: three relayout refusals had no test | P2 | Fixed | Three tests. `node --test tests/` prints `tests 1145`, `fail 0` |
 | Run 4: the order of `status` lines, a plain apply with only a `STALE` line and two refusal rows | P2 | Fixed | `route-validate.sh` and the contract test pass |
+| Verifier on round 4: a pin question reached the doctor helper, and three aliases with no overlay word took unrelated requests | P1 | Fixed | Five of six out-of-domain prompts now select nothing or another skill |
+| "Port an upstream skill into this repo" still selects this skill at confidence 0.82 | P2 | Left open | The score comes from the tokens upstream, repo and skill. Removing `repo` means editing the skill's description, which predates this phase |
 | Run 4 probes P14 and P15 expect `sk-code` and `sk-git` | P1 | Not fixable here | This skill no longer takes either prompt. Neither target skill carries a signal for it, and that is their vocabulary to add |
 
 The last report of the alignment command is a battery over `790ced4732` to the last fix commit. It reports `findings=0`. No lane run followed the last fix. Each of the four lane runs raised new findings after the fixes of the run before it, so no lane-based report with zero findings exists. The closing evidence for lane findings is the fixes, the recheck and the verifier.
