@@ -9,7 +9,7 @@ trigger_phrases:
   - "ci switch condition"
 importance_tier: normal
 contextType: general
-version: 1.1.6.0
+version: 1.1.7.0
 ---
 
 # Job Shape Rules
@@ -68,11 +68,11 @@ Enforcement: honour-system. Re-run `grep -n 'timeout-minutes' .github/workflows/
 Least privilege is the default. A workflow declares `permissions: contents: read` at the top, and a job widens it only for what that job needs.
 
 - **Read-only workflow.** `permissions: contents: read` written as a block, as in `.github/workflows/message-contract.yml:13`.
-- **No scope at the workflow level.** `permissions: {}` at the top and a scope on each job, as in `.github/workflows/trigger-index-rebuild.yml:12`. The rebuild job then asks for `contents: read` at `:40` and the push job asks for `actions: read` and `contents: write` at `:195-196`.
+- **No scope at the workflow level.** `permissions: {}` at the top and a scope on each job, as in `.github/workflows/trigger-index-rebuild.yml:12`. The rebuild job then asks for `contents: read` at `:45` and the push job asks for `actions: read` and `contents: write` at `:200-201`.
 - **A write scope belongs only to a job that runs no repository code.** The rebuild job installs, builds and runs the repository's generator, so it holds no write scope and no secret. The push job runs `gh` and `git` only and is the one place the push token is visible. Splitting the two keeps repository code away from the token.
-- **A job that holds a write scope, or pushes, checks out with `persist-credentials: false`.** The checkout then leaves no token in the git config for a later step to reuse, and the job passes its token only to the command that needs it, as in `.github/workflows/trigger-index-rebuild.yml:203`. Enforcement: honour-system.
+- **A job that holds a write scope, or pushes, checks out with `persist-credentials: false`.** The checkout then leaves no token in the git config for a later step to reuse, and the job passes its token only to the command that needs it, as in `.github/workflows/trigger-index-rebuild.yml:208`. Enforcement: honour-system.
 
-Today all 34 workflows declare `permissions:` at the top. Thirty-two grant `contents: read` and nothing else. `strict-pass-freshness-report.yml` adds `actions: read` at `:19` and `trigger-index-rebuild.yml` grants nothing at the top. Four jobs set a scope of their own: the two jobs of `trigger-index-rebuild.yml` above, the `metadata` job of `dependabot-auto-merge.yml` with `contents: read` and `pull-requests: read` at `:20-21` and its `auto-merge` job with `contents: write` and `pull-requests: write` at `:41-42`.
+Today all 34 workflows declare `permissions:` at the top. Thirty-two grant `contents: read` and nothing else. `strict-pass-freshness-report.yml` adds `actions: read` at `:19` and `trigger-index-rebuild.yml` grants nothing at the top. Four jobs set a scope of their own: the two jobs of `trigger-index-rebuild.yml` above, the `metadata` job of `dependabot-auto-merge.yml` with `contents: read` and `pull-requests: read` at `:26-27` and its `auto-merge` job with `contents: write` and `pull-requests: write` at `:47-48`.
 
 Enforcement: honour-system.
 
