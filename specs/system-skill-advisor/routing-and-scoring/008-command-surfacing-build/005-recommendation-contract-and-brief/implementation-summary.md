@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Planned, not built. The phase will add kind, command, policy and ownerSkillId to the recommendation, print the command and its policy in the brief head, state the degraded contract and retire the allow-list."
 trigger_phrases:
   - "recommendation contract and brief implementation summary"
 importance_tier: "normal"
@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief"
-    last_updated_at: "2026-11-12T12:27:37Z"
+    last_updated_at: "2026-11-12T21:00:00Z"
     last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 plus template"
-    next_safe_action: "Replace continuity placeholders"
+    recent_action: "Planned the recommendation contract and brief phase"
+    next_safe_action: "Run wave 0 in tasks.md, then wait for the phase 007 confirmation before wave 1"
     blockers: []
     key_files: []
     session_dedup:
@@ -25,81 +25,74 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 3+ -->
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-recommendation-contract-and-brief |
-| **Completed** | 2026-11-12 |
-| **Level** | 3+ |
+| **Completed** | Not complete. Planned on 2026-11-12, no build started |
+| **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
 ---
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Nothing yet. This phase is planned. When it is built, the brief will read `use system-spec-kit → /speckit:plan (start)` where it reads `use command-spec-kit-plan` today, and the recommendation will carry the command, its policy and its owner.
 
 ### Phase 5: recommendation-contract-and-brief
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The plan generates one command table from the bridge deriver and has every reader use it. The full change list is in `spec.md` section 3 and the ordered work in `tasks.md`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| None | Not started | The build has not begun |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Not delivered. The planning session read the review, the code and the earlier phase summaries. It ran the commands in the `spec.md` measured block on commit `fe20ca1c36`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Level 2 | `recommend-level.sh --loc 700 --files 24 --api` printed Level 2 with score 57 |
+| Operator answers of 2026-11-12 | All four design questions took the recommended option. CARRY-003 stays, and the `nm-sk-doc-01` fix moved here. `spec.md` section 10 quotes each answer |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| Build checks | Not run. No code has changed |
+| Planning evidence | The measured block in `spec.md` holds every number the plan quotes |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **The `nm-sk-doc-01` fix names no file yet.** Which source projects `typo` and `heading` onto `sk-code` is UNKNOWN until task T055 traces it, so task T056 picks its file from that trace.
+2. **Code waits on phase 007.** No code task starts before the coordinator confirms phase 007's before-measurement on the branch tip is done.
 <!-- /ANCHOR:limitations -->
-
----
-

@@ -29,8 +29,8 @@
       "criteria",
       "implementation",
       "summary",
-      "yourvaluehere",
-      "broken"
+      "model",
+      "reads"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -39,7 +39,13 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+      ".skilled/skills/system-spec-kit/command-metadata.json",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-router-vocabulary-reach.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md"
     ],
     "entities": [
       {
@@ -73,25 +79,43 @@
         "source": "derived"
       },
       {
+        "name": "skill-advisor-cli-fallback.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ci-router-vocabulary-reach.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "ci-router-vocabulary-reach.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-router-vocabulary-reach.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Status Draft",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,6 +133,24 @@
         "source": "derived"
       },
       {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -121,7 +163,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,57 +187,15 @@
         "source": "derived"
       },
       {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "A model that reads the hook brief sees `use command-speckit-save` or `use command-spec-kit-plan`, a raw scorer id that names no slash command and no policy",
     "created_at": "2026-11-12T12:27:36Z",
-    "last_save_at": "2026-11-12T18:21:40.443Z",
+    "last_save_at": "2026-11-12T20:54:17.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f723f85759cc383baf2da1099e6642b865ad3a91efa60546b6d4c3f2cd6a6d6c",
+    "source_fingerprint": "sha256:db43d9bda48260da6d8b2f1adf9c52382df596f4691f8ab3c8973c42f797ce9e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ca67499febdb02690bd88ec2348ff5485bc9bde05fedec35eb908ddbbca5e139",
-      "plan.md": "bb54bb4acc456a1fc7bc20b54d3bbd1ff204b642af86627ecb1c16982bc50535",
-      "tasks.md": "5b122858dc3f478c90947ee71503190b57082d9901dc77063db5059aa3aa899e",
-      "implementation-summary.md": "27740004eaf38649671b57cc6786e12a658034bf3f5c1f1d778d0ebabe2ec98f"
+      "spec.md": "5ba26ea581d26e813be38067d79c66f9a1524373036e7614d51842ff9c80470a",
+      "plan.md": "ff6f6fbe9098c100a7754015acd5a61ee17528240b13bcc57b448fc64c356719",
+      "tasks.md": "6a628c8e56499e881fd475940c99c537b9064b15e72d46861b33fb8d2830f73b",
+      "implementation-summary.md": "a17df303f3a9ff38cf886a21ba5b1330610ad27e09d8f5e270a04e5dcf2e434a"
     },
     "last_active_at": null
   }
