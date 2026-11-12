@@ -9,7 +9,7 @@ trigger_phrases:
 
 # Pi CLI in Skilled
 
-> Pi runs the same guard cores as the other runtimes through TypeScript extensions that link straight into the shared hook code.
+> Pi runs the same guard cores as the other runtimes through TypeScript extensions that re-export adapters kept beside the shared hook code.
 
 ---
 
@@ -26,7 +26,7 @@ trigger_phrases:
 
 ### What You Get
 
-Pi has no hook configuration file. Its hooks are TypeScript extensions in `extensions/`, and each one links to the adapter its owning hook core keeps. A fix to a guard therefore reaches Pi without a copy to update.
+Pi has no hook configuration file. Its hooks are TypeScript extensions in `extensions/`, and each one is a one-line file that re-exports the adapter its owning hook core keeps. A fix to a guard therefore reaches Pi without a copy to update.
 
 A handler fails open when its hook core faults, so a bug in a guard never blocks the work it watches. Pi also reads the root `AGENTS.md` from its working directory and the folders above it, so the shared instructions arrive without a copy here.
 
@@ -60,7 +60,7 @@ A handler fails open when its hook core faults, so a bug in a guard never blocks
 
 | Path | Kind | Notes |
 |---|---|---|
-| `extensions/*.ts` | Links | Each points into its owning hook core under `.skilled/` |
+| `extensions/*.ts` | One-line re-exports | Each re-exports an adapter from its owning hook core under `.skilled/` |
 | `extensions/pi-cache-optimizer/`, `extensions/pi-fast-mode-w-subagent-support/` | Packages | Third-party extensions loaded from local folders |
 | `prompts/*.md` | Generated, plus `goal-pi.md` | Written by `sync-prompts-pi.cjs`. `goal-pi.md` is authored |
 | `agents/*.md` | Generated | Written by `sync-agents-pi.cjs` from `.skilled/agents/` |
@@ -70,7 +70,7 @@ A handler fails open when its hook core faults, so a bug in a guard never blocks
 | `git/`, `npm/` | Package installs | Only their `.gitignore` files are tracked |
 | `types/` | Authored | Type declarations for the extensions |
 
-**The one rule:** never edit `prompts/` or `agents/` by hand. Change the source in `.skilled/`, then rerun the matching generator. To change what a guard does, change the hook core, because the extension only links to it.
+**The one rule:** never edit `prompts/` or `agents/` by hand. Change the source in `.skilled/`, then rerun the matching generator. To change what a guard does, change the hook core, because the extension only re-exports its adapter.
 
 ---
 

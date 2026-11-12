@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`pi/` holds one link for the Pi Skill Advisor path. It points at the real extension in `system-skill-advisor/hooks/pi/`, which Pi loads from `.pi/extensions/`. The extension imports the advisor module in process instead of spawning a child, so the input handler returns before Pi starts the agent step. It captures the operator text with a 32 KiB cap, tracks one receipt per session and delivers the brief as a model-visible message.
+`pi/` holds one link for the Pi Skill Advisor path. It points at the real extension in `system-skill-advisor/hooks/pi/`, which Pi discovers through its one-line entry file in `.pi/extensions/`. The extension imports the advisor module in process instead of spawning a child, so the input handler returns before Pi starts the agent step. It captures the operator text with a 32 KiB cap, tracks one receipt per session and delivers the brief as a model-visible message.
 
 ---
 

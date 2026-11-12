@@ -179,7 +179,7 @@ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
 ```
 
 ```bash
-# The adapter suites are vitest files; run them under the hooks config, whose alias serves the long specifiers a few Pi adapters keep, left from the link-based layout; they resolve only through the test alias
+# The adapter suites are vitest files; run them under the hooks config, whose alias serves the literal long specifiers a few Pi adapters keep, left from the link-based layout; they resolve only through the test alias
 .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/dispatch/pi/directive-dedup.test.ts
 ```
 
@@ -202,4 +202,4 @@ Expected result: `ok`, with no module-resolution error (confirms the OpenCode ad
 - [`../shared/README.md`](../shared/README.md): the shared kill-switch resolver the adapters use.
 - [`../../skills/cli-external-orchestration/cli-opencode/SKILL.md`](../../skills/cli-external-orchestration/cli-opencode/SKILL.md): the primary hard-rule declarer these checks enforce.
 
-<!-- A few Pi adapters keep a long specifier left from the link-based layout; it resolves only through the test alias. -->
+<!-- A few Pi adapters keep a literal long specifier left from the link-based layout; it resolves only through the test alias. -->

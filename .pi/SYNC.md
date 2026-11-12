@@ -1,6 +1,6 @@
 ---
 title: "Pi CLI — Runtime Sync Manifest"
-description: "How .pi derives from .skilled: two generators for agents and prompts, hand-authored extensions bridging the shared guard cores, and how to detect drift."
+description: "How .pi derives from .skilled: two generators for agents and prompts, one-line extension entries that re-export the hand-authored guard bridges, and how to detect drift."
 ---
 
 # Pi CLI Sync Manifest
@@ -15,7 +15,7 @@ Pi consumes flat real files, so two generators in `.skilled/skills/system-spec-k
 
 Canonical for agents is `.skilled/agents/` — the same upstream Codex uses, *not* the `.claude/agents/` fork that Cursor and Devin symlink. The generator maps OpenCode's `permission:` block onto Pi's built-in tool names, so a `.pi/agents/*.md` never byte-matches either parent tree.
 
-Unlike every sibling runtime, Pi's guard layer is **native code, not config**: `extensions/*.ts` are hand-authored factories that bridge the repo's shared guard cores into Pi's lifecycle-event API. There is no `hooks.json` dialect here at all.
+Unlike every sibling runtime, Pi's guard layer is **native code, not config**: `extensions/*.ts` are one-line entry files that re-export hand-authored factories under `.skilled/`, and those factories bridge the repo's shared guard cores into Pi's lifecycle-event API. There is no `hooks.json` dialect here at all.
 
 ---
 
@@ -26,7 +26,7 @@ Unlike every sibling runtime, Pi's guard layer is **native code, not config**: `
 | `agents/*.md` | **generated** | `.skilled/agents/*.md` | Yes — `sync-agents-pi.cjs --check` |
 | `prompts/*.md` (46) | **generated** pointer stubs, except the native command below | `.skilled/commands/**/*.md` | Yes — `sync-prompts-pi.cjs --check` |
 | `prompts/goal-pi.md` | hand-authored native command | none | No — exempt by `command-scope.cjs` |
-| `extensions/*.ts` + `lib/` | **hand-authored** guard bridges | shared guard cores under `.skilled/**` | Behavioral drift only; no checker |
+| `extensions/*.ts` + `lib/` | **one-line re-exports** of hand-authored guard bridges | shared guard cores under `.skilled/**` | Behavioral drift only; no checker |
 | `mcp.json` | **hand-authored** | — | Registers the code_mode MCP server. The advisor is not an MCP server and is not registered here: `extensions/prompt-advisor.ts` reaches it in-process. |
 | `settings.json` | **hand-authored** | — | Pi package configuration |
 | `settings.json`, `modes.json`, `statusline.sh`, `pi-blackhole-config.json`, `models.json` (global) | **symlinked canonicals** | repo `.pi/*` is the source of truth; `~/.pi/agent/*` and `~/.pi/agent/pi-blackhole/pi-blackhole-config.json` are relative symlinks back into the repo | Users pull the latest configs from this repo; the local Mac consumes them via symlink |
