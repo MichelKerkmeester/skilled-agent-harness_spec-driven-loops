@@ -52,8 +52,8 @@
       ".github/workflows/sk-doc-script-tests.yml",
       ".github/workflows/sk-doc-script-tests-filtered.yml",
       "scratch/checkout-baseline.md",
-      ".github/workflows/rule-canary-sync.yml",
-      ".opencode/plugins/system-skill-advisor.js"
+      "scratch/checkout-after.md",
+      ".github/workflows/rule-canary-sync.yml"
     ],
     "entities": [
       {
@@ -147,15 +147,15 @@
         "source": "derived"
       },
       {
-        "name": "rule-canary-sync.yml",
-        "kind": "config",
-        "path": ".github/workflows/rule-canary-sync.yml",
+        "name": "checkout-after.md",
+        "kind": "doc",
+        "path": "scratch/checkout-after.md",
         "source": "derived"
       },
       {
-        "name": "system-skill-advisor.js",
-        "kind": "code",
-        "path": ".opencode/plugins/system-skill-advisor.js",
+        "name": "rule-canary-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/rule-canary-sync.yml",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Every job checks out 134,068 tracked files, and 113,819 of them sit under `specs/`",
     "created_at": "2026-11-12T08:21:58Z",
-    "last_save_at": "2026-11-12T13:19:18.773Z",
+    "last_save_at": "2026-11-12T14:13:20.224Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +212,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d97cb3a66e7927fa5c64a5555ddebbb48ed14add24f2747b3c6af53a1e7c1ff4",
+    "source_fingerprint": "sha256:17ba0ae75e18e8781ac42a4a4ff9100494597d41045c2e445452f8db4014609e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e955b7c3015a88e80a8c376330afd07eda107bc63db7498e2da730092be97a5",
       "plan.md": "6922f78c21ad5d3394834e0be89f2d669fb60f47d7a5a7587753d0ae56e42d59",
-      "tasks.md": "2e421d45c819d781173c3114f61e0d1e9876ca7a51484826702c3fe8125cc25b",
+      "tasks.md": "fd50e1ed0de38d6d92510287ea64769de143d3dcb84b366f1d85a9deb125d9a4",
       "implementation-summary.md": "f20f7904726258daf5bcffe39c4539ede68942d4670488c362d6f1c6b0788d4a"
     },
     "last_active_at": null
