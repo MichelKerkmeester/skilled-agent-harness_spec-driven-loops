@@ -89,6 +89,8 @@ and findings belong here.
 | Deep review, 5 iterations | Done | `review/lineages/deepseek/iterations` holds 3 records and `review/lineages/opus/iterations` holds 2 |
 | Opus synthesis | Done | `review/review-report.md`: CONDITIONAL, 0 P0, 3 P1, 9 P2 |
 | Remediation | Done | Six briefs. `node --test tests/` printed 1136 passed and 0 failed |
+| Alignment | Done | Two full runs, a final battery with `findings=0` and a recheck. `implementation-summary.md` lists each finding. `node --test tests/` printed 1142 passed and 0 failed |
+| Changelog | Done | `check_changelog_shape.py` printed `PASS` for the entry and for the v1.1.6.0 note |
 
 ### Deviations and findings
 
@@ -99,5 +101,10 @@ and findings belong here.
 | Relayout is `apply --relayout`, not a `relayout` target | A new target needs a route and an advisor bridge in five advisor runtime files. Adopt took the same form in phase 8. |
 | T017 rejected | CI already collects every `node:test` file under `.skilled/hooks`. Its run on `c57b7e4cef` collected 78 files and passed. |
 | Push of `e97ca56e8d` used `SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1` once | The routing parity gate compared the commit with the working tree. The only difference was `system-spec-kit/ROUTER.md` and `SKILL.md`, which another session is editing and has not committed. The freshness guard had passed on the attempt before. |
+| Push of `dd58ccee3f` used the same override | Same cause and the same two files of the other session. |
+| Commits since `81513a220a` are built in a private index | Another session keeps files staged in the shared index. A private index holds only this work's paths, and the shared index is then reset for those paths alone. |
+| The alignment critic of the first run timed out | The second run's critic had a longer limit and finished. |
+| One sentence of the v1.1.6.0 note was edited by the orchestrating session | The agent wrote that a project ran the engine for a week. Nothing supports that, so the sentence was replaced. |
+| AC-017 is marked Met before the tag exists | A commit cannot hold the proof of its own tag. The release step checks it right after, and a failure reopens the row. |
 | The deep review ran as a two-lineage fan-out | The single-executor path is driven by hand through a 2,591-line workflow. The fan-out runner is the same workflow's own step and runs the loop itself. Records sit under `review/lineages/`. |
 <!-- /ANCHOR:log -->

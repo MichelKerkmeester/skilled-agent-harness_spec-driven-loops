@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-009-overlay-write-checks-follow-up"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 009-overlay-write-checks-follow-up |
-| **Completed** | Not yet. In progress since 2026-11-11 |
+| **Completed** | 2026-11-12 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -58,14 +58,16 @@ A five-iteration deep review then found three P1 defects, all in `apply --relayo
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/commands/doctor/scripts/overlay-engine.cjs` | Modified | Lock takeover, link and item records, glob, excluded paths, content compare, status lines, relayout and audit |
-| `.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs` | Created | 29 tests for the engine fixes and the new behaviour |
+| `.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs` | Created | 35 tests for the engine fixes and the new behaviour |
 | `.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs` | Modified | Seven more tests: glob, excluded path, line endings and the four untested groups |
 | `.skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs`, `overlay-engine-repin.test.cjs`, `doctor-overlay-contract.test.cjs` | Modified | Assertions that named the old lock line, state shape or flag list |
 | `.skilled/hooks/overlay-guard/opencode/`, `.opencode/plugins/overlay-guard.js` | Created | The OpenCode adapter and its mirror |
-| `.skilled/hooks/overlay-guard/tests/opencode-overlay-guard.test.mjs` | Created | Five adapter tests |
+| `.skilled/hooks/overlay-guard/tests/opencode-overlay-guard.test.mjs` | Created | Nine adapter tests |
 | `.skilled/commands/doctor/overlay.md`, `_routes.yaml`, `assets/doctor-overlay-*.yaml`, `assets/doctor-overlay-presentation.txt` | Modified | `--relayout`, `--audit` and the new lines |
-| `.skilled/skills/system-skilled-doctor/references/overlays.md` | Modified | Eight trigger phrases, then the new behaviour, version 1.0.7.0 |
-| `.skilled/skills/system-skilled-doctor/manual-testing-playbook/` | Modified | Five new scenarios |
+| `.skilled/skills/system-skilled-doctor/references/overlays.md` | Modified | Eight trigger phrases, then the new behaviour |
+| `.skilled/skills/system-skilled-doctor/graph-metadata.json`, `ROUTER.md`, `SKILL.md`, the advisor's generated bridges and skill graph | Modified | Routing words for the new work, skill version 1.1.6.0 |
+| `.skilled/changelog/skilled/v4.0.2.1.md`, `.skilled/skills/system-skilled-doctor/changelog/v1.1.6.0.md` | Modified, Created | The release entry and the skill note |
+| `.skilled/skills/system-skilled-doctor/manual-testing-playbook/` | Modified | Seven new scenarios |
 | `.skilled/hooks/README.md`, `.skilled/hooks/overlay-guard/README.md`, `.skilled/commands/README.txt`, `README.md`, `command-contract.json` | Modified | The seventh adapter and the command hint |
 | `.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json`, `system-skilled-doctor/leaf-manifest.json`, `leaf-aliases.json` | Regenerated | The new folder and scenarios |
 <!-- /ANCHOR:what-built -->
@@ -104,17 +106,17 @@ The review ran as a two-lineage fan-out of the `/deep:review` workflow: three De
 | Check | Result |
 |-------|--------|
 | `node --test tests/` in `.skilled/commands/doctor/scripts`, baseline | `tests 1100`, `pass 1100`, `fail 0` |
-| The same command after the last fix | `tests 1136`, `pass 1136`, `fail 0` |
-| `node --test` over the three `overlay-guard` test files | `pass 29`, `fail 0`. The baseline was 19 |
+| The same command after the last fix | `tests 1142`, `pass 1142`, `fail 0` |
+| `node --test` over the `overlay-guard` test files | `pass 33`, `fail 0`. The baseline was 19 |
 | `route-validate.sh` | `OK: route-validate`, 31 routes |
 | `sync-runtime-mirrors.cjs --check` | `PASS: 256 mirrors across 10 trees are in sync` |
 | `check-skill-doc-frontmatter.sh . --coverage` | `violations=0`. It printed `violations=1` before task T004 |
-| `validate-playbook-package.cjs --package system-skilled-doctor` | `PASS`, `scenarios=9`. The baseline was 4 |
+| `validate-playbook-package.cjs --package system-skilled-doctor` | `PASS`, `scenarios=11`. The baseline was 4 |
 | `test_readme_manifest.py` | `manifest=reproducible`. It failed in CI on `e97ca56e8d` before the manifest was regenerated |
 
 ### Review findings
 
-The ids are those of `review/review-report.md`. Each fix has a test in `tests/overlay-engine-follow-up.test.cjs`, and `node --test tests/overlay-engine-follow-up.test.cjs` prints `pass 29`, `fail 0`.
+The ids are those of `review/review-report.md`. Each fix has a test in `tests/overlay-engine-follow-up.test.cjs`, and `node --test tests/overlay-engine-follow-up.test.cjs` prints `pass 35`, `fail 0`.
 
 | Finding | Severity | Outcome | Proof |
 |---------|----------|---------|-------|
@@ -129,6 +131,23 @@ The ids are those of `review/review-report.md`. Each fix has a test in `tests/ov
 | SYN-12 a staged pin change switches the commit check off | P2 | Rejected | It predates this phase and is by design. `plan.md` records the reason, and `references/overlays.md` documents it |
 
 The review found no P0.
+
+### Alignment findings
+
+`/local-skilled-alignment` ran twice with four DeepSeek lanes and a critic. The first run covered `790ced4732..dd58ccee3f`, the second `790ced4732..81513a220a`. A battery over the final range and a recheck of the second run followed. A fresh Opus agent then judged each finding the recheck could not judge.
+
+| Finding | Severity | Outcome | Proof |
+|---------|----------|---------|-------|
+| Run 1: 18 lane findings, among them no patch tool test, no audit or stale root-file scenario, missing routing words, an audit that exits 2 on an unreadable pin and ten document lines | 9 P1, 9 P2 | Fixed in `81513a220a` | The second run's battery: `pass=75 fail=0`. The first run's six failed probes pass |
+| Run 2 A-1: the audit folded line endings and a re-pin does not | P1 | Fixed in `412bb9e456` | The test `status --audit lists an unowned vendored file whose line endings differ from the pin` |
+| Run 2 A-2: a stale root file under a `marked-section` overlay went unreported | P2 | Fixed | Two tests beside the root-file tests. `node --test tests/` prints `tests 1142`, `fail 0` |
+| Run 2 A-3: the OpenCode guard copies a log helper four other plugins also carry | P2 | Deferred | No behaviour is at risk, since each guard writes its own log. A shared helper under `.opencode/plugins/lib/` is the fix, and moving the other copies edits plugins outside this phase |
+| Run 2 B-001: the trigger index and its fixtures lacked three new documents | P1 | Closed by CI | The Trigger Index Rebuild workflow commits the index and its three fixture files after each push to `main` |
+| Run 2 C-01 to C-04, D-3, N-1: document lines and stale counts | 1 P1, 5 P2 | Fixed | The recheck lists the literal ones as resolved. The counts read 117 and 1,142 |
+| Run 2 D-1, D-2: no routing words for the stale root file, and an audit paraphrase lost to `sk-git` | 1 P1, 1 P2 | Fixed | `run-probes.cjs` on the second run's probes: 11 pass. The verifier's own prompt selects `system-skilled-doctor` |
+| Probes P07 and P08 of run 2, which open with "Tell me" and "Explain" | P1 | Not a defect | The advisor hands a read-only question to the doctor helper by a rule this phase did not change. The helper lists `/doctor:overlay status` first for both |
+
+The final battery, over `790ced4732` to the last fix commit, reports `findings=0`.
 <!-- /ANCHOR:verification -->
 
 ---

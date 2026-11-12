@@ -3194,10 +3194,17 @@ function repinSettings(manifest) {
   };
 }
 
+// Both scopes record upstream's copy of the destination in `pinnedSha256`: a
+// file overlay copies that file whole, and a marked-section overlay keeps it as
+// its `base`.
+const PINNED_UPSTREAM_SCOPES = new Set(['file', 'marked-section']);
+
 /**
  * List the owned root files whose upstream copy has moved since the overlay was
  * pinned. A re-pin never copies a root file, so only this comparison tells an
- * overlay whose upstream base changed from one that still matches it.
+ * overlay whose upstream base changed from one that still matches it. A
+ * marked-section overlay pins the upstream copy it writes its block into, so it
+ * is judged here as well.
  * @param {object} manifest Loaded overlay manifest.
  * @returns {{path: string, overlay: string}[]} Sorted by path; empty when the
  *   manifest names no readable upstream checkout or no root files.
@@ -3208,7 +3215,7 @@ function staleRootFiles(manifest) {
   if (readUpstream === null) return [];
   const stale = [];
   for (const entry of manifest.overlays) {
-    if (entry.scope !== 'file' || !entry.pinnedSha256) continue;
+    if (!PINNED_UPSTREAM_SCOPES.has(entry.scope) || !entry.pinnedSha256) continue;
     if (!rootFiles.includes(entry.destination)) continue;
     const upstreamBytes = readUpstream(entry.destination);
     if (upstreamBytes === null || sha256(upstreamBytes) === entry.pinnedSha256) continue;

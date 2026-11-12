@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-doctor routing"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -44,7 +44,7 @@ Otherwise keep one. A router may also route by pseudocode alone with no map at a
 its whole reference set on any match, because a hub's map is the one thing this flexibility never relaxes.
 
 - **`DOCTOR_COMMANDS`** fires on `put skilled into my project`, `install skilled`, `link the skilled checkout`, `update skilled`, `runtime mirrors`, `environment switches`, `doctor setup`, `which doctor command`, `agents md sections`, `trigger index fresh` and `code mode install` at weight 4. It loads `README.md`, the owned-command table, which is also the default resource.
-- **`OVERLAYS`** fires on `vendored skilled`, `skilled overlays`, `overlay status`, `apply the overlays`, `capture a live edit`, `re-pin`, `repin`, `overlay-edited`, `overlay layout path`, `relayout`, `overlay audit`, `overlay lock`, `strict overlay writes`, `no overlay owns`, `unowned vendored`, `agents overlay stale`, `root files changed upstream`, `changed a root file` and `drifted from the pinned upstream commit` at weight 4. It loads `references/overlays.md`, the sync states and what resolves each one.
+- **`OVERLAYS`** fires on `vendored skilled`, `skilled overlays`, `overlay status`, `apply the overlays`, `capture a live edit`, `re-pin`, `repin`, `overlay-edited`, `overlay layout path`, `relayout`, `overlay audit`, `overlay lock`, `strict overlay writes`, `no overlay owns`, `unowned vendored`, `agents overlay stale`, `overlay rebase`, `root files changed upstream`, `changed a root file` and `drifted from the pinned upstream commit` at weight 4. It loads `references/overlays.md`, the sync states and what resolves each one.
 
 ---
 
@@ -66,7 +66,7 @@ DEFAULT_RESOURCE = "README.md"
 
 INTENT_SIGNALS = {
     "DOCTOR_COMMANDS": {"weight": 4, "keywords": ["put skilled into my project", "install skilled", "link the skilled checkout", "update skilled", "runtime mirrors", "environment switches", "doctor setup", "which doctor command", "agents md sections", "trigger index fresh", "code mode install"]},
-    "OVERLAYS": {"weight": 4, "keywords": ["vendored skilled", "skilled overlays", "overlay status", "apply the overlays", "capture a live edit", "re-pin", "repin", "overlay-edited", "overlay layout path", "relayout", "overlay audit", "overlay lock", "strict overlay writes", "no overlay owns", "unowned vendored", "agents overlay stale", "root files changed upstream", "changed a root file", "drifted from the pinned upstream commit"]},
+    "OVERLAYS": {"weight": 4, "keywords": ["vendored skilled", "skilled overlays", "overlay status", "apply the overlays", "capture a live edit", "re-pin", "repin", "overlay-edited", "overlay layout path", "relayout", "overlay audit", "overlay lock", "strict overlay writes", "no overlay owns", "unowned vendored", "agents overlay stale", "overlay rebase", "root files changed upstream", "changed a root file", "drifted from the pinned upstream commit"]},
 }
 
 RESOURCE_MAP = {

@@ -649,6 +649,9 @@ routes:
       - "audit my vendored skilled tree for unowned files"
       - "root files changed upstream since the pin"
       - "we copy skilled into our repo and lose our edits on update"
+      - "agents overlay stale after a re-pin"
+      - "which overlay do I rebase"
+      - "rebase the overlay"
 
   - command: /doctor:overlay
     target: apply

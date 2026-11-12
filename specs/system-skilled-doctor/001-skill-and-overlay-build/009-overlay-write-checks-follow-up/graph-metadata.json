@@ -36,7 +36,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -52,12 +52,12 @@
       ".skilled/hooks/overlay-guard/tests/opencode-overlay-guard.test.mjs",
       ".skilled/commands/doctor/overlay.md",
       ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      ".skilled/skills/system-skilled-doctor/graph-metadata.json",
+      ".skilled/changelog/skilled/v4.0.2.1.md",
+      ".skilled/skills/system-skilled-doctor/changelog/v1.1.6.0.md",
       ".skilled/hooks/README.md",
       ".skilled/hooks/overlay-guard/README.md",
-      ".skilled/commands/README.txt",
-      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
-      "review/review-report.md",
-      "research/fable-review.md"
+      ".skilled/commands/README.txt"
     ],
     "entities": [
       {
@@ -145,6 +145,24 @@
         "source": "derived"
       },
       {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skilled-doctor/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.2.1.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.2.1.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.6.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/changelog/v1.1.6.0.md",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/hooks/README.md",
@@ -157,31 +175,7 @@
         "source": "derived"
       },
       {
-        "name": "durable-directory-manifest.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "fable-review.md",
-        "kind": "doc",
-        "path": "research/fable-review.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -203,11 +197,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 8 shipped the opt-in write checks",
     "created_at": "2026-11-11T21:21:40Z",
-    "last_save_at": "2026-11-12T00:08:48.762Z",
+    "last_save_at": "2026-11-12T02:31:29.970Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7472b5f7ed99d05a1b468e0e1bf3c63e69a763cb1953ad0b4fad633a7d2c6f32",
+    "source_fingerprint": "sha256:ddd49a0d639ca3663c7ba516a357dd7c6bcfdb6972d2b53956cdb9abe1dfde00",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d8a711cd9fe11bdf062c5b1eab26ab5ac2402936a2e900af4d627a226ab55ab3",
-      "plan.md": "c5d74bbefdbc9baaf5fb6c459ccec967433351b232516e88f28551a83bc06e82",
-      "tasks.md": "59c4a578287b09bd0c1299fbb9e0fce2cfadaedaa07f494482b9c79273388a73",
-      "implementation-summary.md": "679715967f760458ac918cea30d6bba13ab053dc7232ebbf33492089f8d6f20c"
+      "spec.md": "23d2a8cd483a7a5a8ca35fb2c4f1f0a398e0e54de1ddff2946ab3a0f39d3f314",
+      "plan.md": "178d3babcaeef13e55b72ea19b48b30fa9494a0e1c22bd392f36c9acbec2a621",
+      "tasks.md": "2935d2209891bddec1c550f40ad4ab45b3cdc48b052bda4caef7f4c9b5f99d34",
+      "implementation-summary.md": "404a8fc7569915d7a135f25aebad4ad629430e8d54872d126a4de42e9771c088"
     },
     "last_active_at": null
   }

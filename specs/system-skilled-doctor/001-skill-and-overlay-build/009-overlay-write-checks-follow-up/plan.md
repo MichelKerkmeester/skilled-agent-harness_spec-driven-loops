@@ -40,9 +40,9 @@ Each change is one brief to one DeepSeek V4.1 Flash agent at max thinking, run t
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `node --test tests/` in `.skilled/commands/doctor/scripts` prints `fail 0`
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `node --test tests/` in `.skilled/commands/doctor/scripts` prints `fail 0`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

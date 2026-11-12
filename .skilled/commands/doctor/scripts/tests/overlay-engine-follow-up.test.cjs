@@ -656,6 +656,83 @@ test('status reports an owned root file whose pinned copy upstream has moved on 
   assert.equal(report.result, 'FAILED');
 });
 
+// The same pin guards a marked-section overlay on a root file: it records
+// upstream's copy of the file whose block the overlay writes, so an upstream
+// move has to surface even though the entry rewrites only the text between the
+// markers.
+const AGENTS_BLOCK = '\n<!-- BEGIN BLOCK -->\nproject agents\n<!-- END BLOCK -->\n';
+const MARKED_STALE_LINE = 'STALE    root-file AGENTS.md: upstream changed it since overlay agents-marked was ' +
+  'pinned; rebase the overlay, then update its pinnedSha256';
+
+/**
+ * Build a tree whose marked-section overlay owns a root file, with an upstream
+ * checkout holding the copy that overlay appends its block to.
+ * @param {object} t The node:test context.
+ * @returns {object} Fixture paths, its manifest and a `run` helper.
+ */
+function createMarkedRootFileFixture(t) {
+  const fixture = createWorkspace(t, 'overlay-engine-marked-root-');
+  const upstream = path.join(fixture.workspace, 'upstream');
+  fs.mkdirSync(upstream);
+  git(upstream, ['init', '-q']);
+  writeFile(upstream, 'AGENTS.md', UPSTREAM_AGENTS);
+  const commit = commitAll(upstream, 'pinned copy');
+  writeFile(fixture.overlayDir, 'AGENTS.md', AGENTS_BLOCK);
+  writeFile(fixture.overlayDir, 'AGENTS.base.md', UPSTREAM_AGENTS);
+  writeFile(fixture.tree, 'AGENTS.md', UPSTREAM_AGENTS);
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', checkout: upstream, commit },
+    repin: { rootFiles: ['AGENTS.md'] },
+    layoutLinks: [],
+    overlays: [{
+      id: 'agents-marked',
+      scope: 'marked-section',
+      source: 'AGENTS.md',
+      base: 'AGENTS.base.md',
+      fragment: 'AGENTS.md',
+      destination: 'AGENTS.md',
+      beginMarker: '<!-- BEGIN BLOCK -->',
+      endMarker: '<!-- END BLOCK -->',
+      pinnedSha256: sha256(Buffer.from(UPSTREAM_AGENTS)),
+    }],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  fixture.run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  return fixture;
+}
+
+test('status passes while a marked-section overlay root file matches the pinned upstream copy', (t) => {
+  const fixture = createMarkedRootFileFixture(t);
+
+  const status = fixture.run(['status']);
+
+  assert.equal(status.code, 0, status.output);
+  assert.deepEqual(staleLines(status.output), [], status.output);
+  assert.match(status.output, /RESULT: PASSED/);
+});
+
+test('status reports a marked-section overlay root file whose pinned copy upstream has moved on from', (t) => {
+  const fixture = createMarkedRootFileFixture(t);
+  // Only the pin is out of date: the live file still holds the block this
+  // overlay wrote, so no destination line can see the move.
+  fixture.manifest.overlays[0].pinnedSha256 = sha256(Buffer.from(UPSTREAM_AGENTS_V2));
+  writeManifest(fixture);
+
+  const status = fixture.run(['status']);
+  const report = JSON.parse(fixture.run(['status', '--json']).stdout);
+
+  assert.equal(status.code, 1, status.output);
+  assert.deepEqual(staleLines(status.output), [MARKED_STALE_LINE], status.output);
+  assert.match(status.output, /RESULT: FAILED/);
+  assert.deepEqual(report.staleRootFiles, [{ path: 'AGENTS.md', overlay: 'agents-marked' }]);
+  assert.equal(report.result, 'FAILED');
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 7. SOURCES KEPT OFF THE LAYOUT
 // ─────────────────────────────────────────────────────────────────────────────

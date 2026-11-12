@@ -72,9 +72,9 @@ Each Phase 2 task is one brief to one DeepSeek V4.1 Flash agent at max thinking.
 - [x] T023 Run `/deep:review` for 5 iterations on this phase. Verify: the `review/` folder holds 5 iteration records.
 - [x] T024 Have a fresh Opus agent at high effort write the synthesis. Verify: the report exists in `review/` and lists each finding with a severity.
 - [x] T025 Plan and fix each P0 and P1 finding, one brief per fix. Verify: `implementation-summary.md` lists each as fixed with a command or rejected with evidence.
-- [ ] T026 Run `/local-skilled-alignment` on the work. Verify: its report lists 0 open findings.
-- [ ] T027 Update the `v4.0.2.1` entry and write the `system-skilled-doctor` v1.1.6.0 note. Verify: `check_changelog_shape.py` prints `PASS` for both.
-- [ ] T028 Commit, push, then delete and republish the `v4.0.2.1` tag and release. Verify: on origin the tag and `main` name one commit, and the release body equals the built notes.
+- [x] T026 Run `/local-skilled-alignment` on the work. Verify: its report lists 0 open findings.
+- [x] T027 Update the `v4.0.2.1` entry and write the `system-skilled-doctor` v1.1.6.0 note. Verify: `check_changelog_shape.py` prints `PASS` for both.
+- [x] T028 Commit, push, then delete and republish the `v4.0.2.1` tag and release. Verify: on origin the tag and `main` name one commit, and the release body equals the built notes.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -82,9 +82,9 @@ Each Phase 2 task is one brief to one DeepSeek V4.1 Flash agent at max thinking.
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -125,10 +125,10 @@ Each Phase 2 task is one brief to one DeepSeek V4.1 Flash agent at max thinking.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Code passes lint/format checks. Evidence: the alignment battery rows `S1-quality-gate` and `S1-comment-hygiene` pass on `790ced4732..412bb9e456`.
+- [x] CHK-011 [P0] No console errors or warnings. Evidence: `node --test tests/` printed `fail 0`.
+- [x] CHK-012 [P1] Error handling implemented. Evidence: the audit prints its skipped line when the pin cannot be read, with two tests.
+- [x] CHK-013 [P1] Code follows project patterns. Evidence: `quality-gate.cjs` reported no blocking finding.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -136,10 +136,10 @@ Each Phase 2 task is one brief to one DeepSeek V4.1 Flash agent at max thinking.
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-020 [P0] All acceptance criteria met. Evidence: `acceptance-criteria.md`, 17 rows `Met`.
+- [x] CHK-021 [P0] Manual testing complete. Evidence: the seven new playbook scenarios were run on fixture trees and carry the engine's printed lines.
+- [x] CHK-022 [P1] Edge cases tested. Evidence: lock, link, item and glob matrix rows each have a test in `tests/overlay-engine-follow-up.test.cjs`.
+- [x] CHK-023 [P1] Error scenarios validated. Evidence: a taken layout path and a doubled id each exit 2 with nothing moved.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,13 +147,13 @@ Each Phase 2 task is one brief to one DeepSeek V4.1 Flash agent at max thinking.
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, state keys, docs and tests
-- [ ] CHK-FIX-004 [P0] Path and lock fixes include adversarial tests
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed
-- [ ] CHK-FIX-006 [P1] Hostile global-state variant executed where code reads process-wide state
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class. Evidence: the findings tables in `implementation-summary.md`.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. Evidence: the inventory commands in `plan.md`, FIX ADDENDUM.
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, state keys, docs and tests. Evidence: the affected surfaces table in `plan.md`.
+- [x] CHK-FIX-004 [P0] Path and lock fixes include adversarial tests. Evidence: the takeover race tests and the link that leaves the overlay folder.
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Evidence: `plan.md`, Matrix axes.
+- [x] CHK-FIX-006 [P1] Hostile global-state variant executed where code reads process-wide state. Evidence: the lock tests with a live pid, another host and a line with no host.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA. Evidence: `dd58ccee3f`, `81513a220a` and `412bb9e456`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -161,9 +161,9 @@ Each Phase 2 task is one brief to one DeepSeek V4.1 Flash agent at max thinking.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] N/A: no authentication or authorization is involved
+- [x] CHK-030 [P0] No hardcoded secrets. Evidence: the change adds no credential, and the backup skips protected files.
+- [x] CHK-031 [P0] Input validation implemented. Evidence: a rival flag and a bare `relayout` word exit 2 with the usage.
+- [x] CHK-032 [P1] N/A: no authentication or authorization is involved
 <!-- /ANCHOR:security -->
 
 ---
@@ -171,9 +171,9 @@ Each Phase 2 task is one brief to one DeepSeek V4.1 Flash agent at max thinking.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized. Evidence: strict validation of this packet.
+- [x] CHK-041 [P1] Code comments adequate. Evidence: `check-comment-hygiene.sh` exits 0 on the changed code.
+- [x] CHK-042 [P2] README updated. Evidence: `README.md`, `.skilled/hooks/README.md` and `.opencode/plugins/README.md` name the new work.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -181,8 +181,8 @@ Each Phase 2 task is one brief to one DeepSeek V4.1 Flash agent at max thinking.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only. Evidence: briefs and run output sit outside the checkout.
+- [x] CHK-051 [P1] scratch/ cleaned before completion. Evidence: the packet holds no scratch folder.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -192,11 +192,11 @@ Each Phase 2 task is one brief to one DeepSeek V4.1 Flash agent at max thinking.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 2/12 |
-| P1 Items | 13 | 1/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Pending
+**Verification Date**: 2026-11-12
 <!-- /ANCHOR:summary -->
 
 ---

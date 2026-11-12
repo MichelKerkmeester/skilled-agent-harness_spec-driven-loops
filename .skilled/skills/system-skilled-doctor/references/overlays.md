@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # Vendored Skilled Overlays
@@ -85,10 +85,10 @@ Two more `status` lines name work no destination state covers.
 
 | The line | What happened | What resolves it |
 |----------|---------------|------------------|
-| `STALE    root-file <path>` | Upstream changed a root file named in `repin.rootFiles` that a `file` scope overlay owns. A re-pin never copies a root file, so no destination line reports it. A `marked-section` overlay on a root file reports an upstream change on its own destination line instead | Rebase the overlay onto the new upstream file, then update its `pinnedSha256` |
+| `STALE    root-file <path>` | Upstream changed a root file named in `repin.rootFiles` that a `file` or `marked-section` overlay owns and pins in `pinnedSha256`. A re-pin never copies a root file, so no destination line reports it | Rebase the overlay onto the new upstream file, then update its `pinnedSha256` |
 | `LAYOUT   <overlay>: <field> <from> belongs at <to>` | The copy the entry names sits off its layout path, which is the entry's destination path with the leading dot dropped. `<field>` is `source`, `fragment` or `base`, and a `marked-section` entry can print one line for each. The `base` path carries `.base` before the extension | `/doctor:overlay apply --relayout` |
 
-`STALE` names a `file` scope overlay only. A `marked-section` overlay on a root file is judged against its own `base` copy, so an upstream change to that file prints a `MISS` line for the overlay instead. That line names the destination and asks for a rebase of the overlay.
+`STALE` names a root file owned by a `file` or a `marked-section` overlay that carries `pinnedSha256`. Both scopes pin upstream's copy of the destination. A `file` entry copies that file whole, and a `marked-section` entry keeps it as its `base`. One comparison against the pinned commit therefore catches an upstream move for either one. The line prints even while the entry itself still applies cleanly, which is why it is the only sign the pin is out of date.
 
 `apply --relayout` moves each off-layout copy onto its layout path, and with it a `marked-section` entry's `fragment` and `base`. It copies every path it moves into `<overlayDir>/relayout-runs/<stamp>/` first, then points the entry's fields and the manifest's layout links at the new path. It refuses rather than overwrite a path that already exists, and then it writes nothing. The run retargets each live link that still named a moved copy and prints a `relinked` line for it. The plain `apply` that follows writes the destinations from the moved copies.
 

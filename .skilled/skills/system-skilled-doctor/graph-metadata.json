@@ -46,7 +46,9 @@
     "audit files that drifted from the pinned upstream commit",
     "which root files changed upstream since the pin",
     "upstream changed a root file my overlay owns",
-    "agents overlay stale after a re-pin"
+    "agents overlay stale after a re-pin",
+    "rebase the overlay",
+    "which overlay do I rebase"
   ],
   "derived": {
     "trigger_phrases": [
@@ -72,7 +74,8 @@
       "drifted from the pinned upstream commit",
       "root files changed upstream",
       "changed a root file",
-      "agents overlay stale"
+      "agents overlay stale",
+      "overlay rebase"
     ],
     "key_topics": [
       "skilled-project-integration",
