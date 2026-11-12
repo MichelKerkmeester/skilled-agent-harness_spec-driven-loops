@@ -24,7 +24,7 @@ Unlike every sibling runtime, Pi's guard layer is **native code, not config**: `
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
 | `agents/*.md` | **generated** | `.skilled/agents/*.md` | Yes — `sync-agents-pi.cjs --check` |
-| `prompts/*.md` (46) | **generated** pointer stubs, except the native command below | `.skilled/commands/**/*.md` | Yes — `sync-prompts-pi.cjs --check` |
+| `prompts/*.md` (45) | **generated** pointer stubs, except the native command below | `.skilled/commands/**/*.md` | Yes — `sync-prompts-pi.cjs --check` |
 | `prompts/goal-pi.md` | hand-authored native command | none | No — exempt by `command-scope.cjs` |
 | `extensions/*.ts` + `lib/` | **one-line re-exports** of hand-authored guard bridges, plus the symlinked module `lib/claude-hook-adapter.ts` | shared guard cores under `.skilled/**` | Behavioral drift only; shape checked, no behavioral checker |
 | `mcp.json` | **hand-authored** | — | Registers the code_mode MCP server. The advisor is not an MCP server and is not registered here: `extensions/prompt-advisor.ts` reaches it in-process. |

@@ -26,7 +26,7 @@ Canonical for agents is `.skilled/agents/` (note: *not* `.claude/agents/`, which
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
 | `agents/*.toml` | **generated** | `.skilled/agents/*.md` | Yes — `sync-agents.cjs --check` |
-| `prompts/*.md` (45) | **generated** pointer stubs | `.skilled/commands/**/*.md` | Yes — `sync-prompts.cjs --check` |
+| `prompts/*.md` (44) | **generated** pointer stubs | `.skilled/commands/**/*.md` | Yes — `sync-prompts.cjs --check` |
 | `hooks/*` (26 symlinks) | per-file symlinks | scattered `.skilled/**` | Yes — mirror generator |
 | `hooks.json` | **generated** | `hook-registry.json`, rendered by `sync-hook-registrations.cjs` | Yes, `sync-hook-registrations.cjs --check` reports it. Read by Codex from this checkout, never copied to `~/.codex/hooks.json` |
 | `config.toml` | **hand-authored** | — | MCP servers inlined here, unlike `.claude`/`.cursor` which use `mcp.json` |
