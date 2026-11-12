@@ -63,7 +63,7 @@ Frozen choices. Changing one is an amendment.
 - [x] Every task in `tasks.md` is `[x]`, and `node --test tests/` in `.skilled/commands/doctor/scripts` prints `fail 0`.
 - [x] The packet's `review/` folder holds 5 deep-review iteration records and a synthesis report written by a fresh Opus agent at high effort.
 - [x] Every P0 and P1 finding in that report is listed in `implementation-summary.md` as fixed, with the command that proves it, or as rejected, with the evidence against it.
-- [ ] The `/local-skilled-alignment` findings report for this work, run after the last fix, lists 0 open findings.
+- [x] The `/local-skilled-alignment` findings report for this work, run after the last fix, lists 0 open findings.
 - [x] `validate.sh --strict` prints `RESULT: PASSED` for this packet and for `specs/system-skilled-doctor/001-skill-and-overlay-build`.
 - [x] `.skilled/changelog/skilled/v4.0.2.1.md` names this work and passes `check_changelog_shape.py`. On origin, tag `v4.0.2.1` and `main` name the same commit, and the published release body equals the output of `build_release_notes.py` for that entry.
 <!-- /ANCHOR:completion -->
@@ -89,8 +89,9 @@ and findings belong here.
 | Deep review, 5 iterations | Done | `review/lineages/deepseek/iterations` holds 3 records and `review/lineages/opus/iterations` holds 2 |
 | Opus synthesis | Done | `review/review-report.md`: CONDITIONAL, 0 P0, 3 P1, 9 P2 |
 | Remediation | Done | Six briefs. `node --test tests/` printed 1136 passed and 0 failed |
-| Alignment | One finding left for a person | Six full runs, each followed by fixes. Every run found new defects after the fixes of the run before it. No lane run has reported zero findings. The sixth run's recheck leaves 1 open, in a file an agent may not edit. `implementation-summary.md` lists each finding. `node --test tests/` printed 1150 passed and 0 failed, 124 of them engine tests |
+| Alignment | Done | Six full runs, each followed by fixes. Every run found new defects after the fixes of the run before it. No lane run has reported zero findings. The sixth run's last recheck lists 0 open and exits 0, and a fresh Opus verifier checked the findings it left for a reviewer. `implementation-summary.md` lists each finding. `node --test tests/` printed 1150 passed and 0 failed, 124 of them engine tests |
 | Changelog | Done | `check_changelog_shape.py` printed `PASS` for the entry and for the v1.1.6.0 note |
+| Decision record | Done | `decision-record.md` holds the operator's two answers of this session: the reviewer route and the guard README choice |
 
 ### Deviations and findings
 
@@ -123,8 +124,9 @@ and findings belong here.
 | The lock takeover is proven for two runs only | The verifier found a four-run schedule that ends with two holders. It needs a takeover marker more than a minute old. A third rewrite of the lock was not made: D1 stops a gate after three fixes, and the case is recorded as a known limitation and in the handover to Barter. |
 | The fifth criterion stays open | The fifth round's recheck lists 2 findings as still open. Both are literal matches on text that is now correct. No report of the alignment command lists 0 open findings, so the box is not ticked. |
 | A sixth alignment round ran on 2026-11-12 | A stop hook named the fifth criterion as the gap, so a round ran over `fd6533c621..467131c783`, the Pi adapter fix and the stage fix. It found 21 findings, 2 of them P1, and the critic overturned none. Its recheck lists 10 resolved, 10 for a reviewer, 1 still open and 0 new. |
-| One finding is left for a person | `.skilled/hooks/env-secret-guard/README.md` lines 65 and 85 still call the Pi entry a link. The dotenv guard refuses an agent's write to its own files and names a person as the one who can make it. No agent was started with the guard switched off. The fifth criterion stays unticked for this one finding. |
+| The operator was asked one question, against D1 | `.skilled/hooks/env-secret-guard/README.md` lines 65 and 85 called the Pi entry a link. The dotenv guard refuses an agent's write to its own files and names a person as the one who can make it. Switching a guard off is not a choice the session may make alone, so it asked. The operator chose one agent run with `SYSTEM_ENV_SECRET_GUARD_DISABLED=1`. That run changed the two phrases and nothing else. |
+| The fifth criterion is ticked on a recheck report | No full lane run has listed 0 findings. The report that lists 0 open is the sixth run's recheck, the alignment command's own `--recheck` mode, run after the last fix. It lists 10 resolved and leaves 11 for a reviewer, and a fresh Opus verifier checked those in three passes. |
 | The committed `.env.example` template gained one line | It is the one template the dotenv guard allows, and it holds names only. The line names `SYSTEM_OVERLAY_GUARD_DISABLED`. No dotenv file was read. |
-| The tag moved a fifth time and moves a sixth | The Pi adapter fix and the stage fix moved `main` to `a846aca84c`, and the tag followed. The sixth round's fixes move `main` again, and the release step republishes the tag on it. Each earlier tag object is under `refs/backup-tags/`. D2 approved one republish. |
+| The tag moved a fifth and a sixth time and moves a seventh | The Pi adapter fix and the stage fix moved `main` to `a846aca84c`, and the tag followed. The sixth round's fixes moved it to `3934c684da`. The guard README and the verifier's fixes move `main` once more, and the release step republishes the tag on it. Each earlier tag object is under `refs/backup-tags/`. D2 approved one republish. |
 | `sk-git Script Tests` is red on `main` | `stamp-branch.test.sh` line 104 fails in CI with `10#: invalid integer constant`. It has failed on every run since 2026-11-09 and passes here, 24 of 24. It is not this work's and was left alone. |
 <!-- /ANCHOR:log -->

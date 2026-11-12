@@ -19,6 +19,7 @@
       "overlay write checks follow up tasks",
       "overlay write checks follow up acceptance criteria",
       "overlay write checks follow up goal",
+      "009-overlay-write-checks-follow-up operator decisions",
       "overlay write checks follow up implementation summary"
     ],
     "key_topics": [
@@ -43,6 +44,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/commands/doctor/scripts/overlay-engine.cjs",
       ".skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs",
@@ -56,8 +58,7 @@
       ".skilled/changelog/skilled/v4.0.2.1.md",
       ".skilled/skills/system-skilled-doctor/changelog/v1.1.6.0.md",
       ".skilled/hooks/README.md",
-      ".skilled/hooks/overlay-guard/README.md",
-      ".skilled/commands/README.txt"
+      ".skilled/hooks/overlay-guard/README.md"
     ],
     "entities": [
       {
@@ -88,6 +89,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -169,12 +176,6 @@
         "source": "derived"
       },
       {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".skilled/commands/README.txt",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -207,7 +208,7 @@
     ],
     "causal_summary": "Phase 8 shipped the opt-in write checks",
     "created_at": "2026-11-11T21:21:40Z",
-    "last_save_at": "2026-11-12T12:00:42.467Z",
+    "last_save_at": "2026-11-12T12:38:18.978Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,15 +217,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb6b150f85f9afd7f4a6d2ff839ca1635022e806a4307d7f3a8d4f8b2cb5018c",
+    "source_fingerprint": "sha256:60a28578464c7b6ca13c19741dda598158c534cf93be26cfead3eaefc0b98f1d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bca75899c9119fcc6a6ca0c1e3f022879a44a4e715a3ea8dfdbea88a3345783f",
       "plan.md": "178d3babcaeef13e55b72ea19b48b30fa9494a0e1c22bd392f36c9acbec2a621",
       "tasks.md": "2935d2209891bddec1c550f40ad4ab45b3cdc48b052bda4caef7f4c9b5f99d34",
-      "implementation-summary.md": "fc905b51d42e33f0f7c6eb9521c5c7ec1718680a5c30ecaf245b082170c13ce4"
+      "decision-record.md": "08f0d3f54afad2c24efcc8980640368ff0f9ad47d4ac8a51cd9966e3feb19cb4",
+      "implementation-summary.md": "466fd9b5d62efb9fcb51f02aae81bdd56c07706409a64dcaa80000fe8f55b51c"
     },
     "last_active_at": null
   }

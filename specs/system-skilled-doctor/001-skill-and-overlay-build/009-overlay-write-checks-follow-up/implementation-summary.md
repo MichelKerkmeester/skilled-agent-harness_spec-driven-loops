@@ -8,16 +8,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up"
-    last_updated_at: "2026-11-11T21:21:40Z"
-    last_updated_by: "claude-code"
-    recent_action: "Fixed the review findings"
-    next_safe_action: "Run the alignment check, then the release"
+    last_updated_at: "2026-11-12T12:37:38Z"
+    last_updated_by: "generate-context"
+    recent_action: "Closed alignment round six"
+    next_safe_action: "Verify the release tag equals main"
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/goal.md"
+      - "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/implementation-summary.md"
+      - "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/handover-to-barter.md"
+      - ".skilled/commands/doctor/scripts/overlay-engine.cjs"
+      - ".skilled/changelog/skilled/v4.0.2.1.md"
     session_dedup:
-      fingerprint: "sha256:197a5cd6dc1f8f271c435d76c96222d8dffbf6028f471c58feba4c6ebc6fa3d1"
+      fingerprint: "sha256:2ba1eff1cc1691aba42c6a872a9fd98bbf6f67640c105a1a71775aafd3d6edb7"
       session_id: "scaffold-009-overlay-write-checks-follow-up"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "e881d253-bd2e-467f-a00f-6be078d10e1c"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-12T12:37:38Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []
@@ -168,9 +180,10 @@ The review found no P0.
 | Verifier on round 5, second pass: the reference said only one run can create the marker and that a displaced file is always put back, and a marker put back after its run ended made the next takeover refuse with the advice to delete the lock | P2 | Fixed | `references/overlays.md` states both limits. The refusal now prints `run it again in a minute: a takeover marker that old is cleared`. `node --test tests/` prints `tests 1150`, `fail 0` |
 | Round 5 leftovers: the adopt sentence said one `refuse:` line with no reason for the count, and the re-pin lock row described a takeover the stage step does not make | P2 | Fixed | The sentence names the one path an adopt takes. The row says the stage reads the lock and prints a `note:` line, and the live step takes it over. All three held-lock rows say a takeover-marker refusal means run it again in a minute |
 | Run 6, over `fd6533c621..467131c783`: about 40 documents still called a `.pi/extensions/` entry a symlink, the environment reference's totals were stale, the hook registry's note and `shape` field said symlinks, the changelog's lock sentence left out the stage, and documents and comments gave a false reason for the long fallback specifiers | 2 P1, 11 P2 | Fixed | Each sentence says one-line entry file. The totals read 213 and 217, recounted by `scratch/count-env-vars.py` in the Pi packet. The long specifiers are described as left from the link-based layout. The hooks vitest tree passes 491, the node hook tests under `.skilled/hooks` pass 1,554 in 78 files and `tsc -p tsconfig.pi.json` exits 0 |
-| Run 6 critic: three sentences said the type check reads the entry file, the committed `.env.example` template had no `SYSTEM_OVERLAY_GUARD_DISABLED` line, the re-pin workflow and its plan template did not name the stage's lock note, three READMEs said every adapter import is folder-relative, the Pi packet repeated the false fallback reason, and SKD-008 never ran `repin --stage` | 8 P2 | 7 fixed, 1 left | SKD-008 has 16 new steps written from two observed fixture runs, and `validate-playbook-package.cjs` prints `violations=0`. `node --test tests/` prints 1152 passed. Left: `.skilled/hooks/env-secret-guard/README.md` lines 65 and 85 still call the Pi entry a link. The dotenv guard refuses an agent's write to its own files, so a person makes that change |
+| Run 6 critic: three sentences said the type check reads the entry file, the committed `.env.example` template had no `SYSTEM_OVERLAY_GUARD_DISABLED` line, the re-pin workflow and its plan template did not name the stage's lock note, three READMEs said every adapter import is folder-relative, the Pi packet repeated the false fallback reason, and SKD-008 never ran `repin --stage` | 8 P2 | Fixed | SKD-008 has 16 new steps written from two observed fixture runs, and `validate-playbook-package.cjs` prints `violations=0`. `node --test tests/` prints 1152 passed. The dotenv guard refuses an agent's write to its own README. The operator chose one agent run with the guard switched off, and that run changed the two phrases on lines 65 and 85 and nothing else |
+| Verifier on round 6, three passes: of the 10 findings the recheck left for a reviewer, 9 were resolved and 1 was not, because two feature catalog rows still said `linked from .pi/extensions/`. The fixes had also made six statements untrue or loose: the alias comment's OpenCode clause, the claim that every long specifier resolves in tests, the advisor's alias sentence, a `Symlink target` line, two goal adapter comments and two lines of the runtime-mirrors README | P2 | Fixed | The verifier showed that vitest does not apply an alias to a specifier held in a constant, so `DISCOVERY_CORE_PATH` resolves nowhere, and the documents now say so. The third pass found every corrected statement true except one sentence in the Pi packet, which was then narrowed |
 
-Six lane runs were made. Each raised new findings after the fixes of the run before it: 18, 11, 10, 10, 11 and 21. No lane-based report with zero findings exists. The fifth run's critic overturned one finding. Its recheck lists 2 resolved, 2 still open and 7 for a reviewer. The two still open are literal matches: one sentence in the adopt section that the verifier found accurate, and one re-pin row that became true when the engine was fixed. The sixth round reworded both. The sixth run's critic overturned nothing. Its recheck lists 10 resolved, 0 new, 10 for a reviewer and 1 still open. The orchestrating session read the 10: each is fixed in other words than the finding proposed. The one still open is the dotenv guard's README, which an agent may not edit. The closing evidence for lane findings is the fixes, the rechecks and two passes of a fresh Opus verifier.
+Six lane runs were made. Each raised new findings after the fixes of the run before it: 18, 11, 10, 10, 11 and 21. No lane-based report with zero findings exists. The fifth run's critic overturned one finding. Its recheck lists 2 resolved, 2 still open and 7 for a reviewer. The two still open are literal matches: one sentence in the adopt section that the verifier found accurate, and one re-pin row that became true when the engine was fixed. The sixth round reworded both. The sixth run's critic overturned nothing. Its last recheck, run after the last fix, lists 10 resolved, 0 still open, 0 new and 11 for a reviewer, and exits 0. The eleventh is a sentence the verifier had reworded again. A fresh Opus verifier checked the reviewer's findings against the tree in three passes, and each defect it found was fixed. The closing evidence for lane findings is the fixes, the rechecks and two passes of a fresh Opus verifier.
 <!-- /ANCHOR:verification -->
 
 ---
