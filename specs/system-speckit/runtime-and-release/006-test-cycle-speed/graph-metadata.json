@@ -22,7 +22,8 @@
     "system-speckit/runtime-and-release/006-test-cycle-speed/016-local-test-timing-profile",
     "system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision",
     "system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards",
-    "system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups"
+    "system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups"
   ],
   "manual": {
     "depends_on": [],
@@ -135,28 +136,28 @@
         "source": "derived"
       },
       {
-        "name": "text",
-        "kind": "technology",
+        "name": "Luna Battery",
+        "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The Skilled test suites took too long to run locally",
     "created_at": "2026-11-10T18:27:35Z",
-    "last_save_at": "2026-11-12T20:07:29.634Z",
+    "last_save_at": "2026-11-12T21:15:57.765Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:cbc3943f880099e2399165251a124bcfc4797ac7383f72fa1ff1a53506a839e2",
+    "source_fingerprint": "sha256:09fad9f364bc79f93f9c06db7f4ca9fb593527dc39bc301d0771ba2af86c31a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2d056f212c682e202ee9dff162c57629b183f4f3480832e379c0b61781394329",
-      "decision-record.md": "5c65b32226867609b1c1d790d508032502bf3cae1b822fb2f0dde2f9ba10de17"
+      "spec.md": "291ae1f9fa3df2bbc9c025271c7e554f3daa0e063490b1ef93766a6940c125a9",
+      "decision-record.md": "1da17f72a78c12c1714bbd8ab6f65ea88d5fece1746c32c7e62115a947ae5cfb"
     },
-    "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups",
-    "last_active_at": "2026-11-12T20:07:28.004Z"
+    "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups",
+    "last_active_at": "2026-11-12T21:15:47.346Z"
   }
 }
