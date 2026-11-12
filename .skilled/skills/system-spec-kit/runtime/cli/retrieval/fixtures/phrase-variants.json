@@ -1,5 +1,5 @@
 {
-  "manifestHash": "45c6ceee2ed4218c4459cc10fc160d1481805dccf4246d9ab7c06f191c4de8fb",
+  "manifestHash": "ac4561e2d072d3a77e7535efcb3a86131622b1443859ce33d0c200a2a20dea0e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1437,6 +1437,9 @@
     ],
     "005 q4 quantization": [
       "005 q4 quantization"
+    ],
+    "005 reply rule pruning operator decisions": [
+      "005-reply-rule-pruning operator decisions"
     ],
     "005 research 015 pt 01": [
       "005 research 015 pt 01"
@@ -47357,6 +47360,9 @@
     "expected workflow mode omitted": [
       "expected workflow mode omitted"
     ],
+    "experiment arms build again": [
+      "experiment arms build again"
+    ],
     "explain checklist seat overrides": [
       "explain checklist seat overrides"
     ],
@@ -74779,6 +74785,9 @@
     ],
     "one question rule interactive runs": [
       "one-question rule interactive runs"
+    ],
+    "one reply rule in the scripts": [
+      "one reply rule in the scripts"
     ],
     "one routing statement": [
       "one routing statement"
@@ -106441,6 +106450,9 @@
     "sk create repo rule 1 1 7 0": [
       "sk-create-repo-rule 1.1.7.0"
     ],
+    "sk create repo rule 1 1 8 0": [
+      "sk-create-repo-rule 1.1.8.0"
+    ],
     "sk create repo rule conversation plan": [
       "sk create repo rule conversation plan"
     ],
@@ -106494,6 +106506,9 @@
     ],
     "sk create repo rule v1 1 7 0": [
       "sk-create-repo-rule v1.1.7.0"
+    ],
+    "sk create repo rule v1 1 8 0": [
+      "sk-create-repo-rule v1.1.8.0"
     ],
     "sk create skill": [
       "sk create skill"

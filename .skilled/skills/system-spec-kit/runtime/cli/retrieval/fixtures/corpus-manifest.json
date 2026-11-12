@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fc66b543eff3afb3480fc7fe1325f146356ec30b904f59d6370f9406c1f5520c",
+  "corpusHash": "6f4e8a36f0d90fcd9660f4a2315a755035d6b246bb79ea164824e90c827f931f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26233,
+  "includedPathCount": 26235,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7038,6 +7038,7 @@
     ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.5.0.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.6.0.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.7.0.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.8.0.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/router-bootstrap.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/rule-retirement.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/lifecycle-and-wiring/scope-boundary-halt.md",
@@ -9357,6 +9358,7 @@
     "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/plan.md",
     "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/spec.md",
     "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/tasks.md",
+    "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/decision-record.md",
     "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/implementation-summary.md",
     "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/plan.md",
     "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/spec.md",
@@ -26265,7 +26267,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "45c6ceee2ed4218c4459cc10fc160d1481805dccf4246d9ab7c06f191c4de8fb",
+  "manifestHash": "ac4561e2d072d3a77e7535efcb3a86131622b1443859ce33d0c200a2a20dea0e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
