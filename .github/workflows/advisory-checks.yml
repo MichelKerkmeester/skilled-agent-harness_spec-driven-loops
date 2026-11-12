@@ -115,12 +115,15 @@ jobs:
         with:
           node-version: '22'
       # The suite imports the built shared package and js-yaml from the spec-kit
-      # workspace, so a fresh runner needs both installed and built first.
-      - name: Install and build the spec-kit workspace
+      # workspace, and the hook entries import the built skill advisor, so a fresh
+      # runner needs both workspaces installed and built first.
+      - name: Install and build the spec-kit and skill advisor workspaces
         run: |
           set -euo pipefail
           npm --prefix .skilled/skills/system-spec-kit ci
           npm --prefix .skilled/skills/system-spec-kit run build
+          npm --prefix .skilled/skills/system-skill-advisor/runtime ci
+          npm --prefix .skilled/skills/system-skill-advisor/runtime run build
       # These suites read the spec-gate environment switches, so a shell that sets
       # AI_SESSION_CHILD or SYSTEM_SPEC_GATE_ENFORCE fails them. A runner sets neither.
       - name: Gate-critical node suites
