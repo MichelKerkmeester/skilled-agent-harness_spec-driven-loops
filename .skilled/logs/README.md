@@ -17,8 +17,8 @@ trigger_phrases:
 
 Current state:
 
-- 6 log files on disk, each owned by exactly one writer. A seventh, `mcp-route-guard.log`, appears on that guard's first recorded warning.
-- Six writers cap their file at a byte ceiling and rotate or truncate it, as the table notes. `autostash-orphan-alerts.log` only appends.
+- 6 log files on disk, each owned by exactly one writer. A seventh, `mcp-route-guard.log`, and an eighth, `overlay-guard.log`, appear on their own guard's first recorded note or warning.
+- Seven writers cap their file at a byte ceiling and rotate or truncate it, as the table notes. `autostash-orphan-alerts.log` only appends.
 - All writers fail open: a write failure to this folder never blocks the git hook, CLI dispatch, or plugin turn that produced the log line.
 - No shared writer contract. Each file has its own line format, chosen by its writer.
 
@@ -34,6 +34,7 @@ Current state:
 | `completion-sentinel-advisories.log` | Plain text: `<UTC timestamp> [completion-evidence-sentinel] <advisory message>` | `.skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs`, via the `system-completion-sentinel.js` plugin | `.1` at 256 KB by default, backup pruned after 30 days |
 | `dist-freshness-guard.log` | Plain text: `<UTC timestamp> [system-dist-freshness-guard] <event>: <message>` | `.opencode/plugins/system-dist-freshness-guard.js` | `.1` at 256 KB |
 | `mcp-route-guard.log` | Plain text: `<UTC timestamp> [mcp-route-guard] <detail>` | `.opencode/plugins/mcp-route-guard.js` | `.1` at 256 KB, not created yet |
+| `overlay-guard.log` | Plain text: `<UTC timestamp> [overlay-guard] <detail>` | `.opencode/plugins/overlay-guard.js` | `.1` at 256 KB, not created yet |
 | `post-edit-quality.log` | Plain text: `<UTC timestamp> [sk-code-post-edit-quality] <line>` | `.opencode/plugins/sk-code-post-edit-quality.js` | `.1` at 256 KB |
 
 `autostash-orphan-alerts.log` records only entries the pre-checkout/pre-rebase guard could not confirm were re-applied; each also gets a durable `refs/autostash-rescue/<sha12>` ref so the underlying stash survives a `git stash clear`.

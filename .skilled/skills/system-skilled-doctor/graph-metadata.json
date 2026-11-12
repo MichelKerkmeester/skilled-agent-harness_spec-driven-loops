@@ -42,7 +42,11 @@
     "audit unowned files that drifted from the pin",
     "take over a stale overlay lock",
     "refuse writes that no overlay owns",
-    "block a commit that stages an unowned vendored change"
+    "block a commit that stages an unowned vendored change",
+    "audit files that drifted from the pinned upstream commit",
+    "which root files changed upstream since the pin",
+    "upstream changed a root file my overlay owns",
+    "agents overlay stale after a re-pin"
   ],
   "derived": {
     "trigger_phrases": [
@@ -64,7 +68,11 @@
       "unowned vendored change",
       "vendored skilled tree",
       "vendored tree",
-      "no overlay owns"
+      "no overlay owns",
+      "drifted from the pinned upstream commit",
+      "root files changed upstream",
+      "changed a root file",
+      "agents overlay stale"
     ],
     "key_topics": [
       "skilled-project-integration",

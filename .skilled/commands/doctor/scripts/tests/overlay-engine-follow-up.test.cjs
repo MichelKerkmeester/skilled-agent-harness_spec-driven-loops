@@ -16,7 +16,7 @@
 // was applied is refused instead of deleted, and one upstream ships itself at the
 // pin stays in place with only its record dropped. One case then covers a root file an
 // overlay owns: upstream's copy of it is what `pinnedSha256` records, and
-// `status` has to say when that copy has moved on. The last case audits the
+// `status` has to say when that copy has moved on. The final cases audit the
 // vendored tree against the pin for the files no overlay owns, which is drift a
 // strict write check never sees.
 
@@ -1176,6 +1176,57 @@ test('status --audit names the vendored drift no overlay owns and plain status s
     'AUDIT    extra .skilled/skills/hub/stray.md',
   ], audited.output);
   assert.match(audited.stdout, /^audit=3$/m);
+  assert.match(audited.stdout, /^RESULT: FAILED$/m);
+});
+
+const LINE_ENDING_PATH = '.skilled/skills/hub/lines.md';
+
+/**
+ * Build a tree whose pin stores one unowned vendored file with CRLF lines while
+ * the tree's own copy holds LF, the drift only the audit reports.
+ * @param {object} t The node:test context.
+ * @returns {object} Fixture paths and a `run` helper.
+ */
+function createLineEndingFixture(t) {
+  const fixture = createWorkspace(t, 'overlay-engine-audit-line-endings-');
+  const upstream = path.join(fixture.workspace, 'upstream');
+  fs.mkdirSync(upstream);
+  git(upstream, ['init', '-q']);
+  // The commit has to keep the CRLF bytes as written, so no checkout rule may
+  // fold them into LF before the blob is made.
+  git(upstream, ['config', 'core.autocrlf', 'false']);
+  writeFile(upstream, LINE_ENDING_PATH, 'one\r\ntwo\r\n');
+  const commit = commitAll(upstream, 'pin');
+  writeFile(fixture.tree, LINE_ENDING_PATH, 'one\ntwo\n');
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', checkout: upstream, commit },
+    layoutLinks: [],
+    overlays: [],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  git(fixture.tree, ['init', '-q']);
+  commitAll(fixture.tree, 'vendored tree');
+  fixture.run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+  return fixture;
+}
+
+test('status --audit lists an unowned vendored file whose line endings differ from the pin', (t) => {
+  const fixture = createLineEndingFixture(t);
+  // The pin holds CRLF bytes and the tree holds LF, so the two blobs differ even
+  // though the text reads the same. A re-pin refuses that, so the audit names it.
+  assert.match(git(fixture.manifest.pin.checkout,
+    ['cat-file', 'blob', `${fixture.manifest.pin.commit}:${LINE_ENDING_PATH}`]), /one\r\ntwo/);
+
+  const audited = fixture.run(['status', '--audit']);
+
+  assert.equal(audited.code, 1, audited.output);
+  assert.deepEqual(audited.stdout.split('\n').filter((line) => line.startsWith('AUDIT    ')), [
+    `AUDIT    differs ${LINE_ENDING_PATH}`,
+  ], audited.output);
+  assert.match(audited.stdout, /^audit=1$/m);
   assert.match(audited.stdout, /^RESULT: FAILED$/m);
 });
 

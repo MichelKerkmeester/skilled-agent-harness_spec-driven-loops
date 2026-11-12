@@ -23,7 +23,7 @@ version: 1.0.1.0
 | File | Event or role | What it does | On error |
 |---|---|---|---|
 | [`dsh-overlay-guard.test.mjs`](./dsh-overlay-guard.test.mjs) | `node --test` suite | Asserts a deny for an owned path, that every `*** Add File:` and `*** Update File:` path in an `apply_patch` body is judged, that a non-write tool is ignored, that the kill switch registers nothing, that a core throw fails open with one log line, and that allowed writes log the core's notes. | Not applicable, the suite asserts behavior. |
-| [`opencode-overlay-guard.test.mjs`](./opencode-overlay-guard.test.mjs) | `node --test` suite | Runs the real plugin in a vendored fixture tree, then asserts a refusal for an overlay-owned path, a strict-writes refusal for a new unowned file under `.skilled`, an allow for a path outside every vendored root, an allow for a tool that writes no file, and the fast exit for a tree with no overlay manifest. | Not applicable, the suite asserts behavior. |
+| [`opencode-overlay-guard.test.mjs`](./opencode-overlay-guard.test.mjs) | `node --test` suite | Runs the real plugin in a vendored fixture tree, then asserts a refusal for an overlay-owned path, a strict-writes refusal for a new unowned file under `.skilled`, an allow for a path outside every vendored root, an allow for a tool that writes no file, the fast exit for a tree with no overlay manifest, a refusal when an `apply_patch` body names an overlay-owned file, an allow when a patch body names only a path outside every vendored root, an allow when a write's content merely looks like a patch, and one log line when the manifest cannot be read. | Not applicable, the suite asserts behavior. |
 
 ---
 

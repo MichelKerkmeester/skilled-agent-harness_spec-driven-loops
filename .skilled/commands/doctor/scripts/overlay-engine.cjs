@@ -4457,7 +4457,8 @@ function lsTreeBlobs(upstream, commit, pathspecs) {
 
 /**
  * Hash a batch of tree files in one git run, so an audit of a whole vendored
- * tree costs one process rather than one per file.
+ * tree costs one process rather than one per file. Every filter is skipped, so
+ * each id names the bytes on disk, which is what a re-pin compares.
  * @param {string} root Tree root.
  * @param {string} format The checkout's object format, used for a file git will
  *   not hash on its own.
@@ -4467,7 +4468,7 @@ function lsTreeBlobs(upstream, commit, pathspecs) {
 function blobIdsInTree(root, format, keys) {
   const ids = new Map();
   if (keys.length === 0) return ids;
-  const result = spawnSync('git', ['-C', root, 'hash-object', '--stdin-paths'], {
+  const result = spawnSync('git', ['-C', root, 'hash-object', '--no-filters', '--stdin-paths'], {
     input: Buffer.from(keys.join('\n') + '\n'), maxBuffer: GIT_MAX_BUFFER,
   });
   if (result.error) throw result.error;
@@ -4568,11 +4569,11 @@ function auditVendoredTree(ctx, manifest) {
   const treeIds = blobIdsInTree(ctx.root, format, regular.map((entry) => entry.key));
   for (const entry of regular) {
     if (treeIds.get(entry.key) === entry.blob.object) continue;
-    // A project may normalise line endings on commit, so the same text can reach
-    // the tree as different bytes than upstream stored. Compare the contents
-    // before calling the file a change.
+    // A re-pin refuses a path whose bytes are not upstream's bytes, so the same
+    // comparison runs here. An audit that read CRLF as LF would pass a tree the
+    // next re-pin refuses.
     const upstreamBytes = gitBytesOrNull(pin.checkout, ['cat-file', 'blob', entry.blob.object]);
-    if (upstreamBytes !== null && isSameText(upstreamBytes, fs.readFileSync(entry.filePath))) continue;
+    if (upstreamBytes !== null && upstreamBytes.equals(fs.readFileSync(entry.filePath))) continue;
     findings.push({ kind: 'differs', path: entry.key });
   }
 

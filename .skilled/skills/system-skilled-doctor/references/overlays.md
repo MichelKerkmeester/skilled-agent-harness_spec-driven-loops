@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 # Vendored Skilled Overlays
@@ -85,10 +85,12 @@ Two more `status` lines name work no destination state covers.
 
 | The line | What happened | What resolves it |
 |----------|---------------|------------------|
-| `STALE    root-file <path>` | Upstream changed a file named in `repin.rootFiles` since the overlay that owns it was pinned. A re-pin never copies a root file, so no destination line reports it | Rebase the overlay onto the new upstream file, then update its `pinnedSha256` |
+| `STALE    root-file <path>` | Upstream changed a root file named in `repin.rootFiles` that a `file` scope overlay owns. A re-pin never copies a root file, so no destination line reports it. A `marked-section` overlay on a root file reports an upstream change on its own destination line instead | Rebase the overlay onto the new upstream file, then update its `pinnedSha256` |
 | `LAYOUT   <overlay>: <field> <from> belongs at <to>` | The copy the entry names sits off its layout path, which is the entry's destination path with the leading dot dropped. `<field>` is `source`, `fragment` or `base`, and a `marked-section` entry can print one line for each. The `base` path carries `.base` before the extension | `/doctor:overlay apply --relayout` |
 
-`apply --relayout` moves each off-layout copy onto its layout path, and with it a `marked-section` entry's `fragment` and `base`. It copies every path it moves into `<overlayDir>/relayout-runs/<stamp>/` first, then points the entry's fields and the manifest's layout links at the new path. It refuses rather than overwrite a path that already exists, and then it writes nothing. The plain `apply` that follows retargets the live links and puts the destinations on the moved copies.
+`STALE` names a `file` scope overlay only. A `marked-section` overlay on a root file is judged against its own `base` copy, so an upstream change to that file prints a `MISS` line for the overlay instead. That line names the destination and asks for a rebase of the overlay.
+
+`apply --relayout` moves each off-layout copy onto its layout path, and with it a `marked-section` entry's `fragment` and `base`. It copies every path it moves into `<overlayDir>/relayout-runs/<stamp>/` first, then points the entry's fields and the manifest's layout links at the new path. It refuses rather than overwrite a path that already exists, and then it writes nothing. The run retargets each live link that still named a moved copy and prints a `relinked` line for it. The plain `apply` that follows writes the destinations from the moved copies.
 
 ---
 
@@ -166,7 +168,7 @@ The write checks judge a write as it is made. A vendored file that already diffe
 - `missing`: upstream has the path at the pin and the tree does not.
 - `extra`: the tree tracks the path and upstream never had it.
 
-A generated path, a path an overlay owns, a path under a `repin.exclude` folder and a `.env` name are not judged. `audit=<n>` counts the findings and any finding fails the status. With no checkout at the pin the run prints `AUDIT    skipped: no upstream checkout at the pin` and judges nothing.
+A generated path, a path an overlay owns, a path under a `repin.exclude` folder and a `.env` name are not judged. `audit=<n>` counts the findings and any finding fails the status. With no checkout at the pin the run prints `AUDIT    skipped: no upstream checkout at the pin` and judges nothing. The audit compares bytes, so a file that differs from upstream only by line endings is a `differs` finding. The commit check is the one place that reads CRLF as LF.
 
 ---
 

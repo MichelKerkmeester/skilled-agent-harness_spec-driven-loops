@@ -647,6 +647,7 @@ routes:
       - "migrate my own overlay folder to doctor overlay"
       - "check whether my overlay sources sit on their layout path"
       - "audit my vendored skilled tree for unowned files"
+      - "root files changed upstream since the pin"
       - "we copy skilled into our repo and lose our edits on update"
 
   - command: /doctor:overlay
@@ -662,7 +663,7 @@ routes:
       - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply  # applies every overlay under the engine lock, then regenerates and verifies; writes nothing while a destination is live-edited, both-changed or upstream-moved; run only after the apply yes'
       - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --capture <path>  # moves one live edit into its overlay source; run only after the capture yes'
       - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --adopt <path>  # copies one unowned vendored path into the overlay folder, appends its manifest entry and applies; exit 0 = adopted and applied, 1 = the apply was blocked, 2 = a refusal with nothing written; run only after the adopt yes'
-      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout  # moves every off-layout copy onto its layout path under the engine lock, backs up what it leaves in relayout-runs/, points the manifest fields and layout links there and prints one moved line per path, then names the apply that retargets the live link; exit 0 = done, 2 = a refusal with nothing written, such as a target that already exists; run only after the relayout yes, followed by apply'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --relayout  # moves every off-layout copy onto its layout path under the engine lock, backs up what it leaves in relayout-runs/, points the manifest fields and layout links there, retargets each live link that named a moved copy with its relinked line, and prints one moved line per path, then names the apply that follows; exit 0 = done, 2 = a refusal with nothing written, such as a target that already exists; run only after the relayout yes, followed by apply'
     trigger_phrases:
       - "apply the skilled overlays"
       - "put my overlays back into vendored skilled"

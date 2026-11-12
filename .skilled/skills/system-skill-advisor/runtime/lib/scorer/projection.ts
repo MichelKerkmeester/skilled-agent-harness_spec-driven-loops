@@ -810,7 +810,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     category: 'command',
     name: '/doctor:overlay status',
     description: '',
-    keywords: ['check my vendored skilled overlays', 'are my skilled overlays in sync', 'which overlay destinations are out of sync', 'vendored skilled overlay status', 'does my vendored skilled tree still carry its overlays', 'vendored skilled overlays out of sync', 'does my vendored skilled copy still carry its overlays', 'adopt the skilled overlay engine in my project', 'migrate my own overlay folder to doctor overlay', 'check whether my overlay sources sit on their layout path', 'audit my vendored skilled tree for unowned files', 'we copy skilled into our repo and lose our edits on update', '/doctor:overlay'],
+    keywords: ['check my vendored skilled overlays', 'are my skilled overlays in sync', 'which overlay destinations are out of sync', 'vendored skilled overlay status', 'does my vendored skilled tree still carry its overlays', 'vendored skilled overlays out of sync', 'does my vendored skilled copy still carry its overlays', 'adopt the skilled overlay engine in my project', 'migrate my own overlay folder to doctor overlay', 'check whether my overlay sources sit on their layout path', 'audit my vendored skilled tree for unowned files', 'root files changed upstream since the pin', 'we copy skilled into our repo and lose our edits on update', '/doctor:overlay'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:overlay status'],
     readOnly: true,
