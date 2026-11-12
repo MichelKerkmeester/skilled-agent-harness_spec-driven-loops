@@ -57,4 +57,4 @@ The blocking job names its eleven suites explicitly, so a new gate-critical suit
 until it is added. Adding one means updating the job's path list and this record together, and
 re-running the census first to confirm the suite passes locally.
 
-> Correction after the build: `hook-stdin-deadline.test.mjs` and `spec-gate-core.test.mjs` failed only because the build ran with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0` set. With both unset they pass, 56 of 56 and 107 of 107 with 3 skipped. The blocking job therefore runs all 13 suites: 265 tests, 262 pass, 0 fail.
+> Correction after the build: `hook-stdin-deadline.test.mjs` and `spec-gate-core.test.mjs` failed only because the build ran with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0` set. With both unset they pass, 56 of 56 and 107 of 107 with 3 skipped. The blocking job therefore runs all 13 suites: 265 tests, 262 pass, 0 fail. Second correction, after the runner runs: `hook-stdin-deadline.test.mjs` lost a timing race on one of six runs and went back to report-only, so the job blocks on 12 suites.

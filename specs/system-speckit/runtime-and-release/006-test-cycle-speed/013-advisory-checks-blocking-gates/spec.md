@@ -118,7 +118,7 @@ $ for f in $(rg --files .skilled/skills/system-spec-kit/runtime -g '*.test.mjs' 
 | `.github/workflows/advisory-checks.yml` | Modify | Add the blocking `gate-critical` job and revise the header comment |
 | `.github/workflows/README.md` | Modify | Replace "Reports without gating" with the blocking job description |
 | `specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/scratch/gate-critical-run.md` | Create | Per-suite pass and fail record for the 13 gate-critical suites |
-> Correction after the build: `hook-stdin-deadline.test.mjs` and `spec-gate-core.test.mjs` failed only because the build ran with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0` set. With both unset they pass, 56 of 56 and 107 of 107 with 3 skipped. The blocking job therefore runs all 13 suites: 265 tests, 262 pass, 0 fail.
+> Correction after the build: `hook-stdin-deadline.test.mjs` and `spec-gate-core.test.mjs` failed only because the build ran with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0` set. With both unset they pass, 56 of 56 and 107 of 107 with 3 skipped. The blocking job therefore runs all 13 suites: 265 tests, 262 pass, 0 fail. Second correction, after the runner runs: `hook-stdin-deadline.test.mjs` lost a timing race on one of six runs and went back to report-only, so the job blocks on 12 suites.
 
 <!-- /ANCHOR:scope -->
 

@@ -8,13 +8,13 @@
     "overlay",
     "command"
   ],
-  "lastUpdated": "2026-11-12T12:23:45.277Z",
+  "lastUpdated": "2026-11-12T16:47:27.229Z",
   "specId": "001",
   "folderSlug": "skill-and-overlay-build",
   "parentChain": [
     "system-skilled-doctor"
   ],
-  "memorySequence": 10,
+  "memorySequence": 12,
   "memoryNameHistory": [
     "12-11-26_03-49__the-stop-check-was-right-on-two-points-and-i-am.md",
     "12-11-26_05-09__the-first-of-the-two-briefs-is-still-running-its.md",
@@ -25,6 +25,8 @@
     "12-11-26_11-48__four-review-lanes-are-running-over-the-three.md",
     "12-11-26_13-21__the-stop-check-s-three-points-answered-with-what.md",
     "12-11-26_13-21__criterion-3-s-provenance-is-now-evidenced-from.md",
-    "12-11-26_13-23__you-chose-agent-guard-off-once-so-one-deepseek.md"
+    "12-11-26_13-23__you-chose-agent-guard-off-once-so-one-deepseek.md",
+    "12-11-26_16-12__the-round-eight-fix-brief-is-written-and-held.md",
+    "12-11-26_17-47__the-round-nine-critic-is-still-working-13-minutes.md"
   ]
 }

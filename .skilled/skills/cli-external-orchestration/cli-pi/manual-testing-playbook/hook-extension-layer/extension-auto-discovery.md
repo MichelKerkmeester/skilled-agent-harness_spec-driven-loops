@@ -1,7 +1,7 @@
 ---
 title: "PI-014 -- Extension auto-discovery"
 description: "This scenario validates project-local `.pi/extensions/*.ts` auto-discovery without a settings entry and records the isolated live startup evidence for `PI-014`."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # PI-014 -- Extension auto-discovery
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario checks that the eleven project-local extension factories load from `.pi/extensions/` without an extension path in `.pi/settings.json`. The `lib/` subdirectory is a plain-module boundary: Pi only auto-discovers `*.ts` files at the top level, so `.pi/extensions/lib/claude-hook-adapter.ts` is imported by bridges, never loaded as a factory.
+This scenario checks that the twenty-two project-local extension entries load from `.pi/extensions/` without an extension path in `.pi/settings.json`. Each entry is a one-line file that re-exports an adapter kept under `.skilled/`, which is where the `ExtensionFactory` itself lives; `.pi/extensions/README.md` holds the roster. The `lib/` subdirectory is a plain-module boundary: Pi only auto-discovers `*.ts` files at the top level, so `.pi/extensions/lib/claude-hook-adapter.ts` is imported by bridges, never loaded as a factory.
 
 ### Why This Matters
 
@@ -26,7 +26,7 @@ The extension directory is executable project state. Auto-discovery must be visi
 - Real user request: `Start Pi with this project and confirm it loads the local extensions without adding extension paths to settings.`
 - Prompt: `List your available tools. Do not modify files.`
 - Expected execution process: Count and inspect `.pi/extensions/*.ts` -> inspect `.pi/settings.json` for extension entries -> run Pi and inspect for factory/parse errors.
-- Expected signals: Eleven top-level extension files plus `lib/` exist; settings contains packages but no extension path; live startup completes without an extension factory error.
+- Expected signals: Twenty-two top-level extension entry files plus `lib/` exist; settings contains packages but no extension path; live startup completes without an extension factory error.
 - Desired user-visible outcome: Evidence that project-local extension auto-discovery is active and does not require a settings entry.
 - Pass/fail: PASS for the auto-discovery/loadability check. FAIL on any invalid factory or extension-load error. The earlier SKIP for missing provider credentials is retired: this machine now holds authenticated provider credentials in `~/.pi/agent/auth.json`.
 
@@ -43,7 +43,7 @@ The extension directory is executable project state. Auto-discovery must be visi
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| PI-014 | Extension auto-discovery | Load eleven project extensions without settings registration | `List your available tools. Do not modify files.` | `find .pi/extensions -maxdepth 1 -type f -name '*.ts' -print | sort` -> `jq '{packages,extensions}' .pi/settings.json` -> `pi --offline --approve -p "list your available tools" </dev/null` | Eleven top-level files plus `.pi/extensions/lib/claude-hook-adapter.ts`; settings has packages and no extension path; no extension factory error | Captured file list contains the six guard-core bridges (`dispatch-audit.ts`, `dispatch-preflight-lint.ts`, `mcp-route-guard.ts`, `post-edit-quality.ts`, `spec-gate-classify.ts`, `spec-gate-enforce.ts`) plus the five session-lifecycle bridges (`prompt-advisor.ts`, `session-compact-context.ts`, `session-start-advisories.ts`, `session-start-context.ts`, `session-stop-context.ts`), with `.pi/extensions/lib/claude-hook-adapter.ts` below the discovery depth. Live startup exits 0 with no extension error, on a machine with four authenticated providers. | PASS for auto-discovery and factory loading. FAIL on extension parse/factory failure. | Inspect the named extension export, rerun in an isolated project, and do not add a settings entry merely to make discovery appear to work. Budget timeouts above 90s: a down MCP daemon adds ~49s of connection retries at startup. |
+| PI-014 | Extension auto-discovery | Load twenty-two project extension entries without settings registration | `List your available tools. Do not modify files.` | `find .pi/extensions -maxdepth 1 -type f -name '*.ts' -print | sort` -> `jq '{packages,extensions}' .pi/settings.json` -> `pi --offline --approve -p "list your available tools" </dev/null` | Twenty-two top-level files plus `.pi/extensions/lib/claude-hook-adapter.ts`; settings has packages and no extension path; no extension factory error | Captured file list holds twenty-two one-line entries, each re-exporting an adapter from its owner's tree under `.skilled/` (roster: `.pi/extensions/README.md`), with `.pi/extensions/lib/claude-hook-adapter.ts` below the discovery depth. Live startup exits 0 with no extension error, on a machine with four authenticated providers. | PASS for auto-discovery and factory loading. FAIL on extension parse/factory failure. | Inspect the named extension export, rerun in an isolated project, and do not add a settings entry merely to make discovery appear to work. Budget timeouts above 90s: a down MCP daemon adds ~49s of connection retries at startup. |
 
 ### Optional Supplemental Checks
 
@@ -65,7 +65,7 @@ The extension directory is executable project state. Auto-discovery must be visi
 
 | File | Role |
 |---|---|
-| `.pi/extensions/*.ts` | Eleven project-local extension factories |
+| `.pi/extensions/*.ts` | Twenty-two project-local extension entries, each re-exporting an adapter under `.skilled/` |
 | `.pi/extensions/lib/claude-hook-adapter.ts` | Shared plain module below the auto-discovery depth |
 | `.pi/settings.json` | Confirms no extension path entry is required |
 

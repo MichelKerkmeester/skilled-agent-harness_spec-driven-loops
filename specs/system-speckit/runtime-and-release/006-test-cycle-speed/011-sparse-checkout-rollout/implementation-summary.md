@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Seven workflows now check out only the paths their steps read, proven by a per-file coverage check; the post-push measurement awaits the operator."
+description: "Five workflows now check out only the paths their steps read, at 2 to 6 s against 55 to 74 s on the runner. Two planned workflows kept their full checkout."
 trigger_phrases:
   - "sparse checkout rollout implementation summary"
 importance_tier: "normal"
@@ -8,27 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout"
-    last_updated_at: "2026-11-12T10:55:00Z"
-    last_updated_by: "code-worker"
-    recent_action: "Added the sparse cone to seven workflows and ran the local checks"
-    next_safe_action: "Commit the sibling packet's workflow work, then re-run T011 and T012 and push for T013"
-    blockers:
-      - "T011 and T012 read the whole .github/workflows working tree, which still holds the sibling 010 packet's uncommitted work"
-      - "T013 needs the operator's push go-ahead"
+    last_updated_at: "2026-11-12T17:43:54Z"
+    last_updated_by: "generate-context"
+    recent_action: "Shipped five sparse checkouts, reverted two, and recorded the runner figures"
+    next_safe_action: "Verify the five sparse checkouts still cover their steps after path changes"
+    blockers: []
     key_files:
-      - ".github/workflows/prompt-card-sync.yml"
-      - ".github/workflows/repo-rules-corpus.yml"
-      - ".github/workflows/runtime-no-spec-import.yml"
+      - "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/implementation-summary.md"
       - ".github/workflows/chart-corpus.yml"
-      - ".github/workflows/diagram-corpus.yml"
-      - ".github/workflows/pi-extension-tests.yml"
-      - ".github/workflows/sk-code-script-tests.yml"
-      - "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/scratch/checkout-baseline.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:f41ab738e960645d49be7bef08e273f78ebd7363586f542e0fbdb9253d62c4ee"
       session_id: "code-011-sparse-checkout-rollout"
       parent_session_id: null
-    completion_pct: 77
+    session_ref:
+      runtime: "claude"
+      sessionId: "af05cd33-c1ff-46c9-825e-70281e3ca6f1"
+      workspace: "/Users/michelkerkmeester/worktrees/public/354-test-ci-alignment-fixes"
+      savedAt: "2026-11-12T17:43:54Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 011-sparse-checkout-rollout |
-| **Completed** | Not complete: T011 and T012 are blocked by a sibling packet's uncommitted work, and T013 waits on the push |
+| **Completed** | 2026-11-12, for five of the seven planned workflows |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -54,6 +53,8 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
+
+> As shipped: five workflows carry the sparse checkout. The `sk-code-script-tests.yml` and `repo-rules-corpus.yml` cones described below were reverted before the push, because a local simulation showed the first needs `.opencode/plugins/` and the second resolves links to paths anywhere in the tree. On the runner the five checkouts take 2 to 6 s against 55 to 74 s (`scratch/checkout-after.md`). The chart workflow needed two more paths after its first runner run. The text below this note describes the build before those corrections.
 
 Seven workflows no longer check out the whole 134,068-file tree to read a few named paths. Each one now names its read set in the checkout step, so the checkout fetches only those blobs and every later step still finds what it reads.
 
@@ -133,8 +134,8 @@ The edit set is additions only. Restricted to the seven files, `git diff HEAD --
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **T011 and T012 are blocked by a sibling packet's uncommitted work.** `.github/workflows/README.md`, `.github/workflows/sk-doc-script-tests.yml` and the untracked `.github/workflows/sk-doc-script-tests-filtered.yml` belong to `010-sk-doc-tests-path-filter` and sat uncommitted in the worktree. They make the status list three paths longer than seven and add the only deletions in the workflow diff. Restricted to this packet's seven files, the status lists seven and the diff has no deletions. Re-run both commands once that packet is committed.
-2. **No post-push figure exists yet.** `scratch/checkout-baseline.md` holds the before values; `scratch/checkout-after.md` needs the run the push starts, so the `ALL LOWER` comparison and the sk-code test count are still open.
+1. **Resolved: T011 and T012 were blocked by a sibling packet's uncommitted work.** That work is committed and both tasks are ticked against the five-file set. The original note follows. `.github/workflows/README.md`, `.github/workflows/sk-doc-script-tests.yml` and the untracked `.github/workflows/sk-doc-script-tests-filtered.yml` belong to `010-sk-doc-tests-path-filter` and sat uncommitted in the worktree. They make the status list three paths longer than seven and add the only deletions in the workflow diff. Restricted to this packet's seven files, the status lists seven and the diff has no deletions. Re-run both commands once that packet is committed.
+2. **Resolved: the post-push figures are in `scratch/checkout-after.md`.** The comparison prints `REGRESSED` for the two reverted workflows, which have no after row. The original note follows. `scratch/checkout-baseline.md` holds the before values; `scratch/checkout-after.md` needs the run the push starts, so the `ALL LOWER` comparison and the sk-code test count are still open.
 3. **The sk-code file is the one with a quiet failure mode.** Its `node --test` globs exit 0 when a path is absent, so its protection rests on the cone entry for `.skilled/skills/sk-code/` and on the post-push test count that T013 records.
 <!-- /ANCHOR:limitations -->
 

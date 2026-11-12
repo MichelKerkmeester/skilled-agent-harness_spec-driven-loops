@@ -9,7 +9,7 @@ trigger_phrases:
   - "ci switch condition"
 importance_tier: normal
 contextType: general
-version: 1.1.5.0
+version: 1.1.7.0
 ---
 
 # Job Shape Rules
@@ -46,11 +46,11 @@ A job with no `timeout-minutes` runs until GitHub stops it at 360 minutes, so a 
 | Workflow | Job | Line | Value |
 |---|---|---|---|
 | `skill-doc-frontmatter.yml` | `doc-version-raise` | `:74` | 15 |
-| `advisory-checks.yml` | `gate-critical` | `:111` | 15 |
+| `advisory-checks.yml` | `gate-critical` | `:116` | 15 |
 | `message-contract.yml` | `message-contract` | `:25` | 20 |
 | `changed-packet-validation.yml` | `changed-packets` | `:26` | 20 |
 | `skill-advisor-stress.yml` | `skill-advisor-stress` | `:58` | 25 |
-| `advisory-checks.yml` | `advisory` | `:33` | 28 |
+| `advisory-checks.yml` | `advisory` | `:38` | 28 |
 | `deep-loop-runtime.yml` | `deep-loop-runtime` | `:46` | 34 |
 | `routing-registry-drift.yml` | `golden-prompt-gate` | `:263` | 37 |
 | `spec-kit-check.yml` | `check` | `:98` | 51 |
@@ -68,11 +68,11 @@ Enforcement: honour-system. Re-run `grep -n 'timeout-minutes' .github/workflows/
 Least privilege is the default. A workflow declares `permissions: contents: read` at the top, and a job widens it only for what that job needs.
 
 - **Read-only workflow.** `permissions: contents: read` written as a block, as in `.github/workflows/message-contract.yml:13`.
-- **No scope at the workflow level.** `permissions: {}` at the top and a scope on each job, as in `.github/workflows/trigger-index-rebuild.yml:12`. The rebuild job then asks for `contents: read` at `:40` and the push job asks for `actions: read` and `contents: write` at `:195-196`.
+- **No scope at the workflow level.** `permissions: {}` at the top and a scope on each job, as in `.github/workflows/trigger-index-rebuild.yml:12`. The rebuild job then asks for `contents: read` at `:45` and the push job asks for `actions: read` and `contents: write` at `:200-201`.
 - **A write scope belongs only to a job that runs no repository code.** The rebuild job installs, builds and runs the repository's generator, so it holds no write scope and no secret. The push job runs `gh` and `git` only and is the one place the push token is visible. Splitting the two keeps repository code away from the token.
-- **A job that holds a write scope, or pushes, checks out with `persist-credentials: false`.** The checkout then leaves no token in the git config for a later step to reuse, and the job passes its token only to the command that needs it, as in `.github/workflows/trigger-index-rebuild.yml:203`. Enforcement: honour-system.
+- **A job that holds a write scope, or pushes, checks out with `persist-credentials: false`.** The checkout then leaves no token in the git config for a later step to reuse, and the job passes its token only to the command that needs it, as in `.github/workflows/trigger-index-rebuild.yml:208`. Enforcement: honour-system.
 
-Today all 34 workflows declare `permissions:` at the top. Thirty-two grant `contents: read` and nothing else. `strict-pass-freshness-report.yml` adds `actions: read` at `:19` and `trigger-index-rebuild.yml` grants nothing at the top. Four jobs set a scope of their own: the two jobs of `trigger-index-rebuild.yml` above, the `metadata` job of `dependabot-auto-merge.yml` with `contents: read` and `pull-requests: read` at `:20-21` and its `auto-merge` job with `contents: write` and `pull-requests: write` at `:41-42`.
+Today all 34 workflows declare `permissions:` at the top. Thirty-two grant `contents: read` and nothing else. `strict-pass-freshness-report.yml` adds `actions: read` at `:19` and `trigger-index-rebuild.yml` grants nothing at the top. Four jobs set a scope of their own: the two jobs of `trigger-index-rebuild.yml` above, the `metadata` job of `dependabot-auto-merge.yml` with `contents: read` and `pull-requests: read` at `:26-27` and its `auto-merge` job with `contents: write` and `pull-requests: write` at `:47-48`.
 
 Enforcement: honour-system.
 
@@ -116,7 +116,7 @@ The action is `.github/actions/setup/action.yml`. The rules it follows:
 - **Bun comes from a SHA-pinned setup action**, never from an `npm install` of bun in the workflow.
 - **The scan reads it.** `.github/scripts/check-gate-inputs.sh:499-503` (the `if [[ -d "$ROOT/.github/actions" ]]` block) scans `.github/actions/**` with the workflow parser, so a path in an action is held to the twin rule.
 
-Today five jobs in three workflows call the action: `opencode-dual-version.yml` at `:110` and `:181`, `opencode-plugin-tests.yml` at `:92` and `routing-registry-drift.yml` at `:141` and `:248`. A new provisioning workflow calls the action and does not copy its steps.
+Today five jobs in three workflows call the action: `opencode-dual-version.yml` at `:110` and `:181`, `opencode-plugin-tests.yml` at `:93` and `routing-registry-drift.yml` at `:150` and `:272`. A new provisioning workflow calls the action and does not copy its steps.
 
 ---
 
@@ -143,6 +143,6 @@ Skilled example: `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != '
 - Skilled example: `SKILLED_CI` is the master switch. The five group switches are `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`.
 - Skilled example: `message-contract.yml` holds the required context, and `dependabot-auto-merge.yml` is the exempt workflow.
 
-Skilled example: the shape is the rule. Today 42 of the 44 jobs carry it, and all 42 test `SKILLED_CI`. The group variables split as 24 on `SKILLED_CI_TESTS`, 11 on `SKILLED_CI_FRESHNESS`, 3 on `SKILLED_CI_REVIEW`, 3 on `SKILLED_CI_REPORTS` and 1 on `SKILLED_CI_MESSAGES`. Three jobs AND the switch onto an existing condition: `skill-doc-frontmatter.yml:67`, `trigger-index-rebuild.yml:33` and `trigger-index-rebuild.yml:189`. The two jobs without the switch are the `metadata` and `auto-merge` jobs of `dependabot-auto-merge.yml`, so a reader who finds no switch there is reading the current tree and not a gap in this file.
+Skilled example: the shape is the rule. Today 48 of the 50 jobs carry it, and all 48 test `SKILLED_CI`. The group variables split as 28 on `SKILLED_CI_TESTS`, 13 on `SKILLED_CI_FRESHNESS`, 3 on `SKILLED_CI_REVIEW`, 3 on `SKILLED_CI_REPORTS` and 1 on `SKILLED_CI_MESSAGES`. Three jobs AND the switch onto an existing condition: `skill-doc-frontmatter.yml:72`, `trigger-index-rebuild.yml:38` and `trigger-index-rebuild.yml:194`. The two jobs without the switch are the `metadata` and `auto-merge` jobs of `dependabot-auto-merge.yml`, so a reader who finds no switch there is reading the current tree and not a gap in this file.
 
 Enforcement: honour-system.

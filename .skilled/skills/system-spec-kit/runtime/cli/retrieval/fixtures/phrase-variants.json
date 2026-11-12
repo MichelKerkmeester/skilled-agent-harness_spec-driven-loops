@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9537dcf7341bac69d7375e6e4fd191134d6ab0176d7ef612b4ca193d289a41c4",
+  "manifestHash": "f54f1eadac1f60e0a9b97ef972ef53c554e3299426b31d8e9149f69b25f15fb4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -97381,6 +97381,9 @@
     ],
     "run check adapter technical approach": [
       "run check adapter technical approach"
+    ],
+    "run cli tests": [
+      "run cli tests"
     ],
     "run conversation scenario": [
       "run-conversation-scenario"

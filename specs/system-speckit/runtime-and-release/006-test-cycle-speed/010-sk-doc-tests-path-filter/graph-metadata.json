@@ -32,7 +32,7 @@
       "sk-doc-script-tests"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -191,8 +191,8 @@
     ],
     "causal_summary": "`.github/workflows/sk-doc-script-tests.yml` has no `paths:` filter, so its script-test step runs on every push",
     "created_at": "2026-11-12T08:21:57Z",
-    "last_save_at": "2026-11-12T14:44:38.563Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-12T17:43:51.762Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59a41a3762e27513ed63191b5ddbbbeab66077ea185a74ce5645a0d5a499b70f",
+    "source_fingerprint": "sha256:b856cfef6e7fc6e0ecb8f751a1f3448a69f1aadf8951a3cd1bd204b728f89c85",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ba99f40a5318feca72421cddb7927854bbd915cce15e4704942b38384c104427",
       "plan.md": "f594a20a01431d00d8ee44b6f064f861690fe5d1bdef6cffbeb907c1bd15aae4",
       "tasks.md": "1f9570015e20eb78d72f8ccd257f776c16fdcc992ee292a2dd875de269d6e68c",
-      "implementation-summary.md": "d67ec8f7c1c19160ec01792a89d09118e2521eeecc2db1e987053cf8d8bad6e7"
+      "implementation-summary.md": "c2013c80d7e3a94b7f60dd3bf9b217c87df0bb1fa613d0b5bcca523574b424c4"
     },
     "last_active_at": null
   }

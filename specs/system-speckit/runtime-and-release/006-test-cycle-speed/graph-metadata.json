@@ -142,7 +142,7 @@
     ],
     "causal_summary": "The Skilled test suites took too long to run locally",
     "created_at": "2026-11-10T18:27:35Z",
-    "last_save_at": "2026-11-12T15:33:44.758Z",
+    "last_save_at": "2026-11-12T17:43:59.675Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -156,6 +156,6 @@
       "decision-record.md": "5c65b32226867609b1c1d790d508032502bf3cae1b822fb2f0dde2f9ba10de17"
     },
     "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards",
-    "last_active_at": "2026-11-12T15:16:41.821Z"
+    "last_active_at": "2026-11-12T17:43:59.675Z"
   }
 }

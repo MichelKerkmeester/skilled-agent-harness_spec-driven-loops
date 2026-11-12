@@ -32,12 +32,13 @@
       "tracked"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "scratch/checkout-after.md",
       ".github/workflows/prompt-card-sync.yml",
       ".github/workflows/repo-rules-corpus.yml",
       ".github/workflows/runtime-no-spec-import.yml",
@@ -52,7 +53,6 @@
       ".github/workflows/sk-doc-script-tests.yml",
       ".github/workflows/sk-doc-script-tests-filtered.yml",
       "scratch/checkout-baseline.md",
-      "scratch/checkout-after.md",
       ".github/workflows/rule-canary-sync.yml"
     ],
     "entities": [
@@ -78,6 +78,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checkout-after.md",
+        "kind": "doc",
+        "path": "scratch/checkout-after.md",
         "source": "derived"
       },
       {
@@ -147,12 +153,6 @@
         "source": "derived"
       },
       {
-        "name": "checkout-after.md",
-        "kind": "doc",
-        "path": "scratch/checkout-after.md",
-        "source": "derived"
-      },
-      {
         "name": "rule-canary-sync.yml",
         "kind": "config",
         "path": ".github/workflows/rule-canary-sync.yml",
@@ -203,8 +203,8 @@
     ],
     "causal_summary": "Every job checks out 134,068 tracked files, and 113,819 of them sit under `specs/`",
     "created_at": "2026-11-12T08:21:58Z",
-    "last_save_at": "2026-11-12T14:44:42.000Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-12T17:43:54.372Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d128eec2e98a423991807ef21d10769dad2c6db6621958d68f2fa1959696766c",
+    "source_fingerprint": "sha256:df6036193bd57ee0d75b644d2a3e13194dd6cadc244cd026af7e5b61e9cf809b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a974e268b795e9c71cb4e9978adee52b87361a7f555c0f4690197bb78d89e425",
       "plan.md": "6922f78c21ad5d3394834e0be89f2d669fb60f47d7a5a7587753d0ae56e42d59",
       "tasks.md": "d6d778288a5ff7dcc21e39d7d5f19fa2209e9b831227905df876d2bb0213046e",
-      "implementation-summary.md": "f20f7904726258daf5bcffe39c4539ede68942d4670488c362d6f1c6b0788d4a"
+      "implementation-summary.md": "fe666e45fa67ab4b01ef7a8ffd8b9e38387ce505508b3356fccb982a459f52dc"
     },
     "last_active_at": null
   }

@@ -1,7 +1,7 @@
 ---
 title: "PI-016 -- Fail-open guard discipline"
 description: "This scenario explicitly reconciles the originally-planned \"fail-closed verification\" wording with the implemented fail-open guard behavior and tests the behavior that actually exists for `PI-016`."
-version: 1.5.0.5
+version: 1.5.2.0
 ---
 
 # PI-016 -- Fail-open guard discipline
@@ -28,7 +28,7 @@ Fail-open and fail-closed are opposite safety properties. A reviewer must know w
 - Expected execution process: Read every extension wrapper -> identify `try`/`catch` paths -> inspect returned `{block: true}` paths -> compare against the shared guard-core contract -> record the implemented discipline.
 - Expected signals: Guard exceptions are caught and allow the action; intentional guard decisions can still return `{block: true, reason}`; no wrapper silently converts an exception into a block.
 - Desired user-visible outcome: An honest fail-open result with the title mismatch visible to future operators.
-- Pass/fail: PASS if all eleven extensions (six guard-core bridges plus five session-lifecycle bridges) preserve fail-open exception handling and intentional blocks remain explicit. FAIL if a guard exception unexpectedly blocks or silently allows a guarded action outside the documented discipline. The title mismatch is a documented scope note, not a reason to reinterpret the code. One deliberate exception exists outside this surface: the input-handler catch paths differ in shape (`undefined` vs `{action: "continue"}`), both of which are non-blocking.
+- Pass/fail: PASS if all twenty-two extensions preserve fail-open exception handling and intentional blocks remain explicit. FAIL if a guard exception unexpectedly blocks or silently allows a guarded action outside the documented discipline. The title mismatch is a documented scope note, not a reason to reinterpret the code. One deliberate exception exists outside this surface: the input-handler catch paths differ in shape (`undefined` vs `{action: "continue"}`), both of which are non-blocking.
 
 ---
 
@@ -43,7 +43,7 @@ Fail-open and fail-closed are opposite safety properties. A reviewer must know w
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| PI-016 | Fail-open guard discipline | Verify actual exception behavior and expose title mismatch | `Inspect every Pi extension guard wrapper. For each catch path, report whether an exception blocks or allows the action. Do not rename the behavior to match the scenario title.` | `rg -n 'try|catch|evaluateMutation|block: true|Fail open' .pi/extensions` -> read each matched extension -> compare with shared guard-core return values -> optionally run an isolated exception fixture | Catch comments and bodies show fail-open behavior; intentional block paths are explicit | Captured search output (2026-07-28) shows a fail-open catch comment in all eleven files: the six guard-core bridges (`dispatch-preflight-lint.ts`, `dispatch-audit.ts`, `mcp-route-guard.ts`, `post-edit-quality.ts`, `spec-gate-classify.ts`, `spec-gate-enforce.ts`) and the five session-lifecycle bridges (`prompt-advisor.ts`, `session-compact-context.ts`, `session-start-advisories.ts`, `session-start-context.ts`, `session-stop-context.ts`), plus intentional `block: true` returns in the preflight and spec-gate paths. Direct code reading and an independent review both confirm every wrapper uses the same fail-open discipline. | PASS for the behavior actually built: guard exceptions fail open, while explicit guard decisions may block. FAIL if an exception path blocks unexpectedly. | Re-read the specific catch body and shared guard-core return contract; do not “fix” the title by changing behavior outside this playbook's scope. |
+| PI-016 | Fail-open guard discipline | Verify actual exception behavior and expose title mismatch | `Inspect every Pi extension guard wrapper. For each catch path, report whether an exception blocks or allows the action. Do not rename the behavior to match the scenario title.` | `( cd .pi/extensions && for f in *.ts; do t=$(sed -n "s/.*from '\(.*\)';.*/\1/p" "$f"); rg -n --with-filename 'try|catch|evaluateMutation|block: true|Fail open' "$t"; done )` -> read each matched adapter -> compare with shared guard-core return values -> optionally run an isolated exception fixture | Catch comments and bodies show fail-open behavior; intentional block paths are explicit | Captured search output covers all twenty-two adapters the entries re-export: eighteen carry an explicit `Fail open` catch comment, and four (`decision-capture.ts`, `dispatch-preflight-lint.ts`, `prompt-advisor.ts`, `session-relaunch.ts`) have catch paths without that comment. Intentional `block: true` returns appear in the env-secret-guard, git-message-gate, overlay-guard, dispatch-preflight-lint and spec-gate-enforce adapters. The adapter roster is in `.pi/extensions/README.md`. | PASS for the behavior actually built: guard exceptions fail open, while explicit guard decisions may block. FAIL if an exception path blocks unexpectedly. | Re-read the specific catch body and shared guard-core return contract; do not “fix” the title by changing behavior outside this playbook's scope. |
 
 ### Optional Supplemental Checks
 
@@ -65,7 +65,7 @@ Fail-open and fail-closed are opposite safety properties. A reviewer must know w
 
 | File | Role |
 |---|---|
-| `.pi/extensions/*.ts` | Eleven extension bridges and their catch paths |
+| `.pi/extensions/*.ts` | Twenty-two extension entries, each resolving to an adapter whose catch paths are inspected |
 | `../../../../system-spec-kit/runtime/hooks/lib/spec-gate` | Shared guard-core behavior referenced by the bridges |
 
 ---

@@ -8,21 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/006-test-cycle-speed/010-sk-doc-tests-path-filter"
-    last_updated_at: "2026-11-12T11:02:45Z"
-    last_updated_by: "build-worker"
-    recent_action: "Split the sk-doc script tests into an every-push walking job and a path-filtered workflow"
-    next_safe_action: "Amend the expected node count in tasks.md T004 from 1 to 2, then close T004"
-    blockers:
-      - "T004 verify expects node=1; the in-scope tree prints node=2 because the render-gate and citation-drift jobs keep their Node setup"
+    last_updated_at: "2026-11-12T17:43:51Z"
+    last_updated_by: "generate-context"
+    recent_action: "Corrected the T004 node count to two and merged the path filter to main"
+    next_safe_action: "Verify both sk-doc workflows stay green on later main pushes"
+    blockers: []
     key_files:
-      - ".github/workflows/sk-doc-script-tests.yml"
+      - "specs/system-speckit/runtime-and-release/006-test-cycle-speed/010-sk-doc-tests-path-filter/implementation-summary.md"
       - ".github/workflows/sk-doc-script-tests-filtered.yml"
-      - ".github/workflows/README.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:1e7cdaa7903cc7e8a6b78193550cdfee9f1b56a98f561cc32d377332bd71d037"
       session_id: "scaffold-010-sk-doc-tests-path-filter"
       parent_session_id: null
-    completion_pct: 90
+    session_ref:
+      runtime: "claude"
+      sessionId: "af05cd33-c1ff-46c9-825e-70281e3ca6f1"
+      workspace: "/Users/michelkerkmeester/worktrees/public/354-test-ci-alignment-fixes"
+      savedAt: "2026-11-12T17:43:51Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -75,7 +80,7 @@ Recorded the 56-file baseline first, then ran the walking pair with `ONLY_TESTS`
 
 The split was proved three ways: both workflow files parse under `yaml.safe_load`, the before-and-after set comparison over the runner's own `NODE_TESTS` and the test directory prints `SAME 56 FILES`, and `check-gate-inputs.sh` accepts the new filter's twin roots. Nothing was committed, pushed or opened as a pull request; that stays with the orchestrator.
 
-No task was skipped for needing a branch, a pull request or an operator go-ahead. T004 is left unticked with its reason recorded below and in `tasks.md`: its stated expected output cannot be met from inside the frozen scope.
+No task was skipped for needing a branch, a pull request or an operator go-ahead. T004 was first left unticked because its stated expected output was wrong. The expected count was then corrected to `node=2` in `tasks.md` and the task is ticked.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -115,7 +120,7 @@ No task was skipped for needing a branch, a pull request or an operator go-ahead
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **T004's expected count is wrong** The verify expects `node=1`; the tree prints `node=2`. Only one of the three `name: Setup Node` steps belonged to the walking job, so removing it leaves the two that the `render-gate` and `citation-drift` jobs run their `node --test` steps on. Spec section 3 keeps both jobs unchanged, so `node=1` is unreachable from this phase. The one-line fix is to change the expected value in `tasks.md` T004 to `node=2`; the change the task describes is already in place.
+1. **Resolved: T004's expected count was wrong and is corrected to `node=2` in `tasks.md`.** The original note follows. The verify expects `node=1`; the tree prints `node=2`. Only one of the three `name: Setup Node` steps belonged to the walking job, so removing it leaves the two that the `render-gate` and `citation-drift` jobs run their `node --test` steps on. Spec section 3 keeps both jobs unchanged, so `node=1` is unreachable from this phase. The one-line fix is to change the expected value in `tasks.md` T004 to `node=2`; the change the task describes is already in place.
 2. **The filtered tests no longer catch breaks from outside their filter** A change that breaks one of the 54 files without touching a path under `.opencode/skills/sk-doc/` or `.skilled/skills/sk-doc/` waits for the next push that does. `plan.md` section 3 records this as the accepted regression; the two walking tests still run on every push.
 <!-- /ANCHOR:limitations -->
 

@@ -33,7 +33,7 @@ trigger_phrases:
 | `git-preflight-advisory.ts`, `git-message-gate.ts` | `.skilled/skills/sk-git/scripts/hooks/pi/` |
 | `goal-context.ts` | `.skilled/hooks/goal/pi/goal-context.ts` |
 
-Each file is a thin adapter: it registers a handler against one of Pi's lifecycle events (`pi.on(event, handler)`). `goal-context.ts` is the one exception to the adapter shape: it registers a command as well as lifecycle handlers, because Pi is the only runtime here where the goal surface is both an injection and a management command in the same extension. The 9 tool_call/tool_result/input adapters delegate to the same shared, runtime-neutral guard-core modules `cli-cursor`'s `hooks.json` and `cli-devin`'s `hooks.v1.json` already call. Four of the five session-lifecycle adapters (`session-start-context.ts`, `session-start-advisories.ts`, `session-stop-context.ts`, `session-compact-context.ts`) proxy into the Claude lifecycle-hook dist files under `system-spec-kit/runtime/dist/hooks/claude/` via `lib/claude-hook-adapter.ts` -- the same lifecycle owner devin and cursor already proxy into via their own runtime-specific `spawnSync` adapters, so state and transcript semantics never drift across runtimes. `prompt-advisor.ts` is the exception: it imports the compiled advisor lifecycle module (`system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js`) directly and calls `handleClaudeUserPromptSubmit()` in-process, because Pi awaits `input` handlers before agent processing begins and the old two-process `spawnSync` bridge blocked every send. Its visible contribution is lifecycle-deduped: the advisor brief and Pi dispatch reminder render in full on the first message and after `session_start`/`session_compact`, while a proven same-content repeat returns no transform and leaves the raw turn byte-identical (`SPECKIT_PI_DIRECTIVE_DEDUP`, default ON; `0`/`false`/`off` restores always-full). The separate tool-call preflight still enforces dispatch authorization on every turn. Every handler wraps its call in try/catch and fails open: a guard-core or lifecycle-bridge bug must never block or alter work it only observes. `git-message-gate.ts` is the one deliberate blocker beside the dispatch preflight: it returns `{ block: true, reason }` when the shared sk-git gate refuses a commit message, PR description or branch name, and it fails open only when the gate itself cannot load.
+Each file is a thin adapter: it registers a handler against one of Pi's lifecycle events (`pi.on(event, handler)`). `goal-context.ts` is the one exception to the adapter shape: it registers a command as well as lifecycle handlers, because Pi is the only runtime here where the goal surface is both an injection and a management command in the same extension. The 15 tool_call/tool_result/input adapters delegate to shared, runtime-neutral core modules under `.skilled/` that `cli-cursor`'s `hooks.json` and `cli-devin`'s `hooks.v1.json` already call, except `prompt-advisor.ts` below. Two of the five session-lifecycle adapters (`session-start-context.ts`, `session-stop-context.ts`) proxy into the Claude lifecycle-hook dist files under `system-spec-kit/runtime/dist/hooks/claude/` via `lib/claude-hook-adapter.ts` -- the same lifecycle owner devin and cursor already proxy into via their own runtime-specific `spawnSync` adapters, so state and transcript semantics never drift across runtimes. The other three do their own work in-process: `session-start-advisories.ts` runs the repository's own checks through `ctx.exec()`, `session-compact-context.ts` is a native port of the devin post-compaction recovery chain, and `session-relaunch.ts` calls its own shared relaunch core. `prompt-advisor.ts` is the exception: it imports the compiled advisor lifecycle module (`system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js`) directly and calls `handleClaudeUserPromptSubmit()` in-process, because Pi awaits `input` handlers before agent processing begins and the old two-process `spawnSync` bridge blocked every send. Its visible contribution is lifecycle-deduped: the advisor brief and Pi dispatch reminder render in full on the first message and after `session_start`/`session_compact`, while a proven same-content repeat returns no transform and leaves the raw turn byte-identical (`SPECKIT_PI_DIRECTIVE_DEDUP`, default ON; `0`/`false`/`off` restores always-full). The separate tool-call preflight still enforces dispatch authorization on every turn. Every handler wraps its call in try/catch and fails open: a guard-core or lifecycle-bridge bug must never block or alter work it only observes. `git-message-gate.ts` is the one deliberate blocker beside the dispatch preflight: it returns `{ block: true, reason }` when the shared sk-git gate refuses a commit message, PR description or branch name, and it fails open only when the gate itself cannot load.
 
 ---
 
@@ -46,12 +46,12 @@ extensions/
 +-- dispatch-preflight-lint.ts  # Blocks or warns on a bash dispatch hard-rule violation
 +-- dispatch-audit.ts           # Records a completed bash dispatch to the audit log
 +-- post-edit-quality.ts        # Appends post-edit quality findings to an edit/write result
-+-- completion-evidence.ts      # Appends the completion-evidence sentinel advisory to a turn_end result
++-- completion-evidence.ts      # Queues the completion-evidence sentinel advisory onto the next turn when a claim lacks evidence
 +-- classifier-injection-screen.ts  # Appends the Jev injection-screen advisory to a fetch_content result
 +-- decision-capture.ts         # Queues each answered question for the decision record; shows the pending count at turn end
 +-- ask-surface-guard.ts        # Sends a prose option menu back as a follow-up so it is asked through the question tool
 +-- mcp-route-guard.ts          # Attaches route warnings to a native mcp_* tool call
-+-- env-secret-guard.ts         # Blocks a read, write, edit, grep, bash or powershell call that would expose a dotenv file
++-- env-secret-guard.ts         # Blocks a read, write, edit, grep, bash or powershell call that would expose a dotenv file, then undoes a dotenv write and redacts a dotenv value from the result
 +-- overlay-guard.ts            # Blocks an edit or write to a file a vendored tree's overlay owns
 +-- task-dispatch-guard.ts      # Returns the dispatch-guard text for a direct subagent call (advisory)
 +-- session-start-context.ts    # Bridges session-prime's SessionStart context into the session
@@ -80,7 +80,7 @@ extensions/
 | `dispatch-audit.ts` | `tool_result` (bash) | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` `recordDispatch()` |
 | `post-edit-quality.ts` | `tool_result` (edit/write) | `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` `resolveDispatch()`/`runChecks()` |
 | `completion-evidence.ts` | `turn_end` | `system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs` `detectCompletionClaim()`/`resolveSpecFolderFromText()`/`evaluateCompletionEvidence()`; a completion claim the sentinel cannot evidence becomes a `nextTurn` advisory message, never a block |
-| `env-secret-guard.ts` | `tool_call` (read/write/edit/grep/bash/powershell) | `.skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs` `evaluateToolCall()`; returns `{ block: true, reason }` on a dotenv file |
+| `env-secret-guard.ts` | `tool_call` (read/write/edit/grep/bash/powershell), `tool_result` (a dotenv write after a shell call; a leaked value from any tool) | `.skilled/hooks/env-secret-guard/lib/env-secret-guard.cjs` `evaluateToolCall()`; returns `{ block: true, reason }` on a dotenv file, and `.skilled/hooks/env-secret-guard/lib/env-secret-watch.cjs` `snapshotDotenv()` records dotenv files before a shell call. `reviewToolResult()` then undoes a dotenv write it recorded first and redacts a dotenv value out of the result, appending the reason as a message |
 | `mcp-route-guard.ts` | `tool_call` (`mcp_*`) | `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs` `evaluateNativeMcpCall()` |
 | `overlay-guard.ts` | `tool_call` (edit/write) | `.skilled/hooks/overlay-guard/lib/overlay-guard.cjs` `fileFieldPath()`/`evaluateWrite()`; returns `{ block: true, reason }` when a vendored tree's overlay owns the target file |
 | `classifier-injection-screen.ts` | `tool_result` (`fetch_content`) | `.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs` `fetchedText()`/`screenAdvisory()`; appends the advisory to the tool result |
@@ -132,7 +132,8 @@ Pi lifecycle event -> pi.on(event, handler) -> dynamic import() of the shared gu
   module -> guard-core decision (allow / block / warn) -> handler returns the decision,
   or undefined on any error (fail open)
 
-Session-lifecycle adapters (session_start / session_shutdown / session_compact; input is the exception):
+Session-lifecycle adapters that spawn a Claude hook (session_start / session_shutdown only;
+  the other session adapters -- advisories, compaction, relaunch -- run in-process):
 Pi lifecycle event -> pi.on(event, handler) -> lib/claude-hook-adapter.ts spawns the
   matching Claude hook dist file with a synthesized payload on stdin -> raw text or
   JSON envelope read back -> pi.sendMessage() (or ctx.exec()/ctx.ui.notify() for the
@@ -159,14 +160,23 @@ Pi input event -> pi.on("input", handler) -> dynamic import of the compiled advi
 | `dispatchPreflightLint` | Default export | Registers the `tool_call` dispatch hard-rule lint handler. |
 | `dispatchAudit` | Default export | Registers the `tool_result` dispatch audit-log handler. |
 | `postEditQuality` | Default export | Registers the `tool_result` post-edit quality handler. |
+| `envSecretGuard` | Default export | Registers the `tool_call` dotenv block and the `tool_result` pass that undoes a dotenv write and redacts its value. |
 | `mcpRouteGuard` | Default export | Registers the `tool_call` MCP route-guard handler. |
+| `overlayGuard` | Default export | Registers the `tool_call` guard that blocks an edit or write to a file a vendored tree's overlay owns. |
 | `classifierInjectionScreen` | Default export | Registers the `tool_result` injection-screen handler for `fetch_content`. |
 | `taskDispatchGuard` | Default export | Registers the advisory `tool_call` dispatch guard for `subagent`. |
+| `decisionCapture` | Default export | Registers the `tool_result` capture of answered questions for the decision record and the `turn_end` pending-count notice. |
+| `completionEvidence` | Default export | Registers the `turn_end` advisory that queues a claim lacking evidence onto the next turn. |
+| `askSurfaceGuard` | Default export | Registers the `agent_end` guard that sends a prose option menu back as a follow-up asked through the question tool. |
 | `sessionStartContext` | Default export | Registers the `session_start` session-prime context bridge. |
 | `sessionStartAdvisories` | Default export | Registers the `session_start` advisory-check sweep. |
 | `sessionStopContext` | Default export | Registers the `session_shutdown` autosave/state-cleanup bridge. |
+| `sessionRelaunch` | Default export | Registers the `message_end`, `before_agent_start`, `agent_start`, `agent_end`, `agent_settled` and `session_compact` handlers that nudge a context-limit handoff and arm the relaunch record. |
 | `promptAdvisor` | Default export | Registers the `input` skill-advisor recommendation bridge. |
 | `sessionCompactContext` | Default export | Registers the `session_compact` spec-folder continuity rehydration. |
+| `goalContext` | Default export | Registers the `input`, `session_start` and `turn_end` goal injection handlers plus the `goal-pi` management command. |
+| `gitPreflightAdvisory` | Default export | Registers the `tool_call` git advisory queued on a bash `git` command and appended at `tool_result`. |
+| `gitMessageGate` | Default export | Registers the `tool_call` gate that blocks a commit message, PR description or branch name that breaks the sk-git templates. |
 | `runClaudeHookAdapter`, `extractAdditionalContext` | Named exports | `lib/claude-hook-adapter.ts`'s spawnSync proxy and JSON-envelope parser, imported by the session-lifecycle adapters (session-start/stop); `prompt-advisor.ts` no longer uses it. |
 
 ---

@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi resource loader"
 importance_tier: important
 contextType: implementation
-version: 1.5.2.0
+version: 1.5.4.0
 ---
 
 # Pi Native Skills and Extensions
@@ -76,9 +76,9 @@ Use [prompt-templates.md](../assets/prompt-templates.md) for caller-side dispatc
 
 ## 5. EXTENSIONS
 
-**Confirmed (phase 012):** Pi auto-discovers project-local `.pi/extensions/*.ts` files with no settings-file registration required. This repo has 6 real extension files (`spec-gate-enforce`, `spec-gate-classify`, `dispatch-preflight-lint`, `dispatch-audit`, `post-edit-quality`, `mcp-route-guard`), each a plain `ExtensionFactory` calling `pi.on(event, handler)` against this repo's own shared guard-core modules. A live `pi --offline --approve` session loaded all 6 without a startup error. Every guard wraps its call in try/catch and fails open — a guard-core exception must never block work it merely observes.
+**Confirmed (phase 012):** Pi auto-discovers project-local `.pi/extensions/*.ts` files with no settings-file registration required. This repo has 22 entry files, each a one-line re-export of an adapter kept under `.skilled/`, the adapter being a plain `ExtensionFactory` that registers handlers with `pi.on(event, handler)`: the guard bridges among them call this repo's shared guard-core modules, and the others call their own cores or the Claude lifecycle hooks; [`.pi/extensions/README.md`](../../../../../.pi/extensions/README.md) holds the roster. At that phase a live `pi --offline --approve` session loaded the 6 entries that existed then without a startup error. With the entries as one-line re-exports, `pi -p --offline` starts on Pi 1.5.0 and on Pi 1.5.2 with all 22 loaded and no `Failed to load extension` line. Every guard wraps its call in try/catch and fails open — a guard-core exception must never block work it merely observes.
 
-The local pin also confirmed that Pi discovered a project-local `.pi/extensions/probe.ts` and failed the whole session when it exported an invalid value; replacing the stub with a callable default factory removed that specific validation error. This means an invalid extension is fail-closed at startup — distinct from, and orthogonal to, the fail-open discipline of the 6 real extensions' own internal guard logic above.
+The local pin also confirmed that Pi discovered a project-local `.pi/extensions/probe.ts` and failed the whole session when it exported an invalid value; replacing the stub with a callable default factory removed that specific validation error. This means an invalid extension is fail-closed at startup — distinct from, and orthogonal to, the fail-open discipline of the 22 adapters' own internal guard logic above.
 
 **Live-firing-confirmed (2026-07-28):** the extension API exposes 33 named lifecycle events (including block-capable `tool_call`), confirmed via a direct read of the installed package's `types.d.ts`, and a probe-instrumented authenticated session captured `session_start`, `input`, `tool_call`, `tool_result`, and `session_shutdown(quit)` actually firing mid-dispatch with side-effect evidence (playbook scenario PI-020). Only `session_compact` remains untraced; it fires solely on manual `/compact`, the context threshold, or overflow recovery in an interactive session.
 

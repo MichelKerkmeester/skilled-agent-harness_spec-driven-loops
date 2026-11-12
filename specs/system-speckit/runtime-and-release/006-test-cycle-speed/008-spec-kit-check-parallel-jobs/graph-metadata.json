@@ -32,7 +32,7 @@
       "github"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -191,8 +191,8 @@
     ],
     "causal_summary": "The `check` job in `.github/workflows/spec-kit-check.yml` runs the `CLI vitest project`, `Legacy module lanes and the bash validation suites` and `Runtime vitest project` steps one after another",
     "created_at": "2026-11-12T08:21:54Z",
-    "last_save_at": "2026-11-12T14:44:30.668Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-12T17:43:48.331Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c29c1d7eed54b36685369bb0c6cfeab8e55484f076f3c2b79e3aca7048be3b98",
+    "source_fingerprint": "sha256:ef7be827623c596ae7222aed16df8dc5a9b60cc1c94f4e2ca2ea71383c952518",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "90dfdad0560378038e2c8315e8f181c0e65c840c4713e818e3583f5fd597ee79",
       "plan.md": "50c67312745cad87297a643c94d4509b3b82369e4b0f7555bd81002ddc861eb6",
       "tasks.md": "c20347cf3e24ef5a219640e7c89d13dbb3e26a6a1d25c62791e5fb6310369618",
-      "implementation-summary.md": "90cdbb1d6df84007777b4ff4d435b7d9760837c9c4db0048f48b4365a872d8b6"
+      "implementation-summary.md": "ddf367306262113ee75a4d39a340cac9f1b9d2b6c1faf9a6b745f3be53d1d4a2"
     },
     "last_active_at": null
   }

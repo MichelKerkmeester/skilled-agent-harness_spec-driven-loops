@@ -134,7 +134,7 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `npm test` | npm script | Bounded default runner (`cli/run-tests.mjs`). |
+| `npm test` | npm script | Bounded default runner (`scripts/run-tests.mjs`). |
 | `npm run test:core` | npm script | Plain `vitest run` over this folder. |
 | `npx vitest run tests/<file>.vitest.ts` | CLI | Runs one focused suite. |
 | `npx vitest run` | CLI | Runs everything in one reused worker. |
