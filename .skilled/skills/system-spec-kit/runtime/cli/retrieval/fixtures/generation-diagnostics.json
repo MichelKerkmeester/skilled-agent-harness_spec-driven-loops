@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6735,
-    "ok": 17871,
+    "ok": 17875,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26235,
+  "documentsScanned": 26239,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ac4561e2d072d3a77e7535efcb3a86131622b1443859ce33d0c200a2a20dea0e",
+  "manifestHash": "68db2494a9880590b8dd76690fe4a528887f176cf6ce8f39231a38404607baa1",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42408,
+      "ok": 42414,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -54842,6 +54842,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6f4e8a36f0d90fcd9660f4a2315a755035d6b246bb79ea164824e90c827f931f",
+  "corpusHash": "620d878a70913fa48cb9411d168829b78a2091367b8cad2a6bde93a3c00954f2",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26235,
+  "includedPathCount": 26239,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11455,6 +11455,10 @@
     "specs/hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard/plan.md",
     "specs/hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard/spec.md",
     "specs/hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard/tasks.md",
+    "specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports/implementation-summary.md",
+    "specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports/plan.md",
+    "specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports/spec.md",
+    "specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports/tasks.md",
     "specs/hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction/acceptance-criteria.md",
     "specs/hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction/implementation-summary.md",
     "specs/hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction/plan.md",
@@ -26267,7 +26271,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ac4561e2d072d3a77e7535efcb3a86131622b1443859ce33d0c200a2a20dea0e",
+  "manifestHash": "68db2494a9880590b8dd76690fe4a528887f176cf6ce8f39231a38404607baa1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29251,6 +29255,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/pi-extensions/012-file-relative-adapter-imports/scratch",
       "reason": "excluded directory"
     },
     {
