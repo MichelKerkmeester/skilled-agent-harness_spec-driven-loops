@@ -120,6 +120,7 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 15 | 015-hook-suite-job-split/ | Move the hook vitest suites into their own workflow | Complete: both workflows pass on the pull request |
 | 16 | 016-local-test-timing-profile/ | Time the three local test commands once each | Measured: 914 s, 211 s and 527 s |
 | 17 | 017-specs-artifact-tracking-decision/ | Measure the tracked research and scratch files and write the options | Measured: 88,151 files, decision is the operator's |
+| 18 | 018-cli-vitest-shards/ | [Phase 18 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -147,6 +148,7 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 014-dead-runner-and-step-cleanup | 015-hook-suite-job-split | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
 | 015-hook-suite-job-split | 016-local-test-timing-profile | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
 | 016-local-test-timing-profile | 017-specs-artifact-tracking-decision | Independent; each phase builds one research finding | The earlier phase is committed on the branch |
+| 017-specs-artifact-tracking-decision | 018-cli-vitest-shards | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
