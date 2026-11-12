@@ -1,0 +1,371 @@
+diff --git a/.skilled/hooks/session-relaunch/lib/context-usage.cjs b/.skilled/hooks/session-relaunch/lib/context-usage.cjs
+index 1149018694..abca489e52 100644
+--- a/.skilled/hooks/session-relaunch/lib/context-usage.cjs
++++ b/.skilled/hooks/session-relaunch/lib/context-usage.cjs
+@@ -19,11 +19,9 @@ const DEFAULT_TAIL_BYTES = 262144;
+ // A single tool result or image row can outgrow the default tail, so a miss widens the
+ // read up to this bound before the usage counts as absent.
+ const MAX_TAIL_BYTES = 16 * 1024 * 1024;
+-// Provider model names announce the million-token window with this marker; a model
+-// that omits it reports against the standard window.
++// Provider model names announce the million-token window with this marker.
+ const LARGE_WINDOW_MARKER = '[1m]';
+ const LARGE_WINDOW_TOKENS = 1000000;
+-const DEFAULT_WINDOW_TOKENS = 200000;
+ 
+ // ─────────────────────────────────────────────────────────────────────────────
+ // 3. HELPERS
+@@ -329,7 +327,7 @@ function projectDirectories(cwd) {
+  *
+  * @param {{env?: NodeJS.ProcessEnv, cwd?: string, home?: string, model?: string}}
+  *   [options] - Runtime paths and model.
+- * @returns {number} Configured window or the model-aware default.
++ * @returns {number|null} Configured window, or null when unknown.
+  */
+ function resolveWindow({
+   env = process.env,
+@@ -355,7 +353,7 @@ function resolveWindow({
+ 
+   return String(model).includes(LARGE_WINDOW_MARKER)
+     ? LARGE_WINDOW_TOKENS
+-    : DEFAULT_WINDOW_TOKENS;
++    : null;
+ }
+ 
+ /**
+diff --git a/.skilled/hooks/session-relaunch/lib/nudge.cjs b/.skilled/hooks/session-relaunch/lib/nudge.cjs
+index 86fa25abea..ac767b5aed 100644
+--- a/.skilled/hooks/session-relaunch/lib/nudge.cjs
++++ b/.skilled/hooks/session-relaunch/lib/nudge.cjs
+@@ -624,9 +624,10 @@ function parseRearm(raw) {
+ }
+ 
+ function readStateFile(sessionId, env) {
+-  const empty = { level: 0, rearm: null };
++  const empty = { level: 0, rearm: null, windowUnknown: false };
+   const filePath = stateFilePath(sessionId, env);
+   if (filePath === null) return empty;
++  if (core.inspectStateDir(core.stateDir(env)) !== true) return empty;
+ 
+   try {
+     const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+@@ -634,6 +635,7 @@ function readStateFile(sessionId, env) {
+     return {
+       level: Number.isInteger(level) && level >= 0 ? level : 0,
+       rearm: parseRearm(parsed?.rearm),
++      windowUnknown: parsed?.windowUnknown === true,
+     };
+   } catch {
+     return empty;
+@@ -678,6 +680,26 @@ function writeState(sessionId, level, env = process.env) {
+   persistState(sessionId, level, null, env);
+ }
+ 
++/** Mark the session's unknown context window once, preserving its current nudge state. */
++function markWindowUnknown(sessionId, env = process.env) {
++  try {
++    const state = readStateFile(sessionId, env);
++    if (state.windowUnknown) return false;
++    const filePath = stateFilePath(sessionId, env);
++    if (filePath === null) return false;
++    core.ensureStateDir(env);
++    const contents = {
++      level: state.level,
++      ...(state.rearm ? { rearm: state.rearm } : {}),
++      windowUnknown: true,
++    };
++    fs.writeFileSync(filePath, `${JSON.stringify(contents)}\n`, { mode: 0o600 });
++    return true;
++  } catch {
++    return false;
++  }
++}
++
+ /**
+  * Record that this session's hand-over was withdrawn or cancelled, so one more nudge may
+  * come after the fill has grown a step. The caller does not know the fill: the grant is
+diff --git a/.skilled/hooks/session-relaunch/claude/context-nudge.mjs b/.skilled/hooks/session-relaunch/claude/context-nudge.mjs
+index 4409839d5e..75f2cd4f21 100644
+--- a/.skilled/hooks/session-relaunch/claude/context-nudge.mjs
++++ b/.skilled/hooks/session-relaunch/claude/context-nudge.mjs
+@@ -127,6 +127,12 @@ async function main() {
+       cwd: payload.cwd || process.cwd(),
+       model: fill.model ?? '',
+     });
++    if (windowTokens === null) {
++      if (nudge.markWindowUnknown(sessionId)) {
++        logEvent('context-nudge-skipped', { reason: 'window-unknown' });
++      }
++      return quiet();
++    }
+     ratio = fillRatio(fill.fillTokens, windowTokens);
+   } catch (error) {
+     logEvent('context-nudge-error', { stage: 'usage', message: error.message });
+diff --git a/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs b/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs
+index 7ff5e5ce0f..00dbdd96a6 100644
+--- a/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs
++++ b/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs
+@@ -68,6 +68,10 @@ const SUBCOMMANDS = {
+     summary: `Print the latest hops from the hop history, ${hopHistory.DEFAULT_HISTORY_LINES}`
+       + ' by default.',
+   },
++  window: {
++    syntax: 'window',
++    summary: 'Print the configured Claude context window or the settings needed to configure it.',
++  },
+ };
+ 
+ // ─────────────────────────────────────────────────────────────────────────────
+@@ -846,6 +867,16 @@ function history(args) {
+   return 0;
+ }
+ 
++function window(args) {
++  if (args.length > 0) throw invocationError('window takes no arguments');
++  const { resolveWindow } = require('../lib/context-usage.cjs');
++  const tokens = resolveWindow({ env: process.env, cwd: process.cwd() });
++  process.stdout.write(tokens === null
++    ? 'Claude context window: none configured. Set autoCompactWindow in the Claude settings or SESSION_RELAUNCH_WINDOW_TOKENS in the environment. A [1m] model uses one million tokens without either.\n'
++    : `Claude context window: ${tokens} tokens\n`);
++  return 0;
++}
++
+ /**
+  * Execute one session-relaunch CLI command.
+  *
+@@ -872,6 +903,7 @@ function main(args = process.argv.slice(2)) {
+       case 'hand-over': return handOver(commandArgs);
+       case 'cancel': return cancel(commandArgs);
+       case 'history': return history(commandArgs);
++      case 'window': return window(commandArgs);
+       default: throw invocationError(
+         `command must be one of ${Object.keys(SUBCOMMANDS).join(', ')}`,
+       );
+diff --git a/.skilled/hooks/session-relaunch/README.md b/.skilled/hooks/session-relaunch/README.md
+index bc2d867375..b9e1da1233 100644
+--- a/.skilled/hooks/session-relaunch/README.md
++++ b/.skilled/hooks/session-relaunch/README.md
+@@ -264,7 +266,7 @@ Hook switches resolve from the environment and the optional `.skilled/hooks/hook
+ | `SYSTEM_SESSION_RELAUNCH_DISABLED` | unset | Set to `1` to disable the same hooks. It wins over `SYSTEM_SESSION_RELAUNCH_ENABLED` and every per-runtime enable flag. |
+ | `SYSTEM_HOOKS_DISABLED` | unset, off | A truthy value disables hooks across the repository. `MK_HOOKS_DISABLED` is a supported alias. |
+ | `SESSION_RELAUNCH_THRESHOLD` | `0.80` | Context fill ratio that triggers the first nudge. Invalid values use `0.80`. Valid values are greater than 0 and at most 1. |
+-| `SESSION_RELAUNCH_WINDOW_TOKENS` | unset, resolved automatically | A positive value overrides Claude settings. Otherwise the resolver checks the project-local settings override, then the project settings, from the session cwd up to the repository root, and the settings file in the home directory for `autoCompactWindow`. Outside a repository only the cwd is checked. If none is usable, a model name containing `[1m]` uses a one-million-token fallback. Other models use a 200-thousand-token fallback. |
++| `SESSION_RELAUNCH_WINDOW_TOKENS` | unset, resolved automatically | This value is read from the environment only. A positive value overrides Claude settings. Otherwise the resolver checks the project-local settings override, then the project settings, from the session cwd up to the repository root, and the settings file in the home directory for `autoCompactWindow`. Outside a repository only the cwd is checked. A model name containing `[1m]` uses a one-million-token fallback. With an unknown window, the Claude nudge is skipped and auto-compaction stays the fallback. |
+ | `SESSION_RELAUNCH_MAX_HOPS` | `10` | Highest completed hop count allowed. The cap is enforced at three points: the wrapper declines a record at or above it, `prepare` at that count writes no record, prints its hop-limit line with the manual claim command and exits 3, and the killer unarms the record with reason `hop-cap` and signals nothing. Inside the loop, no adapter nudges at the cap. Zero is accepted and declines every hop. Unset, empty, negative, non-integer or non-numeric values use 10. |
+ | `SESSION_RELAUNCH_MAX_AGE_MIN` | `10` | Maximum age in minutes for an armed relaunch record. Zero is accepted and makes any older record stale. Unset, empty, negative or non-numeric values use 10. |
+ | `SESSION_RELAUNCH_NOTIFY_HOPS` | unset, off | Set to `1` for a macOS notice titled "Session handed over" each time the wrapper relaunches a session. It names the runtime, the session folder and the note's goal. Off by default, so a clone shows no notice until its owner sets it. |
+@@ -278,7 +280,7 @@ The wrapper accepts `-n` or `--name` with a value, and `--name=value`. The first
+ 
+ The killer CLI requires `--loop-id` and `--target-pid`. `--transcript` is optional: the Claude and Codex Stop hooks and the Pi arm pass it (Pi passes its session file when the path resolves). The OpenCode plugin does not. Without it, idle means the configured idle time has elapsed since the killer started. The loop id must be greater than 1 and match `SKILLED_LOOP_ID`. The defaults are `--idle-ms 3000` and `--timeout-ms 30000`. The killer polls every 100 ms. `--no-notify` defaults to off. Without it, a timeout attempts a notification. The Stop hook starts the killer without `--no-notify`.
+ 
+-`prepare` receives the note through `--handoff <path>`, while `claim` and `complete` receive it positionally. Both `prepare` and `claim` require `--session <id>`. Only Claude Code can omit the flag and use `CLAUDE_CODE_SESSION_ID`. A successful prepare exits 0 and leaves the record pending for Stop to arm. Outside `skilled-loop`, prepare prints the manual claim command and exits 3, and inside the loop it does the same at the hop cap. A refused prepare exits 2. `keep --handoff <path>` takes the same `--session` and `--runtime` options, exits 0 outside the loop and exits 2 inside it. `history [--last <count>]` prints the latest hop-history lines, 20 by default, or `no hop recorded yet` with the file path, then the open-notes line when any note is still open, and exits 0. `cancel [--loop-id <id>]` calls off the loop's prepared hand-over, with the loop id defaulting to `SKILLED_LOOP_ID`. A loop id inherited by a nested run is dropped first, and an explicit `--loop-id` still names the loop to cancel. It withdraws a pending or armed record through the same helper the adapters use, with reason `cancelled`. It logs `cancel`, writes a `withdrawn` line to the hop history, grants the session one more nudge and leaves the note open. It exits 0. With no prepared hand-over it exits 1. The nudge names this command inside the loop, for a session the operator asks to stay after prepare. `hand-over --handoff <path> [--hop <n>] [--runtime <runtime>]` records the hand-over. It does not consume the record and prints nothing. When the note is `open`, it writes the `handed-over` line and sends the optional notice. For any other note state it writes neither. The wrapper calls plain `consume`, reads the note state from its output and runs `hand-over` only for an open note it is about to relaunch, ignoring its exit status. The CLI prints its usage and exits 0 when it gets no command, `--help` or `-h`, and a wrong option prints the error plus that subcommand's usage line and exits 2.
++`prepare` receives the note through `--handoff <path>`, while `claim` and `complete` receive it positionally. Both `prepare` and `claim` require `--session <id>`. Only Claude Code can omit the flag and use `CLAUDE_CODE_SESSION_ID`. A successful prepare exits 0 and leaves the record pending for Stop to arm. Outside `skilled-loop`, prepare prints the manual claim command and exits 3, and inside the loop it does the same at the hop cap. A refused prepare exits 2. `keep --handoff <path>` takes the same `--session` and `--runtime` options, exits 0 outside the loop and exits 2 inside it. `history [--last <count>]` prints the latest hop-history lines, 20 by default, or `no hop recorded yet` with the file path, then the open-notes line when any note is still open, and exits 0. `window` prints the configured Claude context window or the settings needed to configure it, and exits 0. `cancel [--loop-id <id>]` calls off the loop's prepared hand-over, with the loop id defaulting to `SKILLED_LOOP_ID`. A loop id inherited by a nested run is dropped first, and an explicit `--loop-id` still names the loop to cancel. It withdraws a pending or armed record through the same helper the adapters use, with reason `cancelled`. It logs `cancel`, writes a `withdrawn` line to the hop history, grants the session one more nudge and leaves the note open. It exits 0. With no prepared hand-over it exits 1. The nudge names this command inside the loop, for a session the operator asks to stay after prepare. `hand-over --handoff <path> [--hop <n>] [--runtime <runtime>]` records the hand-over. It does not consume the record and prints nothing. When the note is `open`, it writes the `handed-over` line and sends the optional notice. For any other note state it writes neither. The wrapper calls plain `consume`, reads the note state from its output and runs `hand-over` only for an open note it is about to relaunch, ignoring its exit status. The CLI prints its usage and exits 0 when it gets no command, `--help` or `-h`, and a wrong option prints the error plus that subcommand's usage line and exits 2.
+ 
+ ---
+ 
+diff --git a/.skilled/hooks/session-relaunch/tests/context-usage.test.cjs b/.skilled/hooks/session-relaunch/tests/context-usage.test.cjs
+index 92cd4860e4..6380802051 100644
+--- a/.skilled/hooks/session-relaunch/tests/context-usage.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/context-usage.test.cjs
+@@ -175,7 +175,20 @@ test('resolveWindow selects a one-million-token window for a model containing [1
+   );
+ });
+ 
+-test('resolveWindow defaults to a 200000-token window', (t) => {
++test('resolveWindow returns null when no setting and no model marker supplies a window', (t) => {
++  const sandbox = createSandbox(t);
++  assert.equal(
++    resolveWindow({
++      env: sandbox.env,
++      cwd: sandbox.repoRoot,
++      home: sandbox.home,
++      model: '',
++    }),
++    null,
++  );
++});
++
++test('resolveWindow returns null instead of the 200000 default', (t) => {
+   const sandbox = createSandbox(t);
+   assert.equal(
+     resolveWindow({
+@@ -184,7 +197,7 @@ test('resolveWindow defaults to a 200000-token window', (t) => {
+       home: sandbox.home,
+       model: 'claude-haiku-5-5',
+     }),
+-    200000,
++    null,
+   );
+ });
+ 
+@@ -361,7 +374,7 @@ test('resolveWindow stops at the repository boundary and walks nowhere outside a
+   fs.mkdirSync(inside);
+   assert.equal(
+     resolveWindow({ env: sandbox.env, cwd: inside, home: sandbox.home, model: 'claude-haiku-5-5' }),
+-    200000,
++    null,
+   );
+ 
+   const outside = path.join(sandbox.root, 'loose', 'dir');
+@@ -373,7 +386,7 @@ test('resolveWindow stops at the repository boundary and walks nowhere outside a
+       home: sandbox.home,
+       model: 'claude-haiku-5-5',
+     }),
+-    200000,
++    null,
+   );
+ });
+ 
+diff --git a/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs b/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
+index 21a0c36810..5da04a9833 100644
+--- a/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
+@@ -91,6 +91,50 @@ function runAdapter(sandbox, adapterPath, payload) {
+   });
+ }
+ 
++test('context-nudge skips and logs when the window is unknown', async (t) => {
++  const sandbox = createSandbox(t);
++  sandbox.env.SKILLED_LOOP_ID = 'claude-unknown-window-loop-0001';
++  const transcriptPath = writeTranscript(sandbox, 800);
++  const payload = {
++    ...POST_TOOL_USE,
++    session_id: SESSION_ID,
++    transcript_path: transcriptPath,
++    cwd: sandbox.repoRoot,
++  };
++  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
++
++  assert.equal(result.code, 0, result.stderr);
++  assert.equal(result.stdout, '');
++  const log = fs.readFileSync(path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'), 'utf8');
++  assert.match(log, /context-nudge-skipped[^\n]*reason=window-unknown/);
++});
++
++test('context-nudge logs the unknown window once per session', async (t) => {
++  const sandbox = createSandbox(t);
++  const transcriptPath = writeTranscript(sandbox, 800);
++  const payload = {
++    ...POST_TOOL_USE,
++    session_id: SESSION_ID,
++    transcript_path: transcriptPath,
++    cwd: sandbox.repoRoot,
++  };
++
++  await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
++  await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
++
++  const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
++  const firstSessionLines = fs.readFileSync(logPath, 'utf8')
++    .split(/\r?\n/)
++    .filter((line) => line.includes('context-nudge-skipped'));
++  assert.equal(firstSessionLines.length, 1);
++
++  await runAdapter(sandbox, CONTEXT_NUDGE_PATH, { ...payload, session_id: 'session-adapter-00000002' });
++  const allSkippedLines = fs.readFileSync(logPath, 'utf8')
++    .split(/\r?\n/)
++    .filter((line) => line.includes('context-nudge-skipped'));
++  assert.equal(allSkippedLines.length, 2);
++});
++
+ function createPendingRecord(sandbox, loopId, sessionId, handoffPath, status = 'pending') {
+   const stateDir = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
+   fs.mkdirSync(stateDir, { recursive: true });
+diff --git a/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs b/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
+index b164e0494a..ad6a6529f3 100644
+--- a/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
+@@ -185,6 +185,42 @@ function runCli(sandbox, args, env = sandbox.env) {
+   });
+ }
+ 
++test('window names the missing settings when no window is configured', (t) => {
++  const sandbox = createSandbox(t);
++  const emptyDirectory = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-window-'));
++  t.after(() => fs.rmSync(emptyDirectory, { recursive: true, force: true }));
++  const env = { ...sandbox.env, HOME: emptyDirectory };
++  delete env.SESSION_RELAUNCH_WINDOW_TOKENS;
++
++  const unknown = spawnSync(process.execPath, [CLI_PATH, 'window'], {
++    cwd: emptyDirectory,
++    env,
++    encoding: 'utf8',
++    timeout: 5000,
++  });
++  assert.equal(unknown.status, 0, unknown.stderr);
++  assert.equal(unknown.stdout.trim().split(/\r?\n/).length, 1);
++  assert.match(unknown.stdout, /autoCompactWindow/);
++  assert.match(unknown.stdout, /SESSION_RELAUNCH_WINDOW_TOKENS/);
++
++  const configured = spawnSync(process.execPath, [CLI_PATH, 'window'], {
++    cwd: emptyDirectory,
++    env: { ...env, SESSION_RELAUNCH_WINDOW_TOKENS: '500000' },
++    encoding: 'utf8',
++    timeout: 5000,
++  });
++  assert.equal(configured.status, 0, configured.stderr);
++  assert.equal(configured.stdout.trim(), 'Claude context window: 500000 tokens');
++});
++
++test('window rejects an argument', (t) => {
++  const sandbox = createSandbox(t);
++  const result = runCli(sandbox, ['window', 'extra']);
++
++  assert.equal(result.status, 2);
++  assert.equal(result.stdout, '');
++});
++
+ // The nested detection walks the live process table, so these runs keep the real ps
+ // instead of the stub the sandbox puts first on PATH.
+ function nestedRunEnv(sandbox) {
+@@ -1521,7 +1594,7 @@ test('an unknown subcommand exits two and lists the commands on stderr', (t) =>
+   assert.equal(result.status, 2);
+   assert.match(
+     result.stderr,
+-    /command must be one of prepare, should-relaunch, keep, claim, complete, consume, cancel, hand-over, history\n/,
++    /command must be one of prepare, should-relaunch, keep, claim, complete, consume, cancel, hand-over, history, window\n/,
+   );
+   assert.match(result.stderr, /claim <handoff-path>/);
+   assert.equal(result.stdout, '');
+diff --git a/.skilled/commands/doctor/assets/doctor-setup.yaml b/.skilled/commands/doctor/assets/doctor-setup.yaml
+index 667e270435..dfcce9c832 100644
+--- a/.skilled/commands/doctor/assets/doctor-setup.yaml
++++ b/.skilled/commands/doctor/assets/doctor-setup.yaml
+@@ -56,6 +56,7 @@ execution:
+     - "Leg runtime-mirrors: run node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check. Exit 0 passes. Any other exit fails, with repair /doctor:runtime-mirrors."
+     - "Leg advisor: run node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --timeout-ms 500 --warm-only. Exit 0 with data.freshness set to live is PASS. Exit 0 with any other freshness is DEGRADED, with repair /doctor:skill-advisor rebuild. Exit 75 with a staleDistWarning field in stderr JSON is FAIL, with repair npm --prefix .skilled/skills/system-skill-advisor/runtime run build. Exit 75 without that field is SKIP because the daemon is not running. Any other exit is FAIL, with repair /doctor:skill-advisor rebuild."
+     - "Last session hop (informational, not a leg): run node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history --last 1 and show its first output line under the result as the last session hop, plus its open notes line when it prints one. Its exit and output never change the status."
++    - "Claude context window (informational, not a leg): run node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs window and show its line. Its exit and output never change the status."
+     - "Orphan processes (informational, not a leg): run node .skilled/commands/doctor/scripts/orphan-process-check.cjs --summary and show its line. Its exit and output never change the status."
+     - "Run every leg even when an earlier one fails, then render the per-leg table, the DOCTOR DIAGNOSTIC RESULT summary and the troubleshooting table through .skilled/commands/doctor/assets/doctor-setup-presentation.txt."
+ 
+diff --git a/.skilled/commands/doctor/assets/doctor-setup-presentation.txt b/.skilled/commands/doctor/assets/doctor-setup-presentation.txt
+index fd756f0abe..4072736def 100644
+--- a/.skilled/commands/doctor/assets/doctor-setup-presentation.txt
++++ b/.skilled/commands/doctor/assets/doctor-setup-presentation.txt
+@@ -72,11 +72,13 @@ Evidence: [N] legs, [N] passed, [N] failed, [N] skipped, [N] degraded, [N] error
+ Recommendation: [the doctor command for each failing or degraded leg, or none]
+ Last session hop: [the first line `session-relaunch.cjs history --last 1` printed, or no hop recorded yet]
+ [open notes: N handoff notes not claimed yet, oldest <filename>; shown only when history printed it]
++[the line `session-relaunch.cjs window` printed: Claude context window: N tokens, or Claude context window: none configured with the two settings that supply one]
+ [orphans: N, about M MB; list them with node .skilled/commands/doctor/scripts/orphan-process-check.cjs --reap]
+ STATUS=[status]
+ ```
+ 
+ The last session hop line is informational. It shows when a session last handed over, kept, claimed or finished a handoff, and it never changes the status. The open notes line appears only while a handoff note is still open, so a hand-over nobody finished stays visible.
++The Claude context window line is informational and never changes the status. It shows the window the Claude relaunch nudge measures against. When no window is configured it names `autoCompactWindow` and `SESSION_RELAUNCH_WINDOW_TOKENS`, and the nudge stays off until one is set or a `[1m]` model runs.
+ The orphan line is informational only and never changes the doctor status. A model server kept on purpose with `SPECKIT_HF_MODEL_SERVER_ORPHAN_REAP=0` also shows as unsupervised, so do not reap it. With no orphan processes, print `orphans: none`. Run the listed `--reap` command to see each process, then use its confirmation command with `--yes` only when those are the processes to stop.
+ 
+ ### Failure Summary
+diff --git a/.skilled/commands/doctor/setup.md b/.skilled/commands/doctor/setup.md
+index a8db74f9fa..83784647f5 100644
+--- a/.skilled/commands/doctor/setup.md
++++ b/.skilled/commands/doctor/setup.md
+@@ -66,6 +66,7 @@ The sk-git leg passes `--tool=<name>` for the AI tool running the command.
+ Its exit 3 (an unknown check or a gate saved off) is degraded, not failing.
+ After the legs, it shows the last session hop from the session-relaunch hop history.
+ It shows an open-notes line while any handoff note is still unclaimed.
++It shows the Claude context window the relaunch nudge measures against, or the two settings that supply one when none is configured.
+ It shows an orphans line from `orphan-process-check.cjs --summary`.
+ That line counts leftover helper processes and model servers whose launcher died.
+ These lines are informational and never change the status.

@@ -1,0 +1,13 @@
+✖ deny list flags are absent from a hop (635.194125ms)
+✖ an unknown option that carries its value is not ambiguous (312.496834ms)
+✖ a joined short resume option is not replayed (724.337083ms)
+✖ Codex takes its model from a config setting when no model flag is given (743.407208ms)
+ℹ tests 5
+ℹ pass 1
+ℹ fail 4
+ℹ duration_ms 3105.492417
+✖ failing tests:
+✖ deny list flags are absent from a hop (635.194125ms)
+✖ an unknown option that carries its value is not ambiguous (312.496834ms)
+✖ a joined short resume option is not replayed (724.337083ms)
+✖ Codex takes its model from a config setting when no model flag is given (743.407208ms)

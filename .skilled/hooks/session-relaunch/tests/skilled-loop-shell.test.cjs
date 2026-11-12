@@ -57,9 +57,33 @@ function sandbox(t) {
   return { root, repo, nested, plain, wrapper: path.join(repo, '.skilled', 'bin', 'skilled-loop') };
 }
 
+function gitSandbox(t) {
+  const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'skilled-loop-git-')));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const checkout = path.join(root, 'checkout');
+  fs.mkdirSync(path.join(checkout, '.skilled', 'bin'), { recursive: true });
+  fs.copyFileSync(SHIM, path.join(checkout, '.skilled', 'bin', 'skilled-loop-shell.sh'));
+  fs.copyFileSync(path.join(SKILLED_DIR, 'bin', 'skilled-loop'), path.join(checkout, '.skilled', 'bin', 'skilled-loop'));
+  fs.mkdirSync(path.join(checkout, 'a', 'b'), { recursive: true });
+  const init = spawnSync('git', ['init', '-q', checkout], { encoding: 'utf8' });
+  assert.equal(init.status, 0, init.stderr);
+  const configName = spawnSync('git', ['-C', checkout, 'config', 'user.name', 'Test'], { encoding: 'utf8' });
+  const configEmail = spawnSync('git', ['-C', checkout, 'config', 'user.email', 'test@example.invalid'], { encoding: 'utf8' });
+  assert.equal(configName.status, 0, configName.stderr);
+  assert.equal(configEmail.status, 0, configEmail.stderr);
+  spawnSync('git', ['-C', checkout, 'add', '.'], { encoding: 'utf8' });
+  const commit = spawnSync('git', ['-C', checkout, 'commit', '-qm', 'fixture'], { encoding: 'utf8' });
+  assert.equal(commit.status, 0, commit.stderr);
+  const linked = path.join(root, 'linked');
+  const worktree = spawnSync('git', ['-C', checkout, 'worktree', 'add', '-qb', 'linked-fixture', linked], { encoding: 'utf8' });
+  assert.equal(worktree.status, 0, worktree.stderr);
+  return { root, checkout, linked, shim: path.join(checkout, '.skilled', 'bin', 'skilled-loop-shell.sh') };
+}
+
 function cleanEnv(extra = {}) {
   const env = { ...withoutRelaunchSwitches(process.env), ...extra };
   if (!('SKILLED_LOOP_ID' in extra)) delete env.SKILLED_LOOP_ID;
+  if (!('SKILLED_LOOP_TRUSTED_CHECKOUTS' in extra)) delete env.SKILLED_LOOP_TRUSTED_CHECKOUTS;
   return env;
 }
 
@@ -76,11 +100,111 @@ function resolve(shell, directory, runtime, args, env = cleanEnv()) {
   return result.stdout;
 }
 
+function resolveWithShim(shell, shim, directory, runtime = 'claude', env = cleanEnv()) {
+  const script = 'source "$1" || exit 90; cd "$2" || exit 91; skilled_loop_resolve "$3"';
+  const result = spawnSync(shell.command, [...shell.flags, script, 'skilled-loop-shell-test', shim, directory, runtime], {
+    encoding: 'utf8', env,
+  });
+  assert.equal(result.stderr, '', `${shell.name} stderr`);
+  assert.equal(result.status, 0, `${shell.name} exit`);
+  return result.stdout;
+}
+
 function label(shell, runtime, args) {
   return `${shell.name} ${runtime} ${JSON.stringify(args)}`;
 }
 
 for (const shell of SHELLS) {
+  test(`${shell.name}: a wrapper outside the sourced checkout is not resolved`, (t) => {
+    const box = gitSandbox(t);
+    const outside = path.join(box.root, 'checkout-child');
+    fs.mkdirSync(path.join(outside, '.skilled', 'bin'), { recursive: true });
+    fs.writeFileSync(path.join(outside, '.skilled', 'bin', 'skilled-loop'), 'exit 0\n');
+    const init = spawnSync('git', ['init', '-q', outside], { encoding: 'utf8' });
+    assert.equal(init.status, 0, init.stderr);
+    const configName = spawnSync('git', ['-C', outside, 'config', 'user.name', 'Test'], { encoding: 'utf8' });
+    const configEmail = spawnSync('git', ['-C', outside, 'config', 'user.email', 'test@example.invalid'], { encoding: 'utf8' });
+    assert.equal(configName.status, 0, configName.stderr);
+    assert.equal(configEmail.status, 0, configEmail.stderr);
+    const add = spawnSync('git', ['-C', outside, 'add', '.'], { encoding: 'utf8' });
+    assert.equal(add.status, 0, add.stderr);
+    const commit = spawnSync('git', ['-C', outside, 'commit', '-qm', 'fixture'], { encoding: 'utf8' });
+    assert.equal(commit.status, 0, commit.stderr);
+    assert.equal(resolveWithShim(shell, box.shim, outside), '');
+  });
+
+  test(`${shell.name}: an inherited GIT_DIR cannot vouch for a planted repository`, (t) => {
+    const box = gitSandbox(t);
+    const planted = path.join(box.root, 'planted');
+    const wrapper = path.join(planted, '.skilled', 'bin', 'skilled-loop');
+    fs.mkdirSync(path.dirname(wrapper), { recursive: true });
+    fs.writeFileSync(wrapper, 'exit 0\n');
+    const init = spawnSync('git', ['init', '-q', planted], { encoding: 'utf8' });
+    assert.equal(init.status, 0, init.stderr);
+    const configName = spawnSync('git', ['-C', planted, 'config', 'user.name', 'Test'], { encoding: 'utf8' });
+    const configEmail = spawnSync('git', ['-C', planted, 'config', 'user.email', 'test@example.invalid'], { encoding: 'utf8' });
+    assert.equal(configName.status, 0, configName.stderr);
+    assert.equal(configEmail.status, 0, configEmail.stderr);
+    const add = spawnSync('git', ['-C', planted, 'add', '.'], { encoding: 'utf8' });
+    assert.equal(add.status, 0, add.stderr);
+    const commit = spawnSync('git', ['-C', planted, 'commit', '-qm', 'fixture'], { encoding: 'utf8' });
+    assert.equal(commit.status, 0, commit.stderr);
+    const env = cleanEnv({ GIT_DIR: path.join(planted, '.git') });
+    assert.equal(resolveWithShim(shell, box.shim, planted, 'claude', env), '');
+  });
+
+  test(`${shell.name}: the shim sourced through a symlinked file trusts its real checkout`, (t) => {
+    const box = gitSandbox(t);
+    const symlink = path.join(box.root, 'shim-link.sh');
+    fs.symlinkSync(box.shim, symlink);
+    const wrapper = path.join(box.checkout, '.skilled', 'bin', 'skilled-loop');
+    assert.equal(resolveWithShim(shell, symlink, box.checkout), `${wrapper}\n`);
+  });
+
+  test(`${shell.name}: a shell copy without the stored checkout trusts nothing`, (t) => {
+    const box = gitSandbox(t);
+    const script = 'source "$1" || exit 90; unset skilled_loop_sourced_checkout; cd "$2" || exit 91; skilled_loop_resolve claude';
+    const result = spawnSync(shell.command, [...shell.flags, script, 'skilled-loop-shell-test', box.shim, box.checkout], {
+      encoding: 'utf8',
+      env: cleanEnv(),
+    });
+    assert.equal(result.stdout, '');
+    assert.equal(result.stderr, '');
+    assert.equal(result.status, 0);
+  });
+
+  test(`${shell.name}: a wrapper in a registered linked worktree is resolved`, (t) => {
+    const box = gitSandbox(t);
+    const wrapper = path.join(box.linked, '.skilled', 'bin', 'skilled-loop');
+    fs.mkdirSync(path.dirname(wrapper), { recursive: true });
+    fs.writeFileSync(wrapper, 'exit 0\n');
+    assert.equal(resolveWithShim(shell, box.shim, box.linked), `${wrapper}\n`);
+  });
+
+  test(`${shell.name}: a .git file alone does not register a trusted worktree`, (t) => {
+    const box = gitSandbox(t);
+    const fake = path.join(box.root, 'fake-worktree');
+    const wrapper = path.join(fake, '.skilled', 'bin', 'skilled-loop');
+    fs.mkdirSync(path.dirname(wrapper), { recursive: true });
+    fs.writeFileSync(path.join(fake, '.git'), `gitdir: ${path.join(box.checkout, '.git')}\n`);
+    fs.writeFileSync(wrapper, 'exit 0\n');
+    assert.equal(resolveWithShim(shell, box.shim, fake), '');
+  });
+
+  test(`${shell.name}: explicitly trusted checkouts resolve and unset or empty trusts nothing extra`, (t) => {
+    const box = gitSandbox(t);
+    const trusted = path.join(box.root, 'trusted');
+    const wrapper = path.join(trusted, '.skilled', 'bin', 'skilled-loop');
+    fs.mkdirSync(path.dirname(wrapper), { recursive: true });
+    fs.writeFileSync(wrapper, 'exit 0\n');
+    assert.equal(resolveWithShim(shell, box.shim, trusted), '');
+    assert.equal(resolveWithShim(shell, box.shim, trusted, 'claude', cleanEnv({ SKILLED_LOOP_TRUSTED_CHECKOUTS: '' })), '');
+    assert.equal(
+      resolveWithShim(shell, box.shim, trusted, 'claude', cleanEnv({ SKILLED_LOOP_TRUSTED_CHECKOUTS: trusted })),
+      `${wrapper}\n`,
+    );
+  });
+
   test(`${shell.name}: every interactive form finds the wrapper through a symlinked .skilled`, (t) => {
     const box = sandbox(t);
     for (const [runtime, forms] of Object.entries(INTERACTIVE)) {
@@ -88,7 +212,7 @@ for (const shell of SHELLS) {
         for (const directory of [box.repo, box.nested]) {
           assert.equal(
             resolve(shell, directory, runtime, args),
-            `${box.wrapper}\n`,
+            `${fs.realpathSync(box.wrapper)}\n`,
             `${label(shell, runtime, args)} from ${directory}`,
           );
         }
@@ -223,9 +347,9 @@ for (const shell of SHELLS) {
       'claude --model opus; claude -p hi; cursor-agent --model gpt-5; cursor-agent login',
       { tty: true },
     );
-    assert.match(output, new RegExp(`^WRAPPED ${box.wrapper} claude --model opus$`, 'm'));
+    assert.match(output, new RegExp(`^WRAPPED ${fs.realpathSync(box.wrapper)} claude --model opus$`, 'm'));
     assert.match(output, /^DIRECT claude -p hi$/m);
-    assert.match(output, new RegExp(`^WRAPPED ${box.wrapper} cursor --model gpt-5$`, 'm'));
+    assert.match(output, new RegExp(`^WRAPPED ${fs.realpathSync(box.wrapper)} cursor --model gpt-5$`, 'm'));
     assert.match(output, /^DIRECT cursor-agent login$/m);
   });
 

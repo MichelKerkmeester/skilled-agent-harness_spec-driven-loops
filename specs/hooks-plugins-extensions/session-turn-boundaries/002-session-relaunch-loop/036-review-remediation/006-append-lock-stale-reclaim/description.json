@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim",
+  "description": "Phase 6: append-lock-stale-reclaim",
+  "keywords": [
+    "phase",
+    "append-lock-stale-reclaim"
+  ],
+  "lastUpdated": "2026-11-12T15:11:25.754Z",
+  "specId": "006",
+  "folderSlug": "append-lock-stale-reclaim",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "036-review-remediation"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "12-11-26_15-17__closed-phase-006-a-stale-append-lock-is-reclaimed.md",
+    "12-11-26_16-11__the-stale-append-lock-is-reclaimed-through-a.md"
+  ]
+}

@@ -474,8 +474,136 @@ shell_quote_argument() {
   printf '%s' "$quoted"
 }
 
+# Matches this runtime's --help list of options that take a value.
+skilled_loop_replay_takes_value() {
+  case "$1:$2" in
+    claude:--add-dir|claude:--agent|claude:--agents|claude:--allowedTools|\
+      claude:--allowed-tools|claude:--append-system-prompt|claude:--autocompact|\
+      claude:--append-system-prompt-file|claude:--betas|claude:--debug|\
+      claude:--debug-file|\
+      claude:--disallowedTools|claude:--disallowed-tools|claude:--effort|\
+      claude:--environment|claude:--fallback-model|claude:--file|claude:--from-pr|\
+      claude:--input-format|claude:--json-schema|claude:--max-budget-usd|\
+      claude:--mcp-config|claude:--model|claude:--name|claude:-n|claude:-d|\
+      claude:--output-format|claude:--permission-mode|claude:--permission-prompts|\
+      claude:--plugin-dir|claude:--plugin-url|claude:--prompt-suggestions|\
+      claude:--remote-control|claude:--remote-control-session-name-prefix|\
+      claude:--resume|claude:-r|claude:--session-id|claude:--setting-sources|\
+      claude:--settings|claude:--system-prompt|claude:--system-prompt-file|\
+      claude:--system-prompt-snapshot|\
+      claude:--teleport|claude:--tools|claude:--worktree|claude:-w|\
+      codex:-n|codex:--name|cursor:-n|cursor:--name|devin:-n|devin:--name|\
+      opencode:-n|opencode:--name)
+      return 0 ;;
+    pi:--provider|pi:--model|pi:--api-key|pi:--system-prompt|\
+      pi:--append-system-prompt|pi:--mode|pi:--session|pi:--session-id|pi:--fork|\
+      pi:--session-dir|pi:--name|pi:-n|pi:--models|pi:--tools|pi:-t|\
+      pi:--exclude-tools|pi:-xt|pi:--thinking|pi:--extension|pi:-e|pi:--skill|\
+      pi:--prompt-template|pi:--theme|pi:--use-theme|pi:--export|\
+      pi:--list-models|pi:--blackhole-export|pi:--tui-mode)
+      return 0 ;;
+    opencode:--server|opencode:--session|opencode:-s|opencode:--prompt|\
+      opencode:--completions|opencode:--log-level|opencode:-m|opencode:--model)
+      return 0 ;;
+    codex:-c|codex:--config|codex:--enable|codex:--disable|codex:--remote|\
+      codex:--remote-auth-token-env|codex:-i|codex:--image|codex:-m|\
+      codex:--model|codex:--local-provider|codex:-p|codex:--profile|codex:-s|\
+      codex:--sandbox|codex:-C|codex:--cd|codex:--add-dir|codex:-a|\
+      codex:--ask-for-approval)
+      return 0 ;;
+    cursor:--api-key|cursor:-H|cursor:--header|cursor:-e|cursor:--endpoint|\
+      cursor:--output-format|cursor:--mode|cursor:--model|cursor:--resume|\
+      cursor:--sandbox|cursor:--workspace|cursor:--add-dir|cursor:--plugin-dir|\
+      cursor:-w|cursor:--worktree|cursor:--worktree-base)
+      return 0 ;;
+    devin:--prompt-file|devin:--config|devin:--permission-mode|devin:--model|\
+      devin:--export|devin:-r|devin:--resume|devin:--respect-workspace-trust|\
+      devin:--print|devin:-p|devin:--verbosity)
+      return 0 ;;
+  esac
+  return 1
+}
+
+# Matches this runtime's --help list of options that take no value.
+skilled_loop_replay_takes_none() {
+  case "$1:$2" in
+    claude:--allow-dangerously-skip-permissions|claude:--ax-screen-reader|\
+      claude:--background|claude:--bg|claude:--bare|claude:--brief|\
+      claude:--chrome|claude:--continue|claude:-c|claude:--dangerously-skip-permissions|\
+      claude:--desktop|claude:--disable-slash-commands|\
+      claude:--exclude-dynamic-system-prompt-sections|claude:--fork-session|\
+      claude:--forward-subagent-text|claude:--ide|claude:--include-hook-events|\
+      claude:--include-partial-messages|claude:--no-chrome|\
+      claude:--no-session-persistence|claude:--replay-user-messages|\
+      claude:--restricted|claude:--safe-mode|claude:--strict-mcp-config|\
+      claude:--tmux|claude:--verbose|claude:-h|claude:--help|claude:-p|\
+      claude:--cloud|claude:--print|claude:-v|claude:--version)
+      return 0 ;;
+    pi:--continue|pi:-c|pi:--no-session|pi:-ne|pi:--no-extensions|\
+      pi:--no-tools|pi:-nt|pi:--no-builtin-tools|pi:-nbt|pi:--no-mcp|\
+      pi:--no-skills|pi:-ns|pi:--no-prompt-templates|pi:-np|pi:--no-themes|\
+      pi:--verbose|pi:--approve|pi:-a|pi:--no-approve|pi:-na|pi:--offline|\
+      pi:--build|pi:--plan|pi:--fast|pi:--no-context-files|pi:-nc|\
+      pi:--resume|pi:-r|pi:--print|pi:-p|pi:--help|pi:-h|pi:--version|pi:-v)
+      return 0 ;;
+    opencode:--standalone|opencode:--auto|opencode:--continue|opencode:-c|\
+      opencode:--wizard|opencode:--print-logs|opencode:--help|opencode:-h|\
+      opencode:--version|opencode:-v)
+      return 0 ;;
+    codex:--strict-config|codex:--oss|codex:--worktree|codex:--last|\
+      codex:--all|codex:--include-non-interactive|codex:--approve-for-me|\
+      codex:--dangerously-bypass-approvals-and-sandbox|\
+      codex:--dangerously-bypass-hook-trust|codex:--search|\
+      codex:--no-alt-screen|codex:--no-daemon|codex:-h|codex:--help|\
+      codex:-V|codex:--version)
+      return 0 ;;
+    cursor:--print|cursor:-p|cursor:--stream-partial-output|cursor:--plan|\
+      cursor:--list-models|cursor:--continue|cursor:--force|cursor:-f|\
+      cursor:--yolo|cursor:--auto-review|cursor:--approve-mcps|cursor:--trust|\
+      cursor:--skip-worktree-setup|cursor:-v|cursor:--version|cursor:-h|cursor:--help)
+      return 0 ;;
+    devin:--sandbox|devin:--cloud|devin:--continue|devin:-c|devin:-h|\
+      devin:--help|devin:-V|devin:--version)
+      return 0 ;;
+  esac
+  return 1
+}
+
+# Filters session and prompt options identified in this runtime's --help.
+skilled_loop_replay_denied() {
+  case "$1:$2" in
+    claude:-c|claude:--continue|claude:-r|claude:--resume|\
+      claude:--fork-session|claude:--from-pr|claude:--session-id|\
+      claude:--teleport|claude:--cloud|claude:-w|claude:--worktree|claude:--tmux|\
+      pi:-c|pi:--continue|pi:-r|pi:--resume|pi:--session|pi:--session-id|pi:--fork|\
+      opencode:-c|opencode:--continue|opencode:-s|opencode:--session|opencode:--prompt|\
+      codex:-i|codex:--image|codex:--worktree|codex:--last|codex:--all|\
+      codex:--include-non-interactive|devin:-c|devin:--continue|devin:-p|\
+      devin:--print|devin:-r|devin:--resume|devin:--prompt-file|cursor:--resume|\
+      cursor:--continue|cursor:-w|cursor:--worktree|cursor:--worktree-base|\
+      cursor:--skip-worktree-setup)
+      return 0 ;;
+  esac
+  return 1
+}
+
+# Identifies record-backed settings; the other option lists follow this runtime's --help.
+skilled_loop_replay_recorded() {
+  case "$1:$2" in
+    claude:--model|claude:--effort|claude:-n|claude:--name|\
+      pi:--model|pi:--provider|pi:--thinking|pi:-n|pi:--name|pi:-e|\
+      pi:--extension|pi:-ne|pi:--no-extensions|opencode:--model|opencode:-m|\
+      opencode:-n|opencode:--name|codex:-m|codex:--model|codex:-n|codex:--name|\
+      cursor:--model|cursor:-n|cursor:--name|devin:--model|devin:-n|devin:--name|\
+      codex:--no-daemon|opencode:--standalone)
+      return 0 ;;
+  esac
+  return 1
+}
+
 build_relaunch_arguments() {
   local seed="$1"
+  local mode="${2:-hop}"
   launch_arguments=()
   case "$runtime" in
     claude)
@@ -538,10 +666,17 @@ build_relaunch_arguments() {
       if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
         launch_arguments+=(--model "$SKILLED_LOOP_MODEL")
       fi
+      if [[ "$mode" == 'hop' ]] && [[ ${#replayed_extra_arguments[@]} -gt 0 ]]; then
+        launch_arguments+=("${replayed_extra_arguments[@]}")
+      fi
       launch_arguments+=(-- "$seed")
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       ;;
   esac
+  if [[ "$mode" == 'hop' && "$runtime" != 'devin' ]] \
+    && [[ ${#replayed_extra_arguments[@]} -gt 0 ]]; then
+    launch_arguments+=("${replayed_extra_arguments[@]}")
+  fi
 }
 
 build_manual_command_template() {
@@ -551,7 +686,7 @@ build_manual_command_template() {
   local argument
   local quoted_argument
 
-  build_relaunch_arguments "$manual_seed"
+  build_relaunch_arguments "$manual_seed" manual
   for ((index = 0; index < ${#launch_arguments[@]}; index++)); do
     argument=${launch_arguments[$index]}
     template+=' '
@@ -570,7 +705,7 @@ build_manual_command_template() {
 find_manual_template_conflict() {
   local index
 
-  build_relaunch_arguments "$manual_handoff_token"
+  build_relaunch_arguments "$manual_handoff_token" manual
   for ((index = 0; index < ${#launch_arguments[@]}; index++)); do
     if ((index != relaunch_seed_index)) \
       && [[ "${launch_arguments[$index]}" == *"$manual_handoff_token"* ]]; then
@@ -606,10 +741,13 @@ fi
 original_arguments=("$@")
 original_argument_count=$#
 launch_arguments=()
+replayed_extra_arguments=()
+ambiguous_launch_options=0
 pi_extension_arguments=()
 pi_extension_arguments_set=0
 pi_no_extensions_seen=0
 codex_no_daemon_seen=0
+codex_config_model=''
 opencode_two=0
 opencode_standalone_seen=0
 opencode_server_seen=0
@@ -692,16 +830,25 @@ while ((index < original_argument_count)); do
           fi
           ;;
         codex:-c|codex:--config)
-          if ((index + 1 < original_argument_count)) \
-            && [[ "$next_argument" == model_reasoning_effort=* ]]; then
-            SKILLED_LOOP_EFFORT=$(strip_value_quotes "${next_argument#model_reasoning_effort=}")
-            export SKILLED_LOOP_EFFORT
-            skip_next_option=1
+          if ((index + 1 < original_argument_count)); then
+            if [[ "$next_argument" == model_reasoning_effort=* ]]; then
+              SKILLED_LOOP_EFFORT=$(strip_value_quotes "${next_argument#model_reasoning_effort=}")
+              export SKILLED_LOOP_EFFORT
+              skip_next_option=1
+            elif [[ "$next_argument" == model=* ]]; then
+              codex_config_model=$(strip_value_quotes "${next_argument#model=}")
+              skip_next_option=1
+            fi
           fi
           ;;
-        codex:--config=model_reasoning_effort=*)
-          SKILLED_LOOP_EFFORT=$(strip_value_quotes "${argument#--config=model_reasoning_effort=}")
-          export SKILLED_LOOP_EFFORT
+        codex:--config=*)
+          config_value="${argument#--config=}"
+          if [[ "$config_value" == model_reasoning_effort=* ]]; then
+            SKILLED_LOOP_EFFORT=$(strip_value_quotes "${config_value#model_reasoning_effort=}")
+            export SKILLED_LOOP_EFFORT
+          elif [[ "$config_value" == model=* ]]; then
+            codex_config_model=$(strip_value_quotes "${config_value#model=}")
+          fi
           ;;
         codex:--no-daemon)
           codex_no_daemon_seen=1
@@ -739,6 +886,101 @@ while ((index < original_argument_count)); do
     fi
   fi
   launch_arguments+=("$argument")
+  index=$((index + 1))
+done
+
+if [[ "$runtime" == 'codex' && -z "${SKILLED_LOOP_MODEL:-}" ]] \
+  && [[ -n "$codex_config_model" ]]; then
+  SKILLED_LOOP_MODEL="$codex_config_model"
+  export SKILLED_LOOP_MODEL
+fi
+
+index=0
+# Classifies replayed options and prompt ambiguity using each runtime's own --help lists.
+while ((index < original_argument_count)); do
+  argument="${original_arguments[$index]}"
+  if [[ "$argument" == '--' ]]; then
+    break
+  fi
+  if [[ "$argument" == -* ]]; then
+    option_name="${argument%%=*}"
+    option_value_attached=0
+    if [[ "$argument" == -* && "$argument" != --* && ${#argument} -gt 2 ]] \
+      && ! skilled_loop_replay_takes_value "$runtime" "$option_name" \
+      && ! skilled_loop_replay_takes_none "$runtime" "$option_name"; then
+      option_name="${argument:0:2}"
+      if skilled_loop_replay_takes_value "$runtime" "$option_name"; then
+        option_value_attached=1
+      else
+        option_name="${argument%%=*}"
+      fi
+    fi
+    if skilled_loop_replay_denied "$runtime" "$option_name"; then
+      if skilled_loop_replay_takes_value "$runtime" "$option_name" \
+        && [[ "$argument" != *=* ]] && ((option_value_attached == 0)) \
+        && ((index + 1 < original_argument_count)) \
+        && [[ "${original_arguments[$((index + 1))]}" != -* ]]; then
+        index=$((index + 1))
+      fi
+    elif skilled_loop_replay_takes_value "$runtime" "$option_name"; then
+      recorded_option=0
+      if skilled_loop_replay_recorded "$runtime" "$option_name"; then
+        recorded_option=1
+      elif [[ "$runtime" == 'codex' ]] \
+        && [[ "$option_name" == '-c' || "$option_name" == '--config' ]]; then
+        if [[ "$argument" == *=* ]]; then
+          [[ "${argument#*=}" == model_reasoning_effort=* \
+            || "${argument#*=}" == model=* ]] && recorded_option=1
+        elif ((index + 1 < original_argument_count)) \
+          && [[ "${original_arguments[$((index + 1))]}" == model_reasoning_effort=* \
+            || "${original_arguments[$((index + 1))]}" == model=* ]]; then
+          recorded_option=1
+        fi
+      fi
+      ((recorded_option == 1)) || replayed_extra_arguments+=("$argument")
+      takes_many=0
+      case "$runtime:$option_name" in
+        claude:--add-dir|claude:--allowedTools|claude:--allowed-tools|\
+          claude:--betas|claude:--disallowedTools|claude:--disallowed-tools|\
+          claude:--file|claude:--mcp-config|claude:--tools|codex:-i|codex:--image)
+          takes_many=1 ;;
+      esac
+      optional_value=0
+      case "$runtime:$option_name" in
+        claude:-d|claude:--debug|claude:--prompt-suggestions|\
+          claude:--remote-control|devin:--export|devin:--respect-workspace-trust|\
+          pi:--list-models|pi:--export)
+          optional_value=1 ;;
+      esac
+      value_count=0
+      if [[ "$argument" != *=* ]]; then
+        while ((index + 1 < original_argument_count)) \
+          && { [[ "${original_arguments[$((index + 1))]}" != -* ]] \
+            || { ((takes_many == 0 && optional_value == 0)) \
+              && [[ "${original_arguments[$((index + 1))]}" != '--' ]]; }; } \
+          && { ((takes_many == 1)) || ((value_count == 0)); }; do
+          index=$((index + 1))
+          value_count=$((value_count + 1))
+          if ((recorded_option == 0)); then
+            replayed_extra_arguments+=("${original_arguments[$index]}")
+          fi
+        done
+      fi
+    elif skilled_loop_replay_takes_none "$runtime" "$option_name"; then
+      if ! skilled_loop_replay_recorded "$runtime" "$option_name"; then
+        replayed_extra_arguments+=("$argument")
+      fi
+    else
+      replayed_extra_arguments+=("$argument")
+      if [[ "$argument" != *=* ]] && ((index + 1 < original_argument_count)) \
+        && [[ "${original_arguments[$((index + 1))]}" != -* ]]; then
+        ambiguous_launch_options=1
+        printf 'warning: cannot tell whether %s is the value of %s or the start prompt; ' \
+          "${original_arguments[$((index + 1))]}" "$argument" >&2
+        printf '%s\n' 'the loop will not relaunch this session' >&2
+      fi
+    fi
+  fi
   index=$((index + 1))
 done
 
@@ -804,6 +1046,21 @@ if [[ ! "$SKILLED_LOOP_HOPS" =~ ^[0-9]+$ ]]; then
   exit 1
 fi
 export SKILLED_LOOP_HOPS
+
+# A record that already carries this loop id belongs to an earlier wrapper whose process id
+# was reused, so reading it after a runtime exit would act on a hand-over this loop never
+# made. Remove only that one file, through the core so the state directory keeps one owner,
+# and never follow it into a state directory that is a symlink or belongs to another user.
+# A cleanup that cannot run leaves the launch intact.
+leftover_record=$(node -e '
+  const [corePath, loopId] = process.argv.slice(1);
+  const core = require(corePath);
+  if (core.inspectStateDir(core.stateDir()) !== true) process.exit(0);
+  process.stdout.write(core.relaunchFilePath(loopId));
+' -- "$relaunch_core" "$SKILLED_LOOP_ID" 2>/dev/null) || leftover_record=''
+if [[ -n "$leftover_record" ]]; then
+  rm -f -- "$leftover_record" || true
+fi
 
 # The note a relaunch seeded and its spec folder, kept so a later decline can name the
 # note that session was handed and never claimed.
@@ -926,6 +1183,12 @@ while true; do
             print_manual_command "$handoff_path" "$spec_folder" || true
             ;;
         esac
+        exit 1
+      fi
+      if ((ambiguous_launch_options == 1)); then
+        printf '%s\n' 'warning: the launch options are ambiguous; not relaunching' >&2
+        spec_folder=$(consumed_spec_folder)
+        print_manual_command "$handoff_path" "$spec_folder" || true
         exit 1
       fi
       SKILLED_LOOP_HOPS=$((10#$SKILLED_LOOP_HOPS + 1))

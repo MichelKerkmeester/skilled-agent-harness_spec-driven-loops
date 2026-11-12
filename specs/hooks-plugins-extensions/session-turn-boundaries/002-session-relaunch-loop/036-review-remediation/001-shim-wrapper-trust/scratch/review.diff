@@ -1,0 +1,335 @@
+diff --git a/.skilled/bin/README.md b/.skilled/bin/README.md
+index 1f1e3d5524..e6de296b78 100644
+--- a/.skilled/bin/README.md
++++ b/.skilled/bin/README.md
+@@ -159,7 +159,7 @@ Main flow:
+ | Entrypoint | Type | Purpose |
+ |---|---|---|
+ | `bash .skilled/bin/skilled-loop [claude|pi|opencode|codex|cursor|devin] [args...]` | CLI wrapper | Run one of six runtimes under one loop id (`cursor` launches `cursor-agent`). The wrapper relaunches eligible sessions with a handoff seed. Claude, Pi, OpenCode and Codex arm automatically through their adapters. Cursor and Devin never arm. They enter through `/speckit:handoff`. When the session exits with the record still pending, the wrapper prints the manual claim command. Each relaunch it starts is recorded in the hop history that `session-relaunch.cjs history` prints. |
+-| `source /path/to/repo/.skilled/bin/skilled-loop-shell.sh` | Shell shim | Defines `claude`, `pi`, `opencode`, `codex`, `devin` and `cursor-agent` as functions that start an interactive session through the nearest `.skilled/bin/skilled-loop` at or above the current directory, a symlinked `.skilled` included. Subcommands, print and one-shot modes, version and help, non-terminal launches and sessions already under a loop run the binary directly. `skilled_loop_resolve <runtime> [args...]` prints the wrapper the shim would use, or nothing. |
++| `source /path/to/repo/.skilled/bin/skilled-loop-shell.sh` | Shell shim | Defines `claude`, `pi`, `opencode`, `codex`, `devin` and `cursor-agent` as functions that start an interactive session through the nearest `.skilled/bin/skilled-loop` at or above the current directory, a symlinked `.skilled` included. It trusts wrappers inside the sourced checkout, its registered linked worktrees or absolute checkouts in `SKILLED_LOOP_TRUSTED_CHECKOUTS` (colon-separated). Unset or empty trusts no extra checkout. Subcommands, print and one-shot modes, version and help, non-terminal launches and sessions already under a loop run the binary directly. `skilled_loop_resolve <runtime> [args...]` prints the wrapper the shim would use, or nothing. |
+ | `node .skilled/bin/system-skill-advisor-launcher.cjs` | CLI | Start the system-skill-advisor daemon. |
+ | `node .skilled/bin/skill-advisor.cjs <tool> [flags]` | CLI | Call any of the 9 system-skill-advisor tools from a shell. pass `--trusted` for maintainer mutations. |
+ | `node .skilled/bin/hf-model-server.cjs` | CLI | Start the local embedding server (via `main`). |
+diff --git a/.skilled/bin/skilled-loop-shell.sh b/.skilled/bin/skilled-loop-shell.sh
+index 25e8bb5de7..3cd9f47428 100644
+--- a/.skilled/bin/skilled-loop-shell.sh
++++ b/.skilled/bin/skilled-loop-shell.sh
+@@ -20,6 +20,51 @@
+ # Agent tool shells are rebuilt from a snapshot that drops single-underscore
+ # functions, so every helper a runtime function calls keeps a plain name.
+ 
++skilled_loop_real_path() {
++  # Resolve symlinks without shadowing shell variables such as zsh's PATH-backed path.
++  local entry="$1"
++  local directory
++  local target
++  while [ -L "$entry" ]; do
++    directory=${entry%/*}
++    if [ "$directory" = "$entry" ]; then
++      directory=.
++    fi
++    target=$(readlink "$entry") || return 1
++    case "$target" in
++      /*) entry=$target ;;
++      *) entry=$directory/$target ;;
++    esac
++  done
++  directory=${entry%/*}
++  if [ "$directory" = "$entry" ]; then
++    directory=.
++  fi
++  directory=$(CDPATH= cd -P "$directory" 2>/dev/null && pwd -P) || return 1
++  printf '%s/%s\n' "$directory" "${entry##*/}"
++}
++
++# An unresolved or misplaced shim cannot let the caller's directory establish trust.
++if [ -n "${BASH_VERSION:-}" ]; then
++  skilled_loop_source_file=${BASH_SOURCE[0]}
++else
++  skilled_loop_source_file=$(eval 'printf "%s" "${(%):-%x}"')
++fi
++skilled_loop_source_file=$(skilled_loop_real_path "$skilled_loop_source_file" 2>/dev/null) || skilled_loop_source_file=''
++case "$skilled_loop_source_file" in
++  */*) skilled_loop_source_dir=${skilled_loop_source_file%/*} ;;
++  *) skilled_loop_source_dir='' ;;
++esac
++case "$skilled_loop_source_dir" in
++  */.skilled/bin)
++    skilled_loop_sourced_bin=$skilled_loop_source_dir
++    skilled_loop_sourced_checkout=${skilled_loop_sourced_bin%/.skilled/bin}
++    [ -n "$skilled_loop_sourced_checkout" ] || skilled_loop_sourced_checkout=/
++    ;;
++  *) skilled_loop_sourced_checkout='' ;;
++esac
++unset skilled_loop_source_file skilled_loop_source_dir skilled_loop_sourced_bin
++
+ # ───────────────────────────────────────────────────────────────
+ # 1. WRAPPER RESOLUTION
+ # ───────────────────────────────────────────────────────────────
+@@ -156,12 +201,79 @@ skilled_loop_opens_session() {
+   return 0
+ }
+ 
+-# Prints the nearest skilled-loop wrapper at or above $PWD, or nothing at the root.
++# Succeeds when a canonical path is the same as or below a trusted directory.
++skilled_loop_path_inside() {
++  local candidate="$1"
++  local checkout="$2"
++  [ -n "$candidate" ] && [ -n "$checkout" ] || return 1
++  if [ "$checkout" = '/' ]; then
++    case "$candidate" in /*) return 0 ;; esac
++  else
++    case "$candidate" in "$checkout"|"$checkout"/*) return 0 ;; esac
++  fi
++  return 1
++}
++
++# Prints the real path of the nearest trusted wrapper it checked, or nothing at the root.
+ skilled_loop_find_wrapper() {
+   local directory="$PWD"
++  local sourced_checkout="${skilled_loop_sourced_checkout:-}"
++  local wrapper
++  local candidate
++  local trusted
++  local trusted_path
++  local worktree_list
++  local worktree_path
++  local line
+   while :; do
+     if [ -f "$directory/.skilled/bin/skilled-loop" ]; then
+-      printf '%s\n' "$directory/.skilled/bin/skilled-loop"
++      wrapper="$directory/.skilled/bin/skilled-loop"
++      candidate=$(skilled_loop_real_path "$wrapper") || return 0
++      if [ -n "$sourced_checkout" ]; then
++        if skilled_loop_path_inside "$candidate" "$sourced_checkout"; then
++          printf '%s\n' "$candidate"
++          return 0
++        fi
++      fi
++
++      trusted=${SKILLED_LOOP_TRUSTED_CHECKOUTS:-}
++      while [ -n "$trusted" ]; do
++        case "$trusted" in
++          *:*) trusted_path=${trusted%%:*}; trusted=${trusted#*:} ;;
++          *) trusted_path=$trusted; trusted='' ;;
++        esac
++        case "$trusted_path" in
++          /*) ;;
++          *) continue ;;
++        esac
++        if [ -n "$trusted_path" ] && [ -d "$trusted_path" ]; then
++          trusted_path=$(CDPATH= cd -P "$trusted_path" 2>/dev/null && pwd -P)
++          if skilled_loop_path_inside "$candidate" "$trusted_path"; then
++            printf '%s\n' "$candidate"
++            return 0
++          fi
++        fi
++      done
++
++      if [ -n "$sourced_checkout" ]; then
++        worktree_list=$(env -u GIT_DIR -u GIT_COMMON_DIR -u GIT_WORK_TREE -u GIT_INDEX_FILE -u GIT_OBJECT_DIRECTORY -u GIT_NAMESPACE git -C "$sourced_checkout" worktree list --porcelain 2>/dev/null) || return 0
++        while IFS= read -r line; do
++          case "$line" in
++            'worktree '*)
++              worktree_path=${line#worktree }
++              if [ -d "$worktree_path" ]; then
++                worktree_path=$(CDPATH= cd -P "$worktree_path" 2>/dev/null && pwd -P)
++                if skilled_loop_path_inside "$candidate" "$worktree_path"; then
++                  printf '%s\n' "$candidate"
++                  return 0
++                fi
++              fi
++              ;;
++          esac
++        done <<EOF
++$worktree_list
++EOF
++      fi
+       return 0
+     fi
+     if [ -z "$directory" ] || [ "$directory" = '/' ]; then
+diff --git a/.skilled/hooks/session-relaunch/README.md b/.skilled/hooks/session-relaunch/README.md
+index bc2d867375..8858f19c0e 100644
+--- a/.skilled/hooks/session-relaunch/README.md
++++ b/.skilled/hooks/session-relaunch/README.md
+@@ -101,6 +101,8 @@ The shim defines `claude`, `pi`, `opencode`, `codex`, `devin` and `cursor-agent`
+ - The arguments open an interactive session. Subcommands such as `claude doctor`, `codex exec` or `opencode run`, print modes such as `-p`, version and help run the binary directly. Each list comes from that runtime's own `--help`. Codex `resume` and `fork`, and Cursor `agent`, `ls` and `resume` stay wrapped, because they open a session.
+ - A `.skilled/bin/skilled-loop` exists in the current directory or one of its parents. A `.skilled` that is a symlink counts, so the wrapper also starts in a repository that links this checkout's `.skilled`.
+ 
++The shim resolves only wrappers inside the sourced checkout, a linked worktree registered to it, or an absolute checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS` as a colon-separated value. An unset or empty variable trusts no extra checkout.
++
+ The automatic hop in a linking repository also needs that repository's runtime folders, because each runtime reads its hooks or plugins from the project it starts in. Link `.claude`, `.codex`, `.opencode` and `.pi` from this checkout as well, or give each its own session-relaunch registration. A repository that links only `.skilled` starts under the wrapper but never receives the nudge, so its sessions hop only through `/speckit:handoff`.
+ 
+ In every other case the function runs `command <binary> "$@"`. `skilled_loop_resolve <runtime> [args...]` prints the wrapper path the shim would use, or nothing. It skips the terminal check, so you can call it from a script to see the decision. Claude, Pi, OpenCode and Codex then hop on their own near the context threshold. Cursor and Devin run under the wrapper too, but they hop only after `/speckit:handoff`, as section 1 describes. An alias with the same name still takes precedence over the function, so remove a `claude` alias before you rely on the shim. Agent tool shells, such as Claude Code's, are rebuilt from a function snapshot that drops names starting with a single underscore, so every helper the shim's functions call keeps a plain `skilled_loop_` name.
+diff --git a/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs b/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
+index 455bc1ed50..4d047eb175 100644
+--- a/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
+@@ -57,9 +57,33 @@ function sandbox(t) {
+   return { root, repo, nested, plain, wrapper: path.join(repo, '.skilled', 'bin', 'skilled-loop') };
+ }
+ 
++function gitSandbox(t) {
++  const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'skilled-loop-git-')));
++  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
++  const checkout = path.join(root, 'checkout');
++  fs.mkdirSync(path.join(checkout, '.skilled', 'bin'), { recursive: true });
++  fs.copyFileSync(SHIM, path.join(checkout, '.skilled', 'bin', 'skilled-loop-shell.sh'));
++  fs.copyFileSync(path.join(SKILLED_DIR, 'bin', 'skilled-loop'), path.join(checkout, '.skilled', 'bin', 'skilled-loop'));
++  fs.mkdirSync(path.join(checkout, 'a', 'b'), { recursive: true });
++  const init = spawnSync('git', ['init', '-q', checkout], { encoding: 'utf8' });
++  assert.equal(init.status, 0, init.stderr);
++  const configName = spawnSync('git', ['-C', checkout, 'config', 'user.name', 'Test'], { encoding: 'utf8' });
++  const configEmail = spawnSync('git', ['-C', checkout, 'config', 'user.email', 'test@example.invalid'], { encoding: 'utf8' });
++  assert.equal(configName.status, 0, configName.stderr);
++  assert.equal(configEmail.status, 0, configEmail.stderr);
++  spawnSync('git', ['-C', checkout, 'add', '.'], { encoding: 'utf8' });
++  const commit = spawnSync('git', ['-C', checkout, 'commit', '-qm', 'fixture'], { encoding: 'utf8' });
++  assert.equal(commit.status, 0, commit.stderr);
++  const linked = path.join(root, 'linked');
++  const worktree = spawnSync('git', ['-C', checkout, 'worktree', 'add', '-qb', 'linked-fixture', linked], { encoding: 'utf8' });
++  assert.equal(worktree.status, 0, worktree.stderr);
++  return { root, checkout, linked, shim: path.join(checkout, '.skilled', 'bin', 'skilled-loop-shell.sh') };
++}
++
+ function cleanEnv(extra = {}) {
+   const env = { ...withoutRelaunchSwitches(process.env), ...extra };
+   if (!('SKILLED_LOOP_ID' in extra)) delete env.SKILLED_LOOP_ID;
++  if (!('SKILLED_LOOP_TRUSTED_CHECKOUTS' in extra)) delete env.SKILLED_LOOP_TRUSTED_CHECKOUTS;
+   return env;
+ }
+ 
+@@ -76,11 +100,111 @@ function resolve(shell, directory, runtime, args, env = cleanEnv()) {
+   return result.stdout;
+ }
+ 
++function resolveWithShim(shell, shim, directory, runtime = 'claude', env = cleanEnv()) {
++  const script = 'source "$1" || exit 90; cd "$2" || exit 91; skilled_loop_resolve "$3"';
++  const result = spawnSync(shell.command, [...shell.flags, script, 'skilled-loop-shell-test', shim, directory, runtime], {
++    encoding: 'utf8', env,
++  });
++  assert.equal(result.stderr, '', `${shell.name} stderr`);
++  assert.equal(result.status, 0, `${shell.name} exit`);
++  return result.stdout;
++}
++
+ function label(shell, runtime, args) {
+   return `${shell.name} ${runtime} ${JSON.stringify(args)}`;
+ }
+ 
+ for (const shell of SHELLS) {
++  test(`${shell.name}: a wrapper outside the sourced checkout is not resolved`, (t) => {
++    const box = gitSandbox(t);
++    const outside = path.join(box.root, 'checkout-child');
++    fs.mkdirSync(path.join(outside, '.skilled', 'bin'), { recursive: true });
++    fs.writeFileSync(path.join(outside, '.skilled', 'bin', 'skilled-loop'), 'exit 0\n');
++    const init = spawnSync('git', ['init', '-q', outside], { encoding: 'utf8' });
++    assert.equal(init.status, 0, init.stderr);
++    const configName = spawnSync('git', ['-C', outside, 'config', 'user.name', 'Test'], { encoding: 'utf8' });
++    const configEmail = spawnSync('git', ['-C', outside, 'config', 'user.email', 'test@example.invalid'], { encoding: 'utf8' });
++    assert.equal(configName.status, 0, configName.stderr);
++    assert.equal(configEmail.status, 0, configEmail.stderr);
++    const add = spawnSync('git', ['-C', outside, 'add', '.'], { encoding: 'utf8' });
++    assert.equal(add.status, 0, add.stderr);
++    const commit = spawnSync('git', ['-C', outside, 'commit', '-qm', 'fixture'], { encoding: 'utf8' });
++    assert.equal(commit.status, 0, commit.stderr);
++    assert.equal(resolveWithShim(shell, box.shim, outside), '');
++  });
++
++  test(`${shell.name}: an inherited GIT_DIR cannot vouch for a planted repository`, (t) => {
++    const box = gitSandbox(t);
++    const planted = path.join(box.root, 'planted');
++    const wrapper = path.join(planted, '.skilled', 'bin', 'skilled-loop');
++    fs.mkdirSync(path.dirname(wrapper), { recursive: true });
++    fs.writeFileSync(wrapper, 'exit 0\n');
++    const init = spawnSync('git', ['init', '-q', planted], { encoding: 'utf8' });
++    assert.equal(init.status, 0, init.stderr);
++    const configName = spawnSync('git', ['-C', planted, 'config', 'user.name', 'Test'], { encoding: 'utf8' });
++    const configEmail = spawnSync('git', ['-C', planted, 'config', 'user.email', 'test@example.invalid'], { encoding: 'utf8' });
++    assert.equal(configName.status, 0, configName.stderr);
++    assert.equal(configEmail.status, 0, configEmail.stderr);
++    const add = spawnSync('git', ['-C', planted, 'add', '.'], { encoding: 'utf8' });
++    assert.equal(add.status, 0, add.stderr);
++    const commit = spawnSync('git', ['-C', planted, 'commit', '-qm', 'fixture'], { encoding: 'utf8' });
++    assert.equal(commit.status, 0, commit.stderr);
++    const env = cleanEnv({ GIT_DIR: path.join(planted, '.git') });
++    assert.equal(resolveWithShim(shell, box.shim, planted, 'claude', env), '');
++  });
++
++  test(`${shell.name}: the shim sourced through a symlinked file trusts its real checkout`, (t) => {
++    const box = gitSandbox(t);
++    const symlink = path.join(box.root, 'shim-link.sh');
++    fs.symlinkSync(box.shim, symlink);
++    const wrapper = path.join(box.checkout, '.skilled', 'bin', 'skilled-loop');
++    assert.equal(resolveWithShim(shell, symlink, box.checkout), `${wrapper}\n`);
++  });
++
++  test(`${shell.name}: a shell copy without the stored checkout trusts nothing`, (t) => {
++    const box = gitSandbox(t);
++    const script = 'source "$1" || exit 90; unset skilled_loop_sourced_checkout; cd "$2" || exit 91; skilled_loop_resolve claude';
++    const result = spawnSync(shell.command, [...shell.flags, script, 'skilled-loop-shell-test', box.shim, box.checkout], {
++      encoding: 'utf8',
++      env: cleanEnv(),
++    });
++    assert.equal(result.stdout, '');
++    assert.equal(result.stderr, '');
++    assert.equal(result.status, 0);
++  });
++
++  test(`${shell.name}: a wrapper in a registered linked worktree is resolved`, (t) => {
++    const box = gitSandbox(t);
++    const wrapper = path.join(box.linked, '.skilled', 'bin', 'skilled-loop');
++    fs.mkdirSync(path.dirname(wrapper), { recursive: true });
++    fs.writeFileSync(wrapper, 'exit 0\n');
++    assert.equal(resolveWithShim(shell, box.shim, box.linked), `${wrapper}\n`);
++  });
++
++  test(`${shell.name}: a .git file alone does not register a trusted worktree`, (t) => {
++    const box = gitSandbox(t);
++    const fake = path.join(box.root, 'fake-worktree');
++    const wrapper = path.join(fake, '.skilled', 'bin', 'skilled-loop');
++    fs.mkdirSync(path.dirname(wrapper), { recursive: true });
++    fs.writeFileSync(path.join(fake, '.git'), `gitdir: ${path.join(box.checkout, '.git')}\n`);
++    fs.writeFileSync(wrapper, 'exit 0\n');
++    assert.equal(resolveWithShim(shell, box.shim, fake), '');
++  });
++
++  test(`${shell.name}: explicitly trusted checkouts resolve and unset or empty trusts nothing extra`, (t) => {
++    const box = gitSandbox(t);
++    const trusted = path.join(box.root, 'trusted');
++    const wrapper = path.join(trusted, '.skilled', 'bin', 'skilled-loop');
++    fs.mkdirSync(path.dirname(wrapper), { recursive: true });
++    fs.writeFileSync(wrapper, 'exit 0\n');
++    assert.equal(resolveWithShim(shell, box.shim, trusted), '');
++    assert.equal(resolveWithShim(shell, box.shim, trusted, 'claude', cleanEnv({ SKILLED_LOOP_TRUSTED_CHECKOUTS: '' })), '');
++    assert.equal(
++      resolveWithShim(shell, box.shim, trusted, 'claude', cleanEnv({ SKILLED_LOOP_TRUSTED_CHECKOUTS: trusted })),
++      `${wrapper}\n`,
++    );
++  });
++
+   test(`${shell.name}: every interactive form finds the wrapper through a symlinked .skilled`, (t) => {
+     const box = sandbox(t);
+     for (const [runtime, forms] of Object.entries(INTERACTIVE)) {
+@@ -88,7 +212,7 @@ for (const shell of SHELLS) {
+         for (const directory of [box.repo, box.nested]) {
+           assert.equal(
+             resolve(shell, directory, runtime, args),
+-            `${box.wrapper}\n`,
++            `${fs.realpathSync(box.wrapper)}\n`,
+             `${label(shell, runtime, args)} from ${directory}`,
+           );
+         }
+@@ -223,9 +347,9 @@ for (const shell of SHELLS) {
+       'claude --model opus; claude -p hi; cursor-agent --model gpt-5; cursor-agent login',
+       { tty: true },
+     );
+-    assert.match(output, new RegExp(`^WRAPPED ${box.wrapper} claude --model opus$`, 'm'));
++    assert.match(output, new RegExp(`^WRAPPED ${fs.realpathSync(box.wrapper)} claude --model opus$`, 'm'));
+     assert.match(output, /^DIRECT claude -p hi$/m);
+-    assert.match(output, new RegExp(`^WRAPPED ${box.wrapper} cursor --model gpt-5$`, 'm'));
++    assert.match(output, new RegExp(`^WRAPPED ${fs.realpathSync(box.wrapper)} cursor --model gpt-5$`, 'm'));
+     assert.match(output, /^DIRECT cursor-agent login$/m);
+   });
+ 

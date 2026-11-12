@@ -1,0 +1,17 @@
+# Red run before the source change
+
+Command:
+env -u AI_SESSION_CHILD node --test --test-name-pattern 'two waiters never hold the append lock together|an unsafe state directory gets no lock directory' .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+
+Exit status: 1
+
+✖ two waiters never hold the append lock together (1805.8015ms)
+✖ an unsafe state directory gets no lock directory (2.238542ms)
+ℹ tests 2
+ℹ pass 0
+ℹ fail 2
+
+✖ two waiters never hold the append lock together
+  AssertionError [ERR_ASSERTION]: critical sections overlap: [{"start":1794488850892,"end":1794488851592},{"start":1794488851292,"end":1794488851992}]
+✖ an unsafe state directory gets no lock directory
+  TypeError [Error]: withStateLock is not a function

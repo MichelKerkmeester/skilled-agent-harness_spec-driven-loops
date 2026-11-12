@@ -175,7 +175,20 @@ test('resolveWindow selects a one-million-token window for a model containing [1
   );
 });
 
-test('resolveWindow defaults to a 200000-token window', (t) => {
+test('resolveWindow returns null when no setting and no model marker supplies a window', (t) => {
+  const sandbox = createSandbox(t);
+  assert.equal(
+    resolveWindow({
+      env: sandbox.env,
+      cwd: sandbox.repoRoot,
+      home: sandbox.home,
+      model: '',
+    }),
+    null,
+  );
+});
+
+test('resolveWindow returns null instead of the 200000 default', (t) => {
   const sandbox = createSandbox(t);
   assert.equal(
     resolveWindow({
@@ -184,7 +197,7 @@ test('resolveWindow defaults to a 200000-token window', (t) => {
       home: sandbox.home,
       model: 'claude-haiku-5-5',
     }),
-    200000,
+    null,
   );
 });
 
@@ -361,7 +374,7 @@ test('resolveWindow stops at the repository boundary and walks nowhere outside a
   fs.mkdirSync(inside);
   assert.equal(
     resolveWindow({ env: sandbox.env, cwd: inside, home: sandbox.home, model: 'claude-haiku-5-5' }),
-    200000,
+    null,
   );
 
   const outside = path.join(sandbox.root, 'loose', 'dir');
@@ -373,7 +386,7 @@ test('resolveWindow stops at the repository boundary and walks nowhere outside a
       home: sandbox.home,
       model: 'claude-haiku-5-5',
     }),
-    200000,
+    null,
   );
 });
 

@@ -19,11 +19,9 @@ const DEFAULT_TAIL_BYTES = 262144;
 // A single tool result or image row can outgrow the default tail, so a miss widens the
 // read up to this bound before the usage counts as absent.
 const MAX_TAIL_BYTES = 16 * 1024 * 1024;
-// Provider model names announce the million-token window with this marker; a model
-// that omits it reports against the standard window.
+// Provider model names announce the million-token window with this marker.
 const LARGE_WINDOW_MARKER = '[1m]';
 const LARGE_WINDOW_TOKENS = 1000000;
-const DEFAULT_WINDOW_TOKENS = 200000;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -329,7 +327,7 @@ function projectDirectories(cwd) {
  *
  * @param {{env?: NodeJS.ProcessEnv, cwd?: string, home?: string, model?: string}}
  *   [options] - Runtime paths and model.
- * @returns {number} Configured window or the model-aware default.
+ * @returns {number|null} Configured window, or null when unknown.
  */
 function resolveWindow({
   env = process.env,
@@ -353,9 +351,11 @@ function resolveWindow({
     if (windowTokens !== null) return windowTokens;
   }
 
+  // With no setting and no marker the window is unknown. Assuming a size here made a larger
+  // real window nudge far too early, so the caller decides what an unknown window means.
   return String(model).includes(LARGE_WINDOW_MARKER)
     ? LARGE_WINDOW_TOKENS
-    : DEFAULT_WINDOW_TOKENS;
+    : null;
 }
 
 /**

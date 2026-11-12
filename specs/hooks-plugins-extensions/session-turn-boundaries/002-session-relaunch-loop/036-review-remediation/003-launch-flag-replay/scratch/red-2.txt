@@ -1,0 +1,22 @@
+✖ Claude first launch arguments are replayed with --permission-mode and --add-dir (586.19225ms)
+✖ Pi first launch arguments are replayed (543.632375ms)
+✖ OpenCode first launch arguments are replayed (540.907459ms)
+✖ Codex first launch arguments are replayed (542.876375ms)
+✖ Cursor first launch arguments are replayed (555.257875ms)
+✖ Devin first launch arguments are replayed (557.807666ms)
+✖ deny list flags are absent from a hop (544.439167ms)
+✖ a hop replaces the start prompt and the record settings (556.30725ms)
+✖ an unknown option before a bare word declines the hop (570.190917ms)
+ℹ tests 9
+ℹ pass 0
+ℹ fail 9
+ℹ duration_ms 5044.534375
+✖ Claude first launch arguments are replayed with --permission-mode and --add-dir (586.19225ms)
+✖ Pi first launch arguments are replayed (543.632375ms)
+✖ OpenCode first launch arguments are replayed (540.907459ms)
+✖ Codex first launch arguments are replayed (542.876375ms)
+✖ Cursor first launch arguments are replayed (555.257875ms)
+✖ Devin first launch arguments are replayed (557.807666ms)
+✖ deny list flags are absent from a hop (544.439167ms)
+✖ a hop replaces the start prompt and the record settings (556.30725ms)
+✖ an unknown option before a bare word declines the hop (570.190917ms)

@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation",
+  "description": "Remediate the eight findings of the in-session handover review of the session relaunch loop",
+  "keywords": [
+    "remediate",
+    "eight",
+    "findings",
+    "in-session",
+    "handover",
+    "review",
+    "session",
+    "relaunch",
+    "loop"
+  ],
+  "lastUpdated": "2026-11-12T15:11:53.034Z",
+  "specId": "036",
+  "folderSlug": "review-remediation",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "12-11-26_10-03__planned-the-remediation-of-the-eight-findings-of.md",
+    "12-11-26_15-33__closed-packet-036-all-seven-children-complete.md",
+    "12-11-26_16-11__all-seven-phases-are-closed-the-four-findings-of.md"
+  ]
+}

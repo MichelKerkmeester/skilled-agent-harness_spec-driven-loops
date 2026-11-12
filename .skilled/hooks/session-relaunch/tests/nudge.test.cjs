@@ -23,6 +23,7 @@ const {
   validSessionId,
   readState,
   writeState,
+  markWindowUnknown,
   handoffPending,
   hopLimitReached,
 } = nudgeModule;
@@ -775,6 +776,70 @@ test('nudge state round-trips in the isolated runtime directory', (t) => {
 
   writeState(SESSION_ID, 2, env);
   assert.equal(readState(SESSION_ID, env), 2);
+});
+
+test('markWindowUnknown marks a session once', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-nudge-'));
+  const env = { ...withoutRelaunchSwitches(process.env), XDG_RUNTIME_DIR: root };
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+
+  writeState(SESSION_ID, 2, env);
+  assert.equal(markWindowUnknown(SESSION_ID, env), true);
+  assert.equal(markWindowUnknown(SESSION_ID, env), false);
+  assert.equal(readState(SESSION_ID, env), 2);
+  assert.deepEqual(
+    JSON.parse(fs.readFileSync(path.join(core.stateDir(env), `nudge-${SESSION_ID}.json`), 'utf8')),
+    { level: 2, windowUnknown: true },
+  );
+});
+
+test('a later state write keeps the unknown-window mark', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-nudge-'));
+  const env = { ...withoutRelaunchSwitches(process.env), XDG_RUNTIME_DIR: root };
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+
+  assert.equal(markWindowUnknown(SESSION_ID, env), true);
+  writeState(SESSION_ID, 1, env);
+  nudgeModule.rearmAfterWithdraw({ sessionId: SESSION_ID, env });
+
+  assert.equal(markWindowUnknown(SESSION_ID, env), false);
+  assert.equal(readState(SESSION_ID, env), 1);
+  assert.equal(
+    JSON.parse(fs.readFileSync(path.join(core.stateDir(env), `nudge-${SESSION_ID}.json`), 'utf8'))
+      .windowUnknown,
+    true,
+  );
+});
+
+test('a state directory that cannot be inspected reads as empty', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-nudge-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const runtimeFile = path.join(root, 'not-a-directory');
+  fs.writeFileSync(runtimeFile, '');
+  const env = { ...withoutRelaunchSwitches(process.env), XDG_RUNTIME_DIR: runtimeFile };
+
+  assert.equal(readState(SESSION_ID, env), 0);
+});
+
+test('a nudge state file behind a symlinked state directory reads as empty', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-nudge-'));
+  const stateTarget = path.join(root, 'state-target');
+  const env = { ...withoutRelaunchSwitches(process.env), XDG_RUNTIME_DIR: root };
+  delete env.AI_SESSION_CHILD;
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+
+  fs.mkdirSync(stateTarget);
+  fs.writeFileSync(
+    path.join(stateTarget, `nudge-${SESSION_ID}.json`),
+    JSON.stringify({ level: 2, rearm: { pending: true } }),
+  );
+  fs.symlinkSync(stateTarget, core.stateDir(env));
+
+  assert.equal(readState(SESSION_ID, env), 0);
+  assert.deepEqual(
+    nudgeModule.nudgeDecision({ ratio: 0.8, threshold: 0.8, sessionId: SESSION_ID, env }),
+    { nudge: true, level: 1, reason: 'outside-loop' },
+  );
 });
 
 test('writeState repairs a permissive state directory back to private mode', (t) => {

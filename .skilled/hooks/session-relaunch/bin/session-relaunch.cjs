@@ -68,6 +68,10 @@ const SUBCOMMANDS = {
     summary: `Print the latest hops from the hop history, ${hopHistory.DEFAULT_HISTORY_LINES}`
       + ' by default.',
   },
+  window: {
+    syntax: 'window',
+    summary: 'Print the configured Claude context window or the settings needed to configure it.',
+  },
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -709,6 +713,10 @@ function consume(args) {
   const loopId = options['--loop-id'];
   if (!loopId) throw new Error('--loop-id is required');
   const statePath = core.relaunchFilePath(loopId);
+  if (core.inspectStateDir(core.stateDir()) !== true) {
+    process.stdout.write(`${JSON.stringify({ handoff: '', spec_folder: '', note: 'missing' })}\n`);
+    return 0;
+  }
   // A withdraw rewrites the record under its lock, and the wrapper consumes in a call of its
   // own after should-relaunch approved the hop. Reading, judging and removing the record
   // under that same lock is what lets a withdraw that landed in between still stop the hop.
@@ -726,7 +734,15 @@ function consume(args) {
         && core.WITHDRAWN_DISARM_REASONS.has(locked.disarmReason),
     };
   });
-  const handoffPath = typeof record?.handoff === 'string' ? record.handoff : '';
+  let handoffPath = '';
+  let handoffOutsideDropped = false;
+  if (typeof record?.handoff === 'string' && record.handoff !== '') {
+    try {
+      handoffPath = handoffPathWithinRepo(record.handoff);
+    } catch {
+      handoffOutsideDropped = true;
+    }
+  }
   let specFolder = '';
   let goalPacket = '';
   let invalidSpecFolder = false;
@@ -751,6 +767,11 @@ function consume(args) {
   if (invalidSpecFolder) {
     try {
       core.appendLog('spec-folder-dropped', { loopId });
+    } catch {}
+  }
+  if (handoffOutsideDropped) {
+    try {
+      core.appendLog('handoff-outside-dropped', { loopId });
     } catch {}
   }
   // A note with no goal packet keeps the output it always had.
@@ -846,6 +867,16 @@ function history(args) {
   return 0;
 }
 
+function window(args) {
+  if (args.length > 0) throw invocationError('window takes no arguments');
+  const { resolveWindow } = require('../lib/context-usage.cjs');
+  const tokens = resolveWindow({ env: process.env, cwd: process.cwd() });
+  process.stdout.write(tokens === null
+    ? 'Claude context window: none configured. Set autoCompactWindow in the Claude settings or SESSION_RELAUNCH_WINDOW_TOKENS in the environment. A [1m] model uses one million tokens without either.\n'
+    : `Claude context window: ${tokens} tokens\n`);
+  return 0;
+}
+
 /**
  * Execute one session-relaunch CLI command.
  *
@@ -872,6 +903,7 @@ function main(args = process.argv.slice(2)) {
       case 'hand-over': return handOver(commandArgs);
       case 'cancel': return cancel(commandArgs);
       case 'history': return history(commandArgs);
+      case 'window': return window(commandArgs);
       default: throw invocationError(
         `command must be one of ${Object.keys(SUBCOMMANDS).join(', ')}`,
       );

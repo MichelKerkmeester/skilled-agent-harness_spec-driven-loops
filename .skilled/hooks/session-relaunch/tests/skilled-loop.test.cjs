@@ -30,6 +30,18 @@ const COMMAND_RUNTIME_SPEC_FOLDER =
   'specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes';
 const LOOP_ID_PATTERN = /^[0-9]+$/;
 const OPEN_NOTE = '---\nstatus: open\n---\n';
+// A record an earlier wrapper left behind: withdrawn and without a note, so a surviving one
+// makes the wrapper decline silently instead of relaunching into a note this suite never wrote.
+const LEFTOVER_RECORD = {
+  version: 1,
+  status: 'disarmed',
+  disarmReason: 'cancelled',
+  handoff: '',
+  sessionId: 'session-leftover-0001',
+  runtime: 'claude',
+  hops: 0,
+  armedAt: '2026-01-01T00:00:00.000Z',
+};
 
 function expectedClaudeManualCommand(handoffPath, specFolder) {
   let suffix = '';
@@ -114,6 +126,17 @@ const existing = fs.existsSync(recordPath)
   ? fs.readFileSync(recordPath, "utf8").trim().split("\\n").filter(Boolean)
   : [];
 const invocation = existing.length + 1;
+// A case that plants a record before the wrapper starts reads this probe to prove the
+// wrapper cleaned up before the runtime ran, not after the runtime exited.
+const stateProbePath = process.env.STATE_PROBE_FILE;
+if (stateProbePath && invocation === 1) {
+  const stateDirectory = path.join(process.env.XDG_RUNTIME_DIR, "skilled-relaunch");
+  const ownRecordPath = path.join(
+    stateDirectory,
+    "relaunch-" + (process.env.SKILLED_LOOP_ID || "") + ".json",
+  );
+  fs.writeFileSync(stateProbePath, fs.existsSync(ownRecordPath) ? "present" : "absent");
+}
 const record = {
   args: process.argv.slice(1),
   runtime: process.env.SESSION_RELAUNCH_TEST_RUNTIME || "claude",
@@ -281,6 +304,46 @@ function runWrapperScript(sandbox, wrapperPath, args) {
     encoding: 'utf8',
     timeout: 12000,
   });
+}
+
+// The wrapper names its record after its own process id, so a leftover record can only be
+// planted for it by a launcher that writes its own $$ and then execs the wrapper in place.
+function installLeftoverRecordLauncher(sandbox, records) {
+  const launcherPath = path.join(sandbox.root, 'leftover-record-launcher.sh');
+  const plantedIdPath = path.join(sandbox.root, 'planted-loop-id.txt');
+  const recordTemplate = JSON.stringify({ ...LEFTOVER_RECORD, loopId: '__LOOP_ID__' });
+  const [recordHead, recordTail] = recordTemplate.split('__LOOP_ID__');
+  const lines = [
+    '#!/usr/bin/env bash',
+    'set -euo pipefail',
+    'state_directory="$XDG_RUNTIME_DIR/skilled-relaunch"',
+    'mkdir -p "$state_directory"',
+    `printf '%s' "$$" > '${plantedIdPath}'`,
+  ];
+  for (const [recordName, loopId] of records) {
+    lines.push(
+      `printf '%s%s%s' '${recordHead}' "${loopId}" '${recordTail}' > "$state_directory/${recordName}"`,
+    );
+  }
+  lines.push(`exec /bin/bash "${WRAPPER_PATH}" "$@"`);
+  fs.writeFileSync(launcherPath, `${lines.join('\n')}\n`, { mode: 0o755 });
+  return launcherPath;
+}
+
+// A symlink at the wrapper's own record path proves the cleanup unlinks the record it names
+// and never the file that path resolves to.
+function installSymlinkedRecordLauncher(sandbox, targetPath) {
+  const launcherPath = path.join(sandbox.root, 'symlinked-record-launcher.sh');
+  const lines = [
+    '#!/usr/bin/env bash',
+    'set -euo pipefail',
+    'state_directory="$XDG_RUNTIME_DIR/skilled-relaunch"',
+    'mkdir -p "$state_directory"',
+    `ln -s '${targetPath}' "$state_directory/relaunch-$$.json"`,
+    `exec /bin/bash "${WRAPPER_PATH}" "$@"`,
+  ];
+  fs.writeFileSync(launcherPath, `${lines.join('\n')}\n`, { mode: 0o755 });
+  return launcherPath;
 }
 
 function runWrapper(sandbox, args) {
@@ -547,6 +610,171 @@ test('second invocation uses only the seed and name, recorded cwd, and the same 
   )), false);
   assert.equal(handOverLines(sandbox).length, 1);
   assert.equal(handOverLines(sandbox)[0].split('\t')[3], 'hop 1');
+});
+
+function assertHopReplaysArguments(t, runtime, args, expectedHopArgs) {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const result = runWrapper(sandbox, [runtime, ...args]);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, expectedHopArgs(`${SEED} ${handoffPath}`));
+}
+
+test('Claude first launch arguments are replayed with --permission-mode and --add-dir', (t) => {
+  assertHopReplaysArguments(t, 'claude', [
+    '--add-dir', '/tmp', '--permission-mode', 'plan', 'first prompt',
+  ], (seed) => [seed, '--add-dir', '/tmp', '--permission-mode', 'plan']);
+});
+
+test('Pi first launch arguments are replayed', (t) => {
+  assertHopReplaysArguments(t, 'pi', ['--skill', '/tmp/s', 'first prompt'],
+    (seed) => [seed, '--skill', '/tmp/s']);
+});
+
+test('OpenCode first launch arguments are replayed', (t) => {
+  assertHopReplaysArguments(t, 'opencode', ['--server', 'ws://example', '--auto', 'first prompt'],
+    (seed) => ['--prompt', seed, '--server', 'ws://example', '--auto']);
+});
+
+test('Codex first launch arguments are replayed', (t) => {
+  assertHopReplaysArguments(t, 'codex', [
+    '-c', 'approval_policy="never"', '-c', 'model_reasoning_effort="high"', 'first prompt',
+  ], (seed) => [
+    '--no-daemon', '-c', 'model_reasoning_effort="high"', seed,
+    '-c', 'approval_policy="never"',
+  ]);
+});
+
+test('Cursor first launch arguments are replayed', (t) => {
+  assertHopReplaysArguments(t, 'cursor', ['--api-key', 'token', '--trust', 'first prompt'],
+    (seed) => [seed, '--api-key', 'token', '--trust']);
+});
+
+test('Devin first launch arguments are replayed', (t) => {
+  assertHopReplaysArguments(t, 'devin', ['--config', '/tmp/devin.json', '--sandbox', 'first prompt'],
+    (seed) => ['--config', '/tmp/devin.json', '--sandbox', '--', seed]);
+});
+
+test('deny list flags are absent from a hop', (t) => {
+  const cases = [
+    ['claude', ['--permission-mode', 'plan', '--session-id', 's1', '--continue', '--cloud', 'first prompt'],
+      (seed) => [seed, '--permission-mode', 'plan']],
+    ['pi', ['--no-mcp', '--session', 's1', '--continue', 'first prompt'],
+      (seed) => [seed, '--no-mcp']],
+    ['opencode', ['--auto', '--session', 's1', '--continue', 'first prompt'],
+      (seed) => ['--prompt', seed, '--auto']],
+    ['codex', ['--search', '--image', '/tmp/a.png', '--worktree', '--last', 'first prompt'],
+      (seed) => ['--no-daemon', seed, '--search']],
+    ['cursor', ['--trust', '--worktree-base', 'main', '--continue', 'first prompt'],
+      (seed) => [seed, '--trust']],
+    ['devin', ['--sandbox', '--prompt-file', '/tmp/p.md', '--continue', 'first prompt'],
+      (seed) => ['--sandbox', '--', seed]],
+  ];
+
+  for (const [runtime, args, expectedHopArgs] of cases) {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+    const result = runWrapper(sandbox, [runtime, ...args]);
+    assert.equal(result.status, 0, `${runtime}: ${result.stderr}`);
+    const records = readRecords(recordPath);
+    assert.equal(records.length, 2, runtime);
+    assert.deepEqual(records[1].args, expectedHopArgs(`${SEED} ${handoffPath}`), runtime);
+  }
+});
+
+test('a hop keeps a dash-leading value and stops at the separator', (t) => {
+  assertHopReplaysArguments(t, 'claude', [
+    '--append-system-prompt', '-x', '--permission-mode', 'plan', '--', 'first prompt',
+  ], (seed) => [seed, '--append-system-prompt', '-x', '--permission-mode', 'plan']);
+});
+
+test('an optional value never swallows the next option', (t) => {
+  assertHopReplaysArguments(t, 'claude', [
+    '--debug', '--continue', '--verbose', 'first prompt',
+  ], (seed) => [seed, '--debug', '--verbose']);
+});
+
+test('an unknown option that carries its value is not ambiguous', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const result = runWrapper(sandbox, ['claude', '--third-party-flag=1', 'first prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  assert.doesNotMatch(result.stderr, /warning: .*ambiguous/);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--third-party-flag=1']);
+});
+
+test('a joined short resume option is not replayed', (t) => {
+  assertHopReplaysArguments(t, 'claude', ['-rabc', '--verbose', 'first prompt'],
+    (seed) => [seed, '--verbose']);
+});
+
+test('Codex takes its model from a config setting when no model flag is given', (t) => {
+  for (const configArgs of [
+    ['-c', 'model="o3"'],
+    ['--config', 'model="o3"'],
+    ['--config=model="o3"'],
+  ]) {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+    const result = runWrapper(sandbox, ['codex', ...configArgs, 'first prompt']);
+    assert.equal(result.status, 0, result.stderr);
+    const records = readRecords(recordPath);
+    assert.equal(records.length, 2);
+    assert.deepEqual(records[1].args, ['--no-daemon', '-m', 'o3', `${SEED} ${handoffPath}`]);
+  }
+});
+
+test('a hop replaces the start prompt and the record settings', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox, {
+    markers: '1', RECORD_MODEL: 'sonnet', RECORD_EFFORT: 'high',
+  });
+  const result = runWrapper(sandbox, [
+    'claude', '--model', 'launch model', '--effort', 'low', '--name', 'launch name',
+    '--permission-mode', 'plan', 'first prompt',
+  ]);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  const args = records[1].args;
+  assert.equal(args.filter((arg) => arg === '--model').length, 1);
+  assert.equal(args.filter((arg) => arg === '--effort').length, 1);
+  assert.equal(args.filter((arg) => arg === '--name').length, 1);
+  assert.equal(args.includes('first prompt'), false);
+  assert.ok(args.includes('sonnet'));
+  assert.ok(args.includes('high'));
+  assert.ok(args.includes('launch name'));
+  assert.ok(args.includes('--permission-mode'));
+});
+
+test('an unknown option before a bare word declines the hop', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const result = runWrapper(sandbox, ['claude', '--not-a-real-option', 'word']);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /warning: cannot tell whether word is the value of --not-a-real-option or the start prompt/);
+  assert.match(result.stderr, /warning: the launch options are ambiguous; not relaunching/);
+  assert.match(result.stdout, new RegExp(handoffPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  assert.equal(readRecords(recordPath).length, 1);
+});
+
+test('an unknown option with no bare word after it is replayed', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const result = runWrapper(sandbox, [
+    'claude', '--not-a-real-option', '--verbose', 'first prompt',
+  ]);
+  assert.equal(result.status, 0, result.stderr);
+  assert.doesNotMatch(result.stderr, /warning: cannot tell whether/);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [
+    `${SEED} ${handoffPath}`, '--not-a-real-option', '--verbose',
+  ]);
 });
 
 test('devin runtime dispatch does not fall through to claude', (t) => {
@@ -1017,7 +1245,7 @@ test('opencode 2 does not duplicate an operator-supplied --standalone', (t) => {
   assert.equal(result.status, 0, result.stderr);
   const records = readRecords(recordPath);
   assert.deepEqual(records[0].args, ['--standalone', '--auto']);
-  assert.deepEqual(records[1].args, ['--standalone', '--prompt', `${SEED} ${handoffPath}`]);
+  assert.deepEqual(records[1].args, ['--standalone', '--prompt', `${SEED} ${handoffPath}`, '--auto']);
 });
 
 test('opencode 2 relaunch drops -m because its root command has no model flag', (t) => {
@@ -1090,6 +1318,83 @@ test('opencode without --standalone in its help keeps the launch and the -m repl
   const records = readRecords(recordPath);
   assert.deepEqual(records[0].args, ['-m', 'p/m']);
   assert.deepEqual(records[1].args, ['-m', 'p/m', '--prompt', `${SEED} ${handoffPath}`]);
+});
+
+test('wrapper removes its own leftover relaunch record before the first launch', (t) => {
+  const sandbox = createSandbox(t);
+  const probePath = path.join(sandbox.root, 'state-probe.txt');
+  const { recordPath } = installRuntimeStub(sandbox, { STATE_PROBE_FILE: probePath });
+  const launcherPath = installLeftoverRecordLauncher(sandbox, [['relaunch-$$.json', '$$']]);
+
+  const result = runWrapperScript(sandbox, launcherPath, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const loopId = readRecords(recordPath)[0].env.SKILLED_LOOP_ID;
+  assert.match(loopId, LOOP_ID_PATTERN);
+  assert.equal(
+    fs.readFileSync(path.join(sandbox.root, 'planted-loop-id.txt'), 'utf8'),
+    loopId,
+  );
+  assert.equal(fs.readFileSync(probePath, 'utf8'), 'absent');
+  assert.equal(fs.existsSync(path.join(
+    sandbox.xdgRuntimeDir, 'skilled-relaunch', `relaunch-${loopId}.json`,
+  )), false);
+});
+
+test('a leftover relaunch record for another loop is kept', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox);
+  const launcherPath = installLeftoverRecordLauncher(sandbox, [
+    ['relaunch-$$.json', '$$'],
+    ['relaunch-999999.json', '999999'],
+  ]);
+
+  const result = runWrapperScript(sandbox, launcherPath, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const loopId = readRecords(recordPath)[0].env.SKILLED_LOOP_ID;
+  assert.notEqual(loopId, '999999');
+  const otherRecordPath = path.join(
+    sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch-999999.json',
+  );
+  assert.equal(fs.existsSync(otherRecordPath), true);
+  assert.deepEqual(
+    JSON.parse(fs.readFileSync(otherRecordPath, 'utf8')),
+    { ...LEFTOVER_RECORD, loopId: '999999' },
+  );
+});
+
+test('an own leftover record that is a symlink is removed and its target is kept', (t) => {
+  const sandbox = createSandbox(t);
+  const outsideRecordPath = path.join(sandbox.root, 'outside-record.json');
+  const outsideContent = JSON.stringify(LEFTOVER_RECORD);
+  fs.writeFileSync(outsideRecordPath, outsideContent);
+  const probePath = path.join(sandbox.root, 'state-probe.txt');
+  const { recordPath } = installRuntimeStub(sandbox, { STATE_PROBE_FILE: probePath });
+  const launcherPath = installSymlinkedRecordLauncher(sandbox, outsideRecordPath);
+
+  const result = runWrapperScript(sandbox, launcherPath, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  // The runtime reads the probe, so the removal must have happened before the launch; the
+  // wrapper's own consume after the runtime exits would otherwise cover for a late cleanup.
+  assert.equal(fs.readFileSync(probePath, 'utf8'), 'absent');
+  const loopId = readRecords(recordPath)[0].env.SKILLED_LOOP_ID;
+  assert.match(loopId, LOOP_ID_PATTERN);
+  const ownRecordPath = path.join(
+    sandbox.xdgRuntimeDir, 'skilled-relaunch', `relaunch-${loopId}.json`,
+  );
+  // lstat does not follow the link, so a link left behind counts as present even when its
+  // target is gone.
+  let ownRecordPresent = true;
+  try {
+    fs.lstatSync(ownRecordPath);
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+    ownRecordPresent = false;
+  }
+  assert.equal(ownRecordPresent, false);
+  assert.equal(fs.readFileSync(outsideRecordPath, 'utf8'), outsideContent);
 });
 
 test('wrapper declines a stale armed record and logs the decline', (t) => {
@@ -1961,9 +2266,9 @@ const FLAG_VALUE_CASES = [
     arguments: ['--model', '--', '--resume'],
   },
   {
-    name: 'short model before a resume flag',
+    name: 'short model before a denied flag',
     runtime: 'codex',
-    arguments: ['-m', '--resume'],
+    arguments: ['-m', '--worktree'],
   },
   {
     name: 'short Pi extension before a resume flag',

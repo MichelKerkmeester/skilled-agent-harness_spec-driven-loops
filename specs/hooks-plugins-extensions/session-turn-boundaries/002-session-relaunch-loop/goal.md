@@ -44,13 +44,13 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Phases close in order: Claude Code, then Pi and OpenCode, then Codex, Cursor, Devin and Hermes, then review and closure. Read-only spikes of the next phase may overlap it. |
-| D2 | The trigger is 80% of the effective window; auto-compaction stays the fallback. `autoCompactEnabled` and `autoCompactWindow` never change. |
-| D3 | The handoff is a standalone note. With a bound packet, `/speckit:save` runs before the hop, the claim seed carries the packet as the Gate 3 answer and `/speckit:resume` runs after the claim. A Gate 3 Skip is carried in the seed as `none`. |
-| D4 | A runtime gets an automatic trigger only on a spike-verified event. Otherwise it enters through `/speckit:handoff`. |
-| D5 | Luna (cli-codex) builds, SWE (cli-devin) reviews and the orchestrator verifies. Without Luna quota, SWE builds and a fresh SWE session reviews. Code follows sk-code-opencode; docs go through sk-doc. |
-| D6 | Phase work runs in an sk-git worktree merged to main, or on main with operator approval. Nothing is pushed without the operator. |
-| D7 | Live runs and provider probes use OpenAI with `gpt-6-luna`. Devin's live run uses `swe-2-max`. A live OpenCode run proving the repo default runs `llmgateway/deepseek-v4.1-flash` variant `max`. Nothing else is substituted. Hermes and Cursor have no live run. |
+| D1 | Phases close in order: Claude Code, then Pi and OpenCode, then Codex, Cursor, Devin and Hermes, then review and closure. Read-only spikes of the next phase may overlap it |
+| D2 | The trigger is 80% of the effective window; auto-compaction stays the fallback. `autoCompactEnabled` and `autoCompactWindow` never change |
+| D3 | The handoff is a standalone note. With a bound packet, `/speckit:save` runs before the hop, the seed carries the packet as the Gate 3 answer and `/speckit:resume` runs after the claim. A Gate 3 Skip is carried as `none` |
+| D4 | A runtime gets an automatic trigger only on a spike-verified event, otherwise through `/speckit:handoff` |
+| D5 | Luna (cli-codex) builds, SWE (cli-devin) reviews and the orchestrator verifies. Without Luna quota, SWE builds and a fresh SWE session reviews. Code follows sk-code-opencode, docs sk-doc |
+| D6 | Phase work runs in an sk-git worktree merged to main, or on main with operator approval. Nothing is pushed without the operator |
+| D7 | Live runs and provider probes use OpenAI with `gpt-6-luna`. Devin's live run uses `swe-2-max`. A live OpenCode run proving the repo default runs `llmgateway/deepseek-v4.1-flash` variant `max`. Nothing else is substituted. Hermes and Cursor have no live run |
 
 <!-- /ANCHOR:directive -->
 
@@ -78,6 +78,7 @@ phase and binds as if written here.
 | 033-research-remediation | `033-research-remediation/goal.md` |
 | 034-default-off-opt-in | `034-default-off-opt-in/goal.md` |
 | 035-known-gap-fixes | `035-known-gap-fixes/goal.md` |
+| 036-review-remediation | `036-review-remediation/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -143,5 +144,6 @@ and findings belong here.
 | Phase 011 added | Operator, 2026-10-19: "Fix all p1, p2, p3", "Plus bug", "And all open items". Runs in worktree 156, merged to main |
 | Binding rows 033 to 035 | 2026-10-25: the binding table stopped at 011. Rows added for the children that hold a `goal.md` (033, 034, 035); 012 to 032 have none. The rows took the slice to 4,171 characters, so decision and criterion prose was cut in the budget-and-handoff section 3 order (steps 5 and 6; steps 1 to 4 had nothing to cut) to 3,997. No decision or criterion was removed. The chat slice changed, so it is resent |
 | D6 amendment 2 | Operator, 2026-10-25: "Amend D6". Phases 033 to 035 ran on main with operator approval, so D6 now allows main when the operator approves. D7's wording was shortened to keep the slice within budget, with no change of meaning |
+| Binding row 036 | 2026-11-12: phase 036 was added with a `goal.md`, so its row is in the binding table. The row took the slice to 4,043 characters. Decision prose was shortened in the budget-and-handoff section 3 order (step 5): D3 says "the seed" for "the claim seed" and drops "in the seed", D4 joins its two sentences, D5 shortens its last clause, and D1, D2, D6 and D7 lose their closing full stop. No decision or criterion was removed or changed in meaning. The binding exception below still holds, so the chat slice is not resent |
 | Binding exception | Operator, 2026-10-25: "Record as exception". Children 012 to 032 predate goal files and hold no `goal.md`, so `check-goal.cjs` keeps reporting missing binding rows for them. That finding is a recorded exception, not a defect, and because it stays open the chat slice is not resent |
 <!-- /ANCHOR:log -->

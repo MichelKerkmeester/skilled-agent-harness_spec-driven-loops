@@ -1,0 +1,8 @@
+ℹ tests 176
+ℹ suites 0
+ℹ pass 173
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 126324.307416

@@ -1,0 +1,108 @@
+✔ bash: a wrapper outside the sourced checkout is not resolved (624.85ms)
+✔ bash: the shim sourced through a symlinked file trusts its real checkout (529.899458ms)
+✖ bash: a shell copy without the stored checkout trusts nothing (486.325167ms)
+✔ bash: a wrapper in a registered linked worktree is resolved (553.945167ms)
+✔ bash: a .git file alone does not register a trusted worktree (472.379375ms)
+✔ bash: explicitly trusted checkouts resolve and unset or empty trusts nothing extra (512.902708ms)
+✔ bash: every interactive form finds the wrapper through a symlinked .skilled (383.451875ms)
+✔ bash: subcommands, print modes, version and help pass through (436.438833ms)
+✔ bash: a directory with no .skilled above it resolves nothing (59.626291ms)
+✔ bash: a session already under the loop resolves nothing (47.834917ms)
+✔ bash: an unknown runtime resolves nothing (17.720333ms)
+✔ zsh: a wrapper outside the sourced checkout is not resolved (505.560375ms)
+✖ zsh: the shim sourced through a symlinked file trusts its real checkout (758.635792ms)
+✖ zsh: a shell copy without the stored checkout trusts nothing (1030.9895ms)
+✔ zsh: a wrapper in a registered linked worktree is resolved (555.262417ms)
+✔ zsh: a .git file alone does not register a trusted worktree (618.478917ms)
+✔ zsh: explicitly trusted checkouts resolve and unset or empty trusts nothing extra (684.187375ms)
+✔ zsh: every interactive form finds the wrapper through a symlinked .skilled (707.439167ms)
+✔ zsh: subcommands, print modes, version and help pass through (506.900208ms)
+✔ zsh: a directory with no .skilled above it resolves nothing (110.457083ms)
+✔ zsh: a session already under the loop resolves nothing (110.359917ms)
+✔ zsh: an unknown runtime resolves nothing (21.3025ms)
+✔ bash: without a terminal the runtime function runs the binary directly (30.572709ms)
+✔ bash: on a terminal the runtime function hands the launch to the wrapper (100.806125ms)
+✔ bash: runtime functions still work after a snapshot drops single-underscore functions (50.877791ms)
+✔ zsh: without a terminal the runtime function runs the binary directly (32.742584ms)
+✔ zsh: on a terminal the runtime function hands the launch to the wrapper (96.022208ms)
+✔ zsh: runtime functions still work after a snapshot drops single-underscore functions (53.606ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 25
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10155.242458
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:134:3
+✖ bash: a shell copy without the stored checkout trusts nothing (486.325167ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-loop-git-fOZg9C/checkout/.skilled/bin/skilled-loop-shell.sh: line 222: skilled_loop_sourced_checkout: unbound variable\n'
+  - ''
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:142:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-loop-git-fOZg9C/checkout/.skilled/bin/skilled-loop-shell.sh: line 222: skilled_loop_sourced_checkout: unbound variable\n',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:126:3
+✖ zsh: the shim sourced through a symlinked file trusts its real checkout (758.635792ms)
+  AssertionError [ERR_ASSERTION]: zsh stderr
+  + actual - expected
+  
+  + 'skilled_loop_real_path:9: command not found: readlink\n'
+  - ''
+  
+      at resolveWithShim (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:108:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:131:18)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'skilled_loop_real_path:9: command not found: readlink\n',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:134:3
+✖ zsh: a shell copy without the stored checkout trusts nothing (1030.9895ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'skilled_loop_find_wrapper:13: skilled_loop_sourced_checkout: parameter not set\n'
+  - ''
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:142:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'skilled_loop_find_wrapper:13: skilled_loop_sourced_checkout: parameter not set\n',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

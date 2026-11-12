@@ -43,6 +43,8 @@ const {
   goalSwitchOn,
   resolveGoalPacket,
   recordGoalPacket,
+  withAppendLock,
+  withStateLock,
 } = relaunchCore;
 
 // The suite also runs from inside a looped session, whose wrapper exports these variables,
@@ -862,6 +864,58 @@ test('readRelaunchFile returns the parsed record or null when absent', (t) => {
   writeRelaunchRecord(sandbox, record);
   assert.deepEqual(readRelaunchFile(LOOP_ID, sandbox.env), record);
   assert.equal(readRelaunchFile('loop-missing', sandbox.env), null);
+});
+
+test('readRelaunchFile reads no record from a symlinked state directory', (t) => {
+  const sandbox = createSandbox(t);
+  const statePath = stateDir(sandbox.env);
+  const redirectTarget = path.join(sandbox.root, 'redirect-state');
+  fs.mkdirSync(redirectTarget, { recursive: true });
+  fs.writeFileSync(
+    path.join(redirectTarget, `relaunch-${LOOP_ID}.json`),
+    JSON.stringify({ version: 1, status: 'armed', loopId: LOOP_ID }),
+  );
+  fs.symlinkSync(redirectTarget, statePath, 'dir');
+
+  const stderrLines = [];
+  const stderrWrite = process.stderr.write;
+  process.stderr.write = (chunk) => {
+    stderrLines.push(String(chunk));
+    return true;
+  };
+  t.after(() => {
+    process.stderr.write = stderrWrite;
+  });
+
+  assert.equal(readRelaunchFile(LOOP_ID, sandbox.env), null);
+  assert.deepEqual(stderrLines, [
+    `[session-relaunch] relaunch state directory is not a real directory owned by the current user: ${statePath}\n`,
+  ]);
+
+  fs.unlinkSync(statePath);
+  fs.mkdirSync(statePath, { recursive: true, mode: 0o700 });
+  fs.writeFileSync(
+    path.join(statePath, `relaunch-${LOOP_ID}.json`),
+    JSON.stringify({ version: 1, status: 'armed', loopId: LOOP_ID }),
+  );
+  const getuid = process.getuid;
+  if (typeof getuid === 'function') {
+    process.getuid = () => getuid.call(process) + 1;
+    try {
+      assert.equal(readRelaunchFile(LOOP_ID, sandbox.env), null);
+    } finally {
+      process.getuid = getuid;
+    }
+    assert.equal(stderrLines.length, 2);
+    assert.equal(
+      stderrLines[1],
+      `[session-relaunch] relaunch state directory is not a real directory owned by the current user: ${statePath}\n`,
+    );
+  }
+
+  const missingSandbox = createSandbox(t);
+  assert.equal(readRelaunchFile(LOOP_ID, missingSandbox.env), null);
+  assert.equal(stderrLines.length, typeof getuid === 'function' ? 2 : 1);
 });
 
 test('readRelaunchFile treats invalid JSON as absent and logs the loop id', (t) => {
@@ -2141,6 +2195,252 @@ test('two concurrent claims have one winner', async (t) => {
   assert.equal(winners[0].claimedBy, winner);
   assert.equal(parseHandoff(readNote(handoffPath)).frontmatter.claimed_by, winner);
   assert.equal(fs.existsSync(`${handoffPath}.lock`), false);
+});
+
+// Only separate processes contend on the file lock, and the stale reclaim runs only when one
+// waiter reads the lock before another removes it. A preload widens that window for each
+// waiter's removal, so the two critical sections overlap unless only one waiter at a time may
+// reclaim and the lock's age is read again before removal.
+test('two waiters never hold the append lock together', async (t) => {
+  const sandbox = createSandbox(t);
+  const logPath = path.join(sandbox.root, 'append.log');
+  const lockPath = `${logPath}.lock`;
+  fs.mkdirSync(lockPath);
+  const staleSeconds = (Date.now() - 60000) / 1000;
+  fs.utimesSync(lockPath, staleSeconds, staleSeconds);
+  const corePath = path.resolve(__dirname, '../lib/relaunch-core.cjs');
+  const barrier = path.join(sandbox.root, 'lock-barrier');
+  fs.mkdirSync(barrier);
+  const goPath = path.join(barrier, 'go');
+  const preloadPath = path.join(sandbox.root, 'slow-rmdir.cjs');
+  fs.writeFileSync(preloadPath, [
+    "const fs = require('node:fs');",
+    'const realRmdirSync = fs.rmdirSync;',
+    "const delayMs = Number(process.env.WAITER_RMDIR_DELAY_MS || 0);",
+    'fs.rmdirSync = (target, ...rest) => {',
+    "  if (delayMs > 0 && String(target).endsWith('.lock')) {",
+    '    const until = Date.now() + delayMs;',
+    '    while (Date.now() < until) {}',
+    '  }',
+    '  return realRmdirSync(target, ...rest);',
+    '};',
+    '',
+  ].join('\n'));
+
+  const waiters = [100, 500].map((delayMs, index) => {
+    const readyPath = path.join(barrier, `ready-${index}`);
+    const resultPath = path.join(sandbox.root, `critical-section-${index}.json`);
+    const script = [
+      "const fs = require('node:fs');",
+      `const core = require(${JSON.stringify(corePath)});`,
+      `fs.writeFileSync(${JSON.stringify(readyPath)}, '');`,
+      'const deadline = Date.now() + 10000;',
+      `while (!fs.existsSync(${JSON.stringify(goPath)})) {`,
+      "  if (Date.now() > deadline) { process.stdout.write('{\"error\":\"barrier timeout\"}'); process.exit(2); }",
+      '}',
+      'let outcome;',
+      'try {',
+      `  core.withAppendLock(${JSON.stringify(logPath)}, () => {`,
+      '    const start = Date.now();',
+      '    const until = start + 700;',
+      '    while (Date.now() < until) {}',
+      '    const end = Date.now();',
+      `    fs.writeFileSync(${JSON.stringify(resultPath)}, JSON.stringify({ start, end }));`,
+      '  });',
+      '  outcome = { held: true };',
+      '} catch (error) {',
+      '  outcome = { held: false, error: error.message };',
+      '}',
+      'process.stdout.write(JSON.stringify(outcome));',
+      '',
+    ].join('\n');
+    const child = spawn(process.execPath, ['--require', preloadPath, '-e', script], {
+      env: { ...sandbox.env, WAITER_RMDIR_DELAY_MS: String(delayMs) },
+      stdio: ['ignore', 'pipe', 'ignore'],
+    });
+    let stdout = '';
+    child.stdout.on('data', (chunk) => { stdout += chunk; });
+    const done = new Promise((resolve) => {
+      child.once('error', () => resolve({ code: -1, stdout }));
+      child.once('close', (code) => resolve({ code, stdout }));
+    });
+    return { child, done, resultPath };
+  });
+  t.after(() => {
+    for (const { child } of waiters) {
+      if (child.exitCode === null && child.signalCode === null) child.kill('SIGKILL');
+    }
+  });
+
+  const readyDeadline = Date.now() + 10000;
+  while (fs.readdirSync(barrier).filter((name) => name.startsWith('ready-')).length < 2) {
+    assert.ok(Date.now() < readyDeadline, 'waiters never reached the barrier');
+    await new Promise((resolve) => setTimeout(resolve, 10));
+  }
+  fs.writeFileSync(goPath, '');
+
+  const results = await Promise.all(waiters.map(({ done }) => done));
+  assert.deepEqual(results.map(({ code }) => code), [0, 0], JSON.stringify(results));
+  for (const { stdout } of results) assert.deepEqual(JSON.parse(stdout), { held: true });
+
+  const sections = waiters.map(({ resultPath }) => JSON.parse(fs.readFileSync(resultPath, 'utf8')));
+  sections.sort((a, b) => a.start - b.start);
+  assert.ok(
+    sections[0].end <= sections[1].start,
+    `critical sections overlap: ${JSON.stringify(sections)}`,
+  );
+  assert.equal(fs.existsSync(lockPath), false);
+});
+
+// Eight waiters that read one stale lock at the same instant are the case a rename alone
+// does not survive: a waiter can rename a fresh lock another one just took, because its age
+// check and its removal are separate steps. The marker file is created with `wx`, so a
+// second create inside a critical section proves two waiters held the lock together.
+test('eight waiters never hold the append lock together', async (t) => {
+  const sandbox = createSandbox(t);
+  const corePath = path.resolve(__dirname, '../lib/relaunch-core.cjs');
+  const overlapPath = path.join(sandbox.root, 'append-lock-overlaps.txt');
+  const rounds = 6;
+  const waiterCount = 8;
+
+  for (let round = 0; round < rounds; round += 1) {
+    const logPath = path.join(sandbox.root, `append-${round}.log`);
+    const lockPath = `${logPath}.lock`;
+    const markerPath = `${logPath}.marker`;
+    fs.mkdirSync(lockPath);
+    const staleSeconds = (Date.now() - 60000) / 1000;
+    fs.utimesSync(lockPath, staleSeconds, staleSeconds);
+    const startAt = Date.now() + 250;
+    const script = [
+      "const fs = require('node:fs');",
+      `const core = require(${JSON.stringify(corePath)});`,
+      `const startAt = ${startAt};`,
+      'while (Date.now() < startAt) {}',
+      `core.withAppendLock(${JSON.stringify(logPath)}, () => {`,
+      '  let created = false;',
+      '  try {',
+      `    fs.writeFileSync(${JSON.stringify(markerPath)}, String(process.pid), { flag: 'wx' });`,
+      '    created = true;',
+      '  } catch (error) {',
+      "    if (error.code !== 'EEXIST') throw error;",
+      `    fs.appendFileSync(${JSON.stringify(overlapPath)}, \`overlap \${process.pid}\\n\`);`,
+      '  }',
+      '  const until = Date.now() + 4;',
+      '  while (Date.now() < until) {}',
+      `  if (created) fs.unlinkSync(${JSON.stringify(markerPath)});`,
+      '});',
+      '',
+    ].join('\n');
+
+    const waiters = Array.from({ length: waiterCount }, () => {
+      const child = spawn(process.execPath, ['-e', script], {
+        env: sandbox.env,
+        stdio: ['ignore', 'ignore', 'pipe'],
+        signal: AbortSignal.timeout(20000),
+      });
+      let stderr = '';
+      child.stderr.on('data', (chunk) => { stderr += chunk; });
+      const done = new Promise((resolve) => {
+        child.once('error', () => resolve({ code: -1, stderr }));
+        child.once('close', (code) => resolve({ code, stderr }));
+      });
+      return { child, done };
+    });
+    t.after(() => {
+      for (const { child } of waiters) {
+        if (child.exitCode === null && child.signalCode === null) child.kill('SIGKILL');
+      }
+    });
+
+    const results = await Promise.all(waiters.map(({ done }) => done));
+    assert.deepEqual(
+      results.map(({ code }) => code),
+      new Array(waiterCount).fill(0),
+      JSON.stringify(results),
+    );
+  }
+
+  const overlaps = fs.existsSync(overlapPath) ? fs.readFileSync(overlapPath, 'utf8') : '';
+  assert.equal(overlaps, '');
+});
+
+// A redirected state directory is refused by the state guard, and the mkdir lock for a
+// record is created beside it before the guard runs, inside the directory the guard rejects.
+// A handoff note in a linked directory still needs its lock, because the note is not a record.
+test('an unsafe state directory gets no lock directory', (t) => {
+  const sandbox = createSandbox(t);
+  const targetDirectory = path.join(sandbox.root, 'state-target');
+  fs.mkdirSync(targetDirectory);
+  const linkedDirectory = path.join(sandbox.root, 'state-link');
+  fs.symlinkSync(targetDirectory, linkedDirectory);
+  const filePath = path.join(linkedDirectory, 'loop-test-00000001.json');
+
+  const seen = [];
+  const result = withStateLock(filePath, () => {
+    seen.push(fs.existsSync(`${filePath}.lock`));
+    return 'ran';
+  });
+
+  assert.equal(result, 'ran');
+  assert.deepEqual(seen, [false]);
+  assert.equal(fs.existsSync(path.join(targetDirectory, 'loop-test-00000001.json.lock')), false);
+
+  let noteLockHeld = false;
+  withAppendLock(filePath, () => {
+    noteLockHeld = fs.existsSync(`${filePath}.lock`);
+  });
+  assert.equal(noteLockHeld, true);
+  assert.equal(fs.existsSync(`${filePath}.lock`), false);
+});
+
+// A relaunch record lock shares the state guard's verdict: when the state directory is a
+// symlink, the writer must not create its lock inside the directory the guard refuses.
+test('arm takes no lock in an unsafe state directory', (t) => {
+  const sandbox = createSandbox(t);
+  const targetDirectory = path.join(sandbox.root, 'state-target');
+  fs.mkdirSync(targetDirectory);
+  fs.symlinkSync(targetDirectory, stateDir(sandbox.env), 'dir');
+  fs.writeFileSync(
+    path.join(targetDirectory, `relaunch-${LOOP_ID}.json`),
+    JSON.stringify({
+      loopId: LOOP_ID,
+      status: 'pending',
+      handoff: '/repo/note.md',
+      sessionId: SESSION_ID,
+    }),
+  );
+
+  const realMkdirSync = fs.mkdirSync;
+  const attempts = [];
+  let armed;
+  try {
+    fs.mkdirSync = (target, ...rest) => {
+      attempts.push(String(target));
+      return realMkdirSync(target, ...rest);
+    };
+    armed = arm({ loopId: LOOP_ID, env: sandbox.env, now: NOW });
+  } finally {
+    fs.mkdirSync = realMkdirSync;
+  }
+
+  assert.equal(armed, null);
+  assert.deepEqual(attempts.filter((target) => target.endsWith('.lock')), []);
+  assert.deepEqual(
+    fs.readdirSync(targetDirectory).filter((name) => name.endsWith('.lock')),
+    [],
+  );
+});
+
+// A runtime directory that is a regular file cannot be inspected at all. The transition must
+// report the record as absent, because a guard that cannot answer is not a reason to throw
+// out of a hook.
+test('arm returns null when the state directory cannot be inspected', (t) => {
+  const sandbox = createSandbox(t);
+  const runtimeFile = path.join(sandbox.root, 'runtime-file');
+  fs.writeFileSync(runtimeFile, '');
+  const env = { ...sandbox.env, XDG_RUNTIME_DIR: runtimeFile };
+
+  assert.equal(arm({ loopId: '4242', env }), null);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

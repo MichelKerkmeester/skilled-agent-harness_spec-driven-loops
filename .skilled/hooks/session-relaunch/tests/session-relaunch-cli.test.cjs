@@ -185,6 +185,42 @@ function runCli(sandbox, args, env = sandbox.env) {
   });
 }
 
+test('window names the missing settings when no window is configured', (t) => {
+  const sandbox = createSandbox(t);
+  const emptyDirectory = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-window-'));
+  t.after(() => fs.rmSync(emptyDirectory, { recursive: true, force: true }));
+  const env = { ...sandbox.env, HOME: emptyDirectory };
+  delete env.SESSION_RELAUNCH_WINDOW_TOKENS;
+
+  const unknown = spawnSync(process.execPath, [CLI_PATH, 'window'], {
+    cwd: emptyDirectory,
+    env,
+    encoding: 'utf8',
+    timeout: 5000,
+  });
+  assert.equal(unknown.status, 0, unknown.stderr);
+  assert.equal(unknown.stdout.trim().split(/\r?\n/).length, 1);
+  assert.match(unknown.stdout, /autoCompactWindow/);
+  assert.match(unknown.stdout, /SESSION_RELAUNCH_WINDOW_TOKENS/);
+
+  const configured = spawnSync(process.execPath, [CLI_PATH, 'window'], {
+    cwd: emptyDirectory,
+    env: { ...env, SESSION_RELAUNCH_WINDOW_TOKENS: '500000' },
+    encoding: 'utf8',
+    timeout: 5000,
+  });
+  assert.equal(configured.status, 0, configured.stderr);
+  assert.equal(configured.stdout.trim(), 'Claude context window: 500000 tokens');
+});
+
+test('window rejects an argument', (t) => {
+  const sandbox = createSandbox(t);
+  const result = runCli(sandbox, ['window', 'extra']);
+
+  assert.equal(result.status, 2);
+  assert.equal(result.stdout, '');
+});
+
 // The nested detection walks the live process table, so these runs keep the real ps
 // instead of the stub the sandbox puts first on PATH.
 function nestedRunEnv(sandbox) {
@@ -1432,6 +1468,43 @@ test('should-relaunch prints no-file JSON when the runtime directory is a file',
   });
 });
 
+test('should-relaunch and consume refuse a symlinked state directory', (t) => {
+  const sandbox = createSandbox(t);
+  const statePath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
+  const redirectTarget = path.join(sandbox.root, 'redirect-state');
+  fs.mkdirSync(redirectTarget, { recursive: true });
+  const filePath = path.join(redirectTarget, `relaunch-${LOOP_ID}.json`);
+  fs.writeFileSync(filePath, JSON.stringify({
+    version: 1,
+    status: 'armed',
+    loopId: LOOP_ID,
+    handoff: path.join(sandbox.repoRoot, 'outside.md'),
+    sessionId: SESSION_ID,
+    runtime: 'claude',
+    name: 'cli-session',
+    cwd: sandbox.repoRoot,
+    hops: 1,
+    armedAt: new Date().toISOString(),
+  }));
+  fs.symlinkSync(redirectTarget, statePath, 'dir');
+
+  const shouldRelaunch = runCli(sandbox, ['should-relaunch', '--loop-id', LOOP_ID]);
+  assert.equal(shouldRelaunch.status, 1, shouldRelaunch.stderr);
+  const shouldOutput = JSON.parse(shouldRelaunch.stdout);
+  assert.equal(shouldOutput.relaunch, false);
+  assert.equal(shouldOutput.reason, 'no-file');
+
+  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout), {
+    handoff: '',
+    spec_folder: '',
+    note: 'missing',
+  });
+  assert.equal(fs.existsSync(filePath), true);
+  assert.equal(fs.existsSync(`${filePath}.lock`), false);
+});
+
 test('claim exits zero and prints the claimed note body', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
@@ -1521,7 +1594,7 @@ test('an unknown subcommand exits two and lists the commands on stderr', (t) => 
   assert.equal(result.status, 2);
   assert.match(
     result.stderr,
-    /command must be one of prepare, should-relaunch, keep, claim, complete, consume, cancel, hand-over, history\n/,
+    /command must be one of prepare, should-relaunch, keep, claim, complete, consume, cancel, hand-over, history, window\n/,
   );
   assert.match(result.stderr, /claim <handoff-path>/);
   assert.equal(result.stdout, '');
@@ -1876,6 +1949,33 @@ test('consume returns the handoff path and its spec folder', (t) => {
   assert.equal(fs.existsSync(filePath), false);
 });
 
+test('consume refuses a handoff outside the handoffs directory', (t) => {
+  const sandbox = createSandbox(t);
+  writeHandoff(sandbox);
+  const outsidePath = path.join(sandbox.repoRoot, 'outside.md');
+  fs.writeFileSync(outsidePath, handoffText());
+  const filePath = writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'armed',
+    handoff: outsidePath,
+  });
+
+  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+  const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout), {
+    handoff: '',
+    spec_folder: '',
+    note: 'missing',
+  });
+  assert.equal(fs.existsSync(filePath), false);
+  assert.match(
+    fs.readFileSync(logPath, 'utf8'),
+    /handoff-outside-dropped loopId=loop-cli-00000001$/m,
+  );
+});
+
 test('consume preserves a Gate 3 Skip as a valid spec-folder value', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox, { specFolder: 'none' });
@@ -2112,6 +2212,7 @@ test('consume keeps a valid answer from a note whose frontmatter no longer parse
 
 test('consume reports a missing note and a note that is no longer open', (t) => {
   const sandbox = createSandbox(t);
+  fs.mkdirSync(handoffDirectory(sandbox), { recursive: true });
   const missingPath = path.join(handoffDirectory(sandbox), 'gone.md');
   writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed', handoff: missingPath });
   let result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);

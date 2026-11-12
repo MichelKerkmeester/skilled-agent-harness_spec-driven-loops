@@ -1,0 +1,22 @@
+✔ subagent-guard denies claim from a sub-agent (31.240833ms)
+✔ subagent-guard denies complete from a sub-agent (30.051417ms)
+✔ subagent-guard denies keep from a sub-agent (31.54425ms)
+✔ subagent-guard denies prepare from a sub-agent (30.448167ms)
+✔ subagent-guard denies cancel from a sub-agent (30.392375ms)
+✔ subagent-guard denies consume from a sub-agent (28.7955ms)
+✔ subagent-guard denies hand-over from a sub-agent (29.989542ms)
+✔ subagent-guard stays silent for the main session that carries no agent_id (28.805583ms)
+✔ subagent-guard stays silent for a whitespace-only agent_id (27.229166ms)
+✔ subagent-guard stays silent for a sub-agent reading the hop history (28.2285ms)
+✔ subagent-guard stays silent for an unrelated Bash command from a sub-agent (28.761583ms)
+✔ subagent-guard stays silent for a non-Bash tool call from a sub-agent (28.590083ms)
+✔ subagent-guard stays silent on stdin that is not valid JSON (28.426792ms)
+✔ subagent-guard stays silent when the relaunch concern is disabled (26.884917ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 445.4165

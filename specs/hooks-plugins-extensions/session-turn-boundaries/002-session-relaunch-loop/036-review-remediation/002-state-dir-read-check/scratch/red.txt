@@ -1,0 +1,4 @@
+targeted red run: tests 3, pass 0, fail 3, skipped 0; exit 1
+readRelaunchFile returned a symlinked record instead of null
+should-relaunch approved a record behind a symlinked state directory
+consume read and printed a handoff outside the handoffs directory

@@ -91,6 +91,50 @@ function runAdapter(sandbox, adapterPath, payload) {
   });
 }
 
+test('context-nudge skips and logs when the window is unknown', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-unknown-window-loop-0001';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const payload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  const log = fs.readFileSync(path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'), 'utf8');
+  assert.match(log, /context-nudge-skipped[^\n]*reason=window-unknown/);
+});
+
+test('context-nudge logs the unknown window once per session', async (t) => {
+  const sandbox = createSandbox(t);
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const payload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
+
+  await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+
+  const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
+  const firstSessionLines = fs.readFileSync(logPath, 'utf8')
+    .split(/\r?\n/)
+    .filter((line) => line.includes('context-nudge-skipped'));
+  assert.equal(firstSessionLines.length, 1);
+
+  await runAdapter(sandbox, CONTEXT_NUDGE_PATH, { ...payload, session_id: 'session-adapter-00000002' });
+  const allSkippedLines = fs.readFileSync(logPath, 'utf8')
+    .split(/\r?\n/)
+    .filter((line) => line.includes('context-nudge-skipped'));
+  assert.equal(allSkippedLines.length, 2);
+});
+
 function createPendingRecord(sandbox, loopId, sessionId, handoffPath, status = 'pending') {
   const stateDir = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
   fs.mkdirSync(stateDir, { recursive: true });

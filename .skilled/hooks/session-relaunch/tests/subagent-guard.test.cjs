@@ -153,6 +153,30 @@ test('subagent-guard denies prepare from a sub-agent', async (t) => {
   assertDenied(result);
 });
 
+test('subagent-guard denies cancel from a sub-agent', async (t) => {
+  const sandbox = createSandbox(t);
+  const result = await runGuard(sandbox, JSON.stringify(
+    subagentBashPayload(sandbox, `node ${CLI_PATH} cancel --loop-id 'loop-0001'`),
+  ));
+  assertDenied(result);
+});
+
+test('subagent-guard denies consume from a sub-agent', async (t) => {
+  const sandbox = createSandbox(t);
+  const result = await runGuard(sandbox, JSON.stringify(
+    subagentBashPayload(sandbox, `node ${CLI_PATH} consume --loop-id 'loop-0001'`),
+  ));
+  assertDenied(result);
+});
+
+test('subagent-guard denies hand-over from a sub-agent', async (t) => {
+  const sandbox = createSandbox(t);
+  const result = await runGuard(sandbox, JSON.stringify(
+    subagentBashPayload(sandbox, `node ${CLI_PATH} hand-over --handoff 'note.md'`),
+  ));
+  assertDenied(result);
+});
+
 test('subagent-guard stays silent for the main session that carries no agent_id', async (t) => {
   const sandbox = createSandbox(t);
   const result = await runGuard(sandbox, JSON.stringify(

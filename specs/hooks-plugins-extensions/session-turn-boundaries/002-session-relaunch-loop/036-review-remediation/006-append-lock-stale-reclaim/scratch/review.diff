@@ -1,0 +1,385 @@
+diff --git a/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs b/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs
+index fcaf1714c4..c9b200b943 100644
+--- a/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs
++++ b/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs
+@@ -853,7 +868,7 @@ function preparePending({
+  * @returns {Object|null} The armed record, or null when absent, unreadable, or not armable.
+  */
+ function arm({ loopId, cwd = process.cwd(), settings = {}, env = process.env, now }) {
+-  return withAppendLock(
++  return withStateLock(
+     relaunchFilePath(loopId, env),
+     () => armLocked({ loopId, cwd, settings, env, now }),
+   );
+@@ -914,7 +929,7 @@ function armLocked({ loopId, cwd, settings = {}, env, now }) {
+  * @returns {Object|null} The stamped record, or null when the record is no longer that arm.
+  */
+ function markSignalled({ loopId, handoff, armId, armedAt, env = process.env, now }) {
+-  return withAppendLock(relaunchFilePath(loopId, env), () => {
++  return withStateLock(relaunchFilePath(loopId, env), () => {
+     const record = readRelaunchFile(loopId, env);
+     if (
+       record?.status !== 'armed'
+@@ -975,7 +990,7 @@ function armableRecord(record, { loopId, sessionId, runtime, env = process.env }
+  */
+ function unarm(options) {
+   const { loopId, env = process.env } = options;
+-  return withAppendLock(relaunchFilePath(loopId, env), () => unarmLocked(options));
++  return withStateLock(relaunchFilePath(loopId, env), () => unarmLocked(options));
+ }
+ 
+ function unarmLocked({
+@@ -1015,7 +1030,7 @@ function unarmLocked({
+  * @returns {Object|null} The marked record, or null when no pending record exists.
+  */
+ function markDeferred({ loopId, env = process.env, now }) {
+-  return withAppendLock(relaunchFilePath(loopId, env), () => {
++  return withStateLock(relaunchFilePath(loopId, env), () => {
+     const record = readRelaunchFile(loopId, env);
+     if (record?.status !== 'pending') return null;
+     const deferred = { ...record, deferredAt: toIsoTimestamp(now) };
+@@ -1041,7 +1056,7 @@ function markDeferred({ loopId, env = process.env, now }) {
+  */
+ function withdrawRecord({ loopId, reason, accept, env = process.env, now }) {
+   // The disarm runs through the unlocked helper because the mkdir lock is not reentrant.
+-  return withAppendLock(relaunchFilePath(loopId, env), () => {
++  return withStateLock(relaunchFilePath(loopId, env), () => {
+     const record = readRelaunchFile(loopId, env);
+     if (!record || typeof record !== 'object' || !accept(record)) return null;
+     return unarmLocked({ loopId, env, reason, now });
+@@ -1049,7 +1064,8 @@ function withdrawRecord({ loopId, reason, accept, env = process.env, now }) {
+ }
+ 
+ /**
+- * Read one record; logging corrupt JSON may create the state directory.
++ * Read one record after inspecting the state directory; unsafe directories return null and write
++ * one stderr line. Logging corrupt JSON may create the state directory.
+  *
+  * @param {string} loopId - Wrapper process identifier.
+  * @param {NodeJS.ProcessEnv} [env=process.env] - Runtime environment.
+@@ -1409,10 +1436,35 @@ function withAppendLock(logPath, fn) {
+       try {
+         const ageMs = Date.now() - fs.statSync(lockPath).mtimeMs;
+         if (ageMs > APPEND_LOCK_STALE_MS) {
++          // Removing the live lock path here would race a waiter that created a fresh lock
++          // after this age check. A reclaim directory makes the reclaim exclusive, and the
++          // age is read again while it is held, so a fresh lock is never removed.
++          const reclaimPath = `${lockPath}.reclaim`;
+           try {
+-            fs.rmdirSync(lockPath);
+-          } catch (removeError) {
+-            if (removeError.code !== 'ENOENT') break;
++            fs.mkdirSync(reclaimPath, 0o700);
++          } catch (reclaimError) {
++            if (reclaimError.code !== 'EEXIST') break;
++            // A reclaim directory left behind by a killed waiter must not block later ones.
++            try {
++              const reclaimAgeMs = Date.now() - fs.statSync(reclaimPath).mtimeMs;
++              if (reclaimAgeMs > APPEND_LOCK_STALE_MS) fs.rmdirSync(reclaimPath);
++            } catch {}
++            Atomics.wait(APPEND_LOCK_SLEEP_CELL, 0, 0, 2);
++            continue;
++          }
++          try {
++            const staleAgainMs = Date.now() - fs.statSync(lockPath).mtimeMs;
++            if (staleAgainMs > APPEND_LOCK_STALE_MS) fs.rmdirSync(lockPath);
++          } catch (reclaimError) {
++            // A lock already gone is the normal outcome of losing the reclaim race; any
++            // other failure leaves the removal unproven, so this appender stops contending.
++            if (reclaimError.code !== 'ENOENT') break;
++          } finally {
++            try {
++              fs.rmdirSync(reclaimPath);
++            } catch {
++              // A reclaim directory already removed is not this appender's problem.
++            }
+           }
+           continue;
+         }
+@@ -1436,6 +1488,24 @@ function withAppendLock(logPath, fn) {
+   }
+ }
+ 
++/**
++ * Run `fn` under the append lock only when the directory holding a relaunch record is one
++ * the state guard accepts. Taking the lock in a redirected or foreign-owned directory would
++ * create a lock directory inside the very location the guard refuses, so the callback runs
++ * unlocked and its own check refuses the read or throws on the write. A directory that does
++ * not exist yet keeps the lock, because the writer creates it under the lock and then meets
++ * the same check.
++ *
++ * @template T
++ * @param {string} filePath - Path of the relaunch record whose lock is taken.
++ * @param {() => T} fn - Work to run under the lock.
++ * @returns {T} Whatever `fn` returns.
++ */
++function withStateLock(filePath, fn) {
++  if (inspectStateDir(path.dirname(filePath)) === false) return fn();
++  return withAppendLock(filePath, fn);
++}
++
+ /**
+  * Append one sanitized event line for operator-visible relaunch history.
+  *
+@@ -1913,6 +1984,7 @@ module.exports = {
+   isEntrypoint,
+   appendLog,
+   withAppendLock,
++  withStateLock,
+   readLockState,
+   lockOwnerPid,
+   lockIsExpired,
+diff --git a/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs b/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+index 70ef9f1dbb..0ad084e385 100644
+--- a/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+@@ -43,6 +43,8 @@ const {
+   goalSwitchOn,
+   resolveGoalPacket,
+   recordGoalPacket,
++  withAppendLock,
++  withStateLock,
+ } = relaunchCore;
+ 
+ // The suite also runs from inside a looped session, whose wrapper exports these variables,
+@@ -2143,6 +2197,240 @@ test('two concurrent claims have one winner', async (t) => {
+   assert.equal(fs.existsSync(`${handoffPath}.lock`), false);
+ });
+ 
++// Only separate processes contend on the file lock, and the stale reclaim runs only when one
++// waiter reads the lock before another removes it. A preload widens that window for each
++// waiter's removal, so the two critical sections overlap unless only one waiter at a time may
++// reclaim and the lock's age is read again before removal.
++test('two waiters never hold the append lock together', async (t) => {
++  const sandbox = createSandbox(t);
++  const logPath = path.join(sandbox.root, 'append.log');
++  const lockPath = `${logPath}.lock`;
++  fs.mkdirSync(lockPath);
++  const staleSeconds = (Date.now() - 60000) / 1000;
++  fs.utimesSync(lockPath, staleSeconds, staleSeconds);
++  const corePath = path.resolve(__dirname, '../lib/relaunch-core.cjs');
++  const barrier = path.join(sandbox.root, 'lock-barrier');
++  fs.mkdirSync(barrier);
++  const goPath = path.join(barrier, 'go');
++  const preloadPath = path.join(sandbox.root, 'slow-rmdir.cjs');
++  fs.writeFileSync(preloadPath, [
++    "const fs = require('node:fs');",
++    'const realRmdirSync = fs.rmdirSync;',
++    "const delayMs = Number(process.env.WAITER_RMDIR_DELAY_MS || 0);",
++    'fs.rmdirSync = (target, ...rest) => {',
++    "  if (delayMs > 0 && String(target).endsWith('.lock')) {",
++    '    const until = Date.now() + delayMs;',
++    '    while (Date.now() < until) {}',
++    '  }',
++    '  return realRmdirSync(target, ...rest);',
++    '};',
++    '',
++  ].join('\n'));
++
++  const waiters = [100, 500].map((delayMs, index) => {
++    const readyPath = path.join(barrier, `ready-${index}`);
++    const resultPath = path.join(sandbox.root, `critical-section-${index}.json`);
++    const script = [
++      "const fs = require('node:fs');",
++      `const core = require(${JSON.stringify(corePath)});`,
++      `fs.writeFileSync(${JSON.stringify(readyPath)}, '');`,
++      'const deadline = Date.now() + 10000;',
++      `while (!fs.existsSync(${JSON.stringify(goPath)})) {`,
++      "  if (Date.now() > deadline) { process.stdout.write('{\"error\":\"barrier timeout\"}'); process.exit(2); }",
++      '}',
++      'let outcome;',
++      'try {',
++      `  core.withAppendLock(${JSON.stringify(logPath)}, () => {`,
++      '    const start = Date.now();',
++      '    const until = start + 700;',
++      '    while (Date.now() < until) {}',
++      '    const end = Date.now();',
++      `    fs.writeFileSync(${JSON.stringify(resultPath)}, JSON.stringify({ start, end }));`,
++      '  });',
++      '  outcome = { held: true };',
++      '} catch (error) {',
++      '  outcome = { held: false, error: error.message };',
++      '}',
++      'process.stdout.write(JSON.stringify(outcome));',
++      '',
++    ].join('\n');
++    const child = spawn(process.execPath, ['--require', preloadPath, '-e', script], {
++      env: { ...sandbox.env, WAITER_RMDIR_DELAY_MS: String(delayMs) },
++      stdio: ['ignore', 'pipe', 'ignore'],
++    });
++    let stdout = '';
++    child.stdout.on('data', (chunk) => { stdout += chunk; });
++    const done = new Promise((resolve) => {
++      child.once('error', () => resolve({ code: -1, stdout }));
++      child.once('close', (code) => resolve({ code, stdout }));
++    });
++    return { child, done, resultPath };
++  });
++  t.after(() => {
++    for (const { child } of waiters) {
++      if (child.exitCode === null && child.signalCode === null) child.kill('SIGKILL');
++    }
++  });
++
++  const readyDeadline = Date.now() + 10000;
++  while (fs.readdirSync(barrier).filter((name) => name.startsWith('ready-')).length < 2) {
++    assert.ok(Date.now() < readyDeadline, 'waiters never reached the barrier');
++    await new Promise((resolve) => setTimeout(resolve, 10));
++  }
++  fs.writeFileSync(goPath, '');
++
++  const results = await Promise.all(waiters.map(({ done }) => done));
++  assert.deepEqual(results.map(({ code }) => code), [0, 0], JSON.stringify(results));
++  for (const { stdout } of results) assert.deepEqual(JSON.parse(stdout), { held: true });
++
++  const sections = waiters.map(({ resultPath }) => JSON.parse(fs.readFileSync(resultPath, 'utf8')));
++  sections.sort((a, b) => a.start - b.start);
++  assert.ok(
++    sections[0].end <= sections[1].start,
++    `critical sections overlap: ${JSON.stringify(sections)}`,
++  );
++  assert.equal(fs.existsSync(lockPath), false);
++});
++
++// Eight waiters that read one stale lock at the same instant are the case a rename alone
++// does not survive: a waiter can rename a fresh lock another one just took, because its age
++// check and its removal are separate steps. The marker file is created with `wx`, so a
++// second create inside a critical section proves two waiters held the lock together.
++test('eight waiters never hold the append lock together', async (t) => {
++  const sandbox = createSandbox(t);
++  const corePath = path.resolve(__dirname, '../lib/relaunch-core.cjs');
++  const overlapPath = path.join(sandbox.root, 'append-lock-overlaps.txt');
++  const rounds = 6;
++  const waiterCount = 8;
++
++  for (let round = 0; round < rounds; round += 1) {
++    const logPath = path.join(sandbox.root, `append-${round}.log`);
++    const lockPath = `${logPath}.lock`;
++    const markerPath = `${logPath}.marker`;
++    fs.mkdirSync(lockPath);
++    const staleSeconds = (Date.now() - 60000) / 1000;
++    fs.utimesSync(lockPath, staleSeconds, staleSeconds);
++    const startAt = Date.now() + 250;
++    const script = [
++      "const fs = require('node:fs');",
++      `const core = require(${JSON.stringify(corePath)});`,
++      `const startAt = ${startAt};`,
++      'while (Date.now() < startAt) {}',
++      `core.withAppendLock(${JSON.stringify(logPath)}, () => {`,
++      '  let created = false;',
++      '  try {',
++      `    fs.writeFileSync(${JSON.stringify(markerPath)}, String(process.pid), { flag: 'wx' });`,
++      '    created = true;',
++      '  } catch (error) {',
++      "    if (error.code !== 'EEXIST') throw error;",
++      `    fs.appendFileSync(${JSON.stringify(overlapPath)}, \`overlap \${process.pid}\\n\`);`,
++      '  }',
++      '  const until = Date.now() + 4;',
++      '  while (Date.now() < until) {}',
++      `  if (created) fs.unlinkSync(${JSON.stringify(markerPath)});`,
++      '});',
++      '',
++    ].join('\n');
++
++    const waiters = Array.from({ length: waiterCount }, () => {
++      const child = spawn(process.execPath, ['-e', script], {
++        env: sandbox.env,
++        stdio: ['ignore', 'ignore', 'pipe'],
++        signal: AbortSignal.timeout(20000),
++      });
++      let stderr = '';
++      child.stderr.on('data', (chunk) => { stderr += chunk; });
++      const done = new Promise((resolve) => {
++        child.once('error', () => resolve({ code: -1, stderr }));
++        child.once('close', (code) => resolve({ code, stderr }));
++      });
++      return { child, done };
++    });
++    t.after(() => {
++      for (const { child } of waiters) {
++        if (child.exitCode === null && child.signalCode === null) child.kill('SIGKILL');
++      }
++    });
++
++    const results = await Promise.all(waiters.map(({ done }) => done));
++    assert.deepEqual(
++      results.map(({ code }) => code),
++      new Array(waiterCount).fill(0),
++      JSON.stringify(results),
++    );
++  }
++
++  const overlaps = fs.existsSync(overlapPath) ? fs.readFileSync(overlapPath, 'utf8') : '';
++  assert.equal(overlaps, '');
++});
++
++// A redirected state directory is refused by the state guard, and the mkdir lock for a
++// record is created beside it before the guard runs, inside the directory the guard rejects.
++// A handoff note in a linked directory still needs its lock, because the note is not a record.
++test('an unsafe state directory gets no lock directory', (t) => {
++  const sandbox = createSandbox(t);
++  const targetDirectory = path.join(sandbox.root, 'state-target');
++  fs.mkdirSync(targetDirectory);
++  const linkedDirectory = path.join(sandbox.root, 'state-link');
++  fs.symlinkSync(targetDirectory, linkedDirectory);
++  const filePath = path.join(linkedDirectory, 'loop-test-00000001.json');
++
++  const seen = [];
++  const result = withStateLock(filePath, () => {
++    seen.push(fs.existsSync(`${filePath}.lock`));
++    return 'ran';
++  });
++
++  assert.equal(result, 'ran');
++  assert.deepEqual(seen, [false]);
++  assert.equal(fs.existsSync(path.join(targetDirectory, 'loop-test-00000001.json.lock')), false);
++
++  let noteLockHeld = false;
++  withAppendLock(filePath, () => {
++    noteLockHeld = fs.existsSync(`${filePath}.lock`);
++  });
++  assert.equal(noteLockHeld, true);
++  assert.equal(fs.existsSync(`${filePath}.lock`), false);
++});
++
++// A relaunch record lock shares the state guard's verdict: when the state directory is a
++// symlink, the writer must not create its lock inside the directory the guard refuses.
++test('arm takes no lock in an unsafe state directory', (t) => {
++  const sandbox = createSandbox(t);
++  const targetDirectory = path.join(sandbox.root, 'state-target');
++  fs.mkdirSync(targetDirectory);
++  fs.symlinkSync(targetDirectory, stateDir(sandbox.env), 'dir');
++  fs.writeFileSync(
++    path.join(targetDirectory, `relaunch-${LOOP_ID}.json`),
++    JSON.stringify({
++      loopId: LOOP_ID,
++      status: 'pending',
++      handoff: '/repo/note.md',
++      sessionId: SESSION_ID,
++    }),
++  );
++
++  const realMkdirSync = fs.mkdirSync;
++  const attempts = [];
++  let armed;
++  try {
++    fs.mkdirSync = (target, ...rest) => {
++      attempts.push(String(target));
++      return realMkdirSync(target, ...rest);
++    };
++    armed = arm({ loopId: LOOP_ID, env: sandbox.env, now: NOW });
++  } finally {
++    fs.mkdirSync = realMkdirSync;
++  }
++
++  assert.equal(armed, null);
++  assert.deepEqual(attempts.filter((target) => target.endsWith('.lock')), []);
++  assert.deepEqual(
++    fs.readdirSync(targetDirectory).filter((name) => name.endsWith('.lock')),
++    [],
++  );
++});
++
+ // ─────────────────────────────────────────────────────────────────────────────
+ // GOAL PACKET
+ // ─────────────────────────────────────────────────────────────────────────────

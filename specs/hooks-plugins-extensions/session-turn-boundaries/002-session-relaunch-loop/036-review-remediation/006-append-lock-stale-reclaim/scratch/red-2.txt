@@ -1,0 +1,19 @@
+# Red run before the reclaim change: eight waiters on one stale lock over six rounds
+
+Command:
+env -u AI_SESSION_CHILD node --test --test-name-pattern 'eight waiters never hold the append lock together' .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+
+Exit status: 1
+
+✖ eight waiters never hold the append lock together (1694.439ms)
+ℹ tests 1
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
++ 'overlap 326\noverlap 329\noverlap 537\noverlap 533\n...'
+- ''

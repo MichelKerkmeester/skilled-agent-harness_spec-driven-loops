@@ -1,0 +1,411 @@
+diff --git a/.skilled/bin/skilled-loop b/.skilled/bin/skilled-loop
+index f9d32c73f5..6a0b9ffafc 100755
+--- a/.skilled/bin/skilled-loop
++++ b/.skilled/bin/skilled-loop
+@@ -474,8 +474,132 @@ shell_quote_argument() {
+   printf '%s' "$quoted"
+ }
+ 
++# Matches this runtime's --help list of options that take a value.
++skilled_loop_replay_takes_value() {
++  case "$1:$2" in
++    claude:--add-dir|claude:--agent|claude:--agents|claude:--allowedTools|\
++      claude:--allowed-tools|claude:--append-system-prompt|claude:--autocompact|\
++      claude:--betas|claude:--cloud|claude:--debug|claude:--debug-file|\
++      claude:--disallowedTools|claude:--disallowed-tools|claude:--effort|\
++      claude:--environment|claude:--fallback-model|claude:--file|claude:--from-pr|\
++      claude:--input-format|claude:--json-schema|claude:--max-budget-usd|\
++      claude:--mcp-config|claude:--model|claude:--name|claude:-n|claude:-d|\
++      claude:--output-format|claude:--permission-mode|claude:--permission-prompts|\
++      claude:--plugin-dir|claude:--plugin-url|claude:--prompt-suggestions|\
++      claude:--remote-control|claude:--remote-control-session-name-prefix|\
++      claude:--resume|claude:-r|claude:--session-id|claude:--setting-sources|\
++      claude:--settings|claude:--system-prompt|claude:--system-prompt-snapshot|\
++      claude:--teleport|claude:--tools|claude:--worktree|claude:-w|\
++      codex:-n|codex:--name|cursor:-n|cursor:--name|devin:-n|devin:--name|\
++      opencode:-n|opencode:--name)
++      return 0 ;;
++    pi:--provider|pi:--model|pi:--api-key|pi:--system-prompt|\
++      pi:--append-system-prompt|pi:--mode|pi:--session|pi:--session-id|pi:--fork|\
++      pi:--session-dir|pi:--name|pi:-n|pi:--models|pi:--tools|pi:-t|\
++      pi:--exclude-tools|pi:-xt|pi:--thinking|pi:--extension|pi:-e|pi:--skill|\
++      pi:--prompt-template|pi:--theme|pi:--use-theme|pi:--export|\
++      pi:--list-models|pi:--blackhole-export|pi:--tui-mode)
++      return 0 ;;
++    opencode:--server|opencode:--session|opencode:-s|opencode:--prompt|\
++      opencode:--completions|opencode:--log-level|opencode:-m|opencode:--model)
++      return 0 ;;
++    codex:-c|codex:--config|codex:--enable|codex:--disable|codex:--remote|\
++      codex:--remote-auth-token-env|codex:-i|codex:--image|codex:-m|\
++      codex:--model|codex:--local-provider|codex:-p|codex:--profile|codex:-s|\
++      codex:--sandbox|codex:-C|codex:--cd|codex:--add-dir|codex:-a|\
++      codex:--ask-for-approval)
++      return 0 ;;
++    cursor:--api-key|cursor:-H|cursor:--header|cursor:-e|cursor:--endpoint|\
++      cursor:--output-format|cursor:--mode|cursor:--model|cursor:--resume|\
++      cursor:--sandbox|cursor:--workspace|cursor:--add-dir|cursor:--plugin-dir|\
++      cursor:-w|cursor:--worktree|cursor:--worktree-base)
++      return 0 ;;
++    devin:--prompt-file|devin:--config|devin:--permission-mode|devin:--model|\
++      devin:--export|devin:-r|devin:--resume|devin:--respect-workspace-trust|\
++      devin:--print|devin:-p|devin:--verbosity)
++      return 0 ;;
++  esac
++  return 1
++}
++
++# Matches this runtime's --help list of options that take no value.
++skilled_loop_replay_takes_none() {
++  case "$1:$2" in
++    claude:--allow-dangerously-skip-permissions|claude:--ax-screen-reader|\
++      claude:--background|claude:--bg|claude:--bare|claude:--brief|\
++      claude:--chrome|claude:--continue|claude:-c|claude:--dangerously-skip-permissions|\
++      claude:--desktop|claude:--disable-slash-commands|\
++      claude:--exclude-dynamic-system-prompt-sections|claude:--fork-session|\
++      claude:--forward-subagent-text|claude:--ide|claude:--include-hook-events|\
++      claude:--include-partial-messages|claude:--no-chrome|\
++      claude:--no-session-persistence|claude:--replay-user-messages|\
++      claude:--restricted|claude:--safe-mode|claude:--strict-mcp-config|\
++      claude:--tmux|claude:--verbose|claude:-h|claude:--help|claude:-p|\
++      claude:--print|claude:-v|claude:--version)
++      return 0 ;;
++    pi:--continue|pi:-c|pi:--no-session|pi:-ne|pi:--no-extensions|\
++      pi:--no-tools|pi:-nt|pi:--no-builtin-tools|pi:-nbt|pi:--no-mcp|\
++      pi:--no-skills|pi:-ns|pi:--no-prompt-templates|pi:-np|pi:--no-themes|\
++      pi:--verbose|pi:--approve|pi:-a|pi:--no-approve|pi:-na|pi:--offline|\
++      pi:--build|pi:--plan|pi:--fast|pi:--no-context-files|pi:-nc|\
++      pi:--resume|pi:-r|pi:--print|pi:-p|pi:--help|pi:-h|pi:--version|pi:-v)
++      return 0 ;;
++    opencode:--standalone|opencode:--auto|opencode:--continue|opencode:-c|\
++      opencode:--wizard|opencode:--print-logs|opencode:--help|opencode:-h|\
++      opencode:--version|opencode:-v)
++      return 0 ;;
++    codex:--strict-config|codex:--oss|codex:--worktree|codex:--approve-for-me|\
++      codex:--dangerously-bypass-approvals-and-sandbox|\
++      codex:--dangerously-bypass-hook-trust|codex:--search|\
++      codex:--no-alt-screen|codex:--no-daemon|codex:-h|codex:--help|\
++      codex:-V|codex:--version)
++      return 0 ;;
++    cursor:--print|cursor:-p|cursor:--stream-partial-output|cursor:--plan|\
++      cursor:--list-models|cursor:--continue|cursor:--force|cursor:-f|\
++      cursor:--yolo|cursor:--auto-review|cursor:--approve-mcps|cursor:--trust|\
++      cursor:--skip-worktree-setup|cursor:-v|cursor:--version|cursor:-h|cursor:--help)
++      return 0 ;;
++    devin:--sandbox|devin:--cloud|devin:--continue|devin:-c|devin:-h|\
++      devin:--help|devin:-V|devin:--version)
++      return 0 ;;
++  esac
++  return 1
++}
++
++# Filters session and prompt options identified in this runtime's --help.
++skilled_loop_replay_denied() {
++  case "$1:$2" in
++    claude:-c|claude:--continue|claude:-r|claude:--resume|\
++      claude:--fork-session|claude:--from-pr|claude:--session-id|\
++      claude:--teleport|claude:-w|claude:--worktree|claude:--tmux|\
++      pi:-c|pi:--continue|pi:-r|pi:--resume|pi:--session|pi:--session-id|pi:--fork|\
++      opencode:-c|opencode:--continue|opencode:-s|opencode:--session|opencode:--prompt|\
++      codex:-i|codex:--image|codex:--worktree|devin:-c|devin:--continue|\
++      devin:-r|devin:--resume|devin:--prompt-file|cursor:--resume|\
++      cursor:--continue|cursor:-w|cursor:--worktree|cursor:--worktree-base|\
++      cursor:--skip-worktree-setup)
++      return 0 ;;
++  esac
++  return 1
++}
++
++# Identifies record-backed settings; the other option lists follow this runtime's --help.
++skilled_loop_replay_recorded() {
++  case "$1:$2" in
++    claude:--model|claude:--effort|claude:-n|claude:--name|\
++      pi:--model|pi:--provider|pi:--thinking|pi:-n|pi:--name|pi:-e|\
++      pi:--extension|pi:-ne|pi:--no-extensions|opencode:--model|opencode:-m|\
++      opencode:-n|opencode:--name|codex:-m|codex:--model|codex:-n|codex:--name|\
++      cursor:--model|cursor:-n|cursor:--name|devin:--model|devin:-n|devin:--name|\
++      codex:--no-daemon|opencode:--standalone)
++      return 0 ;;
++  esac
++  return 1
++}
++
+ build_relaunch_arguments() {
+   local seed="$1"
++  local mode="${2:-hop}"
+   launch_arguments=()
+   case "$runtime" in
+     claude)
+@@ -538,10 +662,17 @@ build_relaunch_arguments() {
+       if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
+         launch_arguments+=(--model "$SKILLED_LOOP_MODEL")
+       fi
++      if [[ "$mode" == 'hop' ]] && [[ ${#replayed_extra_arguments[@]} -gt 0 ]]; then
++        launch_arguments+=("${replayed_extra_arguments[@]}")
++      fi
+       launch_arguments+=(-- "$seed")
+       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
+       ;;
+   esac
++  if [[ "$mode" == 'hop' && "$runtime" != 'devin' ]] \
++    && [[ ${#replayed_extra_arguments[@]} -gt 0 ]]; then
++    launch_arguments+=("${replayed_extra_arguments[@]}")
++  fi
+ }
+ 
+ build_manual_command_template() {
+@@ -551,7 +682,7 @@ build_manual_command_template() {
+   local argument
+   local quoted_argument
+ 
+-  build_relaunch_arguments "$manual_seed"
++  build_relaunch_arguments "$manual_seed" manual
+   for ((index = 0; index < ${#launch_arguments[@]}; index++)); do
+     argument=${launch_arguments[$index]}
+     template+=' '
+@@ -570,7 +701,7 @@ build_manual_command_template() {
+ find_manual_template_conflict() {
+   local index
+ 
+-  build_relaunch_arguments "$manual_handoff_token"
++  build_relaunch_arguments "$manual_handoff_token" manual
+   for ((index = 0; index < ${#launch_arguments[@]}; index++)); do
+     if ((index != relaunch_seed_index)) \
+       && [[ "${launch_arguments[$index]}" == *"$manual_handoff_token"* ]]; then
+@@ -606,6 +737,8 @@ fi
+ original_arguments=("$@")
+ original_argument_count=$#
+ launch_arguments=()
++replayed_extra_arguments=()
++ambiguous_launch_options=0
+ pi_extension_arguments=()
+ pi_extension_arguments_set=0
+ pi_no_extensions_seen=0
+@@ -742,6 +875,75 @@ while ((index < original_argument_count)); do
+   index=$((index + 1))
+ done
+ 
++index=0
++# Classifies replayed options and prompt ambiguity using each runtime's own --help lists.
++while ((index < original_argument_count)); do
++  argument="${original_arguments[$index]}"
++  if [[ "$argument" == '--' ]]; then
++    break
++  fi
++  if [[ "$argument" == -* ]]; then
++    option_name="${argument%%=*}"
++    if skilled_loop_replay_denied "$runtime" "$option_name"; then
++      if skilled_loop_replay_takes_value "$runtime" "$option_name" \
++        && [[ "$argument" != *=* ]] \
++        && ((index + 1 < original_argument_count)) \
++        && [[ "${original_arguments[$((index + 1))]}" != -* ]]; then
++        index=$((index + 1))
++      fi
++    elif skilled_loop_replay_takes_value "$runtime" "$option_name"; then
++      recorded_option=0
++      if skilled_loop_replay_recorded "$runtime" "$option_name"; then
++        recorded_option=1
++      elif [[ "$runtime" == 'codex' ]] \
++        && [[ "$option_name" == '-c' || "$option_name" == '--config' ]]; then
++        if [[ "$argument" == *=* ]]; then
++          [[ "${argument#*=}" == model_reasoning_effort=* \
++            || "${argument#*=}" == model=* ]] && recorded_option=1
++        elif ((index + 1 < original_argument_count)) \
++          && [[ "${original_arguments[$((index + 1))]}" == model_reasoning_effort=* \
++            || "${original_arguments[$((index + 1))]}" == model=* ]]; then
++          recorded_option=1
++        fi
++      fi
++      ((recorded_option == 1)) || replayed_extra_arguments+=("$argument")
++      takes_many=0
++      case "$runtime:$option_name" in
++        claude:--add-dir|claude:--allowedTools|claude:--allowed-tools|\
++          claude:--betas|claude:--disallowedTools|claude:--disallowed-tools|\
++          claude:--file|claude:--mcp-config|claude:--tools|codex:-i|codex:--image)
++          takes_many=1 ;;
++      esac
++      value_count=0
++      if [[ "$argument" != *=* ]]; then
++        while ((index + 1 < original_argument_count)) \
++          && [[ "${original_arguments[$((index + 1))]}" != -* ]] \
++          && { ((takes_many == 1)) || ((value_count == 0)); }; do
++          index=$((index + 1))
++          value_count=$((value_count + 1))
++          if ((recorded_option == 0)); then
++            replayed_extra_arguments+=("${original_arguments[$index]}")
++          fi
++        done
++      fi
++    elif skilled_loop_replay_takes_none "$runtime" "$option_name"; then
++      if ! skilled_loop_replay_recorded "$runtime" "$option_name"; then
++        replayed_extra_arguments+=("$argument")
++      fi
++    else
++      replayed_extra_arguments+=("$argument")
++      if ((index + 1 < original_argument_count)) \
++        && [[ "${original_arguments[$((index + 1))]}" != -* ]]; then
++        ambiguous_launch_options=1
++        printf 'warning: cannot tell whether %s is the value of %s or the start prompt; ' \
++          "${original_arguments[$((index + 1))]}" "$argument" >&2
++        printf '%s\n' 'the loop will not relaunch this session' >&2
++      fi
++    fi
++  fi
++  index=$((index + 1))
++done
++
+ if [[ "$runtime" == 'codex' && "$codex_no_daemon_seen" == 0 ]]; then
+   if ((original_argument_count > 0)); then
+     launch_arguments=(--no-daemon "${launch_arguments[@]}")
+@@ -928,6 +1130,12 @@ while true; do
+         esac
+         exit 1
+       fi
++      if ((ambiguous_launch_options == 1)); then
++        printf '%s\n' 'warning: the launch options are ambiguous; not relaunching' >&2
++        spec_folder=$(consumed_spec_folder)
++        print_manual_command "$handoff_path" "$spec_folder" || true
++        exit 1
++      fi
+       SKILLED_LOOP_HOPS=$((10#$SKILLED_LOOP_HOPS + 1))
+       export SKILLED_LOOP_HOPS
+       record_hand_over "$handoff_path" "$SKILLED_LOOP_HOPS"
+diff --git a/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs b/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
+index cd8ae77320..7bb5563833 100644
+--- a/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
+@@ -549,6 +549,110 @@ test('second invocation uses only the seed and name, recorded cwd, and the same
+   assert.equal(handOverLines(sandbox)[0].split('\t')[3], 'hop 1');
+ });
+ 
++function assertHopReplaysArguments(t, runtime, args, expectedHopArgs) {
++  const sandbox = createSandbox(t);
++  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
++  const result = runWrapper(sandbox, [runtime, ...args]);
++  assert.equal(result.status, 0, result.stderr);
++  const records = readRecords(recordPath);
++  assert.equal(records.length, 2);
++  assert.deepEqual(records[1].args, expectedHopArgs(`${SEED} ${handoffPath}`));
++}
++
++test('Claude first launch arguments are replayed with --permission-mode and --add-dir', (t) => {
++  assertHopReplaysArguments(t, 'claude', [
++    '--add-dir', '/tmp', '--permission-mode', 'plan', 'first prompt',
++  ], (seed) => [seed, '--add-dir', '/tmp', '--permission-mode', 'plan']);
++});
++
++test('Pi first launch arguments are replayed', (t) => {
++  assertHopReplaysArguments(t, 'pi', ['--skill', '/tmp/s', 'first prompt'],
++    (seed) => [seed, '--skill', '/tmp/s']);
++});
++
++test('OpenCode first launch arguments are replayed', (t) => {
++  assertHopReplaysArguments(t, 'opencode', ['--server', 'ws://example', '--auto', 'first prompt'],
++    (seed) => ['--prompt', seed, '--server', 'ws://example', '--auto']);
++});
++
++test('Codex first launch arguments are replayed', (t) => {
++  assertHopReplaysArguments(t, 'codex', [
++    '-c', 'approval_policy="never"', '-c', 'model_reasoning_effort="high"', 'first prompt',
++  ], (seed) => [
++    '--no-daemon', '-c', 'model_reasoning_effort="high"', seed,
++    '-c', 'approval_policy="never"',
++  ]);
++});
++
++test('Cursor first launch arguments are replayed', (t) => {
++  assertHopReplaysArguments(t, 'cursor', ['--api-key', 'token', '--trust', 'first prompt'],
++    (seed) => [seed, '--api-key', 'token', '--trust']);
++});
++
++test('Devin first launch arguments are replayed', (t) => {
++  assertHopReplaysArguments(t, 'devin', ['--config', '/tmp/devin.json', '--sandbox', 'first prompt'],
++    (seed) => ['--config', '/tmp/devin.json', '--sandbox', '--', seed]);
++});
++
++test('deny list flags are absent from a hop', (t) => {
++  const sandbox = createSandbox(t);
++  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
++  const result = runWrapper(sandbox, ['claude', '--session-id', 'session-1', '--continue', 'first prompt']);
++  assert.equal(result.status, 0, result.stderr);
++  const records = readRecords(recordPath);
++  assert.equal(records.length, 2);
++  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`]);
++});
++
++test('a hop replaces the start prompt and the record settings', (t) => {
++  const sandbox = createSandbox(t);
++  const { recordPath } = installRuntimeStub(sandbox, {
++    markers: '1', RECORD_MODEL: 'sonnet', RECORD_EFFORT: 'high',
++  });
++  const result = runWrapper(sandbox, [
++    'claude', '--model', 'launch model', '--effort', 'low', '--name', 'launch name',
++    '--permission-mode', 'plan', 'first prompt',
++  ]);
++  assert.equal(result.status, 0, result.stderr);
++  const records = readRecords(recordPath);
++  assert.equal(records.length, 2);
++  const args = records[1].args;
++  assert.equal(args.filter((arg) => arg === '--model').length, 1);
++  assert.equal(args.filter((arg) => arg === '--effort').length, 1);
++  assert.equal(args.filter((arg) => arg === '--name').length, 1);
++  assert.equal(args.includes('first prompt'), false);
++  assert.ok(args.includes('sonnet'));
++  assert.ok(args.includes('high'));
++  assert.ok(args.includes('launch name'));
++  assert.ok(args.includes('--permission-mode'));
++});
++
++test('an unknown option before a bare word declines the hop', (t) => {
++  const sandbox = createSandbox(t);
++  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
++  const result = runWrapper(sandbox, ['claude', '--not-a-real-option', 'word']);
++  assert.equal(result.status, 1);
++  assert.match(result.stderr, /warning: cannot tell whether word is the value of --not-a-real-option or the start prompt/);
++  assert.match(result.stderr, /warning: the launch options are ambiguous; not relaunching/);
++  assert.match(result.stdout, new RegExp(handoffPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
++  assert.equal(readRecords(recordPath).length, 1);
++});
++
++test('an unknown option with no bare word after it is replayed', (t) => {
++  const sandbox = createSandbox(t);
++  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
++  const result = runWrapper(sandbox, [
++    'claude', '--not-a-real-option', '--verbose', 'first prompt',
++  ]);
++  assert.equal(result.status, 0, result.stderr);
++  assert.doesNotMatch(result.stderr, /warning: cannot tell whether/);
++  const records = readRecords(recordPath);
++  assert.equal(records.length, 2);
++  assert.deepEqual(records[1].args, [
++    `${SEED} ${handoffPath}`, '--not-a-real-option', '--verbose',
++  ]);
++});
++
+ test('devin runtime dispatch does not fall through to claude', (t) => {
+   const sandbox = createSandbox(t);
+   const { recordPath } = installRuntimeStub(sandbox);
+@@ -1017,7 +1121,7 @@ test('opencode 2 does not duplicate an operator-supplied --standalone', (t) => {
+   assert.equal(result.status, 0, result.stderr);
+   const records = readRecords(recordPath);
+   assert.deepEqual(records[0].args, ['--standalone', '--auto']);
+-  assert.deepEqual(records[1].args, ['--standalone', '--prompt', `${SEED} ${handoffPath}`]);
++  assert.deepEqual(records[1].args, ['--standalone', '--prompt', `${SEED} ${handoffPath}`, '--auto']);
+ });
+ 
+ test('opencode 2 relaunch drops -m because its root command has no model flag', (t) => {
+@@ -1961,9 +2065,9 @@ const FLAG_VALUE_CASES = [
+     arguments: ['--model', '--', '--resume'],
+   },
+   {
+-    name: 'short model before a resume flag',
++    name: 'short model before a denied flag',
+     runtime: 'codex',
+-    arguments: ['-m', '--resume'],
++    arguments: ['-m', '--worktree'],
+   },
+   {
+     name: 'short Pi extension before a resume flag',
+-The wrapper accepts `skilled-loop [claude|pi|opencode|codex|cursor|devin] [args...]` and defaults to `claude`. The `cursor` arm launches the `cursor-agent` binary. It keeps the first launch's arguments. Across hops, it preserves model selection for each runtime, the effort flag where the runtime has one (see Model And Effort Across A Hop), the provider flag for Pi, and Pi's extension flags. It resolves relative Pi extension paths against the starting directory before a hop changes directories. It carries `-n` or `--name` for Claude and Pi. The other runtimes have no launch-time name flag. For model, name, Pi extension and Pi provider options, values equal to `--` or starting with `-` stay in the first launch's arguments and are not carried into relaunches.
++The wrapper accepts `skilled-loop [claude|pi|opencode|codex|cursor|devin] [args...]` and defaults to `claude`. The `cursor` arm launches the `cursor-agent` binary. A hop replays the first launch's options in their original order and replaces the start prompt with the claim seed. Model, effort, name, provider and Pi extension settings come from the relaunch record; flags that select or continue a session, including Claude `-c`, `--resume` and `--session-id`, Pi `--session` and `--fork`, OpenCode `--session` and `--prompt`, Codex `--image` and `--worktree`, Devin `--resume` and `--prompt-file`, and Cursor `--worktree` and `--worktree-base`, are in the deny list and are not repeated. Options documented by each runtime's help are replayed with their values, including repeated options. If an unknown option is followed by a bare word, the wrapper warns and declines the hop because it cannot distinguish an option value from the start prompt. Relative Pi extension paths are resolved against the starting directory before a hop changes directories.
+ 
+ The wrapper exports one loop id and starts `SKILLED_LOOP_HOPS` at 0. It relaunches only when a matching record is armed, fresh and below the configured hop limit.

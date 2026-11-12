@@ -20,6 +20,51 @@
 # Agent tool shells are rebuilt from a snapshot that drops single-underscore
 # functions, so every helper a runtime function calls keeps a plain name.
 
+skilled_loop_real_path() {
+  # Resolve symlinks without shadowing shell variables such as zsh's PATH-backed path.
+  local entry="$1"
+  local directory
+  local target
+  while [ -L "$entry" ]; do
+    directory=${entry%/*}
+    if [ "$directory" = "$entry" ]; then
+      directory=.
+    fi
+    target=$(readlink "$entry") || return 1
+    case "$target" in
+      /*) entry=$target ;;
+      *) entry=$directory/$target ;;
+    esac
+  done
+  directory=${entry%/*}
+  if [ "$directory" = "$entry" ]; then
+    directory=.
+  fi
+  directory=$(CDPATH= cd -P "$directory" 2>/dev/null && pwd -P) || return 1
+  printf '%s/%s\n' "$directory" "${entry##*/}"
+}
+
+# An unresolved or misplaced shim cannot let the caller's directory establish trust.
+if [ -n "${BASH_VERSION:-}" ]; then
+  skilled_loop_source_file=${BASH_SOURCE[0]}
+else
+  skilled_loop_source_file=$(eval 'printf "%s" "${(%):-%x}"')
+fi
+skilled_loop_source_file=$(skilled_loop_real_path "$skilled_loop_source_file" 2>/dev/null) || skilled_loop_source_file=''
+case "$skilled_loop_source_file" in
+  */*) skilled_loop_source_dir=${skilled_loop_source_file%/*} ;;
+  *) skilled_loop_source_dir='' ;;
+esac
+case "$skilled_loop_source_dir" in
+  */.skilled/bin)
+    skilled_loop_sourced_bin=$skilled_loop_source_dir
+    skilled_loop_sourced_checkout=${skilled_loop_sourced_bin%/.skilled/bin}
+    [ -n "$skilled_loop_sourced_checkout" ] || skilled_loop_sourced_checkout=/
+    ;;
+  *) skilled_loop_sourced_checkout='' ;;
+esac
+unset skilled_loop_source_file skilled_loop_source_dir skilled_loop_sourced_bin
+
 # ───────────────────────────────────────────────────────────────
 # 1. WRAPPER RESOLUTION
 # ───────────────────────────────────────────────────────────────
@@ -156,12 +201,79 @@ skilled_loop_opens_session() {
   return 0
 }
 
-# Prints the nearest skilled-loop wrapper at or above $PWD, or nothing at the root.
+# Succeeds when a canonical path is the same as or below a trusted directory.
+skilled_loop_path_inside() {
+  local candidate="$1"
+  local checkout="$2"
+  [ -n "$candidate" ] && [ -n "$checkout" ] || return 1
+  if [ "$checkout" = '/' ]; then
+    case "$candidate" in /*) return 0 ;; esac
+  else
+    case "$candidate" in "$checkout"|"$checkout"/*) return 0 ;; esac
+  fi
+  return 1
+}
+
+# Prints the real path of the nearest trusted wrapper it checked, or nothing at the root.
 skilled_loop_find_wrapper() {
   local directory="$PWD"
+  local sourced_checkout="${skilled_loop_sourced_checkout:-}"
+  local wrapper
+  local candidate
+  local trusted
+  local trusted_path
+  local worktree_list
+  local worktree_path
+  local line
   while :; do
     if [ -f "$directory/.skilled/bin/skilled-loop" ]; then
-      printf '%s\n' "$directory/.skilled/bin/skilled-loop"
+      wrapper="$directory/.skilled/bin/skilled-loop"
+      candidate=$(skilled_loop_real_path "$wrapper") || return 0
+      if [ -n "$sourced_checkout" ]; then
+        if skilled_loop_path_inside "$candidate" "$sourced_checkout"; then
+          printf '%s\n' "$candidate"
+          return 0
+        fi
+      fi
+
+      trusted=${SKILLED_LOOP_TRUSTED_CHECKOUTS:-}
+      while [ -n "$trusted" ]; do
+        case "$trusted" in
+          *:*) trusted_path=${trusted%%:*}; trusted=${trusted#*:} ;;
+          *) trusted_path=$trusted; trusted='' ;;
+        esac
+        case "$trusted_path" in
+          /*) ;;
+          *) continue ;;
+        esac
+        if [ -n "$trusted_path" ] && [ -d "$trusted_path" ]; then
+          trusted_path=$(CDPATH= cd -P "$trusted_path" 2>/dev/null && pwd -P)
+          if skilled_loop_path_inside "$candidate" "$trusted_path"; then
+            printf '%s\n' "$candidate"
+            return 0
+          fi
+        fi
+      done
+
+      if [ -n "$sourced_checkout" ]; then
+        worktree_list=$(env -u GIT_DIR -u GIT_COMMON_DIR -u GIT_WORK_TREE -u GIT_INDEX_FILE -u GIT_OBJECT_DIRECTORY -u GIT_NAMESPACE git -C "$sourced_checkout" worktree list --porcelain 2>/dev/null) || return 0
+        while IFS= read -r line; do
+          case "$line" in
+            'worktree '*)
+              worktree_path=${line#worktree }
+              if [ -d "$worktree_path" ]; then
+                worktree_path=$(CDPATH= cd -P "$worktree_path" 2>/dev/null && pwd -P)
+                if skilled_loop_path_inside "$candidate" "$worktree_path"; then
+                  printf '%s\n' "$candidate"
+                  return 0
+                fi
+              fi
+              ;;
+          esac
+        done <<EOF
+$worktree_list
+EOF
+      fi
       return 0
     fi
     if [ -z "$directory" ] || [ "$directory" = '/' ]; then

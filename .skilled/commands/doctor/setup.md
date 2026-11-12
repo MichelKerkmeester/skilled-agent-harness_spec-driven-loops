@@ -66,6 +66,7 @@ The sk-git leg passes `--tool=<name>` for the AI tool running the command.
 Its exit 3 (an unknown check or a gate saved off) is degraded, not failing.
 After the legs, it shows the last session hop from the session-relaunch hop history.
 It shows an open-notes line while any handoff note is still unclaimed.
+It shows the Claude context window the relaunch nudge measures against, or the two settings that supply one when none is configured.
 It shows an orphans line from `orphan-process-check.cjs --summary`.
 That line counts leftover helper processes and model servers whose launcher died.
 These lines are informational and never change the status.

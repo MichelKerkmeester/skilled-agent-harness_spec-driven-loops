@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup",
+  "description": "Phase 7: loop-start-record-cleanup",
+  "keywords": [
+    "phase",
+    "loop-start-record-cleanup"
+  ],
+  "lastUpdated": "2026-11-12T14:27:07.349Z",
+  "specId": "007",
+  "folderSlug": "loop-start-record-cleanup",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "036-review-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_15-27__closed-phase-007-the-skilled-loop-wrapper-removes.md"
+  ]
+}

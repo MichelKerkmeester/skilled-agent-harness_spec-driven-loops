@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay",
+  "description": "Phase 3: launch-flag-replay",
+  "keywords": [
+    "phase",
+    "launch-flag-replay"
+  ],
+  "lastUpdated": "2026-11-12T12:05:36.023Z",
+  "specId": "003",
+  "folderSlug": "launch-flag-replay",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "036-review-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_13-05__a-hop-replays-the-first-launch-s-options-after.md"
+  ]
+}

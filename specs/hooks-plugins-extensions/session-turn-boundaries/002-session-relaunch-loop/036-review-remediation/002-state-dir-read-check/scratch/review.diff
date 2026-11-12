@@ -1,0 +1,263 @@
+diff --git a/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs b/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs
+index 7ff5e5ce0f..0b60177104 100644
+--- a/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs
++++ b/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs
+@@ -709,6 +709,10 @@ function consume(args) {
+   const loopId = options['--loop-id'];
+   if (!loopId) throw new Error('--loop-id is required');
+   const statePath = core.relaunchFilePath(loopId);
++  if (core.inspectStateDir(core.stateDir()) !== true) {
++    process.stdout.write(`${JSON.stringify({ handoff: '', spec_folder: '', note: 'missing' })}\n`);
++    return 0;
++  }
+   // A withdraw rewrites the record under its lock, and the wrapper consumes in a call of its
+   // own after should-relaunch approved the hop. Reading, judging and removing the record
+   // under that same lock is what lets a withdraw that landed in between still stop the hop.
+@@ -726,7 +730,15 @@ function consume(args) {
+         && core.WITHDRAWN_DISARM_REASONS.has(locked.disarmReason),
+     };
+   });
+-  const handoffPath = typeof record?.handoff === 'string' ? record.handoff : '';
++  let handoffPath = '';
++  let handoffOutsideDropped = false;
++  if (typeof record?.handoff === 'string' && record.handoff !== '') {
++    try {
++      handoffPath = handoffPathWithinRepo(record.handoff);
++    } catch {
++      handoffOutsideDropped = true;
++    }
++  }
+   let specFolder = '';
+   let goalPacket = '';
+   let invalidSpecFolder = false;
+@@ -753,6 +765,11 @@ function consume(args) {
+       core.appendLog('spec-folder-dropped', { loopId });
+     } catch {}
+   }
++  if (handoffOutsideDropped) {
++    try {
++      core.appendLog('handoff-outside-dropped', { loopId });
++    } catch {}
++  }
+   // A note with no goal packet keeps the output it always had.
+   const consumed = { handoff: handoffPath, spec_folder: specFolder, note };
+   if (goalPacket !== '') consumed.goal_packet = goalPacket;
+diff --git a/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs b/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs
+index fcaf1714c4..8efce45f1a 100644
+--- a/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs
++++ b/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs
+@@ -134,15 +134,29 @@ function parentMapFromTable(table) {
+   return parents;
+ }
+ 
++/**
++ * Inspect whether the relaunch state directory is a real directory owned by this user.
++ *
++ * @param {string} directory - State directory path to inspect.
++ * @returns {boolean|null} True when trusted, false when unsafe, or null when missing.
++ */
++function inspectStateDir(directory) {
++  let stats;
++  try {
++    stats = fs.lstatSync(directory);
++  } catch (error) {
++    if (error.code === 'ENOENT') return null;
++    throw error;
++  }
++  const ownerUid = typeof process.getuid === 'function' ? process.getuid() : null;
++  return stats.isDirectory() && (ownerUid === null || stats.uid === ownerUid);
++}
++
+ function ensureStateDir(env) {
+   const directory = stateDir(env);
+   fs.mkdirSync(directory, { recursive: true, mode: 0o700 });
+-  // mkdirSync succeeds through a symlink and says nothing about who owns the
+-  // directory, so re-inspect the real entry: a redirected or foreign-owned state
+-  // directory would let another user read or steer the relaunch records.
+-  const stats = fs.lstatSync(directory);
+-  const ownerUid = typeof process.getuid === 'function' ? process.getuid() : null;
+-  if (!stats.isDirectory() || (ownerUid !== null && stats.uid !== ownerUid)) {
++  // mkdirSync succeeds through a symlink, so re-inspect the entry before trusting it.
++  if (inspectStateDir(directory) !== true) {
+     throw new Error(
+       `relaunch state directory must be a real directory owned by the current user: ${directory}`,
+     );
+@@ -1057,6 +1071,17 @@ function withdrawRecord({ loopId, reason, accept, env = process.env, now }) {
+  * A corrupt record is logged and treated as absent; logging may create the directory.
+  */
+ function readRelaunchFile(loopId, env = process.env) {
++  const directory = stateDir(env);
++  const directoryStatus = inspectStateDir(directory);
++  if (directoryStatus !== true) {
++    if (directoryStatus === false) {
++      process.stderr.write(
++        `[session-relaunch] relaunch state directory is not a real directory owned by the current user: ${directory}\n`,
++      );
++    }
++    return null;
++  }
++
+   let contents;
+   try {
+     contents = fs.readFileSync(relaunchFilePath(loopId, env), 'utf8');
+@@ -1890,6 +1915,7 @@ module.exports = {
+   recordGoalPacket,
+   parentMapFromTable,
+   stateDir,
++  inspectStateDir,
+   ensureStateDir,
+   relaunchFilePath,
+   parseHandoff,
+diff --git a/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs b/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+index 70ef9f1dbb..f7aa9d0cc2 100644
+--- a/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+@@ -864,6 +864,58 @@ test('readRelaunchFile returns the parsed record or null when absent', (t) => {
+   assert.equal(readRelaunchFile('loop-missing', sandbox.env), null);
+ });
+ 
++test('readRelaunchFile reads no record from a symlinked state directory', (t) => {
++  const sandbox = createSandbox(t);
++  const statePath = stateDir(sandbox.env);
++  const redirectTarget = path.join(sandbox.root, 'redirect-state');
++  fs.mkdirSync(redirectTarget, { recursive: true });
++  fs.writeFileSync(
++    path.join(redirectTarget, `relaunch-${LOOP_ID}.json`),
++    JSON.stringify({ version: 1, status: 'armed', loopId: LOOP_ID }),
++  );
++  fs.symlinkSync(redirectTarget, statePath, 'dir');
++
++  const stderrLines = [];
++  const stderrWrite = process.stderr.write;
++  process.stderr.write = (chunk) => {
++    stderrLines.push(String(chunk));
++    return true;
++  };
++  t.after(() => {
++    process.stderr.write = stderrWrite;
++  });
++
++  assert.equal(readRelaunchFile(LOOP_ID, sandbox.env), null);
++  assert.deepEqual(stderrLines, [
++    `[session-relaunch] relaunch state directory is not a real directory owned by the current user: ${statePath}\n`,
++  ]);
++
++  fs.unlinkSync(statePath);
++  fs.mkdirSync(statePath, { recursive: true, mode: 0o700 });
++  fs.writeFileSync(
++    path.join(statePath, `relaunch-${LOOP_ID}.json`),
++    JSON.stringify({ version: 1, status: 'armed', loopId: LOOP_ID }),
++  );
++  const getuid = process.getuid;
++  if (typeof getuid === 'function') {
++    process.getuid = () => getuid.call(process) + 1;
++    try {
++      assert.equal(readRelaunchFile(LOOP_ID, sandbox.env), null);
++    } finally {
++      process.getuid = getuid;
++    }
++    assert.equal(stderrLines.length, 2);
++    assert.equal(
++      stderrLines[1],
++      `[session-relaunch] relaunch state directory is not a real directory owned by the current user: ${statePath}\n`,
++    );
++  }
++
++  const missingSandbox = createSandbox(t);
++  assert.equal(readRelaunchFile(LOOP_ID, missingSandbox.env), null);
++  assert.equal(stderrLines.length, typeof getuid === 'function' ? 2 : 1);
++});
++
+ test('readRelaunchFile treats invalid JSON as absent and logs the loop id', (t) => {
+   const sandbox = createSandbox(t);
+   const filePath = relaunchFilePath(LOOP_ID, sandbox.env);
+diff --git a/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs b/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
+index b164e0494a..7e146ced87 100644
+--- a/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
+@@ -1432,6 +1432,43 @@ test('should-relaunch prints no-file JSON when the runtime directory is a file',
+   });
+ });
+ 
++test('should-relaunch and consume refuse a symlinked state directory', (t) => {
++  const sandbox = createSandbox(t);
++  const statePath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
++  const redirectTarget = path.join(sandbox.root, 'redirect-state');
++  fs.mkdirSync(redirectTarget, { recursive: true });
++  const filePath = path.join(redirectTarget, `relaunch-${LOOP_ID}.json`);
++  fs.writeFileSync(filePath, JSON.stringify({
++    version: 1,
++    status: 'armed',
++    loopId: LOOP_ID,
++    handoff: path.join(sandbox.repoRoot, 'outside.md'),
++    sessionId: SESSION_ID,
++    runtime: 'claude',
++    name: 'cli-session',
++    cwd: sandbox.repoRoot,
++    hops: 1,
++    armedAt: new Date().toISOString(),
++  }));
++  fs.symlinkSync(redirectTarget, statePath, 'dir');
++
++  const shouldRelaunch = runCli(sandbox, ['should-relaunch', '--loop-id', LOOP_ID]);
++  assert.equal(shouldRelaunch.status, 1, shouldRelaunch.stderr);
++  const shouldOutput = JSON.parse(shouldRelaunch.stdout);
++  assert.equal(shouldOutput.relaunch, false);
++  assert.equal(shouldOutput.reason, 'no-file');
++
++  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
++  assert.equal(result.status, 0, result.stderr);
++  assert.deepEqual(JSON.parse(result.stdout), {
++    handoff: '',
++    spec_folder: '',
++    note: 'missing',
++  });
++  assert.equal(fs.existsSync(filePath), true);
++  assert.equal(fs.existsSync(`${filePath}.lock`), false);
++});
++
+ test('claim exits zero and prints the claimed note body', (t) => {
+   const sandbox = createSandbox(t);
+   const handoffPath = writeHandoff(sandbox);
+@@ -1876,6 +1913,33 @@ test('consume returns the handoff path and its spec folder', (t) => {
+   assert.equal(fs.existsSync(filePath), false);
+ });
+ 
++test('consume refuses a handoff outside the handoffs directory', (t) => {
++  const sandbox = createSandbox(t);
++  writeHandoff(sandbox);
++  const outsidePath = path.join(sandbox.repoRoot, 'outside.md');
++  fs.writeFileSync(outsidePath, handoffText());
++  const filePath = writeRelaunchRecord(sandbox, {
++    loopId: LOOP_ID,
++    status: 'armed',
++    handoff: outsidePath,
++  });
++
++  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
++  const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
++
++  assert.equal(result.status, 0, result.stderr);
++  assert.deepEqual(JSON.parse(result.stdout), {
++    handoff: '',
++    spec_folder: '',
++    note: 'missing',
++  });
++  assert.equal(fs.existsSync(filePath), false);
++  assert.match(
++    fs.readFileSync(logPath, 'utf8'),
++    /handoff-outside-dropped loopId=loop-cli-00000001$/m,
++  );
++});
++
+ test('consume preserves a Gate 3 Skip as a valid spec-folder value', (t) => {
+   const sandbox = createSandbox(t);
+   const handoffPath = writeHandoff(sandbox, { specFolder: 'none' });
+@@ -2112,6 +2176,7 @@ test('consume keeps a valid answer from a note whose frontmatter no longer parse
+ 
+ test('consume reports a missing note and a note that is no longer open', (t) => {
+   const sandbox = createSandbox(t);
++  fs.mkdirSync(handoffDirectory(sandbox), { recursive: true });
+   const missingPath = path.join(handoffDirectory(sandbox), 'gone.md');
+   writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed', handoff: missingPath });
+   let result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);

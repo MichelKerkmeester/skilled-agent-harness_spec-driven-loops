@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "subagent guard cancel consume",
+      "phase 5 subagent guard cancel consume",
+      "subagent guard cancel consume plan",
+      "subagent guard cancel consume tasks",
+      "subagent guard cancel consume acceptance criteria",
+      "subagent guard cancel consume goal",
+      "subagent guard cancel consume implementation summary"
+    ],
+    "key_topics": [
+      "subagent",
+      "guard",
+      "cancel",
+      "consume",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
+      ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs",
+      "scratch/red.txt",
+      "scratch/red-2.txt",
+      "scratch/green.txt",
+      "scratch/green-full.txt",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume/acceptance-criteria.md",
+      "scratch/review.diff"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume/acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "subagent-guard.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "subagent-guard.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-2.txt",
+        "kind": "file",
+        "path": "scratch/red-2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-full.txt",
+        "kind": "file",
+        "path": "scratch/green-full.txt",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fable-subagent-guard.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "review.diff",
+        "kind": "file",
+        "path": "scratch/review.diff",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Claude sub-agent guard builds `LIFECYCLECOMMAND` at `.skilled/hooks/session-relaunch/claude/subagent-guard.mjs:18` from four subcommands only: `claim`, `complete`, `keep` and `prepare`",
+    "created_at": "2026-11-12T08:28:56Z",
+    "last_save_at": "2026-11-12T13:02:39.136Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c80da9d02e97d0b7ed55ecbbda5efbff28d944df010f48b8b4318ba9e3b7c6a2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8da1f25f276e27e4b4c1c999a811b35746c6997c4b2429e9a283cd27abe0bcf2",
+      "plan.md": "120b7ba525a08c39e453a9565fa9a1ba56f5160d2dad05ecf8560939503b7209",
+      "tasks.md": "3c08db603b92e38457abc3dcf2dbeece0ad1575c254c4fc5f52f4de1c979532a",
+      "implementation-summary.md": "9cb85d5b02a6c6876591a56ac9ef1142bf66c302fe20f45f6776d395a9186783"
+    },
+    "last_active_at": null
+  }
+}

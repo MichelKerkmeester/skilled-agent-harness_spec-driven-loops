@@ -1,0 +1,63 @@
+diff --git a/.skilled/hooks/session-relaunch/claude/subagent-guard.mjs b/.skilled/hooks/session-relaunch/claude/subagent-guard.mjs
+index c1d60c3a31..fc50b5d6f7 100644
+--- a/.skilled/hooks/session-relaunch/claude/subagent-guard.mjs
++++ b/.skilled/hooks/session-relaunch/claude/subagent-guard.mjs
+@@ -15,7 +15,9 @@ import { isEntrypoint } from '../lib/relaunch-core.cjs';
+ // ─────────────────────────────────────────────────────────────────────────────
+ 
+ const CONCERN = 'session-relaunch';
+-const LIFECYCLE_COMMAND = /session-relaunch\.cjs['"]?\s+(claim|complete|keep|prepare)\b/;
++const LIFECYCLE_COMMAND = new RegExp(
++  String.raw`session-relaunch\.cjs['"]?\s+(claim|complete|keep|prepare|cancel|consume|hand-over)\b`,
++);
+ const DENIAL_REASON = [
+   '[session-relaunch] A sub-agent shares its parent\'s session id, so this command would act',
+   'on the parent\'s handoff note. Leave the note to the parent session.',
+@@ -39,9 +41,9 @@ function emit(envelope) {
+ // ─────────────────────────────────────────────────────────────────────────────
+ 
+ // A sub-agent or fork reports its parent's session id, so a lifecycle command run
+-// from inside one resolves the parent's handoff note and would claim, complete,
+-// keep or prepare it behind the parent's back. Only the main session's calls carry
+-// no agent id, so only those reach the note.
++// from inside one resolves the parent's hand-over and would claim, complete, keep,
++// prepare, cancel, consume or hand over that note behind the parent's back. Only
++// the main session's calls carry no agent id, so only those reach it.
+ function deniesRelaunchCommand(payload) {
+   if (payload === null || typeof payload !== 'object') return false;
+   if (payload.tool_name !== 'Bash') return false;
+diff --git a/.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs b/.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs
+index b9257fe4ea..be30219ae9 100644
+--- a/.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs
+@@ -153,6 +153,30 @@ test('subagent-guard denies prepare from a sub-agent', async (t) => {
+   assertDenied(result);
+ });
+ 
++test('subagent-guard denies cancel from a sub-agent', async (t) => {
++  const sandbox = createSandbox(t);
++  const result = await runGuard(sandbox, JSON.stringify(
++    subagentBashPayload(sandbox, `node ${CLI_PATH} cancel --loop-id 'loop-0001'`),
++  ));
++  assertDenied(result);
++});
++
++test('subagent-guard denies consume from a sub-agent', async (t) => {
++  const sandbox = createSandbox(t);
++  const result = await runGuard(sandbox, JSON.stringify(
++    subagentBashPayload(sandbox, `node ${CLI_PATH} consume --loop-id 'loop-0001'`),
++  ));
++  assertDenied(result);
++});
++
++test('subagent-guard denies hand-over from a sub-agent', async (t) => {
++  const sandbox = createSandbox(t);
++  const result = await runGuard(sandbox, JSON.stringify(
++    subagentBashPayload(sandbox, `node ${CLI_PATH} hand-over --handoff 'note.md'`),
++  ));
++  assertDenied(result);
++});
++
+ test('subagent-guard stays silent for the main session that carries no agent_id', async (t) => {
+   const sandbox = createSandbox(t);
+   const result = await runGuard(sandbox, JSON.stringify(

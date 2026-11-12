@@ -134,15 +134,30 @@ function parentMapFromTable(table) {
   return parents;
 }
 
+/**
+ * Inspect whether the relaunch state directory is a real directory owned by this user.
+ * A redirected or foreign-owned directory could let another user read or steer relaunch records.
+ *
+ * @param {string} directory - State directory path to inspect.
+ * @returns {boolean|null} True when trusted, false when unsafe, or null when missing.
+ */
+function inspectStateDir(directory) {
+  let stats;
+  try {
+    stats = fs.lstatSync(directory);
+  } catch (error) {
+    if (error.code === 'ENOENT') return null;
+    throw error;
+  }
+  const ownerUid = typeof process.getuid === 'function' ? process.getuid() : null;
+  return stats.isDirectory() && (ownerUid === null || stats.uid === ownerUid);
+}
+
 function ensureStateDir(env) {
   const directory = stateDir(env);
   fs.mkdirSync(directory, { recursive: true, mode: 0o700 });
-  // mkdirSync succeeds through a symlink and says nothing about who owns the
-  // directory, so re-inspect the real entry: a redirected or foreign-owned state
-  // directory would let another user read or steer the relaunch records.
-  const stats = fs.lstatSync(directory);
-  const ownerUid = typeof process.getuid === 'function' ? process.getuid() : null;
-  if (!stats.isDirectory() || (ownerUid !== null && stats.uid !== ownerUid)) {
+  // mkdirSync succeeds through a symlink, so re-inspect the entry before trusting it.
+  if (inspectStateDir(directory) !== true) {
     throw new Error(
       `relaunch state directory must be a real directory owned by the current user: ${directory}`,
     );
@@ -853,7 +868,7 @@ function preparePending({
  * @returns {Object|null} The armed record, or null when absent, unreadable, or not armable.
  */
 function arm({ loopId, cwd = process.cwd(), settings = {}, env = process.env, now }) {
-  return withAppendLock(
+  return withStateLock(
     relaunchFilePath(loopId, env),
     () => armLocked({ loopId, cwd, settings, env, now }),
   );
@@ -914,7 +929,7 @@ function armLocked({ loopId, cwd, settings = {}, env, now }) {
  * @returns {Object|null} The stamped record, or null when the record is no longer that arm.
  */
 function markSignalled({ loopId, handoff, armId, armedAt, env = process.env, now }) {
-  return withAppendLock(relaunchFilePath(loopId, env), () => {
+  return withStateLock(relaunchFilePath(loopId, env), () => {
     const record = readRelaunchFile(loopId, env);
     if (
       record?.status !== 'armed'
@@ -975,7 +990,7 @@ function armableRecord(record, { loopId, sessionId, runtime, env = process.env }
  */
 function unarm(options) {
   const { loopId, env = process.env } = options;
-  return withAppendLock(relaunchFilePath(loopId, env), () => unarmLocked(options));
+  return withStateLock(relaunchFilePath(loopId, env), () => unarmLocked(options));
 }
 
 function unarmLocked({
@@ -1015,7 +1030,7 @@ function unarmLocked({
  * @returns {Object|null} The marked record, or null when no pending record exists.
  */
 function markDeferred({ loopId, env = process.env, now }) {
-  return withAppendLock(relaunchFilePath(loopId, env), () => {
+  return withStateLock(relaunchFilePath(loopId, env), () => {
     const record = readRelaunchFile(loopId, env);
     if (record?.status !== 'pending') return null;
     const deferred = { ...record, deferredAt: toIsoTimestamp(now) };
@@ -1041,7 +1056,7 @@ function markDeferred({ loopId, env = process.env, now }) {
  */
 function withdrawRecord({ loopId, reason, accept, env = process.env, now }) {
   // The disarm runs through the unlocked helper because the mkdir lock is not reentrant.
-  return withAppendLock(relaunchFilePath(loopId, env), () => {
+  return withStateLock(relaunchFilePath(loopId, env), () => {
     const record = readRelaunchFile(loopId, env);
     if (!record || typeof record !== 'object' || !accept(record)) return null;
     return unarmLocked({ loopId, env, reason, now });
@@ -1049,7 +1064,8 @@ function withdrawRecord({ loopId, reason, accept, env = process.env, now }) {
 }
 
 /**
- * Read one record; logging corrupt JSON may create the state directory.
+ * Read one record after inspecting the state directory; unsafe directories return null and write
+ * one stderr line. Logging corrupt JSON may create the state directory.
  *
  * @param {string} loopId - Wrapper process identifier.
  * @param {NodeJS.ProcessEnv} [env=process.env] - Runtime environment.
@@ -1057,6 +1073,17 @@ function withdrawRecord({ loopId, reason, accept, env = process.env, now }) {
  * A corrupt record is logged and treated as absent; logging may create the directory.
  */
 function readRelaunchFile(loopId, env = process.env) {
+  const directory = stateDir(env);
+  const directoryStatus = inspectStateDir(directory);
+  if (directoryStatus !== true) {
+    if (directoryStatus === false) {
+      process.stderr.write(
+        `[session-relaunch] relaunch state directory is not a real directory owned by the current user: ${directory}\n`,
+      );
+    }
+    return null;
+  }
+
   let contents;
   try {
     contents = fs.readFileSync(relaunchFilePath(loopId, env), 'utf8');
@@ -1409,10 +1436,35 @@ function withAppendLock(logPath, fn) {
       try {
         const ageMs = Date.now() - fs.statSync(lockPath).mtimeMs;
         if (ageMs > APPEND_LOCK_STALE_MS) {
+          // Removing the live lock path here would race a waiter that created a fresh lock
+          // after this age check. A reclaim directory makes the reclaim exclusive, and the
+          // age is read again while it is held, so a fresh lock is never removed.
+          const reclaimPath = `${lockPath}.reclaim`;
           try {
-            fs.rmdirSync(lockPath);
-          } catch (removeError) {
-            if (removeError.code !== 'ENOENT') break;
+            fs.mkdirSync(reclaimPath, 0o700);
+          } catch (reclaimError) {
+            if (reclaimError.code !== 'EEXIST') break;
+            // A reclaim directory left behind by a killed waiter must not block later ones.
+            try {
+              const reclaimAgeMs = Date.now() - fs.statSync(reclaimPath).mtimeMs;
+              if (reclaimAgeMs > APPEND_LOCK_STALE_MS) fs.rmdirSync(reclaimPath);
+            } catch {}
+            Atomics.wait(APPEND_LOCK_SLEEP_CELL, 0, 0, 2);
+            continue;
+          }
+          try {
+            const staleAgainMs = Date.now() - fs.statSync(lockPath).mtimeMs;
+            if (staleAgainMs > APPEND_LOCK_STALE_MS) fs.rmdirSync(lockPath);
+          } catch (reclaimError) {
+            // A lock already gone is the normal outcome of losing the reclaim race; any
+            // other failure leaves the removal unproven, so this appender stops contending.
+            if (reclaimError.code !== 'ENOENT') break;
+          } finally {
+            try {
+              fs.rmdirSync(reclaimPath);
+            } catch {
+              // A reclaim directory already removed is not this appender's problem.
+            }
           }
           continue;
         }
@@ -1434,6 +1486,33 @@ function withAppendLock(logPath, fn) {
       }
     }
   }
+}
+
+/**
+ * Run `fn` under the append lock only when the directory holding a relaunch record is one
+ * the state guard accepts. Taking the lock in a redirected or foreign-owned directory would
+ * create a lock directory inside the very location the guard refuses, so the callback runs
+ * unlocked and its own check refuses the read or throws on the write. A directory that does
+ * not exist yet keeps the lock, because the writer creates it under the lock and then meets
+ * the same check. A directory the guard cannot inspect at all also runs the callback unlocked,
+ * so the callback's own read decides the result instead of a lock error escaping.
+ *
+ * @template T
+ * @param {string} filePath - Path of the relaunch record whose lock is taken.
+ * @param {() => T} fn - Work to run under the lock.
+ * @returns {T} Whatever `fn` returns.
+ */
+function withStateLock(filePath, fn) {
+  let directoryStatus;
+  try {
+    directoryStatus = inspectStateDir(path.dirname(filePath));
+  } catch {
+    // An inspection failure means the directory's safety is unknown, not that the caller
+    // failed, and a lock failure must never fail a hook.
+    return fn();
+  }
+  if (directoryStatus === false) return fn();
+  return withAppendLock(filePath, fn);
 }
 
 /**
@@ -1890,6 +1969,7 @@ module.exports = {
   recordGoalPacket,
   parentMapFromTable,
   stateDir,
+  inspectStateDir,
   ensureStateDir,
   relaunchFilePath,
   parseHandoff,
@@ -1913,6 +1993,7 @@ module.exports = {
   isEntrypoint,
   appendLog,
   withAppendLock,
+  withStateLock,
   readLockState,
   lockOwnerPid,
   lockIsExpired,

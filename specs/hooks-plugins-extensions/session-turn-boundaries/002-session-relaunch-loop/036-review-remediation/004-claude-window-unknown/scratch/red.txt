@@ -1,0 +1,7 @@
+not ok 1 - context-nudge skips and logs when the window is unknown
+not ok 2 - resolveWindow returns null when no setting and no model marker supplies a window
+not ok 3 - resolveWindow returns null instead of the 200000 default
+not ok 4 - window names the missing settings when no window is configured
+# tests 4
+# pass 0
+# fail 4

@@ -1,0 +1,11 @@
+First build, before the guard. Restored by the orchestrator from the builder's recorded
+run, because a later pass overwrote this file with its own failing run (now red-3.txt).
+✖ bash: a wrapper outside the sourced checkout is not resolved (387.350458ms)
+✖ bash: a .git file alone does not register a trusted worktree (483.169792ms)
+✖ bash: explicitly trusted checkouts resolve and unset or empty trusts nothing extra (342.510416ms)
+✖ zsh: a wrapper outside the sourced checkout is not resolved (463.778709ms)
+✖ zsh: a .git file alone does not register a trusted worktree (414.333042ms)
+✖ zsh: explicitly trusted checkouts resolve and unset or empty trusts nothing extra (417.061083ms)
+ℹ tests 24
+ℹ pass 18
+ℹ fail 6

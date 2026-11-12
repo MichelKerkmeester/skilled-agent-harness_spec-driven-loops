@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/002-state-dir-read-check",
+  "description": "Phase 2: state-dir-read-check",
+  "keywords": [
+    "phase",
+    "state-dir-read-check"
+  ],
+  "lastUpdated": "2026-11-12T10:34:02.193Z",
+  "specId": "002",
+  "folderSlug": "state-dir-read-check",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "036-review-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_11-34__relaunch-records-and-the-nudge-state-are-read.md"
+  ]
+}

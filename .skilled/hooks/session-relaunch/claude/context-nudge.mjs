@@ -127,6 +127,14 @@ async function main() {
       cwd: payload.cwd || process.cwd(),
       model: fill.model ?? '',
     });
+    // A fill measured against a guessed size nudges at the wrong moment, so an unknown window
+    // stays quiet. This hook runs on every tool call, so the skip is logged once per session.
+    if (windowTokens === null) {
+      if (nudge.markWindowUnknown(sessionId)) {
+        logEvent('context-nudge-skipped', { reason: 'window-unknown' });
+      }
+      return quiet();
+    }
     ratio = fillRatio(fill.fillTokens, windowTokens);
   } catch (error) {
     logEvent('context-nudge-error', { stage: 'usage', message: error.message });

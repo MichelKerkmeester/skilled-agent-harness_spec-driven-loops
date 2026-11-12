@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "launch flag replay",
+      "phase 3 launch flag replay",
+      "launch flag replay plan",
+      "launch flag replay tasks",
+      "launch flag replay acceptance criteria",
+      "launch flag replay goal",
+      "launch flag replay implementation summary"
+    ],
+    "key_topics": [
+      "launch",
+      "flag",
+      "replay",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "hop"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+      ".skilled/hooks/session-relaunch/README.md",
+      "scratch/red-2.txt",
+      "scratch/red-3.txt",
+      "scratch/red-4.txt",
+      "scratch/red-5.txt",
+      "scratch/red-7.txt",
+      "scratch/green.txt",
+      "scratch/green-full.txt",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay/spec.md",
+      "scratch/review.diff"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "red-2.txt",
+        "kind": "file",
+        "path": "scratch/red-2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-3.txt",
+        "kind": "file",
+        "path": "scratch/red-3.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-4.txt",
+        "kind": "file",
+        "path": "scratch/red-4.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-5.txt",
+        "kind": "file",
+        "path": "scratch/red-5.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-7.txt",
+        "kind": "file",
+        "path": "scratch/red-7.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-full.txt",
+        "kind": "file",
+        "path": "scratch/green-full.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review.diff",
+        "kind": "file",
+        "path": "scratch/review.diff",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A hop rebuilds its argument list from the carried model, effort, name, provider and Pi extension settings alone, so every other first-launch flag is dropped",
+    "created_at": "2026-11-12T08:28:54Z",
+    "last_save_at": "2026-11-12T12:06:01.098Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:43ace95187a2fca9412c0eb732eb83557bcf021c9d5cecb74dbf257a0af8dfb1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6655479e4776c6ad2ff8efc9216d62f8350d2b98b34c14bfbd114d89a8873b49",
+      "plan.md": "b51646695b355f54a59f0cf9fddd4a1c2afe6cbf283b18a52ed60fd64e5d8259",
+      "tasks.md": "b7150211bc3410335c1dc7e8afc2b694498be5c01e4d033f92c2b073c649657f",
+      "implementation-summary.md": "bc6fba171050a52f47b212a6ca3bf7330b9b9a2b02d67b1f1ff57178da3fd23f"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,38 @@
+✔ bash: a wrapper outside the sourced checkout is not resolved (908.7365ms)
+✔ bash: an inherited GIT_DIR cannot vouch for a planted repository (951.247ms)
+✔ bash: the shim sourced through a symlinked file trusts its real checkout (504.477458ms)
+✔ bash: a shell copy without the stored checkout trusts nothing (477.540625ms)
+✔ bash: a wrapper in a registered linked worktree is resolved (461.773083ms)
+✔ bash: a .git file alone does not register a trusted worktree (445.27075ms)
+✔ bash: explicitly trusted checkouts resolve and unset or empty trusts nothing extra (530.102625ms)
+✔ bash: every interactive form finds the wrapper through a symlinked .skilled (338.775042ms)
+✔ bash: subcommands, print modes, version and help pass through (228.07ms)
+✔ bash: a directory with no .skilled above it resolves nothing (43.838917ms)
+✔ bash: a session already under the loop resolves nothing (42.021959ms)
+✔ bash: an unknown runtime resolves nothing (17.202875ms)
+✔ zsh: a wrapper outside the sourced checkout is not resolved (945.096875ms)
+✔ zsh: an inherited GIT_DIR cannot vouch for a planted repository (911.927041ms)
+✔ zsh: the shim sourced through a symlinked file trusts its real checkout (469.419042ms)
+✔ zsh: a shell copy without the stored checkout trusts nothing (435.692917ms)
+✔ zsh: a wrapper in a registered linked worktree is resolved (611.737625ms)
+✔ zsh: a .git file alone does not register a trusted worktree (477.232833ms)
+✔ zsh: explicitly trusted checkouts resolve and unset or empty trusts nothing extra (551.13275ms)
+✔ zsh: every interactive form finds the wrapper through a symlinked .skilled (522.657375ms)
+✔ zsh: subcommands, print modes, version and help pass through (605.540291ms)
+✔ zsh: a directory with no .skilled above it resolves nothing (85.497125ms)
+✔ zsh: a session already under the loop resolves nothing (76.492167ms)
+✔ zsh: an unknown runtime resolves nothing (22.740292ms)
+✔ bash: without a terminal the runtime function runs the binary directly (28.932541ms)
+✔ bash: on a terminal the runtime function hands the launch to the wrapper (80.822958ms)
+✔ bash: runtime functions still work after a snapshot drops single-underscore functions (46.729583ms)
+✔ zsh: without a terminal the runtime function runs the binary directly (25.314875ms)
+✔ zsh: on a terminal the runtime function hands the launch to the wrapper (76.636ms)
+✔ zsh: runtime functions still work after a snapshot drops single-underscore functions (50.263ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11029.770292

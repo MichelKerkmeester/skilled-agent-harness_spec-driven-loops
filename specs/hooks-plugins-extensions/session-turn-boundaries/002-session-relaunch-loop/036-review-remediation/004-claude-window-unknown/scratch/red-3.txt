@@ -1,0 +1,8 @@
+✖ a later state write keeps the unknown-window mark (1.541709ms)
+✖ a state directory that cannot be inspected reads as empty (0.551625ms)
+ℹ tests 75
+ℹ pass 73
+ℹ fail 2
+✖ failing tests:
+✖ a later state write keeps the unknown-window mark (1.541709ms)
+✖ a state directory that cannot be inspected reads as empty (0.551625ms)

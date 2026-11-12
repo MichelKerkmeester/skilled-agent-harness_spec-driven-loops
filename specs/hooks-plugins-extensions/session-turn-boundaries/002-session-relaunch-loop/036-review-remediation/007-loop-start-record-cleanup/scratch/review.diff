@@ -1,0 +1,194 @@
+diff --git a/.skilled/bin/skilled-loop b/.skilled/bin/skilled-loop
+index f9d32c73f5..131a2898fc 100755
+--- a/.skilled/bin/skilled-loop
++++ b/.skilled/bin/skilled-loop
+@@ -805,6 +1047,21 @@ if [[ ! "$SKILLED_LOOP_HOPS" =~ ^[0-9]+$ ]]; then
+ fi
+ export SKILLED_LOOP_HOPS
+ 
++# A record that already carries this loop id belongs to an earlier wrapper whose process id
++# was reused, so reading it after a runtime exit would act on a hand-over this loop never
++# made. Remove only that one file, through the core so the state directory keeps one owner,
++# and never follow it into a state directory that is a symlink or belongs to another user.
++# A cleanup that cannot run leaves the launch intact.
++leftover_record=$(node -e '
++  const [corePath, loopId] = process.argv.slice(1);
++  const core = require(corePath);
++  if (core.inspectStateDir(core.stateDir()) !== true) process.exit(0);
++  process.stdout.write(core.relaunchFilePath(loopId));
++' -- "$relaunch_core" "$SKILLED_LOOP_ID" 2>/dev/null) || leftover_record=''
++if [[ -n "$leftover_record" ]]; then
++  rm -f -- "$leftover_record" || true
++fi
++
+ # The note a relaunch seeded and its spec folder, kept so a later decline can name the
+ # note that session was handed and never claimed.
+ relaunched_handoff=''
+diff --git a/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs b/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
+index cd8ae77320..48c0bfdbac 100644
+--- a/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
+@@ -30,6 +30,18 @@ const COMMAND_RUNTIME_SPEC_FOLDER =
+   'specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes';
+ const LOOP_ID_PATTERN = /^[0-9]+$/;
+ const OPEN_NOTE = '---\nstatus: open\n---\n';
++// A record an earlier wrapper left behind: withdrawn and without a note, so a surviving one
++// makes the wrapper decline silently instead of relaunching into a note this suite never wrote.
++const LEFTOVER_RECORD = {
++  version: 1,
++  status: 'disarmed',
++  disarmReason: 'cancelled',
++  handoff: '',
++  sessionId: 'session-leftover-0001',
++  runtime: 'claude',
++  hops: 0,
++  armedAt: '2026-01-01T00:00:00.000Z',
++};
+ 
+ function expectedClaudeManualCommand(handoffPath, specFolder) {
+   let suffix = '';
+@@ -114,6 +126,17 @@ const existing = fs.existsSync(recordPath)
+   ? fs.readFileSync(recordPath, "utf8").trim().split("\\n").filter(Boolean)
+   : [];
+ const invocation = existing.length + 1;
++// A case that plants a record before the wrapper starts reads this probe to prove the
++// wrapper cleaned up before the runtime ran, not after the runtime exited.
++const stateProbePath = process.env.STATE_PROBE_FILE;
++if (stateProbePath && invocation === 1) {
++  const stateDirectory = path.join(process.env.XDG_RUNTIME_DIR, "skilled-relaunch");
++  const ownRecordPath = path.join(
++    stateDirectory,
++    "relaunch-" + (process.env.SKILLED_LOOP_ID || "") + ".json",
++  );
++  fs.writeFileSync(stateProbePath, fs.existsSync(ownRecordPath) ? "present" : "absent");
++}
+ const record = {
+   args: process.argv.slice(1),
+   runtime: process.env.SESSION_RELAUNCH_TEST_RUNTIME || "claude",
+@@ -283,6 +306,46 @@ function runWrapperScript(sandbox, wrapperPath, args) {
+   });
+ }
+ 
++// The wrapper names its record after its own process id, so a leftover record can only be
++// planted for it by a launcher that writes its own $$ and then execs the wrapper in place.
++function installLeftoverRecordLauncher(sandbox, records) {
++  const launcherPath = path.join(sandbox.root, 'leftover-record-launcher.sh');
++  const plantedIdPath = path.join(sandbox.root, 'planted-loop-id.txt');
++  const recordTemplate = JSON.stringify({ ...LEFTOVER_RECORD, loopId: '__LOOP_ID__' });
++  const [recordHead, recordTail] = recordTemplate.split('__LOOP_ID__');
++  const lines = [
++    '#!/usr/bin/env bash',
++    'set -euo pipefail',
++    'state_directory="$XDG_RUNTIME_DIR/skilled-relaunch"',
++    'mkdir -p "$state_directory"',
++    `printf '%s' "$$" > '${plantedIdPath}'`,
++  ];
++  for (const [recordName, loopId] of records) {
++    lines.push(
++      `printf '%s%s%s' '${recordHead}' "${loopId}" '${recordTail}' > "$state_directory/${recordName}"`,
++    );
++  }
++  lines.push(`exec /bin/bash "${WRAPPER_PATH}" "$@"`);
++  fs.writeFileSync(launcherPath, `${lines.join('\n')}\n`, { mode: 0o755 });
++  return launcherPath;
++}
++
++// A symlink at the wrapper's own record path proves the cleanup unlinks the record it names
++// and never the file that path resolves to.
++function installSymlinkedRecordLauncher(sandbox, targetPath) {
++  const launcherPath = path.join(sandbox.root, 'symlinked-record-launcher.sh');
++  const lines = [
++    '#!/usr/bin/env bash',
++    'set -euo pipefail',
++    'state_directory="$XDG_RUNTIME_DIR/skilled-relaunch"',
++    'mkdir -p "$state_directory"',
++    `ln -s '${targetPath}' "$state_directory/relaunch-$$.json"`,
++    `exec /bin/bash "${WRAPPER_PATH}" "$@"`,
++  ];
++  fs.writeFileSync(launcherPath, `${lines.join('\n')}\n`, { mode: 0o755 });
++  return launcherPath;
++}
++
+ function runWrapper(sandbox, args) {
+   return runWrapperScript(sandbox, WRAPPER_PATH, args);
+ }
+@@ -1092,6 +1320,79 @@ test('opencode without --standalone in its help keeps the launch and the -m repl
+   assert.deepEqual(records[1].args, ['-m', 'p/m', '--prompt', `${SEED} ${handoffPath}`]);
+ });
+ 
++test('wrapper removes its own leftover relaunch record before the first launch', (t) => {
++  const sandbox = createSandbox(t);
++  const probePath = path.join(sandbox.root, 'state-probe.txt');
++  const { recordPath } = installRuntimeStub(sandbox, { STATE_PROBE_FILE: probePath });
++  const launcherPath = installLeftoverRecordLauncher(sandbox, [['relaunch-$$.json', '$$']]);
++
++  const result = runWrapperScript(sandbox, launcherPath, ['claude']);
++
++  assert.equal(result.status, 0, result.stderr);
++  const loopId = readRecords(recordPath)[0].env.SKILLED_LOOP_ID;
++  assert.match(loopId, LOOP_ID_PATTERN);
++  assert.equal(
++    fs.readFileSync(path.join(sandbox.root, 'planted-loop-id.txt'), 'utf8'),
++    loopId,
++  );
++  assert.equal(fs.readFileSync(probePath, 'utf8'), 'absent');
++  assert.equal(fs.existsSync(path.join(
++    sandbox.xdgRuntimeDir, 'skilled-relaunch', `relaunch-${loopId}.json`,
++  )), false);
++});
++
++test('a leftover relaunch record for another loop is kept', (t) => {
++  const sandbox = createSandbox(t);
++  const { recordPath } = installRuntimeStub(sandbox);
++  const launcherPath = installLeftoverRecordLauncher(sandbox, [
++    ['relaunch-$$.json', '$$'],
++    ['relaunch-999999.json', '999999'],
++  ]);
++
++  const result = runWrapperScript(sandbox, launcherPath, ['claude']);
++
++  assert.equal(result.status, 0, result.stderr);
++  const loopId = readRecords(recordPath)[0].env.SKILLED_LOOP_ID;
++  assert.notEqual(loopId, '999999');
++  const otherRecordPath = path.join(
++    sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch-999999.json',
++  );
++  assert.equal(fs.existsSync(otherRecordPath), true);
++  assert.deepEqual(
++    JSON.parse(fs.readFileSync(otherRecordPath, 'utf8')),
++    { ...LEFTOVER_RECORD, loopId: '999999' },
++  );
++});
++
++test('an own leftover record that is a symlink is removed and its target is kept', (t) => {
++  const sandbox = createSandbox(t);
++  const outsideRecordPath = path.join(sandbox.root, 'outside-record.json');
++  const outsideContent = JSON.stringify(LEFTOVER_RECORD);
++  fs.writeFileSync(outsideRecordPath, outsideContent);
++  const { recordPath } = installRuntimeStub(sandbox);
++  const launcherPath = installSymlinkedRecordLauncher(sandbox, outsideRecordPath);
++
++  const result = runWrapperScript(sandbox, launcherPath, ['claude']);
++
++  assert.equal(result.status, 0, result.stderr);
++  const loopId = readRecords(recordPath)[0].env.SKILLED_LOOP_ID;
++  assert.match(loopId, LOOP_ID_PATTERN);
++  const ownRecordPath = path.join(
++    sandbox.xdgRuntimeDir, 'skilled-relaunch', `relaunch-${loopId}.json`,
++  );
++  // lstat does not follow the link, so a link left behind counts as present even when its
++  // target is gone.
++  let ownRecordPresent = true;
++  try {
++    fs.lstatSync(ownRecordPath);
++  } catch (error) {
++    if (error.code !== 'ENOENT') throw error;
++    ownRecordPresent = false;
++  }
++  assert.equal(ownRecordPresent, false);
++  assert.equal(fs.readFileSync(outsideRecordPath, 'utf8'), outsideContent);
++});
++
+ test('wrapper declines a stale armed record and logs the decline', (t) => {
+   const sandbox = createSandbox(t);
+   const { recordPath, handoffPath } = installRuntimeStub(sandbox, {

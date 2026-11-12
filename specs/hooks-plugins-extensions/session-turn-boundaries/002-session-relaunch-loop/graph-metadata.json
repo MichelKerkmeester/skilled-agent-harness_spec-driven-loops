@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop",
   "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop",
-  "parent_id": null,
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries",
   "children_ids": [
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/001-claude-relaunch-loop",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/002-pi-opencode-adapters",
@@ -38,7 +38,8 @@
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/032-opencode2-standalone-replay",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in",
-    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/035-known-gap-fixes"
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/035-known-gap-fixes",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -76,6 +77,7 @@
       "research/research.md",
       "review-archive/20261018T184826Z/review-report.md",
       "review-archive/20261019T144809Z/review-report.md",
+      "036-review-remediation/scratch/handover-review.md",
       "001-claude-relaunch-loop/goal.md",
       "002-pi-opencode-adapters/goal.md",
       "003-command-trigger-runtimes/goal.md",
@@ -89,8 +91,7 @@
       "011-post-fix-remediation/goal.md",
       "033-research-remediation/goal.md",
       "034-default-off-opt-in/goal.md",
-      "035-known-gap-fixes/goal.md",
-      ".skilled/hooks/session-relaunch/pi/session-relaunch.ts"
+      "035-known-gap-fixes/goal.md"
     ],
     "entities": [
       {
@@ -118,9 +119,9 @@
         "source": "derived"
       },
       {
-        "name": "session-relaunch.ts",
-        "kind": "code",
-        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        "name": "handover-review.md",
+        "kind": "doc",
+        "path": "036-review-remediation/scratch/handover-review.md",
         "source": "derived"
       },
       {
@@ -234,7 +235,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-08T17:39:14.068Z",
+    "last_save_at": "2026-11-12T15:11:53.115Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -242,13 +243,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f9d576e853ab77b6835bd644c984f11ce15953a39668c63f011cb2fef8c376e1",
+    "source_fingerprint": "sha256:8bf854fbca081ab4606b08cade654dd55bdb0bd4df343e58e837fa3391659abd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8cdbbbc0b2b555a460871e9ef252d58e87c1f064e1e7c649cd21721f9dc7b6bc",
+      "spec.md": "d1fd73bef3b1cdc4a6a91cec2eb783de1620bdf1165d7675709e172476822aaa",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
-    "last_active_child_id": "hooks/023-session-relaunch-loop/031-relaunch-model-and-effort",
-    "last_active_at": "2026-10-25T09:18:16.700Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation",
+    "last_active_at": "2026-11-12T15:11:53.115Z"
   }
 }

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/001-shim-wrapper-trust",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/001-shim-wrapper-trust",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shim wrapper trust",
+      "phase 1 shim wrapper trust",
+      "shim wrapper trust plan",
+      "shim wrapper trust tasks",
+      "shim wrapper trust acceptance criteria",
+      "shim wrapper trust goal",
+      "shim wrapper trust implementation summary"
+    ],
+    "key_topics": [
+      "shim",
+      "wrapper",
+      "trust",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "skilledloopfindwrapper"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/skilled-loop-shell.sh",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs",
+      ".skilled/bin/README.md",
+      ".skilled/hooks/session-relaunch/README.md",
+      "scratch/red.txt",
+      "scratch/red-2.txt",
+      "scratch/red-3.txt",
+      "scratch/green.txt",
+      "scratch/green-full.txt",
+      "scratch/review.diff"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-shell.sh",
+        "kind": "script",
+        "path": ".skilled/bin/skilled-loop-shell.sh",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-shell.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-2.txt",
+        "kind": "file",
+        "path": "scratch/red-2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-3.txt",
+        "kind": "file",
+        "path": "scratch/red-3.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-full.txt",
+        "kind": "file",
+        "path": "scratch/green-full.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review.diff",
+        "kind": "file",
+        "path": "scratch/review.diff",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`skilledloopfindwrapper` walks up from `$PWD` and prints the first `.skilled/bin/skilled-loop` it finds, and `skilledlooplaunch` runs that file with `bash` at line 189",
+    "created_at": "2026-11-12T08:28:52Z",
+    "last_save_at": "2026-11-12T10:01:30.094Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:87fb84a7743b17826a697942e9f370374d365ed90f955b8e095549333a713a6f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "addfdb7df95dd39eb102685911dcd49fa47210fc1a794f2d1b6b52ca2e5f46c3",
+      "plan.md": "02dc86152748b553317d63f52c0143463e58050c892293f7f4f9e7d9e8d8e24f",
+      "tasks.md": "05ef246461046471c9e2881d5630242d342b30e639ff76924e3c71b1aaef1ba3",
+      "implementation-summary.md": "8c9ce8bae263f987029a2c15d724fe159358c0cabc5077616b3d0a902d04f84d"
+    },
+    "last_active_at": null
+  }
+}

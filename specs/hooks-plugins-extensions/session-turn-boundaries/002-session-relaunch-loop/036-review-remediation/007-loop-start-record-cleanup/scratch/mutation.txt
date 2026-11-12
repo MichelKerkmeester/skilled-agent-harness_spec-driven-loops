@@ -1,0 +1,7 @@
+# skilled-loop with the startup cleanup replaced by a no-op, leftover cases only
+not ok 1 - wrapper removes its own leftover relaunch record before the first launch
+ok 2 - a leftover relaunch record for another loop is kept
+not ok 3 - an own leftover record that is a symlink is removed and its target is kept
+# tests 3
+# pass 1
+# fail 2

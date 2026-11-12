@@ -1,0 +1,20 @@
+$ env -u AI_SESSION_CHILD node --test --test-name-pattern 'denies hand-over' .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs
+
+✖ subagent-guard denies hand-over from a sub-agent (76.63675ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 125.350584
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:172:1
+✖ subagent-guard denies hand-over from a sub-agent (76.63675ms)
+  AssertionError [ERR_ASSERTION]: expected a PreToolUse denial envelope
+      at assertDenied (.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:99:10)
+
+Exit code: 1

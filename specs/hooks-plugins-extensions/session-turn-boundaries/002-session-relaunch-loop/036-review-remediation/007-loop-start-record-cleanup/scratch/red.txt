@@ -1,0 +1,20 @@
+RED RUN (before the wrapper change)
+command: env -u AI_SESSION_CHILD node --test --test-name-pattern 'leftover relaunch record' .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
+exit: 1
+
+✖ wrapper removes its own leftover relaunch record before the first launch (316.004625ms)
+✔ a leftover relaunch record for another loop is kept (177.505583ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 538.930666
+✖ failing tests:
+✖ wrapper removes its own leftover relaunch record before the first launch (316.004625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  + 'present'
+  - 'absent'

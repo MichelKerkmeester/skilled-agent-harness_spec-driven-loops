@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop",
+  "children_ids": [
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/001-shim-wrapper-trust",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/002-state-dir-read-check",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/004-claude-window-unknown",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review remediation phase parent spec",
+      "handover review remediation",
+      "relaunch loop review findings",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "036-review-remediation operator decisions"
+    ],
+    "key_topics": [
+      "review",
+      "remediation",
+      "phase",
+      "parent",
+      "spec",
+      "handover",
+      "relaunch",
+      "loop",
+      "findings",
+      "packet",
+      "goal",
+      "durable"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "decision-record.md",
+      "scratch/handover-review.md",
+      ".skilled/bin/skilled-loop-shell.sh",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+      ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+      ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/bin/README.md",
+      "001-shim-wrapper-trust/goal.md",
+      "002-state-dir-read-check/goal.md",
+      "003-launch-flag-replay/goal.md",
+      "004-claude-window-unknown/goal.md",
+      "005-subagent-guard-cancel-consume/goal.md",
+      "006-append-lock-stale-reclaim/goal.md",
+      "007-loop-start-record-cleanup/goal.md",
+      "scratch/final-relaunch.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover-review.md",
+        "kind": "doc",
+        "path": "scratch/handover-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-shell.sh",
+        "kind": "script",
+        "path": ".skilled/bin/skilled-loop-shell.sh",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-usage.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-nudge.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "subagent-guard.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "final-relaunch.txt",
+        "kind": "file",
+        "path": "scratch/final-relaunch.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "PASS",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "eight",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A code review of the session relaunch loop on 2026-11-12 read 18 files and returned eight findings",
+    "created_at": "2026-11-12T08:28:52Z",
+    "last_save_at": "2026-11-12T15:11:53.115Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:f8754afe3273a14917c47ec3dfd18e462c2bb18dc40c1c769902495048a6c221",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e228b2e5eb4a065b1fd5a1794d8430da0123bada248a1ff61cd844193994c754",
+      "decision-record.md": "cf73b1032f11c17a90db74dfb5fc1f04a040549ec42e855827fc0616f4d86a18"
+    },
+    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim",
+    "last_active_at": "2026-11-12T15:11:53.115Z"
+  }
+}

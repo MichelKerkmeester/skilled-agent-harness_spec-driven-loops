@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "append lock stale reclaim",
+      "phase 6 append lock stale reclaim",
+      "append lock stale reclaim plan",
+      "append lock stale reclaim tasks",
+      "append lock stale reclaim acceptance criteria",
+      "append lock stale reclaim goal",
+      "006-append-lock-stale-reclaim operator decisions",
+      "append lock stale reclaim implementation summary"
+    ],
+    "key_topics": [
+      "append",
+      "lock",
+      "stale",
+      "reclaim",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "006-append-lock-stale-reclaim",
+      "operator"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      "scratch/red-2.txt",
+      "scratch/red-3.txt",
+      "scratch/green.txt",
+      "scratch/green-full.txt",
+      "scratch/green-opencode.txt",
+      "scratch/red.txt",
+      "scratch/red-4.txt",
+      ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim/spec.md",
+      "scratch/review.diff"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red-2.txt",
+        "kind": "file",
+        "path": "scratch/red-2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-3.txt",
+        "kind": "file",
+        "path": "scratch/red-3.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-full.txt",
+        "kind": "file",
+        "path": "scratch/green-full.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-opencode.txt",
+        "kind": "file",
+        "path": "scratch/green-opencode.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-4.txt",
+        "kind": "file",
+        "path": "scratch/red-4.txt",
+        "source": "derived"
+      },
+      {
+        "name": "killer.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "review.diff",
+        "kind": "file",
+        "path": "scratch/review.diff",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`withAppendLock` at `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1397` reclaims a stale append lock by reading its age and then calling `fs.rmdirSync(lockPath)` at line 1413",
+    "created_at": "2026-11-12T08:28:57Z",
+    "last_save_at": "2026-11-12T15:11:53.034Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9226af38089b31520dd44e2f3b4927d679ba50977601807d29f5c7b516a2634f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4500803a47bda865b1f04982e4e7ad4c8b3b320a09c7b6887697af1d0f3e2fca",
+      "plan.md": "af69b2ad9627bfc11db5d08baef48434f699885dd5cc057f86be406b13dd0602",
+      "tasks.md": "6d9809fed52bdc238eb0f673f489305c55a1edac3f9267fc84123bb09980ae3f",
+      "decision-record.md": "f66d5da87fb47a1020a8faee71d8d35d7549b242602dd083a5a0ad66458a846f",
+      "implementation-summary.md": "1a85b594a93e8b5352676873bb9e3288a418796987a157a5b14173ec91fc76b7"
+    },
+    "last_active_at": null
+  }
+}

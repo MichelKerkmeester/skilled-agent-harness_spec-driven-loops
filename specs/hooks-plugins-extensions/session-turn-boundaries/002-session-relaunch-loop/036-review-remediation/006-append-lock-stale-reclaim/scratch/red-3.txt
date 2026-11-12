@@ -1,0 +1,9 @@
+env -u AI_SESSION_CHILD node --test --test-name-pattern 'arm takes no lock in an unsafe state directory' .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+EXIT=1
+✖ arm takes no lock in an unsafe state directory (5.748375ms)
+ℹ tests 1
+ℹ pass 0
+ℹ fail 1
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ [ '<tmp>/runtime/skilled-relaunch/relaunch-loop-test-00000001.json.lock' ]
+- []

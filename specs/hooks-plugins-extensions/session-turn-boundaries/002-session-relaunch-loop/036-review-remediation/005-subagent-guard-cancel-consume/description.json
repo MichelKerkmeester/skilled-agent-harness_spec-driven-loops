@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume",
+  "description": "Phase 5: subagent-guard-cancel-consume",
+  "keywords": [
+    "phase",
+    "subagent-guard-cancel-consume"
+  ],
+  "lastUpdated": "2026-11-12T13:02:39.136Z",
+  "specId": "005",
+  "folderSlug": "subagent-guard-cancel-consume",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "036-review-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_14-02__closed-phase-005-the-claude-sub-agent-guard.md"
+  ]
+}

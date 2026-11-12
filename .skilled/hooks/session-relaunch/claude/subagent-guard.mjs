@@ -15,7 +15,9 @@ import { isEntrypoint } from '../lib/relaunch-core.cjs';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const CONCERN = 'session-relaunch';
-const LIFECYCLE_COMMAND = /session-relaunch\.cjs['"]?\s+(claim|complete|keep|prepare)\b/;
+const LIFECYCLE_COMMAND = new RegExp(
+  String.raw`session-relaunch\.cjs['"]?\s+(claim|complete|keep|prepare|cancel|consume|hand-over)\b`,
+);
 const DENIAL_REASON = [
   '[session-relaunch] A sub-agent shares its parent\'s session id, so this command would act',
   'on the parent\'s handoff note. Leave the note to the parent session.',
@@ -39,9 +41,9 @@ function emit(envelope) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 // A sub-agent or fork reports its parent's session id, so a lifecycle command run
-// from inside one resolves the parent's handoff note and would claim, complete,
-// keep or prepare it behind the parent's back. Only the main session's calls carry
-// no agent id, so only those reach the note.
+// from inside one resolves the parent's hand-over and would claim, complete, keep,
+// prepare, cancel, consume or hand over that note behind the parent's back. Only
+// the main session's calls carry no agent id, so only those reach it.
 function deniesRelaunchCommand(payload) {
   if (payload === null || typeof payload !== 'object') return false;
   if (payload.tool_name !== 'Bash') return false;

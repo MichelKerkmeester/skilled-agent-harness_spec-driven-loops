@@ -1,0 +1,16 @@
+✖ bash: an inherited GIT_DIR cannot vouch for a planted repository (683.960833ms)
+✖ bash: every interactive form finds the wrapper through a symlinked .skilled (8.586125ms)
+✖ zsh: an inherited GIT_DIR cannot vouch for a planted repository (1090.666167ms)
+✖ zsh: every interactive form finds the wrapper through a symlinked .skilled (9.683ms)
+✖ bash: on a terminal the runtime function hands the launch to the wrapper (310.412834ms)
+✖ zsh: on a terminal the runtime function hands the launch to the wrapper (83.323542ms)
+ℹ tests 30
+ℹ pass 24
+ℹ fail 6
+✖ failing tests:
+✖ bash: an inherited GIT_DIR cannot vouch for a planted repository (683.960833ms)
+✖ bash: every interactive form finds the wrapper through a symlinked .skilled (8.586125ms)
+✖ zsh: an inherited GIT_DIR cannot vouch for a planted repository (1090.666167ms)
+✖ zsh: every interactive form finds the wrapper through a symlinked .skilled (9.683ms)
+✖ bash: on a terminal the runtime function hands the launch to the wrapper (310.412834ms)
+✖ zsh: on a terminal the runtime function hands the launch to the wrapper (83.323542ms)

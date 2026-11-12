@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/004-claude-window-unknown",
+  "description": "Phase 4: claude-window-unknown",
+  "keywords": [
+    "phase",
+    "claude-window-unknown"
+  ],
+  "lastUpdated": "2026-11-12T12:39:36.040Z",
+  "specId": "004",
+  "folderSlug": "claude-window-unknown",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "036-review-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_13-39__closed-phase-004-the-claude-window-resolver.md"
+  ]
+}

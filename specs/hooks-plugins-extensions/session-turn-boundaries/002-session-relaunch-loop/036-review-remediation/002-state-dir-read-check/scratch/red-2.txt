@@ -1,0 +1,30 @@
+✖ a nudge state file behind a symlinked state directory reads as empty (2.649917ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 53.293166
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/nudge.test.cjs:780:1
+✖ a nudge state file behind a symlinked state directory reads as empty (2.649917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 0
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/351-session-relaunch-review-remediation/.skilled/hooks/session-relaunch/tests/nudge.test.cjs:793:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

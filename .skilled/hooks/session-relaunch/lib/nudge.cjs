@@ -624,16 +624,18 @@ function parseRearm(raw) {
 }
 
 function readStateFile(sessionId, env) {
-  const empty = { level: 0, rearm: null };
+  const empty = { level: 0, rearm: null, windowUnknown: false };
   const filePath = stateFilePath(sessionId, env);
   if (filePath === null) return empty;
 
   try {
+    if (core.inspectStateDir(core.stateDir(env)) !== true) return empty;
     const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     const level = Number(parsed?.level);
     return {
       level: Number.isInteger(level) && level >= 0 ? level : 0,
       rearm: parseRearm(parsed?.rearm),
+      windowUnknown: parsed?.windowUnknown === true,
     };
   } catch {
     return empty;
@@ -650,7 +652,14 @@ function persistState(sessionId, level, rearm, env) {
   ) return false;
 
   core.ensureStateDir(env);
-  const contents = rearm ? { level: numericLevel, rearm } : { level: numericLevel };
+  // The mark is set once per session, so a later level write that dropped it would let the
+  // skipped-window log line the mark suppresses appear again on the next tool call.
+  const { windowUnknown } = readStateFile(sessionId, env);
+  const contents = {
+    level: numericLevel,
+    ...(rearm ? { rearm } : {}),
+    ...(windowUnknown ? { windowUnknown: true } : {}),
+  };
   fs.writeFileSync(filePath, `${JSON.stringify(contents)}\n`, { mode: 0o600 });
   return true;
 }
@@ -676,6 +685,26 @@ function readState(sessionId, env = process.env) {
  */
 function writeState(sessionId, level, env = process.env) {
   persistState(sessionId, level, null, env);
+}
+
+/** Mark the session's unknown context window once, preserving its current nudge state. */
+function markWindowUnknown(sessionId, env = process.env) {
+  try {
+    const state = readStateFile(sessionId, env);
+    if (state.windowUnknown) return false;
+    const filePath = stateFilePath(sessionId, env);
+    if (filePath === null) return false;
+    core.ensureStateDir(env);
+    const contents = {
+      level: state.level,
+      ...(state.rearm ? { rearm: state.rearm } : {}),
+      windowUnknown: true,
+    };
+    fs.writeFileSync(filePath, `${JSON.stringify(contents)}\n`, { mode: 0o600 });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 /**
@@ -732,5 +761,6 @@ module.exports = {
   validSessionId,
   readState,
   writeState,
+  markWindowUnknown,
   rearmAfterWithdraw,
 };

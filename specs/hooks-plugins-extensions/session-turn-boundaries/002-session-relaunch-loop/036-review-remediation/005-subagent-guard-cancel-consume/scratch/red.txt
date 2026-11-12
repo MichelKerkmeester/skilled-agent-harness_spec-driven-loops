@@ -1,0 +1,26 @@
+$ node --test --test-name-pattern 'denies (cancel|consume)' .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs
+
+✖ subagent-guard denies cancel from a sub-agent (40.99375ms)
+✖ subagent-guard denies consume from a sub-agent (37.080917ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 134.419958
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:156:1
+✖ subagent-guard denies cancel from a sub-agent (40.99375ms)
+  AssertionError [ERR_ASSERTION]: expected a PreToolUse denial envelope
+      at assertDenied (.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:99:10)
+
+test at .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:164:1
+✖ subagent-guard denies consume from a sub-agent (37.080917ms)
+  AssertionError [ERR_ASSERTION]: expected a PreToolUse denial envelope
+      at assertDenied (.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:99:10)
+
+Exit code: 1
