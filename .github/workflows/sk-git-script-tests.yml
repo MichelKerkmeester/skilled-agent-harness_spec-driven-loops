@@ -56,6 +56,11 @@ jobs:
       - name: Run the migrate-legacy-branch-names suite
         run: bash .skilled/skills/sk-git/scripts/tests/migrate-legacy-branch-names.test.sh
 
+      # stamp-branch.sh rewrites commit messages with git-filter-repo and exits 2
+      # without it, and the runner image does not ship it.
+      - name: Install git-filter-repo
+        run: python3 -m pip install git-filter-repo==2.47.0
+
       - name: Run the stamp-branch suite
         run: bash .skilled/skills/sk-git/scripts/tests/stamp-branch.test.sh
 
