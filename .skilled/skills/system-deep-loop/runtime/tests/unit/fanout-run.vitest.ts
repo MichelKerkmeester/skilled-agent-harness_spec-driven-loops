@@ -4803,7 +4803,11 @@ describe('fanout-run.cjs — persisted wait checkpoint', () => {
     const baseDir = makeTempDir('fanout-run-resume-wait-base-');
     const markerPath = join(baseDir, 'lineage-launched.marker');
     const checkpointPath = join(baseDir, 'orchestration-wait-checkpoint.json');
-    const nextRunAt = new Date(Date.now() + 800).toISOString();
+    // The runner treats a checkpoint whose deadline has passed as expired and logs no resume, so
+    // the deadline must still lie ahead once the child process has started. A loaded host can
+    // take longer than a second to start it.
+    const resumeWaitMs = 5000;
+    const nextRunAt = new Date(Date.now() + resumeWaitMs).toISOString();
     writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
     writeFileSync(
       checkpointPath,
@@ -4811,7 +4815,7 @@ describe('fanout-run.cjs — persisted wait checkpoint', () => {
         schemaVersion: 1,
         status: 'waiting',
         nextRunAt,
-        remainingDelayMs: 800,
+        remainingDelayMs: resumeWaitMs,
         updatedAt: new Date().toISOString(),
       })}\n`,
       'utf8',

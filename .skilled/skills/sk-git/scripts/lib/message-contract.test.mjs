@@ -10,7 +10,7 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { test } from 'node:test';
+import { after, test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -49,8 +49,14 @@ const BRANCH = extractContract(read('branch'));
 
 const ids = (result) => result.errors.map((e) => e.id);
 
+const tempDirs = [];
+after(() => {
+  for (const dir of tempDirs) fs.rmSync(dir, { recursive: true, force: true });
+});
+
 function tempRepo(withContract = true) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'message-contract-'));
+  tempDirs.push(dir);
   const git = (...args) => execFileSync('git', ['-C', dir, ...args], { stdio: 'ignore' });
   git('init', '-q');
   if (withContract) git('config', 'skgit.contractDir', ASSETS);
@@ -358,6 +364,7 @@ test('skgit.contractDir pointing nowhere is an error, not an opt-out', () => {
 test('a command-scope skgit.contractDir cannot switch the rules off', () => {
   const dir = tempRepo(true);
   const empty = fs.mkdtempSync(path.join(os.tmpdir(), 'message-contract-empty-'));
+  tempDirs.push(empty);
   const saved = { ...process.env };
   try {
     process.env.GIT_CONFIG_COUNT = '1';

@@ -5,16 +5,24 @@
 // The load-bearing safety property for wiring this admission gate into the live deep-research
 // serving path: with no durable cutover on record, the gate must resolve to the legacy writer with
 // admission open, so interposing it changes nothing until an explicit, authorized flip lands.
-import { describe, expect, it } from 'vitest';
-import { mkdtempSync, writeFileSync, mkdirSync } from 'node:fs';
+import { afterAll, describe, expect, it } from 'vitest';
+import { mkdtempSync, rmSync, writeFileSync, mkdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { admitCanonicalWrite } from '../../lib/deep-research-authority/index.js';
 import { AuthorityRegistry } from '../../lib/per-mode-authority-flip/index.js';
 
+const roots: string[] = [];
+
 function freshRoot(): string {
-  return mkdtempSync(join(tmpdir(), 'dr-authority-'));
+  const root = mkdtempSync(join(tmpdir(), 'dr-authority-'));
+  roots.push(root);
+  return root;
 }
+
+afterAll(() => {
+  for (const root of roots) rmSync(root, { recursive: true, force: true });
+});
 
 describe('admitCanonicalWrite — deep-research read-only admission gate', () => {
   it('defaults to the legacy writer for a never-written authority record', () => {

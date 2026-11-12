@@ -4,9 +4,9 @@
 // Asserts the compiled runtime under dist/ covers every lib source and was
 // built from the source content currently on disk.
 
-import { describe, it, expect } from 'vitest';
+import { afterAll, describe, it, expect } from 'vitest';
 import { createRequire } from 'node:module';
-import { mkdtempSync, mkdirSync, readFileSync, existsSync, statSync, readdirSync, writeFileSync, utimesSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, existsSync, rmSync, statSync, readdirSync, writeFileSync, utimesSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname, relative } from 'node:path';
 
@@ -75,8 +75,15 @@ describe('dist freshness — global walk', () => {
 });
 
 describe('dist freshness — build cache bootstrap', () => {
+  const workspaceRoots: string[] = [];
+
+  afterAll(() => {
+    for (const root of workspaceRoots) rmSync(root, { recursive: true, force: true });
+  });
+
   it('pre-warms the checker hash cache so content-identical mtime skew reports fresh', () => {
     const workspaceRoot = mkdtempSync(join(tmpdir(), 'dist-freshness-bootstrap-'));
+    workspaceRoots.push(workspaceRoot);
     const packageRoot = join(workspaceRoot, '.skilled', 'skills', 'system-spec-kit', 'runtime');
     mkdirSync(join(packageRoot, 'dist'), { recursive: true });
     mkdirSync(join(packageRoot, 'schemas'), { recursive: true });
@@ -134,6 +141,7 @@ describe('dist freshness — build cache bootstrap', () => {
 
   it('uses per-entry cache paths so one entry cannot vouch for another', () => {
     const workspaceRoot = mkdtempSync(join(tmpdir(), 'dist-freshness-entry-'));
+    workspaceRoots.push(workspaceRoot);
     const packageRoot = join(workspaceRoot, '.skilled', 'skills', 'system-spec-kit', 'runtime');
     mkdirSync(join(packageRoot, 'dist', 'lib', 'validation'), { recursive: true });
     mkdirSync(join(packageRoot, 'lib', 'validation'), { recursive: true });

@@ -2,7 +2,7 @@
 // MODULE: HF Local HTTP Client Provider
 // ───────────────────────────────────────────────────────────────────
 
-import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 
@@ -61,8 +61,11 @@ function useVirtualReadinessClock() {
   return clock;
 }
 
+const tempDirs: string[] = [];
+
 function useSocketFixture(): string {
   const socketDir = mkdtempSync(path.join(tmpdir(), 'hf-local-readiness-'));
+  tempDirs.push(socketDir);
   delete process.env.HF_EMBED_SERVER_URL;
   process.env.SPECKIT_IPC_SOCKET_DIR = socketDir;
   __hfLocalProviderTestables.setSpawnAuthorityDbDir(socketDir);
@@ -107,6 +110,7 @@ describe('HfLocalProvider HTTP client', () => {
     restoreEnv('HF_EMBED_SERVER_URL', ORIGINAL_HF_EMBED_SERVER_URL);
     restoreEnv('SPECKIT_IPC_SOCKET_DIR', ORIGINAL_SPECKIT_IPC_SOCKET_DIR);
     restoreEnv('MEMORY_DB_PATH', ORIGINAL_MEMORY_DB_PATH);
+    for (const dir of tempDirs.splice(0)) rmSync(dir, { recursive: true, force: true });
   });
 
   it('applies document and query prefixes before POST /api/embed', async () => {
@@ -481,6 +485,7 @@ describe('HfLocalProvider HTTP client', () => {
 
   it('resolves the spawn-authority directory from the configured database pointer', () => {
     const dbDir = mkdtempSync(path.join(tmpdir(), 'hf-local-advisor-db-'));
+    tempDirs.push(dbDir);
     process.env.MEMORY_DB_PATH = path.join(dbDir, 'skill-graph.sqlite');
 
     expect(__hfLocalProviderTestables.defaultSpawnAuthorityDbDir()).toBe(dbDir);
