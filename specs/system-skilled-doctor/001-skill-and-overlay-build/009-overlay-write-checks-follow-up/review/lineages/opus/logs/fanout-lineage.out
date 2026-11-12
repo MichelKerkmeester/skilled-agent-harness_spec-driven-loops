@@ -1,0 +1,24 @@
+The opus lineage's review is finished, but its state recording isn't. The session's permission layer refused every `node` call, so the append gateway, the reducer and the synthesis-closeout script never ran. `deep-review-state.jsonl`, the findings registry and the dashboard don't exist. I didn't hand-write them because the contract forbids it. The two iteration records, the run-open builder and a hand-built synthesis record (with `stopReason: maxIterationsReached`) are in `gateway-events/` for replay. The run-open event itself was never generated, so replaying means running the builder first. The fan-out runner will probably reject this lineage until those records go through the gateway.
+
+The review ran 2 of 2 iterations and covered all four dimensions. Verdict: **CONDITIONAL**, with 0 P0, 2 P1 and 7 P2. No finding was confirmed by running code; each comes from reading the files at the cited lines.
+
+**P1 findings:**
+- **Relayout can break a layout link that the next apply then refuses to fix** (`overlay-engine.cjs:4740`). When a link points into a copy that relayout moves, relayout rewrites the link's target in the manifest but leaves the link itself pointing at the old path. The next apply only repoints a link if `sync-state.json` records it. State files written by the earlier engine don't record links, and the documented flow runs relayout straight into apply. So an upgraded tree ends with a dangling link and an apply that refuses to write anything.
+- **The apply workflow says "nothing was written" when files were already moved** (`doctor-overlay-apply.yaml:113`). The engine raises that exit-2 error only after it has moved the copies and written a backup. An operator who believes the message won't restore from the backup.
+
+**P2 findings:**
+- **Lock takeover race:** a run taking over a stale lock can delete a lock another run has just taken, leaving both runs writing.
+- **Dropped items:** dropping an entry deletes an identical item that upstream now ships itself.
+- **Relayout has no rollback:** it moves copies one at a time and rewrites the manifest only at the end.
+- **Commit check bypass:** any staged change to the pinned commit turns the whole commit check off.
+- **Nonexistent command:** the status workflow tells the operator to run `/doctor:overlay relayout`, which doesn't exist; the real command is `apply --relayout`.
+- **Lock docs incomplete:** they don't mention that relayout and rollback take the lock.
+- **No coverage:** neither the tests nor the playbook cover relayout with a layout link.
+
+Not covered: the packet's acceptance criteria, and running any test suite or playbook scenario.
+
+Everything is in `specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/review/lineages/opus/`; open `review-report.md` first. No file outside that directory was modified.
+
+Your one action: replay the files in `gateway-events/` through `append-mode-event.cjs`, starting with the run-open event the builder produces, then run the reducer, so the lineage can merge.
+
+FANOUT_LINEAGE_COMPLETE:opus

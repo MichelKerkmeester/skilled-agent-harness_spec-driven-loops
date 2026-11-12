@@ -35,7 +35,7 @@ const GIT_CONFIG = [
 ];
 const SETTINGS_UPSTREAM = '{"hooks": []}\n';
 const ROLLBACK_LINE = /^rollback: node \.skilled\/commands\/doctor\/scripts\/overlay-engine\.cjs repin --rollback (\S+)/m;
-const FOREIGN_LOCK = 'orchestrator repin pid=4242 2026-11-06T08:00:00Z\n';
+const FOREIGN_LOCK = 'orchestrator repin pid=4242 host=some-other-host 2026-11-06T08:00:00Z\n';
 
 const OLD_ENTRIES = {
   '.skilled/skills/hub/ROUTER.md': 'router v1\n',

@@ -68,10 +68,10 @@ Each Phase 2 task is one brief to one DeepSeek V4.1 Flash agent at max thinking.
 ## Phase 3: Verification
 
 - [x] T021 Rerun every gate. Verify: `node --test tests/` prints `fail 0`, `route-validate.sh` ends with `OK`, `sync-runtime-mirrors.cjs --check` prints `PASS` and `quality-gate.cjs` prints `"p0_blocking": 0`.
-- [ ] T022 Commit and push the implementation. Verify: `git ls-remote origin refs/heads/main` names the new commit and the Skill Doc Frontmatter run on it concludes `success`.
-- [ ] T023 Run `/deep:review` for 5 iterations on this phase. Verify: the `review/` folder holds 5 iteration records.
-- [ ] T024 Have a fresh Opus agent at high effort write the synthesis. Verify: the report exists in `review/` and lists each finding with a severity.
-- [ ] T025 Plan and fix each P0 and P1 finding, one brief per fix. Verify: `implementation-summary.md` lists each as fixed with a command or rejected with evidence.
+- [x] T022 Commit and push the implementation. Verify: `git ls-remote origin refs/heads/main` names the new commit and the Skill Doc Frontmatter run on it concludes `success`.
+- [x] T023 Run `/deep:review` for 5 iterations on this phase. Verify: the `review/` folder holds 5 iteration records.
+- [x] T024 Have a fresh Opus agent at high effort write the synthesis. Verify: the report exists in `review/` and lists each finding with a severity.
+- [x] T025 Plan and fix each P0 and P1 finding, one brief per fix. Verify: `implementation-summary.md` lists each as fixed with a command or rejected with evidence.
 - [ ] T026 Run `/local-skilled-alignment` on the work. Verify: its report lists 0 open findings.
 - [ ] T027 Update the `v4.0.2.1` entry and write the `system-skilled-doctor` v1.1.6.0 note. Verify: `check_changelog_shape.py` prints `PASS` for both.
 - [ ] T028 Commit, push, then delete and republish the `v4.0.2.1` tag and release. Verify: on origin the tag and `main` name one commit, and the release body equals the built notes.

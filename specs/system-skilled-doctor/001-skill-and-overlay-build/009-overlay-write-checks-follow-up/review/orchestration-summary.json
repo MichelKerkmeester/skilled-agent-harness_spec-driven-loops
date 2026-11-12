@@ -1,0 +1,28 @@
+{
+  "run_id": "1794439428470-vyb51k",
+  "loop_type": "review",
+  "spec_folder": "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up",
+  "base_artifact_dir": "specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/review",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 1,
+  "failed": 1,
+  "all_failed": false,
+  "completed_with_containment_advisory": 1,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  }
+}

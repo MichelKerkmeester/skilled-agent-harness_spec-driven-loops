@@ -241,7 +241,7 @@ test('a file under a replaced folder holding the recorded pin bytes is overlay-e
 // 5. THE ENGINE'S OWN LOCK
 // ─────────────────────────────────────────────────────────────────────────────
 
-const FOREIGN_LOCK = 'orchestrator repin pid=4242 2026-11-06T08:00:00Z\n';
+const FOREIGN_LOCK = 'orchestrator repin pid=4242 host=some-other-host 2026-11-06T08:00:00Z\n';
 
 test('apply refuses while the lock is held, naming the owner line and the lock file, and writes nothing', (t) => {
   const fixture = createSyncFixture(t);
@@ -252,7 +252,7 @@ test('apply refuses while the lock is held, naming the owner line and the lock f
 
   const applied = fixture.run(['apply']);
   assert.equal(applied.code, 2, applied.output);
-  assert.match(applied.output, /orchestrator repin pid=4242 2026-11-06T08:00:00Z/);
+  assert.match(applied.output, /orchestrator repin pid=4242 host=some-other-host 2026-11-06T08:00:00Z/);
   assert.ok(applied.output.includes(fixture.lockPath), applied.output);
   assert.equal(treeDigest(fixture.tree), before);
   assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), FOREIGN_LOCK);

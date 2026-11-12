@@ -74,6 +74,8 @@ const DEFAULT_OVERLAY_FOLDER = 'skilled-overlays';
 const MANIFEST_FILE = 'overlay-manifest.json';
 const STATE_FILE = 'sync-state.json';
 const LOCK_FILE = '.build-lock';
+const LOCK_TAKEOVER_SUFFIX = '.takeover';
+const LOCK_TAKEOVER_STALE_MS = 60 * 1000;
 const STATE_SCHEMA_VERSION = 1;
 const STATUS_NAMES = ['in-sync', 'overlay-edited', 'live-edited', 'both-changed', 'upstream-moved'];
 const BLOCKING_STATES = new Set(['live-edited', 'both-changed', 'upstream-moved']);
@@ -1096,17 +1098,47 @@ function listsRecordedItem(operation, record) {
 }
 
 /**
+ * Whether the pinned upstream copy already carries a recorded item at the same
+ * path, which makes retracting that item a deletion of upstream's own line
+ * rather than of this overlay's addition.
+ * @param {string|null} upstreamText The destination at the pin, or null when no
+ *   upstream copy could be read.
+ * @param {object} record One recorded added item.
+ * @returns {boolean} Whether upstream's array at that path holds the same item.
+ */
+function upstreamShipsRecordedItem(upstreamText, record) {
+  if (upstreamText === null) return false;
+  let arrayNode;
+  try {
+    arrayNode = recordedArrayAt(parseJsonSource(upstreamText), record.path);
+  } catch (error) {
+    // An upstream copy that does not parse says nothing about the item, so the
+    // record is retracted as it always was.
+    return false;
+  }
+  if (!arrayNode) return false;
+  const index = findRecordedIndex(arrayNode, record);
+  if (index < 0) return false;
+  const node = arrayNode.items[index];
+  return deepEqual(JSON.parse(upstreamText.slice(node.start, node.end)), record.item);
+}
+
+/**
  * Delete every item this overlay added that its entry set no longer lists, so a
  * dropped entry leaves the live file instead of staying behind as a line the
  * entry set never mentions. An item that changed after it was applied is
  * refused rather than deleted: that edit belongs to a person, and the entry set
- * no longer describes what the item should be.
+ * no longer describes what the item should be. An item upstream now ships is
+ * left in place and only its record dropped, because the live line is then
+ * upstream's and deleting it would remove upstream's own entry.
  * @param {string} text Live document text.
  * @param {object[]} operations Operations of one entry set, in order.
  * @param {object[]} recordedItems Items this overlay added to the destination.
+ * @param {() => (string|null)} [readUpstreamText] Reads the destination as the
+ *   pin holds it, or null when there is no upstream copy to read.
  * @returns {string} The text with every dropped item gone.
  */
-function removeDroppedItems(text, operations, recordedItems) {
+function removeDroppedItems(text, operations, recordedItems, readUpstreamText = () => null) {
   let output = text;
   for (const record of recordedItems) {
     if (operations.some((operation) => listsRecordedItem(operation, record))) continue;
@@ -1122,6 +1154,7 @@ function removeDroppedItems(text, operations, recordedItems) {
       throw new Error('dropped entry ' + describe(recordIdentity(record)) +
         ' was edited after it was applied; remove it by hand or restore it in the entry set');
     }
+    if (upstreamShipsRecordedItem(readUpstreamText(), record)) continue;
     output = applyEdits(output, [removalEdit(arrayNode.items, index)]);
   }
   return output;
@@ -1133,9 +1166,10 @@ function removeDroppedItems(text, operations, recordedItems) {
  * @param {string} text Live document text.
  * @param {{style?: object, operations: object[]}} spec Entry set.
  * @param {{canReplaceExisting: boolean, recordedItems?: object[],
- *   onListed?: function}} options Whether a differing entry may be rewritten, the
- *   items this overlay added to the file last time, and where a listed item is
- *   reported.
+ *   onListed?: function, readUpstreamText?: () => (string|null)}} options Whether
+ *   a differing entry may be rewritten, the items this overlay added to the file
+ *   last time, where a listed item is reported, and how the destination reads in
+ *   the pinned upstream copy.
  * @returns {string} The edited document text.
  */
 function applyJsonOperations(text, spec, options) {
@@ -1143,7 +1177,7 @@ function applyJsonOperations(text, spec, options) {
   const operations = withLaterKeysMerged(spec.operations);
   // A dropped entry is retracted before the entry set runs, so every operation
   // addresses the array the set describes rather than the one it left behind.
-  let output = removeDroppedItems(text, operations, options.recordedItems || []);
+  let output = removeDroppedItems(text, operations, options.recordedItems || [], options.readUpstreamText);
   // Each operation sees the document the operations before it produced, so a
   // later operation can address an item an earlier one in the same set added.
   for (const operation of operations) {
@@ -1320,13 +1354,16 @@ function planMarkedSectionOverlay(entry, ctx, problems, acceptedSha256) {
  * @param {object} ctx Engine context.
  * @param {string[]} problems Collects reasons the overlay cannot be applied.
  * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
- * @param {{recordedItems?: object[]}} [options] Items this overlay added to the
- *   destination last time, so a dropped entry leaves the live file.
+ * @param {{recordedItems?: object[],
+ *   upstreamBytes?: ((key: string) => Buffer|null)|null}} [options] Items this
+ *   overlay added to the destination last time, so a dropped entry leaves the live
+ *   file, and the reader for the pinned upstream copy that tells an item this
+ *   overlay added from one upstream ships itself.
  * @returns {{writes: object[], deletes: string[], outputs: object[], listedItems: object[]}}
  *   `listedItems` holds the items the entry set still lists and this overlay
  *   added, which is what a later pass may retract.
  */
-function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems } = {}) {
+function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems, upstreamBytes } = {}) {
   const specPath = path.join(ctx.overlayRoot, entry.source);
   const destinationPath = path.join(ctx.root, entry.destination);
   const specBuffer = readBufferOrNull(specPath);
@@ -1345,12 +1382,22 @@ function planJsonOverlay(entry, ctx, problems, acceptedSha256, { recordedItems }
   // overlay's own work. Without it a differing entry may be a hand edit.
   const appliedHash = acceptedHashFor(acceptedSha256, entry.destination);
   const canReplaceExisting = appliedHash !== undefined && sha256(current) === appliedHash;
+  // The pinned upstream copy is read only once a record is actually dropped, so a
+  // run that retracts nothing pays no git call for it.
+  let upstreamText;
+  const readUpstreamText = () => {
+    if (upstreamText !== undefined) return upstreamText;
+    const bytes = upstreamBytes ? upstreamBytes(relativeKey(ctx.root, destinationPath)) : null;
+    upstreamText = bytes === null ? null : bytes.toString('utf8');
+    return upstreamText;
+  };
   let expected;
   const listedItems = [];
   try {
     expected = applyJsonOperations(currentText, spec, {
       canReplaceExisting,
       recordedItems,
+      readUpstreamText,
       onListed: (record) => listedItems.push(record),
     });
   } catch (error) {
@@ -1559,20 +1606,22 @@ const PLANNERS = {
  * @param {object} entry Manifest overlay entry.
  * @param {object} ctx Engine context.
  * @param {{acceptedSha256?: Map<string, string>|Record<string, string>,
- *   recordedItems?: object[]}} [options] Hashes of what this overlay wrote last, which
- *   authorize rewriting a destination that changed only because the canonical copy
- *   did, and the items it added there, which a dropped entry takes back.
+ *   recordedItems?: object[], upstreamBytes?: ((key: string) => Buffer|null)|null}}
+ *   [options] Hashes of what this overlay wrote last, which authorize rewriting a
+ *   destination that changed only because the canonical copy did, the items it
+ *   added there, which a dropped entry takes back, and the reader for the pinned
+ *   upstream copy those items are told apart from.
  * @returns {{entry: object, problems: string[], writes: object[], deletes: string[],
  *   outputs: object[], listedItems: object[]}}
  *   `listedItems` names the added items an entry set still lists, for the state write.
  */
-function planOverlay(entry, ctx, { acceptedSha256, recordedItems } = {}) {
+function planOverlay(entry, ctx, { acceptedSha256, recordedItems, upstreamBytes } = {}) {
   const problems = [];
   const planner = PLANNERS[entry.scope];
   if (!planner) {
     return { entry, problems: [`unknown scope "${entry.scope}"`], writes: [], deletes: [], outputs: [], listedItems: [] };
   }
-  const plan = planner(entry, ctx, problems, acceptedSha256, { recordedItems });
+  const plan = planner(entry, ctx, problems, acceptedSha256, { recordedItems, upstreamBytes });
   return {
     entry,
     problems,
@@ -2122,6 +2171,7 @@ function analyze(ctx, manifest, state, upstreamBytes = pinnedUpstreamBytes(manif
     : planOverlay(entry, ctx, {
       acceptedSha256: state.files,
       recordedItems: (state.items || {})[entry.destination] || [],
+      upstreamBytes,
     })));
   const records = [];
   const blocked = [];
@@ -2228,13 +2278,19 @@ function stateSummary(records) {
  * missing process on this host counts: another host's ids say nothing here, and
  * any other error (a process owned by another user answers EPERM) says the
  * process is there.
+ * A line that carries a process id and no `host=` token was written before the
+ * engine recorded the host, and that engine only ever ran on the machine it was
+ * installed on, so its id is probed here too. On a folder shared between
+ * machines that can take the lock from a live run elsewhere, but refusing the
+ * line forever would block every upgrade behind a hand delete.
  * @param {string} line Owner line read from the lock file.
  * @returns {boolean} True only when the writer is known to be gone.
  */
 function isLockOwnerGone(line) {
   const pid = / pid=(\d+) /.exec(line);
   const host = / host=(\S+) /.exec(line);
-  if (!pid || !host || host[1] !== os.hostname()) return false;
+  if (!pid) return false;
+  if (host && host[1] !== os.hostname()) return false;
   try {
     process.kill(Number(pid[1]), 0);
   } catch (error) {
@@ -2247,12 +2303,65 @@ function isLockOwnerGone(line) {
  * Try to take the overlay lock.
  * A lock whose writer has ended is removed and taken over, with one note saying
  * whose lock it was; every other held lock is left alone and reported.
+ * Two runs can find the same leftover, and if each removed it the later removal
+ * would delete the lock the other run has just written, leaving both holding it.
+ * The removal therefore happens behind a `<lock>.takeover` marker that only one
+ * run can create: that run re-reads the lock, removes it only while it still
+ * holds the line it judged stale, and creates the new lock before the marker
+ * goes. A marker older than the timeout is what a run killed mid-takeover
+ * leaves, and is cleared so it cannot block every later run for good.
  * @param {object} ctx Engine context.
  * @param {string} owner Who takes it, written at the start of the owner line.
  * @returns {{isHeld: boolean, lockPath: string, ownerLine: string, release?: function}}
  */
 function acquireLock(ctx, owner) {
   const ownerLine = `${owner} pid=${process.pid} host=${os.hostname()} ${new Date().toISOString()}`;
+  const takeoverPath = ctx.lockPath + LOCK_TAKEOVER_SUFFIX;
+
+  /**
+   * Report the lock as held by someone else.
+   * @param {string} otherLine The line the lock file holds, or a sentence saying
+   *   why no takeover could be made.
+   * @returns {{isHeld: boolean, lockPath: string, ownerLine: string}}
+   */
+  function refusal(otherLine) {
+    return { isHeld: false, lockPath: ctx.lockPath, ownerLine: otherLine };
+  }
+
+  /**
+   * Create the takeover marker, clearing one a killed run left behind.
+   * @returns {number|null} The marker's descriptor, or null while another live
+   *   run is taking the lock over.
+   */
+  function reserveTakeover() {
+    try {
+      return fs.openSync(takeoverPath, 'wx');
+    } catch (error) {
+      if (!error || error.code !== 'EEXIST') throw error;
+    }
+    let stats;
+    try {
+      stats = fs.statSync(takeoverPath);
+    } catch (error) {
+      if (error && error.code === 'ENOENT') return null;
+      throw error;
+    }
+    // No live run can still be behind a marker this old, so it is a leftover
+    // that would otherwise block every takeover from here on.
+    if (Date.now() - stats.mtimeMs <= LOCK_TAKEOVER_STALE_MS) return null;
+    try {
+      fs.unlinkSync(takeoverPath);
+    } catch (unlinkError) {
+      if (!unlinkError || unlinkError.code !== 'ENOENT') throw unlinkError;
+    }
+    try {
+      return fs.openSync(takeoverPath, 'wx');
+    } catch (retryError) {
+      if (!retryError || retryError.code !== 'EEXIST') throw retryError;
+      return null;
+    }
+  }
+
   let fd;
   try {
     fd = fs.openSync(ctx.lockPath, 'wx');
@@ -2260,27 +2369,38 @@ function acquireLock(ctx, owner) {
     if (!error || error.code !== 'EEXIST') throw error;
     const current = readBufferOrNull(ctx.lockPath);
     const currentLine = current ? current.toString('utf8').trim() : '(empty lock file)';
-    if (!current || !isLockOwnerGone(currentLine)) {
-      return { isHeld: false, lockPath: ctx.lockPath, ownerLine: currentLine };
-    }
-    console.log('note: took over the overlay lock of a run that has ended: ' + currentLine);
-    // Another run can remove the same leftover between the read and this
-    // removal; the retry below then reports that run's owner line instead.
-    try {
-      fs.unlinkSync(ctx.lockPath);
-    } catch (unlinkError) {
-      if (!unlinkError || unlinkError.code !== 'ENOENT') throw unlinkError;
+    if (!current || !isLockOwnerGone(currentLine)) return refusal(currentLine);
+    const takeoverFd = reserveTakeover();
+    if (takeoverFd === null) {
+      return refusal('another run is taking the overlay lock over: ' + takeoverPath);
     }
     try {
-      fd = fs.openSync(ctx.lockPath, 'wx');
-    } catch (retryError) {
-      if (!retryError || retryError.code !== 'EEXIST') throw retryError;
-      const taken = readBufferOrNull(ctx.lockPath);
-      return {
-        isHeld: false,
-        lockPath: ctx.lockPath,
-        ownerLine: taken ? taken.toString('utf8').trim() : '(empty lock file)',
-      };
+      // The line was read before this run held the marker, so another run may
+      // have finished its own takeover since; only the bytes judged stale above
+      // are this run's to remove.
+      const recheck = readBufferOrNull(ctx.lockPath);
+      const recheckLine = recheck ? recheck.toString('utf8').trim() : '(empty lock file)';
+      if (!recheck || recheckLine !== currentLine) return refusal(recheckLine);
+      console.log('note: took over the overlay lock of a run that has ended: ' + currentLine);
+      try {
+        fs.unlinkSync(ctx.lockPath);
+      } catch (unlinkError) {
+        if (!unlinkError || unlinkError.code !== 'ENOENT') throw unlinkError;
+      }
+      try {
+        fd = fs.openSync(ctx.lockPath, 'wx');
+      } catch (retryError) {
+        if (!retryError || retryError.code !== 'EEXIST') throw retryError;
+        const taken = readBufferOrNull(ctx.lockPath);
+        return refusal(taken ? taken.toString('utf8').trim() : '(empty lock file)');
+      }
+    } finally {
+      fs.closeSync(takeoverFd);
+      try {
+        fs.unlinkSync(takeoverPath);
+      } catch (unlinkError) {
+        if (!unlinkError || unlinkError.code !== 'ENOENT') throw unlinkError;
+      }
     }
   }
   try {
@@ -4588,12 +4708,15 @@ function planRelayout(ctx, groups) {
 
 /**
  * Copy one path into a backup folder, keeping its shape and never opening a
- * credential file.
+ * credential file. A backup is a second copy of the tree, so it holds only what
+ * apply itself may read: a token-named path no manifest entry names exactly is
+ * skipped rather than duplicated beside the source.
  * @param {string} sourcePath Path to copy.
  * @param {string} targetPath Where the copy goes.
  * @param {string} relativePath Position of the copy, for the `skipped` line.
+ * @param {Set<string>} exact Absolute paths a manifest entry names exactly.
  */
-function copyForBackup(sourcePath, targetPath, relativePath) {
+function copyForBackup(sourcePath, targetPath, relativePath, exact) {
   let stats;
   try {
     stats = fs.lstatSync(sourcePath);
@@ -4611,11 +4734,11 @@ function copyForBackup(sourcePath, targetPath, relativePath) {
   if (stats.isDirectory()) {
     fs.mkdirSync(targetPath, { recursive: true });
     for (const name of fs.readdirSync(sourcePath).sort()) {
-      copyForBackup(path.join(sourcePath, name), path.join(targetPath, name), relativePath + '/' + name);
+      copyForBackup(path.join(sourcePath, name), path.join(targetPath, name), relativePath + '/' + name, exact);
     }
     return;
   }
-  if (isEnvName(sourcePath)) {
+  if (isProtectedReadPath(sourcePath, exact)) {
     console.log(`skipped ${relativePath}`);
     return;
   }
@@ -4648,13 +4771,16 @@ function relayoutLinkTargets(ctx, moves, manifest) {
 }
 
 /**
- * Point every moved field and every retargeted link at its new path, replacing
- * only those string values so the rest of the manifest keeps its bytes.
+ * Build the whole manifest text a relayout writes, without writing it. Every
+ * check that can refuse the run runs here, so a manifest this run cannot
+ * rewrite stops it while every copy is still at the path that manifest names.
+ * Only the changed string values are replaced, so the rest keeps its bytes.
  * @param {object} ctx Engine context.
- * @param {object[]} fieldEdits The fields of the copies that moved.
+ * @param {object[]} fieldEdits The fields of the copies about to move.
  * @param {object[]} linkEdits Changes from relayoutLinkTargets.
+ * @returns {string|null} The new manifest text, or null when no field changed.
  */
-function rewriteRelayoutManifest(ctx, fieldEdits, linkEdits) {
+function planRelayoutManifest(ctx, fieldEdits, linkEdits) {
   const text = fs.readFileSync(ctx.manifestPath, 'utf8');
   const document = parseJsonSource(text);
   const edits = [];
@@ -4690,7 +4816,44 @@ function rewriteRelayoutManifest(ctx, fieldEdits, linkEdits) {
       edits.push({ start: member.value.start, end: member.value.end, text: JSON.stringify(change.target) });
     }
   }
-  if (edits.length > 0) fs.writeFileSync(ctx.manifestPath, applyEdits(text, edits));
+  if (edits.length === 0) return null;
+  return applyEdits(text, edits);
+}
+
+/**
+ * Write the manifest text a relayout planned, once every copy has moved.
+ * @param {object} ctx Engine context.
+ * @param {string|null} text Text from planRelayoutManifest.
+ */
+function writeRelayoutManifest(ctx, text) {
+  if (text === null) return;
+  fs.writeFileSync(ctx.manifestPath, text);
+}
+
+/**
+ * Point every live link whose target a relayout moved at the new path.
+ * A state file written before links were recorded holds nothing to authorise a
+ * retarget with, so the run that moves the bytes repairs the link itself. Any
+ * other path standing at a link entry is left alone, for the apply that follows
+ * to report, because this run never takes a path it did not put there.
+ * @param {object} ctx Engine context.
+ * @param {{path: string, from: string, target: string}[]} changes Changes from
+ *   relayoutLinkTargets.
+ */
+function retargetRelayoutLinks(ctx, changes) {
+  for (const change of changes) {
+    const linkPath = path.join(ctx.root, change.path);
+    let stats = null;
+    try {
+      stats = fs.lstatSync(linkPath);
+    } catch (error) {
+      if (!error || error.code !== 'ENOENT') throw error;
+    }
+    if (!stats || !stats.isSymbolicLink() || fs.readlinkSync(linkPath) !== change.from) continue;
+    fs.unlinkSync(linkPath);
+    ensureSymlink(linkPath, change.target);
+    console.log(`relinked ${change.path} -> ${change.target}`);
+  }
 }
 
 /**
@@ -4718,32 +4881,45 @@ function relayoutUnderLock(ctx, manifest) {
     return EXIT_OK;
   }
 
-  const stamp = new Date().toISOString().replace(/:/g, '-');
-  const runDir = path.join(ctx.overlayRoot, RELAYOUT_RUNS_FOLDER, stamp);
-  for (const move of plan.moves) {
-    copyForBackup(move.from.absolute, path.join(runDir, relativeKey(ctx.root, move.from.absolute)), move.from.relative);
-  }
-  copyForBackup(ctx.manifestPath, path.join(runDir, relativeKey(ctx.root, ctx.manifestPath)), relativeKey(ctx.root, ctx.manifestPath));
-  console.log('backup ' + relativeKey(ctx.root, runDir));
-
   const fieldEdits = [];
   for (const move of plan.moves) {
-    fs.mkdirSync(path.dirname(move.to.absolute), { recursive: true });
-    fs.renameSync(move.from.absolute, move.to.absolute);
     for (const record of move.records) {
       fieldEdits.push({ overlay: record.overlay, field: record.field, from: record.from, to: record.to });
     }
+  }
+  const linkEdits = relayoutLinkTargets(ctx, plan.moves, manifest);
+  // A manifest this run cannot rewrite has to refuse before the first rename:
+  // copies already at their layout paths behind a manifest that still names the
+  // old ones is a folder nobody can read, and no backup restores it on its own.
+  let manifestText;
+  try {
+    manifestText = planRelayoutManifest(ctx, fieldEdits, linkEdits);
+  } catch (error) {
+    console.log('refuse: ' + error.message);
+    return EXIT_ERROR;
+  }
+
+  const stamp = new Date().toISOString().replace(/:/g, '-');
+  const runDir = path.join(ctx.overlayRoot, RELAYOUT_RUNS_FOLDER, stamp);
+  const exact = exactManifestPaths(ctx, manifest);
+  for (const move of plan.moves) {
+    copyForBackup(move.from.absolute, path.join(runDir, relativeKey(ctx.root, move.from.absolute)), move.from.relative, exact);
+  }
+  copyForBackup(ctx.manifestPath, path.join(runDir, relativeKey(ctx.root, ctx.manifestPath)), relativeKey(ctx.root, ctx.manifestPath), exact);
+  console.log('backup ' + relativeKey(ctx.root, runDir));
+
+  for (const move of plan.moves) {
+    fs.mkdirSync(path.dirname(move.to.absolute), { recursive: true });
+    fs.renameSync(move.from.absolute, move.to.absolute);
     pruneEmptyParents(ctx.overlayRoot, move.from.absolute);
     console.log(`moved ${move.from.relative} -> ${move.to.relative}`);
   }
 
-  // The live link is left alone: it still names the old target, and the next
-  // apply retargets it now that the manifest says where the bytes went.
-  rewriteRelayoutManifest(ctx, fieldEdits, relayoutLinkTargets(ctx, plan.moves, manifest));
+  writeRelayoutManifest(ctx, manifestText);
+  retargetRelayoutLinks(ctx, linkEdits);
 
   console.log(`${plan.moves.length} moved`);
   console.log(`run ${ENGINE_COMMAND} apply`);
-  return EXIT_OK;
 }
 
 /**

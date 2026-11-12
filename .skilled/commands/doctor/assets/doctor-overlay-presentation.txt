@@ -285,6 +285,8 @@ Move these sources now? [yes/no]
 
 `Move these sources now? [yes/no]` covers every move, the backup, the manifest rewrite and the layout-link retargeting. Any answer other than yes counts as no. Print the cancelled result and write nothing.
 
+The run prints one `skipped` line per file the backup did not copy, because the read rule protects it, and one `relinked <path> -> <target>` line per layout link it rewrote. A `skipped` line for a file inside a moved folder comes before the `backup` line, and that file still moves with its folder. A `relinked` line comes after the last `moved` line, and the manifest records the same target.
+
 ### Refusals Before Any Write
 
 The engine prints one `refuse:` line and exits 2. Nothing was written.
@@ -294,6 +296,7 @@ The engine prints one `refuse:` line and exits 2. Nothing was written.
 | The target path already exists in the overlay folder | Keep one of the two copies, put the bytes you want in it, then rerun |
 | A copy the manifest names is missing | Point that field at the copy that exists, or create the copy the manifest names, then rerun |
 | Two copies belong at one path, or one copy is claimed by two fields | Settle the manifest so one copy owns one path, then rerun |
+| A field or a link no longer holds the path the run planned against | Nothing moved. The manifest changed under the run, or two entries claim one copy. Fix the field or the link the `refuse:` line names, then rerun |
 | Two copies sit one inside the other | Move the outer copy in its own run, then the inner one |
 | The overlay lock is held | Wait for the other run to end, then remove the lock file the message names by hand. A lock whose owner has ended is taken over by the next run with a `note:` line instead of refused |
 
@@ -438,7 +441,7 @@ STATUS=OK
 OVERLAY SOURCES MOVED
 Root: [the vendored tree]
 Backup: [overlay folder]/relayout-runs/[stamp]/
-Engine: [the backup line, each moved line and the moved count the engine printed, then each line its apply printed]
+Engine: [the backup line, each skipped and relinked line, each moved line and the moved count the engine printed, then each line its apply printed]
 Re-read: [the status report's RESULT line and its LAYOUT lines]
 Next: /doctor:overlay status, so the re-read confirms the tree is in sync
 STATUS=OK
@@ -515,7 +518,7 @@ What each engine exit means for `Changed:`:
 | Engine result | Changed |
 |---------------|---------|
 | Exit 2: a refusal or a failed precondition, such as a held lock | none |
-| A relayout, exit 0 with `skipped` lines | The copies the run reported moved. The skipped credential copy stayed where it was |
+| A relayout, exit 0 with `skipped` lines | The copies the run reported moved. A skipped file was never copied into the backup: one that is a source on its own stayed where it was, and one inside a moved folder went with that folder |
 | Exit 1 with `BLOCKED` lines or `changed=0` | none |
 | An adopt, exit 1 after its `adopted` line | The overlay copy and the manifest entry were written, and the apply after them was blocked. Name the entry |
 | Exit 1 after `regeneration failed` | The overlays were written and the tree is only partly rebuilt. Name each failed step |
@@ -537,7 +540,7 @@ What each engine exit means for `Changed:`:
 | A `live-edited` line | Run `/doctor:overlay apply --capture <path>` for that path, then `/doctor:overlay apply` |
 | A `LAYOUT` line in a status report | Run `/doctor:overlay apply --relayout`, which moves each off-layout source and then applies. The copy still applies while it sits off its layout path |
 | A `STALE` line in a status report | Upstream changed a root file a `repin.rootFiles` overlay owns. Rebase the overlay onto the new bytes, then set its `pinnedSha256` to theirs and rerun `/doctor:overlay status` |
-| A relayout printed `skipped` for a path | The file is token-named, so the engine never opened it and left it where it was. Move that copy by hand to the path the `LAYOUT` line named |
+| A relayout printed `skipped` for a path | The backup did not copy that file because the read rule protects it. A source on its own stayed where it was, so move it by hand to the path the `LAYOUT` line named. One inside a moved folder already sits on that path, and only the backup lacks it |
 | A relayout refused because the target exists | The overlay folder holds both the old copy and the path it belongs at. Keep one of them, then rerun |
 | `note: took over the overlay lock of a run that has ended: ...` | The earlier run ended without removing its lock, so this run took it over and carried on. Nothing to do, unless that run is still working under another host |
 | `AUDIT    differs <path>` | No overlay owns the path and it no longer matches upstream at the pin. Adopt it with `/doctor:overlay apply --adopt <path>`, or add an overlay that owns it |

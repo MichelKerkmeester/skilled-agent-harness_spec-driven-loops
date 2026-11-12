@@ -1,0 +1,26 @@
+Lineage complete. Verified on disk and through the gateway.
+
+**Bindings emitted (per iteration, all three)**
+`BINDING: target=commits c57b7e4cef..e97ca56e8d on main` · `maxIterations=3` · `convergence=0.1` · `mode=review` · `dimensions=correctness,security,traceability,maintainability` · `specFolder=specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up`
+
+**Iterations (stop policy cap reached, `stopReason: maxIterationsReached`)**
+
+| # | Dimension | Findings | Verdict |
+|---|---|---|---|
+| 1 | correctness — the four operator-named safety paths | 2 P1 | CONDITIONAL |
+| 2 | security — strict writes, commit check, `--audit`, OpenCode adapter, credential rule | 1 P1 + 1 P2 | CONDITIONAL |
+| 3 | traceability + maintainability — documents vs engine, playbook | 3 P2 | CONDITIONAL |
+
+**Active findings (P0=0, P1=3, P2=4)** — all in the reducer registry with ids:
+- `R1-P1-001` legacy `.build-lock` (no `host=` token) is never taken over → the exact defect REQ-002 exists to remove, unfixed for locks the earlier release wrote.
+- `R1-P1-002` `apply --relayout` rewrites a manifest link target but leaves the live link dangling; the documented follow-up `apply` retargets only a *recorded* link, so a pre-release `sync-state.json` yields a dangling link and `BLOCKED layout …` forever.
+- `R2-P1-001` `copyForBackup` reads token-named files that `protectedPaths` forbids `apply` from reading, copying them into `relayout-runs/<stamp>/`.
+- Plus 4 P2s: the `skipped` presentation row, `/doctor:overlay relayout` (a non-existent target), and two playbook coverage gaps.
+
+**Confirmed clean**: dropped-item removal (bytes + identity gated), `globToRegExp`, strict-write guard, CRLF commit compare, `--audit` exclusions and its exit semantics, the OpenCode adapter (symlink → `.opencode/plugins/`, one byte-identical core, four REQ-013 cases tested), REQ-001 at exactly 8 trigger phrases, comment hygiene.
+
+**Verification**: gateway exit 0 ×5 (run-open + 3 iterations + synthesis), each followed by `reduce-state.cjs --create-missing-anchors` (exit 0, 0 corruption, 0 search debt); 3 narratives ending in the exact verdict line; 3 deltas whose first row matches the state-log projection field for field; registry 7 open with all four dimensions covered; `review-report.md` with the nine required sections plus the Planning Packet. Every write landed inside `…/lineages/deepseek`; the only tracked file that changed outside it was `goal.md`, written by the dispatcher's own fan-out record (diff shows "Fan-out started 2026-11-12: `deepseek` 3 iterations, `opus` 2").
+
+One repair worth naming: the three delta files were first written with their iteration row double-encoded (a JSON string on line 1); I repaired them in place and re-ran the reducer, which re-read all three cleanly.
+
+FANOUT_LINEAGE_COMPLETE:deepseek

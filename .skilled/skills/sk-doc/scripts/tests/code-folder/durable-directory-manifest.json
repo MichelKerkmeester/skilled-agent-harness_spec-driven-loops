@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 923,
+  "derived_count": 924,
   "directories": [
     ".",
     ".claude",
@@ -152,6 +152,7 @@
     ".skilled/hooks/overlay-guard/devin",
     ".skilled/hooks/overlay-guard/dsh",
     ".skilled/hooks/overlay-guard/lib",
+    ".skilled/hooks/overlay-guard/opencode",
     ".skilled/hooks/overlay-guard/pi",
     ".skilled/hooks/overlay-guard/tests",
     ".skilled/hooks/permission-policy",

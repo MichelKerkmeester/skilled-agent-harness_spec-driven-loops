@@ -83,11 +83,21 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Goal authored | Done | `check-goal.cjs` on this packet |
-| Fresh Fable 5.2 review | In Progress | Dispatched 2026-11-11, report pending |
+| Fresh Fable 5.2 review | Done | `research/fable-review.md`, 103 lines |
+| Plan | Done | 28 tasks, strict validation `RESULT: PASSED` |
+| Build, T004 to T020 | Done | `node --test tests/` printed 1126 passed and 0 failed. Pushed as `3d39e6a488` and `e97ca56e8d` |
+| Deep review, 5 iterations | Done | `review/lineages/deepseek/iterations` holds 3 records and `review/lineages/opus/iterations` holds 2 |
+| Opus synthesis | Done | `review/review-report.md`: CONDITIONAL, 0 P0, 3 P1, 9 P2 |
+| Remediation | Done | Six briefs. `node --test tests/` printed 1136 passed and 0 failed |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Reviewer ran as a headless CLI session | A hook bars Fable subagents under a Fable session. The operator approved the CLI route. |
+| Commit `c57b7e4cef` carries 57 files of another session | They were staged in the shared index. The staged list is read before every commit since. The files were left in place. |
+| Relayout is `apply --relayout`, not a `relayout` target | A new target needs a route and an advisor bridge in five advisor runtime files. Adopt took the same form in phase 8. |
+| T017 rejected | CI already collects every `node:test` file under `.skilled/hooks`. Its run on `c57b7e4cef` collected 78 files and passed. |
+| Push of `e97ca56e8d` used `SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1` once | The routing parity gate compared the commit with the working tree. The only difference was `system-spec-kit/ROUTER.md` and `SKILL.md`, which another session is editing and has not committed. The freshness guard had passed on the attempt before. |
+| The deep review ran as a two-lineage fan-out | The single-executor path is driven by hand through a 2,591-line workflow. The fan-out runner is the same workflow's own step and runs the loop itself. Records sit under `review/lineages/`. |
 <!-- /ANCHOR:log -->

@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # Vendored Skilled Overlays
@@ -54,7 +54,7 @@ The value is a path relative to the tree root. With no setting file the folder i
 |------|---------------|
 | `overlay-manifest.json` | The pinned upstream commit and one entry per overlay |
 | `sync-state.json` | The hashes it last applied to each destination, the layout link targets it made and the array items it added |
-| `.build-lock` | Present only while an `apply`, a capture, an adopt or a re-pin runs |
+| `.build-lock` | Present only while one of the engine's writing runs holds it: an `apply`, a capture, an adopt, a relayout, a live re-pin or a rollback |
 | Everything else | The overlay sources the manifest entries name |
 
 The setting lives outside `.skilled` because a re-copy overwrites that folder, and outside the manifest because the manifest sits inside the folder the setting finds.
@@ -96,7 +96,7 @@ Two more `status` lines name work no destination state covers.
 
 ### A Held Lock
 
-`apply` and a capture take `<overlayDir>/.build-lock` themselves and remove it when they finish, also on failure. The owner line records the process id and the host that wrote it, as `pid=<n> host=<name>`. A lock whose owner has ended on this host is leftover state, so the next run takes it over and prints one note naming whose lock it was. A lock with a live owner, a lock another host wrote, or a lock with no process id in its line still refuses, and that refusal prints the owner line and the lock file path. Remove such a file by hand once you know its run has ended.
+`apply`, a capture, an adopt, a relayout, a live re-pin and a rollback each take `<overlayDir>/.build-lock` and remove it when they finish, also on failure. The owner line records the process id and the host that wrote it, as `pid=<n> host=<name>`. A lock whose owner has ended on this host is leftover state, so the next run takes it over and prints one note naming whose lock it was. A line with a process id and no `host=` token came from an engine that only ever ran on the machine it was installed in, so that id is probed here too. The takeover runs behind `<overlayDir>/.build-lock.takeover`, and only one run can create that file. A marker older than a minute is what a run killed mid-takeover leaves behind, so the next run clears it instead of waiting for it to go. A lock with a live owner, a lock another host wrote, or a lock with no process id in its line still refuses, and that refusal prints the owner line and the lock file path. Remove such a file by hand once you know its run has ended.
 
 ### Secret Files
 

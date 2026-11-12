@@ -25,7 +25,7 @@ mutation_boundaries:
   allowed_targets: []
   forbidden_targets:
     - "**/*"
-  invariant: "This route prints and never writes. It runs the engine's status mode only, never apply, apply --capture or relayout, and status takes no lock. The verify steps status starts are the read-only check modes the overlay manifest names. A repair is an explicit action the operator runs through /doctor:overlay apply, capture or relayout."
+  invariant: "This route prints and never writes. It runs the engine's status mode only, never apply, apply --capture or apply --relayout, and status takes no lock. The verify steps status starts are the read-only check modes the overlay manifest names. A repair is an explicit action the operator runs through /doctor:overlay apply, apply --capture or apply --relayout."
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
@@ -55,7 +55,7 @@ execution:
     - "The engine prints one line per destination that is not in sync, in the form <state> <key>  (<origin>)  fix: <fix>. The state is overlay-edited, live-edited, both-changed or upstream-moved, and an in-sync destination prints no line."
     - "After those lines the engine prints its state counts, one MISS line per failed check, one STALE line per root file upstream changed under a repin.rootFiles overlay, one LAYOUT line per overlay source kept off its layout path, its checked line and RESULT: PASSED or RESULT: FAILED. Keep every line as printed, because the counts and the fix text are the engine's answer and not this workflow's."
     - "With --audit the engine also prints one AUDIT line per unowned vendored path that drifted from the pin, in the form AUDIT <kind> <path>, where the kind is differs, missing or extra, then the audit count. A finding fails the status, and AUDIT skipped means the manifest names no upstream checkout that holds the pin."
-    - "A STALE line fails the status and a LAYOUT line does not: a stale root file is outstanding work, while an off-layout source still applies. Show both with the engine's own fix, and name /doctor:overlay relayout beside each LAYOUT line."
+    - "A STALE line fails the status and a LAYOUT line does not: a stale root file is outstanding work, while an off-layout source still applies. Show both with the engine's own fix, and name /doctor:overlay apply --relayout beside each LAYOUT line."
     - "Render the output through .skilled/commands/doctor/assets/doctor-overlay-presentation.txt: the lines as printed, the meaning and fix of each state from the state table, then the DOCTOR DIAGNOSTIC RESULT summary. Name the /doctor:overlay form beside each fix the engine printed."
     - "With --json, print the engine's JSON exactly and nothing around it."
     - "Map the engine's exit to the route status: exit 0 is in sync, exit 1 is a finding, and exit 2 is a precondition that failed, such as a missing overlay manifest or an invalid .skilled-overlays.json."

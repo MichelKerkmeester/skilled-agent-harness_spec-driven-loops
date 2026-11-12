@@ -6,11 +6,15 @@
 // A run that is killed leaves its lock file behind, and every later run then
 // refuses until someone deletes the file by hand. The engine clears such a lock
 // only when it can show that the writer has ended, so each case here writes an
-// owner line by hand and checks what `apply` makes of it.
+// owner line by hand and checks what `apply` makes of it. A line written before
+// the engine recorded the host still names a process on the machine that ran
+// it, and a takeover runs behind a marker file so two runs cannot both remove
+// the same leftover.
 //
 // The last cases cover the array items an overlay appends: an entry dropped from
 // the entry set has to leave the live file, while an item that changed after it
-// was applied is refused instead of deleted. One case then covers a root file an
+// was applied is refused instead of deleted, and one upstream ships itself at the
+// pin stays in place with only its record dropped. One case then covers a root file an
 // overlay owns: upstream's copy of it is what `pinnedSha256` records, and
 // `status` has to say when that copy has moved on. The last case audits the
 // vendored tree against the pin for the files no overlay owns, which is drift a
@@ -31,6 +35,8 @@ const {
   writeFile,
   writeManifest,
 } = require('./overlay-engine-fixtures.cjs');
+
+const engine = require('../overlay-engine.cjs');
 
 const HOST = os.hostname();
 const NOTE_PREFIX = 'note: took over the overlay lock of a run that has ended: ';
@@ -100,6 +106,23 @@ function noteLines(output) {
   return output.split('\n').filter((line) => line.startsWith(NOTE_PREFIX));
 }
 
+/**
+ * Call a function with its console output captured, so a note line taken by a
+ * run inside this process stays out of the test report.
+ * @param {function} run Function to call.
+ * @returns {{result: *, lines: string[]}} What it returned and what it printed.
+ */
+function quietly(run) {
+  const lines = [];
+  const realLog = console.log;
+  console.log = (...args) => lines.push(args.join(' '));
+  try {
+    return { result: run(), lines };
+  } finally {
+    console.log = realLog;
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TAKING OVER A LOCK
 // ─────────────────────────────────────────────────────────────────────────────
@@ -113,6 +136,93 @@ test('apply takes over a lock naming a dead pid on this host and clears the file
   assert.equal(applied.code, 0, applied.output);
   assert.deepEqual(noteLines(applied.output), [NOTE_PREFIX + stale.trim()], applied.output);
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'AGENTS.md'), 'utf8'), OVERLAY_AGENTS);
+  assert.equal(fs.existsSync(fixture.lockPath), false);
+});
+
+test('apply takes over a lock line written before the engine recorded the host', (t) => {
+  const fixture = createLockFixture(t);
+  const stale = writeLock(fixture, `overlay-engine apply pid=${deadPid()} 2026-01-01T00:00:00.000Z`);
+
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.deepEqual(noteLines(applied.output), [NOTE_PREFIX + stale.trim()], applied.output);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'AGENTS.md'), 'utf8'), OVERLAY_AGENTS);
+  assert.equal(fs.existsSync(fixture.lockPath), false);
+});
+
+test('apply refuses while another run is taking the lock over, and clears a marker a killed run left', (t) => {
+  const fixture = createLockFixture(t);
+  const stale = writeLock(fixture, ownerLine(deadPid(), HOST));
+  const takeoverPath = fixture.lockPath + '.takeover';
+  fs.writeFileSync(takeoverPath, '');
+
+  const blocked = fixture.run(['apply']);
+
+  assert.equal(blocked.code, 2, blocked.output);
+  assert.ok(blocked.output.includes(takeoverPath), blocked.output);
+  assert.deepEqual(noteLines(blocked.output), [], blocked.output);
+  assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), stale);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'AGENTS.md'), 'utf8'), UPSTREAM_AGENTS);
+
+  // No live run can still be inside a marker this old, so it is cleared and the
+  // takeover goes ahead instead of the lock blocking every later run for good.
+  const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+  fs.utimesSync(takeoverPath, fiveMinutesAgo, fiveMinutesAgo);
+  const retried = fixture.run(['apply']);
+
+  assert.equal(retried.code, 0, retried.output);
+  assert.deepEqual(noteLines(retried.output), [NOTE_PREFIX + stale.trim()], retried.output);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'AGENTS.md'), 'utf8'), OVERLAY_AGENTS);
+  assert.equal(fs.existsSync(takeoverPath), false);
+});
+
+test('a takeover refuses when another run replaces the stale lock in the gap before the removal', (t) => {
+  const fixture = createLockFixture(t);
+  writeLock(fixture, ownerLine(deadPid(), HOST));
+  const takeoverPath = fixture.lockPath + '.takeover';
+  const competing = ownerLine(process.pid, HOST) + '\n';
+  const ctx = engine.createContext(fixture.tree);
+  const realOpenSync = fs.openSync;
+  let isInterleaved = false;
+  // The other run removes the leftover and writes its own lock in the gap
+  // between this run's read and its removal. The marker is what that gap ends
+  // at, so injecting there is the narrowest place the race can start.
+  fs.openSync = (target, flags, ...rest) => {
+    if (!isInterleaved && target === takeoverPath && flags === 'wx') {
+      isInterleaved = true;
+      fs.unlinkSync(fixture.lockPath);
+      fs.writeFileSync(fixture.lockPath, competing);
+    }
+    return realOpenSync.call(fs, target, flags, ...rest);
+  };
+  let taken;
+  let printed;
+  try {
+    ({ result: taken, lines: printed } = quietly(() => engine.acquireLock(ctx, 'run-a')));
+  } finally {
+    fs.openSync = realOpenSync;
+  }
+
+  assert.equal(isInterleaved, true);
+  assert.equal(taken.isHeld, false);
+  assert.equal(taken.ownerLine, competing.trim());
+  assert.deepEqual(printed.filter((line) => line.startsWith(NOTE_PREFIX)), []);
+  assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), competing);
+  assert.equal(fs.existsSync(takeoverPath), false);
+});
+
+test('a takeover leaves exactly the new owner line and no marker behind', (t) => {
+  const fixture = createLockFixture(t);
+  writeLock(fixture, ownerLine(deadPid(), HOST));
+  const ctx = engine.createContext(fixture.tree);
+
+  const { result: lock } = quietly(() => engine.acquireLock(ctx, 'run-a'));
+
+  assert.equal(lock.isHeld, true);
+  assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), lock.ownerLine + '\n');
+  assert.equal(fs.existsSync(fixture.lockPath + '.takeover'), false);
+  lock.release();
   assert.equal(fs.existsSync(fixture.lockPath), false);
 });
 
@@ -131,6 +241,18 @@ test('apply refuses a lock naming a live pid on this host and leaves the file al
   assert.deepEqual(noteLines(applied.output), [], applied.output);
   assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), held);
   assert.equal(fs.readFileSync(path.join(fixture.tree, 'AGENTS.md'), 'utf8'), UPSTREAM_AGENTS);
+});
+
+test('apply refuses a host-less lock line naming a live pid here', (t) => {
+  const fixture = createLockFixture(t);
+  const held = writeLock(fixture, `overlay-engine apply pid=${process.pid} 2026-01-01T00:00:00.000Z`);
+
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 2, applied.output);
+  assert.ok(applied.output.includes(REFUSAL), applied.output);
+  assert.deepEqual(noteLines(applied.output), [], applied.output);
+  assert.equal(fs.readFileSync(fixture.lockPath, 'utf8'), held);
 });
 
 test('apply refuses a lock with no pid in it and leaves the file alone', (t) => {
@@ -240,6 +362,7 @@ test('a state file without link records still loads and reports an in-sync tree'
 const UPSTREAM_HOOK = { id: 'session-start', event: 'SessionStart' };
 const ALPHA_HOOK = { id: 'alpha', event: 'Alpha' };
 const BETA_HOOK = { id: 'beta', event: 'Beta' };
+const GAMMA_HOOK = { id: 'gamma', event: 'Gamma' };
 
 /**
  * Build a tree holding one entry set that appends keyed items to a live array.
@@ -336,6 +459,76 @@ test('apply leaves an upstream item alone when the entry set stops listing it', 
 
   assert.equal(applied.code, 0, applied.output);
   assert.deepEqual(fixture.readHooks(), [UPSTREAM_HOOK, ALPHA_HOOK]);
+});
+
+/**
+ * Build a tree whose entry set appends to a file an upstream checkout also
+ * holds, so the pin's copy can be given the same item later on.
+ * @param {object} t The node:test context.
+ * @param {object[]} liveItems Items the live file and upstream both start with.
+ * @param {object[]} entryItems Items the entry set starts out appending.
+ * @returns {object} Fixture paths, its manifest, its upstream checkout and
+ *   helpers to rewrite the entry set and read the live file.
+ */
+function createPinnedItemsFixture(t, liveItems, entryItems) {
+  const fixture = createWorkspace(t, 'overlay-engine-items-pin-');
+  const seed = JSON.stringify({ hooks: liveItems }, null, 2) + '\n';
+  const upstream = path.join(fixture.workspace, 'upstream');
+  fs.mkdirSync(upstream);
+  git(upstream, ['init', '-q']);
+  writeFile(upstream, 'registry.json', seed);
+  const commit = commitAll(upstream, 'pinned copy');
+  writeFile(fixture.tree, 'registry.json', seed);
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', checkout: upstream, commit },
+    layoutLinks: [],
+    overlays: [{
+      id: 'hook-registry',
+      scope: 'json-entry',
+      source: 'json/registry.json',
+      destination: 'registry.json',
+      pinnedSha256: sha256(Buffer.from(seed)),
+    }],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  fixture.upstream = upstream;
+  fixture.run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+  fixture.writeEntries = (items) => {
+    const entrySet = {
+      target: 'registry.json',
+      style: { indent: 2, primitiveArrays: 'inline' },
+      operations: [{ op: 'appendItems', path: ['hooks'], identityKey: 'id', items }],
+    };
+    writeFile(fixture.overlayDir, 'json/registry.json', JSON.stringify(entrySet, null, 2) + '\n');
+  };
+  fixture.livePath = path.join(fixture.tree, 'registry.json');
+  fixture.readHooks = () => readJson(fixture.livePath).hooks;
+  fixture.recordedItems = () => (readJson(fixture.statePath).items || {})['registry.json'] || [];
+  fixture.writeEntries(entryItems);
+  return fixture;
+}
+
+test('apply keeps a dropped item that upstream ships at the pin', (t) => {
+  const fixture = createPinnedItemsFixture(t, [UPSTREAM_HOOK], [GAMMA_HOOK]);
+  const seeded = fixture.run(['apply']);
+  assert.equal(seeded.code, 0, seeded.output);
+  assert.deepEqual(fixture.readHooks(), [UPSTREAM_HOOK, GAMMA_HOOK]);
+
+  // Upstream's copy gains the same item, so the line in the live file is now
+  // upstream's own and only this overlay's record of it is out of date.
+  writeFile(fixture.upstream, 'registry.json', fs.readFileSync(fixture.livePath));
+  fixture.manifest.pin.commit = commitAll(fixture.upstream, 'upstream ships gamma');
+  writeManifest(fixture);
+
+  fixture.writeEntries([]);
+  const applied = fixture.run(['apply']);
+
+  assert.equal(applied.code, 0, applied.output);
+  assert.deepEqual(fixture.readHooks(), [UPSTREAM_HOOK, GAMMA_HOOK]);
+  assert.deepEqual(fixture.recordedItems(), []);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -645,6 +838,41 @@ test('relayout moves every off-layout source onto its layout path', (t) => {
   assert.deepEqual(layoutLines(status.output), [], status.output);
 });
 
+// The backup is a copy of the folder about to move, so it has to obey the same
+// read rule as apply: a token-named file the entry does not name by its exact
+// path is skipped, and the move, which only renames, still carries it along.
+test('relayout backs up no file its read rule refuses to open', (t) => {
+  const fixture = createWorkspace(t, 'overlay-engine-relayout-protected-');
+  const secret = 'SECRET-BYTES-123\n';
+  writeFile(fixture.overlayDir, 'custom/bundle/readme.md', README_TEXT);
+  writeFile(fixture.overlayDir, 'custom/bundle/assets/api-token.js', secret);
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: 'pin-one' },
+    layoutLinks: [],
+    overlays: [{
+      id: 'hub-bundle',
+      scope: 'directory',
+      source: 'custom/bundle',
+      destination: DIR_DESTINATION,
+    }],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  const run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+
+  const relayout = run(['apply', '--relayout']);
+
+  assert.equal(relayout.code, 0, relayout.output);
+  assert.equal(relayout.output.split('\n').includes('skipped custom/bundle/assets/api-token.js'), true, relayout.output);
+  assert.deepEqual(movedLines(relayout.output), [`moved custom/bundle -> ${DIR_LAYOUT}`]);
+  const backup = backupFolder(fixture, relayout.output);
+  assert.equal(fs.existsSync(path.join(backup, 'skilled-overlays/custom/bundle/assets/api-token.js')), false);
+  assert.equal(fs.readFileSync(path.join(backup, 'skilled-overlays/custom/bundle/readme.md'), 'utf8'), README_TEXT);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, DIR_LAYOUT, 'assets/api-token.js'), 'utf8'), secret);
+});
+
 test('relayout refuses to move a source whose layout path is already taken', (t) => {
   const fixture = createWorkspace(t, 'overlay-engine-relayout-blocked-');
   writeFile(fixture.overlayDir, 'custom/place.md', OVERLAY_PLACE);
@@ -705,6 +933,89 @@ test('relayout reports nothing to move on a tree already on the layout', (t) => 
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
 });
 
+// A tree upgraded from a release that kept no link records in its state has
+// nothing the follow-up apply accepts as proof the live link is the engine's
+// own, so the run that moves the bytes has to move the link with them. A path
+// holding a stranger's link is left for that apply to report.
+const BUNDLE_LINK = 'bundle-view';
+const STRANGER_TARGET = 'elsewhere';
+const BUNDLE_LINK_TARGET = 'skilled-overlays/custom/bundle';
+const BUNDLE_RELINKED_TARGET = 'skilled-overlays/skilled/skills/hub/bundle';
+
+/**
+ * Build a tree whose off-layout directory source stands behind a live link, in
+ * a state file that records no links.
+ * @param {object} t The node:test context.
+ * @returns {object} Fixture paths, its manifest and a `run` helper.
+ */
+function createRelayoutLinkFixture(t) {
+  const fixture = createWorkspace(t, 'overlay-engine-relayout-link-');
+  writeFile(fixture.overlayDir, 'custom/bundle/readme.md', README_TEXT);
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: 'pin-one' },
+    layoutLinks: [{ path: BUNDLE_LINK, target: BUNDLE_LINK_TARGET }],
+    overlays: [{
+      id: 'hub-bundle',
+      scope: 'directory',
+      source: 'custom/bundle',
+      destination: DIR_DESTINATION,
+    }],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  fixture.manifestPath = path.join(fixture.overlayDir, 'overlay-manifest.json');
+  fixture.linkPath = path.join(fixture.tree, BUNDLE_LINK);
+  fs.symlinkSync(BUNDLE_LINK_TARGET, fixture.linkPath);
+  fixture.run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  const state = readJson(fixture.statePath);
+  delete state.links;
+  fs.writeFileSync(fixture.statePath, JSON.stringify(state, null, 2) + '\n');
+  return fixture;
+}
+
+function relinkedLines(output) {
+  return output.split('\n').filter((line) => line.startsWith('relinked '));
+}
+
+test('relayout retargets a live layout link whose target it moved', (t) => {
+  const fixture = createRelayoutLinkFixture(t);
+  assert.equal(fs.readlinkSync(fixture.linkPath), BUNDLE_LINK_TARGET);
+
+  const relayout = fixture.run(['apply', '--relayout']);
+
+  assert.equal(relayout.code, 0, relayout.output);
+  assert.deepEqual(relinkedLines(relayout.output), [`relinked ${BUNDLE_LINK} -> ${BUNDLE_RELINKED_TARGET}`], relayout.output);
+  assert.equal(readJson(fixture.manifestPath).layoutLinks[0].target, BUNDLE_RELINKED_TARGET);
+  assert.equal(fs.readlinkSync(fixture.linkPath), BUNDLE_RELINKED_TARGET);
+  assert.equal(fs.readFileSync(path.join(fixture.linkPath, 'readme.md'), 'utf8'), README_TEXT);
+
+  const reapplied = fixture.run(['apply']);
+  const status = fixture.run(['status']);
+
+  assert.equal(reapplied.code, 0, reapplied.output);
+  assert.equal(status.code, 0, status.output);
+  assert.match(status.output, /RESULT: PASSED/);
+  assert.equal(fs.readlinkSync(fixture.linkPath), BUNDLE_RELINKED_TARGET);
+});
+
+test('relayout leaves a live link that points somewhere of its own unchanged', (t) => {
+  const fixture = createRelayoutLinkFixture(t);
+  fs.unlinkSync(fixture.linkPath);
+  fs.symlinkSync(STRANGER_TARGET, fixture.linkPath);
+
+  const relayout = fixture.run(['apply', '--relayout']);
+
+  assert.equal(relayout.code, 0, relayout.output);
+  assert.deepEqual(relinkedLines(relayout.output), [], relayout.output);
+  assert.equal(fs.readlinkSync(fixture.linkPath), STRANGER_TARGET);
+  assert.equal(readJson(fixture.manifestPath).layoutLinks[0].target, BUNDLE_RELINKED_TARGET);
+});
+
 // A separate command word would need its own route, so relayout rides on apply
 // as a flag, and the parser refuses it anywhere but there.
 test('relayout is a flag of apply, so a bare command word and a rival flag are refused', (t) => {
@@ -716,6 +1027,43 @@ test('relayout is a flag of apply, so a bare command word and a rival flag are r
     assert.equal(result.code, 2, args.join(' ') + ': ' + result.output);
     assert.match(result.stdout, /^usage: node overlay-engine\.cjs status/, args.join(' '));
   }
+});
+
+// A field edit is looked up by the entry id, so a manifest that names one id
+// twice cannot be rewritten in full. That has to stop the run before it moves
+// a byte, or the copies sit at their layout paths while the manifest, which is
+// never edited, still names the old ones.
+test('relayout refuses a manifest that names one id twice before it moves anything', (t) => {
+  const fixture = createWorkspace(t, 'overlay-engine-relayout-duplicate-');
+  const first = 'first copy\n';
+  const second = 'second copy\n';
+  writeFile(fixture.overlayDir, 'custom/a.md', first);
+  writeFile(fixture.overlayDir, 'custom/b.md', second);
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: 'pin-one' },
+    layoutLinks: [],
+    overlays: [
+      { id: 'dup', scope: 'file', source: 'custom/a.md', destination: '.skilled/skills/hub/a.md' },
+      { id: 'dup', scope: 'file', source: 'custom/b.md', destination: '.skilled/skills/hub/b.md' },
+    ],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  const manifestPath = path.join(fixture.overlayDir, 'overlay-manifest.json');
+  const before = fs.readFileSync(manifestPath);
+  const run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+
+  const relayout = run(['apply', '--relayout']);
+
+  assert.equal(relayout.code, 2, relayout.output);
+  assert.match(relayout.output, /^refuse: /m);
+  assert.deepEqual(movedLines(relayout.output), [], relayout.output);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'custom/a.md'), 'utf8'), first);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'custom/b.md'), 'utf8'), second);
+  assert.deepEqual(fs.readFileSync(manifestPath), before);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

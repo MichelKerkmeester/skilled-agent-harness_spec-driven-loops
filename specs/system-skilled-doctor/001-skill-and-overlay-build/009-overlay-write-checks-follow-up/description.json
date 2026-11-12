@@ -1,13 +1,15 @@
 {
+  "level": "2",
   "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up",
-  "description": "Overlay write checks follow-up",
+  "description": "Phase 8 shipped the opt-in write checks",
   "keywords": [
-    "overlay",
+    "phase",
+    "shipped",
+    "opt-in",
     "write",
-    "checks",
-    "follow-up"
+    "checks"
   ],
-  "lastUpdated": "2026-11-11T21:21:40.698Z",
+  "lastUpdated": "2026-11-11T23:20:22.837Z",
   "specId": "009",
   "folderSlug": "overlay-write-checks-follow-up",
   "parentChain": [
@@ -15,6 +17,5 @@
     "001-skill-and-overlay-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }
