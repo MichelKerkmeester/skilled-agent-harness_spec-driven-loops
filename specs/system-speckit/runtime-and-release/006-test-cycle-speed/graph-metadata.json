@@ -30,7 +30,8 @@
   },
   "derived": {
     "trigger_phrases": [
-      "test cycle speed phase parent spec"
+      "test cycle speed phase parent spec",
+      "006-test-cycle-speed operator decisions"
     ],
     "key_topics": [
       "test",
@@ -39,17 +40,18 @@
       "phase",
       "parent",
       "spec",
+      "006-test-cycle-speed",
+      "operator",
+      "decisions",
       "skilled",
       "suites",
-      "took",
-      "too",
-      "long",
-      "run"
+      "took"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "decision-record.md",
       ".github/workflows/spec-kit-check.yml"
     ],
     "entities": [
@@ -57,6 +59,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -100,22 +108,54 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gateway Alternate",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Skilled test suites took too long to run locally",
     "created_at": "2026-11-10T18:27:35Z",
-    "last_save_at": "2026-11-12T14:48:39.588Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-12T15:22:57.430Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:bed1a5334c17d6ff8bf09f3c2b43bb2710744f708b1c1b1655ada370789e6db1",
+    "source_fingerprint": "sha256:bb27255ab3df4ee896183b8c0b6800f06926d4804c54c7984709606825489f25",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e8e2c80661403d5a5e19f760824284ffb79a529a252dfdd070f3a42efff6243c"
+      "spec.md": "e8fd647b9f3fec3706e21ee320f3a4b6278facc8d0e20321706d597986cbfa5d",
+      "decision-record.md": "5c65b32226867609b1c1d790d508032502bf3cae1b822fb2f0dde2f9ba10de17"
     },
-    "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research",
-    "last_active_at": "2026-11-12T07:55:50.950Z"
+    "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards",
+    "last_active_at": "2026-11-12T15:16:41.821Z"
   }
 }
