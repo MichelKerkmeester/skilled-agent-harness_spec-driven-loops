@@ -99,8 +99,8 @@
     "context window the nudge measures against",
     "relaunch my session with the same flags",
     "relaunch my claude session",
-    "skilled-loop wrapper",
-    "skilled-loop wrapper declined a hop"
+    "relaunch loop wrapper",
+    "relaunch wrapper declined a hop"
   ],
   "derived": {
     "trigger_phrases": [
