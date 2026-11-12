@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skill-advisor routing"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -52,7 +52,7 @@ Selection draws from:
 - **FRESHNESS** — fires on "freshness contract", "trust state", "trust-state vocabulary", "degraded daemon", "quarantined daemon", "unavailable daemon"; loads `references/runtime/freshness-contract.md`.
 - **DAEMON_LEASE** — fires on "daemon lease", "single-writer lease", "lease contract", "chokidar watcher", "daemon lifecycle"; loads `references/runtime/daemon-lease-contract.md`.
 - **DB_PATH** — fires on "database path policy", "sqlite path", "db path"; loads `references/config/db-path-policy.md`.
-- **HOOK** — fires on "skill advisor hook", "prompt-time hook", "userpromptsubmit", "opencode plugin bridge", "goal opencode plugin"; loads `hooks/skill-advisor-hook.md`.
+- **HOOK** — fires on "skill advisor hook", "prompt-time hook", "pi prompt advisor", "prompt-time brief", "userpromptsubmit", "opencode plugin bridge", "goal opencode plugin"; loads `hooks/skill-advisor-hook.md`.
 - **DECISIONS** — fires on "deferred decision", "tier d", "deprecation banner"; loads `references/decisions/deferred-decisions.md`.
 - **RECOMMEND** — fires on "advisor_recommend", "recommend happy path"; loads `feature-catalog/cli-surface/advisor-recommend.md`.
 - **STATUS** — fires on "advisor_status", "status transition", "status and rebuild"; loads `feature-catalog/cli-surface/advisor-status.md`.
@@ -185,7 +185,7 @@ INTENT_SIGNALS = {
     "FRESHNESS": {"weight": 3, "keywords": ["freshness contract", "trust state", "trust-state vocabulary", "degraded daemon", "quarantined daemon", "unavailable daemon"]},
     "DAEMON_LEASE": {"weight": 3, "keywords": ["daemon lease", "single-writer lease", "lease contract", "chokidar watcher", "daemon lifecycle"]},
     "DB_PATH": {"weight": 3, "keywords": ["database path policy", "sqlite path", "db path"]},
-    "HOOK": {"weight": 3, "keywords": ["skill advisor hook", "prompt-time hook", "userpromptsubmit", "opencode plugin bridge", "goal opencode plugin"]},
+    "HOOK": {"weight": 3, "keywords": ["skill advisor hook", "prompt-time hook", "pi prompt advisor", "prompt-time brief", "userpromptsubmit", "opencode plugin bridge", "goal opencode plugin"]},
     "DECISIONS": {"weight": 3, "keywords": ["deferred decision", "tier d", "deprecation banner"]},
     "RECOMMEND": {"weight": 3, "keywords": ["advisor_recommend", "recommend happy path"]},
     "STATUS": {"weight": 3, "keywords": ["advisor_status", "status transition", "status and rebuild"]},

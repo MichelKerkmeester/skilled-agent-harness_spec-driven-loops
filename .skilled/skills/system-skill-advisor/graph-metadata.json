@@ -84,7 +84,10 @@
     "advisor index stale",
     "scorer fusion",
     "lane fusion",
-    "skill graph drift"
+    "skill graph drift",
+    "pi prompt advisor",
+    "prompt-time brief",
+    "skill advice before the agent handles my prompt"
   ],
   "derived": {
     "trigger_phrases": [
@@ -102,7 +105,9 @@
       "git-ignored skill",
       "private skills folder",
       "index private skills",
-      "trusted skill root"
+      "trusted skill root",
+      "pi prompt advisor",
+      "prompt-time brief"
     ],
     "key_topics": [
       "routing",
