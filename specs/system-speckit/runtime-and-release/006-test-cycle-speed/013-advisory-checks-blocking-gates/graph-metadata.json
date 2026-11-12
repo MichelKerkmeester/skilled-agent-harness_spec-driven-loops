@@ -32,7 +32,7 @@
       "advisory-checks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "`.github/workflows/advisory-checks.yml` runs its four steps with `continue-on-error: true`, so the job is green even when a step fails",
     "created_at": "2026-11-12T08:21:59Z",
-    "last_save_at": "2026-11-12T13:19:21.586Z",
+    "last_save_at": "2026-11-12T14:44:47.583Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47491c7ec64e92afb0de58116d79d5d372e9562be6514389eda72e63ce0a5355",
+    "source_fingerprint": "sha256:5b23725ddcfc65ff26d1c0e053bc846b432c834dbcd864ae2f769466e720e26e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d4ded51024c1fb5622cad7c19184784713977c2c70bc2022da61b376137ebde3",
+      "spec.md": "532a68ee21cc4fa2e72c47c51c04dbbde181c3a4106327d65e1c5267db12f198",
       "plan.md": "597e367d09fc8c522bce45c4a639c51879edc4aedaaa3e7098141b36129cbe3b",
       "tasks.md": "28284795c2d2a7a12d53ae76f0dd5b3c6bb180821667dd33a4eb2b1b10e15e12",
       "implementation-summary.md": "4e026423ae5870b7714b6a20f01e364b1ac28097cf479b44a90973c202419a84"

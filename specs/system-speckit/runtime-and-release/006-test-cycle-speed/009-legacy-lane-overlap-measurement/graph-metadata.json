@@ -32,7 +32,7 @@
       "bash"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The `Legacy module lanes and the bash validation suites` step took 161 s in run 43174399120, and it chains twelve Node and bash harnesses",
     "created_at": "2026-11-12T08:21:56Z",
-    "last_save_at": "2026-11-12T12:11:12.539Z",
+    "last_save_at": "2026-11-12T14:44:35.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0389c5d4c97f68d71c83cef88c134fe6be1ca73428bf55e9f47b23bdaf8890f1",
+    "source_fingerprint": "sha256:2a79cb3d8616eecadad5a3a2e0d5dc31efa1ab1a7f3405be19e00ceb3a796226",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "27c5ff6ec294234603ffbb238b69bdb785995cc42505fee4b20f7ffb7cb14178",
+      "spec.md": "d9eefd833c8db1c17c2aa2e0671732516ffea0d21ea8f599db62068a8c5ceef8",
       "plan.md": "8c01f4da0aa9b089ee003f5d7ff0f41946bc7096545e43a1d1242e5893ab5161",
       "tasks.md": "914e3bade149fbfc0eb6b98dc4667fb899ae64ab6af9bcf9acf590ed69c6b701",
       "implementation-summary.md": "650d7523891c73937ed7e6c445f9609dcb3920078196550bb0c7dba1fc376337"
