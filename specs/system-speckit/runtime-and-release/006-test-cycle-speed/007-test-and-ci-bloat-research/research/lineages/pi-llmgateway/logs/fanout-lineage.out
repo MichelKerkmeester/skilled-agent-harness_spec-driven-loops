@@ -1,0 +1,8 @@
+Lineage complete and verified on disk:
+
+- **10 iterations**, `iterations/iteration-001.md` … `iteration-010.md`, each with a matching `deltas/iter-00N.jsonl` whose `findingsCount` matches its finding rows (58 findings total).
+- **State**: every record went through `append-mode-event.cjs` (ledger sequences 1-13); projection shows 10 iterations and a terminal `synthesis_complete` event carrying `stopReason: "maxIterationsReached"`; reducer reports `iterationsCompleted: 10`, `corruptionCount: 0`, registry `terminalStop: maxIterationsReached`, `status: COMPLETE`.
+- **Synthesis**: `research.md` ranks seven cuts by minutes saved (top: relocate 13 gate-critical suites out of `advisory-checks.yml:36` and drop the report-only step, ≈75-80 s/sweep; advisor serial-suite merge, 30-60 s/advisor run), states the measured sweep total (≈4,129 s; top six workflows 58%), and records the negative results (hooks: no cut worth under 1 s; 111 spec-tree test files: 0 s).
+- **Anomalies reported, not hidden**: an unrelated iteration-4 record reached the ledger from a stale `/tmp` event file before this lineage's own record (documented in `iteration-004.md` → Ledger Note; the reducer ingested only this lineage's findings). Three repo files outside the lineage (`AGENTS.md`, `.skilled/repo-rules/*`) show mtimes inside the run window; this lineage never wrote them.
+
+FANOUT_LINEAGE_COMPLETE:pi-llmgateway

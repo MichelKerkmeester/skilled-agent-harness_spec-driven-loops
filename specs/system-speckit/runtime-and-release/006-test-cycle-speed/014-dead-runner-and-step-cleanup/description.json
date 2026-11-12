@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/014-dead-runner-and-step-cleanup",
+  "description": "Phase 14: dead-runner-and-step-cleanup",
+  "keywords": [
+    "phase",
+    "dead-runner-and-step-cleanup"
+  ],
+  "lastUpdated": "2026-11-12T08:22:00.841Z",
+  "specId": "014",
+  "folderSlug": "dead-runner-and-step-cleanup",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

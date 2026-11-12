@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout",
+  "description": "Phase 11: sparse-checkout-rollout",
+  "keywords": [
+    "phase",
+    "sparse-checkout-rollout"
+  ],
+  "lastUpdated": "2026-11-12T08:21:58.691Z",
+  "specId": "011",
+  "folderSlug": "sparse-checkout-rollout",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

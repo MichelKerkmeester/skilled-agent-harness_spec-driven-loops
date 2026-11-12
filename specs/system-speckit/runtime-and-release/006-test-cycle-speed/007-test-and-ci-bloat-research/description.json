@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research",
+  "description": "The operator waits minutes on automated tests and CI workflows after most changes",
+  "keywords": [
+    "operator",
+    "waits",
+    "minutes",
+    "automated",
+    "tests",
+    "workflows",
+    "changes"
+  ],
+  "lastUpdated": "2026-11-12T07:55:50.935Z",
+  "specId": "007",
+  "folderSlug": "test-and-ci-bloat-research",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "12-11-26_08-55__deep-research-on-test-and-ci-bloat-completed-two.md",
+    "12-11-26_08-55__deep-research-on-test-and-ci-bloat-completed-two.md"
+  ]
+}

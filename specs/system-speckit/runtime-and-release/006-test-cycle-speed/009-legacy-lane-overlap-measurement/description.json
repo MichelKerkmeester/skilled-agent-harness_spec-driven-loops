@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement",
+  "description": "Phase 9: legacy-lane-overlap-measurement",
+  "keywords": [
+    "phase",
+    "legacy-lane-overlap-measurement"
+  ],
+  "lastUpdated": "2026-11-12T08:21:56.834Z",
+  "specId": "009",
+  "folderSlug": "legacy-lane-overlap-measurement",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
