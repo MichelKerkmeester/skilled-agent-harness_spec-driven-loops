@@ -89,7 +89,7 @@ and findings belong here.
 | Deep review, 5 iterations | Done | `review/lineages/deepseek/iterations` holds 3 records and `review/lineages/opus/iterations` holds 2 |
 | Opus synthesis | Done | `review/review-report.md`: CONDITIONAL, 0 P0, 3 P1, 9 P2 |
 | Remediation | Done | Six briefs. `node --test tests/` printed 1136 passed and 0 failed |
-| Alignment | Stopped under D1 | Five full runs, each followed by fixes. Every run found new defects after the fixes of the run before it. No lane run has reported zero findings. `implementation-summary.md` lists each finding. `node --test tests/` printed 1150 passed and 0 failed, 124 of them engine tests |
+| Alignment | One finding left for a person | Six full runs, each followed by fixes. Every run found new defects after the fixes of the run before it. No lane run has reported zero findings. The sixth run's recheck leaves 1 open, in a file an agent may not edit. `implementation-summary.md` lists each finding. `node --test tests/` printed 1150 passed and 0 failed, 124 of them engine tests |
 | Changelog | Done | `check_changelog_shape.py` printed `PASS` for the entry and for the v1.1.6.0 note |
 
 ### Deviations and findings
@@ -122,4 +122,9 @@ and findings belong here.
 | The orchestrating session edited six files itself during the outage | D4's route was down. The edits: the lock's rename-aside removal in `overlay-engine.cjs` with two tests, the order of the output lines in the adopt scenario, the `SYSTEM_OVERLAY_GUARD_DISABLED` row, one sentence in `references/overlays.md` and the test counts in the changelog. A fresh Opus verifier then checked each. The last lock change, the refusal's remedy line, went back through a DeepSeek agent on the Pi 1.5.0 binary. |
 | The lock takeover is proven for two runs only | The verifier found a four-run schedule that ends with two holders. It needs a takeover marker more than a minute old. A third rewrite of the lock was not made: D1 stops a gate after three fixes, and the case is recorded as a known limitation and in the handover to Barter. |
 | The fifth criterion stays open | The fifth round's recheck lists 2 findings as still open. Both are literal matches on text that is now correct. No report of the alignment command lists 0 open findings, so the box is not ticked. |
+| A sixth alignment round ran on 2026-11-12 | A stop hook named the fifth criterion as the gap, so a round ran over `fd6533c621..467131c783`, the Pi adapter fix and the stage fix. It found 21 findings, 2 of them P1, and the critic overturned none. Its recheck lists 10 resolved, 10 for a reviewer, 1 still open and 0 new. |
+| One finding is left for a person | `.skilled/hooks/env-secret-guard/README.md` lines 65 and 85 still call the Pi entry a link. The dotenv guard refuses an agent's write to its own files and names a person as the one who can make it. No agent was started with the guard switched off. The fifth criterion stays unticked for this one finding. |
+| The committed `.env.example` template gained one line | It is the one template the dotenv guard allows, and it holds names only. The line names `SYSTEM_OVERLAY_GUARD_DISABLED`. No dotenv file was read. |
+| The tag moved a fifth time and moves a sixth | The Pi adapter fix and the stage fix moved `main` to `a846aca84c`, and the tag followed. The sixth round's fixes move `main` again, and the release step republishes the tag on it. Each earlier tag object is under `refs/backup-tags/`. D2 approved one republish. |
+| `sk-git Script Tests` is red on `main` | `stamp-branch.test.sh` line 104 fails in CI with `10#: invalid integer constant`. It has failed on every run since 2026-11-09 and passes here, 24 of 24. It is not this work's and was left alone. |
 <!-- /ANCHOR:log -->
