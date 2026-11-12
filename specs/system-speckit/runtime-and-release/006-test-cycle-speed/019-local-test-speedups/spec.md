@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-12 |
 | **Branch** | `worktrees/355-local-test-speedups` |
 | **Parent Spec** | ../spec.md |

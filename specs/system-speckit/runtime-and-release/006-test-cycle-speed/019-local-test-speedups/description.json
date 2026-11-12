@@ -6,7 +6,7 @@
     "phase",
     "local-test-speedups"
   ],
-  "lastUpdated": "2026-11-12T19:57:02.948Z",
+  "lastUpdated": "2026-11-12T20:07:27.984Z",
   "specId": "019",
   "folderSlug": "local-test-speedups",
   "parentChain": [
@@ -14,8 +14,9 @@
     "runtime-and-release",
     "006-test-cycle-speed"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "12-11-26_20-57__local-test-speedups-cut-local-spec-kit-and-deep.md"
+    "12-11-26_20-57__local-test-speedups-cut-local-spec-kit-and-deep.md",
+    "12-11-26_21-07__local-test-speedups-cut-local-spec-kit-and-deep.md"
   ]
 }

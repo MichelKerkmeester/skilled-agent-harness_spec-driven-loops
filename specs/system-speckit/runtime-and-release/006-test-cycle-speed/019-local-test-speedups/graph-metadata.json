@@ -32,7 +32,7 @@
       "suite"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The operator waits 667 s on the spec-kit suite and 497 s on the deep-loop suite before trusting a local change",
     "created_at": "2026-11-12T19:20:56Z",
-    "last_save_at": "2026-11-12T19:57:02.948Z",
+    "last_save_at": "2026-11-12T20:08:18.999Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:70f03cb96ef568bd09de4ec42ad9cb70777a2dc70481118f5107b8e24ac5fcbc",
+    "source_fingerprint": "sha256:8d6200cf34b0619588778b5e15bf6c829b00ebb70fa44285c81e134d59447cc8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "898ecaa127d52045f8edc0e36937f81adfde9cf7386a02bd53428ba30132613f",
+      "spec.md": "17cd4963814ad32daeec88310e177ea94a5d8eb1ea8b5e826d170f2a6fa739e8",
       "plan.md": "495059e3b7fa02ed0634a40f3a397803aeaa6d0b6e7c5772483e54c4addffa9a",
-      "tasks.md": "b00a4c98300ce9005268ac6abeebbabb69bb9e7a93d26929e791110017f7cb4b",
-      "implementation-summary.md": "816183e2cc8b17e7df82e6c9bdd85d71b8a3432e35b1392a5617cf722c1d7f13"
+      "tasks.md": "72fea158e4d394e85c80a8426fd16b8a69ebeb2ad47ff1d6b2cb7c5fa19ea139",
+      "implementation-summary.md": "7067e3b238ccd633dd0696c6919da5bdf8864f105af97073c91e132954ec7204"
     },
     "last_active_at": null
   }

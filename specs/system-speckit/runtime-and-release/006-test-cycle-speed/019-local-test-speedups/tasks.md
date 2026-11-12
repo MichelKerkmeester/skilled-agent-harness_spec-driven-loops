@@ -63,7 +63,7 @@ contextType: "general"
 - [x] T011 Run the whole deep-loop suite from the final state (`.skilled/skills/system-deep-loop/runtime/package.json`). Verify: `npm test` exits 0. Evidence: exit 0 in 225 s against 497 s, 173 files and 2,885 tests passed with 8 skipped.
 - [x] T012 Prove a timed-out lane still fails the run (`.skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs`). Verify: `SPECKIT_TEST_RUN_TIMEOUT_MS=3000 node scripts/run-tests.mjs` exits 124. Evidence: exit 124 in 3 s, and each of the three lanes printed `invocation exceeded 3000ms`.
 - [x] T013 Update the documents that describe the runner and the deep-loop test setup (`.skilled/skills/system-spec-kit/runtime/README.md`). Verify: `rg -c 'starts the core, cli and spec-validation lanes together' .skilled/skills/system-spec-kit/runtime/README.md .skilled/skills/system-spec-kit/runtime/scripts/README.md` prints 1 for each, and `rg -c 'skip-fsync.ts' .skilled/skills/system-deep-loop/runtime/tests/README.md` prints 1.
-- [ ] T014 Push the branch and read the deep-loop job on the runner (`.github/workflows/deep-loop-runtime.yml`). Verify: `gh pr checks` shows every check passing.
+- [x] T014 Push the branch and read the deep-loop job on the runner (`.github/workflows/deep-loop-runtime.yml`). Verify: `gh pr checks` shows every check passing. Evidence: pull request 100, 37 checks pass and 0 fail. The deep-loop test step took 354 s on run 43295604123 against 306 s and 370 s on two earlier `main` runs, so the skip saves nothing on the runner.
 
 <!-- /ANCHOR:phase-3 -->
 
@@ -72,9 +72,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
