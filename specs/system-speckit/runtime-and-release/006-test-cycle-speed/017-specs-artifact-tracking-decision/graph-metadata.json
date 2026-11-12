@@ -15,6 +15,9 @@
       "phase 17 specs artifact tracking decision",
       "specs artifact tracking decision plan",
       "specs artifact tracking decision tasks",
+      "specs artifact tracking options",
+      "loop state tracking decision",
+      "keep or untrack research folders",
       "specs artifact tracking decision implementation summary"
     ],
     "key_topics": [
@@ -25,11 +28,11 @@
       "phase",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
-      "repository",
-      "tracks",
-      "files"
+      "options",
+      "loop",
+      "state",
+      "keep",
+      "untrack"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -37,7 +40,14 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/artifact-inventory.md",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/scratch/artifact-inventory.md",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/decision-record.md",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/tasks.md",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/graph-metadata.json",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/implementation-summary.md"
     ],
     "entities": [
       {
@@ -55,13 +65,31 @@
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "artifact-inventory.md",
+        "kind": "doc",
+        "path": "scratch/artifact-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -165,44 +193,28 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repository tracks 134,068 files holding 2,242,571,276 bytes, and 88,151 of the 113,819 tracked files under `specs/` sit in `research/`, `review/`, `scratch/` or `zarchive/` folders",
     "created_at": "2026-11-12T08:22:02Z",
-    "last_save_at": "2026-11-12T10:44:10.745Z",
+    "last_save_at": "2026-11-12T11:48:16.853Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7623642d945b25713bde61275fa8bef58a5af61020956f6a6f07c511cc292b9b",
+    "source_fingerprint": "sha256:2dcee4190a2c2d51cf4c85b2f2228faec57e662e5e1c93dfacbe8fe95996ccb3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f9f48cb3ac4079dc9de7dc19f117abfdc42d72d7a4c7a98cf5e34bf8e50f5405",
       "plan.md": "81f8941d29fc0ae239aad85dfde7b706d9ce518c25c4edcb7cb9535b8da35e70",
-      "tasks.md": "8325f37ecc74ad8e6e884453c2b13129a1458736c873a9d3002e76f4db88f9b6",
-      "implementation-summary.md": "f1eba09e57c8e6ba7b05388254822d8b3130913cb82fd9b49fe395e281531245"
+      "tasks.md": "b25aeff97def7b33cd8cb1ea6eb355f5dd934febc0a6a8bdf16053007e27266c",
+      "decision-record.md": "88c50dff3fe8343344647862a1b1c91482001b0b632530e8457977ab9053a61f",
+      "implementation-summary.md": "5302dcc5438a0d8ac1d43e48f8a627825e4d92852761f05cf315e8f8bd719a75"
     },
     "last_active_at": null
   }
