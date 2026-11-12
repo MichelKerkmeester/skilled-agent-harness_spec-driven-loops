@@ -38,6 +38,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "scratch/local-test-timings.md",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/016-local-test-timing-profile/scratch/local-test-timings.md",
       "scripts/run-tests.mjs"
     ],
     "entities": [
@@ -63,6 +65,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "local-test-timings.md",
+        "kind": "doc",
+        "path": "scratch/local-test-timings.md",
         "source": "derived"
       },
       {
@@ -178,17 +186,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The three local `npm test` commands are what an operator waits on before a push, and no one has timed them since the latest changes",
     "created_at": "2026-11-12T08:22:01Z",
-    "last_save_at": "2026-11-12T10:33:22.848Z",
+    "last_save_at": "2026-11-12T13:11:53.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8809799f10c42fc6eac5770b291a79e61483dc113241f1bccef440f337e44bae",
+    "source_fingerprint": "sha256:5b482f599ecdeaf725e95d37fb789946c6c944106954b6f95e792b6f14ed4f5a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "110dee0e3d07c6157033cdc17759a7c4d88dd51e826483be76cd8baea3247b9e",
-      "plan.md": "ab335b8135065b66f95457593c9d213f2e6ea9bf821cee3360637ff8c0f077c6",
-      "tasks.md": "1b9fc195e06de3f2e2e84ee2b1c3da66af3ad83d7d63f047e05dda3c05d32eee",
-      "implementation-summary.md": "84833a8bd6702a13bd683618f75c0b89631b567abc1c110662884c67634b1ada"
+      "spec.md": "d41a707e4a3c1d3dbdf4b710995ddaa8db20c63ca2b003737a9a68fd870575ff",
+      "plan.md": "2a7a23fee33c2c4a8182874296f77d03179f0c5a323c0b3bf0e7bd81444660a3",
+      "tasks.md": "4fd4b9f30c511ffc1951265e87f8c2322a7d14c6caf38692dfb5cccc7ac4d192",
+      "implementation-summary.md": "f03d3d3e092059175325255580c2fa48df0bf4bccde959d5be50742c4c581413"
     },
     "last_active_at": null
   }

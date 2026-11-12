@@ -135,7 +135,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | The phase changes no tracked file under `.skilled/skills` | `git status --porcelain --untracked-files=no -- .skilled/skills` prints nothing at the end, the same as the setup baseline |
+| REQ-003 | The phase changes no tracked file under `.skilled/skills` | `git status --porcelain --untracked-files=no -- .skilled/skills` prints the same six pre-existing modifications as the setup baseline and gains no path |
 | REQ-004 | A later reader can tell what the seconds describe | The file's header names the date, the Node version, one run per suite and the idle-machine condition, and `rg -c 'one run per suite' scratch/local-test-timings.md` prints `1` |
 <!-- /ANCHOR:requirements -->
 
@@ -145,7 +145,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `scratch/local-test-timings.md` holds exactly three data rows, one per runtime: `rg -c '^\| \.skilled/skills/(system-spec-kit|system-skill-advisor|system-deep-loop)/runtime \| npm test \| [0-9]+(\.[0-9]+)? \| [0-9]+ \|$' scratch/local-test-timings.md` prints `3`.
-- **SC-002**: No tracked file under `.skilled/skills` changes: `git status --porcelain --untracked-files=no -- .skilled/skills | wc -l` prints `0`, the same as at setup.
+- **SC-002**: No tracked file under `.skilled/skills` changes: `git status --porcelain --untracked-files=no -- .skilled/skills | wc -l` prints `6`, the same count and the same paths as at setup.
 - **SC-003**: The packet validates: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/runtime-and-release/006-test-cycle-speed/016-local-test-timing-profile --strict --quiet` prints `RESULT: PASSED`.
 <!-- /ANCHOR:success-criteria -->
 
