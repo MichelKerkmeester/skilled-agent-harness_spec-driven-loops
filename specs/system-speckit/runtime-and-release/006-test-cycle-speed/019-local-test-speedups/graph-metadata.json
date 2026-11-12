@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups",
+  "spec_folder": "system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups",
+  "parent_id": "system-speckit/runtime-and-release/006-test-cycle-speed",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "local test speedups",
+      "phase 19 local test speedups",
+      "local test speedups plan",
+      "local test speedups tasks",
+      "local test speedups implementation summary"
+    ],
+    "key_topics": [
+      "local",
+      "test",
+      "speedups",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "operator",
+      "waits",
+      "spec-kit",
+      "suite"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/tests/validation-exit-honesty.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/_support/skip-fsync-preload.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/_support/skip-fsync.ts",
+      ".skilled/skills/system-deep-loop/runtime/vitest.config.ts",
+      ".skilled/skills/system-spec-kit/runtime/README.md",
+      "runtime/scripts/README.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/README.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/claim-continuity.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/package.json",
+      ".skilled/skills/system-spec-kit/runtime/vitest.config.ts",
+      ".skilled/skills/system-deep-loop/runtime/package.json",
+      ".github/workflows/deep-loop-runtime.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation-exit-honesty.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/validation-exit-honesty.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-tests.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "skip-fsync-preload.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/_support/skip-fsync-preload.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skip-fsync.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/_support/skip-fsync.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "claim-continuity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/claim-continuity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-runtime.yml",
+        "kind": "config",
+        "path": ".github/workflows/deep-loop-runtime.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Cycle Speed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator waits 667 s on the spec-kit suite and 497 s on the deep-loop suite before trusting a local change",
+    "created_at": "2026-11-12T19:20:56Z",
+    "last_save_at": "2026-11-12T19:57:02.948Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:70f03cb96ef568bd09de4ec42ad9cb70777a2dc70481118f5107b8e24ac5fcbc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "898ecaa127d52045f8edc0e36937f81adfde9cf7386a02bd53428ba30132613f",
+      "plan.md": "495059e3b7fa02ed0634a40f3a397803aeaa6d0b6e7c5772483e54c4addffa9a",
+      "tasks.md": "b00a4c98300ce9005268ac6abeebbabb69bb9e7a93d26929e791110017f7cb4b",
+      "implementation-summary.md": "816183e2cc8b17e7df82e6c9bdd85d71b8a3432e35b1392a5617cf722c1d7f13"
+    },
+    "last_active_at": null
+  }
+}

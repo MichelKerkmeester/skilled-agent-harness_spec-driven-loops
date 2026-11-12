@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups",
+  "description": "Phase 19: local-test-speedups",
+  "keywords": [
+    "phase",
+    "local-test-speedups"
+  ],
+  "lastUpdated": "2026-11-12T19:57:02.948Z",
+  "specId": "019",
+  "folderSlug": "local-test-speedups",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_20-57__local-test-speedups-cut-local-spec-kit-and-deep.md"
+  ]
+}
