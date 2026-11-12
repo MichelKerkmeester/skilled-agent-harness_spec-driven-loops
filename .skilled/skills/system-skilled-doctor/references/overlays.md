@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.10.0
+version: 1.0.11.0
 ---
 
 # Vendored Skilled Overlays
@@ -162,7 +162,7 @@ It exits 1 and names each staged change under a vendored root that no overlay ow
 
 ### Drift No Overlay Owns
 
-The write checks judge a write as it is made. A vendored file that already differs from upstream, or an upstream file the tree lacks, waits for a re-pin to refuse the run unless something reports it first. `/doctor:overlay status --audit` is that report. It prints one `AUDIT` line per vendored path no overlay owns:
+The write checks judge a write as it is made. A vendored file that already differs from upstream, or an upstream file the tree lacks, has no line in a re-pin unless the path is one the re-pin copies or deletes. A re-pin copies the `.skilled` paths upstream changed and the runtime folders whole, and it deletes the paths upstream dropped. A drifted path outside that set, such as a hand-edited `.skilled` file upstream left alone, is never refused, so `/doctor:overlay status --audit` is the only report for it. It prints one `AUDIT` line per vendored path no overlay owns:
 
 - `differs`: the path's contents differ from upstream at the pin.
 - `missing`: upstream has the path at the pin and the tree does not.

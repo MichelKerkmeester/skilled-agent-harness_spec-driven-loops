@@ -809,7 +809,7 @@ The Gate 2 skill-routing subsystem at `.skilled/skills/system-skill-advisor/`. I
 
 The doctor-command skill at `.skilled/skills/system-skilled-doctor/`, for installing Skilled in your own project and keeping it current there. It owns eleven of the seventeen doctor commands: `/doctor:install`, `/doctor:symlink`, `/doctor:update`, `/doctor:agents-md`, `/doctor:runtime-mirrors`, `/doctor:env`, `/doctor:setup`, `/doctor:helper`, `/doctor:speckit`, `/doctor:mcp` and `/doctor:overlay`. Each keeps its workflow in `.skilled/commands/doctor/`, and the skill matches a request to one of them.
 
-It keeps a vendored copy's own changes. `/doctor:overlay` reports an overlay that drifted and restores it, and it re-pins the copy to a newer upstream commit. See [Copy It Into Your Project](INSTALL-SKILLED.md#4-copy-it-into-your-project). The other six doctor commands stay with the skill whose own checks they run, such as `/doctor:git` with `sk-git`. The [Doctor](#doctor) section lists them.
+It keeps a vendored copy's own changes. `/doctor:overlay` reports an overlay that drifted and restores it, and it re-pins the copy to a newer upstream commit. It can also audit drift no overlay owns, move a source kept off its layout path, and take over a lock a run that has ended left behind. See [Copy It Into Your Project](INSTALL-SKILLED.md#4-copy-it-into-your-project). The other six doctor commands stay with the skill whose own checks they run, such as `/doctor:git` with `sk-git`. The [Doctor](#doctor) section lists them.
 
 &nbsp;
 

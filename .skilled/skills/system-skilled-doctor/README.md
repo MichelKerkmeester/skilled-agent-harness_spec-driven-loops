@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # system-skilled-doctor
@@ -45,7 +45,7 @@ Doctor commands about a single skill's own checks stay with that skill, such as 
 | `/doctor:helper` | Takes a described problem and ranks the doctor commands that fit, with why, ready to run |
 | `/doctor:speckit` | Checks that the trigger index is fresh and that its lookup and the ripgrep recipes return results |
 | `/doctor:mcp` | Installs or debugs Code Mode with its UTCP configuration and runtime registration |
-| `/doctor:overlay` | Keeps a vendored Skilled copy's own changes. `status` reports every overlay that is out of sync and the fix. `apply` puts the overlays back after showing what will change. `repin` moves the copy to a newer upstream commit with a backup it can roll back |
+| `/doctor:overlay` | Keeps a vendored Skilled copy's own changes. `status` reports every overlay that is out of sync and the fix, and `--audit` adds each unowned vendored path that drifted from the pin. `apply` puts the overlays back after showing what will change. `apply --relayout` moves each overlay source kept off its layout path, with a backup. `repin` moves the copy to a newer upstream commit with a backup it can roll back. Every writing mode takes over a lock whose run has ended on this host and prints a `note:` line |
 
 ---
 

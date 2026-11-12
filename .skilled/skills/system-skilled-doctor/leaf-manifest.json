@@ -4,6 +4,7 @@
       "leaves": [
         "manual-testing-playbook/overlays/adopt-an-unowned-file.md",
         "manual-testing-playbook/overlays/adopt-with-protected-file.md",
+        "manual-testing-playbook/overlays/dropped-item-is-removed.md",
         "manual-testing-playbook/overlays/pre-commit-refuses-unowned-change.md",
         "manual-testing-playbook/overlays/relayout-moves-sources.md",
         "manual-testing-playbook/overlays/stale-lock-takeover.md",

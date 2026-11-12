@@ -281,7 +281,8 @@ Move these sources now? [yes/no]
 |--------|--------------------|--------|
 | No `LAYOUT` line | The nothing-to-move result. Every source already sits on its layout path | `STATUS=OK` |
 | At least one `LAYOUT` line, and nothing else outstanding | The relayout plan and the relayout question | asks |
-| Any `live-edited`, `both-changed` or `upstream-moved` line, a `MISS` line or a `STALE` line | Each such line with its fix, beside the `LAYOUT` lines. The apply that follows the move would be refused until it is settled | `STATUS=FAIL ERROR="needs_resolution"` |
+| Any `live-edited`, `both-changed` or `upstream-moved` line | Each such line with its fix, beside the `LAYOUT` lines. The apply that follows the move would be refused until it is settled | `STATUS=FAIL ERROR="needs_resolution"` |
+| A `MISS` line or a `STALE` line, and no line above | The relayout plan and the relayout question, with each such line shown beside the `LAYOUT` lines. The engine moves the sources and still exits 0, so the run goes on and ends on that line | asks |
 
 `Move these sources now? [yes/no]` covers every move, the backup, the manifest rewrite and the layout-link retargeting. Any answer other than yes counts as no. Print the cancelled result and write nothing.
 
@@ -358,7 +359,7 @@ An overlay that now equals upstream needs no change to re-pin. Its entry can be 
 
 | The engine refuses because | Fix |
 |----------------------------|-----|
-| The overlay lock is held | Wait for the other run to end, then remove the lock file the message names by hand. The engine never clears a held lock itself |
+| The overlay lock is held | Wait for the other run to end, then remove the lock file the message names by hand. A lock whose owner has ended on this host is taken over by the next run, which prints a `note:` line, so this row covers a live owner, another host or a line with no pid |
 | A destination is `live-edited`, `both-changed` or `upstream-moved` | Settle it first: `/doctor:overlay apply --capture <path>` for a live edit, or resolve the overlay by hand for the other two, then rerun `/doctor:overlay status` |
 | An overlay is refused, shown as `blocked <overlay-id>: refused ...` | Follow the fix the line names, usually adding a token-named file to that entry's `protectedPaths`, then rerun `/doctor:overlay status` |
 | An unowned file in the copied roots differs from the old pin, at the path the engine names | That file holds an edit made in place, which the copy would revert. Move the edit into an overlay or upstream, then rerun |
@@ -536,7 +537,7 @@ What each engine exit means for `Changed:`:
 | `not-copied` lines in a re-pin report | Upstream changed these paths, and a re-pin never copies them: they sit under `repin.exclude` or in a top-level file or folder outside the copied roots, such as `AGENTS.md`. Carry over what applies by hand. For the shipped `AGENTS.md` sections, run `/doctor:agents-md` |
 | `stage skipped ... regenerate and ... verify step(s)` | Expected. The stage has no project install, so the generators run only in the live re-pin |
 | `.skilled-overlays.json` is refused | The setting must name a relative folder inside the tree with forward slashes. Fix the file, then rerun `/doctor:overlay status` |
-| `refuse: the overlay lock is held` | Another run holds the lock. Wait for it to end, then remove the lock file the message names by hand. The engine never clears a held lock itself |
+| `refuse: the overlay lock is held` | Another run holds the lock. Wait for that run to end, then remove the lock file the message names by hand. A lock whose owner has ended on this host is taken over by the next run, which prints a `note:` line, so this row covers a live owner, another host or a line with no pid |
 | A `live-edited` line | Run `/doctor:overlay apply --capture <path>` for that path, then `/doctor:overlay apply` |
 | A `LAYOUT` line in a status report | Run `/doctor:overlay apply --relayout`, which moves each off-layout source and then applies. The copy still applies while it sits off its layout path |
 | A `STALE` line in a status report | Upstream changed a root file a `repin.rootFiles` overlay owns. Rebase the overlay onto the new bytes, then set its `pinnedSha256` to theirs and rerun `/doctor:overlay status` |

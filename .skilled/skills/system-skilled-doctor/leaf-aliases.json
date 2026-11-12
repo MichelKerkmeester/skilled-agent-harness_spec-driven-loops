@@ -11,6 +11,11 @@
   },
   {
     "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/overlays/dropped-item-is-removed.md",
+    "diskPath": "manual-testing-playbook/overlays/dropped-item-is-removed.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
     "leafResourceId": "manual-testing-playbook/overlays/pre-commit-refuses-unowned-change.md",
     "diskPath": "manual-testing-playbook/overlays/pre-commit-refuses-unowned-change.md"
   },

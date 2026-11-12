@@ -44,7 +44,7 @@
     "refuse writes that no overlay owns",
     "block a commit that stages an unowned vendored change",
     "audit files that drifted from the pinned upstream commit",
-    "which root files changed upstream since the pin",
+    "which root files my overlays own changed upstream since the pin",
     "upstream changed a root file my overlay owns",
     "agents overlay stale after a re-pin",
     "rebase the overlay",
@@ -72,7 +72,7 @@
       "vendored tree",
       "no overlay owns",
       "drifted from the pinned upstream commit",
-      "root files changed upstream",
+      "overlay root files changed upstream",
       "changed a root file",
       "agents overlay stale",
       "overlay rebase"

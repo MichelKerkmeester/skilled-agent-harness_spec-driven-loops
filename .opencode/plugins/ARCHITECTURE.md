@@ -18,7 +18,7 @@ version: 1.0.1.0
 
 ## 1. OVERVIEW
 
-`.opencode/plugins/` holds the plugin files that OpenCode discovers (17 on 2026-10-20) as local plugins. Every file runs on OpenCode 1 and OpenCode 2 because each one default-exports `{ id, setup, server }`, where `server` is the OpenCode 1 entry and `setup` is the OpenCode 2 entry, and a plugin that exported only one entry would be a silent no-op on the other host. The per-file inventory table lives in [README.md](./README.md) and is linked here rather than repeated.
+`.opencode/plugins/` holds the plugin files that OpenCode discovers (21 on 2026-11-12) as local plugins. Every file runs on OpenCode 1 and OpenCode 2 because each one default-exports `{ id, setup, server }`, where `server` is the OpenCode 1 entry and `setup` is the OpenCode 2 entry, and a plugin that exported only one entry would be a silent no-op on the other host. The per-file inventory table lives in [README.md](./README.md) and is linked here rather than repeated.
 
 The dual-version proof was captured on 2026-10-19 on OpenCode 1.19.3 (`opencode`, the `opencode-ai` package) and OpenCode 2.0.32 (`opencode2` launcher). The doctor battery discovered all 17 plugin files on OpenCode 1.19.3 and reported all 17 active on OpenCode 2.0.32.
 
@@ -66,6 +66,7 @@ The diagram shows the bridged plugins. Every entry file in the folder is one.
 ├── env-secret-guard.js
 ├── mcp-route-guard.js
 ├── opencode-goal.js
+├── overlay-guard.js
 ├── session-cleanup.js
 ├── session-history-lookup.js
 ├── session-relaunch.js
