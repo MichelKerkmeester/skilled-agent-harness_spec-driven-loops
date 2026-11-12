@@ -91,7 +91,7 @@ The template rule exempts workflow-owned deep-research packet markdown: `researc
 No hub sits above this skill, so the triggers in `WHEN TO USE` select it.
 A request that writes any file selects it, and so does a create, a save, a resume or a validation question.
 `references/workflows/quick-reference.md` loads first on every invocation as the command surface.
-The intent keywords choose the rest through `RESOURCE_MAP`. A plan or implement request starts with `references/workflows/spec-authoring-card.md`.
+The intent keywords choose the rest through `RESOURCE_MAP`. A plan, implement or plain write request starts with `references/workflows/spec-authoring-card.md`.
 A request that matches no intent returns `UNKNOWN_FALLBACK` and its checklist rather than a silent default.
 Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
 

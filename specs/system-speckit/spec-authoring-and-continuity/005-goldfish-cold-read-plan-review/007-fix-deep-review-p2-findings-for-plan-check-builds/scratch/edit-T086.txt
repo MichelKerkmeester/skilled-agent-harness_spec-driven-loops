@@ -1,0 +1,8 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md
+HOW: Replace the single occurrence.
+=====OLD=====
+- Pool worker throws instead of settling: pool fails entirely rather than reporting per-item status.
+=====NEW=====
+- Pool worker throws instead of settling: pool fails entirely rather than reporting per-item status.
+- Step 5 starts a lineage without the opt-in: the one-lineage guard no longer runs before setup, so a chat session can again run every iteration in one process.
+=====END=====

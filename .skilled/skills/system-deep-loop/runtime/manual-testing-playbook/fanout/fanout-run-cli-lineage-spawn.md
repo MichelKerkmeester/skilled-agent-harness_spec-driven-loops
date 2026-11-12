@@ -1,7 +1,7 @@
 ---
 title: "DLR-025 -- Fan-out CLI lineage driver spawn and isolation"
 description: "Validate fanout-run.cjs creates per-lineage dirs with isolated .executor-state paths, saves stdout to logs/, writes orchestration summary and ledger, and returns early for native-only configs."
-version: 1.4.0.4
+version: 1.4.1.0
 ---
 
 # DLR-025 -- Fan-out CLI lineage driver spawn and isolation
@@ -50,10 +50,11 @@ If stdout is not saved, the salvage sweep has nothing to recover from.
 2. Verify `extraEnv` in the worker sets both `SPECKIT_FANOUT_LINEAGE_ID` and the kind-specific state dir var.
 3. `bash: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/fanout-run.vitest.ts`
 4. Confirm 5 tests pass. Note: the 2-lineage stub test verifies dirs, ledger, and summary; the lockfile-isolation test verifies `.executor-state` paths are distinct for same-kind replicas.
+5. Run the runner on a one-lineage research matrix with a throwaway `--spec-folder` and `--base-artifact-dir` and no `--allow-single-lineage`. Confirm exit 3, a message that names the single-executor `/deep:research` workflow and not the opt-in flag, and no lineage directory, ledger or summary under the base directory. Rerun with `--allow-single-lineage` and confirm the lineage starts.
 
 ### Expected Outcome
 
-5/5 pass. Lineage dirs created, `.executor-state` dirs distinct, `orchestration-summary.json` with `total_cli_lineages=2`, JSONL ledger written, native-only config returns early without spawning.
+5/5 pass. Lineage dirs created, `.executor-state` dirs distinct, `orchestration-summary.json` with `total_cli_lineages=2`, JSONL ledger written, native-only config returns early without spawning. Step 5 exits 3 with no side effect, and the opted-in rerun starts its one lineage.
 
 ### Evidence
 
@@ -67,6 +68,7 @@ If stdout is not saved, the salvage sweep has nothing to recover from.
 - Missing `SPECKIT_<KIND>_STATE_DIR` in env: same-kind replicas use the same state dir and may trip the loop-lock.
 - stdout not saved to `logs/fanout-lineage.out`: salvage sweep has no data to recover from.
 - Pool worker throws instead of settling: pool fails entirely rather than reporting per-item status.
+- Step 5 starts a lineage without the opt-in: the one-lineage guard no longer runs before setup, so a chat session can again run every iteration in one process.
 
 ---
 

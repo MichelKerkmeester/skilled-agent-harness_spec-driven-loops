@@ -128,7 +128,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --no-resource-map -> config.resource_map.emit = false
    |-- --fanout-lineage-artifact-dir=PATH -> config.fanout_lineage_artifact_dir = PATH (internal single-lineage command invocation only)
    |-- --executor=<type> [--model=X] [--config-dir=PATH] [--reasoning-effort=Y] [--service-tier=Z] [--executor-timeout=N] [--iters=N] [--label=X] [--count=N]
-   |     (repeatable; each occurrence adds one entry to config.fanout.executors)
+   |     (repeatable; one occurrence binds config.executor, two or more add one entry each to config.fanout.executors; route by lineage count below)
    |-- --executors=<json> -> parse(json), then route by lineage count below: one lineage -> config.executor, two or more -> config.fanout.executors
    |-- --concurrency=N -> config.fanout.concurrency (default 2)
    |

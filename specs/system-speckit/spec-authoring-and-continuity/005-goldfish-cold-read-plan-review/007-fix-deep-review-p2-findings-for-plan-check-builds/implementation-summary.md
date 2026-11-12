@@ -75,6 +75,9 @@ This dispatch changed only the scoped packet documentation and metadata. It did 
 ### Synthesis Follow-up
 
 The closing Opus synthesis found four defects after this phase first closed. One P1: the review workflow expands `~` to an absolute home path and the shared namespace guard refused it, so a documented `--config-dir=~/.claude-account2` failed. The validator now skips that repository-only guard for an absolute path and keeps its own `.claude*` root check. Three P2: the command flag tables listed a runner-only flag, six write verbs on IMPLEMENT could outscore PLAN, and status records disagreed. DeepSeek Flash max applied nine edit packets (`edit-T030.txt` to `edit-T038.txt`), each byte-exact on the first attempt. The earlier T029 test change, which had hidden the P1, is reversed by `edit-T031.txt`.
+### Alignment Follow-up
+
+`/local-skilled-alignment` ran on the first commit with four DeepSeek Flash max lanes. Its battery passed 82 of 84 rows; the one failure is three unused-variable lint errors in test files this work never touched. Lane D found one P1: both setup prompts still mapped every `--executors` value into `config.fanout`, so a model following the mapping would reach the new refusal. The lanes also found P2 drift in the five-intent count, the card sync guard, playbook scenario 481, the fan-out catalog entries and the root README, and a test gap. Thirty-seven edit packets (`edit-T039.txt` to `edit-T075.txt`) closed them. All 13 routing probes passed.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -82,7 +85,7 @@ The closing Opus synthesis found four defects after this phase first closed. One
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The supplied `scratch/phase-facts.md` contains no section for this packet, so each cited runtime line was re-read directly. Read-only source searches confirmed the active loop guard at `fanout-run.cjs:3400-3402`, validator export at `:4336`, direct review validation at `deep-review-auto.yaml:1263-1264`, and environment assignment at `:1293-1294`. The line references in `spec.md` now point to those current locations.
+The supplied `scratch/phase-facts.md` contains no section for this packet, so each cited runtime line was re-read directly. Read-only source searches confirmed the active loop guard at `fanout-run.cjs:3408-3412`, validator export at `:4344`, direct review validation at `deep-review-auto.yaml:1263-1264`, and environment assignment at `:1293-1294`. The line references in `spec.md` now point to those current locations.
 
 The earlier contract `--write` commands and their exit statuses are recorded at `../scratch/build-evidence.md:50`. During closeout, the read-only generator output matched the checked-in research and review contracts (`RESEARCH CONTRACT MATCH`, `REVIEW CONTRACT MATCH`; both exit 0). Unit and stress suites were not run in this dispatch, as instructed; the task rows cite the recorded outputs and statuses in `../scratch/build-evidence.md`. Earlier closeout evidence records card sync, shell syntax, scoped `git diff --check` and the corrected CHK-012 scope check as passing. This reconciliation reruns strict validation after the document edits.
 <!-- /ANCHOR:how-delivered -->

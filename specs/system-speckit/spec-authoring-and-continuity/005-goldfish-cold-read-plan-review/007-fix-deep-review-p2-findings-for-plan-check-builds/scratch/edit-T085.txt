@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md
+HOW: Replace the single occurrence.
+=====OLD=====
+native-only config returns early without spawning.
+=====NEW=====
+native-only config returns early without spawning. Step 5 exits 3 with no side effect, and the opted-in rerun starts its one lineage.
+=====END=====

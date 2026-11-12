@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/commands/deep/assets/deep-review-presentation.txt
+HOW: Replace the single occurrence.
+=====OLD=====
+   |     (repeatable; each occurrence adds one entry to config.fanout.executors)
+=====NEW=====
+   |     (repeatable; one occurrence binds config.executor, two or more add one entry each to config.fanout.executors; route by lineage count below)
+=====END=====

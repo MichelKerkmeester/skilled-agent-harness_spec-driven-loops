@@ -27,7 +27,7 @@ The single most important control, the one-lineage refusal in `fanout-run.cjs`, 
 
 **004 plan file naming.** The plan template's phases FILL comment and the authoring card's example now name the file each phase touches. The `SKILL.md` card sentence was narrowed to plan and implement requests, and the four scaffold snapshots were regenerated.
 
-**005 authoring-card pointers.** `create.sh` prints a step 0 naming the card in both Next steps blocks. The spec-gate first-mutation notice gains one sentence naming the card. The system-spec-kit `ROUTER.md` IMPLEMENT intent gains six write verbs.
+**005 authoring-card pointers.** `create.sh` prints a step 0 naming the card in both Next steps blocks. The spec-gate first-mutation notice gains one sentence naming the card. The system-spec-kit `ROUTER.md` IMPLEMENT intent gains six write verbs, later moved to a WRITE intent (see D3 below).
 
 **006 speckit workflow gates.** `speckit-implement.yaml` defines `plan_clarity`, adds a design-choice stop with an `on_fail` and adds a `test_failure` outcome. `speckit-complete.yaml` requires a stated technical approach at its phase gate, and `speckit-plan.yaml` describes repeated passes of up to three clarification markers.
 

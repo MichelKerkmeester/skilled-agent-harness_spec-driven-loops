@@ -86,7 +86,7 @@ Command: rg -n -F -e 'args.allowSingleLineage !== true' -e 'parentEnv.CLAUDE_CON
 - Reconcile the listed packet status carriers, record the deep-ai-council generated drift fix in child 002, and make the create.sh prompt sentence single-source without changing output.
 
 ### Out of Scope
-- Changing the fan-out refusal message; it continues to name neither the opt-in flag nor a lineage count, and the documentation must say so.
+- Changing the fan-out refusal message; it names the single-executor workflow and the one-lineage fact, never the opt-in flag, and the documentation must say so.
 - Hand-editing generated contracts, implementing this plan while authoring it, modifying the finished review report, or changing unrelated files.
 
 ### Files to Change

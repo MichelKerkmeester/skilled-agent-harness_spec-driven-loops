@@ -1,0 +1,8 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md
+HOW: Replace the single occurrence.
+=====OLD=====
+4. Confirm 5 tests pass. Note: the 2-lineage stub test verifies dirs, ledger, and summary; the lockfile-isolation test verifies `.executor-state` paths are distinct for same-kind replicas.
+=====NEW=====
+4. Confirm 5 tests pass. Note: the 2-lineage stub test verifies dirs, ledger, and summary; the lockfile-isolation test verifies `.executor-state` paths are distinct for same-kind replicas.
+5. Run the runner on a one-lineage research matrix with a throwaway `--spec-folder` and `--base-artifact-dir` and no `--allow-single-lineage`. Confirm exit 3, a message that names the single-executor `/deep:research` workflow and not the opt-in flag, and no lineage directory, ledger or summary under the base directory. Rerun with `--allow-single-lineage` and confirm the lineage starts.
+=====END=====

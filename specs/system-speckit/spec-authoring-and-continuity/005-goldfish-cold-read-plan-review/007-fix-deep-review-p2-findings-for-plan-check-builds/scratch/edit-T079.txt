@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-sync-guard.md
+HOW: Replace the single occurrence.
+=====OLD=====
+- Expected signals: The tree run prints eleven `PASS` lines, then `CARD SYNC OK`, and exits 0. The copy run prints `CARD SYNC OK` before the card is deleted. The broken run exits 1, prints one `FAIL card-exists` line and one `FAIL card-names-checklist` line, since a missing card also names no checklist, then `CARD SYNC FAILED`.
+=====NEW=====
+- Expected signals: The tree run prints twelve `PASS` lines, then `CARD SYNC OK`, and exits 0. The copy run prints `CARD SYNC OK` before the card is deleted. The broken run exits 1, prints one `FAIL card-exists` line and one `FAIL card-names-checklist` line, since a missing card also names no checklist, then `CARD SYNC FAILED`.
+=====END=====

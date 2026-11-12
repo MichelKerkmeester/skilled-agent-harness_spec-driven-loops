@@ -45,7 +45,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | The flag is `--allow-single-lineage`, registered in `FANOUT_FLAGS`. |
-| D2 | The refusal message names the single-executor command path. It names neither the flag nor a count. |
+| D2 | The refusal message names the single-executor command path and the one-lineage fact. It never names the opt-in flag. |
 | D3 | One process per lineage stays as it is. The `--count=2` bypass is recorded, not fixed. |
 
 <!-- /ANCHOR:directive -->

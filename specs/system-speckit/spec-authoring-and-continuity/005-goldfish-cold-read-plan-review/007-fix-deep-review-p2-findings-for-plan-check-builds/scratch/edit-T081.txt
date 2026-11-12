@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-sync-guard.md
+HOW: Replace the single occurrence.
+=====OLD=====
+- **Pass**: The tree run exits 0 with eleven `PASS` lines and `CARD SYNC OK`, and the broken run exits 1 with one `FAIL card-exists` line, two `FAIL` lines in all and `CARD SYNC FAILED`.
+=====NEW=====
+- **Pass**: The tree run exits 0 with twelve `PASS` lines and `CARD SYNC OK`, and the broken run exits 1 with one `FAIL card-exists` line, two `FAIL` lines in all and `CARD SYNC FAILED`.
+=====END=====

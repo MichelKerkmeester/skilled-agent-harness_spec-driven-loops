@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "f6d6027defa06df0276465038630f3683840189df127932190f7b013ad3b6ddb",
+      "sha256": "1e422a641cfb9b9566cf68bd08dbe144aa7c43fbf5b6c0480d276c85f531f2ad",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "40dca87495e85ffe848f59d7987d3061832d1b29379cd72123eae645913fe0b9"
+  "compiledBodyDigest": "302ab13a271c63c68da2f6bc0883b3393c74ac71cf37f1a566cf42f14cdcbe99"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -257,7 +257,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --executor-timeout=<seconds> -> config.executor.timeoutSeconds (positive integer, default `900`)
    |-- --no-resource-map -> config.resource_map.emit = false
    |-- --executor=<type> [--model=X] [--config-dir=PATH] [--reasoning-effort=Y] [--service-tier=Z] [--executor-timeout=N] [--iters=N] [--label=X] [--count=N]
-   |     (repeatable; each occurrence adds one entry to config.fanout.executors)
+   |     (repeatable; one occurrence binds config.executor, two or more add one entry each to config.fanout.executors; route by lineage count below)
    |-- --executors=<json> -> parse(json), then route by lineage count below: one lineage -> config.executor, two or more -> config.fanout.executors
    |-- --concurrency=N -> config.fanout.concurrency (default 2)
    |

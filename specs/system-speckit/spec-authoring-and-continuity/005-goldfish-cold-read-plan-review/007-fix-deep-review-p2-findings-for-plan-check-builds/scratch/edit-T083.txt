@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+HOW: Replace the single occurrence.
+=====OLD=====
+is the default load for the `PLAN`, `IMPLEMENT`, `INTAKE` and `TEMPLATE_AUTHORING` intents,
+=====NEW=====
+is the default load for the `PLAN`, `IMPLEMENT`, `INTAKE`, `TEMPLATE_AUTHORING` and `WRITE` intents,
+=====END=====

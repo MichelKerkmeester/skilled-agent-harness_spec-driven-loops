@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/SKILL.md
+HOW: Replace the single occurrence.
+=====OLD=====
+A plan or implement request starts with `references/workflows/spec-authoring-card.md`.
+=====NEW=====
+A plan, implement or plain write request starts with `references/workflows/spec-authoring-card.md`.
+=====END=====

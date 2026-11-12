@@ -57,7 +57,7 @@ Frozen choices. Changing one is an amendment.
 - [x] T001, T002 and T003 confirm the pre-edit carrier counts and record the valid advisor result.
 - [x] Standard and phase create.sh Next steps output include the canonical authoring-card path. Evidence: `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:24,2209,2418`; the rerun receipt records exit 0 and 6 tests passed (`../scratch/build-evidence.md:153`).
 - [x] The shared first-mutation notice names the canonical authoring card in one direct sentence.
-- [x] The measured plain-language write prompt matches an IMPLEMENT keyword in `ROUTER.md`, and `check-card-sync.sh` ends with `CARD SYNC OK`.
+- [x] The measured plain-language write prompt matches an IMPLEMENT keyword in `ROUTER.md`, and `check-card-sync.sh` ends with `CARD SYNC OK`. Phase 007 later moved the six verbs to a WRITE intent at weight 1; the prompt now matches WRITE, which loads the same card.
 <!-- /ANCHOR:completion -->
 
 ---

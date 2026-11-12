@@ -114,7 +114,7 @@ Use the research and the five follow-on phases to make plan checks easier for a 
 | .skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts | Modify | 005 chat authoring path | Make both scaffold helpers fail when the card path is missing from the output. |
 | .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs | Modify | 005 chat authoring path | Add the card pointer to the first-mutation notice. |
 | .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs | Modify | 005 chat authoring path | Update the mutation-notice expectation. |
-| .skilled/skills/system-spec-kit/ROUTER.md | Modify | 005 chat authoring path | Add six write verbs to the IMPLEMENT keyword row and to the prose list of the same keywords. |
+| .skilled/skills/system-spec-kit/ROUTER.md | Modify | 005 chat authoring path | Add six write verbs to the IMPLEMENT keyword row and to the prose list of the same keywords; phase 007 moved them to a WRITE intent at weight 1. |
 | .skilled/commands/speckit/assets/speckit-implement.yaml | Modify | 006 workflow gates | Define plan clarity and add design-choice and test-failure stops. |
 | .skilled/commands/speckit/assets/speckit-complete.yaml | Modify | 006 workflow gates | Require a technical approach at the phase gate. |
 | .skilled/commands/speckit/assets/speckit-plan.yaml | Modify | 006 workflow gates | Clarify that clarification markers are resolved in repeated batches. |
@@ -133,7 +133,7 @@ Use the research and the five follow-on phases to make plan checks easier for a 
 | 2 | 002-bind-single-entry-executors-to-single-path/ | Route one-lineage matrices to config.executor, preserve fan-out routing for two or more, refresh both compiled contracts, and record the council-contract drift fix. | Complete |
 | 3 | 003-refuse-single-lineage-fanout-run/ | Refuse direct one-lineage research or review fan-out without explicit opt-in and update intentional callers. | Complete |
 | 4 | 004-name-file-in-plan-phase-lines/ | Name target files in plan phase examples and align the card, skill entry, and generated snapshots. | Complete |
-| 5 | 005-point-chat-sessions-at-authoring-card/ | Check each carrier's reach from its files, then point scaffold output, the mutation notice, and the IMPLEMENT route at the authoring card. | Complete |
+| 5 | 005-point-chat-sessions-at-authoring-card/ | Check each carrier's reach from its files, then point scaffold output, the mutation notice, and the router's write route at the authoring card. | Complete |
 | 6 | 006-repair-speckit-workflow-gates/ | Define plan clarity, design-choice and test-failure stops, the technical-approach gate, and repeated clarification passes. | Complete |
 | 7 | 007-fix-deep-review-p2-findings-for-plan-check-builds/ | Reconcile the deep-review P2 findings, verify path trust boundaries, and regenerate and test maintained command contracts. | Complete |
 

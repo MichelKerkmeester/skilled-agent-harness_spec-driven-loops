@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-sync-guard.md
+HOW: Replace the single occurrence.
+=====OLD=====
+- Objective: Prove that the guard prints eleven `PASS` lines and `CARD SYNC OK` on the tree, and `FAIL card-exists` and `FAIL card-names-checklist` with `CARD SYNC FAILED` on the copy.
+=====NEW=====
+- Objective: Prove that the guard prints twelve `PASS` lines and `CARD SYNC OK` on the tree, and `FAIL card-exists` and `FAIL card-names-checklist` with `CARD SYNC FAILED` on the copy.
+=====END=====

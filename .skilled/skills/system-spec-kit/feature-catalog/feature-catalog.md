@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-07"
-version: 2.1.27.0
+version: 2.1.28.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -607,7 +607,7 @@ One short card that the five authoring intents load instead of the long template
 
 #### Current Reality
 
-`references/workflows/spec-authoring-card.md` is the default load for the `PLAN`, `IMPLEMENT`, `INTAKE` and `TEMPLATE_AUTHORING` intents, and `runtime/cli/spec/check-card-sync.sh` holds its four surfaces together.
+`references/workflows/spec-authoring-card.md` is the default load for the `PLAN`, `IMPLEMENT`, `INTAKE`, `TEMPLATE_AUTHORING` and `WRITE` intents, and `runtime/cli/spec/check-card-sync.sh` holds its four surfaces together.
 
 #### Source Files
 

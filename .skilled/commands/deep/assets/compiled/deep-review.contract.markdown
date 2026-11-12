@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "f4af9a27ea4449833a2af073bbb63fb40b2437915aef241e8b820615b1490dc3",
+      "sha256": "e9fcd161512a7c1f50eba0084cd8643edf2f178d349a80938285af45b0bf5079",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "ce994774fae5435291d8bea652fd7f859c39abe08bd1c99039f159c9c95ea5a7"
+  "compiledBodyDigest": "334a34030587ca64c09e5050174852ad467326675212d9c25858be2fc6f7085d"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -279,7 +279,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --no-resource-map -> config.resource_map.emit = false
    |-- --fanout-lineage-artifact-dir=PATH -> config.fanout_lineage_artifact_dir = PATH (internal single-lineage command invocation only)
    |-- --executor=<type> [--model=X] [--config-dir=PATH] [--reasoning-effort=Y] [--service-tier=Z] [--executor-timeout=N] [--iters=N] [--label=X] [--count=N]
-   |     (repeatable; each occurrence adds one entry to config.fanout.executors)
+   |     (repeatable; one occurrence binds config.executor, two or more add one entry each to config.fanout.executors; route by lineage count below)
    |-- --executors=<json> -> parse(json), then route by lineage count below: one lineage -> config.executor, two or more -> config.fanout.executors
    |-- --concurrency=N -> config.fanout.concurrency (default 2)
    |
