@@ -17,7 +17,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      # The guard is reached through the .opencode/skills link and reads the canonical card
+      # plus the cli-* layers it compares against, so only those trees are needed on disk.
+      # A path the guard starts reading must be added here, or the step fails closed.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /.opencode/skills
+            /.skilled/skills/system-skill-advisor/runtime/scripts/
+            /.skilled/skills/sk-prompt/
+            /.skilled/skills/cli-external-orchestration/
+          sparse-checkout-cone-mode: false
       - name: Run prompt-quality card-sync guard
         run: |
           set -euo pipefail

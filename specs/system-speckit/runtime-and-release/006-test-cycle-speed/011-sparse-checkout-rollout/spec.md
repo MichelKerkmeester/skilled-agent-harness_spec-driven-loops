@@ -104,7 +104,7 @@ The 25 to 64 s line is the research's earlier sample. The per-workflow figures a
 ## 3. SCOPE
 
 ### In Scope
-- Add the sparse cone to `prompt-card-sync.yml`, `repo-rules-corpus.yml`, `runtime-no-spec-import.yml`, `chart-corpus.yml`, `diagram-corpus.yml`, `pi-extension-tests.yml` and `sk-code-script-tests.yml`.
+- Add the sparse cone to `prompt-card-sync.yml`, `runtime-no-spec-import.yml`, `chart-corpus.yml`, `diagram-corpus.yml` and `pi-extension-tests.yml`. The plan also named `repo-rules-corpus.yml` and `sk-code-script-tests.yml`. Both were reverted after a local simulation of the cone failed: the repo-rules guard failed its rule-links check, and an sk-code test could not open `.opencode/plugins/system-skill-advisor.js`.
 - Record each workflow's read set in `plan.md` section 3 before the edit.
 - Prove that each edited file parses and that its cone covers every path its steps name.
 - Compare the post-push checkout step duration with the pre-change duration.

@@ -38,7 +38,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".github/workflows/rule-canary-sync.yml",
       ".github/workflows/prompt-card-sync.yml",
       ".github/workflows/repo-rules-corpus.yml",
       ".github/workflows/runtime-no-spec-import.yml",
@@ -46,8 +45,15 @@
       ".github/workflows/diagram-corpus.yml",
       ".github/workflows/pi-extension-tests.yml",
       ".github/workflows/sk-code-script-tests.yml",
-      "specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json",
-      "specs/system-speckit/repo-operations/002-ci-workflow-efficiency/004-setup-caching-provisioning/decision-record.md"
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/scratch/checkout-baseline.md",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/tasks.md",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/implementation-summary.md",
+      ".github/workflows/README.md",
+      ".github/workflows/sk-doc-script-tests.yml",
+      ".github/workflows/sk-doc-script-tests-filtered.yml",
+      "scratch/checkout-baseline.md",
+      ".github/workflows/rule-canary-sync.yml",
+      ".opencode/plugins/system-skill-advisor.js"
     ],
     "entities": [
       {
@@ -65,19 +71,13 @@
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "rule-canary-sync.yml",
-        "kind": "config",
-        "path": ".github/workflows/rule-canary-sync.yml",
+        "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -123,9 +123,39 @@
         "source": "derived"
       },
       {
-        "name": "routing-baseline.json",
+        "name": "checkout-baseline.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout/scratch/checkout-baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-script-tests.yml",
         "kind": "config",
-        "path": "specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json",
+        "path": ".github/workflows/sk-doc-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-script-tests-filtered.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-doc-script-tests-filtered.yml",
+        "source": "derived"
+      },
+      {
+        "name": "rule-canary-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/rule-canary-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
         "source": "derived"
       },
       {
@@ -169,35 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Add",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Per",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every job checks out 134,068 tracked files, and 113,819 of them sit under `specs/`",
     "created_at": "2026-11-12T08:21:58Z",
-    "last_save_at": "2026-11-12T09:26:55.395Z",
+    "last_save_at": "2026-11-12T13:19:18.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:272cd93c8725a5d796ef6b0f2412c76fcab275b0d4567b839c359834dff14107",
+    "source_fingerprint": "sha256:d97cb3a66e7927fa5c64a5555ddebbb48ed14add24f2747b3c6af53a1e7c1ff4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9117e4992ebbee39f8c00347946db3e352a7fb972191c9d64e756803611e7947",
+      "spec.md": "3e955b7c3015a88e80a8c376330afd07eda107bc63db7498e2da730092be97a5",
       "plan.md": "6922f78c21ad5d3394834e0be89f2d669fb60f47d7a5a7587753d0ae56e42d59",
-      "tasks.md": "85aa2a02a36b5a160ace6678dfc35ec920a8a3a4716b11c383587facca15349b",
-      "implementation-summary.md": "f9d3a17714d1c2ecd3ab2a66e89ca66affcbb40cfb01c92e7571c8989c601eac"
+      "tasks.md": "2e421d45c819d781173c3114f61e0d1e9876ca7a51484826702c3fe8125cc25b",
+      "implementation-summary.md": "f20f7904726258daf5bcffe39c4539ede68942d4670488c362d6f1c6b0788d4a"
     },
     "last_active_at": null
   }
