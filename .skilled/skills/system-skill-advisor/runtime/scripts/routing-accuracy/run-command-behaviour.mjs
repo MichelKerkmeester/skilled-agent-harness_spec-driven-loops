@@ -161,6 +161,10 @@ const RUNTIMES = {
       // `opencode run` takes no --dir, and the child already starts in the
       // checkout, so passing the directory a second time would only fail.
       'run',
+      // Without this the turn is handed to the operator's long-running background
+      // service, whose tools run with that service's environment. The hardened
+      // environment this runner builds would then never reach a tool call.
+      '--standalone',
       '--model',
       OPENCODE_MODEL,
       '--format',
