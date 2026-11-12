@@ -1,0 +1,4 @@
+G5 cause confirmed on 2026-11-12, Claude Code with claude-sonnet-5-5, two throwaway folders outside any repository.
+listing-a.txt: create/readme.md and create/skill.md present. The Skill tool lists one entry, `create`. `create:readme` is absent.
+listing-b.txt: create/readme.md and create/new-skill.md present. The Skill tool lists `create:new-skill` and `create:readme`.
+Cause: a command file named skill.md makes Claude Code read its folder as one skill named after the folder, which hides every sibling command in that folder.

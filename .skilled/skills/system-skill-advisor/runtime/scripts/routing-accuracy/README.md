@@ -70,6 +70,8 @@ Run individual scripts from the repository root with the documented arguments.
 | `score-routing-corpus.py` | PY source file in this folder. |
 | `command-prompts.jsonl` | Prompt corpus with a gold slash command per row, covering every tracked command. |
 | `capture-command-routing-baseline.mjs` | Scores `command-prompts.jsonl` under the pinned regime and prints or writes the baseline. Its `attachedMetrics` key holds own-row, attached and combined plain reach per split and per command family, attached false offers, the typed rows where a command and its owner skill read as ambiguous, and the command attached to each row. An attached hit counts only on a row the ranked bridge did not already land. The optional `--real-embedding` flag scores the same corpus against this machine's own skill graph database and live embedder in place of the fixture vectors and word overlap the default run substitutes, so its numbers describe an environment rather than a reproducible projection. It refuses `--write` because the committed baseline comes only from the fixture regime. Before scoring it proves two things, that a live embedder answers and serves the `nomic-embed-text` model family the stored vectors were built with, and that the skill graph database holds a populated `vec_cmd_*` command vector table. A missing piece exits 2 with a message that names it. |
+| `score-command-transcripts.mjs` | Scores captured sessions through the shared session readers. `--summary <run-log> [<run-log>...]` scores every row one or more run logs list, per runtime and arm, and `--runtime <name> --locator '<json>'` scores the one session a locator names. `--row-id <id>` narrows either mode to one row and `--json` prints machine-readable output. Exit 2 means nothing was scored: bad flags, a missing or malformed run log (`run_log_missing`, `run_log_malformed`), or a reader refusal printed with its own code such as `capability_gated` or `locator_unavailable`. |
+| `run-command-behaviour.mjs` | Runs one live turn per row and records the locator, exit and changed paths. `--print-argv <runtime>` prints a runtime's argv, `--list <set>` prints a set's row ids, and a run takes `--runtime` with `--set` or repeated `--row-id`, `--out <run-log>`, optional `--arm`, `--fixture` and `--dry-run`. Exit 2 refuses instead of running: bad flags, an unknown runtime or set, a holdout or unknown row, a set with fewer rows than it needs (`set_short`), a dirty worktree outside the run log's folder (`worktree_dirty`), or a checkout with a git remote (`remote_present`). |
 | `command-routing-baseline.json` | Captured command routing numbers that `tests/command-routing-slice.vitest.ts` holds the scorer to. |
 
 ---
@@ -92,6 +94,25 @@ User request: Check .skilled/skills/system-skill-advisor/runtime/scripts/routing
 Skill routing: sk-code plus sk-doc.
 Expected output: Findings recorded in the 026 audit report.
 ```
+
+**Score captured runs**
+
+```bash
+node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs \
+  --summary scratch/runs-pre.jsonl scratch/runs-post.jsonl --json
+```
+
+Exit 2 means no score was produced. A missing or malformed log prints `run_log_missing` or `run_log_malformed`, and a session the reader cannot open prints its own code, such as `capability_gated`.
+
+**Inspect and run one behaviour turn**
+
+```bash
+node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs --print-argv claude
+node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs \
+  --runtime claude --set chat --out scratch/runs-pre.jsonl --dry-run
+```
+
+Exit 2 means the run was refused before or during its first prompt: bad flags, an unknown runtime or set, a holdout row, a dirty worktree outside the run log's folder, or a checkout that still has a git remote.
 
 ---
 

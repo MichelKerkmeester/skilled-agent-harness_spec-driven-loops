@@ -21,6 +21,11 @@ const bridges = require('../scripts/command-bridges/derive-command-bridges.cjs')
   commandTreeNames(commandsRoot?: string): string[];
   validateRiskKeys(record: Record<string, unknown>, label: string, requireTarget?: boolean): void;
   derivePolicy(record: RiskRecord): string;
+  doctorLeadPhrases(
+    item: { mutating: string; lead_phrases: string[] },
+    label: string,
+    triggerPhrases: string[],
+  ): string[];
   metadataRiskRecords(skillsRoot?: string): Array<{ command: string }>;
   identityViolations(input: {
     treeCommands: string[];
@@ -100,6 +105,22 @@ describe('command policy derivation', () => {
     for (const [label, record, expected] of rows) {
       expect(bridges.derivePolicy(record), label).toBe(expected);
     }
+  });
+
+  it('rejects a lead phrase with no state word on a route that runs unprompted', () => {
+    expect(() => bridges.doctorLeadPhrases(
+      { mutating: 'read-only', lead_phrases: ['disable the gate'] },
+      'fixture read-only route',
+      ['disable the gate'],
+    )).toThrow(/needs a state or health word/);
+  });
+
+  it('accepts the same lead phrase on a mutating route, whose policy asks first', () => {
+    expect(bridges.doctorLeadPhrases(
+      { mutating: 'mutates', lead_phrases: ['disable the gate'] },
+      'fixture mutates route',
+      ['disable the gate'],
+    )).toEqual(['disable the gate']);
   });
 
   it('rejects a missing class and unknown values', () => {

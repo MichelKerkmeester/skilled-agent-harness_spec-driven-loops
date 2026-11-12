@@ -54,6 +54,28 @@ const DOCTOR_MCP_COMMAND = '/doctor:mcp';
 const MUTATING_CLASSES = ['read-only', 'add-only', 'mutates'];
 const ASK_FIRST_REASONS = ['settings', 'outside-repo', 'spend', 'relaunch'];
 const WRITE_SCOPES = ['spec-folder'];
+// A lead phrase outranks a passing skill, which is only safe when the prompt asks
+// about the state of something. A phrase that names no state or health word could
+// outrank the skill on an ordinary task, so it belongs only on a route that
+// already asks before it runs.
+const LEAD_PHRASE_STATE_WORDS = [
+  'check',
+  'state',
+  'status',
+  'report',
+  'health',
+  'off',
+  'on',
+  'which',
+  'show',
+  'list',
+  'inventory',
+  'drift',
+  'stale',
+  'missing',
+  'failing',
+  'broken',
+];
 const RENDER_PATH = join(SKILLS_ROOT, 'system-skill-advisor', 'runtime', 'lib', 'render.ts');
 const RENDER_GENERATED_START = '// BEGIN GENERATED DOCTOR COMMANDS';
 const RENDER_GENERATED_END = '// END GENERATED DOCTOR COMMANDS';
@@ -743,14 +765,37 @@ function doctorDefaultTarget(route, label, multiTarget) {
   return route.command;
 }
 
+// A lead phrase is matched against the whole prompt, so the state word has to be
+// a word of its own: "on" inside "environment" would clear a phrase that asks
+// nothing about state.
+function hasStateWord(phrase) {
+  return phrase
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .some((word) => LEAD_PHRASE_STATE_WORDS.includes(word));
+}
+
+// A route that asks first may lead with a phrase that names no state or health
+// word, because the ask already keeps the run behind a decision.
 function doctorLeadPhrases(item, label, triggerPhrases) {
   const leadPhrases = Object.prototype.hasOwnProperty.call(item, 'lead_phrases')
     ? stringArray(item.lead_phrases, `${label}.lead_phrases`)
     : [];
+  const asksFirst = derivePolicy({
+    doctor: true,
+    mutating: item.mutating,
+    ask_first: item.ask_first,
+    write_scope: item.write_scope,
+  }) === 'ask';
   for (const phrase of leadPhrases) {
     if (!triggerPhrases.includes(phrase)) {
       throw new Error(
         `[command-bridges] ${label}.lead_phrases entry ${JSON.stringify(phrase)} must also appear in trigger_phrases`,
+      );
+    }
+    if (!asksFirst && !hasStateWord(phrase)) {
+      throw new Error(
+        `[command-bridges] ${label}.lead_phrases entry ${JSON.stringify(phrase)} needs a state or health word because its route does not ask first`,
       );
     }
   }
@@ -1292,6 +1337,7 @@ module.exports = {
   derivePolicy,
   metadataRiskRecords,
   doctorRiskRecords,
+  doctorLeadPhrases,
   identityViolations,
   commandPolicies,
 };
