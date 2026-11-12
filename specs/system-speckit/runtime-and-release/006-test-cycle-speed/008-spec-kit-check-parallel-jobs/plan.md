@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 8: spec-kit-check-parallel-jobs"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Split the three serial suite steps in spec-kit-check.yml into three jobs that each check out and install their own copy. Prove the split with a YAML parse, actionlint, the four unchanged command lines and one pull-request run that reports three job durations."
 trigger_phrases:
   - "spec kit check parallel jobs plan"
 importance_tier: "normal"
@@ -15,26 +15,24 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one `--keep <n>` option. Prove it with an archive count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | GitHub Actions workflow YAML |
+| **Framework** | GitHub Actions, Node 22 |
+| **Storage** | None |
+| **Testing** | Vitest projects, legacy Node lanes, bash validation suites, `actionlint`, `validate.sh` |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Edit one file. Move the CLI vitest, legacy lane and runtime vitest steps into three jobs, copy the install-and-build step into each, and leave every `run:` command alone. Prove the split first with a YAML parse and `actionlint`, then with the three job durations from a pull-request run that the operator-approved push starts.
 <!-- /ANCHOR:summary -->
 
 ---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
 - [ ] Problem statement clear and scope documented
@@ -42,8 +40,11 @@ contextType: "general"
 - [ ] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
+- [ ] The YAML parser prints `check,cli-vitest,doctor-scripts,legacy-lanes,mirrors,runtime-vitest`
+- [ ] `actionlint .github/workflows/spec-kit-check.yml && echo actionlint-ok` prints `actionlint-ok`
+- [ ] The four suite and lane command lines each appear once, so the combined `rg -c` count prints 4
+- [ ] `gh run view` prints three `success` lines with durations after the operator-approved push and pull request
+- [ ] `validate.sh --strict --quiet` prints `RESULT: PASSED`
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -51,17 +52,20 @@ contextType: "general"
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. Name what fails today without each component you add, or drop it. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Parallel job fan-out
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **`check`**: owns the install, the CLI check gate, the typecheck and the shared package tests. It no longer runs a suite.
+- **`cli-vitest`** (name `CLI vitest project`): owns the 490 s CLI vitest project and the ripgrep install that its recipe and residue-sweep suites need.
+- **`legacy-lanes`** (name `Legacy module lanes and the bash validation suites`): owns the 161 s `test:legacy` and `test:validation` commands.
+- **`runtime-vitest`** (name `Runtime vitest project`): owns the 79 s root vitest project.
+
+Each new job copies the existing `if:` guard, `runs-on: ubuntu-latest` and `timeout-minutes: 51`, so the workflow's on/off switch and runner image do not change.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+A push to a matching branch, or a pull request to `main`, starts one workflow run. GitHub schedules all six jobs in parallel, each suite job checks out the repository and builds its own workspace, and the run finishes when the slowest job finishes. No artifact or workspace state crosses a job boundary, so the install step is repeated rather than shared.
 <!-- /ANCHOR:architecture -->
 
 
@@ -69,7 +73,10 @@ contextType: "general"
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads `scripts/rotate-logs.sh` and counts the archives. Implementation adds `--keep` to `scripts/rotate-logs.sh`. Verification runs `scripts/rotate-logs.sh --keep 3` and counts 3. WEAK: See tasks. -->
+
+- **Setup**: Read `.github/workflows/spec-kit-check.yml` and record the four `run:` blocks that must survive unchanged.
+- **Implementation**: Add `cli-vitest`, `legacy-lanes` and `runtime-vitest`, then remove the three suite steps and the ripgrep step from `check`.
+- **Verification**: Parse the YAML, run `actionlint`, count the four commands, and after the operator-approved push and pull request read the three job durations with `gh run view`.
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 <!-- /ANCHOR:phases -->
@@ -78,28 +85,24 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-<!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
-N/A — record any testing beyond the verification tasks in `tasks.md` here.
+No test file changes. The local proof is structural: the YAML parser prints the six job keys, `actionlint` exits 0, and the four command lines appear exactly once. The behavioral proof is one pull-request run from the branch, which the operator-approved push starts. `gh run view` must print three `success` lines with durations, and the CLI job must carry the longest duration. Running the suites locally is not part of the proof, because the commands are unchanged and the CI run is the environment that matters.
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
-N/A — record dependencies beyond the components named in the architecture here.
+`actionlint`, present at `/opt/homebrew/bin/actionlint` on 2026-11-12. `gh`, authenticated on 2026-11-12. No new package, and no change to any `package.json`.
 <!-- /ANCHOR:dependencies -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-N/A — record rollback steps beyond reverting the scoped change here.
+Trigger: the operator-approved run is slower than the 867 s serial baseline, or a suite job fails for a setup reason the serial job did not have. Revert the one commit that touches `.github/workflows/spec-kit-check.yml`, which restores the serial `check` job. Nothing else in the phase needs a rollback.
 <!-- /ANCHOR:rollback -->
 
 ---
-

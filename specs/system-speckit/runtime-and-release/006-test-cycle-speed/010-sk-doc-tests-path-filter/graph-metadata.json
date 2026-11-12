@@ -27,9 +27,9 @@
       "tasks",
       "implementation",
       "summary",
-      "yourvaluehere",
-      "broken",
-      "missing"
+      "github",
+      "workflows",
+      "sk-doc-script-tests"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -37,7 +37,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".github/workflows/sk-doc-script-tests.yml",
+      ".opencode/skills/sk-doc/scripts/tests/run-script-tests.sh",
+      ".github/workflows/README.md"
     ],
     "entities": [
       {
@@ -65,13 +68,25 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "sk-doc-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-doc-script-tests.yml",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "run-script-tests.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-doc/scripts/tests/run-script-tests.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -101,6 +116,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -113,7 +134,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -131,12 +158,6 @@
         "source": "derived"
       },
       {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -149,14 +170,14 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Setup Node",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -165,29 +186,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "`.github/workflows/sk-doc-script-tests.yml` has no `paths:` filter, so its script-test step runs on every push",
     "created_at": "2026-11-12T08:21:57Z",
-    "last_save_at": "2026-11-12T08:22:03.683Z",
+    "last_save_at": "2026-11-12T08:57:51.513Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:715e9dc89e50fb3be541a7809f1407f1c67274f4c6805a4dd631606037274713",
+    "source_fingerprint": "sha256:941fdb3ebc6033899dbbb0bfbfd4ea66443e80b4c37ab89d8980ec5500e32d79",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ececa94570ae4cd60d44e13045c4fc982b7dba1afede64f7a86268281b35dc6b",
-      "plan.md": "5fa958ac397a1231de7a07ba615b4f8b8be2cc7fb451d6bc99a939a14a46dc89",
-      "tasks.md": "48e11a88ba721a0302d8809f49e0c683b94a0eb721106701913356705f4e28ce",
-      "implementation-summary.md": "eebdbf23c45dc84bfbb9b5c51a9290874e8fc195a4b7059ec7e41f4f5c3a46e2"
+      "spec.md": "4767555e40a3644f4117107169f81ac2b21e7c8be8dbbd7cdebffc03deb1be78",
+      "plan.md": "f594a20a01431d00d8ee44b6f064f861690fe5d1bdef6cffbeb907c1bd15aae4",
+      "tasks.md": "c31ecbce2a85456af5013f1c342f378c11a37863da7e06a3a46dc56396ad47e5",
+      "implementation-summary.md": "b85aef9bef9e492239cdecbf0aae9d543d6195b58ed6a0371ac823502ce8e31f"
     },
     "last_active_at": null
   }

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 15: hook-suite-job-split"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Move the `hooks-vitest` job out of `.github/workflows/dispatch-enforcement-guard.yml` into a new `.github/workflows/hook-vitest-suites.yml` that copies the guard file's triggers, permissions, concurrency, environment, switch, timeout and steps, then list the new file in the three README entries. Prove it with a YAML parse of both files, a census showing the hook vitest command in exactly one workflow, and a `/doctor:ci report` run that reports 33 workflows with no error and no drift flag."
 trigger_phrases:
   - "hook suite job split plan"
 importance_tier: "normal"
@@ -15,26 +15,24 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one `--keep <n>` option. Prove it with an archive count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | YAML (GitHub Actions) |
+| **Framework** | GitHub Actions, with the repository's `/doctor:ci report` as the workflow parser |
+| **Storage** | None |
+| **Testing** | `yaml` parse in Node, `rg` census, `/doctor:ci report` extraction |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Move one job, unchanged, into a workflow file named for it: `hooks-vitest` leaves `.github/workflows/dispatch-enforcement-guard.yml` and lands in `.github/workflows/hook-vitest-suites.yml` under the workflow name `Hook Vitest Suites`. The guard file keeps its dispatch job and its fail-closed suite check, and the README gains the three entries the repository's CI report reads. Prove it with a parse of both files, a census that finds the hook vitest command in exactly one workflow, and a report run with no error and no row flag.
 <!-- /ANCHOR:summary -->
 
 ---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
 - [ ] Problem statement clear and scope documented
@@ -43,7 +41,8 @@ contextType: "general"
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
+- [ ] `rg -l 'hooks/vitest\.config\.ts' .github/workflows` prints only `.github/workflows/hook-vitest-suites.yml`
+- [ ] The `/doctor:ci report` extraction prints `33 0 0`
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -51,55 +50,56 @@ contextType: "general"
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. Name what fails today without each component you add, or drop it. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Single-responsibility workflow split.
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **New workflow file**: `.github/workflows/hook-vitest-suites.yml` is named `Hook Vitest Suites` and owns one job, `hooks-vitest`, with the guard file's `on`, `permissions`, `concurrency`, `env`, job condition, timeout, pinned steps, install command and run line copied verbatim.
+- **Trimmed guard workflow**: `.github/workflows/dispatch-enforcement-guard.yml` keeps the `dispatch-enforcement-guard` job and its fail-closed check that the dispatch rule suite exists before `node --test` runs it.
+- **Workflow inventory**: `.github/workflows/README.md` is the table source `/doctor:ci report` reads for a workflow's purpose, so the new file needs a contents row, a coverage-table entry and a `SKILLED_CI_FRESHNESS` entry.
+
+The change is a file move, not a behavior change, and it needs a new file rather than a renamed job: the job name `Every hook vitest suite passes` already says what it runs, and it is the workflow title that files a hook failure under `Dispatch Enforcement Guard`. Keeping the job name also keeps the check label unchanged.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+A push or pull request matching `main` or `skilled/**`, or a manual dispatch, starts both workflows. Each runs its one job to completion, and each job keeps the ten-minute timeout and its `vars.SKILLED_CI` and `vars.SKILLED_CI_FRESHNESS` condition. Because the job count, steps, install and command are unchanged, runner seconds and the slowest workflow stay as they are today.
 <!-- /ANCHOR:architecture -->
-
 
 ---
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads `scripts/rotate-logs.sh` and counts the archives. Implementation adds `--keep` to `scripts/rotate-logs.sh`. Verification runs `scripts/rotate-logs.sh --keep 3` and counts 3. WEAK: See tasks. -->
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+
+Setup records the two-job list, the one-workflow census and the 32-file baseline. Implementation creates `hook-vitest-suites.yml`, removes the job from the guard file and adds the three README entries. Verification reruns the parse, the census and the report and expects `33 0 0`.
 <!-- /ANCHOR:phases -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-<!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
-N/A — record any testing beyond the verification tasks in `tasks.md` here.
+The job's own suite does not run in this change; it runs where it already ran, from a different file. The proof is structural and runs on the checkout: `rg -l 'hooks/vitest\.config\.ts' .github/workflows` must print one line, and the CI report extraction must print `33 0 0`. The first CI run on the change exercises the moved job under its new workflow name.
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
-N/A — record dependencies beyond the components named in the architecture here.
+- Node 22 with the `yaml` package under `.skilled/node_modules`, already installed because `/doctor:ci report` loads it.
+- `rg`, used for the census in both the measured baseline and the final check.
+- The CI profile at `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`, which supplies the README and switch checks. No new package.
+
 <!-- /ANCHOR:dependencies -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-N/A — record rollback steps beyond reverting the scoped change here.
+Trigger: the new workflow does not appear in the Actions run list, or the hook suite stops running on a push or pull request it used to answer. Rollback: revert the single change set that touches the three files - delete `hook-vitest-suites.yml`, restore the `hooks-vitest` job in `dispatch-enforcement-guard.yml` and drop the README entries. No data, state or test change needs undoing.
 <!-- /ANCHOR:rollback -->
 
 ---
-

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/013-advisory-checks-blocking-gates"
+    packet_pointer: "system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates"
     last_updated_at: "2026-11-12T08:22:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

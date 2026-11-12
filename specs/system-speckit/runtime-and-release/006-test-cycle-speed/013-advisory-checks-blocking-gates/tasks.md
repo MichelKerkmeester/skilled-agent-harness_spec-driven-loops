@@ -15,7 +15,6 @@ contextType: "general"
 
 <!-- ANCHOR:notation -->
 ## Task Notation
-<!-- FILL: Keep the prefix table and add the two shell variables this task list uses. GOOD: `R` is `scripts/rotate-logs.sh`. `A` is `logs/archive/`. WEAK: Variables are defined below. -->
 
 | Prefix | Meaning |
 |--------|---------|
@@ -25,64 +24,65 @@ contextType: "general"
 | `[B]` | Blocked |
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
+
+Every path is written from the repository root. `W` is `.github/workflows/advisory-checks.yml`. `R` is `specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/scratch/gate-critical-run.md`. Commands spell both in full.
 <!-- /ANCHOR:notation -->
 
 ---
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
 
-- [ ] T001 Create project structure (`<folder>`). Verify: `ls <folder>` lists it.
-- [ ] T002 Install dependencies (`<manifest>`). Verify: `<install command>` exits 0.
-- [ ] T003 [P] Configure development tools (`<config>`). Verify: `<tool> --version` exits 0.
+- [ ] T001 Run the 13 gate-critical suites and record pass and fail per suite (`specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/scratch/gate-critical-run.md`). Use the loop in `spec.md`'s Measured Behavior block and write one row per suite in the form `| <path> | <pass> | <fail> | <pass or fail> |`. Verify: `bash -c 'r=specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/scratch/gate-critical-run.md; printf "pass=%s fail=%s named=%s\n" "$(rg -c "\| pass \|$" "$r")" "$(rg -c "\| fail \|$" "$r")" "$(rg -c "^\| .*(hook-stdin-deadline|spec-gate-core).*\| fail \|$" "$r")"'` prints `pass=11 fail=2 named=2`.
+- [ ] T002 Confirm the four report-only steps and the single runner caller (`.github/workflows/advisory-checks.yml`). Verify: `bash -c 'printf "continue=%s callers=%s\n" "$(rg -c "continue-on-error: true" .github/workflows/advisory-checks.yml)" "$(rg -l "run-node-tests\.mjs" .github/workflows/ | wc -l | tr -d " ")"'` prints `continue=4 callers=1`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-<!-- FILL: Write one implementation task per file change. Add a `Verify:` line with the command and its expected output. GOOD: T002 Add the `--keep <n>` branch. Verify: `--keep 3` leaves 3 archives. WEAK: T002 Implement the feature. -->
 
-- [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
-- [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
-- [ ] T006 [YOUR_VALUE_HERE: Implement core feature 3]
-- [ ] T007 [YOUR_VALUE_HERE: Add error handling]
+- [ ] T003 Add the blocking `gate-critical` job with checkout, Node 22, `npm --prefix .skilled/skills/system-spec-kit ci`, `npm --prefix .skilled/skills/system-spec-kit run build`, and one `node --test --test-reporter=tap` step over the 11 passing suites (`.github/workflows/advisory-checks.yml`). No `continue-on-error` at job or step level. Verify: `awk '/^  gate-critical:/{f=1;next} f && /^  [a-z][a-z-]*:$/{exit} f && /continue-on-error/{c++} END{print c+0}' .github/workflows/advisory-checks.yml` prints `0`.
+- [ ] T004 Revise the workflow header comment so it says the four steps are report-only and the `gate-critical` job blocks (`.github/workflows/advisory-checks.yml`). Verify: `awk '/^jobs:/{exit} /gate-critical/{f=1} END{print (f ? "HEADER_OK" : "HEADER_MISSING")}' .github/workflows/advisory-checks.yml` prints `HEADER_OK`.
+- [ ] T005 Replace the `advisory-checks.yml` row's closing sentence with the blocking job description (`.github/workflows/README.md`). Verify: `bash -c '! rg -q "Reports without gating" .github/workflows/README.md && echo README_OK'` prints `README_OK`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `ls logs/archive | wc -l` prints 3 and 10. WEAK: T003 Test everything. -->
 
-- [ ] T008 Test happy path manually (`<file>`). Verify: `<command>` prints <expected output>.
-- [ ] T009 Test edge cases (`<test>`). Verify: `<test command>` exits 0.
-- [ ] T010 Update documentation (`<doc>`). Verify: `rg -n '<term>' <doc>` prints one line.
+- [ ] T006 Run the 11 passing suites in one invocation, using the path list from the job block (`.github/workflows/advisory-checks.yml`). Verify: `bash -c 'files=(); while IFS= read -r f; do files+=("$f"); done < <(awk "/^  gate-critical:/{f=1;next} f && /^  [a-z][a-z-]*:\$/{exit} f" .github/workflows/advisory-checks.yml | rg -o "\.skilled/[^ ]+\.test\.mjs"); node --test --test-reporter=tap "${files[@]}" | rg "^# fail 0$"'` prints `# fail 0`.
+- [ ] T007 Confirm the job block lists 11 suites and neither failing suite (`.github/workflows/advisory-checks.yml`). Verify: `bash -c 'b=$(awk "/^  gate-critical:/{f=1;next} f && /^  [a-z][a-z-]*:\$/{exit} f" .github/workflows/advisory-checks.yml); n=$(printf "%s\n" "$b" | rg -c "\.test\.mjs"); x=$(printf "%s\n" "$b" | rg -c "hook-stdin-deadline|spec-gate-core" || true); printf "paths=%s excluded=%s\n" "$n" "${x:-0}"'` prints `paths=11 excluded=0`.
+- [ ] T008 Confirm the four report-only steps still carry `continue-on-error: true` (`.github/workflows/advisory-checks.yml`). Verify: `rg -c 'continue-on-error: true' .github/workflows/advisory-checks.yml` prints `4`.
+- [ ] T009 Confirm the workflow parses and the job is present (`.github/workflows/advisory-checks.yml`). Verify: `ruby -ryaml -e 'puts YAML.load_file(".github/workflows/advisory-checks.yml")["jobs"].keys.join(",")'` prints `advisory,gate-critical`.
+- [ ] T010 Confirm the README no longer says the workflow reports without gating (`.github/workflows/README.md`). Verify: `bash -c '! rg -q "Reports without gating" .github/workflows/README.md && echo README_OK'` prints `README_OK`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-<!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] `specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/scratch/gate-critical-run.md` records 13 suites, 11 pass and 2 fail
+- [ ] The `gate-critical` job block prints 0 `continue-on-error` and 11 paths
+- [ ] `rg -c 'continue-on-error: true' .github/workflows/advisory-checks.yml` prints 4
+- [ ] The local 11-path run prints `# fail 0`
+- [ ] `git status --short -- .github/workflows/advisory-checks.yml .github/workflows/README.md` lists exactly those two paths, and the packet folder holds the scratch record
 <!-- /ANCHOR:completion -->
 
 ---
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-<!-- FILL: Name the spec and plan files. Add the decision record when the packet has one. GOOD: Specification: `spec.md`. Plan: `plan.md`. WEAK: See the other docs. -->
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Research**: See `../007-test-and-ci-bloat-research/research/research.md` section 4, rank 6
+- **Workflow**: See `.github/workflows/advisory-checks.yml`
+- **Runner**: See `.skilled/scripts/run-node-tests.mjs`
 <!-- /ANCHOR:cross-refs -->
 
 ---
-
-
-

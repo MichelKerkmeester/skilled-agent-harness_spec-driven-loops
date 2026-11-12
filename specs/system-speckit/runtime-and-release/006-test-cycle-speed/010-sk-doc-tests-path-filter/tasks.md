@@ -15,7 +15,6 @@ contextType: "general"
 
 <!-- ANCHOR:notation -->
 ## Task Notation
-<!-- FILL: Keep the prefix table and add the two shell variables this task list uses. GOOD: `R` is `scripts/rotate-logs.sh`. `A` is `logs/archive/`. WEAK: Variables are defined below. -->
 
 | Prefix | Meaning |
 |--------|---------|
@@ -25,64 +24,59 @@ contextType: "general"
 | `[B]` | Blocked |
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
+
+Run every command from the repository root with `T=.opencode/skills/sk-doc/scripts/tests` and `W=.github/workflows` set in the shell.
 <!-- /ANCHOR:notation -->
 
 ---
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
 
-- [ ] T001 Create project structure (`<folder>`). Verify: `ls <folder>` lists it.
-- [ ] T002 Install dependencies (`<manifest>`). Verify: `<install command>` exits 0.
-- [ ] T003 [P] Configure development tools (`<config>`). Verify: `<tool> --version` exits 0.
+- [ ] T001 Record the 56-file baseline the current step runs (`$T/run-script-tests.sh`). The 53 `test_*.py` files plus the four `NODE_TESTS` names give 57 candidates, and `SKIP_TESTS` removes `test_rename_tooling_fixture_harness.py`. Verify: `printf 'py=%s node=%s\n' "$(ls -1 "$T"/test_*.py | wc -l | tr -d ' ')" "$(sed -n 's/^NODE_TESTS=(\(.*\))$/\1/p' "$T"/run-script-tests.sh | wc -w | tr -d ' ')"` prints `py=53 node=4`.
+- [ ] T002 Confirm the walking pair passes with Python and PyYAML alone (`$T/test_readme_verdict_parity.py`). Verify: `ONLY_TESTS="test_readme_manifest.py test_readme_verdict_parity.py" bash "$T"/run-script-tests.sh` prints `PASS test_readme_manifest.py`, `PASS test_readme_verdict_parity.py`, then `all sk-doc script tests passed`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-<!-- FILL: Write one implementation task per file change. Add a `Verify:` line with the command and its expected output. GOOD: T002 Add the `--keep <n>` branch. Verify: `--keep 3` leaves 3 archives. WEAK: T002 Implement the feature. -->
 
-- [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
-- [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
-- [ ] T006 [YOUR_VALUE_HERE: Implement core feature 3]
-- [ ] T007 [YOUR_VALUE_HERE: Add error handling]
+- [ ] T003 Narrow the always-on job to the two walking tests and rewrite its header comment (`$W/sk-doc-script-tests.yml`). Replace the step's `SKIP_TESTS` with `ONLY_TESTS: test_readme_manifest.py test_readme_verdict_parity.py`, and name the job and step for the repository walk. Verify: `printf 'only=%s skip=%s\n' "$(rg -c 'ONLY_TESTS: test_readme_manifest.py test_readme_verdict_parity.py' "$W"/sk-doc-script-tests.yml)" "$(rg -c 'SKIP_TESTS: test_rename' "$W"/sk-doc-script-tests.yml || echo 0)"` prints `only=1 skip=0`.
+- [ ] T004 Drop the Node setup, the three package installs and pytest from the walking job, keeping the pinned PyYAML the verdict baseline needs (`$W/sk-doc-script-tests.yml`). Verify: `printf 'node=%s pkgs=%s pyyaml=%s\n' "$(rg -c 'name: Setup Node' "$W"/sk-doc-script-tests.yml)" "$(rg -c 'Install the packages the scripts load' "$W"/sk-doc-script-tests.yml || echo 0)" "$(rg -c 'pyyaml==6.0.3' "$W"/sk-doc-script-tests.yml)"` prints `node=1 pkgs=0 pyyaml=2`.
+- [ ] T005 Create the path-filtered workflow for the other 54 files (`$W/sk-doc-script-tests-filtered.yml`). Trigger `pull_request` and `push` on `main` and `skilled/**`, filter both `.opencode/skills/sk-doc/**` and `.skilled/skills/sk-doc/**` plus the workflow file, use `SKILLED_CI_TESTS`, copy the five action pins, and set `SKIP_TESTS: test_rename_tooling_fixture_harness.py test_readme_manifest.py test_readme_verdict_parity.py`. Verify: `python3 -c 'import yaml,sys; yaml.safe_load(open(sys.argv[1])); print("YAML OK")' "$W"/sk-doc-script-tests-filtered.yml` prints `YAML OK`.
+- [ ] T006 Document the new workflow, its trigger and its switch group (`$W/README.md`). Add the contents row, the path-filtered trigger row and the `SKILLED_CI_TESTS` row, and reword the `sk-doc-script-tests.yml` row to the two walking tests. Verify: `rg -c 'sk-doc-script-tests-filtered.yml' "$W"/README.md` prints 3.
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `ls logs/archive | wc -l` prints 3 and 10. WEAK: T003 Test everything. -->
 
-- [ ] T008 Test happy path manually (`<file>`). Verify: `<command>` prints <expected output>.
-- [ ] T009 Test edge cases (`<test>`). Verify: `<test command>` exits 0.
-- [ ] T010 Update documentation (`<doc>`). Verify: `rg -n '<term>' <doc>` prints one line.
+- [ ] T007 Prove both workflow files parse (`$W/sk-doc-script-tests-filtered.yml`). Verify: `for f in "$W"/sk-doc-script-tests.yml "$W"/sk-doc-script-tests-filtered.yml; do python3 -c 'import yaml,sys; yaml.safe_load(open(sys.argv[1]))' "$f" || exit 1; done; echo '2 YAML FILES OK'` prints `2 YAML FILES OK`.
+- [ ] T008 Prove the two jobs together run the same 56 files the single step ran before (`$W/sk-doc-script-tests-filtered.yml`). Verify: `c=$( { ( cd "$T" && ls -1 test_*.py ); sed -n 's/^NODE_TESTS=(\(.*\))$/\1/p' "$T"/run-script-tests.sh | tr ' ' '\n'; } | sed '/^$/d' ); before=$(printf '%s\n' "$c" | grep -vx test_rename_tooling_fixture_harness.py); walking=$(rg -o 'ONLY_TESTS: .*' "$W"/sk-doc-script-tests.yml | sed 's/^ONLY_TESTS: //' | tr ' ' '\n' | sed '/^$/d'); skip=$(rg -o 'SKIP_TESTS: .*' "$W"/sk-doc-script-tests-filtered.yml | sed 's/^SKIP_TESTS: //' | tr ' ' '\n' | sed '/^$/d'); after=$( { printf '%s\n' "$walking"; printf '%s\n' "$c" | grep -vxF -f <(printf '%s\n' "$skip"); } | sort -u ); diff <(printf '%s\n' "$before" | sort) <(printf '%s\n' "$after") && printf 'SAME %s FILES\n' "$(printf '%s\n' "$after" | wc -l | tr -d ' ')"` prints `SAME 56 FILES`.
+- [ ] T009 Prove the new path filter passes the repository gate-input check (`$W/sk-doc-script-tests-filtered.yml`). Verify: `bash .github/scripts/check-gate-inputs.sh` prints `failures=0` and `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-<!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed
+- [ ] T008 printed `SAME 56 FILES` and T009 printed `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-<!-- FILL: Name the spec and plan files. Add the decision record when the packet has one. GOOD: Specification: `spec.md`. Plan: `plan.md`. WEAK: See the other docs. -->
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Research**: See `../007-test-and-ci-bloat-research/research/research.md`, section 4 rank 3
 <!-- /ANCHOR:cross-refs -->
 
 ---
-
-
-

@@ -27,9 +27,9 @@
       "tasks",
       "implementation",
       "summary",
-      "yourvaluehere",
-      "broken",
-      "missing"
+      "dispatch-enforcement-guard",
+      "yml",
+      "holds"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -37,7 +37,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".github/workflows/dispatch-enforcement-guard.yml",
+      ".github/workflows/README.md",
+      ".skilled/skills/sk-code/sk-code-ci/repository/ci.json",
+      ".skilled/hooks/vitest.config.ts"
     ],
     "entities": [
       {
@@ -65,13 +69,31 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "dispatch-enforcement-guard.yml",
+        "kind": "config",
+        "path": ".github/workflows/dispatch-enforcement-guard.yml",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-ci/repository/ci.json",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -101,6 +123,12 @@
         "source": "derived"
       },
       {
+        "name": "Hook Vitest Suites",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -113,7 +141,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Move",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -121,18 +155,6 @@
       {
         "name": "Key Components",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -155,12 +177,6 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -171,23 +187,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "`dispatch-enforcement-guard.yml` holds two jobs: `dispatch-enforcement-guard` runs `node --test` over one dispatch rule suite, and `hooks-vitest` runs the whole `.skilled/hooks` vitest tree (Measured Behavior)",
     "created_at": "2026-11-12T08:22:00Z",
-    "last_save_at": "2026-11-12T08:22:04.299Z",
+    "last_save_at": "2026-11-12T10:21:25.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:adb116abf8ab3545a51c1d75a42893c572756aed7fdc120f08890a0a1a79c940",
+    "source_fingerprint": "sha256:00201892e65e7ba873fb17af213b1b1a5419cecae1ae9f8be2deac1fe5250fda",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c3dcc2a8535825a14f67fa17c47ffb717ae9dd0a7241810bc43477e73331d73d",
-      "plan.md": "b33f9201b2716a5101b1abd96a8874481788dea384d92b8aec9b15a96783813c",
-      "tasks.md": "3cf7fec11c9d15eca116863fc4e7d0359b59e5ce90e2a2837c56c9e5e0c3bc34",
-      "implementation-summary.md": "cc2cfe047550d0da2b8bb0f4e5d144ac1663fa51cce7bb2bf74b54c6489b2987"
+      "spec.md": "e73bf856cab98432a8bcf4d05568a5bb73ccd998e5fc3e177d7027592b64e505",
+      "plan.md": "48c1c45927ab7cc36cf135764dc1b14fa75993951cb6bedc611ad1c90308e2ff",
+      "tasks.md": "55cf8c75c8ad3c46f1534242c64a7754fd3e54eb21898e519cff9610e60c5c98",
+      "implementation-summary.md": "85e091c440272e77d9bbd912a107528ab9a4af6b25e4c7d92afd427e660350a9"
     },
     "last_active_at": null
   }

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 17: specs-artifact-tracking-decision"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Measure the tracked file count and bytes per loop-state folder under specs/ with git ls-files, then write three options for the operator in a decision record. The phase changes no test, workflow, hook or source file and deletes, moves and untracks nothing."
 trigger_phrases:
   - "specs artifact tracking decision plan"
 importance_tier: "normal"
@@ -15,35 +15,34 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one `--keep <n>` option. Prove it with an archive count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | Markdown, with read-only shell measurement through `git ls-files` and `git cat-file` |
+| **Framework** | None |
+| **Storage** | The git index, read only, plus the packet's `scratch/` folder |
+| **Testing** | `validate.sh --strict` and `rg` checks on the two new documents |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Two documents are written in this packet: an inventory of the tracked footprint under `specs/` and a decision record of three options. The inventory is produced from `git ls-files`, one row per category with a file count and a byte count, plus the union across the four categories. The proof is the inventory's table and three `Status: Proposed` lines in the decision record; no tracked file changes and no option is executed. It stops catching no regression: the phase changes no test, workflow, hook or source file.
 <!-- /ANCHOR:summary -->
 
 ---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet> --strict --quiet` prints `RESULT: PASSED`
+- [ ] `rg -c '^### Option' <packet>/decision-record.md` prints 3 and `rg -c '\*\*Status\*\*: Proposed' <packet>/decision-record.md` prints 3
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -51,17 +50,16 @@ contextType: "general"
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. Name what fails today without each component you add, or drop it. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Measure, record, defer.
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **`scratch/artifact-inventory.md`**: the measurement. One row each for all tracked files, `specs/`, `research/`, `review/`, `scratch/` and `z_archive/`, plus the union of the four categories, the overlap note and the command that produced them.
+- **`decision-record.md`**: the options. Three entries — keep everything tracked, stop tracking new loop state, or move archives out of the repository — each `Proposed`, with what it changes, what it costs and the operator as decider.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+`git ls-files` selects the tracked paths, a `git cat-file` batch check sums each path's blob size, and an `awk` sum groups the four categories. The numbers land in the inventory table. The decision record restates no number; it points at the inventory and names the three options. Nothing is written outside this packet and nothing leaves the index.
 <!-- /ANCHOR:architecture -->
 
 
@@ -69,7 +67,8 @@ contextType: "general"
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads `scripts/rotate-logs.sh` and counts the archives. Implementation adds `--keep` to `scripts/rotate-logs.sh`. Verification runs `scripts/rotate-logs.sh --keep 3` and counts 3. WEAK: See tasks. -->
+
+Setup records the branch, HEAD and date, then writes the measurement command into `scratch/artifact-inventory.md`. Implementation fills the six category rows, the union row and the overlap note in that file, then writes the three Proposed options and the no-action clause in `decision-record.md`. Verification reruns the measurement, checks the three `Status: Proposed` lines and runs strict validation.
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 <!-- /ANCHOR:phases -->
@@ -78,28 +77,24 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-<!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
-N/A — record any testing beyond the verification tasks in `tasks.md` here.
+No test is added, because the phase changes no code. The checks are the two `rg` counts on `decision-record.md`, which must print 3 and 3, and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet> --strict --quiet`, which must print `RESULT: PASSED`. The measurement is checked by rerunning it and comparing the file counts.
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
-N/A — record dependencies beyond the components named in the architecture here.
+`git` 2.x with `ls-files` and `cat-file`, `bash` and `ripgrep`. No new package and no framework.
 <!-- /ANCHOR:dependencies -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-N/A — record rollback steps beyond reverting the scoped change here.
+Trigger: the operator rejects the packet or asks for the options to be restated. Remove `scratch/artifact-inventory.md` and `decision-record.md`, then revert the three packet documents. No tracked file, workflow, hook or test changed, so nothing else needs restoring.
 <!-- /ANCHOR:rollback -->
 
 ---
-

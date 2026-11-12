@@ -15,7 +15,6 @@ contextType: "general"
 
 <!-- ANCHOR:notation -->
 ## Task Notation
-<!-- FILL: Keep the prefix table and add the two shell variables this task list uses. GOOD: `R` is `scripts/rotate-logs.sh`. `A` is `logs/archive/`. WEAK: Variables are defined below. -->
 
 | Prefix | Meaning |
 |--------|---------|
@@ -25,64 +24,65 @@ contextType: "general"
 | `[B]` | Blocked |
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
+
+| Variable | Value |
+|----------|-------|
+| `P` | `specs/system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision` |
+| `V` | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` |
 <!-- /ANCHOR:notation -->
 
 ---
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
 
-- [ ] T001 Create project structure (`<folder>`). Verify: `ls <folder>` lists it.
-- [ ] T002 Install dependencies (`<manifest>`). Verify: `<install command>` exits 0.
-- [ ] T003 [P] Configure development tools (`<config>`). Verify: `<tool> --version` exits 0.
+- [ ] T001 Create the inventory header with the branch, HEAD and date (`$P/scratch/artifact-inventory.md`). Verify: `rg -c '^\- \*\*(Branch|HEAD|Measured)\*\*:' $P/scratch/artifact-inventory.md` prints 3.
+- [ ] T002 Record the measurement script from `spec.md` verbatim under a `## Command` heading (`$P/scratch/artifact-inventory.md`). Verify: `rg -c 'cat-file --batch-check' $P/scratch/artifact-inventory.md` prints 4.
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-<!-- FILL: Write one implementation task per file change. Add a `Verify:` line with the command and its expected output. GOOD: T002 Add the `--keep <n>` branch. Verify: `--keep 3` leaves 3 archives. WEAK: T002 Implement the feature. -->
 
-- [ ] T004 [YOUR_VALUE_HERE: Implement core feature 1]
-- [ ] T005 [YOUR_VALUE_HERE: Implement core feature 2]
-- [ ] T006 [YOUR_VALUE_HERE: Implement core feature 3]
-- [ ] T007 [YOUR_VALUE_HERE: Add error handling]
+- [ ] T003 Fill the six measurement rows with a `Category`, `Path pattern`, `Files` and `Bytes` column for all tracked files, `specs/`, research, review, scratch and z_archive (`$P/scratch/artifact-inventory.md`). Verify: `rg -c '^\| (all tracked files|specs/|research|review|scratch|z_archive) \|' $P/scratch/artifact-inventory.md` prints 6.
+- [ ] T004 Add the union row and the overlap note that says the four patterns nest (`$P/scratch/artifact-inventory.md`). Verify: `rg -c '^\| union \|' $P/scratch/artifact-inventory.md` prints 1 and `rg -c '^\*\*Overlap\*\*:' $P/scratch/artifact-inventory.md` prints 1.
+- [ ] T005 Write three options — keep everything tracked, stop tracking new loop state, move archives out of the repository — each with `**Status**: Proposed` (`$P/decision-record.md`). Verify: `rg -c '^### Option' $P/decision-record.md` prints 3 and `rg -c '\*\*Status\*\*: Proposed' $P/decision-record.md` prints 3.
+- [ ] T006 Add the no-action section, the line that the phase stops catching no regression, and the operator as decider (`$P/decision-record.md`). Verify: `rg -c 'Delete, move and untrack nothing' $P/decision-record.md` prints 1, `rg -c 'stops catching no regression' $P/decision-record.md` prints 1 and `rg -c '\*\*Decider\*\*.*operator' $P/decision-record.md` prints 1.
+- [ ] T007 Point the decision record at the inventory instead of restating its numbers (`$P/decision-record.md`). Verify: `rg -c 'scratch/artifact-inventory.md' $P/decision-record.md` prints at least 1 and `rg -c '1665212310' $P/decision-record.md` prints 0.
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `ls logs/archive | wc -l` prints 3 and 10. WEAK: T003 Test everything. -->
 
-- [ ] T008 Test happy path manually (`<file>`). Verify: `<command>` prints <expected output>.
-- [ ] T009 Test edge cases (`<test>`). Verify: `<test command>` exits 0.
-- [ ] T010 Update documentation (`<doc>`). Verify: `rg -n '<term>' <doc>` prints one line.
+- [ ] T008 Rerun the measurement and confirm the inventory table matches this tree (`$P/scratch/artifact-inventory.md`). Verify: `git ls-files | wc -l` prints 134068 at HEAD `68c409e2aa`; a different value means the header's HEAD and date are updated before the numbers are quoted.
+- [ ] T009 Confirm no option has moved past Proposed (`$P/decision-record.md`). Verify: `rg -c '\*\*Status\*\*: (Accepted|Rejected)' $P/decision-record.md` prints 0.
+- [ ] T010 Confirm the phase changed no tracked file in this packet (`$P/spec.md`). Verify: `git diff --name-only -- $P` prints nothing.
+- [ ] T011 Validate the packet (`$P/tasks.md`). Verify: `$V $P --strict --quiet` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-<!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed
+- [ ] `scratch/artifact-inventory.md` and `decision-record.md` exist, every option is `Proposed`, and no tracked file was deleted, moved or untracked
 <!-- /ANCHOR:completion -->
 
 ---
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-<!-- FILL: Name the spec and plan files. Add the decision record when the packet has one. GOOD: Specification: `spec.md`. Plan: `plan.md`. WEAK: See the other docs. -->
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Decision record**: See `decision-record.md`
+- **Source research**: See `../007-test-and-ci-bloat-research/research/research.md` section 3 and question 5
 <!-- /ANCHOR:cross-refs -->
 
 ---
-
-
-
