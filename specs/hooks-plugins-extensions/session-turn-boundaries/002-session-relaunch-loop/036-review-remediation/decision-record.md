@@ -44,6 +44,7 @@ _memory:
 | Q008 | All 28 findings of the alignment report are fixed now, in a new child phase 008 under packet 036 in the same worktree. | Not stated. | None | 008-alignment-findings/spec.md REQ-001 to REQ-011, goal.md decision D4 |
 | Q009 | The changelog shape ceilings are raised to 280 lines, 32 H4 items and 14 glance bullets so the v4.0.2.1 release note passes. | Not stated. | None | 008-alignment-findings/spec.md REQ-010, check_changelog_shape.py |
 | Q010 | Worktree 351 is merged into main locally after the fixes and the alignment recheck, with no push until the operator says so. | Not stated. | None | goal.md progress row Operator decision: merge |
+| Q011 | The two platform tokens a worker added to the primary checkout's gitignored surface-map.yaml stay. | Not stated. | None | 008-alignment-findings/spec.md REQ-005, implementation-summary.md limitation 2 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -251,6 +252,25 @@ Leave it parked
 Answer:
 ```text
 After fixes and recheck (Recommended)
+```
+
+### Q011
+<!-- source: claude:6f6d0815-5182-4dab-96b0-b36b0b73deea:toolu_01JKd6so2oDURF75DuQw5jr1:1 -->
+
+Question:
+```text
+A worker's fix for alignment finding ENV-01 landed outside the worktree: it added BASH_VERSION and ZSH_VERSION to platform_tokens in the primary checkout's gitignored .skilled/commands/assets/local-skilled-alignment/surface-map.yaml, because the worktree symlinks that folder. It is two added lines in no commit. Keep or undo?
+```
+
+Options:
+```text
+Keep it (Recommended)
+Undo it
+```
+
+Answer:
+```text
+Keep it (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

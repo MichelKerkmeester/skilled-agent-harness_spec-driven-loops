@@ -215,7 +215,7 @@
     ],
     "causal_summary": "A code review of the session relaunch loop on 2026-11-12 read 18 files and returned eight findings",
     "created_at": "2026-11-12T08:28:52Z",
-    "last_save_at": "2026-11-12T18:49:24.795Z",
+    "last_save_at": "2026-11-12T19:15:08.497Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,13 +223,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:8ca0b4102b4ddb433118e8465173772c050befc52319adc2ef695638a085abc7",
+    "source_fingerprint": "sha256:aeef1a20c4966f31dd5fa6d7142cf13d9d912fef2d7bc8c976c190c78049416e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "53c6e962608a41676b3cd47ca3d178ac8eff3212612cdfb2daad33497584852b",
-      "decision-record.md": "13c3cad1fc00e03f73f56476c1b02d3c4f559fe76b45c22eacceb678effccf42"
+      "decision-record.md": "c07111cfca1e5b8afa87993aaa2a3ff547acd348249055e9749b831c3afacf64"
     },
     "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/008-alignment-findings",
-    "last_active_at": "2026-11-12T18:49:24.795Z"
+    "last_active_at": "2026-11-12T19:15:08.497Z"
   }
 }
