@@ -56,6 +56,9 @@ _memory:
 | Q020 | The local main checkout gets a fast-forward pull attempt and nothing more. | Not stated. | None | spec.md phase map |
 | Q021 | The phase 017 decision stays deferred a second time. | Not stated. | None | 017-specs-artifact-tracking-decision/decision-record.md |
 | Q022 | The temp folder leak, an install retry for the shard jobs and wider margins for the racy deadline tests are taken on as follow-up work. | Not stated. | None | 020-test-speed-followups/spec.md |
+| Q023 | A pull request branch that conflicts with main only in the generated trigger-index files is rebased onto main and the index is regenerated, then force-pushed with a lease. | Not stated. | None | 020-test-speed-followups/implementation-summary.md |
+| Q024 | Operator answers that no decision record holds yet are recorded through a docs pull request. | Not stated. | None | decision-record.md |
+| Q025 | After phase 20 the checks on main are read, the speckit-test-db leak is traced and fixed, and the leftover test folders in the OS temp folder are deleted by known prefix. | Not stated. | None | 021-test-db-temp-leak/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -500,6 +503,66 @@ Nothing more
 Answer:
 ```text
 Temp folder leak, Install retry for shards, Widen the racy deadlines
+```
+
+### Q023
+<!-- source: claude:af05cd33-c1ff-46c9-825e-70281e3ca6f1:toolu_01HDydHW679VotvX6PMDziux:0 -->
+
+Question:
+```text
+Pull request 101 now conflicts with main. Another session merged four commits, and the only conflicting files are the four generated trigger-index files (trigger-index.json and three fixtures). How should I resolve it?
+```
+
+Options:
+```text
+Rebase and regenerate (Recommended)
+Merge main into the branch
+Stop here
+```
+
+Answer:
+```text
+Rebase and regenerate (Recommended)
+```
+
+### Q024
+<!-- source: claude:af05cd33-c1ff-46c9-825e-70281e3ca6f1:toolu_013uA1HWNDdHfpZKZJtAse5f:0 -->
+
+Question:
+```text
+The save hook still reports 23 answers as unrecorded in the main checkout. 22 of them are already in the decision record on main, and the two about finishing pull request 101 (push then bypass merge, rebase and regenerate) are recorded nowhere. What should I do with the decision queue?
+```
+
+Options:
+```text
+Record via a docs PR (Recommended)
+Leave the queue as it is
+```
+
+Answer:
+```text
+Record via a docs PR (Recommended)
+```
+
+### Q025
+<!-- source: claude:af05cd33-c1ff-46c9-825e-70281e3ca6f1:toolu_013uA1HWNDdHfpZKZJtAse5f:1 -->
+
+Question:
+```text
+Several follow-ups from the test speed work are still open. Which ones should I take on next?
+```
+
+Options:
+```text
+Read main's checks
+Trace speckit-test-db leak
+Clean the temp folder
+Nothing more
+```
+
+Answer:
+```text
+Read main's checks, Trace speckit-test-db leak, Clean the temp folder
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

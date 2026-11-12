@@ -23,7 +23,8 @@
     "system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision",
     "system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards",
     "system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups",
-    "system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups"
+    "system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak"
   ],
   "manual": {
     "depends_on": [],
@@ -144,20 +145,20 @@
     ],
     "causal_summary": "The Skilled test suites took too long to run locally",
     "created_at": "2026-11-10T18:27:35Z",
-    "last_save_at": "2026-11-12T21:28:16.859Z",
+    "last_save_at": "2026-11-12T22:31:33.574Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:857bf9059d6983857700b3370a4cd5c4e5ce784f10dec2f0caaa5d41f1848243",
+    "source_fingerprint": "sha256:33b8c500650053cb221fbad018a661b27c5a6c6a852849b98b5b398540f46ded",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8a974b1bfdeb64ae8a92b36a444abc8ec3a8e9c361af25b212952d8fbd1e274d",
-      "decision-record.md": "1da17f72a78c12c1714bbd8ab6f65ea88d5fece1746c32c7e62115a947ae5cfb"
+      "spec.md": "9483d488317b1c29439426da134bea51bdea5b0b376e6471b494a47f955dd8f6",
+      "decision-record.md": "0857d0af3bf7cacbf31e4614115e4a22287c2a76507e577230e7cdad31b49ceb"
     },
-    "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups",
-    "last_active_at": "2026-11-12T21:28:13.858Z"
+    "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak",
+    "last_active_at": "2026-11-12T22:31:33.574Z"
   }
 }
