@@ -143,20 +143,20 @@
     ],
     "causal_summary": "The Skilled test suites took too long to run locally",
     "created_at": "2026-11-10T18:27:35Z",
-    "last_save_at": "2026-11-12T19:57:04.482Z",
+    "last_save_at": "2026-11-12T20:07:29.634Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:20948768a164e5b955d4084de91c9b0668197b7308f8ce485a684ee7001c4ab2",
+    "source_fingerprint": "sha256:cbc3943f880099e2399165251a124bcfc4797ac7383f72fa1ff1a53506a839e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b6fedf254461439a9ee8470aa64d8f1118f3bc40625ca6cb03e4ea6921e161b9",
+      "spec.md": "2d056f212c682e202ee9dff162c57629b183f4f3480832e379c0b61781394329",
       "decision-record.md": "5c65b32226867609b1c1d790d508032502bf3cae1b822fb2f0dde2f9ba10de17"
     },
     "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups",
-    "last_active_at": "2026-11-12T19:57:02.964Z"
+    "last_active_at": "2026-11-12T20:07:28.004Z"
   }
 }

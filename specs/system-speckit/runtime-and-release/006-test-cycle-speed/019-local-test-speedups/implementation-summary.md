@@ -8,27 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups"
-    last_updated_at: "2026-11-12T19:57:02Z"
+    last_updated_at: "2026-11-12T20:07:27Z"
     last_updated_by: "generate-context"
-    recent_action: "Built the probe fix, the fsync skip and the concurrent lanes, and timed each"
-    next_safe_action: "Verify the checks on the pull request and read the deep-loop job time"
+    recent_action: "Proved the three speed-ups on pull request 100 and closed the phase"
+    next_safe_action: "Verify the local timings again after the next test suite change"
     blockers: []
     key_files:
       - "specs/system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups/spec.md"
       - ".skilled/skills/system-deep-loop/runtime/vitest.config.ts"
       - ".skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:d3ee4c9d8265b1b8a72bf941d8fc01c6c165be1331dbb7d41918b24378ccbd0d"
       session_id: "scaffold-019-local-test-speedups"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "af05cd33-c1ff-46c9-825e-70281e3ca6f1"
       workspace: "/Users/michelkerkmeester/worktrees/public/355-local-test-speedups"
-      savedAt: "2026-11-12T19:57:02Z"
+      savedAt: "2026-11-12T20:07:27Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -110,6 +110,8 @@ Each lane and project was timed once before any change, with the JSON reporter f
 | Spec-kit `npm test` from the final state | Exit 0 in 256 s against 667 s |
 | Deep-loop `npm test` from the final state | Exit 0 in 225 s against 497 s. 173 files, 2,885 tests passed, 8 skipped |
 | Deep-loop parallel project | 39 s against 240 s, 161 files passed |
+| Pull request 100 | 37 checks pass, 0 fail |
+| Deep-loop test step on the runner | 354 s with the skip against 306 s and 370 s on two earlier `main` runs: no gain |
 | `SPECKIT_TEST_RUN_TIMEOUT_MS=3000 node scripts/run-tests.mjs` | Exit 124 in 3 s, all three lanes terminated |
 <!-- /ANCHOR:verification -->
 
@@ -118,11 +120,12 @@ Each lane and project was timed once before any change, with the JSON reporter f
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Real fsync is not exercised by any deep-loop test.** A defect in the fsync call itself would not surface. Remove the setup line in `vitest.config.ts` to run against real fsync.
-2. **One timing test failed once.** `resumes a future checkpoint before dispatching lineages` in `fanout-run.vitest.ts` races an 800 ms deadline against a child starting. It failed in one of five full-file runs with the skip and in none of two without. That is too few runs to assign a cause.
-3. **Every figure is one run, except the lane trial.** The spec-kit suite measured 914 s in the morning and 667 s in the afternoon with no change, so treat the before figures as one sample.
-4. **The temp folder still fills up.** Tests leave folders behind, led by `speckit-test-db` and `message-contract`. The probe no longer depends on it, and the leak itself is not fixed here.
-5. **The spec-kit lane floor is now two files.** `progressive-validation.vitest.ts` sets the runtime lane at about 162 s and `upgrade-legacy-core-b.vitest.ts` sets the CLI lane at about 201 s.
+1. **The fsync skip is a local gain only.** On the Linux runner the deep-loop test step did not get faster, so fsync is not what it waits on there.
+2. **Real fsync is not exercised by any deep-loop test.** A defect in the fsync call itself would not surface. Remove the setup line in `vitest.config.ts` to run against real fsync.
+3. **One timing test failed once.** `resumes a future checkpoint before dispatching lineages` in `fanout-run.vitest.ts` races an 800 ms deadline against a child starting. It failed in one of five full-file runs with the skip and in none of two without. That is too few runs to assign a cause.
+4. **Every figure is one run, except the lane trial.** The spec-kit suite measured 914 s in the morning and 667 s in the afternoon with no change, so treat the before figures as one sample.
+5. **The temp folder still fills up.** Tests leave folders behind, led by `speckit-test-db` and `message-contract`. The probe no longer depends on it, and the leak itself is not fixed here.
+6. **The spec-kit lane floor is now two files.** `progressive-validation.vitest.ts` sets the runtime lane at about 162 s and `upgrade-legacy-core-b.vitest.ts` sets the CLI lane at about 201 s.
 <!-- /ANCHOR:limitations -->
 
 ---

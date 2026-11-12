@@ -121,7 +121,7 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 16 | 016-local-test-timing-profile/ | Time the three local test commands once each | Measured: 914 s, 211 s and 527 s |
 | 17 | 017-specs-artifact-tracking-decision/ | Measure the tracked research and scratch files and write the options | Measured: 88,151 files, decision is the operator's |
 | 18 | 018-cli-vitest-shards/ | Run the CLI vitest job as three shards | Complete: shards at 170, 213 and 277 s against 384 to 627 s for the one job |
-| 19 | 019-local-test-speedups/ | Cut local spec-kit and deep-loop test time without removing a test | Built: spec-kit 667 s to 256 s and deep-loop 497 s to 225 s locally, runner proof on the pull request |
+| 19 | 019-local-test-speedups/ | Cut local spec-kit and deep-loop test time without removing a test | Complete: spec-kit 667 s to 256 s and deep-loop 497 s to 225 s locally. The runner's deep-loop step is unchanged at about 350 s |
 
 ### Phase Transition Rules
 
