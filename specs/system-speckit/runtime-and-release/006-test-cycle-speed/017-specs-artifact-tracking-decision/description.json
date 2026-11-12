@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/017-specs-artifact-tracking-decision",
+  "description": "Phase 17: specs-artifact-tracking-decision",
+  "keywords": [
+    "phase",
+    "specs-artifact-tracking-decision"
+  ],
+  "lastUpdated": "2026-11-12T08:22:03.010Z",
+  "specId": "017",
+  "folderSlug": "specs-artifact-tracking-decision",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

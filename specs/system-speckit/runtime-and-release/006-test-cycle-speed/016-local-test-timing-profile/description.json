@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/016-local-test-timing-profile",
+  "description": "Phase 16: local-test-timing-profile",
+  "keywords": [
+    "phase",
+    "local-test-timing-profile"
+  ],
+  "lastUpdated": "2026-11-12T08:22:02.285Z",
+  "specId": "016",
+  "folderSlug": "local-test-timing-profile",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,53 @@
+{
+  "run_id": "1794468674878-lojzwl",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research",
+  "base_artifact_dir": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 2,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "pi-llmgateway",
+      "state_log": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research/research/lineages/pi-llmgateway/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-11-12T07:31:15.020Z",
+        "end_at_iso": "2026-11-12T07:41:42.012Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 13
+      },
+      "sample": [
+        {
+          "index": 4,
+          "reason": "before_window",
+          "timestamp": "2026-11-11T19:58:11Z",
+          "deltaMs": 41464020
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/010-sk-doc-tests-path-filter",
+  "description": "Phase 10: sk-doc-tests-path-filter",
+  "keywords": [
+    "phase",
+    "sk-doc-tests-path-filter"
+  ],
+  "lastUpdated": "2026-11-12T08:21:57.777Z",
+  "specId": "010",
+  "folderSlug": "sk-doc-tests-path-filter",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

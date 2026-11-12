@@ -109,6 +109,17 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 4 | 004-split-fanout-run/ | Split the largest serial deep-loop file and promote safe pieces | Rejected: about 5 percent when stable, reverted |
 | 5 | 005-ci-runner-timing/ | Read CI's own run times and decide a worker cap | Complete: no cap needed |
 | 6 | 006-overlay-replaced-subtree-repin/ | Overlay engine: a re-pin copy's file inside a replaced folder is not a live edit | Complete |
+| 7 | 007-test-and-ci-bloat-research/ | Research which tests, CI workflows and hook checks are bloat, and rank the cuts by time saved. Research only | Complete: the wait is the slowest workflow, three changes shorten it |
+| 8 | 008-spec-kit-check-parallel-jobs/ | [Phase 8 scope] | Pending |
+| 9 | 009-legacy-lane-overlap-measurement/ | [Phase 9 scope] | Pending |
+| 10 | 010-sk-doc-tests-path-filter/ | [Phase 10 scope] | Pending |
+| 11 | 011-sparse-checkout-rollout/ | [Phase 11 scope] | Pending |
+| 12 | 012-advisor-suite-parallel-trial/ | [Phase 12 scope] | Pending |
+| 13 | 013-advisory-checks-blocking-gates/ | [Phase 13 scope] | Pending |
+| 14 | 014-dead-runner-and-step-cleanup/ | [Phase 14 scope] | Pending |
+| 15 | 015-hook-suite-job-split/ | [Phase 15 scope] | Pending |
+| 16 | 016-local-test-timing-profile/ | [Phase 16 scope] | Pending |
+| 17 | 017-specs-artifact-tracking-decision/ | [Phase 17 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -125,6 +136,17 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 003-split-upgrade-legacy | 004-split-fanout-run | Phase 2 says go for phase 4 | Phase 2's summary names the number |
 | 004-split-fanout-run | 005-ci-runner-timing | Phase 1 is pushed and CI has run at least twice | `gh run list` shows the runs |
 | 005-ci-runner-timing | 006-overlay-replaced-subtree-repin | Independent; added to the series at the operator's request | The overlay test files pass |
+| 006-overlay-replaced-subtree-repin | 007-test-and-ci-bloat-research | Independent; added to the series at the operator's request | `007-test-and-ci-bloat-research/research/` holds a `research.md` |
+| 007-test-and-ci-bloat-research | 008-spec-kit-check-parallel-jobs | [Criteria TBD] | [Verification TBD] |
+| 008-spec-kit-check-parallel-jobs | 009-legacy-lane-overlap-measurement | [Criteria TBD] | [Verification TBD] |
+| 009-legacy-lane-overlap-measurement | 010-sk-doc-tests-path-filter | [Criteria TBD] | [Verification TBD] |
+| 010-sk-doc-tests-path-filter | 011-sparse-checkout-rollout | [Criteria TBD] | [Verification TBD] |
+| 011-sparse-checkout-rollout | 012-advisor-suite-parallel-trial | [Criteria TBD] | [Verification TBD] |
+| 012-advisor-suite-parallel-trial | 013-advisory-checks-blocking-gates | [Criteria TBD] | [Verification TBD] |
+| 013-advisory-checks-blocking-gates | 014-dead-runner-and-step-cleanup | [Criteria TBD] | [Verification TBD] |
+| 014-dead-runner-and-step-cleanup | 015-hook-suite-job-split | [Criteria TBD] | [Verification TBD] |
+| 015-hook-suite-job-split | 016-local-test-timing-profile | [Criteria TBD] | [Verification TBD] |
+| 016-local-test-timing-profile | 017-specs-artifact-tracking-decision | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

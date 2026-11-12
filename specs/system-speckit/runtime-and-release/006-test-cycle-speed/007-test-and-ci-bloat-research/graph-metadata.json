@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research",
+  "spec_folder": "system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research",
+  "parent_id": "system-speckit/runtime-and-release/006-test-cycle-speed",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "test and ci bloat research",
+      "phase 7 test and ci bloat research",
+      "reduce test and workflow run time",
+      "overengineered tests and workflows",
+      "test and ci bloat research plan",
+      "test and ci bloat research tasks",
+      "test and ci bloat research implementation summary",
+      "which tests and workflows to cut",
+      "shorten the wait after a push",
+      "slowest workflow sets the wait"
+    ],
+    "key_topics": [
+      "test",
+      "bloat",
+      "research",
+      "phase",
+      "reduce",
+      "workflow",
+      "run",
+      "time",
+      "overengineered",
+      "tests",
+      "workflows",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/resource-map.md",
+      ".pi/models.json",
+      ".github/workflows/spec-kit-check.yml",
+      ".github/workflows/sk-doc-script-tests.yml",
+      ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+      ".github/workflows/advisory-checks.yml",
+      ".skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs",
+      "research/lineages/opencode-go/research.md",
+      "research/lineages/pi-llmgateway/research.md",
+      "specs/system-speckit/repo-operations/002-ci-workflow-efficiency/004-setup-caching-provisioning/decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-doc-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "run-tests-sharded.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Cycle Speed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parallel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator waits minutes on automated tests and CI workflows after most changes",
+    "created_at": "2026-11-12T07:29:39Z",
+    "last_save_at": "2026-11-12T07:57:51.885Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:338eb9690e92f96adb9adbf1d0cccea85dc63f7657a3fd2babdc07ca1f247a57",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c36559da3ccc2f1a765cd1c4f3c60495cb8c32f97ee9bd08ea17c874213b9b00",
+      "plan.md": "2352ca7f1227c810083dfcfc030f4427fc7dd0421e7e4e9c4f8ca42117412549",
+      "tasks.md": "07bb6ae7109e782e59868c717877697379381306093e33ca3d92f998465f27c7",
+      "implementation-summary.md": "e2185d6b6eb869b0b07e6147a257d053b6823ae3e499a8b656ab398ba16bfff7",
+      "research/research.md": "9441e60f10c3d051c7a33d9e49946d47f4dd16adf01326584e2bae0bbf621cc8"
+    },
+    "last_active_at": null
+  }
+}

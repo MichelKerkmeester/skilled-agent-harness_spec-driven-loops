@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/015-hook-suite-job-split",
+  "description": "Phase 15: hook-suite-job-split",
+  "keywords": [
+    "phase",
+    "hook-suite-job-split"
+  ],
+  "lastUpdated": "2026-11-12T08:22:01.554Z",
+  "specId": "015",
+  "folderSlug": "hook-suite-job-split",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
