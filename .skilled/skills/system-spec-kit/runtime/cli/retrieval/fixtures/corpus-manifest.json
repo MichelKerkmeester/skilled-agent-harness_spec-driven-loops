@@ -1,5 +1,5 @@
 {
-  "corpusHash": "580dae55d89ce666e2d0df22963f316f373d4eecbf99b1442a7ab12ceb731002",
+  "corpusHash": "788d1ece2f6e792a20c297e15173d88df79be15a546f9710855bd00c4daed915",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26361,
+  "includedPathCount": 26365,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -25621,6 +25621,10 @@
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups/plan.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups/spec.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak/tasks.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/decision-record.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/implementation-summary.md",
@@ -26393,7 +26397,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "95f1d0240aa9e287b5aaa197b48e4b6b269458ca51fc262922c2d50258026d8e",
+  "manifestHash": "3c9ad1b85f905bf18986537e399379fd3a244725a7d1dfa644fa928b29ef7695",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36809,6 +36813,10 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak/scratch",
       "reason": "excluded directory"
     },
     {

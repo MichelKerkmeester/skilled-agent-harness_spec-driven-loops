@@ -1,5 +1,5 @@
 {
-  "manifestHash": "95f1d0240aa9e287b5aaa197b48e4b6b269458ca51fc262922c2d50258026d8e",
+  "manifestHash": "3c9ad1b85f905bf18986537e399379fd3a244725a7d1dfa644fa928b29ef7695",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -80597,6 +80597,9 @@
     "phase 21 tasks": [
       "phase 21 tasks"
     ],
+    "phase 21 test db temp leak": [
+      "phase 21 test db temp leak"
+    ],
     "phase 22 advisor routing and local install": [
       "phase 22 advisor routing and local install"
     ],
@@ -121097,6 +121100,18 @@
     ],
     "test daemon fixes fresh session": [
       "test daemon fixes fresh session"
+    ],
+    "test db temp leak": [
+      "test db temp leak"
+    ],
+    "test db temp leak implementation summary": [
+      "test db temp leak implementation summary"
+    ],
+    "test db temp leak plan": [
+      "test db temp leak plan"
+    ],
+    "test db temp leak tasks": [
+      "test db temp leak tasks"
     ],
     "test discovery contract": [
       "test discovery contract"
