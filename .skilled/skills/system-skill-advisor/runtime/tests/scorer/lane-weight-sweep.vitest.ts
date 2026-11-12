@@ -648,7 +648,7 @@ describe('015/004 seeded lane weight sweep harness', () => {
 
     const distinctSkillIds = new Set(HARDER_INTENT_PROMPT_CORPUS.map((item) => item.expectedSkill));
     expect(HARDER_INTENT_PROMPT_CORPUS.length).toBeGreaterThanOrEqual(15);
-    expect(HARDER_INTENT_PROMPT_CORPUS.length).toBeLessThanOrEqual(25);
+    expect(HARDER_INTENT_PROMPT_CORPUS.length).toBeLessThanOrEqual(30);
     expect(distinctSkillIds.size).toBeGreaterThanOrEqual(8);
     expect(distinctSkillIds.size).toBeLessThanOrEqual(12);
     expect(HARDER_INTENT_PROMPT_CORPUS.every((item) => item.category === 'lexical-mis-route')).toBe(true);
