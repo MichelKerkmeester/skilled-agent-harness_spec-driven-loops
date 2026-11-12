@@ -89,7 +89,7 @@ The first two print a `PASS` line with their counts. The third prints a `PASS` l
 ## 6. LIMITS AND KNOWN GAPS
 
 - **Generated agents are one way.** The permission-to-tool mapping does not round-trip, so `.skilled/agents/` stays the source.
-- **The extensions have no drift checker.** A change in a shared core shows up at runtime or in the manual testing playbook, not in a check.
+- **The extensions have no behavioral drift checker.** `sync-hook-registrations.cjs --check` verifies each entry is a one-line re-export whose adapter exists, but a change in a shared core shows up only at runtime or in the manual testing playbook.
 - **Editing a canonical agent gives no Pi reminder.** Only `--check` catches a stale `.pi` tree.
 
 ---
