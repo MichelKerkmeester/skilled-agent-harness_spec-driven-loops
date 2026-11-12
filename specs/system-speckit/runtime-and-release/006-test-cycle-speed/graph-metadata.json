@@ -103,16 +103,16 @@
     ],
     "causal_summary": "The Skilled test suites took too long to run locally",
     "created_at": "2026-11-10T18:27:35Z",
-    "last_save_at": "2026-11-12T08:22:03.305Z",
+    "last_save_at": "2026-11-12T13:21:11.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:ae194326e097cf87604bd8d5189d4fd1d1fffad9d8688ef29dedd8b9855defec",
+    "source_fingerprint": "sha256:6aa7dc9f74669cf7b4378e0ebba573860324cf50ee420749a504c6f8b289fb20",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "974ac9213eedd574e5e3af1b4ff1498fb8ba534c2d3622c674f5a6d3b81758d8"
+      "spec.md": "35c5b9126189d9588b04311d59e748009f4063a6a44b6453a7acf89e7a582a5f"
     },
     "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/007-test-and-ci-bloat-research",
     "last_active_at": "2026-11-12T07:55:50.950Z"
