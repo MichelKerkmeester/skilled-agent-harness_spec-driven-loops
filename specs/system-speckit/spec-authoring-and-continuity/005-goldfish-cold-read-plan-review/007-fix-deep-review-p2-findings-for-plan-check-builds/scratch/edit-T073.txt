@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/fanout-dispatch.md
+HOW: Replace the single occurrence.
+=====OLD=====
+The refusal message names neither the flag nor the lineage count.
+=====NEW=====
+The refusal message names the single-executor workflow instead, and never the opt-in flag.
+=====END=====

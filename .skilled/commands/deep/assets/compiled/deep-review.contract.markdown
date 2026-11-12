@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "b2778d87fd43a8fcb7bbaec5e81c79d3acb754a70bacdbc59bd6ad628831b09b",
+      "sha256": "f4af9a27ea4449833a2af073bbb63fb40b2437915aef241e8b820615b1490dc3",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "095572435c4d85cc8da22ce66d9587025ef9ce3ee0da574c3f4114f67c5ec99e"
+  "compiledBodyDigest": "ce994774fae5435291d8bea652fd7f859c39abe08bd1c99039f159c9c95ea5a7"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -272,7 +272,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
    |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`, the last one fan-out only; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
-   |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; fan-out sets CLAUDE_CONFIG_DIR)
+   |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
    |-- --service-tier=<tier> -> config.executor.serviceTier (`priority` | `standard` | `fast`)
    |-- --executor-timeout=<seconds> -> config.executor.timeoutSeconds (positive integer, default `900`)
@@ -280,7 +280,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --fanout-lineage-artifact-dir=PATH -> config.fanout_lineage_artifact_dir = PATH (internal single-lineage command invocation only)
    |-- --executor=<type> [--model=X] [--config-dir=PATH] [--reasoning-effort=Y] [--service-tier=Z] [--executor-timeout=N] [--iters=N] [--label=X] [--count=N]
    |     (repeatable; each occurrence adds one entry to config.fanout.executors)
-   |-- --executors=<json> -> config.fanout.executors = parse(json) escape hatch
+   |-- --executors=<json> -> parse(json), then route by lineage count below: one lineage -> config.executor, two or more -> config.fanout.executors
    |-- --concurrency=N -> config.fanout.concurrency (default 2)
    |
    |   Fan-out default policy:

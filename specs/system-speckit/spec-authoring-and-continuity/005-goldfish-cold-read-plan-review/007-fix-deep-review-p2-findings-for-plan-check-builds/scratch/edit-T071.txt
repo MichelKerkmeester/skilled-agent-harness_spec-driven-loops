@@ -1,0 +1,10 @@
+EDIT FILE: .skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md
+HOW: Replace the single occurrence.
+=====OLD=====
+Default policy: 0–1 executor → `config.executor`; 2+ →
+`config.fanout`.
+=====NEW=====
+Default policy: 0–1 executor, or an `--executors` matrix that expands to one lineage →
+`config.executor`; two or more lineages or `count>1` → `config.fanout`. A direct runner
+call that expands to one research or review lineage is refused with exit 3.
+=====END=====

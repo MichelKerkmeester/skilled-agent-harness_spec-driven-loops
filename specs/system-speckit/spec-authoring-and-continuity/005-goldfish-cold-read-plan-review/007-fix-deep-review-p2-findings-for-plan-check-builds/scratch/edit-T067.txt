@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+HOW: Replace the single occurrence.
+=====OLD=====
+A `3` on step 1 means one intent block still points elsewhere, so read the four blocks
+=====NEW=====
+A `4` on step 1 means one intent block still points elsewhere, so read the five blocks
+=====END=====

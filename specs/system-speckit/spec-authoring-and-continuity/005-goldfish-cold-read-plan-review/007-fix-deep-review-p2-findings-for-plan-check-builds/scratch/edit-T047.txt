@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md
+HOW: Replace the single occurrence.
+=====OLD=====
+the card length, the four intent rows,
+=====NEW=====
+the card length, the five intent rows,
+=====END=====

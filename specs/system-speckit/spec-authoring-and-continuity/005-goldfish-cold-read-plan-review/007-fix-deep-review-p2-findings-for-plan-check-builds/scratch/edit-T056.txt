@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+HOW: Replace the single occurrence.
+=====OLD=====
+- Objective: Prove that the four authoring intent blocks name the card four times
+=====NEW=====
+- Objective: Prove that the five authoring intent blocks name the card five times
+=====END=====

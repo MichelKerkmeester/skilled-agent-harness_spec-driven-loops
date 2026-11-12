@@ -1,0 +1,41 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts
+HOW: Replace the single occurrence. NEW inserts a whole test case before the OLD line and keeps the OLD line at its end.
+=====OLD=====
+  it('accepts explicit true and 1 values for the single-lineage opt-in', async () => {
+=====NEW=====
+  it('runs a two-lineage research or review matrix without the single-lineage opt-in', async () => {
+    // Every other launch in this file opts in through the shared helper, so this case
+    // proves the default posture still accepts a real fan-out.
+    for (const loopType of ['research', 'review'] as const) {
+      const binDir = makeTempDir(`fanout-run-two-lineage-default-${loopType}-bin-`);
+      const hermetic = useHermeticEnv(`two-lineage-default-${loopType}`);
+      const specFolder = `specs/test-fanout-two-lineage-default-${loopType}`;
+      const baseDir = makeBaseArtifactDir(hermetic, specFolder, loopType);
+      const markerPath = join(baseDir, 'spawned.marker');
+      writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
+      const fanoutConfig = JSON.stringify({
+        executors: [
+          { label: 'seat-a', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 },
+          { label: 'seat-b', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 },
+        ],
+        concurrency: 1,
+      });
+
+      const result = await rawSpawnCjs(fanoutRunScript, [
+        '--spec-folder',
+        specFolder,
+        '--loop-type',
+        loopType,
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 30_000 });
+
+      expect(result.stdout).not.toContain('Run the single-executor');
+      expect(existsSync(markerPath)).toBe(true);
+    }
+  });
+
+  it('accepts explicit true and 1 values for the single-lineage opt-in', async () => {
+=====END=====

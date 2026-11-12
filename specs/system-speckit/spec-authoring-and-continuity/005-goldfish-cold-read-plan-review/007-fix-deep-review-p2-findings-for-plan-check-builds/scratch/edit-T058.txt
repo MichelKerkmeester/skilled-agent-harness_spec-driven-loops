@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+HOW: Replace the single occurrence.
+=====OLD=====
+- Expected signals: The card count prints `4`.
+=====NEW=====
+- Expected signals: The card count prints `5`.
+=====END=====

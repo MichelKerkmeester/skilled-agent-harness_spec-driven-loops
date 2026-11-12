@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/README.md
+HOW: Replace the single occurrence.
+=====OLD=====
+one short card as the default load for the four writing intents
+=====NEW=====
+one short card as the default load for the five writing intents
+=====END=====

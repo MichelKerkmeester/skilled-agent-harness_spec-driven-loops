@@ -1,12 +1,12 @@
 ---
 title: "Spec authoring card"
-description: "One short card that the four authoring intents load instead of the long template guide, held in sync with the router and the checklist."
+description: "One short card that the five authoring intents load instead of the long template guide, held in sync with the router and the checklist."
 trigger_phrases:
   - "spec authoring card"
   - "authoring card"
   - "write a spec packet"
   - "fill a spec scaffold"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Spec authoring card
@@ -27,7 +27,7 @@ The card covers the bounds of a packet write, the level choice, the scaffold com
 
 ### Sync Guard
 
-`runtime/cli/spec/check-card-sync.sh` reads the card, the router, the generated leaf inventory files and the authoring checklist. It runs every check and prints one `PASS` or `FAIL` line for each. It fails when any of them disagrees. The checks cover the card length, the four intent rows, the guide level, the two inventory files, the checklist's route to an example folder that exists and the card's pointer to the checklist. It exits 2 without running a check when `rg` is not on `PATH`.
+`runtime/cli/spec/check-card-sync.sh` reads the card, the router, the generated leaf inventory files and the authoring checklist. It runs every check and prints one `PASS` or `FAIL` line for each. It fails when any of them disagrees. The checks cover the card length, the five intent rows, the guide level, the two inventory files, the checklist's route to an example folder that exists and the card's pointer to the checklist. It exits 2 without running a check when `rg` is not on `PATH`.
 
 ### Inventory Regeneration
 
@@ -55,7 +55,7 @@ A model reads the card, scaffolds with `create.sh`, fills every section, removes
 | File | Type | Role |
 |------|------|------|
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts` | Vitest | Runs the sync guard in the suite |
-| `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md` | Manual playbook | Scenario 481, the four intent rows |
+| `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md` | Manual playbook | Scenario 481, the five intent rows |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-sync-guard.md` | Manual playbook | Scenario 482, the guard on the tree and on a copy |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/level-1-packet-authored-from-card.md` | Manual playbook | Scenario 483, the end to end write |
 

@@ -624,7 +624,7 @@ Deltas feed the reducer. Each iteration also writes a structured delta file that
 
 #### Cross-AI Fan-Out
 
-A loop can spread its iterations across several AI models at once, then merge what they find. Bind executors on the command and each one becomes its own lineage.
+A loop can spread its iterations across several AI models at once, then merge what they find. Bind two or more executors on the command and each one becomes its own lineage. A matrix that expands to one lineage runs the ordinary single-executor loop, and the fan-out runner refuses a one-lineage research or review run.
 
 You can run the same review or research across native agents and CLI bridges in parallel: Codex, Claude Code, OpenCode, Cursor, Devin, Pi and DeepSeek Harness. Each lineage runs on its own state, and a pool caps how many run at once.
 

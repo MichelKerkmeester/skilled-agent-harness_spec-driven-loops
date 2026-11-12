@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/commands/deep/assets/deep-research-presentation.txt
+HOW: Replace the single occurrence.
+=====OLD=====
+   |-- --executors=<json> -> config.fanout.executors = parse(json) escape hatch for complex configs
+=====NEW=====
+   |-- --executors=<json> -> parse(json), then route by lineage count below: one lineage -> config.executor, two or more -> config.fanout.executors
+=====END=====

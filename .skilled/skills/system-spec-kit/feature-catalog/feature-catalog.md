@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-07"
-version: 2.1.26.0
+version: 2.1.27.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -603,7 +603,7 @@ See [`tooling-and-scripts/source-tag-resolution.md`](tooling-and-scripts/source-
 
 #### Description
 
-One short card that the four authoring intents load instead of the long template guide, held in sync with the router and the checklist.
+One short card that the five authoring intents load instead of the long template guide, held in sync with the router and the checklist.
 
 #### Current Reality
 

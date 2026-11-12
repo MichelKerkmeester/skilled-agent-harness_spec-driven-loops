@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+HOW: Replace the single occurrence.
+=====OLD=====
+The operator sees the four intents load the card
+=====NEW=====
+The operator sees the five intents load the card
+=====END=====

@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+HOW: Replace the single occurrence.
+=====OLD=====
+- The four intent block headers from
+=====NEW=====
+- The five intent block headers from
+=====END=====

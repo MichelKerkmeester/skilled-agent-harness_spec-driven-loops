@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+HOW: Replace the single occurrence.
+=====OLD=====
+- **Pass**: The three counts are `4`, `0` and `1`.
+=====NEW=====
+- **Pass**: The three counts are `5`, `0` and `1`.
+=====END=====

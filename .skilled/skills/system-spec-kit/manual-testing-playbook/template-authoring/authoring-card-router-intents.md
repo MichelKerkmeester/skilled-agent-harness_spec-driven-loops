@@ -1,15 +1,15 @@
 ---
-title: "481 -- Authoring card loaded by four intents"
-description: "This scenario validates that the PLAN, IMPLEMENT, INTAKE and TEMPLATE_AUTHORING intents load the authoring card and leave the long guide on demand."
-version: 1.0.5.0
+title: "481 -- Authoring card loaded by five intents"
+description: "This scenario validates that the PLAN, IMPLEMENT, INTAKE, TEMPLATE_AUTHORING and WRITE intents load the authoring card and leave the long guide on demand."
+version: 1.0.6.0
 id: template-authoring-authoring-card-router-intents
 ---
 
-# 481 -- Authoring card loaded by four intents
+# 481 -- Authoring card loaded by five intents
 
 ## 1. OVERVIEW
 
-This scenario validates the router change that sends four authoring intents to the card. The `RESOURCE_MAP` in [`ROUTER.md`](../../ROUTER.md) §3 MACHINE ROUTER sends four authoring intents to a short card. The long template guide stays reachable from `ON_DEMAND` only. The scenario counts the card and guide lines inside the four intent blocks and inside the on demand list.
+This scenario validates the router change that sends five authoring intents to the card. The `RESOURCE_MAP` in [`ROUTER.md`](../../ROUTER.md) §3 MACHINE ROUTER sends five authoring intents to a short card. The long template guide stays reachable from `ON_DEMAND` only. The scenario counts the card and guide lines inside the five intent blocks and inside the on demand list.
 
 ### Why This Matters
 
@@ -21,15 +21,15 @@ A weak model follows the first document it is given. If an authoring intent stil
 
 Operators count the card and guide lines in the router and read three numbers.
 
-- Objective: Prove that the four authoring intent blocks name the card four times and the guide zero times, and that the on demand list names the guide once.
+- Objective: Prove that the five authoring intent blocks name the card five times and the guide zero times, and that the on demand list names the guide once.
 - Playbook ID: 481.
 - Real user request: `Show me which authoring document each writing intent loads, and confirm the long guide is only an on-demand lookup now.`
 - Prompt: `Show me which authoring document each writing intent loads, and confirm the long guide is only an on-demand lookup now.`
 - Preconditions: A checkout with `awk` on PATH and `ROUTER.md` and `references/workflows/spec-authoring-card.md` present. The scenario needs no network.
-- Expected execution process: Run one `awk` count over the four intent blocks for the card, one for the guide, and one over the on demand list for the guide.
-- Expected signals: The card count prints `4`. The intent guide count prints `0`. The on demand guide count prints `1`.
-- Desired user-visible outcome: The operator sees the four intents load the card and the guide held for an on demand read.
-- Pass/fail: PASS if the three counts are `4`, `0` and `1` in that order. FAIL if any count differs.
+- Expected execution process: Run one `awk` count over the five intent blocks for the card, one for the guide, and one over the on demand list for the guide.
+- Expected signals: The card count prints `5`. The intent guide count prints `0`. The on demand guide count prints `1`.
+- Desired user-visible outcome: The operator sees the five intents load the card and the guide held for an on demand read.
+- Pass/fail: PASS if the three counts are `5`, `0` and `1` in that order. FAIL if any count differs.
 
 ---
 
@@ -45,17 +45,17 @@ Show me which authoring document each writing intent loads, and confirm the long
 
 Run the commands from the checkout root in one shell session.
 
-1. Count the card lines in the four authoring intent blocks.
+1. Count the card lines in the five authoring intent blocks.
 
 ```bash
 S=.skilled/skills/system-spec-kit
-awk '/^    "(PLAN|IMPLEMENT|INTAKE|TEMPLATE_AUTHORING)": \[$/ {inside=1} inside && /spec-authoring-card\.md/ {n++} inside && /^    \],$/ {inside=0} END {print n+0}' "$S/ROUTER.md"
+awk '/^    "(PLAN|IMPLEMENT|INTAKE|TEMPLATE_AUTHORING|WRITE)": \[$/ {inside=1} inside && /spec-authoring-card\.md/ {n++} inside && /^    \],$/ {inside=0} END {print n+0}' "$S/ROUTER.md"
 ```
 
-2. Count the guide lines in the same four blocks.
+2. Count the guide lines in the same five blocks.
 
 ```bash
-awk '/^    "(PLAN|IMPLEMENT|INTAKE|TEMPLATE_AUTHORING)": \[$/ {inside=1} inside && /template-guide\.md/ {n++} inside && /^    \],$/ {inside=0} END {print n+0}' "$S/ROUTER.md"
+awk '/^    "(PLAN|IMPLEMENT|INTAKE|TEMPLATE_AUTHORING|WRITE)": \[$/ {inside=1} inside && /template-guide\.md/ {n++} inside && /^    \],$/ {inside=0} END {print n+0}' "$S/ROUTER.md"
 ```
 
 3. Count the guide lines in the on demand list.
@@ -66,23 +66,23 @@ awk '/"ON_DEMAND": \[/ {od=1; next} od && /^    \],$/ {od=0} od && /template-gui
 
 ### Expected
 
-Step 1 prints `4`. Step 2 prints `0`. Step 3 prints `1`.
+Step 1 prints `5`. Step 2 prints `0`. Step 3 prints `1`.
 
 ### Evidence
 
-- The `4` from step 1.
+- The `5` from step 1.
 - The `0` from step 2.
 - The `1` from step 3.
-- The four intent block headers from [`ROUTER.md`](../../ROUTER.md) §3 MACHINE ROUTER, quoted in the report.
+- The five intent block headers from [`ROUTER.md`](../../ROUTER.md) §3 MACHINE ROUTER, quoted in the report.
 
 ### Pass / Fail
 
-- **Pass**: The three counts are `4`, `0` and `1`.
+- **Pass**: The three counts are `5`, `0` and `1`.
 - **Fail**: Any count differs.
 
 ### Failure Triage
 
-A `3` on step 1 means one intent block still points elsewhere, so read the four blocks and name the missing intent. A `1` on step 2 means the guide did not leave that intent, so compare the block with the card row. A `0` on step 3 means the guide became unreachable, so add it back to `ON_DEMAND` before ending this scenario.
+A `4` on step 1 means one intent block still points elsewhere, so read the five blocks and name the missing intent. A `1` on step 2 means the guide did not leave that intent, so compare the block with the card row. A `0` on step 3 means the guide became unreachable, so add it back to `ON_DEMAND` before ending this scenario.
 
 ---
 
@@ -92,7 +92,7 @@ A `3` on step 1 means one intent block still points elsewhere, so read the four 
 - Feature catalog: [spec-authoring-card.md](../../feature-catalog/tooling-and-scripts/spec-authoring-card.md)
 - Implementation: [ROUTER.md](../../ROUTER.md) §3 MACHINE ROUTER
 
-Provenance: manual only - awk over the four intent blocks in .skilled/skills/system-spec-kit/ROUTER.md §3
+Provenance: manual only - awk over the five intent blocks in .skilled/skills/system-spec-kit/ROUTER.md §3
 
 ---
 

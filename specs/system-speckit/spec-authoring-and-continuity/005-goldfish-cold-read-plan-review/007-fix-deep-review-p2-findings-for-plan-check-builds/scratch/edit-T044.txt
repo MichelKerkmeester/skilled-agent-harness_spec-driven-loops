@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/README.md
+HOW: Replace the single occurrence.
+=====OLD=====
+| the short authoring path the four writing intents load first |
+=====NEW=====
+| the short authoring path the five writing intents load first |
+=====END=====

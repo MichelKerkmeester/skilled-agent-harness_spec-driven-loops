@@ -82,7 +82,7 @@ else
 fi
 
 # 3. Every authoring intent loads the card.
-for INTENT in PLAN IMPLEMENT INTAKE TEMPLATE_AUTHORING; do
+for INTENT in PLAN IMPLEMENT INTAKE TEMPLATE_AUTHORING WRITE; do
     if awk -v intent="$INTENT" '
         $0 == "    \"" intent "\": [" { inside = 1; next }
         inside && $0 == "    ]," { inside = 0 }

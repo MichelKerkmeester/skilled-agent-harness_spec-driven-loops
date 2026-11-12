@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+HOW: Replace the single occurrence.
+=====OLD=====
+awk '/^    "(PLAN|IMPLEMENT|INTAKE|TEMPLATE_AUTHORING)": \[$/ {inside=1} inside && /spec-authoring-card
+=====NEW=====
+awk '/^    "(PLAN|IMPLEMENT|INTAKE|TEMPLATE_AUTHORING|WRITE)": \[$/ {inside=1} inside && /spec-authoring-card
+=====END=====

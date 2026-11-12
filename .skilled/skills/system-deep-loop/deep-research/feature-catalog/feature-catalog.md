@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-research autonomous research loop."
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # deep-research: Feature Catalog
@@ -122,8 +122,9 @@ Three new YAML steps gated on `config.fanout` presence. CLI lineages run via `fa
 (pool-capped headless subprocesses). Native lineages run as sequential `agent: deep-research`
 dispatches. `step_fanout_merge` produces a consolidated `deep-research-findings-registry.json`
 before `step_compile_research` runs. Command flags: `--executor` (repeatable), `--executors
-<json>`, `--concurrency N`. Default policy: 0–1 executor → `config.executor`; 2+ →
-`config.fanout`.
+<json>`, `--concurrency N`. Default policy: 0–1 executor, or an `--executors` matrix that expands to one lineage →
+`config.executor`; two or more lineages or `count>1` → `config.fanout`. A direct runner
+call that expands to one research or review lineage is refused with exit 3.
 
 #### Source Files
 

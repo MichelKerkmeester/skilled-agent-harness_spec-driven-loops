@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.34.0
+version: 2.7.35.0
 ---
 
 # System Spec Kit
@@ -71,7 +71,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 | **Packet-local changelogs (deprecated)** | spec folders no longer get changelogs, and entries go to `.skilled/changelog/` through `/create:changelog` |
 | **Goal documents** | an optional `goal.md` addon binding a session to a durable objective, gated by a character budget |
 | **Validation** | the 42-rule registry with three strict-only rules gated behind `--strict` |
-| **Authoring** | one short card as the default load for the four writing intents, a placeholder gate that warns while a packet is Draft, and read-only guards for example drift and card sync |
+| **Authoring** | one short card as the default load for the five writing intents, a placeholder gate that warns while a packet is Draft, and read-only guards for example drift and card sync |
 
 ### Continuity and Retrieval
 
@@ -676,7 +676,7 @@ The manual testing playbook runs every scenario behind these checks.
 | [`references/workflows/spec-folder-write-recipe.md`](./references/workflows/spec-folder-write-recipe.md) | step-by-step recipe for a spec folder that passes strict validation on the first try |
 | [`references/workflows/spec-folder-authoring-checklist.md`](./references/workflows/spec-folder-authoring-checklist.md) | companion checklist for the Level contract, continuity frontmatter and metadata files |
 | [`references/validation/validation-rules.md`](./references/validation/validation-rules.md) | validation rule reference, the 42-rule registry is authoritative |
-| [`references/workflows/spec-authoring-card.md`](./references/workflows/spec-authoring-card.md) | the short authoring path the four writing intents load first |
+| [`references/workflows/spec-authoring-card.md`](./references/workflows/spec-authoring-card.md) | the short authoring path the five writing intents load first |
 | [`references/templates/template-guide.md`](./references/templates/template-guide.md) | template usage and composition rules |
 | [`references/config/environment-variables.md`](./references/config/environment-variables.md) | full environment variable reference |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | complete catalog of implemented features |

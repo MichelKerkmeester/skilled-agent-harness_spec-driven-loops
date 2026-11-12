@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+HOW: Replace the single occurrence.
+=====OLD=====
+1. Count the card lines in the four authoring intent blocks.
+=====NEW=====
+1. Count the card lines in the five authoring intent blocks.
+=====END=====

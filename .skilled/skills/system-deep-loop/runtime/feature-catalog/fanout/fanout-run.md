@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # Fan-out CLI lineage driver
@@ -41,7 +41,9 @@ Fully shipped. Supports every CLI executor kind (`EXECUTOR_KINDS` in `lib/deep-l
 Per-lineage subprocess timeout = `min(iterations *
 timeoutSeconds * 2, 4h)`. TSX bootstrap (mirrors `convergence.cjs` pattern) ensures
 TypeScript imports (`parseFanoutConfig`, `expandLineages`) resolve in the CJS context. Exit
-codes: 0=all ok, 2=some failed, 3=all failed.
+codes: 0=all ok, 2=some failed, 3=all failed or refused before start. A research or review
+matrix that expands to one lineage is refused with exit 3 before any lineage directory or
+process exists, unless `--allow-single-lineage` is passed.
 
 A `cli-deepseek-harness` lineage is built by `buildDshLineageCommand`. It first checks that
 `dsh --version` prints the pinned release, running that probe in a throwaway home outside the

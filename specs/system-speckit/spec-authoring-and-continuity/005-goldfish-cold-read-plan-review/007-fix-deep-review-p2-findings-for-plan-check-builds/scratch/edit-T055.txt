@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+HOW: Replace the single occurrence.
+=====OLD=====
+This scenario validates the router change that sends four authoring intents to the card. The `RESOURCE_MAP` in [`ROUTER.md`](../../ROUTER.md) §3 MACHINE ROUTER sends four authoring intents to a short card. The long template guide stays reachable from `ON_DEMAND` only. The scenario counts the card and guide lines inside the four intent blocks and inside the on demand list.
+=====NEW=====
+This scenario validates the router change that sends five authoring intents to the card. The `RESOURCE_MAP` in [`ROUTER.md`](../../ROUTER.md) §3 MACHINE ROUTER sends five authoring intents to a short card. The long template guide stays reachable from `ON_DEMAND` only. The scenario counts the card and guide lines inside the five intent blocks and inside the on demand list.
+=====END=====

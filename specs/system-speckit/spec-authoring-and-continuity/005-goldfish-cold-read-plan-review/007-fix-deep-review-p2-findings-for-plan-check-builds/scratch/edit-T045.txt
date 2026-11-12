@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/references/workflows/quick-reference.md
+HOW: Replace the single occurrence.
+=====OLD=====
+The short authoring path the four writing intents load first
+=====NEW=====
+The short authoring path the five writing intents load first
+=====END=====

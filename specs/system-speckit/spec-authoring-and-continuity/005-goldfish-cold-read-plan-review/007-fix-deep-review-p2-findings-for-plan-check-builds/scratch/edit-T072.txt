@@ -1,0 +1,9 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md
+HOW: Replace the single occurrence.
+=====OLD=====
+codes: 0=all ok, 2=some failed, 3=all failed.
+=====NEW=====
+codes: 0=all ok, 2=some failed, 3=all failed or refused before start. A research or review
+matrix that expands to one lineage is refused with exit 3 before any lineage directory or
+process exists, unless `--allow-single-lineage` is passed.
+=====END=====

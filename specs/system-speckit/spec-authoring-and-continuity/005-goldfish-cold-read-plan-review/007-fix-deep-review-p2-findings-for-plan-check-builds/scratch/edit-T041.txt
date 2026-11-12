@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/commands/deep/assets/deep-research-presentation.txt
+HOW: Replace the single occurrence.
+=====OLD=====
+   |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; fan-out sets CLAUDE_CONFIG_DIR)
+=====NEW=====
+   |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
+=====END=====

@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md
+HOW: Replace the single occurrence.
+=====OLD=====
+| Scenario 481, the four intent rows |
+=====NEW=====
+| Scenario 481, the five intent rows |
+=====END=====

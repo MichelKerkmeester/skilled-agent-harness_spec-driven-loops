@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+HOW: Replace the single occurrence.
+=====OLD=====
+2. Count the guide lines in the same four blocks.
+=====NEW=====
+2. Count the guide lines in the same five blocks.
+=====END=====

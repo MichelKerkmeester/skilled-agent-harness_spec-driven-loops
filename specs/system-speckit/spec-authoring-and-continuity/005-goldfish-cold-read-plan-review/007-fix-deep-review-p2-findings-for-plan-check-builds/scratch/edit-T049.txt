@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+HOW: Replace the single occurrence.
+=====OLD=====
+One short card that the four authoring intents load instead
+=====NEW=====
+One short card that the five authoring intents load instead
+=====END=====

@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+HOW: Replace the single occurrence.
+=====OLD=====
+Provenance: manual only - awk over the four intent blocks
+=====NEW=====
+Provenance: manual only - awk over the five intent blocks
+=====END=====

@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+HOW: Replace the single occurrence.
+=====OLD=====
+description: "This scenario validates that the PLAN, IMPLEMENT, INTAKE and TEMPLATE_AUTHORING intents load
+=====NEW=====
+description: "This scenario validates that the PLAN, IMPLEMENT, INTAKE, TEMPLATE_AUTHORING and WRITE intents load
+=====END=====

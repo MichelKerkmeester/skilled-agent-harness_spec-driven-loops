@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+HOW: Replace the single occurrence.
+=====OLD=====
+Step 1 prints `4`. Step 2 prints `0`.
+=====NEW=====
+Step 1 prints `5`. Step 2 prints `0`.
+=====END=====

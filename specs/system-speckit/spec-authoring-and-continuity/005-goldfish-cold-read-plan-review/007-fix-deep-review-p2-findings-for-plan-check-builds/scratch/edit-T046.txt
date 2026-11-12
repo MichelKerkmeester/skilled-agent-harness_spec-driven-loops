@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md
+HOW: Replace the single occurrence.
+=====OLD=====
+description: "One short card that the four authoring intents load
+=====NEW=====
+description: "One short card that the five authoring intents load
+=====END=====

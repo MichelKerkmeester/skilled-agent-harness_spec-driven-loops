@@ -2,7 +2,7 @@
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
 last_updated: "2026-11-07"
-version: 2.1.22.0
+version: 2.1.23.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -342,7 +342,7 @@ Doctor command scenarios for system-spec-kit now live in the [central manual tes
 | 478 | Placeholder gate unchanged for a v2.2 doc | [478](template-authoring/placeholder-gate-legacy-stamp-unchanged.md) | [versioned-placeholder-gate](../feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md) |
 | 479 | Example drift guard catches a leaked description | [479](template-authoring/example-drift-guard-catches-leak.md) | [example-drift-guard](../feature-catalog/tooling-and-scripts/example-drift-guard.md) |
 | 480 | Golden render of every level | [480](template-authoring/golden-render-all-levels.md) | [template-section-fill-guidance](../feature-catalog/tooling-and-scripts/template-section-fill-guidance.md) |
-| 481 | Authoring card loaded by four intents | [481](template-authoring/authoring-card-router-intents.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |
+| 481 | Authoring card loaded by five intents | [481](template-authoring/authoring-card-router-intents.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |
 | 482 | Authoring card sync guard | [482](template-authoring/authoring-card-sync-guard.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |
 | 483 | Level 1 packet authored from the card | [483](template-authoring/level-1-packet-authored-from-card.md) | [spec-authoring-card](../feature-catalog/tooling-and-scripts/spec-authoring-card.md) |
 | 485 | Measured behavior warns when unfilled | [485](template-authoring/measured-behavior-warns-unfilled.md) | [measured-behavior-block](../feature-catalog/tooling-and-scripts/measured-behavior-block.md) |

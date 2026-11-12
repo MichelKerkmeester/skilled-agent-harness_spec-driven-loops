@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring/authoring-card-router-intents.md
+HOW: Replace the single occurrence.
+=====OLD=====
+- Pass/fail: PASS if the three counts are `4`, `0` and `1`
+=====NEW=====
+- Pass/fail: PASS if the three counts are `5`, `0` and `1`
+=====END=====

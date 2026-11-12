@@ -1,0 +1,7 @@
+EDIT FILE: README.md
+HOW: Replace the single occurrence.
+=====OLD=====
+A loop can spread its iterations across several AI models at once, then merge what they find. Bind executors on the command and each one becomes its own lineage.
+=====NEW=====
+A loop can spread its iterations across several AI models at once, then merge what they find. Bind two or more executors on the command and each one becomes its own lineage. A matrix that expands to one lineage runs the ordinary single-executor loop, and the fan-out runner refuses a one-lineage research or review run.
+=====END=====

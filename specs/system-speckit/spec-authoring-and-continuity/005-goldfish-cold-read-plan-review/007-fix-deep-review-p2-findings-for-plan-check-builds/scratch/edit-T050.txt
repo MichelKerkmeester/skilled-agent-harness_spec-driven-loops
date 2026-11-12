@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh
+HOW: Replace the single occurrence.
+=====OLD=====
+for INTENT in PLAN IMPLEMENT INTAKE TEMPLATE_AUTHORING; do
+=====NEW=====
+for INTENT in PLAN IMPLEMENT INTAKE TEMPLATE_AUTHORING WRITE; do
+=====END=====
