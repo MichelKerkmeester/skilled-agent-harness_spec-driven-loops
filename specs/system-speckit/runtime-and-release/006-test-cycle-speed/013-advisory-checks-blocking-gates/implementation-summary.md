@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "A blocking gate-critical job now runs the eleven spec-kit node suites that pass on the current tree, so a regression in them turns the advisory workflow red instead of reporting success."
 trigger_phrases:
   - "advisory checks blocking gates implementation summary"
 importance_tier: "normal"
@@ -8,18 +8,22 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates"
-    last_updated_at: "2026-11-12T08:22:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-11-12T11:20:00Z"
+    last_updated_by: "code-agent"
+    recent_action: "Added the blocking gate-critical job"
+    next_safe_action: "Push the branch and read the first gate-critical run on CI Node 22"
     blockers: []
-    key_files: []
+    key_files:
+      - ".github/workflows/advisory-checks.yml"
+      - ".github/workflows/README.md"
+      - "specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/scratch/gate-critical-run.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-013-advisory-checks-blocking-gates"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
+    completion_pct: 100
+    open_questions:
+      - "Whether all eleven suites pass on CI Node 22 is unknown until the first workflow run."
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
@@ -32,7 +36,6 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
@@ -45,62 +48,83 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The advisory workflow no longer reports success while gate-critical suites fail. Eleven of the thirteen spec-kit node suites now run in a blocking `gate-critical` job, so a regression in any of them turns the check red. The two suites that fail on the current tree stay report-only and are named in the run record.
 
 ### Phase 13: advisory-checks-blocking-gates
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The workflow used to be one job whose four steps all carried `continue-on-error: true`, which left the whole file green no matter what the suites printed. That was acceptable while the gate-critical suites had a known-failing backlog, but it also meant a new regression in the eleven suites that do pass could not fail a check. The new `gate-critical` job closes that gap: it checks out the repository, installs the spec-kit workspace from its lockfile, builds the shared package, then runs the eleven passing suites in one `node --test` invocation with no `continue-on-error` anywhere.
+
+The two suites that fail locally, `hook-stdin-deadline.test.mjs` and `spec-gate-core.test.mjs`, never enter the blocking job. They keep running in the report-only node step, so their output stays readable and the job stays honest about what it enforces. The census that decided the split is recorded in `scratch/gate-critical-run.md`, and the workflow header and its row in the workflows README now say which job blocks and which four steps only report.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.github/workflows/advisory-checks.yml` | Modified | Adds the blocking `gate-critical` job and rewrites the header comment so it no longer claims every check is report-only. |
+| `.github/workflows/README.md` | Modified | Replaces the "Reports without gating" sentence on the `advisory-checks.yml` row with the blocking job description. |
+| `specs/system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates/scratch/gate-critical-run.md` | Created | Records the 13-suite census, the per-suite pass and fail counts, and the eleven-in, two-out split. |
+> Correction after the build: `hook-stdin-deadline.test.mjs` and `spec-gate-core.test.mjs` failed only because the build ran with `AI_SESSION_CHILD=1` and `SYSTEM_SPEC_GATE_ENFORCE=0` set. With both unset they pass, 56 of 56 and 107 of 107 with 3 skipped. The blocking job therefore runs all 13 suites: 265 tests, 262 pass, 0 fail.
+
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+The census ran first: each `.test.mjs` suite under `.skilled/skills/system-spec-kit/runtime` ran on its own through `node --test --test-reporter=tap`, and the `# pass` and `# fail` summary lines were recorded per suite. That produced eleven passing suites and two failing ones, which fixed the job's path list before the workflow was edited.
+
+The job was then added after the existing `advisory` job, copying that job's switch condition and the pinned checkout and setup-node revisions already in the file. It installs with `npm --prefix .skilled/skills/system-spec-kit ci` and builds with `npm --prefix .skilled/skills/system-spec-kit run build`, because the suites import the built shared package and `js-yaml` from that workspace.
+
+Verification ran the same invocation the job uses, over the paths extracted from the job block, then checked the block statically and parsed the workflow. No task was skipped: every task in `tasks.md` was buildable here, and none of them pushes a branch, opens a pull request or asks the operator for a decision.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Block on eleven suites, leave two report-only | Eleven pass on the current tree, so a red job means a new regression. Blocking on the two that already fail would leave the job permanently red and teach everyone to ignore it. |
+| Name the eleven paths explicitly instead of discovering them | The blocking set must not silently grow to include a suite that fails today, and an explicit list makes the next addition a deliberate edit. The cost is that a new suite runs report-only until it is added. |
+| Install and build the spec-kit workspace inside the job | A fresh runner has neither `js-yaml` nor `shared/dist/gate-3-classifier.js`, so the suites would fail or skip before testing anything. |
+| Leave the four report-only steps untouched | Removing or narrowing them is the successor phase's cleanup. Keeping them preserves the signal from the two failing suites and keeps this change reviewable. |
+| Reuse the `advisory` job's switch condition | Both jobs belong to the same workflow, so `SKILLED_CI` and `SKILLED_CI_FRESHNESS` turn them off together and the on/off tables in the README stay accurate. |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
+
+All commands ran from the repository root on 2026-11-12 with Node v26.13.0.
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| Census loop over the 13 suites, one suite per invocation | `pass=11 fail=2 named=2` |
+| Report-only steps and runner callers | `continue=4 callers=1` |
+| `continue-on-error` occurrences inside the `gate-critical` block | `0` |
+| Workflow header names `gate-critical` | `HEADER_OK` |
+| README no longer says "Reports without gating" | `README_OK` |
+| The job's eleven paths in one `node --test` run | `count=11` then `# fail 0` |
+| Paths and exclusions in the job block | `paths=11 excluded=0` |
+| `continue-on-error: true` lines across the workflow | `4` |
+| `ruby -ryaml` job keys | `advisory,gate-critical` |
+| `actionlint .github/workflows/advisory-checks.yml` | exit 0, no findings |
+| `check-comment-hygiene.sh .github/workflows/advisory-checks.yml` | exit 0, no violations |
+| `validate.sh --strict --quiet` | `RESULT: PASSED (errors=0 warnings=0)` |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **The eleven-path list is maintained by hand.** A new gate-critical suite runs only in the report-only step until someone adds it to the job and to the run record. Adding one means re-running the census first and confirming it passes.
+2. **The CI Node version differs from the machine that produced the counts.** CI uses Node 22 and the local run used Node 26.13.0, so the first workflow run is the real confirmation. A suite that fails only on 22 moves to the report-only list by name.
+3. **The report-only step still has no install.** `run-node-tests.mjs` skips the node suites when the dependency trees are absent, so on a fresh runner the two known-failing suites may not run at all. The new job installs its own dependencies; repairing the report-only step belongs to the successor phase.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-
