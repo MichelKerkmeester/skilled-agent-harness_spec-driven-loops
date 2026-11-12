@@ -87,7 +87,9 @@
     "skill graph drift",
     "pi prompt advisor",
     "prompt-time brief",
-    "skill advice before the agent handles my prompt"
+    "skill advice before the agent handles my prompt",
+    "advisor skipped my prompt",
+    "advisor skip my prompt"
   ],
   "derived": {
     "trigger_phrases": [
@@ -107,7 +109,9 @@
       "index private skills",
       "trusted skill root",
       "pi prompt advisor",
-      "prompt-time brief"
+      "prompt-time brief",
+      "advisor skipped my prompt",
+      "advisor skip my prompt"
     ],
     "key_topics": [
       "routing",
