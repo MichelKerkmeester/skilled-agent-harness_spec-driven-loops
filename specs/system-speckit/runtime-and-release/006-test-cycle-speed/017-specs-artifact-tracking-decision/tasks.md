@@ -36,8 +36,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create the inventory header with the branch, HEAD and date (`$P/scratch/artifact-inventory.md`). Verify: `rg -c '^\- \*\*(Branch|HEAD|Measured)\*\*:' $P/scratch/artifact-inventory.md` prints 3.
-- [ ] T002 Record the measurement script from `spec.md` verbatim under a `## Command` heading (`$P/scratch/artifact-inventory.md`). Verify: `rg -c 'cat-file --batch-check' $P/scratch/artifact-inventory.md` prints 4.
+- [x] T001 Create the inventory header with the branch, HEAD and date (`$P/scratch/artifact-inventory.md`). Verify: `rg -c '^\- \*\*(Branch|HEAD|Measured)\*\*:' $P/scratch/artifact-inventory.md` prints 3.
+- [x] T002 Record the measurement script from `spec.md` verbatim under a `## Command` heading (`$P/scratch/artifact-inventory.md`). Verify: `rg -c 'cat-file --batch-check' $P/scratch/artifact-inventory.md` prints 4.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -45,11 +45,11 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Fill the six measurement rows with a `Category`, `Path pattern`, `Files` and `Bytes` column for all tracked files, `specs/`, research, review, scratch and z_archive (`$P/scratch/artifact-inventory.md`). Verify: `rg -c '^\| (all tracked files|specs/|research|review|scratch|z_archive) \|' $P/scratch/artifact-inventory.md` prints 6.
-- [ ] T004 Add the union row and the overlap note that says the four patterns nest (`$P/scratch/artifact-inventory.md`). Verify: `rg -c '^\| union \|' $P/scratch/artifact-inventory.md` prints 1 and `rg -c '^\*\*Overlap\*\*:' $P/scratch/artifact-inventory.md` prints 1.
-- [ ] T005 Write three options — keep everything tracked, stop tracking new loop state, move archives out of the repository — each with `**Status**: Proposed` (`$P/decision-record.md`). Verify: `rg -c '^### Option' $P/decision-record.md` prints 3 and `rg -c '\*\*Status\*\*: Proposed' $P/decision-record.md` prints 3.
-- [ ] T006 Add the no-action section, the line that the phase stops catching no regression, and the operator as decider (`$P/decision-record.md`). Verify: `rg -c 'Delete, move and untrack nothing' $P/decision-record.md` prints 1, `rg -c 'stops catching no regression' $P/decision-record.md` prints 1 and `rg -c '\*\*Decider\*\*.*operator' $P/decision-record.md` prints 1.
-- [ ] T007 Point the decision record at the inventory instead of restating its numbers (`$P/decision-record.md`). Verify: `rg -c 'scratch/artifact-inventory.md' $P/decision-record.md` prints at least 1 and `rg -c '1665212310' $P/decision-record.md` prints 0.
+- [x] T003 Fill the six measurement rows with a `Category`, `Path pattern`, `Files` and `Bytes` column for all tracked files, `specs/`, research, review, scratch and z_archive (`$P/scratch/artifact-inventory.md`). Verify: `rg -c '^\| (all tracked files|specs/|research|review|scratch|z_archive) \|' $P/scratch/artifact-inventory.md` prints 6.
+- [x] T004 Add the union row and the overlap note that says the four patterns nest (`$P/scratch/artifact-inventory.md`). Verify: `rg -c '^\| union \|' $P/scratch/artifact-inventory.md` prints 1 and `rg -c '^\*\*Overlap\*\*:' $P/scratch/artifact-inventory.md` prints 1.
+- [x] T005 Write three options — keep everything tracked, stop tracking new loop state, move archives out of the repository — each with `**Status**: Proposed` (`$P/decision-record.md`). Verify: `rg -c '^### Option' $P/decision-record.md` prints 3 and `rg -c '\*\*Status\*\*: Proposed' $P/decision-record.md` prints 3.
+- [x] T006 Add the no-action section, the line that the phase stops catching no regression, and the operator as decider (`$P/decision-record.md`). Verify: `rg -c 'Delete, move and untrack nothing' $P/decision-record.md` prints 1, `rg -c 'stops catching no regression' $P/decision-record.md` prints 1 and `rg -c '\*\*Decider\*\*.*operator' $P/decision-record.md` prints 1.
+- [x] T007 Point the decision record at the inventory instead of restating its numbers (`$P/decision-record.md`). Verify: `rg -c 'scratch/artifact-inventory.md' $P/decision-record.md` prints at least 1 and `rg -c '1665212310' $P/decision-record.md` prints 0.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -57,10 +57,10 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Rerun the measurement and confirm the inventory table matches this tree (`$P/scratch/artifact-inventory.md`). Verify: `git ls-files | wc -l` prints 134068 at HEAD `68c409e2aa`; a different value means the header's HEAD and date are updated before the numbers are quoted.
-- [ ] T009 Confirm no option has moved past Proposed (`$P/decision-record.md`). Verify: `rg -c '\*\*Status\*\*: (Accepted|Rejected)' $P/decision-record.md` prints 0.
-- [ ] T010 Confirm the phase changed no tracked file in this packet (`$P/spec.md`). Verify: `git diff --name-only -- $P` prints nothing.
-- [ ] T011 Validate the packet (`$P/tasks.md`). Verify: `$V $P --strict --quiet` prints `RESULT: PASSED`.
+- [x] T008 Rerun the measurement and confirm the inventory table matches this tree (`$P/scratch/artifact-inventory.md`). Verify: `git ls-files | wc -l` prints 134068 at HEAD `68c409e2aa`; a different value means the header's HEAD and date are updated before the numbers are quoted.
+- [x] T009 Confirm no option has moved past Proposed (`$P/decision-record.md`). Verify: `rg -c '\*\*Status\*\*: (Accepted|Rejected)' $P/decision-record.md` prints 0.
+- [x] T010 Confirm the phase changed no tracked file in this packet (`$P/spec.md`). Verify: `git diff --name-only -- $P` prints nothing.
+- [x] T011 Validate the packet (`$P/tasks.md`). Verify: `$V $P --strict --quiet` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -68,10 +68,10 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] `scratch/artifact-inventory.md` and `decision-record.md` exist, every option is `Proposed`, and no tracked file was deleted, moved or untracked
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
+- [x] `scratch/artifact-inventory.md` and `decision-record.md` exist, every option is `Proposed`, and no tracked file was deleted, moved or untracked
 <!-- /ANCHOR:completion -->
 
 ---
