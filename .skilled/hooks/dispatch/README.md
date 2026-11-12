@@ -164,7 +164,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 
 | Boundary | Rule |
 |---|---|
-| Imports | `lib/` cores import Node builtins only. Adapters import their own `../lib/` and `../../shared/hook-flags.mjs` (or `hook-flags.cjs` for the OpenCode plugin): nothing outside this tree. The Pi adapters are the exception: a few of them keep a long specifier such as `../../.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` left from the link-based layout; it resolves only through the test alias, so a test loads them only under `.skilled/hooks/vitest.config.ts`, whose alias maps that path to the real tree. The Cursor proxy imports `hook-flags.mjs` by a deep repo-relative path because its real home is under `system-spec-kit`. |
+| Imports | `lib/` cores import Node builtins only. Adapters import their own `../lib/` and `../../shared/hook-flags.mjs` (or `hook-flags.cjs` for the OpenCode plugin): nothing outside this tree. The Pi adapters are the exception: a few of them keep a long specifier such as `../../.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` left from the link-based layout; only the long specifier resolves through the test alias in `.skilled/hooks/vitest.config.ts`, whose alias maps that path to the real tree; the adapter's short `../lib/` fallback loads in a test without it. The Cursor proxy imports `hook-flags.mjs` by a deep repo-relative path because its real home is under `system-spec-kit`. |
 | Decisions | Preflight may deny (`block` severity) or advise (`warn`). Audit never decides; it only records. Pi's preflight adds an authorization deny that is independent of the target skill's declared rules. |
 | Failure | Every path fails open. A missing `SKILL.md`, malformed sidecar JSON, a throwing check, an unparsable payload, or an unwritable log resolves to allow/skip. |
 | Output | The cores never write stdout or stderr. Each adapter owns its own transport. Audit writes only to the rotated log file. |
@@ -179,7 +179,7 @@ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
 ```
 
 ```bash
-# The adapter suites are vitest files; run them under the hooks config, whose alias serves the long specifiers a few Pi adapters keep, left from the link-based layout; they resolve only through the test alias
+# The adapter suites are vitest files; run them under the hooks config, whose alias serves the literal long specifiers a few Pi adapters keep, left from the link-based layout; they resolve only through the test alias
 .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/dispatch/pi/directive-dedup.test.ts
 ```
 
@@ -202,4 +202,4 @@ Expected result: `ok`, with no module-resolution error (confirms the OpenCode ad
 - [`../shared/README.md`](../shared/README.md): the shared kill-switch resolver the adapters use.
 - [`../../skills/cli-external-orchestration/cli-opencode/SKILL.md`](../../skills/cli-external-orchestration/cli-opencode/SKILL.md): the primary hard-rule declarer these checks enforce.
 
-<!-- A few Pi adapters keep a long specifier left from the link-based layout; it resolves only through the test alias. -->
+<!-- A few Pi adapters keep a literal long specifier left from the link-based layout; it resolves only through the test alias. -->
