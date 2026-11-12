@@ -1171,6 +1171,113 @@ test('relayout refuses a manifest that names one id twice before it moves anythi
   assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
 });
 
+// Two entries can name one copy and still disagree about where it belongs, and
+// then there is no single move that puts that copy on the layout, so the run
+// stops rather than picking one of the two destinations.
+test('relayout refuses a copy two entries would move to different paths', (t) => {
+  const fixture = createWorkspace(t, 'overlay-engine-relayout-claimed-');
+  writeFile(fixture.overlayDir, 'custom/place.md', OVERLAY_PLACE);
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: 'pin-one' },
+    layoutLinks: [],
+    overlays: [
+      { id: 'hub-place', scope: 'file', source: 'custom/place.md', destination: PLACE_DESTINATION },
+      { id: 'note-place', scope: 'file', source: 'custom/place.md', destination: '.claude/skills/hub/place.md' },
+    ],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  const manifestPath = path.join(fixture.overlayDir, 'overlay-manifest.json');
+  const before = fs.readFileSync(manifestPath);
+  const run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+
+  const relayout = run(['apply', '--relayout']);
+
+  assert.equal(relayout.code, 2, relayout.output);
+  assert.equal(relayout.output.trim(), `refuse: custom/place.md is claimed by ${PLACE_LAYOUT} and ` +
+    'claude/skills/hub/place.md; one copy cannot move to both');
+  assert.deepEqual(movedLines(relayout.output), [], relayout.output);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'custom/place.md'), 'utf8'), OVERLAY_PLACE);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, PLACE_LAYOUT)), false);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'claude/skills/hub/place.md')), false);
+  assert.deepEqual(fs.readFileSync(manifestPath), before);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
+});
+
+// Two copies aimed at one destination would have to share a single layout path,
+// so whichever copy the run moved, the other would sit at a path the manifest no
+// longer names. Both stay where they are until the manifest names one destination.
+test('relayout refuses two copies whose destinations land on one layout path', (t) => {
+  const fixture = createWorkspace(t, 'overlay-engine-relayout-one-path-');
+  const first = 'first copy\n';
+  const second = 'second copy\n';
+  writeFile(fixture.overlayDir, 'custom/a.md', first);
+  writeFile(fixture.overlayDir, 'custom/b.md', second);
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: 'pin-one' },
+    layoutLinks: [],
+    overlays: [
+      { id: 'hub-a', scope: 'file', source: 'custom/a.md', destination: '.skilled/skills/hub/a.md' },
+      { id: 'hub-b', scope: 'file', source: 'custom/b.md', destination: '.skilled/skills/hub/a.md' },
+    ],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  const manifestPath = path.join(fixture.overlayDir, 'overlay-manifest.json');
+  const before = fs.readFileSync(manifestPath);
+  const run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+
+  const relayout = run(['apply', '--relayout']);
+
+  assert.equal(relayout.code, 2, relayout.output);
+  assert.equal(relayout.output.trim(), 'refuse: custom/a.md and custom/b.md both belong at skilled/skills/hub/a.md');
+  assert.deepEqual(movedLines(relayout.output), [], relayout.output);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'custom/a.md'), 'utf8'), first);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'custom/b.md'), 'utf8'), second);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'skilled/skills/hub/a.md')), false);
+  assert.deepEqual(fs.readFileSync(manifestPath), before);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
+});
+
+// Moving a folder carries the copies inside it, so a second move out of that
+// folder would find its own path gone half-way through the run. The copies stay
+// put, and the operator moves the folder and the copy inside it in two runs.
+test('relayout refuses two copies that sit one inside the other', (t) => {
+  const fixture = createWorkspace(t, 'overlay-engine-relayout-nested-');
+  writeFile(fixture.overlayDir, 'custom/bundle/readme.md', README_TEXT);
+  fixture.manifest = {
+    schemaVersion: 1,
+    pin: { upstream: 'fixture', commit: 'pin-one' },
+    layoutLinks: [],
+    overlays: [
+      { id: 'hub-bundle', scope: 'directory', source: 'custom/bundle', destination: DIR_DESTINATION },
+      { id: 'hub-readme', scope: 'file', source: 'custom/bundle/readme.md', destination: '.claude/readme.md' },
+    ],
+    regenerate: [],
+    verifyGenerated: [],
+  };
+  writeManifest(fixture);
+  const manifestPath = path.join(fixture.overlayDir, 'overlay-manifest.json');
+  const before = fs.readFileSync(manifestPath);
+  const run = (args) => runEngine([...args, '--root', fixture.tree], fixture.workspace);
+
+  const relayout = run(['apply', '--relayout']);
+
+  assert.equal(relayout.code, 2, relayout.output);
+  assert.equal(relayout.output.trim(), 'refuse: custom/bundle and custom/bundle/readme.md sit one inside the other; ' +
+    'they have to move in separate runs');
+  assert.deepEqual(movedLines(relayout.output), [], relayout.output);
+  assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'custom/bundle/readme.md'), 'utf8'), README_TEXT);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, DIR_LAYOUT)), false);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'claude/readme.md')), false);
+  assert.deepEqual(fs.readFileSync(manifestPath), before);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'relayout-runs')), false);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 9. AUDITING THE VENDORED TREE
 // ─────────────────────────────────────────────────────────────────────────────

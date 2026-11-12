@@ -5,7 +5,7 @@ allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.1.6.0
 ---
 
-<!-- Keywords: put skilled into my project, skilled in my project repo, keep skilled current in my project, vendored skilled copy, vendored skilled overlays, keep my changes to vendored skilled, re-pin vendored skilled, link a local skilled checkout into a project, overlay layout path, relayout, overlay audit, overlay lock, strict overlay writes, unowned vendored files, overlay sources, no overlay owns, agents overlay stale, overlay rebase, overlay root files changed upstream, changed a root file, drifted from the pinned upstream commit -->
+<!-- Keywords: put skilled into my project, skilled in my project repo, keep skilled current in my project, vendored skilled copy, vendored skilled overlays, keep my changes to vendored skilled, re-pin vendored skilled, link a local skilled checkout into a project, overlay layout path, relayout, overlay audit, strict overlay writes, unowned vendored files, unowned vendored change, overlay sources, no overlay owns, overlay root files drifted upstream, overlay rebase, drifted from the pinned upstream commit, changed the root files an overlay owns, overlay no longer adds a json item -->
 <!-- Owns: /doctor:install, /doctor:symlink, /doctor:update, /doctor:agents-md, /doctor:runtime-mirrors, /doctor:env, /doctor:setup, /doctor:helper, /doctor:speckit, /doctor:mcp, /doctor:overlay. Does NOT own: /doctor:sk-code and /doctor:ci (sk-code), /doctor:git (sk-git), /doctor:sk-skill (sk-doc), /doctor:skill-advisor (system-skill-advisor), /doctor:deep-loop (system-deep-loop). -->
 
 # System Skilled Doctor

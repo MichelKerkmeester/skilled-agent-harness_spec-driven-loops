@@ -167,6 +167,7 @@ Root: [the vendored tree]
 Overlay folder: [the folder the engine reads, from .skilled-overlays.json or the default skilled-overlays/]
 Will apply: [one line per overlay-edited line the report printed, in its order]
 Checks that failed: [one line per MISS line, or none]
+Stale root files: [one line per STALE line with its fix, or none. An apply does not clear these]
 Then: the manifest's regenerate steps run, then its verify steps
 Lock: the engine holds [overlay folder]/.build-lock for the whole run
 
@@ -174,6 +175,8 @@ Apply these overlays now? [yes/no]
 ```
 
 The report on screen is the report the question covers. The engine classifies every destination again under its own lock before the first write. A destination that became a conflict since the report makes the engine refuse, and in that case it writes nothing.
+
+A `STALE` line does not stop the apply, and no apply clears it. The plan carries the line, says it stays after the write, and names the fix: rebase that overlay onto the new upstream bytes, then set its `pinnedSha256` to theirs. The status re-read after the write still fails on it.
 
 ### When The Run Asks Nothing
 
@@ -299,7 +302,7 @@ The engine prints one `refuse:` line and exits 2. Nothing was written.
 | Two copies belong at one path, or one copy is claimed by two fields | Settle the manifest so one copy owns one path, then rerun |
 | A field or a link no longer holds the path the run planned against | Nothing moved. The manifest changed under the run, or two entries claim one copy. Fix the field or the link the `refuse:` line names, then rerun |
 | Two copies sit one inside the other | Move the outer copy in its own run, then the inner one |
-| The overlay lock is held | Wait for the other run to end, then remove the lock file the message names by hand. A lock whose owner has ended is taken over by the next run with a `note:` line instead of refused |
+| The overlay lock is held | Wait for the other run to end, then remove the lock file the message names by hand. A lock whose owner has ended on this host is taken over by the next run, which prints a `note:` line, so this row covers a live owner, another host or a line with no pid |
 
 ## 8. Repin Plan and Approval
 

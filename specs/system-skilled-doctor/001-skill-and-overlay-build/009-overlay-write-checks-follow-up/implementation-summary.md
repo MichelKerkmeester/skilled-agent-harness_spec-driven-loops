@@ -58,7 +58,7 @@ A five-iteration deep review then found three P1 defects, all in `apply --relayo
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/commands/doctor/scripts/overlay-engine.cjs` | Modified | Lock takeover, link and item records, glob, excluded paths, content compare, status lines, relayout and audit |
-| `.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs` | Created | 35 tests for the engine fixes and the new behaviour |
+| `.skilled/commands/doctor/scripts/tests/overlay-engine-follow-up.test.cjs` | Created | 38 tests for the engine fixes and the new behaviour |
 | `.skilled/commands/doctor/scripts/tests/overlay-engine-strict-writes.test.cjs` | Modified | Seven more tests: glob, excluded path, line endings and the four untested groups |
 | `.skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs`, `overlay-engine-repin.test.cjs`, `doctor-overlay-contract.test.cjs` | Modified | Assertions that named the old lock line, state shape or flag list |
 | `.skilled/hooks/overlay-guard/opencode/`, `.opencode/plugins/overlay-guard.js` | Created | The OpenCode adapter and its mirror |
@@ -106,7 +106,7 @@ The review ran as a two-lineage fan-out of the `/deep:review` workflow: three De
 | Check | Result |
 |-------|--------|
 | `node --test tests/` in `.skilled/commands/doctor/scripts`, baseline | `tests 1100`, `pass 1100`, `fail 0` |
-| The same command after the last fix | `tests 1142`, `pass 1142`, `fail 0` |
+| The same command after the last fix | `tests 1145`, `pass 1145`, `fail 0` |
 | `node --test` over the `overlay-guard` test files | `pass 33`, `fail 0`. The baseline was 19 |
 | `route-validate.sh` | `OK: route-validate`, 31 routes |
 | `sync-runtime-mirrors.cjs --check` | `PASS: 256 mirrors across 10 trees are in sync` |
@@ -116,7 +116,7 @@ The review ran as a two-lineage fan-out of the `/deep:review` workflow: three De
 
 ### Review findings
 
-The ids are those of `review/review-report.md`. Each fix has a test in `tests/overlay-engine-follow-up.test.cjs`, and `node --test tests/overlay-engine-follow-up.test.cjs` prints `pass 35`, `fail 0`.
+The ids are those of `review/review-report.md`. Each fix has a test in `tests/overlay-engine-follow-up.test.cjs`, and `node --test tests/overlay-engine-follow-up.test.cjs` prints `pass 38`, `fail 0`.
 
 | Finding | Severity | Outcome | Proof |
 |---------|----------|---------|-------|
@@ -134,13 +134,13 @@ The review found no P0.
 
 ### Alignment findings
 
-`/local-skilled-alignment` ran three times with four DeepSeek lanes and a critic: over `790ced4732..dd58ccee3f`, `790ced4732..81513a220a` and `790ced4732..3edaf16efa`. Each run was followed by fixes. After the second and third runs a recheck ran, and a fresh Opus agent judged each finding the recheck could not judge.
+`/local-skilled-alignment` ran four times with four DeepSeek lanes and a critic: over `790ced4732..dd58ccee3f`, `790ced4732..81513a220a`, `790ced4732..3edaf16efa` and `790ced4732..a82b3eb780`. Each run was followed by fixes. After the second and third runs a recheck ran, and a fresh Opus agent judged each finding the recheck could not judge.
 
 | Finding | Severity | Outcome | Proof |
 |---------|----------|---------|-------|
 | Run 1: 18 lane findings, among them no patch tool test, no audit or stale root-file scenario, missing routing words, an audit that exits 2 on an unreadable pin and ten document lines | 9 P1, 9 P2 | Fixed in `81513a220a` | The second run's battery: `pass=75 fail=0`. The first run's six failed probes pass |
 | Run 2 A-1: the audit folded line endings and a re-pin does not | P1 | Fixed in `412bb9e456` | The test `status --audit lists an unowned vendored file whose line endings differ from the pin` |
-| Run 2 A-2: a stale root file under a `marked-section` overlay went unreported | P2 | Fixed | Two tests beside the root-file tests. `node --test tests/` prints `tests 1142`, `fail 0` |
+| Run 2 A-2: a stale root file under a `marked-section` overlay went unreported | P2 | Fixed | Two tests beside the root-file tests. `node --test tests/` prints `fail 0` |
 | Run 2 A-3: the OpenCode guard copies a log helper four other plugins also carry | P2 | Deferred | No behaviour is at risk, since each guard writes its own log. A shared helper under `.opencode/plugins/lib/` is the fix, and moving the other copies edits plugins outside this phase |
 | Run 2 B-001: the trigger index and its fixtures lacked three new documents | P1 | Closed by CI | The Trigger Index Rebuild workflow commits the index and its three fixture files after each push to `main` |
 | Run 2 C-01 to C-04, D-3, N-1: document lines and stale counts | 1 P1, 5 P2 | Fixed | The recheck lists the literal ones as resolved. The counts read 117 and 1,142 |
@@ -151,8 +151,14 @@ The review found no P0.
 | Run 3: seven document statements, among them a re-pin said to refuse every drifted path, a relayout said to stop on a `MISS` or `STALE` line and a lock said never to be cleared | P2 | Fixed | The verifier checked each against the engine and listed nine of ten findings as resolved |
 | Run 3: no scenario for the dropped appended item | P2 | Fixed | `validate-playbook-package.cjs` prints `PASS`, `scenarios=12` |
 | The verifier's three notes on the fix: an exit code claim for the apply after a relayout, the same lock sentence in the re-pin workflow and a router keyword | P2 | Fixed | `route-validate.sh` and the contract test pass |
+| Run 4: `apply --relayout` took the unchanged branch on a passing status and never asked | P1 | Fixed | The phase 2 branch of `doctor-overlay-apply.yaml` now excludes a relayout run. The contract test passes |
+| Run 4: the phrase `changed a root file` took a build question, and a pin question cleared the confidence bar | 1 P1, 1 P2 | Fixed | Seven out-of-domain prompts were replayed and none selects this skill |
+| Run 4: a dropped JSON item request missed the skill | P1 | Fixed | The fourth run's probe P04 passes |
+| Run 4: three relayout refusals had no test | P2 | Fixed | Three tests. `node --test tests/` prints `tests 1145`, `fail 0` |
+| Run 4: the order of `status` lines, a plain apply with only a `STALE` line and two refusal rows | P2 | Fixed | `route-validate.sh` and the contract test pass |
+| Run 4 probes P14 and P15 expect `sk-code` and `sk-git` | P1 | Not fixable here | This skill no longer takes either prompt. Neither target skill carries a signal for it, and that is their vocabulary to add |
 
-The last report of the alignment command is a battery over `790ced4732` to the last fix commit. It reports `findings=0`. No lane run followed the last fix. Each lane run so far raised new findings, so the closing evidence for lane findings is the recheck plus the verifier.
+The last report of the alignment command is a battery over `790ced4732` to the last fix commit. It reports `findings=0`. No lane run followed the last fix. Each of the four lane runs raised new findings after the fixes of the run before it, so no lane-based report with zero findings exists. The closing evidence for lane findings is the fixes, the recheck and the verifier.
 <!-- /ANCHOR:verification -->
 
 ---

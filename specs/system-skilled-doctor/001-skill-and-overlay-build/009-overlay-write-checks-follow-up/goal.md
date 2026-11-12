@@ -63,7 +63,7 @@ Frozen choices. Changing one is an amendment.
 - [x] Every task in `tasks.md` is `[x]`, and `node --test tests/` in `.skilled/commands/doctor/scripts` prints `fail 0`.
 - [x] The packet's `review/` folder holds 5 deep-review iteration records and a synthesis report written by a fresh Opus agent at high effort.
 - [x] Every P0 and P1 finding in that report is listed in `implementation-summary.md` as fixed, with the command that proves it, or as rejected, with the evidence against it.
-- [x] The `/local-skilled-alignment` findings report for this work, run after the last fix, lists 0 open findings.
+- [ ] The `/local-skilled-alignment` findings report for this work, run after the last fix, lists 0 open findings.
 - [x] `validate.sh --strict` prints `RESULT: PASSED` for this packet and for `specs/system-skilled-doctor/001-skill-and-overlay-build`.
 - [x] `.skilled/changelog/skilled/v4.0.2.1.md` names this work and passes `check_changelog_shape.py`. On origin, tag `v4.0.2.1` and `main` name the same commit, and the published release body equals the output of `build_release_notes.py` for that entry.
 <!-- /ANCHOR:completion -->
@@ -89,7 +89,7 @@ and findings belong here.
 | Deep review, 5 iterations | Done | `review/lineages/deepseek/iterations` holds 3 records and `review/lineages/opus/iterations` holds 2 |
 | Opus synthesis | Done | `review/review-report.md`: CONDITIONAL, 0 P0, 3 P1, 9 P2 |
 | Remediation | Done | Six briefs. `node --test tests/` printed 1136 passed and 0 failed |
-| Alignment | Done | Three full runs, each followed by fixes, a recheck and a verifier, then a final battery with `findings=0`. `implementation-summary.md` lists each finding. `node --test tests/` printed 1142 passed and 0 failed |
+| Alignment | Stopped under D1 | Four full runs, each followed by fixes. Every run found new defects after the fixes of the run before it. The last report is a battery with `findings=0`. No lane run has reported zero findings. `implementation-summary.md` lists each finding. `node --test tests/` printed 1142 passed and 0 failed |
 | Changelog | Done | `check_changelog_shape.py` printed `PASS` for the entry and for the v1.1.6.0 note |
 
 ### Deviations and findings
@@ -106,6 +106,8 @@ and findings belong here.
 | The alignment critic of the first run timed out | The second run's critic had a longer limit and finished. |
 | One sentence of the v1.1.6.0 note was edited by the orchestrating session | The agent wrote that a project ran the engine for a week. Nothing supports that, so the sentence was replaced. |
 | Pushes of `7682384a0c` and of the last commit used the same override | Same cause. The other session's `system-deep-loop` and `system-spec-kit` routing files were the only difference. |
+| The alignment loop was stopped after four rounds | D1 names a gate that still fails after three fixes as a stop. The fifth criterion stays open: the battery report lists 0 findings, and no lane report does. The operator decides whether to run more rounds. |
+| The tag moved a third time | The fourth round's fixes moved `main` again. The earlier tag objects are under `refs/backup-tags/`. |
 | The tag moved twice | The first republish sat on `3edaf16efa`. A third alignment run then found ten more findings, and their fixes moved `main`. The tag was republished once more on the last commit, with the earlier tag object kept under `refs/backup-tags/`. D2 approved one republish. |
 | The criteria are ticked in the commit the tag names | A commit cannot hold the proof of its own tag or of a check run on it. Each was checked right after the push. |
 | `sk-git/graph-metadata.json` changed, outside the planned scope | One intent signal. Without it the overlay vocabulary takes a plain upstream question from `sk-git`. |
