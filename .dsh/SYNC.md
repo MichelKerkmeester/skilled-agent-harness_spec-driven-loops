@@ -36,7 +36,7 @@ This folder holds the `--patch` layers the repository owns. Model selection belo
 
 ### Repo-guards adapters
 
-The bundle registers twenty-two adapters. `.dsh/plugins/repo-guards/README.md` section 4 owns the full table with each adapter's event, scope, leaf behavior and error policy. The real adapters live in the hook library, `.skilled/hooks/<concern>/dsh/` or the owning skill's `hooks/dsh/` folder, and `adapters/` holds one relative link per adapter, the layout `.pi/extensions/` uses.
+The bundle registers twenty-two adapters. `.dsh/plugins/repo-guards/README.md` section 4 owns the full table with each adapter's event, scope, leaf behavior and error policy. The real adapters live in the hook library, `.skilled/hooks/<concern>/dsh/` or the owning skill's `hooks/dsh/` folder, and `adapters/` holds one relative link per adapter, unlike `.pi/extensions/`, which holds one-line re-export files.
 
 | Adapter group | Adapters | Fan-out leaf |
 |---|---|---|

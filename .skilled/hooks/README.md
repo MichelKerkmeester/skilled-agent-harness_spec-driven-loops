@@ -268,7 +268,7 @@ node --test .skilled/hooks/shared/hook-adapter-shared.test.cjs .skilled/hooks/sh
 # dispatch-audit is a vitest suite and cannot run under node --test
 .skilled/node_modules/.bin/vitest run --root .skilled/hooks/dispatch/lib dispatch-audit.test.mjs
 
-# The dispatch adapter suites are vitest files; the hooks config's alias serves the long specifiers a few Pi adapters keep, left from the link-based layout; they resolve only through the test alias
+# The dispatch adapter suites are vitest files; the hooks config's alias serves the literal long specifiers a few Pi adapters keep, left from the link-based layout; they resolve only through the test alias
 .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/dispatch/pi/directive-dedup.test.ts
 ```
 
