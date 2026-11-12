@@ -34,7 +34,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -178,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,11 +194,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Test Cycle Speed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A red check that a rerun turns green costs the operator a second wait of several minutes",
     "created_at": "2026-11-12T20:58:30Z",
-    "last_save_at": "2026-11-12T21:15:47.316Z",
+    "last_save_at": "2026-11-12T21:28:13.840Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:08102a9674e7fe9a053a5de07ea5b902988c4cec5f4e11bb083459dc144da7a5",
+    "source_fingerprint": "sha256:267248be0dabaf546810d15705e33e8c52b6257df9a008f2dba3519a359e21b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ead74942c6940fe71c1f7162ee9216599b6795e74ac5589ecc7e28ced24780d2",
-      "plan.md": "6b85a630c3dd9378a5d8e2d06c5c57512b8bb33b8991c30a384468c83400eba0",
-      "tasks.md": "6374506070f2160c0698ea0aabc87b2585c85b4a76e862b6c489f055913adcfb",
-      "implementation-summary.md": "c6f0b5ee7347d0a6ac062e1c525310c5bc322cd1d9e77b230c4586f1d09001d6"
+      "spec.md": "43c83b6da380f94b60eccd19c447dcb5c62fe3641efaf3cf57203ab0d72c52ea",
+      "plan.md": "b6e5901b15342f62378d3dff08781c953a2c3cf5c18ed1e88ba64e65bafba8be",
+      "tasks.md": "a54cc286208981a5892abe965bd36c902cbff27cf7ad9c6058a2d4af90842246",
+      "implementation-summary.md": "353ce124ceb5df81adf06017846c43aa0db051b1d0bf9c3f0076c476a9094c56"
     },
     "last_active_at": null
   }

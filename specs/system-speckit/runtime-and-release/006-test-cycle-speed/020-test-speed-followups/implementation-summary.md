@@ -8,27 +8,27 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups"
-    last_updated_at: "2026-11-12T21:15:47Z"
+    last_updated_at: "2026-11-12T21:28:13Z"
     last_updated_by: "generate-context"
-    recent_action: "Built and locally proved the three test speed followups"
-    next_safe_action: "Verify the pull request checks pass, then close the phase"
+    recent_action: "Proved the three test speed followups on pull request 101 and closed the phase"
+    next_safe_action: "Verify the install retry on the next runner install failure"
     blockers: []
     key_files:
       - ".github/scripts/npm-ci-retry.sh"
       - ".github/workflows/spec-kit-check.yml"
       - ".github/workflows/advisory-checks.yml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:9d1b10009f2eee5138b63a723b41a799e5206861ae882027fd06a80379e5fc2f"
       session_id: "scaffold-020-test-speed-followups"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "af05cd33-c1ff-46c9-825e-70281e3ca6f1"
       workspace: "/Users/michelkerkmeester/worktrees/public/357-test-speed-followups"
-      savedAt: "2026-11-12T21:15:47Z"
+      savedAt: "2026-11-12T21:28:13Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 020-test-speed-followups |
-| **Completed** | Not yet: the pull request checks are still to be read |
+| **Completed** | 2026-11-12 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -120,6 +120,7 @@ The cause of each failure was read before any change: the failed run's log, the 
 | `dist-freshness.vitest.ts` and `hf-local-client.vitest.ts` | 2 files, 38 tests passed |
 | `inline-gate-renderer` in the CLI project | 2 files, 26 tests passed |
 | Temp folder prefixes of the patched files | 5,193 before and 5,193 after the sk-git and core files. 404 before and 404 after the CLI file. 579 before and 579 after the deep-loop file |
+| Pull request 101 | 39 checks pass, 0 fail, 2 Dependabot jobs skip. The blocking `gate-critical` job passed in 1m59s with 13 suites |
 | Deep-loop `npm test` from the final state of the fan-out change | Exit 0 in 224 s. 173 files, 2,885 tests passed, 8 skipped |
 <!-- /ANCHOR:verification -->
 
