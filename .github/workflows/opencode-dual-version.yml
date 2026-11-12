@@ -114,8 +114,11 @@ jobs:
       # Some of the trigger paths are unit tests, and a trigger path no step runs
       # starts the workflow without checking the change that started it. They read
       # fixtures, the repository's own config and the skill's documentation, never
-      # an installed binary, so they run before either family is installed.
+      # an installed binary, so they run before either family is installed. Neither
+      # the fixtures nor the repository files vary by family, so one execution in
+      # the v1 entry covers both; renaming that entry would silence these tests.
       - name: Run the config-shape, battery and cli-opencode doc unit tests
+        if: matrix.family == 'v1'
         run: |
           set -euo pipefail
           node --test \

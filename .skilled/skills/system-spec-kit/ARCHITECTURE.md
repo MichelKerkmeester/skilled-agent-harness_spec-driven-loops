@@ -8,7 +8,7 @@ trigger_phrases:
   - "resume ladder"
   - "spec-kit runtime subsystems"
 importance_tier: "important"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Architecture: system-spec-kit
@@ -85,7 +85,7 @@ system-spec-kit/
 │   ├── hooks/              # Per-runtime hook adapters
 │   │   └── lib/            # Spec-gate core and completion-evidence sentinel
 │   ├── lib/                # Validation, graph metadata, description, continuity, resume
-│   ├── scripts/            # Build finalizer and sharded test runners
+│   ├── scripts/            # Build finalizer and bounded test runner
 │   ├── tests/              # Vitest suites, plus node:test hook suites in tests/hooks/
 │   └── stress-test/        # Opt-in load and contention suites
 ├── shared/                 # Neutral modules importable by the CLI and the engine
