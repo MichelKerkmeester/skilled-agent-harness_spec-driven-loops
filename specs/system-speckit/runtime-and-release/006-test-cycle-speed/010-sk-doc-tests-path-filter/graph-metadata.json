@@ -39,8 +39,9 @@
       "tasks.md",
       "implementation-summary.md",
       ".github/workflows/sk-doc-script-tests.yml",
-      ".opencode/skills/sk-doc/scripts/tests/run-script-tests.sh",
-      ".github/workflows/README.md"
+      ".github/workflows/sk-doc-script-tests-filtered.yml",
+      ".github/workflows/README.md",
+      ".opencode/skills/sk-doc/scripts/tests/run-script-tests.sh"
     ],
     "entities": [
       {
@@ -74,15 +75,21 @@
         "source": "derived"
       },
       {
-        "name": "run-script-tests.sh",
-        "kind": "script",
-        "path": ".opencode/skills/sk-doc/scripts/tests/run-script-tests.sh",
+        "name": "sk-doc-script-tests-filtered.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-doc-script-tests-filtered.yml",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
         "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-script-tests.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-doc/scripts/tests/run-script-tests.sh",
         "source": "derived"
       },
       {
@@ -180,17 +187,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.github/workflows/sk-doc-script-tests.yml` has no `paths:` filter, so its script-test step runs on every push",
     "created_at": "2026-11-12T08:21:57Z",
-    "last_save_at": "2026-11-12T08:57:51.513Z",
+    "last_save_at": "2026-11-12T13:19:15.596Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:941fdb3ebc6033899dbbb0bfbfd4ea66443e80b4c37ab89d8980ec5500e32d79",
+    "source_fingerprint": "sha256:b2c8d26b435cb787ab787b37f2b056a49bc64245c89d3448f1068ed392b2ac81",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4767555e40a3644f4117107169f81ac2b21e7c8be8dbbd7cdebffc03deb1be78",
       "plan.md": "f594a20a01431d00d8ee44b6f064f861690fe5d1bdef6cffbeb907c1bd15aae4",
-      "tasks.md": "c31ecbce2a85456af5013f1c342f378c11a37863da7e06a3a46dc56396ad47e5",
-      "implementation-summary.md": "b85aef9bef9e492239cdecbf0aae9d543d6195b58ed6a0371ac823502ce8e31f"
+      "tasks.md": "a9eb222534449756c8d0db1e7b44afdcd1a36aa6ed67e654f9597a2c1ad6ca33",
+      "implementation-summary.md": "d67ec8f7c1c19160ec01792a89d09118e2521eeecc2db1e987053cf8d8bad6e7"
     },
     "last_active_at": null
   }
