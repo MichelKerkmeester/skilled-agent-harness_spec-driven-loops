@@ -1,0 +1,23 @@
+Done — one file written, all verifies run from the repository root.
+
+## File written
+`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs` (+279 / −4; no other file touched — `git status` shows my only modification is this one, the rest were pre-existing from other workers)
+
+- **Constants:** `COMMANDS_ROOT` (and `DOCTOR_COMMANDS_DIR` now derives from it, same value), `MUTATING_CLASSES`, `ASK_FIRST_REASONS`, `WRITE_SCOPES`.
+- **New functions**, all inserted in the helpers section before section 4 and all exported beside `metadataEntries`: `commandTreeNames`, `validateRiskKeys`, `derivePolicy`, `metadataRiskRecords`, `doctorRiskRecords`, `identityViolations`, `commandPolicies`.
+- **`main()`:** identity check with the legacy-allow-list one-liner comment, throw on mismatch; allow-list command filter (`allowListCommands` → `bridgedMetadata`) before the inventory with the two-id comment, and `counts.commandMetadata: bridgedMetadata.length`; `commandPolicies: commandPolicies()` added as the last `projection` key after `entries`.
+- Comments explain the why only; grep for `specs/`, `ADR-`, `REQ-`, `CHK-`, task ids returns no hits.
+
+## Verify output
+```
+node --check …/derive-command-bridges.cjs            → exit 0 ("syntax OK")
+derivePolicy five-case probe                          → run start ask ask run
+commandTreeNames().length                             → 44
+```
+
+`node … --check` → **`"status": "stale"`, exit 1** (no inventory mismatch). `--check` must not write, so stale is the expected outcome here; the changed set is `command-bridges.generated.json`, `projection.ts`, `skill_advisor.py`. No mismatch was raised, so `/prompt:improve` and the `/speckit:*` metadata already exist on disk in this checkout.
+
+## Notes / what I could not do
+- The allow-list filter drops **10** metadata entries (33 raw metadata rows → 23 bridged), so `generated` is 66 (23 + 8 + 35) and the projection merge is materially smaller than before. That is what change (b) asks for; `assertUniqueIds` and the identity check both pass on the result.
+- Extra self-checks run: 68 policy records (`start` 23 / `ask` 25 / `run` 20), each `validateRiskKeys` branch throws with the label plus the bad value, and `identityViolations` reports only the expected declared-but-fileless direction for an injected sample.
+- Not done (out of my authority): regenerating the three generated artifacts, committing, staging or any git state change.

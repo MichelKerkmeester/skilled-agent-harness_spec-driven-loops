@@ -1,0 +1,29 @@
+Done. One file changed, both verifications pass.
+
+## File written
+`.skilled/skills/system-deep-loop/command-metadata.json` — 3 entries, each gained three keys directly after `argumentHint`:
+
+| command | mutating | gate3_location | ask_first |
+|---|---|---|---|
+| `/deep:research` | `"mutates"` | `"research artifacts under the resolved spec folder, written by the workflow YAML"` (12 words) | `["spend"]` |
+| `/deep:review` | `"mutates"` | `"a review packet under the resolved spec folder's review/ directory"` (10 words) | `["spend"]` |
+| `/deep:ai-council` | `"mutates"` | `"packet-local ai-council/ artifacts under the resolved spec folder"` (8 words) | `["spend"]` |
+
+Phrases grounded in each command file's first 40 lines: research cites `spec_folder` + "artifact-writing behavior … owned by the workflow YAML assets"; review cites the `review/` archive path; ai-council cites the PLANNING BOUNDARY line "writes packet-local `ai-council/**` artifacts only".
+
+## Verify output
+```
+VERIFY 1: 3                       (required: 3)
+VERIFY 2: 1 file changed, 15 insertions(+)    (required: insertions only, 0 deletions)
+json: valid; EOF = 5d0a ("]" + single newline); no reordering, no other key
+```
+Also `git diff` on the file confirms the 3 hunks are pure additions at the three `argumentHint` lines.
+
+No other file was modified by me — the other dirty paths in `git status` are sibling workers' work in this worktree.
+
+## Notes / deviations
+- **Formatting:** `ask_first` is rendered as a 3-line array (`["spend"]` spread over `[` / `"spend"` / `]`) rather than inline, matching the file's existing 2-space multi-line array style (`ownedSignals`, `choreography`). Same value, valid JSON.
+- **`/deep:agent` in the brief:** no such entry or command file exists — the array has exactly 3 entries and `.skilled/commands/deep/` holds only `research.md`, `review.md`, `ai-council.md`. Nothing added.
+- **Contract test (honest status, not a blocker):** `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs` **fails** at `testForbiddenFilesAreRejectedPerClass` (expected `['FORBIDDEN_FILE']`, got `[]`). I confirmed this is **pre-existing** by running the same test against the `HEAD` content of my file (temporarily swapped, then restored and re-verified `3`). Unrelated to this edit; the core schema in `command-metadata-schema.cjs` documents that unknown entry fields are "deliberately legal", so the added keys cannot trip it.
+- **Not done (out of scope per brief):** no commit, no git state change, no other file touched.
+

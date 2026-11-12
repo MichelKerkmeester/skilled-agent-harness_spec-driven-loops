@@ -163,8 +163,11 @@ describe('command-bridges drift guard', () => {
   it('generated projection exactly equals JSON-derived ids union the residual allow-list and the doctor routes', () => {
     const generated = JSON.parse(readFileSync(GENERATED_PATH, 'utf8')) as CommandBridgeDump;
     const allowList = JSON.parse(readFileSync(ALLOW_LIST_PATH, 'utf8')) as readonly AllowListEntry[];
+    // A command the allow-list already carries keeps that row's id, so its
+    // metadata entry adds no second bridge for the same command.
+    const allowListCommands = new Set(allowList.map((entry) => entry.command));
     const expected = sorted([
-      ...metadataProjection(),
+      ...metadataProjection().filter((entry) => !allowListCommands.has(entry.command)),
       ...allowList.map(({ reason: _reason, ...entry }) => ({
         ...entry,
         source: 'scripts/command-bridges/allow-list.json',

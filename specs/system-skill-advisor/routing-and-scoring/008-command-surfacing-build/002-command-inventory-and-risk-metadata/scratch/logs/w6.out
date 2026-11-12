@@ -1,0 +1,16 @@
+**File written:** `.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` — only `checkCommandMetadata(skillDir)`, its JSDoc and its inline comment.
+
+What changed:
+- Branch on `fs.existsSync(path.join(skillDir, 'mode-registry.json'))`.
+- **Registry present:** unchanged behaviour — parse `modes[].workflowMode`, and the same `catch` that leaves `registryModes` empty for a broken registry.
+- **Registry absent:** `registryModes = [path.basename(skillDir)]`, so every entry's `ownerMode` must equal the skill's own id.
+- JSDoc now says why the owner set follows the root's shape (a standalone root has no registry mode to bind to, so the skill itself is the only coherent owner); the inline comment states the same durable reason. No spec paths, tickets or task ids in either.
+
+**Verify output:**
+- `node --check …ci-skill-root-metadata.cjs` → `check_exit=0`
+- `node …ci-skill-root-metadata.cjs | tail -1` → `checked=14 passed=14 failed=0 fixed=0`, gate exit 0 (identical to the pre-edit baseline I captured before changing anything)
+
+**Not done / worth flagging (no action taken, out of the one-file brief):**
+1. `checkCommandMetadata` is still called only for `evaluation.skillClass === CLASS_HUB` in `checkRoot`, so the new standalone rule is inert until a caller passes a standalone root — I changed nothing outside the named function.
+2. The schema message in `lib/command-metadata-schema.cjs` still reads "is not a workflowMode in mode-registry.json", which will be slightly misleading for a standalone root. Untouched per scope.
+3. Other dirty files in `git status` were already there from other workers; my diff is confined to the one file.

@@ -1,0 +1,41 @@
+Done. Edited exactly one file.
+
+**File written:** `.skilled/skills/sk-doc/command-metadata.json`
+
+Added to all 13 entries, immediately after `argumentHint` (4-space indent, no reordering):
+
+| command | gate3_location |
+|---|---|
+| `/create:skill` | a new or updated OpenCode skill package at --path or the path setup resolves |
+| `/create:skill-parent` | a parent skill hub with nested mode packets, one graph-metadata.json, at the resolved --path |
+| `/create:readme` | a README file in the target folder, or at the --output path |
+| `/create:agent` | a new agent file under .skilled/agents/ and its runtime mirrors |
+| `/create:command` | a slash command file plus its auto and confirm workflow YAML assets |
+| `/create:feature-catalog` | a feature catalog package with per-feature docs at --path or the resolved location |
+| `/create:manual-testing-playbook` | a manual testing playbook package with scenario and evidence docs at the resolved --path |
+| `/create:benchmark` | family-keyed benchmark artifacts and fixtures at --path or the family's resolved location |
+| `/create:changelog` | a changelog entry under .skilled/changelog/ |
+| `/create:diff` | a self-contained HTML diff report at the --report path the user names |
+| `/create:repo-rule` | a rule file under repo-rules/, wired into that repository's REPO RULES.md |
+| `/create:with-human-voice` | the target file rewritten in place by apply; score writes no file |
+| `/create:goal` | a goal.md inside the spec packet the user names |
+
+Every `"mutating": "mutates"`. All phrases < 25 words, sourced from the first 40 lines of each `.skilled/commands/create/<name>.md`.
+
+**Verify output**
+```
+$ jq '[.[] | select(.mutating == "mutates" and (.gate3_location | type == "string"))] | length' .skilled/skills/sk-doc/command-metadata.json
+13
+$ git diff --stat .skilled/skills/sk-doc/command-metadata.json
+ .skilled/skills/sk-doc/command-metadata.json | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+$ git diff --numstat ...
+26	0	.skilled/skills/sk-doc/command-metadata.json
+```
+Also confirmed: `jq 'length'` → 13 entries, JSON parses; `git diff -U1` hunks put both new keys between `argumentHint` and `userIntent`; trailing bytes `0a5d` (`\n]`) identical to HEAD, so the file ending is unchanged.
+
+**Notes / limits**
+- `--delta` no deletions: satisfied (0 deletions).
+- I did not touch the other dirty paths in `git status` (`sk-design`/`system-deep-loop` command-metadata, the `007-...` research tree, etc.) — they were already modified/untracked from other work, not by me.
+- `git status` does show `M .skilled/skills/sk-doc/command-metadata.json` only for my scope; no commit, push, or other git state touched.
+- For `/create:with-human-voice` I stated the `apply`-rewrites-in-place fact rather than a single artifact path, because that command's only durable write target is the user-named file and `score` writes nothing.

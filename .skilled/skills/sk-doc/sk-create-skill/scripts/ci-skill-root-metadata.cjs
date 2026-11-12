@@ -464,10 +464,16 @@ function checkDerivedAliases(skillDir, presence, manifestBytes, fix) {
 }
 
 /**
- * Validate a hub's command-metadata.json against the core schema, resolving
+ * Validate a root's command-metadata.json against the core schema, resolving
  * choreography resources and command definition files on disk. Skipped when
  * the file is absent (presence is already the class contract's finding) or
  * unparseable (reported as one malformed-JSON violation instead).
+ *
+ * The set of legal owner modes comes from the root's own shape. A hub binds
+ * each command to a workflow mode its registry declares. A standalone root has
+ * no registry mode to bind a command to, so the only coherent owner is the
+ * skill itself, and its own id becomes the one legal ownerMode — which keeps a
+ * foreign mode a finding instead of a check no entry could ever satisfy.
  */
 function checkCommandMetadata(skillDir) {
   const skillsDir = path.dirname(skillDir);
@@ -486,12 +492,18 @@ function checkCommandMetadata(skillDir) {
   }
 
   let registryModes = [];
-  try {
-    const registry = JSON.parse(fs.readFileSync(path.join(skillDir, 'mode-registry.json'), 'utf8'));
-    registryModes = (registry.modes || []).map((m) => m && m.workflowMode).filter(Boolean);
-  } catch {
-    // A missing/broken registry is already an unclassifiable or missing-file
-    // finding elsewhere; command validation proceeds with owner checks moot.
+  // A standalone root ships no mode registry, so no registry mode can own its
+  // commands: the skill's own id is the only owner a command there can name.
+  if (fs.existsSync(path.join(skillDir, 'mode-registry.json'))) {
+    try {
+      const registry = JSON.parse(fs.readFileSync(path.join(skillDir, 'mode-registry.json'), 'utf8'));
+      registryModes = (registry.modes || []).map((m) => m && m.workflowMode).filter(Boolean);
+    } catch {
+      // A broken registry is already a class-contract finding elsewhere;
+      // command validation proceeds with the owner check moot.
+    }
+  } else {
+    registryModes = [path.basename(skillDir)];
   }
 
   const repoRoot = path.dirname(path.dirname(skillsDir));

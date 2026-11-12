@@ -83,6 +83,35 @@ node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive
 
 ---
 
-## 7. RELATED
+## 7. RISK KEYS AND COMMAND POLICY
+
+The command tree `.skilled/commands/<namespace>/<name>.md` owns which commands exist. The deriver fails when a command file has no `command-metadata.json` entry and no doctor route. It fails again when a declaration names a command with no file. Allow-list rows sit outside this check.
+
+A `command-metadata.json` entry and a doctor route or action carry the same risk keys. A value outside the accepted set fails the deriver before any policy is derived.
+
+| Risk key | Accepted values | Applies to |
+|---|---|---|
+| `mutating` | `read-only`, `add-only`, `mutates` | Every metadata entry and every doctor route or action |
+| `gate3_location` | A non-empty string naming what the command writes | Required on every metadata entry |
+| `ask_first` | `settings`, `outside-repo`, `spend`, `relaunch` | Optional on both records |
+| `write_scope` | `spec-folder` | Optional on both records |
+
+`derivePolicy` reads those keys in order and stops at the first match.
+
+| Step | Condition | Policy |
+|---|---|---|
+| 1 | `ask_first` lists at least one reason | `ask` |
+| 2 | A doctor route or action classed `mutates` | `ask` |
+| 3 | `mutating` is `read-only` | `run` |
+| 4 | `mutating` is `add-only` with `write_scope` set to `spec-folder` | `run` |
+| 5 | Any other record | `start` |
+
+`commandPolicies` in `command-bridges.generated.json` holds one record per command, or one record per route or action for a doctor command. Each record carries five keys: `command`, `route`, `mutating`, `askFirst`, `policy`. Nothing scores on it yet.
+
+A metadata entry for a command that an allow-list row already carries adds no second bridge entry. The deriver keeps the allow-list row and drops the metadata entry, so one command keeps one id.
+
+---
+
+## 8. RELATED
 
 - [`Skill-advisor scripts`](../README.md)

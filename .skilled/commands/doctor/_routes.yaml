@@ -39,6 +39,7 @@
 #   allowed_flags:    list   — per-target flag schema (target-first parsing)
 #   mutating:         enum   — read-only | add-only | mutates
 #   gate3_location:   string — concrete mutation target (or "n/a" for read-only)
+#   write_scope:      enum   — optional; spec-folder marks an add-only route whose every write lands in the bound spec folder
 #   mcp_tools:        list   — subset of router's frontmatter allowed-tools union
 #   trigger_phrases:  list   — diagnostic routing phrases for this target, three or
 #                              more words each; the bridge deriver copies them
@@ -67,6 +68,7 @@ routes:
     setup_vars: [execution_mode, intent]
     allowed_flags: []
     mutating: add-only
+    write_scope: spec-folder
     gate3_location: "<packet_scratch>/doctor-speckit-retrieval-report.<timestamp>.md + <packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json + <packet_scratch>/doctor-speckit-retrieval-moved.<timestamp>.txt"
     mcp_tools: []   # file-and-script diagnostic; no MCP calls and no background service
     script_invocations:
@@ -88,6 +90,7 @@ routes:
     setup_vars: [execution_mode, intent, scope]
     allowed_flags: ["--scope=research|review|council|both|all"]
     mutating: add-only
+    write_scope: spec-folder
     gate3_location: "<active-spec-folder>/scratch/doctor-deep-loop-state.<timestamp>.json"
     mcp_tools: []
     script_invocations:
@@ -774,6 +777,13 @@ standalone:
     file: .skilled/commands/doctor/env.md
     yaml: doctor-env.yaml
     mutating: mutates
+    actions:
+      list:
+        yaml: doctor-env.yaml
+        mutating: read-only
+      select:
+        yaml: doctor-env.yaml
+        mutating: mutates
     # With no selector the router stops at a menu, so the runnable form names `list`.
     runnable: /doctor:env list
     trigger_phrases:

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/002-command-inventory-and-risk-metadata",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/002-command-inventory-and-risk-metadata",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command inventory and risk metadata",
+      "phase 2 command inventory and risk metadata",
+      "command risk class",
+      "derived command policy",
+      "command inventory and risk metadata plan",
+      "command inventory and risk metadata tasks",
+      "command inventory and risk metadata acceptance criteria",
+      "command inventory and risk metadata implementation summary"
+    ],
+    "key_topics": [
+      "command",
+      "inventory",
+      "risk",
+      "metadata",
+      "phase",
+      "class",
+      "derived",
+      "policy",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+      ".skilled/skills/sk-doc/command-metadata.json",
+      ".skilled/skills/system-spec-kit/command-metadata.json",
+      ".skilled/skills/sk-prompt/command-metadata.json",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-policy-derivation.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-metadata-e2e.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json",
+      ".skilled/skills/sk-design/command-metadata.json",
+      ".skilled/skills/system-deep-loop/command-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "derive-command-bridges.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridges.generated.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "source": "derived"
+      },
+      {
+        "name": "projection.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-policy-derivation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-policy-derivation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata-e2e.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-metadata-e2e.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-routing-baseline.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deriver builds its inventory from `command-metadata.json` files, an allow-list and the doctor manifest, and it never reads `.skilled/commands/`",
+    "created_at": "2026-11-12T12:27:34Z",
+    "last_save_at": "2026-11-12T14:49:13.615Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1e6307879870855fe07f1f01e7abf630120c95109be4000cc0a1068064a079c7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9effc2bf7d59b7bed4b4946e2e81d35385b8a9e4c3bf2d73091dc4d507925776",
+      "plan.md": "e844192f6c7823f1baca5989e4cd3226aef93ed7eab9d15e73bf022df31a9c10",
+      "tasks.md": "1f7db29cfa04765ac945347a6d14b32df67a31bf93178fc65a8e1d4d90049e6c",
+      "implementation-summary.md": "6176db1bcc6232c6e569bda3e1cd490edf646b01ff557ae98172720583406368"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "command": "/prompt:improve",
+    "ownerMode": "sk-prompt",
+    "description": "Improve or create AI prompts via sk-prompt: one-pass checklist, CLEAR screening. Modes :auto, :confirm.",
+    "argumentHint": "<prompt_or_topic> [:auto|:confirm] [$text|$improve|$refine|$short|$json|$yaml|$raw] [--agent]",
+    "mutating": "mutates",
+    "gate3_location": "an optional prompt file saved into a spec folder's prompts/ directory",
+    "userIntent": {
+      "job": "I want my prompt or topic turned into a structured, checked AI prompt with a CLEAR screening.",
+      "ownedSignals": [
+        "/prompt:improve"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-prompt",
+        "resource": ".skilled/skills/sk-prompt/SKILL.md",
+        "action": "load the sk-prompt skill contract"
+      },
+      {
+        "order": 2,
+        "skill": "sk-prompt",
+        "resource": ".skilled/commands/prompt/assets/prompt_improve_presentation.txt",
+        "action": "load the presentation contract before showing any startup question, checkpoint or result"
+      },
+      {
+        "order": 3,
+        "skill": "sk-prompt",
+        "resource": ".skilled/commands/prompt/assets/prompt_improve_auto.yaml",
+        "action": "execute the auto workflow end to end on $ARGUMENTS"
+      },
+      {
+        "order": 4,
+        "skill": "sk-prompt",
+        "resource": ".skilled/commands/prompt/assets/prompt_improve_confirm.yaml",
+        "action": "execute the confirm workflow with its post-checklist, post-draft and post-screen pauses"
+      }
+    ]
+  }
+]

@@ -1,0 +1,23 @@
+Done.
+
+**File written (one, no others):** `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs`
+
+**Verify output:**
+```
+[sk-doc] skill-root-metadata contract + fleet gate coverage passed
+0
+```
+Baseline before my edit: exit 1, `AssertionError` at `testForbiddenFilesAreRejectedPerClass` (line 274 — the old-rule `['FORBIDDEN_FILE']` expectation).
+
+**The three changes:**
+1. `EXPECTED_CLASSES` — added `'system-skilled-doctor': contract.CLASS_STANDALONE,` between `system-skill-advisor` and `system-spec-kit`. Confirmed on disk that root carries `graph-metadata.json` and no `mode-registry.json`/`hub-router.json`, i.e. genuinely standalone, so `testFleetDiscoveryUsesTheAuthoredMarker` and `testEveryFleetRootMeetsItsClassShape` now agree with the fleet.
+2. Old-rule assertions inverted, two places (searched `command-metadata`; no others claimed the old rule):
+   - `testLegalFilesForClass` — standalone now asserts the file **is** legal, and the comment now says class policy rather than overlay, absence conformant / presence legal.
+   - `testForbiddenFilesAreRejectedPerClass` — the `standaloneWithCommands` case asserted `FORBIDDEN_FILE`; the same full-set presence map now asserts `[]`, with the comment explaining ownership falls to the skill id.
+3. New `testStandaloneCommandOwnersAreTheSkillItself()`, registered after `testGateRejectsNonDirectorySkillsDir()`. Builds a standalone root via `makeTmpSkillsDir`/`makeRoot` with no `mode-registry.json` plus a `command-metadata.json`, calls the gate's `checkCommandMetadata` directly (it **is** exported — no gate edit was needed), asserts zero owner findings for `ownerMode` equal to the folder name and exactly one for `ownerMode: "some-other-mode"`.
+
+**One detail that forced a literal deviation from the brief's wording:** `checkCommandMetadata` maps every finding through `` `COMMAND_METADATA_${v.code}` `` (`ci-skill-root-metadata.cjs:525-529`), so the code a caller actually sees is `COMMAND_METADATA_UNKNOWN_OWNER_MODE`, not `UNKNOWN_OWNER_MODE`. The test asserts the emitted code; a comment records why the prefix exists.
+
+**Non-vacuity check** (inline probe, no files created): own-owner run yields `["COMMAND_METADATA_COMMAND_FILE_MISSING","COMMAND_METADATA_CHOREOGRAPHY_RESOURCE_MISSING"]` (no owner finding), foreign-owner run adds exactly `COMMAND_METADATA_UNKNOWN_OWNER_MODE`. The two branches genuinely differ.
+
+I did not touch the gate, the contract lib, git state, or any other file — the other modified paths in `git status` were already dirty in this worktree from the wider change set.

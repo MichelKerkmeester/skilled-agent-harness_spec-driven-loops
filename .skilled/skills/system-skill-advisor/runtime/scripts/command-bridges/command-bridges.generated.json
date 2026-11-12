@@ -2,10 +2,10 @@
   "schemaVersion": 2,
   "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
   "counts": {
-    "commandMetadata": 19,
+    "commandMetadata": 23,
     "allowList": 8,
     "doctorRoutes": 35,
-    "generated": 62,
+    "generated": 66,
     "typescriptActive": 40,
     "pythonActive": 50
   },
@@ -1970,6 +1970,21 @@
       }
     },
     {
+      "id": "command-prompt-improve",
+      "command": "/prompt:improve",
+      "skillId": "sk-prompt",
+      "ownerMode": "sk-prompt",
+      "source": ".skilled/skills/sk-prompt/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
       "id": "command-prompt-improver",
       "command": "/prompt",
       "skillId": "sk-prompt",
@@ -2134,6 +2149,51 @@
       }
     },
     {
+      "id": "command-speckit-handoff",
+      "command": "/speckit:handoff",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/skills/system-spec-kit/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "id": "command-speckit-save",
+      "command": "/speckit:save",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/skills/system-spec-kit/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "id": "command-speckit-search",
+      "command": "/speckit:search",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/skills/system-spec-kit/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
       "id": "memory:save",
       "command": "/memory:save",
       "skillId": "system-spec-kit",
@@ -2168,6 +2228,495 @@
           "enabled": false
         }
       }
+    }
+  ],
+  "commandPolicies": [
+    {
+      "command": "/create:agent",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/create:benchmark",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/create:changelog",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/create:command",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/create:diff",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/create:feature-catalog",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/create:goal",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/create:manual-testing-playbook",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/create:readme",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/create:repo-rule",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/create:skill",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/create:skill-parent",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/create:with-human-voice",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/deep:ai-council",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [
+        "spend"
+      ],
+      "policy": "ask"
+    },
+    {
+      "command": "/deep:research",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [
+        "spend"
+      ],
+      "policy": "ask"
+    },
+    {
+      "command": "/deep:review",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [
+        "spend"
+      ],
+      "policy": "ask"
+    },
+    {
+      "command": "/design:chart",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/design:diagram",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/design:extract",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [
+        "settings",
+        "outside-repo"
+      ],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:agents-md",
+      "route": "check",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:agents-md",
+      "route": "embed",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:agents-md",
+      "route": "restore",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:ci",
+      "route": "report",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:ci",
+      "route": "scaffold",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:ci",
+      "route": "toggle",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:deep-loop",
+      "route": "deep-loop",
+      "mutating": "add-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:env",
+      "route": "list",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:env",
+      "route": "select",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:git",
+      "route": "hooks",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:git",
+      "route": "setup",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:git",
+      "route": "standards",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:helper",
+      "route": "helper",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:install",
+      "route": "guide",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:mcp",
+      "route": "debug",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:mcp",
+      "route": "install",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:overlay",
+      "route": "apply",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:overlay",
+      "route": "repin",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:overlay",
+      "route": "status",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:runtime-mirrors",
+      "route": "runtime-mirrors",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:setup",
+      "route": "setup",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:sk-code",
+      "route": "quality",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:sk-code",
+      "route": "setup",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:sk-skill",
+      "route": "check",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:sk-skill",
+      "route": "convert",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:skill-advisor",
+      "route": "parent-skill",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:skill-advisor",
+      "route": "rebuild",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:skill-advisor",
+      "route": "router-reach",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:skill-advisor",
+      "route": "skill-budget",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:skill-advisor",
+      "route": "skill-graph-freshness",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:skill-advisor",
+      "route": "tune",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:speckit",
+      "route": "speckit-retrieval",
+      "mutating": "add-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:symlink",
+      "route": "check",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:symlink",
+      "route": "link",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:symlink",
+      "route": "unlink",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:update",
+      "route": "align",
+      "mutating": "add-only",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/doctor:update",
+      "route": "apply",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:update",
+      "route": "check",
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
+    },
+    {
+      "command": "/doctor:update",
+      "route": "compat",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:update",
+      "route": "record-base",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:update",
+      "route": "rollback",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/prompt:improve",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/speckit:complete",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/speckit:handoff",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [
+        "relaunch"
+      ],
+      "policy": "ask"
+    },
+    {
+      "command": "/speckit:implement",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/speckit:plan",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/speckit:resume",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/speckit:save",
+      "route": null,
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "start"
+    },
+    {
+      "command": "/speckit:search",
+      "route": null,
+      "mutating": "read-only",
+      "askFirst": [],
+      "policy": "run"
     }
   ]
 }

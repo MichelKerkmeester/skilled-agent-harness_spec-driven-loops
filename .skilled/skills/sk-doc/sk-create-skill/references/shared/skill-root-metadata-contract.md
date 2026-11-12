@@ -8,7 +8,7 @@ trigger_phrases:
   - "hub versus standalone skill class"
 importance_tier: normal
 contextType: implementation
-version: 1.2.9.0
+version: 1.2.10.0
 ---
 
 # Skill Root Metadata Contract
@@ -71,7 +71,7 @@ Classification deliberately ignores every other file, including generated output
 | `leaf-scopes.json` | optional, authored | optional, authored | authored |
 | `leaf-manifest.json` | required | required | **generated** |
 | `leaf-aliases.json` | optional, authored | required, **generated** | see §4 |
-| `command-metadata.json` | optional, authored | **forbidden** | authored |
+| `command-metadata.json` | optional, authored | optional, authored (ownerMode = skill id) | authored |
 
 Forbidden is not stylistic. Each forbidden file would create a second source of truth for something the class already declares elsewhere: a hub carrying a standalone manifest config would hand the generator two competing inputs, and a standalone carrying registry, router, or description would claim a hub identity its packet layout cannot back.
 
@@ -79,13 +79,13 @@ Forbidden is not stylistic. Each forbidden file would create a second source of 
 
 No production consumer reads a skill-root `description.json`. The advisor ingests `graph-metadata.json` — that is what supplies identity, domains, intent signals, and typed edges to the skill graph. `description.json` exists for the hub doctor checks, which are hub-scoped. Adding one to a standalone root would produce prose nothing consults, so the contract forbids it rather than leaving it as a harmless option.
 
-### Why `command-metadata.json` is hub-optional
+### Why `command-metadata.json` is optional for both classes
 
-A command surface exists only for hubs that actually ship slash commands, so the file is **optional** for hubs: present (and validated) when the hub owns commands, simply absent when it owns none. Requiring it fleet-wide forced command-less hubs to carry an empty-array placeholder nothing reads, so the rule was reversed to optional — the authority is the class contract module (`scripts/lib/skill-root-metadata-contract.cjs`, where `command-metadata.json` sits in `OPTIONAL_BY_CLASS[CLASS_HUB]`, not the required set), and the metadata JSON unification change set established that standard.
+A command surface exists only for roots that actually ship slash commands, so the file is **optional** on both classes: present (and validated) when the root owns commands, simply absent when it owns none. Requiring it fleet-wide forced command-less roots to carry an empty-array placeholder nothing reads, so the rule was reversed to optional, and the authority is the class contract module (`scripts/lib/skill-root-metadata-contract.cjs`, where `command-metadata.json` sits in the optional set for each class, never in a required set).
 
-When present, the fleet gate validates each entry's core schema (`command`, `ownerMode`, `description`, `argumentHint`, `userIntent`, `choreography`) against the hub's own registry and the disk: owner modes must exist in `mode-registry.json`, choreography resources must resolve, the command's definition file must exist under `.skilled/commands/`, and owned routing signals must be unique across the file. Entries may carry hub-specific extension fields beyond the core (the design hub's register policies and task projections, for example); unknown fields are legal so richer per-hub validators can layer on top. The core schema lives in `scripts/lib/command-metadata-schema.cjs`.
+When present, the fleet gate validates each entry's core schema (`command`, `ownerMode`, `description`, `argumentHint`, `userIntent`, `choreography`) against the disk: choreography resources must resolve, the command's definition file must exist under `.skilled/commands/`, and owned routing signals must be unique across the file. On a hub the gate also binds each entry to the registry, so every `ownerMode` must name a mode that `mode-registry.json` declares. Entries may carry hub-specific extension fields beyond the core (the design hub's register policies and task projections, for example), and unknown fields are legal so richer per-hub validators can layer on top. The core schema lives in `scripts/lib/command-metadata-schema.cjs`.
 
-The file is forbidden on standalone roots: every entry binds a command to an `ownerMode` in a mode registry, and a standalone root has none.
+A root with no `mode-registry.json` has no registry mode to bind a command to, so the gate requires every entry's `ownerMode` to equal the skill's own id. Anything else names a mode the root never declares, and the gate reports it as a command metadata violation.
 
 ### Why `leaf-scopes.json` is optional for both classes
 
@@ -135,7 +135,7 @@ Beyond presence and forbidden files, the gate enforces:
 
 - **One advisor identity per root.** A nested `graph-metadata.json` or `description.json` below the root is rejected. Identity is discriminated by content (`skill_id` / `family` / `edges`), so a same-named continuity file is correctly ignored as a neighbour rather than a rival.
 - **Generated freshness.** Every class-required generated file is regenerated and byte-compared, including when the committed file is absent.
-- **Command-metadata core schema (hubs).** Entries are validated against the registry and the disk; violations surface as `COMMAND_METADATA_*` codes naming the offending command.
+- **Command-metadata core schema (both classes).** Entries are validated against the disk on every root that carries the file, and against `mode-registry.json` on a hub, where every `ownerMode` must name a declared mode. On a root without a registry the gate requires every `ownerMode` to equal the skill's own id. Violations surface as `COMMAND_METADATA_*` codes naming the offending command.
 - **Optional surface detection block.** `graph-metadata.json` may carry a `surface_detection` object. When the key is present, the value must be an object. It needs a non-blank `label` and a `role` of `specific`. It also needs at least one non-empty marker array among `pathMarkers`, `fileMarkers` and `contentMarkers`. Each marker array that is present must hold only non-blank strings. Every broken rule reports one `GRAPH_METADATA_INVALID_SURFACE_DETECTION` finding, since the surface detectors would otherwise skip the block without a word.
 - **Optional quality block.** `graph-metadata.json` may carry a `quality` object naming the checklists the skill's surface applies. It holds one key, `checklists`, a non-empty array of rows. Each row:
   - names its checklist file in `file`, a relative `.md` path inside the skill root
@@ -162,7 +162,7 @@ Beyond presence and forbidden files, the gate enforces:
 | `NESTED_IDENTITY` | A second advisor identity below the root |
 | `STALE_GENERATED_FILE` | Committed bytes differ from a regeneration |
 | `MANIFEST_REGENERATION_FAILED` | The generator could not run, usually a missing or malformed input |
-| `COMMAND_METADATA_*` | A hub's command entry fails the core schema: unknown owner mode, unresolvable choreography resource, missing command definition file, duplicate command or owned signal, malformed entry |
+| `COMMAND_METADATA_*` | A command entry fails the core schema: unknown owner mode, or an owner mode on a registry-less root that is not the skill's own id, unresolvable choreography resource, missing command definition file, duplicate command or owned signal, malformed entry |
 | `GRAPH_METADATA_INVALID` | `graph-metadata.json` is not valid JSON or is not a JSON object |
 | `GRAPH_METADATA_UNKNOWN_KEY` | `graph-metadata.json` carries a top-level key the gate does not recognise |
 | `GRAPH_METADATA_INVALID_SURFACE_DETECTION` | A present `surface_detection` breaks one rule of the optional block described in the enforcement list |
@@ -179,13 +179,13 @@ The gate also prints one non-failing note, `INTENT_SIGNALS_TRIGGER_RECONCILIATIO
 
 **A new hub (H):** author `SKILL.md`, `graph-metadata.json`, `description.json`, `mode-registry.json`, and `hub-router.json`, and — only if the hub ships slash commands — `command-metadata.json` (one entry per owned command; omit the file when the hub owns none). Run `--fix` to generate the manifest. Author `leaf-aliases.json` only if a mode genuinely resolves a resource outside its own packet. Add the root `ROUTER.md` stage-two control document per the two-state contract (see [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md)); it is a markdown companion outside the JSON matrix above and does not affect class-H classification.
 
-**A new standalone skill (S):** author `SKILL.md`, `graph-metadata.json`, and `leaf-manifest.config.json` — that config is the single declaration that names the workflow mode and the leaf roots. Add `leaf-scopes.json` only when a configured leaf root must be narrowed to a subtree or a named set of docs. Run `--fix` to generate the manifest and the alias projection.
+**A new standalone skill (S):** author `SKILL.md`, `graph-metadata.json`, and `leaf-manifest.config.json`, because that config is the single declaration that names the workflow mode and the leaf roots. Add `leaf-scopes.json` only when a configured leaf root must be narrowed to a subtree or a named set of docs. Add `command-metadata.json` only when the skill ships slash commands, and set every entry's `ownerMode` to the skill's own id. Run `--fix` to generate the manifest and the alias projection.
 
-A standalone root therefore needs exactly one authored metadata file beyond identity, plus `leaf-scopes.json` when its leaf roots need narrowing. That is the whole delta between a non-conforming root and a conforming one.
+A standalone root therefore needs exactly one required authored metadata file beyond identity. `leaf-scopes.json` and `command-metadata.json` stay optional, added only when the root needs them. That is the whole delta between a non-conforming root and a conforming one.
 
 ### Templates
 
-Every authored file except `leaf-scopes.json` has a scaffold under `sk-create-skill/assets/`; the two generated files deliberately have none — hand-editing them is what the freshness gate exists to catch. For the scope file, copy the shape from a shipped root.
+Every authored file except `leaf-scopes.json` has a scaffold under `sk-create-skill/assets/`. The two generated files deliberately have none, because hand-editing them is what the freshness gate exists to catch. For the scope file, copy the shape from a shipped root. A standalone root reuses the hub scaffold for `command-metadata.json` and sets every entry's `ownerMode` to its own skill id.
 
 | File | Class | Template |
 | --- | --- | --- |
@@ -194,7 +194,7 @@ Every authored file except `leaf-scopes.json` has a scaffold under `sk-create-sk
 | `graph-metadata.json` | S | [skill-graph-metadata-template.json](../../assets/skill/skill-graph-metadata-template.json) |
 | `mode-registry.json` | H | [parent-skill-registry-template.json](../../assets/parent-skill/parent-skill-registry-template.json) |
 | `hub-router.json` | H | [parent-skill-hub-router-template.json](../../assets/parent-skill/parent-skill-hub-router-template.json) |
-| `command-metadata.json` | H | [parent-skill-command-metadata-template.json](../../assets/parent-skill/parent-skill-command-metadata-template.json) |
+| `command-metadata.json` | H + S | [parent-skill-command-metadata-template.json](../../assets/parent-skill/parent-skill-command-metadata-template.json) |
 | `leaf-aliases.json` | H (authored) | [parent-skill-leaf-aliases-template.json](../../assets/parent-skill/parent-skill-leaf-aliases-template.json) |
 | `leaf-manifest.config.json` | S | [skill-leaf-manifest-config-template.json](../../assets/skill/skill-leaf-manifest-config-template.json) |
 | `leaf-scopes.json` | H + S | none — copy a shipped root, such as `.skilled/skills/system-skill-advisor/leaf-scopes.json` |
@@ -217,5 +217,5 @@ Every authored file except `leaf-scopes.json` has a scaffold under `sk-create-sk
 - [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md) - Field-level schema for `mode-registry.json` and `hub-router.json`, plus the two-state root `ROUTER.md` contract
 - [validation-and-packaging.md](validation-and-packaging.md) - The validation tiers a skill passes before release
 - `scripts/lib/skill-root-metadata-contract.cjs` - The pure library this document describes
-- `scripts/lib/command-metadata-schema.cjs` - The core command-metadata schema validated per hub
+- `scripts/lib/command-metadata-schema.cjs` - The core command-metadata schema validated on every root that carries the file
 - `scripts/ci-skill-root-metadata.cjs` - The fleet gate

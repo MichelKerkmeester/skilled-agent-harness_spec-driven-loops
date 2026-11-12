@@ -55,6 +55,7 @@ const EXPECTED_CLASSES = {
   'sk-prompt': contract.CLASS_STANDALONE,
   'system-deep-loop': contract.CLASS_HUB,
   'system-skill-advisor': contract.CLASS_STANDALONE,
+  'system-skilled-doctor': contract.CLASS_STANDALONE,
   'system-spec-kit': contract.CLASS_STANDALONE,
 };
 
@@ -262,7 +263,9 @@ function testForbiddenFilesAreRejectedPerClass() {
   assert.deepEqual(codesOf(standaloneWithDescription), ['FORBIDDEN_FILE']);
   assert.equal(standaloneWithDescription.violations[0].file, 'description.json');
 
-  // Command metadata binds commands to registry modes a standalone lacks.
+  // Command metadata is optional rather than forbidden on a standalone: a root
+  // that ships its own commands declares them, and ownership falls to the skill
+  // id because there is no registry mode to bind to.
   const standaloneWithCommands = contract.evaluateRoot('some-standalone', {
     'graph-metadata.json': true,
     'leaf-manifest.config.json': true,
@@ -271,8 +274,7 @@ function testForbiddenFilesAreRejectedPerClass() {
     'ROUTER.md': true,
     'command-metadata.json': true,
   });
-  assert.deepEqual(codesOf(standaloneWithCommands), ['FORBIDDEN_FILE']);
-  assert.equal(standaloneWithCommands.violations[0].file, 'command-metadata.json');
+  assert.deepEqual(codesOf(standaloneWithCommands), []);
 }
 
 function testCommandMetadataIsUniformAcrossHubs() {
@@ -302,10 +304,11 @@ function testGeneratedIsClassSensitive() {
 }
 
 function testLegalFilesForClass() {
-  // Command metadata is class policy now, so every hub's legal set carries it.
+  // Command metadata is class policy rather than a per-root overlay, so both
+  // legal sets carry it: absence is conformant, presence is legal.
   assert.ok(contract.legalFilesForClass(contract.CLASS_HUB, 'sk-doc').includes('command-metadata.json'));
   assert.ok(contract.legalFilesForClass(contract.CLASS_HUB, 'sk-doc').includes('leaf-aliases.json'));
-  assert.ok(!contract.legalFilesForClass(contract.CLASS_STANDALONE, 'sk-git').includes('command-metadata.json'));
+  assert.ok(contract.legalFilesForClass(contract.CLASS_STANDALONE, 'sk-git').includes('command-metadata.json'));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -862,6 +865,36 @@ function testGateRejectsNonDirectorySkillsDir() {
   assert.equal(code, 2);
 }
 
+function testStandaloneCommandOwnersAreTheSkillItself() {
+  // A standalone root ships no mode registry, so no registry mode can own its
+  // commands; the skill's own id is the only coherent owner there. A foreign
+  // mode must stay a finding, or the owner check would be one no entry passes.
+  const skillId = 'solo-commands';
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, skillId, {
+    'graph-metadata.json': { skill_id: skillId },
+    'leaf-manifest.config.json': { workflowMode: skillId },
+    'references/a.md': '# a\n',
+    'command-metadata.json': [validEntry({ ownerMode: skillId })],
+  });
+
+  // The gate namespaces every command finding under its own file, so the core
+  // schema's code reaches a caller prefixed.
+  const ownerFindings = (target) => gate.checkCommandMetadata(target)
+    .filter((violation) => violation.code === 'COMMAND_METADATA_UNKNOWN_OWNER_MODE');
+
+  assert.deepEqual(ownerFindings(dir), []);
+
+  fs.writeFileSync(
+    path.join(dir, 'command-metadata.json'),
+    `${JSON.stringify([validEntry({ ownerMode: 'some-other-mode' })], null, 2)}\n`,
+  );
+  const foreign = ownerFindings(dir);
+  assert.equal(foreign.length, 1, JSON.stringify(foreign));
+  assert.equal(foreign[0].file, 'command-metadata.json');
+  assert.match(foreign[0].message, /some-other-mode/);
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 6c. ROUTER MIGRATION DEBT
 // ─────────────────────────────────────────────────────────────────────────────
@@ -976,6 +1009,7 @@ try {
   testCommandSchemaRejectsWithinEntryDuplicateSignal();
   testFindSkillRootsSkipsPrivateSkills();
   testGateRejectsNonDirectorySkillsDir();
+  testStandaloneCommandOwnersAreTheSkillItself();
   testGateRequiresRouterWithoutRecordedDebt();
   testGateToleratesRouterRecordedAsDebt();
   testGateRejectsRouterDebtWithoutTheRouterCode();

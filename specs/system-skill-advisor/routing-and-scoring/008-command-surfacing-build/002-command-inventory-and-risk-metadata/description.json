@@ -1,0 +1,22 @@
+{
+  "level": "3+",
+  "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/002-command-inventory-and-risk-metadata",
+  "description": "Phase 2: command-inventory-and-risk-metadata",
+  "keywords": [
+    "phase",
+    "command-inventory-and-risk-metadata"
+  ],
+  "lastUpdated": "2026-11-12T14:06:31.734Z",
+  "specId": "002",
+  "folderSlug": "command-inventory-and-risk-metadata",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring",
+    "008-command-surfacing-build"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "12-11-26_14-32__planned-phase-2-of-the-command-surfacing-build.md",
+    "12-11-26_15-06__implemented-the-command-inventory-and-risk.md"
+  ]
+}

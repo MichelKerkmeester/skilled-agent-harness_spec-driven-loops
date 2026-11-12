@@ -1,0 +1,249 @@
+[
+  {
+    "command": "/speckit:plan",
+    "ownerMode": "system-spec-kit",
+    "description": "Planning workflow, 8 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
+    "argumentHint": "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-context] [:with-phases] [--level=N]",
+    "mutating": "mutates",
+    "gate3_location": "spec documents inside the bound spec folder",
+    "userIntent": {
+      "job": "I want the spec and plan documents written for a feature before any code is touched.",
+      "ownedSignals": [
+        "/speckit:plan"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/skills/system-spec-kit/SKILL.md",
+        "action": "load the system-spec-kit workflow contract and level rules"
+      },
+      {
+        "order": 2,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+        "action": "load the presentation source of truth before rendering any prompt, dashboard or result block"
+      },
+      {
+        "order": 3,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-plan.yaml",
+        "action": "load the workflow definition and follow it for the resolved execution mode"
+      },
+      {
+        "order": 4,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-save-context-tail.yaml",
+        "action": "load the shared save-context tail that closes the workflow"
+      }
+    ]
+  },
+  {
+    "command": "/speckit:implement",
+    "ownerMode": "system-spec-kit",
+    "description": "Implementation workflow, 9 steps: execute pre-planned work from plan.md. Modes :auto, :confirm, :autopilot.",
+    "argumentHint": "<spec-folder> [:auto|:confirm|:autopilot|:unattended|--unattended] [--phase-folder=PATH]",
+    "mutating": "mutates",
+    "gate3_location": "tracked code and spec documents under the bound spec folder",
+    "userIntent": {
+      "job": "I want the already-planned work in plan.md executed and verified.",
+      "ownedSignals": [
+        "/speckit:implement"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/skills/system-spec-kit/SKILL.md",
+        "action": "load the system-spec-kit workflow contract and level rules"
+      },
+      {
+        "order": 2,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-implement-presentation.txt",
+        "action": "load the presentation source of truth before rendering any prompt, dashboard or result block"
+      },
+      {
+        "order": 3,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+        "action": "load the workflow definition and follow it for the resolved execution mode"
+      },
+      {
+        "order": 4,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-save-context-tail.yaml",
+        "action": "load the shared save-context tail that closes the workflow"
+      }
+    ]
+  },
+  {
+    "command": "/speckit:complete",
+    "ownerMode": "system-spec-kit",
+    "description": "End-to-end SpecKit workflow, 14+ steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers.",
+    "argumentHint": "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-research] [:with-context] [:with-phases]",
+    "mutating": "mutates",
+    "gate3_location": "tracked code and spec documents under the bound spec folder",
+    "userIntent": {
+      "job": "I want the whole spec-driven change carried end to end, from spec through plan to verified implementation.",
+      "ownedSignals": [
+        "/speckit:complete"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/skills/system-spec-kit/SKILL.md",
+        "action": "load the system-spec-kit workflow contract and level rules"
+      },
+      {
+        "order": 2,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
+        "action": "load the presentation source of truth before rendering any prompt, dashboard or result block"
+      },
+      {
+        "order": 3,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-complete.yaml",
+        "action": "load the workflow definition and follow it for the resolved execution mode"
+      },
+      {
+        "order": 4,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-save-context-tail.yaml",
+        "action": "load the shared save-context tail that closes the workflow"
+      }
+    ]
+  },
+  {
+    "command": "/speckit:resume",
+    "ownerMode": "system-spec-kit",
+    "description": "Resume or recover work on a spec folder: canonical continuity recovery with one next step.",
+    "argumentHint": "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>]",
+    "mutating": "mutates",
+    "gate3_location": "spec documents inside the bound spec folder",
+    "userIntent": {
+      "job": "I want to pick up where a spec packet left off, recovered from its own documents.",
+      "ownedSignals": [
+        "/speckit:resume"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/skills/system-spec-kit/SKILL.md",
+        "action": "load the system-spec-kit workflow contract and level rules"
+      },
+      {
+        "order": 2,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-resume-presentation.txt",
+        "action": "load the presentation source of truth before rendering the recovery result"
+      },
+      {
+        "order": 3,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+        "action": "load the auto workflow and follow it when the resolved mode is :auto"
+      },
+      {
+        "order": 4,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
+        "action": "load the confirm workflow and follow it when the resolved mode is :confirm"
+      }
+    ]
+  },
+  {
+    "command": "/speckit:save",
+    "ownerMode": "system-spec-kit",
+    "description": "Save current conversation context into canonical spec-doc continuity surfaces",
+    "argumentHint": "<spec-folder>",
+    "mutating": "mutates",
+    "gate3_location": "spec documents inside the bound spec folder",
+    "userIntent": {
+      "job": "I want this conversation captured into the spec packet so the next session can resume from it.",
+      "ownedSignals": [
+        "/speckit:save"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/skills/system-spec-kit/SKILL.md",
+        "action": "load the system-spec-kit workflow contract and level rules"
+      },
+      {
+        "order": 2,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/save-presentation.txt",
+        "action": "load the presentation source of truth before rendering any prompt or result block"
+      }
+    ]
+  },
+  {
+    "command": "/speckit:search",
+    "ownerMode": "system-spec-kit",
+    "description": "Continuity retrieval front door: trigger-index lookup plus the ripgrep recipes over spec docs and skill docs.",
+    "argumentHint": "<query> [--packet <specFolder>] [--triggers] [--paths] [--count]",
+    "mutating": "read-only",
+    "gate3_location": "n/a (read-only retrieval; writes nothing)",
+    "userIntent": {
+      "job": "I want to find which spec packet or skill doc already covers what I am asking about.",
+      "ownedSignals": [
+        "/speckit:search"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/skills/system-spec-kit/SKILL.md",
+        "action": "load the system-spec-kit workflow contract and retrieval scope"
+      },
+      {
+        "order": 2,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/search-presentation.txt",
+        "action": "load the presentation source of truth before asking startup questions or displaying results"
+      },
+      {
+        "order": 3,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "action": "load the retrieval contract before composing any recipe"
+      }
+    ]
+  },
+  {
+    "command": "/speckit:handoff",
+    "ownerMode": "system-spec-kit",
+    "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
+    "argumentHint": "(no arguments)",
+    "mutating": "mutates",
+    "gate3_location": "a handoff note in the bound spec folder, then a session relaunch",
+    "ask_first": [
+      "relaunch"
+    ],
+    "userIntent": {
+      "job": "I want to stop cleanly and hand this work to a fresh session through a written handoff note.",
+      "ownedSignals": [
+        "/speckit:handoff"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/skills/system-spec-kit/SKILL.md",
+        "action": "load the system-spec-kit workflow contract and continuity rules"
+      }
+    ]
+  }
+]

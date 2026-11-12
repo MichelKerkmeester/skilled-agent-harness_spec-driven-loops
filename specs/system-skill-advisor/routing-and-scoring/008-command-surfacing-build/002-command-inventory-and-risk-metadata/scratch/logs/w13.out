@@ -1,0 +1,19 @@
+**File written:** `.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (only file touched, 12 insertions / 12 deletions)
+
+**Verify output** (`grep -n 'command-metadata' …`, exit 0):
+- Line 74 (file matrix): S cell changed from `**forbidden**` to `optional, authored (ownerMode = skill id)`
+- Line 82: heading now "Why `command-metadata.json` is optional for both classes"
+- Line 84: optional on both classes, authority stated as "the optional set for each class, never in a required set"
+- Line 86: validation split - disk checks on every root, registry binding only on a hub
+- Line 88: replaced the forbidden sentence with "the gate requires every entry's `ownerMode` to equal the skill's own id"
+- Line 138 (enforcement bullet): retitled "(both classes)", adds the registry-less owner rule
+- Line 165 (`COMMAND_METADATA_*` code row): now covers "owner mode on a registry-less root that is not the skill's own id"
+- Line 182 (new S root): optional `command-metadata.json` with `ownerMode` = skill id
+- Line 184: "needs exactly one required authored metadata file beyond identity. `leaf-scopes.json` and `command-metadata.json` stay optional"
+- Line 188 (templates intro): standalone reuses the hub scaffold with `ownerMode` = skill id
+- Line 197 (template row): class changed `H` -> `H + S`
+- Line 220 (related resources): "validated on every root that carries the file"
+
+Old-rule check: `grep -niE 'forbidden' … | grep -i command-metadata` returned exit 1 (no match), so no line still calls the file forbidden on a standalone root. Frontmatter `version: 1.2.9.0` unchanged, headings and style preserved, and all rewritten prose uses no em dashes or semicolons.
+
+**Not done:** no code, no git operations, no other file read or modified. The statement that the class contract module now holds `command-metadata.json` in the optional set for each class is the brief's stated rule; I did not open `scripts/lib/skill-root-metadata-contract.cjs` to confirm the constant shape, per the one-file instruction.

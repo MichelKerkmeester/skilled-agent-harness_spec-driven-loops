@@ -1,0 +1,30 @@
+Done.
+
+## File written (1 file, as briefed)
+`.skilled/skills/system-spec-kit/command-metadata.json` — 7 entries in the required order, 2-space indent, single trailing newline (`]0a`).
+
+| Command | mutating | steps |
+|---|---|---|
+| /speckit:plan | mutates | 4 |
+| /speckit:implement | mutates | 4 |
+| /speckit:complete | mutates | 4 |
+| /speckit:resume | mutates | 4 |
+| /speckit:save | mutates | 2 |
+| /speckit:search | read-only | 3 |
+| /speckit:handoff | mutates + `ask_first:["relaunch"]` | 1 |
+
+## Verify output
+```
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs | tail -1
+checked=14 passed=14 failed=0 fixed=0
+
+$ jq 'length' .skilled/skills/system-spec-kit/command-metadata.json
+7
+```
+
+Extra confirmation I ran (not part of the gate): every `description`/`argument-hint` string is byte-identical to its command file's frontmatter → `ALL DESCRIPTIONS/HINTS MATCH FRONTMATTER`. All 14 resolved resource paths existed before write, so no step was dropped.
+
+## Notes / anything I could not do
+- **`/speckit:handoff` has no OWNED ASSETS table** in `.skilled/commands/speckit/handoff.md` (grep for `OWNED` and `assets/` returned nothing; its §2 is `CONTRACT`). Per the brief's rule I generated only the step-1 `SKILL.md` step rather than inventing asset paths.
+- Key order is `… mutating, gate3_location, ask_first, userIntent, choreography` for handoff, reading `ask_first` as following the pair the brief groups it with.
+- I touched no other file; no git state, no agents dispatched.

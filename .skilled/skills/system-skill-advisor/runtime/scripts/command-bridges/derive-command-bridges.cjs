@@ -18,8 +18,11 @@ const { join, relative, resolve, sep } = require('node:path');
 const COMMAND_BRIDGES_DIR = __dirname;
 const REPO_ROOT = resolve(COMMAND_BRIDGES_DIR, '../../../../../..');
 const SKILLS_ROOT = join(REPO_ROOT, '.skilled', 'skills');
+// One folder per command group, one Markdown file per command: the tree the
+// inventory identity check reads.
+const COMMANDS_ROOT = join(REPO_ROOT, '.skilled', 'commands');
 const ALLOW_LIST_PATH = join(COMMAND_BRIDGES_DIR, 'allow-list.json');
-const DOCTOR_COMMANDS_DIR = join(REPO_ROOT, '.skilled', 'commands', 'doctor');
+const DOCTOR_COMMANDS_DIR = join(COMMANDS_ROOT, 'doctor');
 const DOCTOR_ROUTES_PATH = join(DOCTOR_COMMANDS_DIR, '_routes.yaml');
 const COMPATIBILITY_PATH = join(COMMAND_BRIDGES_DIR, 'scoring-compatibility.json');
 const OUTPUT_PATH = join(COMMAND_BRIDGES_DIR, 'command-bridges.generated.json');
@@ -44,6 +47,13 @@ const PY_GENERATED_START = '# BEGIN GENERATED COMMAND BRIDGES';
 const PY_GENERATED_END = '# END GENERATED COMMAND BRIDGES';
 const DOCTOR_PREFIX = 'command-doctor-';
 const DOCTOR_MCP_COMMAND = '/doctor:mcp';
+
+// Closed vocabularies: an unrecognised value has to fail loudly, because a
+// silent fallthrough would hand a mutating command the read-only policy (or the
+// reverse) and nothing downstream would notice.
+const MUTATING_CLASSES = ['read-only', 'add-only', 'mutates'];
+const ASK_FIRST_REASONS = ['settings', 'outside-repo', 'spend', 'relaunch'];
+const WRITE_SCOPES = ['spec-folder'];
 const RENDER_PATH = join(SKILLS_ROOT, 'system-skill-advisor', 'runtime', 'lib', 'render.ts');
 const RENDER_GENERATED_START = '// BEGIN GENERATED DOCTOR COMMANDS';
 const RENDER_GENERATED_END = '// END GENERATED DOCTOR COMMANDS';
@@ -279,6 +289,244 @@ function doctorRouteEntries() {
   });
 
   return entries;
+}
+
+// A command exists when its router file exists: the folder directly under the
+// commands root names the group and a Markdown file inside it names the action.
+// A README and a .contract.md describe a command instead of being one, a file
+// directly in the root names no command at all, and a local- name belongs to a
+// single checkout, so none of them count.
+function commandTreeNames(commandsRoot = COMMANDS_ROOT) {
+  const commands = [];
+  const groups = readdirSync(commandsRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && !entry.name.startsWith('local-'))
+    .map((entry) => entry.name)
+    .sort();
+  for (const group of groups) {
+    const files = readdirSync(join(commandsRoot, group), { withFileTypes: true })
+      .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
+      .filter((entry) => (
+        entry.name !== 'README.md'
+        && !entry.name.endsWith('.contract.md')
+        && !entry.name.startsWith('local-')
+      ))
+      .map((entry) => `/${group}:${entry.name.slice(0, -'.md'.length)}`);
+    commands.push(...files);
+  }
+  return commands.sort();
+}
+
+// The policy ladder reads only these keys, so a wrong value has to fail here
+// rather than fall through to a branch that merely looks safe.
+function validateRiskKeys(record, label, requireTarget = false) {
+  if (!MUTATING_CLASSES.includes(record.mutating)) {
+    throw new Error(
+      `[command-bridges] ${label} has mutating ${JSON.stringify(record.mutating)}; `
+        + `expected one of ${MUTATING_CLASSES.join(', ')}`,
+    );
+  }
+  if (record.ask_first !== undefined) {
+    const askFirst = record.ask_first;
+    if (!Array.isArray(askFirst) || askFirst.some((value) => !ASK_FIRST_REASONS.includes(value))) {
+      throw new Error(
+        `[command-bridges] ${label} has ask_first ${JSON.stringify(askFirst)}; `
+          + `expected an array of ${ASK_FIRST_REASONS.join(', ')}`,
+      );
+    }
+  }
+  if (record.write_scope !== undefined && !WRITE_SCOPES.includes(record.write_scope)) {
+    throw new Error(
+      `[command-bridges] ${label} has write_scope ${JSON.stringify(record.write_scope)}; `
+        + `expected one of ${WRITE_SCOPES.join(', ')}`,
+    );
+  }
+  if (requireTarget && (typeof record.gate3_location !== 'string' || !record.gate3_location)) {
+    throw new Error(
+      `[command-bridges] ${label} needs a non-empty string gate3_location naming what it writes`,
+    );
+  }
+}
+
+// One policy per command, decided from the risk keys alone so the answer never
+// depends on which scorer asks: an ask-first reason always wins, a doctor route
+// that mutates asks because its repair is the operator's call, and only a
+// read-only route or an add-only route confined to the spec folder may run
+// unprompted. Everything else starts as an ordinary task.
+function derivePolicy(record) {
+  if (Array.isArray(record.ask_first) && record.ask_first.length > 0) return 'ask';
+  if (record.doctor === true && record.mutating === 'mutates') return 'ask';
+  if (record.mutating === 'read-only') return 'run';
+  if (record.mutating === 'add-only' && record.write_scope === 'spec-folder') return 'run';
+  return 'start';
+}
+
+// The same skill folders as the bridge metadata, for the same reason: a private
+// skill is local to a checkout and a linked folder is not a skill source. A
+// metadata command is reachable by typing its name, so it must also name where
+// its writes land before its policy may be derived.
+function metadataRiskRecords(skillsRoot = SKILLS_ROOT) {
+  const records = [];
+  const skillIds = readdirSync(skillsRoot, { withFileTypes: true })
+    .filter((entry) => !entry.name.startsWith('local-') && !entry.isSymbolicLink())
+    .map((entry) => entry.name)
+    .sort();
+  for (const skillId of skillIds) {
+    const filePath = join(skillsRoot, skillId, 'command-metadata.json');
+    if (!existsSync(filePath)) continue;
+    const metadata = readJson(filePath);
+    if (!Array.isArray(metadata)) {
+      throw new Error(`[command-bridges] ${sourcePath(filePath)} must contain a JSON array`);
+    }
+    for (const [index, entry] of metadata.entries()) {
+      if (!entry || typeof entry !== 'object') {
+        throw new Error(`[command-bridges] ${sourcePath(filePath)}[${index}] must be an object`);
+      }
+      validateRiskKeys(entry, `${sourcePath(filePath)}[${index}] ${entry.command}`, true);
+      records.push({
+        command: entry.command,
+        route: null,
+        mutating: entry.mutating,
+        ask_first: entry.ask_first || [],
+        write_scope: entry.write_scope,
+        doctor: false,
+      });
+    }
+  }
+  return records;
+}
+
+// The manifest is the doctor half of the same surface. Requiring YAML lazily
+// keeps an argument-rejecting run from ever loading a parser.
+function doctorRiskRecords(routesPath = DOCTOR_ROUTES_PATH) {
+  const YAML = require('yaml');
+  let manifest;
+  try {
+    manifest = YAML.parse(readFileSync(routesPath, 'utf8'));
+  } catch (error) {
+    throw new Error(
+      `[command-bridges] Failed to read ${sourcePath(routesPath)}: ${error.message}`,
+    );
+  }
+
+  const records = [];
+  const addRecord = (fields, label) => {
+    const record = {
+      command: fields.command,
+      route: fields.route,
+      mutating: fields.mutating,
+      ask_first: fields.ask_first || [],
+      write_scope: fields.write_scope,
+      doctor: true,
+    };
+    validateRiskKeys(record, label);
+    records.push(record);
+  };
+
+  const routes = manifest && manifest.routes;
+  if (!Array.isArray(routes)) {
+    throw new Error('[command-bridges] _routes.yaml routes must be an array');
+  }
+  routes.forEach((route, index) => {
+    addRecord({
+      command: route.command,
+      route: route.target,
+      mutating: route.mutating,
+      ask_first: route.ask_first,
+      write_scope: route.write_scope,
+    }, `${sourcePath(routesPath)} routes[${index}]`);
+  });
+
+  const mcpSubroutes = manifest.mcp_subroutes === undefined ? [] : manifest.mcp_subroutes;
+  if (!Array.isArray(mcpSubroutes)) {
+    throw new Error('[command-bridges] _routes.yaml mcp_subroutes must be an array');
+  }
+  mcpSubroutes.forEach((item, index) => {
+    addRecord({
+      command: DOCTOR_MCP_COMMAND,
+      route: item?.sub_action,
+      mutating: item?.mutating,
+      ask_first: item?.ask_first,
+      write_scope: item?.write_scope,
+    }, `${sourcePath(routesPath)} mcp_subroutes[${index}]`);
+  });
+
+  const standalone = manifest.standalone === undefined ? [] : manifest.standalone;
+  if (!Array.isArray(standalone)) {
+    throw new Error('[command-bridges] _routes.yaml standalone must be an array');
+  }
+  standalone.forEach((item, index) => {
+    if (!item || typeof item.command !== 'string') return;
+    const label = `${sourcePath(routesPath)} standalone[${index}]`;
+    const actions = item.actions;
+    // One command, several actions: the action carries the class because the
+    // bare command name cannot say what the run will do.
+    if (actions && typeof actions === 'object' && !Array.isArray(actions)) {
+      for (const [action, entry] of Object.entries(actions)) {
+        addRecord({
+          command: item.command,
+          route: action,
+          mutating: entry?.mutating,
+          ask_first: entry?.ask_first,
+          write_scope: entry?.write_scope,
+        }, `${label}.actions.${action}`);
+      }
+      return;
+    }
+    addRecord({
+      command: item.command,
+      route: null,
+      mutating: item.mutating,
+      ask_first: item.ask_first,
+      write_scope: item.write_scope,
+    }, label);
+  });
+
+  return records;
+}
+
+// Three views of one surface. A name in the tree that neither declaration
+// carries is a command nothing can suggest; a declared name with no file is a
+// bridge to a command the operator cannot type. Either way the inventory lies,
+// so both directions are reported together.
+function identityViolations({ treeCommands, metadataCommands, doctorCommands }) {
+  const tree = new Set(treeCommands);
+  const declared = new Set([...metadataCommands, ...doctorCommands]);
+  const violations = [];
+  for (const command of tree) {
+    if (!declared.has(command)) {
+      violations.push(
+        `${command}: command file has no command-metadata.json entry and no doctor route`,
+      );
+    }
+  }
+  for (const command of declared) {
+    if (!tree.has(command)) {
+      violations.push(
+        `${command}: declared in command-metadata.json or the doctor manifest but has no command file`,
+      );
+    }
+  }
+  return violations.sort();
+}
+
+// The generated file is compared byte for byte, so the order has to be total:
+// command name first, then the bare route before its named ones.
+function commandPolicies(skillsRoot, routesPath) {
+  return [...metadataRiskRecords(skillsRoot), ...doctorRiskRecords(routesPath)]
+    .map((record) => ({
+      command: record.command,
+      route: record.route,
+      mutating: record.mutating,
+      askFirst: record.ask_first,
+      policy: derivePolicy(record),
+    }))
+    .sort((left, right) => {
+      if (left.command !== right.command) return left.command.localeCompare(right.command);
+      if (left.route === right.route) return 0;
+      if (left.route === null) return -1;
+      if (right.route === null) return 1;
+      return left.route.localeCompare(right.route);
+    });
 }
 
 function assertUniqueIds(entries) {
@@ -663,7 +911,24 @@ function main() {
   const metadata = metadataEntries();
   const allowList = allowListEntries();
   const doctor = doctorRouteEntries();
-  const inventory = [...metadata, ...allowList, ...doctor].sort((left, right) => left.id.localeCompare(right.id));
+  // Allow-list rows name legacy ids that are retired separately, so they stay out of the identity check.
+  const tree = commandTreeNames();
+  const metadataRisk = metadataRiskRecords();
+  const doctorRisk = doctorRiskRecords();
+  const violations = identityViolations({
+    treeCommands: tree,
+    metadataCommands: metadataRisk.map((record) => record.command),
+    doctorCommands: doctorRisk.map((record) => record.command),
+  });
+  if (violations.length > 0) {
+    throw new Error(`[command-bridges] command inventory mismatch:\n${violations.join('\n')}`);
+  }
+  // A command the allow-list already carries keeps that row's id: both scorers
+  // know it, and a second id for one command would be a second bridge.
+  const allowListCommands = new Set(allowList.map((entry) => entry.command));
+  const bridgedMetadata = metadata.filter((entry) => !allowListCommands.has(entry.command));
+  const inventory = [...bridgedMetadata, ...allowList, ...doctor]
+    .sort((left, right) => left.id.localeCompare(right.id));
   assertUniqueIds(inventory);
   const compatibility = runtimeCompatibility(inventory);
   const entries = inventory.map((entry) => {
@@ -690,7 +955,7 @@ function main() {
     schemaVersion: 2,
     generatedBy: 'scripts/command-bridges/derive-command-bridges.cjs',
     counts: {
-      commandMetadata: metadata.length,
+      commandMetadata: bridgedMetadata.length,
       allowList: allowList.length,
       doctorRoutes: doctor.length,
       generated: entries.length,
@@ -698,6 +963,7 @@ function main() {
       pythonActive: compatibility.python.size,
     },
     entries,
+    commandPolicies: commandPolicies(),
   };
   const output = `${JSON.stringify(projection, null, 2)}\n`;
   const sources = generatedSources(entries, compatibility.pythonOwnerNormalization);
@@ -725,4 +991,13 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { metadataEntries };
+module.exports = {
+  metadataEntries,
+  commandTreeNames,
+  validateRiskKeys,
+  derivePolicy,
+  metadataRiskRecords,
+  doctorRiskRecords,
+  identityViolations,
+  commandPolicies,
+};

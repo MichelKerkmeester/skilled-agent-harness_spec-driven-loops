@@ -1,0 +1,30 @@
+Done. One file written.
+
+**File:** `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md`
+- New `## 7. RISK KEYS AND COMMAND POLICY` between `VALIDATION` and the closing section: tree-ownership rule and both deriver failures, a risk-key table (`mutating`, `gate3_location`, `ask_first`, `write_scope`), the ordered policy ladder as a 5-row table, the `commandPolicies` record shape, and the allow-list dedupe rule.
+
+**Verify output**
+```
+$ grep -c 'commandPolicies\|ask_first\|write_scope' .../command-bridges/README.md
+5                                          # gate: 3 or more -> PASS
+
+$ git diff --stat .../command-bridges/README.md
+ 1 file changed, 30 insertions(+), 1 deletion(-)
+```
+
+**Deviation, named:** the diff is not insertions-only. The one deletion is the trailing heading `## 7. RELATED` → `## 8. RELATED`. A pure insertion is impossible for a numbered section placed before the last section, and I confirmed the repo's own validator rejects the alternatives rather than assuming it:
+
+- insert as `## 7.` before `## 7. RELATED` → `[non_sequential_numbering] expected 8, found 7`
+- insert as `## 8.` before `## 7. RELATED` → `[non_sequential_numbering] expected 7, found 8` plus a second warning
+- inserted as `## 7.` with RELATED renumbered → `0 issues`, exit 0
+
+Repo precedent agrees (commit history of this file renumbered `HUMAN EDIT BOUNDARY 4→5`, `VALIDATION 5→6`, `RELATED 6→7` when a section was added ahead of them). The single deletion is that mandatory renumber, not body prose.
+
+**Checks run on the final file**
+```
+$ python3 .skilled/.../validate_document.py .../command-bridges/README.md
+✅ VALID ... Document type: readme   Total issues: 0   (exit 0)
+```
+Style scan of the new block: no em dashes, no semicolons, no comma-list `, and`.
+
+**Nothing else touched.** No other file, no git operations, no dispatch.

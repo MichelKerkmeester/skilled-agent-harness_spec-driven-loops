@@ -1,0 +1,77 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/002-command-inventory-and-risk-metadata
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: edit ONE file, `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs`. Add an identity check and a derived policy list.
+Read the whole file first. Read no other file except `.skilled/commands/doctor/_routes.yaml` lines 1-110 and 700-800 for shape.
+Do NOT run the script without `--check`. Do NOT edit any other file. Keep every existing export and every existing output byte-identical
+except where this brief says otherwise.
+
+NEW CONSTANTS
+- `COMMANDS_ROOT`: `<REPO_ROOT>/.skilled/commands`.
+- `MUTATING_CLASSES = ['read-only', 'add-only', 'mutates']`, `ASK_FIRST_REASONS = ['settings', 'outside-repo', 'spend', 'relaunch']`, `WRITE_SCOPES = ['spec-folder']`.
+
+NEW FUNCTIONS (all exported in `module.exports` beside `metadataEntries`)
+1. `commandTreeNames(commandsRoot = COMMANDS_ROOT)`: for each directory directly under commandsRoot, for each FILE directly in it whose name ends
+   `.md`, is not `README.md`, does not end `.contract.md` and does not start with `local-`, yield `/<directory>:<name without .md>`. Skip a directory
+   whose name starts with `local-`. Files directly in commandsRoot are never commands. Return the sorted list.
+2. `validateRiskKeys(record, label)`: throws `Error('[command-bridges] <label> ...')` naming the label and the bad value when `record.mutating` is not
+   in MUTATING_CLASSES, when `record.ask_first` is present and is not an array of values from ASK_FIRST_REASONS, or when `record.write_scope` is
+   present and not in WRITE_SCOPES. When the third argument `requireTarget` is true it also throws when `record.gate3_location` is not a non-empty string.
+3. `derivePolicy(record)`: pure. In this order: `record.ask_first` non-empty array -> 'ask'. `record.doctor === true && record.mutating === 'mutates'` -> 'ask'.
+   `record.mutating === 'read-only'` -> 'run'. `record.mutating === 'add-only' && record.write_scope === 'spec-folder'` -> 'run'. Otherwise 'start'.
+4. `metadataRiskRecords(skillsRoot = SKILLS_ROOT)`: walks the same skill folders as `metadataEntries` (same `local-` and symlink skip). For every entry of every
+   `command-metadata.json` it calls `validateRiskKeys(entry, '<file path>[<index>] <command>', true)` and returns
+   `{ command, route: null, mutating, ask_first: entry.ask_first || [], write_scope: entry.write_scope, doctor: false }`.
+5. `doctorRiskRecords(routesPath = DOCTOR_ROUTES_PATH)`: parses the manifest with the same lazy `require('yaml')`. Returns one record with `doctor: true` for:
+   - each item of `routes`: `command`, `route: item.target`;
+   - each item of `mcp_subroutes`: `command: DOCTOR_MCP_COMMAND`, `route: item.sub_action`;
+   - each item of `standalone` that has a string `command`: when it has an `actions` object, one record per action key (`route: <key>`, class from the action);
+     otherwise one record with `route: null` and the item's own class.
+   Each record carries `mutating`, `ask_first` (default []), `write_scope`, and is checked with `validateRiskKeys(record, label)` (no target requirement).
+6. `identityViolations({ treeCommands, metadataCommands, doctorCommands })`: pure, three arrays of command strings. Returns a sorted array of strings:
+   `<command>: command file has no command-metadata.json entry and no doctor route` for each tree command in neither list, and
+   `<command>: declared in command-metadata.json or the doctor manifest but has no command file` for each metadata or doctor command not in the tree.
+7. `commandPolicies(skillsRoot, routesPath)`: concatenates 4 and 5, maps each to
+   `{ command, route, mutating, askFirst: record.ask_first, policy: derivePolicy(record) }`, sorted by command, then route with null first.
+
+CHANGES IN `main()`
+a. After the three source lists are read, compute `const tree = commandTreeNames()`, the risk records, and
+   `identityViolations({ treeCommands: tree, metadataCommands: <commands of metadataRiskRecords>, doctorCommands: <commands of doctorRiskRecords> })`.
+   When the list is non-empty: `throw new Error('[command-bridges] command inventory mismatch:\n' + violations.join('\n'))`.
+   Allow-list rows are NOT part of this check. Put a one-line comment saying they name legacy ids that are retired separately.
+b. Before the inventory is built, drop every metadata entry whose `command` equals the `command` of an allow-list row:
+   `const allowListCommands = new Set(allowList.map((entry) => entry.command))` then filter `metadata`. Comment why: the allow-list row already
+   carries that command under an id both scorers know, and a second id for one command would be a second bridge.
+   `counts.commandMetadata` stays `metadata.length` AFTER this filter.
+c. Add `commandPolicies: commandPolicies()` to the `projection` object as the LAST key, after `entries`.
+Wrap nothing else. An uncaught Error already exits 1 with the message.
+
+Comments explain why, never name a spec folder, ticket, requirement or task id.
+
+VERIFY (from the repository root):
+`node --check .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs` exits 0.
+`node -e "const d=require('./.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs');console.log(d.derivePolicy({mutating:'read-only'}),d.derivePolicy({mutating:'mutates'}),d.derivePolicy({mutating:'mutates',ask_first:['spend']}),d.derivePolicy({mutating:'mutates',doctor:true}),d.derivePolicy({mutating:'add-only',write_scope:'spec-folder'}))"` prints `run start ask ask run`.
+`node -e "const d=require('./.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs');console.log(d.commandTreeNames().length)"` prints 44.
+`node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` may print an inventory mismatch naming `/prompt:improve` and `/speckit:*` commands when their
+metadata files do not exist yet (another worker is writing them), or `"status": "stale"`. Both are expected today. Report which one you saw.

@@ -4,6 +4,11 @@
     "ownerMode": "research",
     "description": "Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.",
     "argumentHint": "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run]",
+    "mutating": "mutates",
+    "gate3_location": "research artifacts under the resolved spec folder, written by the workflow YAML",
+    "ask_first": [
+      "spend"
+    ],
     "userIntent": {
       "job": "I want to investigate a topic iteratively until the research converges.",
       "ownedSignals": [
@@ -51,6 +56,11 @@
     "ownerMode": "review",
     "description": "Autonomous deep-review loop: iterative code audit with convergence detection. Modes :auto, :confirm.",
     "argumentHint": "<target> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--restart]",
+    "mutating": "mutates",
+    "gate3_location": "a review packet under the resolved spec folder's review/ directory",
+    "ask_first": [
+      "spend"
+    ],
     "userIntent": {
       "job": "I want to audit a code or documentation target iteratively and reduce findings to convergence.",
       "ownedSignals": [
@@ -94,6 +104,11 @@
     "ownerMode": "ai-council",
     "description": "Multi-topic deep-ai-council session loop with adjudicator-verdict stability. Modes :auto, :confirm.",
     "argumentHint": "<deliberation-topic|topics> [:auto|:confirm] [--max-topics=N] [--max-rounds-per-topic=N] [--executor=TYPE]",
+    "mutating": "mutates",
+    "gate3_location": "packet-local ai-council/ artifacts under the resolved spec folder",
+    "ask_first": [
+      "spend"
+    ],
     "userIntent": {
       "job": "I want to convene several AI perspectives into a convergent planning decision.",
       "ownedSignals": [

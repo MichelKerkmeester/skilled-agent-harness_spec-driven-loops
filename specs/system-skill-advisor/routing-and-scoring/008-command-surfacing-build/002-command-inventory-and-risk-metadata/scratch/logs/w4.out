@@ -1,0 +1,17 @@
+Task complete.
+
+**File written (only file touched):** `.skilled/commands/doctor/_routes.yaml`
+
+Four additions, 10 insertions, 0 deletions:
+1. Schema header — `write_scope` enum line added directly after the `gate3_location` schema line, in the same style.
+2. `/doctor:speckit` route — `write_scope: spec-folder` after its `mutating: add-only`.
+3. `/doctor:deep-loop` route — `write_scope: spec-folder` after its `mutating: add-only`.
+4. `standalone:` `/doctor:env` entry — `actions:` block (`list` read-only / `select` mutates, both on `doctor-env.yaml`) after `mutating: mutates`, at the same indentation as the `/doctor:update` actions block.
+
+**Verify output (all four pass):**
+- `bash .skilled/commands/doctor/scripts/route-validate.sh | tail -1` → `OK: route-validate — 31 routes validated, 11 warnings` (exit 0; the trailing `WARN: H1` lines on screen are stderr, pre-existing duplicates unrelated to this edit)
+- `grep -c 'write_scope: spec-folder' …/_routes.yaml` → `2`
+- `derive-command-bridges.cjs --check | jq -r .status` → `fresh`
+- `git diff --stat` → `1 file changed, 10 insertions(+)`
+
+**Not done / no blockers:** nothing outstanding. No other file edited, no git state touched, no agents or CLI dispatched.

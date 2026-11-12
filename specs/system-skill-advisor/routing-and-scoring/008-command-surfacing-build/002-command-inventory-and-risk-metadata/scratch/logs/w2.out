@@ -1,0 +1,26 @@
+Done.
+
+**File written** (only file touched): `.skilled/skills/sk-design/command-metadata.json`
+
+**Verify output**
+```
+$ jq '[.[] | select(.mutating == "mutates" and (.gate3_location | type == "string"))] | length' .skilled/skills/sk-design/command-metadata.json
+3
+
+$ git diff --stat .skilled/skills/sk-design/command-metadata.json
+ .skilled/skills/sk-design/command-metadata.json | 6 ++++++
+ 1 file changed, 6 insertions(+)
+```
+Insertions only (0 deletions); diff hunks are exactly 2 added lines directly after each `argumentHint` key, no reordering, indentation unchanged, array still length 3, file still ends with a single newline (`]\n`).
+
+**Added per entry** (source: first 40 lines of each `.skilled/commands/design/<name>.md`):
+| command | gate3_location | evidence in command file |
+|---|---|---|
+| `/design:extract` | a DESIGN.md and captured token files in the directory the user names with --output | `--output` binds `output_dir`; "never invent a destination" |
+| `/design:diagram` | an HTML/SVG or markdown diagram at the positional target path | positional target `.html` for a diagram, `.md` for a flowchart |
+| `/design:chart` | a standalone HTML chart at the positional target .html path | "producing a standalone HTML chart"; positional `.html` path |
+
+No `.skilled/commands/design/agent.md` exists, so no agent entry was needed (the array has only extract, diagram, chart).
+
+**Not done / notes**
+- No git state touched, no commits, no other files edited. The other modified/untracked paths in `git status` were already present in the worktree before this task and were left untouched.

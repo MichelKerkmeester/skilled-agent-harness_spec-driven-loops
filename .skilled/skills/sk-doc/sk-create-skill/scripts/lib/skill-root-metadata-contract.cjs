@@ -106,9 +106,6 @@ const FORBIDDEN_BY_CLASS = Object.freeze({
     'description.json',
     'mode-registry.json',
     'hub-router.json',
-    // Command metadata binds each command to an ownerMode in the registry a
-    // standalone root does not have, so the file cannot be coherent on S.
-    'command-metadata.json',
   ]),
 });
 
@@ -120,9 +117,9 @@ const FORBIDDEN_BY_CLASS = Object.freeze({
  * consumer able to find it.
  *
  * Currently empty. The mechanism stays for the next extension that ships before
- * its consumer can enumerate roots. `command-metadata.json` is not here: it is a
- * class-H optional (see the optional set), legal on every hub and forbidden on
- * every standalone, so it is uniform class policy rather than a per-root overlay.
+ * its consumer can enumerate roots. `command-metadata.json` is not here: it is
+ * optional on both classes, so it is uniform class policy rather than a per-root
+ * overlay.
  */
 const OVERLAY_FILES = Object.freeze({});
 
@@ -152,16 +149,18 @@ const GENERATED_FILES = Object.freeze(
 
 /**
  * A hub may legitimately have no relocated resources to declare (leaf-aliases),
- * and it may legitimately own no slash commands (command-metadata). A command
- * surface exists only for hubs that actually ship commands, so requiring the
- * file fleet-wide forced command-less hubs to carry an empty-array placeholder
- * nothing reads; it is optional instead — validated against the core schema when
- * present, and simply absent when the hub owns no commands. It stays forbidden
- * on standalone roots, which have no registry mode to bind a command to.
+ * and any root may legitimately own no slash commands (command-metadata). A
+ * command surface exists only for roots that actually ship commands, so
+ * requiring the file fleet-wide forced command-less roots to carry an
+ * empty-array placeholder nothing reads; it is optional on both classes instead
+ * — validated against the core schema when present, and simply absent when the
+ * root owns no commands. On a standalone root every entry's ownerMode must be
+ * the skill's own id, because there is no registry mode to bind to; a separate
+ * gate enforces that binding.
  */
 const OPTIONAL_BY_CLASS = Object.freeze({
   [CLASS_HUB]: Object.freeze(['leaf-aliases.json', 'command-metadata.json']),
-  [CLASS_STANDALONE]: Object.freeze([]),
+  [CLASS_STANDALONE]: Object.freeze(['command-metadata.json']),
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

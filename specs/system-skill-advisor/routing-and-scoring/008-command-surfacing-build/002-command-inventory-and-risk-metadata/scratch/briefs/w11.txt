@@ -1,0 +1,55 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/002-command-inventory-and-risk-metadata
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: write ONE file, `.skilled/skills/system-skill-advisor/runtime/tests/command-policy-derivation.vitest.ts`. It is a vitest test for functions exported by
+`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs`.
+
+Read first: that script's functions `commandTreeNames`, `validateRiskKeys`, `derivePolicy`, `metadataRiskRecords`, `identityViolations`, `commandPolicies`
+and its `module.exports`; and `.skilled/skills/system-skill-advisor/runtime/tests/doctor-routing-slice.vitest.ts` lines 1-30 for the file-header and import style. Read no other file.
+
+Load the script with `createRequire(import.meta.url)('../scripts/command-bridges/derive-command-bridges.cjs')` and declare a local TypeScript type for
+the functions you use. Build fixtures in a temp directory with `mkdtempSync` and remove it in `afterAll`. Never write inside the repository.
+
+One `describe('command policy derivation', ...)` with these tests:
+1. 'derives the policy from the risk keys in a fixed order': a table of five rows through `derivePolicy`:
+   {mutating:'mutates', ask_first:['spend']} -> 'ask'; {mutating:'read-only', ask_first:['settings']} -> 'ask';
+   {mutating:'mutates', doctor:true} -> 'ask'; {mutating:'read-only'} -> 'run';
+   {mutating:'add-only', write_scope:'spec-folder'} -> 'run'; {mutating:'add-only'} -> 'start'; {mutating:'mutates'} -> 'start'.
+2. 'rejects a missing class and unknown values': `validateRiskKeys` throws for {} , for {mutating:'safe'}, for {mutating:'mutates', ask_first:['money']},
+   for {mutating:'add-only', write_scope:'anywhere'}, and with requireTarget true for {mutating:'mutates'}. Each thrown message contains the label passed in.
+   It does not throw for {mutating:'mutates', gate3_location:'x', ask_first:['spend']} with requireTarget true.
+3. 'reads commands two levels deep and skips documents and private files': a fixture commands root with `alpha/one.md`, `alpha/README.md`,
+   `alpha/one.contract.md`, `alpha/local-mine.md`, `alpha/assets/deep.md`, `local-group/x.md` and `top.md`. `commandTreeNames(root)` equals ['/alpha:one'].
+4. 'names a command file with no declaration and a declaration with no file': `identityViolations({treeCommands:['/a:one','/a:two'],
+   metadataCommands:['/a:one','/a:gone'], doctorCommands:[]})` returns two strings, one containing '/a:two' and 'no command-metadata.json entry',
+   one containing '/a:gone' and 'has no command file'. With matching lists it returns [].
+5. 'fails a metadata entry that states no class': a fixture skills root with `beta/command-metadata.json` holding one entry
+   {command:'/a:one', ownerMode:'beta'}. `metadataRiskRecords(root)` throws and the message contains '/a:one'.
+6. 'emits a policy for every command file in the repository': `commandPolicies()` (no arguments) covers exactly the set `commandTreeNames()` returns,
+   and every record's policy is 'run', 'start' or 'ask'.
+
+Comments explain why, never name a spec folder, ticket, requirement or task id.
+
+VERIFY from `.skilled/skills/system-skill-advisor/runtime`: `npx vitest run tests/command-policy-derivation.vitest.ts` must report 6 passed and 0 failed.
+Do not edit the script. If a test cannot pass without editing it, stop and report why.

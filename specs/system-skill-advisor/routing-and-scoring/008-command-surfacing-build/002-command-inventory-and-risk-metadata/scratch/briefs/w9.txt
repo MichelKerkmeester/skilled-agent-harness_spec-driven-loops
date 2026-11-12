@@ -1,0 +1,51 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/002-command-inventory-and-risk-metadata
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: create ONE file, `.skilled/skills/sk-prompt/command-metadata.json`. It is a JSON array with one entry per slash command.
+
+Commands, in this order: /prompt:improve.
+
+Read first: the frontmatter (first 8 lines) and the "OWNED ASSETS" table of each command file `.skilled/commands/prompt/<name>.md`,
+and ONE example file for shape: `.skilled/skills/sk-design/command-metadata.json`. Read no other file.
+
+Each entry has exactly these keys in this order:
+- "command": the command, for example "/prompt:improve"
+- "ownerMode": "sk-prompt"   (this skill has no mode registry, so the owner is the skill itself)
+- "description": copy the `description` value from the command file's frontmatter
+- "argumentHint": copy the `argument-hint` value from the command file's frontmatter
+- "mutating" and "gate3_location" and, where listed, "ask_first": see the table below
+- "userIntent": {"job": "<one sentence, first person, what the user wants>", "ownedSignals": ["<the command string itself, e.g. /prompt:improve>"]}
+  ownedSignals holds ONLY the command string. Add no other phrase.
+- "choreography": an array of steps {"order", "skill", "resource", "action"}. Step 1 loads `.skilled/skills/sk-prompt/SKILL.md`.
+  Then one step per file in the command's OWNED ASSETS table, with "resource" the repo-root-relative path exactly as the table gives it.
+  Every resource path MUST exist: check each with `ls`. Drop a step whose file does not exist. "skill" is "sk-prompt" on every step.
+
+Classes:
+- /prompt:improve: "mutating": "mutates", no ask_first, gate3_location: a short phrase naming where the improved prompt is written, from the command file.
+
+2-space indentation, one trailing newline.
+
+VERIFY: `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs | tail -1` must print `checked=14 passed=14 failed=0 fixed=0`.
+`jq 'length' .skilled/skills/sk-prompt/command-metadata.json` must print 1.
+If the gate reports a violation for sk-prompt, read its message and fix THIS file only.

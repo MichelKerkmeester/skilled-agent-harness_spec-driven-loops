@@ -4,6 +4,8 @@
     "ownerMode": "sk-create-skill",
     "description": "Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.",
     "argumentHint": "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a new or updated OpenCode skill package at --path or the path setup resolves",
     "userIntent": {
       "job": "I want to create or update a standalone OpenCode skill package.",
       "ownedSignals": [
@@ -47,6 +49,8 @@
     "ownerMode": "sk-create-skill-parent",
     "description": "Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth). :auto/:confirm.",
     "argumentHint": "<skill-name> [create|update] [--modes <mode1,mode2,...>] [--surfaces <s1,s2,...>] [--path <dir>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a parent skill hub with nested mode packets, one graph-metadata.json, at the resolved --path",
     "userIntent": {
       "job": "I want to scaffold or update a parent skill hub with nested mode packets.",
       "ownedSignals": [
@@ -90,6 +94,8 @@
     "ownerMode": "sk-create-readme",
     "description": "Folder README creation, general or code-folder, with sk-doc quality standards. Modes :auto, :confirm.",
     "argumentHint": "<target> [--type <project|component|feature|skill>] [--output <path>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a README file in the target folder, or at the --output path",
     "userIntent": {
       "job": "I want to write a current-state README for a folder.",
       "ownedSignals": [
@@ -123,6 +129,8 @@
     "ownerMode": "sk-create-agent",
     "description": "Create a new OpenCode agent with frontmatter, tool permissions, behavioral rules. Modes :auto, :confirm.",
     "argumentHint": "<agent_name> [agent_description] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "mutating": "mutates",
+    "gate3_location": "a new agent file under .skilled/agents/ and its runtime mirrors",
     "userIntent": {
       "job": "I want to create an OpenCode agent with explicit permissions and behavioral rules.",
       "ownedSignals": [
@@ -157,6 +165,8 @@
     "ownerMode": "sk-create-command",
     "description": "Create or update OpenCode slash command sets with :auto/:confirm workflow assets.",
     "argumentHint": "<command_invocation> [command_request] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a slash command file plus its auto and confirm workflow YAML assets",
     "userIntent": {
       "job": "I want to create or update an OpenCode slash command with routed workflow assets.",
       "ownedSignals": [
@@ -191,6 +201,8 @@
     "ownerMode": "sk-create-feature-catalog",
     "description": "Create or update feature catalog packages via one unified command. Modes :auto, :confirm.",
     "argumentHint": "<skill-name> [create|update] [--path <dir>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a feature catalog package with per-feature docs at --path or the resolved location",
     "userIntent": {
       "job": "I want to build a feature catalog with auditable per-feature documentation.",
       "ownedSignals": [
@@ -225,6 +237,8 @@
     "ownerMode": "sk-create-manual-testing-playbook",
     "description": "Create or update manual testing playbook packages via one unified command. Modes :auto, :confirm.",
     "argumentHint": "<skill-name> [create|update] [--path <dir>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a manual testing playbook package with scenario and evidence docs at the resolved --path",
     "userIntent": {
       "job": "I want to author a deterministic manual testing playbook with evidence capture.",
       "ownedSignals": [
@@ -259,6 +273,8 @@
     "ownerMode": "sk-create-benchmark",
     "description": "Author or update family-keyed benchmark packages. Modes :auto, :confirm.",
     "argumentHint": "<skill-or-mode> <spec-packet> [create|update] --family=<family> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "family-keyed benchmark artifacts and fixtures at --path or the family's resolved location",
     "userIntent": {
       "job": "I want to author benchmark artifacts, fixtures, or conformance packages for a skill or mode.",
       "ownedSignals": [
@@ -293,6 +309,8 @@
     "ownerMode": "sk-create-changelog",
     "description": "Create a global changelog entry. Topology-aware, optional GitHub release. :auto/:confirm.",
     "argumentHint": "<spec-folder-or-component> [--bump <major|minor|patch|build>] [--release] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a changelog entry under .skilled/changelog/",
     "userIntent": {
       "job": "I want to create a global component changelog with release notes.",
       "ownedSignals": [
@@ -327,6 +345,8 @@
     "ownerMode": "sk-create-diff",
     "description": "Create a self-contained before/after document diff report via the create-diff engine. Modes :auto, :confirm.",
     "argumentHint": "<target-document | --before old --after new> [--report out.html] [--view unified|side-by-side] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a self-contained HTML diff report at the --report path the user names",
     "userIntent": {
       "job": "I want to compare document versions and produce a self-contained HTML diff report.",
       "ownedSignals": [
@@ -361,6 +381,8 @@
     "ownerMode": "sk-create-repo-rule",
     "description": "Create, revise or retire a repo rule under repo-rules/, wired into REPO RULES.md. :auto/:confirm.",
     "argumentHint": "<what the rule should bind> [create|revise|retire] [--rule <name>] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a rule file under repo-rules/, wired into that repository's REPO RULES.md",
     "userIntent": {
       "job": "I want a repo-local rule that binds before an action, or I want to change or remove one.",
       "ownedSignals": [
@@ -409,6 +431,8 @@
     "ownerMode": "sk-create-with-human-voice",
     "description": "Apply or score prose against the Human Voice Rules with a scope gate and a re-scan. :auto/:confirm.",
     "argumentHint": "<file or passage> [apply|score] [--include-code] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "the target file rewritten in place by apply; score writes no file",
     "userIntent": {
       "job": "I want prose brought up to the Human Voice Rules, or told how far off it is.",
       "ownedSignals": [
@@ -457,6 +481,8 @@
     "ownerMode": "sk-create-goal",
     "description": "Author or revise a packet goal.md: top-level, phase-parent, child, retrofit, phase-add, amend. :auto/:confirm.",
     "argumentHint": "<packet path> [top-level|phase-parent|child|retrofit|phase-add|amend] [:auto|:confirm]",
+    "mutating": "mutates",
+    "gate3_location": "a goal.md inside the spec packet the user names",
     "userIntent": {
       "job": "I want a spec packet's goal.md authored, added or revised from that packet's own sources.",
       "ownedSignals": [

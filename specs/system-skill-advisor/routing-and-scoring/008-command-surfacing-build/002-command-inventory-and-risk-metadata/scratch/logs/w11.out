@@ -1,0 +1,26 @@
+Done.
+
+**File written** (only file touched):
+`.skilled/skills/system-skill-advisor/runtime/tests/command-policy-derivation.vitest.ts`
+
+Structure:
+- Header banner + prose comment in the same style as `doctor-routing-slice.vitest.ts`, then node imports, then `vitest` imports.
+- `const require = createRequire(import.meta.url)` loading `../scripts/command-bridges/derive-command-bridges.cjs`, typed by an inline local interface (plus a local `RiskRecord` interface).
+- Temp fixtures via `mkdtempSync(join(tmpdir(), 'command-policy-derivation-'))` in `beforeAll`, `rmSync(..., { recursive: true, force: true })` in `afterAll`; nothing written inside the repo.
+- One `describe('command policy derivation')` with the 6 required tests (the derive table carries all 7 rows listed, including the `doctor:true` and `mutates → start` rows; the identity test asserts both directions plus the empty case; the last test compares the sorted unique command set of `commandPolicies()` against `commandTreeNames()`).
+- Comments explain why only; no spec paths, ids or task labels.
+
+**Verify output** (run from `.skilled/skills/system-skill-advisor/runtime`):
+```
+npx vitest run tests/command-policy-derivation.vitest.ts
+ RUN  v4.1.12 .../runtime
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+ Duration  188ms
+EXIT=0
+```
+6 passed, 0 failed.
+
+**Notes / could not do:**
+- The script was not edited. Before writing, I confirmed read-only that `commandPolicies()` and `commandTreeNames()` already agree on the current tree (44 commands, no side-only entries, policy values `start|ask|run`), which is why the real-tree assertion passes without any change to the derivation.
+- `git status` shows many pre-existing modified/untracked files from other work in this checkout; my file is the only `??` entry I created. No git state, commits, branches or pushes touched.

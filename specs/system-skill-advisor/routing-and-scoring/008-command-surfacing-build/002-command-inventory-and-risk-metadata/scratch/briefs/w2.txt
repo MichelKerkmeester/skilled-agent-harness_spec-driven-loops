@@ -1,0 +1,39 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/002-command-inventory-and-risk-metadata
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+PERSONA: You are the @code implementer, a LEAF worker dispatched by an orchestrator (Depth: 1).
+Edit exactly the one file this brief names. Never dispatch another agent or CLI, never run pi.
+Never commit, push or touch git state. Touch no other file. Verify before you report.
+Report: the file written, the verify output, and anything you could not do.
+
+TASK: edit ONE file, `.skilled/skills/sk-design/command-metadata.json`. It is a JSON array of 3 entries, one per slash command.
+
+To EACH entry add these keys, placed directly after the `argumentHint` key:
+- `"mutating": "mutates"`
+- `"gate3_location": "<one short phrase naming what the command writes>"`
+
+To write the gate3_location phrase for an entry, read only the first 40 lines of that command's file,
+`.skilled/commands/design/<name>.md` (for `/design:agent` that is `.skilled/commands/design/agent.md`), and say where its output lands,
+for example "a new agent file under .skilled/agents/ and its runtime mirrors" or "an HTML file at the path the user names".
+Keep each phrase under 25 words. When the file does not say, write "files the workflow names at run time".
+
+Change nothing else: no reordering, no other key, same 2-space indentation, file ends with one newline.
+
+VERIFY: `jq '[.[] | select(.mutating == "mutates" and (.gate3_location | type == "string"))] | length' .skilled/skills/sk-design/command-metadata.json` must print 3,
+and `git diff --stat .skilled/skills/sk-design/command-metadata.json` must show insertions only (0 deletions).
