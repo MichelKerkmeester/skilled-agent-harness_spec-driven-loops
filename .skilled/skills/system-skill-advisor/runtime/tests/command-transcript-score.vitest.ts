@@ -9,11 +9,15 @@
 // gave itself, a loop that ran its own steps before claiming its state and a
 // completion that worked ahead of the packet. The exit cases run the front door,
 // because a reader failure has to reach a caller as the reader's own code rather
-// than as a partial score. A fixture here claims nothing about a live run: it fixes
-// what the checks mean so a later arm's numbers can be read.
+// than as a partial score, and the summary cases run it over a run log, because
+// the exit a turn ended with is where a capped run used to be lost. A fixture
+// here claims nothing about a live run: it fixes what the checks mean so a later
+// arm's numbers can be read.
 
 import { spawnSync } from 'node:child_process';
-import { dirname, resolve } from 'node:path';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
@@ -548,5 +552,94 @@ describe('reader failure', () => {
 
     expect(run.status).toBe(2);
     expect(JSON.parse(String(run.stdout))).toEqual({ ok: false, code: 'locator_unavailable' });
+  });
+});
+
+// ───────────────────────────────────────────────────────────────
+// 7. RUN LOG SUMMARY
+// ───────────────────────────────────────────────────────────────
+
+// The one corpus row a summary case answers. A start row is the plainest label a
+// fixture can join a transcript to, and the id is fixed so a case carries no
+// prompt text of its own.
+const SUMMARY_ROW = 'cmd-create-agent-plain-tune-01';
+const SUMMARY_SESSION = 'aaaaaaaa-1111-4111-8111-111111111111';
+
+interface RunLogLine {
+  readonly rowId: string;
+  readonly arm: string;
+  readonly exit: number | null;
+  readonly locator: Readonly<Record<string, string>> | null;
+}
+
+// A summary line leads back to the one session its turn wrote, so a case needs a
+// store a reader can open. The claude store is the one a fixture builds from
+// scratch: the reader accepts a transcript path once the file sits under the
+// store it is handed, and the file name is the session id it checks.
+function loadableSession(root: string): Record<string, string> {
+  const claudeRoot = join(root, 'claude', 'projects');
+  const transcriptPath = join(claudeRoot, SUMMARY_SESSION, `${SUMMARY_SESSION}.jsonl`);
+  mkdirSync(dirname(transcriptPath), { recursive: true });
+  writeFileSync(transcriptPath, `${JSON.stringify({
+    type: 'assistant',
+    uuid: 'claude-a1',
+    sessionId: SUMMARY_SESSION,
+    timestamp: TIMESTAMP,
+    message: { role: 'assistant', content: [{ type: 'text', text: 'COMMAND: /create:agent → started' }] },
+  })}\n`);
+  return { sessionId: SUMMARY_SESSION, transcriptPath, claudeRoot };
+}
+
+// The summary reads the log a runner leaves behind, so a case supplies the lines
+// that log would hold and reads back the block the arm was counted into.
+function summarize(runOf: (root: string) => readonly RunLogLine[]): unknown {
+  const root = mkdtempSync(join(tmpdir(), 'command-summary-'));
+  try {
+    const logPath = join(root, 'run-log.jsonl');
+    const lines = runOf(root).map((line) => JSON.stringify({ runtime: 'claude', ...line }));
+    writeFileSync(logPath, `${lines.join('\n')}\n`);
+
+    const run = runScorer(['--summary', logPath, '--json']);
+    expect(run.status).toBe(0);
+    return JSON.parse(String(run.stdout));
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+describe('run log summary', () => {
+  // The cap stops a turn that has already done minutes of work, and its
+  // transcript is the only evidence of that work, so the exit code is not a
+  // ground to throw the session away.
+  it('scores a run the cap stopped and counts it as capped', () => {
+    const summary = summarize((root) => [
+      { rowId: SUMMARY_ROW, arm: 'tune', exit: 143, locator: loadableSession(root) },
+    ]);
+
+    expect(summary).toMatchObject({
+      claude: { unscored: 0, tune: { runs: 1, scored: 1, capped: 1 } },
+    });
+  });
+
+  // A run whose log captured no session id names no transcript to read, so the
+  // reader's own code is the reason the summary reports, never the exit code the
+  // turn happened to end with.
+  it('leaves a crashed run with no session id unscored by the reader code', () => {
+    const summary = summarize(() => [
+      { rowId: SUMMARY_ROW, arm: 'tune', exit: 1, locator: null },
+    ]);
+
+    expect(summary).toMatchObject({
+      claude: {
+        unscored: 1,
+        tune: {
+          runs: 1,
+          scored: 0,
+          capped: 0,
+          unscored: 1,
+          unscoredRuns: [{ rowId: SUMMARY_ROW, reason: 'locator_unavailable' }],
+        },
+      },
+    });
   });
 });

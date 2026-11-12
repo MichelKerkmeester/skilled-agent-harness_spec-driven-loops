@@ -1,0 +1,26 @@
+**T056 done.** One file changed: `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs` (`R`).
+
+What changed:
+- **DSH argv**: dropped `--session-id` and its value, and the now-unused `sessionId` builder param. The `-` stdin prompt marker stays last.
+- **DSH locator**: row is now `{ kind: 'store', list: dshSessionIds }`.
+- **`dshSessionIds()`**: reads directory names under `join(dshStoreRoot(), dshProjectKey(PROJECT_DIR))` — imported from `.skilled/hooks/shared/session-readers/dsh.mjs`, so the folder listed is the one the reader searches. A missing folder returns `[]`.
+- **`storeLocator(reportedId)`**: always carries `dshHome` and `projectDir`, and adds `sessionId` only when the listing added exactly one entry (the existing `addedSessionId` rule, unchanged).
+- **Bracketing**: `listsStore()` / `storeIds()` let the one before/after bracket serve both store-backed kinds (`listing` spawns the CLI index, `store` reads the folder). Dry runs still list nothing.
+- **Pi locator**: the `runner` branch no longer adds `dshHome`, so Pi records `{ sessionId, projectDir }`.
+
+Verify output (from repo root):
+
+```
+$ node --check $R
+exit=0
+
+$ node $R --print-argv dsh
+["--profile","headless","--patch",".../.dsh/patches/route-llmgateway-deepseek.patch.yml","--patch",".../.dsh/patches/lineage.patch.yml","--patch",".../.dsh/patches/guards.patch.yml","--json","--permission-mode","workspace-write","--approval-policy","never","-"]
+exit=0
+```
+
+No `--session-id` in the DSH argv, argv still ends with `-`, and `--print-argv` exits 0 (so the new `dsh.mjs` import resolves at module evaluation). The only remaining `--session-id` literal in the file is Pi's, line 190.
+
+Supporting checks: the store listing path and the set-difference were exercised against a throwaway `DSH_HOME` in a temp dir (missing folder → `[]`, one added → that name, several → no id); `rg -n "T0[0-9]{2}|REQ-0|specs/" $R` exits 1 (no ids, paths or phase numbers in comments).
+
+Left alone: `tasks.md` checkbox not ticked, no other file touched, no test suite run (T056 names no test file), no git state changed. The pending `findTranscript`/`transcriptPath` and `projectDir` hunks already in this file's working tree came from other workers and were not reverted.

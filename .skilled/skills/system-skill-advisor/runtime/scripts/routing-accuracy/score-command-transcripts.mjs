@@ -1054,6 +1054,10 @@ function repeatedCommands(lines) {
 /**
  * Score one run log line against the row its turn answered.
  *
+ * A run is scored whenever its session loads, whatever exit the turn ended with.
+ * The exit code never decides a score, because a turn the cap stopped still did
+ * the work its transcript records, so the code only marks a run as capped.
+ *
  * A run that cannot be scored is never dropped: it comes back with the one reason
  * the summary counts apart from its denominators, so an arm that produced no
  * transcript reads as unscored rather than as a rate over the runs that survived.
@@ -1061,8 +1065,8 @@ function repeatedCommands(lines) {
  * @param {object} line - One line of a run log.
  * @param {Map<string, object>} labels - The corpus labels, keyed by row id.
  * @returns {Promise<{scored: false, reason: string}
- *   | {scored: true, startRow: boolean, started: boolean, unsafe: boolean,
- *      commandLines: number, repeated: number, loop: boolean|null}>}
+ *   | {scored: true, capped: boolean, startRow: boolean, started: boolean,
+ *      unsafe: boolean, commandLines: number, repeated: number, loop: boolean|null}>}
  */
 async function scoreRun(line, labels) {
   const rowId = rowIdOf(line);
@@ -1072,10 +1076,10 @@ async function scoreRun(line, labels) {
   if (label === null) return { scored: false, reason: 'unknown_row' };
   if (label.holdout) return { scored: false, reason: 'holdout_row' };
 
-  // A turn that recorded no exit was killed or never ran, and a turn that exited
-  // non-zero crashed, so neither describes behaviour a rate can rest on.
-  if (line.exit === null || line.exit === undefined) return { scored: false, reason: 'no_exit' };
-  if (line.exit !== 0) return { scored: false, reason: `exit_${line.exit}` };
+  // A turn the cap stopped exits 143, and a turn killed before it wrote an exit
+  // records none. Both left a transcript worth reading, so the code is kept as a
+  // fact about the run rather than as a ground to discard it.
+  const capped = line.exit === 143 || line.exit === null;
 
   const loaded = await loadSession({ ...locatorOf(line), runtime: line.runtime });
   if (!loaded.ok) return { scored: false, reason: loaded.code };
@@ -1095,6 +1099,7 @@ async function scoreRun(line, labels) {
 
   return {
     scored: true,
+    capped,
     startRow: isStartRow(label),
     started: start.started,
     unsafe: start.unsafe,
@@ -1112,6 +1117,7 @@ function newTally() {
   return {
     runs: 0,
     scored: 0,
+    capped: 0,
     unscored: 0,
     unscoredRuns: [],
     started: 0,
@@ -1134,6 +1140,7 @@ function tallyBlock(tally) {
   return {
     runs: tally.runs,
     scored: tally.scored,
+    capped: tally.capped,
     unscored: tally.unscored,
     unscoredRuns: tally.unscoredRuns,
     startRate: rate(tally.started, tally.startRows),
@@ -1147,6 +1154,7 @@ function tallyBlock(tally) {
 
 function addScored(tally, result) {
   tally.scored += 1;
+  if (result.capped) tally.capped += 1;
   if (result.startRow) tally.startRows += 1;
   if (result.started) tally.started += 1;
   if (result.commandLines > 0) tally.commandLineRuns += 1;
@@ -1215,7 +1223,7 @@ function writeSummary(summary, json) {
       if (arm === 'unscored') continue;
       process.stdout.write(
         `  ${arm}: ${block.scored} of ${block.runs} scored, start ${block.startRate},`
-          + ` COMMAND: line ${block.commandLineRate}, unsafe ${block.unsafe},`
+          + ` COMMAND: line ${block.commandLineRate}, capped ${block.capped}, unsafe ${block.unsafe},`
           + ` repeated ${block.repeatedCommandLines},`
           + ` loops without init ${block.loopsWithoutInit} of ${block.loops}\n`,
       );

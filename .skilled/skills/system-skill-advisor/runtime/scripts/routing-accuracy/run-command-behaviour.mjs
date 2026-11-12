@@ -44,12 +44,13 @@
 //   node run-command-behaviour.mjs --runtime <runtime> (--set <set> | --row-id <id>...)
 //     --out <run-log> [--arm <arm>] [--fixture <dir>] [--dry-run]
 
-import { appendFileSync, mkdirSync, readFileSync, realpathSync, rmSync } from 'node:fs';
+import { appendFileSync, mkdirSync, readdirSync, readFileSync, realpathSync, rmSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { homedir } from 'node:os';
 import { randomUUID } from 'node:crypto';
 import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { dshProjectKey, dshStoreRoot } from '../../../../../hooks/shared/session-readers/dsh.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(HERE, '../../../../../..');
@@ -101,6 +102,9 @@ const RUNTIMES = {
     // stream-json writes one JSON object per line and every one of them carries
     // the session id the transcript is stored under.
     locator: { kind: 'stream', field: 'session_id' },
+    // The reader opens a transcript by id plus its own path, and Claude Code names
+    // the file after the session inside a folder per working directory.
+    findTranscript: claudeTranscriptPath,
     buildArgv: ({ prompt }) => [
       '-p',
       prompt,
@@ -125,6 +129,9 @@ const RUNTIMES = {
     // The run opens with an event naming its thread, and the rollout file is
     // named after that thread id.
     locator: { kind: 'stream', field: 'thread_id' },
+    // The rollout file is named after the thread id the stream reported, so the id
+    // alone leads back to it once the store has been searched.
+    findTranscript: codexTranscriptPath,
     buildArgv: () => [
       'exec',
       // The JSON event stream is how a turn reports its thread id.
@@ -219,10 +226,10 @@ const RUNTIMES = {
     // and this table pins the verified LLM Gateway route.
     model: DSH_MODEL,
     promptOnStdin: true,
-    // The runner mints the id and passes it on the command line, so the log is
-    // addressable before the turn starts rather than recovered from the stream.
-    locator: { kind: 'runner' },
-    buildArgv: ({ sessionId }) => [
+    // The harness names the session itself and refuses an id it never created,
+    // so the turn's id is recovered from the store folder its log lands in.
+    locator: { kind: 'store', list: dshSessionIds },
+    buildArgv: () => [
       '--profile',
       'headless',
       '--patch',
@@ -232,15 +239,14 @@ const RUNTIMES = {
       '--patch',
       resolve(DSH_PATCH_DIR, 'guards.patch.yml'),
       '--json',
-      // The runner mints the id, so the transcript locator is known before the
-      // turn starts rather than recovered from the stream.
-      '--session-id',
-      sessionId,
       '--permission-mode',
       'workspace-write',
       // Approvals default to ask, and a headless turn has nobody to answer.
       '--approval-policy',
       'never',
+      // The dash takes the prompt from stdin, which is the channel a headless
+      // run reads, and keeps a prompt that opens with one from parsing as a
+      // flag.
       '-',
     ],
   },
@@ -313,6 +319,21 @@ function listingIds(runtime, ghConfig) {
   return result.status === 0 ? listedSessionIds(result.stdout) : null;
 }
 
+// A runtime that names its session only in a store it owns is bracketed by two
+// readings of that store, and the entry the turn added is the session it wrote.
+function listsStore(runtime) {
+  return runtime.locator.kind === 'listing' || runtime.locator.kind === 'store';
+}
+
+// Only the reading differs between the store-backed forms: one CLI answers with
+// its own index and the other keeps one folder per session. Any other kind
+// names its session in the turn's output instead.
+function storeIds(runtime, ghConfig) {
+  return runtime.locator.kind === 'store'
+    ? runtime.locator.list()
+    : listingIds(runtime, ghConfig);
+}
+
 // The listing is a JSON array of session objects whose `id` field is the value
 // the CLI's own resume takes, so that field is the one that leads back to a
 // transcript. Any other shape names no session, which the caller reads as no id
@@ -347,12 +368,97 @@ function dshHome() {
   return process.env.DSH_HOME || join(homedir(), '.dsh');
 }
 
+// A DSH session is a folder named after its id under one folder per project the
+// harness keyed from the directory the turn ran in, and the turn's own output
+// never names that id. The store root comes from the reader so the folder listed
+// here is the folder the reader will search. A store the harness has not created
+// yet lists nothing, which is the same answer as a turn that wrote no session.
+function dshSessionIds() {
+  const store = join(dshStoreRoot(), dshProjectKey(PROJECT_DIR));
+  try {
+    return readdirSync(store, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name);
+  } catch {
+    return [];
+  }
+}
+
+// A store folder is the CLI's to lay out, so the walk follows the folders it
+// creates and matches on the file name instead of predicting a path. A store that
+// is missing or unreadable names no transcript, which is the same answer as a turn
+// that wrote none rather than a reason to fail the run.
+function findTranscriptFiles(dir, matches, depth) {
+  let entries;
+  try {
+    entries = readdirSync(dir, { withFileTypes: true });
+  } catch {
+    return [];
+  }
+  const found = [];
+  for (const entry of entries) {
+    if (entry.isFile() && matches(entry.name)) {
+      found.push(join(dir, entry.name));
+    } else if (entry.isDirectory() && depth > 0) {
+      found.push(...findTranscriptFiles(join(dir, entry.name), matches, depth - 1));
+    }
+  }
+  return found;
+}
+
+// One match is the turn's own transcript, while two leave the locator without a
+// path because choosing between them could score a neighbouring turn under this
+// row. The path is resolved so a log written from another checkout still opens.
+function storedTranscriptPath(root, matches, depth = Infinity) {
+  const found = findTranscriptFiles(root, matches, depth);
+  return found.length === 1 ? resolve(found[0]) : null;
+}
+
+// Claude Code keeps one folder per working directory and writes each transcript
+// directly inside it, so one level below the store is the whole of the search. A
+// helper transcript sits deeper inside `subagents/`, which belongs to another turn
+// and which the reader refuses.
+function claudeTranscriptPath(sessionId) {
+  const store = join(process.env.CLAUDE_CONFIG_DIR || join(homedir(), '.claude'), 'projects');
+  return storedTranscriptPath(store, (name) => name === `${sessionId}.jsonl`, 1);
+}
+
+// A Codex rollout file is named after its start time and ends with the thread id,
+// and it sits under a date folder whose depth is the CLI's to choose, so the whole
+// store is searched and the id is a suffix of the name.
+function codexTranscriptPath(sessionId) {
+  const store = join(process.env.CODEX_HOME || join(homedir(), '.codex'), 'sessions');
+  return storedTranscriptPath(store, (name) => name.endsWith(`-${sessionId}.jsonl`));
+}
+
+// A store listing that added no single entry leaves the id out rather than
+// naming a guess that would score a neighbouring turn under this row. The home
+// stays on the record so the store the run wrote to is findable from the log
+// alone.
+function storeLocator(reportedId) {
+  const store = { dshHome: dshHome(), projectDir: PROJECT_DIR };
+  return reportedId === null ? store : { sessionId: reportedId, ...store };
+}
+
 function locatorFor(runtime, sessionId, reportedId) {
   const source = runtime.locator;
-  if (source.kind === 'runner') return { sessionId, dshHome: dshHome(), projectDir: PROJECT_DIR };
+  // The id the runner handed the CLI is the one the store keys its log by, and
+  // the directory the turn ran in is what a reader matches the log's header
+  // against, so both travel with every record.
+  if (source.kind === 'runner') return { sessionId, projectDir: PROJECT_DIR };
+  if (source.kind === 'store') return storeLocator(reportedId);
   // A runtime that reported no id records none, which keeps a scorer from opening
   // a neighbouring transcript that happens to be newer.
-  return reportedId === null ? null : { sessionId: reportedId, projectDir: PROJECT_DIR };
+  if (reportedId === null) return null;
+  const locator = { sessionId: reportedId, projectDir: PROJECT_DIR };
+  // A reader needs the file the turn wrote as well as its id, so a store-based
+  // runtime resolves the id to a path once the turn has closed. A turn that left
+  // no single match keeps the field out rather than naming a guess.
+  const transcriptPath = typeof runtime.findTranscript === 'function'
+    ? runtime.findTranscript(reportedId)
+    : null;
+  if (transcriptPath !== null) locator.transcriptPath = transcriptPath;
+  return locator;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -907,13 +1013,13 @@ async function runTurn(job, options, exempt, isFirst) {
   // A runtime that names its session only in its own store is bracketed by a
   // listing, and the entry the turn added is the session it wrote. A dry run
   // starts no CLI, so it has nothing to list.
-  const listed = !options.dryRun && job.runtime.locator.kind === 'listing';
-  const listingBefore = listed ? listingIds(job.runtime, job.ghConfig) : null;
+  const listed = !options.dryRun && listsStore(job.runtime);
+  const listingBefore = listed ? storeIds(job.runtime, job.ghConfig) : null;
   const turn = options.dryRun
     ? { exit: null, error: null, streamId: null }
     : await spawnTurn(job.runtime, argv, job.prompt, job.cap, job.ghConfig);
   const reportedId = listed
-    ? addedSessionId(listingBefore, listingIds(job.runtime, job.ghConfig))
+    ? addedSessionId(listingBefore, storeIds(job.runtime, job.ghConfig))
     : turn.streamId;
 
   const after = { status: statusPaths(), ...gitSnapshot() };

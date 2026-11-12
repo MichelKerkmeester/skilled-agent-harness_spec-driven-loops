@@ -1,0 +1,35 @@
+T057 is done. Both files named by the task line are updated, and the Verify command passes.
+
+## Files written
+
+**`$ADV/scripts/routing-accuracy/score-command-transcripts.mjs`**
+- `scoreRun` no longer returns `no_exit` / `exit_<code>`. The exit code is now only a fact: `capped` is set when `line.exit === 143 || line.exit === null`, and every run that loads a session is scored.
+- `capped` flows through `newTally` → `addScored` → `tallyBlock` (per runtime and arm) → `writeSummary`, where the text line now prints `capped N`.
+- Reader failure keeps returning the reader's own code as the reason, so a run is unscored only for a missing/unusable locator, a reader failure, or the pre-existing row reasons (`no_row_id`, `unknown_row`, `holdout_row`, `unscorable_runtime`).
+
+**`$ADV/tests/command-transcript-score.vitest.ts`**
+- New section 7 `run log summary` with two cases that drive the front door over a temp run log:
+  - exit 143 with a buildable claude transcript → `scored: 1`, `capped: 1`, `unscored: 0`.
+  - exit 1 with `locator: null` → `scored: 0`, `capped: 0`, `unscored: 1`, reason `locator_unavailable`.
+
+## Verify output
+
+`$ADV` = `.skilled/skills/system-skill-advisor/runtime`, command `npx vitest run tests/command-transcript-score.vitest.ts`:
+
+```
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/.skilled/skills/system-skill-advisor/runtime
+
+ Test Files  1 passed (1)
+      Tests  44 passed (44)
+   Start at  22:52:43
+   Duration  221ms (transform 38ms, setup 11ms, import 42ms, tests 116ms, environment 0ms)
+```
+
+0 failed, 44 passed (the bar was 44 or more). Verbose run confirms both new cases by name. A separate CLI probe printed `tune: 1 of 1 scored, start 1 of 1, COMMAND: line 1 of 1, capped 1, …` and `--summary /dev/null --json` still prints `{}` with exit 0.
+
+## Notes
+
+- Diff is limited to those two files (`git diff --stat`: 22 and 99 changed lines). `run-command-behaviour.mjs` and `tasks.md` show as modified from other workers; I neither touched nor reverted them.
+- Nothing undone. The `tasks.md` checkbox is left unticked as instructed.
+- One coupling to know about: the fixture joins a run to a real corpus row (`cmd-create-agent-plain-tune-01`, non-holdout, `split: tune`), because row labels exist only in `command-prompts.jsonl`. No holdout text was read.
+- No `typecheck` covers these two paths (`tsconfig.build.json` excludes `tests` and script `.mjs`), so the vitest run is the authoritative gate for this change.

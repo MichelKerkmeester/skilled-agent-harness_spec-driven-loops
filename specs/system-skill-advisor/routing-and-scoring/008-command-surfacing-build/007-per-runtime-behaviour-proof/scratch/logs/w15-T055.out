@@ -1,0 +1,39 @@
+T055 done.
+
+## Files written
+- `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs` (only file touched)
+
+## What changed
+1. `import` line now pulls `readdirSync` from `node:fs`.
+2. Runtime table: `claude` and `codex` gained `findTranscript: claudeTranscriptPath` / `codexTranscriptPath`, each with a durable-WHY comment.
+3. Session locator section gained three helpers:
+   - `findTranscriptFiles(dir, matches, depth)` — walks CLI-owned store folders, matches on file name, unreadable store yields `[]`.
+   - `storedTranscriptPath(root, matches, depth)` — returns the resolved path only when exactly one file matches, else `null`.
+   - `claudeTranscriptPath` searches `<CLAUDE_CONFIG_DIR or ~/.claude>/projects/` one level deep (`<sessionId>.jsonl`), so `subagents/` helper transcripts one level deeper are never named.
+   - `codexTranscriptPath` searches `<CODEX_HOME or ~/.codex>/sessions/` to any depth for names ending `-<sessionId>.jsonl`.
+4. `locatorFor` now builds the locator, resolves `transcriptPath` from `runtime.findTranscript` when the runtime has one, and leaves the field out on zero or multiple matches, on non-store runtimes, and on `reportedId === null` (unchanged null contract).
+
+## Verify output
+```
+node --check exit: 0
+--- rg ---
+413:  const transcriptPath = typeof runtime.findTranscript === 'function'
+416:  if (transcriptPath !== null) locator.transcriptPath = transcriptPath;
+rg exit: 0
+```
+Two lines, so the `two or more` requirement holds.
+
+## Extra behavioural check (temp copy in $TMPDIR, deleted)
+Exercised the real functions and the real `RUNTIMES` entries against a fixture home:
+- claude single match → absolute `.../projects/-Users-x-work/claude-one.jsonl`
+- claude two matches → `null` (field left out)
+- claude file only under `subagents/` → `null`
+- codex `sessions/2026/01/02/rollout-...-codex-one.jsonl` → found, `null` for a missing id
+- `locatorFor`: claude/codex carry `transcriptPath`, opencode and the runner-kind runtime are byte-identical to before, no reported id still returns `null`
+
+## Constraints observed
+- No checkbox ticked in `tasks.md`, no git state touched, no other file written.
+- `git status` shows only my file among those I own (the `score-command-transcripts.mjs`, `tasks.md` and `scratch/` entries belong to other workers).
+- No task ids, spec paths or ADR/REQ ids in comments, no em dashes or semicolons in comment prose, `diff --check` clean.
+
+Nothing I could not do.

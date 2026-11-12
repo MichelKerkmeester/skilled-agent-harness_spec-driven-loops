@@ -47,6 +47,7 @@
       "scratch/pre-change-commit.txt",
       ".pi/settings.json",
       ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py",
+      ".skilled/hooks/shared/session-readers/dsh.mjs",
       ".skilled/commands/create/readme.md"
     ],
     "entities": [
@@ -114,6 +115,12 @@
         "name": "measure-rule-compliance.py",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py",
+        "source": "derived"
+      },
+      {
+        "name": "dsh.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/dsh.mjs",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every check this build has so far reads the advisor's output, never the model's behaviour",
     "created_at": "2026-11-12T12:27:38Z",
-    "last_save_at": "2026-11-12T21:41:20.117Z",
+    "last_save_at": "2026-11-12T21:54:41.889Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +208,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c4513429a43b12f734fa718e813c777b16fe9526c979a5ddb9e6adf0265461c",
+    "source_fingerprint": "sha256:12b578339f6c5cb3c97f770f7dc3cd4ddc71b610912cf1651e6c9eb389c0f2f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0fee6d70e999fc270642449e7a72ab000c09668e5ba33a35cbba2be0e979d45d",
       "plan.md": "59e666ba7da15ddd3bc9290f8b88f3df08651651d27e0c476ca103c06994f831",
-      "tasks.md": "298058da01d2bcb685da50f2eb657dff4a34859c7535817ff6a50aeda3d565ed",
+      "tasks.md": "e9e9ce85470a9a9c4ea25f02d70e9e58f6bfd68f2aa133bb3378ebb2cff75d49",
       "implementation-summary.md": "a0c2ba05bc657547a2e6a5cf89a04236d748aeca7213674526464d1ca1f6524f"
     },
     "last_active_at": null
