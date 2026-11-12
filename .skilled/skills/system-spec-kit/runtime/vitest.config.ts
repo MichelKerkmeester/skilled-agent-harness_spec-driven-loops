@@ -21,6 +21,9 @@ export default defineConfig({
     exclude: [
       'runtime/cli/**',
     ],
+    globalSetup: [
+      path.resolve(import.meta.dirname, 'tests', '_support', 'vitest-global-setup.ts'),
+    ],
     setupFiles: [
       path.resolve(import.meta.dirname, 'tests', '_support', 'vitest-setup.ts'),
     ],

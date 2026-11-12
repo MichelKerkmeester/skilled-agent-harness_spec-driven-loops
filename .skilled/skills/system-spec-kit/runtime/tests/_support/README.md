@@ -19,10 +19,12 @@ trigger_phrases:
 ```text
 _support/
 +-- hooks/             # Hook replay harness helpers
++-- vitest-global-setup.ts  # One scratch root per run, removed when the run ends
 +-- vitest-setup.ts    # Test environment normalization
 `-- README.md
 ```
 
+- `vitest-global-setup.ts` - creates one root folder for every scratch database dir and removes it when the run ends, because vitest runs no `afterAll` hook for a file whose tests are all skipped.
 - `vitest-setup.ts` - normalizes temp-directory environment variables for test runs.
 - `hooks/` - shared replay helpers for hook-focused tests.
 
