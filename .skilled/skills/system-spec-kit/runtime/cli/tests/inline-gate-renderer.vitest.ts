@@ -6,8 +6,20 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
-import { describe, expect, it } from 'vitest';
+import { afterAll, describe, expect, it } from 'vitest';
 import { evaluateGateExpression, renderInlineGates } from '../templates/inline-gate-renderer';
+
+const tempDirs: string[] = [];
+
+function makeTempDir(): string {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'inline-gate-renderer-'));
+  tempDirs.push(dir);
+  return dir;
+}
+
+afterAll(() => {
+  for (const dir of tempDirs) fs.rmSync(dir, { recursive: true, force: true });
+});
 
 describe('inline gate renderer', () => {
   it('renders matching single-level blocks and strips marker lines', () => {
@@ -85,7 +97,7 @@ describe('inline gate renderer', () => {
   });
 
   it('renders multiple files to an output directory in one CLI process', () => {
-    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'inline-gate-renderer-'));
+    const tmp = makeTempDir();
     const first = path.join(tmp, 'first.md.tmpl');
     const second = path.join(tmp, 'second.md.tmpl');
     const outDir = path.join(tmp, 'out');
@@ -113,7 +125,7 @@ describe('inline gate renderer', () => {
   });
 
   it('reads a template path given before --level instead of waiting on stdin', () => {
-    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'inline-gate-renderer-'));
+    const tmp = makeTempDir();
     const template = path.join(tmp, 'first.md.tmpl');
     fs.writeFileSync(template, 'A\n<!-- IF level:1 -->\nB\n<!-- /IF -->\n', 'utf8');
 
