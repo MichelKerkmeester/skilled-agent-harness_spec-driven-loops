@@ -1,0 +1,8 @@
+EDIT FILE: .skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts
+HOW: replace the one occurrence of OLD with NEW. Copy NEW exactly, including leading spaces. Change nothing else in the file.
+=====OLD=====
+  if (!match) throw new Error(`create.sh produced no phase parent for ${slug}: ${result.stderr}`);
+=====NEW=====
+  if (!match) throw new Error(`create.sh produced no phase parent for ${slug}: ${result.stderr}`);
+  if (!(result.stdout ?? '').includes('references/workflows/spec-authoring-card.md')) throw new Error(`create.sh did not name the authoring card for phase parent ${slug}`);
+=====END=====

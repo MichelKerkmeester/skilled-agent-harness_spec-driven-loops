@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review",
+  "parent_id": "system-speckit/spec-authoring-and-continuity",
+  "children_ids": [
+    "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps",
+    "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path",
+    "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run",
+    "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/004-name-file-in-plan-phase-lines",
+    "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card",
+    "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates",
+    "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/007-fix-deep-review-p2-findings-for-plan-check-builds"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goldfish cold read plan review phase parent spec",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "goldfish",
+      "cold",
+      "read",
+      "plan",
+      "review",
+      "phase",
+      "parent",
+      "spec",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "review/review-report.md",
+      "001-research-egm-checks-and-chat-path-gaps/goal.md",
+      "002-bind-single-entry-executors-to-single-path/goal.md",
+      "003-refuse-single-lineage-fanout-run/goal.md",
+      "004-name-file-in-plan-phase-lines/goal.md",
+      "005-point-chat-sessions-at-authoring-card/goal.md",
+      "006-repair-speckit-workflow-gates/goal.md",
+      "007-fix-deep-review-p2-findings-for-plan-check-builds/goal.md",
+      "scratch/fable-review-of-phase-specs.md",
+      "scratch/build-evidence.md",
+      "scratch/remediation-evidence.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "fable-review-of-phase-specs.md",
+        "kind": "doc",
+        "path": "scratch/fable-review-of-phase-specs.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "remediation-evidence.md",
+        "kind": "doc",
+        "path": "scratch/remediation-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Use",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "DeepSeek",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "SpecKit planning can let the same session write and judge a plan, while a chat-started deep loop can bypass the workflow steps that enforce it",
+    "created_at": "2026-11-11T21:06:04Z",
+    "last_save_at": "2026-11-12T06:14:55.144Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:f18af76db26d9c8061b9851e7badd5a3a0aced6100524f03f49ea415f93a43b6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1a2a68c70a038b0d1b6e31d84067fd13bda8549e5468fbdb190b5469512c9246"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,10 @@
+EDIT FILE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh
+HOW: replace the one occurrence of OLD with NEW. Copy NEW exactly, including leading spaces. Change nothing else in the file.
+=====OLD=====
+    echo "  Next steps:"
+    echo "    1. Fill out spec.md with requirements"
+=====NEW=====
+    echo "  Next steps:"
+    echo "    0. Read .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md before you write a document"
+    echo "    1. Fill out spec.md with requirements"
+=====END=====

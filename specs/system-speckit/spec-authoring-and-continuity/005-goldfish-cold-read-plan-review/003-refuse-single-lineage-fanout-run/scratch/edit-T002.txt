@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+HOW: replace the one occurrence of OLD with NEW. Copy NEW exactly, including leading spaces. Change nothing else in the file.
+=====OLD=====
+  'costUnitsPerIteration', 'estimatedTokensPerIteration',
+=====NEW=====
+  'costUnitsPerIteration', 'estimatedTokensPerIteration', 'allowSingleLineage',
+=====END=====

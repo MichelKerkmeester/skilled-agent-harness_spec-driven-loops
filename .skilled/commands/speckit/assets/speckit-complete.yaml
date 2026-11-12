@@ -1044,7 +1044,7 @@ workflow:
       action: |
         STOP and verify Phase Gate:
         1. spec.md exists → If not, return to Step 3
-        2. plan.md exists → If not, return to Step 6
+        2. plan.md exists and states a technical approach, meaning the approach and the files it changes → If not, return to Step 6
         3. tasks.md exists → If not, this step failed
         4. No [NEEDS CLARIFICATION] in spec.md
         5. Mark "PHASE GATE: PASSED"

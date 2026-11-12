@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/007-fix-deep-review-p2-findings-for-plan-check-builds",
+  "description": "The finished review found a duplicated loop-type allowlist, an undocumented one-lineage opt-in whose value form is refused",
+  "keywords": [
+    "finished",
+    "review",
+    "found",
+    "duplicated",
+    "loop-type",
+    "allowlist",
+    "undocumented",
+    "one-lineage",
+    "opt-in",
+    "whose",
+    "value",
+    "form",
+    "refused"
+  ],
+  "lastUpdated": "2026-11-12T02:13:53.738Z",
+  "specId": "007",
+  "folderSlug": "fix-deep-review-p2-findings-for-plan-check-builds",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "005-goldfish-cold-read-plan-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

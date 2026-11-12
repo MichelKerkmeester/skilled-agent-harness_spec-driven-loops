@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review",
+  "description": "Fresh-context plan checks and chat-path workflow guards: research plus the builds its confirmed recommendations need",
+  "keywords": [
+    "fresh-context",
+    "plan",
+    "checks",
+    "chat-path",
+    "workflow",
+    "guards",
+    "research",
+    "plus",
+    "confirmed",
+    "recommendations",
+    "need"
+  ],
+  "lastUpdated": "2026-11-12T00:29:56.053Z",
+  "specId": "005",
+  "folderSlug": "goldfish-cold-read-plan-review",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-11-26_01-29__deep-review-5-of-5-iterations-cli-pi-deepseek-v4.md"
+  ]
+}

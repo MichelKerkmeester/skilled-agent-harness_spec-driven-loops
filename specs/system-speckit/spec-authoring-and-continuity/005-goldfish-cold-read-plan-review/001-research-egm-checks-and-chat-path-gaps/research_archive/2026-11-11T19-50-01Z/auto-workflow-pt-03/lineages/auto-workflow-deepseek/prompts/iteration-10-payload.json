@@ -1,0 +1,65 @@
+{
+  "iteration": 10,
+  "status": "insight",
+  "focus": "Ranking, recommendation, smallest change set and what not to build",
+  "newInfoRatio": 0.6,
+  "noveltyJustification": "The ranking and the three-line change set are new; every supporting fact was established in iterations 1-9, so this iteration synthesizes rather than discovers.",
+  "keyQuestions": [
+    "How do the mechanisms rank, which one should be recommended, and what is the smallest set of changes to existing files?",
+    "What should not be built?"
+  ],
+  "answeredQuestions": [
+    "How do the mechanisms rank, which one should be recommended, and what is the smallest set of changes to existing files?",
+    "What should not be built?"
+  ],
+  "ruledOut": [
+    "Recommending mechanism D as the primary carrier",
+    "Recommending a co-equal B and C combination",
+    "Recommending the optional fourth change by default"
+  ],
+  "focusTrack": "recommendation",
+  "edgeCase": "partial-success",
+  "toolsUsed": ["bash", "read", "grep"],
+  "sourcesQueried": [
+    ".skilled/commands/speckit/assets/speckit-plan.yaml",
+    ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+    ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+    ".skilled/skills/system-spec-kit/ROUTER.md",
+    ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+    ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+    ".skilled/hooks/README.md",
+    ".skilled/hooks/spec-gate/README.md",
+    ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md",
+    ".devin/README.md",
+    "AGENTS.md"
+  ],
+  "graphEvents": [
+    {"type": "node", "id": "q-rank", "kind": "QUESTION", "label": "Which mechanism to recommend"},
+    {"type": "node", "id": "f-rank-b", "kind": "CLAIM", "label": "The card is the best carrier with one keyword fix"},
+    {"type": "node", "id": "f-rank-d", "kind": "CLAIM", "label": "The validator carries one check not the program"},
+    {"type": "node", "id": "f-smallest-set", "kind": "FINDING", "label": "Three one-line edits to existing files"},
+    {"type": "node", "id": "f-not-build", "kind": "FINDING", "label": "Everything the ranking eliminated"},
+    {"type": "node", "id": "f-limit", "kind": "FINDING", "label": "The change lowers frequency not the ceiling"},
+    {"type": "edge", "id": "e-iter010-001", "source": "f-rank-b", "target": "q-rank", "relation": "ANSWERS"},
+    {"type": "edge", "id": "e-iter010-002", "source": "f-rank-d", "target": "q-rank", "relation": "SUPPORTS"},
+    {"type": "edge", "id": "e-iter010-003", "source": "f-smallest-set", "target": "f-rank-b", "relation": "DERIVED_FROM"},
+    {"type": "edge", "id": "e-iter010-004", "source": "f-limit", "target": "f-rank-b", "relation": "CONTRADICTS"}
+  ],
+  "findings": [
+    {"label": "Mechanism B ranks first on four of five criteria and loses only on load reliability which is one line", "sources": [".skilled/skills/system-spec-kit/ROUTER.md", ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md"]},
+    {"label": "Mechanism D ranks second and should carry exactly one check", "sources": [".skilled/skills/system-spec-kit/references/validation/validation-rules.md"]},
+    {"label": "Mechanism C ranks third and suits a nudge not the check", "sources": [".skilled/hooks/README.md", ".skilled/hooks/spec-gate/README.md"]},
+    {"label": "Mechanism E ranks fourth and is mis-specified because command recommendation does not exist", "sources": ["AGENTS.md", ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json", ".devin/README.md"]},
+    {"label": "Mechanism A ranks last on change cost and enforcement at once", "sources": ["AGENTS.md"]},
+    {"label": "The missing chat-path check is the workflow's unconditional document_all_decisions rule", "sources": [".skilled/commands/speckit/assets/speckit-plan.yaml", ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md"]},
+    {"label": "The card declares a fill note to be the section contract so an existing note is the cheapest carrier", "sources": [".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md", ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl"]},
+    {"label": "The smallest change set is three one-line edits to existing files and no new artifact", "sources": [".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl", ".skilled/skills/system-spec-kit/ROUTER.md", "AGENTS.md"]},
+    {"label": "What not to build is every mechanism the ranking eliminated plus any blocking Level 1 gate", "sources": [".skilled/hooks/README.md", ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json", ".skilled/skills/system-spec-kit/references/validation/validation-rules.md"]},
+    {"label": "The recommendation lowers frequency but cannot prove a fresh-context read", "sources": [".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl"]}
+  ],
+  "ruledOutDetailed": [
+    {"direction": "Recommending mechanism D as the primary carrier", "reason": "It cannot read judgment, and the check that matters most here is a judgment."},
+    {"direction": "Recommending a co-equal B and C combination", "reason": "Two carriers for one check double maintenance and attention for no additional enforcement."},
+    {"direction": "Recommending the optional fourth change by default", "reason": "It belongs to the operator's choice of visibility, not to the minimum."}
+  ]
+}

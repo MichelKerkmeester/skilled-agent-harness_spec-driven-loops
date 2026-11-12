@@ -1,0 +1,28 @@
+{
+  "run_id": "1794422967432-gmxkv6",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review",
+  "base_artifact_dir": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/research/hardening-pt-02",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 1,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  }
+}

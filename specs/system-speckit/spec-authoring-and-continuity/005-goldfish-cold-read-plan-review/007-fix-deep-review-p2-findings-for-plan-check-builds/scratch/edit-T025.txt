@@ -1,0 +1,33 @@
+EDIT FILE: specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/spec.md
+HOW: OLD occurs once; mark child phases 2-4 Complete, keep phases 5-7 Pending, and advance resume pointer to phase 5.
+=====OLD=====
+| 1 | 001-research-egm-checks-and-chat-path-gaps/ | Research only: record fresh-context evidence, check placement, level fit, exclusions, and chat-path gaps. | Complete |
+| 2 | 002-bind-single-entry-executors-to-single-path/ | Route a one-lineage matrix to the single-executor path in every statement of the policy and regenerate the research and review command contracts. | Pending |
+| 3 | 003-refuse-single-lineage-fanout-run/ | Refuse direct one-lineage research or review fan-out without explicit opt-in and update intentional callers. | Pending |
+| 4 | 004-name-file-in-plan-phase-lines/ | Name target files in plan phase examples and align the card, skill entry, and generated snapshots. | Pending |
+| 5 | 005-point-chat-sessions-at-authoring-card/ | Check each carrier's reach from its files, then point scaffold output, the mutation notice, and the IMPLEMENT route at the authoring card. | Pending |
+| 6 | 006-repair-speckit-workflow-gates/ | Define plan clarity, design-choice and test-failure stops, the technical-approach gate, and repeated clarification passes. | Pending |
+| 7 | 007-fix-deep-review-p2-findings-for-plan-check-builds/ | [Phase 7 scope] | Pending |
+
+### Phase Transition Rules
+
+- Each child phase MUST pass strict validation before the next phase begins.
+- The parent map tracks aggregate progress. Phase 1 is Complete for its research only. Phases 2 through 6 remain Pending until their scoped work and checks pass.
+- Resume Phase 2 with /speckit:resume specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/. For another phase, pass that child's full folder path.
+- Run strict recursive validation on the parent after all child phases are complete.
+=====NEW=====
+| 1 | 001-research-egm-checks-and-chat-path-gaps/ | Research only: record fresh-context evidence, check placement, level fit, exclusions, and chat-path gaps. | Complete |
+| 2 | 002-bind-single-entry-executors-to-single-path/ | Route one-lineage matrices to config.executor, preserve fan-out routing for two or more, refresh both compiled contracts, and record the council-contract drift fix. | Complete |
+| 3 | 003-refuse-single-lineage-fanout-run/ | Refuse direct one-lineage research or review fan-out without explicit opt-in and update intentional callers. | Complete |
+| 4 | 004-name-file-in-plan-phase-lines/ | Name target files in plan phase examples and align the card, skill entry, and generated snapshots. | Complete |
+| 5 | 005-point-chat-sessions-at-authoring-card/ | Check each carrier's reach from its files, then point scaffold output, the mutation notice, and the IMPLEMENT route at the authoring card. | Pending |
+| 6 | 006-repair-speckit-workflow-gates/ | Define plan clarity, design-choice and test-failure stops, the technical-approach gate, and repeated clarification passes. | Pending |
+| 7 | 007-fix-deep-review-p2-findings-for-plan-check-builds/ | Reconcile the deep-review P2 findings, verify path trust boundaries, and regenerate and test maintained command contracts. | Pending |
+
+### Phase Transition Rules
+
+- Each child phase MUST pass strict validation before the next phase begins.
+- The parent map tracks aggregate progress. Phases 1 through 4 are Complete; Phases 5 through 7 remain Pending until their scoped work and checks pass.
+- Resume Phase 5 with /speckit:resume specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/. For another phase, pass that child's full folder path.
+- Run strict recursive validation on the parent after all child phases are complete.
+=====END=====

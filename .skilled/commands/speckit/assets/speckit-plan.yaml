@@ -653,7 +653,7 @@ workflow:
 
   step_4_clarification:
     purpose: Resolve ambiguities and clarify requirements
-    activities: ["Extract [NEEDS CLARIFICATION] markers (max 3)", Research codebase for patterns, Resolve ambiguities, Update spec.md with clarifications, Document assumptions]
+    activities: ["Extract up to 3 [NEEDS CLARIFICATION] markers per pass; complete the clarification activities and repeat until none remain", Research codebase for patterns, Resolve ambiguities, Update spec.md with clarifications, Document assumptions]
     outputs: [resolved_ambiguities, clarified_requirements, updated_spec]
     validation: requirements_clear
     checkpoint:

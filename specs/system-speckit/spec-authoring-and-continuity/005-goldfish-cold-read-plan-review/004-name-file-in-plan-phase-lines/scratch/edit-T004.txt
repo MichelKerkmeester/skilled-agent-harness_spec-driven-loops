@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/skills/system-spec-kit/SKILL.md
+HOW: replace the one occurrence of OLD with NEW. Copy NEW exactly, including leading spaces. Change nothing else in the file.
+=====OLD=====
+The intent keywords choose the rest through `RESOURCE_MAP`, and a write starts with `references/workflows/spec-authoring-card.md`.
+=====NEW=====
+The intent keywords choose the rest through `RESOURCE_MAP`. A plan or implement request starts with `references/workflows/spec-authoring-card.md`.
+=====END=====

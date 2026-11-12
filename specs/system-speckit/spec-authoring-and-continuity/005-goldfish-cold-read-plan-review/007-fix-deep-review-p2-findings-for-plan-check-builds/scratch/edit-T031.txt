@@ -1,0 +1,17 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts
+HOW: Replace the single occurrence.
+=====OLD=====
+    // The validator takes the home form as `~/...`: an absolute path outside the repository
+    // is refused earlier, by the namespace guard.
+    const homeConfigDir = join(os.homedir(), '.claude-review-test');
+    const repoConfigDir = join(process.cwd(), '.claude-review-test');
+    expect(validateClaudeConfigDir('~/.claude-review-test')).toBe(resolve(homeConfigDir));
+=====NEW=====
+    // The review workflow expands a leading `~` before it calls the validator, so the
+    // absolute home form must pass as well as the `~/...` form.
+    const homeConfigDir = join(os.homedir(), '.claude-review-test');
+    const repoConfigDir = join(process.cwd(), '.claude-review-test');
+    expect(validateClaudeConfigDir('~/.claude-review-test')).toBe(resolve(homeConfigDir));
+    expect(validateClaudeConfigDir(homeConfigDir)).toBe(resolve(homeConfigDir));
+    expect(() => validateClaudeConfigDir(join(os.homedir(), '.ssh'))).toThrow(/configDir must resolve under/);
+=====END=====

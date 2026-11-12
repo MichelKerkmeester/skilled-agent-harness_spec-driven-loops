@@ -32,7 +32,7 @@ const FANOUT_FLAGS = [
   'convergenceThreshold', 'lineageTimeoutHours', 'stopPolicy', 'convergenceMode', 'containmentMode',
   'noMetadataRefresh', 'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
   'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
-  'costUnitsPerIteration', 'estimatedTokensPerIteration',
+  'costUnitsPerIteration', 'estimatedTokensPerIteration', 'allowSingleLineage',
 ];
 
 const {
@@ -683,7 +683,15 @@ function validateClaudeConfigDir(configDir) {
   if (typeof configDir !== 'string' || configDir.trim() === '') {
     throw inputError('configDir must be a non-empty string when set');
   }
-  validateNamespaceValue(configDir, 'configDir', inputError);
+  // An absolute path skips the repository-only namespace rule: the root check below is the
+  // rule for it, and a workflow may hand over a home path it already expanded.
+  if (path.isAbsolute(configDir)) {
+    if (configDir.includes('\0')) {
+      throw inputError('configDir must not contain null bytes');
+    }
+  } else {
+    validateNamespaceValue(configDir, 'configDir', inputError);
+  }
 
   const expanded = expandHomeDir(configDir);
   const resolved = path.resolve(process.cwd(), expanded);
@@ -3394,6 +3402,20 @@ async function main() {
   const guardedAssignment = applyFlatPoolAssignmentGuard(parsedFanoutConfig);
   const fanoutConfig = guardedAssignment.config;
   const allLineages = expandLineages(fanoutConfig);
+  // One lineage is not a fan-out. A caller who lands here with one lineage has left the
+  // workflow that owns the packet init, synthesis and save phases, and a CLI lineage
+  // would then run every iteration in one process.
+  if (ACTIVE_FANOUT_LOOP_TYPES.has(loopType)
+    && allLineages.length === 1
+    && args.allowSingleLineage !== true
+    && args.allowSingleLineage !== 'true'
+    && args.allowSingleLineage !== '1') {
+    throw inputError(
+      `fan-out refused: this ${loopType} executor matrix expands to one lineage. `
+        + `Run the single-executor /deep:${loopType} workflow instead; it runs the packet `
+        + 'init, synthesis and save phases, which this runner does not.',
+    );
+  }
   if ((loopType === 'research' || loopType === 'review') && stopPolicy === 'max-iterations') {
     const uncappedLineages = allLineages.filter((lineage) => (
       !Number.isInteger(lineage.iterations) || lineage.iterations <= 0
@@ -4319,6 +4341,7 @@ module.exports = {
   isPiBinaryAvailable,
   isDshBinaryAvailable,
   withAgentPersona,
+  validateClaudeConfigDir,
   buildLoopPrompt,
   buildNativeCommandInput,
   normalizeReviewFocus,

@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/004-name-file-in-plan-phase-lines",
+  "description": "The plan template's phase example describes actions without naming target files, so a fresh implementer must infer which file to change",
+  "keywords": [
+    "plan",
+    "template",
+    "phase",
+    "example",
+    "describes",
+    "actions",
+    "without",
+    "naming",
+    "target",
+    "files",
+    "fresh",
+    "implementer",
+    "must",
+    "infer",
+    "file",
+    "change"
+  ],
+  "lastUpdated": "2026-11-12T00:22:40.383Z",
+  "specId": "004",
+  "folderSlug": "name-file-in-plan-phase-lines",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "005-goldfish-cold-read-plan-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

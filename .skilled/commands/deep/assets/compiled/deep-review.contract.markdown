@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "a32307c1b662052d6c566399afa07d892eb0992ae4b5f783f4dca5b391b6baaa",
+      "sha256": "0c993a336080961ef3675e1a91fe4896aa61777f5a5f6b97b7857b93a3504ee4",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "64ede44dc17f5df560f149ec8cece62daeb47efaac50e24a78bd8da716b05f2a",
+      "sha256": "b2778d87fd43a8fcb7bbaec5e81c79d3acb754a70bacdbc59bd6ad628831b09b",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "7e85bf9214ac964dfac505d23352229887cca7f86b887075aec6fe2a5b49ccb4",
+      "sha256": "a14de252dc32835e8236478e0599256975a59e2ae1b220d657ee3527b99ede56",
       "section": "full"
     },
     {
@@ -32,12 +32,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "793e4b8b81daf4bd3260ebef0ce219a646864e6a27442be22e575e7d1be2c5ea",
+      "sha256": "ef2d16ecfd6e9946ffc753ed8d3e5de3c879ef2a371a6aef6906d79c9eec0a0b",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "543bcddba4d9cf9e9980f9f440991380c9838e7882423fa7a4f43e192a2e1001",
+      "sha256": "cc59065acdf16da29a994cb76ea7e732e6304a13caf46e6cfab23875af817183",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "541b2a0d8cec363ef293981adf877aa4387b3cae93caade171161e32c54bae17"
+  "compiledBodyDigest": "095572435c4d85cc8da22ce66d9587025ef9ce3ee0da574c3f4114f67c5ec99e"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -225,10 +225,10 @@ Rules:
 | `executor_timeout` | N | flag `--executor-timeout`, marker `executor_timeout`, or default | `900` | N |
 | `resource_map_emit` | N | flag `--no-resource-map`, marker `resource_map_emit`, or default | `true` | N |
 | `config.fanout_lineage_artifact_dir` | N | internal flag `--fanout-lineage-artifact-dir=PATH` or marker `config.fanout_lineage_artifact_dir` | none | N |
-| `fanout_executors` | N | repeatable `--executor=<type>` flags or `--executors=<json>`; each group accepts `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count` | none (single-executor when absent) | N |
+| `fanout_executors` | N | repeatable `--executor=<type>` flags or `--executors=<json>`; each group accepts `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`; one expanded lineage selects `config.executor`, two or more select `config.fanout` | none (single-executor when absent) | N |
 | `fanout_concurrency` | N | flag `--concurrency=N` | `2` | N |
 
-**Fan-out default policy:** 0–1 `--executor` flags and no `--executors` → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, `--executors`, or any `--count > 1` → `config.fanout`. Review fan-out uses strongest-restriction: any lineage active P0 → merged FAIL. Native and CLI fan-out lineages run under `fanout-run.cjs` in the capped pool so every lineage shares retries, artifact checks, and stop-policy validation. The native adapter calls the `deep/review` command with the internal `--fanout-lineage-artifact-dir` override; it must not dispatch the LEAF `@deep-review` agent or a pasted phase-running prompt as a full-loop sub-agent. When fan-out includes `cli-opencode`, that lineage is an explicit parallel-detached OpenCode session with its own lineage directory and session id; this is the documented exception to the cli-opencode self-invocation guard. Single-executor `cli-opencode` remains cross-runtime only.
+**Fan-out default policy:** 0–1 `--executor` flags and no `--executors`, or an `--executors` matrix that expands to exactly one lineage → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, an `--executors` matrix that expands to two or more lineages, or any `--count > 1` → `config.fanout`. Review fan-out uses strongest-restriction: any lineage active P0 → merged FAIL. Native and CLI fan-out lineages run under `fanout-run.cjs` in the capped pool so every lineage shares retries, artifact checks, and stop-policy validation. The native adapter calls the `deep/review` command with the internal `--fanout-lineage-artifact-dir` override; it must not dispatch the LEAF `@deep-review` agent or a pasted phase-running prompt as a full-loop sub-agent. When fan-out includes `cli-opencode`, that lineage is an explicit parallel-detached OpenCode session with its own lineage directory and session id; this is the documented exception to the cli-opencode self-invocation guard. Single-executor `cli-opencode` remains cross-runtime only.
 
 **Lifecycle policy:** `lineage_mode=auto` preserves the existing classifier behavior, `lineage_mode=resume` continues a valid packet, and `lineage_mode=restart` archives the resolved `{artifact_dir}` before any config write, phase init, or fan-out spawn. In `:auto`, an explicit `--restart` or `--lineage-mode=restart` flag is operator authorization for this archive move, so do not ask for a second confirmation. Preserve rollback by moving the timestamped archive back to `review/` if needed. A restart request must never silently downgrade to resume; if the archive step cannot run, halt with `STATUS=FAIL`.
 
@@ -285,7 +285,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |
    |   Fan-out default policy:
    |   - 0 or 1 --executor (no --executors, no count>1): write config.executor (single, unchanged)
-   |   - 2+ --executor flags, --executors, or any count>1: write config.fanout
+   |   - --executors matrix that expands to exactly one lineage (one entry, count 1 or absent): write config.executor from that entry (kind, model, configDir, reasoningEffort, serviceTier, timeoutSeconds); its iterations value binds to config.maxIterations, and leave config.fanout unset
+   |   - 2+ --executor flags, an --executors matrix that expands to two or more lineages, or any count>1: write config.fanout
    |   - Review fan-out verdict: strongest-restriction (any lineage active P0 → merged FAIL)
    |
    +-- Defaults: maxIterations=7, convergenceThreshold=0.10, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, stop_policy=`convergence`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`

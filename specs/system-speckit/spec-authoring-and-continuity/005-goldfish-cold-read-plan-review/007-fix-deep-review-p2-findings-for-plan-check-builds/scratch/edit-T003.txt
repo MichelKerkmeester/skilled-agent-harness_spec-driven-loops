@@ -1,0 +1,10 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+HOW: OLD occurs exactly once after T002; export the existing validator without changing it.
+=====OLD=====
+  withAgentPersona,
+  buildLoopPrompt,
+=====NEW=====
+  withAgentPersona,
+  validateClaudeConfigDir,
+  buildLoopPrompt,
+=====END=====

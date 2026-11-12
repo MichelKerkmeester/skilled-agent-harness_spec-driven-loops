@@ -1,0 +1,10 @@
+EDIT FILE: .skilled/commands/deep/assets/deep-research-presentation.txt
+HOW: replace the one occurrence of OLD with NEW. Copy NEW exactly, including leading spaces. Change nothing else in the file.
+=====OLD=====
+   |   - 0 or 1 --executor (no --executors, no count>1): write config.executor (single, unchanged)
+   |   - 2+ --executor flags, --executors, or any count>1: write config.fanout
+=====NEW=====
+   |   - 0 or 1 --executor (no --executors, no count>1): write config.executor (single, unchanged)
+   |   - --executors matrix that expands to exactly one lineage (one entry, count 1 or absent): write config.executor from that entry (kind, model, configDir, reasoningEffort, serviceTier, timeoutSeconds; its iterations value sets maxIterations) and leave config.fanout unset
+   |   - 2+ --executor flags, an --executors matrix that expands to two or more lineages, or any count>1: write config.fanout
+=====END=====

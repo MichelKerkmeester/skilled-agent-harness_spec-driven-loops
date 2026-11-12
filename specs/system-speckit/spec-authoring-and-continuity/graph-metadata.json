@@ -7,7 +7,8 @@
     "system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit",
     "system-speckit/spec-authoring-and-continuity/002-research-folder-continuity",
     "system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring",
-    "system-speckit/spec-authoring-and-continuity/004-decision-capture"
+    "system-speckit/spec-authoring-and-continuity/004-decision-capture",
+    "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review"
   ],
   "manual": {
     "depends_on": [],

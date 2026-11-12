@@ -7,7 +7,7 @@ trigger_phrases:
   - "deepseek harness live contract"
 importance_tier: important
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DeepSeek Harness Route Re-pin Runbook
@@ -150,6 +150,7 @@ if node "$REPO/.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs" 
   --loop-type research \
   --fanout-config-json '<FANOUT_CONFIG_JSON>' \
   --base-artifact-dir "$ARTIFACT_DIR" \
+  --allow-single-lineage \
   >"$EVIDENCE_DIR/$RUN_ID.stdout.txt" 2>"$EVIDENCE_DIR/$RUN_ID.stderr.txt"; then
   rc=0
 else

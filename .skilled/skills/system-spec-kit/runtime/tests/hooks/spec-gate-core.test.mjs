@@ -314,6 +314,7 @@ test('Gate-3 delivery flag off preserves byte-identical baseline output', () => 
     'C) A related folder, a phase child, or a series parent for a different change to the same artifact as an existing packet in the same track - reply with its path',
     'D) Skip - no spec folder needed for this change',
     'The answer holds for the rest of this session: do not ask this again on later turns.',
+    'Once the folder is chosen, write its spec documents by following .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md.',
   ].join('\n');
   assert.deepEqual(Buffer.from(core.GATE_3_QUESTION, 'utf8'), Buffer.from(baseline, 'utf8'));
   assert.deepEqual(Buffer.from(core.GATE_3_MUTATION_NOTICE, 'utf8'), Buffer.from(mutationNotice, 'utf8'));

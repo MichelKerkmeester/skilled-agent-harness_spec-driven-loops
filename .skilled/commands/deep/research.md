@@ -119,13 +119,17 @@ into `config`.
 | `--no-resource-map` | no value | Suppresses the `research/resource-map.md` write; `research.md` still emits. |
 | `--dry-run` | no value | See Dry-Run Flag below. |
 | `--executor` | `TYPE` | Selects the executor kind, and is repeatable. Each occurrence opens a group accepting `--model=X`, `--config-dir=PATH`, `--reasoning-effort=LEVEL`, `--service-tier=TIER`, `--executor-timeout=SECONDS`, `--iters=N`, `--count=N` and `--label=X`. Which of those a given kind supports, and the fail-fast on an unsupported pairing, are in the presentation asset. |
-| `--executors` | `JSON` | Escape hatch declaring the whole fan-out matrix in one value instead of repeated `--executor` groups. |
+| `--executors` | `JSON` | Declares the executor matrix in one value; one expanded lineage selects `config.executor`, while two or more select `config.fanout`. |
 | `--concurrency` | `N` | Caps concurrent lineages in the fan-out pool. Default `2`. |
 
-Fan-out policy: zero or one `--executor` and no `--executors` runs the single-executor path;
-two or more `--executor` flags, an `--executors` value, or any `--count` above 1 switches to
-fan-out, one independent lineage per label. Under `:auto` a `PRE-BOUND SETUP ANSWERS:` block in
-the prompt body binds the same values without an interactive prompt.
+Fan-out policy: zero or one `--executor` runs the single-executor path, and so does an
+`--executors` matrix that expands to exactly one lineage. Its `iterations` value binds to
+`config.maxIterations`, and its executor settings populate `config.executor`. Two or more
+`--executor` flags, a matrix expanding to two or more lineages, or any `--count` above 1
+selects fan-out. A direct call of the fan-out runner that expands to one research or review
+lineage is refused and names this workflow instead, because the runner alone skips packet
+init, synthesis and save. Under `:auto` a `PRE-BOUND SETUP ANSWERS:` block
+in the prompt body binds the same values without an interactive prompt.
 
 ### Lineage Timeout Flag
 

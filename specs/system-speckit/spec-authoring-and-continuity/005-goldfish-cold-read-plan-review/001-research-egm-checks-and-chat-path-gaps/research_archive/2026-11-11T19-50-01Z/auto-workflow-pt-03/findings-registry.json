@@ -1,0 +1,2086 @@
+{
+  "mergedFrom": [
+    "auto-workflow-deepseek"
+  ],
+  "lineageExecutors": {
+    "auto-workflow-deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash-1017",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [
+    {
+      "id": "question-2-for-each-candidate-mechanism-agents-md-gate-shared-step-reference-hook-injection",
+      "inboxId": null,
+      "text": "For each candidate mechanism (AGENTS.md gate, shared step reference, hook injection, template and validate.sh enforcement, advisor-driven command invocation), what does it cost and what does it break?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-checks-exist-only-in-the-speckit-command-workflows-and-are-absent-from-the",
+      "inboxId": null,
+      "text": "Which checks exist only in the speckit command workflows and are absent from the natural-chat write path, and which are already duplicated there?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "question-3-how-does-each-candidate-mechanism-behave-across-the-seven-runtimes-and-in-a-disp",
+      "inboxId": null,
+      "text": "How does each candidate mechanism behave across the seven runtimes and in a dispatched child with no user present?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "question-4-how-does-each-mechanism-keep-level-1-and-trivial-edits-light-and-how-does-a-user",
+      "inboxId": null,
+      "text": "How does each mechanism keep Level 1 and trivial edits light, and how does a user opt out in one sentence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "question-5-what-is-the-token-cost-per-turn-of-each-mechanism-measured-from-file-sizes",
+      "inboxId": null,
+      "text": "What is the token cost per turn of each mechanism, measured from file sizes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "question-6-where-does-a-plan-only-its-author-can-follow-get-through-on-the-chat-path-today-",
+      "inboxId": null,
+      "text": "Where does a plan only its author can follow get through on the chat path today, and what is the smallest change that stops it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "question-7-how-do-the-mechanisms-rank-which-one-should-be-recommended-and-what-is-the-small",
+      "inboxId": null,
+      "text": "How do the mechanisms rank, which one should be recommended, and what is the smallest set of changes to existing files?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "question-8-what-should-not-be-built",
+      "inboxId": null,
+      "text": "What should not be built?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-the-chat-path-s-entire-spec-kit-binding-surface-is-two-skill-files-plus-the-vali",
+      "text": "**The chat path's entire spec-kit binding surface is two skill files plus the validator, while the workflow surface is three YAMLs the chat path never opens.** `.skilled/skills/system-spec-kit/SKILL.md` (28185 bytes) and `ROUTER.md` (26012 bytes) are what Gate 2 and the artifact trigger load; `speckit-plan.yaml` (885 lines), `speckit-implement.yaml` (830 lines) and `speckit-complete.yaml` (1444 lines) are loaded only by the `speckit:*` routers [SOURCE: .skilled/commands/speckit/plan.md:9] [SOURCE: .skilled/commands/speckit/plan.md:24] [SOURCE: .skilled/commands/speckit/implement.md:24].",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/commands/speckit/plan.md:9`, `:24`",
+        "`.skilled/commands/speckit/implement.md:13`, `:24`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403-422`, `:461-465`, `:587`, `:599`, `:644`, `:656-658`, `:781`, `:787`, `:801`, `:824`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:384-392`, `:430`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-126`, `:200-213`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:212`, `:306`",
+        "`AGENTS.md:72`, `:91`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-plan-workflow-runs-seven-checkpoints-each-with-a-named-validation-state-the-",
+      "text": "**The plan workflow runs seven checkpoints, each with a named validation state the chat path has no equivalent for.** `checkpoints: [step_1_request_analysis, step_2_pre_work_review, step_3_specification, step_4_clarification, step_5_planning, step_6_save_context, step_7_handover_check]` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:21], and each step closes on a validation token: `understanding_confirmed` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:587], `principles_established` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:599], `spec_complete` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:644], `requirements_clear` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:658], `approach_defined` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:787], `context_saved_successfully` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:801], `workflow_finish_confirmed` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:824]. The chat path's binding rules name none of these states; its ALWAYS list is about level, templates, completion gates and validation [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:200] [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:211].",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/commands/speckit/plan.md:9`, `:24`",
+        "`.skilled/commands/speckit/implement.md:13`, `:24`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403-422`, `:461-465`, `:587`, `:599`, `:644`, `:656-658`, `:781`, `:787`, `:801`, `:824`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:384-392`, `:430`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-126`, `:200-213`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:212`, `:306`",
+        "`AGENTS.md:72`, `:91`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-workflow-has-an-explicit-planning-gate-that-the-chat-path-does-not-spec-md-a",
+      "text": "**The workflow has an explicit planning gate that the chat path does not: `spec.md` and `plan.md` must both exist before the run may proceed.** `planning_gate.location: \"After Step 5\"`, requirements `\"spec.md exists, no [NEEDS CLARIFICATION] markers\"` and `\"plan.md exists with technical approach\"`, `action_if_failed: \"STOP and return to incomplete step\"` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:461]. The chat path is bound by `validate.sh` file-presence rules, which check what a level requires, not whether the technical approach was decided before code started [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:212].",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/commands/speckit/plan.md:9`, `:24`",
+        "`.skilled/commands/speckit/implement.md:13`, `:24`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403-422`, `:461-465`, `:587`, `:599`, `:644`, `:656-658`, `:781`, `:787`, `:801`, `:824`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:384-392`, `:430`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-126`, `:200-213`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:212`, `:306`",
+        "`AGENTS.md:72`, `:91`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-workflow-runs-two-scored-hard-blocking-quality-gates-the-chat-path-runs-none",
+      "text": "**The workflow runs two scored hard-blocking quality gates; the chat path runs none.** Pre-execution gate threshold 70 with `feature_description 30`, `spec_path_valid 30`, `no_blocking_deps 20`, `execution_mode_set 20`; post-execution gate threshold 70 with `spec_exists 25`, `plan_exists 25`, `tasks_exists 20`, `context_saved 15` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:403] [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:407] [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:415]. Both are `blocking: hard` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:406] [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:418]. The chat path has only pass/fail validator rules.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/commands/speckit/plan.md:9`, `:24`",
+        "`.skilled/commands/speckit/implement.md:13`, `:24`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403-422`, `:461-465`, `:587`, `:599`, `:644`, `:656-658`, `:781`, `:787`, `:801`, `:824`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:384-392`, `:430`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-126`, `:200-213`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:212`, `:306`",
+        "`AGENTS.md:72`, `:91`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-implement-workflow-s-pre-implementation-gate-is-the-single-strongest-workflo",
+      "text": "**The implement workflow's pre-implementation gate is the single strongest workflow-only check: threshold 70, `blocking: hard`, and 25 of its 100 points are `plan_clarity`.** `prerequisites_complete 30`, `plan_clarity 25`, plus task-breakdown and checklist points, with `on_fail` \"Fix blocking issues before coding\" [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:384] [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:389] [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:390]. Its request-analysis counterpart adds `plan_understood` and `confidence_80_plus` to the pre-implementation validation list [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:430].",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/commands/speckit/plan.md:9`, `:24`",
+        "`.skilled/commands/speckit/implement.md:13`, `:24`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403-422`, `:461-465`, `:587`, `:599`, `:644`, `:656-658`, `:781`, `:787`, `:801`, `:824`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:384-392`, `:430`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-126`, `:200-213`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:212`, `:306`",
+        "`AGENTS.md:72`, `:91`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-6-several-checks-are-already-duplicated-on-the-chat-path-so-a-fix-list-must-not-re",
+      "text": "**Several checks are already duplicated on the chat path, so a fix list must not re-add them.** Level determination before any file change [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:200], scaffold-from-template and placeholder fill [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:201] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:306], both completion gates [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:207], and `validate.sh` before completion [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:211] exist on both paths. The workflow's own step bodies call the same `validate.sh --strict` the chat path is told to run [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:781].",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/commands/speckit/plan.md:9`, `:24`",
+        "`.skilled/commands/speckit/implement.md:13`, `:24`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403-422`, `:461-465`, `:587`, `:599`, `:644`, `:656-658`, `:781`, `:787`, `:801`, `:824`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:384-392`, `:430`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-126`, `:200-213`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:212`, `:306`",
+        "`AGENTS.md:72`, `:91`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-chat-path-is-actually-stronger-than-the-workflow-on-one-check-folder-selecti",
+      "text": "**The chat path is actually stronger than the workflow on one check: folder selection.** Gate 3 is a hard block that fires on any write and asks A/B/C/D [SOURCE: AGENTS.md:72], and Gate 5 loads repository rules on the first write [SOURCE: AGENTS.md:91]. The plan workflow's folder logic is an intake classifier that can proceed without asking when the folder is `populated-folder` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:486]. Any mechanism that routes chat into the workflow must not lose Gate 3.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/commands/speckit/plan.md:9`, `:24`",
+        "`.skilled/commands/speckit/implement.md:13`, `:24`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403-422`, `:461-465`, `:587`, `:599`, `:644`, `:656-658`, `:781`, `:787`, `:801`, `:824`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:384-392`, `:430`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-126`, `:200-213`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:212`, `:306`",
+        "`AGENTS.md:72`, `:91`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-8-continuity-is-a-checkpoint-in-the-workflow-and-a-suggestion-on-the-chat-path-pla",
+      "text": "**Continuity is a checkpoint in the workflow and a suggestion on the chat path.** Plan step 6 exists to refresh canonical continuity and closes on `context_saved_successfully` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:801], while the chat path's rule is \"Create `implementation-summary.md` at end of implementation phase\" plus \"Suggest `/speckit:save`\" [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:212] [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:213].",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/commands/speckit/plan.md:9`, `:24`",
+        "`.skilled/commands/speckit/implement.md:13`, `:24`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403-422`, `:461-465`, `:587`, `:599`, `:644`, `:656-658`, `:781`, `:787`, `:801`, `:824`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:384-392`, `:430`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-126`, `:200-213`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:212`, `:306`",
+        "`AGENTS.md:72`, `:91`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-9-ambiguity-handling-differs-in-shape-the-workflow-caps-and-resolves-markers-the-c",
+      "text": "**Ambiguity handling differs in shape: the workflow caps and resolves markers; the chat path only forbids leaving them.** Plan step 4's activity is `Extract [NEEDS CLARIFICATION] markers (max 3)` then resolve and update `spec.md` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:656], while the chat path's rule is \"Fill ALL placeholders\" [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:202] and the validator's `PLACEHOLDER_FILLED` rule [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:306].",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/commands/speckit/plan.md:9`, `:24`",
+        "`.skilled/commands/speckit/implement.md:13`, `:24`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403-422`, `:461-465`, `:587`, `:599`, `:644`, `:656-658`, `:781`, `:787`, `:801`, `:824`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:384-392`, `:430`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-126`, `:200-213`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:212`, `:306`",
+        "`AGENTS.md:72`, `:91`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-10-1-mechanism-b-wins-on-four-of-five-criteria-and-loses-only-on-load-reliability-whi",
+      "text": "**Mechanism B wins on four of five criteria and loses only on load reliability, which is itself a one-line fix.** Reach 7/7 (a file read), cost ~2.4k tokens in writing sessions only, Level 1 lightness inherited from the card's per-section Acceptance/Verify shape, and change cost one section. Its only failure is the keyword gate [SOURCE: .skilled/skills/system-spec-kit/ROUTER.md:161].",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:86`, `:200`, `:206`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:84`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:161`, `:163`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`",
+        "`.skilled/hooks/README.md:45`, `:343`",
+        "`.skilled/hooks/spec-gate/README.md:16`, `:24`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1997`",
+        "`.devin/README.md:41`",
+        "`AGENTS.md:67`, `:72`, `:108`, `:296`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-10-10-the-honest-limit-of-the-recommendation-is-that-it-lowers-frequency-not-the-ceili",
+      "text": "**The honest limit of the recommendation is that it lowers frequency, not the ceiling.** A fill-note clause and a keyword fix are instructions; neither proves a plan was read by anyone but its author. The one thing that could prove it is a fresh-context evaluator, which the packet's sibling lineage already found to be the real constraint, and which no mechanism in this ranking supplies without a dispatch it does not have. [INFERENCE: derived from the ranking in findings 1-5 and the validator's artifact-only input established in iteration 6]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:86`, `:200`, `:206`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:84`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:161`, `:163`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`",
+        "`.skilled/hooks/README.md:45`, `:343`",
+        "`.skilled/hooks/spec-gate/README.md:16`, `:24`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1997`",
+        "`.devin/README.md:41`",
+        "`AGENTS.md:67`, `:72`, `:108`, `:296`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-10-2-mechanism-d-ranks-second-and-should-carry-exactly-one-check-not-the-program-it-i",
+      "text": "**Mechanism D ranks second and should carry exactly one check, not the program.** It is universal, costs nothing per turn, and its rules are already level-scoped [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:81], but a new rule is a script plus a registry row and a new required anchor regrades the corpus [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:450].",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:86`, `:200`, `:206`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:84`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:161`, `:163`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`",
+        "`.skilled/hooks/README.md:45`, `:343`",
+        "`.skilled/hooks/spec-gate/README.md:16`, `:24`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1997`",
+        "`.devin/README.md:41`",
+        "`AGENTS.md:67`, `:72`, `:108`, `:296`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-10-3-mechanism-c-ranks-third-and-is-the-right-shape-for-a-nudge-not-for-the-check-too",
+      "text": "**Mechanism C ranks third and is the right shape for a nudge, not for the check.** Tool-time delivery already exists in all seven runtimes [SOURCE: .skilled/hooks/README.md:343], it is advisory by default [SOURCE: .skilled/hooks/spec-gate/README.md:16], and it delivers nothing to a child [SOURCE: .skilled/hooks/spec-gate/README.md:24].",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:86`, `:200`, `:206`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:84`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:161`, `:163`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`",
+        "`.skilled/hooks/README.md:45`, `:343`",
+        "`.skilled/hooks/spec-gate/README.md:16`, `:24`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1997`",
+        "`.devin/README.md:41`",
+        "`AGENTS.md:67`, `:72`, `:108`, `:296`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-10-4-mechanism-e-ranks-fourth-and-is-mis-specified-in-the-question-skill-invocation-i",
+      "text": "**Mechanism E ranks fourth and is mis-specified in the question.** Skill invocation is already automatic above 0.8 [SOURCE: AGENTS.md:67]; what does not exist is a command recommendation, because the bridges are slash-keyed [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1997]; and one runtime has no command surface at all [SOURCE: .devin/README.md:41].",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:86`, `:200`, `:206`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:84`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:161`, `:163`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`",
+        "`.skilled/hooks/README.md:45`, `:343`",
+        "`.skilled/hooks/spec-gate/README.md:16`, `:24`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1997`",
+        "`.devin/README.md:41`",
+        "`AGENTS.md:67`, `:72`, `:108`, `:296`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-10-5-mechanism-a-ranks-last-on-change-cost-and-enforcement-at-once-it-reaches-6-7-its",
+      "text": "**Mechanism A ranks last on change cost and enforcement at once.** It reaches 6/7, its marginal tokens are trivial, and it is a shipped product surface that is instruction rather than enforcement [SOURCE: AGENTS.md:296], with a fourth stop-and-ask surface on the same write [SOURCE: AGENTS.md:72].",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:86`, `:200`, `:206`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:84`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:161`, `:163`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`",
+        "`.skilled/hooks/README.md:45`, `:343`",
+        "`.skilled/hooks/spec-gate/README.md:16`, `:24`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1997`",
+        "`.devin/README.md:41`",
+        "`AGENTS.md:67`, `:72`, `:108`, `:296`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-10-6-the-check-that-the-chat-path-is-missing-is-the-workflow-s-own-unconditional-rule",
+      "text": "**The check that the chat path is missing is the workflow's own unconditional rule `document_all_decisions`.** It appears in the plan workflow's ALWAYS list with no level qualifier [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:873], and the chat path's nearest equivalent is the authoring card's stop-and-ask list, which does not mention decisions [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:200].",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:86`, `:200`, `:206`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:84`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:161`, `:163`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`",
+        "`.skilled/hooks/README.md:45`, `:343`",
+        "`.skilled/hooks/spec-gate/README.md:16`, `:24`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1997`",
+        "`.devin/README.md:41`",
+        "`AGENTS.md:67`, `:72`, `:108`, `:296`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-10-7-the-card-already-declares-that-a-fill-note-is-the-section-contract-so-the-cheape",
+      "text": "**The card already declares that a fill note is the section contract, so the cheapest carrier is an existing fill note rather than a new section.** Section 4 says \"Each section of your scaffold carries a fill note ... The note is the contract for that section\" [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:86], and the plan template's architecture note already asks the author to \"name what fails today without each component you add, or drop it\" [SOURCE: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:84]. The decision requirement is one clause away from what that note already asks.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:86`, `:200`, `:206`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:84`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:161`, `:163`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`",
+        "`.skilled/hooks/README.md:45`, `:343`",
+        "`.skilled/hooks/spec-gate/README.md:16`, `:24`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1997`",
+        "`.devin/README.md:41`",
+        "`AGENTS.md:67`, `:72`, `:108`, `:296`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-10-8-the-smallest-change-set-is-three-one-line-edits-to-existing-files-no-new-file-ho",
+      "text": "**The smallest change set is three one-line edits to existing files, no new file, hook, command or agent.** (a) extend the architecture fill note to require that every choice left to the implementer be named or resolved [SOURCE: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:84]; (b) add the write verbs `create`, `add`, `update`, `fix` to the PLAN and IMPLEMENT keyword lists so the card loads on an ordinary write [SOURCE: .skilled/skills/system-spec-kit/ROUTER.md:161] [SOURCE: .skilled/skills/system-spec-kit/ROUTER.md:163]; (c) add `skip workflow` to the existing bypass-phrase line so the opt-out is one phrase [SOURCE: AGENTS.md:108]. A fourth candidate, if the operator wants the check to be visible at close, is one clause in §11's stop-and-ask list reusing its existing verify command [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:206].",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:86`, `:200`, `:206`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:84`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:161`, `:163`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`",
+        "`.skilled/hooks/README.md:45`, `:343`",
+        "`.skilled/hooks/spec-gate/README.md:16`, `:24`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1997`",
+        "`.devin/README.md:41`",
+        "`AGENTS.md:67`, `:72`, `:108`, `:296`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-10-9-what-not-to-build-is-everything-the-ranking-eliminated-a-new-command-or-agent-th",
+      "text": "**What not to build is everything the ranking eliminated.** A new command or agent (the question already excludes it, and the command surface is missing on one runtime); a new hook concern (a core plus seven adapters plus a kill-switch row) [SOURCE: .skilled/hooks/README.md:45]; a new validator rule (a script plus a registry row, and it cannot read judgment) [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3]; a new plan artifact (Level 1 has four required documents and no room for a fifth) [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:773]; a chat-mode workflow variant (a second procedure that would drift from the first); a confidence-gated auto-invoke (the ceiling is 0.95 and ties are common) [SOURCE: .skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130]; and any blocking gate at Level 1.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:86`, `:200`, `:206`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:84`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:161`, `:163`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`",
+        "`.skilled/hooks/README.md:45`, `:343`",
+        "`.skilled/hooks/spec-gate/README.md:16`, `:24`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1997`",
+        "`.devin/README.md:41`",
+        "`AGENTS.md:67`, `:72`, `:108`, `:296`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-1-every-plan-quality-instruction-in-the-template-is-an-html-comment-and-no-validat",
+      "text": "**Every plan-quality instruction in the template is an HTML comment, and no validator rule reads comment prose.** The plan template's guidance is `<!-- FILL: ... GOOD: ... WEAK: ... -->` adjacent to each anchor [SOURCE: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:67], while the rules covering `plan.md` are `FILE_EXISTS` (file present) [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:56], `PLACEHOLDER_FILLED` (tokens) [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:57], `ANCHORS_VALID` (anchor pairing and template anchors) [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:62] and `LEVEL_MATCH` (level consistency and required files) [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:773]. None judges whether a step can be executed without a choice.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:67`, `:87`, `:89`, `:93`",
+        "`.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:53`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:56`, `:57`, `:62`, `:69`, `:330`, `:334`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:106`, `:123`, `:124`, `:200`, `:206`",
+        "`AGENTS.md:68`, `:72`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:386`, `:390`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-10-a-written-open-question-is-not-by-itself-a-blocker-and-that-is-the-honest-limit-",
+      "text": "**A written open question is not by itself a blocker, and that is the honest limit of the smallest change.** Nothing in `validate.sh`'s rule set reads `goal.md`'s open questions as a completion condition; `SPEC_DOC_SUFFICIENCY` reads the goal's budget and binding row instead [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:69]. So the smallest change converts an invisible defect into a recorded, re-injectable one; making it blocking costs a new rule.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:67`, `:87`, `:89`, `:93`",
+        "`.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:53`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:56`, `:57`, `:62`, `:69`, `:330`, `:334`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:106`, `:123`, `:124`, `:200`, `:206`",
+        "`AGENTS.md:68`, `:72`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:386`, `:390`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-2-a-plan-can-pass-strict-with-its-architecture-still-an-unfilled-menu-token-becaus",
+      "text": "**A plan can pass `--strict` with its architecture still an unfilled menu token, because `PLACEHOLDER_FILLED` downgrades to WARNING while `spec.md` says Draft.** The rule's severity table reads `Draft | WARNING | ERROR` for an unfilled `[YOUR_VALUE_HERE: ...]` token and only a non-Draft status makes it an ERROR [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:330] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:334]. The plan template's pattern line is exactly such a token: `[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]` [SOURCE: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:87].",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:67`, `:87`, `:89`, `:93`",
+        "`.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:53`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:56`, `:57`, `:62`, `:69`, `:330`, `:334`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:106`, `:123`, `:124`, `:200`, `:206`",
+        "`AGENTS.md:68`, `:72`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:386`, `:390`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-plan-template-has-no-open-decisions-section-so-a-decision-hides-inside-prose",
+      "text": "**The plan template has no open-decisions section, so a decision hides inside prose fields that pass every rule.** The candidate hides in the pattern menu [SOURCE: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:87], in the free-text component list [SOURCE: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:89] or in the data-flow line [SOURCE: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:93]. Each is a place a sentence can be written that names no choice, and none is machine-checked.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:67`, `:87`, `:89`, `:93`",
+        "`.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:53`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:56`, `:57`, `:62`, `:69`, `:330`, `:334`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:106`, `:123`, `:124`, `:200`, `:206`",
+        "`AGENTS.md:68`, `:72`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:386`, `:390`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-authoring-card-s-plan-shape-check-is-a-presence-check-not-a-decision-test-se",
+      "text": "**The authoring card's plan-shape check is a presence check, not a decision test.** Section 6's acceptance is \"`plan.md` holds its three phases in one line each\" and its verify is `rg -n '^## 4' <packet folder>/plan.md` prints one line [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:123] [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:124]. Three vague one-line phases satisfy it exactly as well as three executable ones.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:67`, `:87`, `:89`, `:93`",
+        "`.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:53`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:56`, `:57`, `:62`, `:69`, `:330`, `:334`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:106`, `:123`, `:124`, `:200`, `:206`",
+        "`AGENTS.md:68`, `:72`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:386`, `:390`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-chat-path-deliberately-exempts-spec-folder-documents-from-the-documentation-",
+      "text": "**The chat path deliberately exempts spec-folder documents from the documentation-skill route, so no skill reviews plan prose.** Gate 2's artifact trigger routes the first `.md` write through `sk-doc` \"except spec-folder docs (`system-spec-kit`'s) ... which no skill owns\" [SOURCE: AGENTS.md:68]. The exemption is reasonable for ownership, and its side effect is that `plan.md` prose is authored under `system-spec-kit` rules that are presence rules.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:67`, `:87`, `:89`, `:93`",
+        "`.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:53`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:56`, `:57`, `:62`, `:69`, `:330`, `:334`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:106`, `:123`, `:124`, `:200`, `:206`",
+        "`AGENTS.md:68`, `:72`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:386`, `:390`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-6-gate-3-binds-where-the-write-lands-never-whether-the-plan-can-be-followed-gate-3",
+      "text": "**Gate 3 binds where the write lands, never whether the plan can be followed.** Gate 3 fires \"when the turn will write a file\" and its options A/B/C/D all answer a folder question [SOURCE: AGENTS.md:72], so a plan with an open decision passes Gate 3 by naming a valid folder.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:67`, `:87`, `:89`, `:93`",
+        "`.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:53`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:56`, `:57`, `:62`, `:69`, `:330`, `:334`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:106`, `:123`, `:124`, `:200`, `:206`",
+        "`AGENTS.md:68`, `:72`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:386`, `:390`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-workflow-s-one-plan-quality-judgment-is-a-hard-blocking-rubric-slot-that-the",
+      "text": "**The workflow's one plan-quality judgment is a hard-blocking rubric slot that the chat path has no counterpart for.** Implement's pre-implementation gate scores `plan_clarity` at 25 of 100 with `blocking: hard` and `on_fail: \"Fix blocking issues before coding\"` [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:386] [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:390]; the chat path scores nothing.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:67`, `:87`, `:89`, `:93`",
+        "`.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:53`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:56`, `:57`, `:62`, `:69`, `:330`, `:334`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:106`, `:123`, `:124`, `:200`, `:206`",
+        "`AGENTS.md:68`, `:72`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:386`, `:390`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-8-at-level-1-the-plan-is-the-last-document-before-code-that-could-state-a-decision",
+      "text": "**At Level 1 the plan is the last document before code that could state a decision, because `acceptance-criteria.md` is not required there.** Level 1's required set is `spec.md, plan.md, tasks.md, implementation-summary.md` [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:773], so the first artifact that must name a concrete action is a task line, whose format is `T### [P?] Description (file path). Verify: <command> prints <expected output>` [SOURCE: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:53]. A vague plan can therefore be preceded by nothing and followed by arbitrary tasks, and both documents pass.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:67`, `:87`, `:89`, `:93`",
+        "`.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:53`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:56`, `:57`, `:62`, `:69`, `:330`, `:334`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:106`, `:123`, `:124`, `:200`, `:206`",
+        "`AGENTS.md:68`, `:72`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:386`, `:390`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-9-the-smallest-change-candidate-already-exists-as-a-numbered-stop-condition-with-a",
+      "text": "**The smallest change candidate already exists as a numbered stop condition with a working verify command.** The authoring card's §11 lists four conditions that require writing `Open question:` into `goal.md`, and its verify is `rg -n 'Open question:' <packet folder>/goal.md` prints at least one line [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:200] [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:206]. Adding a fifth condition — a plan step that forces the implementer to choose — reuses the section's existing acceptance pair and its existing output surface rather than adding a file, a command or a gate.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:67`, `:87`, `:89`, `:93`",
+        "`.skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:53`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:56`, `:57`, `:62`, `:69`, `:330`, `:334`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:106`, `:123`, `:124`, `:200`, `:206`",
+        "`AGENTS.md:68`, `:72`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:386`, `:390`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-1-six-of-the-seven-runtimes-load-the-root-agents-md-natively-so-a-new-gate-written",
+      "text": "**Six of the seven runtimes load the root `AGENTS.md` natively, so a new gate written there would reach them without a copy.** Claude states the repository has no separate Claude instruction file \"so there is no second copy to drift\" [SOURCE: .claude/README.md:39], Codex calls it \"the shared instruction file for every runtime\" [SOURCE: .codex/README.md:39], Devin loads it once the Claude import is off [SOURCE: .devin/README.md:31], Pi loads it \"from the working directory and its parents\" [SOURCE: .pi/README.md:31] with the loader's candidate list recorded as `AGENTS.override.md`, `AGENTS.md`, `AGENTS.MD`, `CLAUDE.md`, `CLAUDE.MD` [SOURCE: .pi/SYNC.md:93], and DSH lists it as the shared instruction file [SOURCE: .dsh/README.md:131].",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.cursor/README.md:39`, `:72`, `.devin/README.md:31`, `.pi/README.md:31`, `.pi/SYNC.md:93`, `.dsh/README.md:131`",
+        "`.cursor/rules/skill-routing.md:2`, `:12`, `:20`, `:27`",
+        "`AGENTS.md:68`, `:72`, `:91`, `:99`, `:101`, `:123`, `:245`, `:296`, `:299`",
+        "`REPO RULES.md:1`, `:11`",
+        "`.skilled/commands/doctor/agents-md.md:27`, `.skilled/skills/system-skilled-doctor/README.md:41`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-2-cursor-does-not-it-receives-a-2257-byte-routing-rule-and-a-generated-gate-1-poin",
+      "text": "**Cursor does not: it receives a 2257-byte routing rule and a generated Gate 1 pointer, so any gate outside that pointer block is invisible there.** `.cursor/rules/skill-routing.md` is `alwaysApply: true`, contains routing bullets plus one fenced `spec-kit:gate1-pointer` block generated from the root `AGENTS.md` [SOURCE: .cursor/rules/skill-routing.md:2] [SOURCE: .cursor/rules/skill-routing.md:12] [SOURCE: .cursor/rules/skill-routing.md:20], and the README names it as Cursor's instruction surface — \"the routing rule ... Its Gate 1 block is a pointer generated from the root `AGENTS.md`\" [SOURCE: .cursor/README.md:39]. The generator is `sync-gate1-pointers.cjs` and it rewrites that one block [SOURCE: .cursor/rules/skill-routing.md:27].",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.cursor/README.md:39`, `:72`, `.devin/README.md:31`, `.pi/README.md:31`, `.pi/SYNC.md:93`, `.dsh/README.md:131`",
+        "`.cursor/rules/skill-routing.md:2`, `:12`, `:20`, `:27`",
+        "`AGENTS.md:68`, `:72`, `:91`, `:99`, `:101`, `:123`, `:245`, `:296`, `:299`",
+        "`REPO RULES.md:1`, `:11`",
+        "`.skilled/commands/doctor/agents-md.md:27`, `.skilled/skills/system-skilled-doctor/README.md:41`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-3-agents-md-is-a-shipped-artifact-not-this-repository-s-private-notes-lines-1-295-",
+      "text": "**`AGENTS.md` is a shipped artifact, not this repository's private notes: lines 1-295 are shipped by Skilled and only lines 296-300 are repository-owned.** The repo-local block opens and closes on a marker pair and states \"/doctor:agents-md keeps every line here; the sections above are shipped by Skilled\" [SOURCE: AGENTS.md:296] [SOURCE: AGENTS.md:299]. A new gate written above the marker is therefore a product change restored into every adopting project by the embed/restore engine [SOURCE: .skilled/commands/doctor/agents-md.md:27] [SOURCE: .skilled/skills/system-skilled-doctor/README.md:41].",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.cursor/README.md:39`, `:72`, `.devin/README.md:31`, `.pi/README.md:31`, `.pi/SYNC.md:93`, `.dsh/README.md:131`",
+        "`.cursor/rules/skill-routing.md:2`, `:12`, `:20`, `:27`",
+        "`AGENTS.md:68`, `:72`, `:91`, `:99`, `:101`, `:123`, `:245`, `:296`, `:299`",
+        "`REPO RULES.md:1`, `:11`",
+        "`.skilled/commands/doctor/agents-md.md:27`, `.skilled/skills/system-skilled-doctor/README.md:41`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-resident-cost-is-paid-on-every-session-including-sessions-that-never-touch-a",
+      "text": "**The resident cost is paid on every session, including sessions that never touch a workflow.** The file is 27,372 bytes across 300 lines, which at the usual 4-bytes-per-token ratio is roughly 6.8k tokens held in context for the session's life. `.cursor/rules/skill-routing.md` at 2257 bytes is the cheap end of the same surface, and `REPO RULES.md` at 12,443 bytes is the middle: it is loaded once, at the first write, only because Gate 5 says so [SOURCE: AGENTS.md:91].",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.cursor/README.md:39`, `:72`, `.devin/README.md:31`, `.pi/README.md:31`, `.pi/SYNC.md:93`, `.dsh/README.md:131`",
+        "`.cursor/rules/skill-routing.md:2`, `:12`, `:20`, `:27`",
+        "`AGENTS.md:68`, `:72`, `:91`, `:99`, `:101`, `:123`, `:245`, `:296`, `:299`",
+        "`REPO RULES.md:1`, `:11`",
+        "`.skilled/commands/doctor/agents-md.md:27`, `.skilled/skills/system-skilled-doctor/README.md:41`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-repository-s-own-precedent-is-that-an-agents-md-gate-routes-away-to-a-file-i",
+      "text": "**The repository's own precedent is that an `AGENTS.md` gate routes away to a file; it never embeds the steps.** Gate 2 sends the caller to a skill's `ROUTER.md` [SOURCE: AGENTS.md:68], Gate 5 sends the caller to `REPO RULES.md`'s trigger table [SOURCE: AGENTS.md:91], Gate 6 sends the caller to the reply rule files [SOURCE: AGENTS.md:101]. The one gate that does embed a procedure, Gate 3, embeds a question and four labels rather than a workflow.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.cursor/README.md:39`, `:72`, `.devin/README.md:31`, `.pi/README.md:31`, `.pi/SYNC.md:93`, `.dsh/README.md:131`",
+        "`.cursor/rules/skill-routing.md:2`, `:12`, `:20`, `:27`",
+        "`AGENTS.md:68`, `:72`, `:91`, `:99`, `:101`, `:123`, `:245`, `:296`, `:299`",
+        "`REPO RULES.md:1`, `:11`",
+        "`.skilled/commands/doctor/agents-md.md:27`, `.skilled/skills/system-skilled-doctor/README.md:41`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-6-a-write-time-routing-gate-would-be-the-fourth-stop-and-ask-surface-on-the-same-e",
+      "text": "**A write-time routing gate would be the fourth stop-and-ask surface on the same event, and the ordering rules already cost attention.** Gate 3 is a HARD block asked first on any write [SOURCE: AGENTS.md:72], Gate 5 loads rules on the first write of the session [SOURCE: AGENTS.md:91], and the artifact trigger routes the first code and `.md` write through a skill [SOURCE: AGENTS.md:68]. Each already has its own output line the operator can see (`SKILL ROUTING`, `REPO RULES`, and the A/B/C/D question), and a fourth line competes with the same turn's budget.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.cursor/README.md:39`, `:72`, `.devin/README.md:31`, `.pi/README.md:31`, `.pi/SYNC.md:93`, `.dsh/README.md:131`",
+        "`.cursor/rules/skill-routing.md:2`, `:12`, `:20`, `:27`",
+        "`AGENTS.md:68`, `:72`, `:91`, `:99`, `:101`, `:123`, `:245`, `:296`, `:299`",
+        "`REPO RULES.md:1`, `:11`",
+        "`.skilled/commands/doctor/agents-md.md:27`, `.skilled/skills/system-skilled-doctor/README.md:41`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-7-the-trivial-edit-exemption-would-need-its-own-exception-because-the-existing-exe",
+      "text": "**The trivial-edit exemption would need its own exception, because the existing exemptions are written per gate.** §6 exempts \"a trivial fix of a few characters in one file\" [SOURCE: AGENTS.md:245] and Gate 5 restates it as \"a few characters in one file\" [SOURCE: AGENTS.md:99]. A new workflow gate that fired on any write would capture exactly the edits both exemptions release, so it would need a third written exemption or it would contradict them.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.cursor/README.md:39`, `:72`, `.devin/README.md:31`, `.pi/README.md:31`, `.pi/SYNC.md:93`, `.dsh/README.md:131`",
+        "`.cursor/rules/skill-routing.md:2`, `:12`, `:20`, `:27`",
+        "`AGENTS.md:68`, `:72`, `:91`, `:99`, `:101`, `:123`, `:245`, `:296`, `:299`",
+        "`REPO RULES.md:1`, `:11`",
+        "`.skilled/commands/doctor/agents-md.md:27`, `.skilled/skills/system-skilled-doctor/README.md:41`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-8-a-gate-is-instruction-not-enforcement-and-this-repository-already-has-the-vocabu",
+      "text": "**A gate is instruction, not enforcement, and this repository already has the vocabulary to say so.** The verification standards treat a claim without observed evidence as inference [SOURCE: AGENTS.md:123], and nothing in the chat path verifies that a routed workflow ran. So the gate's realistic outcome is that the agent either runs the steps or explains why it did not — a visible behavior change, not a guaranteed one.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.cursor/README.md:39`, `:72`, `.devin/README.md:31`, `.pi/README.md:31`, `.pi/SYNC.md:93`, `.dsh/README.md:131`",
+        "`.cursor/rules/skill-routing.md:2`, `:12`, `:20`, `:27`",
+        "`AGENTS.md:68`, `:72`, `:91`, `:99`, `:101`, `:123`, `:245`, `:296`, `:299`",
+        "`REPO RULES.md:1`, `:11`",
+        "`.skilled/commands/doctor/agents-md.md:27`, `.skilled/skills/system-skilled-doctor/README.md:41`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-9-the-cheapest-place-for-the-same-routing-decision-already-exists-and-is-read-only",
+      "text": "**The cheapest place for the same routing decision already exists and is read only on writes.** `REPO RULES.md` is explicitly \"a router, not a rulebook\" and matches on the action about to be taken [SOURCE: REPO RULES.md:1] [SOURCE: REPO RULES.md:11], which is the same shape a workflow-routing gate needs, at a load point that is skipped for read-only turns.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.cursor/README.md:39`, `:72`, `.devin/README.md:31`, `.pi/README.md:31`, `.pi/SYNC.md:93`, `.dsh/README.md:131`",
+        "`.cursor/rules/skill-routing.md:2`, `:12`, `:20`, `:27`",
+        "`AGENTS.md:68`, `:72`, `:91`, `:99`, `:101`, `:123`, `:245`, `:296`, `:299`",
+        "`REPO RULES.md:1`, `:11`",
+        "`.skilled/commands/doctor/agents-md.md:27`, `.skilled/skills/system-skilled-doctor/README.md:41`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-shared-write-path-reference-already-exists-spec-authoring-card-md-is-what-a-",
+      "text": "**The shared write-path reference already exists: `spec-authoring-card.md` is what a chat write is supposed to start with.** `SKILL.md` §2 states \"a write starts with `references/workflows/spec-authoring-card.md`\" [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:94], and the card is 9,699 bytes across eleven numbered sections, each ending in an `Acceptance:` line and a `Verify:` command [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:39] [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:206].",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/SKILL.md:94`, `:95`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:27`, `:161-183`, `:308`, `:373`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:36-39`, `:206-207`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:16`",
+        "`.skilled/commands/speckit/plan.md:106`, `.skilled/commands/speckit/implement.md:92`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:312`, `speckit-implement.yaml:288`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-4-2-both-paths-already-name-the-same-document-so-mechanism-b-is-half-built-rather-th",
+      "text": "**Both paths already name the same document, so mechanism B is half-built rather than new.** The plan router's workflow summary says the workflow \"follows `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md`\" [SOURCE: .skilled/commands/speckit/plan.md:106], the implement router says the same [SOURCE: .skilled/commands/speckit/implement.md:92], and both workflow YAMLs carry the card in a prompt-contract rule [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:312] [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:288].",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/SKILL.md:94`, `:95`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:27`, `:161-183`, `:308`, `:373`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:36-39`, `:206-207`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:16`",
+        "`.skilled/commands/speckit/plan.md:106`, `.skilled/commands/speckit/implement.md:92`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:312`, `speckit-implement.yaml:288`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-4-3-but-the-card-s-load-is-keyword-gated-and-the-keywords-miss-ordinary-write-reques",
+      "text": "**But the card's load is keyword-gated, and the keywords miss ordinary write requests.** The machine signals are `plan`, `design`, `new spec`, `level selection` for PLAN and `implement`, `build`, `execute`, `workflow` for IMPLEMENT [SOURCE: .skilled/skills/system-spec-kit/ROUTER.md:161] [SOURCE: .skilled/skills/system-spec-kit/ROUTER.md:163], and the router returns `UNKNOWN_FALLBACK` with a disambiguation checklist when the best intent score is under 0.5 [SOURCE: .skilled/skills/system-spec-kit/ROUTER.md:373]. A request like \"add a `--keep` flag to the archive script\" matches none of those words, so the card can be skipped on exactly the ordinary chat write the question is about.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/SKILL.md:94`, `:95`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:27`, `:161-183`, `:308`, `:373`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:36-39`, `:206-207`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:16`",
+        "`.skilled/commands/speckit/plan.md:106`, `.skilled/commands/speckit/implement.md:92`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:312`, `speckit-implement.yaml:288`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-router-s-own-prose-promises-the-opposite-of-what-its-keyword-table-implement",
+      "text": "**The router's own prose promises the opposite of what its keyword table implements, and the table wins.** The overview says \"a create, an add, an update, a fix, a rename or a configure\" reaches the skill [SOURCE: .skilled/skills/system-spec-kit/ROUTER.md:27], but `add`, `update`, `create` and `fix` appear in no `INTENT_SIGNALS` entry [SOURCE: .skilled/skills/system-spec-kit/ROUTER.md:161]. Recorded as contradictory evidence: the machine table governs the load, and the prose sentence is aspiration.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/SKILL.md:94`, `:95`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:27`, `:161-183`, `:308`, `:373`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:36-39`, `:206-207`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:16`",
+        "`.skilled/commands/speckit/plan.md:106`, `.skilled/commands/speckit/implement.md:92`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:312`, `speckit-implement.yaml:288`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-4-5-the-card-s-shape-makes-one-added-step-cheap-it-inherits-an-executable-check-sect",
+      "text": "**The card's shape makes one added step cheap: it inherits an executable check.** Section 11's pair is `Acceptance: the question is written in goal.md as Open question:` and `Verify: rg -n 'Open question:' <packet folder>/goal.md prints at least one line` [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:206] [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:207]. A new step written in that shape costs one section and no new vocabulary.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/SKILL.md:94`, `:95`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:27`, `:161-183`, `:308`, `:373`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:36-39`, `:206-207`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:16`",
+        "`.skilled/commands/speckit/plan.md:106`, `.skilled/commands/speckit/implement.md:92`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:312`, `speckit-implement.yaml:288`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-4-6-the-card-s-bounds-block-forbids-the-step-from-enforcing-anything-it-allows-write",
+      "text": "**The card's Bounds block forbids the step from enforcing anything.** It allows writes only to the packet and its `scratch/`, forbids editing `.skilled/`, and forbids running `generate-context.js` or `/speckit:save` [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:36] [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:37]. A step there instructs and verifies; it cannot block.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/SKILL.md:94`, `:95`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:27`, `:161-183`, `:308`, `:373`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:36-39`, `:206-207`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:16`",
+        "`.skilled/commands/speckit/plan.md:106`, `.skilled/commands/speckit/implement.md:92`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:312`, `speckit-implement.yaml:288`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-4-7-the-card-is-read-by-the-writer-at-authoring-time-in-the-same-context-so-a-step-i",
+      "text": "**The card is read by the writer, at authoring time, in the same context — so a step in it repeats the evaluator-identity limit the packet already recorded.** The card's own audience is the author (\"the short authoring path for a model\") [SOURCE: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:16], which means a comprehension or readiness rule placed there is self-scored.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/SKILL.md:94`, `:95`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:27`, `:161-183`, `:308`, `:373`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:36-39`, `:206-207`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:16`",
+        "`.skilled/commands/speckit/plan.md:106`, `.skilled/commands/speckit/implement.md:92`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:312`, `speckit-implement.yaml:288`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-4-8-the-measured-cost-is-small-and-paid-only-by-writing-sessions-the-card-is-9-699-b",
+      "text": "**The measured cost is small and paid only by writing sessions.** The card is 9,699 bytes, roughly 2.4k tokens, and it loads only when an intent selects it or a write reaches the skill [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:94]. `quick-reference.md` at 30,232 bytes is the expensive sibling and loads \"first on every invocation\" [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:95], which is the comparison that makes the card the cheap carrier.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/SKILL.md:94`, `:95`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:27`, `:161-183`, `:308`, `:373`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:36-39`, `:206-207`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:16`",
+        "`.skilled/commands/speckit/plan.md:106`, `.skilled/commands/speckit/implement.md:92`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:312`, `speckit-implement.yaml:288`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-4-9-the-smallest-change-that-makes-the-card-load-on-a-write-is-one-line-in-the-machi",
+      "text": "**The smallest change that makes the card load on a write is one line in the machine router, not a new section.** Adding `create`, `add`, `update` and `fix` to the PLAN or IMPLEMENT keyword lists edits two existing `INTENT_SIGNALS` lines [SOURCE: .skilled/skills/system-spec-kit/ROUTER.md:161], while moving the card to `LOADING_LEVELS.ALWAYS` would reprice every invocation at 2.4k tokens [SOURCE: .skilled/skills/system-spec-kit/ROUTER.md:308].",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/SKILL.md:94`, `:95`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:27`, `:161-183`, `:308`, `:373`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:36-39`, `:206-207`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md:16`",
+        "`.skilled/commands/speckit/plan.md:106`, `.skilled/commands/speckit/implement.md:92`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:312`, `speckit-implement.yaml:288`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-5-1-prompt-time-injection-reaches-all-seven-runtimes-with-one-dormant-channel-claude",
+      "text": "**Prompt-time injection reaches all seven runtimes, with one dormant channel.** Claude, Codex, Cursor, Devin and OpenCode deliver the advisor brief as `[SYS]` `additionalContext` or an appended system string, Pi delivers it as `[MSG]` on the visible prompt, and DSH delivers it at `agent/pre-step` as an appended `repo-guards` message [SOURCE: .skilled/hooks/injection-contract.md:66]. Cursor is the exception: its `beforeSubmitPrompt` adapter is registered but \"its dynamic per-turn delivery is dormant under the tested CLI build\" [SOURCE: .cursor/rules/skill-routing.md:18], which the injection contract restates for another concern as \"its `beforeSubmitPrompt` never delivers, `stop` never fires\" [SOURCE: .skilled/hooks/injection-contract.md:115].",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/hooks/injection-contract.md:38`, `:39`, `:66`, `:115`, `:117`",
+        "`.skilled/hooks/spec-gate/README.md:12`, `:14`, `:16`, `:24`, `:26`, `:34`, `:50`",
+        "`.skilled/hooks/README.md:45`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:25`, `:39`, `:55`",
+        "`.cursor/rules/skill-routing.md:18`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-5-2-tool-time-delivery-is-a-real-already-shipped-channel-and-it-is-where-the-workflo",
+      "text": "**Tool-time delivery is a real, already-shipped channel, and it is where the workflow step belongs.** `spec-gate` classifies the prompt, holds the decision in session state, and delivers its A/B/C/D notice at the first `Write`/`Edit`/`Bash` call rather than on the turn [SOURCE: .skilled/hooks/spec-gate/README.md:12] [SOURCE: .skilled/hooks/spec-gate/README.md:24]. That is the same shape a \"before you write plan.md, do this step\" injection needs, and it already exists in every runtime's adapter set.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/hooks/injection-contract.md:38`, `:39`, `:66`, `:115`, `:117`",
+        "`.skilled/hooks/spec-gate/README.md:12`, `:14`, `:16`, `:24`, `:26`, `:34`, `:50`",
+        "`.skilled/hooks/README.md:45`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:25`, `:39`, `:55`",
+        "`.cursor/rules/skill-routing.md:18`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-precedent-proves-the-ceiling-is-a-notice-not-a-gate-evaluatemutation-returns",
+      "text": "**The precedent proves the ceiling is a notice, not a gate.** `evaluateMutation` returns `allow`, `advise` or `deny`, and denial is opt-in through `SYSTEM_SPEC_GATE_ENFORCE`: \"Without it, an open-gate mutation surfaces as `advise` (a warning the operator can ignore) rather than `deny`\" [SOURCE: .skilled/hooks/spec-gate/README.md:16]. A workflow step carried the same way would be advisory by default and blocking only with an env flag.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/hooks/injection-contract.md:38`, `:39`, `:66`, `:115`, `:117`",
+        "`.skilled/hooks/spec-gate/README.md:12`, `:14`, `:16`, `:24`, `:26`, `:34`, `:50`",
+        "`.skilled/hooks/README.md:45`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:25`, `:39`, `:55`",
+        "`.cursor/rules/skill-routing.md:18`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-spec-gate-precedent-also-proves-a-hook-can-be-quiet-about-repetition-deliver",
+      "text": "**The spec-gate precedent also proves a hook can be quiet about repetition.** Delivery is once per session, tracked by a persisted marker (`questionDeliveredAtMs`, `questionDeliveredChannel`, `questionDeliveredCount`), and suppression is on by default [SOURCE: .skilled/hooks/spec-gate/README.md:34]. A step injection inherits the same control, which answers the \"will this nag every write\" objection before it is raised.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/hooks/injection-contract.md:38`, `:39`, `:66`, `:115`, `:117`",
+        "`.skilled/hooks/spec-gate/README.md:12`, `:14`, `:16`, `:24`, `:26`, `:34`, `:50`",
+        "`.skilled/hooks/README.md:45`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:25`, `:39`, `:55`",
+        "`.cursor/rules/skill-routing.md:18`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-5-5-a-hook-delivers-model-context-text-and-in-pi-that-text-lands-on-the-prompt-the-o",
+      "text": "**A hook delivers model-context text, and in Pi that text lands on the prompt the operator sees.** The channel legend marks `[SYS]` as model-context-only and `[MSG]` as \"rendered as visible chat content ... Pi's `input`-event transform, which appends text directly onto the user's own visible prompt\" [SOURCE: .skilled/hooks/injection-contract.md:38] [SOURCE: .skilled/hooks/injection-contract.md:39]. A workflow step injected on Pi would therefore appear as if the operator had typed it.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/hooks/injection-contract.md:38`, `:39`, `:66`, `:115`, `:117`",
+        "`.skilled/hooks/spec-gate/README.md:12`, `:14`, `:16`, `:24`, `:26`, `:34`, `:50`",
+        "`.skilled/hooks/README.md:45`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:25`, `:39`, `:55`",
+        "`.cursor/rules/skill-routing.md:18`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-5-6-hook-delivery-is-fail-open-so-the-worst-case-is-silence-rather-than-a-stall-ever",
+      "text": "**Hook delivery is fail-open, so the worst case is silence rather than a stall.** Every entrypoint \"fails open: an unreadable state file, a classifier throw, an unresolvable project root, or an unexpected argument shape all resolve to `allow` with no side effects\" [SOURCE: .skilled/hooks/spec-gate/README.md:14]. The advisor's contract is the same: \"the prompt always proceeds\" [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:25].",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/hooks/injection-contract.md:38`, `:39`, `:66`, `:115`, `:117`",
+        "`.skilled/hooks/spec-gate/README.md:12`, `:14`, `:16`, `:24`, `:26`, `:34`, `:50`",
+        "`.skilled/hooks/README.md:45`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:25`, `:39`, `:55`",
+        "`.cursor/rules/skill-routing.md:18`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-5-7-a-dispatched-child-short-circuits-the-hook-entirely-which-is-the-correct-behavio",
+      "text": "**A dispatched child short-circuits the hook entirely, which is the correct behavior for the fan-out case.** `classifyIntent` and `evaluateMutation` are \"a complete no-op before any gate-state read or write, question, denial, or telemetry\" when `AI_SESSION_CHILD=1` [SOURCE: .skilled/hooks/spec-gate/README.md:24]. A hook carrying a workflow step can never be the mechanism a child lineage relies on.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/hooks/injection-contract.md:38`, `:39`, `:66`, `:115`, `:117`",
+        "`.skilled/hooks/spec-gate/README.md:12`, `:14`, `:16`, `:24`, `:26`, `:34`, `:50`",
+        "`.skilled/hooks/README.md:45`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:25`, `:39`, `:55`",
+        "`.cursor/rules/skill-routing.md:18`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-5-8-the-cost-of-the-hook-itself-is-per-concern-and-per-runtime-not-one-file-the-hook",
+      "text": "**The cost of the hook itself is per-concern and per-runtime, not one file.** The hooks hub holds eleven concern folders plus symlinked per-runtime index entries, and each concern carries its own kill-switch [SOURCE: .skilled/hooks/README.md:45]. A new concern means a new core, seven adapters and a kill-switch row; extending the existing spec-gate notice means editing the notice text and the delivery predicate.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/hooks/injection-contract.md:38`, `:39`, `:66`, `:115`, `:117`",
+        "`.skilled/hooks/spec-gate/README.md:12`, `:14`, `:16`, `:24`, `:26`, `:34`, `:50`",
+        "`.skilled/hooks/README.md:45`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:25`, `:39`, `:55`",
+        "`.cursor/rules/skill-routing.md:18`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-5-9-the-cheap-hook-variant-collides-with-the-same-turn-s-other-injections-the-adviso",
+      "text": "**The cheap hook variant collides with the same turn's other injections.** The advisor brief already appends a directive block on every prompt [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:39], the goal hook appends a session block on every turn where the runtime injects [SOURCE: .skilled/hooks/injection-contract.md:117], and the spec-gate notice adds a third on the first mutation. A fourth injected block has to earn its place against three that already occupy the model's attention.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/hooks/injection-contract.md:38`, `:39`, `:66`, `:115`, `:117`",
+        "`.skilled/hooks/spec-gate/README.md:12`, `:14`, `:16`, `:24`, `:26`, `:34`, `:50`",
+        "`.skilled/hooks/README.md:45`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:25`, `:39`, `:55`",
+        "`.cursor/rules/skill-routing.md:18`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-6-1-the-validator-is-the-one-check-both-paths-run-so-a-rule-added-there-needs-no-rea",
+      "text": "**The validator is the one check both paths run, so a rule added there needs no reach story at all.** The plan workflow's step 5 runs `validate.sh [SPEC_FOLDER] --strict` as its post-write gate [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:781], the chat path's ALWAYS list says \"Run validate.sh before completion\" [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:211], and the authoring card tells the author to run it once after the last edit [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163]. Every runtime executes the same shell script, so this is the only mechanism with no cross-runtime delivery question.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:449`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`, `:169`, `:171`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`, `:10`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh:20`, `:30`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:42`, `:46`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403`, `:781`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:211`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-6-2-a-rule-is-code-plus-a-registry-row-which-is-the-expensive-part-the-registry-hold",
+      "text": "**A rule is code plus a registry row, which is the expensive part.** The registry holds `rule_id`, `aliases`, `script_path`, `severity`, `category` and `description` per rule and is 15,641 bytes [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:10], and the rule scripts are shell programs of a few hundred lines each — `check-placeholders.sh` is 295 lines and `check-comment-hygiene.sh` is 102 [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh:1].",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:449`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`, `:169`, `:171`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`, `:10`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh:20`, `:30`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:42`, `:46`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403`, `:781`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:211`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-6-3-a-rule-can-read-html-comments-so-a-comment-borne-convention-is-mechanically-dete",
+      "text": "**A rule can read HTML comments, so a comment-borne convention is mechanically detectable.** `COMMENT_HYGIENE_MARKER` scans `spec.md`, `plan.md`, `tasks.md` and `decision-record.md`, skipping fenced code, and rejects ephemeral finding markers inside HTML comments [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh:30] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh:30]. That is the closest existing proof that plan-comment content is inside the validator's reach.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:449`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`, `:169`, `:171`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`, `:10`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh:20`, `:30`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:42`, `:46`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403`, `:781`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:211`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-6-4-the-cheapest-structural-lever-is-a-template-anchor-because-anchors-valid-already",
+      "text": "**The cheapest structural lever is a template anchor, because `ANCHORS_VALID` already makes every template anchor mandatory for a v2.3+ document.** Rule 7 fails a document stamped v2.3 or later with `required anchor '<id>' is missing` for each anchor its rendered template requires [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:449], and the plan template is stamped `plan-core | v2.4` with eleven anchors [SOURCE: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:42] [SOURCE: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:46]. Adding one anchor to the template therefore adds one required section to every future plan with no new rule.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:449`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`, `:169`, `:171`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`, `:10`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh:20`, `:30`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:42`, `:46`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403`, `:781`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:211`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-6-5-but-that-lever-regrades-the-whole-corpus-which-the-rule-s-own-next-paragraph-exp",
+      "text": "**But that lever regrades the whole corpus, which the rule's own next paragraph explains is the reason it refuses to check order.** Rule 8 says template order is never compared because \"a template that moves a section would regrade the whole corpus on every commit\" [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:450]. A newly required anchor does exactly that to every existing v2.4 plan document, one failing packet at a time.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:449`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`, `:169`, `:171`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`, `:10`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh:20`, `:30`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:42`, `:46`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403`, `:781`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:211`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-6-6-level-scaling-is-native-to-the-validator-so-the-level-1-exemption-costs-a-condit",
+      "text": "**Level scaling is native to the validator, so the Level 1 exemption costs a condition rather than a gate.** `AC_CLOSURE` is scoped to Levels 2, 3 and 3+ and \"Level 1 keeps acceptance criteria inline in `spec.md` and is never gated\" [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:81], and `LEVEL_MATCH` already varies the required file set by level [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:773]. A new rule that applies from Level 2 is the existing pattern, not a new one.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:449`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`, `:169`, `:171`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`, `:10`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh:20`, `:30`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:42`, `:46`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403`, `:781`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:211`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-6-7-the-validator-sees-artifacts-and-never-sequence-so-it-cannot-hold-the-workflow-s",
+      "text": "**The validator sees artifacts and never sequence, so it cannot hold the workflow's process checks.** It cannot know that `plan.md` was written before code, that seven checkpoints ran, or that the reader was anyone other than the author. The workflow's seven named validations [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:21] and its two scored gates [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:403] are process state; the validator's whole input is the finished folder.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:449`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`, `:169`, `:171`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`, `:10`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh:20`, `:30`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:42`, `:46`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403`, `:781`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:211`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-6-8-its-per-turn-token-cost-is-zero-which-no-other-mechanism-achieves-validate-sh-is",
+      "text": "**Its per-turn token cost is zero, which no other mechanism achieves.** `validate.sh` is executed, not read: only the `RESULT:` line and the failing rules enter context [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:169]. Compare `AGENTS.md`'s roughly 6.8k resident tokens from iteration 3.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:449`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`, `:169`, `:171`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`, `:10`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh:20`, `:30`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:42`, `:46`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403`, `:781`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:211`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-6-9-its-repair-loop-is-bounded-and-already-ends-in-a-written-question-the-card-allow",
+      "text": "**Its repair loop is bounded and already ends in a written question.** The card allows three rounds and then says \"Stop after three rounds and write the rules and their errors in the packet's `goal.md`\" [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:171]. A quality rule that cannot be fixed mechanically therefore terminates in the same `goal.md` open-question surface that iteration 2 identified as the cheapest recording place.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:449`, `:450`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`, `:169`, `:171`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3`, `:10`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/rules/check-comment-hygiene.sh:20`, `:30`",
+        "`.skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:42`, `:46`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:21`, `:403`, `:781`",
+        "`.skilled/skills/system-spec-kit/SKILL.md:211`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-7-1-skill-invocation-is-already-mandatory-above-0-8-so-half-of-the-premise-is-false-",
+      "text": "**Skill invocation is already mandatory above 0.8, so half of the premise is false: recommendation already drives use for skills.** Gate 2 states \"Confidence ≥ 0.8 → MUST invoke skill\" [SOURCE: AGENTS.md:67], and the advisor's routing tree says \"top recommendation above confidence threshold -> invoke that skill\" [SOURCE: .skilled/skills/system-skill-advisor/ROUTER.md:83]. What is not automatic is the *command*, not the skill.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`AGENTS.md:67`, `:72`, `:89`",
+        "`.skilled/skills/system-skill-advisor/ROUTER.md:83`, `:85`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`, `:137`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1987`, `:1997`, `:2071`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:185`, `:295`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:1`, `:16`, `:19`, `:52`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-7-2-the-advisor-cannot-recommend-speckit-plan-from-natural-language-because-its-comm",
+      "text": "**The advisor cannot recommend `/speckit:plan` from natural language, because its command bridges are keyed on slash markers.** The `/spec_kit` bridge's matching keys are `/speckit:plan`, `/speckit:resume`, `/deep:research` and `/deep:review` [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1987] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1997], and the per-subcommand entries use `slashMarkers` such as `/speckit:implement` [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:2071]. A bridge fires *after* the user types the command; it never surfaces one.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`AGENTS.md:67`, `:72`, `:89`",
+        "`.skilled/skills/system-skill-advisor/ROUTER.md:83`, `:85`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`, `:137`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1987`, `:1997`, `:2071`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:185`, `:295`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:1`, `:16`, `:19`, `:52`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-7-3-when-the-advisor-is-confident-is-narrower-than-it-sounds-confidence-is-capped-at",
+      "text": "**\"When the advisor is confident\" is narrower than it sounds: confidence is capped at 0.95 and ambiguity is detected on a 0.05 margin.** The scorer's constants include `hardCeiling 0.95` and `ambiguityMargin 0.05` [SOURCE: .skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130] [SOURCE: .skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:137], and the routing tree sends ambiguous top scores to \"surface top candidates and ask or route with caveat\" [SOURCE: .skilled/skills/system-skill-advisor/ROUTER.md:85]. [INFERENCE: based on this session's rendered brief, \"Advisor: live; ambiguous: system-deep-loop 0.95/0.16 vs system-spec-kit 0.95/0.12 pass\", two recommendations at the 0.95 ceiling still report as ambiguous, so a confidence-gated auto-invocation would fire on a tie.]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`AGENTS.md:67`, `:72`, `:89`",
+        "`.skilled/skills/system-skill-advisor/ROUTER.md:83`, `:85`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`, `:137`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1987`, `:1997`, `:2071`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:185`, `:295`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:1`, `:16`, `:19`, `:52`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-7-4-so-the-mechanism-lands-on-the-recommended-skill-and-the-recommended-skill-has-no",
+      "text": "**So the mechanism lands on the recommended skill, and the recommended skill has no route to the workflow assets.** For a spec-writing request the advisor recommends `system-spec-kit`; its machine `RESOURCE_MAP` lists reference, template, validation, workflow, structure, debugging, CLI and config families and no `.skilled/commands/` path at all [SOURCE: .skilled/skills/system-spec-kit/ROUTER.md:185] [SOURCE: .skilled/skills/system-spec-kit/ROUTER.md:295]. Mechanism E therefore collapses into a pointer inside the skill, which is mechanism B's carrier.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`AGENTS.md:67`, `:72`, `:89`",
+        "`.skilled/skills/system-skill-advisor/ROUTER.md:83`, `:85`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`, `:137`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1987`, `:1997`, `:2071`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:185`, `:295`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:1`, `:16`, `:19`, `:52`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-7-5-a-chat-session-that-decided-to-execute-the-workflow-would-first-have-to-hold-65-",
+      "text": "**A chat session that decided to execute the workflow would first have to hold 65 KB of YAML.** `speckit-plan.yaml` is 65,265 bytes (885 lines) [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:1], `speckit-implement.yaml` 60,098 bytes and `speckit-complete.yaml` 93,496 bytes, so executing the plan workflow alone is roughly 16k tokens of procedure before any packet work.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`AGENTS.md:67`, `:72`, `:89`",
+        "`.skilled/skills/system-skill-advisor/ROUTER.md:83`, `:85`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`, `:137`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1987`, `:1997`, `:2071`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:185`, `:295`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:1`, `:16`, `:19`, `:52`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-7-6-the-workflow-s-default-mode-is-the-one-a-chat-session-cannot-satisfy-and-its-aut",
+      "text": "**The workflow's default mode is the one a chat session cannot satisfy, and its autonomous mode is the one it must not take.** `execution_mode.default: confirm` makes every checkpoint block run in order [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:16] [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:19], which is four approval prompts a chat user never asked for; `auto` skips every `applies_to: confirm` block, which removes the folder-choice question that Gate 3 exists to force [SOURCE: AGENTS.md:72].",
+      "addedAtIteration": 7,
+      "sources": [
+        "`AGENTS.md:67`, `:72`, `:89`",
+        "`.skilled/skills/system-skill-advisor/ROUTER.md:83`, `:85`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`, `:137`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1987`, `:1997`, `:2071`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:185`, `:295`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:1`, `:16`, `:19`, `:52`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-7-7-the-yaml-already-knows-about-dispatched-children-and-resolves-its-checkpoints-th",
+      "text": "**The YAML already knows about dispatched children and resolves its checkpoints there.** Its `child_dispatch` line says that when `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved and the worker does not ask [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:52], and its step 7 checkpoint defaults to Skip under the same condition. A child can therefore run the workflow without stalling, which is the one environment where mechanism E is structurally safe.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`AGENTS.md:67`, `:72`, `:89`",
+        "`.skilled/skills/system-skill-advisor/ROUTER.md:83`, `:85`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`, `:137`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1987`, `:1997`, `:2071`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:185`, `:295`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:1`, `:16`, `:19`, `:52`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-7-8-nothing-forbids-a-session-from-reading-a-command-yaml-and-gate-4-already-reserve",
+      "text": "**Nothing forbids a session from reading a command YAML, and Gate 4 already reserves the tie it would create.** Gate 4 says the advisor's `command-spec-kit` bridge wins over `cli-*` when both match [SOURCE: AGENTS.md:89], which shows the framework already arbitrates command-versus-tool routing; it has no rule for command-versus-chat.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`AGENTS.md:67`, `:72`, `:89`",
+        "`.skilled/skills/system-skill-advisor/ROUTER.md:83`, `:85`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`, `:137`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1987`, `:1997`, `:2071`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:185`, `:295`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:1`, `:16`, `:19`, `:52`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-7-9-the-cheapest-version-of-mechanism-e-is-one-sentence-in-the-skill-and-its-cost-is",
+      "text": "**The cheapest version of mechanism E is one sentence in the skill, and its cost is the YAML read.** A line in `SKILL.md` or `ROUTER.md` saying \"when the request writes `plan.md`, follow `.skilled/commands/speckit/assets/speckit-plan.yaml`\" costs one line, and the session then pays 16k tokens for the procedure — the same order as the entire `AGENTS.md` plus `REPO RULES.md` combined. [INFERENCE: byte counts for `speckit-plan.yaml`, `SKILL.md` and `AGENTS.md` measured in iteration 9, combined with the workflow-read cost in finding 5]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`AGENTS.md:67`, `:72`, `:89`",
+        "`.skilled/skills/system-skill-advisor/ROUTER.md:83`, `:85`",
+        "`.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md:130`, `:137`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json:1987`, `:1997`, `:2071`",
+        "`.skilled/skills/system-spec-kit/ROUTER.md:185`, `:295`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:1`, `:16`, `:19`, `:52`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-8-1-a-command-surface-exists-in-six-of-seven-runtimes-in-two-different-forms-and-dev",
+      "text": "**A command surface exists in six of seven runtimes, in two different forms, and Devin has neither.** OpenCode and Claude carry `commands/speckit/` directories, Cursor carries `commands/speckit-plan.md` and its siblings, and Codex, Pi and DSH each carry eight `speckit-*.md` prompt templates; `.devin` has no `commands` directory and exposes skills as slash commands instead [INFERENCE: from the directory listings of `.opencode/commands`, `.claude/commands`, `.cursor/commands`, `.codex/prompts`, `.pi/prompts`, `.dsh/prompts` and `.devin/`]. On Devin the only surfaces are skills and hooks [SOURCE: .devin/README.md:41].",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/commands/speckit/`, `.claude/commands/speckit/`, `.cursor/commands/speckit-*.md`, `.codex/prompts/speckit-*.md`, `.pi/prompts/speckit-*.md`, `.dsh/prompts/speckit-*.md`, `.devin/`",
+        "`.devin/README.md:41`",
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.pi/README.md:31`, `.cursor/rules/skill-routing.md:20`, `.cursor/README.md:72`",
+        "`.skilled/hooks/README.md:341`, `:343`",
+        "`.skilled/hooks/injection-contract.md:117`",
+        "`.skilled/hooks/spec-gate/README.md:24`",
+        "`AGENTS.md:84`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:52`, `:829`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-8-2-agents-md-arrives-in-six-runtimes-and-only-by-pointer-in-the-seventh-six-mirror-",
+      "text": "**`AGENTS.md` arrives in six runtimes and only by pointer in the seventh.** Six mirror READMEs name the root file as the instruction source [SOURCE: .claude/README.md:39] [SOURCE: .codex/README.md:39] [SOURCE: .pi/README.md:31], and Cursor receives a generated Gate 1 pointer inside its own rule file [SOURCE: .cursor/rules/skill-routing.md:20].",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/commands/speckit/`, `.claude/commands/speckit/`, `.cursor/commands/speckit-*.md`, `.codex/prompts/speckit-*.md`, `.pi/prompts/speckit-*.md`, `.dsh/prompts/speckit-*.md`, `.devin/`",
+        "`.devin/README.md:41`",
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.pi/README.md:31`, `.cursor/rules/skill-routing.md:20`, `.cursor/README.md:72`",
+        "`.skilled/hooks/README.md:341`, `:343`",
+        "`.skilled/hooks/injection-contract.md:117`",
+        "`.skilled/hooks/spec-gate/README.md:24`",
+        "`AGENTS.md:84`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:52`, `:829`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-8-3-hook-delivery-is-the-only-mechanism-with-a-per-runtime-adapter-set-and-it-is-com",
+      "text": "**Hook delivery is the only mechanism with a per-runtime adapter set, and it is complete for the tool-time channel.** The hooks index's coverage matrix marks `spec-gate` \"✓ covered\" in all seven runtime columns [SOURCE: .skilled/hooks/README.md:343], while `session-relaunch` shows how partial a concern can be when its signal is missing [SOURCE: .skilled/hooks/README.md:341]. Prompt-time delivery is weaker than the matrix suggests because Cursor's prompt channel is dormant.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/commands/speckit/`, `.claude/commands/speckit/`, `.cursor/commands/speckit-*.md`, `.codex/prompts/speckit-*.md`, `.pi/prompts/speckit-*.md`, `.dsh/prompts/speckit-*.md`, `.devin/`",
+        "`.devin/README.md:41`",
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.pi/README.md:31`, `.cursor/rules/skill-routing.md:20`, `.cursor/README.md:72`",
+        "`.skilled/hooks/README.md:341`, `:343`",
+        "`.skilled/hooks/injection-contract.md:117`",
+        "`.skilled/hooks/spec-gate/README.md:24`",
+        "`AGENTS.md:84`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:52`, `:829`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-8-4-in-a-dispatched-child-the-interactive-mechanisms-degrade-or-vanish-by-design-gat",
+      "text": "**In a dispatched child, the interactive mechanisms degrade or vanish by design.** Gate 3 is \"PRE-RESOLVED\" and every stop-and-ask rule becomes \"record-and-continue\" [SOURCE: AGENTS.md:84], so an `AGENTS.md` routing gate would produce a recorded decision rather than a workflow run. `spec-gate`'s core short-circuits to a complete no-op before any state read [SOURCE: .skilled/hooks/spec-gate/README.md:24], so mechanism C delivers nothing to a child at all.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/commands/speckit/`, `.claude/commands/speckit/`, `.cursor/commands/speckit-*.md`, `.codex/prompts/speckit-*.md`, `.pi/prompts/speckit-*.md`, `.dsh/prompts/speckit-*.md`, `.devin/`",
+        "`.devin/README.md:41`",
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.pi/README.md:31`, `.cursor/rules/skill-routing.md:20`, `.cursor/README.md:72`",
+        "`.skilled/hooks/README.md:341`, `:343`",
+        "`.skilled/hooks/injection-contract.md:117`",
+        "`.skilled/hooks/spec-gate/README.md:24`",
+        "`AGENTS.md:84`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:52`, `:829`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-8-5-the-workflow-itself-already-handles-a-child-which-makes-mechanism-e-the-one-mech",
+      "text": "**The workflow itself already handles a child, which makes mechanism E the one mechanism that is *better* in a child than in chat.** Its `child_dispatch` line resolves Gate 3 to the lineage directory and stops the worker asking [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:52], and step 7's checkpoint defaults to Skip under the same condition [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:829]. A child running the workflow does not stall; a chat session running it in `confirm` mode stalls four times.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/commands/speckit/`, `.claude/commands/speckit/`, `.cursor/commands/speckit-*.md`, `.codex/prompts/speckit-*.md`, `.pi/prompts/speckit-*.md`, `.dsh/prompts/speckit-*.md`, `.devin/`",
+        "`.devin/README.md:41`",
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.pi/README.md:31`, `.cursor/rules/skill-routing.md:20`, `.cursor/README.md:72`",
+        "`.skilled/hooks/README.md:341`, `:343`",
+        "`.skilled/hooks/injection-contract.md:117`",
+        "`.skilled/hooks/spec-gate/README.md:24`",
+        "`AGENTS.md:84`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:52`, `:829`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-8-6-the-mechanisms-that-need-no-adapter-are-the-two-that-survive-everywhere-the-card",
+      "text": "**The mechanisms that need no adapter are the two that survive everywhere: the card and the validator.** Both are file reads or a shell invocation [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163], so they are indifferent to runtime, to session type and to whether anyone is watching.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/commands/speckit/`, `.claude/commands/speckit/`, `.cursor/commands/speckit-*.md`, `.codex/prompts/speckit-*.md`, `.pi/prompts/speckit-*.md`, `.dsh/prompts/speckit-*.md`, `.devin/`",
+        "`.devin/README.md:41`",
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.pi/README.md:31`, `.cursor/rules/skill-routing.md:20`, `.cursor/README.md:72`",
+        "`.skilled/hooks/README.md:341`, `:343`",
+        "`.skilled/hooks/injection-contract.md:117`",
+        "`.skilled/hooks/spec-gate/README.md:24`",
+        "`AGENTS.md:84`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:52`, `:829`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-8-7-the-failure-modes-are-not-equivalent-across-runtimes-so-a-uniform-answer-has-to-",
+      "text": "**The failure modes are not equivalent across runtimes, so a uniform answer has to name the worst case.** Devin cannot invoke a command; Cursor cannot receive a prompt-time injection and does not read `AGENTS.md`; Pi renders injection text onto the visible prompt; DSH's goal and step injections are interactive-only [SOURCE: .skilled/hooks/injection-contract.md:117]. A mechanism chosen for the median runtime will fail silently on at least one of these four. [INFERENCE: consolidates the per-mechanism costs from iterations 3-7 with the reach findings in this iteration]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/commands/speckit/`, `.claude/commands/speckit/`, `.cursor/commands/speckit-*.md`, `.codex/prompts/speckit-*.md`, `.pi/prompts/speckit-*.md`, `.dsh/prompts/speckit-*.md`, `.devin/`",
+        "`.devin/README.md:41`",
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.pi/README.md:31`, `.cursor/rules/skill-routing.md:20`, `.cursor/README.md:72`",
+        "`.skilled/hooks/README.md:341`, `:343`",
+        "`.skilled/hooks/injection-contract.md:117`",
+        "`.skilled/hooks/spec-gate/README.md:24`",
+        "`AGENTS.md:84`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:52`, `:829`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-8-8-no-mechanism-is-universal-and-cheap-at-once-the-validator-is-universal-and-its-r",
+      "text": "**No mechanism is universal and cheap at once.** The validator is universal, and its rules cannot read judgment; the card is cheap and universal, and its load is keyword-gated; the hook is universal for tool time, and it is advisory and adapter-heavy; `AGENTS.md` is nearly universal, and Cursor and the shipped-surface cost each sink it; the command is unavailable on Devin and needs a user. [INFERENCE: consolidates the per-mechanism costs from iterations 3-7 with the reach findings in this iteration]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/commands/speckit/`, `.claude/commands/speckit/`, `.cursor/commands/speckit-*.md`, `.codex/prompts/speckit-*.md`, `.pi/prompts/speckit-*.md`, `.dsh/prompts/speckit-*.md`, `.devin/`",
+        "`.devin/README.md:41`",
+        "`.claude/README.md:39`, `.codex/README.md:39`, `.pi/README.md:31`, `.cursor/rules/skill-routing.md:20`, `.cursor/README.md:72`",
+        "`.skilled/hooks/README.md:341`, `:343`",
+        "`.skilled/hooks/injection-contract.md:117`",
+        "`.skilled/hooks/spec-gate/README.md:24`",
+        "`AGENTS.md:84`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:52`, `:829`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:163`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-9-1-the-chat-path-already-pays-about-30k-tokens-before-any-workflow-step-the-card-is",
+      "text": "**The chat path already pays about 30k tokens before any workflow step; the card is only 2.4k of it.** Measured: `AGENTS.md` 27,372 bytes, `SKILL.md` 28,185, `ROUTER.md` 26,012, `quick-reference.md` 30,232, `spec-authoring-card.md` 9,699 — 121,500 bytes in total, roughly 30.4k tokens at 4 bytes per token [INFERENCE: byte counts from `wc -c`, divided by 4].",
+      "addedAtIteration": 9,
+      "sources": [
+        "`wc -c` over `AGENTS.md`, `REPO RULES.md`, `.skilled/skills/system-spec-kit/SKILL.md`, `ROUTER.md`, `references/workflows/spec-authoring-card.md`, `references/workflows/quick-reference.md`, `references/validation/validation-rules.md`, `templates/core/plan.md.tmpl`, `.skilled/commands/speckit/assets/speckit-plan.yaml`, `.skilled/commands/speckit/assets/speckit-implement.yaml`, `.skilled/commands/speckit/assets/speckit-complete.yaml`, `.cursor/rules/skill-routing.md`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`, `:877`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:539`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:169`",
+        "`AGENTS.md:108`",
+        "`.skilled/hooks/README.md:45`, `:343`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-9-10-token-cost-is-not-the-binding-constraint-for-four-of-the-five-mechanisms-the-car",
+      "text": "**Token cost is not the binding constraint for four of the five mechanisms.** The card, the `AGENTS.md` line and the validator all cost less than 3k tokens per writing session; only running the workflow itself costs 16k, and its cost lands on the one mechanism that already needs an operator. [INFERENCE: from the measured sizes in findings 1-6 above]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`wc -c` over `AGENTS.md`, `REPO RULES.md`, `.skilled/skills/system-spec-kit/SKILL.md`, `ROUTER.md`, `references/workflows/spec-authoring-card.md`, `references/workflows/quick-reference.md`, `references/validation/validation-rules.md`, `templates/core/plan.md.tmpl`, `.skilled/commands/speckit/assets/speckit-plan.yaml`, `.skilled/commands/speckit/assets/speckit-implement.yaml`, `.skilled/commands/speckit/assets/speckit-complete.yaml`, `.cursor/rules/skill-routing.md`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`, `:877`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:539`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:169`",
+        "`AGENTS.md:108`",
+        "`.skilled/hooks/README.md:45`, `:343`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-9-2-the-workflow-read-is-the-most-expensive-single-addition-by-a-wide-margin-speckit",
+      "text": "**The workflow read is the most expensive single addition by a wide margin.** `speckit-plan.yaml` is 65,265 bytes (~16.3k tokens), `speckit-implement.yaml` 60,098 (~15.0k) and `speckit-complete.yaml` 93,496 (~23.4k) against the card's 9,699 (~2.4k) [INFERENCE: same conversion]. Executing the plan workflow costs roughly seven times the card.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`wc -c` over `AGENTS.md`, `REPO RULES.md`, `.skilled/skills/system-spec-kit/SKILL.md`, `ROUTER.md`, `references/workflows/spec-authoring-card.md`, `references/workflows/quick-reference.md`, `references/validation/validation-rules.md`, `templates/core/plan.md.tmpl`, `.skilled/commands/speckit/assets/speckit-plan.yaml`, `.skilled/commands/speckit/assets/speckit-implement.yaml`, `.skilled/commands/speckit/assets/speckit-complete.yaml`, `.cursor/rules/skill-routing.md`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`, `:877`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:539`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:169`",
+        "`AGENTS.md:108`",
+        "`.skilled/hooks/README.md:45`, `:343`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-9-3-an-agents-md-gate-s-marginal-cost-is-small-and-its-fixed-cost-is-the-shipped-sur",
+      "text": "**An `AGENTS.md` gate's marginal cost is small and its fixed cost is the shipped surface.** A ten-line gate is about 130 tokens added to a file already resident at 27,372 bytes, so the per-turn delta is near zero; the cost iteration 3 found is the product surface and the Cursor gap, not tokens. [INFERENCE: `AGENTS.md` byte count measured here, divided by 4]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`wc -c` over `AGENTS.md`, `REPO RULES.md`, `.skilled/skills/system-spec-kit/SKILL.md`, `ROUTER.md`, `references/workflows/spec-authoring-card.md`, `references/workflows/quick-reference.md`, `references/validation/validation-rules.md`, `templates/core/plan.md.tmpl`, `.skilled/commands/speckit/assets/speckit-plan.yaml`, `.skilled/commands/speckit/assets/speckit-implement.yaml`, `.skilled/commands/speckit/assets/speckit-complete.yaml`, `.cursor/rules/skill-routing.md`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`, `:877`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:539`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:169`",
+        "`AGENTS.md:108`",
+        "`.skilled/hooks/README.md:45`, `:343`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-9-4-a-hook-injection-is-the-cheapest-per-event-and-the-most-expensive-to-maintain-th",
+      "text": "**A hook injection is the cheapest per event and the most expensive to maintain.** The advisor brief is one `Advisor:` line plus a four-line directives block, on the order of 90 tokens per prompt [INFERENCE: from the brief recorded in this session's hook context]; the spec-gate notice is three sentences delivered once per session. Against that, the concern needs seven adapters [SOURCE: .skilled/hooks/README.md:343].",
+      "addedAtIteration": 9,
+      "sources": [
+        "`wc -c` over `AGENTS.md`, `REPO RULES.md`, `.skilled/skills/system-spec-kit/SKILL.md`, `ROUTER.md`, `references/workflows/spec-authoring-card.md`, `references/workflows/quick-reference.md`, `references/validation/validation-rules.md`, `templates/core/plan.md.tmpl`, `.skilled/commands/speckit/assets/speckit-plan.yaml`, `.skilled/commands/speckit/assets/speckit-implement.yaml`, `.skilled/commands/speckit/assets/speckit-complete.yaml`, `.cursor/rules/skill-routing.md`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`, `:877`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:539`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:169`",
+        "`AGENTS.md:108`",
+        "`.skilled/hooks/README.md:45`, `:343`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-9-5-the-validator-costs-nothing-per-turn-it-is-executed-not-read-only-its-result-lin",
+      "text": "**The validator costs nothing per turn.** It is executed, not read; only its `RESULT:` line and failing rules enter context [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:169]. Its 47,234-byte rule reference is read only when diagnosing a failure.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`wc -c` over `AGENTS.md`, `REPO RULES.md`, `.skilled/skills/system-spec-kit/SKILL.md`, `ROUTER.md`, `references/workflows/spec-authoring-card.md`, `references/workflows/quick-reference.md`, `references/validation/validation-rules.md`, `templates/core/plan.md.tmpl`, `.skilled/commands/speckit/assets/speckit-plan.yaml`, `.skilled/commands/speckit/assets/speckit-implement.yaml`, `.skilled/commands/speckit/assets/speckit-complete.yaml`, `.cursor/rules/skill-routing.md`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`, `:877`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:539`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:169`",
+        "`AGENTS.md:108`",
+        "`.skilled/hooks/README.md:45`, `:343`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-9-6-the-workflow-is-already-level-aware-in-two-places-so-level-1-lightness-is-a-solv",
+      "text": "**The workflow is already level-aware in two places, so Level 1 lightness is a solved shape rather than an open question.** The plan workflow's ALWAYS rules include `use_checklist_for_verification_level_2_plus` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:877], and implement's step 4 opens with `Skip for Level 1, MANDATORY for Level 2+` [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:539].",
+      "addedAtIteration": 9,
+      "sources": [
+        "`wc -c` over `AGENTS.md`, `REPO RULES.md`, `.skilled/skills/system-spec-kit/SKILL.md`, `ROUTER.md`, `references/workflows/spec-authoring-card.md`, `references/workflows/quick-reference.md`, `references/validation/validation-rules.md`, `templates/core/plan.md.tmpl`, `.skilled/commands/speckit/assets/speckit-plan.yaml`, `.skilled/commands/speckit/assets/speckit-implement.yaml`, `.skilled/commands/speckit/assets/speckit-complete.yaml`, `.cursor/rules/skill-routing.md`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`, `:877`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:539`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:169`",
+        "`AGENTS.md:108`",
+        "`.skilled/hooks/README.md:45`, `:343`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-9-7-but-one-workflow-rule-is-unconditional-and-is-exactly-the-check-the-chat-path-la",
+      "text": "**But one workflow rule is unconditional and is exactly the check the chat path lacks: `document_all_decisions`.** It sits in the same ALWAYS block with no level qualifier [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:873], which means the workflow asks for a decision record at every level while the chat path asks for none at any level.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`wc -c` over `AGENTS.md`, `REPO RULES.md`, `.skilled/skills/system-spec-kit/SKILL.md`, `ROUTER.md`, `references/workflows/spec-authoring-card.md`, `references/workflows/quick-reference.md`, `references/validation/validation-rules.md`, `templates/core/plan.md.tmpl`, `.skilled/commands/speckit/assets/speckit-plan.yaml`, `.skilled/commands/speckit/assets/speckit-implement.yaml`, `.skilled/commands/speckit/assets/speckit-complete.yaml`, `.cursor/rules/skill-routing.md`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`, `:877`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:539`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:169`",
+        "`AGENTS.md:108`",
+        "`.skilled/hooks/README.md:45`, `:343`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-9-8-level-1-s-document-set-is-four-files-and-no-closure-gate-which-is-what-light-has",
+      "text": "**Level 1's document set is four files and no closure gate, which is what \"light\" has to mean.** `LEVEL_MATCH` requires `spec.md, plan.md, tasks.md, implementation-summary.md` at Level 1 [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:773], and `AC_CLOSURE` is scoped to Levels 2, 3 and 3+ only [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:81]. Any step that adds a fifth required artifact at Level 1 breaks the level contract.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`wc -c` over `AGENTS.md`, `REPO RULES.md`, `.skilled/skills/system-spec-kit/SKILL.md`, `ROUTER.md`, `references/workflows/spec-authoring-card.md`, `references/workflows/quick-reference.md`, `references/validation/validation-rules.md`, `templates/core/plan.md.tmpl`, `.skilled/commands/speckit/assets/speckit-plan.yaml`, `.skilled/commands/speckit/assets/speckit-implement.yaml`, `.skilled/commands/speckit/assets/speckit-complete.yaml`, `.cursor/rules/skill-routing.md`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`, `:877`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:539`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:169`",
+        "`AGENTS.md:108`",
+        "`.skilled/hooks/README.md:45`, `:343`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "finding-9-9-the-one-sentence-opt-out-already-has-a-carrier-the-bypass-phrase-list-agents-md-",
+      "text": "**The one-sentence opt-out already has a carrier: the bypass-phrase list.** `AGENTS.md`'s consolidated question protocol ends with \"**Bypass phrases:** `skip context` / `fresh start` / `skip memory` / [skip] for memory loading\" [SOURCE: AGENTS.md:108], so adding one phrase to that line is a one-word edit in a line the session already reads. The runtime-level equivalent exists too: every hook concern honours a `SYSTEM_<CONCERN>_DISABLED` switch [SOURCE: .skilled/hooks/README.md:45].",
+      "addedAtIteration": 9,
+      "sources": [
+        "`wc -c` over `AGENTS.md`, `REPO RULES.md`, `.skilled/skills/system-spec-kit/SKILL.md`, `ROUTER.md`, `references/workflows/spec-authoring-card.md`, `references/workflows/quick-reference.md`, `references/validation/validation-rules.md`, `templates/core/plan.md.tmpl`, `.skilled/commands/speckit/assets/speckit-plan.yaml`, `.skilled/commands/speckit/assets/speckit-implement.yaml`, `.skilled/commands/speckit/assets/speckit-complete.yaml`, `.cursor/rules/skill-routing.md`",
+        "`.skilled/commands/speckit/assets/speckit-plan.yaml:873`, `:877`",
+        "`.skilled/commands/speckit/assets/speckit-implement.yaml:539`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:81`, `:773`",
+        "`.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:169`",
+        "`AGENTS.md:108`",
+        "`.skilled/hooks/README.md:45`, `:343`"
+      ],
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-8d301a0b28f9",
+      "text": "Treating the router Markdown files as check carriers: both routers explicitly disclaim dispatch, step logic and artifact writes and delegate to the YAML [SOURCE: .skilled/commands/speckit/implement.md:13].",
+      "contentHash": "8d301a0b28f9",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-9d84537461c3",
+      "text": "Reading `speckit-complete.yaml` line by line this iteration: the complete workflow composes the plan and implement steps, so its step bodies would duplicate findings 2-5 at 1444 lines of cost. Its router-level contract was enough for the inventory; the composed workflow is the same checks in one run.",
+      "contentHash": "9d84537461c3",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-a573d1e42108",
+      "text": "None. The inventory resolved cleanly.",
+      "contentHash": "a573d1e42108",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-04c0afaef9f6",
+      "text": "\"Rank by cost alone\": mechanism D is free and weakest on the check that matters, so a single-axis ranking inverts the answer.",
+      "contentHash": "04c0afaef9f6",
+      "addedAtIteration": 10,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-a2285b863589",
+      "text": "\"Rank by enforcement alone\": the only enforcing mechanism is the validator, and it cannot express the failure. Enforcement is capped by what the mechanism can see, not by how hard it blocks.",
+      "contentHash": "a2285b863589",
+      "addedAtIteration": 10,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-c3effd85ad3a",
+      "text": "Recommending the fourth candidate by default: it is optional and belongs to the operator's choice of visibility, not to the minimum.",
+      "contentHash": "c3effd85ad3a",
+      "addedAtIteration": 10,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-de269916d1e2",
+      "text": "Recommending a combination of B and C as co-equal: two carriers for one check double the maintenance and the model's attention cost for no additional enforcement.",
+      "contentHash": "de269916d1e2",
+      "addedAtIteration": 10,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-e332e6f598c4",
+      "text": "Recommending mechanism D as the primary carrier: it cannot read judgment, and the one check that matters most here is a judgment.",
+      "contentHash": "e332e6f598c4",
+      "addedAtIteration": 10,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-3d781206b3c7",
+      "text": "Proposing that `PLACEHOLDER_FILLED` evaluate prose: the rule is a token scanner over five files by construction [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:326]; broadening it into prose judgment would duplicate the document's purpose in a text validator.",
+      "contentHash": "3d781206b3c7",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-557f30d1f6b9",
+      "text": "\"The validator will catch it once the status is no longer Draft\": true for tokens, false for prose. A plan with every token filled and every anchor present can still leave a decision open, so status escalation does not close this hole.",
+      "contentHash": "557f30d1f6b9",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-a923b45a0f3d",
+      "text": "\"The authoring card already says one action per section\": §5's acceptance is about content under headings, not about decisions inside a section [SOURCE: .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md:106].",
+      "contentHash": "a923b45a0f3d",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-b915351ba757",
+      "text": "Proposing a new `plan-decisions.md` artifact: the packet's own reversal-cost order puts a new file above editing an existing line, and the plan template's seven anchors leave no room for a second plan document at Level 1.",
+      "contentHash": "b915351ba757",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-2584a7ae6a48",
+      "text": "\"Write the gate and let each runtime mirror pick it up\": false for Cursor, which reads only its own rule file plus the generated pointer. Any mechanism that relies on `AGENTS.md` alone has a known blind runtime.",
+      "contentHash": "2584a7ae6a48",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-4605891bffff",
+      "text": "Proposing that Cursor be given a full `AGENTS.md` copy: the repository treats divergence between runtimes as drift, and the Cursor README names a single generator for the one generated block [SOURCE: .cursor/README.md:72]. A copy would need a second sync mechanism to stay true.",
+      "contentHash": "4605891bffff",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-8fee1764a7b5",
+      "text": "\"Make the gate a HARD BLOCK\": a hard block on a write that a user asked for turns every documentation edit into a workflow decision, and it contradicts the §6 trivial-edit exemption the framework sells as its low-friction path.",
+      "contentHash": "8fee1764a7b5",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-df0cc9d9afa6",
+      "text": "Proposing the gate be written inside the repo-local block: that would fix this repository and ship nothing, which cannot answer a question about every chat session.",
+      "contentHash": "df0cc9d9afa6",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-2651a079bd83",
+      "text": "\"A new card section is enough\": it is enough to instruct, and not enough to change behavior for a model that never opens the card under the fallback branch.",
+      "contentHash": "2651a079bd83",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-3580598cccd3",
+      "text": "Putting the card in `LOADING_LEVELS.ALWAYS`: it is a one-line change but it charges every invocation, including read-only turns, for a step that only matters when a plan is written.",
+      "contentHash": "3580598cccd3",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-89f83760ed4e",
+      "text": "\"The card is already loaded on every write because `SKILL.md` says so\": the machine router's score threshold disproves it. The claim is a routing intention, not a load guarantee, and the fallback path carries a checklist instead of the card.",
+      "contentHash": "89f83760ed4e",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-920b7e7a6871",
+      "text": "Creating a new \"shared step reference\" file: the card already occupies that role for both paths, and a second document would have to be linked from `SKILL.md`, `ROUTER.md`, two routers and two YAMLs to reach the same readers.",
+      "contentHash": "920b7e7a6871",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-344778def06e",
+      "text": "\"Inject the whole step list\": the injection channels are designed for short, bounded text — the advisor brief is one line plus a fixed directive, and the spec-gate notice is three sentences. A multi-step list would either be truncated or dominate the turn.",
+      "contentHash": "344778def06e",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-a31b16ef4b73",
+      "text": "A new hook concern for the workflow step: the hub's cost is a core plus seven adapters plus a kill-switch row [SOURCE: .skilled/hooks/README.md:45], which puts it above every mechanism that edits an existing line.",
+      "contentHash": "a31b16ef4b73",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-afadb28a3033",
+      "text": "A prompt-time-only hook: Cursor's prompt channel is dormant under the tested CLI build, so the mechanism would miss one of the seven runtimes entirely.",
+      "contentHash": "afadb28a3033",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-c749d368e318",
+      "text": "\"Use the deny channel to force the step\": a deny on the first write stops the turn and hands the model a reason string, which turns every documentation write into a failed call. That is the blocked-turn behavior the spec-gate design deliberately avoids by delivering at the prompt and not at the turn.",
+      "contentHash": "c749d368e318",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-36119ad3f8e0",
+      "text": "A new validator rule for plan decisions: it is a script plus a registry row plus documentation, and its judgment would still be a regex over prose.",
+      "contentHash": "36119ad3f8e0",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-46e846233f67",
+      "text": "\"The validator already catches bad plans\": it catches missing files, unfilled tokens, unpaired anchors and unmet acceptance rows. Every one of those is a shape, and a vague plan has the right shape.",
+      "contentHash": "46e846233f67",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-648ea81a9de9",
+      "text": "Relying on the validator for ordering: sequence is not in its input, so no rule can express \"plan before code\".",
+      "contentHash": "648ea81a9de9",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-7b795bd324de",
+      "text": "\"Make the rule a WARNING so it does not regrade\": a warning never fails `--strict` and the framework's own instruction is to fix every warning as a failure, so the practical difference is whatever the reader chooses to do.",
+      "contentHash": "7b795bd324de",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-933c3c853e91",
+      "text": "Adding a required plan anchor at the current template version: it regrades every existing v2.4 plan document and would ship a corpus-wide failure.",
+      "contentHash": "933c3c853e91",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-1c5cafd95b56",
+      "text": "Auto-executing the workflow in `confirm` mode from chat: four unrequested approval prompts is a worse experience than the problem being solved.",
+      "contentHash": "1c5cafd95b56",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-5549e8b53133",
+      "text": "\"Teach the advisor to recommend commands\": the bridge schema is slash-marker keyed across 62 generated entries, so this is a generator change plus a scoring-lane change, not a text edit.",
+      "contentHash": "5549e8b53133",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-736db8d64a29",
+      "text": "Gating auto-invocation on advisor confidence: the ceiling is 0.95 and ties are common, so the gate would fire on ambiguity rather than resolve it.",
+      "contentHash": "736db8d64a29",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-e5398114e7be",
+      "text": "\"Let the session type the command\": a session cannot inject a user turn; it can only follow the command's contract, which is the YAML read.",
+      "contentHash": "e5398114e7be",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-ef1cdda3bfe3",
+      "text": "Auto-executing in `auto` mode from chat: it skips the folder-choice gate, which iteration 1 established is the chat path's strongest existing check.",
+      "contentHash": "ef1cdda3bfe3",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-3c5916b7c5d6",
+      "text": "\"The hook covers the child because adapters exist\": the core no-ops for a child before any state read, so adapter presence is not delivery.",
+      "contentHash": "3c5916b7c5d6",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-6edd84f9b45f",
+      "text": "Treating the child case as a separate design: the child is already handled by Gate 3's exemption and the workflow's own clause, so the mechanism only has to not break it.",
+      "contentHash": "6edd84f9b45f",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-7d700c0b78e6",
+      "text": "\"Runtimes without a command surface are out of scope\": they are four of seven for the command mechanism, and Devin is one of the runtimes the repository explicitly supports.",
+      "contentHash": "7d700c0b78e6",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-da6630fa5899",
+      "text": "Choosing a mechanism per runtime: seven variants is a maintenance surface the repository's own mirror-drift rules exist to prevent [SOURCE: .cursor/README.md:72].",
+      "contentHash": "da6630fa5899",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-3edfb1f16aca",
+      "text": "\"Measure by line count\": lines misrank the files. `validation-rules.md` is long but only read on failure, while `plan.md.tmpl` is short and loaded on every plan write, so bytes and load frequency together decide the cost.",
+      "contentHash": "3edfb1f16aca",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-5b317b1f2e1c",
+      "text": "\"Assume prompt caching makes resident context free\": the cache discounts repeated prefixes on some providers, but the window still holds the tokens and the discount is not a property the framework can rely on across seven runtimes.",
+      "contentHash": "5b317b1f2e1c",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-d45e11ed02c7",
+      "text": "Proposing a per-turn injection of the workflow's steps: 16.3k tokens per turn would dominate every session, and the workflow is a procedure for one moment, not a per-turn fact.",
+      "contentHash": "d45e11ed02c7",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-d689f2f06757",
+      "text": "Proposing a Level 1 opt-out phrase rather than a level branch: a phrase requires the reader to know the phrase; a level branch is what `use_checklist_for_verification_level_2_plus` already does.",
+      "contentHash": "d689f2f06757",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "auto-workflow-deepseek"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 1,
+    "resolvedQuestions": 7,
+    "keyFindings": 92,
+    "sourceFindings": 92,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.6,
+    "coverageBySources": {}
+  }
+}

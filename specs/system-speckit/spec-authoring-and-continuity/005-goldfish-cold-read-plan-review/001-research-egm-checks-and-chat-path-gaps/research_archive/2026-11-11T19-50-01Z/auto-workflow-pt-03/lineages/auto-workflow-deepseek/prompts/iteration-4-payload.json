@@ -1,0 +1,52 @@
+{
+  "iteration": 4,
+  "status": "complete",
+  "focus": "Mechanism B - one shared step reference both paths read",
+  "newInfoRatio": 0.85,
+  "noveltyJustification": "The keyword gap against the router's own prose promise is new and decisive; the card's shared role was only half-known from the command routers.",
+  "keyQuestions": [
+    "For each candidate mechanism (AGENTS.md gate, shared step reference, hook injection, template and validate.sh enforcement, advisor-driven command invocation), what does it cost and what does it break?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Creating a new shared step reference file",
+    "Putting the card in LOADING_LEVELS.ALWAYS"
+  ],
+  "focusTrack": "mechanism-shared-reference",
+  "edgeCase": "contradictory-evidence",
+  "toolsUsed": ["bash", "read", "grep"],
+  "sourcesQueried": [
+    ".skilled/skills/system-spec-kit/SKILL.md",
+    ".skilled/skills/system-spec-kit/ROUTER.md",
+    ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md",
+    ".skilled/commands/speckit/plan.md",
+    ".skilled/commands/speckit/implement.md",
+    ".skilled/commands/speckit/assets/speckit-plan.yaml",
+    ".skilled/commands/speckit/assets/speckit-implement.yaml"
+  ],
+  "graphEvents": [
+    {"type": "node", "id": "q-shared-ref", "kind": "QUESTION", "label": "Can one shared reference carry the step"},
+    {"type": "node", "id": "f-card-shared", "kind": "FINDING", "label": "The authoring card is already the shared write reference"},
+    {"type": "node", "id": "f-keyword-gap", "kind": "FINDING", "label": "The card loads on keywords that miss ordinary writes"},
+    {"type": "node", "id": "f-router-contradiction", "kind": "CLAIM", "label": "Router prose promises write coverage its table lacks"},
+    {"type": "edge", "id": "e-iter004-001", "source": "f-card-shared", "target": "q-shared-ref", "relation": "ANSWERS"},
+    {"type": "edge", "id": "e-iter004-002", "source": "f-keyword-gap", "target": "f-card-shared", "relation": "CONTRADICTS"},
+    {"type": "edge", "id": "e-iter004-003", "source": "f-router-contradiction", "target": "f-keyword-gap", "relation": "DERIVED_FROM"}
+  ],
+  "findings": [
+    {"label": "The authoring card already is the shared write-path reference and both paths name it", "sources": [".skilled/skills/system-spec-kit/SKILL.md", ".skilled/commands/speckit/plan.md", ".skilled/commands/speckit/implement.md"]},
+    {"label": "The card loads on intent keywords that miss ordinary write requests and falls back to a checklist", "sources": [".skilled/skills/system-spec-kit/ROUTER.md"]},
+    {"label": "Router prose claims every write reaches the skill but its keyword table has no write verbs", "sources": [".skilled/skills/system-spec-kit/ROUTER.md"]},
+    {"label": "Every card section ends in Acceptance and Verify so an added step inherits an executable check", "sources": [".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md"]},
+    {"label": "The card Bounds block allows only packet writes and forbids enforcement machinery", "sources": [".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md"]},
+    {"label": "A step in the card is read by the writer in the same context and is therefore self-scored", "sources": [".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-authoring-card.md"]},
+    {"label": "The card costs about 2.4k tokens and loads only when a writing intent selects it", "sources": [".skilled/skills/system-spec-kit/SKILL.md", ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md"]},
+    {"label": "Making the card load on a write is a one-line keyword edit, not a new section", "sources": [".skilled/skills/system-spec-kit/ROUTER.md"]},
+    {"label": "The workflow YAMLs carry the card in prompt-contract rules so both paths read the same document", "sources": [".skilled/commands/speckit/assets/speckit-plan.yaml", ".skilled/commands/speckit/assets/speckit-implement.yaml"]}
+  ],
+  "ruledOutDetailed": [
+    {"direction": "Creating a new shared step reference file", "reason": "The card already occupies that role for both paths; a second document would need links from four routers and two YAMLs."},
+    {"direction": "Putting the card in LOADING_LEVELS.ALWAYS", "reason": "It charges every invocation, including read-only turns, for a step that matters only when a plan is written."}
+  ]
+}

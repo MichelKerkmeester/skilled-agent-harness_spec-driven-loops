@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps",
+  "description": "The planning gate in `/speckit:plan` requires only that `plan.md` exists with a technical approach",
+  "keywords": [
+    "planning",
+    "gate",
+    "speckit",
+    "plan",
+    "requires",
+    "only",
+    "exists",
+    "technical",
+    "approach"
+  ],
+  "lastUpdated": "2026-11-11T20:22:46.104Z",
+  "specId": "001",
+  "folderSlug": "research-egm-checks-and-chat-path-gaps",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "005-goldfish-cold-read-plan-review"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "11-11-26_21-10__deep-research-generation-2-completed-ten-fresh.md",
+    "11-11-26_21-22__goldfish-cold-read-plan-review-research-on.md"
+  ]
+}

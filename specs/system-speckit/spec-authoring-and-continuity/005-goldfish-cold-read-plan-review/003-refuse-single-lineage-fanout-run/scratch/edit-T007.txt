@@ -1,0 +1,44 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts
+HOW: replace the one occurrence of OLD with NEW. Copy NEW exactly, including leading spaces. Change nothing else in the file.
+=====OLD=====
+  it('feeds a deterministic 2-model by 3-branch by 2-replica manifest into the existing pool', async () => {
+=====NEW=====
+  it('rejects an unapproved single-lineage research or review run before side effects', async () => {
+    for (const loopType of ['research', 'review'] as const) {
+      const binDir = makeTempDir(`fanout-run-single-lineage-refused-${loopType}-bin-`);
+      const hermetic = useHermeticEnv(`single-lineage-refused-${loopType}`);
+      const specFolder = `specs/test-fanout-single-lineage-refused-${loopType}`;
+      const baseDir = makeBaseArtifactDir(hermetic, specFolder, loopType);
+      const markerPath = join(baseDir, 'spawned.marker');
+      writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
+      const fanoutConfig = JSON.stringify({
+        executors: [{ label: 'only-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 }],
+        concurrency: 1,
+      });
+
+      // rawSpawnCjs skips the shared helper, which would add the opt-in.
+      const result = await rawSpawnCjs(fanoutRunScript, [
+        '--spec-folder',
+        specFolder,
+        '--loop-type',
+        loopType,
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 30_000 });
+
+      const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as { error?: string };
+      expect(result.exitCode).toBe(3);
+      expect(payload.error).toContain(`Run the single-executor /deep:${loopType} workflow instead`);
+      expect(payload.error).not.toContain('allow-single-lineage');
+      expect(payload.error).not.toContain('count');
+      expect(existsSync(markerPath)).toBe(false);
+      expect(existsSync(join(baseDir, 'lineages'))).toBe(false);
+      expect(existsSync(join(baseDir, 'orchestration-status.log'))).toBe(false);
+      expect(existsSync(join(baseDir, 'orchestration-summary.json'))).toBe(false);
+    }
+  });
+
+  it('feeds a deterministic 2-model by 3-branch by 2-replica manifest into the existing pool', async () => {
+=====END=====

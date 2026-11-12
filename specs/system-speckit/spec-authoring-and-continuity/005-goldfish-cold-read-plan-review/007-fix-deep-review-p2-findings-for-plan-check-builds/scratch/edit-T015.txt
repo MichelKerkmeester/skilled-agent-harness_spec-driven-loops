@@ -1,0 +1,7 @@
+EDIT FILE: specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/tasks.md
+HOW: OLD occurs once after T014; apply only after the fresh diff check passes.
+=====OLD=====
+- [ ] CHK-012 [P1] Preserve every unrelated quality_gates, circuit_breaker, and default_level setting while allowing only the plan_clarity row REQ-001 adds inside quality_gates. Verify: run the Phase 6 scope-diff check in this packet and inspect `git diff -- .skilled/commands/speckit/assets/speckit-implement.yaml .skilled/commands/speckit/assets/speckit-complete.yaml .skilled/commands/speckit/assets/speckit-plan.yaml`. Evidence: pending a fresh closeout diff check after the wording is reconciled.
+=====NEW=====
+- [x] CHK-012 [P1] Preserve every unrelated quality_gates, circuit_breaker, and default_level setting while allowing only the plan_clarity row REQ-001 adds inside quality_gates. Verify: run the Phase 6 scope-diff check in this packet and inspect `git diff -- .skilled/commands/speckit/assets/speckit-implement.yaml .skilled/commands/speckit/assets/speckit-complete.yaml .skilled/commands/speckit/assets/speckit-plan.yaml`. Evidence: T015 printed `CHK-012 scope check passed` (exit 0); the only quality_gates addition is plan_clarity, with unrelated settings preserved.
+=====END=====

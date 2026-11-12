@@ -97,10 +97,16 @@ function isPathInside(childPath: string, parentPath: string): boolean {
 
 function canonicalizeFanoutArgs(
   scriptPath: string,
-  args: string[],
+  callerArgs: string[],
   options: SpawnCjsOptions,
 ): string[] {
-  if (scriptPath !== fanoutRunScript) return args;
+  if (scriptPath !== fanoutRunScript) return callerArgs;
+  // The cases in this file drive the runner with one lineage on purpose, so every
+  // launch that passes through here opts in. The refusal case calls rawSpawnCjs
+  // and never reaches this helper.
+  const args = callerArgs.includes('--allow-single-lineage')
+    ? callerArgs
+    : [...callerArgs, '--allow-single-lineage'];
   const specIndex = args.indexOf('--spec-folder');
   const loopIndex = args.indexOf('--loop-type');
   const baseIndex = args.indexOf('--base-artifact-dir');
@@ -2501,6 +2507,136 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     );
   });
 
+  it('rejects an unapproved single-lineage research or review run before side effects', async () => {
+    for (const loopType of ['research', 'review'] as const) {
+      const binDir = makeTempDir(`fanout-run-single-lineage-refused-${loopType}-bin-`);
+      const hermetic = useHermeticEnv(`single-lineage-refused-${loopType}`);
+      const specFolder = `specs/test-fanout-single-lineage-refused-${loopType}`;
+      const baseDir = makeBaseArtifactDir(hermetic, specFolder, loopType);
+      const markerPath = join(baseDir, 'spawned.marker');
+      writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
+      const fanoutConfig = JSON.stringify({
+        executors: [{ label: 'only-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 }],
+        concurrency: 1,
+      });
+
+      // rawSpawnCjs skips the shared helper, which would add the opt-in.
+      const result = await rawSpawnCjs(fanoutRunScript, [
+        '--spec-folder',
+        specFolder,
+        '--loop-type',
+        loopType,
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 30_000 });
+
+      const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as { error?: string };
+      expect(result.exitCode).toBe(3);
+      expect(payload.error).toContain(`Run the single-executor /deep:${loopType} workflow instead`);
+      expect(payload.error).not.toContain('allow-single-lineage');
+      expect(payload.error).not.toContain('count');
+      expect(existsSync(markerPath)).toBe(false);
+      expect(existsSync(join(baseDir, 'lineages'))).toBe(false);
+      expect(existsSync(join(baseDir, 'orchestration-status.log'))).toBe(false);
+      expect(existsSync(join(baseDir, 'orchestration-summary.json'))).toBe(false);
+    }
+  });
+
+  it('allows an explicitly opted-in single-lineage research or review run', async () => {
+    for (const loopType of ['research', 'review'] as const) {
+      const binDir = makeTempDir(`fanout-run-single-lineage-allowed-${loopType}-bin-`);
+      const hermetic = useHermeticEnv(`single-lineage-allowed-${loopType}`);
+      const specFolder = `specs/test-fanout-single-lineage-allowed-${loopType}`;
+      const baseDir = makeBaseArtifactDir(hermetic, specFolder, loopType);
+      const markerPath = join(baseDir, 'spawned.marker');
+      writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
+      const fanoutConfig = JSON.stringify({
+        executors: [{ label: 'only-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 }],
+        concurrency: 1,
+      });
+
+      const result = await rawSpawnCjs(fanoutRunScript, [
+        '--spec-folder',
+        specFolder,
+        '--loop-type',
+        loopType,
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+        '--allow-single-lineage',
+      ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 30_000 });
+
+      expect(existsSync(markerPath)).toBe(true);
+      expect(result.stdout).not.toContain('Run the single-executor');
+    }
+  });
+
+  it('accepts explicit true and 1 values for the single-lineage opt-in', async () => {
+    for (const loopType of ['research', 'review'] as const) {
+      for (const value of ['true', '1']) {
+        const binDir = makeTempDir(`fanout-run-single-lineage-value-${loopType}-${value}-bin-`);
+        const hermetic = useHermeticEnv(`single-lineage-value-${loopType}-${value}`);
+        const specFolder = `specs/test-fanout-single-lineage-value-${loopType}-${value}`;
+        const baseDir = makeBaseArtifactDir(hermetic, specFolder, loopType);
+        const markerPath = join(baseDir, 'spawned.marker');
+        writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
+        const fanoutConfig = JSON.stringify({
+          executors: [{ label: 'only-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 }],
+          concurrency: 1,
+        });
+        const result = await rawSpawnCjs(fanoutRunScript, [
+          '--spec-folder', specFolder, '--loop-type', loopType,
+          '--fanout-config-json', fanoutConfig, '--base-artifact-dir', baseDir,
+          '--allow-single-lineage', value,
+        ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 30_000 });
+        expect(existsSync(markerPath)).toBe(true);
+        expect(result.stdout).not.toContain('Run the single-executor');
+      }
+    }
+  });
+
+  it('rejects unsupported single-lineage opt-in values before side effects', async () => {
+    const binDir = makeTempDir('fanout-run-single-lineage-false-bin-');
+    const hermetic = useHermeticEnv('single-lineage-false');
+    const specFolder = 'specs/test-fanout-single-lineage-false';
+    const baseDir = makeBaseArtifactDir(hermetic, specFolder, 'research');
+    const markerPath = join(baseDir, 'spawned.marker');
+    writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'only-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 }],
+      concurrency: 1,
+    });
+    const result = await rawSpawnCjs(fanoutRunScript, [
+      '--spec-folder', specFolder, '--loop-type', 'research',
+      '--fanout-config-json', fanoutConfig, '--base-artifact-dir', baseDir,
+      '--allow-single-lineage', 'false',
+    ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 30_000 });
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as { error?: string };
+    expect(result.exitCode).toBe(3);
+    expect(payload.error).toContain('Run the single-executor /deep:research workflow instead');
+    expect(existsSync(markerPath)).toBe(false);
+  });
+
+  it('accepts only Claude config roots under home or the repository', () => {
+    const { validateClaudeConfigDir } = requireCjs(fanoutRunScript) as {
+      validateClaudeConfigDir: (configDir: string) => string;
+    };
+    const os = requireCjs('node:os') as { homedir: () => string };
+    // The review workflow expands a leading `~` before it calls the validator, so the
+    // absolute home form must pass as well as the `~/...` form.
+    const homeConfigDir = join(os.homedir(), '.claude-review-test');
+    const repoConfigDir = join(process.cwd(), '.claude-review-test');
+    expect(validateClaudeConfigDir('~/.claude-review-test')).toBe(resolve(homeConfigDir));
+    expect(validateClaudeConfigDir(homeConfigDir)).toBe(resolve(homeConfigDir));
+    expect(() => validateClaudeConfigDir(join(os.homedir(), '.ssh'))).toThrow(/configDir must resolve under/);
+    expect(validateClaudeConfigDir('.claude-review-test')).toBe(resolve(repoConfigDir));
+    expect(() => validateClaudeConfigDir('not-a-claude-dir')).toThrow(/configDir must resolve under/);
+    expect(() => validateClaudeConfigDir(join(tmpdir(), 'fanout-outside-config'))).toThrow(/configDir/);
+  });
+
   it('feeds a deterministic 2-model by 3-branch by 2-replica manifest into the existing pool', async () => {
     const binDir = makeTempDir('fanout-run-manifest-bin-');
     writeStubBinary(binDir, 'opencode');
@@ -2947,6 +3083,7 @@ describe('fanout-run.cjs — module basics', () => {
       fanoutConfig,
       '--base-artifact-dir',
       baseDir,
+      '--allow-single-lineage',
     ];
     const options = {
       cassetteDir,
@@ -2973,6 +3110,7 @@ describe('fanout-run.cjs — module basics', () => {
         fanoutConfig,
         '--base-artifact-dir',
         '<BASE_ARTIFACT_DIR>',
+        '--allow-single-lineage',
       ],
       exitCode: 0,
       signal: null,

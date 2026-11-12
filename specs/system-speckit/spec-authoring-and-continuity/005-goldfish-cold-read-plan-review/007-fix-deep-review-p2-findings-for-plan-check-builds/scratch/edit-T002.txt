@@ -1,0 +1,13 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+HOW: OLD occurs exactly once; use the active type set and accept only Boolean true or strings true and 1.
+=====OLD=====
+  if ((loopType === 'research' || loopType === 'review')
+    && allLineages.length === 1
+    && args.allowSingleLineage !== true) {
+=====NEW=====
+  if (ACTIVE_FANOUT_LOOP_TYPES.has(loopType)
+    && allLineages.length === 1
+    && args.allowSingleLineage !== true
+    && args.allowSingleLineage !== 'true'
+    && args.allowSingleLineage !== '1') {
+=====END=====

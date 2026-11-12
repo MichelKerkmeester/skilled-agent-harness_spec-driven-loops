@@ -1,0 +1,19 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+HOW: replace the one occurrence of OLD with NEW. Copy NEW exactly, including leading spaces. Change nothing else in the file.
+=====OLD=====
+  const allLineages = expandLineages(fanoutConfig);
+=====NEW=====
+  const allLineages = expandLineages(fanoutConfig);
+  // One lineage is not a fan-out. A caller who lands here with one lineage has left the
+  // workflow that owns the packet init, synthesis and save phases, and a CLI lineage
+  // would then run every iteration in one process.
+  if ((loopType === 'research' || loopType === 'review')
+    && allLineages.length === 1
+    && args.allowSingleLineage !== true) {
+    throw inputError(
+      `fan-out refused: this ${loopType} executor matrix expands to one lineage. `
+        + `Run the single-executor /deep:${loopType} workflow instead; it runs the packet `
+        + 'init, synthesis and save phases, which this runner does not.',
+    );
+  }
+=====END=====

@@ -1,0 +1,19 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+HOW: Replace the single occurrence.
+=====OLD=====
+  validateNamespaceValue(configDir, 'configDir', inputError);
+
+  const expanded = expandHomeDir(configDir);
+=====NEW=====
+  // An absolute path skips the repository-only namespace rule: the root check below is the
+  // rule for it, and a workflow may hand over a home path it already expanded.
+  if (path.isAbsolute(configDir)) {
+    if (configDir.includes('\0')) {
+      throw inputError('configDir must not contain null bytes');
+    }
+  } else {
+    validateNamespaceValue(configDir, 'configDir', inputError);
+  }
+
+  const expanded = expandHomeDir(configDir);
+=====END=====

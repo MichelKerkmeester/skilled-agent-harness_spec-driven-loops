@@ -1,0 +1,1289 @@
+{
+  "sessionId": "2026-11-12T00:11:44.581Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "One-lineage --executors branch pins an ambiguous maxIterations binding",
+      "file": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      "line": 109,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "--executors option row still describes the value as a whole fan-out matrix",
+      "file": ".skilled/commands/deep/research.md",
+      "line": 122,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "The opt-in flag has no public documentation",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 35,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-004",
+      "severity": "P2",
+      "title": "The value form of the opt-in is refused and the message hides the opt-in",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 3397,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-005",
+      "severity": "P2",
+      "title": "The installed plan_clarity criteria contradicts the packet own CHK-012",
+      "file": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+      "line": 390,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-006",
+      "severity": "P2",
+      "title": "An eighth generated contract moved with no owning phase",
+      "file": ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown",
+      "line": 140,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "The refusal gate hardcodes a two-value loop-type pair instead of the file's own allowlist",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 3400,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Phase 4 implementation summary still declares closure blocked after AC-002 closed",
+      "file": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/004-name-file-in-plan-phase-lines/implementation-summary.md",
+      "line": 107,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Parent phase map marks every implementation phase Pending while four children report closed",
+      "file": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/spec.md",
+      "line": 133,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-003",
+      "severity": "P2",
+      "title": "One-lineage refusal and its opt-in are absent from every capability surface documenting the runner",
+      "file": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/fanout-dispatch.md",
+      "line": 52,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-004",
+      "severity": "P2",
+      "title": "Phase 6 marks all five criteria Met while its summary records an unresolved P1 checklist conflict",
+      "file": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/implementation-summary.md",
+      "line": 116,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Refusal guard re-hard-codes the loop-type set a constant owns, on an always-true predicate",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 3400,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "One authoring-card instruction hand-duplicated across two scaffold branches, plus a third variant elsewhere",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "line": 2207,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "The parent phase-map drift advisory is broader than its own evidence",
+      "file": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/spec.md",
+      "line": 137,
+      "description": "The carried advisory reads \"parent phase map marks every implementation phase Pending while four children report closed\". Re-reading the map beside child 005's own packet shows the `Pending` value is correct for at least this child: `005-point-chat-sessions-at-authoring-card/acceptance-criteria.md:60` keeps AC-001 at `Unmet` and `:64` states `Closeable: No`. The drift narrower to the children whose own packets do claim closure, and 005 must be dropped from that set before the advisory is acted on.",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 14
+  },
+  "openFindingsCount": 14,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.96,
+  "graphConvergenceScore": 0.669,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "count": 16,
+      "description": "Dimension coverage (44%) is below threshold (80%). 16 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "severity": "blocking",
+      "type": "uncovered_dimensions"
+    },
+    {
+      "count": 5,
+      "description": "5 contradiction(s) are lowering finding stability below threshold",
+      "severity": "blocking",
+      "type": "unstable_findings"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.4444444444444444,
+    "evidenceDensity": 0.23076923076923078,
+    "findingStability": 0.6153846153846154,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.669
+  },
+  "candidateCoverage": {
+    "covered": [
+      "allowlist_duplication",
+      "checklist_contradiction",
+      "dead_predicate",
+      "doc_code_contract_drift",
+      "documentation_duplication",
+      "documentation_parity",
+      "duplicated_literal",
+      "instruction_ambiguity",
+      "out_of_scope_change",
+      "split_carrier_drift",
+      "status_drift",
+      "undocumented_capability"
+    ],
+    "ruledOut": [
+      "agent_definition_drift",
+      "command_page_drift",
+      "comment_hygiene",
+      "dangling_reference",
+      "doc_code_contract_drift",
+      "false_closure_claim",
+      "guard_bypass",
+      "input_coercion",
+      "keyword_collision",
+      "playbook_drift",
+      "prompt_injection",
+      "split_carrier_drift",
+      "state_precondition",
+      "status_drift",
+      "test_fidelity"
+    ],
+    "deferred": [
+      "config_dir_trust",
+      "path_traversal"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "doc_code_contract_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "instruction_ambiguity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "out_of_scope_change": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "guard_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "state_precondition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "allowlist_duplication": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "input_coercion": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "prompt_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "config_dir_trust": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "status_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "documentation_parity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "checklist_contradiction": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "undocumented_capability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "agent_definition_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "playbook_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "command_page_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "duplicated_literal": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dead_predicate": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "documentation_duplication": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test_fidelity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "comment_hygiene": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "split_carrier_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "dangling_reference": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "false_closure_claim": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "keyword_collision": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "deferred",
+      "rationale": "validateBaseArtifactDir constrains the base but the label join is upstream of any check seen; expandLineages owns the label and was not located inside the tool budget",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3304",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:686",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3573"
+      ],
+      "reason": "tool budget exhausted at the hard ceiling; next iteration must read expandLineages and prove or disprove label containment"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/deep/assets/deep-review-presentation.txt",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "config_dir_trust",
+      "disposition": "deferred",
+      "rationale": "the single-executor path is owned by the deep commands, not this runner; whether it re-applies the restriction was not read inside the budget",
+      "evidenceRefs": [
+        ".skilled/commands/deep/assets/deep-review-presentation.txt:137",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:686"
+      ],
+      "reason": "tool budget exhausted; next iteration must read the single-executor configDir validation before any security verdict above PASS is claimed"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "guard_bypass",
+      "disposition": "ruled_out",
+      "rationale": "no reach: the guard precedes every side effect and no shipped caller bypasses it",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3397",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/fanout-dispatch.md:49"
+      ],
+      "reason": "verified by direct read plus caller search"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "state_precondition",
+      "disposition": "ruled_out",
+      "rationale": "guard is before side effects and scoped to length === 1",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:666",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2543"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/speckit/assets/speckit-implement.yaml"
+      ],
+      "bugClass": "doc_code_contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "no schema or loader consumes these prose workflow assets",
+      "evidenceRefs": [
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:393"
+      ],
+      "reason": "verified by search"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-201",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "guard_bypass",
+      "disposition": "ruled_out",
+      "rationale": "no input can reach the guard with a third value today",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3306",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:475"
+      ],
+      "reason": "verified by direct read of the allowlist and its enforcement point"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "input_coercion",
+      "disposition": "ruled_out",
+      "rationale": "the opt-in is fail-closed against every value form",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:114",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3402"
+      ],
+      "reason": "verified by direct read of parser and guard"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml"
+      ],
+      "bugClass": "prompt_injection",
+      "disposition": "ruled_out",
+      "rationale": "all added model-facing text is static repo-controlled prose",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:178",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:2207",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:390"
+      ],
+      "reason": "verified by direct read of every added line"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-R3-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/agents"
+      ],
+      "bugClass": "agent_definition_drift",
+      "disposition": "ruled_out",
+      "rationale": "Whole-directory negative search.",
+      "evidenceRefs": [
+        ".skilled/agents/deep-review.md"
+      ],
+      "reason": "No agent definition states the policy, so there is no surface to drift."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-R3-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/references"
+      ],
+      "bugClass": "playbook_drift",
+      "disposition": "ruled_out",
+      "rationale": "Protocol reported as bounded rather than a pass over a missing directory.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+      ],
+      "reason": "The inspected surface does not exist in this installation; the closest live playbook is consistent."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-R3-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card"
+      ],
+      "bugClass": "status_drift",
+      "disposition": "ruled_out",
+      "rationale": "Consistent open state.",
+      "evidenceRefs": [
+        "005-point-chat-sessions-at-authoring-card/acceptance-criteria.md:62"
+      ],
+      "reason": "Status, criterion and percentage agree."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-R4-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
+      ],
+      "bugClass": "test_fidelity",
+      "disposition": "ruled_out",
+      "rationale": "Deliberate, documented tradeoff rather than a defect.",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
+      ],
+      "reason": "Behaviour is documented in the helper, and the refusal case deliberately bypasses it via rawSpawnCjs; upgrade trigger recorded in the iteration narrative."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-R4-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "Positive sweep over the added comment set.",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3397"
+      ],
+      "reason": "All four added comment blocks state a durable reason only; no spec path, phase number or requirement id."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-501",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/ROUTER.md"
+      ],
+      "bugClass": "split_carrier_drift",
+      "disposition": "ruled_out",
+      "rationale": "three carriers agree on verbs and on the card resource",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/ROUTER.md:39",
+        ".skilled/skills/system-spec-kit/ROUTER.md:163",
+        ".skilled/skills/system-spec-kit/ROUTER.md:204"
+      ],
+      "reason": "verified by direct read of all three carriers"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/references/cli/shared-smart-router.md"
+      ],
+      "bugClass": "dangling_reference",
+      "disposition": "ruled_out",
+      "rationale": "file is a cli-* helper-body carrier, defaults to references/cli-reference.md",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/references/cli/shared-smart-router.md:25",
+        ".skilled/skills/system-spec-kit/references/cli/shared-smart-router.md:182"
+      ],
+      "reason": "no second list exists to drift"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
+      ],
+      "bugClass": "dangling_reference",
+      "disposition": "ruled_out",
+      "rationale": "command exists and can emit both cited strings; the run itself stays unexecuted",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh:85",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh:152"
+      ],
+      "reason": "existence and sentinel structure confirmed; execution declined inside the read-only band"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/acceptance-criteria.md"
+      ],
+      "bugClass": "false_closure_claim",
+      "disposition": "ruled_out",
+      "rationale": "disclosed and correctly labelled Draft; carried advisory holds at P2",
+      "evidenceRefs": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/acceptance-criteria.md:96"
+      ],
+      "reason": "four disclosure surfaces plus Closeable:No"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "guard_bypass",
+      "disposition": "ruled_out",
+      "rationale": "no reach: the guard precedes every side effect and no shipped caller bypasses it",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3397",
+        ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/fanout-dispatch.md:49"
+      ],
+      "proof": "verified by direct read plus caller search"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "state_precondition",
+      "disposition": "ruled_out",
+      "rationale": "guard is before side effects and scoped to length === 1",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:666",
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2543"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/speckit/assets/speckit-implement.yaml"
+      ],
+      "bugClass": "doc_code_contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "no schema or loader consumes these prose workflow assets",
+      "evidenceRefs": [
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:393"
+      ],
+      "proof": "verified by search"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-201",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "guard_bypass",
+      "disposition": "ruled_out",
+      "rationale": "no input can reach the guard with a third value today",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3306",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:475"
+      ],
+      "proof": "verified by direct read of the allowlist and its enforcement point"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "input_coercion",
+      "disposition": "ruled_out",
+      "rationale": "the opt-in is fail-closed against every value form",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:114",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3402"
+      ],
+      "proof": "verified by direct read of parser and guard"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml"
+      ],
+      "bugClass": "prompt_injection",
+      "disposition": "ruled_out",
+      "rationale": "all added model-facing text is static repo-controlled prose",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:178",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:2207",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:390"
+      ],
+      "proof": "verified by direct read of every added line"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-R3-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/agents"
+      ],
+      "bugClass": "agent_definition_drift",
+      "disposition": "ruled_out",
+      "rationale": "Whole-directory negative search.",
+      "evidenceRefs": [
+        ".skilled/agents/deep-review.md"
+      ],
+      "proof": "No agent definition states the policy, so there is no surface to drift."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-R3-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/references"
+      ],
+      "bugClass": "playbook_drift",
+      "disposition": "ruled_out",
+      "rationale": "Protocol reported as bounded rather than a pass over a missing directory.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md"
+      ],
+      "proof": "The inspected surface does not exist in this installation; the closest live playbook is consistent."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-R3-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card"
+      ],
+      "bugClass": "status_drift",
+      "disposition": "ruled_out",
+      "rationale": "Consistent open state.",
+      "evidenceRefs": [
+        "005-point-chat-sessions-at-authoring-card/acceptance-criteria.md:62"
+      ],
+      "proof": "Status, criterion and percentage agree."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-R4-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
+      ],
+      "bugClass": "test_fidelity",
+      "disposition": "ruled_out",
+      "rationale": "Deliberate, documented tradeoff rather than a defect.",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
+      ],
+      "proof": "Behaviour is documented in the helper, and the refusal case deliberately bypasses it via rawSpawnCjs; upgrade trigger recorded in the iteration narrative."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-R4-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "Positive sweep over the added comment set.",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3397"
+      ],
+      "proof": "All four added comment blocks state a durable reason only; no spec path, phase number or requirement id."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-501",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/ROUTER.md"
+      ],
+      "bugClass": "split_carrier_drift",
+      "disposition": "ruled_out",
+      "rationale": "three carriers agree on verbs and on the card resource",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/ROUTER.md:39",
+        ".skilled/skills/system-spec-kit/ROUTER.md:163",
+        ".skilled/skills/system-spec-kit/ROUTER.md:204"
+      ],
+      "proof": "verified by direct read of all three carriers"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-502",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/references/cli/shared-smart-router.md"
+      ],
+      "bugClass": "dangling_reference",
+      "disposition": "ruled_out",
+      "rationale": "file is a cli-* helper-body carrier, defaults to references/cli-reference.md",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/references/cli/shared-smart-router.md:25",
+        ".skilled/skills/system-spec-kit/references/cli/shared-smart-router.md:182"
+      ],
+      "proof": "no second list exists to drift"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
+      ],
+      "bugClass": "dangling_reference",
+      "disposition": "ruled_out",
+      "rationale": "command exists and can emit both cited strings; the run itself stays unexecuted",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh:85",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh:152"
+      ],
+      "proof": "existence and sentinel structure confirmed; execution declined inside the read-only band"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "correctness",
+      "targetRefs": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/acceptance-criteria.md"
+      ],
+      "bugClass": "false_closure_claim",
+      "disposition": "ruled_out",
+      "rationale": "disclosed and correctly labelled Draft; carried advisory holds at P2",
+      "evidenceRefs": [
+        "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/acceptance-criteria.md:96"
+      ],
+      "proof": "four disclosure surfaces plus Closeable:No"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "split_carrier_drift",
+      "dangling_reference",
+      "false_closure_claim",
+      "keyword_collision"
+    ],
+    "covered": [
+      "split_carrier_drift"
+    ],
+    "ruledOut": [
+      "dangling_reference",
+      "false_closure_claim",
+      "keyword_collision"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

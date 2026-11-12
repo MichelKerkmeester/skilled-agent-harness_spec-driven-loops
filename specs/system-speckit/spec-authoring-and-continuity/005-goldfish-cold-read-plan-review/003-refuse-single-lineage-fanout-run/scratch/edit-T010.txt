@@ -1,0 +1,8 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts
+HOW: replace every occurrence of OLD with NEW (3 occurrences). Copy NEW exactly, including leading spaces. Change nothing else in the file.
+=====OLD=====
+    '--base-artifact-dir', baseArtifactDir,
+=====NEW=====
+    '--base-artifact-dir', baseArtifactDir,
+    '--allow-single-lineage',
+=====END=====

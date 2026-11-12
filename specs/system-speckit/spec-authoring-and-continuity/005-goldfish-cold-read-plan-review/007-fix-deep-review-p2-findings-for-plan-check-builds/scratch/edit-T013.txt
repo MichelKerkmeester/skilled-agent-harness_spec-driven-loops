@@ -1,0 +1,8 @@
+EDIT FILE: specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/spec.md
+HOW: OLD occurs once; record the council contract refresh as generated drift fix, not a manual edit or new command.
+=====OLD=====
+| .skilled/commands/deep/assets/compiled/deep-review.contract.markdown | Regenerate | Compile the updated review command and presentation sources. |
+=====NEW=====
+| .skilled/commands/deep/assets/compiled/deep-review.contract.markdown | Regenerate | Compile the updated review command and presentation sources. |
+| .skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown | Record generated drift fix | Account for the already refreshed hash-pinned contract; do not hand-edit it or add a generation command in this child. |
+=====END=====

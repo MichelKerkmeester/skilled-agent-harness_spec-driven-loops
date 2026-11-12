@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-spec-kit routing"
 importance_tier: normal
 contextType: general
-version: 1.0.7.0
+version: 1.0.8.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -37,6 +37,7 @@ A request that matches no intent returns `UNKNOWN_FALLBACK` and its checklist ra
 - **PLAN** — "plan", "design", "new spec", "level selection" and "option b" requests, and the `/speckit:plan` boost, load `references/workflows/spec-authoring-card.md`, `references/workflows/intake-contract.md`, `references/validation/template-compliance-contract.md`, `assets/level-decision-matrix.md`, `assets/complexity-decision-matrix.md`, `references/templates/level-selection-guide.md`, `references/templates/level-specifications.md` and `references/structure/folder-structure.md`.
 - **RESEARCH** — "investigate", "explore", "analyze", "prior work" and "evidence" requests load `references/workflows/quick-reference.md`, `references/workflows/worked-examples.md`, `references/memory/epistemic-vectors.md`, `references/retrieval/retrieval-conventions.md` and `references/structure/grep-convention.md`.
 - **IMPLEMENT** — "implement", "build", "execute" and "workflow" requests, and the `/speckit:implement` boost, load `references/validation/validation-rules.md`, `references/validation/template-compliance-contract.md`, `references/workflows/spec-authoring-card.md`, `assets/template-mapping.md`, `references/workflows/execution-methods.md` and `references/validation/path-scoped-rules.md`.
+- **WRITE** — "add", "change", "edit", "fix", "update" and "write" requests load `references/workflows/spec-authoring-card.md`. The weight is 1, so a plain write request loads the card and any stronger intent still wins.
 - **DEBUG** — "stuck", "error", "not working", "failed" and "debug" requests load `references/debugging/troubleshooting.md` and `references/debugging/universal-debugging-methodology.md`.
 - **COMPLETE** — "done", "complete", "finish", "verify" and "checklist" requests, and the `/speckit:complete` boost, load `references/validation/validation-rules.md`, `references/workflows/nested-changelog.md`, `references/workflows/intake-contract.md`, `references/workflows/spec-folder-write-recipe.md`, `references/workflows/spec-folder-authoring-checklist.md`, `references/validation/decision-format.md` and `references/validation/five-checks.md`.
 - **MEMORY** — "memory", "save context", "resume", "checkpoint", "context", "history lookup", "session history" and "earlier turns" requests, and the `/speckit:search`, `/speckit:save` and `/speckit:resume` boosts, load `references/memory/memory-system.md`, `references/memory/save-workflow.md`, `references/memory/trigger-config.md` and `references/structure/folder-routing.md`.
@@ -161,6 +162,7 @@ INTENT_SIGNALS = {
     "PLAN": {"weight": 3, "keywords": ["plan", "design", "new spec", "level selection", "option b"]},
     "RESEARCH": {"weight": 3, "keywords": ["investigate", "explore", "analyze", "prior work", "evidence"]},
     "IMPLEMENT": {"weight": 3, "keywords": ["implement", "build", "execute", "workflow"]},
+    "WRITE": {"weight": 1, "keywords": ["add", "change", "edit", "fix", "update", "write"]},
     "DEBUG": {"weight": 4, "keywords": ["stuck", "error", "not working", "failed", "debug"]},
     "COMPLETE": {"weight": 4, "keywords": ["done", "complete", "finish", "verify", "checklist"]},
     "MEMORY": {"weight": 4, "keywords": ["memory", "save context", "resume", "checkpoint", "context", "history lookup", "session history", "earlier turns"]},
@@ -207,6 +209,9 @@ RESOURCE_MAP = {
         "assets/template-mapping.md",
         "references/workflows/execution-methods.md",
         "references/validation/path-scoped-rules.md",
+    ],
+    "WRITE": [
+        "references/workflows/spec-authoring-card.md",
     ],
     "DEBUG": [
         "references/debugging/troubleshooting.md",

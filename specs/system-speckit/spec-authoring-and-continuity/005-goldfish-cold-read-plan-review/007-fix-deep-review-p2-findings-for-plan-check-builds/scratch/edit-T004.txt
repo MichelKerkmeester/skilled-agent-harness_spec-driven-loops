@@ -1,0 +1,10 @@
+EDIT FILE: .skilled/commands/deep/assets/deep-review-auto.yaml
+HOW: OLD occurs exactly once; reuse the runner validator for direct single-executor configDir.
+=====OLD=====
+            const { withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const configDir = '{optional_claude_config_dir}';
+=====NEW=====
+            const { withAgentPersona, validateClaudeConfigDir } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const configDirInput = '{optional_claude_config_dir}';
+            const configDir = configDirInput ? validateClaudeConfigDir(configDirInput) : '';
+=====END=====

@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/commands/deep/assets/deep-review-presentation.txt
+HOW: OLD occurs once; reword the fanout_executors carrier row to state both lineage destinations.
+=====OLD=====
+| `fanout_executors` | N | repeatable `--executor=<type>` flags or `--executors=<json>`; each group accepts `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count` | none (single-executor when absent) | N |
+=====NEW=====
+| `fanout_executors` | N | repeatable `--executor=<type>` flags or `--executors=<json>`; each group accepts `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`; one expanded lineage selects `config.executor`, two or more select `config.fanout` | none (single-executor when absent) | N |
+=====END=====

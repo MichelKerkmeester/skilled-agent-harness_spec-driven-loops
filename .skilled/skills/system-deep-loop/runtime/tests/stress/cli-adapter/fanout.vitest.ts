@@ -94,6 +94,7 @@ function fanoutInvocation(
     '--loop-type', 'research',
     '--fanout-config-json', JSON.stringify(config),
     '--base-artifact-dir', baseArtifactDir,
+    '--allow-single-lineage',
   ];
   if (options.stopPolicy) args.push('--stop-policy', options.stopPolicy);
   if (options.convergenceThreshold !== undefined) {
@@ -137,6 +138,7 @@ async function runReviewFanoutConfig(
     '--loop-type', 'review',
     '--fanout-config-json', JSON.stringify(config),
     '--base-artifact-dir', baseArtifactDir,
+    '--allow-single-lineage',
   ];
   if (options.stopPolicy) args.push('--stop-policy', options.stopPolicy);
   if (options.convergenceThreshold !== undefined) {
@@ -173,6 +175,7 @@ async function runFanoutFromCwd(
       maxRetries: 0,
     }),
     '--base-artifact-dir', baseArtifactDir,
+    '--allow-single-lineage',
   ];
   const result = await spawnCjs(fanoutScript, args, {
     cwd,

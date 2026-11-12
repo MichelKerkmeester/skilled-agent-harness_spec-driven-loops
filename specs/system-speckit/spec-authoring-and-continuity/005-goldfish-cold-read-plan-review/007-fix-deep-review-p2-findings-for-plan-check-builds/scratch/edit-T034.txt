@@ -1,0 +1,8 @@
+EDIT FILE: .skilled/commands/deep/review.md
+HOW: Replace the single occurrence. The OLD text is two table rows; the NEW text keeps only the second row.
+=====OLD=====
+| `--allow-single-lineage` | no value / `true` / `1` | Direct runner opt-in for an intentional one-lineage research or review matrix; pass the flag alone or followed by `true` or `1`; other values are refused. |
+| `--concurrency` | `N` | Caps concurrent lineages in the fan-out pool. Default `2`. |
+=====NEW=====
+| `--concurrency` | `N` | Caps concurrent lineages in the fan-out pool. Default `2`. |
+=====END=====

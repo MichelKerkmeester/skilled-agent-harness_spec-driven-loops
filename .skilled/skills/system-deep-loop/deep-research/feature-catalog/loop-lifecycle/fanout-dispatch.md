@@ -7,7 +7,7 @@ trigger_phrases:
   - "step_fanout_spawn"
   - "parallel lineage execution"
   - "multi-executor research"
-version: 1.14.0.4
+version: 1.14.1.0
 ---
 
 # Fan-out loop dispatch
@@ -49,8 +49,11 @@ gate: `if_absent` branch is byte-identical to the original command; `skip_when` 
 ensure zero behavioral change for single-executor mode. Full vitest suite (197/197) confirms
 no single-executor regression. Command surface: `--executor` (repeatable, with
 `--model/--count/--label/--iters`), `--executors <json>` escape hatch, `--concurrency N`.
-Default policy: 0–1 executor → `config.executor`; 2+ / `--executors` / `count>1` →
-`config.fanout`.
+Default policy: 0–1 executor, or an `--executors` matrix that expands to exactly one lineage →
+`config.executor`; 2+ executors, an `--executors` matrix that expands to two or more lineages,
+or `count>1` → `config.fanout`. A direct runner call that expands to one research or review lineage is refused unless the caller passes
+`--allow-single-lineage` as a bare flag or with the value `true` or `1`; all other supplied values are refused. The opt-in runs only the lineage, without packet init, synthesis or save.
+The refusal message names neither the flag nor the lineage count.
 
 ---
 

@@ -1,0 +1,10 @@
+EDIT FILE: .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs
+HOW: replace the one occurrence of OLD with NEW. Copy NEW exactly, including leading spaces. Change nothing else in the file.
+=====OLD=====
+  'The answer holds for the rest of this session: do not ask this again on later turns.',
+].join('\n');
+=====NEW=====
+  'The answer holds for the rest of this session: do not ask this again on later turns.',
+  'Once the folder is chosen, write its spec documents by following .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md.',
+].join('\n');
+=====END=====

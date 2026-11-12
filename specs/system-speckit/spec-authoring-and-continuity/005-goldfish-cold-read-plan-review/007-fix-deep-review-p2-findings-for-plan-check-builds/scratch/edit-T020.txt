@@ -1,0 +1,12 @@
+EDIT FILE: specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/implementation-summary.md
+HOW: OLD occurs once after T015; clear the resolved continuity blocker and keep packet status Draft.
+=====OLD=====
+    next_safe_action: "Resolve CHK-012 wording before closing the packet"
+    blockers:
+      - "P1 CHK-012 remains open: REQ-001 requires changing plan_clarity inside quality_gates, while CHK-012 says the quality_gates entry is unchanged."
+    key_files: []
+=====NEW=====
+    next_safe_action: "Keep the packet Draft until its owner closes it"
+    blockers: []
+    key_files: []
+=====END=====

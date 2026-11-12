@@ -1,0 +1,887 @@
+{
+  "sessionId": "fanout-deepseek-flash-1794420820017-ddvs8f",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-11T18:20:02.632Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-does-the-elephant-goldfish-model-specify-for-each-fresh-context-check-docum",
+      "inboxId": null,
+      "text": "What does the Elephant-Goldfish Model specify for each fresh-context check (document-alone paraphrase, decision-free readiness check, optional critic), and what evidence does the upstream repository give for it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-step-inside-skilled-commands-speckit-assets-speckit-plan-yaml-can-host-a-d",
+      "inboxId": null,
+      "text": "Which step inside `.skilled/commands/speckit/assets/speckit-plan.yaml` can host a document-alone comprehension paraphrase without adding a command, agent, or new artifact?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-step-inside-skilled-commands-speckit-assets-speckit-implement-yaml-can-hos",
+      "inboxId": null,
+      "text": "Which step inside `.skilled/commands/speckit/assets/speckit-implement.yaml` can host a decision-free readiness check, and what does implement already compute that the check can reuse instead of re-reading?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-how-should-each-check-scale-across-spec-levels-1-2-3-and-3-so-level-1-work-is-no",
+      "inboxId": null,
+      "text": "How should each check scale across spec Levels 1, 2, 3 and 3+ so Level 1 work is not forced through ceremony it does not need?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-upstream-elements-are-overengineering-for-system-spec-kit-and-what-observa",
+      "inboxId": null,
+      "text": "Which upstream elements are overengineering for system-spec-kit, and what observable signal would show the adopted checks actually help?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-does-the-elephant-goldfish-model-specify-for-each-fresh-context-check-docum",
+      "inboxId": null,
+      "text": "What does the Elephant-Goldfish Model specify for each fresh-context check (document-alone paraphrase, decision-free readiness check, optional critic), and what evidence does the upstream repository give for it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-step-inside-skilled-commands-speckit-assets-speckit-plan-yaml-can-host-a-d",
+      "inboxId": null,
+      "text": "Which step inside `.skilled/commands/speckit/assets/speckit-plan.yaml` can host a document-alone comprehension paraphrase without adding a command, agent, or new artifact?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-which-step-inside-skilled-commands-speckit-assets-speckit-implement-yaml-can-hos",
+      "inboxId": null,
+      "text": "Which step inside `.skilled/commands/speckit/assets/speckit-implement.yaml` can host a decision-free readiness check, and what does implement already compute that the check can reuse instead of re-reading?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-how-should-each-check-scale-across-spec-levels-1-2-3-and-3-so-level-1-work-is-no",
+      "inboxId": null,
+      "text": "How should each check scale across spec Levels 1, 2, 3 and 3+ so Level 1 work is not forced through ceremony it does not need?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-which-upstream-elements-are-overengineering-for-system-spec-kit-and-what-observa",
+      "inboxId": null,
+      "text": "Which upstream elements are overengineering for system-spec-kit, and what observable signal would show the adopted checks actually help?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-comprehension-is-the-only-stage-that-reads-the-document-alone-a-goldfishcontext-",
+      "text": "Comprehension is the only stage that reads the document alone. A GoldfishContext reading list (linked files inside the working directory, plus approved external pages saved locally) is passed to every stage except Stage 6, which reads the document by itself. [SOURCE: https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/google/elephant-goldfish-model (tree listing + README)",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/README.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/skills/egm-review/SKILL.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/comprehension.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/implementation_readiness.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/resources/document_standards/implementation-readiness-standard.md"
+      ]
+    },
+    {
+      "id": "finding-1-1-egm-s-fresh-eye-review-is-a-five-stage-pipeline-initial-zoom-out-comprehension-d",
+      "text": "EGM's fresh-eye review is a five-stage pipeline (initial zoom-out, comprehension, design critique, intermediate zoom-out, implementation readiness), and every stage runs in a fresh subagent with zero conversation history. The skill goes further than a preference: if the harness has no subagent tool, the review stops, because \"a review in the same context is not a Goldfish review\". [SOURCE: https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/google/elephant-goldfish-model (tree listing + README)",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/README.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/skills/egm-review/SKILL.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/comprehension.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/implementation_readiness.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/resources/document_standards/implementation-readiness-standard.md"
+      ]
+    },
+    {
+      "id": "finding-1-8-no-measured-effectiveness-evidence-appears-in-the-fetched-upstream-sources-so-an",
+      "text": "No measured effectiveness evidence appears in the fetched upstream sources, so any quantitative benefit claim is UNKNOWN here. The fetched README fragment cuts off at \"A review does not replace tests or hum...\", which caps the claim rather than supporting one. [SOURCE: https://github.com/google/elephant-goldfish-model/blob/main/README.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/google/elephant-goldfish-model (tree listing + README)",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/README.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/skills/egm-review/SKILL.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/comprehension.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/implementation_readiness.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/resources/document_standards/implementation-readiness-standard.md"
+      ]
+    },
+    {
+      "id": "finding-1-7-reviewer-output-is-deliberately-flat-severity-in-blocker-major-nit-affected-scop",
+      "text": "Reviewer output is deliberately flat: severity in {Blocker, Major, Nit}, affected scope, and rationale, reported as prose to the orchestrator. Neither persona emits a numeric score, confidence value, or coverage percentage. [SOURCE: https://github.com/google/elephant-goldfish-model/blob/main/agents/comprehension.md] [SOURCE: https://github.com/google/elephant-goldfish-model/blob/main/agents/implementation_readiness.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/google/elephant-goldfish-model (tree listing + README)",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/README.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/skills/egm-review/SKILL.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/comprehension.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/implementation_readiness.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/resources/document_standards/implementation-readiness-standard.md"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-comprehension-check-s-operative-requirement-is-paraphrase-first-the-reviewer",
+      "text": "The comprehension check's operative requirement is Paraphrase First: the reviewer writes \"What this proposes\" and \"How the existing system works, per this document\" in 2-5 sentences each, and any section it cannot paraphrase is reported as a Blocker. [SOURCE: https://github.com/google/elephant-goldfish-model/blob/main/agents/comprehension.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/google/elephant-goldfish-model (tree listing + README)",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/README.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/skills/egm-review/SKILL.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/comprehension.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/implementation_readiness.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/resources/document_standards/implementation-readiness-standard.md"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-implementation-readiness-check-is-a-role-played-implementer-not-a-document-c",
+      "text": "The implementation-readiness check is a role-played implementer, not a document critic: it asks \"Do I know exactly what to code, where, and how, based on this text?\" and flags any instruction that would force an independent design choice instead of executing it. [SOURCE: https://github.com/google/elephant-goldfish-model/blob/main/agents/implementation_readiness.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/google/elephant-goldfish-model (tree listing + README)",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/README.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/skills/egm-review/SKILL.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/comprehension.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/implementation_readiness.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/resources/document_standards/implementation-readiness-standard.md"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-paraphrase-exists-for-a-stated-reason-not-for-ceremony-the-agent-says-a-list",
+      "text": "The paraphrase exists for a stated reason, not for ceremony: the agent says \"a list of undefined terms does not find a document whose terms are all defined but whose parts do not connect. The paraphrase does.\" That names the failure mode the check targets: locally-defined terms that never compose into a coherent design. [SOURCE: https://github.com/google/elephant-goldfish-model/blob/main/agents/comprehension.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/google/elephant-goldfish-model (tree listing + README)",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/README.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/skills/egm-review/SKILL.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/comprehension.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/implementation_readiness.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/resources/document_standards/implementation-readiness-standard.md"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-standard-that-check-audits-against-makes-the-pass-test-explicit-a-competent-",
+      "text": "The standard that check audits against makes the pass test explicit: a competent engineer (or fresh AI session) unfamiliar with the codebase executes the plan and produces the correct changes on the first attempt, without guessing, asking clarifying questions, or making independent design choices. It backs that with a zero-decision rule, phase checkpoints that leave the tree buildable, an explicit target-scope and file-boundary list, per-file actionable steps, and a test plan. [SOURCE: https://github.com/google/elephant-goldfish-model/blob/main/resources/document_standards/implementation-readiness-standard.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/google/elephant-goldfish-model (tree listing + README)",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/README.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/skills/egm-review/SKILL.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/comprehension.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/agents/implementation_readiness.md",
+        "https://raw.githubusercontent.com/google/elephant-goldfish-model/main/resources/document_standards/implementation-readiness-standard.md"
+      ]
+    },
+    {
+      "id": "finding-2-8-level-selection-is-delegated-to-recommend-level-sh-which-scores-loc-file-count-a",
+      "text": "Level selection is delegated to `recommend-level.sh`, which scores LOC, file count and risk, and judgment may only escalate upward from its answer; this makes any level-based scaling rule in the check read a value the command has already computed. [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:271]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-273 (documentation_levels, level selection)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:665-796 (step 5 planning, explorers, confidence checkpoint, post-write validation)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:797-833 (steps 6 and 7)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:837-885 (termination, autonomous execution, rules)"
+      ]
+    },
+    {
+      "id": "finding-2-4-step-5-already-dispatches-four-fresh-subagents-in-one-parallel-wave-architecture",
+      "text": "Step 5 already dispatches four fresh subagents in one parallel wave - architecture, feature, dependency and test explorers, each `subagent_type: context`, `model: opus`, `parallel: true` - so a read-back brief can ride the existing dispatch wave instead of requiring a new command, agent definition or file. [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:668]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-273 (documentation_levels, level selection)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:665-796 (step 5 planning, explorers, confidence checkpoint, post-write validation)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:797-833 (steps 6 and 7)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:837-885 (termination, autonomous execution, rules)"
+      ]
+    },
+    {
+      "id": "finding-2-2-step-5-already-ends-in-a-self-scored-confidence-checkpoint-five-weighted-factors",
+      "text": "Step 5 already ends in a self-scored confidence checkpoint: five weighted factors (technical approach clarity 0.25, risk identification 0.20, dependency mapping 0.20, pattern alignment 0.15, affected-surface coverage 0.20) produce a percentage with a >=80 / 40-79 / <40 action ladder. The scorer is the same context that wrote plan.md. [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:765]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-273 (documentation_levels, level selection)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:665-796 (step 5 planning, explorers, confidence checkpoint, post-write validation)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:797-833 (steps 6 and 7)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:837-885 (termination, autonomous execution, rules)"
+      ]
+    },
+    {
+      "id": "finding-2-3-step-5-already-runs-mechanical-validation-after-the-write-validate-sh-strict-wit",
+      "text": "Step 5 already runs mechanical validation after the write: `validate.sh --strict` with \"STOP and repair plan.md template drift before proceeding\", plus example-drift and card-sync guards whose failures are reported but do not block. [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:781]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-273 (documentation_levels, level selection)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:665-796 (step 5 planning, explorers, confidence checkpoint, post-write validation)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:797-833 (steps 6 and 7)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:837-885 (termination, autonomous execution, rules)"
+      ]
+    },
+    {
+      "id": "finding-2-5-that-wave-s-contract-is-deliberately-conclusion-free-every-explorer-prompt-ends-",
+      "text": "That wave's contract is deliberately conclusion-free: every explorer prompt ends \"Do NOT draw conclusions - just report findings\". A comprehension paraphrase is itself a conclusion about whether the document's parts connect, so folding it into the same wave changes the wave's contract rather than extending it. [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:692]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-273 (documentation_levels, level selection)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:665-796 (step 5 planning, explorers, confidence checkpoint, post-write validation)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:797-833 (steps 6 and 7)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:837-885 (termination, autonomous execution, rules)"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-command-already-carries-a-level-ladder-and-a-precedent-for-level-gated-cerem",
+      "text": "The command already carries a level ladder and a precedent for level-gated ceremony: Level 1 requires spec.md, plan.md and tasks.md under 100 LOC; Level 2 adds acceptance-criteria.md at 100-499 LOC; Level 3 is >=500 LOC with a lazy decision-record add-on; 3+ has the same required files as 3. Separately, the rules require a checklist for \"verification_level_2_plus\" only. [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:255] [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:877]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-273 (documentation_levels, level selection)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:665-796 (step 5 planning, explorers, confidence checkpoint, post-write validation)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:797-833 (steps 6 and 7)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:837-885 (termination, autonomous execution, rules)"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-command-s-rules-forbid-adding-an-approval-prompt-in-the-autonomous-path-do-n",
+      "text": "The command's rules forbid adding an approval prompt in the autonomous path (`do_not_prompt_for_user_approval`) while confirm-mode checkpoints ask the operator to approve plan.md, so a new check must report into an existing checkpoint rather than introduce a gate of its own. [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:870]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-273 (documentation_levels, level selection)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:665-796 (step 5 planning, explorers, confidence checkpoint, post-write validation)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:797-833 (steps 6 and 7)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:837-885 (termination, autonomous execution, rules)"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-plan-command-runs-seven-named-checkpoints-and-terminates-after-step-7-step-7",
+      "text": "The plan command runs seven named checkpoints and terminates after step 7; step 7 is already flagged `mandatory_check: true` but its only activities are emitting a closeout status and reminding the operator about a later continuity save. [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:816]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-273 (documentation_levels, level selection)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:665-796 (step 5 planning, explorers, confidence checkpoint, post-write validation)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:797-833 (steps 6 and 7)",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:837-885 (termination, autonomous execution, rules)"
+      ]
+    },
+    {
+      "id": "finding-3-9-a-hard-blocking-completion-gate-already-exists-after-step-7-all-tasks-complete-t",
+      "text": "A hard-blocking completion gate already exists after step 7 (`all_tasks_complete`, `tests_pass`, `summary_exists`, `checklist_verified`), which means a readiness verdict has somewhere to be honoured without inventing a termination path. [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:394]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382-430 (quality gates, circuit breaker, confidence framework, request analysis framework)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:472-595 (steps 1 through 5.5)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:602-720 (step 6, 6.5, 7, 7.5)"
+      ]
+    },
+    {
+      "id": "finding-3-2-a-hard-blocking-pre-implementation-quality-gate-already-sits-before-step-6-thres",
+      "text": "A hard-blocking pre-implementation quality gate already sits before step 6: threshold 70, with `prerequisites_complete` 30, `plan_clarity` 25, `task_breakdown_quality` 25 and `checklist_verified` 20, and failure stops the run with \"Fix issues before coding\". [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:382]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382-430 (quality gates, circuit breaker, confidence framework, request analysis framework)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:472-595 (steps 1 through 5.5)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:602-720 (step 6, 6.5, 7, 7.5)"
+      ]
+    },
+    {
+      "id": "finding-3-4-both-existing-readiness-signals-are-self-assessed-by-the-context-that-read-the-p",
+      "text": "Both existing readiness signals are self-assessed by the context that read the plan - the `plan_clarity` points and the `plan_understood` flag - so the Goldfish contribution at this seat is a different evaluator, not a new field or a new score. [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:382] [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:430]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382-430 (quality gates, circuit breaker, confidence framework, request analysis framework)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:472-595 (steps 1 through 5.5)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:602-720 (step 6, 6.5, 7, 7.5)"
+      ]
+    },
+    {
+      "id": "finding-3-7-level-gating-is-already-explicit-in-two-places-step-4-is-skip-for-level-1-mandat",
+      "text": "Level gating is already explicit in two places: step 4 is \"Skip for Level 1, MANDATORY for Level 2+\", and steps 5.5 and 7.5 are `optional: true` with `skip_if: [\"Quick fix (<10 LOC)\", ...]`. [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:536] [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:570] [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:709]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382-430 (quality gates, circuit breaker, confidence framework, request analysis framework)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:472-595 (steps 1 through 5.5)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:602-720 (step 6, 6.5, 7, 7.5)"
+      ]
+    },
+    {
+      "id": "finding-3-1-step-1-is-where-the-implementer-first-reads-plan-md-it-requires-spec-md-and-plan",
+      "text": "Step 1 is where the implementer first reads plan.md: it requires spec.md and plan.md, runs `check-prerequisites.sh --json --require-tasks`, and its deep analysis already outputs `requirements_summary`, `technical_approach_understanding`, `identified_dependencies` and `potential_challenges` under the validation name `planning_artifacts_understood`. [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:472]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382-430 (quality gates, circuit breaker, confidence framework, request analysis framework)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:472-595 (steps 1 through 5.5)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:602-720 (step 6, 6.5, 7, 7.5)"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-command-contains-exactly-one-automatic-subagent-dispatch-and-it-is-unusable-",
+      "text": "The command contains exactly one automatic subagent dispatch, and it is unusable as a readiness seat: `pre_phase_parallel_check` in step 6 spawns implementation and test agents, complexity-gated, after coding has started. [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:602]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382-430 (quality gates, circuit breaker, confidence framework, request analysis framework)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:472-595 (steps 1 through 5.5)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:602-720 (step 6, 6.5, 7, 7.5)"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-command-s-only-existing-fresh-context-practice-is-debug-delegation-at-three-",
+      "text": "The command's only existing fresh-context practice is debug delegation: at three failures it offers an agent that \"runs a 5-phase fresh-perspective root-cause pass with no prior context\", but the workflow itself never invokes the Task tool - the user dispatches. That is an existing boundary an automated readiness dispatch would cross, so adoption has to either reuse a mechanism that exists or stay advisory. [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:623]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382-430 (quality gates, circuit breaker, confidence framework, request analysis framework)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:472-595 (steps 1 through 5.5)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:602-720 (step 6, 6.5, 7, 7.5)"
+      ]
+    },
+    {
+      "id": "finding-3-8-the-command-s-only-measurement-machinery-is-self-reported-and-optional-preflight",
+      "text": "The command's only measurement machinery is self-reported and optional: PREFLIGHT captures knowledge/uncertainty/context 0-10 before development and POSTFLIGHT computes a learning index afterwards, both skipped for quick fixes. It cannot validate a new check because the same context supplies both the baseline and the result. [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:570] [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:709]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382-430 (quality gates, circuit breaker, confidence framework, request analysis framework)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:472-595 (steps 1 through 5.5)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:602-720 (step 6, 6.5, 7, 7.5)"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-readiness-precondition-is-already-named-request-analysis-framework-pre-imple",
+      "text": "The readiness precondition is already named: `request_analysis_framework.pre_implementation_validation` lists `plan_understood`, `tasks_clear`, `patterns_identified`, `confidence_80_plus` and `scope_bounded`. [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:430]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382-430 (quality gates, circuit breaker, confidence framework, request analysis framework)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:472-595 (steps 1 through 5.5)",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:602-720 (step 6, 6.5, 7, 7.5)"
+      ]
+    },
+    {
+      "id": "finding-4-9-a-single-rule-covers-all-four-levels-without-a-new-level-concept-the-paraphrase-",
+      "text": "A single rule covers all four levels without a new level concept: the paraphrase runs at every level in the plan step 5 checkpoint; the readiness check runs from Level 2 up inside the existing pre-implementation gate; the critic is optional from Level 3 up and never gates. Level 1 is touched only by the two-sentence paraphrase, which is why it is not \"forced through\" the model. [INFERENCE: composed from findings 1-8]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:125-182",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-301",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:877",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:536",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:570"
+      ]
+    },
+    {
+      "id": "finding-4-6-level-1-cost-analysis-the-document-is-short-so-a-naive-reader-paraphrase-is-chea",
+      "text": "Level 1 cost analysis: the document is short, so a naive-reader paraphrase is cheap to produce but a separate dispatch plus a report file is not. Level 1 therefore takes the paraphrase inline and drops the artifact, the severity list and the readiness pass. [INFERENCE: based on folder-structure.md:129 (short Level 1 doc set) and speckit-plan.yaml:811 (step 6 already asks only for a closeout string, so there is no slot for a heavyweight report)]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:125-182",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-301",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:877",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:536",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:570"
+      ]
+    },
+    {
+      "id": "finding-4-7-level-2-cost-analysis-acceptance-criteria-md-exists-as-the-closure-gate-which-ve",
+      "text": "Level 2 cost analysis: acceptance-criteria.md exists as the closure gate, which verifies outcomes after the fact, so the pre-coding readiness check is the only pre-emptive check at this level and it can price into the existing `plan_clarity` 25 points. [INFERENCE: based on folder-structure.md:144 (closure gate at Level 2) and speckit-implement.yaml:382 (plan_clarity 25)]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:125-182",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-301",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:877",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:536",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:570"
+      ]
+    },
+    {
+      "id": "finding-4-8-level-3-and-3-cost-analysis-with-500-loc-and-an-optional-decision-record-unresol",
+      "text": "Level 3 and 3+ cost analysis: with >=500 LOC and an optional decision-record, unresolved design choices are the expensive failure, so the readiness verdict should be blocking rather than advisory, and the critic becomes worth its dispatch only when the plan carries competing options or a decision-record exists to audit against. [INFERENCE: based on folder-structure.md:162 and speckit-implement.yaml:382]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:125-182",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-301",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:877",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:536",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:570"
+      ]
+    },
+    {
+      "id": "finding-4-4-level-gated-ceremony-already-exists-in-both-commands-so-a-level-branched-check-i",
+      "text": "Level-gated ceremony already exists in both commands, so a level-branched check is an established pattern rather than a new concept: the plan rules require a checklist only for `verification_level_2_plus`; implement skips step 4 for Level 1 and marks steps 5.5 and 7.5 optional for quick fixes under 10 LOC. [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:877] [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:536] [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:570]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:125-182",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-301",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:877",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:536",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:570"
+      ]
+    },
+    {
+      "id": "finding-4-5-plan-md-is-required-at-every-level-so-a-plan-side-paraphrase-always-has-a-docume",
+      "text": "plan.md is required at every level, so a plan-side paraphrase always has a document to read; the level question for that check is cost, not availability. [SOURCE: .skilled/skills/system-spec-kit/references/structure/folder-structure.md:129]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:125-182",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-301",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:877",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:536",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:570"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-controlling-level-contract-is-structural-not-advisory-level-1-100-loc-requir",
+      "text": "The controlling level contract is structural, not advisory: Level 1 (<100 LOC) requires spec.md, plan.md, tasks.md and implementation-summary.md; Level 2 (100-499 LOC) adds acceptance-criteria.md as the closure gate; Level 3 (>=500 LOC) requires the same set as Level 2. [SOURCE: .skilled/skills/system-spec-kit/references/structure/folder-structure.md:129] [SOURCE: .skilled/skills/system-spec-kit/references/structure/folder-structure.md:144] [SOURCE: .skilled/skills/system-spec-kit/references/structure/folder-structure.md:162]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:125-182",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-301",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:877",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:536",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:570"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-level-value-is-computed-not-guessed-recommend-level-sh-scores-loc-file-count",
+      "text": "The level value is computed, not guessed: `recommend-level.sh` scores LOC, file count and risk, and judgment may escalate upward from its answer. Both commands therefore already hold the value a scaling rule needs. [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:271]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:125-182",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-301",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:877",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:536",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:570"
+      ]
+    },
+    {
+      "id": "finding-4-2-there-is-no-level-3-row-in-the-structural-contract-the-plan-command-s-template-m",
+      "text": "There is no Level 3+ row in the structural contract. The plan command's template map carries a `level_3_plus` entry whose required files are identical to `level_3`, and `decision-record.md` is an add-on created on request at any level. So \"3+\" names a risk band, not a distinct file bar. [SOURCE: .skilled/skills/system-spec-kit/references/structure/folder-structure.md:162] [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:296]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:125-182",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:255-301",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:877",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:382",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:536",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:570"
+      ]
+    },
+    {
+      "id": "finding-5-4-a-plan-side-paraphrase-record-already-has-a-host-step-5-phase-0-generates-resear",
+      "text": "A plan-side paraphrase record already has a host: step 5 Phase 0 generates `research/research.md`, and step 6 has no slot for a separate report. Writing the two paraphrase headings into that existing document costs no new artifact. [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:758]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/repo-rules/prevent-overengineering.md:54-101",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:35",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:21, 758, 765",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:417, 431, 544, 570, 623",
+        "https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md",
+        "https://github.com/google/elephant-goldfish-model/blob/main/README.md"
+      ]
+    },
+    {
+      "id": "finding-5-3-acceptance-criteria-already-provide-a-stable-countable-surface-one-row-per-requi",
+      "text": "Acceptance criteria already provide a stable, countable surface: one row per requirement with `AC-ID`, Given/When/Then, Verification, Status (`Met`, `Waived`, `Superseded`) and a waiver that must name a decision record. Anything the checks catch can land there instead of in a new metric file. [SOURCE: .skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:35]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/repo-rules/prevent-overengineering.md:54-101",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:35",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:21, 758, 765",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:417, 431, 544, 570, 623",
+        "https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md",
+        "https://github.com/google/elephant-goldfish-model/blob/main/README.md"
+      ]
+    },
+    {
+      "id": "finding-5-8-leave-out-brainstorm-mode-variants-of-the-personas-a-numeric-confidence-score-fo",
+      "text": "LEAVE OUT - brainstorm-mode variants of the personas, a numeric confidence score for the checks, and any new report file. The repo already has weighted confidence ladders in both commands, and a second score would compete with them rather than inform them. [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:765] [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:417]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/repo-rules/prevent-overengineering.md:54-101",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:35",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:21, 758, 765",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:417, 431, 544, 570, 623",
+        "https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md",
+        "https://github.com/google/elephant-goldfish-model/blob/main/README.md"
+      ]
+    },
+    {
+      "id": "finding-5-5-leave-out-the-five-stage-pipeline-the-plan-command-already-runs-a-seven-checkpoi",
+      "text": "LEAVE OUT - the five-stage pipeline. The plan command already runs a seven-checkpoint ladder plus a four-explorer wave; importing zoom-out, comprehension, critique, intermediate zoom-out and readiness as five stages duplicates gates that exist. [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:21]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/repo-rules/prevent-overengineering.md:54-101",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:35",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:21, 758, 765",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:417, 431, 544, 570, 623",
+        "https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md",
+        "https://github.com/google/elephant-goldfish-model/blob/main/README.md"
+      ]
+    },
+    {
+      "id": "finding-5-6-leave-out-the-goldfishcontext-reading-list-and-its-link-resolution-url-saving-an",
+      "text": "LEAVE OUT - the GoldfishContext reading list and its link-resolution, URL-saving and approval flow. It exists because EGM reviewers read a document plus its referenced sources; a check scoped to one document does not need a plumbing subsystem for that. [SOURCE: https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/repo-rules/prevent-overengineering.md:54-101",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:35",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:21, 758, 765",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:417, 431, 544, 570, 623",
+        "https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md",
+        "https://github.com/google/elephant-goldfish-model/blob/main/README.md"
+      ]
+    },
+    {
+      "id": "finding-5-7-leave-out-the-synthesizer-and-the-blocker-major-nit-severity-stack-as-new-vocabu",
+      "text": "LEAVE OUT - the synthesizer and the Blocker/Major/Nit severity stack as new vocabulary. EGM needs a synthesizer to merge five reviewer reports; two short verdicts fit in one checkpoint message, and the repo already carries P0/P1/P2 for checklists and Met/Waived/Superseded for criteria, so a third scale fragments the closure vocabulary. Map Blocker to P0, Major to P1, Nit to P2 if a mapping is needed at all. [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:544]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/repo-rules/prevent-overengineering.md:54-101",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:35",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:21, 758, 765",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:417, 431, 544, 570, 623",
+        "https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md",
+        "https://github.com/google/elephant-goldfish-model/blob/main/README.md"
+      ]
+    },
+    {
+      "id": "finding-5-9-measure-the-cheapest-honest-signal-is-the-paraphrase-s-own-verdict-marked-by-the",
+      "text": "MEASURE - the cheapest honest signal is the paraphrase's own verdict marked by the author: correct or wrong. It is binary, it costs one word, and a wrong paraphrase is by construction a caught defect, which makes the check self-labeling rather than dependent on a separate audit. [INFERENCE: based on the upstream instruction that a wrong paraphrase is a finding (iteration 1, finding 2) and the author-only ability to judge it]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/repo-rules/prevent-overengineering.md:54-101",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:35",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:21, 758, 765",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:417, 431, 544, 570, 623",
+        "https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md",
+        "https://github.com/google/elephant-goldfish-model/blob/main/README.md"
+      ]
+    },
+    {
+      "id": "finding-5-10-measure-three-counters-that-already-exist-and-need-no-new-file-open-design-decis",
+      "text": "MEASURE - three counters that already exist and need no new file: open design decisions surfaced by the readiness check that were not P0 items in the checklist; `[DEVIATION: reason]` markers recorded during implementation, which the implement command already requires; and debug delegations triggered at the three-failure threshold. A reduction across a defined window is evidence; a self-reported confidence delta is not. [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:431] [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:623]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/repo-rules/prevent-overengineering.md:54-101",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:35",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:21, 758, 765",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:417, 431, 544, 570, 623",
+        "https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md",
+        "https://github.com/google/elephant-goldfish-model/blob/main/README.md"
+      ]
+    },
+    {
+      "id": "finding-5-11-measure-with-a-stated-caveat-upstream-offers-no-measured-effectiveness-evidence-",
+      "text": "MEASURE with a stated caveat: upstream offers no measured effectiveness evidence, so the adoption should ship with the counters and a comparison window rather than a benefit claim, and the first packets should be read as a baseline rather than a result. [SOURCE: https://github.com/google/elephant-goldfish-model/blob/main/README.md]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/repo-rules/prevent-overengineering.md:54-101",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:35",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:21, 758, 765",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:417, 431, 544, 570, 623",
+        "https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md",
+        "https://github.com/google/elephant-goldfish-model/blob/main/README.md"
+      ]
+    },
+    {
+      "id": "finding-5-12-the-existing-preflight-postflight-learning-index-is-not-usable-as-that-measure-i",
+      "text": "The existing PREFLIGHT/POSTFLIGHT learning index is not usable as that measure: it is optional, skipped for quick fixes, and scored 0-10 by the same context that did the work. [SOURCE: .skilled/commands/speckit/assets/speckit-implement.yaml:570]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/repo-rules/prevent-overengineering.md:54-101",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:35",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:21, 758, 765",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:417, 431, 544, 570, 623",
+        "https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md",
+        "https://github.com/google/elephant-goldfish-model/blob/main/README.md"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-repository-s-restraint-doctrine-orders-moves-by-reversal-cost-from-build-not",
+      "text": "The repository's restraint doctrine orders moves by reversal cost, from \"build nothing\" through \"extend an existing function in place\" up to \"add an abstraction or a dependency\", and requires naming what fails at the cheaper move before climbing. Extending step 5's existing checkpoint sits near the cheap end; a new reviewer subcommand sits at the expensive end. [SOURCE: .skilled/repo-rules/prevent-overengineering.md:54]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/repo-rules/prevent-overengineering.md:54-101",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:35",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:21, 758, 765",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:417, 431, 544, 570, 623",
+        "https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md",
+        "https://github.com/google/elephant-goldfish-model/blob/main/README.md"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-same-rule-requires-a-pre-write-pass-that-names-what-the-change-touches-ownin",
+      "text": "The same rule requires a pre-write pass that names what the change touches - owning module, real caller, and the contract that must not break - before scope freezes. A check whose only consumer is one checkpoint touches nothing else, which is the cheapest form that still works. [SOURCE: .skilled/repo-rules/prevent-overengineering.md:91]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/repo-rules/prevent-overengineering.md:54-101",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:35",
+        ".skilled/commands/speckit/assets/speckit-plan.yaml:21, 758, 765",
+        ".skilled/commands/speckit/assets/speckit-implement.yaml:417, 431, 544, 570, 623",
+        "https://github.com/google/elephant-goldfish-model/blob/main/skills/egm-review/SKILL.md",
+        "https://github.com/google/elephant-goldfish-model/blob/main/README.md"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-80463c4e5cfb",
+      "text": "Cloning the upstream repository for repeated local reads: the fetch tool reported a clone path under /private/tmp, but the path was gone by the next call, so raw.githubusercontent.com slices were used instead. Retrying the clone gave no benefit over raw reads for four files.",
+      "contentHash": "80463c4e5cfb",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-a6871317eb46",
+      "text": "None yet. One path is now marked not-worth-repeating: fetching the GitHub HTML tree and expecting a stable local clone path in the same run.",
+      "contentHash": "a6871317eb46",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-16a199a2ec59",
+      "text": "Reading skills/egm-draft/SKILL.md in this iteration: drafting is the elephant half of the model, and the research question is scoped to the checks. Deferred, not abandoned.",
+      "contentHash": "16a199a2ec59",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-4722b2c9f8e0",
+      "text": "\"Put it in step 7 because step 7 is already mandatory\" is now eliminated: mandatory status there refers to closeout emission, not to a document judgment.",
+      "contentHash": "4722b2c9f8e0",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-784e5d77011a",
+      "text": "Adding a fifth explorer to the existing parallel wave without qualification: rejected as-is because of the conclusion-free contract (finding 5); it survives only as a separate dispatch under a different brief.",
+      "contentHash": "784e5d77011a",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-cca553ebd1ce",
+      "text": "Placing it in step 3 (specification) or step 4 (clarification): both precede plan.md authoring, so there is no plan document to paraphrase. Step 4's `[NEEDS CLARIFICATION]` cap of 3 is an ambiguity extractor for spec.md, not a comprehension test of a plan.",
+      "contentHash": "cca553ebd1ce",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-bebac89ab470",
+      "text": "Placing the paraphrase in step 7 (handover check): the step's purpose is workflow closeout after planning, its validation is `workflow_finish_confirmed`, and its outputs are a status string. Putting a comprehension verdict there separates the finding from the approval decision that the operator makes in step 5, which is the moment the check is meant to inform.",
+      "contentHash": "bebac89ab470",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-f1e0039b2c9d",
+      "text": "Treating the existing confidence checkpoint as already satisfying the requirement: rejected on evaluator identity, not on rubric quality. It scores the same context's own draft.",
+      "contentHash": "f1e0039b2c9d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-842a91bfd6c8",
+      "text": "\"The quality gate already covers plan clarity, so nothing is needed\": eliminated because the gate is scored by the same reader that must later execute the plan, which is the exact blind spot the fresh-context check exists to remove.",
+      "contentHash": "842a91bfd6c8",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-684274de0eb0",
+      "text": "Reusing the debug delegation contract: it is user-dispatched by design, so wrapping it would turn an operator prompt into an automated gate, which is a larger change than the research question permits.",
+      "contentHash": "684274de0eb0",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-75b01d002b54",
+      "text": "Seating it in step 3 (consistency analysis): that step maps requirements to task coverage, which is traceability, not decision freedom. It answers \"is every requirement covered\", not \"can an implementer proceed without choosing\".",
+      "contentHash": "75b01d002b54",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-fec1cd90f2c5",
+      "text": "Seating it in step 4 (acceptance criteria): the right rubric shape, but the wrong question - acceptance rows verify outcomes after the fact, and the step is already skipped for Level 1.",
+      "contentHash": "fec1cd90f2c5",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-b4029e04d055",
+      "text": "Seating the readiness check in step 6's parallel dispatch: the dispatch happens after implementation begins, so a \"do not start coding yet\" verdict would arrive too late.",
+      "contentHash": "b4029e04d055",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6673b59fe3b7",
+      "text": "\"Scale by document size at check time\" is eliminated: it re-derives a value the level contract already fixed, and the first plan revision would move the threshold underneath a running workflow.",
+      "contentHash": "6673b59fe3b7",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-c4351f8667a3",
+      "text": "Gating all three checks on LOC alone: rejected because LOC is already the level input; re-testing it duplicates the level decision and creates two sources of truth for the same threshold.",
+      "contentHash": "c4351f8667a3",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-7839b117f9d5",
+      "text": "Making Level 1 skip every check: rejected because the comprehension paraphrase costs one short paragraph inside an existing checkpoint, and the model's own claim is about a document whose parts do not connect, which a 60-line plan can still be.",
+      "contentHash": "7839b117f9d5",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-95c36c0a6480",
+      "text": "Making the critic mandatory at any level: it duplicates the design critique that already exists as an upstream stage and has no blocking output to justify the dispatch cost.",
+      "contentHash": "95c36c0a6480",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-cd467354caba",
+      "text": "Treating Level 3+ as a fourth file tier: the structural contract has three tiers, and inventing a fourth would fork the level vocabulary that `recommend-level.sh` and the validators share.",
+      "contentHash": "cd467354caba",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-0d3dac247b75",
+      "text": "A dedicated metrics file or dashboard for the checks: rejected because acceptance criteria, the task checklist and deviation markers already carry countable rows.",
+      "contentHash": "0d3dac247b75",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-01120c0e5ebc",
+      "text": "Collapsing everything into \"just add a review step\": rejected because three of the twelve findings are about what to delete, and the deletion is the part that keeps Level 1 cheap.",
+      "contentHash": "01120c0e5ebc",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-32244b5e3da1",
+      "text": "Importing the full five-stage review as a plan sub-pipeline: rejected on reversal cost, since it adds stages beside existing gates rather than extending one.",
+      "contentHash": "32244b5e3da1",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-b69dcabeaeab",
+      "text": "No further dead ends; the leave-out list is the consolidated dead-end record for the whole lineage and belongs in synthesis.",
+      "contentHash": "b69dcabeaeab",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-2d3b13a886b5",
+      "text": "Using the learning index as the effectiveness measure: rejected as self-reported by construction.",
+      "contentHash": "2d3b13a886b5",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 46,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.65,
+    "coverageBySources": {
+      "code": 32,
+      "github.com": 4,
+      "raw.githubusercontent.com": 5
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/research/lineages/deepseek-flash/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

@@ -1,0 +1,12 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts
+HOW: replace the one occurrence of OLD with NEW. Copy NEW exactly, including leading spaces. Change nothing else in the file.
+=====OLD=====
+        '<BASE_ARTIFACT_DIR>',
+      ],
+      exitCode: 0,
+=====NEW=====
+        '<BASE_ARTIFACT_DIR>',
+        '--allow-single-lineage',
+      ],
+      exitCode: 0,
+=====END=====

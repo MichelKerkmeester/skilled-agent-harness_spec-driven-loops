@@ -47,6 +47,7 @@ function scaffold(level: string, slug: string): string {
   });
   const match = (result.stdout ?? '').match(/SPEC_FOLDER:\s*(\S+)/u);
   if (!match) throw new Error(`create.sh produced no folder for level ${level}: ${result.stderr}`);
+  if (!(result.stdout ?? '').includes('references/workflows/spec-authoring-card.md')) throw new Error(`create.sh did not name the authoring card for level ${level}`);
   const folder = path.resolve(sandbox, match[1]);
   if (!folder.startsWith(path.join(sandbox, 'specs') + path.sep)) throw new Error(`create.sh wrote outside the sandbox: ${match[1]}`);
   return folder;
@@ -63,6 +64,7 @@ function scaffoldPhase(slug: string, phaseNames: string[]): { parent: string; ch
   );
   const match = (result.stdout ?? '').match(/SPEC_FOLDER:\s*(\S+)/u);
   if (!match) throw new Error(`create.sh produced no phase parent for ${slug}: ${result.stderr}`);
+  if (!(result.stdout ?? '').includes('references/workflows/spec-authoring-card.md')) throw new Error(`create.sh did not name the authoring card for phase parent ${slug}`);
   const parent = match[1];
   if (!path.resolve(sandbox, parent).startsWith(path.join(sandbox, 'specs') + path.sep)) throw new Error(`create.sh wrote outside the sandbox: ${parent}`);
   // Read the children from disk so the assertion checks what create.sh wrote,

@@ -1,0 +1,5 @@
+Lineage complete. Five iterations ran in-session, each with its narrative, delta, append-gateway receipt (exit 0) and reducer refresh; synthesis ranked 16 confirmed defects, with the eight leads resolved 8/8 and 32 findings recorded.
+
+Concurrent-writer note: `specs/system-skilled-doctor/.../008-overlay-first-write-checks/` changed at 19:52:58 from another process — not mine. Every write I made is confined to `specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/research/hardening-pt-02/lineages/hardening-deepseek/`; spec seeding, the spec write-back and `generate-context.js` were skipped as out-of-scope and recorded as deferred in `research.md` §13.
+
+FANOUT_LINEAGE_COMPLETE:hardening-deepseek

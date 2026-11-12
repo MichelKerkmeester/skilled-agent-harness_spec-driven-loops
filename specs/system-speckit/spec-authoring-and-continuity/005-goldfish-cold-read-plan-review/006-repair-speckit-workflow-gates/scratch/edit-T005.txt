@@ -1,0 +1,10 @@
+EDIT FILE: .skilled/commands/speckit/assets/speckit-implement.yaml
+HOW: replace the one occurrence of OLD with NEW. Copy NEW exactly, including leading spaces. Change nothing else in the file.
+=====OLD=====
+    activities: [Verify environment ready, Check API endpoints, Verify dependencies, Confirm no blockers]
+    checks: { prerequisites: verified, blockers: none, environment: ready }
+=====NEW=====
+    activities: [Verify environment ready, Check API endpoints, Verify dependencies, Confirm no blockers, Confirm plan.md leaves no design choice to the implementer]
+    checks: { prerequisites: verified, blockers: none, environment: ready, plan_design_choices: none }
+    on_fail: "STOP before coding. plan.md leaves a design choice to the implementer: name the choice, return to planning, record the decision in plan.md, then rerun this step."
+=====END=====

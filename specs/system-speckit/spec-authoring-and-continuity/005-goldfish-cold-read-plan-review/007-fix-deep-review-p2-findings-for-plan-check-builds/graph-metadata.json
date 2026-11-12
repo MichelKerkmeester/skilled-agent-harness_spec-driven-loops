@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/007-fix-deep-review-p2-findings-for-plan-check-builds",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/007-fix-deep-review-p2-findings-for-plan-check-builds",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fix deep review p2 findings for plan check builds",
+      "phase 7 fix deep review p2 findings",
+      "fix deep review p2 findings for plan check builds plan",
+      "fix deep review p2 findings for plan check builds tasks",
+      "deep review remediation edit packets",
+      "fix deep review p2 findings acceptance criteria",
+      "deep review p2 closure gate",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "deep review p2 plan check build implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "findings",
+      "plan",
+      "check",
+      "phase",
+      "tasks",
+      "remediation",
+      "edit",
+      "packets",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/edit-T029.txt",
+      "scratch/edit-T002.txt",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "scratch/edit-T003.txt",
+      "scratch/edit-T004.txt",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      "scratch/edit-T005.txt",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      "scratch/edit-T006.txt",
+      ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/fanout-dispatch.md",
+      "scratch/edit-T007.txt",
+      ".skilled/commands/deep/research.md",
+      "scratch/edit-T008.txt",
+      ".skilled/commands/deep/review.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T029.txt",
+        "kind": "file",
+        "path": "scratch/edit-T029.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T002.txt",
+        "kind": "file",
+        "path": "scratch/edit-T002.txt",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T003.txt",
+        "kind": "file",
+        "path": "scratch/edit-T003.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T004.txt",
+        "kind": "file",
+        "path": "scratch/edit-T004.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T005.txt",
+        "kind": "file",
+        "path": "scratch/edit-T005.txt",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T006.txt",
+        "kind": "file",
+        "path": "scratch/edit-T006.txt",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-dispatch.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/fanout-dispatch.md",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T007.txt",
+        "kind": "file",
+        "path": "scratch/edit-T007.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T008.txt",
+        "kind": "file",
+        "path": "scratch/edit-T008.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The finished review found a duplicated loop-type allowlist, an undocumented one-lineage opt-in whose value form is refused, and an unvalidated Claude config directory in the direct review path",
+    "created_at": "2026-11-12T00:30:47Z",
+    "last_save_at": "2026-11-12T06:32:38.444Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3ae36c6148d33e35f629553313cae7760b668168d62a631bc014e6e054620da6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d033e36739711fb862744fc6b18a80ea306cd98038f1a480aa7015bfac6afe31",
+      "plan.md": "da2db90b815ac9d55b99ea9ac8a780a5d379611094708b74621f64573745fcdb",
+      "tasks.md": "67a72fac19bb635e591bf8c5d548b84c77409e32281fbdda5e7c80aeeca0650f",
+      "implementation-summary.md": "c900ebfb30ce984b65723306623470855bd8501231d2ef4de3042df5b1f1a8f1"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,8 @@
+EDIT FILE: .skilled/skills/system-spec-kit/ROUTER.md
+HOW: Replace the single occurrence.
+=====OLD=====
+- **IMPLEMENT** — "implement", "build", "execute", "workflow", "add", "change", "edit", "fix", "update" and "write" requests, and the `/speckit:implement` boost, load `references/validation/validation-rules.md`, `references/validation/template-compliance-contract.md`, `references/workflows/spec-authoring-card.md`, `assets/template-mapping.md`, `references/workflows/execution-methods.md` and `references/validation/path-scoped-rules.md`.
+=====NEW=====
+- **IMPLEMENT** — "implement", "build", "execute" and "workflow" requests, and the `/speckit:implement` boost, load `references/validation/validation-rules.md`, `references/validation/template-compliance-contract.md`, `references/workflows/spec-authoring-card.md`, `assets/template-mapping.md`, `references/workflows/execution-methods.md` and `references/validation/path-scoped-rules.md`.
+- **WRITE** — "add", "change", "edit", "fix", "update" and "write" requests load `references/workflows/spec-authoring-card.md`. The weight is 1, so a plain write request loads the card and any stronger intent still wins.
+=====END=====

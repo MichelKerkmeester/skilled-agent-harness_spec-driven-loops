@@ -387,7 +387,7 @@ quality_gates:
     blocking: hard
     checks:
       - { id: prerequisites_complete, points: 30 }
-      - { id: plan_clarity, points: 25 }
+      - { id: plan_clarity, points: 25, criteria: "Pass only when plan.md states a concrete technical approach and affected files; fail if a material design choice remains." }
       - { id: task_breakdown_quality, points: 25 }
       - { id: checklist_verified, points: 20 }
     on_fail: "PRE-IMPLEMENTATION GATE FAILED ({score}/100). Fix issues before coding."
@@ -555,8 +555,9 @@ workflow:
 
   step_5_implementation_check:
     purpose: Verify all prerequisites for implementation
-    activities: [Verify environment ready, Check API endpoints, Verify dependencies, Confirm no blockers]
-    checks: { prerequisites: verified, blockers: none, environment: ready }
+    activities: [Verify environment ready, Check API endpoints, Verify dependencies, Confirm no blockers, Confirm plan.md leaves no design choice to the implementer]
+    checks: { prerequisites: verified, blockers: none, environment: ready, plan_design_choices: none }
+    on_fail: "STOP before coding. plan.md leaves a design choice to the implementer: name the choice, return to planning, record the decision in plan.md, then rerun this step."
     validation: prerequisites_verified
     checkpoint:
       applies_to: confirm
@@ -676,7 +677,7 @@ workflow:
     activities: [Run validation on spec folder, Verify all tasks completed, Validate tests pass, Confirm plan followed, Generate implementation-summary.md, Update all task status, Reread the request and its amendments and map each outcome they ask for to a Met row or name it as not done]
     pre_completion_validation:
       enforcement: MANDATORY
-      outcomes: { success: "continue", user_error: "STOP and fix invocation", validation_error: "STOP and fix", system_error: "STOP and diagnose tooling or file I/O" }
+      outcomes: { success: "continue", user_error: "STOP and fix invocation", validation_error: "STOP and fix", test_failure: "STOP and fix the failing tests, then rerun them before completion continues", system_error: "STOP and diagnose tooling or file I/O" }
     summary_document:
       location: "[SPEC_FOLDER]/implementation-summary.md"
       required_sections: [files_modified_created, verification_steps_taken, deviations_from_plan, skill_updates, recommended_next_steps, browser_testing_results]

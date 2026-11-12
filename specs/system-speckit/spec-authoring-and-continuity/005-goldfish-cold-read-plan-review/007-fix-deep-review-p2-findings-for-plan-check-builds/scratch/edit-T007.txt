@@ -1,0 +1,27 @@
+EDIT FILE: .skilled/commands/deep/research.md
+HOW: OLD occurs once; document the opt-in, refusal, matrix routing, and config.maxIterations binding beside runner flags.
+=====OLD=====
+| `--executors` | `JSON` | Escape hatch declaring the whole fan-out matrix in one value instead of repeated `--executor` groups. |
+| `--concurrency` | `N` | Caps concurrent lineages in the fan-out pool. Default `2`. |
+
+Fan-out policy: zero or one `--executor` runs the single-executor path, and so does an
+`--executors` matrix that expands to exactly one lineage, which writes `config.executor` from
+its one entry; two or more `--executor` flags, an `--executors` matrix that
+expands to two or more lineages, or any `--count` above 1 switches to
+fan-out, one independent lineage per label. Under `:auto` a `PRE-BOUND SETUP ANSWERS:` block in
+the prompt body binds the same values without an interactive prompt.
+=====NEW=====
+| `--executors` | `JSON` | Declares the executor matrix in one value; one expanded lineage selects `config.executor`, while two or more select `config.fanout`. |
+| `--allow-single-lineage` | no value / `true` / `1` | Direct runner opt-in for an intentional one-lineage research or review matrix; pass the flag alone or followed by `true` or `1`; other values are refused. |
+| `--concurrency` | `N` | Caps concurrent lineages in the fan-out pool. Default `2`. |
+
+Fan-out policy: zero or one `--executor` runs the single-executor path, and so does an
+`--executors` matrix that expands to exactly one lineage. Its `iterations` value binds to
+`config.maxIterations`, and its executor settings populate `config.executor`. Two or more
+`--executor` flags, a matrix expanding to two or more lineages, or any `--count` above 1
+selects fan-out. A direct runner invocation that expands to one research or review lineage
+is refused unless `--allow-single-lineage` is passed alone or followed by `true` or `1`; that
+opt-in runs only the lineage, without packet init, synthesis or save. The refusal message
+names neither the flag nor the lineage count. Under `:auto` a `PRE-BOUND SETUP ANSWERS:` block
+in the prompt body binds the same values without an interactive prompt.
+=====END=====

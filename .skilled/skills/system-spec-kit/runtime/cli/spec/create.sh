@@ -21,6 +21,8 @@
 
 set -euo pipefail
 
+readonly SPEC_AUTHORING_CARD_NEXT_STEP='0. Read .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md before you write a document'
+
 # Source shared libraries
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
@@ -2204,6 +2206,7 @@ This is **Phase ${_phase_number}** of the ${FEATURE_DESCRIPTION} specification.
         echo "  Parent back-references injected into each child spec.md"
         echo ""
         echo "  Next steps:"
+        echo "    $SPEC_AUTHORING_CARD_NEXT_STEP"
         echo "    1. Define phase scopes in parent spec.md Phase Documentation Map"
         echo "    2. Fill out each child spec.md with phase-specific requirements"
         echo "    3. Use /speckit:plan on each phase folder for detailed planning"
@@ -2412,6 +2415,7 @@ else
     esac
     echo ""
     echo "  Next steps:"
+    echo "    $SPEC_AUTHORING_CARD_NEXT_STEP"
     echo "    1. Fill out spec.md with requirements"
     echo "    2. Create implementation plan in plan.md"
     echo "    3. Break down tasks in tasks.md"

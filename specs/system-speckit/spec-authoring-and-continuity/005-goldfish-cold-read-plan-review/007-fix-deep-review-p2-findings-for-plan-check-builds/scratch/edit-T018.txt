@@ -1,0 +1,8 @@
+EDIT FILE: specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/acceptance-criteria.md
+HOW: OLD occurs once after T016; clear the resolved clarification question.
+=====OLD=====
+    open_questions:
+      - "Should CHK-012 be clarified to preserve all unrelated quality_gates content while allowing the scoped plan_clarity change required by REQ-001?"
+=====NEW=====
+    open_questions: []
+=====END=====

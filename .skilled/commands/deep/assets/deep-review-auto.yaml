@@ -1259,8 +1259,9 @@ workflow:
             import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
 
             const require = createRequire(import.meta.url);
-            const { withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
-            const configDir = '{optional_claude_config_dir}';
+            const { withAgentPersona, validateClaudeConfigDir } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const configDirInput = '{optional_claude_config_dir}';
+            const configDir = configDirInput ? validateClaudeConfigDir(configDirInput) : '';
             const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
             const executor = {
               kind: 'cli-claude-code',

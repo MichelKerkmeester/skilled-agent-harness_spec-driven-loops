@@ -1,0 +1,19 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts
+HOW: replace the one occurrence of OLD with NEW. Copy NEW exactly, including leading spaces. Change nothing else in the file.
+=====OLD=====
+    const homeConfigDir = join(os.homedir(), '.claude-review-test');
+    const repoConfigDir = join(process.cwd(), '.claude-review-test');
+    const outsideConfigDir = join(tmpdir(), 'fanout-outside-config');
+    expect(validateClaudeConfigDir(homeConfigDir)).toBe(resolve(homeConfigDir));
+    expect(validateClaudeConfigDir(repoConfigDir)).toBe(resolve(repoConfigDir));
+    expect(() => validateClaudeConfigDir(outsideConfigDir)).toThrow(/configDir must resolve under/);
+=====NEW=====
+    // The validator takes the home form as `~/...`: an absolute path outside the repository
+    // is refused earlier, by the namespace guard.
+    const homeConfigDir = join(os.homedir(), '.claude-review-test');
+    const repoConfigDir = join(process.cwd(), '.claude-review-test');
+    expect(validateClaudeConfigDir('~/.claude-review-test')).toBe(resolve(homeConfigDir));
+    expect(validateClaudeConfigDir('.claude-review-test')).toBe(resolve(repoConfigDir));
+    expect(() => validateClaudeConfigDir('not-a-claude-dir')).toThrow(/configDir must resolve under/);
+    expect(() => validateClaudeConfigDir(join(tmpdir(), 'fanout-outside-config'))).toThrow(/configDir/);
+=====END=====

@@ -1,0 +1,7 @@
+EDIT FILE: .skilled/commands/deep/assets/deep-review-presentation.txt
+HOW: OLD occurs once; name config.maxIterations as the field bound by iterations.
+=====OLD=====
+   |   - --executors matrix that expands to exactly one lineage (one entry, count 1 or absent): write config.executor from that entry (kind, model, configDir, reasoningEffort, serviceTier, timeoutSeconds; its iterations value sets maxIterations) and leave config.fanout unset
+=====NEW=====
+   |   - --executors matrix that expands to exactly one lineage (one entry, count 1 or absent): write config.executor from that entry (kind, model, configDir, reasoningEffort, serviceTier, timeoutSeconds); its iterations value binds to config.maxIterations, and leave config.fanout unset
+=====END=====

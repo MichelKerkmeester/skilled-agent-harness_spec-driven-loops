@@ -1,0 +1,14 @@
+EDIT FILE: .skilled/skills/system-spec-kit/ROUTER.md
+HOW: Replace the single occurrence.
+=====OLD=====
+        "references/validation/path-scoped-rules.md",
+    ],
+    "DEBUG": [
+=====NEW=====
+        "references/validation/path-scoped-rules.md",
+    ],
+    "WRITE": [
+        "references/workflows/spec-authoring-card.md",
+    ],
+    "DEBUG": [
+=====END=====

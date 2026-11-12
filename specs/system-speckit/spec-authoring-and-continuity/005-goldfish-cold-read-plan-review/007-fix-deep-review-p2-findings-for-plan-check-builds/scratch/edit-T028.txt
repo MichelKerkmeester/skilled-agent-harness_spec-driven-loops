@@ -1,0 +1,44 @@
+EDIT FILE: specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/implementation-summary.md
+HOW: OLD occurs exactly once after T020-T024; reconcile the limitations and deviation narratives with the verified CHK-012 result while retaining the Draft status and existing anchors.
+=====OLD=====
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. The direct task checks inspect the required YAML values and wording; they do not simulate a complete interactive /speckit:* session.
+2. The packet remains Draft because CHK-012 is an unresolved P1 checklist item. REQ-001 requires changing the plan_clarity row inside quality_gates, while CHK-012 says that entry remains unchanged.
+<!-- /ANCHOR:limitations -->
+
+---
+
+## Deviations from Plan
+
+| Planned | Actual | Reason |
+|---------|--------|--------|
+| Verify setup tasks against the baseline before implementation. | T001–T003 are now marked complete from the committed starting state; post-build worktree searches return no output and exit 1. | The exact baseline queries against HEAD printed 3, 1 and 1 (exit 0), and `../scratch/build-evidence.md:132-136` records each pre-edit match. |
+| Preserve existing workflow blocks. | The quality_gates block remains, but its scoped plan_clarity row changed under REQ-001. | This conflicts with the literal wording of P1 checklist item CHK-012; the item remains open for reconciliation. |
+
+## Not Done
+
+- CHK-012 remains open because its literal `quality_gates unchanged` wording conflicts with REQ-001; the packet status stays Draft.
+- No Vitest or npm test suite was run during this closeout, as instructed.
+=====NEW=====
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. The direct task checks inspect the required YAML values and wording; they do not simulate a complete interactive /speckit:* session.
+2. The packet remains Draft until its owner closes it; all 28 P0/P1 checklist items are verified, and the reconciled acceptance criteria are closeable.
+<!-- /ANCHOR:limitations -->
+
+---
+
+## Deviations from Plan
+
+| Planned | Actual | Reason |
+|---------|--------|--------|
+| Verify setup tasks against the baseline before implementation. | T001–T003 are now marked complete from the committed starting state; post-build worktree searches return no output and exit 1. | The exact baseline queries against HEAD printed 3, 1 and 1 (exit 0), and `../scratch/build-evidence.md:132-136` records each pre-edit match. |
+| Preserve existing workflow blocks. | The quality_gates block remains, with only the scoped plan_clarity row changed under REQ-001. | CHK-012 now permits that required row and T015 confirms unrelated gate settings remain present. |
+
+## Not Done
+
+- No Vitest or npm test suite was run during this closeout, as instructed.
+=====END=====

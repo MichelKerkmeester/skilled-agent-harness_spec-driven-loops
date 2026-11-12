@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "point chat sessions at authoring card",
+      "phase 5 point chat sessions at authoring card",
+      "point chat sessions at authoring card plan",
+      "point chat sessions at authoring card tasks",
+      "point chat sessions authoring card",
+      "phase 5 authoring card routing",
+      "spec gate mutation notice",
+      "IMPLEMENT write intent",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "point",
+      "chat",
+      "sessions",
+      "authoring",
+      "card",
+      "phase",
+      "plan",
+      "tasks",
+      "routing",
+      "spec",
+      "gate",
+      "mutation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
+      ".skilled/skills/system-spec-kit/ROUTER.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T004.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T005.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T006.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T007.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T009.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T010.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T012.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T013.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-passes-its-own-gate.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T004.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T004.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T005.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T005.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T006.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T006.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T007.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T007.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T009.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T009.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T010.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T010.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T012.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T012.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T013.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/005-point-chat-sessions-at-authoring-card/scratch/edit-T013.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Natural-language chat turns that create or change files can bypass the /speckit command flow, so users may not be pointed to the spec authoring card",
+    "created_at": "2026-11-11T21:06:14Z",
+    "last_save_at": "2026-11-12T06:14:55.635Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6ab70f8c89952a44cc15c78711ea8b2a121dbf418b41703c9508517a1b46d259",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5e3b104f724684fd5929e024fe480a3784ee4a8b440c1e144a96a730732865d4",
+      "plan.md": "2b4e44cc5652b2fcc9008dbfed7ff8bad17fe33d425220f514fce2c2b687eef0",
+      "tasks.md": "a823e0d364e16d6891b93eddb1286a90a2a5eff0556dc37c03a6a88a9f409e30",
+      "implementation-summary.md": "f0dfe8d37deeeed4379ccec4a1b9189ecdfa3108aca445f575452d51e73332ee"
+    },
+    "last_active_at": null
+  }
+}

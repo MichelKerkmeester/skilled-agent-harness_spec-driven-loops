@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goldfish cold read plan review",
+      "elephant goldfish model spec kit",
+      "fresh context plan comprehension check",
+      "decision free implementation readiness",
+      "goldfish cold read plan review plan",
+      "goldfish cold read plan review tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "005-goldfish-cold-read-plan-review operator decisions",
+      "goldfish cold read plan review implementation summary"
+    ],
+    "key_topics": [
+      "goldfish",
+      "cold",
+      "read",
+      "plan",
+      "review",
+      "elephant",
+      "model",
+      "spec",
+      "kit",
+      "fresh",
+      "context",
+      "comprehension"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "scratch/incident-chat-started-loop.md",
+      "research_archive/2026-11-11T20-11-35Z/research.md",
+      "scratch/single-executor-driver.py",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/research/research.md",
+      "scratch/trust-checks.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".skilled/commands/deep/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "incident-chat-started-loop.md",
+        "kind": "doc",
+        "path": "scratch/incident-chat-started-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "single-executor-driver.py",
+        "kind": "file",
+        "path": "scratch/single-executor-driver.py",
+        "source": "derived"
+      },
+      {
+        "name": "trust-checks.md",
+        "kind": "doc",
+        "path": "scratch/trust-checks.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goldfish Model",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "After Step",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The planning gate in `/speckit:plan` requires only that `plan.md` exists with a technical approach, and the clarity score beside it is given by the session that wrote the plan",
+    "created_at": "2026-11-11T18:13:29Z",
+    "last_save_at": "2026-11-11T22:27:00.474Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:e65f95b727f0f0875b672e8ea601c812f613e75700137af1978271a1e6f8cffd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4d63471ced7ff2cf13a369a61cafa688f1563ff1d18efde587397ba58d8c82b6",
+      "plan.md": "ac3208362974867c495118e313af4ebcb39f081e5d31b137b57a906b04885668",
+      "tasks.md": "7d33ac6f269fef73eb00b04898ad1a397ea08099f4b973f302b9938cc9791956",
+      "decision-record.md": "de3223f27e63fb62fdd43c508887b7712bb04848be95907ae1c7e7a356e75407",
+      "implementation-summary.md": "15297e525bc1ccdec994c3d98e909574deb863aff46350bd0e8d985d7a0ddef3",
+      "research/research.md": "d84e0bb394b32c9d47732229c7449110be09d92c5bc3fb5d0b5841204e64dbf7"
+    },
+    "last_active_at": null
+  }
+}

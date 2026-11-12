@@ -1,0 +1,13 @@
+EDIT FILE: .skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/fanout-dispatch.md
+HOW: OLD occurs once; document refusal, opt-in forms, skipped phases, and the message limitation beside the policy.
+=====OLD=====
+Default policy: 0–1 executor, or an `--executors` matrix that expands to exactly one lineage →
+`config.executor`; 2+ executors, an `--executors` matrix that expands to two or more lineages,
+or `count>1` → `config.fanout`.
+=====NEW=====
+Default policy: 0–1 executor, or an `--executors` matrix that expands to exactly one lineage →
+`config.executor`; 2+ executors, an `--executors` matrix that expands to two or more lineages,
+or `count>1` → `config.fanout`. A direct runner call that expands to one research or review lineage is refused unless the caller passes
+`--allow-single-lineage` as a bare flag or with the value `true` or `1`; all other supplied values are refused. The opt-in runs only the lineage, without packet init, synthesis or save.
+The refusal message names neither the flag nor the lineage count.
+=====END=====

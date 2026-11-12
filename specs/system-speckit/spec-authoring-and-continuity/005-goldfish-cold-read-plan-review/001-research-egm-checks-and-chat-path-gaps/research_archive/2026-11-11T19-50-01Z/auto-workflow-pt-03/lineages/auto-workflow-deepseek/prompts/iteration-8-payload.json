@@ -1,0 +1,59 @@
+{
+  "iteration": 8,
+  "status": "complete",
+  "focus": "Delivery across seven runtimes and in a dispatched child",
+  "newInfoRatio": 0.8,
+  "noveltyJustification": "The per-runtime command inventory and the child degradation table are new; the Cursor and hook facts were established earlier and consolidated here.",
+  "keyQuestions": [
+    "How does each candidate mechanism behave across the seven runtimes and in a dispatched child with no user present?"
+  ],
+  "answeredQuestions": [
+    "How does each candidate mechanism behave across the seven runtimes and in a dispatched child with no user present?"
+  ],
+  "ruledOut": [
+    "Choosing a mechanism per runtime",
+    "Treating the child case as a separate design"
+  ],
+  "focusTrack": "runtime-matrix",
+  "edgeCase": "partial-success",
+  "toolsUsed": ["bash", "read", "grep"],
+  "sourcesQueried": [
+    ".opencode/commands/speckit",
+    ".claude/commands/speckit",
+    ".cursor/commands",
+    ".codex/prompts",
+    ".pi/prompts",
+    ".dsh/prompts",
+    ".devin",
+    ".skilled/hooks/README.md",
+    ".skilled/hooks/injection-contract.md",
+    ".skilled/hooks/spec-gate/README.md",
+    "AGENTS.md",
+    ".skilled/commands/speckit/assets/speckit-plan.yaml"
+  ],
+  "graphEvents": [
+    {"type": "node", "id": "q-runtime-delivery", "kind": "QUESTION", "label": "Which mechanisms arrive in every runtime"},
+    {"type": "node", "id": "f-command-surface", "kind": "FINDING", "label": "Command surfaces exist in six of seven runtimes"},
+    {"type": "node", "id": "f-child-degrade", "kind": "FINDING", "label": "Interactive mechanisms degrade in a child"},
+    {"type": "node", "id": "f-no-adapter", "kind": "FINDING", "label": "Card and validator need no adapter"},
+    {"type": "node", "id": "f-worst-case", "kind": "FINDING", "label": "Four runtimes each break a different mechanism"},
+    {"type": "edge", "id": "e-iter008-001", "source": "f-command-surface", "target": "q-runtime-delivery", "relation": "CONTRADICTS"},
+    {"type": "edge", "id": "e-iter008-002", "source": "f-child-degrade", "target": "q-runtime-delivery", "relation": "ANSWERS"},
+    {"type": "edge", "id": "e-iter008-003", "source": "f-no-adapter", "target": "q-runtime-delivery", "relation": "ANSWERS"},
+    {"type": "edge", "id": "e-iter008-004", "source": "f-worst-case", "target": "f-command-surface", "relation": "DERIVED_FROM"}
+  ],
+  "findings": [
+    {"label": "A command surface exists in six of seven runtimes as slash commands or prompt templates and Devin has neither", "sources": [".devin/README.md", ".cursor/commands", ".dsh/prompts"]},
+    {"label": "AGENTS.md arrives in six runtimes and only by pointer in Cursor", "sources": [".claude/README.md", ".codex/README.md", ".pi/README.md", ".cursor/rules/skill-routing.md"]},
+    {"label": "Hook delivery has per-runtime adapters and the hooks index marks spec-gate covered in all seven", "sources": [".skilled/hooks/README.md"]},
+    {"label": "In a child Gate 3 is pre-resolved and spec-gate no-ops so mechanism C delivers nothing", "sources": ["AGENTS.md", ".skilled/hooks/spec-gate/README.md"]},
+    {"label": "The workflow already resolves child dispatch so mechanism E is safer in a child than in chat", "sources": [".skilled/commands/speckit/assets/speckit-plan.yaml"]},
+    {"label": "The card and the validator need no adapter and survive any runtime and session type", "sources": [".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md"]},
+    {"label": "Four runtimes each break a different mechanism so a median-runtime choice fails silently somewhere", "sources": [".skilled/hooks/injection-contract.md", ".devin/README.md", ".cursor/rules/skill-routing.md"]},
+    {"label": "No mechanism is universal and cheap at once", "sources": [".skilled/hooks/README.md", ".skilled/skills/system-spec-kit/ROUTER.md"]}
+  ],
+  "ruledOutDetailed": [
+    {"direction": "Choosing a mechanism per runtime", "reason": "Seven variants is a maintenance surface the mirror-drift rules exist to prevent."},
+    {"direction": "Treating the child case as a separate design", "reason": "The child is already handled by Gate 3's exemption and the workflow's own clause, so the mechanism only has to not break it."}
+  ]
+}

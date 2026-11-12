@@ -1,0 +1,66 @@
+EDIT FILE: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts
+HOW: OLD occurs exactly once; insert opt-in value, refusal, and configDir trust-boundary unit cases before the manifest test.
+=====OLD=====
+  it('feeds a deterministic 2-model by 3-branch by 2-replica manifest into the existing pool', async () => {
+=====NEW=====
+  it('accepts explicit true and 1 values for the single-lineage opt-in', async () => {
+    for (const loopType of ['research', 'review'] as const) {
+      for (const value of ['true', '1']) {
+        const binDir = makeTempDir(`fanout-run-single-lineage-value-${loopType}-${value}-bin-`);
+        const hermetic = useHermeticEnv(`single-lineage-value-${loopType}-${value}`);
+        const specFolder = `specs/test-fanout-single-lineage-value-${loopType}-${value}`;
+        const baseDir = makeBaseArtifactDir(hermetic, specFolder, loopType);
+        const markerPath = join(baseDir, 'spawned.marker');
+        writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
+        const fanoutConfig = JSON.stringify({
+          executors: [{ label: 'only-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 }],
+          concurrency: 1,
+        });
+        const result = await rawSpawnCjs(fanoutRunScript, [
+          '--spec-folder', specFolder, '--loop-type', loopType,
+          '--fanout-config-json', fanoutConfig, '--base-artifact-dir', baseDir,
+          '--allow-single-lineage', value,
+        ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 30_000 });
+        expect(existsSync(markerPath)).toBe(true);
+        expect(result.stdout).not.toContain('Run the single-executor');
+      }
+    }
+  });
+
+  it('rejects unsupported single-lineage opt-in values before side effects', async () => {
+    const binDir = makeTempDir('fanout-run-single-lineage-false-bin-');
+    const hermetic = useHermeticEnv('single-lineage-false');
+    const specFolder = 'specs/test-fanout-single-lineage-false';
+    const baseDir = makeBaseArtifactDir(hermetic, specFolder, 'research');
+    const markerPath = join(baseDir, 'spawned.marker');
+    writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'only-seat', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 }],
+      concurrency: 1,
+    });
+    const result = await rawSpawnCjs(fanoutRunScript, [
+      '--spec-folder', specFolder, '--loop-type', 'research',
+      '--fanout-config-json', fanoutConfig, '--base-artifact-dir', baseDir,
+      '--allow-single-lineage', 'false',
+    ], { cwd: hermetic.tmpDir, env: envWithBin(hermetic, binDir), timeoutMs: 30_000 });
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as { error?: string };
+    expect(result.exitCode).toBe(3);
+    expect(payload.error).toContain('Run the single-executor /deep:research workflow instead');
+    expect(existsSync(markerPath)).toBe(false);
+  });
+
+  it('accepts only Claude config roots under home or the repository', () => {
+    const { validateClaudeConfigDir } = requireCjs(fanoutRunScript) as {
+      validateClaudeConfigDir: (configDir: string) => string;
+    };
+    const os = requireCjs('node:os') as { homedir: () => string };
+    const homeConfigDir = join(os.homedir(), '.claude-review-test');
+    const repoConfigDir = join(process.cwd(), '.claude-review-test');
+    const outsideConfigDir = join(tmpdir(), 'fanout-outside-config');
+    expect(validateClaudeConfigDir(homeConfigDir)).toBe(resolve(homeConfigDir));
+    expect(validateClaudeConfigDir(repoConfigDir)).toBe(resolve(repoConfigDir));
+    expect(() => validateClaudeConfigDir(outsideConfigDir)).toThrow(/configDir must resolve under/);
+  });
+
+  it('feeds a deterministic 2-model by 3-branch by 2-replica manifest into the existing pool', async () => {
+=====END=====

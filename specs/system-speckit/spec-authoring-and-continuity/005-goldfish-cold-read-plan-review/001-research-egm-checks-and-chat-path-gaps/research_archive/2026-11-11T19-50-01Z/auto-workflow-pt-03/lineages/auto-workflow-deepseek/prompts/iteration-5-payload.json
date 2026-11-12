@@ -1,0 +1,51 @@
+{
+  "iteration": 5,
+  "status": "complete",
+  "focus": "Mechanism C - a hook that injects the relevant step at prompt or tool time",
+  "newInfoRatio": 0.9,
+  "noveltyJustification": "The tool-time delivery precedent, the Cursor dormancy contradiction and the child short-circuit are all new to the packet.",
+  "keyQuestions": [
+    "For each candidate mechanism (AGENTS.md gate, shared step reference, hook injection, template and validate.sh enforcement, advisor-driven command invocation), what does it cost and what does it break?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "A new hook concern for the workflow step",
+    "A prompt-time-only hook"
+  ],
+  "focusTrack": "mechanism-hook",
+  "edgeCase": "contradictory-evidence",
+  "toolsUsed": ["bash", "read", "grep"],
+  "sourcesQueried": [
+    ".skilled/hooks/injection-contract.md",
+    ".skilled/hooks/spec-gate/README.md",
+    ".skilled/hooks/README.md",
+    ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+    ".cursor/rules/skill-routing.md"
+  ],
+  "graphEvents": [
+    {"type": "node", "id": "q-hook-step", "kind": "QUESTION", "label": "Can a hook carry one workflow step"},
+    {"type": "node", "id": "f-tool-time", "kind": "FINDING", "label": "Spec-gate already delivers at first mutation"},
+    {"type": "node", "id": "f-notice-ceiling", "kind": "FINDING", "label": "Hook delivery is a notice unless enforcement is opted in"},
+    {"type": "node", "id": "f-cursor-dormant", "kind": "FINDING", "label": "Cursor prompt channel is dormant"},
+    {"type": "node", "id": "f-child-noop", "kind": "FINDING", "label": "Child sessions short-circuit the hook"},
+    {"type": "edge", "id": "e-iter005-001", "source": "f-tool-time", "target": "q-hook-step", "relation": "ANSWERS"},
+    {"type": "edge", "id": "e-iter005-002", "source": "f-notice-ceiling", "target": "f-tool-time", "relation": "SUPPORTS"},
+    {"type": "edge", "id": "e-iter005-003", "source": "f-cursor-dormant", "target": "q-hook-step", "relation": "CONTRADICTS"},
+    {"type": "edge", "id": "e-iter005-004", "source": "f-child-noop", "target": "q-hook-step", "relation": "CONTRADICTS"}
+  ],
+  "findings": [
+    {"label": "Prompt-time injection reaches seven runtimes but Cursor delivery is dormant under the tested build", "sources": [".skilled/hooks/injection-contract.md", ".cursor/rules/skill-routing.md", ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md"]},
+    {"label": "spec-gate already delivers a once-per-session notice at the first write, in every runtime", "sources": [".skilled/hooks/spec-gate/README.md"]},
+    {"label": "The hook ceiling is a notice: deny is opt-in through an environment flag", "sources": [".skilled/hooks/spec-gate/README.md"]},
+    {"label": "Once-per-session suppression is persisted so a step injection need not nag", "sources": [".skilled/hooks/spec-gate/README.md"]},
+    {"label": "Pi renders injected text on the operator's visible prompt, unlike the other runtimes", "sources": [".skilled/hooks/injection-contract.md"]},
+    {"label": "Hook delivery fails open so the worst case is silence rather than a stall", "sources": [".skilled/hooks/spec-gate/README.md", ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md"]},
+    {"label": "A dispatched child no-ops the hook before any state read", "sources": [".skilled/hooks/spec-gate/README.md"]},
+    {"label": "A new hook concern costs a core plus seven adapters plus a kill-switch row", "sources": [".skilled/hooks/README.md"]},
+    {"label": "A fourth injected block competes with the advisor brief and the goal brief on the same turn", "sources": [".skilled/hooks/injection-contract.md", ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md"]}
+  ],
+  "ruledOutDetailed": [
+    {"direction": "A new hook concern for the workflow step", "reason": "The hub's cost is a core plus seven adapters plus a kill-switch row, above every mechanism that edits an existing line."},
+    {"direction": "A prompt-time-only hook", "reason": "Cursor's prompt channel is dormant under the tested CLI build, so one of the seven runtimes would be missed."}
+  ]
+}

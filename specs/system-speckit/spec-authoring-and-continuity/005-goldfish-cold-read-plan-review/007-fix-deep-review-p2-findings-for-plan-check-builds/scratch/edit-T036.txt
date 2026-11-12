@@ -1,0 +1,8 @@
+EDIT FILE: .skilled/skills/system-spec-kit/ROUTER.md
+HOW: Replace the single occurrence.
+=====OLD=====
+    "IMPLEMENT": {"weight": 3, "keywords": ["implement", "build", "execute", "workflow", "add", "change", "edit", "fix", "update", "write"]},
+=====NEW=====
+    "IMPLEMENT": {"weight": 3, "keywords": ["implement", "build", "execute", "workflow"]},
+    "WRITE": {"weight": 1, "keywords": ["add", "change", "edit", "fix", "update", "write"]},
+=====END=====

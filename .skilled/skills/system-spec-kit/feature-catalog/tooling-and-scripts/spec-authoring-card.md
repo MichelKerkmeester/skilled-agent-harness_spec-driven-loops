@@ -6,14 +6,14 @@ trigger_phrases:
   - "authoring card"
   - "write a spec packet"
   - "fill a spec scaffold"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Spec authoring card
 
 ## 1. OVERVIEW
 
-The spec authoring card is the short authoring path for a model. It lives at `references/workflows/spec-authoring-card.md` and fits in one read. The `PLAN`, `IMPLEMENT`, `INTAKE` and `TEMPLATE_AUTHORING` intents load the card. The long template guide stays reachable from the on demand list only.
+The spec authoring card is the short authoring path for a model. It lives at `references/workflows/spec-authoring-card.md` and fits in one read. The `PLAN`, `IMPLEMENT`, `INTAKE`, `TEMPLATE_AUTHORING` and `WRITE` intents load the card. `WRITE` holds six plain write verbs at weight 1, so it never outscores a stronger intent. The long template guide stays reachable from the on demand list only.
 
 The card covers the bounds of a packet write, the level choice, the scaffold command, the fill rules, the validation command and the close steps. Each step carries one action, one acceptance line and one command.
 

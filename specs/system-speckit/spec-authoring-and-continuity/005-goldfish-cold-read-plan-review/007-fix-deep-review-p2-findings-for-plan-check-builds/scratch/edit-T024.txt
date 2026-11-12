@@ -1,0 +1,7 @@
+EDIT FILE: specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/implementation-summary.md
+HOW: OLD occurs once after T020; reconcile CHK-012 verification with the fresh scope check.
+=====OLD=====
+| CHK-012 gate-block diff | The diff showed only the scoped `plan_clarity` change inside `quality_gates`; no gate or default entry was deleted. The literal unchanged criterion still conflicts with REQ-001 and remains open. |
+=====NEW=====
+| CHK-012 scope diff | T015 printed `CHK-012 scope check passed` (exit 0). The only addition inside `quality_gates` is the scoped `plan_clarity` row required by REQ-001; unrelated quality gates, circuit breakers, and defaults remain present. |
+=====END=====

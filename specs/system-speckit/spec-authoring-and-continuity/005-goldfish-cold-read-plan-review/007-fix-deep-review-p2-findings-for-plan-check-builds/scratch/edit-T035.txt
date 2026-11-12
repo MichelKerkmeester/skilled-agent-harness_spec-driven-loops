@@ -1,0 +1,12 @@
+EDIT FILE: .skilled/commands/deep/review.md
+HOW: Replace the single occurrence.
+=====OLD=====
+selects fan-out. A direct runner invocation that expands to one research or review lineage
+is refused unless `--allow-single-lineage` is passed alone or followed by `true` or `1`; that
+opt-in runs only the lineage, without packet init, synthesis or save. The refusal message
+names neither the flag nor the lineage count.
+=====NEW=====
+selects fan-out. A direct call of the fan-out runner that expands to one research or review
+lineage is refused and names this workflow instead, because the runner alone skips packet
+init, synthesis and save.
+=====END=====

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "bind single entry executors to single path",
+      "one-lineage executor matrix",
+      "bind single entry executors to single path plan",
+      "bind single entry executors to single path tasks",
+      "executor matrix acceptance criteria",
+      "single-lineage executor acceptance",
+      "research review contract acceptance",
+      "executor routing closure criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "bind",
+      "single",
+      "entry",
+      "executors",
+      "path",
+      "one-lineage",
+      "executor",
+      "matrix",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/edit-T002.txt",
+      "scratch/edit-T003.txt",
+      "scratch/edit-T004.txt",
+      "scratch/edit-T008.txt",
+      ".skilled/commands/deep/research.md",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/scratch/edit-T002.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/scratch/edit-T003.txt",
+      ".skilled/commands/deep/review.md",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/scratch/edit-T004.txt",
+      ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/scratch/edit-T005.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/scratch/edit-T006.txt",
+      ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/scratch/edit-T007.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T002.txt",
+        "kind": "file",
+        "path": "scratch/edit-T002.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T003.txt",
+        "kind": "file",
+        "path": "scratch/edit-T003.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T004.txt",
+        "kind": "file",
+        "path": "scratch/edit-T004.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T008.txt",
+        "kind": "file",
+        "path": "scratch/edit-T008.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T005.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/scratch/edit-T005.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T006.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/scratch/edit-T006.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T007.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/002-bind-single-entry-executors-to-single-path/scratch/edit-T007.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Before",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Before this phase, the research and review command clauses routed any `--executors` value to `config.fanout`; their exact old blocks are preserved in `scratch/edit-T002.txt` and `scratch/edit-T003.txt`",
+    "created_at": "2026-11-11T21:06:12Z",
+    "last_save_at": "2026-11-12T02:18:51.099Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bac1d688999a4dab0f50935f1254f59bc95d146c13c9891bd297fdaf13e0239c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "29fb9f7868e8e86ee4c9a1ea214812b747c7445c10257197ac57f1a2048614ad",
+      "plan.md": "3276cadfadfcc4eea1868b319bbc0c61ad970fb4b0528521cd75cd017687c02a",
+      "tasks.md": "4192521c5081860ecfb68351dcc27b014bd9f2e887021931db618345c51f9582",
+      "implementation-summary.md": "cc0343799bd8737c31930ef31882b9cda2a3715e254e0d29582a3e798dbe89b2"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "iteration": 3,
+  "status": "complete",
+  "focus": "Mechanism A - a gate in AGENTS.md that routes a write request into workflow steps",
+  "newInfoRatio": 0.8,
+  "noveltyJustification": "The Cursor reach gap, the shipped/local split and the per-gate exemption pattern are new; the fact that AGENTS.md is widely loaded was already known.",
+  "keyQuestions": [
+    "For each candidate mechanism (AGENTS.md gate, shared step reference, hook injection, template and validate.sh enforcement, advisor-driven command invocation), what does it cost and what does it break?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Proposing that Cursor be given a full AGENTS.md copy",
+    "Proposing the gate be written inside the repo-local block"
+  ],
+  "focusTrack": "mechanism-agents-md",
+  "edgeCase": "partial-success",
+  "toolsUsed": ["bash", "read", "grep"],
+  "sourcesQueried": [
+    ".claude/README.md",
+    ".codex/README.md",
+    ".cursor/README.md",
+    ".devin/README.md",
+    ".pi/README.md",
+    ".pi/SYNC.md",
+    ".dsh/README.md",
+    ".cursor/rules/skill-routing.md",
+    "AGENTS.md",
+    "REPO RULES.md",
+    ".skilled/commands/doctor/agents-md.md"
+  ],
+  "graphEvents": [
+    {"type": "node", "id": "q-mechanism-cost", "kind": "QUESTION", "label": "Cost and breakage per mechanism"},
+    {"type": "node", "id": "f-agents-reach", "kind": "FINDING", "label": "Six of seven runtimes read AGENTS.md"},
+    {"type": "node", "id": "f-cursor-gap", "kind": "FINDING", "label": "Cursor reads only a generated Gate 1 pointer"},
+    {"type": "node", "id": "f-shipped-surface", "kind": "FINDING", "label": "AGENTS.md is a shipped product surface"},
+    {"type": "node", "id": "f-route-away-precedent", "kind": "FINDING", "label": "Existing gates route away to a file"},
+    {"type": "edge", "id": "e-iter003-001", "source": "f-agents-reach", "target": "q-mechanism-cost", "relation": "SUPPORTS"},
+    {"type": "edge", "id": "e-iter003-002", "source": "f-cursor-gap", "target": "f-agents-reach", "relation": "CONTRADICTS"},
+    {"type": "edge", "id": "e-iter003-003", "source": "f-route-away-precedent", "target": "q-mechanism-cost", "relation": "ANSWERS"},
+    {"type": "edge", "id": "e-iter003-004", "source": "f-shipped-surface", "target": "f-agents-reach", "relation": "SUPPORTS"}
+  ],
+  "findings": [
+    {"label": "Six of seven runtimes load the root AGENTS.md natively", "sources": [".claude/README.md", ".codex/README.md", ".devin/README.md", ".pi/SYNC.md", ".dsh/README.md"]},
+    {"label": "Cursor receives only a 2257-byte routing rule and a generated Gate 1 pointer block", "sources": [".cursor/rules/skill-routing.md", ".cursor/README.md"]},
+    {"label": "AGENTS.md lines 1-295 are shipped by Skilled and only 296-300 are repository-owned", "sources": ["AGENTS.md", ".skilled/commands/doctor/agents-md.md"]},
+    {"label": "Resident cost is about 6.8k tokens per session versus 12.4k bytes for REPO RULES loaded only on writes", "sources": ["AGENTS.md", "REPO RULES.md"]},
+    {"label": "Every existing AGENTS.md gate routes away to a skill or rule file rather than embedding steps", "sources": ["AGENTS.md"]},
+    {"label": "A write-time routing gate would be the fourth stop-and-ask surface on the same event", "sources": ["AGENTS.md"]},
+    {"label": "The trivial-edit exemptions are written per gate and would need a third written exception", "sources": ["AGENTS.md"]},
+    {"label": "A gate is instruction not enforcement and the repo's own evidence standard says so", "sources": ["AGENTS.md"]},
+    {"label": "REPO RULES.md already provides the action-matched router shape at a write-only load point", "sources": ["REPO RULES.md"]}
+  ],
+  "ruledOutDetailed": [
+    {"direction": "Proposing that Cursor be given a full AGENTS.md copy", "reason": "Divergence between runtime mirrors is treated as drift; the Cursor README names one generator for its single generated block."},
+    {"direction": "Proposing the gate be written inside the repo-local block", "reason": "That fixes this repository and ships nothing, which cannot answer a question about every chat session."}
+  ]
+}

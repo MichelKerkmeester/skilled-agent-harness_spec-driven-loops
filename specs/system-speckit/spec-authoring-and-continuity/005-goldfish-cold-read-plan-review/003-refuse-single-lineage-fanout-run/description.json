@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run",
+  "description": "The runner expands a count-1 executor into one runnable lineage, as the measured helper output shows",
+  "keywords": [
+    "phase",
+    "refuse-single-lineage-fanout-run"
+  ],
+  "lastUpdated": "2026-11-11T21:06:13.815Z",
+  "specId": "003",
+  "folderSlug": "refuse-single-lineage-fanout-run",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "005-goldfish-cold-read-plan-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

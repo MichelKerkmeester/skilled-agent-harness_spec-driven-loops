@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "refuse single lineage fanout run",
+      "phase 3 refuse single lineage fanout run",
+      "refuse single lineage fanout run plan",
+      "refuse single lineage fanout run tasks",
+      "single-lineage refusal acceptance criteria",
+      "fan-out opt-in closure criteria",
+      "allow-single-lineage acceptance",
+      "fanout-run refusal traceability",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "refuse",
+      "single",
+      "lineage",
+      "fanout",
+      "run",
+      "phase",
+      "plan",
+      "tasks",
+      "single-lineage",
+      "refusal",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-fixture.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/repin-runbook.md",
+      "assets/complexity-decision-matrix.md",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch/edit-T002.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch/edit-T003.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch/edit-T004.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch/edit-T005.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch/edit-T006.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch/edit-T007.txt",
+      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch/edit-T008.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adapter-fixture.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-fixture.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lineage-timestamp-window.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repin-runbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/repin-runbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "complexity-decision-matrix.md",
+        "kind": "doc",
+        "path": "assets/complexity-decision-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T002.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch/edit-T002.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T003.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch/edit-T003.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T004.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch/edit-T004.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T005.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch/edit-T005.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T006.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch/edit-T006.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T007.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch/edit-T007.txt",
+        "source": "derived"
+      },
+      {
+        "name": "edit-T008.txt",
+        "kind": "file",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/003-refuse-single-lineage-fanout-run/scratch/edit-T008.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The runner expands a count-1 executor into one runnable lineage, as the measured helper output shows",
+    "created_at": "2026-11-11T21:06:13Z",
+    "last_save_at": "2026-11-12T00:03:21.434Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d56da6f92594b3cc99849bce9c698fdd1df281164d0490b91a7d63c4a89bcdb4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9a8ab3b46c5cc70b1b7f4a5e065b76f1cf30e1ef7530f2565bd55669efdc9a91",
+      "plan.md": "dffda2ad0948433a2ecb588e16a79f4a3515dcfe804a384da2fb30e1f5b52d20",
+      "tasks.md": "9264b9c39647796f362e3d80c2604705795198b30653045c9f86305a9d14a6f9",
+      "implementation-summary.md": "49c713f5d5e0b2a57be3fd50615d54a1e1258ac98c0522deeb1af204a18bcbbd"
+    },
+    "last_active_at": null
+  }
+}

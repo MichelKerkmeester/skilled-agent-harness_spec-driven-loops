@@ -1,0 +1,11 @@
+EDIT FILE: specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/acceptance-criteria.md
+HOW: OLD occurs once after T016-T018; align closeability with verified checklist state.
+=====OLD=====
+**Closeable:** No
+
+All five acceptance rows are Met with the observed T004–T008 outputs. The packet remains Draft because P1 checklist item CHK-012 is unresolved: REQ-001 changes the plan_clarity row inside quality_gates, while CHK-012 says that entry remains unchanged.
+=====NEW=====
+**Closeable:** Yes
+
+All five acceptance rows are Met with the observed T004–T008 outputs. CHK-012 now permits the scoped plan_clarity row, and T015's fresh diff check confirms the unrelated gate settings remain present. The packet status remains Draft until its owner closes it.
+=====END=====

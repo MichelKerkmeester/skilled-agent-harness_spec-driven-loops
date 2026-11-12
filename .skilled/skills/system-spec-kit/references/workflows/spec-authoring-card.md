@@ -8,7 +8,7 @@ trigger_phrases:
   - "fill a spec scaffold"
 importance_tier: important
 contextType: implementation
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # Spec Authoring Card
@@ -117,7 +117,7 @@ The plan points at `tasks.md` for the ordered work. The acceptance line and the 
 ```markdown
 ## 4. IMPLEMENTATION PHASES
 
-Setup reads the current archive count. Implementation adds `--keep <n>`. Verification checks that ten archives become three.
+Setup reads `scripts/rotate-logs.sh` and the current archive count. Implementation adds `--keep <n>` to `scripts/rotate-logs.sh`. Verification runs `scripts/rotate-logs.sh --keep 3` and checks that ten archives become three.
 ```
 
 Acceptance: `plan.md` holds its three phases in one line each, and it points at `tasks.md` for the ordered work.

@@ -1,0 +1,55 @@
+{
+  "iteration": 2,
+  "status": "complete",
+  "focus": "Where a plan only its author can follow passes the chat path",
+  "newInfoRatio": 0.9,
+  "noveltyJustification": "9 of 10 findings are new; the Draft severity downgrade and the reusable stop-condition verify pair decide the recommendation.",
+  "keyQuestions": [
+    "Where does a plan only its author can follow get through on the chat path today, and what is the smallest change that stops it?"
+  ],
+  "answeredQuestions": [
+    "Where does a plan only its author can follow get through on the chat path today, and what is the smallest change that stops it?"
+  ],
+  "ruledOut": [
+    "Proposing a new plan-decisions.md artifact",
+    "Proposing that PLACEHOLDER_FILLED evaluate prose"
+  ],
+  "focusTrack": "failure-path",
+  "edgeCase": "none",
+  "toolsUsed": ["bash", "read", "grep"],
+  "sourcesQueried": [
+    ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+    ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+    ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+    ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+    "AGENTS.md",
+    ".skilled/commands/speckit/assets/speckit-implement.yaml"
+  ],
+  "graphEvents": [
+    {"type": "node", "id": "q-author-only-plan", "kind": "QUESTION", "label": "Where an author-only plan passes chat"},
+    {"type": "node", "id": "f-template-comments", "kind": "FINDING", "label": "Plan quality lives in comments no rule reads"},
+    {"type": "node", "id": "f-draft-downgrade", "kind": "FINDING", "label": "Unfilled tokens only warn while Draft"},
+    {"type": "node", "id": "f-heading-count-check", "kind": "FINDING", "label": "Plan shape check counts a heading"},
+    {"type": "node", "id": "f-stop-condition", "kind": "FINDING", "label": "Section 11 stop conditions already carry a verify command"},
+    {"type": "edge", "id": "e-iter002-001", "source": "f-template-comments", "target": "q-author-only-plan", "relation": "ANSWERS"},
+    {"type": "edge", "id": "e-iter002-002", "source": "f-draft-downgrade", "target": "q-author-only-plan", "relation": "SUPPORTS"},
+    {"type": "edge", "id": "e-iter002-003", "source": "f-heading-count-check", "target": "f-template-comments", "relation": "SUPPORTS"},
+    {"type": "edge", "id": "e-iter002-004", "source": "f-stop-condition", "target": "q-author-only-plan", "relation": "COVERS"}
+  ],
+  "findings": [
+    {"label": "Plan-quality guidance lives in HTML comments and no validator rule reads comment prose", "sources": [".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl", ".skilled/skills/system-spec-kit/references/validation/validation-rules.md"]},
+    {"label": "A plan passes --strict with the architecture token unfilled because Draft downgrades it to WARNING", "sources": [".skilled/skills/system-spec-kit/references/validation/validation-rules.md", ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl"]},
+    {"label": "The plan template has no open-decisions section so a decision hides in prose fields", "sources": [".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl"]},
+    {"label": "The authoring card plan-shape check is a heading presence check", "sources": [".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md"]},
+    {"label": "Gate 2 exempts spec-folder docs from the sk-doc route so no skill reviews plan prose", "sources": ["AGENTS.md"]},
+    {"label": "Gate 3 binds the write path not whether the plan can be followed", "sources": ["AGENTS.md"]},
+    {"label": "The workflow plan-quality judgment is a hard-blocking rubric slot the chat path lacks", "sources": [".skilled/commands/speckit/assets/speckit-implement.yaml"]},
+    {"label": "At Level 1 the plan is the last document before code because acceptance criteria are not required", "sources": [".skilled/skills/system-spec-kit/references/validation/validation-rules.md", ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl"]},
+    {"label": "The smallest change candidate reuses section 11 stop conditions and an existing verify command", "sources": [".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md"]},
+    {"label": "A written open question is not a validator blocker, which bounds the smallest change", "sources": [".skilled/skills/system-spec-kit/references/validation/validation-rules.md"]}
+  ],
+  "ruledOutDetailed": [
+    {"direction": "Proposing a new plan-decisions.md artifact", "reason": "Reversal-cost order puts a new file above editing an existing line, and Level 1 has no room for a second plan document."},
+    {"direction": "Proposing that PLACEHOLDER_FILLED evaluate prose", "reason": "The rule is a token scanner over five files by construction; prose judgment is not its purpose."}
+  ]
+}

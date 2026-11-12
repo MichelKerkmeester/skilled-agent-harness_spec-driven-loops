@@ -1,0 +1,62 @@
+{
+  "iteration": 9,
+  "status": "complete",
+  "focus": "Token cost per turn, Level 1 lightness and the one-sentence opt-out",
+  "newInfoRatio": 0.75,
+  "noveltyJustification": "The measured cost table is new; the level-conditional rule and the bypass-phrase carrier are existing facts newly connected to the question.",
+  "keyQuestions": [
+    "What is the token cost per turn of each mechanism, measured from file sizes?",
+    "How does each mechanism keep Level 1 and trivial edits light, and how does a user opt out in one sentence?"
+  ],
+  "answeredQuestions": [
+    "What is the token cost per turn of each mechanism, measured from file sizes?",
+    "How does each mechanism keep Level 1 and trivial edits light, and how does a user opt out in one sentence?"
+  ],
+  "ruledOut": [
+    "Per-turn injection of the workflow steps",
+    "A Level 1 opt-out phrase instead of a level branch"
+  ],
+  "focusTrack": "cost-and-lightness",
+  "edgeCase": "partial-success",
+  "toolsUsed": ["bash", "read", "grep"],
+  "sourcesQueried": [
+    "AGENTS.md",
+    "REPO RULES.md",
+    ".skilled/skills/system-spec-kit/SKILL.md",
+    ".skilled/skills/system-spec-kit/ROUTER.md",
+    ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+    ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+    ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+    ".skilled/commands/speckit/assets/speckit-plan.yaml",
+    ".skilled/commands/speckit/assets/speckit-implement.yaml",
+    ".skilled/commands/speckit/assets/speckit-complete.yaml",
+    ".skilled/hooks/README.md"
+  ],
+  "graphEvents": [
+    {"type": "node", "id": "q-cost", "kind": "QUESTION", "label": "Token cost per mechanism"},
+    {"type": "node", "id": "f-chat-baseline", "kind": "FINDING", "label": "Chat path already carries about 30k tokens"},
+    {"type": "node", "id": "f-workflow-cost", "kind": "FINDING", "label": "The plan workflow costs about 16k tokens"},
+    {"type": "node", "id": "f-level-aware", "kind": "FINDING", "label": "Workflow rules are already level-conditional"},
+    {"type": "node", "id": "f-unconditional-decision", "kind": "FINDING", "label": "document_all_decisions is unconditional and unused in chat"},
+    {"type": "edge", "id": "e-iter009-001", "source": "f-workflow-cost", "target": "q-cost", "relation": "ANSWERS"},
+    {"type": "edge", "id": "e-iter009-002", "source": "f-chat-baseline", "target": "f-workflow-cost", "relation": "SUPPORTS"},
+    {"type": "edge", "id": "e-iter009-003", "source": "f-level-aware", "target": "q-cost", "relation": "COVERS"},
+    {"type": "edge", "id": "e-iter009-004", "source": "f-unconditional-decision", "target": "f-level-aware", "relation": "CONTRADICTS"}
+  ],
+  "findings": [
+    {"label": "The chat path already carries about 30k tokens across AGENTS.md, SKILL.md, ROUTER.md, quick-reference.md and the card", "sources": ["AGENTS.md", ".skilled/skills/system-spec-kit/SKILL.md", ".skilled/skills/system-spec-kit/ROUTER.md", ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md", ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md"]},
+    {"label": "The plan workflow read is 65,265 bytes or roughly 16k tokens against the card 9,699 bytes", "sources": [".skilled/commands/speckit/assets/speckit-plan.yaml", ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md"]},
+    {"label": "An AGENTS.md gate costs about 130 marginal tokens on a resident 27,372-byte file", "sources": ["AGENTS.md"]},
+    {"label": "A hook injection is the cheapest per event at roughly 50 to 90 tokens and the most expensive to maintain", "sources": [".skilled/hooks/README.md"]},
+    {"label": "The validator costs nothing per turn because it is executed not read", "sources": [".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md"]},
+    {"label": "The workflow already branches on level for the checklist rule", "sources": [".skilled/commands/speckit/assets/speckit-plan.yaml", ".skilled/commands/speckit/assets/speckit-implement.yaml"]},
+    {"label": "document_all_decisions is an unconditional workflow rule with no chat-path counterpart", "sources": [".skilled/commands/speckit/assets/speckit-plan.yaml"]},
+    {"label": "Level 1 requires four documents and no closure gate so a fifth artifact would break the level contract", "sources": [".skilled/skills/system-spec-kit/references/validation/validation-rules.md"]},
+    {"label": "The one-sentence opt-out carrier already exists as the bypass-phrase line and as per-concern kill switches", "sources": ["AGENTS.md", ".skilled/hooks/README.md"]},
+    {"label": "Token cost is not the binding constraint for the card, the AGENTS.md line and the validator", "sources": ["AGENTS.md", ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md"]}
+  ],
+  "ruledOutDetailed": [
+    {"direction": "Per-turn injection of the workflow steps", "reason": "16.3k tokens per turn would dominate every session, and the workflow is a procedure for one moment."},
+    {"direction": "A Level 1 opt-out phrase instead of a level branch", "reason": "A phrase requires the reader to know the phrase; a level branch is what the workflow already does."}
+  ]
+}

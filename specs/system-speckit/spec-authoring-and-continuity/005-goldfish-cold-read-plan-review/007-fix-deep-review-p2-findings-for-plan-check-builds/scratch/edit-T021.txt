@@ -1,0 +1,7 @@
+EDIT FILE: specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/006-repair-speckit-workflow-gates/implementation-summary.md
+HOW: OLD occurs once after T020; update completion percentage after all checklist items are verified.
+=====OLD=====
+    completion_pct: 96
+=====NEW=====
+    completion_pct: 100
+=====END=====
