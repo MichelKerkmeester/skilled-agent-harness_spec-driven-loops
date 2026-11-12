@@ -65,7 +65,7 @@ Frozen choices. Changing one is an amendment.
 - [x] Every P0 and P1 finding in that report is listed in `implementation-summary.md` as fixed, with the command that proves it, or as rejected, with the evidence against it.
 - [x] The `/local-skilled-alignment` findings report for this work, run after the last fix, lists 0 open findings. Waived by the operator on 2026-11-12 after run 12, whose one finding was fixed and rechecked.
 - [x] `validate.sh --strict` prints `RESULT: PASSED` for this packet and for `specs/system-skilled-doctor/001-skill-and-overlay-build`.
-- [ ] `.skilled/changelog/skilled/v4.0.2.1.md` names this work and passes `check_changelog_shape.py`. On origin, tag `v4.0.2.1` and `main` name the same commit, and the published release body equals the output of `build_release_notes.py` for that entry.
+- [x] `.skilled/changelog/skilled/v4.0.2.1.md` names this work and passes `check_changelog_shape.py`. On origin, tag `v4.0.2.1` and `main` name the same commit, and the published release body equals the output of `build_release_notes.py` for that entry.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -99,6 +99,7 @@ and findings belong here.
 | Round eleven ran with the range-only scope | Done | It covered 5f4f5b9f42..b45a7ab4d0 and found 7 findings. Five were defects the round-ten fix commit wrote, and DeepSeek fixed them. Two were routing probes for the Pi CLI skill. The operator chose to reject both, because the scorer drops a CLI hub when a prompt names the runtime as the owner of a surface. From round twelve a lane writes a probe only for a route the range changed. |
 | Dependabot PR 98 | merged | squash e7974750f5 after branch update, 38 checks green, operator chose Merge 98 (Q012) |
 | Criterion 5 | waived | operator stopped runs after round 12 (1 P1, fixed by DeepSeek, recheck 0 open 0 new) |
+| v4.0.2.1 republish (eighth move) | done | tag and origin/main at e5e01a04c5, release Latest, body equals build_release_notes.py output except GitHub's trailing newline, old tag kept at refs/backup-tags/v4.0.2.1-eighth-20261112 |
 
 ### Deviations and findings
 

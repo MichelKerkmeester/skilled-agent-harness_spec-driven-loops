@@ -8,13 +8,13 @@
     "overlay",
     "command"
   ],
-  "lastUpdated": "2026-11-12T16:47:27.229Z",
+  "lastUpdated": "2026-11-12T20:27:59.805Z",
   "specId": "001",
   "folderSlug": "skill-and-overlay-build",
   "parentChain": [
     "system-skilled-doctor"
   ],
-  "memorySequence": 12,
+  "memorySequence": 15,
   "memoryNameHistory": [
     "12-11-26_03-49__the-stop-check-was-right-on-two-points-and-i-am.md",
     "12-11-26_05-09__the-first-of-the-two-briefs-is-still-running-its.md",
@@ -27,6 +27,9 @@
     "12-11-26_13-21__criterion-3-s-provenance-is-now-evidenced-from.md",
     "12-11-26_13-23__you-chose-agent-guard-off-once-so-one-deepseek.md",
     "12-11-26_16-12__the-round-eight-fix-brief-is-written-and-held.md",
-    "12-11-26_17-47__the-round-nine-critic-is-still-working-13-minutes.md"
+    "12-11-26_17-47__the-round-nine-critic-is-still-working-13-minutes.md",
+    "12-11-26_21-27__i-m-stopping-here-the-goal-check-is-still-reading.md",
+    "12-11-26_21-27__understood-i-ve-stopped-no-more-alignment-runs.md",
+    "12-11-26_21-27__i-m-not-doing-any-more-work-on-this-goal-you.md"
   ]
 }

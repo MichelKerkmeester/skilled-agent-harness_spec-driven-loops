@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Phase 8 shipped the opt-in write checks",
     "created_at": "2026-11-11T21:21:40Z",
-    "last_save_at": "2026-11-12T20:00:25.509Z",
+    "last_save_at": "2026-11-12T20:29:02.316Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +220,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:830138221c293e791b9b4f6e9a34c052fc5b671a9a1d31998000a19324f9936e",
+    "source_fingerprint": "sha256:3a0117f997abee49f484772ecd64b4b0ebd05d839ec8811a1aab8d6246206be4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bca75899c9119fcc6a6ca0c1e3f022879a44a4e715a3ea8dfdbea88a3345783f",
       "plan.md": "178d3babcaeef13e55b72ea19b48b30fa9494a0e1c22bd392f36c9acbec2a621",
       "tasks.md": "2935d2209891bddec1c550f40ad4ab45b3cdc48b052bda4caef7f4c9b5f99d34",
-      "decision-record.md": "51b49ad54f822eac9f58846afdd41f2722b21469f07af324fceb1bb44ad8b5f0",
-      "implementation-summary.md": "6487bb13f7b498d2b65504c01525ebd9852b64361a90bbb5e3512ae9dd0abae6"
+      "decision-record.md": "0a718f9c12d177a2750a7795032e712689a1a98d7ce2c242e4a291cf43aa5a59",
+      "implementation-summary.md": "94cdfd3975b3c70fdfbbec82e6766fefd030aadb6e19d399e3dec8a3b5edb130"
     },
     "last_active_at": null
   }

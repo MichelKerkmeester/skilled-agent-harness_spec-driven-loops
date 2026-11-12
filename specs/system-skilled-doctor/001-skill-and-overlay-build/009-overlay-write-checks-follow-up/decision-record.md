@@ -47,6 +47,7 @@ _memory:
 | Q011 | Round eleven's two routing probes for the Pi extension layer are rejected, and the hub vocabulary added for them is reverted. | Not stated. | None | goal.md log, implementation-summary.md round eleven |
 | Q012 | Dependabot pull request 98, which replaced the closed 96, is merged into main before the final tag move. | Not stated. | None | goal.md log |
 | Q013 | Alignment runs stop after round twelve; its finding is fixed and rechecked, criterion 5 is recorded as waived, and v4.0.2.1 is republished once on final main. | Not stated. | None | goal.md criterion 5, implementation-summary.md alignment table |
+| Q014 | The goal ends with criterion 5 waived; the operator clears the goal, and no thirteenth alignment run or further tag move for the alignment loop is made. | Not stated. | None | goal.md criterion 5, goal.md log |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -312,6 +313,25 @@ Stop everything now
 Answer:
 ```text
 Recheck, waive, ship (Recommended)
+```
+
+### Q014
+<!-- source: claude:e881d253-bd2e-467f-a00f-6be078d10e1c:toolu_015hp6Q5yXnEezAmGbDfeg1a:0 -->
+
+Question:
+```text
+The goal check won't accept the criterion 5 waiver. It requires a full alignment run listing 0 open findings, and round twelve, the last run, listed 1 (fixed and rechecked since). You told me to stop runs after round twelve. How should this end?
+```
+
+Options:
+```text
+I clear or re-set /goal (Recommended)
+Run round thirteen
+```
+
+Answer:
+```text
+I clear or re-set /goal (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
