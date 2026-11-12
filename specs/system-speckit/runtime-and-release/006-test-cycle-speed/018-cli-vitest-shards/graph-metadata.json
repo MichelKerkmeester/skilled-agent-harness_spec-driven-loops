@@ -32,7 +32,7 @@
       "workflows"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -40,8 +40,8 @@
       "implementation-summary.md",
       ".github/workflows/spec-kit-check.yml",
       ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
-      ".opencode/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
       ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+      ".opencode/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
       ".opencode/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
       ".skilled/skills/system-spec-kit/runtime/cli/package.json",
       "scratch/spec-kit-check.sharded.yml",
@@ -195,8 +195,8 @@
     ],
     "causal_summary": "The `cli-vitest` job in `.github/workflows/spec-kit-check.yml` is the slowest check a spec-kit push waits on",
     "created_at": "2026-11-12T14:48:38Z",
-    "last_save_at": "2026-11-12T15:14:12.505Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-12T15:22:54.074Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3cf3369855d0d58aa8fdab04f6c8214f97416099363bb327d570bc9c1fcaeed6",
+    "source_fingerprint": "sha256:9dfce005f53c9115b6f304a734eacf2a61e3ba1d1511120a39fb2d7a8fd5084e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "393144c4d8f1887fa883c42a321ee4fcf615f6b1c1ed509c8c0df14a054bc791",
+      "spec.md": "4fd98e78b20eace388ce03120f02ff90bb59673045f460980d43a64a98dabec1",
       "plan.md": "8e977addd32ec50e5ec516aa843f657150b299a5c5502c75624085a2a1a3b753",
-      "tasks.md": "dcf98d4a36dac0fc8fccf36a6f02883b3148b947f3fd353d27db8261162b2a2b",
-      "implementation-summary.md": "e36e9371effae8f086b6df5c504a228234b63c5e202984aae2b899b1ae411759"
+      "tasks.md": "dbfa9c26352d06940c58b3cf1548baa2a7c9511ab1fa4bef0c4e3fc76e7e74dc",
+      "implementation-summary.md": "5bfa4d8f00dd37f9728e9f27e65b18de899c42464fb7e776763caf6b88abc080"
     },
     "last_active_at": null
   }
