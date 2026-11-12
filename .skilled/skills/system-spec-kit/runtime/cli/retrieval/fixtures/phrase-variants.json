@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8d53523ad2913fb6e69bf84d151b6d87c9ac97e9ac37ab29ac28e61b79308d05",
+  "manifestHash": "31ef0aeffe514094d80ff8b8ae474e7eed69e02fcc42e9fd0cdbb9f50ed5a68c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1162,6 +1162,9 @@
     "004 runtime root memory cleanup followup fixes": [
       "004-runtime-root-memory-cleanup-followup-fixes"
     ],
+    "004 self invocation guard api key operator decisions": [
+      "004-self-invocation-guard-api-key operator decisions"
+    ],
     "004 skill advisor production hardening changelog index": [
       "004-skill-advisor-production-hardening changelog index"
     ],
@@ -1524,6 +1527,9 @@
     ],
     "006 007 implementation summary": [
       "006/007 implementation summary"
+    ],
+    "006 append lock stale reclaim operator decisions": [
+      "006-append-lock-stale-reclaim operator decisions"
     ],
     "006 architecture cleanup plan": [
       "006 architecture cleanup plan"
@@ -6689,6 +6695,9 @@
     "036 revalidation status": [
       "036 revalidation status"
     ],
+    "036 review remediation operator decisions": [
+      "036-review-remediation operator decisions"
+    ],
     "036 tasks": [
       "036 tasks"
     ],
@@ -11803,6 +11812,24 @@
     ],
     "append lock owner token": [
       "append lock owner token"
+    ],
+    "append lock stale reclaim": [
+      "append lock stale reclaim"
+    ],
+    "append lock stale reclaim acceptance criteria": [
+      "append lock stale reclaim acceptance criteria"
+    ],
+    "append lock stale reclaim goal": [
+      "append lock stale reclaim goal"
+    ],
+    "append lock stale reclaim implementation summary": [
+      "append lock stale reclaim implementation summary"
+    ],
+    "append lock stale reclaim plan": [
+      "append lock stale reclaim plan"
+    ],
+    "append lock stale reclaim tasks": [
+      "append lock stale reclaim tasks"
     ],
     "append log concurrency flake": [
       "append log concurrency flake"
@@ -20313,6 +20340,24 @@
     ],
     "claude webfetch screen": [
       "claude webfetch screen"
+    ],
+    "claude window unknown": [
+      "claude window unknown"
+    ],
+    "claude window unknown acceptance criteria": [
+      "claude window unknown acceptance criteria"
+    ],
+    "claude window unknown goal": [
+      "claude window unknown goal"
+    ],
+    "claude window unknown implementation summary": [
+      "claude window unknown implementation summary"
+    ],
+    "claude window unknown plan": [
+      "claude window unknown plan"
+    ],
+    "claude window unknown tasks": [
+      "claude window unknown tasks"
     ],
     "claude worktree guard": [
       "claude worktree guard"
@@ -56298,6 +56343,9 @@
     "handover outranking continuity fixed": [
       "handover outranking continuity fixed"
     ],
+    "handover review remediation": [
+      "handover review remediation"
+    ],
     "handover state routing": [
       "handover_state routing"
     ],
@@ -61760,6 +61808,24 @@
     "latest iteration record merge": [
       "latest iteration record merge"
     ],
+    "launch flag replay": [
+      "launch flag replay"
+    ],
+    "launch flag replay acceptance criteria": [
+      "launch flag replay acceptance criteria"
+    ],
+    "launch flag replay goal": [
+      "launch flag replay goal"
+    ],
+    "launch flag replay implementation summary": [
+      "launch flag replay implementation summary"
+    ],
+    "launch flag replay plan": [
+      "launch flag replay plan"
+    ],
+    "launch flag replay tasks": [
+      "launch flag replay tasks"
+    ],
     "launch wrapper child detection guard hook": [
       "launch wrapper child detection guard hook"
     ],
@@ -64378,6 +64444,24 @@
     ],
     "loop repeat state": [
       "loop repeat state"
+    ],
+    "loop start record cleanup": [
+      "loop start record cleanup"
+    ],
+    "loop start record cleanup acceptance criteria": [
+      "loop start record cleanup acceptance criteria"
+    ],
+    "loop start record cleanup goal": [
+      "loop start record cleanup goal"
+    ],
+    "loop start record cleanup implementation summary": [
+      "loop start record cleanup implementation summary"
+    ],
+    "loop start record cleanup plan": [
+      "loop start record cleanup plan"
+    ],
+    "loop start record cleanup tasks": [
+      "loop start record cleanup tasks"
     ],
     "loop termination cause event": [
       "loop termination cause event"
@@ -79529,6 +79613,9 @@
     "phase 1 shared rule contract": [
       "phase 1 shared rule contract"
     ],
+    "phase 1 shim wrapper trust": [
+      "phase 1 shim wrapper trust"
+    ],
     "phase 1 sk code hub voice": [
       "phase 1 sk code hub voice"
     ],
@@ -80213,6 +80300,9 @@
     "phase 2 skill and routing rename": [
       "phase 2 skill and routing rename"
     ],
+    "phase 2 state dir read check": [
+      "phase 2 state dir read check"
+    ],
     "phase 2 subtrack predicate": [
       "phase 2 subtrack predicate"
     ],
@@ -80513,6 +80603,9 @@
     "phase 3 integration and docs": [
       "phase 3 integration and docs"
     ],
+    "phase 3 launch flag replay": [
+      "phase 3 launch flag replay"
+    ],
     "phase 3 manual claim live settings": [
       "phase 3 manual claim live settings"
     ],
@@ -80659,6 +80752,9 @@
     ],
     "phase 4 cache optimizer": [
       "phase 4 cache optimizer"
+    ],
+    "phase 4 claude window unknown": [
+      "phase 4 claude window unknown"
     ],
     "phase 4 cli cursor": [
       "phase 4 cli cursor"
@@ -81011,6 +81107,9 @@
     "phase 5 stdin late write coverage": [
       "phase 5 stdin late write coverage"
     ],
+    "phase 5 subagent guard cancel consume": [
+      "phase 5 subagent guard cancel consume"
+    ],
     "phase 5 version aware guards": [
       "phase 5 version aware guards"
     ],
@@ -81049,6 +81148,9 @@
     ],
     "phase 6 adr": [
       "phase 6 ADR"
+    ],
+    "phase 6 append lock stale reclaim": [
+      "phase 6 append lock stale reclaim"
     ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"
@@ -81295,6 +81397,9 @@
     ],
     "phase 7 lineage reducer compliance": [
       "phase 7 lineage reducer compliance"
+    ],
+    "phase 7 loop start record cleanup": [
+      "phase 7 loop start record cleanup"
     ],
     "phase 7 main ci repairs": [
       "phase 7 main ci repairs"
@@ -89978,6 +90083,9 @@
     "relaunch loop after phase 009": [
       "relaunch loop after phase 009"
     ],
+    "relaunch loop review findings": [
+      "relaunch loop review findings"
+    ],
     "relaunch loop test suite": [
       "relaunch loop test suite"
     ],
@@ -91989,6 +92097,21 @@
     ],
     "reply rule miss rate": [
       "reply rule miss rate"
+    ],
+    "reply rule pruning": [
+      "reply rule pruning"
+    ],
+    "reply rule pruning implementation summary": [
+      "reply rule pruning implementation summary"
+    ],
+    "reply rule pruning plan": [
+      "reply rule pruning plan"
+    ],
+    "reply rule pruning tasks": [
+      "reply rule pruning tasks"
+    ],
+    "reply rules cut to two": [
+      "reply rules cut to two"
     ],
     "reply to comment": [
       "reply to comment"
@@ -94082,6 +94205,9 @@
     "retire the sweep tasks": [
       "retire the sweep tasks"
     ],
+    "retire three low value reply rules and fold": [
+      "retire three low value reply rules and fold"
+    ],
     "retire unproven features acceptance criteria": [
       "retire unproven features acceptance criteria"
     ],
@@ -95261,6 +95387,9 @@
     ],
     "review remediation p2 triage changelog": [
       "review remediation p2 triage changelog"
+    ],
+    "review remediation phase parent spec": [
+      "review remediation phase parent spec"
     ],
     "review remediation plan": [
       "review remediation plan"
@@ -100190,6 +100319,21 @@
     "self healing model consolidation changelog": [
       "self-healing-model-consolidation changelog"
     ],
+    "self invocation guard api key": [
+      "self invocation guard api key"
+    ],
+    "self invocation guard api key implementation summary": [
+      "self invocation guard api key implementation summary"
+    ],
+    "self invocation guard api key plan": [
+      "self invocation guard api key plan"
+    ],
+    "self invocation guard api key tasks": [
+      "self invocation guard api key tasks"
+    ],
+    "self invocation guard ignores opencode api key": [
+      "self invocation guard ignores opencode api key"
+    ],
     "self invocation rule": [
       "self-invocation rule"
     ],
@@ -101976,6 +102120,24 @@
     ],
     "shim mode switch": [
       "shim mode switch"
+    ],
+    "shim wrapper trust": [
+      "shim wrapper trust"
+    ],
+    "shim wrapper trust acceptance criteria": [
+      "shim wrapper trust acceptance criteria"
+    ],
+    "shim wrapper trust goal": [
+      "shim wrapper trust goal"
+    ],
+    "shim wrapper trust implementation summary": [
+      "shim wrapper trust implementation summary"
+    ],
+    "shim wrapper trust plan": [
+      "shim wrapper trust plan"
+    ],
+    "shim wrapper trust tasks": [
+      "shim wrapper trust tasks"
     ],
     "shipped 027 alignment": [
       "shipped 027 alignment"
@@ -115439,6 +115601,24 @@
     "state consolidation timeline": [
       "state consolidation timeline"
     ],
+    "state dir read check": [
+      "state dir read check"
+    ],
+    "state dir read check acceptance criteria": [
+      "state dir read check acceptance criteria"
+    ],
+    "state dir read check goal": [
+      "state dir read check goal"
+    ],
+    "state dir read check implementation summary": [
+      "state dir read check implementation summary"
+    ],
+    "state dir read check plan": [
+      "state dir read check plan"
+    ],
+    "state dir read check tasks": [
+      "state dir read check tasks"
+    ],
     "state directory consolidation": [
       "state directory consolidation"
     ],
@@ -116424,6 +116604,24 @@
     ],
     "subagent dispatch policy": [
       "subagent dispatch policy"
+    ],
+    "subagent guard cancel consume": [
+      "subagent guard cancel consume"
+    ],
+    "subagent guard cancel consume acceptance criteria": [
+      "subagent guard cancel consume acceptance criteria"
+    ],
+    "subagent guard cancel consume goal": [
+      "subagent guard cancel consume goal"
+    ],
+    "subagent guard cancel consume implementation summary": [
+      "subagent guard cancel consume implementation summary"
+    ],
+    "subagent guard cancel consume plan": [
+      "subagent guard cancel consume plan"
+    ],
+    "subagent guard cancel consume tasks": [
+      "subagent guard cancel consume tasks"
     ],
     "subagent handoff workstream": [
       "subagent-handoff workstream"

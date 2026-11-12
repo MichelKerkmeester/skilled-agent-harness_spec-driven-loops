@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7347f67938bd1a494d9014f074efde304f734f5f5d92ceab7f1fce98403e58f2",
+  "corpusHash": "06c04cf25ca61f75c1d422e90d386a6e75962ed7b06ec18ae11b9b27df17f917",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26229,
+  "includedPathCount": 26284,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9357,6 +9357,10 @@
     "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/plan.md",
     "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/spec.md",
     "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/tasks.md",
+    "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/implementation-summary.md",
+    "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/plan.md",
+    "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/spec.md",
+    "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/tasks.md",
     "specs/agents/001-orchestrator-inline-authority/acceptance-criteria.md",
     "specs/agents/001-orchestrator-inline-authority/implementation-summary.md",
     "specs/agents/001-orchestrator-inline-authority/plan.md",
@@ -10313,6 +10317,11 @@
     "specs/cli-external-orchestration/opencode-platform/003-opencode-worktree-confinement/plan.md",
     "specs/cli-external-orchestration/opencode-platform/003-opencode-worktree-confinement/spec.md",
     "specs/cli-external-orchestration/opencode-platform/003-opencode-worktree-confinement/tasks.md",
+    "specs/cli-external-orchestration/opencode-platform/004-self-invocation-guard-api-key/decision-record.md",
+    "specs/cli-external-orchestration/opencode-platform/004-self-invocation-guard-api-key/implementation-summary.md",
+    "specs/cli-external-orchestration/opencode-platform/004-self-invocation-guard-api-key/plan.md",
+    "specs/cli-external-orchestration/opencode-platform/004-self-invocation-guard-api-key/spec.md",
+    "specs/cli-external-orchestration/opencode-platform/004-self-invocation-guard-api-key/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/001-deep-research/acceptance-criteria.md",
     "specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/001-deep-research/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/001-deep-research/implementation-summary.md",
@@ -11783,6 +11792,52 @@
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/035-known-gap-fixes/plan.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/035-known-gap-fixes/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/035-known-gap-fixes/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/001-shim-wrapper-trust/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/001-shim-wrapper-trust/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/001-shim-wrapper-trust/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/001-shim-wrapper-trust/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/001-shim-wrapper-trust/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/001-shim-wrapper-trust/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/002-state-dir-read-check/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/002-state-dir-read-check/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/002-state-dir-read-check/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/002-state-dir-read-check/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/002-state-dir-read-check/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/002-state-dir-read-check/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/004-claude-window-unknown/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/004-claude-window-unknown/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/004-claude-window-unknown/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/004-claude-window-unknown/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/004-claude-window-unknown/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/004-claude-window-unknown/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim/decision-record.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/decision-record.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -26261,7 +26316,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8d53523ad2913fb6e69bf84d151b6d87c9ac97e9ac37ab29ac28e61b79308d05",
+  "manifestHash": "31ef0aeffe514094d80ff8b8ae474e7eed69e02fcc42e9fd0cdbb9f50ed5a68c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27225,6 +27280,10 @@
     },
     {
       "path": "specs/agents-md/repo-rule-operations/004-router-file-rule-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/scratch",
       "reason": "excluded directory"
     },
     {
@@ -28337,6 +28396,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/opencode-platform/003-opencode-worktree-confinement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/opencode-platform/004-self-invocation-guard-api-key/scratch",
       "reason": "excluded directory"
     },
     {
@@ -29557,6 +29620,38 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/035-known-gap-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/001-shim-wrapper-trust/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/002-state-dir-read-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/004-claude-window-unknown/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {

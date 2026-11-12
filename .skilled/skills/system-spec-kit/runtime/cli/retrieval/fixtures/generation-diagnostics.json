@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6735,
-    "ok": 17865,
+    "ok": 17920,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26229,
+  "documentsScanned": 26284,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "8d53523ad2913fb6e69bf84d151b6d87c9ac97e9ac37ab29ac28e61b79308d05",
+  "manifestHash": "31ef0aeffe514094d80ff8b8ae474e7eed69e02fcc42e9fd0cdbb9f50ed5a68c",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42397,
+      "ok": 42463,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -52825,6 +52825,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/agents-md/z_archive",
       "reason": "excluded directory"
     },
@@ -53934,6 +53938,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/opencode-platform/003-opencode-worktree-confinement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/opencode-platform/004-self-invocation-guard-api-key/scratch",
       "reason": "excluded directory"
     },
     {
@@ -55154,6 +55162,38 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/035-known-gap-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/001-shim-wrapper-trust/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/002-state-dir-read-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/004-claude-window-unknown/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/007-loop-start-record-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {
