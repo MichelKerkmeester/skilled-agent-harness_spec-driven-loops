@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6735,
-    "ok": 17997,
+    "ok": 18001,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26361,
+  "documentsScanned": 26365,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "95f1d0240aa9e287b5aaa197b48e4b6b269458ca51fc262922c2d50258026d8e",
+  "manifestHash": "3c9ad1b85f905bf18986537e399379fd3a244725a7d1dfa644fa928b29ef7695",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42572,
+      "ok": 42577,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -62274,6 +62274,10 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak/scratch",
       "reason": "excluded directory"
     },
     {
