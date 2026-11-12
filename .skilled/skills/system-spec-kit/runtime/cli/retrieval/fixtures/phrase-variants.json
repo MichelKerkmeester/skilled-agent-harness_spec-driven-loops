@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3c7a4259592580a1531c38889471de99b9bab12132e398be9dcb228eb251aa8b",
+  "manifestHash": "95f1d0240aa9e287b5aaa197b48e4b6b269458ca51fc262922c2d50258026d8e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -73971,6 +73971,9 @@
     "npm audit remediation tasks": [
       "npm audit remediation tasks"
     ],
+    "npm ci retry wrapper": [
+      "npm ci retry wrapper"
+    ],
     "npm run build mcp server": [
       "npm run build mcp-server"
     ],
@@ -80554,6 +80557,9 @@
     ],
     "phase 20 tasks": [
       "phase 20 tasks"
+    ],
+    "phase 20 test speed followups": [
+      "phase 20 test speed followups"
     ],
     "phase 21 align system skill advisor": [
       "phase 21 align system skill advisor"
@@ -121209,6 +121215,18 @@
     "test smell detection": [
       "test smell detection"
     ],
+    "test speed followups": [
+      "test speed followups"
+    ],
+    "test speed followups implementation summary": [
+      "test speed followups implementation summary"
+    ],
+    "test speed followups plan": [
+      "test speed followups plan"
+    ],
+    "test speed followups tasks": [
+      "test speed followups tasks"
+    ],
     "test suite": [
       "test suite"
     ],
@@ -121220,6 +121238,9 @@
     ],
     "test temp folder isolation": [
       "test temp folder isolation"
+    ],
+    "test temp folder leak": [
+      "test temp folder leak"
     ],
     "test validation": [
       "test validation"
