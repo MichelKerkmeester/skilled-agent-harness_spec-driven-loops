@@ -38,8 +38,20 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "scratch/lane-commands.txt",
+      "scratch/cli-vitest-names.txt",
+      "scratch/lane-name-sources.md",
+      "scratch/measure-overlap.sh",
+      "scratch/legacy-lane-names.txt",
+      "scratch/legacy-lane-overlap.md",
       ".opencode/skills/system-spec-kit/runtime/cli/package.json",
-      ".github/workflows/spec-kit-check.yml"
+      ".github/workflows/spec-kit-check.yml",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/scratch/lane-commands.txt",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/scratch/cli-vitest-names.txt",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/scratch/lane-name-sources.md",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/scratch/measure-overlap.sh",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/scratch/legacy-lane-names.txt",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/009-legacy-lane-overlap-measurement/scratch/legacy-lane-overlap.md"
     ],
     "entities": [
       {
@@ -64,6 +76,42 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane-commands.txt",
+        "kind": "file",
+        "path": "scratch/lane-commands.txt",
+        "source": "derived"
+      },
+      {
+        "name": "cli-vitest-names.txt",
+        "kind": "file",
+        "path": "scratch/cli-vitest-names.txt",
+        "source": "derived"
+      },
+      {
+        "name": "lane-name-sources.md",
+        "kind": "doc",
+        "path": "scratch/lane-name-sources.md",
+        "source": "derived"
+      },
+      {
+        "name": "measure-overlap.sh",
+        "kind": "script",
+        "path": "scratch/measure-overlap.sh",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-lane-names.txt",
+        "kind": "file",
+        "path": "scratch/legacy-lane-names.txt",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-lane-overlap.md",
+        "kind": "doc",
+        "path": "scratch/legacy-lane-overlap.md",
         "source": "derived"
       },
       {
@@ -149,47 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "three",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "combined",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `Legacy module lanes and the bash validation suites` step took 161 s in run 43174399120, and it chains twelve Node and bash harnesses",
     "created_at": "2026-11-12T08:21:56Z",
-    "last_save_at": "2026-11-12T08:44:46.632Z",
+    "last_save_at": "2026-11-12T12:11:12.539Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:86dcc8f2cd1c6656e5310eff5ea6f93e3282058f6d3cd25ffdb4ae0b1c916058",
+    "source_fingerprint": "sha256:0389c5d4c97f68d71c83cef88c134fe6be1ca73428bf55e9f47b23bdaf8890f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "27c5ff6ec294234603ffbb238b69bdb785995cc42505fee4b20f7ffb7cb14178",
       "plan.md": "8c01f4da0aa9b089ee003f5d7ff0f41946bc7096545e43a1d1242e5893ab5161",
-      "tasks.md": "7c93cc01fc9db6fbb46ca4ce0327326ab19642f9609d5db4f5ca45567607a8de",
-      "implementation-summary.md": "57b954fd1fec6d035b817badbacd15a0a913063dbd32230a22bb6dd37798ebbf"
+      "tasks.md": "914e3bade149fbfc0eb6b98dc4667fb899ae64ab6af9bcf9acf590ed69c6b701",
+      "implementation-summary.md": "650d7523891c73937ed7e6c445f9609dcb3920078196550bb0c7dba1fc376337"
     },
     "last_active_at": null
   }
