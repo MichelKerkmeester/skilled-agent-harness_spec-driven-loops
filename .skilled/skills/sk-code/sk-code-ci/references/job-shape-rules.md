@@ -9,7 +9,7 @@ trigger_phrases:
   - "ci switch condition"
 importance_tier: normal
 contextType: general
-version: 1.1.5.0
+version: 1.1.6.0
 ---
 
 # Job Shape Rules
@@ -46,11 +46,11 @@ A job with no `timeout-minutes` runs until GitHub stops it at 360 minutes, so a 
 | Workflow | Job | Line | Value |
 |---|---|---|---|
 | `skill-doc-frontmatter.yml` | `doc-version-raise` | `:74` | 15 |
-| `advisory-checks.yml` | `gate-critical` | `:111` | 15 |
+| `advisory-checks.yml` | `gate-critical` | `:116` | 15 |
 | `message-contract.yml` | `message-contract` | `:25` | 20 |
 | `changed-packet-validation.yml` | `changed-packets` | `:26` | 20 |
 | `skill-advisor-stress.yml` | `skill-advisor-stress` | `:58` | 25 |
-| `advisory-checks.yml` | `advisory` | `:33` | 28 |
+| `advisory-checks.yml` | `advisory` | `:38` | 28 |
 | `deep-loop-runtime.yml` | `deep-loop-runtime` | `:46` | 34 |
 | `routing-registry-drift.yml` | `golden-prompt-gate` | `:263` | 37 |
 | `spec-kit-check.yml` | `check` | `:98` | 51 |
@@ -116,7 +116,7 @@ The action is `.github/actions/setup/action.yml`. The rules it follows:
 - **Bun comes from a SHA-pinned setup action**, never from an `npm install` of bun in the workflow.
 - **The scan reads it.** `.github/scripts/check-gate-inputs.sh:499-503` (the `if [[ -d "$ROOT/.github/actions" ]]` block) scans `.github/actions/**` with the workflow parser, so a path in an action is held to the twin rule.
 
-Today five jobs in three workflows call the action: `opencode-dual-version.yml` at `:110` and `:181`, `opencode-plugin-tests.yml` at `:92` and `routing-registry-drift.yml` at `:141` and `:248`. A new provisioning workflow calls the action and does not copy its steps.
+Today five jobs in three workflows call the action: `opencode-dual-version.yml` at `:110` and `:181`, `opencode-plugin-tests.yml` at `:93` and `routing-registry-drift.yml` at `:150` and `:272`. A new provisioning workflow calls the action and does not copy its steps.
 
 ---
 
@@ -143,6 +143,6 @@ Skilled example: `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != '
 - Skilled example: `SKILLED_CI` is the master switch. The five group switches are `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`.
 - Skilled example: `message-contract.yml` holds the required context, and `dependabot-auto-merge.yml` is the exempt workflow.
 
-Skilled example: the shape is the rule. Today 42 of the 44 jobs carry it, and all 42 test `SKILLED_CI`. The group variables split as 24 on `SKILLED_CI_TESTS`, 11 on `SKILLED_CI_FRESHNESS`, 3 on `SKILLED_CI_REVIEW`, 3 on `SKILLED_CI_REPORTS` and 1 on `SKILLED_CI_MESSAGES`. Three jobs AND the switch onto an existing condition: `skill-doc-frontmatter.yml:67`, `trigger-index-rebuild.yml:33` and `trigger-index-rebuild.yml:189`. The two jobs without the switch are the `metadata` and `auto-merge` jobs of `dependabot-auto-merge.yml`, so a reader who finds no switch there is reading the current tree and not a gap in this file.
+Skilled example: the shape is the rule. Today 48 of the 50 jobs carry it, and all 48 test `SKILLED_CI`. The group variables split as 28 on `SKILLED_CI_TESTS`, 13 on `SKILLED_CI_FRESHNESS`, 3 on `SKILLED_CI_REVIEW`, 3 on `SKILLED_CI_REPORTS` and 1 on `SKILLED_CI_MESSAGES`. Three jobs AND the switch onto an existing condition: `skill-doc-frontmatter.yml:72`, `trigger-index-rebuild.yml:38` and `trigger-index-rebuild.yml:194`. The two jobs without the switch are the `metadata` and `auto-merge` jobs of `dependabot-auto-merge.yml`, so a reader who finds no switch there is reading the current tree and not a gap in this file.
 
 Enforcement: honour-system.

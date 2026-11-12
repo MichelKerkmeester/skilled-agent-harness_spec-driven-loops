@@ -230,8 +230,8 @@ npm run typecheck:tests       # tsconfig.tests.json
 npm run test:spec-validation   # the tracked validation suites in cli/tests
 ```
 
-`test:spec-validation` covers the tracked shell validation suites. A run that
-exceeds `SPECKIT_TEST_RUN_TIMEOUT_MS` prints `[test-bound] invocation exceeded` and
+`test:spec-validation` covers the tracked shell validation suites. An `npm test` run
+that exceeds `SPECKIT_TEST_RUN_TIMEOUT_MS` prints `[test-bound] invocation exceeded` and
 exits 124, which is not a result, read the log and the exit status separately rather
 than through a pipe.
 

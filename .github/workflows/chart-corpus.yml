@@ -36,8 +36,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      # The corpus check and its mutation suite run inside the chart packet and reach no
-      # other path, so the chart tree plus the .opencode/skills link are all that is needed.
+      # The corpus check runs inside the chart packet. Its mutation suite also runs the
+      # shared screenshot script and the diagram corpus checker to test their flag
+      # parsing, so the checkout holds the chart tree, those two folders and the
+      # .opencode/skills link.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           filter: blob:none
