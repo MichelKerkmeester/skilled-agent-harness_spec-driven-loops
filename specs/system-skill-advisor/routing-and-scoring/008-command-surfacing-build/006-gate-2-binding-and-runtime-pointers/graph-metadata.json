@@ -13,6 +13,7 @@
     "trigger_phrases": [
       "gate 2 binding and runtime pointers",
       "phase 6 gate 2 binding and runtime pointers",
+      "command in the brief gate 2 bullet",
       "gate 2 binding and runtime pointers plan",
       "gate 2 binding and runtime pointers tasks",
       "gate 2 binding and runtime pointers acceptance criteria",
@@ -24,13 +25,13 @@
       "runtime",
       "pointers",
       "phase",
+      "command",
+      "brief",
+      "bullet",
       "plan",
       "tasks",
       "acceptance",
-      "criteria",
-      "implementation",
-      "summary",
-      "yourvaluehere"
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -39,7 +40,22 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/measure-policies.mjs",
+      "scratch/hub-commands.mjs",
+      "scratch/advisor-top.sh",
+      "scratch/hook-first-line.sh",
+      "scratch/bullet-draft.txt",
+      ".cursor/rules/skill-routing.md",
+      ".devin/SYNC.md",
+      ".skilled/commands/doctor/assets/agents-md-manifest.json",
+      ".skilled/skills/sk-doc/ROUTER.md",
+      ".skilled/skills/sk-design/ROUTER.md",
+      ".skilled/skills/system-deep-loop/ROUTER.md",
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs",
+      ".dsh/plugins/repo-guards/adapters/prompt-advisor.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/advisor-runtime-values.ts"
     ],
     "entities": [
       {
@@ -73,25 +89,85 @@
         "source": "derived"
       },
       {
+        "name": "measure-policies.mjs",
+        "kind": "file",
+        "path": "scratch/measure-policies.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hub-commands.mjs",
+        "kind": "file",
+        "path": "scratch/hub-commands.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-top.sh",
+        "kind": "script",
+        "path": "scratch/advisor-top.sh",
+        "source": "derived"
+      },
+      {
+        "name": "hook-first-line.sh",
+        "kind": "script",
+        "path": "scratch/hook-first-line.sh",
+        "source": "derived"
+      },
+      {
+        "name": "bullet-draft.txt",
+        "kind": "file",
+        "path": "scratch/bullet-draft.txt",
+        "source": "derived"
+      },
+      {
+        "name": "skill-routing.md",
+        "kind": "doc",
+        "path": ".cursor/rules/skill-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".devin/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-gate1-pointers.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.mjs",
+        "kind": "file",
+        "path": ".dsh/plugins/repo-guards/adapters/prompt-advisor.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-runtime-values.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/advisor-runtime-values.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Status Draft",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,87 +185,27 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Phase Context This",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Scope Boundary",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "One Gate",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
+        "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The advisor now attaches a command to a recommendation, but nothing in `AGENTS.md` says what a model does with it, so a surfaced command is a hint with no rule behind it",
     "created_at": "2026-11-12T12:27:37Z",
-    "last_save_at": "2026-11-12T18:21:41.936Z",
+    "last_save_at": "2026-11-12T20:56:01.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5084a63f07ba290db1cbf23b13de75e976aaa526bc99eeb65b90e0851ed42f26",
+    "source_fingerprint": "sha256:7f213afa9bdbcc3cc24be051744a33891743bcd60a19ce6cd93fa6e8b75d11b5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "be60cbf1c6734ffc308085d430bf0922252136c165e83af3b19c963c3484a1eb",
-      "plan.md": "166d6d5e14042b57a6e6370ef636f01f9647b8e4d72827b2f455311dda1150c5",
-      "tasks.md": "7ade9b2ec43a43f4ad2a79fd2046e752183354859511b63cd7b9b7e999037996",
-      "implementation-summary.md": "b4104d119df3480e0286686d80f354fecdf05775d574935d6f8ff6fa8718408c"
+      "spec.md": "e77e45ac69d7f3fab7bd73c9d4b09589dcec834f98e5aad6631e0f9cdcc75ac3",
+      "plan.md": "256bac48fd888d48ae2af9530424d88aa6a1609978068c4b5eb256481ef93d3a",
+      "tasks.md": "90afc1541bb6f89c8c1384590f9d6d2fdd081c52091952acbd45915c4ef148de",
+      "implementation-summary.md": "d2cde068b2c8fa958bae039fa92cae0c94893dda4f604da42bcfffcaf3866019"
     },
     "last_active_at": null
   }

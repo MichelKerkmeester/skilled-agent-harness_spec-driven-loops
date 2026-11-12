@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Planned, not built. This phase will bind a surfaced command to its own document through Gate 2 and carry that rule to every runtime."
 trigger_phrases:
   - "gate 2 binding and runtime pointers implementation summary"
 importance_tier: "normal"
@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers"
-    last_updated_at: "2026-11-12T12:27:38Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 plus template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-12T20:30:00Z"
+    last_updated_by: "planner"
+    recent_action: "Planned phase 6 at Level 2"
+    next_safe_action: "Run T001 and T002, then wave 1"
     blockers: []
     key_files: []
     session_dedup:
@@ -25,81 +25,78 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 3+ -->
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-gate-2-binding-and-runtime-pointers |
-| **Completed** | 2026-11-12 |
-| **Level** | 3+ |
+| **Completed** | Not started. Planned on 2026-11-12 |
+| **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
 ---
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Nothing yet. The phase is planned, and no file outside this folder has changed.
 
 ### Phase 6: gate-2-binding-and-runtime-pointers
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+When this phase is built, a command the advisor names will come with one rule on every runtime: read its document in full and follow it under its policy, or take the skill path whole. Cursor and Devin will carry that rule in their own rule file, a hub skill will name its mode's command, a new folder will name the plan workflow and a dispatched child will see a surfaced command only as parent-named.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `scratch/measure-policies.mjs`, `scratch/hub-commands.mjs`, `scratch/advisor-top.sh`, `scratch/hook-first-line.sh`, `scratch/bullet-draft.txt` | Created | Read-only probes and the drafted bullet behind the Measured Behavior block |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Planned through `speckit-plan.yaml` in auto mode with the spec authoring card. Every number in `spec.md` comes from a command run on 2026-11-12 in this worktree. The budget after the change was measured by running the agents-md check on a copy of `AGENTS.md` with the drafted bullet, made outside the repository.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Level 2, not the Level 1 the helper printed | The packet asks for `acceptance-criteria.md`, and `speckit-plan.yaml` says to go higher when the helper and judgment differ |
+| Extend `sync-gate1-pointers.cjs` instead of writing a new generator | The agents-md check already runs its `--check` for the Cursor rule, so a second block is checked with no new wiring |
+| Read the child downgrade class from `commandPolicies` | All 68 policy records carry `mutating`, while only 23 of 62 bridge entries do |
+| Plan `copilot` removal with a test of the old-record path | The operator chose removal on 2026-11-12. Both metrics readers filter on the enum, so a stored record is skipped rather than thrown on, and the test pins that |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `/doctor:agents-md check` before the change | PASS, `STATUS=OK`, 15629 of 16384 bytes to the last anchor |
+| Same check on a copy with the drafted bullet | A6 PASS at 16092. A4 shows 1 edited until the manifest is rewritten |
+| `validate.sh --strict` on this folder | Run at the end of planning |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **The child downgrade waits on phase 005.** Phase 005 is not built, and the downgrade edits the command line it adds to the brief. T002 marks those tasks blocked if the line is absent, and the rest of the phase can still ship.
 <!-- /ANCHOR:limitations -->
 
 ---
-

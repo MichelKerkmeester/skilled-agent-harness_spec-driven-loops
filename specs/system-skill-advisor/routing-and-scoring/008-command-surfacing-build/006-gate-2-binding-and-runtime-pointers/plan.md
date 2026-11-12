@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 6: gate-2-binding-and-runtime-pointers"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Add one Gate 2 bullet for a surfaced command, copy it into the Cursor rule through the existing pointer generator, hand a hub mode to its command, name the plan workflow in the Gate 3 notice and downgrade commands in a child brief."
 trigger_phrases:
   - "gate 2 binding and runtime pointers plan"
 importance_tier: "normal"
@@ -9,133 +9,132 @@ contextType: "general"
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
 # Implementation Plan: Phase 6: gate-2-binding-and-runtime-pointers
 
-<!-- SPECKIT_LEVEL: 3+ -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one `--keep <n>` option. Prove it with an archive count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | Markdown instruction files, CommonJS generators, one ES module, one Bash script and TypeScript in the advisor |
+| **Framework** | The `AGENTS.md` manifest and check engine under `.skilled/commands/doctor/`, the spec-kit runtime mirrors and the system-skill-advisor runtime (`ADV`) |
+| **Storage** | None. Every output is a tracked text file |
+| **Testing** | `/doctor:agents-md check`, the manifest check, the rule-copy canary, Vitest in `ADV` and in the spec-kit CLI, `node --test` for the spec gate |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The rule lives once, in Gate 2 of `AGENTS.md`. Every other surface either copies it through a generator that checks the copy, or points at the command document from where a model already is: the hub router after it picks a mode, the Gate 3 notice before the first write and the brief in a child session. Nothing in scoring moves.
 <!-- /ANCHOR:summary -->
 
 ---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] The operator answered the four wording questions on 2026-11-12. `spec.md` section 10 quotes each answer.
+- [ ] Phase 005 shipped, and the Claude hook's first line for `create a readme for the utils folder` shows `/create:readme` and a policy word (T002). Without it only the REQ-004 tasks wait.
+- [ ] The before numbers in `spec.md` Measured Behavior still hold (T001).
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Every row in `acceptance-criteria.md` is `Met`.
+- [ ] `/doctor:agents-md check` prints `STATUS=OK`, and `sync-gate1-pointers.cjs --check` exits 0.
+- [ ] `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md` agree.
 <!-- /ANCHOR:quality-gates -->
 
 ---
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. Name what fails today without each component you add, or drop it. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+One source, generated copies, pointers at the point of use.
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **Gate 2 bullet** (`AGENTS.md`): without it no runtime has a rule for a surfaced command, because Gate 2 today says only "Confidence ≥ 0.8 → MUST invoke skill".
+- **Manifest pin and derived copy** (`agents-md-manifest.json`): without the regenerated copy A4 reads `edited` and A12 fails, and without the pin a template edit that drops the marker leaves the Cursor block silently unwritten.
+- **Second pointer block** (`sync-gate1-pointers.cjs`): without it Cursor and Devin, which read `.cursor/rules/skill-routing.md` on its own, never see the bullet. Cursor's brief is dormant, so this is its only copy.
+- **Router handoff** (three `ROUTER.md` files): without it the skill path ends at the mode packet and never names the command its registry row records.
+- **Gate 3 line** (`GATE_3_MUTATION_NOTICE`, `create.sh`): without it a plain build request gets the folder question and no workflow, because the advisor names no command for it (Measured Behavior).
+- **Child downgrade** (`render.ts`): without it a child sees `/doctor:git hooks`, an `ask` route, as a plain recommendation.
+- **Runtime parity test** (`advisor-runtime-list-parity.vitest.ts`): without it the hook reference drifts from the adapters again, as it did when DSH was added.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+An operator edits the Gate 2 bullet. `agents-md-manifest.cjs --write` copies the new body into `derived`, and `sync-gate1-pointers.cjs` copies the direct-call line and the bullet into the Cursor rule. `/doctor:agents-md check` then reads the budget, the currency and the pointer drift in one run. At prompt time a brief or CLI result names a command, and the model reads that command's document, takes the skill path instead or offers the command, by its policy word.
 <!-- /ANCHOR:architecture -->
 
 ---
 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
-<!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `scripts/rotate-logs.sh`: owns the deletion. Action: update. WEAK: Various files. -->
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
-| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
+| `AGENTS.md` Gate 2 | Skill routing only | Update | `rg -c "^- \*\*Command in the brief\.\*\*" AGENTS.md` prints 1 |
+| `agents-md-manifest.json` `pins` and `derived` | Pins 30 strings, copies 44 bodies | Update | `agents-md-manifest.cjs --check` prints 31 pins and `PASS` |
+| `agents-md-check.cjs` A10 | Runs the pointer generator's `--check` | Unchanged. It covers block two through the same exit code | A10 `PASS` |
+| `agents-md-embed.cjs` | Calls the pointer generator in a consumer repository | Unchanged. A consumer with no bullet gets block one only (NFR-R01) | Gate1 test case for a fixture with no bullet |
+| `.cursor/rules/skill-routing.md` | Gate 1 block, read by Cursor and Devin | Update by generator | `sync-gate1-pointers.cjs --check` exits 0 |
+| Hub `ROUTER.md` section 3 replay maps | Stage-two replay source | Unchanged. The bullet goes in section 4 | `parent-skill-check.cjs` exits 0 per hub |
+| `GATE_3_MUTATION_NOTICE` and `GATE_3_DENY_DETAIL` | Folder question at the first write, embedded in the deny text | Update. The deny text embeds the notice, so it changes with it | `spec-gate-core.test.mjs` 0 failed |
+| `renderAdvisorBrief` | One brief for parent and child | Update, child branch only | `render-child-session.vitest.ts` and the unchanged golden briefs |
+| `ADVISOR_RUNTIME_VALUES` | Runtime enum for tool input, the CLI manifest and stored metrics records | Update: `copilot` removed | `advisor-observability.vitest.ts` expects seven labels |
+| `AdvisorValidateInputSchema` and the CLI manifest | Accept `outcomeEvents[].runtime` from the enum | Unchanged code. Input carrying `copilot` is now rejected | `runtime-label-removal.vitest.ts` |
+| `readAdvisorHookDiagnosticRecords`, `readAdvisorHookOutcomeRecords` | Filter stored lines through the record validators | Unchanged code. A stored `copilot` record is now skipped | `runtime-label-removal.vitest.ts` |
+| `hook-brief-signal-noise.bench.ts` | Fixture keyed by runtime | Update: the `copilot` row removed | `rg -c "copilot"` on the file prints nothing |
 
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+Matrix axes for the generator: bullet present or absent, block two present or absent, block two edited by hand or clean. Matrix axes for the label removal: stored diagnostics record, stored outcome record, new diagnostic record and tool input, each carrying `copilot`. Matrix axes for the renderer: child variable set to `1`, set to another value or unset, policy `run`, `start` or `ask`, class `read-only` or not. Every axis has one test row.
 <!-- /ANCHOR:affected-surfaces -->
-
 
 ---
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads `scripts/rotate-logs.sh` and counts the archives. Implementation adds `--keep` to `scripts/rotate-logs.sh`. Verification runs `scripts/rotate-logs.sh --keep 3` and counts 3. WEAK: See tasks. -->
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+Follow the ordered tasks in `tasks.md`. Setup re-reads the before numbers and checks that phase 005 shipped. Implementation edits the bullet, the generator, the routers, the notice, the hook reference, the runtime enum and the renderer, then regenerates the manifest and the Cursor rule. Verification runs the agents-md check, the manifest check, the canary, the pointer check, the three test suites, the hub checks and two live hook probes.
 <!-- /ANCHOR:phases -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-<!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
-| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
-| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
+| Unit | Pointer generator: both blocks, no bullet, hand edit. Renderer: the child matrix. Runtime list: index, table and enum | `gate1-pointer-sync.vitest.ts`, `render-child-session.vitest.ts`, `advisor-runtime-list-parity.vitest.ts` |
+| Integration | Delivery budget, section currency, pins, runtime copies and the canary over the real `AGENTS.md`. The pinned notice bytes | `agents-md-check.cjs`, `agents-md-manifest.cjs --check`, `check-rule-copies.js`, `spec-gate-core.test.mjs` |
+| Manual | The Claude hook on one prompt with and without `AI_SESSION_CHILD=1` | `scratch/hook-first-line.sh` |
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
+| Phase 005 brief line `use <skill> → <command> (<policy>)` | Internal | Planned in parallel, not built | REQ-004 waits. Every other task proceeds |
+| Phase 002 `commandPolicies` with `mutating` on all 68 records | Internal | Green: in the generated file today | The child downgrade has no class to read |
+| Phase 003 `attachCommand` and the CLI `command` field | Internal | Code shipped, phase In Progress | The bullet binds to the brief only |
+| Operator answers to the four wording questions | Decision | Green: answered on 2026-11-12, ADR-001 and ADR-005 to ADR-007 | None |
 <!-- /ANCHOR:dependencies -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
-- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
+- **Trigger**: `/doctor:agents-md check` not `OK`, the pointer check failing, a failing suite or a behaviour run in phase 007 showing the bullet steers turns wrongly.
+- **Procedure**: revert this phase's commit, then run `node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --write` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs` so the derived copy and the Cursor rule match the reverted `AGENTS.md`. Finish with `/doctor:agents-md check`.
 <!-- /ANCHOR:rollback -->
-
----
-
 
 ---
 
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
 
 ```
 Setup ──► Implementation ──► Verification
@@ -143,186 +142,115 @@ Setup ──► Implementation ──► Verification
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| [YOUR_VALUE_HERE: Phase A] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase B] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase C] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
+| Setup | Operator answers, phase 005 for REQ-004 only | Implementation |
+| Implementation | The before numbers | Verification |
+| Verification | All implementation tasks | Phase 007 |
 <!-- /ANCHOR:phase-deps -->
 
 ---
 
+<!-- ANCHOR:decisions -->
+## ARCHITECTURE DECISION RECORD
 
----
+Every ADR below records an operator decision already made. None is new.
 
-<!-- ANCHOR:dependency-graph -->
-## L3: DEPENDENCY GRAPH
-<!-- FILL: Draw the component order and fill the matrix with produces and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: `scripts/rotate-logs.sh`, then its test, then close. WEAK: Components depend on each other. -->
+### ADR-001: The command path and the skill path are both whole workflows
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Phase 1   │────►│   Phase 2   │────►│   Phase 3   │
-│   Setup     │     │    Core     │     │   Verify    │
-└─────────────┘     └──────┬──────┘     └─────────────┘
-                          │
-                    ┌─────▼─────┐
-                    │  Phase 2b │
-                    │  Parallel │
-                    └───────────┘
-```
+**Status**: Accepted by the operator on 2026-11-12, "Looser: AI picks freely" (`../decision-record.md` Q011, D2)
 
-### Dependency Matrix
+**Context**: The review's Gate 2 text and its G1 router rule make the command the workflow a model must follow.
 
-| Component | Depends On | Produces | Blocks |
-|-----------|------------|----------|--------|
-| [YOUR_VALUE_HERE: Component A] | None | [YOUR_VALUE_HERE: Output] | B, C |
-| [YOUR_VALUE_HERE: Component B] | A | [YOUR_VALUE_HERE: Output] | D |
-| [YOUR_VALUE_HERE: Component C] | A | [YOUR_VALUE_HERE: Output] | D |
-| [YOUR_VALUE_HERE: Component D] | B, C | [YOUR_VALUE_HERE: Final] | None |
-<!-- /ANCHOR:dependency-graph -->
-
----
-
-<!-- ANCHOR:critical-path -->
-## L3: CRITICAL PATH
-<!-- FILL: Name the longest chain and its total. List what can run in parallel. Write `N/A` with one reason, or delete the whole section. GOOD: Implementation to verification, 40 minutes. Docs run in parallel. WEAK: The critical path is the main path. -->
-
-1. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
-2. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
-3. **[YOUR_VALUE_HERE: Phase/Task]** - [YOUR_VALUE_HERE: Duration estimate] - CRITICAL
-
-**Total Critical Path**: [YOUR_VALUE_HERE: Sum of durations]
-
-**Parallel Opportunities**:
-- [YOUR_VALUE_HERE: Task A] and [YOUR_VALUE_HERE: Task B] can run simultaneously
-- [YOUR_VALUE_HERE: Task C] and [YOUR_VALUE_HERE: Task D] can run after Phase 1
-<!-- /ANCHOR:critical-path -->
-
----
-
-<!-- ANCHOR:milestones -->
-## L3: MILESTONES
-<!-- FILL: Name three milestones with a command-checkable success criterion. Write `N/A` with one reason, or delete the whole section. GOOD: M1: `--keep` parses. `rg -n 'keep' scripts/rotate-logs.sh` prints the branch. WEAK: Milestones are tracked. -->
-
-| Milestone | Description | Success Criteria | Target |
-|-----------|-------------|------------------|--------|
-| M1 | [YOUR_VALUE_HERE: Setup Complete] | [YOUR_VALUE_HERE: All dependencies ready] | [YOUR_VALUE_HERE: Date/Phase] |
-| M2 | [YOUR_VALUE_HERE: Core Done] | [YOUR_VALUE_HERE: Main features working] | [YOUR_VALUE_HERE: Date/Phase] |
-| M3 | [YOUR_VALUE_HERE: Release Ready] | [YOUR_VALUE_HERE: All tests pass] | [YOUR_VALUE_HERE: Date/Phase] |
-<!-- /ANCHOR:milestones -->
-
----
-
-## L3: ARCHITECTURE DECISION RECORD
-<!-- FILL: Write one ADR per decision. Name the context, the choice, the consequence and the rejected option. GOOD: ADR-001: an option, because the script already parses options. WEAK: We made a decision. -->
-
-### ADR-001: [YOUR_VALUE_HERE: Decision Title]
-
-**Status**: [YOUR_VALUE_HERE: Proposed/Accepted/Deprecated]
-
-**Context**: [YOUR_VALUE_HERE: What problem we're solving]
-
-**Decision**: [YOUR_VALUE_HERE: What we decided]
+**Decision**: The Gate 2 bullet and the three router bullets name the command beside the skill. A model picks either and follows it whole, never an improvised mix. The operator approved the exact Gate 2 text on 2026-11-12, "Command beside the skill (Recommended)".
 
 **Consequences**:
-- [YOUR_VALUE_HERE: Positive outcome 1]
-- [YOUR_VALUE_HERE: Negative outcome + mitigation]
+- The command is a suggestion the model may decline. The `COMMAND:` token records `declined` so phase 007 can count it.
+- A `command: null` mode keeps its packet as the only path.
 
 **Alternatives Rejected**:
-- [YOUR_VALUE_HERE: Option B]: [YOUR_VALUE_HERE: Why rejected]
+- Command as the default entry with the skill for partial work: the operator chose the looser reading over it (Q011).
 
----
+### ADR-002: A started command runs without `:auto`
 
+**Status**: Accepted by the operator on 2026-11-12, "Start it (Recommended)" (`../decision-record.md` Q006, D1)
 
----
+**Context**: Twenty commands carry the `start` policy, and their own setup asks for a mode, Gate 3 and a yes at an irreversible step.
 
-<!-- ANCHOR:ai-execution -->
-## L3+: AI EXECUTION FRAMEWORK
-<!-- FILL: Name the workers, their files and the order. Keep file ownership disjoint. GOOD: One worker owns `scripts/rotate-logs.sh`. One owns its test. WEAK: Agents work in parallel. -->
+**Decision**: The bullet defines `start` as starting the command without `:auto`, so its setup asks.
 
-### Tier 1: Sequential Foundation
-**Files**: spec.md (sections 1-3)
-**Duration**: ~60s
-**Agent**: Primary
+**Consequences**:
+- A typed `:auto` or an explicit instruction still wins (L5).
+- Whether a started command keeps to its setup is phase 007's G2 check.
 
-### Tier 2: Parallel Execution
-| Agent | Focus | Files |
-|-------|-------|-------|
-| Plan Agent | plan.md | Technical approach |
-| Checklist Agent | tasks.md | Verification items |
-| Requirements Agent | spec.md (4-6) | Requirements detail |
+**Alternatives Rejected**:
+- Ask before every write command: rejected by the operator (Q006).
 
-**Duration**: ~90s (parallel)
+### ADR-003: A deep loop is always asked first
 
-### Tier 3: Integration
-**Agent**: Primary
-**Task**: Merge outputs, resolve conflicts
-**Duration**: ~60s
+**Status**: Accepted by the operator on 2026-11-12, "Only on depth wording (Recommended)" (`../decision-record.md` Q008, D3)
 
-### Pre-Task Checklist
-- [ ] Read spec.md, this plan and tasks.md before the first edit
-- [ ] Confirm the target files match the workstream file ownership below
-- [ ] Know the verification command for the task before starting it
+**Context**: The three `/deep:*` commands carry the `ask` policy in `commandPolicies` today.
 
-### Execution Rules
+**Decision**: The bullet's `ask` sentence covers them, and no deep-loop clause is added to `AGENTS.md`. The deep-loop router bullet notes that `deep-research/SKILL.md` names its command as its only entry.
 
-| Rule | Requirement |
-|------|-------------|
-| TASK-SEQ | Execute tasks in dependency order; parallel work stays inside one workstream |
-| TASK-SCOPE | Touch only the files the task names; report anything else as a finding |
-| TASK-VERIFY | Run the task's verification before marking it complete |
+**Consequences**:
+- No bytes spent on a deep-loop rule in the delivery prefix.
 
-### Status Reporting Format
+**Alternatives Rejected**:
+- A separate deep-loop clause in Gate 2: it would restate the policy word.
 
-`[TASK-ID] [DONE | IN PROGRESS | BLOCKED] - one line of evidence`
+### ADR-004: The invocation table covers the 44 tracked commands
 
-### Blocked Task Protocol
-1. Mark the task BLOCKED with the blocking fact
-2. Record the fact in the tasks.md blocked section
-3. Continue with the next unblocked task; escalate after two blocked tasks
-<!-- /ANCHOR:ai-execution -->
+**Status**: Accepted by the operator on 2026-11-12, "No, exclude it (Recommended)" (`../decision-record.md` Q012, D5)
 
----
+**Context**: `/local-skilled-alignment` is private and untracked.
 
-<!-- ANCHOR:workstreams -->
-## L3+: WORKSTREAM COORDINATION
-<!-- FILL: Name each workstream, its owner and its files. One file per owner. GOOD: W-A owns `scripts/rotate-logs.sh`. W-B owns its test. WEAK: Work is split into streams. -->
+**Decision**: No surface in this phase names it.
 
-### Workstream Definition
+**Consequences**:
+- `rg -n "local-skilled-alignment"` over the changed files prints nothing.
 
-| ID | Name | Owner | Files | Status |
-|----|------|-------|-------|--------|
-| W-A | [YOUR_VALUE_HERE: Core Logic] | [YOUR_VALUE_HERE: Primary] | [YOUR_VALUE_HERE: file1.ts, file2.ts] | [YOUR_VALUE_HERE: Active] |
-| W-B | [YOUR_VALUE_HERE: UI Components] | [YOUR_VALUE_HERE: Secondary] | [YOUR_VALUE_HERE: comp1.tsx, comp2.tsx] | [YOUR_VALUE_HERE: Active] |
-| W-C | [YOUR_VALUE_HERE: Tests] | [YOUR_VALUE_HERE: Primary] | [YOUR_VALUE_HERE: test/*.ts] | [YOUR_VALUE_HERE: Blocked on W-A] |
+**Alternatives Rejected**:
+- A local overlay: rejected by the operator (Q012).
+### ADR-005: A child sees a surfaced command as parent-named only
 
-### Sync Points
+**Status**: Accepted by the operator on 2026-11-12, "Shown as parent-named only (Recommended)"
 
-| Sync ID | Trigger | Participants | Output |
-|---------|---------|--------------|--------|
-| SYNC-001 | W-A, W-B complete | All agents | Integration test |
-| SYNC-002 | All workstreams | All agents | Final verification |
+**Context**: A child session gets the same brief as its parent. In this worktree a child got `/doctor:git hooks`, an `ask` route, as a plain recommendation.
 
-### File Ownership Rules
-- Each file owned by ONE workstream
-- Cross-workstream changes require SYNC
-- Conflicts resolved at sync points
-<!-- /ANCHOR:workstreams -->
+**Decision**: With `AI_SESSION_CHILD=1`, a surfaced `start` or `ask` command, or a `run` command whose class is not `read-only`, renders as `(parent-named only)`. The class comes from `commandPolicies`.
 
----
+**Consequences**:
+- A child still sees the skill line and a read-only command.
 
-<!-- ANCHOR:communication -->
-## L3+: COMMUNICATION PLAN
-<!-- FILL: Name the update cadence and the escalation path. GOOD: A note in `goal.md` section 4 after each task. WEAK: Communicate regularly. -->
+**Alternatives Rejected**:
+- Drop the command from a child's brief, or send a child no brief: the operator chose the downgrade.
 
-### Checkpoints
-- **Daily**: Status update in tasks.md
-- **Per Phase**: Review meeting notes
-- **Blockers**: Immediate escalation
+### ADR-006: The Gate 3 notice names the plan workflow for a new folder
 
-### Escalation Path
-1. Technical blockers → Engineering Lead
-2. Scope changes → Product Owner
-3. Resource issues → Project Manager
-<!-- /ANCHOR:communication -->
+**Status**: Accepted by the operator on 2026-11-12, "/speckit:plan, or /speckit:complete for a build (Recommended)"
 
----
+**Context**: A plain build request gets no command from the advisor, so the first write meets the folder question and no workflow.
 
+**Decision**: The notice and the standard `create.sh` next steps name `/speckit:plan`, or `/speckit:complete` when the operator asked for the build itself.
+
+**Consequences**:
+- The pinned notice test changes in the same task wave.
+
+**Alternatives Rejected**:
+- `/speckit:plan` only, or both with no preference.
+
+### ADR-007: `copilot` is removed from the runtime enum
+
+**Status**: Accepted by the operator on 2026-11-12, "Drop it": "The label is removed. Old stored records and any tool input carrying 'copilot' fail validation from then on."
+
+**Context**: No adapter or registration emits `copilot`, but the enum still lists it, so the hook index and the enum disagree.
+
+**Decision**: Remove the label with no retired list. A stored record carrying it is skipped by both metrics readers, a new diagnostic record carrying it is refused by `serializeAdvisorHookDiagnosticRecord`, and tool input carrying it is rejected by `AdvisorValidateInputSchema`.
+
+**Consequences**:
+- Any old `copilot` record drops out of health and outcome summaries. None exists on this machine today.
+- A new test pins the skip and the rejection.
+
+**Alternatives Rejected**:
+- Keep the label with a retired list: the operator chose removal.
+<!-- /ANCHOR:decisions -->
