@@ -7,7 +7,7 @@ trigger_phrases:
   - "Devin session relaunch"
   - "session-relaunch-command-runtimes"
   - "skilled-loop codex"
-version: 1.0.18.0
+version: 1.0.19.0
 id: session-relaunch-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -71,7 +71,7 @@ Evidence: the suite covers the shared handoff and seed text, the level rule and 
 #### Stub-runtime wrapper arms (Automatable)
 
 ~~~bash
-node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
+node --test .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs
 ~~~
 
 Evidence: the suite installs stub executables for `claude`, `pi`, `opencode`, `codex`, `cursor-agent` and `devin` into a sandbox bin directory, then records each launch's runtime, arguments and loop environment in `runtime-record.jsonl`. The command-runtime cases assert `codex --no-daemon -m <model> <seed>`, `cursor-agent --model <model> <seed>` and `devin --model <model> -- <seed>` on relaunch, valid model values carried on every hop, and none of `resume`, `fork`, `exec`, `queue`, `--resume`, `-r`, `--continue`, `-c`, `--session`, `--create-if-missing`, `--in`, `--no-restore-cwd`, `ls` or a name flag reaching the relaunch arguments. PASS when every case passes.
@@ -370,7 +370,7 @@ node --test \
   .skilled/hooks/session-relaunch/tests/withdraw.test.cjs \
   .skilled/hooks/session-relaunch/tests/codex-adapters.test.cjs \
   .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs \
-  .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs \
+  .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs \
   .skilled/hooks/session-relaunch/tests/nudge.test.cjs \
   .skilled/hooks/session-relaunch/tests/hop-history.test.cjs
 ~~~
@@ -380,7 +380,7 @@ Evidence: exit code 0 and these cases pass.
 - `codex-adapters.test.cjs`: `UserPromptSubmit withdraws an armed handoff when the operator sends a prompt`.
 - `withdraw.test.cjs`: `an armed record is withdrawn with a pending grant and a history line` and `a pending record counts only as the caller's policy says`.
 - `session-relaunch-cli.test.cjs`: the `cancel` cases, `cancel disarms the loop prepared hand-over named by the loop environment` and `cancel exits one when the loop has no prepared hand-over`.
-- `skilled-loop.test.cjs`: `wrapper reports a cancelled hand-over as withdrawn and prints no claim command`, the same case for `user-message`, and the stub-runtime cases for `codex --no-daemon`.
+- `skilled-loop-wrapper-*.test.cjs`: `wrapper reports a cancelled hand-over as withdrawn and prints no claim command`, the same case for `user-message`, and the stub-runtime cases for `codex --no-daemon`.
 - `nudge.test.cjs`: `a withdrawn hand-over grants one more nudge, one step above the fill it was withdrawn at`.
 - `hop-history.test.cjs`: `history renders a withdrawn line with the session that withdrew the hand-over`.
 
@@ -434,7 +434,7 @@ PASS when the three runs match. FAIL when a control binds a goal or the packet r
 node --test \
   .skilled/hooks/goal/devin/goal-devin.test.mjs \
   .skilled/hooks/goal/cursor/goal-cursor.test.mjs \
-  .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs \
+  .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs \
   .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
 ~~~
 
@@ -480,13 +480,13 @@ Codex 0.164.0, Devin 3000.11.205. Evidence lives in `specs/hooks-plugins-extensi
 | `.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` | Shell shim resolution and terminal hand-off tests. |
 | `.skilled/hooks/session-relaunch/tests/codex-adapters.test.cjs` | Codex adapter regression suite. |
 | `.skilled/hooks/session-relaunch/tests/nudge.test.cjs` | Shared nudge text and level suite. |
-| `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs` | Stub-runtime wrapper relaunch argument tests. |
+| `.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs` | Stub-runtime wrapper relaunch argument tests. |
 | `.skilled/hooks/session-relaunch/tests/withdraw.test.cjs` | Shared withdraw helper tests. |
 | `.skilled/hooks/session-relaunch/tests/hop-history.test.cjs` | Hop history, history command and withdrawn-note tests. |
 | `.skilled/hooks/goal/devin/goal-inject.mjs` | Devin hook that binds the hand-over packet before its usual goal read. |
 | `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/` | The harness behind the goal carry-over checks and their recorded runs. |
 
-Provenance: .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
+Provenance: .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs
 
 ---
 

@@ -17,7 +17,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.19.0
+version: 1.0.20.0
 ---
 
 # Session relaunch loop (skilled-loop)
@@ -143,7 +143,7 @@ Both ways grant the session exactly one more context nudge, whatever level it ha
 | .skilled/hooks/session-relaunch/tests/killer.test.cjs | Node test | Checks process supervision, timeout and lock behavior. |
 | .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs | Node test | Checks note states and relaunch decisions. |
 | .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs | Node test | Checks prepare, claim, complete and CLI refusal paths. |
-| .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs | Node test | Checks wrapper relaunch and per-runtime seed arguments with stub runtimes. |
+| .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs | Node test | Checks wrapper relaunch and per-runtime seed arguments with stub runtimes. |
 | .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs | Node test | Checks the shell shim's wrapper resolution under bash and zsh through a symlinked `.skilled`, and its terminal hand-off with stub binaries. |
 
 ---

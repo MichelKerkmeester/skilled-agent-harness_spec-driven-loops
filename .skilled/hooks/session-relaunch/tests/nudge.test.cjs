@@ -824,7 +824,11 @@ test('a state directory that cannot be inspected reads as empty', (t) => {
 test('a nudge state file behind a symlinked state directory reads as empty', (t) => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-nudge-'));
   const stateTarget = path.join(root, 'state-target');
-  const env = { ...withoutRelaunchSwitches(process.env), XDG_RUNTIME_DIR: root };
+  // The suite also runs from inside a looped session, whose loop id would turn the
+  // expected outside-loop decision into a threshold one.
+  const env = {
+    ...withoutRelaunchSwitches(process.env), XDG_RUNTIME_DIR: root, SKILLED_LOOP_ID: '',
+  };
   delete env.AI_SESSION_CHILD;
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
 

@@ -139,6 +139,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 34 | 034-default-off-opt-in/ | The session-relaunch hooks are off for a fresh clone and run only when `SYSTEM_SESSION_RELAUNCH_ENABLED` is set, the kill switch still wins and every other hook concern stays on by default | Draft |
 | 35 | 035-known-gap-fixes/ | Eight known gaps close: the claim-seed parsers agree, a Pi `--provider` switch drops the launch effort, `prepare` refuses whenever the concern is off, the Codex goal paragraph is corrected, the spec validator's git calls skip fsmonitor, the parent goal binds every child goal, the concern switches per runtime and the README stops featuring it | Complete |
 | 36 | 036-review-remediation/ | Seven children fix the eight findings of the 2026-11-12 code review: the shim runs only a trusted wrapper, record reads check the state directory, a hop replays the launch flags, an unconfigured Claude window is unknown, the sub-agent guard denies `cancel`, `consume` and `hand-over`, a stale append lock is reclaimed once and the wrapper clears its leftover record | Complete |
+| 37 | 037-relaunch-test-speed/ | The wrapper test file is split into four files with one shared harness, so the relaunch suite runs the same 868 tests in about 40 seconds instead of 130, and one nudge test no longer reads the loop id of the session that runs it | Complete |
 
 ### Phase Transition Rules
 
@@ -186,6 +187,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 033-research-remediation | 034-default-off-opt-in | Phase 33's edits to the relaunch tests are in, because phase 34 opts the same test files in | `validate.sh 033-research-remediation --strict` RESULT: PASSED, and the relaunch suites exit 0 before the opt-in lands |
 | 034-default-off-opt-in | 035-known-gap-fixes | Phase 34's default-off resolver and test opt-ins are in, because phase 35 changes the same `prepare` check and adds the per-runtime flags beside the global one | `validate.sh 034-default-off-opt-in --strict` RESULT: PASSED, and the relaunch suites exit 0 before the 035 tests land |
 | 035-known-gap-fixes | 036-review-remediation | Phase 35 is Complete and the code review of 2026-11-12 has a report with eight findings | `validate.sh 035-known-gap-fixes --strict` RESULT: PASSED, and `036-review-remediation/scratch/handover-review.md` holds the findings |
+| 036-review-remediation | 037-relaunch-test-speed | Phase 36 is Complete and the relaunch suite passes with 868 tests | `validate.sh 036-review-remediation --recursive --strict` RESULT: PASSED, and `037-relaunch-test-speed/scratch/before-relaunch.txt` holds the baseline run |
 <!-- /ANCHOR:phase-map -->
 
 ---

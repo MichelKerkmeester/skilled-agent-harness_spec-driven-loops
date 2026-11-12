@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/037-relaunch-test-speed",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/037-relaunch-test-speed",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relaunch test speed",
+      "phase 37 relaunch test speed",
+      "relaunch test speed plan",
+      "relaunch test speed tasks",
+      "relaunch test speed implementation summary"
+    ],
+    "key_topics": [
+      "relaunch",
+      "test",
+      "speed",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "suite",
+      "took",
+      "seconds",
+      "because"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-harness.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-decline-manual.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/README.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+      "scratch/before-relaunch.txt",
+      ".opencode/plugins/tests/session-relaunch.test.cjs",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-harness.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-harness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-launch-arguments.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-model-effort.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-decline-manual.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-decline-manual.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-claim-goal.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-loop.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-claude.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-command-runtimes.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-pi-opencode.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "before-relaunch.txt",
+        "kind": "file",
+        "path": "scratch/before-relaunch.txt",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-relaunch.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The relaunch suite took 130 seconds because `skilled-loop.test.cjs` alone ran for about 123 seconds and `node --test` waits for its slowest file",
+    "created_at": "2026-11-12T21:06:29Z",
+    "last_save_at": "2026-11-12T21:13:25.612Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c2e221963d7de5660a91f07ba1c61ec2422ac4d4012a3bbeeeb9d7f5fb79665a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b7c833afd6fca55a081ee54f393869a353d1f106413b0e99d67436bfc61d9070",
+      "plan.md": "c5613843e1ef4382db5a4e3d70e9ce1f9bb2728e22fdcf7a7c1f8e94dcf14e88",
+      "tasks.md": "bdb68ee1f3d6d2de4caf0ba2cc17ac5b54bd57d4254b77423bac0e89f3b99e10",
+      "implementation-summary.md": "d273b8e33043c966d34a296493bf3c4ae52a5f27061d6cb5fc0e399733b839bc"
+    },
+    "last_active_at": null
+  }
+}

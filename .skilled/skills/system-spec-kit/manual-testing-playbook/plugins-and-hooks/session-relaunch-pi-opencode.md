@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.20.0
+version: 1.0.21.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -92,7 +92,7 @@ Evidence: Node reports the OpenCode adapter suite passed. The cases cover plugin
 #### Wrapper runtime arms (Automatable)
 
 ~~~bash
-node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
+node --test .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs
 ~~~
 
 Evidence: the wrapper suite records `SKILLED_LOOP_RUNTIME`, Pi `--name` before the seed and OpenCode `--prompt` without `--name`.
@@ -495,7 +495,7 @@ node --test \
   .skilled/hooks/goal/lib/goal-core.test.cjs \
   .skilled/hooks/goal/pi/goal-pi.test.mjs \
   .opencode/plugins/tests/opencode-goal-handover.test.cjs \
-  .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
+  .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs
 ~~~
 
 Evidence: exit code 0 and these cases pass.
@@ -503,7 +503,7 @@ Evidence: exit code 0 and these cases pass.
 - `goal-pi.test.mjs`: `a receiver with no goal is bound to the hand-over packet at session start and injects from goal.md`, `a goal of the session own is never replaced, and a cleared one is not handed back` and `a dispatched child session that inherited the packet binds nothing in Pi`.
 - `opencode-goal-handover.test.cjs`: `a receiver with no goal is bound to the hand-over packet at session start and injects from goal.md`, `no variable, an empty one or the switch off binds nothing` and `a dispatched child process binds nothing, even as the first top-level session it sees`.
 - `goal-core.test.cjs`: `a dispatched child session binds nothing, whatever packet its environment carries` and `the kill switch stops the hand-over bind and the plain bind keeps its own semantics`.
-- `skilled-loop.test.cjs`: `wrapper drops the previous hop goal packet when the next note carries none`.
+- `skilled-loop-wrapper-*.test.cjs`: `wrapper drops the previous hop goal packet when the next note carries none`.
 
 PASS when the command exits 0 and each named case ran. FAIL when a case is missing or fails.
 
@@ -553,7 +553,7 @@ Pi 1.4.0 with `openai/gpt-6-luna` and OpenCode 2.1.4, live in tmux with a privat
 | `.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` | Shell shim resolution and terminal hand-off tests. |
 | `.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` | Pi adapter regression suite. |
 | `.opencode/plugins/tests/session-relaunch.test.cjs` | OpenCode adapter regression suite. |
-| `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs` | Wrapper runtime relaunch argument tests. |
+| `.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs` | Wrapper runtime relaunch argument tests. |
 | `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs` | Prepare runtime recording and cancel tests. |
 | `.skilled/hooks/session-relaunch/tests/withdraw.test.cjs` | Shared withdraw helper tests. |
 | `.skilled/hooks/session-relaunch/tests/hop-history.test.cjs` | Hop history, history command and withdrawn-note tests. |

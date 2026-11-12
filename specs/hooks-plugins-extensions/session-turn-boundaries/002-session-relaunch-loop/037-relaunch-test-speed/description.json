@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/037-relaunch-test-speed",
+  "description": "Phase 37: relaunch-test-speed",
+  "keywords": [
+    "phase",
+    "relaunch-test-speed"
+  ],
+  "lastUpdated": "2026-11-12T21:13:52.827Z",
+  "specId": "037",
+  "folderSlug": "relaunch-test-speed",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "12-11-26_22-13__split-the-slow-relaunch-wrapper-test-file-into.md",
+    "12-11-26_22-13__split-the-slow-relaunch-wrapper-test-file-into.md"
+  ]
+}

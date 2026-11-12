@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ab71080dfb0174e7d7e25ee2d8389fd5644c5849edf37aba76cd7e63e59db84a",
+  "manifestHash": "0ef53d253df797c5fea9bd596ba37c6c7efef58bbbc7e8c6a62e0bd02d3aa5e7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -80918,6 +80918,9 @@
     "phase 37 ci pi and provisioning follow ups": [
       "phase 37 ci pi and provisioning follow ups"
     ],
+    "phase 37 relaunch test speed": [
+      "phase 37 relaunch test speed"
+    ],
     "phase 38 plugin scanner follow ups": [
       "phase 38 plugin scanner follow ups"
     ],
@@ -90337,6 +90340,18 @@
     ],
     "relaunch takeover lock identity tasks": [
       "relaunch takeover lock identity tasks"
+    ],
+    "relaunch test speed": [
+      "relaunch test speed"
+    ],
+    "relaunch test speed implementation summary": [
+      "relaunch test speed implementation summary"
+    ],
+    "relaunch test speed plan": [
+      "relaunch test speed plan"
+    ],
+    "relaunch test speed tasks": [
+      "relaunch test speed tasks"
     ],
     "release alignment remediation": [
       "release alignment remediation"

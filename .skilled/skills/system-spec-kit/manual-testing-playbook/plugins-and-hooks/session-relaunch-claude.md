@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.19.0
+version: 1.0.20.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -220,7 +220,7 @@ Evidence: both adapter processes exit 0 without stdout and the record remains pe
 Run the wrapper suite:
 
 ~~~bash
-node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
+node --test .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs
 ~~~
 
 Evidence: with `SESSION_RELAUNCH_MAX_HOPS=2`, the test records three launches total, with hop counts 0, 1 and 2. PASS when the wrapper stops after the second relaunch. FAIL when it starts another Claude process.
@@ -368,7 +368,7 @@ Evidence: `specFolderFromSeed reads only a valid carried folder and accepts suff
 Run the wrapper suite:
 
 ~~~bash
-node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
+node --test .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs
 ~~~
 
 Evidence: tests cover the Claude default with no args or a prompt, first-launch `-n` preservation, `--` ending name scanning, exit 130 printing the manual command without a hop, missing cwd or CR/LF returning 1, consume failure warning while the wrapper continues, a withdrawn decline printing one warning and no manual command, and decider failure preserving Claude's exit code. PASS when each case returns the expected arguments, warning or exit code. FAIL when the wrapper relaunches after exit 130 or changes the runtime exit code after a decider failure.
@@ -704,7 +704,7 @@ node --test \
   .skilled/hooks/session-relaunch/tests/withdraw.test.cjs \
   .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs \
   .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs \
-  .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs \
+  .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs \
   .skilled/hooks/session-relaunch/tests/killer.test.cjs \
   .skilled/hooks/session-relaunch/tests/nudge.test.cjs \
   .skilled/hooks/session-relaunch/tests/hop-history.test.cjs
@@ -715,7 +715,7 @@ Evidence: exit code 0 and these cases pass.
 - `withdraw.test.cjs`: `an armed record is withdrawn with a pending grant and a history line`, `a pending record counts only as the caller's policy says`, `a follow-up that fails is reported and never undoes the withdrawal`.
 - `claude-adapters.test.cjs`: `context-nudge withdraws a deferred handoff when the operator sends a prompt`, `context-nudge withdraws an armed handoff when the operator sends a prompt`, `the withdraw prompt carries only the notice, then one nudge comes a step above its fill`, `compact-pointer tells a session whose hand-over was withdrawn not to claim the stale note`. The cases `context-nudge keeps a deferred handoff when a background task reports back`, `context-nudge keeps an armed handoff when a background task reports back` and `context-nudge keeps a handoff that was prepared and never deferred` check that neither withdraws anything.
 - `session-relaunch-cli.test.cjs`: `cancel disarms the loop prepared hand-over named by the loop environment`, `cancel exits one when the loop has no prepared hand-over`, `cancel from a nested run without a loop id refuses and leaves the outer hand-over armed`, `cancel from a nested run honors an explicit loop id`, `cancel records a withdrawn hop and grants the session one more nudge`.
-- `skilled-loop.test.cjs`: `wrapper reports a cancelled hand-over as withdrawn and prints no claim command`, the same case for `user-message`, `wrapper prints only the withdrawn line when a relaunched session calls off its next hand-over` and `wrapper still warns about an unclaimed seed note when a different next hand-over is withdrawn`.
+- `skilled-loop-wrapper-*.test.cjs`: `wrapper reports a cancelled hand-over as withdrawn and prints no claim command`, the same case for `user-message`, `wrapper prints only the withdrawn line when a relaunched session calls off its next hand-over` and `wrapper still warns about an unclaimed seed note when a different next hand-over is withdrawn`.
 - `killer.test.cjs`: `killer does not signal when an operator prompt withdraws the arm after its freshness check` and `killer does not signal when a cancel lands after its freshness check`.
 - `nudge.test.cjs`: `a withdrawn hand-over grants one more nudge, one step above the fill it was withdrawn at` and `a re-arm waits behind the hop cap and stays pending until a run can fix its floor`.
 - `hop-history.test.cjs`: `history renders a withdrawn line with the session that withdrew the hand-over` and `open notes report a withdrawn note apart from one nobody has claimed`.
@@ -798,7 +798,7 @@ A goal over the 4,000-character limit is the third control. The harness kept wit
 node --test \
   .skilled/hooks/session-relaunch/tests/goal-handover.test.cjs \
   .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs \
-  .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs \
+  .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs \
   .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs \
   .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
 ~~~
@@ -807,7 +807,7 @@ Evidence: exit code 0 and these cases pass.
 
 - `goal-handover.test.cjs`: `renders exactly the chat slice the goal command prints, without frontmatter or comments` and `sends a slice of exactly 4000 characters and refuses 4001`.
 - `claude-adapters.test.cjs`: `compact-pointer delivers the claim at the start of a goal-command receiver` and `compact-pointer adds no start claim for a dispatched child, a switched-off goal or a disabled hook`.
-- `skilled-loop.test.cjs`: `a Claude hop with a goal starts on the goal command and carries the claim in the environment`, `a Claude hop keeps the claim seed as its start prompt when no goal can be sent` and `wrapper exports no goal packet when SESSION_RELAUNCH_GOAL is 0`.
+- `skilled-loop-wrapper-*.test.cjs`: `a Claude hop with a goal starts on the goal command and carries the claim in the environment`, `a Claude hop keeps the claim seed as its start prompt when no goal can be sent` and `wrapper exports no goal packet when SESSION_RELAUNCH_GOAL is 0`.
 
 PASS when every named case passes. FAIL when a case is missing from the run or fails.
 
@@ -875,7 +875,7 @@ Capture each command exit code. Save the tmux pane, handoff note path and status
 | .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs | Covers handoff validation, record state and relaunch decisions. |
 | .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs | Automates prepare refusal and CLI state checks. |
 | .skilled/hooks/session-relaunch/tests/killer.test.cjs | Automates idle signaling and timeout disarming. |
-| .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs | Automates wrapper and hop-cap behavior. |
+| .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs | Automates wrapper and hop-cap behavior. |
 | .skilled/hooks/session-relaunch/tests/hop-history.test.cjs | Automates the hop history, the history command and the notice switch. |
 | .skilled/hooks/session-relaunch/tests/withdraw.test.cjs | Automates the shared withdraw helper and its follow-ups. |
 | .skilled/hooks/session-relaunch/lib/goal-handover.cjs | Renders the goal slice a Claude receiver starts on, with the packet, budget and size checks. |

@@ -16,15 +16,16 @@
     "same",
     "terminal"
   ],
-  "lastUpdated": "2026-10-25T12:14:21.913Z",
+  "lastUpdated": "2026-11-12T21:15:22.081Z",
   "specId": "002",
   "folderSlug": "session-relaunch-loop",
   "parentChain": [
     "hooks-plugins-extensions",
     "session-turn-boundaries"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "25-10-26_13-14__ten-iteration-deep-research-cli-codex-gpt-6-luna.md"
+    "25-10-26_13-14__ten-iteration-deep-research-cli-codex-gpt-6-luna.md",
+    "12-11-26_22-15__added-phase-37-which-splits-the-slow-relaunch.md"
   ]
 }
