@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-plain-chat-command-reach"
+    packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach"
     last_updated_at: "2026-11-12T12:27:36Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 plus template"

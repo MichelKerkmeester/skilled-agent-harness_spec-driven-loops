@@ -13,6 +13,9 @@
     "trigger_phrases": [
       "plain chat command reach",
       "phase 3 plain chat command reach",
+      "attach command to owner skill",
+      "command intent phrases",
+      "same owner collapse",
       "plain chat command reach plan",
       "plain chat command reach tasks",
       "plain chat command reach acceptance criteria",
@@ -24,13 +27,13 @@
       "command",
       "reach",
       "phase",
-      "plan",
-      "tasks",
-      "acceptance",
-      "criteria",
-      "implementation",
-      "summary",
-      "yourvaluehere"
+      "attach",
+      "owner",
+      "skill",
+      "intent",
+      "phrases",
+      "same",
+      "collapse"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -39,7 +42,15 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+      ".skilled/skills/system-spec-kit/command-metadata.json",
+      ".skilled/skills/sk-prompt/command-metadata.json",
+      ".skilled/bin/compiled-route.cjs",
+      ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs",
+      ".skilled/commands/doctor/scripts/route-validate.sh",
+      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md"
     ],
     "entities": [
       {
@@ -73,6 +84,48 @@
         "source": "derived"
       },
       {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-fallback.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-phrase-reach.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/route-validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -91,12 +144,6 @@
         "source": "derived"
       },
       {
-        "name": "Status Draft",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -104,6 +151,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,7 +174,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Seven",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Attach",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,63 +192,15 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The advisor reaches a plain-chat prompt with a skill and never with the command that owns the job",
     "created_at": "2026-11-12T12:27:35Z",
-    "last_save_at": "2026-11-12T12:27:40.446Z",
+    "last_save_at": "2026-11-12T15:12:38.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +210,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e5a40d669c65e051d40a5ed8f39bfaa5e974b2d3107cbf943367d3543b4d27b",
+    "source_fingerprint": "sha256:0efc6790ee8a81fef7a6159fcab4b69ea7c29a20dde50189bc4ab191e8c1d8a7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "92bea87c4bb14c9d04d824bf963d419a7cea0f1a1f83214974a7bd78cfdc65b2",
-      "plan.md": "da40373b4610490fc6031a16c8a9bcbbbe51d1fd5dbefe1a215d8211ad83c467",
-      "tasks.md": "cdd12aab36d03ea9986e396efe6d2d11bbf39c3979501c5560c5eccfd34897ee",
-      "implementation-summary.md": "0575e76edaa6755e22183e92acf899e6d1604ce1e013fd88be2e3507bc4e76bb"
+      "spec.md": "ba2408f76358abdd2b1d720e3512361c1f6d947efc1015942201063b32d12f0e",
+      "plan.md": "49d49a1381ba20f1b75c656fd43a87c4c2b988c9001036fff8867cf7fc4577f6",
+      "tasks.md": "91fa8bc184a41bca54783ed88fb6dd3e1baccde174eb3ddbe5cd6d2edb10204b",
+      "implementation-summary.md": "e055d7ca596f8615883052c58c7b6301c313cd058f8198cbdc1a09198fa8b1f7"
     },
     "last_active_at": null
   }
