@@ -1,7 +1,10 @@
 name: sk-doc Script Tests (Filtered)
 
-# The sk-doc script tests that read only the sk-doc tree, so they run when an
-# sk-doc path changes rather than on every push. The two repository-walking tests,
+# The sk-doc script tests that guard sk-doc's own scripts, so they run when an
+# sk-doc path changes rather than on every push. Two of them read beyond the sk-doc
+# tree: the frontmatter fleet test parses every tracked markdown file under
+# .skilled, and the consumer matrix test reads one manifest under specs. A change
+# to those paths alone does not start this workflow, which is an accepted gap. The two repository-walking tests,
 # the durable-directory manifest and the README verdict baseline, stay on every
 # push in sk-doc Script Tests, and the rename harness runs in its own workflow.
 on:

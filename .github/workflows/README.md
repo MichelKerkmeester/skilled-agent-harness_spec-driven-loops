@@ -49,8 +49,8 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `runtime-no-spec-import.yml` | Prevents runtime code from importing the mutable spec tree. |
 | `sk-code-script-tests.yml` | Runs the sk-code script tests, among them the drift-guard runner test. |
 | `sk-doc-rename-harness.yml` | Runs the ten-minute rename tooling fixture harness when sk-doc's scripts change. |
-| `sk-doc-script-tests-filtered.yml` | Runs the sk-doc script tests that read only the sk-doc tree, when an sk-doc path changes, and leaves out the two repository-walking tests and the rename harness. |
-| `sk-doc-script-tests.yml` | Runs the two sk-doc script tests that walk the whole repository on every push, the durable-directory manifest and the README verdict baseline. |
+| `sk-doc-script-tests-filtered.yml` | Runs the sk-doc script tests that guard sk-doc's own scripts, when an sk-doc path changes, and leaves out the two repository-walking tests and the rename harness. Two of its tests read markdown under `.skilled` and one manifest under `specs`, and a change to those alone does not start it. |
+| `sk-doc-script-tests.yml` | Runs the two sk-doc script tests that walk the whole repository on every push, the durable-directory manifest and the README verdict baseline. Its other jobs validate every feature catalog package, hold the render ledger and package every skill strictly, and check for new broken citations. |
 | `sk-git-script-tests.yml` | Runs all five sk-git script suites in named steps, so a failure names its suite: worktree naming, allocation and provisioning, commit-id naming, legacy branch-name migration, branch stamping, and the message-hook git timeout. |
 | `skill-advisor-stress.yml` | Runs the skill advisor's stress suite, which needs `SPECKIT_RUN_STRESS` and so ran nowhere else, then scans the skill graph and runs the advisor's default suite, which includes the Python compatibility suite. |
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |

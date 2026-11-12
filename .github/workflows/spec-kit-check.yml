@@ -178,7 +178,7 @@ jobs:
       # splits by file count: each matrix entry runs one third of the files.
       - name: CLI vitest project
         run: |
-          set -uo pipefail
+          set -euo pipefail
           cd .opencode/skills/system-spec-kit/runtime/cli
           npx vitest run --config ../../vitest.config.ts --project cli --shard=${{ matrix.shard }}/3
 
