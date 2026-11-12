@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "b1aee9dee6",
+  "capturedAtSha": "873ce08382",
   "corpusSha256": "sha256:698da57b02159a756dbba5d6a2c9a3c6d14588d07e96be268567835cf36448b8",
   "bridgeCounts": {
     "commandMetadata": 23,
@@ -2014,7 +2014,7 @@
     },
     "nm-sk-doc-01": {
       "expected_command": null,
-      "top": "sk-code",
+      "top": "system-skilled-doctor",
       "top1": false,
       "top3": false,
       "offered": false
