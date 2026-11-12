@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "A plain-chat prompt now reaches its slash command on 9 of 45 tune rows, up from 0, with no new false offer and the four pinned numbers no worse. Holdout reach stayed at 0 of 44 and doctor reach at 0 of 17, so the phase is in progress."
+description: "A plain-chat prompt now reaches its slash command on 9 of 45 tune rows, up from 0, with no new false offer and the four pinned numbers no worse. Holdout reach stayed at 0 of 44 and doctor reach at 0 of 17, The operator closed the phase Complete on 2026-11-12, with each unmet criterion waived, superseded or carried to a later phase."
 trigger_phrases:
   - "plain chat command reach implementation summary"
 importance_tier: "normal"
@@ -8,13 +8,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach"
-    last_updated_at: "2026-11-12T18:28:28Z"
-    last_updated_by: "generate-context"
-    recent_action: "Fixed alignment findings and planned phase 004 meaning matching"
-    next_safe_action: "Review the four open questions in phase 004 spec.md"
-    blockers:
-      - "Holdout plain reach 0 of 44"
-      - "Doctor plain-chat reach open"
+    last_updated_at: "2026-11-12T21:30:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Closed the phase Complete with every criterion settled by a decision record"
+    next_safe_action: "Plan phase 005, which carries AC-010, AC-011 and AC-012 as CARRY-003"
+    blockers: []
     key_files:
       - ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
       - ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
@@ -32,7 +30,7 @@ _memory:
       savedAt: "2026-11-12T18:28:28Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,7 +48,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-plain-chat-command-reach |
-| **Completed** | Not complete. Built and measured on 2026-11-12, status In Progress |
+| **Completed** | 2026-11-12. Closed Complete by operator decision, with the settled criteria listed under Known Limitations |
 | **Level** | 3+ |
 <!-- /ANCHOR:metadata -->
 
@@ -59,7 +57,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A prompt typed in plain words now reaches its slash command on 9 of 45 tune rows, up from 0 of 44. No new false offer appeared, and full corpus top 1 rose from 158 to 159. The paraphrased holdout rows still reach nothing, and the doctor rows reach nothing on either split, so the phase's exit check is not met.
+A prompt typed in plain words now reaches its slash command on 9 of 45 tune rows, up from 0 of 44. No new false offer appeared, and full corpus top 1 rose from 158 to 159. The paraphrased holdout rows still reach nothing, and the doctor rows reach nothing on either split. The operator closed the phase Complete on 2026-11-12 and settled every criterion it did not meet, as Known Limitations lists.
 
 ### Phase 3: plain-chat-command-reach
 
@@ -190,7 +188,12 @@ The doctor phrases were built, measured and reverted. An independent review then
 6. **The published v4.0.2.1 release notes are not synced.** The repository file `.skilled/changelog/skilled/v4.0.2.1.md` changed in this build. The operator decided on 2026-11-12 to leave the published release unsynced until the merge.
 7. **Holdout reach needs meaning, not more words.** Command-level meaning matching is planned as phase 004, `../004-command-meaning-matching/`.
 8. **Four `/speckit` hand rows remain in the Python activation list.** `command-spec-kit-plan`, `-complete`, `-implement` and `-resume`.
-9. **Meaning-based matching is not started.** It is planned in `../004-command-meaning-matching/`.
+9. **Meaning-based matching moved to phase 004.** Phase 004, `../004-command-meaning-matching/`, is Complete.
+10. **Holdout plain recall, AC-007, is waived (ADR-016).** It stayed at 0 of 44 with phrase matching alone. Phase 004 carries it and measured 2 of 44 with real embeddings, against its own target of 5, which its ADR-009 waives. 17 of the 44 holdout rows name hub-only commands with no scored row.
+11. **AC-010, AC-011 and AC-012 went to phase 005 (ADR-017).** Phase 005, `../005-recommendation-contract-and-brief/`, carries them as CARRY-003: the one typed row ambiguous with its owner, the four `/speckit` ids in the Python activation list with the missing fixture case, and the L3 prompt that returns no recommendation.
+12. **AC-018, AC-019 and AC-020 are superseded by phase 004 (ADR-018).** Doctor commands are reached by meaning, not by new phrases. Phase 004 measured doctor reach 3 of 17 on tune and 2 of 17 on holdout, and the helper guard holds at 7.
+13. **AC-001 is waived as a one-time ordering miss (ADR-019).** Its attached-reach half read 7 because `MODE_COMMANDS` was already filled when the neutral capture ran, and it cannot be re-run on the built code.
+14. **AC-021 is waived (ADR-020).** The operator accepted the doctor-only phrase gate widened to every command row. No doctor weight changed.
 <!-- /ANCHOR:limitations -->
 
 ---

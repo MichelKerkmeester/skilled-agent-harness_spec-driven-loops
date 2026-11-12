@@ -115,7 +115,7 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 |-------|--------|-------|--------|
 | 1 | 001-command-routing-baseline-corpus/ | Command prompt corpus and baseline, no scorer change (R8, L8, L9) | Complete |
 | 2 | 002-command-inventory-and-risk-metadata/ | One generated inventory, risk class and derived policy, private command excluded (R1, R4, G4) | Complete |
-| 3 | 003-plain-chat-command-reach/ | Attach commands to owner skills, authored phrases, one activation source (R2, L2, L3, R10 precedence) | In Progress |
+| 3 | 003-plain-chat-command-reach/ | Attach commands to owner skills, authored phrases, one activation source (R2, L2, L3, R10 precedence) | Complete |
 | 4 | 004-command-meaning-matching/ | A vector per command and a meaning anchor, so a paraphrase reaches its command (operator decision, 2026-11-12) | Complete |
 | 5 | 005-recommendation-contract-and-brief/ | Recommendation fields, brief line, degraded path, retired ids (R3, L6, L12, G6, L1, L7) | Pending |
 | 6 | 006-gate-2-binding-and-runtime-pointers/ | Gate 2 sentence, typed override, static pointer, child authority (R6, L5, R5, L4, G1, G3, L10) | Pending |

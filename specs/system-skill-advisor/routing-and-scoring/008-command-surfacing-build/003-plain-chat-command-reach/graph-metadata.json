@@ -188,12 +188,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,11 +198,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The advisor reaches a plain-chat prompt with a skill and never with the command that owns the job",
     "created_at": "2026-11-12T12:27:35Z",
-    "last_save_at": "2026-11-12T20:07:36.635Z",
+    "last_save_at": "2026-11-12T20:16:22.519Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1add4077a3d5a4970043150854156c70ee5e113ff9b4de386c75d9bbe52f1ec0",
+    "source_fingerprint": "sha256:43e4639a3e2ee9f2751aaf5c7674d1fe8a595ff144b01fbd530095052cc073cf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d93785983b4ff2f98dd60ba832ef7052cbfc85f4d7a0810ef98c6a5be858ae97",
+      "spec.md": "51874495cc39c219828f049cf1cf08c4c0f63b23f082cc832a49e35fa46b7cc9",
       "plan.md": "f17607412c9ba509e1b3c58fbdbebd829b9bf3db3156edc681e76be153ccdee8",
-      "tasks.md": "c56b32bbd3c759e6a1f5c6165c8f76ed8ba3eaf2eead0ec1c41822c02597dcef",
-      "decision-record.md": "041f2969ac42b414ee38fd29a1ca6a3ba438e4dc9441f88f4b8911c2a10c5a23",
-      "implementation-summary.md": "c94b23c5fa2cc664cc2e8a7d3b4bcf6261e2ef696053bdfb089f669b75de8f84"
+      "tasks.md": "4d6cff497c11aac49e69e1bac644128c760842ea94d2c7139b77f0f9493ae2f3",
+      "decision-record.md": "ae3ea989a97ba62894439d019daa409d2fa17e78d05e222c087aa6c307115671",
+      "implementation-summary.md": "9a9c362d6056701754c093151adea6ebe4fc819867147df44be1e81007e6b899"
     },
     "last_active_at": null
   }

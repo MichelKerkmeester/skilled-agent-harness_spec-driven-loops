@@ -129,6 +129,8 @@ The umbrella-id tasks carry out the operator's decision of 2026-11-12 (plan.md A
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
+Closed Complete on 2026-11-12 by operator decision. The tasks below that stay unticked are not done in this phase. The criteria they served are settled in `acceptance-criteria.md`, each naming its ADR in `decision-record.md`: AC-007 waived (ADR-016), AC-010 to AC-012 carried to phase 005 (ADR-017), AC-018 to AC-020 superseded by phase 004 (ADR-018), AC-001 waived (ADR-019) and AC-021 waived (ADR-020).
+
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed

@@ -33,7 +33,7 @@ A user who describes a job in plain words never gets the slash command that owns
 |-------|-------|
 | **Level** | 3+ |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-12 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
@@ -41,7 +41,7 @@ A user who describes a job in plain words never gets the slash command that owns
 | **Predecessor** | 002-command-inventory-and-risk-metadata |
 | **Successor** | 004-command-meaning-matching |
 | **Handoff Criteria** | Command recall rises against the phase 1 baseline with no drop in the four existing numbers, and no typed command is ambiguous with its own owner |
-**Status note**: built on 2026-11-12, but plain recall on holdout stayed at 0 of 44, so the exit check is unmet.
+**Status note**: closed Complete on 2026-11-12 by operator decision. Holdout plain recall stayed at 0 of 44 and is waived (ADR-016 in `decision-record.md`). The other unmet criteria are waived, superseded by phase 004 or carried to phase 005 (ADR-017 to ADR-020).
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -344,6 +344,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:change-log -->
 ## 15. CHANGE LOG
 
+### v1.4 (2026-11-12)
+Closed Complete. The operator chose "Close with the same accepted miss (Recommended)" for holdout recall and "Carry three, settle five (Recommended)" for the other unmet criteria. Each settled row in `acceptance-criteria.md` names its ADR in `decision-record.md`.
+
 ### v1.3 (2026-11-12)
 Final verified state recorded: the full suite passes, the review fixes landed, and the operator decided a top-only route lookup, an ask-first `/create:changelog` and the rename of the retired id in instruction files (plan ADR-013 to ADR-015). Status stays In Progress for the holdout gap.
 
@@ -364,7 +367,7 @@ Operator answers: umbrella ids replaced now, doctor plain-chat reach added as wo
 
 - Questions 1 and 2 were answered by the operator on 2026-11-12: replace the umbrella ids now, and bring doctor plain-chat reach into this phase. Both are recorded in `plan.md` as ADR-005 and ADR-006.
 - Question 5 was answered by the operator on 2026-11-12: command-level meaning matching is built as phase 004 of this packet, `../004-command-meaning-matching/`, and the later phases moved to 005, 006 and 007.
-- **6. Doctor plain-chat reach after the revert.** Tune-only phrases on the doctor routes moved no doctor row and broke the helper guard (plan ADR-007). What is the next approach, and does it stay in this phase?
+- Question 6, doctor plain-chat reach after the revert, was answered on 2026-11-12: phase 004 reaches doctor commands by meaning, and AC-018 to AC-020 are superseded by it (ADR-018 in `decision-record.md`).
 - Question 3, the hook latency budget, was closed on 2026-11-12 by the operator's choice of a top-only route lookup (plan ADR-013). One run measured median 235.04 ms and p95 318.96 ms, against 194.35 ms and 281.15 ms before.
 - **4. The two hand-kept hub rows.** `create:agent` and `create:manual-testing-playbook` are active TypeScript rows today, and their `scoring-compatibility.json` entries carry `keywords` and `intentSignals`, not only `order`. This plan leaves both rows and their entries unchanged, so the compatibility file keeps scored fields for them. Should a later phase disable them once attach covers their commands?
 <!-- /ANCHOR:questions -->

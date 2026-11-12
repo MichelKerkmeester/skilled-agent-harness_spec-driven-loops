@@ -144,17 +144,17 @@
     ],
     "causal_summary": "The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-12T19:56:55.568Z",
+    "last_save_at": "2026-11-12T20:16:23.893Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:905f27c951cde24eee3e2c335cea7aebd5d0018a73e26a336f315326555c2f35",
+    "source_fingerprint": "sha256:78550046332e0bcadc05a83868d7d8cfa4b22faf362dcc44f75e58ef69d9614b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "feb7f43335a9c7aeabaeb253be6eba9be2861534ffcb2cea085888571e87656e",
+      "spec.md": "faad16849a8d2fd3c250798936b3acc628fe9842c7e6526cb0849a0624cb91b9",
       "decision-record.md": "e505f240f21b67e85939e598e145b354bb97d55bd2cb90ca5baa3534cfebac6b"
     },
     "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching",
