@@ -1,5 +1,5 @@
 {
-  "manifestHash": "40f4cbdfe4ad4a75138ea8bf3e4c991377bec946a950d37a22c03dcbcccfb640",
+  "manifestHash": "8775bd7e3b7c2d552c6d85f1393f42e7fc230c5d9b4d27c1cc3bd8e4c296e8ac",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -97795,6 +97795,9 @@
     "one line pitch": [
       412,
       2473
+    ],
+    "one lineage fan out refused": [
+      62
     ],
     "one mode classifier hub": [
       3974,
