@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e42caef8b248f3c7ed0a8ff93351d89f6505d0c6e431ec14e95477ac1335387c",
+  "manifestHash": "d71a0243cfd8ebf3fcd03ce9d346ce021f4e918ddd06d316f8e17314cd44eeb4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -81860,6 +81860,9 @@
     "phase 8 review 3 remediation": [
       "phase 8 review 3 remediation"
     ],
+    "phase 8 review advisories": [
+      "phase 8 review advisories"
+    ],
     "phase 8 runner limit closeout": [
       "phase 8 runner limit closeout"
     ],
@@ -95126,11 +95129,23 @@
     "review 3 remediation tasks": [
       "review 3 remediation tasks"
     ],
+    "review advisories": [
+      "review advisories"
+    ],
+    "review advisories acceptance criteria": [
+      "review advisories acceptance criteria"
+    ],
     "review advisories closure": [
       "review advisories closure"
     ],
     "review advisories closure summary": [
       "review advisories closure summary"
+    ],
+    "review advisories goal": [
+      "review advisories goal"
+    ],
+    "review advisories implementation summary": [
+      "review advisories implementation summary"
     ],
     "review advisories plan": [
       "review advisories plan"
