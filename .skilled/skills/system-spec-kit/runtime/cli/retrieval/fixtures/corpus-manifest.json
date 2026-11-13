@@ -1,5 +1,5 @@
 {
-  "corpusHash": "34c910390ba7b0b94275e57103e50b3e00d434d9ed4380d3c26377313274ebf0",
+  "corpusHash": "018c2a382337c30e5afeeaabce0e81de1913e4a549461623c45c497f10a2d720",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26524,
+  "includedPathCount": 26525,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11910,6 +11910,7 @@
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/008-review-advisories/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/008-review-advisories/tasks.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/research/research.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/review/deep-review-dashboard.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/review/deep-review-strategy.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/review/iterations/iteration-001.md",
@@ -26556,7 +26557,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a001bb70926bad827ff7f2b4236abfd3d35a360465fbec45ba4284462aa26b96",
+  "manifestHash": "5788d931d2109bcdc9c059e329cb850b94a77437b698e6f0d78f582f07de5cf4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29939,6 +29940,30 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/scratch",
       "reason": "excluded directory"
     },
@@ -29972,6 +29997,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/z_archive",
       "reason": "excluded directory"
     },
     {

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6746,
-    "ok": 18148,
+    "ok": 18149,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 26524,
+  "documentsScanned": 26525,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a001bb70926bad827ff7f2b4236abfd3d35a360465fbec45ba4284462aa26b96",
+  "manifestHash": "5788d931d2109bcdc9c059e329cb850b94a77437b698e6f0d78f582f07de5cf4",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42754,
+      "ok": 42758,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -55314,6 +55314,30 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/scratch",
       "reason": "excluded directory"
     },
@@ -55347,6 +55371,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/z_archive",
       "reason": "excluded directory"
     },
     {

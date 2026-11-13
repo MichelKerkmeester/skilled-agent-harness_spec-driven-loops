@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a001bb70926bad827ff7f2b4236abfd3d35a360465fbec45ba4284462aa26b96",
+  "manifestHash": "5788d931d2109bcdc9c059e329cb850b94a77437b698e6f0d78f582f07de5cf4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -56556,6 +56556,9 @@
     "hand drawn diagram variant": [
       "hand drawn diagram variant"
     ],
+    "hand over gap report verification": [
+      "hand-over gap report verification"
+    ],
     "hand rolled env flag parsing": [
       "hand-rolled env flag parsing"
     ],
@@ -98189,6 +98192,9 @@
     "running timer": [
       "running timer"
     ],
+    "running workers at hand over": [
+      "running workers at hand-over"
+    ],
     "runs failed emails": [
       "runs failed emails"
     ],
@@ -101488,6 +101494,9 @@
     ],
     "session manager stress vitest": [
       "session-manager-stress vitest"
+    ],
+    "session name across a hop": [
+      "session name across a hop"
     ],
     "session notes": [
       "session-notes"
@@ -116365,6 +116374,9 @@
     ],
     "startup scan yield": [
       "startup scan yield"
+    ],
+    "state a session hop drops": [
+      "state a session hop drops"
     ],
     "state change logging": [
       "state change logging"
