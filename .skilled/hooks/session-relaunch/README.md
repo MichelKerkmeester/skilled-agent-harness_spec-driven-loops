@@ -339,7 +339,7 @@ session-relaunch/
 |   +-- compact-pointer.mjs  (SessionStart: after a compaction, and the claim of a goal-command receiver)
 |   +-- context-nudge.mjs
 |   +-- stop-arm.mjs
-|   +-- subagent-guard.mjs  (PreToolUse, Bash from a sub-agent)
+|   +-- subagent-guard.mjs  (PreToolUse, Bash from a sub-agent and a question dialog over a pending record)
 +-- codex/
 |   +-- context-nudge.mjs    (PostToolUse)
 |   +-- prompt-seed.mjs      (UserPromptSubmit)

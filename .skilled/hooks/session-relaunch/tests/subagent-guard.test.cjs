@@ -233,3 +233,96 @@ test('subagent-guard stays silent when the relaunch concern is disabled', async 
   ));
   assertSilent(result);
 });
+
+// A prepared hand-over is armed by the Stop event, and a question dialog keeps the
+// turn open, so a sender that asks after prepare never reaches Stop and never hops.
+// The guard turns that question away while the record still waits for its Stop.
+
+const core = require('../lib/relaunch-core.cjs');
+
+const LOOP_ID = 'loop-question-0001';
+const QUESTION_DENIAL_WORDS = [/hand-?over/i, /end (this|the) turn/i, /cancel/i];
+
+function questionPayload(sandbox, overrides = {}) {
+  return {
+    session_id: SESSION_ID,
+    transcript_path: path.join(sandbox.root, `${SESSION_ID}.jsonl`),
+    cwd: sandbox.root,
+    hook_event_name: 'PreToolUse',
+    tool_name: 'AskUserQuestion',
+    tool_input: { questions: [{ question: 'Which folder?', header: 'Folder', options: [] }] },
+    ...overrides,
+  };
+}
+
+function preparePendingRecord(sandbox, sessionId = SESSION_ID) {
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  return core.preparePending({
+    loopId: LOOP_ID,
+    handoffPath: NOTE_PATH,
+    sessionId,
+    cwd: sandbox.root,
+    env: sandbox.env,
+  });
+}
+
+function assertQuestionDenied(result) {
+  assert.equal(result.code, 0, result.stderr);
+  assert.notEqual(result.stdout.trim(), '', 'expected a PreToolUse denial envelope');
+  const decision = JSON.parse(result.stdout.trim()).hookSpecificOutput;
+  assert.equal(decision.hookEventName, 'PreToolUse');
+  assert.equal(decision.permissionDecision, 'deny');
+  for (const pattern of QUESTION_DENIAL_WORDS) {
+    assert.match(decision.permissionDecisionReason, pattern);
+  }
+  assert.ok(
+    decision.permissionDecisionReason.includes(NOTE_PATH),
+    'the denial names the note the question belongs in',
+  );
+}
+
+test('subagent-guard denies a question dialog while the session hand-over is pending', async (t) => {
+  const sandbox = createSandbox(t);
+  preparePendingRecord(sandbox);
+  const result = await runGuard(sandbox, JSON.stringify(questionPayload(sandbox)));
+  assertQuestionDenied(result);
+});
+
+test('subagent-guard lets a question dialog through when no hand-over is prepared', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  const result = await runGuard(sandbox, JSON.stringify(questionPayload(sandbox)));
+  assertSilent(result);
+});
+
+test('subagent-guard lets a question dialog through over another session\'s pending record', async (t) => {
+  const sandbox = createSandbox(t);
+  preparePendingRecord(sandbox, 'session-someone-else-0002');
+  const result = await runGuard(sandbox, JSON.stringify(questionPayload(sandbox)));
+  assertSilent(result);
+});
+
+test('subagent-guard lets a question dialog through once the record is armed', async (t) => {
+  const sandbox = createSandbox(t);
+  preparePendingRecord(sandbox);
+  const armed = core.arm({ loopId: LOOP_ID, cwd: sandbox.root, env: sandbox.env });
+  assert.equal(armed?.status, 'armed');
+  const result = await runGuard(sandbox, JSON.stringify(questionPayload(sandbox)));
+  assertSilent(result);
+});
+
+test('subagent-guard lets a question dialog through outside a relaunch loop', async (t) => {
+  const sandbox = createSandbox(t);
+  preparePendingRecord(sandbox);
+  delete sandbox.env.SKILLED_LOOP_ID;
+  const result = await runGuard(sandbox, JSON.stringify(questionPayload(sandbox)));
+  assertSilent(result);
+});
+
+test('subagent-guard lets a question dialog through when the relaunch concern is disabled', async (t) => {
+  const sandbox = createSandbox(t);
+  preparePendingRecord(sandbox);
+  sandbox.env.SYSTEM_SESSION_RELAUNCH_DISABLED = '1';
+  const result = await runGuard(sandbox, JSON.stringify(questionPayload(sandbox)));
+  assertSilent(result);
+});
