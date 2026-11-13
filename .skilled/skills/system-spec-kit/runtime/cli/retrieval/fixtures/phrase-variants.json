@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b9dc75d09c76b3ac1c9ad3d259c66738af6c8f4e0a50a464235fa979a966bbbe",
+  "manifestHash": "771105bc8fbb0781a8df0afafd1952ebcdedcc2f64577c96b9e99275d927c736",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14469,6 +14469,9 @@
     "behavioral negative control verification": [
       "behavioral negative control verification"
     ],
+    "behaviour proof waivers": [
+      "behaviour proof waivers"
+    ],
     "belief truth maintenance deep loop": [
       "belief truth maintenance deep loop"
     ],
@@ -20269,6 +20272,21 @@
     "claude context nudge": [
       "Claude context nudge",
       "claude context nudge"
+    ],
+    "claude create reach and doctor default": [
+      "claude create reach and doctor default"
+    ],
+    "claude create reach and doctor default acceptance criteria": [
+      "claude create reach and doctor default acceptance criteria"
+    ],
+    "claude create reach and doctor default implementation summary": [
+      "claude create reach and doctor default implementation summary"
+    ],
+    "claude create reach and doctor default plan": [
+      "claude create reach and doctor default plan"
+    ],
+    "claude create reach and doctor default tasks": [
+      "claude create reach and doctor default tasks"
     ],
     "claude cursor fallback wrap": [
       "claude cursor fallback wrap"
@@ -27499,6 +27517,9 @@
     "command intent phrases": [
       "command intent phrases"
     ],
+    "command intent phrases for doctor install setup speckit update": [
+      "command intent phrases for doctor install setup speckit update"
+    ],
     "command inventory and risk metadata": [
       "command inventory and risk metadata"
     ],
@@ -31922,6 +31943,9 @@
     ],
     "create skill": [
       "create skill"
+    ],
+    "create skill command rename": [
+      "create skill command rename"
     ],
     "create skill guidance": [
       "create skill guidance"
@@ -42710,6 +42734,9 @@
     "doctor helper command routing": [
       "doctor helper command routing"
     ],
+    "doctor helper for a tool that is not showing up": [
+      "doctor helper for a tool that is not showing up"
+    ],
     "doctor helper hand off": [
       "doctor helper hand-off"
     ],
@@ -53085,6 +53112,9 @@
     "gate 2 binding and runtime pointers tasks": [
       "gate 2 binding and runtime pointers tasks"
     ],
+    "gate 2 direct call on stdin": [
+      "gate 2 direct call on stdin"
+    ],
     "gate 2 routing": [
       "gate 2 routing"
     ],
@@ -57238,6 +57268,21 @@
     "health data folder setup": [
       "health data folder setup"
     ],
+    "health default and brief refinements": [
+      "health default and brief refinements"
+    ],
+    "health default and brief refinements acceptance criteria": [
+      "health default and brief refinements acceptance criteria"
+    ],
+    "health default and brief refinements implementation summary": [
+      "health default and brief refinements implementation summary"
+    ],
+    "health default and brief refinements plan": [
+      "health default and brief refinements plan"
+    ],
+    "health default and brief refinements tasks": [
+      "health default and brief refinements tasks"
+    ],
     "health degeneration harness implementation": [
       "health degeneration harness implementation"
     ],
@@ -57896,6 +57941,21 @@
     "holdout overlap check": [
       "holdout overlap check"
     ],
+    "holdout row retirement": [
+      "holdout row retirement"
+    ],
+    "holdout row retirement acceptance criteria": [
+      "holdout row retirement acceptance criteria"
+    ],
+    "holdout row retirement implementation summary": [
+      "holdout row retirement implementation summary"
+    ],
+    "holdout row retirement plan": [
+      "holdout row retirement plan"
+    ],
+    "holdout row retirement tasks": [
+      "holdout row retirement tasks"
+    ],
     "home config cutover": [
       "home config cutover"
     ],
@@ -58108,6 +58168,9 @@
     ],
     "hook guards and audit log tasks": [
       "hook guards and audit log tasks"
+    ],
+    "hook health record by default": [
+      "hook health record by default"
     ],
     "hook helper skipped fail open": [
       "hook helper skipped fail_open"
@@ -73284,6 +73347,9 @@
     "necessary beyond local maxima": [
       "necessary beyond local maxima"
     ],
+    "needs a mode only when the prompt names the hub": [
+      "needs a mode only when the prompt names the hub"
+    ],
     "needs clarification space variant": [
       "NEEDS CLARIFICATION space variant"
     ],
@@ -79559,6 +79625,9 @@
     "per runtime behaviour proof acceptance criteria": [
       "per runtime behaviour proof acceptance criteria"
     ],
+    "per runtime behaviour proof decision record": [
+      "per runtime behaviour proof decision record"
+    ],
     "per runtime behaviour proof implementation summary": [
       "per runtime behaviour proof implementation summary"
     ],
@@ -80699,6 +80768,9 @@
     "phase 14 results": [
       "phase 14 results"
     ],
+    "phase 14 review remediation": [
+      "phase 14 review remediation"
+    ],
     "phase 14 sk create skill": [
       "phase 14 sk create skill"
     ],
@@ -80750,6 +80822,9 @@
     "phase 15 goal legacy resume and budget notice": [
       "phase 15 goal legacy resume and budget notice"
     ],
+    "phase 15 health default and brief refinements": [
+      "phase 15 health default and brief refinements"
+    ],
     "phase 15 hook suite job split": [
       "phase 15 hook suite job split"
     ],
@@ -80788,6 +80863,9 @@
     ],
     "phase 16 ci red check repairs": [
       "phase 16 ci red check repairs"
+    ],
+    "phase 16 claude create reach and doctor default": [
+      "phase 16 claude create reach and doctor default"
     ],
     "phase 16 cli codex": [
       "phase 16 cli codex"
@@ -80855,6 +80933,9 @@
     "phase 17 release changelog": [
       "phase 17 release changelog"
     ],
+    "phase 17 review pass two remediation": [
+      "phase 17 review pass two remediation"
+    ],
     "phase 17 specs artifact tracking decision": [
       "phase 17 specs artifact tracking decision"
     ],
@@ -80878,6 +80959,9 @@
     ],
     "phase 18 create sh unknown options": [
       "phase 18 create sh unknown options"
+    ],
+    "phase 18 holdout row retirement": [
+      "phase 18 holdout row retirement"
     ],
     "phase 18 host trigger index and repin generated": [
       "phase 18 host trigger index and repin generated"
@@ -92667,6 +92751,9 @@
     "rename council agent": [
       "rename council agent"
     ],
+    "rename create skill to create sk skill": [
+      "rename create skill to create sk-skill"
+    ],
     "rename double check review report": [
       "rename double-check review report"
     ],
@@ -95228,6 +95315,9 @@
     "retire sweep": [
       "retire sweep"
     ],
+    "retire the sealed holdout row": [
+      "retire the sealed holdout row"
+    ],
     "retire the sweep plan": [
       "retire the sweep plan"
     ],
@@ -96323,6 +96413,21 @@
     ],
     "review pass tasks": [
       "review pass tasks"
+    ],
+    "review pass two remediation": [
+      "review pass two remediation"
+    ],
+    "review pass two remediation acceptance criteria": [
+      "review pass two remediation acceptance criteria"
+    ],
+    "review pass two remediation implementation summary": [
+      "review pass two remediation implementation summary"
+    ],
+    "review pass two remediation plan": [
+      "review pass two remediation plan"
+    ],
+    "review pass two remediation tasks": [
+      "review pass two remediation tasks"
     ],
     "review path resolution rule": [
       "review path resolution rule"
@@ -108860,6 +108965,9 @@
     "sk doc 2 1 0 0": [
       "sk-doc 2.1.0.0"
     ],
+    "sk doc 2 10 0 0": [
+      "sk-doc 2.10.0.0"
+    ],
     "sk doc 2 2 0 0": [
       "sk-doc 2.2.0.0"
     ],
@@ -109366,6 +109474,9 @@
     ],
     "sk doc v2 1 0 0": [
       "sk-doc v2.1.0.0"
+    ],
+    "sk doc v2 10 0 0": [
+      "sk-doc v2.10.0.0"
     ],
     "sk doc v2 2 0 0": [
       "sk-doc v2.2.0.0"
@@ -110504,6 +110615,9 @@
     ],
     "sk prompt v4 0 4 0": [
       "sk-prompt v4.0.4.0"
+    ],
+    "sk skill command name": [
+      "sk-skill command name"
     ],
     "sk vision changelog retrofit": [
       "sk-vision changelog retrofit"
