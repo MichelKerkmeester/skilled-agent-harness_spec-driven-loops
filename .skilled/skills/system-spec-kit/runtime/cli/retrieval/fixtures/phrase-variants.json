@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5ca857eb9fd02cf7829e6f6fef790bbd4f19343d7500b1646fd33a029ce75ae2",
+  "manifestHash": "fd25f422a0d2d003363f218a1e130056fa9aacf635509f7183358e2dac242b39",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20673,6 +20673,9 @@
     ],
     "clear the five doctor ci drift flags": [
       "clear the five doctor ci drift flags"
+    ],
+    "cleared goal comes back after a hop": [
+      "cleared goal comes back after a hop"
     ],
     "clearer support for git workflows": [
       "clearer support for git workflows"
@@ -72081,6 +72084,9 @@
     "mobile cli leaves the sk code hub": [
       "Mobile-CLI Leaves the sk-code Hub"
     ],
+    "mobile rename does not carry over a hop": [
+      "mobile rename does not carry over a hop"
+    ],
     "mobile viewport testing cli": [
       "mobile viewport testing cli"
     ],
@@ -78414,6 +78420,9 @@
     ],
     "packet 035 baseline": [
       "packet 035 baseline"
+    ],
+    "packet 038 and 039 open ends": [
+      "packet 038 and 039 open ends"
     ],
     "packet 048": [
       "packet 048"
@@ -91267,6 +91276,9 @@
     ],
     "relaunch goal quote tasks": [
       "relaunch goal quote tasks"
+    ],
+    "relaunch live proof run set": [
+      "relaunch live proof run set"
     ],
     "relaunch loop after phase 009": [
       "relaunch loop after phase 009"
@@ -116775,6 +116787,9 @@
     ],
     "stale reference sweep tasks": [
       "stale reference sweep tasks"
+    ],
+    "stale relaunch wrapper keeps old code": [
+      "stale relaunch wrapper keeps old code"
     ],
     "stale rollback manifest": [
       "stale rollback manifest"
