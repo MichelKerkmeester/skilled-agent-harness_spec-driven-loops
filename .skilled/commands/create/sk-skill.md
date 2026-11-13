@@ -4,13 +4,13 @@ argument-hint: "<skill-name> [operation] [type] [--path <dir>] [--chained] [:aut
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
-# /create:skill Router
+# /create:sk-skill Router
 
 This command is a thin router. It separates execution routing from user-facing presentation.
 
 ## 1. ROUTER CONTRACT
 
-Route /create:skill to its presentation contract and workflow YAML for creating or updating OpenCode skills through the unified skill command.
+Route /create:sk-skill to its presentation contract and workflow YAML for creating or updating OpenCode skills through the unified skill command.
 
 - Do not split behavior across legacy command definitions.
 - Do not edit workflow YAML while executing this command.

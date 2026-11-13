@@ -1205,7 +1205,7 @@ Two lexical lanes over spec docs and skill docs: trigger-index lookup with `--tr
 
 #### CREATE
 
-**`/create:skill`** - unified skill creation and update workflow
+**`/create:sk-skill`** - unified skill creation and update workflow
 
 Creates `SKILL.md` with 8-section structure, `README.md`, references and assets directories. It registers nothing: discovery reads `graph-metadata.json`, and the advisor refresh stays with the operator. Modes: `:auto`, `:confirm`.
 
@@ -1690,7 +1690,7 @@ Yes. The Spec Kit documentation workflow (Gate 3, spec folders, templates) works
 
 **Q: How can I add a new skill to the framework?**
 
-Use `/create:skill` to scaffold the skill structure. The command creates the `SKILL.md`, references and assets directories following the `sk-doc` template. Discovery reads its `SKILL.md` frontmatter and `graph-metadata.json`, so no registration step follows. Adding a row to `.skilled/skills/README.txt` keeps the catalog complete for human readers.
+Use `/create:sk-skill` to scaffold the skill structure. The command creates the `SKILL.md`, references and assets directories following the `sk-doc` template. Discovery reads its `SKILL.md` frontmatter and `graph-metadata.json`, so no registration step follows. Adding a row to `.skilled/skills/README.txt` keeps the catalog complete for human readers.
 
 &nbsp;
 

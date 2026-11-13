@@ -83,6 +83,11 @@ routes:
       - "ripgrep recipe check"
       - "citation drift summary"
       - "is the trigger index fresh"
+      - "spec search never finds anything"
+      - "search does not find terms we know are indexed"
+      - "spec search is broken even for indexed terms"
+      - "our spec lookup finds nothing"
+      - "indexed terms are not found by spec search"
 
   - command: /doctor:deep-loop
     target: deep-loop
@@ -397,6 +402,11 @@ routes:
       - "getting started with skilled"
       - "overview of every doctor command"
       - "model server or helper process still running after the session closed"
+      - "list every check this project has"
+      - "tell me what to fix where it fails"
+      - "which checks fail and what to fix"
+      - "run every check in this project"
+      - "show me every check and the fix"
 
   - command: /doctor:ci
     target: report
@@ -645,6 +655,11 @@ routes:
       - "first install of skilled in my project"
       - "skilled in my other repository"
       - "skilled in another repository"
+      - "walk me through adding this toolkit to my own project repository"
+      - "put this toolkit into my own project repository"
+      - "use this toolkit in my own project"
+      - "install this toolkit into another repository"
+      - "onboard this project repository"
 
   - command: /doctor:overlay
     target: status
@@ -791,6 +806,10 @@ standalone:
       - "is there a newer skilled release"
       - "update my project to a newer skilled release"
       - "move my project to the newer spec-kit release"
+      - "is there a newer release of the toolkit"
+      - "what changed in the newer release"
+      - "are we on the latest release and what changed"
+      - "check whether a newer version exists and what changed"
 
   - command: /doctor:env
     file: .skilled/commands/doctor/env.md

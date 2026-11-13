@@ -9,12 +9,12 @@ trigger_phrases:
   - "create doctor shared vocabulary"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Advisor Index Handoff
 
-The shared field vocabulary that `/create:skill`, `/create:skill-parent`, `/doctor:skill-advisor tune`, and `/doctor:skill-advisor parent-skill` all render after touching a skill root, so that scaffolding a skill and diagnosing its advisor state describe the same reality in the same words.
+The shared field vocabulary that `/create:sk-skill`, `/create:skill-parent`, `/doctor:skill-advisor tune`, and `/doctor:skill-advisor parent-skill` all render after touching a skill root, so that scaffolding a skill and diagnosing its advisor state describe the same reality in the same words.
 
 ---
 
@@ -101,9 +101,9 @@ Doctor severity derivation for `skill_graph_validate` (`pass`/`warn`/`fail`/`una
 
 ## 5. CLASS APPLICABILITY
 
-H-only fields render **omitted**, not `N/A` or a false negative, on standalone (class-S) roots — `description.json`, `mode-registry.json` and `hub-router.json` are structurally forbidden there (`skill-root-metadata-contract.md` §3). `command-metadata.json` is optional on both classes, so a standalone result reports it only when the root ships it. A standalone `/create:skill` result that reported `description.json: MISSING` would be wrong; it should not mention the field at all.
+H-only fields render **omitted**, not `N/A` or a false negative, on standalone (class-S) roots — `description.json`, `mode-registry.json` and `hub-router.json` are structurally forbidden there (`skill-root-metadata-contract.md` §3). `command-metadata.json` is optional on both classes, so a standalone result reports it only when the root ships it. A standalone `/create:sk-skill` result that reported `description.json: MISSING` would be wrong; it should not mention the field at all.
 
-**Guardrail (do not build this):** `description.json` stays descriptive and is never validated against graph vocabulary, and standalone `/create:skill` never asserts parent-hub metadata files. This boundary was raised and re-confirmed across nine iterations of research (Theme C, research.md) specifically because it is the mistake future maintainers are most likely to reintroduce — resist adding a `description.json` ↔ `graph-metadata.json` equality check or a parent-file requirement to a standalone assertion, however tempting it looks as a "consistency" improvement.
+**Guardrail (do not build this):** `description.json` stays descriptive and is never validated against graph vocabulary, and standalone `/create:sk-skill` never asserts parent-hub metadata files. This boundary was raised and re-confirmed across nine iterations of research (Theme C, research.md) specifically because it is the mistake future maintainers are most likely to reintroduce — resist adding a `description.json` ↔ `graph-metadata.json` equality check or a parent-file requirement to a standalone assertion, however tempting it looks as a "consistency" improvement.
 
 ---
 
@@ -111,8 +111,8 @@ H-only fields render **omitted**, not `N/A` or a false negative, on standalone (
 
 | Branch | Renders |
 | --- | --- |
-| Standalone `/create:skill` full-create | Full handoff, `standalone` scope (H-only fields omitted) |
-| Standalone `/create:skill` full-update | Full handoff, `standalone` scope |
+| Standalone `/create:sk-skill` full-create | Full handoff, `standalone` scope (H-only fields omitted) |
+| Standalone `/create:sk-skill` full-update | Full handoff, `standalone` scope |
 | Parent `/create:skill-parent` create | Full handoff, H-specific values (`leaf-manifest.json` freshness from the scoped generator this workflow just ran) |
 | Parent `/create:skill-parent` update | Full handoff, H-specific values |
 | Reference-only / asset-only create branches | **Not** the full handoff — only the narrow conditional `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check <skillDir>` leaf-freshness signal, gated on the changed path falling under a configured leaf root |

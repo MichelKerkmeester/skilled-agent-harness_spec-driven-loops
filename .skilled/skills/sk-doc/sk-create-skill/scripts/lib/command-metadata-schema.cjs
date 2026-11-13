@@ -198,7 +198,7 @@ function validateCommandMetadata(entries, context) {
 
 /**
  * Map a slash-command id to its expected definition path fragment, e.g.
- * `/create:skill` → `create/skill.md` and `/prompt:improve` → `prompt/improve.md`.
+ * `/create:sk-skill` → `create/sk-skill.md` and `/prompt:improve` → `prompt/improve.md`.
  * Legacy single-segment ids map to `<name>.md`.
  */
 function commandDefinitionRelPath(commandId) {

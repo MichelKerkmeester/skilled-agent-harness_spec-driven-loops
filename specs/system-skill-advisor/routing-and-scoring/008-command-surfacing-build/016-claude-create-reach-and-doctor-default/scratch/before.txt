@@ -1,0 +1,96 @@
+$ git rev-parse --short HEAD
+087888ec4a
+$ npm run build (ADV)
+exit=0
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":24,"attached":20,"combined":44,"total":44}
+{"own":8,"attached":15,"combined":23,"total":45}
+{"count":0,"total":35}
+$ REAL > real-head.json
+exit=0
+{"correct":24,"total":44}
+{"correct":13,"total":45}
+{"own":13,"attached":15,"combined":28,"total":45}
+{"correct":3,"total":44}
+{"count":0,"total":35}
+{"count":0,"total":35}
+[false,false,false]
+$ EVAL
+[160,50,21,5]
+$ TC
+exit=0
+$ VALL
+exit=0
+ Test Files  183 passed (183)
+      Tests  1755 passed | 6 skipped (1761)
+$ DALL
+ℹ pass 1188
+ℹ fail 0
+$ DRV
+{"status":"fresh","changed":[]}
+exit=0
+$ SRM
+[runtime-mirror-sync] visibility claude 32/44, cursor 44/44
+[runtime-mirror-sync] PASS: 256 mirrors across 10 trees are in sync.
+exit=0
+$ NMST
+ℹ pass 8
+ℹ fail 0
+$ PSY
+[codex-prompt-sync] PASS: 45 prompts are in sync.
+exit=0
+[pi-prompt-sync] PASS: 45 prompts are in sync.
+exit=0
+[dsh-prompt-sync] PASS: 45 prompt stubs are in sync.
+exit=0
+$ ASY
+[codex-agent-sync] PASS: 11 agents are in sync.
+exit=0
+[pi-agent-sync] PASS: 11 agents are in sync.
+exit=0
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+exit=0
+$ AMSC
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+exit=0
+$ AMC
+STATUS=OK rows=12 findings=0 unknown=0
+exit=0
+$ MAN
+[agents-md-manifest] PASS: 44 sections, 31 pins, derived matches AGENTS.md
+[agents-md-manifest] Budget: 16092 / 16384 bytes to the last anchor, 27575 / 32768 bytes total, 21 history bodies
+exit=0
+$ GPC
+[gate1-pointer-sync] PASS: 1 instruction files carry the root Gate 1 and Gate 2 pointers.
+exit=0
+$ RCC
+OK: all rule invariants present (8 exact-string file(s) + 2 Iron Law file(s) + 21 delivery-prefix anchor(s) + 6 extension floor(s) + 2 example output(s)).
+exit=0
+$ CRS
+all 7 hubs resolve
+all 55 served copies match their authored files
+exit=0
+$ PSC
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+exit=0
+$ CCM
+STATUS=OK command-catalog-mirror: every catalog and hub metadata covers the command tree
+exit=0
+$ RV
+OK: route-validate — 32 routes validated, 11 warnings
+exit=0
+$ DPR
+STATUS=OK phrases=248 bridges=36
+exit=0
+$ OLD | wc -l
+      55
+$ node MBC --help | head -1
+measure-brief-cost.mjs: unknown option: --help
+$ BASE doctor rows offered
+false
+false
+$ lane D before line (T018, real embedding, after the rename, the follow-ups and the sk-doc manifest refresh)
+typed {"correct":24,"total":44} tune {"correct":13,"total":45} tune combined 28 holdout count 3 of 44 false offers 0 of 35 twice floor rows [false,false,false]
+$ deviation: FLOOR read plain tune combined 14 of 45 right after the rename because the sk-doc hub manifest was stale-manifest. compiled-route-manifest.cjs refresh --hub sk-doc restored 23 of 45

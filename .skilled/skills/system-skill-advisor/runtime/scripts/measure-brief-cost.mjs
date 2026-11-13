@@ -164,7 +164,10 @@ function measureRow(row, root, socketDir, hookPath) {
     cwd: root,
     input: payload,
     encoding: 'utf8',
-    env: { ...process.env, SPECKIT_IPC_SOCKET_DIR: socketDir },
+    // The hook writes its health records under the OS temp folder, so a cost
+    // run points that folder at its own sandbox and leaves the operator's
+    // health log alone.
+    env: { ...process.env, SPECKIT_IPC_SOCKET_DIR: socketDir, TMPDIR: socketDir },
     timeout: HOOK_TIMEOUT_MS,
     maxBuffer: MAX_STDOUT_BYTES,
   });

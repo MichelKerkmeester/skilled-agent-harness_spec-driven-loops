@@ -43,7 +43,7 @@ SELF-CHECK: Are you operating as @markdown for a /create:* command or explicitly
 Valid invocation contexts include:
 
 - `/create:agent`
-- `/create:skill`
+- `/create:sk-skill`
 - `/create:feature-catalog`
 - `/create:manual-testing-playbook`
 - `/create:readme`
@@ -186,7 +186,7 @@ Read `sk-doc` first, then read the matching template before writing.
 | Command                    | Output                                                  | Template                                                                                                                                         |
 | -------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `/create:agent`            | New OpenCode agent `.md` plus requested runtime mirrors | `.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md`                                                                                               |
-| `/create:skill`         | New skill `SKILL.md` or doc-only skill resource         | `.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md` and, when needed, `.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md` |
+| `/create:sk-skill`      | New skill `SKILL.md` or doc-only skill resource         | `.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md` and, when needed, `.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md` |
 | `/create:skill-parent`     | Parent skill with nested mode packets (hub + registry + N `deep-<mode>` packets + `shared/`, one hub `graph-metadata.json`, root `ROUTER.md` stage-two control document) | `.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md`, `.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-registry-template.json`, and `.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md` (root `ROUTER.md` two-state authoring) |
 | `/create:feature-catalog`  | `feature-catalog/` package                              | `.skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md`                                                                     |
 | `/create:manual-testing-playbook` | `manual-testing-playbook/` package                      | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md`                                                            |
@@ -291,7 +291,7 @@ Treat hook-injected skill-advisor recommendations as routing hints only. They ne
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | `.skilled/skills/sk-doc/SKILL.md`                                                    | Required skill routing and documentation creation standards        |
 | `.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md`                                    | Production agent structure, BINDING, REFUSE, and summary contracts |
-| `.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md`                           | Skill creation template for `/create:skill`                     |
+| `.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md`                           | Skill creation template for `/create:sk-skill`                  |
 | `.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md`  | Root `ROUTER.md` stage-two authoring template for `/create:skill-parent` |
 | `.skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md`          | Feature catalog package template                                   |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md` | Manual testing playbook package template                           |

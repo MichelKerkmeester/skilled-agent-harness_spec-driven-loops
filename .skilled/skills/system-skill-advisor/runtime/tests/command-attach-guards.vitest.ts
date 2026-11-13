@@ -29,7 +29,7 @@ describe('command attach on a no-edit prompt', () => {
 
   it('offers the command when the same prompt asks for the change', () => {
     const prompt = 'use sk-doc to create a skill called invoice-parser';
-    expect(attachCommand('sk-doc', SINGLE('sk-create-skill'), prompt)).toBe('/create:skill');
+    expect(attachCommand('sk-doc', SINGLE('sk-create-skill'), prompt)).toBe('/create:sk-skill');
   });
 
   it('reads the shared no-edit wording', () => {
@@ -57,7 +57,7 @@ describe('command attach on a deep-loop prompt', () => {
 
 describe('typed command boundaries', () => {
   it('does not read a file name with an extension as a typed command', () => {
-    expect(typedCommandIn('see /create:skill.md for details')).toBeUndefined();
+    expect(typedCommandIn('see /create:sk-skill.md for details')).toBeUndefined();
   });
 
   it('does not read a path segment as a typed command', () => {
@@ -65,11 +65,11 @@ describe('typed command boundaries', () => {
   });
 
   it('reads a command that ends a sentence', () => {
-    expect(typedCommandIn('run /create:skill.')).toBe('/create:skill');
+    expect(typedCommandIn('run /create:sk-skill.')).toBe('/create:sk-skill');
   });
 
   it('reads a command followed by a comma', () => {
-    expect(typedCommandIn('run /create:skill, then stop')).toBe('/create:skill');
+    expect(typedCommandIn('run /create:sk-skill, then stop')).toBe('/create:sk-skill');
   });
 
   it('reads the longest command when a prefix also matches', () => {

@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-skill routing"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -24,13 +24,13 @@ The router answers one question: given a request, which skill-local resources lo
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
-Requests reach this packet when they ask to create or rebuild an OpenCode skill under `.skilled/skills/`, to run `/create:skill` for a standalone skill or `/create:skill-parent` for a parent hub, to author or repair a skill package's `SKILL.md`, `README.md`, `references/`, `assets/`, `scripts/` or `changelog/`, or to validate and package a skill with `scripts/package_skill.py`. Its vocabulary is `create skill`, `new skill`, `skill scaffold`, `SKILL.md scaffold`, `OpenCode skill`, `parent hub`, `mode packet`, `nested workflow packet` and `package skill`. It routes to two resource families: the `references/shared/` doctrine and its root-metadata contract, which both modes load first, and the mode's own `references/<key>/` plus `assets/<key>/` trees, where `create-skill` resolves the `skill` key and `create-skill-parent` resolves `parent-skill`.
+Requests reach this packet when they ask to create or rebuild an OpenCode skill under `.skilled/skills/`, to run `/create:sk-skill` for a standalone skill or `/create:skill-parent` for a parent hub, to author or repair a skill package's `SKILL.md`, `README.md`, `references/`, `assets/`, `scripts/` or `changelog/`, or to validate and package a skill with `scripts/package_skill.py`. Its vocabulary is `create skill`, `new skill`, `skill scaffold`, `SKILL.md scaffold`, `OpenCode skill`, `parent hub`, `mode packet`, `nested workflow packet` and `package skill`. It routes to two resource families: the `references/shared/` doctrine and its root-metadata contract, which both modes load first, and the mode's own `references/<key>/` plus `assets/<key>/` trees, where `create-skill` resolves the `skill` key and `create-skill-parent` resolves `parent-skill`.
 
 ---
 
 ## 2. INTENT MODEL
 
-- **`SKILL_PACKAGE`** fires on `create skill`, `/create:skill`, `new skill`, `skill scaffold`, `SKILL.md scaffold`, `OpenCode skill`, `sk-skill`, `create sk-`, `reusable capability`, `reusable helper`, `starter reference docs`, `package skill`, `doc rewrite guard`, `doc-rewrite-guard.py`, `render ledger`, `render-known-debt.json`, `exempt from the render checks`, `render exempt map`, `kept every claim` and `kept every original claim` at weight 4. It loads the five shared docs — `references/shared/overview.md`, `references/shared/common-pitfalls.md`, `references/shared/validation-and-packaging.md`, `references/shared/advisor-index-handoff.md`, `references/shared/skill-root-metadata-contract.md` — then `references/skill/creation-workflow.md`, `references/skill/examples-and-maintenance.md`, `references/skill/upgrading-a-skill-to-v4.md`, and the nine `assets/skill/` templates: `assets/skill/skill-md-template.md`, `assets/skill/skill-readme-template.md`, `assets/skill/skill-reference-template.md`, `assets/skill/skill-asset-template.md`, `assets/skill/skill-procedure-template.md`, `assets/skill/skill-scaffold-template.md`, `assets/skill/skill-smart-router.md`, `assets/skill/skill-router-template.md`, `assets/skill/skill-sync-manifest-template.md`.
+- **`SKILL_PACKAGE`** fires on `create skill`, `/create:sk-skill`, `new skill`, `skill scaffold`, `SKILL.md scaffold`, `OpenCode skill`, `sk-skill`, `create sk-`, `reusable capability`, `reusable helper`, `starter reference docs`, `package skill`, `doc rewrite guard`, `doc-rewrite-guard.py`, `render ledger`, `render-known-debt.json`, `exempt from the render checks`, `render exempt map`, `kept every claim` and `kept every original claim` at weight 4. It loads the five shared docs — `references/shared/overview.md`, `references/shared/common-pitfalls.md`, `references/shared/validation-and-packaging.md`, `references/shared/advisor-index-handoff.md`, `references/shared/skill-root-metadata-contract.md` — then `references/skill/creation-workflow.md`, `references/skill/examples-and-maintenance.md`, `references/skill/upgrading-a-skill-to-v4.md`, and the nine `assets/skill/` templates: `assets/skill/skill-md-template.md`, `assets/skill/skill-readme-template.md`, `assets/skill/skill-reference-template.md`, `assets/skill/skill-asset-template.md`, `assets/skill/skill-procedure-template.md`, `assets/skill/skill-scaffold-template.md`, `assets/skill/skill-smart-router.md`, `assets/skill/skill-router-template.md`, `assets/skill/skill-sync-manifest-template.md`.
 - **`PARENT_HUB`** fires on `/create:skill-parent`, `parent skill`, `parent hub`, `mode packet`, `nested workflow packet`, `mode-registry.json` and `hub-router.json` at weight 4. It loads the same five shared docs, then `references/parent-skill/parent-skills-nested-packets.md`, `references/parent-skill/parent-hub-router-schema.md`, `references/parent-skill/compiled-routing-architecture.md`, and the five `assets/parent-skill/` templates: `assets/parent-skill/parent-skill-hub-template.md`, `assets/parent-skill/parent-skill-readme-template.md`, `assets/parent-skill/parent-skill-root-router-template.md`, `assets/parent-skill/scaffold/hub-skill-scaffold.md`, `assets/parent-skill/scaffold/packet-skill-scaffold.md`.
 
 ---
@@ -94,7 +94,7 @@ RESOURCE_KEY_BY_MODE = {
 }
 
 INTENT_MODEL = {
-    "SKILL_PACKAGE": {"weight": 4, "keywords": ["create skill", "/create:skill", "new skill", "skill scaffold", "skill.md scaffold", "opencode skill", "sk-skill", "create sk-", "reusable capability", "reusable helper", "starter reference docs", "package skill", "doc rewrite guard", "doc-rewrite-guard.py", "render ledger", "render-known-debt.json", "exempt from the render checks", "render exempt map", "kept every claim", "kept every original claim"]},
+    "SKILL_PACKAGE": {"weight": 4, "keywords": ["create skill", "/create:sk-skill", "new skill", "skill scaffold", "skill.md scaffold", "opencode skill", "sk-skill", "create sk-", "reusable capability", "reusable helper", "starter reference docs", "package skill", "doc rewrite guard", "doc-rewrite-guard.py", "render ledger", "render-known-debt.json", "exempt from the render checks", "render exempt map", "kept every claim", "kept every original claim"]},
     "PARENT_HUB": {"weight": 4, "keywords": ["/create:skill-parent", "parent skill", "parent hub", "mode packet", "nested workflow packet", "mode-registry.json", "hub-router.json"]},
 }
 

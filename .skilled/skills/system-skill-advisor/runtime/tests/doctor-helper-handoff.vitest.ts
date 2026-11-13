@@ -34,6 +34,19 @@ describe('doctor problem cue', () => {
     expect(doctorProblemCue('the git hooks are not triggering on commit')).toBe('strong');
   });
 
+  // A tool that never appears is the same wrong state as one that does not
+  // register, and the operator reports it in the negative rather than with a
+  // problem adjective.
+  it('reads a tool that does not show up as a strong cue', () => {
+    expect(doctorProblemCue('the deploy button is not showing up after the update')).toBe('strong');
+    expect(doctorProblemCue("my new agent isn't appearing in the picker")).toBe('strong');
+    expect(doctorProblemCue("it doesn't appear to cover the routing case")).toBeNull();
+    expect(doctorProblemCue("don't show up-to-date entries only")).toBeNull();
+    expect(doctorProblemCue('the linter does not appear in the tool list')).toBe('strong');
+    expect(doctorProblemCue("don't show line numbers in the diff")).toBeNull();
+    expect(doctorProblemCue('show me how the advisor ranks skills')).toBeNull();
+  });
+
   // A loop that stopped converging reports the same wrong state in the past
   // tense, which the "never <verb>" form does not cover.
   it('reads a loop that stopped converging as a strong cue', () => {

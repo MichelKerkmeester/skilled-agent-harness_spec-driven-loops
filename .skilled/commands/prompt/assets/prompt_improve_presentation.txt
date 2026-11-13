@@ -151,7 +151,7 @@ Standard failure messages:
 
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
-| Enhanced prompt should become a skill | `/create:skill` | Scaffold an OpenCode skill from the prompt |
+| Enhanced prompt should become a skill | `/create:sk-skill` | Scaffold an OpenCode skill from the prompt |
 | Prompt-engineering patterns worth documenting | `/create:readme` | Package the results as a documentation artifact |
 
 End interactive presentations with a single next-step prompt.

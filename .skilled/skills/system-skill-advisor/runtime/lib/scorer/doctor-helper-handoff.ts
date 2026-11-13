@@ -45,11 +45,14 @@ export const DOCTOR_HELPER_MIN_SCORE = 6;
 export const DOCTOR_HELPER_UNCUED_MIN_SCORE = 10;
 
 // A strong cue says a state is wrong or asks for a health or switch change, so
-// it can surface the helper beside a passing skill. A weak cue is a bare word
-// that ordinary work requests also use ("fix the broken example"), so it counts
-// only when no skill passes. Every hand-off needs at least one cue.
+// it can surface the helper beside a passing skill. A tool or command that does
+// not show up or appear is that wrong state, like one that is not registered or
+// not found. "appear to" states an impression and "up-to-date" is a compound,
+// so neither says a tool is missing. A weak cue is a bare word that ordinary
+// work requests also use ("fix the broken example"), so it counts only when no
+// skill passes. Every hand-off needs at least one cue.
 const STRONG_PROBLEM_CUE = new RegExp([
-  "\\b(?:not|isn'?t|aren'?t|doesn'?t|don'?t|won'?t|can'?t) (?:\\w+ )?(?:work|working|registered|found|load|loading|run|running|active|linked|fir(?:e|es|ing)|trigger(?:s|ing)?|converg\\w*)\\b",
+  "\\b(?:not|isn'?t|aren'?t|doesn'?t|don'?t|won'?t|can'?t) (?:\\w+ )?(?:work|working|registered|found|load|loading|run|running|active|linked|fir(?:e|es|ing)|trigger(?:s|ing)?|converg\\w*|show(?:s|ing)? up(?![-\\w])|appear(?:s|ing)?(?! to\\b))\\b",
   '\\bnever (?:converg\\w*|finish\\w*|stops?|works?|loads?|runs?)\\b',
   '\\bstopped converg\\w*\\b',
   '\\breturns? nothing\\b',

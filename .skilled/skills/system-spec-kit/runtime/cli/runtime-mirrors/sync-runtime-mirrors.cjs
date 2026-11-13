@@ -33,10 +33,9 @@ const { isCanonicalMirrorExcluded, isRuntimeNativeCommand } = require('./command
 const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
 const REPO_ROOT = findRepoRoot(__dirname);
 const EXCLUDED_COMMAND_DIRS = new Set(['assets', 'scripts', 'fixtures']);
-// Claude Code reads a command folder holding skill.md as one skill and hides
-// its sibling commands. The existing case stays allowlisted until those
-// commands are renamed.
-const COLLAPSE_ALLOWLIST = new Set(['create/skill.md']);
+// An open Claude Code bug (anthropics/claude-code#85786) makes a command file
+// named skill.md, in any capitalisation, turn its folder into one skill that
+// hides the other commands, so no command file may carry that name.
 
 // Cursor and Devin parse the Claude agent dialect (`tools:`), not OpenCode's
 // `permission:` block, so agents deliberately source from .claude/agents.
@@ -233,8 +232,9 @@ function expectedTarget(mirrorRelative, sourceRelative, repoRoot = REPO_ROOT) {
 
 /**
  * Count the commands each runtime actually shows. Claude Code resolves a folder
- * holding skill.md as one skill, so its siblings disappear. Cursor reads every
- * command under a flat name, so nothing is hidden there.
+ * holding a file named skill.md, in any capitalisation, as one skill, so its
+ * siblings disappear. Cursor reads every command under a flat name, so nothing
+ * is hidden there.
  */
 function commandVisibility(expectedLinks) {
   const folders = new Map();
@@ -251,12 +251,13 @@ function commandVisibility(expectedLinks) {
   let total = 0;
   for (const names of folders.values()) {
     total += names.length;
-    visible += names.includes('skill.md') ? 1 : names.length;
+    const hidesSiblings = names.some((name) => name.toLowerCase() === 'skill.md');
+    visible += hidesSiblings ? 1 : names.length;
   }
   return { claude: { visible, total }, cursor: { visible: total, total } };
 }
 
-/** Folders where a skill.md hides the folder's other commands from Claude Code. */
+/** Folders where a file named skill.md, in any capitalisation, hides the folder's other commands from Claude Code. */
 function collapseDrift(expectedLinks) {
   const folders = new Map();
   for (const link of expectedLinks) {
@@ -269,9 +270,9 @@ function collapseDrift(expectedLinks) {
   }
   const drift = [];
   for (const [folder, names] of folders) {
-    if (!names.includes('skill.md')) continue;
-    if (COLLAPSE_ALLOWLIST.has(`${folder}/skill.md`)) continue;
-    drift.push(`COLLAPSE ${folder}/skill.md hides ${names.length - 1} sibling commands on Claude Code`);
+    const skillFile = names.find((name) => name.toLowerCase() === 'skill.md');
+    if (!skillFile) continue;
+    drift.push(`COLLAPSE ${folder}/${skillFile} hides ${names.length - 1} sibling commands on Claude Code`);
   }
   return drift;
 }

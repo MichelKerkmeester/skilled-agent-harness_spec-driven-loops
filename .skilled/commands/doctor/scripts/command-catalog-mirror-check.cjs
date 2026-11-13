@@ -181,7 +181,7 @@ function readCommandTree(commandsDir) {
 // Coverage is judged per table row, never over the whole document and never by
 // substring. A usage example further down mentions ids in passing, a group row's
 // description names the commands of its group, and one id can be the prefix of
-// another (/create:skill inside /create:skill-parent). Any of those lets a
+// another (/group:name inside /group:name-parent). Any of those lets a
 // deleted row hide, which is precisely the staleness worth catching. So a row
 // names the command its first backticked span opens with, compared exactly.
 //

@@ -41,6 +41,11 @@ const INSTALL_PHRASES = [
   'first install of skilled in my project',
   'skilled in my other repository',
   'skilled in another repository',
+  'walk me through adding this toolkit to my own project repository',
+  'put this toolkit into my own project repository',
+  'use this toolkit in my own project',
+  'install this toolkit into another repository',
+  'onboard this project repository',
 ];
 const WORKFLOW_STEP_NAMES = ['Locate', 'Ask', 'Inspect', 'Checklist', 'Warn'];
 const SAVE_CAVEAT = 'context saves land in the target repo\'s own specs/ when they run from inside it, so run /doctor:setup and later saves from inside the target repo, not from the Skilled checkout.';

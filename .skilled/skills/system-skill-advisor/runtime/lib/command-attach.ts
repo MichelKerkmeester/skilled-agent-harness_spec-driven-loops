@@ -29,7 +29,7 @@ export const MODE_COMMANDS: Readonly<Record<string, Readonly<Record<string, stri
     'sk-create-manual-testing-playbook': '/create:manual-testing-playbook',
     'sk-create-readme': '/create:readme',
     'sk-create-repo-rule': '/create:repo-rule',
-    'sk-create-skill': '/create:skill',
+    'sk-create-skill': '/create:sk-skill',
     'sk-create-skill-parent': '/create:skill-parent',
     'sk-create-with-human-voice': '/create:with-human-voice',
   },
@@ -68,7 +68,7 @@ export const COMMAND_ROWS: Readonly<Record<string, CommandRow>> = {
   'command-create-feature-catalog': { command: '/create:feature-catalog', policy: 'start', mutating: 'mutates', ownerSkillId: 'sk-doc' },
   'command-create-manual-testing-playbook': { command: '/create:manual-testing-playbook', policy: 'start', mutating: 'mutates', ownerSkillId: 'sk-doc' },
   'command-create-readme': { command: '/create:readme', policy: 'start', mutating: 'mutates', ownerSkillId: 'sk-doc' },
-  'command-create-skill': { command: '/create:skill', policy: 'start', mutating: 'mutates', ownerSkillId: 'sk-doc' },
+  'command-create-sk-skill': { command: '/create:sk-skill', policy: 'start', mutating: 'mutates', ownerSkillId: 'sk-doc' },
   'command-deep-research': { command: '/deep:research', policy: 'ask', mutating: 'mutates', ownerSkillId: 'system-deep-loop' },
   'command-deep-review': { command: '/deep:review', policy: 'ask', mutating: 'mutates', ownerSkillId: 'system-deep-loop' },
   'command-doctor-agents-md-check': { command: '/doctor:agents-md check', policy: 'run', mutating: 'read-only', ownerSkillId: 'system-skilled-doctor' },
@@ -131,7 +131,7 @@ export const TRACKED_COMMANDS: Readonly<Record<string, TrackedCommand>> = {
   '/create:manual-testing-playbook': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: true },
   '/create:readme': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
   '/create:repo-rule': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
-  '/create:skill': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
+  '/create:sk-skill': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
   '/create:skill-parent': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
   '/create:with-human-voice': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
   '/deep:ai-council': { policy: 'ask', ownerSkillId: 'system-deep-loop', scorerRow: false },
@@ -197,8 +197,8 @@ export function commandRowFor(id: string): CommandRow | undefined {
 // A typed command is the reader's own wording, so it counts only where a command
 // can start and where it ends on a boundary. That keeps a path such as
 // `docs/create:goal.md` and a prefix such as `/create:sk` from reading as a
-// command, and the longest key wins so `/create:skill-parent` is never reduced to
-// its `/create:skill` prefix. A dot or a slash followed by a word character
+// command, and the longest key wins so `/group:name-parent` is never reduced to
+// its `/group:name` prefix. A dot or a slash followed by a word character
 // continues a file name or a path, while a sentence-ending period does not.
 const COMMAND_START_BOUNDARY = /[\s`'"(]/;
 const COMMAND_CONTINUATION = /[a-z0-9_:-]/;

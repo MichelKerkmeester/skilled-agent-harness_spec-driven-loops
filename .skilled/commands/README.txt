@@ -61,7 +61,7 @@ command/
 │   ├── manual-testing-playbook.md   # Create or update manual testing playbook package
 │   ├── readme.md             # Create a folder README
 │   ├── repo-rule.md          # Create, revise or retire a repo rule
-│   ├── skill.md              # Create or update skill package/files
+│   ├── sk-skill.md           # Create or update skill package/files
 │   ├── skill-parent.md       # Scaffold a parent skill with nested mode packets
 │   ├── with-human-voice.md   # Apply or score prose against the Human Voice Rules
 │   └── assets/               # YAML workflow and presentation contracts
@@ -120,7 +120,7 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 | Goal (Packet) | `/create:goal <packet path> [top-level\|phase-parent\|child\|retrofit\|phase-add\|amend]` | Author or revise a spec packet's `goal.md` from its own sources |
 | Parent Skill | `/create:skill-parent <skill-name> [create\|update] [--modes <m1,m2,...>]` | Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth) |
 | Repo Rule | `/create:repo-rule <what the rule should bind> [create\|revise\|retire]` | Create, revise or retire a repo rule under `repo-rules/`, wired into `REPO RULES.md` |
-| Skill | `/create:skill <name> <operation> [type]` | Unified skill create/update/reference/asset workflow |
+| Skill | `/create:sk-skill <name> <operation> [type]` | Unified skill create/update/reference/asset workflow |
 | Testing Playbook | `/create:manual-testing-playbook <skill> [create\|update]` | Create or update a rooted `manual-testing-playbook/` package |
 | With Human Voice | `/create:with-human-voice <file or passage> [apply\|score]` | Apply or score prose against the Human Voice Rules |
 
@@ -211,7 +211,7 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 ```
 /create:feature-catalog system-spec-kit create :confirm
 /create:manual-testing-playbook system-spec-kit update :auto
-/create:skill my-new-skill full-create :auto
+/create:sk-skill my-new-skill full-create :auto
 /prompt:improve $improve "Build a clearer CLI handoff prompt" :auto
 /speckit:save specs/<track>/007-feature
 /speckit:plan "Add user authentication" :auto

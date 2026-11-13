@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/016-claude-create-reach-and-doctor-default",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/016-claude-create-reach-and-doctor-default",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "claude create reach and doctor default",
+      "phase 16 claude create reach and doctor default",
+      "rename create skill to create sk-skill",
+      "doctor helper for a tool that is not showing up",
+      "gate 2 direct call on stdin",
+      "command intent phrases for doctor install setup speckit update",
+      "claude create reach and doctor default plan",
+      "claude create reach and doctor default tasks",
+      "claude create reach and doctor default acceptance criteria",
+      "claude create reach and doctor default implementation summary"
+    ],
+    "key_topics": [
+      "claude",
+      "reach",
+      "doctor",
+      "default",
+      "phase",
+      "rename",
+      "skill",
+      "sk-skill",
+      "helper",
+      "tool",
+      "showing",
+      "gate"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/before.txt",
+      "scratch/after.txt",
+      "scratch/after-vall.log",
+      ".skilled/commands/create/sk-skill.md",
+      ".skilled/commands/README.txt",
+      ".skilled/skills/sk-doc/description.json",
+      ".skilled/skills/sk-doc/changelog/v2.10.0.0.md",
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      ".skilled/commands/doctor/assets/agents-md-manifest.json",
+      ".cursor/rules/skill-routing.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/skills/system-spec-kit/command-metadata.json",
+      ".skilled/agents/markdown.md",
+      ".claude/agents/markdown.md",
+      ".codex/SYNC.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-vall.log",
+        "kind": "file",
+        "path": "scratch/after-vall.log",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill.md",
+        "kind": "doc",
+        "path": ".skilled/commands/create/sk-skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "v2.10.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/changelog/v2.10.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-routing.md",
+        "kind": "doc",
+        "path": ".cursor/rules/skill-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".skilled/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".codex/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Claude Code shows 32 of the 44 tracked commands",
+    "created_at": "2026-11-13T12:23:49Z",
+    "last_save_at": "2026-11-13T16:51:15.243Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8976447d533cd033e0ca79f5b16392c0cc8de9a85b582fe58e0bf8929820126e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5476c826c8b911239dfd8a3fae2206770ad904696572caf698d40dfe9d57937d",
+      "plan.md": "cd260560046aa8d24e5713f2a1c8831bfa9e4a56050b2c9595de6e132a1729a8",
+      "tasks.md": "26a4888f4d1531567c9f7cc2b67eb1634ef76df1998b5ac474d3f9cf5cb20abb",
+      "implementation-summary.md": "6b09cec15ad09609a4544d1d5b2a0c9aa2cb326ef6069cbd1d3e297c6c4e0989"
+    },
+    "last_active_at": null
+  }
+}

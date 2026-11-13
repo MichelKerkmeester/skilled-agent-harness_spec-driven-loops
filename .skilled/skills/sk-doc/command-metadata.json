@@ -1,6 +1,6 @@
 [
   {
-    "command": "/create:skill",
+    "command": "/create:sk-skill",
     "ownerMode": "sk-create-skill",
     "description": "Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.",
     "argumentHint": "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm]",
@@ -83,7 +83,7 @@
       "whenToUse": "Use this command when the deliverable is a parent skill hub with nested workflow or surface packets.",
       "preferSiblingWhen": [
         {
-          "sibling": "/create:skill",
+          "sibling": "/create:sk-skill",
           "when": "Prefer the standalone command when the deliverable is one skill package without a multi-packet hub."
         }
       ]
@@ -417,7 +417,7 @@
       "whenToUse": "Use this command when the deliverable constrains what may be done before an action \u2014 a rule loaded by a trigger table.",
       "preferSiblingWhen": [
         {
-          "sibling": "/create:skill",
+          "sibling": "/create:sk-skill",
           "when": "Prefer the skill command when the deliverable teaches how to accomplish something rather than constraining how it is done."
         },
         {

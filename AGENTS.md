@@ -62,7 +62,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 
 #### GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
 1. A) Primary: use the Skill Advisor Hook brief the runtime surfaced, when present. See `.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md`.
-2. B) Direct call: run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --format json` when no hook brief is present or when diagnosing hook behavior.
+2. B) Direct call: run `printf '%s' '{"prompt":"[request]"}' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json` when no hook brief is present or when diagnosing hook behavior.
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
 - **Command in the brief.** A brief or advisor result that names a command offers its workflow beside the skill's. Take either path whole, never an improvised one. To take the command, read its document in full and follow it. `run` starts it now. `start` starts it without `:auto`, so its setup asks. `ask` offers it in one question and waits. A typed command or explicit instruction outranks the policy. Output: `COMMAND: [/name] → [started|offered|declined]`

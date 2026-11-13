@@ -9,9 +9,9 @@
 // reported as a cost of zero.
 
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
@@ -34,12 +34,17 @@ const CORPUS_ROWS = [
 
 // The stub stands in for the hook shim. It keeps the two shapes the reader has
 // to tell apart: a live head for the prompt that asks for one, and the fallback
-// text every other prompt gets when the advisor cannot answer.
-const HOOK_STUB = `const { readFileSync } = require('node:fs');
+// text every other prompt gets when the advisor cannot answer. When
+// COST_PROBE_FILE is set, it also records the temp folder it inherited, so a
+// test can prove each hook child ran inside the run's sandbox.
+const HOOK_STUB = `const { appendFileSync, readFileSync } = require('node:fs');
 
 const input = JSON.parse(readFileSync(0, 'utf8'));
 const head = input.prompt.includes('live') ? '${LIVE_HEAD}' : '${STALE_HEAD}';
 const context = head + '\\n' + 'second line';
+if (process.env.COST_PROBE_FILE) {
+  appendFileSync(process.env.COST_PROBE_FILE, process.env.TMPDIR + '\\n');
+}
 process.stdout.write(JSON.stringify({ hookSpecificOutput: { additionalContext: context } }));
 `;
 
@@ -54,8 +59,15 @@ function makeRoot(): string {
   return root;
 }
 
-function runScript(args: readonly string[]): ReturnType<typeof spawnSync> {
-  return spawnSync(process.execPath, [SCRIPT, ...args], { encoding: 'utf8', timeout: 20_000 });
+function runScript(
+  args: readonly string[],
+  env: Record<string, string> = {},
+): ReturnType<typeof spawnSync> {
+  return spawnSync(process.execPath, [SCRIPT, ...args], {
+    encoding: 'utf8',
+    timeout: 20_000,
+    env: { ...process.env, ...env },
+  });
 }
 
 describe('brief cost measurement', () => {
@@ -88,6 +100,25 @@ describe('brief cost measurement', () => {
         rows: 1,
         liveRows: 0,
       });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('runs each hook child with TMPDIR inside its sandbox', () => {
+    const root = makeRoot();
+    const probeFile = join(root, 'tmpdirs.txt');
+    try {
+      const result = runScript(['--root', root], { COST_PROBE_FILE: probeFile });
+
+      expect(result.status).toBe(0);
+      const recorded = readFileSync(probeFile, 'utf8').trim().split('\n').filter(Boolean);
+      expect(recorded).toHaveLength(2);
+      for (const dir of recorded) {
+        expect(basename(dir).startsWith('ssa-cost-')).toBe(true);
+        expect(dir).not.toBe(tmpdir());
+        expect(existsSync(dir)).toBe(false);
+      }
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

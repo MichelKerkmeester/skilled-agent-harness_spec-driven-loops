@@ -19,7 +19,7 @@ trigger_phrases:
   - "repo rule"
   - "frontmatter contract"
   - "document diff"
-version: 2.3.12.0
+version: 2.3.13.0
 ---
 
 # sk-doc
@@ -64,7 +64,7 @@ It does not own code or spec folders. `sk-code` owns code standards and tests. `
 
 Reach for sk-doc when you create or edit a markdown document, when you scaffold a skill, an agent, a command or another OpenCode component and when you need a quality gate before publishing. Use it when you build a feature catalog, a testing playbook, a flowchart, a changelog, a spec packet goal or a before/after diff of an edited document. Use it too when a document's DQI score drops and you need to know what to fix and why.
 
-You reach it through thirteen `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/create:readme`, `/create:changelog`, `/create:diff`, `/create:repo-rule`, `/create:with-human-voice` and `/create:goal`. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
+You reach it through thirteen `/create:*` commands: `/create:agent`, `/create:sk-skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/create:readme`, `/create:changelog`, `/create:diff`, `/create:repo-rule`, `/create:with-human-voice` and `/create:goal`. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
 
 Skip sk-doc when the task belongs to a neighbor:
 
@@ -191,7 +191,7 @@ A: A feature catalog documents current behavior. It inventories what a skill or 
 
 **Q: Which `/create:*` command do I use?**
 
-A: `/create:skill` for a new skill under `.skilled/skills/`. `/create:skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.skilled/agents/`. `/create:command` for an OpenCode slash command set. `/create:feature-catalog` for a rooted feature inventory. `/create:manual-testing-playbook` for a manual testing package. `/create:benchmark` for MCP promotion and family-keyed benchmark authoring. `/design:diagram` for an HTML/SVG technical diagram or a validated ASCII/markdown flowchart. `/design:chart` for a standalone HTML chart drawn from the catalog of chart forms. `/create:readme` for a directory-level README. `/create:changelog` for a versioned changelog entry. `/create:diff` for a git-free before/after document review. `/create:repo-rule` for a repo-local rule wired into `REPO RULES.md`. `/create:with-human-voice` to apply or score the Human Voice Rules over prose. `/create:goal` for a spec packet's `goal.md`.
+A: `/create:sk-skill` for a new skill under `.skilled/skills/`. `/create:skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.skilled/agents/`. `/create:command` for an OpenCode slash command set. `/create:feature-catalog` for a rooted feature inventory. `/create:manual-testing-playbook` for a manual testing package. `/create:benchmark` for MCP promotion and family-keyed benchmark authoring. `/design:diagram` for an HTML/SVG technical diagram or a validated ASCII/markdown flowchart. `/design:chart` for a standalone HTML chart drawn from the catalog of chart forms. `/create:readme` for a directory-level README. `/create:changelog` for a versioned changelog entry. `/create:diff` for a git-free before/after document review. `/create:repo-rule` for a repo-local rule wired into `REPO RULES.md`. `/create:with-human-voice` to apply or score the Human Voice Rules over prose. `/create:goal` for a spec packet's `goal.md`.
 
 ---
 

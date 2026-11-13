@@ -9,7 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.9.0
+version: 3.6.10.0
 ---
 
 # Skill Advisor Hook Reference
@@ -101,7 +101,7 @@ The document behind a surfaced command is `.skilled/commands/<group>/<name>.md`.
 
 | Runtime | Model can start a command itself | Basis |
 |---|---|---|
-| Claude Code | Yes, through the Skill tool, as a shortcut for the names it lists: 33 of the 45 names, including one `create` entry and none of the other twelve `create:*` names | The Skill tool lists names, not files. `create/skill.md` collides with the `SKILL.md` convention on a case-insensitive disk, so the folder reads as one skill |
+| Claude Code | Yes, through the Skill tool, as a shortcut for the names it lists | The Skill tool lists names, not files. A command file named `skill.md` in any capitalisation makes Claude Code read its folder as one skill, an open upstream bug, so no command file carries that name |
 | Codex | No | The mirror is a pointer stub that tells the model to read the command file. There is no `.codex/skills` |
 | Cursor | No model path found, and the brief is dormant | The mirror is a pointer stub. Public Cursor docs were not fetched |
 | Devin | No command surface at all | Skills are exposed, commands are not |

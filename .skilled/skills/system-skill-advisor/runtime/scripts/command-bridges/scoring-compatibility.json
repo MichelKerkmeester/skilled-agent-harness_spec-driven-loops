@@ -357,13 +357,13 @@
       ]
     },
     {
-      "inventoryId": "command-create-skill",
+      "inventoryId": "command-create-sk-skill",
       "order": 12,
-      "id": "command-create-skill",
-      "description": "Create or update an OpenCode skill using /create:skill.",
+      "id": "command-create-sk-skill",
+      "description": "Create or update an OpenCode skill using /create:sk-skill.",
       "slashMarkers": [
-        "/create:skill",
-        "create:skill"
+        "/create:sk-skill",
+        "create:sk-skill"
       ]
     },
     {

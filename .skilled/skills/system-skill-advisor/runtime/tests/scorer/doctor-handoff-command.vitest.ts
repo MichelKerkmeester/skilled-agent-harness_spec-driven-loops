@@ -22,6 +22,7 @@ import type {
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROUTING = resolve(HERE, '../../scripts/routing-accuracy');
 const BASELINE_PATH = join(ROUTING, 'scorer-eval-baseline.json');
+const CORPUS_PATH = join(ROUTING, 'command-prompts.jsonl');
 const SENTINEL = '.skilled/skills/system-spec-kit/SKILL.md';
 const DOCTOR_PREFIX = 'command-doctor-';
 
@@ -109,6 +110,24 @@ describe('doctor hand-off command', () => {
     const ids = scoredIds('my research loop stopped converging and I cannot see why');
 
     expect(ids.slice(0, 2)).toEqual(['system-deep-loop', 'command-doctor-deep-loop']);
+  });
+
+  // The helper stands beside the skills for a tool that never appears. The row
+  // is a tune prompt, so its wording may be read here after the split check.
+  it('offers the helper beside the skills for a tool that does not show up', () => {
+    const row = readFileSync(CORPUS_PATH, 'utf8')
+      .split('\n')
+      .filter((line) => line.trim() !== '')
+      .map((line) => JSON.parse(line) as { id: string; split: string; prompt: string })
+      .find((candidate) => candidate.id === 'cmd-doctor-mcp-plain-tune-01');
+
+    expect(row).toBeDefined();
+    if (!row) return;
+    expect(row.split).toBe('tune');
+    const ids = scoredIds(row.prompt);
+
+    expect(ids[0]).toBe('mcp-code-mode');
+    expect(ids.slice(0, 3)).toContain('command-doctor-helper');
   });
 
   it('falls back to the helper for a repair request with no ranked command', () => {

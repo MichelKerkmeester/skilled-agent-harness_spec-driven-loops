@@ -4,7 +4,7 @@ description: "Scaffold, validate and package standalone OpenCode skills and two-
 trigger_phrases:
   - "create skill"
   - "parent hub"
-version: 1.2.8.0
+version: 1.2.9.0
 ---
 
 # create-skill
@@ -20,7 +20,7 @@ version: 1.2.8.0
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Scaffolding, validating and packaging OpenCode skills under `.skilled/skills/`, standalone or parent hub |
-| **Invoke with** | `/create:skill`, `/create:skill-parent`, "new skill", "parent hub" |
+| **Invoke with** | `/create:sk-skill`, `/create:skill-parent`, "new skill", "parent hub" |
 | **Works on** | New skill folders and existing skill or hub packages that need repair or re-validation |
 | **Produces** | `SKILL.md`, `README.md`, `references/`, `assets/` and `scripts/` for a skill, a full parent-hub router set for a hub |
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "command runtime mirrors"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Command Authoring Checklist
@@ -32,7 +32,7 @@ This checklist keeps user-invoked commands consistent with the two live command 
 
 ## 2. PRE-CHECKS
 
-- [ ] Read a YAML-router command such as `.skilled/commands/create/skill.md` or `.skilled/commands/speckit/complete.md`.
+- [ ] Read a YAML-router command such as `.skilled/commands/create/sk-skill.md` or `.skilled/commands/speckit/complete.md`.
 - [ ] Read a contract-renderer command such as `.skilled/commands/deep/research.md`, which delegates to `.skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs`.
 - [ ] Confirm command frontmatter uses the live fields `argument-hint` and `allowed-tools` when the command needs arguments or tool permissions.
 - [ ] Confirm whether `:auto` needs PRE-BOUND SETUP ANSWERS support in `argument-hint` and the presentation or compiled contract.
@@ -63,8 +63,8 @@ This checklist keeps user-invoked commands consistent with the two live command 
 ## 4. POST-CHECKS
 
 - [ ] Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` against the owning spec folder when the command change is part of a spec folder.
-- [ ] grep verification for command frontmatter: `rg -n "^(description|argument-hint|allowed-tools):" .skilled/commands/create/skill.md .skilled/commands/speckit/complete.md .skilled/commands/deep/research.md`.
-- [ ] grep verification for YAML-router assets: `rg -n "create_skill_(auto|confirm)\\.yaml|speckit_complete_(auto|confirm)\\.yaml|presentation" .skilled/commands/create/skill.md .skilled/commands/speckit/complete.md`.
+- [ ] grep verification for command frontmatter: `rg -n "^(description|argument-hint|allowed-tools):" .skilled/commands/create/sk-skill.md .skilled/commands/speckit/complete.md .skilled/commands/deep/research.md`.
+- [ ] grep verification for YAML-router assets: `rg -n "create_skill_(auto|confirm)\\.yaml|speckit_complete_(auto|confirm)\\.yaml|presentation" .skilled/commands/create/sk-skill.md .skilled/commands/speckit/complete.md`.
 - [ ] grep verification for contract-renderer commands: `rg -n "render-command-contract\\.cjs|deep/research" .skilled/commands/deep/research.md .skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs`.
 - [ ] Filtered parity check: `.claude/commands` is a real directory, each shared command is a symlink, excluded commands are absent, and `sync-runtime-mirrors.cjs --check` exits 0. `.skilled/prompts` should remain absent.
 
@@ -72,7 +72,7 @@ This checklist keeps user-invoked commands consistent with the two live command 
 
 ## 5. RELATED RESOURCES
 
-- YAML-router examples: `.skilled/commands/create/skill.md`, `.skilled/commands/speckit/complete.md`
+- YAML-router examples: `.skilled/commands/create/sk-skill.md`, `.skilled/commands/speckit/complete.md`
 - Contract-renderer example: `.skilled/commands/deep/research.md`
 - Renderer: `.skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs`
 - Command parity path: generated per-command symlinks under `.claude/commands`

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "2549786f28",
-  "corpusSha256": "sha256:698da57b02159a756dbba5d6a2c9a3c6d14588d07e96be268567835cf36448b8",
+  "capturedAtSha": "087888ec4a",
+  "corpusSha256": "sha256:8545e6d8afcd17b7b12d6ec2cea48cae668c0f8bc5e54d759d2ada12d236651c",
   "bridgeCounts": {
     "commandMetadata": 27,
     "doctorRoutes": 36,
@@ -21,7 +21,7 @@
     },
     "plain_recall_at_1": {
       "tune": {
-        "correct": 8,
+        "correct": 13,
         "total": 45
       },
       "holdout": {
@@ -31,11 +31,11 @@
     },
     "plain_reach_top3": {
       "tune": {
-        "correct": 10,
+        "correct": 15,
         "total": 45
       },
       "holdout": {
-        "correct": 1,
+        "correct": 2,
         "total": 44
       }
     },
@@ -51,7 +51,7 @@
     },
     "agreement": {
       "correct": 8,
-      "total": 10
+      "total": 11
     }
   },
   "unreachable": [
@@ -63,7 +63,7 @@
     "/create:goal",
     "/create:readme",
     "/create:repo-rule",
-    "/create:skill",
+    "/create:sk-skill",
     "/create:skill-parent",
     "/create:with-human-voice",
     "/deep:ai-council",
@@ -264,7 +264,7 @@
         }
       }
     },
-    "/create:skill": {
+    "/create:sk-skill": {
       "typed": {
         "rows": 1,
         "top1": 0,
@@ -558,8 +558,8 @@
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
@@ -634,8 +634,8 @@
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
@@ -710,13 +710,13 @@
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
           "top1": 0,
-          "top3": 0
+          "top3": 1
         }
       }
     },
@@ -748,8 +748,8 @@
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
@@ -900,8 +900,8 @@
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
@@ -1074,14 +1074,14 @@
       "offered": false
     },
     "cmd-create-skill-typed-01": {
-      "expected_command": "/create:skill",
+      "expected_command": "/create:sk-skill",
       "top": "sk-doc",
       "top1": false,
       "top3": false,
       "offered": false
     },
     "cmd-create-skill-plain-tune-01": {
-      "expected_command": "/create:skill",
+      "expected_command": "/create:sk-skill",
       "top": "sk-doc",
       "top1": false,
       "top3": false,
@@ -1194,10 +1194,10 @@
     },
     "cmd-doctor-install-plain-tune-01": {
       "expected_command": "/doctor:install",
-      "top": null,
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-doctor-install",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-doctor-mcp-typed-01": {
       "expected_command": "/doctor:mcp",
@@ -1211,7 +1211,7 @@
       "top": "mcp-code-mode",
       "top1": false,
       "top3": false,
-      "offered": false
+      "offered": true
     },
     "cmd-doctor-overlay-typed-01": {
       "expected_command": "/doctor:overlay",
@@ -1250,10 +1250,10 @@
     },
     "cmd-doctor-setup-plain-tune-01": {
       "expected_command": "/doctor:setup",
-      "top": null,
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-doctor-setup",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-doctor-sk-code-typed-01": {
       "expected_command": "/doctor:sk-code",
@@ -1306,10 +1306,10 @@
     },
     "cmd-doctor-speckit-plain-tune-01": {
       "expected_command": "/doctor:speckit",
-      "top": null,
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-doctor-speckit",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-doctor-symlink-typed-01": {
       "expected_command": "/doctor:symlink",
@@ -1334,10 +1334,10 @@
     },
     "cmd-doctor-update-plain-tune-01": {
       "expected_command": "/doctor:update",
-      "top": null,
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-doctor-update",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-deep-ai-council-typed-01": {
       "expected_command": "/deep:ai-council",
@@ -1530,10 +1530,10 @@
     },
     "cmd-speckit-search-plain-tune-01": {
       "expected_command": "/speckit:search",
-      "top": null,
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-speckit-search",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "mns-d3-01": {
       "expected_command": null,
@@ -1795,7 +1795,7 @@
       "offered": true
     },
     "sv-07": {
-      "expected_command": "/create:skill",
+      "expected_command": "/create:sk-skill",
       "top": "sk-doc",
       "top1": false,
       "top3": false,
@@ -1840,9 +1840,9 @@
   "attachedMetrics": {
     "plain": {
       "tune": {
-        "own": 8,
+        "own": 13,
         "attached": 15,
-        "combined": 23,
+        "combined": 28,
         "total": 45
       },
       "holdout": {
@@ -1897,9 +1897,9 @@
       },
       "doctor": {
         "tune": {
-          "own": 5,
+          "own": 9,
           "attached": 0,
-          "combined": 5,
+          "combined": 9,
           "total": 17
         },
         "holdout": {
@@ -1925,9 +1925,9 @@
       },
       "speckit": {
         "tune": {
-          "own": 1,
+          "own": 2,
           "attached": 0,
-          "combined": 1,
+          "combined": 2,
           "total": 7
         },
         "holdout": {
@@ -2027,10 +2027,10 @@
         "policy": "start"
       },
       "cmd-create-skill-typed-01": {
-        "expected_command": "/create:skill",
+        "expected_command": "/create:sk-skill",
         "top": "sk-doc",
         "carried": "attached",
-        "command": "/create:skill",
+        "command": "/create:sk-skill",
         "policy": "start"
       },
       "cmd-create-with-human-voice-typed-01": {
@@ -2277,8 +2277,8 @@
       "cmd-create-readme-typed-01": "/create:readme",
       "cmd-create-repo-rule-typed-01": "/create:repo-rule",
       "cmd-create-skill-parent-typed-01": "/create:skill-parent",
-      "cmd-create-skill-typed-01": "/create:skill",
-      "cmd-create-skill-plain-tune-01": "/create:skill",
+      "cmd-create-skill-typed-01": "/create:sk-skill",
+      "cmd-create-skill-plain-tune-01": "/create:sk-skill",
       "cmd-create-with-human-voice-typed-01": "/create:with-human-voice",
       "cmd-deep-ai-council-typed-01": "/deep:ai-council",
       "cmd-deep-ai-council-plain-tune-01": "/deep:ai-council",
@@ -2290,7 +2290,7 @@
       "cmd-design-diagram-plain-tune-01": "/design:diagram",
       "cmd-design-extract-typed-01": "/design:extract",
       "cmd-design-extract-plain-tune-01": "/design:extract",
-      "sv-07": "/create:skill",
+      "sv-07": "/create:sk-skill",
       "sv-10": "/design:chart"
     },
     "needs_mode_floor": {

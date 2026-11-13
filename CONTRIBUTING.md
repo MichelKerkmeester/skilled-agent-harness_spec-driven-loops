@@ -195,7 +195,7 @@ This PR lets a host repository name its own trigger-index folder.
 | **High** | Bug fixes | With clear reproduction steps |
 | **High** | Performance | Improvements with benchmarks |
 | **High** | Documentation | Improvements and clarifications |
-| **Medium** | New skills | Scaffold with `/create:skill`, or `/create:skill-parent` for a skill with nested modes |
+| **Medium** | New skills | Scaffold with `/create:sk-skill`, or `/create:skill-parent` for a skill with nested modes |
 | **Medium** | Commands and agents | Scaffold with `/create:command` and `/create:agent` |
 | **Medium** | Tests | Test coverage |
 | **Always** | Typo fixes | Quick corrections welcome |
