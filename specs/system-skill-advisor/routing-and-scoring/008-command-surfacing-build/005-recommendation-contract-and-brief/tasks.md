@@ -109,7 +109,7 @@ Worker waves. Tasks in one wave touch different files and can run in parallel. A
 
 ### Wave 6
 - [x] T027 [P] Remove the allow-list read, its drop rule for matching metadata entries and the `allowList` count from `D`, and delete `$ADV/scripts/command-bridges/allow-list.json`. Do not run `D`. Verify: `rg -n "allow-list|allowList" $D` prints nothing and `test ! -e $ADV/scripts/command-bridges/allow-list.json` exits 0.
-- [x] T028 [P] In `$ADV/scripts/command-bridges/scoring-compatibility.json`, delete the four `python` rows whose `id` is `command-spec-kit-plan`, `-complete`, `-implement` or `-resume`, and the `command-spec-kit-resume` key of `pythonOwnerNormalization`. Verify: `jq -c '[.python[].id | select(test("^command-spec-kit-(plan|complete|implement|resume)$"))]' $ADV/scripts/command-bridges/scoring-compatibility.json` prints `[]`.
+- [x] T028 [P] In `$ADV/scripts/command-bridges/scoring-compatibility.json`, keep the four `python` compatibility rows under the ids `command-speckit-plan`, `command-speckit-complete`, `command-speckit-implement` and `command-speckit-resume`, with `command-speckit-resume` as the key of `pythonOwnerNormalization`, because deleting them cost the Python fallback one labeled row. Amended 2026-11-13 by the coordinator under decision D1 of the parent `../goal.md`, to match what was built. The task first said to delete the four rows and the `command-spec-kit-resume` key. Verify: `jq -c '[.python[].id | select(test("^command-spec-kit-(plan|complete|implement|resume)$"))]' $ADV/scripts/command-bridges/scoring-compatibility.json` prints `[]`.
 - [x] T029 [P] In `$ADV/lib/scorer/lanes/explicit.ts`, replace `command-spec-kit-resume` with `command-speckit-resume` on its two lines. Verify: `rg -c "command-spec-kit-(plan|complete|implement|resume)" $ADV/lib/scorer/lanes/explicit.ts` prints nothing.
 - [x] T030 [P] In `$ADV/lib/scorer/fusion.ts`, replace each `command-spec-kit-plan` or `command-spec-kit-resume` with `command-speckit-plan` or `command-speckit-resume`. Verify: `rg -c "command-spec-kit-(plan|complete|implement|resume)" $ADV/lib/scorer/fusion.ts` prints nothing.
 - [x] T031 [P] In `$ADV/lib/scorer/scoring-constants.ts`, replace `command-spec-kit-plan` with `command-speckit-plan` in its comment. Verify: `rg -c "command-spec-kit-plan" $ADV/lib/scorer/scoring-constants.ts` prints nothing.
@@ -149,6 +149,7 @@ The first full suite run after the build showed seven failures in five files. Si
 - [x] T058 [P] In `$ADV/tests/command-bridges-drift-guard.vitest.ts`, update the three failing cases to the new state and nothing else: the residual allow-list no longer exists (`allow-list.json` is deleted and `D` reads no allow-list), and the four Python compatibility rows carry the ids `command-speckit-plan`, `command-speckit-complete`, `command-speckit-implement` and `command-speckit-resume` with `command-speckit-resume` as the key of the owner normalization. Rename a case whose title names the allow-list. Verify: in `ADV`, `npx vitest run tests/command-bridges-drift-guard.vitest.ts` reports 0 failed.
 - [x] T059 [P] In `$ADV/tests/legacy/advisor-corpus-parity.vitest.ts`, change the pinned `pythonCorrect` from 116 to 117 and extend the comment above it with one sentence: the Python fallback now also answers `rr-iter3-076` correctly. Change another pinned count in the same case only when the run prints a different received value for it, and say so in your report. Verify: in `ADV`, `npx vitest run tests/legacy/advisor-corpus-parity.vitest.ts` reports 0 failed.
 - [x] T060 [P] In `$ADV/tests/parity/python-ts-parity.vitest.ts`, change the pinned `pythonCorrect` from 112 to 113 and extend the comment above it with one sentence: the Python fallback now also answers `rr-iter3-076` correctly. Change another pinned count in the same case only when the run prints a different received value for it, and say so in your report. Verify: in `ADV`, `npx vitest run tests/parity/python-ts-parity.vitest.ts` reports 0 failed.
+- [x] T061 In `$ADV/tests/command-brief-golden.vitest.ts`, add one case for an ambiguous head whose two sides both carry a command label: render a result marked ambiguous with a top recommendation `command-doctor-git-hooks` and a second recommendation `command-speckit-save` through `renderAdvisorBrief`, and assert that the head starts with `Advisor: live; ambiguous: sk-git → /doctor:git hooks (ask)`, holds ` vs system-spec-kit → /speckit:save (start)`, is at most 320 characters before `\nDirectives:` and contains no `command-`. Build the result the way the file's existing cases do. Verify: in `ADV`, `npx vitest run tests/command-brief-golden.vitest.ts` reports 0 failed.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -162,7 +163,7 @@ The first full suite run after the build showed seven failures in five files. Si
 - [x] T050 Run `$S/hook-latency.mjs` three times (`$S/hook-latency-after-{1,2,3}.json`). Verify: the middle median is at most 25 ms over the T003 middle median and the middle p95 at most 40 ms over the T003 middle p95.
 - [x] T051 Run every gate. Verify: `node $D --check | jq -r .status` prints `fresh`, `$ROLL` prints `{"ask":17,"run":7,"start":20}`, `$P` prints `[159,50,20,5]`, `$TC` exits 0, `python3 $ADV/tests/python/test_skill_advisor.py` exits 0, `node $RT` exits 0, `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs | tail -1` reports `failed=0` and `npm test` in `ADV` reports 0 failed.
 - [x] T052 Check the boundaries. Verify: `git -c core.fsmonitor=false diff --quiet HEAD -- AGENTS.md` exits 0, and `git -c core.fsmonitor=false diff HEAD -U0 -- .skilled | rg "^\+.*(//|#).*(specs/|REQ-0|T0[0-9]{2}|CARRY-003)"` prints nothing.
-- [ ] T053 Write `implementation-summary.md` and mark each row in `acceptance-criteria.md` with its evidence. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` prints `RESULT: PASSED`.
+- [x] T053 Write `implementation-summary.md` and mark each row in `acceptance-criteria.md` with its evidence. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -170,9 +171,9 @@ The first full suite run after the build showed seven failures in five files. Si
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, or the CARRY-003 tasks T041 to T046 removed by an operator decision to drop the group
-- [ ] No `[B]` blocked tasks remaining
-- [ ] The six golden briefs pass and `save context` returns one entry carrying `/speckit:save`. The reach check prints `RESULT: PASSED`
+- [x] All tasks marked `[x]`, or the CARRY-003 tasks T041 to T046 removed by an operator decision to drop the group
+- [x] No `[B]` blocked tasks remaining
+- [x] The six golden briefs pass and `save context` returns one entry carrying `/speckit:save`. The reach check prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -218,10 +219,10 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved pinned num
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `$TC` exits 0.
-- [ ] CHK-011 [P0] No code comment names a spec path, a phase number or a task id (T052).
-- [ ] CHK-012 [P1] Every command string and policy a reader shows comes from the generated table, and none is hand-kept.
-- [ ] CHK-013 [P1] A missing field, an unknown id or a missing policy renders without an error (T021).
+- [x] CHK-010 [P0] `$TC` exits 0. Evidence: `npm run typecheck` in `ADV` exit 0 on `a57ce61a13`, 2026-11-13.
+- [x] CHK-011 [P0] No code comment names a spec path, a phase number or a task id (T052). Evidence: the T052 pattern over `git -c core.fsmonitor=false show a57ce61a13 -U0 -- .skilled` printed nothing, exit 1.
+- [x] CHK-012 [P1] Every command string and policy a reader shows comes from the generated table, and none is hand-kept. Evidence: `DOCTOR_COMMAND_STRINGS` and `BRIDGE_COMMAND_BY_ID` have no hit under `ADV`. A search for quoted slash commands in `R`, `H`, `CLI` and `FB` prints nothing. `H` reads `commandRowFor` and `COMMAND_POLICIES` (`advisor-recommend.ts:314`, `:475`), `CLI` reads `commandRowFor` (`skill-advisor-cli.ts:1495`) and `R` reads it in `commandLabel` and `doctorCommandString`.
+- [x] CHK-013 [P1] A missing field, an unknown id or a missing policy renders without an error (T021). Evidence: rows at lines 111, 121 and 130 of `tests/command-brief-golden.vitest.ts`, which passed on the rerun.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -229,11 +230,11 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved pinned num
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] The schema test and the six golden briefs pass (T014, T021).
-- [ ] CHK-021 [P0] The floors hold (T037, T051).
-- [ ] CHK-022 [P1] The degraded and older-daemon cases pass (T022, T023).
-- [ ] CHK-023 [P1] The reach check passes with real embeddings, and the other-hub fixture still fails (T015, T049).
-- [ ] CHK-024 [P1] `nm-sk-doc-01` tops at `sk-doc` with no recall or pinned number lower (T057).
+- [x] CHK-020 [P0] The schema test and the six golden briefs pass (T014, T021). Evidence: both files passed in the 11-file rerun, 68 passed and 0 failed, and the six golden heads match `plan.md`.
+- [x] CHK-021 [P0] The floors hold (T037, T051). Evidence: rerun `$P` `[159,50,20,5]`, `node $C | $M` typed 24 of 44, tune 9 of 45, holdout 0 of 44, false offers 0 of 35, `$ROLL` `{"ask":17,"run":7,"start":20}`, derive `fresh`. `$S/suite-after.txt` 1513 passed and 0 failed.
+- [x] CHK-022 [P1] The degraded and older-daemon cases pass (T022, T023). Evidence: `tests/cli-degraded-command-contract.vitest.ts` and `tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts` passed in the rerun.
+- [x] CHK-023 [P1] The reach check passes with real embeddings, and the other-hub fixture still fails (T015, T049). Evidence: `$S/reach-after.txt` `RESULT: PASSED`, and a later run with Ollama exited 0 with `outranked=0`, on a worktree where another worker had edited `sk-doc/ROUTER.md`. `node $RT` exits 0 and its case at lines 161 to 166 asserts `outranked` for the `command-doctor-git-hooks` row owned by `sk-git`.
+- [x] CHK-024 [P1] `nm-sk-doc-01` tops at `sk-doc` with no recall or pinned number lower (T057). Evidence: rerun `jq` on the baseline file printed `{"top":"sk-doc","offered":false}` with the CHK-021 numbers unchanged.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -241,11 +242,11 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved pinned num
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [ ] CHK-FIX-001 [P0] The gap is class `contract`: the public output lacks fields its readers need.
-- [ ] CHK-FIX-002 [P0] Every reader of the old doctor block is updated: `rg -n "DOCTOR_COMMAND_STRINGS|doctorCommandString" $ADV --glob '!dist'`.
-- [ ] CHK-FIX-003 [P0] Every reader of `ownerSkillId` and `command` is listed: `rg -n "ownerSkillId|\.command\b" $ADV $HK .skilled/skills/sk-doc/sk-create-skill/scripts --glob '!dist' --glob '!node_modules'`.
-- [ ] CHK-FIX-004 [P1] The renderer matrix axes from `plan.md` are each a test row.
-- [ ] CHK-FIX-005 [P1] Evidence names the commit it ran on.
+- [x] CHK-FIX-001 [P0] The gap is class `contract`: the public output lacks fields its readers need. Evidence: `spec.md` section 2 and the before head `use command-spec-kit-plan` in `$S/brief-heads-before.txt`.
+- [x] CHK-FIX-002 [P0] Every reader of the old doctor block is updated: `rg -n "DOCTOR_COMMAND_STRINGS|doctorCommandString" $ADV --glob '!dist'`. Evidence: the rerun prints no `DOCTOR_COMMAND_STRINGS` line. `doctorCommandString` is defined at `render.ts:177` and reads `commandRowFor`, and its callers are `render.ts` and `tests/doctor-brief-render.vitest.ts`.
+- [x] CHK-FIX-003 [P0] Every reader of `ownerSkillId` and `command` is listed: `rg -n "ownerSkillId|\.command\b" $ADV $HK .skilled/skills/sk-doc/sk-create-skill/scripts --glob '!dist' --glob '!node_modules'`. Evidence: the rerun with `-l` prints 36 files. The non-test runtime readers are `CA`, `R`, `H`, `CLI`, `FB`, `SCH`, `subprocess.ts`, `advisor-server.ts`, `lib/scorer/fusion.ts`, `lib/scorer/doctor-helper-handoff.ts`, `D`, `RC` and the routing-accuracy scripts `run-command-behaviour.mjs`, `score-command-transcripts.mjs` and `capture-command-routing-baseline.mjs`. The rest are tests or unrelated `.command` reads in sk-create-skill scripts.
+- [x] CHK-FIX-004 [P1] The renderer matrix axes from `plan.md` are each a test row. Evidence: field, id and policy have the rows at lines 111, 121 and 130 of `tests/command-brief-golden.vitest.ts`, and the ambiguous axis has the T061 case at line 195, which asserts both command labels. The file passed on 2026-11-13.
+- [x] CHK-FIX-005 [P1] Evidence names the commit it ran on. Evidence: the reruns ran on `a57ce61a13`, and `implementation-summary.md` and `acceptance-criteria.md` name it.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -253,8 +254,8 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved pinned num
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] Every label part passes `sanitizeSkillLabel`.
-- [ ] CHK-031 [P0] The relabel script prints no prompt text (T035).
+- [x] CHK-030 [P0] Every label part passes `sanitizeSkillLabel`. Evidence: `commandLabel` in `render.ts:189-203` passes the command, the owner and the policy through it, and the plain label at `render.ts:211` does too.
+- [x] CHK-031 [P0] The relabel script prints no prompt text (T035). Evidence: the only stdout write in `$S/relabel-ids.mjs` is the count at line 206, and `$S/relabel-list.txt` holds file, row id and field only.
 <!-- /ANCHOR:security -->
 
 ---
@@ -262,8 +263,8 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved pinned num
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md` state the same fields and numbers.
-- [ ] CHK-041 [P1] The hook doc, the feature catalog entry and the bridges README match the code (T038 to T040).
+- [x] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md` state the same fields and numbers. Evidence: the `scoring-compatibility.json` row in `spec.md` section 3 and T028 now state the kept rows, by the dated amendment of 2026-11-13, and match the deviation table in `implementation-summary.md`.
+- [x] CHK-041 [P1] The hook doc, the feature catalog entry and the bridges README match the code (T038 to T040). Evidence: rerun of the three verify commands, hook doc lines 58 and 65 to 70, 4 `ownerSkillId` lines in the catalog entry, README line 50 and no `allow-list.json` line.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -271,7 +272,7 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved pinned num
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Probes, timing runs, the relabel script and capture output live in `scratch/` only.
+- [x] CHK-050 [P1] Probes, timing runs, the relabel script and capture output live in `scratch/` only. Evidence: `git show --stat a57ce61a13` lists the probes, timing files, relabel script and captures only under `$S`.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -281,9 +282,9 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved pinned num
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 1/12 |
-| P1 Items | 11 | 1/11 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 11 | 11/11 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: 2026-11-12
+**Verification Date**: 2026-11-13
 <!-- /ANCHOR:summary -->

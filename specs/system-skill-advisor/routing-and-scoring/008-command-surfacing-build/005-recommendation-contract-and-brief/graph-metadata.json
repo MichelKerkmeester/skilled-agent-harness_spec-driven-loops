@@ -37,7 +37,7 @@
       "directive"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,12 +45,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/brief-heads-before.txt",
+      "scratch/brief-heads-after.txt",
+      "scratch/relabel-list.txt",
+      "scratch/reach-before.txt",
+      "scratch/reach-after.txt",
+      "scratch/nm-sk-doc-source.txt",
+      "scratch/nm-sk-doc-before.txt",
+      "scratch/before.txt",
       ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+      ".skilled/skills/sk-doc/graph-metadata.json",
       ".skilled/skills/system-spec-kit/command-metadata.json",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-router-vocabulary-reach.test.cjs",
-      ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
-      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md"
+      "scratch/suite-before.txt",
+      "scratch/suite-after.txt"
     ],
     "entities": [
       {
@@ -90,6 +98,54 @@
         "source": "derived"
       },
       {
+        "name": "brief-heads-before.txt",
+        "kind": "file",
+        "path": "scratch/brief-heads-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "brief-heads-after.txt",
+        "kind": "file",
+        "path": "scratch/brief-heads-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "relabel-list.txt",
+        "kind": "file",
+        "path": "scratch/relabel-list.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reach-before.txt",
+        "kind": "file",
+        "path": "scratch/reach-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reach-after.txt",
+        "kind": "file",
+        "path": "scratch/reach-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "nm-sk-doc-source.txt",
+        "kind": "file",
+        "path": "scratch/nm-sk-doc-source.txt",
+        "source": "derived"
+      },
+      {
+        "name": "nm-sk-doc-before.txt",
+        "kind": "file",
+        "path": "scratch/nm-sk-doc-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
         "name": "skill-advisor-cli-fallback.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
@@ -102,27 +158,27 @@
         "source": "derived"
       },
       {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
         "name": "command-metadata.json",
         "kind": "config",
         "path": ".skilled/skills/system-spec-kit/command-metadata.json",
         "source": "derived"
       },
       {
-        "name": "ci-router-vocabulary-reach.test.cjs",
+        "name": "suite-before.txt",
         "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-router-vocabulary-reach.test.cjs",
+        "path": "scratch/suite-before.txt",
         "source": "derived"
       },
       {
-        "name": "user-prompt-submit.js",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-recommend.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+        "name": "suite-after.txt",
+        "kind": "file",
+        "path": "scratch/suite-after.txt",
         "source": "derived"
       },
       {
@@ -148,59 +204,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A model that reads the hook brief sees `use command-speckit-save` or `use command-spec-kit-plan`, a raw scorer id that names no slash command and no policy",
     "created_at": "2026-11-12T12:27:36Z",
-    "last_save_at": "2026-11-12T22:04:53.999Z",
+    "last_save_at": "2026-11-13T01:13:46.081Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f7f06b8660791477d86e2e54f1ff7c64eb24d6a7fb7911ad8e33872b4199b9b",
+    "source_fingerprint": "sha256:5fd80de209320713a5dd8b27d4c4334ca4c15ba3be1ef499650accc10a3305fc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ba26ea581d26e813be38067d79c66f9a1524373036e7614d51842ff9c80470a",
+      "spec.md": "f546d874440a56e12391554aa41e58d8bdf2628c1686b1b1fd142381aeb6a8d2",
       "plan.md": "ff6f6fbe9098c100a7754015acd5a61ee17528240b13bcc57b448fc64c356719",
-      "tasks.md": "6a628c8e56499e881fd475940c99c537b9064b15e72d46861b33fb8d2830f73b",
-      "implementation-summary.md": "a17df303f3a9ff38cf886a21ba5b1330610ad27e09d8f5e270a04e5dcf2e434a"
+      "tasks.md": "022a12743a32ef34518aa0b9753bd3c6853d659ab5e1b0198c335e8361d82802",
+      "implementation-summary.md": "fb66bff7b273b86b72e43db0b9d90e3abc3a5f06718c1640b29986598971aaad"
     },
     "last_active_at": null
   }

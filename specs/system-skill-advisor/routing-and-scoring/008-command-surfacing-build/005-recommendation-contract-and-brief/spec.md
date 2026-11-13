@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-12 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
@@ -228,7 +228,7 @@ Each part was read in the code on 2026-11-12. `ADV` is `.skilled/skills/system-s
 | `ADV/lib/scorer/projection.ts` | Modify | `routingEnabled` required, regenerated block |
 | `ADV/scripts/skill_advisor.py` | Modify | Hand constants and `/prompt` residue deleted, four ids re-pointed |
 | `ADV/scripts/command-bridges/allow-list.json` | Delete | Its four rows come from `system-spec-kit/command-metadata.json` |
-| `ADV/scripts/command-bridges/scoring-compatibility.json` | Modify | Four Python rows and one owner key deleted |
+| `ADV/scripts/command-bridges/scoring-compatibility.json` | Modify | The four Python compatibility rows are kept under the ids `command-speckit-plan`, `command-speckit-complete`, `command-speckit-implement` and `command-speckit-resume`, with `command-speckit-resume` as the owner-normalization key, because deleting them cost the Python fallback one labeled row |
 | `ADV/lib/scorer/lanes/explicit.ts`, `ADV/lib/scorer/fusion.ts`, `ADV/lib/scorer/scoring-constants.ts` | Modify | Re-point `command-spec-kit-resume` and `command-spec-kit-plan` |
 | Gold and fixture files listed in the measured block | Modify | Relabel the four ids by script, without reading prompt text |
 | The one routing source file the `nm-sk-doc-01` trace names | Modify | One signal corrected at its source |
@@ -236,6 +236,8 @@ Each part was read in the code on 2026-11-12. `ADV` is `.skilled/skills/system-s
 | `ADV/lib/scorer/ambiguity.ts`, `.skilled/skills/system-spec-kit/command-metadata.json` | Modify | CARRY-003 (a) and (c) |
 | Tests under `ADV/tests/` | Create, Modify | Schema, golden briefs, degraded contract, old daemon, CARRY-003 (b) |
 | `hooks/skill-advisor-hook.md`, `feature-catalog/cli-surface/advisor-recommend.md`, `ADV/scripts/command-bridges/README.md` | Modify | The fields, the brief form and the degraded contract |
+
+Amended 2026-11-13 by the coordinator under decision D1 of the parent `../goal.md`, to match what was built. The `scoring-compatibility.json` row first said the four Python rows and one owner key would be deleted.
 <!-- /ANCHOR:scope -->
 
 ---

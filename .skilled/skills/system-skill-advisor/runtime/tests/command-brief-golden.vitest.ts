@@ -151,6 +151,31 @@ function advisorResult(recommendation: RecommendationInput): AdvisorBriefResult 
   };
 }
 
+// The ambiguous branch renders only above the default token cap, so the two-sided
+// case carries its own wider-capped result instead of the single-entry helper.
+const AMBIGUOUS_COMMAND_RESULT: AdvisorBriefResult = {
+  status: 'ok',
+  freshness: 'live',
+  recommendations: [
+    {
+      skill: 'command-doctor-git-hooks',
+      kind: 'command',
+      confidence: 0.82,
+      uncertainty: 0.12,
+      passes_threshold: true,
+    },
+    {
+      skill: 'command-speckit-save',
+      kind: 'command',
+      confidence: 0.89,
+      uncertainty: 0.12,
+      passes_threshold: true,
+    },
+  ],
+  ambiguous: true,
+  metrics: { tokenCap: 120 },
+};
+
 function headOf(rendered: string | null): string {
   if (rendered === null) {
     throw new Error('expected a rendered brief');
@@ -163,6 +188,15 @@ describe('command brief golden heads', () => {
     const head = headOf(renderAdvisorBrief(advisorResult(recommendation)));
 
     expect(head).toBe(expectedHead);
+    expect(head.length).toBeLessThanOrEqual(HEAD_CHARACTER_CAP);
+    expect(head).not.toContain('command-');
+  });
+
+  it('renders both command labels under an ambiguous head', () => {
+    const head = headOf(renderAdvisorBrief(AMBIGUOUS_COMMAND_RESULT));
+
+    expect(head.startsWith('Advisor: live; ambiguous: sk-git → /doctor:git hooks (ask)')).toBe(true);
+    expect(head).toContain(' vs system-spec-kit → /speckit:save (start)');
     expect(head.length).toBeLessThanOrEqual(HEAD_CHARACTER_CAP);
     expect(head).not.toContain('command-');
   });

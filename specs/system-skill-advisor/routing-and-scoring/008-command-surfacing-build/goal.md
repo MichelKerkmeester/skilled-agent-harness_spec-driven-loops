@@ -114,6 +114,15 @@ and findings belong here.
 | Phases 005 to 008 | In Progress | Planned and committed 2026-11-12. Phase 007 harness built, smoke run three in flight |
 | Rebase onto main | Done | 2026-11-12, full suite 167 files 1,478 passed |
 | Phase 007 smoke run | Done | Third run: all six runtimes ran in arenas and scored, start rate 0 of 1 each, one capped (opencode). runs-smoke.jsonl |
+| Ungated setup while the before arm runs | Done | 005 wave 0 captures, 007 T016-T021, 008 measurement script, commits d8797702e8 and 49281dd652 |
+| Research segment one (13 iterations, 3 lineages) | Done | 009-ux-performance-cross-cli-research/research/research.md, 14 ranked recommendations |
+| Autonomous decision: ranks 1-6 and 10 become phase 010, built before the after arm | Decided | research.md section 16 says ranks 2-3 are needed for the after arm to be evidence |
+| WAITING ON OPERATOR: Codex hook approval for arena paths | Waiting | Codex got no advisor brief in the before arm (0 of 24 transcripts hold an Advisor line). Approval lives in the home Codex config, which this goal does not change |
+| Before arm, 144 runs on six runtimes | Done | commit f8a7f6fc10: claude 3/12, codex 0/12, pi 0/12, devin 3/12, opencode 5/12, dsh 5/12 |
+| Harness fault: DSH before arm ran with the fan-out leaf marker, so the advisor was off | Fixed, rerun started | runner no longer passes lineage.patch.yml. One smoke row shows the brief in the session. 24-row rerun writes runs-pre-dsh-rerun.jsonl |
+| Research rank 4 (cold-start warm-up) | Declined | true cold first prompt 611-844 ms, fail-open 0 of 5, 010 scratch/cold-arena-result.txt |
+| Finding: 7 of 44 typed commands reach the model without their command | Open, planned as phase 011 | typed top-1 24/44 plus 13 attached by the hub route. Missing: /create:goal, /create:skill-parent, /deep:research, /deep:review, /prompt:improve, /speckit:resume, /speckit:save |
+| Phase 005 recommendation contract and brief | Complete | AC closure 19/19, suite 1513 passed 0 failed, commit a57ce61a13 plus closing docs |
 
 ### Deviations and findings
 

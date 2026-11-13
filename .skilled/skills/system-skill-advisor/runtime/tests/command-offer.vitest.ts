@@ -24,7 +24,7 @@ import { backfillRunLog, briefDelivered, parseOffer, replayOffer } from '../scri
 
 const OFFERED_HEAD = 'Advisor: live; use sk-git → /doctor:git hooks (ask) 0.82/0.12 pass.';
 const AMBIGUOUS_HEAD = 'Advisor: live; ambiguous: /doctor:git hooks 0.82/0.12 vs sk-git 0.86/0.16 pass.';
-const NO_COMMAND_HEAD = 'Advisor: live; use command-spec-kit-plan 0.82/0.16 pass.';
+const NO_COMMAND_HEAD = 'Advisor: live; use command-speckit-plan 0.82/0.16 pass.';
 
 function writeTranscript(lines: unknown[]): { dir: string; transcriptPath: string } {
   const dir = mkdtempSync(join(tmpdir(), 'command-offer-'));

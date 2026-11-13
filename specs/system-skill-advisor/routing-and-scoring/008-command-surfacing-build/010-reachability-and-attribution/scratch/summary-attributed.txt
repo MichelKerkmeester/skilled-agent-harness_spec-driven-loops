@@ -1,0 +1,30 @@
+claude: 0 unscored
+  pre: 24 of 24 scored, start 3 of 12, capped start rows 0, offered 0, started 0 of 0, offer unknown 0, COMMAND: line 0 of 24, capped 0, unsafe 0, repeated 0, loops without init 0 of 0
+    policy run: 4 rows, 0 capped, 3 started, 0 wrote
+    policy start: 8 rows, 0 capped, 0 started, 0 wrote
+    policy ask: 4 rows, 0 capped, 0 started, 0 wrote
+codex: 0 unscored
+  pre: 24 of 24 scored, start 0 of 12, capped start rows 0, offered 0, started 0 of 0, offer unknown 0, COMMAND: line 0 of 24, capped 0, unsafe 0, repeated 0, loops without init 0 of 0
+    policy run: 4 rows, 0 capped, 0 started, 0 wrote
+    policy start: 8 rows, 0 capped, 0 started, 0 wrote
+    policy ask: 4 rows, 0 capped, 0 started, 0 wrote
+pi: 0 unscored
+  pre: 24 of 24 scored, start 0 of 11, capped start rows 1, offered 0, started 0 of 0, offer unknown 0, COMMAND: line 0 of 24, capped 2, unsafe 3, repeated 0, loops without init 0 of 0
+    policy run: 4 rows, 0 capped, 0 started, 0 wrote
+    policy start: 8 rows, 1 capped, 0 started, 1 wrote
+    policy ask: 4 rows, 1 capped, 0 started, 1 wrote
+devin: 0 unscored
+  pre: 24 of 24 scored, start 1 of 8, capped start rows 4, offered 0, started 0 of 0, offer unknown 0, COMMAND: line 0 of 24, capped 6, unsafe 3, repeated 0, loops without init 0 of 1
+    policy run: 4 rows, 0 capped, 1 started, 0 wrote
+    policy start: 8 rows, 4 capped, 1 started, 5 wrote
+    policy ask: 4 rows, 2 capped, 1 started, 2 wrote
+opencode: 0 unscored
+  pre: 24 of 24 scored, start 2 of 7, capped start rows 5, offered 0, started 0 of 0, offer unknown 0, COMMAND: line 0 of 24, capped 7, unsafe 2, repeated 0, loops without init 0 of 0
+    policy run: 4 rows, 1 capped, 2 started, 0 wrote
+    policy start: 8 rows, 4 capped, 3 started, 4 wrote
+    policy ask: 4 rows, 2 capped, 0 started, 0 wrote
+dsh: 0 unscored
+  pre: 24 of 24 scored, start 6 of 12, capped start rows 0, offered 0, started 0 of 0, offer unknown 0, COMMAND: line 2 of 24, capped 0, unsafe 1, repeated 0, loops without init 1 of 1
+    policy run: 4 rows, 0 capped, 2 started, 0 wrote
+    policy start: 8 rows, 0 capped, 4 started, 0 wrote
+    policy ask: 4 rows, 0 capped, 2 started, 0 wrote
