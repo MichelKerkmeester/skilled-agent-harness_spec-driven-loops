@@ -30000,10 +30000,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks-plugins-extensions/z_archive",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/scratch",
       "reason": "excluded directory"
     },
