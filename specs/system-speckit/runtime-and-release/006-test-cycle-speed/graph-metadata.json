@@ -127,6 +127,12 @@
         "source": "derived"
       },
       {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "Verbatim Operator Answers Each",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -137,30 +143,24 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Luna Battery",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Skilled test suites took too long to run locally",
     "created_at": "2026-11-10T18:27:35Z",
-    "last_save_at": "2026-11-13T05:54:18.729Z",
+    "last_save_at": "2026-11-13T05:55:22.989Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:3e1864bb9dbd4b1a34bebae3bb62ca59d6ba989509043e6a108c2ee3db6e3952",
+    "source_fingerprint": "sha256:413e3728b486f1eeeff4846727379ba1ec68ef5b9fa85ea6e6b0250f54cc5f5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8f5dc1fc1071868df7fda86dc139ce65c36fd3f1c3ab4a07db4552df6d3e20b0",
-      "decision-record.md": "18a5a2e86105dba054bf1d9fb0533227722b18d35b9100772a639eb3bd8b55e9"
+      "decision-record.md": "65aced8461487d3fd6a18a528b984b722b7a7f56e86f578fd5a96503c15dcf04"
     },
-    "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state",
-    "last_active_at": "2026-11-13T05:02:58.702Z"
+    "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/023-ci-sparse-big-suites",
+    "last_active_at": "2026-11-13T05:55:22.989Z"
   }
 }
