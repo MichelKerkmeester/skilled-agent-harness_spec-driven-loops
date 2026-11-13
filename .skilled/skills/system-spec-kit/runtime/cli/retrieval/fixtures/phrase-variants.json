@@ -1,5 +1,5 @@
 {
-  "manifestHash": "397de77801d3a8064862e98e12f023e591c0f5cdf05b51d8cfb87a148e80dd44",
+  "manifestHash": "6c56dc075a672ad457f5a60f86ef4ad3b7f334987d327271f365568a027e9e45",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -778,6 +778,9 @@
     "003 memory context truncation telemetry contract": [
       "003-memory-context-truncation-telemetry-contract"
     ],
+    "003 plain chat command reach operator decisions": [
+      "003-plain-chat-command-reach operator decisions"
+    ],
     "003 plan": [
       "003 plan"
     ],
@@ -1020,6 +1023,9 @@
     ],
     "004 code index stack rollup": [
       "004-code-index-stack rollup"
+    ],
+    "004 command meaning matching operator decisions": [
+      "004-command-meaning-matching operator decisions"
     ],
     "004 cutover doctor router from legacy files": [
       "004-cutover-doctor-router-from-legacy-files"
@@ -1950,6 +1956,9 @@
     ],
     "008 changelog backfill rollup": [
       "008 changelog backfill rollup"
+    ],
+    "008 command surfacing build operator decisions": [
+      "008-command-surfacing-build operator decisions"
     ],
     "008 deep research review": [
       "008 deep-research review"
@@ -13095,6 +13104,9 @@
     "atomic state write deep loop": [
       "atomic state write deep-loop"
     ],
+    "attach command to owner skill": [
+      "attach command to owner skill"
+    ],
     "attach file to task": [
       "attach file to task"
     ],
@@ -13112,6 +13124,21 @@
     ],
     "attributable flap log": [
       "attributable flap log"
+    ],
+    "attribution and install reach": [
+      "attribution and install reach"
+    ],
+    "attribution and install reach acceptance criteria": [
+      "attribution and install reach acceptance criteria"
+    ],
+    "attribution and install reach implementation summary": [
+      "attribution and install reach implementation summary"
+    ],
+    "attribution and install reach plan": [
+      "attribution and install reach plan"
+    ],
+    "attribution and install reach tasks": [
+      "attribution and install reach tasks"
     ],
     "attribution collapse": [
       "attribution collapse"
@@ -26774,6 +26801,9 @@
     "codex home auth": [
       "CODEX_HOME auth"
     ],
+    "codex hook approval operator list": [
+      "codex hook approval operator list"
+    ],
     "codex hook cleanup": [
       "codex hook cleanup"
     ],
@@ -27382,11 +27412,32 @@
     "command frontmatter tips": [
       "command frontmatter tips"
     ],
+    "command in the brief gate 2 bullet": [
+      "command in the brief gate 2 bullet"
+    ],
     "command injection rollout": [
       "command injection rollout"
     ],
     "command input gate placement": [
       "command input gate placement"
+    ],
+    "command intent phrases": [
+      "command intent phrases"
+    ],
+    "command inventory and risk metadata": [
+      "command inventory and risk metadata"
+    ],
+    "command inventory and risk metadata acceptance criteria": [
+      "command inventory and risk metadata acceptance criteria"
+    ],
+    "command inventory and risk metadata implementation summary": [
+      "command inventory and risk metadata implementation summary"
+    ],
+    "command inventory and risk metadata plan": [
+      "command inventory and risk metadata plan"
+    ],
+    "command inventory and risk metadata tasks": [
+      "command inventory and risk metadata tasks"
     ],
     "command listed battery leg": [
       "command-listed battery leg"
@@ -27405,6 +27456,24 @@
     ],
     "command md yaml tasks": [
       "command md yaml tasks"
+    ],
+    "command meaning anchor": [
+      "command meaning anchor"
+    ],
+    "command meaning matching": [
+      "command meaning matching"
+    ],
+    "command meaning matching acceptance criteria": [
+      "command meaning matching acceptance criteria"
+    ],
+    "command meaning matching implementation summary": [
+      "command meaning matching implementation summary"
+    ],
+    "command meaning matching plan": [
+      "command meaning matching plan"
+    ],
+    "command meaning matching tasks": [
+      "command meaning matching tasks"
     ],
     "command metadata census pin": [
       "command metadata census pin"
@@ -27442,6 +27511,15 @@
     "command presentation workflow separation": [
       "command presentation workflow separation"
     ],
+    "command prompts corpus": [
+      "command prompts corpus"
+    ],
+    "command recall baseline": [
+      "command recall baseline"
+    ],
+    "command risk class": [
+      "command risk class"
+    ],
     "command rollout mode resolution": [
       "command rollout mode resolution"
     ],
@@ -27454,11 +27532,35 @@
     "command router template": [
       "command router template"
     ],
+    "command routing baseline corpus": [
+      "command routing baseline corpus"
+    ],
+    "command routing baseline corpus acceptance criteria": [
+      "command routing baseline corpus acceptance criteria"
+    ],
+    "command routing baseline corpus implementation summary": [
+      "command routing baseline corpus implementation summary"
+    ],
+    "command routing baseline corpus plan": [
+      "command routing baseline corpus plan"
+    ],
+    "command routing baseline corpus tasks": [
+      "command routing baseline corpus tasks"
+    ],
     "command routing prose": [
       "command routing prose"
     ],
+    "command row embedding": [
+      "command row embedding"
+    ],
+    "command run start ask policy": [
+      "command run start ask policy"
+    ],
     "command runtime mirrors": [
       "command runtime mirrors"
+    ],
+    "command start rate per runtime": [
+      "command start rate per runtime"
     ],
     "command support into commands": [
       "command support into commands"
@@ -27492,6 +27594,27 @@
     ],
     "command surface tasks": [
       "command surface tasks"
+    ],
+    "command surfacing and workflow enforcement": [
+      "command surfacing and workflow enforcement"
+    ],
+    "command surfacing and workflow enforcement goal": [
+      "command surfacing and workflow enforcement goal"
+    ],
+    "command surfacing and workflow enforcement implementation summary": [
+      "command surfacing and workflow enforcement implementation summary"
+    ],
+    "command surfacing and workflow enforcement plan": [
+      "command surfacing and workflow enforcement plan"
+    ],
+    "command surfacing and workflow enforcement tasks": [
+      "command surfacing and workflow enforcement tasks"
+    ],
+    "command surfacing build phase parent spec": [
+      "command surfacing build phase parent spec"
+    ],
+    "command surfacing further gains research": [
+      "command surfacing further gains research"
     ],
     "command template accuracy plan": [
       "command template accuracy plan"
@@ -39301,6 +39424,9 @@
     "derived causal artifact": [
       "derived causal artifact"
     ],
+    "derived command policy": [
+      "derived command policy"
+    ],
     "derived council graph": [
       "derived council graph"
     ],
@@ -45305,6 +45431,21 @@
     ],
     "embedder set mcp tool": [
       "embedder_set mcp tool"
+    ],
+    "embedder setup and cost": [
+      "embedder setup and cost"
+    ],
+    "embedder setup and cost acceptance criteria": [
+      "embedder setup and cost acceptance criteria"
+    ],
+    "embedder setup and cost implementation summary": [
+      "embedder setup and cost implementation summary"
+    ],
+    "embedder setup and cost plan": [
+      "embedder setup and cost plan"
+    ],
+    "embedder setup and cost tasks": [
+      "embedder setup and cost tasks"
     ],
     "embedder sidecar commit handoff": [
       "embedder sidecar commit handoff"
@@ -52800,6 +52941,21 @@
     "gate 2 artifact trigger": [
       "gate 2 artifact trigger"
     ],
+    "gate 2 binding and runtime pointers": [
+      "gate 2 binding and runtime pointers"
+    ],
+    "gate 2 binding and runtime pointers acceptance criteria": [
+      "gate 2 binding and runtime pointers acceptance criteria"
+    ],
+    "gate 2 binding and runtime pointers implementation summary": [
+      "gate 2 binding and runtime pointers implementation summary"
+    ],
+    "gate 2 binding and runtime pointers plan": [
+      "gate 2 binding and runtime pointers plan"
+    ],
+    "gate 2 binding and runtime pointers tasks": [
+      "gate 2 binding and runtime pointers tasks"
+    ],
     "gate 2 routing": [
       "gate 2 routing"
     ],
@@ -58534,6 +58690,12 @@
     ],
     "hub signal retirement": [
       "hub signal retirement"
+    ],
+    "hub skill names its command": [
+      "hub skill names its command"
+    ],
+    "hub skill names its slash command": [
+      "hub skill names its slash command"
     ],
     "hub smart routing contract": [
       "hub smart-routing contract"
@@ -67914,6 +68076,9 @@
     "md generator tests": [
       "md-generator tests"
     ],
+    "meaning matching memory cost": [
+      "meaning matching memory cost"
+    ],
     "measure and declare acceptance criteria": [
       "measure and declare acceptance criteria"
     ],
@@ -74939,6 +75104,9 @@
     "ollama routing task list": [
       "ollama routing task list"
     ],
+    "ollama setup for external repositories": [
+      "ollama setup for external repositories"
+    ],
     "ollama shaped hf local": [
       "ollama shaped hf-local"
     ],
@@ -79109,6 +79277,21 @@
     "per runtime activation gate": [
       "per-runtime activation gate"
     ],
+    "per runtime behaviour proof": [
+      "per runtime behaviour proof"
+    ],
+    "per runtime behaviour proof acceptance criteria": [
+      "per runtime behaviour proof acceptance criteria"
+    ],
+    "per runtime behaviour proof implementation summary": [
+      "per runtime behaviour proof implementation summary"
+    ],
+    "per runtime behaviour proof plan": [
+      "per runtime behaviour proof plan"
+    ],
+    "per runtime behaviour proof tasks": [
+      "per runtime behaviour proof tasks"
+    ],
     "per runtime handover switch": [
       "per-runtime handover switch"
     ],
@@ -79772,6 +79955,9 @@
     "phase 1 closure gate": [
       "phase 1 closure gate"
     ],
+    "phase 1 command routing baseline corpus": [
+      "phase 1 command routing baseline corpus"
+    ],
     "phase 1 compiled route manifest suite": [
       "phase 1 compiled route manifest suite"
     ],
@@ -79943,6 +80129,9 @@
     "phase 10 post fix research": [
       "phase 10 post fix research"
     ],
+    "phase 10 reachability and attribution": [
+      "phase 10 reachability and attribution"
+    ],
     "phase 10 reference readability research": [
       "phase 10 reference readability research"
     ],
@@ -80039,6 +80228,9 @@
     "phase 11 two version proof and closeout": [
       "phase 11 two version proof and closeout"
     ],
+    "phase 11 typed command delivery": [
+      "phase 11 typed command delivery"
+    ],
     "phase 12 advisor doc target and engines": [
       "phase 12 advisor doc target and engines"
     ],
@@ -80068,6 +80260,9 @@
     ],
     "phase 12 mcp code mode": [
       "phase 12 mcp code mode"
+    ],
+    "phase 12 plain offer reach": [
+      "phase 12 plain offer reach"
     ],
     "phase 12 post merge deep review": [
       "phase 12 post merge deep review"
@@ -80122,6 +80317,9 @@
     ],
     "phase 13 align mcp code mode": [
       "phase 13 align mcp code mode"
+    ],
+    "phase 13 attribution and install reach": [
+      "phase 13 attribution and install reach"
     ],
     "phase 13 claude goal copy block": [
       "phase 13 claude goal copy block"
@@ -80452,6 +80650,9 @@
     ],
     "phase 2 closure gate": [
       "phase 2 closure gate"
+    ],
+    "phase 2 command inventory and risk metadata": [
+      "phase 2 command inventory and risk metadata"
     ],
     "phase 2 consume locked withdraw": [
       "phase 2 consume locked withdraw"
@@ -80918,6 +81119,9 @@
     "phase 3 nested skilled root": [
       "phase 3 nested skilled root"
     ],
+    "phase 3 plain chat command reach": [
+      "phase 3 plain chat command reach"
+    ],
     "phase 3 playbook catalog truth": [
       "phase 3 playbook catalog truth"
     ],
@@ -81067,6 +81271,9 @@
     ],
     "phase 4 command contract and readme": [
       "phase 4 command contract and readme"
+    ],
+    "phase 4 command meaning matching": [
+      "phase 4 command meaning matching"
     ],
     "phase 4 commands and runtime mirrors": [
       "phase 4 commands and runtime mirrors"
@@ -81362,6 +81569,9 @@
     "phase 5 reaper hardening": [
       "phase 5 reaper hardening"
     ],
+    "phase 5 recommendation contract and brief": [
+      "phase 5 recommendation contract and brief"
+    ],
     "phase 5 review output additions": [
       "phase 5 review output additions"
     ],
@@ -81517,6 +81727,9 @@
     ],
     "phase 6 fix write recipe move destination": [
       "phase 6 fix write recipe move destination"
+    ],
+    "phase 6 gate 2 binding and runtime pointers": [
+      "phase 6 gate 2 binding and runtime pointers"
     ],
     "phase 6 gates completion": [
       "phase 6 gates completion"
@@ -81719,6 +81932,9 @@
     "phase 7 mcp notion": [
       "phase 7 mcp notion"
     ],
+    "phase 7 per runtime behaviour proof": [
+      "phase 7 per runtime behaviour proof"
+    ],
     "phase 7 playbook catalog readme alignment": [
       "phase 7 playbook catalog readme alignment"
     ],
@@ -81827,6 +82043,9 @@
     "phase 8 dsh repo guards safety wave": [
       "phase 8 dsh repo guards safety wave"
     ],
+    "phase 8 embedder setup and cost": [
+      "phase 8 embedder setup and cost"
+    ],
     "phase 8 hub gap report": [
       "phase 8 hub gap report"
     ],
@@ -81904,6 +82123,9 @@
     ],
     "phase 9 chat answer evidence": [
       "phase 9 chat answer evidence"
+    ],
+    "phase 9 command surfacing research": [
+      "phase 9 command surfacing research"
     ],
     "phase 9 doctor ci review wiring": [
       "phase 9 doctor ci review wiring"
@@ -83806,6 +84028,21 @@
     "plain agent skill preservation check": [
       "plain agent skill preservation check"
     ],
+    "plain chat command reach": [
+      "plain chat command reach"
+    ],
+    "plain chat command reach acceptance criteria": [
+      "plain chat command reach acceptance criteria"
+    ],
+    "plain chat command reach implementation summary": [
+      "plain chat command reach implementation summary"
+    ],
+    "plain chat command reach plan": [
+      "plain chat command reach plan"
+    ],
+    "plain chat command reach tasks": [
+      "plain chat command reach tasks"
+    ],
     "plain cross digest closure boundary": [
       "plain cross-digest closure boundary"
     ],
@@ -83814,6 +84051,21 @@
     ],
     "plain noun rule phrases": [
       "plain noun rule phrases"
+    ],
+    "plain offer reach": [
+      "plain offer reach"
+    ],
+    "plain offer reach acceptance criteria": [
+      "plain offer reach acceptance criteria"
+    ],
+    "plain offer reach implementation summary": [
+      "plain offer reach implementation summary"
+    ],
+    "plain offer reach plan": [
+      "plain offer reach plan"
+    ],
+    "plain offer reach tasks": [
+      "plain offer reach tasks"
     ],
     "plan": [
       "plan"
@@ -87948,6 +88200,24 @@
     "reach a read only turn": [
       "reach a read-only turn"
     ],
+    "reachability and attribution": [
+      "reachability and attribution"
+    ],
+    "reachability and attribution acceptance criteria": [
+      "reachability and attribution acceptance criteria"
+    ],
+    "reachability and attribution decision record": [
+      "reachability and attribution decision record"
+    ],
+    "reachability and attribution implementation summary": [
+      "reachability and attribution implementation summary"
+    ],
+    "reachability and attribution plan": [
+      "reachability and attribution plan"
+    ],
+    "reachability and attribution tasks": [
+      "reachability and attribution tasks"
+    ],
     "reachability checklist": [
       "reachability checklist"
     ],
@@ -89081,6 +89351,21 @@
     ],
     "recommend level sh": [
       "recommend-level.sh"
+    ],
+    "recommendation contract and brief": [
+      "recommendation contract and brief"
+    ],
+    "recommendation contract and brief acceptance criteria": [
+      "recommendation contract and brief acceptance criteria"
+    ],
+    "recommendation contract and brief implementation summary": [
+      "recommendation contract and brief implementation summary"
+    ],
+    "recommendation contract and brief plan": [
+      "recommendation contract and brief plan"
+    ],
+    "recommendation contract and brief tasks": [
+      "recommendation contract and brief tasks"
     ],
     "recommendation implementation traceability": [
       "recommendation implementation traceability"
@@ -93451,6 +93736,9 @@
     "research how the skill advisor can guide users": [
       "research how the skill advisor can guide users"
     ],
+    "research how the skill advisor should surface slash": [
+      "research how the skill advisor should surface slash"
+    ],
     "research implementation summary": [
       "research implementation summary"
     ],
@@ -94591,6 +94879,9 @@
     ],
     "retire vendored fork": [
       "retire vendored fork"
+    ],
+    "retired advisor command ids": [
+      "retired advisor command ids"
     ],
     "retired benchmark handling": [
       "retired benchmark handling"
@@ -98785,6 +99076,9 @@
     ],
     "same mode tie compare text": [
       "same mode tie compare text"
+    ],
+    "same owner collapse": [
+      "same owner collapse"
     ],
     "same path duplicate row": [
       "same-path duplicate row"
@@ -107068,6 +107362,9 @@
     "sk create skill 1 15 1 0": [
       "sk-create-skill 1.15.1.0"
     ],
+    "sk create skill 1 16 0 0": [
+      "sk-create-skill 1.16.0.0"
+    ],
     "sk create skill 1 2 0 0": [
       "sk-create-skill 1.2.0.0"
     ],
@@ -107211,6 +107508,9 @@
     ],
     "sk create skill v1 15 1 0": [
       "sk-create-skill v1.15.1.0"
+    ],
+    "sk create skill v1 16 0 0": [
+      "sk-create-skill v1.16.0.0"
     ],
     "sk create skill v1 2 0 0": [
       "sk-create-skill v1.2.0.0"
@@ -108284,6 +108584,9 @@
     "sk doc 2 9 12 0": [
       "sk-doc 2.9.12.0"
     ],
+    "sk doc 2 9 13 0": [
+      "sk-doc 2.9.13.0"
+    ],
     "sk doc 2 9 2 0": [
       "sk-doc 2.9.2.0"
     ],
@@ -108787,6 +109090,9 @@
     ],
     "sk doc v2 9 12 0": [
       "sk-doc v2.9.12.0"
+    ],
+    "sk doc v2 9 13 0": [
+      "sk-doc v2.9.13.0"
     ],
     "sk doc v2 9 2 0": [
       "sk-doc v2.9.2.0"
@@ -115949,6 +116255,9 @@
     "standalone skill advisor launcher": [
       "standalone skill advisor launcher"
     ],
+    "standalone skill command metadata": [
+      "standalone skill command metadata"
+    ],
     "standalone skill readme template": [
       "standalone skill readme template"
     ],
@@ -118601,6 +118910,9 @@
     "system skill advisor 0 9 0 0": [
       "system-skill-advisor 0.9.0.0"
     ],
+    "system skill advisor 1 0 0 0": [
+      "system-skill-advisor 1.0.0.0"
+    ],
     "system skill advisor architectural shape": [
       "system-skill-advisor architectural shape"
     ],
@@ -118921,6 +119233,9 @@
     ],
     "system skill advisor v0 9 0 0": [
       "system-skill-advisor v0.9.0.0"
+    ],
+    "system skill advisor v1 0 0 0": [
+      "system-skill-advisor v1.0.0.0"
     ],
     "system skilled doctor 1 0 0 0": [
       "system-skilled-doctor 1.0.0.0"
@@ -123747,6 +124062,24 @@
     "typed command ambiguity tasks": [
       "typed command ambiguity tasks"
     ],
+    "typed command delivery acceptance criteria": [
+      "typed command delivery acceptance criteria"
+    ],
+    "typed command delivery and guards": [
+      "typed command delivery and guards"
+    ],
+    "typed command delivery implementation summary": [
+      "typed command delivery implementation summary"
+    ],
+    "typed command delivery plan": [
+      "typed command delivery plan"
+    ],
+    "typed command delivery tasks": [
+      "typed command delivery tasks"
+    ],
+    "typed command reaches the model": [
+      "typed command reaches the model"
+    ],
     "typed command routing": [
       "typed command routing"
     ],
@@ -124745,6 +125078,18 @@
     ],
     "ux flow references": [
       "ux flow references"
+    ],
+    "ux performance cross cli research": [
+      "ux performance cross cli research"
+    ],
+    "ux performance cross cli research implementation summary": [
+      "ux performance cross cli research implementation summary"
+    ],
+    "ux performance cross cli research plan": [
+      "ux performance cross cli research plan"
+    ],
+    "ux performance cross cli research tasks": [
+      "ux performance cross cli research tasks"
     ],
     "v rule save flood stress": [
       "v-rule save flood stress"
@@ -125952,6 +126297,9 @@
     ],
     "vec 1024 half wired": [
       "vec_1024 half-wired"
+    ],
+    "vec cmd table": [
+      "vec_cmd table"
     ],
     "vec dim lazy table creation": [
       "vec_dim lazy table creation"
