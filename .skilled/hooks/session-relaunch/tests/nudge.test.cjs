@@ -12,6 +12,7 @@ const nudgeModule = require('../lib/nudge.cjs');
 const {
   handoffText,
   seedText,
+  commandPrefix,
   completeCommandFor,
   isSeedPrompt,
   specFolderFromSeed,
@@ -1681,4 +1682,59 @@ test('handoffWithdrawn stops matching once the session updated the note after th
   // One the session updated afterwards is current, so compaction seeds the claim as before.
   setModified(disarmedMs + 60_000);
   assert.equal(handoffWithdrawn({ sessionId: SESSION_ID, notePath, env }), false);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NUDGE TEXT SAFETY
+// ─────────────────────────────────────────────────────────────────────────────
+
+// The model copies this block into a note, so a value that carries a line break must not
+// gain a frontmatter line of its own.
+test('handoff text strips control characters from the session id and the cwd', () => {
+  const forgedSessionLine = 'session_id: forged';
+  const forgedCwdLine = 'cwd: /forged';
+  const text = handoffText({
+    notePath: NOTE_PATH,
+    sessionId: `${SESSION_ID}\r\n${forgedSessionLine}`,
+    specFolder: SPEC_FOLDER,
+    runtime: 'pi',
+    cliPath: CLI_PATH,
+    cwd: `/repo\u0007\r\n${forgedCwdLine}`,
+    loopId: LOOP_ID,
+  });
+  const lines = text.split('\n');
+  const opening = lines.indexOf('   ---');
+  const closing = lines.indexOf('   ---', opening + 1);
+  assert.notEqual(opening, -1, text);
+  assert.notEqual(closing, -1, text);
+  const printed = lines.slice(opening + 1, closing);
+
+  assert.equal(
+    printed.filter((line) => line.trimStart().startsWith('session_id:')).length,
+    1,
+    text,
+  );
+  assert.equal(
+    printed.filter((line) => line.trimStart().startsWith('cwd:')).length,
+    1,
+    text,
+  );
+  assert.equal(printed.some((line) => line.trimStart() === forgedSessionLine), false, text);
+  assert.equal(printed.some((line) => line.trimStart() === forgedCwdLine), false, text);
+});
+
+test('commandPrefix keeps the CLI command unchanged and quotes a plain path', () => {
+  assert.equal(commandPrefix(nudgeModule.CLI_COMMAND), nudgeModule.CLI_COMMAND);
+  assert.equal(commandPrefix(CLI_PATH), `node '${CLI_PATH}'`);
+});
+
+test('commandPrefix quotes a node command that carries more than one argument', () => {
+  assert.equal(
+    commandPrefix('node /x/cli.js; echo hi'),
+    "node 'node /x/cli.js; echo hi'",
+  );
+});
+
+test('hopLimitReached treats an unusable hop count as the limit reached', () => {
+  assert.equal(hopLimitReached({ SKILLED_LOOP_HOPS: 'abc' }), true);
 });

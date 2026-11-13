@@ -622,6 +622,11 @@ function claudeGoalPacketResult({ sessionId, specFolder, roots, env }) {
   }
   if (latest === null || !latest.active) return none;
   const headline = latest.condition.split(/\r?\n/).find((line) => line.trim() !== '') ?? '';
+  // An active goal with no text cannot name a packet, and calling the packet missing would
+  // send the receiver looking for one the goal never chose.
+  if (headline === '') {
+    return { packet: '', reason: 'the active goal has no text to match a packet by' };
+  }
   const named = [...new Set(latest.condition.match(GOAL_LOG_PACKET_PATTERN) ?? [])];
   const candidates = [...lineage, ...named].slice(0, GOAL_LOG_MAX_CANDIDATES);
   // The log keeps the goal's text, not its packet, so a packet is the sender's only when its
@@ -893,6 +898,9 @@ function recordGoalPacket(filePath, goalPacket) {
   return withAppendLock(filePath, () => {
     const text = readHandoffText(filePath);
     const { frontmatter } = parseHandoff(text);
+    // A note that is no longer open belongs to another session's claim or to finished work,
+    // so its goal field is not this hand-over's to rewrite.
+    if (frontmatter.status !== 'open') return false;
     const held = Object.hasOwn(frontmatter, 'goal_packet');
     if (goalPacket === '' ? !held : frontmatter.goal_packet === goalPacket) return false;
     writeHandoffUpdate(

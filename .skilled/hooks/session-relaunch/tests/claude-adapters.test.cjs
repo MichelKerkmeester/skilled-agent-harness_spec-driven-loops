@@ -1530,6 +1530,27 @@ function claimSeedFor(sandbox) {
   };
 }
 
+test('compact-pointer names the SessionStart event on a start claim with no hook event', async (t) => {
+  const sandbox = createSandbox(t);
+  const { notePath, seed } = claimSeedFor(sandbox);
+  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
+
+  // A start claim comes from the startup source alone, and the claim must not fall back
+  // to a tool event just because this payload carries no event name of its own.
+  const result = await runAdapter(sandbox, COMPACT_POINTER, {
+    source: 'startup',
+    session_id: SESSION_ID,
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout).hookSpecificOutput;
+  assert.equal(output.hookEventName, 'SessionStart');
+  assert.ok(
+    output.additionalContext.includes(`claim '${notePath}' --session '${SESSION_ID}'`),
+    output.additionalContext,
+  );
+});
+
 test('compact-pointer delivers the claim at the start of a goal-command receiver', async (t) => {
   const sandbox = createSandbox(t);
   const { notePath, seed } = claimSeedFor(sandbox);

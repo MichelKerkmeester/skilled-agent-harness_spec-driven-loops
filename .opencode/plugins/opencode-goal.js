@@ -3594,9 +3594,12 @@ async function MkGoalPlugin(ctx, rawOptions = {}) {
       // session the agent opens later, or a second session in the same process, is not.
       if (sessionID && !eventPropertiesFrom(event).info?.parentID && !runtimeState.handOverGoalAttempted) {
         runtimeState.handOverGoalAttempted = true;
-        await bindRelaunchGoal(sessionID, { ...eventOptions, directory: ctx?.directory });
-        // The packet is only for this bind, so child runtimes do not inherit it.
-        delete process.env[RELAUNCH_GOAL_PACKET_ENV];
+        try {
+          await bindRelaunchGoal(sessionID, { ...eventOptions, directory: ctx?.directory });
+        } finally {
+          // The packet is only for this bind, so child runtimes do not inherit it.
+          delete process.env[RELAUNCH_GOAL_PACKET_ENV];
+        }
       }
       if (sessionID) await restoreActiveGoal(sessionID, eventOptions);
       try {

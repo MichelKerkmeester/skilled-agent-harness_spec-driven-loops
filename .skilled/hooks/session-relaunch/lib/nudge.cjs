@@ -61,9 +61,25 @@ function shellQuote(value) {
   return quote + String(value).replace(/'/g, escapedQuote) + quote;
 }
 
+// A session id or a cwd is copied into the note frontmatter, so every C0 control character
+// and DEL comes out before it is printed: a line break there would add a field the operator
+// never wrote. The stripped value no longer matches the real session or folder, which is
+// why prepare refuses a note built from it.
+function stripControlCharacters(value) {
+  return String(value).replace(/[\u0000-\u001f\u007f]/g, '');
+}
+
+// The printed command is text the model runs, so a value that starts with node passes
+// through only as one invocation of one argument with no shell syntax in it: a
+// single-quoted string without a quote inside, or a run of characters the shell reads as
+// data. Anything else is quoted whole, so it can only ever be the path of the command.
 function commandPrefix(cliPath) {
   if (typeof cliPath !== 'string' || !cliPath.trim()) return CLI_COMMAND;
-  if (/^node\s/.test(cliPath)) return cliPath;
+  const nodeInvocation = /^node +(.*)$/s.exec(cliPath);
+  if (nodeInvocation !== null) {
+    const argument = nodeInvocation[1];
+    if (/^'[^']*'$/.test(argument) || /^[A-Za-z0-9_/.@:+-]+$/.test(argument)) return cliPath;
+  }
   return `node ${shellQuote(cliPath)}`;
 }
 
@@ -127,7 +143,8 @@ function handoffText({
   ratio,
 } = {}) {
   const pathValue = String(notePath ?? '<handoff-path>');
-  const sessionValue = String(sessionId ?? '');
+  const sessionValue = stripControlCharacters(sessionId ?? '');
+  const cwdValue = stripControlCharacters(cwd);
   // An unknown folder prints empty: the guidance line tells the model what may go there,
   // and a placeholder copied verbatim is a value prepare rejects.
   const folder = normalizeSpecFolder(specFolder);
@@ -154,7 +171,7 @@ function handoffText({
     `   session_id: ${sessionValue}`,
     `   loop_id: ${loopId}`,
     `   runtime: ${runtime}`,
-    `   cwd: ${cwd}`,
+    `   cwd: ${cwdValue}`,
     `   spec_folder: ${specValue}`,
     `   created_at: ${createdAt}`,
     '   ---',
@@ -451,12 +468,24 @@ function switchNumber(rawValue, fallback, { integer = false } = {}) {
   return parsed;
 }
 
+// The wrapper refuses a hop count that is not a non-negative whole number, and prepare
+// exits on it, so a set value that fails the same check counts as the limit reached rather
+// than asking for a hand-over prepare would decline. Unset or empty still reads as zero.
+function unusableHopCount(rawValue) {
+  if (rawValue === undefined || rawValue === null || String(rawValue).trim() === '') {
+    return false;
+  }
+  const parsed = Number(rawValue);
+  return !Number.isFinite(parsed) || parsed < 0 || !Number.isInteger(parsed);
+}
+
 // A session that has spent every allowed hop cannot relaunch: the wrapper declines the
 // record and the session carries on under auto-compaction. Prompting there would spend a
 // turn on handoff steps whose prepare can only decline, so the adapters ask this first.
 // The hop count is the one the loop exported, and the cap comes from the same
 // config-file-then-environment pair the wrapper reads.
 function hopLimitReached(env = process.env) {
+  if (unusableHopCount(env?.SKILLED_LOOP_HOPS)) return true;
   const switches = {
     ...hookFlags.loadConfigFile(hookFlags.configPath()),
     ...(env ?? {}),
@@ -777,6 +806,7 @@ module.exports = {
   seedText,
   staleNoteText,
   WITHDRAWN_NOTICE,
+  commandPrefix,
   completeCommandFor,
   claimCommandFor,
   isSeedPrompt,

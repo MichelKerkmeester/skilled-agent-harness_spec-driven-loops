@@ -149,8 +149,10 @@ function claimAfterGoalStart(payload) {
   if (instructions === null) return done();
 
   logEvent('goal-start-claim', { sessionId, note: nudge.notePathFromSeed(seed) });
+  // This path is reached only for the startup source, which is a SessionStart field, so the
+  // claim names that event rather than inferring one from whatever else the payload holds.
   return emit(
-    payloadEventName(payload, { runtime: 'claude' }),
+    'SessionStart',
     [GOAL_START_LEAD, seed, instructions].join('\n'),
   );
 }

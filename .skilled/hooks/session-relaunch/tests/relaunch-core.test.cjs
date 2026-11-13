@@ -2808,6 +2808,31 @@ test('recordGoalPacket removes an empty field the note holds', (t) => {
   assert.doesNotMatch(readNote(handoffPath), /goal_packet/);
 });
 
+test('recordGoalPacket leaves a note that is not open untouched', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox, { status: 'claimed', claimedBy: SESSION_ID });
+  const before = readNote(handoffPath);
+
+  assert.equal(recordGoalPacket(handoffPath, GOAL_PACKET), false);
+  assert.equal(readNote(handoffPath), before);
+});
+
+test('an active goal with no text names the empty goal, not a missing packet', (t) => {
+  const sandbox = createSandbox(t);
+  const env = writeClaudeLog(sandbox, [goalStatus({ met: false, sentinel: true, condition: '' })]);
+
+  assert.deepEqual(resolveGoalPacketResult({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder: GOAL_PACKET,
+    roots: [sandbox.repoRoot],
+    env,
+  }), {
+    packet: '',
+    reason: 'the active goal has no text to match a packet by',
+  });
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // CLAIM SEED PARSER AND GOAL PACKET HELPER
 // ─────────────────────────────────────────────────────────────────────────────

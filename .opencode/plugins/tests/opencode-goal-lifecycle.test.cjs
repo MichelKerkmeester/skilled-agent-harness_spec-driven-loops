@@ -16,6 +16,7 @@ const { readContinuationEntries, restoreEnv } = require('./helpers/continuation-
 
 const testDir = dirname(__filename);
 const pluginUrl = pathToFileURL(join(testDir, '..', 'opencode-goal.js')).href;
+const relaunchCore = require(join(testDir, '..', '..', '..', '.skilled', 'hooks', 'session-relaunch', 'lib', 'relaunch-core.cjs'));
 
 async function loadPluginModule() {
   return import(pluginUrl);
@@ -247,6 +248,76 @@ test('the hand-over packet variable is deleted after the one bind attempt', asyn
     assert.equal(goal.status, 'active');
     assert.equal(goal.packetPath, packetPath);
   } finally {
+    await rm(workspace, { recursive: true, force: true });
+  }
+}));
+
+test('a throwing hand-over bind still deletes the packet variable', async () => withState(async ({ pluginModule, stateDir }) => {
+  const workspace = await mkdtemp(join(tmpdir(), 'opencode-goal-handover-throw-'));
+  const packetPath = 'specs/t/004-throwing-bind';
+  const liveEnv = process.env;
+
+  try {
+    await writePacketGoal(workspace, packetPath);
+    process.env.SESSION_RELAUNCH_GOAL_PACKET = packetPath;
+    process.env.SESSION_RELAUNCH_GOAL = '1';
+    delete process.env.AI_SESSION_CHILD;
+    const plugin = await pluginModule.default.server({ directory: workspace }, {
+      stateDir,
+      nowMs: 1000,
+    });
+
+    // The hand-over read is the bind's first step, so a throw there stands in for any
+    // bind failure while the plugin source stays out of the test.
+    process.env = new Proxy(liveEnv, {
+      get(target, property) {
+        if (property === 'SESSION_RELAUNCH_GOAL_PACKET') {
+          throw new Error('hand-over bind failed');
+        }
+        return target[property];
+      },
+    });
+
+    await plugin.event({ event: nativeSessionEvent('session.created', 'throwing-bind-session') });
+  } finally {
+    process.env = liveEnv;
+    await rm(workspace, { recursive: true, force: true });
+  }
+
+  assert.equal(process.env.SESSION_RELAUNCH_GOAL_PACKET, undefined);
+  const entries = await readGoalEventEntries(stateDir);
+  assert.ok(entries.some((entry) => entry.type === 'event_error'
+    && entry.eventType === 'session.created'));
+}));
+
+test('the plugin record path is the one the relaunch core reads', async () => withState(async ({ pluginModule, stateDir }) => {
+  const workspace = await mkdtemp(join(tmpdir(), 'opencode-goal-record-path-'));
+  const packetPath = 'specs/t/005-record-path';
+  const originalGoalStateDir = process.env.OPENCODE_GOAL_STATE_DIR;
+
+  try {
+    await writePacketGoal(workspace, packetPath);
+    process.env.SESSION_RELAUNCH_GOAL_PACKET = packetPath;
+    process.env.SESSION_RELAUNCH_GOAL = '1';
+    // The core resolves its own state directory, so the test points both readers at one.
+    process.env.OPENCODE_GOAL_STATE_DIR = stateDir;
+    delete process.env.AI_SESSION_CHILD;
+    const plugin = await pluginModule.default.server({ directory: workspace }, {
+      stateDir,
+      nowMs: 1000,
+    });
+
+    await plugin.event({ event: nativeSessionEvent('session.created', 'record-path-session') });
+
+    const result = relaunchCore.resolveGoalPacketResult({
+      runtime: 'opencode',
+      sessionId: 'record-path-session',
+      roots: [workspace],
+      env: process.env,
+    });
+    assert.deepEqual(result, { packet: packetPath, reason: '' });
+  } finally {
+    restoreEnv('OPENCODE_GOAL_STATE_DIR', originalGoalStateDir);
     await rm(workspace, { recursive: true, force: true });
   }
 }));
