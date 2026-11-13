@@ -225,7 +225,7 @@
     ],
     "causal_summary": "A review of 2026-11-12, checked by a second reviewer, found that a session hop carries the goal on Claude Code, Pi and OpenCode but loses work around it",
     "created_at": "2026-11-12T22:42:00Z",
-    "last_save_at": "2026-11-13T13:47:05.662Z",
+    "last_save_at": "2026-11-13T13:54:12.489Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -233,7 +233,7 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:68e10d065b8bc4bb787ad9c3780daf9296367d6a40d414abf21c1956677fab5c",
+    "source_fingerprint": "sha256:a3cfeb77a79d47566c2fb275f48692d0b238463cb8b251d471ff19cf276e8e1d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "97421d9fb29fb880b99598df0500b876cb3d32d482f07ce84af91a366a3cf4ae",
