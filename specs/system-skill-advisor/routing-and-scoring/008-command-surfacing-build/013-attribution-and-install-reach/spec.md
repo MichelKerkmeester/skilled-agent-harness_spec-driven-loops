@@ -62,6 +62,8 @@ The committed after arm answers `briefDelivered` on 24 of 144 lines, Claude only
 
 ### Purpose
 Every number a behaviour arm prints answers one question each, delivery included, and a default install gives Claude its instruction route and tells the person when the brief cannot arrive.
+
+**Core need served:** A model that never got the brief cannot pick the workflow it names. This phase records whether the brief arrived on each run and gives a default Claude install its instruction route, so the arm numbers separate a missed delivery from a declined offer.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

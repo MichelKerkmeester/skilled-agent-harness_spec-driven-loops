@@ -59,6 +59,8 @@ A write that throws inside an embed apply escapes `main`, prints no backup or un
 
 ### Purpose
 Every confirmed finding in WG1 to WG13 is fixed with a test that failed before the fix and passes after, and no floor in `scratch/before.txt` moves, so the second review pass reviews code that matches its docs.
+
+**Core need served:** This phase repairs review findings. The fixes stop a writing command from being offered on a no-edit prompt and make an embed fault end in a restore, which protects the user from being pointed at the wrong workflow and keeps the measured numbers sound.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

@@ -67,6 +67,8 @@ Claude Code shows 32 of the 44 tracked commands. A command file named `skill.md`
 
 ### Purpose
 Claude shows every tracked command under one name per command on every runtime, a doctor problem worded as a missing tool gets the doctor helper, the documented direct call keeps the prompt out of argv, five commands gain out-of-sample reach and a cost run leaves the health log alone.
+
+**Core need served:** Claude Code listed 32 of the 44 commands before the rename, so a model there could not take the other 12 workflows at all. Now it lists all 44, and the doctor helper and the new intent phrases bring more prompts to the right workflow.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

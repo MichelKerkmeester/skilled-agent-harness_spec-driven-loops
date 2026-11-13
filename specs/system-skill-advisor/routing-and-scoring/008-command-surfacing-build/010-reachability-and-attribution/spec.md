@@ -62,6 +62,8 @@ The before arm reports Codex at 0 of 12 started rows, but no Codex transcript in
 
 ### Purpose
 A before-and-after start rate becomes evidence: each run says whether a brief reached the model and which command it offered, and each runtime that can receive a brief on a normal install does.
+
+**Core need served:** This phase repairs the measurement and widens reach. A run now says whether the brief arrived and which command it offered, so a declined command and a command never offered count apart. Codex and DSH gain install steps and a doctor check, so a model there can get the brief at all.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

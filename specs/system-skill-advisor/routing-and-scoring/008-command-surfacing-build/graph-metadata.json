@@ -155,6 +155,12 @@
         "source": "derived"
       },
       {
+        "name": "skills",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "a",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -162,12 +168,6 @@
       },
       {
         "name": "each",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills",
+    "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-13T19:32:21.415Z",
+    "last_save_at": "2026-11-13T21:03:34.716Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:9767289961eeb727668cae7ede0a0c4f5e3b3e91dbf018d29daf4ba21a1b2dbe",
+    "source_fingerprint": "sha256:963a3a871f066b59c51f173d5cbe303c877edcf2e173506fb615e6dcf7a00386",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "610fb2966aeb7a49f13fbecdf4d516760dfe4feb82a914c3f84b03490be236b0",
+      "spec.md": "09635f9a6b87474748418363e097d9f31eb4093d31a7c6c71bfd81bc20249cdf",
       "decision-record.md": "e28f9a3e6e67a4e30088b79cb51b7fde9db5540f722392b1c45efac7392e30f9"
     },
-    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation",
-    "last_active_at": "2026-11-13T17:03:57.074Z"
+    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement",
+    "last_active_at": "2026-11-13T20:21:47.968Z"
   }
 }

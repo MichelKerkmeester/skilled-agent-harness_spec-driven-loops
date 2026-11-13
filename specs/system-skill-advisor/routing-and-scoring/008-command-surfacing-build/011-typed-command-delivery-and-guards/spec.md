@@ -61,6 +61,8 @@ A user who types a tracked slash command has already chosen the workflow, yet 7 
 
 ### Purpose
 Every typed tracked command reaches the model as `<owner> → <command> (<policy>)`, measured as 44 of 44 in the committed capture, with no pinned number lower than today.
+
+**Core need served:** A user who types a command gets that command on the top recommendation with its policy, on 44 of 44 typed rows. The model then has the workflow the user asked for in front of it and does not need to guess one.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

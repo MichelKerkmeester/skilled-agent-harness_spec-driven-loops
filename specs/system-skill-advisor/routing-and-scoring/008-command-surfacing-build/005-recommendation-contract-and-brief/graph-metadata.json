@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A model that reads the hook brief sees `use command-speckit-save` or `use command-spec-kit-plan`, a raw scorer id that names no slash command and no policy",
     "created_at": "2026-11-12T12:27:36Z",
-    "last_save_at": "2026-11-13T01:13:46.081Z",
+    "last_save_at": "2026-11-13T21:04:28.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,10 +219,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fd80de209320713a5dd8b27d4c4334ca4c15ba3be1ef499650accc10a3305fc",
+    "source_fingerprint": "sha256:3071356b8c54cc20ddce32d3ecd3fd413ffe128671297a71ccb6129f21b4336a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f546d874440a56e12391554aa41e58d8bdf2628c1686b1b1fd142381aeb6a8d2",
+      "spec.md": "7e76c1637a970415c9d7389c2cd84bf529776b630557c8bb3577ea5fbc622817",
       "plan.md": "ff6f6fbe9098c100a7754015acd5a61ee17528240b13bcc57b448fc64c356719",
       "tasks.md": "022a12743a32ef34518aa0b9753bd3c6853d659ab5e1b0198c335e8361d82802",
       "implementation-summary.md": "fb66bff7b273b86b72e43db0b9d90e3abc3a5f06718c1640b29986598971aaad"

@@ -201,8 +201,8 @@
     ],
     "causal_summary": "The sealed row `suppressed-codex-abstain` is a three-word prompt with gold label `none`",
     "created_at": "2026-11-13T16:20:52Z",
-    "last_save_at": "2026-11-13T18:09:51.249Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-13T21:04:53.433Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -211,13 +211,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:42f9ad87463a4c4bc3d7628816b986880c9c08d762c0bed134af85368e265f9f",
+    "source_fingerprint": "sha256:6928aee44fbcc244b77c0b340cf97a07996916b2ae4b7cc745417fbc6c4dabd6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "194dde12eac71bece6ffcd635c3d37277de7adece1465c21723d38120df8af8e",
+      "spec.md": "ba25ad8849684c3b1e300c56aaa5137f21a35c8e281d8c78108a2f4d84f94df6",
       "plan.md": "60a51993eb0c7b3511486cc15a9d8c3e73f3e48ad63ac46e2f65182bade7f23d",
       "tasks.md": "ae3dcd34884b2e2bf687845602cadfd6db65096e588cea2358795fbbe4f870ff",
-      "implementation-summary.md": "3555d4ac8a453e428872acaf98f4b956b84f979ea8bf318f192046fb253c0626"
+      "implementation-summary.md": "adc05525838ad46f03231dfcb8598eef1d2b96b5f9983764f10c49bff1b67cd3"
     },
     "last_active_at": null
   }

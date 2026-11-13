@@ -77,6 +77,8 @@ The advisor reaches a plain-chat prompt with a skill and never with the command 
 
 ### Purpose
 A plain-chat prompt that fits a tracked command reaches that command, either as a field on its owner skill's recommendation or as the command's own row, with no new false offer and no drop in the pinned skill-routing numbers.
+
+**Core need served:** A user who chats in plain words now gets the command offered beside its owner skill, so the model sees a real workflow where it used to improvise. The skill stays in the recommendation, so the model keeps its free choice of path.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

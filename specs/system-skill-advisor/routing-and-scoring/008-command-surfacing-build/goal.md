@@ -37,7 +37,7 @@ _memory:
 ## 1. DURABLE DIRECTIVE
 <!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->
 
-**Objective:** Every tracked slash command reaches the model with a run, start or ask policy on every supported CLI, and the plan is built, tested, measured, reviewed and improved without waiting on the operator.
+**Objective:** A model using skills keeps its free choice and takes the best correct workflow more often, because every tracked slash command reaches it with a run, start or ask policy on every supported CLI, and the plan is built, tested, measured, reviewed and improved without waiting on the operator.
 
 ### Decisions
 
@@ -45,12 +45,13 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Run autonomously and ask the operator nothing. Take the recommended option and record it in `decision-record.md`. |
+| D1 | Run autonomously, ask the operator nothing, take the recommended option and record it in `decision-record.md`. |
 | D2 | Never push to main, edit a published release or install software. Log each as waiting. |
 | D3 | Build with `/speckit:plan` and `/speckit:implement`, review with `/deep:review`, find gains with `/deep:research`, close with `/local-skilled-alignment`. |
-| D4 | Workers: DeepSeek v4.1 flash max on OpenCode Go or LLM Gateway. Luna xhigh fast only on the Codex CLI, dropped when its quota is spent. Fable 5.2 medium for synthesis and key reviews. |
-| D5 | Live behaviour runs happen only in an arena: a throwaway clone, no remote, credentials off. |
-| D6 | Holdout prompt text is never read. Every number comes from a committed script. |
+| D4 | Workers: DeepSeek v4.1 flash max on OpenCode Go or LLM Gateway. Luna xhigh fast on the Codex CLI only, until out of quota. Fable 5.2 medium for synthesis and key reviews. |
+| D5 | Live behaviour runs only in an arena: a throwaway clone, no remote, credentials off. |
+| D6 | Never read holdout prompt text. Every number comes from a committed script. |
+| D7 | A command is a suggestion beside its hub mode. The model picks either path freely, even for the whole job, but it must be the skill's or the command's own workflow, never an improvised one (007 D2). |
 
 <!-- /ANCHOR:directive -->
 
@@ -65,14 +66,14 @@ phase and binds as if written here.
 
 | Phase | Goal document |
 |-------|---------------|
-| 001-command-routing-baseline-corpus | `001-command-routing-baseline-corpus/goal.md` |
-| 002-command-inventory-and-risk-metadata | `002-command-inventory-and-risk-metadata/goal.md` |
-| 003-plain-chat-command-reach | `003-plain-chat-command-reach/goal.md` |
-| 004-command-meaning-matching | `004-command-meaning-matching/goal.md` |
-| 005-recommendation-contract-and-brief | `005-recommendation-contract-and-brief/goal.md` |
-| 006-gate-2-binding-and-runtime-pointers | `006-gate-2-binding-and-runtime-pointers/goal.md` |
-| 007-per-runtime-behaviour-proof | `007-per-runtime-behaviour-proof/goal.md` |
-| 008-embedder-setup-and-cost | `008-embedder-setup-and-cost/goal.md` |
+| 001 | `001-command-routing-baseline-corpus/goal.md` |
+| 002 | `002-command-inventory-and-risk-metadata/goal.md` |
+| 003 | `003-plain-chat-command-reach/goal.md` |
+| 004 | `004-command-meaning-matching/goal.md` |
+| 005 | `005-recommendation-contract-and-brief/goal.md` |
+| 006 | `006-gate-2-binding-and-runtime-pointers/goal.md` |
+| 007 | `007-per-runtime-behaviour-proof/goal.md` |
+| 008 | `008-embedder-setup-and-cost/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -87,11 +88,11 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] Strict validation of this packet prints `RESULT: PASSED` for the parent and all eight phases, each Complete.
-- [ ] The advisor suite (`npx vitest run`) reports 0 failed, typed recall is 24 of 44 or more and false offers are 0 of 35.
-- [ ] The behaviour summary prints a before and an after start rate for claude, codex, opencode, pi, devin and dsh, and each unsafe start after has a fix or a reason in this log.
+- [ ] Strict validation prints `RESULT: PASSED` for this parent and all eight phases, each Complete.
+- [ ] The advisor suite (`npx vitest run`) reports 0 failed, typed recall is at least 24 of 44 and false offers 0 of 35.
+- [ ] The behaviour summary prints a before and after start rate for claude, codex, opencode, pi, devin and dsh, and each unsafe start after has a fix or reason in this log.
 - [ ] A `/deep:review` loop over the packet code has converged with 0 open P0 and P1 findings.
-- [ ] A `/deep:research` loop on UX, performance and cross-CLI usefulness has converged, with each recommendation built in a new phase or declined with a reason.
+- [ ] A `/deep:research` loop on UX, performance and cross-CLI usefulness has converged, each recommendation built in a new phase or declined with a reason.
 - [ ] `/local-skilled-alignment` on the branch reports 0 P0 and 0 P1 findings.
 - [ ] The branch sits on `origin/main`, clean and unpushed, with each item waiting on the operator in this log.
 <!-- /ANCHOR:completion -->
@@ -190,6 +191,20 @@ and findings belong here.
 | Conflict named: D1 against the logged amendment | Resolved toward the session goal | The goal the operator set for this session on 2026-11-13 states D1 as ask the operator nothing. The log row of the same day amends D1 to ask through the question tool. This session followed the goal as set and took each decision itself, recording it as decided without the operator, so each one stays open for the operator to overturn |
 | Review pass three, first round | 0 P0, 1 P1, 1 P2, both reproduced by... | Two lineages, 4 iterations each, last three at 0.00 new findings. DR3-P1-001: the doctor hook check read node -e1 <script> and node --eval=1 <script> as a wired hook. AR3-P2-001: make no changes to its public api inside a change request read as no-edit. Fixed in 860610d783, suite 1798 passed, floors equal |
 | Review pass three, confirming round | 2 P1 on the coordinator's own fix, 5 P2 | Both lineages found that the lookahead added for AR3-P2-001 let a real no-edit request that names its object keep a mutating offer. Checked read-only by Fable 5.2 medium on the second Claude account, which agreed and added that a false match with a read-only verb also floors the skill row to 0.25. Decided without the operator (D1): the lookahead is reverted in 846eab66b8, AR3-P2-001 is accepted... |
+| Review pass three | Closed, PASS: 0 open P0, 0 open P1, 5... | Three rounds, six lineages, twenty iterations. Closing round found no defect in the fixes and two vocabulary gaps graded P2 on the pass two precedent (checked read-only by Fable 5.2 medium on the second Claude account) and fixed anyway in 0cdc9fa3ef before the rebase. Five of six lineages ended at 0.00 new findings, one at 0.22 on its cap. The last fix commit was checked by tests and the gate b... |
+| Rebase onto origin/main | Done, 0 behind and 14 ahead, not pushed | 13 commits replayed onto 989ab5b82e. One commit that rebuilt the trigger index conflicted with the index main carries and was skipped, then the index was rebuilt from the rebased tree (02c75f049e, 0 stale documents). Gates on the rebased tree: suite 184 files 1807 passed 0 failed, doctor tests 1221, typed recall 24 of 44, false offers 0 of 35, typed delivery 44 of 44, plain tune 28 of 45, eval... |
+| Alignment battery on the rebased branch | 105 pass, 2 fail, both also fail on o... | S7 skill graph freshness: SIGNAL DRIFT compiled vs disk for sk-doc, same line on main at 989ab5b82e, and this branch changes neither file. S5 derived counts: .skilled/hooks/README.md line 206 states fourteen test files, same failure on main. A stale local build of the spec-kit cli package after the rebase was rebuilt. Review lanes running |
+| WAITING ON OPERATOR: delete the nested repository under review | Waiting | review/lineages/accuracy-runner-2/logs/quotepath-probe is a git repository a pass two reviewer made. It is untracked and kept out of every commit. It is the only thing git status lists. Deleting an untracked file needs the operator's yes |
+| WAITING ON OPERATOR: delete the behaviour arenas | Waiting | TMPDIR/skilled-behaviour-arenas/fin-claude, fin-devin, fin-dsh, fin-opencode and fin-pi, about 34 GB, regenerable. Phase 007 is closed, so they are no longer needed |
+| WAITING ON OPERATOR: push and pull request | Waiting | The branch worktrees/352-command-surfacing-research is rebased on origin/main and not pushed. By the operator answer of 2026-11-13 it reaches main through a pull request the operator opens |
+| Session of 2026-11-13 18:00Z to 20:30Z | Handed off at 80 percent context | Alignment run 20261113T194705Z: battery 105 pass and 2 fail that also fail on main, lane B returned 1 P1 and 2 P2 (B-01, a playbook page that still ties the diagnostics file to SKILL_ADVISOR_DEBUG, not yet verified), lanes A and D timed out and lane C returned no findings object. Next: rerun those lanes, the critic and the report, fix what is upheld, then close the parent |
+| Operator statement of the core need, 2026-11-13 | Operator-made, amends the objective | Verbatim: Its not just that but that ais using skills are flexible but will more often use the besr correct workflows for said tasks. The operator felt the purpose was lost across session handovers and asked for it to be restated everywhere. The parent Purpose and Objective now lead with this outcome, decision D7 carries the free-choice rule from 007 decision D2 and each of the 18 phase specs n... |
+| Outcome measure for the core need | Proposed, waits on the operator | The packet counts offers and starts. It has no number for how often a model followed a real workflow, the command's or the skill's own, against improvising. Recorded as an open question in the parent spec. Building it and setting a target is the operator's decision |
+| Goal check on the binding table | Open, waits on the operator | check-goal.cjs prints RESULT: FAILED (4/5): no binding row for phases 009 to 018, which have no goal.md, and criterion 1 still says all eight phases. Ten more rows do not fit the 4,000 character slice (now 3,999), so the amendment is the operator's |
+| Alignment lanes, second run | All four returned | Lane C result recovered from its raw output (the runner's JSON scan missed a printed object), lanes A and D rerun with a 3000 s limit. Findings: A 3 P2, B 1 P1 and 2 P2, C 1 P1 and 2 P2, D 4 P1 and 2 P2. Probes 13 pass, 7 fail: five expect a skill and got that skill's own command row, two are D-03 and D-04 |
+| Alignment P1 findings B-01 and C-01 | Fixed, each reproduced first | B-01: two playbook pages tied the diagnostics file to SKILL_ADVISOR_DEBUG. C-01: no changelog entry for the post-release advisor changes. New entries: system-skill-advisor v1.1.0.0, system-skilled-doctor v1.1.7.0, system-spec-kit v2.13.1.0. Decided without the operator: the advisor bump is minor with the break called out, following the operator ruling on the same rename for sk-doc. Four P2 doc... |
+| Alignment P1 findings D-01 to D-04 | Fixed, each with a test that failed f... | D-01: a command typed with :auto, :confirm or :autopilot now reads as that command. D-02: the doctor cue folds a curly apostrophe. D-03 and D-04: six generic phrases added in phase 016 removed from /doctor:setup and /doctor:update, because the doctor matcher ranks on shared words and they pulled fix-the-tests and what-changed prompts onto a doctor command. Scoping the phrases was tried first an... |
+| Peer session question on the routing corpus pin, 2026-11-13 | Answered not yet | The archive subtrack session will fix the Routing Registry Drift Guard on main. This branch removes one holdout row (phase 018) that reaches main only with the pull request, so a pin recaptured before the merge goes red again. Who recaptures the pin is the operator's call |
 
 ### Deviations and findings
 

@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The prompt hook persists its diagnostic record only when `SKILLADVISORDEBUG` is set, so the `hookHealth` block that `advisorstatus` and `/doctor:setup` read exists for 21 workspace keys on this machine against 124 outcome logs, and no record says whether an answer came from the CLI's local scorer",
     "created_at": "2026-11-13T07:48:56Z",
-    "last_save_at": "2026-11-13T11:38:09.507Z",
+    "last_save_at": "2026-11-13T21:04:48.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13242b6962d268eafa4da4bad673b2273db77b2486ce90617c529b7b1fe5edcc",
+    "source_fingerprint": "sha256:2e079e16bec546742afcccb243fcc1586f658acf9d051ca3951c1899266a1a82",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ef8419c9cab4218f00b020150d0d5462d95b3f0d30e3cd46ac9ab42fdce95a12",
+      "spec.md": "227bc25b810daa65e4cfa6a1d676c642ddac9e574586f5fb76797b60ddf81706",
       "plan.md": "757d26c80df0fedfa7c0fe6f5b081307289426838fdf5a6bf75d1bf9a7ad7d3b",
       "tasks.md": "f34e84812bfe248aa808d2f83d9a131f1ee976ad0a7c03585c3abd97237be193",
       "implementation-summary.md": "ff30c3ccdc4477ca3aeb6bcae57cefee3970923cbdd5d2cf2a7978e1b4c0b9d1"

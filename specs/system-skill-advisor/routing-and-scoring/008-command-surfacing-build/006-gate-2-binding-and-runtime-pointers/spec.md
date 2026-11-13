@@ -62,6 +62,8 @@ The advisor now attaches a command to a recommendation, but nothing in `AGENTS.m
 
 ### Purpose
 Every runtime gets one instruction for a surfaced command, read its document in full and follow it under its policy, from `AGENTS.md` Gate 2 or from a generated copy where no brief arrives. The change stays inside the delivery budget and every generated copy is checked against its source.
+
+**Core need served:** Gate 2 tells the model to take the command path or the skill path whole and to follow the command document in full. That rule turns an offered workflow into a followed one and rules out an improvised mix, while the model keeps its free choice of path.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

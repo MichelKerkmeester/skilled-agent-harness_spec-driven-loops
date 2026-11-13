@@ -60,6 +60,8 @@ Phase 003 made a plain prompt reach its command when the prompt reuses the comma
 
 ### Purpose
 A plain prompt that means what a command does reaches that command on at least 5 of 44 holdout rows, with no new false offer and no loss of typed recall. The target of 5 is about half the tune rate of 9 of 45, because holdout rows are paraphrases the tuning never sees.
+
+**Core need served:** People rarely type a command's own words. Matching on meaning lets a paraphrase reach the right workflow, and the holdout reach of 2 of 44 at close shows how much of that gap is still open.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

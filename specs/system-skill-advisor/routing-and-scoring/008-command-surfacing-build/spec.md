@@ -61,10 +61,14 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills. Only `/doctor:*` commands arrive as a runnable line, 22 of 62 command bridge rows are off in the TypeScript scorer, the recommendation carries no command field and no rule tells a model what to do with a surfaced command. A user who chats without typing a command therefore gets an improvised approach where a command workflow exists. The evidence is in `../007-command-surfacing-and-workflow-enforcement/research/research.md` and the independent review `../007-command-surfacing-and-workflow-enforcement/research/synthesis-review.md`.
+A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task. The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills. Only `/doctor:*` commands arrive as a runnable line, 22 of 62 command bridge rows are off in the TypeScript scorer, the recommendation carries no command field and no rule tells a model what to do with a surfaced command. Those gaps are why the chat user gets the improvised approach. The evidence is in `../007-command-surfacing-and-workflow-enforcement/research/research.md` and the independent review `../007-command-surfacing-and-workflow-enforcement/research/synthesis-review.md`.
 
 ### Purpose
-Deliver the review's recommendation set (R1 to R10, L1 to L12, G1 to G7) in the order its build plan gives, under the operator decisions D1 to D5 recorded in section 13 of `../007-command-surfacing-and-workflow-enforcement/research/research.md`. When the last phase closes, a plain chat request surfaces the matching command beside its skill with a run, start or ask policy, the model picks between the command path and the skill path, and a measured baseline shows what changed.
+This packet exists so an AI that works through skills stays free to choose how it does a task and lands on the best correct workflow for that task more often than before. Delivery is the means. A tracked command reaches the model with a run, start or ask policy, so the model can see the workflow that fits the task. Delivery counts show the means works. They do not show the outcome yet (see Open Questions).
+
+The model stays free. A command is surfaced beside its hub mode as a suggestion, and the model picks freely between the command path and the skill path, even for the whole job. Either path must still be the skill's or the command's own workflow, never an improvised one. This is operator decision D2, recorded in section 13 of `../007-command-surfacing-and-workflow-enforcement/research/research.md`.
+
+To get there, deliver the review's recommendation set (R1 to R10, L1 to L12, G1 to G7) in the order its build plan gives, under the operator decisions D1 to D5 recorded in section 13 of `../007-command-surfacing-and-workflow-enforcement/research/research.md`. When the last phase closes, a plain chat request surfaces the matching command beside its skill with a run, start or ask policy, the model picks between the command path and the skill path, and a measured baseline shows what changed.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -86,7 +90,7 @@ Deliver the review's recommendation set (R1 to R10, L1 to L12, G1 to G7) in the 
 ### Out of Scope
 - Changing how skills are scored against each other. The four existing accuracy numbers are a floor in every phase.
 - Surfacing the private, untracked `/local-skilled-alignment` command (decision D5).
-- Forcing the command path. Decision D2 keeps the model free to pick the skill path.
+- Forcing the command path. Decision D2 keeps the model free to pick the skill path, as the Purpose states. It is recorded in section 13 of `../007-command-surfacing-and-workflow-enforcement/research/research.md`.
 - Adding a command front door to a skill that has none.
 
 ### Files to Change
@@ -166,6 +170,7 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 
 - Phase 7 needs runs on runtimes the research never exercised live (Pi, Cursor, Devin, DSH, Codex, OpenCode). Which of them the operator wants proven is decided when phase 7 is planned.
 - The review's G2 check, that a started command actually runs its own setup, is a condition of decision D1. If phase 7 shows setup being skipped, D1 returns to the operator.
+- The packet measures how often a command is offered and how often the model starts it. It has no number for how often the model followed a real workflow, the command's or the skill's own, against improvising. That number is the measure of the core need. A measure for it is proposed and not built. The operator decides whether to build it and what target it gets.
 <!-- /ANCHOR:questions -->
 
 ---

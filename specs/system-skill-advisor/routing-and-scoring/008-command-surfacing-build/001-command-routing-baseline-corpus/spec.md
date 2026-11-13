@@ -74,6 +74,8 @@ The advisor is scored against three pinned skill corpora and one doctor slice, a
 
 ### Purpose
 A committed baseline states, for each of the 44 tracked commands, how often a typed and a plain-chat prompt reaches it today, so each later phase reports a delta against it.
+
+**Core need served:** This phase only measures. It sets the before numbers for how often a typed or plain prompt reaches its command, so every later phase can show whether the model is shown the right workflow more often. It does not measure whether the model then follows that workflow.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Four no-edit wordings, \"don't change anything yet\", \"no changes yet\", \"don't touch any files\" written with a curly apostrophe and \"make no changes\", still attach `/create:agent` on the hub path and still pass the scorer's command gate, because the shared pattern knows only \"do not\"",
     "created_at": "2026-11-13T14:16:53Z",
-    "last_save_at": "2026-11-13T17:55:35.115Z",
+    "last_save_at": "2026-11-13T21:04:51.950Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b9f0d83a506157ab5f7b8cb1412c66b3759845c1a091e1fd8415e300fde8229",
+    "source_fingerprint": "sha256:eaa32c83480f14d28b84c0a1a56aee9f415ff43d82d269c44609fc684c7e97ee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3b8a328c4f1337ef640e63cae1dcecd7ad5aebf494a1a53b128569ddb69a9994",
+      "spec.md": "36587a87a06bf409cf4ec2c8a5626721f5de18643597aea4515f97541fb03d5f",
       "plan.md": "ef1935d60926e98ffca8ed78a9bf5d5b881c8d06c1ae41e4a5d18e808641a212",
       "tasks.md": "aa83c819ac5b840c88783786ca00c5f9b836877a81b6bdf02a8fffd3f280202c",
       "implementation-summary.md": "eb04a98611b66380e24b55e00e128bb8d383d4459a2b9f4d52f0c01e3421c7a7"

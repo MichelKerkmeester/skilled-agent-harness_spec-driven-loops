@@ -62,6 +62,8 @@ Every check this build has so far reads the advisor's output, never the model's 
 
 ### Purpose
 For each runtime that has a session reader, a scored pre-change run and post-change run report the command-start rate, the `COMMAND:` token rate and the unsafe-start count, and a run on the three heaviest workflows reports zero loops started without init.
+
+**Core need served:** This phase measures the result closest to the core need: how often a model starts the command it was offered, read from each runtime's own session. Starts stayed low on some runtimes, Claude 5 of 12 and OpenCode 2 of 5 in the final arm, so delivery alone has not closed the gap. It counts starts only, not whether the model followed a real workflow.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

@@ -60,6 +60,8 @@ Four no-edit wordings, "don't change anything yet", "no changes yet", "don't tou
 
 ### Purpose
 Each of the 27 findings is fixed with a test that failed before the fix and passes after, wherever such a test can exist, and no floor moves from `scratch/before.txt`, so the third review pass reviews a small diff that matches its docs.
+
+**Core need served:** This phase repairs review findings. Its main fix keeps a command off a prompt that rules out a change, so the model is not pointed at a writing workflow the user did not want. The other fixes make the docs and checks say what the code does.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

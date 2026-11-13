@@ -61,6 +61,8 @@ Phases 005 to 008 plan the recommendation contract, the Gate 2 binding, the per-
 
 ### Purpose
 A ranked list of further gains for command surfacing in user experience, performance and cross-CLI use, each with its file, its gain and its check, so that every item is later built in its own phase or declined with a reason.
+
+**Core need served:** This phase is research only. It found where command surfacing still loses the user, mostly reachability and attribution, so the build phases after it aim at the gaps that stop a model from seeing the right workflow.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

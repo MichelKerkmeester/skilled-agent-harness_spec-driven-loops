@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A plain request rarely gets its command: the committed capture offers the expected command on 9 of 45 plain tune rows, and in the after arm of phase 007 the brief carried a command on 5 of the 16 plain chat rows, 2 of them the generic `/doctor:helper`",
     "created_at": "2026-11-13T03:31:05Z",
-    "last_save_at": "2026-11-13T05:06:45.220Z",
+    "last_save_at": "2026-11-13T21:04:43.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f42d91fe43a4c3cdd91866081f8f59d172bfec048a1dbabda38837a2ad2b617d",
+    "source_fingerprint": "sha256:7efcc791aa8c6bfd2bd74faa9a082c237b0b5138a7c2fe40c50777250331f340",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ef00953f03f279f242976504240516b50b66bfa4df3863cfa7c365405c997de4",
+      "spec.md": "c5773a898e54096cf6c06ad5d866d5735151e854262b2b78a16165ac8ea5e41b",
       "plan.md": "16b5f8b00ba578cbc5de8cf3d73a32fdcb175e49a8d414c2a96548ff473c33fa",
       "tasks.md": "3f5f1e09ddc734b3e5b3b4c8fe87b0bf17dbc7b3b61ae5f01fdb6f77b4e50d04",
       "implementation-summary.md": "9c275f1a85c44396de5ce270493c7c37cdd3ecb2410c74997fe03de0ebbfa706"

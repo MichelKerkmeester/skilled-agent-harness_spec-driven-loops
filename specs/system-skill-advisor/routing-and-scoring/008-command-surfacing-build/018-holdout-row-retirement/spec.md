@@ -61,6 +61,8 @@ The sealed row `suppressed-codex-abstain` is a three-word prompt with gold label
 
 ### Purpose
 Remove the row from the sealed set the way the file has already been trimmed once, and recapture the one baseline that counts it, so the holdout aggregate counts only rows whose text the scorer was not given.
+
+**Core need served:** This phase retires one test row and builds nothing. The row's prompt was already an authored alias, so it tested text the scorer had been given. Removing it keeps the holdout number a fair test of routing on wording the scorer never saw.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

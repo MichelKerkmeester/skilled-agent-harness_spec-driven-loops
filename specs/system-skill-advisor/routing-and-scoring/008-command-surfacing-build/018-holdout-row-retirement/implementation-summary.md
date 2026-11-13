@@ -8,19 +8,24 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement"
-    last_updated_at: "2026-11-13T18:05:01Z"
-    last_updated_by: "closeout-worker"
-    recent_action: "Closed out the phase docs from the before, after and leak records"
-    next_safe_action: "Commit the phase, then run review pass three"
+    last_updated_at: "2026-11-13T20:21:47Z"
+    last_updated_by: "generate-context"
+    recent_action: "Ran the alignment battery and lanes on the rebased branch"
+    next_safe_action: "Rerun alignment lanes A, C and D, then the critic and the report"
     blockers: []
     key_files:
-      - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/holdout-prompts.jsonl"
-      - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json"
-      - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md"
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:386cebebf64962cec5026ce16aaeef7d19c6dbae8cd9d0af66ac5292ca99517b"
       session_id: "scaffold-018-holdout-row-retirement"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "c9fe91ef-9b85-4bdc-88fb-4d6f766eaecf"
+      workspace: "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research"
+      savedAt: "2026-11-13T20:21:47Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

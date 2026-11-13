@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Every check this build has so far reads the advisor's output, never the model's behaviour",
     "created_at": "2026-11-12T12:27:38Z",
-    "last_save_at": "2026-11-13T18:24:04.277Z",
+    "last_save_at": "2026-11-13T21:04:32.513Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,10 +222,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d0ad81544f6be41a975ead6e19545a1ee50867a1fe4cbbeeeec77dd861b73882",
+    "source_fingerprint": "sha256:113056c143ee1631631ce27b3c759de4f302a01e77f4c5e00f54455290c0e7c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "88fb662445b05bf708fdccf2efd11b50c44aaafe52d18400e4e7df6143b5dfa2",
+      "spec.md": "700812f66b5d8182546c6f9dac73141de612887ac0d51d59c316452649efc101",
       "plan.md": "59e666ba7da15ddd3bc9290f8b88f3df08651651d27e0c476ca103c06994f831",
       "tasks.md": "49151b0392624769c3c17cb38685aaab0c8285aff0a3fdf6a1f0711f66292a35",
       "decision-record.md": "1d49f76b2d364ad73cb841d7dcb70fc0bc9842c5a148c0824f1a5472618a6330",

@@ -63,6 +63,8 @@ Meaning matching only works with a local Ollama server serving `nomic-embed-text
 
 ### Purpose
 A user who installs Skilled can see whether meaning matching is on, set it up through one doctor route that shows its cost before it acts, read that cost in the install documents and keep a working advisor when the embedder is absent, cold or slow.
+
+**Core need served:** Meaning matching is how a paraphrase reaches its workflow, and it needs the embedder. This phase lets a user outside this repository turn it on at a known cost, and it keeps the advisor working when the embedder fails.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

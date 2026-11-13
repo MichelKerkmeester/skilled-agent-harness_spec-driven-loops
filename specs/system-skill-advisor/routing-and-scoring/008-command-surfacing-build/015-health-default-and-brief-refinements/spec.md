@@ -64,6 +64,8 @@ The prompt hook persists its diagnostic record only when `SKILL_ADVISOR_DEBUG` i
 
 ### Purpose
 A default install reports how its hook runs and how often it degraded, and a brief names a command or a missing mode only where the prompt earned it, with every arm count answering what it claims.
+
+**Core need served:** The brief now names a command or a missing mode only when the prompt earned it, so the model gets fewer false nudges toward the wrong workflow. The health record shows when delivery degrades, and the outcome depends on delivery.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Claude Code shows 32 of the 44 tracked commands",
     "created_at": "2026-11-13T12:23:49Z",
-    "last_save_at": "2026-11-13T16:51:15.243Z",
+    "last_save_at": "2026-11-13T21:04:50.310Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8976447d533cd033e0ca79f5b16392c0cc8de9a85b582fe58e0bf8929820126e",
+    "source_fingerprint": "sha256:0620ec76294a35137ff636cf9e3500691f51fd7808e4c592a029b8b1e8ac4aea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5476c826c8b911239dfd8a3fae2206770ad904696572caf698d40dfe9d57937d",
+      "spec.md": "71276f18dfe05a4510b7731cb5a597ae9837ff2f072d19c522fb1f67ab80c63b",
       "plan.md": "cd260560046aa8d24e5713f2a1c8831bfa9e4a56050b2c9595de6e132a1729a8",
       "tasks.md": "26a4888f4d1531567c9f7cc2b67eb1634ef76df1998b5ac474d3f9cf5cb20abb",
       "implementation-summary.md": "6b09cec15ad09609a4544d1d5b2a0c9aa2cb326ef6069cbd1d3e297c6c4e0989"

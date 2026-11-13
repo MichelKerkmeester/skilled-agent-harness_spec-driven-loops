@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A write that throws inside an embed apply escapes `main`, prints no backup or undo line and leaves `AGENTS.md` written beside the old `CLAUDE.md`, while the workflow reads the exit as \"nothing was written\"",
     "created_at": "2026-11-13T07:46:59Z",
-    "last_save_at": "2026-11-13T09:52:52.679Z",
+    "last_save_at": "2026-11-13T21:04:47.025Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90e16d9ffe067c6af9c8f0bbef69606ed3463d57adc5b4e4ba01df3c83f4c7d6",
+    "source_fingerprint": "sha256:6a9678e8674febf4425cb081406b3cd2006b3af01e2213f0d3073f943ba7cc49",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5f0ba0f019273fdb64b92791cad0f91d9674dd3937fb485453ad136fb955e0f9",
+      "spec.md": "467655b3b168f8a82420024a355ec95e3e44d59a1dbf188e664567071cb005e7",
       "plan.md": "f078a0eca162156063cf6e6eabf05e9ada543da665b5e215c69589d0c26552ce",
       "tasks.md": "14490677a2951ca9d2f15f363a82610db5316b255d35df0dbbe7d9643f33ec1d",
       "implementation-summary.md": "f53f93072c9627bdfac65199751edc96ef21595d07c7ddcedbd15d04a9928336"
