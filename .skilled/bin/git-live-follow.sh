@@ -153,6 +153,18 @@ if [ "$START" = "1" ]; then
   if [ -n "$GIT_DIR_PATH" ] && [ -n "$GIT_COMMON_PATH" ] && [ "$GIT_DIR_PATH" != "$GIT_COMMON_PATH" ]; then
     exit 0
   fi
+  # A dispatched child session or a checkout under a temp dir is a disposable
+  # copy (test harness, fan-out lineage), never the IDE checkout. A follower
+  # started there outlives its session and polls forever, so never start one.
+  [ "${AI_SESSION_CHILD:-0}" = "1" ] && exit 0
+  __lf_top="$(cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" && pwd -P)"
+  for __lf_tmp in "${TMPDIR:-}" /tmp /private/tmp /var/folders /private/var/folders; do
+    [ -n "$__lf_tmp" ] || continue
+    __lf_tmp="$(cd "$__lf_tmp" 2>/dev/null && pwd -P || printf '%s' "${__lf_tmp%/}")"
+    case "$__lf_top/" in
+      "$__lf_tmp"/*) exit 0 ;;
+    esac
+  done
   # Kill switches: absent means ON; a disabled loop must not announce or start.
   __hf_root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
   __hf_file="$(dirname "${BASH_SOURCE[0]}")/../hooks/shared/hook-flags.sh"
@@ -256,6 +268,8 @@ acquire_lock
 # Long-running poll loop. The operator or the SessionStart --start step
 # backgrounds this once per checkout.
 while :; do
+  # A deleted checkout can never recover; exit instead of failing every poll.
+  [ -d "$GIT_DIR_PATH" ] || exit 0
   check_once
   sleep "$INTERVAL"
 done
