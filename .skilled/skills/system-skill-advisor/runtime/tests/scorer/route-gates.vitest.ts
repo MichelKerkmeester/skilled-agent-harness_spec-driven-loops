@@ -68,7 +68,7 @@ describe('read-only prompt that names a cli tool', () => {
   });
 
   it('keeps a non-cli skill gated on its bare suffix', () => {
-    expect(readOnlyRouteAllowed('list the git branches', skill('sk-git'))).toBe(false);
+    expect(readOnlyRouteAllowed('list the doc templates', skill('sk-doc'))).toBe(false);
   });
 });
 
@@ -149,5 +149,28 @@ describe('research-loop verb', () => {
 
   it('keeps the adverb off a prompt that asks for no research', () => {
     expect(researchLoopFires('Iteratively tune the retry backoff in the fetch helper.')).toBe(false);
+  });
+});
+
+describe('read-only question about git history', () => {
+  it('lets sk-git answer a read-only question that names git or a history object', () => {
+    for (const prompt of [
+      'show the git log',
+      'show me what changed in the last three commits',
+      'compare branches main and develop',
+    ]) {
+      expect(readOnlyRouteAllowed(prompt, skill('sk-git'))).toBe(true);
+    }
+  });
+
+  it('keeps sk-git floored on a prompt that only shares a word with git history', () => {
+    for (const prompt of [
+      'show me the plan',
+      'explain how the decision tree branches are pruned',
+      'explain who changed the lunch menu',
+      'add a blame column to the incident report table',
+    ]) {
+      expect(readOnlyRouteAllowed(prompt, skill('sk-git'))).toBe(false);
+    }
   });
 });

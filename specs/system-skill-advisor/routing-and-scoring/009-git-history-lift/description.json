@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/routing-and-scoring/009-git-history-lift",
+  "description": "Let read-only git history questions route to sk-git by lifting them off the advisor's read-only floor",
+  "keywords": [
+    "let",
+    "read-only",
+    "git",
+    "history",
+    "questions",
+    "route",
+    "sk-git",
+    "lifting",
+    "them",
+    "advisor",
+    "floor"
+  ],
+  "lastUpdated": "2026-11-13T12:03:15.767Z",
+  "specId": "009",
+  "folderSlug": "git-history-lift",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "13-11-26_13-03__added-one-guarded-sk-git-branch-to.md"
+  ]
+}
