@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6746,
-    "ok": 18203,
+    "ok": 18237,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 26579,
+  "documentsScanned": 26613,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "716689d79bf02302106d26e491d00a577158d040d66a36179034c54bee5d05a1",
+  "manifestHash": "e1fe7bc9760355cb19ee545d5707769cfb105e5c6a76077ea5da047e69d14a52",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42830,
+      "ok": 42876,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -52706,6 +52706,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/agents-md/agent-behavior/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/agents-md/instruction-file-architecture/001-agents-md-bloat-audit/research/lineages",
       "reason": "excluded directory"
     },
@@ -52719,6 +52723,10 @@
     },
     {
       "path": "specs/agents-md/instruction-file-architecture/004-prompting-guide-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents-md/instruction-file-architecture/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -52791,6 +52799,10 @@
     },
     {
       "path": "specs/agents-md/instruction-surface-integrity/005-v4-0-1-0-rules-refresh/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents-md/instruction-surface-integrity/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -52899,6 +52911,10 @@
     },
     {
       "path": "specs/agents-md/repo-rule-operations/005-reply-rule-pruning/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents-md/repo-rule-operations/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -53538,6 +53554,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/dispatch-surface-maintenance/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/model-rosters/001-union-alpha-dual-provider-roster/scratch",
       "reason": "excluded directory"
     },
@@ -53559,6 +53579,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/model-rosters/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -54018,6 +54042,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/opencode-platform/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/001-deep-research/research/lineages",
       "reason": "excluded directory"
     },
@@ -54223,6 +54251,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -54694,6 +54726,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/goal-and-directive-hooks/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/008-sk-code-alignment/research/lineages",
       "reason": "excluded directory"
     },
@@ -54747,6 +54783,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/hook-injection-pipeline/007-env-secret-guard/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/hook-injection-pipeline/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -54926,6 +54966,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/pi-extensions/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/repo-commit-gates/001-git-hook-gate-reduction/scratch",
       "reason": "excluded directory"
     },
@@ -54939,6 +54983,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/repo-commit-gates/004-spec-metadata-auto-remint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/repo-commit-gates/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -55055,6 +55103,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -55410,6 +55462,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/mcp-tooling/clickup-figma/002-figma-hosted-from-cli-children/scratch",
       "reason": "excluded directory"
     },
@@ -55418,11 +55474,19 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/mcp-tooling/clickup-figma/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/mcp-tooling/code-mode/001-code-mode-fresh-clone-build/scratch",
       "reason": "excluded directory"
     },
     {
       "path": "specs/mcp-tooling/code-mode/002-clickup-hosted-route-fix/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp-tooling/code-mode/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -55443,6 +55507,10 @@
     },
     {
       "path": "specs/mcp-tooling/mcp-obsidian/002-obsidian-plugin-reduction/003-hub-routing-and-validation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/mcp-tooling/mcp-obsidian/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -55527,6 +55595,10 @@
     },
     {
       "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/code-surfaces/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -56338,6 +56410,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/hub-architecture/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/quality-and-review-modes/001-code-modes-research/001-quality-mode-research/research/deep-research-audit-ledger",
       "reason": "excluded directory"
     },
@@ -56522,7 +56598,15 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/quality-and-review-modes/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/verification-guards/004-drift-guard-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/verification-guards/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -57470,6 +57554,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/authoring-modes-and-playbooks/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches/review/lineages",
       "reason": "excluded directory"
     },
@@ -57519,6 +57607,10 @@
     },
     {
       "path": "specs/sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/doc-validation-tooling/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -57695,6 +57787,10 @@
     },
     {
       "path": "specs/sk-doc/document-standards/005-root-readme-section-spacing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -57954,6 +58050,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/hub-routing-and-surfaces/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/z_archive",
       "reason": "excluded directory"
     },
@@ -58126,6 +58226,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-git/commit-standards/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/live-sync-and-publishing/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-git/worktree-lifecycle/003-worktree-dependency-provisioning/scratch",
       "reason": "excluded directory"
     },
@@ -58167,6 +58275,10 @@
     },
     {
       "path": "specs/sk-git/worktree-lifecycle/006-provision-private-command-links/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/worktree-lifecycle/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -58714,6 +58826,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/loop-architecture/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/scratch",
       "reason": "excluded directory"
     },
@@ -58778,6 +58894,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/review-lineage/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash/scratch",
       "reason": "excluded directory"
     },
@@ -58787,6 +58907,10 @@
     },
     {
       "path": "specs/system-deep-loop/runtime-concurrency/003-loop-lock-cross-process-race/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/runtime-concurrency/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -58815,6 +58939,10 @@
     },
     {
       "path": "specs/system-skill-advisor/codebase-conformance/004-advisor-status-truthfulness/003-status-contract-and-docs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/codebase-conformance/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -58966,6 +59094,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/host-integrations/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement/001-baseline-and-instrumentation/scratch",
       "reason": "excluded directory"
     },
@@ -59110,6 +59242,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/scratch",
       "reason": "excluded directory"
     },
@@ -59147,6 +59283,10 @@
     },
     {
       "path": "specs/system-skill-advisor/runtime-lifecycle/005-build-freshness-record/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/runtime-lifecycle/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -61230,6 +61370,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/memory-search-and-knowledge/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/repo-operations/001-plugin-scanner-readiness/scratch",
       "reason": "excluded directory"
     },
@@ -61343,6 +61487,10 @@
     },
     {
       "path": "specs/system-speckit/repo-operations/005-main-ci-red-checks/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/repo-operations/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -62538,6 +62686,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/runtime-and-release/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/scratch",
       "reason": "excluded directory"
     },
@@ -62795,6 +62947,10 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -63171,6 +63327,34 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/001-relocation-engine/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/002-subtrack-proposal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/z_archive",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "716689d79bf02302106d26e491d00a577158d040d66a36179034c54bee5d05a1",
+  "manifestHash": "e1fe7bc9760355cb19ee545d5707769cfb105e5c6a76077ea5da047e69d14a52",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -18261,7 +18261,41 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/implementation-summary.md",
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/plan.md",
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/spec.md",
-    "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
+    "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/001-relocation-engine/acceptance-criteria.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/001-relocation-engine/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/001-relocation-engine/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/001-relocation-engine/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/001-relocation-engine/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/001-relocation-engine/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/002-subtrack-proposal/acceptance-criteria.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/002-subtrack-proposal/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/002-subtrack-proposal/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/002-subtrack-proposal/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/002-subtrack-proposal/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/002-subtrack-proposal/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering/acceptance-criteria.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json/acceptance-criteria.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/acceptance-criteria.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/decision-record.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/decision-record.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -19827,6 +19861,9 @@
     "005 strict validator chk t15": [
       13746
     ],
+    "005 subtrack proposal and archive reach operator decisions": [
+      18283
+    ],
     "005 tasks promote qwen": [
       12928
     ],
@@ -19835,6 +19872,9 @@
     ],
     "005 test cycle speed operator decisions": [
       17488
+    ],
+    "005 tests and closeout operator decisions": [
+      18277
     ],
     "005 vestigial embedding readiness gate removal": [
       11510
@@ -31330,6 +31370,24 @@
     ],
     "archive root graph node tasks": [
       15848
+    ],
+    "archive search and json": [
+      18274
+    ],
+    "archive search and json acceptance criteria": [
+      18270
+    ],
+    "archive search and json goal": [
+      18271
+    ],
+    "archive search and json implementation summary": [
+      18272
+    ],
+    "archive search and json plan": [
+      18273
+    ],
+    "archive search and json tasks": [
+      18275
     ],
     "archive seeds sub track metadata": [
       18216
@@ -48673,7 +48731,8 @@
       18110,
       18116,
       18122,
-      18127
+      18127,
+      18284
     ],
     "completion criteria copied": [
       16509,
@@ -60611,6 +60670,9 @@
     "deterministic n gram": [
       2877
     ],
+    "deterministic packet relocation": [
+      18285
+    ],
     "deterministic provenance merge": [
       9550
     ],
@@ -66177,7 +66239,8 @@
       18110,
       18116,
       18122,
-      18127
+      18127,
+      18284
     ],
     "durable fan in failure plan": [
       9545
@@ -76725,7 +76788,8 @@
       18110,
       18116,
       18122,
-      18127
+      18127,
+      18284
     ],
     "goal binding gaps": [
       8038
@@ -82548,6 +82612,9 @@
     ],
     "incident timeline": [
       1672
+    ],
+    "include archive search mode": [
+      18274
     ],
     "include archived default": [
       14717
@@ -97969,6 +98036,9 @@
     "numbered worktrees and sharper git routing": [
       2225
     ],
+    "numbering counts archived packets": [
+      18268
+    ],
     "numeric design laws": [
       1718
     ],
@@ -100412,6 +100482,9 @@
     "ops helpers": [
       3311
     ],
+    "opt in archive search": [
+      18285
+    ],
     "opt in collector posture": [
       13332
     ],
@@ -102617,7 +102690,8 @@
       18110,
       18116,
       18122,
-      18127
+      18127,
+      18284
     ],
     "packet goal authoring boundary": [
       8041
@@ -104555,6 +104629,9 @@
     "phase 1 quality mode research": [
       7250
     ],
+    "phase 1 relocation engine": [
+      18256
+    ],
     "phase 1 removal research": [
       10761
     ],
@@ -105360,6 +105437,9 @@
     "phase 2 subtrack predicate": [
       18200
     ],
+    "phase 2 subtrack proposal": [
+      18262
+    ],
     "phase 2 surface contract alignment": [
       6512
     ],
@@ -105737,6 +105817,9 @@
     "phase 3 stale jev canary": [
       6749
     ],
+    "phase 3 subtrack archive and numbering": [
+      18268
+    ],
     "phase 3 system spec kit": [
       8217
     ],
@@ -105823,6 +105906,9 @@
     ],
     "phase 4 alignment fixes": [
       8588
+    ],
+    "phase 4 archive search and json": [
+      18274
     ],
     "phase 4 battery misses": [
       6935
@@ -106198,6 +106284,9 @@
     ],
     "phase 5 subagent guard cancel consume": [
       5972
+    ],
+    "phase 5 tests and closeout": [
+      18281
     ],
     "phase 5 version aware guards": [
       4280
@@ -116915,6 +117004,12 @@
     "relevance dominant confidence rebalance": [
       15123
     ],
+    "relocate and suggest subtracks vitest suites": [
+      18281
+    ],
+    "relocate mjs move renumber re parent": [
+      18256
+    ],
     "relocate specs folder": [
       17960
     ],
@@ -116935,6 +117030,24 @@
     ],
     "relocate specs folder relocation implications research changelog": [
       17954
+    ],
+    "relocation engine": [
+      18256
+    ],
+    "relocation engine acceptance criteria": [
+      18252
+    ],
+    "relocation engine goal": [
+      18253
+    ],
+    "relocation engine implementation summary": [
+      18254
+    ],
+    "relocation engine plan": [
+      18255
+    ],
+    "relocation engine tasks": [
+      18257
     ],
     "relocation events": [
       16420
@@ -143969,6 +144082,24 @@
     "subsystem decommission": [
       16585
     ],
+    "subtrack archive and numbering": [
+      18268
+    ],
+    "subtrack archive and numbering acceptance criteria": [
+      18264
+    ],
+    "subtrack archive and numbering goal": [
+      18265
+    ],
+    "subtrack archive and numbering implementation summary": [
+      18266
+    ],
+    "subtrack archive and numbering plan": [
+      18267
+    ],
+    "subtrack archive and numbering tasks": [
+      18269
+    ],
     "subtrack predicate": [
       18200
     ],
@@ -143977,6 +144108,27 @@
     ],
     "subtrack predicate tasks": [
       18201
+    ],
+    "subtrack proposal": [
+      18262
+    ],
+    "subtrack proposal acceptance criteria": [
+      18258
+    ],
+    "subtrack proposal and archive reach phase parent spec": [
+      18285
+    ],
+    "subtrack proposal goal": [
+      18259
+    ],
+    "subtrack proposal implementation summary": [
+      18260
+    ],
+    "subtrack proposal plan": [
+      18261
+    ],
+    "subtrack proposal tasks": [
+      18263
     ],
     "subtree root scan deletion": [
       14285
@@ -144012,6 +144164,9 @@
     ],
     "suggest repo rules": [
       3559
+    ],
+    "suggest subtracks mjs whole track map": [
+      18262
     ],
     "suggested order eval verdict": [
       3840
@@ -148680,6 +148835,24 @@
       3400,
       3406,
       3641
+    ],
+    "tests and closeout": [
+      18281
+    ],
+    "tests and closeout acceptance criteria": [
+      18276
+    ],
+    "tests and closeout goal": [
+      18278
+    ],
+    "tests and closeout implementation summary": [
+      18279
+    ],
+    "tests and closeout plan": [
+      18280
+    ],
+    "tests and closeout tasks": [
+      18282
     ],
     "tests that cannot fail": [
       1393
@@ -156309,6 +156482,9 @@
     ],
     "z archive memory indexing": [
       13970
+    ],
+    "z archive on every subtrack": [
+      18285
     ],
     "z archive parent id resolution": [
       15846

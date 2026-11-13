@@ -1,5 +1,5 @@
 {
-  "manifestHash": "716689d79bf02302106d26e491d00a577158d040d66a36179034c54bee5d05a1",
+  "manifestHash": "e1fe7bc9760355cb19ee545d5707769cfb105e5c6a76077ea5da047e69d14a52",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1504,6 +1504,9 @@
     "005 strict validator chk t15": [
       "005 strict validator CHK-T15"
     ],
+    "005 subtrack proposal and archive reach operator decisions": [
+      "005-subtrack-proposal-and-archive-reach operator decisions"
+    ],
     "005 tasks promote qwen": [
       "005 tasks promote qwen"
     ],
@@ -1512,6 +1515,9 @@
     ],
     "005 test cycle speed operator decisions": [
       "005-test-cycle-speed operator decisions"
+    ],
+    "005 tests and closeout operator decisions": [
+      "005-tests-and-closeout operator decisions"
     ],
     "005 vestigial embedding readiness gate removal": [
       "005-vestigial-embedding-readiness-gate-removal"
@@ -12491,6 +12497,24 @@
     ],
     "archive root graph node tasks": [
       "archive root graph node tasks"
+    ],
+    "archive search and json": [
+      "archive search and json"
+    ],
+    "archive search and json acceptance criteria": [
+      "archive search and json acceptance criteria"
+    ],
+    "archive search and json goal": [
+      "archive search and json goal"
+    ],
+    "archive search and json implementation summary": [
+      "archive search and json implementation summary"
+    ],
+    "archive search and json plan": [
+      "archive search and json plan"
+    ],
+    "archive search and json tasks": [
+      "archive search and json tasks"
     ],
     "archive seeds sub track metadata": [
       "archive seeds sub-track metadata"
@@ -40051,6 +40075,9 @@
     "deterministic n gram": [
       "deterministic n-gram"
     ],
+    "deterministic packet relocation": [
+      "deterministic packet relocation"
+    ],
     "deterministic provenance merge": [
       "deterministic provenance merge"
     ],
@@ -59699,6 +59726,9 @@
     "incident timeline": [
       "incident timeline"
     ],
+    "include archive search mode": [
+      "include-archive search mode"
+    ],
     "include archived default": [
       "include archived default"
     ],
@@ -74388,6 +74418,9 @@
     "numbered worktrees and sharper git routing": [
       "Numbered Worktrees and Sharper Git Routing"
     ],
+    "numbering counts archived packets": [
+      "numbering counts archived packets"
+    ],
     "numeric design laws": [
       "numeric design laws"
     ],
@@ -76743,6 +76776,9 @@
     ],
     "ops helpers": [
       "ops helpers"
+    ],
+    "opt in archive search": [
+      "opt-in archive search"
     ],
     "opt in collector posture": [
       "opt-in collector posture"
@@ -80144,6 +80180,9 @@
     "phase 1 quality mode research": [
       "phase 1 quality mode research"
     ],
+    "phase 1 relocation engine": [
+      "phase 1 relocation engine"
+    ],
     "phase 1 removal research": [
       "phase 1 removal research"
     ],
@@ -80948,6 +80987,9 @@
     "phase 2 subtrack predicate": [
       "phase 2 subtrack predicate"
     ],
+    "phase 2 subtrack proposal": [
+      "phase 2 subtrack proposal"
+    ],
     "phase 2 surface contract alignment": [
       "phase 2 surface contract alignment"
     ],
@@ -81323,6 +81365,9 @@
     "phase 3 stale jev canary": [
       "phase 3 stale jev canary"
     ],
+    "phase 3 subtrack archive and numbering": [
+      "phase 3 subtrack archive and numbering"
+    ],
     "phase 3 system spec kit": [
       "phase 3 system spec kit"
     ],
@@ -81409,6 +81454,9 @@
     ],
     "phase 4 alignment fixes": [
       "phase 4 alignment fixes"
+    ],
+    "phase 4 archive search and json": [
+      "phase 4 archive search and json"
     ],
     "phase 4 battery misses": [
       "phase 4 battery misses"
@@ -81784,6 +81832,9 @@
     ],
     "phase 5 subagent guard cancel consume": [
       "phase 5 subagent guard cancel consume"
+    ],
+    "phase 5 tests and closeout": [
+      "phase 5 tests and closeout"
     ],
     "phase 5 version aware guards": [
       "phase 5 version aware guards"
@@ -91932,6 +91983,12 @@
     "relevance dominant confidence rebalance": [
       "relevance-dominant confidence rebalance"
     ],
+    "relocate and suggest subtracks vitest suites": [
+      "relocate and suggest-subtracks vitest suites"
+    ],
+    "relocate mjs move renumber re parent": [
+      "relocate.mjs move renumber re-parent"
+    ],
     "relocate specs folder": [
       "relocate specs folder"
     ],
@@ -91952,6 +92009,24 @@
     ],
     "relocate specs folder relocation implications research changelog": [
       "relocate specs folder relocation implications research changelog"
+    ],
+    "relocation engine": [
+      "relocation engine"
+    ],
+    "relocation engine acceptance criteria": [
+      "relocation engine acceptance criteria"
+    ],
+    "relocation engine goal": [
+      "relocation engine goal"
+    ],
+    "relocation engine implementation summary": [
+      "relocation engine implementation summary"
+    ],
+    "relocation engine plan": [
+      "relocation engine plan"
+    ],
+    "relocation engine tasks": [
+      "relocation engine tasks"
     ],
     "relocation events": [
       "relocation events"
@@ -117769,6 +117844,24 @@
     "subsystem decommission": [
       "subsystem decommission"
     ],
+    "subtrack archive and numbering": [
+      "subtrack archive and numbering"
+    ],
+    "subtrack archive and numbering acceptance criteria": [
+      "subtrack archive and numbering acceptance criteria"
+    ],
+    "subtrack archive and numbering goal": [
+      "subtrack archive and numbering goal"
+    ],
+    "subtrack archive and numbering implementation summary": [
+      "subtrack archive and numbering implementation summary"
+    ],
+    "subtrack archive and numbering plan": [
+      "subtrack archive and numbering plan"
+    ],
+    "subtrack archive and numbering tasks": [
+      "subtrack archive and numbering tasks"
+    ],
     "subtrack predicate": [
       "subtrack predicate"
     ],
@@ -117777,6 +117870,27 @@
     ],
     "subtrack predicate tasks": [
       "subtrack predicate tasks"
+    ],
+    "subtrack proposal": [
+      "subtrack proposal"
+    ],
+    "subtrack proposal acceptance criteria": [
+      "subtrack proposal acceptance criteria"
+    ],
+    "subtrack proposal and archive reach phase parent spec": [
+      "subtrack proposal and archive reach phase parent spec"
+    ],
+    "subtrack proposal goal": [
+      "subtrack proposal goal"
+    ],
+    "subtrack proposal implementation summary": [
+      "subtrack proposal implementation summary"
+    ],
+    "subtrack proposal plan": [
+      "subtrack proposal plan"
+    ],
+    "subtrack proposal tasks": [
+      "subtrack proposal tasks"
     ],
     "subtree root scan deletion": [
       "subtree root scan deletion"
@@ -117810,6 +117924,9 @@
     ],
     "suggest repo rules": [
       "suggest repo rules"
+    ],
+    "suggest subtracks mjs whole track map": [
+      "suggest-subtracks.mjs whole-track map"
     ],
     "suggested order eval verdict": [
       "suggested order eval verdict"
@@ -122018,6 +122135,24 @@
     ],
     "testing strategy": [
       "testing strategy"
+    ],
+    "tests and closeout": [
+      "tests and closeout"
+    ],
+    "tests and closeout acceptance criteria": [
+      "tests and closeout acceptance criteria"
+    ],
+    "tests and closeout goal": [
+      "tests and closeout goal"
+    ],
+    "tests and closeout implementation summary": [
+      "tests and closeout implementation summary"
+    ],
+    "tests and closeout plan": [
+      "tests and closeout plan"
+    ],
+    "tests and closeout tasks": [
+      "tests and closeout tasks"
     ],
     "tests that cannot fail": [
       "tests that cannot fail"
@@ -129309,6 +129444,9 @@
     ],
     "z archive memory indexing": [
       "z_archive memory indexing"
+    ],
+    "z archive on every subtrack": [
+      "z_archive on every subtrack"
     ],
     "z archive parent id resolution": [
       "z_archive parent_id resolution"
