@@ -339,6 +339,44 @@ function checkInstall() {
   return pass(source);
 }
 
+// A host that vendors this toolchain may install a small hook of its own that
+// hands over to a hook source. It names the folder it hands over to in one marker
+// line, relative to its own real folder. The hook counts as that source only when
+// the folder holds an accepted source of the same name and the rest of the body
+// carries an exec. Returns the source's real path, or null.
+const HANDOVER_MARKER = /^# skilled-hook-handover: (.+)$/;
+
+function handoverTarget(installedReal, name, accepted) {
+  let text;
+  try {
+    text = fs.readFileSync(installedReal, 'utf8');
+  } catch {
+    return null;
+  }
+  const lines = text.split(/\r?\n/);
+  const markers = lines.map((line) => HANDOVER_MARKER.exec(line)).filter(Boolean);
+  if (markers.length !== 1) return null;
+  const body = lines.filter((line) => !HANDOVER_MARKER.test(line)).join('\n');
+  if (!/\bexec\b/.test(body)) return null;
+  let targetReal;
+  try {
+    targetReal = fs.realpathSync(path.join(path.dirname(installedReal), markers[0][1].trim(), name));
+  } catch {
+    return null;
+  }
+  return accepted.includes(targetReal) ? targetReal : null;
+}
+
+// A host may install fewer hooks than this checkout ships. It lists each hook it
+// leaves out under skilled.omitHook in its local config, one value per hook. Only
+// local scope counts, as for skilled.trustRepoHooks, because local config is never
+// cloned.
+function omittedHooks(repoRoot) {
+  const result = git(repoRoot, ['config', '--local', '--get-all', 'skilled.omitHook']);
+  if (result.status !== 0) return new Set();
+  return new Set(result.stdout.split(/\r?\n/).map((value) => value.trim()).filter(Boolean));
+}
+
 // install-git-hooks.sh is not called: it links the hook sources of the
 // repository it runs in, resolving its source tree from the working directory's
 // git toplevel and then executing that repository's own validate-message.mjs,
@@ -351,6 +389,9 @@ function checkInstall() {
 // repository's hooks folder and resolves to a hook source: the repository's own
 // tree, where the installer links them, or this checkout's, which a core.hooksPath
 // shares. A missing target and a foreign target both surface as one detail line.
+// A host hook whose marker line hands over to a hook source counts as that source,
+// and a hook the local config lists under skilled.omitHook may be absent. A
+// passing row names both, so the operator can see why it passed.
 function checkHooks(ctx) {
   const source = 'git rev-parse --git-path hooks + hook links';
   const ownDir = path.join(OWN_ROOT, 'scripts', 'git-hooks');
@@ -373,10 +414,16 @@ function checkHooks(ctx) {
     .filter((entry) => entry.isFile() && GIT_HOOK_NAMES.has(entry.name))
     .map((entry) => entry.name)
     .sort();
+  const omitted = omittedHooks(ctx.repoRoot);
   const details = [];
+  const notes = [];
   for (const name of names) {
     const installed = path.join(hooksDir, name);
     if (!fs.existsSync(installed)) {
+      if (omitted.has(name)) {
+        notes.push(`${name}: omitted by skilled.omitHook`);
+        continue;
+      }
       details.push(`${name}: not installed`);
       continue;
     }
@@ -385,10 +432,15 @@ function checkHooks(ctx) {
       .filter((dir) => dir !== null && fs.existsSync(path.join(dir, name)))
       .map((dir) => fs.realpathSync(path.join(dir, name)));
     if (!accepted.includes(installedReal)) {
-      details.push(`${name}: resolves to ${installedReal}, not a hook source`);
-      continue;
+      const target = handoverTarget(installedReal, name, accepted);
+      if (target === null) {
+        details.push(`${name}: resolves to ${installedReal}, not a hook source`);
+        continue;
+      }
+      notes.push(`${name}: hands over to ${target}`);
     }
-    // Git skips a hook it cannot execute, so a linked hook without the execute bit gates nothing.
+    // Git skips a hook it cannot execute, so a hook without the execute bit gates
+    // nothing. For a hand-over hook that is the host file git runs.
     try {
       fs.accessSync(installedReal, fs.constants.X_OK);
     } catch {
@@ -396,7 +448,7 @@ function checkHooks(ctx) {
     }
   }
   if (details.length > 0) return fail(source, details, repair);
-  return pass(source);
+  return pass(source, notes);
 }
 
 // The inspected repository runs its own hook scripts only when it is this
