@@ -72,6 +72,13 @@ async function withState(fn) {
   const originalAutonomy = process.env.OPENCODE_GOAL_AUTONOMY;
   const originalDebug = process.env.OPENCODE_GOAL_DEBUG;
   const originalDisabled = process.env.OPENCODE_GOAL_PLUGIN_DISABLED;
+  const originalRelaunchEnv = Object.fromEntries([
+    'SKILLED_LOOP_ID',
+    'XDG_RUNTIME_DIR',
+    'SESSION_RELAUNCH_GOAL_PACKET',
+    'SESSION_RELAUNCH_GOAL',
+    'AI_SESSION_CHILD',
+  ].map((name) => [name, process.env[name]]));
 
   try {
     return await fn({ helpers, pluginModule, stateDir });
@@ -79,6 +86,7 @@ async function withState(fn) {
     restoreEnv('OPENCODE_GOAL_AUTONOMY', originalAutonomy);
     restoreEnv('OPENCODE_GOAL_DEBUG', originalDebug);
     restoreEnv('OPENCODE_GOAL_PLUGIN_DISABLED', originalDisabled);
+    for (const [name, value] of Object.entries(originalRelaunchEnv)) restoreEnv(name, value);
     await rm(stateDir, { recursive: true, force: true });
   }
 }
@@ -163,6 +171,84 @@ test('session.created keeps an active goal intact', async () => withState(async 
   const goal = await helpers.readGoal('session-life', { stateDir });
   assert.equal(goal.status, 'active');
   assert.equal(goal.goalId, 'event-goal');
+}));
+
+test('a pending relaunch record suppresses the goal continuation', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  process.env.OPENCODE_GOAL_AUTONOMY = 'active';
+  process.env.XDG_RUNTIME_DIR = stateDir;
+  const loopId = '123456';
+  process.env.SKILLED_LOOP_ID = loopId;
+  const relaunchDir = join(stateDir, 'skilled-relaunch');
+  await mkdir(relaunchDir, { recursive: true, mode: 0o700 });
+
+  let promptAsyncCalls = 0;
+  const plugin = await pluginModule.default.server({
+    client: {
+      session: {
+        async promptAsync() {
+          promptAsyncCalls += 1;
+        },
+      },
+    },
+  }, {
+    stateDir,
+    nowMs: 10000,
+    supervisorVerifier: async () => ({
+      verdict: 'not_met',
+      reason: 'work remains',
+      confidence: 0.9,
+      evidence: 'The goal still has work to do.',
+    }),
+  });
+
+  for (const status of ['pending', 'armed']) {
+    const sessionID = `session-relaunch-${status}`;
+    await helpers.setGoal(sessionID, 'Keep the prepared hop available', {
+      stateDir,
+      nowMs: 1000,
+      goalIdFactory: () => `goal-relaunch-${status}`,
+    });
+    await writeFile(
+      join(relaunchDir, `relaunch-${loopId}.json`),
+      JSON.stringify({ status, sessionId: sessionID }),
+      'utf8',
+    );
+
+    await plugin.event({
+      event: { type: 'session.idle', properties: { sessionID } },
+    });
+
+    const continuation = (await readContinuationEntries(stateDir)).find((entry) => entry.sid === sessionID);
+    assert.equal(continuation?.decision, 'suppressed', status);
+    assert.equal(continuation?.reason, 'relaunch_pending', status);
+  }
+
+  assert.equal(promptAsyncCalls, 0);
+}));
+
+test('the hand-over packet variable is deleted after the one bind attempt', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  const workspace = await mkdtemp(join(tmpdir(), 'opencode-goal-handover-workspace-'));
+  const packetPath = 'specs/t/001-fixture';
+
+  try {
+    await writePacketGoal(workspace, packetPath);
+    process.env.SESSION_RELAUNCH_GOAL_PACKET = packetPath;
+    process.env.SESSION_RELAUNCH_GOAL = '1';
+    delete process.env.AI_SESSION_CHILD;
+    const plugin = await pluginModule.default.server({ directory: workspace }, {
+      stateDir,
+      nowMs: 1000,
+    });
+
+    await plugin.event({ event: nativeSessionEvent('session.created', 'receiver-session') });
+
+    assert.equal(process.env.SESSION_RELAUNCH_GOAL_PACKET, undefined);
+    const goal = await helpers.readGoal('receiver-session', { stateDir });
+    assert.equal(goal.status, 'active');
+    assert.equal(goal.packetPath, packetPath);
+  } finally {
+    await rm(workspace, { recursive: true, force: true });
+  }
 }));
 
 test('native message headers charge tokens while only explicit assistant text parts become evidence', async () => withState(async ({ helpers, pluginModule, stateDir }) => {

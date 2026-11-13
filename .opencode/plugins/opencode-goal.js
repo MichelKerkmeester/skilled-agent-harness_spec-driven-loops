@@ -22,6 +22,7 @@ import { registerGoalCore } from './lib/opencode-goal-core.js';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
+const { readRelaunchFile } = require('../hooks/session-relaunch/lib/relaunch-core.cjs');
 // The packet goal.md projections are shared with the runtime-neutral core so the
 // two implementations cannot disagree on where the frontmatter ends.
 const goalSlice = require('../hooks/goal/lib/goal-slice.cjs');
@@ -3007,6 +3008,16 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
     const autoTurnsUsed = goal?.autoTurnsUsed || 0;
     if (!goal || goal.status !== 'active') return decision('suppressed', 'goal_not_active', autoTurnsUsed);
 
+    const loopId = process.env.SKILLED_LOOP_ID;
+    if (loopId) {
+      const relaunchRecord = readRelaunchFile(loopId);
+      if (relaunchRecord?.sessionId === normalizedSessionID
+        && (relaunchRecord.status === 'pending' || relaunchRecord.status === 'armed')) {
+        // An idle continuation sends a user message that can withdraw the prepared hop.
+        return decision('suppressed', 'relaunch_pending', autoTurnsUsed);
+      }
+    }
+
     const verifierResult = rawOptions.verifierResult || null;
     if (verifierResult?.timedOut) return decision('suppressed', 'verifier_timeout', autoTurnsUsed);
     if (verifierResult?.stale) return decision('suppressed', 'stale_verifier_result', autoTurnsUsed);
@@ -3584,6 +3595,8 @@ async function MkGoalPlugin(ctx, rawOptions = {}) {
       if (sessionID && !eventPropertiesFrom(event).info?.parentID && !runtimeState.handOverGoalAttempted) {
         runtimeState.handOverGoalAttempted = true;
         await bindRelaunchGoal(sessionID, { ...eventOptions, directory: ctx?.directory });
+        // The packet is only for this bind, so child runtimes do not inherit it.
+        delete process.env[RELAUNCH_GOAL_PACKET_ENV];
       }
       if (sessionID) await restoreActiveGoal(sessionID, eventOptions);
       try {

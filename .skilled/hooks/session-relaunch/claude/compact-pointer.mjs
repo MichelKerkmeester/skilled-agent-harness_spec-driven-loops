@@ -10,7 +10,7 @@ import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { readStdin, parseJsonFailOpen } from '../../shared/hook-adapter-shared.cjs';
-import { isHookEnabled, loadConfigFile, configPath } from '../../shared/hook-flags.mjs';
+import { hookFlagDecision, loadConfigFile, configPath } from '../../shared/hook-flags.mjs';
 import {
   appendLog,
   dropNestedLoop,
@@ -159,15 +159,19 @@ function claimAfterGoalStart(payload) {
 // session is pointed back at that note. Compaction also frees the context the spent
 // nudge level was measured against, so the level resets and the next fill nudges again.
 async function main() {
-  let enabled = false;
+  let decision = null;
   try {
-    enabled = isHookEnabled(CONCERN, process.env, loadConfigFile(configPath()), { runtime: 'claude' });
+    decision = hookFlagDecision(CONCERN, process.env, loadConfigFile(configPath()), { runtime: 'claude' });
   } catch {}
-  if (!enabled) return done();
+  // The master switch and the concern kill switch silence the whole hook. An enable
+  // switch must not drop the start claim: the wrapper already replaced the start prompt
+  // with the goal command, so the start context is the claim's only route.
+  if (decision === null || decision.reason === 'master' || decision.reason === 'kill') return done();
 
   const payload = parseJsonFailOpen(await readStdin());
   if (payload === null || typeof payload !== 'object') return done();
   if (payload.source === 'startup') return claimAfterGoalStart(payload);
+  if (!decision.enabled) return done();
   if (payload.source !== 'compact') return done();
 
   const sessionId = payload.session_id;

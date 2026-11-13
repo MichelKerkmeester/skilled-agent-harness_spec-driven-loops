@@ -274,6 +274,25 @@ for (const shell of SHELLS) {
   });
 }
 
+// A shim copied without its checkout has no wrapper to run, and bash's error for a path
+// rooted at / names neither the shim nor the fix.
+test('skilled-loop reports a missing checkout instead of running a root path', () => {
+  const script = 'source "$1" || exit 90; skilled_loop_sourced_checkout=""; skilled-loop';
+  for (const shell of SHELLS) {
+    const result = spawnSync(
+      shell.command,
+      [...shell.flags, script, 'skilled-loop-shell-test', SHIM],
+      { encoding: 'utf8', env: cleanEnv() },
+    );
+    assert.equal(result.status, 127, `${shell.name} exit: ${result.stderr}`);
+    assert.equal(
+      result.stderr,
+      'skilled-loop: the shim does not know its checkout, so there is no wrapper to run\n',
+      shell.name,
+    );
+  }
+});
+
 // The per-runtime functions call `bash` and the runtime by name, so stubs first on PATH
 // record which way a launch went without starting a real session.
 function stubBin(root) {
@@ -351,6 +370,32 @@ function replay(shell, bin, file) {
 }
 
 for (const shell of SHELLS) {
+  test(`${shell.name}: sourcing the shim defines the skilled-loop command`, () => {
+    const script = 'source "$1" || exit 90; command -v skilled-loop';
+    const result = spawnSync(shell.command, [...shell.flags, script, 'skilled-loop-shell-test', SHIM], {
+      encoding: 'utf8',
+      env: cleanEnv(),
+    });
+    assert.equal(result.stdout, 'skilled-loop\n', `${shell.name} command`);
+    assert.equal(result.stderr, '', `${shell.name} stderr`);
+    assert.equal(result.status, 0, `${shell.name} exit`);
+  });
+
+  // The wrapper prints `skilled-loop <runtime>` as the manual claim command, so the shim
+  // answers to that name and hands the claim to the wrapper it already trusts, even
+  // without a terminal.
+  test(`${shell.name}: the skilled-loop command hands the claim to the trusted wrapper`, (t) => {
+    const box = sandbox(t);
+    const bin = stubBin(box.root);
+    const wrapper = fs.realpathSync(box.wrapper);
+    assert.equal(
+      launch(shell, box, bin, 'skilled-loop claude --model opus', { tty: false }),
+      `WRAPPED ${wrapper} claude --model opus\n`,
+    );
+    // No runtime leaves the wrapper's own default in charge, so the shim adds none.
+    assert.equal(launch(shell, box, bin, 'skilled-loop', { tty: false }), `WRAPPED ${wrapper}\n`);
+  });
+
   test(`${shell.name}: without a terminal the runtime function runs the binary directly`, (t) => {
     const box = sandbox(t);
     const bin = stubBin(box.root);

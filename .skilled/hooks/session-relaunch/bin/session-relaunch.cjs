@@ -386,19 +386,28 @@ function noteGoalPacket(frontmatter, recordedGoalSwitch) {
 // resolves the sending session's goal again and writes the result, removing the field when no
 // goal can be proven, so a note prepared after its goal ended does not hand the dead goal on. A
 // failed write leaves the note as it was, since a hand-over never fails for want of a goal.
+// A known goal that cannot be carried is named on stderr, where it cannot disturb the prepared
+// text the calling runtime reads from stdout.
 function recordGoalPacket({ handoffPath, noteCwd, specFolder, runtime, sessionId }) {
   if (!core.goalSwitchOn(resolvedSwitches())) return;
-  const resolved = core.resolveGoalPacket({
+  const options = {
     runtime,
     sessionId,
     specFolder: specFolder === 'none' ? '' : specFolder,
     roots: goalRoots(noteCwd),
     env: process.env,
-  });
+  };
+  // The resolver checks the goal once and returns both the packet and the reason it carried
+  // none, so a miss does not walk the specs tree a second time.
+  const { packet, reason } = core.resolveGoalPacketResult(options);
   try {
-    core.recordGoalPacket(handoffPath, resolved);
+    core.recordGoalPacket(handoffPath, packet);
   } catch {
     // The note stays as written, and the receiver is simply told nothing.
+  }
+  if (packet !== '') return;
+  if (reason !== '') {
+    process.stderr.write(`[session-relaunch] goal not carried: ${reason}\n`);
   }
 }
 
@@ -563,12 +572,14 @@ function prepare(args) {
   } catch {}
   // A caller that shows output but not the exit status reads a silent success as a
   // command that never ran, so the arming run states its outcome and the one action
-  // left: end the turn and let the idle hop take over.
-  process.stdout.write(
-    '[session-relaunch] handoff prepared; stop now and end this turn.'
+  // left. Cursor and Devin have no relaunch hook, so their session ends by hand.
+  const prepared = runtime === 'cursor' || runtime === 'devin'
+    ? '[session-relaunch] handoff prepared; nothing ends this session.'
+      + ' Exit it and run the claim command the wrapper prints.'
+    : '[session-relaunch] handoff prepared; stop now and end this turn.'
       + ' The loop ends this session when it goes idle and a fresh session continues from '
-      + `${handoffPath}.\n`,
-  );
+      + `${handoffPath}.`;
+  process.stdout.write(`${prepared}\n`);
   return 0;
 }
 

@@ -2327,6 +2327,80 @@ function noteGoalPacket(handoffPath) {
   return core.parseHandoff(fs.readFileSync(handoffPath, 'utf8')).frontmatter.goal_packet;
 }
 
+test('one goal reason on stderr for a Claude free-text goal', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  writeClaudeGoalLog(sandbox, [{
+    type: 'attachment',
+    attachment: {
+      type: 'goal_status',
+      met: false,
+      sentinel: true,
+      condition: '# Goal: Work without a packet\nThis goal has no packet path.',
+    },
+  }]);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SKILLED_LOOP_RUNTIME = 'claude';
+  sandbox.env.CLAUDE_PID = String(process.pid);
+  sandbox.env.SESSION_RELAUNCH_GOAL = '1';
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath, '--session', SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stderr, /^\[session-relaunch\] goal not carried: .+\n$/);
+  assert.equal(result.stderr.trim().split(/\r?\n/).length, 1);
+  assert.equal(
+    result.stdout,
+    '[session-relaunch] handoff prepared; stop now and end this turn.'
+      + ' The loop ends this session when it goes idle and a fresh session continues from '
+      + `${handoffPath}.\n`,
+  );
+});
+
+test('one goal reason on stderr for a Codex sender', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SKILLED_LOOP_RUNTIME = 'codex';
+  sandbox.env.CLAUDE_PID = String(process.pid);
+  sandbox.env.SESSION_RELAUNCH_GOAL = '1';
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath, '--session', SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stderr, /^\[session-relaunch\] goal not carried: .+\n$/);
+  assert.equal(result.stderr.trim().split(/\r?\n/).length, 1);
+  assert.equal(
+    result.stdout,
+    '[session-relaunch] handoff prepared; stop now and end this turn.'
+      + ' The loop ends this session when it goes idle and a fresh session continues from '
+      + `${handoffPath}.\n`,
+  );
+});
+
+test('manual route for a cursor or devin session', (t) => {
+  const outputs = [];
+
+  for (const runtime of ['cursor', 'devin']) {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox);
+    sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+    sandbox.env.SKILLED_LOOP_RUNTIME = runtime;
+    sandbox.env.CLAUDE_PID = String(process.pid);
+    const result = runCli(sandbox, ['prepare', '--handoff', handoffPath, '--session', SESSION_ID]);
+
+    assert.equal(result.status, 0, result.stderr);
+    outputs.push(result.stdout);
+  }
+
+  assert.deepEqual(outputs, [
+    '[session-relaunch] handoff prepared; nothing ends this session. '
+      + 'Exit it and run the claim command the wrapper prints.\n',
+    '[session-relaunch] handoff prepared; nothing ends this session. '
+      + 'Exit it and run the claim command the wrapper prints.\n',
+  ]);
+});
+
 // One row per sender runtime: how the goal is made findable for that runtime.
 const GOAL_SENDER_CASES = [
   ...GOAL_RECORD_RUNTIMES.map((runtime) => ({
@@ -2371,6 +2445,7 @@ for (const command of ['prepare', 'keep']) {
         command, '--handoff', handoffPath, '--session', SESSION_ID, '--runtime', runtime,
       ]);
       assert.equal(result.status, command === 'prepare' ? 3 : 0, result.stderr);
+      assert.equal(result.stderr, '');
     }
 
     assert.equal(fs.readFileSync(handoffPath, 'utf8'), before);
@@ -2408,6 +2483,7 @@ for (const command of ['prepare', 'keep']) {
     ]);
 
     assert.equal(result.status, command === 'prepare' ? 3 : 0, result.stderr);
+    assert.equal(result.stderr, '');
     assert.equal(noteGoalPacket(handoffPath), undefined);
   });
 

@@ -8,7 +8,8 @@
 #
 # Usage: source /abs/path/.skilled/bin/skilled-loop-shell.sh
 #
-# Defines claude, pi, opencode, codex, devin and cursor-agent. Each one runs
+# Defines claude, pi, opencode, codex, devin and cursor-agent, plus the `skilled-loop`
+# command the wrapper prints for a manual claim. Each runtime function runs
 # `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when stdin and stdout are a
 # terminal, no loop is running yet, the arguments open an interactive session, and a
 # wrapper sits in $PWD or a parent; otherwise it runs the binary itself. A linked
@@ -315,3 +316,20 @@ function opencode { skilled_loop_launch opencode opencode "$@"; }
 function codex { skilled_loop_launch codex codex "$@"; }
 function devin { skilled_loop_launch devin devin "$@"; }
 function cursor-agent { skilled_loop_launch cursor cursor-agent "$@"; }
+
+# A manual claim is pasted as `skilled-loop <runtime>`, so the shim answers to that name.
+# The wrapper comes from the checkout that owns this shim, never from the current directory,
+# so a pasted claim cannot start a session from a wrapper the shim has not trusted.
+# A shim copied away from its checkout, or one whose wrapper was removed, has nothing to
+# run; naming that beats bash failing on a path rooted at /.
+function skilled-loop {
+  local wrapper=''
+  if [ -n "${skilled_loop_sourced_checkout:-}" ]; then
+    wrapper="${skilled_loop_sourced_checkout}/.skilled/bin/skilled-loop"
+  fi
+  if [ -z "$wrapper" ] || [ ! -f "$wrapper" ]; then
+    printf 'skilled-loop: the shim does not know its checkout, so there is no wrapper to run\n' >&2
+    return 127
+  fi
+  bash "$wrapper" "$@"
+}

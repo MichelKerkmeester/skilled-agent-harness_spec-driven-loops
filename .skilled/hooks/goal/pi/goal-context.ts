@@ -96,15 +96,21 @@ function goalOptions(ctx: ExtensionContext): GoalOptions {
   };
 }
 
-// A hop receiver binds the hand-over packet once per session. The core refuses a session
-// that already has or had a goal, so this set only spares the repeat file reads on later turns.
+// A hop receiver binds the hand-over packet once per process. The first attempt with a
+// session id clears the packet variable, so a later session or a nested runtime finds
+// nothing; the set still spares the core call on a repeat attempt in the same session.
 const handOverAttempted = new Set<string>();
 
 function bindHandOverGoal(core: GoalCore, options: GoalOptions): void {
   const { sessionId } = options.scope;
   if (!sessionId || handOverAttempted.has(sessionId)) return;
   handOverAttempted.add(sessionId);
-  core.bindRelaunchGoal(options);
+  try {
+    core.bindRelaunchGoal(options);
+  } finally {
+    // Never leave the packet where a new session or a nested runtime could bind it.
+    delete process.env.SESSION_RELAUNCH_GOAL_PACKET;
+  }
 }
 
 async function runGoalCommand(

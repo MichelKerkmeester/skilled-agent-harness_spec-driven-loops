@@ -60,7 +60,7 @@ If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen` 
 | 1 | Resolve inputs | Session id, cwd, spec binding | Values for the note |
 | 2 | Save the packet | Claude runs `/speckit:save`. Other runtimes use the continuity writer when a packet is bound | Fresh continuity |
 | 3 | Write the note | `status: open` handoff file | The note path |
-| 4 | Prepare | CLI validates and records | Exit code `0`, `2` or `3` |
+| 4 | Prepare | Release a held deep-loop lock, then validate and record | Exit code `0`, `2` or `3` |
 | 5 | Report | Translate the exit code | `STATUS=` line |
 
 ---
@@ -130,8 +130,20 @@ Goal states what the work is for.
 Done records finished work.
 Remaining work lists the claimable tail.
 In-flight state preserves the active work the next session must not lose, including open files, half-applied edits, running processes and pending decisions.
+Under In-flight state, include an `Active command:` line with the command, mode and arguments; use `Active command: none` when no command runs. For Codex, also include an `Active goal:` line with the goal or packet path, or `Active goal: none` when no goal is active.
 
 ### Step 4: Prepare
+
+If this command holds a deep-loop lock, release it before `prepare` with the captured values:
+
+```bash
+node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release \
+  --lock-path <path> --owner-pid <pid> --nonce <nonce>
+```
+
+The `release --owner-pid` operation also requires the captured lock path and nonce.
+
+Skip this command when no deep-loop lock is held.
 
 ```bash
 node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs prepare --handoff <path> --session <session id> --runtime <runtime>
@@ -179,9 +191,12 @@ A session seeded with `[session-relaunch] claim and continue handoff <path>` is 
    Only Claude Code may omit `--session` and use `CLAUDE_CODE_SESSION_ID`.
    A runtime without a session-id variable generates an id with `uuidgen` and reuses it for the session.
 2. Reads the note's Goal, Done, Remaining work and In-flight state sections.
-3. Runs `/speckit:resume <spec_folder>` when the field contains a repo-relative packet path. When it is `none`, Gate 3 was answered D) Skip and the receiver does not ask it again. When it is empty, Gate 3 was never answered and the receiver asks it as usual.
-4. Continues the Remaining work.
-5. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete <path>` when the handoff is fully absorbed.
+3. When the note has an `Active goal:` line other than `none`, use `create_goal` to bring that goal back into the session.
+4. Runs `/speckit:resume <spec_folder>` when the field contains a repo-relative packet path. When it is `none`, Gate 3 was answered D) Skip and the receiver does not ask it again. When it is empty, Gate 3 was never answered and the receiver asks it as usual.
+5. When the bound packet has a `goal.md`, read it before Remaining work; its durable directive binds the session goal.
+6. When the note's `Active command:` line names a command, run it again with the same mode and arguments. The command's own state detection picks the step. Skip this when the line says `none`.
+7. Continues the Remaining work.
+8. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete <path>` when the handoff is fully absorbed.
 
 The note's status moves only `open -> claimed -> done`. When this session prepares a successor hop, `prepare` marks as `done` every other note this session claimed and every other open note this session wrote, sets `completed_at` and adds `superseded_by` with the new note's basename. It leaves done notes, notes of another session and the new note unchanged.
 

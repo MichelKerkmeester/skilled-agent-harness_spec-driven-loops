@@ -42,6 +42,7 @@ const {
   goalPacketProblem,
   goalSwitchOn,
   resolveGoalPacket,
+  resolveGoalPacketResult,
   recordGoalPacket,
   withAppendLock,
   withStateLock,
@@ -2677,6 +2678,105 @@ test('resolveGoalPacket answers empty for an unknown runtime or a missing sessio
   }), '');
   assert.equal(resolveGoalPacket({ runtime: 'codex', specFolder: GOAL_PACKET, roots }), '');
   assert.equal(resolveGoalPacket({}), '');
+});
+
+test('the resolver result carries the packet and the reason together', (t) => {
+  const sandbox = createSandbox(t);
+  writeGoalPacket(sandbox.repoRoot);
+  const env = writeClaudeLog(sandbox, [goalStatus({
+    met: false,
+    sentinel: true,
+    condition: '# Goal: A free-text goal no packet carries\n',
+  })]);
+
+  assert.deepEqual(resolveGoalPacketResult({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder: GOAL_PACKET,
+    roots: [sandbox.repoRoot],
+    env,
+  }), {
+    packet: '',
+    reason: 'the active goal names no packet this hand-over can find',
+  });
+});
+
+test('hands a devin or cursor session the hand-over packet', (t) => {
+  const sessionId = 'a8bb5429-9c44-4a93-89d3-f8ee3d53bb2c';
+  const recordPacket = 'specs/hooks/042-recorded-goal';
+  const outcomes = [];
+
+  for (const runtime of ['devin', 'cursor']) {
+    const sandbox = createSandbox(t);
+    writeGoalPacket(sandbox.repoRoot);
+    writeGoalPacket(sandbox.repoRoot, recordPacket);
+    const roots = [sandbox.repoRoot];
+    const env = { ...sandbox.env, SESSION_RELAUNCH_GOAL_PACKET: GOAL_PACKET };
+    const resolve = (overrides = {}) => resolveGoalPacket({
+      runtime,
+      sessionId,
+      roots,
+      env: { ...env, ...overrides },
+    });
+
+    const refused = resolve({ SESSION_RELAUNCH_GOAL_PACKET: '../outside' });
+    const handover = resolve();
+    writeGoalRecord(
+      sandbox.repoRoot,
+      runtime,
+      { status: 'active', packetPath: recordPacket },
+      sessionId,
+    );
+    const recorded = resolve();
+    outcomes.push({ runtime, refused, handover, recorded });
+  }
+
+  assert.deepEqual(outcomes, [
+    { runtime: 'devin', refused: '', handover: GOAL_PACKET, recorded: recordPacket },
+    { runtime: 'cursor', refused: '', handover: GOAL_PACKET, recorded: recordPacket },
+  ]);
+});
+
+test('keeps the hand-over packet off', (t) => {
+  const sandbox = createSandbox(t);
+  writeGoalPacket(sandbox.repoRoot);
+  const roots = [sandbox.repoRoot];
+  const env = { ...sandbox.env, SESSION_RELAUNCH_GOAL_PACKET: GOAL_PACKET };
+  const packets = ['claude', 'codex', 'pi', 'opencode'].map((runtime) => resolveGoalPacket({
+    runtime,
+    sessionId: 'a8bb5429-9c44-4a93-89d3-f8ee3d53bb2c',
+    roots,
+    env,
+  }));
+
+  assert.deepEqual(packets, ['', '', '', '']);
+});
+
+test('finds a goal headline outside the packet lineage', (t) => {
+  const sandbox = createSandbox(t);
+  const headline = '# Goal: A single outside headline';
+  const uniquePacket = 'specs/hooks/041-unique-goal';
+  writeGoalPacket(sandbox.repoRoot, uniquePacket, `${headline}\n`);
+  for (const skipped of ['scratch', 'lineages', 'z_archive']) {
+    writeGoalPacket(sandbox.repoRoot, `specs/${skipped}/042-skipped-goal`, `${headline}\n`);
+  }
+  const env = writeClaudeLog(sandbox, [goalStatus({
+    met: false,
+    sentinel: true,
+    condition: `${headline}\nbody`,
+  })]);
+  const resolve = () => resolveGoalPacket({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder: 'none',
+    roots: [sandbox.repoRoot],
+    env,
+  });
+  const unique = resolve();
+
+  writeGoalPacket(sandbox.repoRoot, 'specs/hooks/043-duplicate-goal', `${headline}\n`);
+
+  assert.deepEqual([unique, resolve()], [uniquePacket, '']);
 });
 
 test('recordGoalPacket writes, replaces and removes the field and skips an unchanged note', (t) => {

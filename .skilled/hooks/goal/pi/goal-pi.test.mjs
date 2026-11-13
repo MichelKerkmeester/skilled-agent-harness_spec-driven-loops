@@ -536,6 +536,19 @@ test('a receiver with no goal is bound to the hand-over packet at session start 
   });
 });
 
+test('a second session_start with a new id binds nothing after the receiver binds', async () => {
+  process.env.SESSION_RELAUNCH_GOAL_PACKET = HAND_OVER_PACKET;
+  await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {
+    await pi.registered.session_start({ type: 'session_start' }, fakeContext('handover-receiver', workspace));
+    assert.equal(core.showGoal(scoped('handover-receiver')).packetPath, HAND_OVER_PACKET);
+
+    await pi.registered.session_start({ type: 'session_start' }, fakeContext('handover-later', workspace));
+    assert.equal(core.showGoal(scoped('handover-later')), null);
+    assert.equal(pi.sent.length, 1, 'only the receiver session restores the hop goal');
+    assert.equal(process.env.SESSION_RELAUNCH_GOAL_PACKET, undefined);
+  });
+});
+
 test('the first input binds when session start did not, and a later input leaves the record alone', async () => {
   process.env.SESSION_RELAUNCH_GOAL_PACKET = HAND_OVER_PACKET;
   await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {

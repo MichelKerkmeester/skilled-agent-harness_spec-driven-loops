@@ -52,12 +52,18 @@ const GOAL_FILENAME = 'goal.md';
 // Runtimes whose goal record names the packet the session is bound to; the lookup differs
 // only in how the record is keyed.
 const GOAL_RECORD_RUNTIMES = Object.freeze(['opencode', 'pi', 'devin', 'cursor']);
+// A manual runtime starts its next session under a fresh native id, so the record the sender
+// wrote never matches. The sender leaves its packet in the hand-over variable instead.
+const HANDOVER_GOAL_RUNTIMES = Object.freeze(['devin', 'cursor']);
 // The packet a Claude goal names is read from a bounded tail of the session log, so a long
 // session costs the same as a short one.
 const GOAL_LOG_TAIL_BYTES = 262144;
 const GOAL_LOG_MAX_TAIL_BYTES = 16 * 1024 * 1024;
 const GOAL_LOG_PACKET_PATTERN = /specs\/(?:[A-Za-z0-9._-]+\/)+\d{3}-[a-z0-9]+(?:-[a-z0-9]+)*/g;
 const GOAL_LOG_MAX_CANDIDATES = 8;
+// A headline search walks the packet tree, so folders that hold fixtures, history and
+// archived work are skipped, and a match counts only when no second packet shares it.
+const GOAL_SEARCH_SKIP_DIRECTORIES = new Set(['scratch', 'lineages', 'z_archive']);
 const GOAL_SWITCH_OFF_VALUES = Object.freeze(['0', 'false', 'off', 'no']);
 // Defaults for a record that names no limits; the wrapper reads the same values.
 const DEFAULT_MAX_HOPS = 10;
@@ -596,7 +602,8 @@ function claudeSessionLogPath(sessionId, env) {
   return null;
 }
 
-function claudeGoalPacket({ sessionId, specFolder, roots, env }) {
+function claudeGoalPacketResult({ sessionId, specFolder, roots, env }) {
+  const none = { packet: '', reason: '' };
   const lineage = packetLineage(specFolder);
   let logPath = null;
   try {
@@ -606,20 +613,20 @@ function claudeGoalPacket({ sessionId, specFolder, roots, env }) {
   }
   // The log is the only record of a Claude goal, so a log that is missing or cannot be read
   // leaves the goal unproven.
-  if (logPath === null) return '';
+  if (logPath === null) return none;
   let latest;
   try {
     latest = latestGoalLogEntry(logPath);
   } catch {
-    return '';
+    return none;
   }
-  if (latest === null || !latest.active) return '';
+  if (latest === null || !latest.active) return none;
   const headline = latest.condition.split(/\r?\n/).find((line) => line.trim() !== '') ?? '';
   const named = [...new Set(latest.condition.match(GOAL_LOG_PACKET_PATTERN) ?? [])];
   const candidates = [...lineage, ...named].slice(0, GOAL_LOG_MAX_CANDIDATES);
   // The log keeps the goal's text, not its packet, so a packet is the sender's only when its
   // goal.md carries the text's opening line.
-  return firstUsablePacket(candidates, roots, (candidate) => {
+  const carried = firstUsablePacket(candidates, roots, (candidate) => {
     for (const root of roots) {
       try {
         const goalText = fs.readFileSync(path.join(root, candidate, GOAL_FILENAME), 'utf8');
@@ -630,6 +637,15 @@ function claudeGoalPacket({ sessionId, specFolder, roots, env }) {
     }
     return false;
   });
+  if (carried !== '') return { packet: carried, reason: '' };
+  // The lineage and the packets the goal names can both miss when the sender works outside
+  // its packet. One packet carrying the same headline is still proof of the goal.
+  const matches = goalHeadlinePackets({ roots, headline });
+  if (matches.length === 1) return { packet: matches[0], reason: '' };
+  const reason = matches.length > 1
+    ? `the active goal headline appears in ${matches.length} packets`
+    : 'the active goal names no packet this hand-over can find';
+  return { packet: '', reason };
 }
 
 // Codex names a rollout for its thread, under a folder per day, so the thread's own file is
@@ -742,12 +758,70 @@ function recordedGoalPacket({ runtime, sessionId, roots }) {
 }
 
 /**
- * Find the packet the sending session's goal is bound to, or '' when it had none or none can
- * be proven. Every reader fails closed: a log or record that cannot be read leaves the answer
- * empty, so a hand-over never fails for want of a goal and never claims one it cannot show.
- * Codex always answers empty. Its goal store is keyed by thread and holds the objective text
- * and a status, with no packet, and no populated record has been read from it, so nothing
- * proves that a Codex sender had a goal or which packet it named.
+ * Walk each checkout's specs tree for the goal files that carry the headline. A matched packet
+ * is proven the same way a recorded one is, and the caller decides whether one match is unique
+ * enough to carry.
+ *
+ * @param {Object} options - The search.
+ * @param {string[]} options.roots - Absolute checkouts to walk.
+ * @param {string} options.headline - The goal log's opening line.
+ * @returns {string[]} Repo-relative packets whose goal.md carries the headline.
+ */
+function goalHeadlinePackets({ roots, headline }) {
+  if (headline === '') return [];
+  const matches = new Set();
+  const pending = roots.map((root) => ({ directory: path.join(root, 'specs'), root }));
+  while (pending.length > 0) {
+    const { directory, root } = pending.pop();
+    let entries;
+    try {
+      entries = fs.readdirSync(directory, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const entry of entries) {
+      if (entry.isDirectory()) {
+        if (!GOAL_SEARCH_SKIP_DIRECTORIES.has(entry.name)) {
+          pending.push({ directory: path.join(directory, entry.name), root });
+        }
+        continue;
+      }
+      if (!entry.isFile() || entry.name !== GOAL_FILENAME) continue;
+      try {
+        if (!fs.readFileSync(path.join(directory, entry.name), 'utf8').includes(headline)) {
+          continue;
+        }
+      } catch {
+        continue;
+      }
+      const packet = path.relative(root, directory).split(path.sep).join('/');
+      if (goalPacketProblem(packet, roots) === null) matches.add(packet);
+      // A second packet already settles uniqueness, so the rest of the tree is not read.
+      if (matches.size > 1) return [...matches];
+    }
+  }
+  return [...matches];
+}
+
+// A manual runtime gets a fresh native id, so its own goal record never matches. The sender
+// leaves the packet it worked under in the environment instead, which is accepted only when
+// it is a real packet and only for the runtimes whose next hop is manual.
+function handoverGoalPacket({ runtime, roots, env }) {
+  if (!HANDOVER_GOAL_RUNTIMES.includes(runtime)) return '';
+  const packet = typeof env?.SESSION_RELAUNCH_GOAL_PACKET === 'string'
+    ? env.SESSION_RELAUNCH_GOAL_PACKET
+    : '';
+  if (packet === '') return '';
+  return goalPacketProblem(packet, roots) === null ? packet : '';
+}
+
+/**
+ * Find the packet the sending session's goal is bound to and say why a known goal cannot be
+ * carried. Every reader fails closed: a log or record that cannot be read leaves the packet
+ * empty and the reason unset, so a hand-over never fails for want of a goal and never claims
+ * one it cannot show. Codex always answers empty with a reason. Its goal store is keyed by
+ * thread and holds the objective text and a status, with no packet, so nothing proves which
+ * packet it named.
  *
  * @param {Object} options - The session to resolve.
  * @param {string} options.runtime - Runtime that owns the session.
@@ -756,21 +830,54 @@ function recordedGoalPacket({ runtime, sessionId, roots }) {
  *   candidate packets start.
  * @param {string[]} options.roots - Absolute checkouts the packet may live in.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Environment carrying the log location.
- * @returns {string} A repo-relative packet directory holding goal.md, or ''.
+ * @returns {{packet: string, reason: string}} The packet and why a known goal was not carried.
  */
-function resolveGoalPacket({
+function resolveGoalPacketResult({
   runtime, sessionId, specFolder = '', roots = [], env = process.env,
 } = {}) {
   try {
-    if (!nonEmptyString(sessionId) || roots.length === 0) return '';
-    if (GOAL_RECORD_RUNTIMES.includes(runtime)) {
-      return recordedGoalPacket({ runtime, sessionId, roots });
+    if (!nonEmptyString(sessionId) || roots.length === 0) {
+      return { packet: '', reason: '' };
     }
-    if (runtime === 'claude') return claudeGoalPacket({ sessionId, specFolder, roots, env });
+    if (GOAL_RECORD_RUNTIMES.includes(runtime)) {
+      const recorded = recordedGoalPacket({ runtime, sessionId, roots });
+      if (recorded !== '') return { packet: recorded, reason: '' };
+      return { packet: handoverGoalPacket({ runtime, roots, env }), reason: '' };
+    }
+    if (runtime === 'claude') {
+      return claudeGoalPacketResult({ sessionId, specFolder, roots, env });
+    }
+    if (runtime === 'codex') {
+      return {
+        packet: '',
+        reason: 'Codex keeps its goal where this hand-over cannot read a packet',
+      };
+    }
   } catch {
     // Resolution is a convenience for the receiver, never a reason to refuse a hand-over.
   }
-  return '';
+  return { packet: '', reason: '' };
+}
+
+/**
+ * Find the packet the sending session's goal is bound to, or '' when it had none or none can
+ * be proven.
+ *
+ * @param {Object} options - The session to resolve; see resolveGoalPacketResult.
+ * @returns {string} A repo-relative packet directory holding goal.md, or ''.
+ */
+function resolveGoalPacket(options) {
+  return resolveGoalPacketResult(options).packet;
+}
+
+/**
+ * Say why a goal the sending session had cannot be carried, or '' when no goal is known.
+ *
+ * @param {Object} options - The session to resolve; see resolveGoalPacketResult.
+ * @returns {string} The reason, or '' when no goal is known.
+ */
+function resolveGoalPacketReason(options) {
+  return resolveGoalPacketResult(options).reason;
 }
 
 /**
@@ -1965,6 +2072,8 @@ module.exports = {
   goalRoots,
   usableGoalPacket,
   resolveGoalPacket,
+  resolveGoalPacketResult,
+  resolveGoalPacketReason,
   resolveSessionSettings,
   recordGoalPacket,
   parentMapFromTable,

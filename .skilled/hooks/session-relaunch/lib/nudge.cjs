@@ -141,6 +141,11 @@ function handoffText({
   }
   // The sections asked for are the ones validateHandoff enforces, so prepare accepts the note.
   const sectionList = core.HANDOFF_SECTIONS.map((name) => `## ${name}`).join(', ');
+  const activeGoalInstruction = runtime === 'codex'
+    ? ' For Codex, also include an `Active goal:` line with the goal or packet path; use '
+      + '`Active goal: none` when no goal is active.'
+    : '';
+  // Releasing a held lock lets the re-run command acquire it after the hop.
   const lines = [
     opening,
     `1. Write the handoff note at ${shellQuote(pathValue)} in exactly this shape:`,
@@ -158,6 +163,9 @@ function handoffText({
       + 'Never list these handoff steps (the note, the continuity save, prepare) '
       + 'there; this session does them now.',
     SPEC_FOLDER_GUIDANCE,
+    '   Under ## In-flight state include an `Active command:` line with the command, mode and '
+      + 'arguments; use `Active command: none` when no command runs.'
+      + activeGoalInstruction,
   ];
 
   let step = 2;
@@ -170,6 +178,13 @@ function handoffText({
     lines.push(`${step}. When a spec packet is bound to this session, ${saveStep}`);
     step += 1;
   }
+  lines.push(
+    `${step}. If this command holds a deep-loop lock, release it before prepare with `
+      + '`node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release '
+      + '--lock-path <path> --owner-pid <pid> --nonce <nonce>`, using the values the command '
+      + 'captured. The `release --owner-pid` form also requires the captured lock path and nonce.',
+  );
+  step += 1;
   const noteArguments = `--handoff ${shellQuote(pathValue)}`
     + ` --session ${shellQuote(sessionValue)} --runtime ${shellQuote(runtime)}`;
   if (inLoop) {
@@ -231,6 +246,25 @@ function seedText({
   if (gateWasSkipped) {
     lines.push('3. Gate 3 is already answered Skip for this session, carried from the handoff.');
   }
+  lines.push(
+    `${continueStep}. If the note has an \`Active goal:\` line other than \`none\`, use `
+      + '`create_goal` to bring that goal back into this session. On a runtime without '
+      + '`create_goal`, tell the operator which goal to set.',
+  );
+  continueStep += 1;
+  if (typeof specFolder === 'string' && specFolder && !gateWasSkipped) {
+    lines.push(
+      `${continueStep}. When ${specFolder}/goal.md exists, read it before Remaining work; `
+        + 'its durable directive binds the session goal.',
+    );
+    continueStep += 1;
+  }
+  lines.push(
+    `${continueStep}. When the note's \`Active command:\` line names a command, run it again `
+      + 'with the same mode and arguments; the command\'s own state detection picks the step. '
+      + 'Skip this when the line says `none`.',
+  );
+  continueStep += 1;
   // A session that kept working after it wrote the note may have committed some of its
   // Remaining work since, so it checks git before trusting the list. The note date is the
   // boundary for that check; without one the step still asks for the history.

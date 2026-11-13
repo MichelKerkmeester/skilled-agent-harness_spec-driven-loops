@@ -1551,6 +1551,41 @@ test('compact-pointer delivers the claim at the start of a goal-command receiver
   ), /goal-start-claim/);
 });
 
+test('compact-pointer delivers the start claim with the Claude enable switch off', async (t) => {
+  const sandbox = createSandbox(t);
+  const { notePath, seed } = claimSeedFor(sandbox);
+  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
+  sandbox.env.SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED = '0';
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.notEqual(result.stdout, '', 'the start claim must be emitted');
+  const output = JSON.parse(result.stdout).hookSpecificOutput;
+  assert.equal(output.hookEventName, 'SessionStart');
+  assert.ok(output.additionalContext.includes(seed), 'the carried seed keeps its spec folder');
+  assert.ok(
+    output.additionalContext.includes(`claim '${notePath}' --session '${SESSION_ID}'`),
+    output.additionalContext,
+  );
+  assert.ok(output.additionalContext.includes(`/speckit:resume ${START_SPEC_FOLDER}`));
+  assert.match(fs.readFileSync(
+    path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'), 'utf8',
+  ), /goal-start-claim/);
+});
+
+test('compact-pointer stays silent on a start claim under the master switch', async (t) => {
+  const sandbox = createSandbox(t);
+  const { seed } = claimSeedFor(sandbox);
+  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
+  sandbox.env.SYSTEM_HOOKS_DISABLED = '1';
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+});
+
 test('compact-pointer adds no start claim without the seed, off the start event or for a bad seed', async (t) => {
   const sandbox = createSandbox(t);
   const { seed } = claimSeedFor(sandbox);

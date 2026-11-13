@@ -58,8 +58,8 @@ const SPEC_FOLDER_GUIDANCE = '   spec_folder is a repo-relative '
   + 'packet path, "none" for Gate 3 D) Skip, or empty if unanswered.';
 const CONTINUITY_WRITER = 'node .skilled/skills/system-spec-kit/runtime/cli/'
   + 'dist/continuity/generate-context.js';
-const SEED_STEP_THREE = [
-  '3. Continue the work under "Remaining work". Do not run prepare for this note;',
+const SEED_REMAINING_WORK_STEP = [
+  '6. Continue the work under "Remaining work". Do not run prepare for this note;',
   'its handoff is already done. If Remaining work names only handoff steps,',
   'treat it as empty.',
 ].join(' ');
@@ -106,13 +106,13 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
   const handoffSteps = handoffLines.filter((line) => /^\d+\./.test(line));
   assert.deepEqual(
     handoffSteps.map((line) => Number.parseInt(line, 10)),
-    [1, 2, 3, 4],
+    [1, 2, 3, 4, 5],
   );
   assert.ok(handoffSteps[1].includes(CONTINUITY_WRITER));
   assert.ok(handoffSteps[1].includes(`--stdin --full-auto '${SPEC_FOLDER}'`));
   assert.equal(handoffSteps[1].includes('/speckit:save'), false);
-  assert.ok(handoffSteps[2].includes('prepare --handoff'));
-  assert.ok(handoffSteps[3].startsWith('4. Stop once it exits 0;'));
+  assert.ok(handoffSteps[3].includes('prepare --handoff'));
+  assert.ok(handoffSteps[4].startsWith('5. Stop once it exits 0;'));
   assert.equal(text.includes('/speckit:save'), false);
   assert.ok(
     text.includes(
@@ -131,13 +131,13 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
   const unboundSteps = unbound.split('\n').filter((line) => /^\d+\./.test(line));
   assert.deepEqual(
     unboundSteps.map((line) => Number.parseInt(line, 10)),
-    [1, 2, 3],
+    [1, 2, 3, 4],
   );
   assert.equal(unboundSteps.some((line) => line.includes('/speckit:save')), false);
   assert.equal(unbound.includes('generate-context.js'), false);
   assert.match(unbound, /^   spec_folder: $/m);
-  assert.ok(unboundSteps[1].includes('prepare --handoff'));
-  assert.ok(unboundSteps[1].includes("--runtime 'opencode'"));
+  assert.ok(unboundSteps[2].includes('prepare --handoff'));
+  assert.ok(unboundSteps[2].includes("--runtime 'opencode'"));
 
   const skipped = handoffText({
     notePath: NOTE_PATH,
@@ -150,7 +150,7 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
   const skippedSteps = skipped.split('\n').filter((line) => /^\d+\./.test(line));
   assert.deepEqual(
     skippedSteps.map((line) => Number.parseInt(line, 10)),
-    [1, 2, 3],
+    [1, 2, 3, 4],
   );
   assert.match(skipped, /^   spec_folder: none$/m);
   assert.equal(skipped.includes('generate-context.js'), false);
@@ -166,7 +166,45 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
   const unspecifiedSteps = unspecified.split('\n').filter((line) => /^\d+\./.test(line));
   assert.deepEqual(
     unspecifiedSteps.map((line) => Number.parseInt(line, 10)),
-    [1, 2, 3, 4],
+    [1, 2, 3, 4, 5],
+  );
+});
+
+test('handoff text asks for an active command line', () => {
+  const text = handoffText({
+    notePath: NOTE_PATH,
+    sessionId: SESSION_ID,
+    specFolder: SPEC_FOLDER,
+    runtime: 'pi',
+    cliPath: CLI_PATH,
+    loopId: LOOP_ID,
+  });
+  const inFlightInstruction = text.split('\n').find((line) => line.includes('Under ## In-flight state'));
+
+  assert.ok(inFlightInstruction, text);
+  assert.ok(inFlightInstruction.includes('Active command:'), text);
+  assert.ok(text.includes('Active command: none'), text);
+});
+
+test('handoff text releases a deep-loop lock before prepare', () => {
+  const text = handoffText({
+    notePath: NOTE_PATH,
+    sessionId: SESSION_ID,
+    specFolder: SPEC_FOLDER,
+    runtime: 'pi',
+    cliPath: CLI_PATH,
+    loopId: LOOP_ID,
+  });
+  const lines = text.split('\n');
+  const releaseIndex = lines.findIndex((line) => line.includes('loop-lock.cjs release'));
+  const prepareIndex = lines.findIndex((line) => line.includes('prepare --handoff'));
+
+  assert.ok(releaseIndex >= 0 && releaseIndex < prepareIndex, text);
+  assert.match(lines[releaseIndex], /--lock-path <path> --owner-pid <pid> --nonce <nonce>/);
+  assert.equal(
+    Number.parseInt(lines[releaseIndex], 10) + 1,
+    Number.parseInt(lines[prepareIndex], 10),
+    text,
   );
 });
 
@@ -322,11 +360,11 @@ test('seed text claims the note, resumes only a bound spec folder, and completes
   const seedSteps = withSpec.split('\n').filter((line) => /^\d+\./.test(line));
   assert.deepEqual(
     seedSteps.map((line) => Number.parseInt(line, 10)),
-    [1, 2, 3, 4],
+    [1, 2, 3, 4, 5, 6, 7],
   );
   assert.ok(seedSteps[1].includes(`/speckit:resume ${SPEC_FOLDER}`));
-  assert.equal(seedSteps[2], SEED_STEP_THREE);
-  assert.ok(seedSteps[3].includes('complete'));
+  assert.equal(seedSteps[5], SEED_REMAINING_WORK_STEP);
+  assert.ok(seedSteps[6].includes('complete'));
 
   const withoutSpec = seedText({ notePath: NOTE_PATH, specFolder: '', sessionId: SESSION_ID, cliPath: CLI_PATH });
   assert.equal(withoutSpec.includes('/speckit:resume'), false);
@@ -340,10 +378,63 @@ test('seed text claims the note, resumes only a bound spec folder, and completes
   const skipSteps = skipped.split('\n').filter((line) => /^\d+\./.test(line));
   assert.deepEqual(
     skipSteps.map((line) => Number.parseInt(line, 10)),
-    [1, 2, 3, 4, 5],
+    [1, 2, 3, 4, 5, 6, 7],
   );
   assert.equal(skipSteps.some((line) => line.includes('/speckit:resume')), false);
   assert.equal(skipSteps[2], SKIP_GATE_LINE);
+});
+
+test('seed text runs the active command again', () => {
+  const text = seedText({
+    notePath: NOTE_PATH,
+    specFolder: SPEC_FOLDER,
+    sessionId: SESSION_ID,
+    cliPath: CLI_PATH,
+  });
+  const lines = text.split('\n');
+  const commandIndex = lines.findIndex((line) => line.includes('run it again'));
+  const remainingIndex = lines.findIndex((line) => line.includes('Continue the work under'));
+
+  assert.ok(commandIndex >= 0 && commandIndex < remainingIndex, text);
+  assert.match(lines[commandIndex], /same mode and arguments/);
+  assert.match(lines[commandIndex], /state detection picks the step/);
+});
+
+test('seed text reads the spec folder goal before remaining work', () => {
+  const text = seedText({
+    notePath: NOTE_PATH,
+    specFolder: SPEC_FOLDER,
+    sessionId: SESSION_ID,
+    cliPath: CLI_PATH,
+  });
+  const lines = text.split('\n');
+  const goalIndex = lines.findIndex((line) => line.includes('goal.md'));
+  const remainingIndex = lines.findIndex((line) => line.includes('Continue the work under'));
+
+  assert.ok(goalIndex >= 0 && goalIndex < remainingIndex, text);
+  assert.ok(lines[goalIndex].includes(SPEC_FOLDER), text);
+  assert.match(lines[goalIndex], /binds the session goal/);
+});
+
+test('codex handoff requests an active goal line and the seed restores it', () => {
+  const handoff = handoffText({
+    notePath: NOTE_PATH,
+    sessionId: SESSION_ID,
+    specFolder: SPEC_FOLDER,
+    runtime: 'codex',
+    cliPath: CLI_PATH,
+    loopId: LOOP_ID,
+  });
+  const seed = seedText({
+    notePath: NOTE_PATH,
+    specFolder: SPEC_FOLDER,
+    sessionId: SESSION_ID,
+    cliPath: CLI_PATH,
+  });
+
+  assert.match(handoff, /Under ## In-flight state.*Active goal:/);
+  assert.ok(seed.includes('create_goal'), seed);
+  assert.ok(seed.indexOf('create_goal') < seed.indexOf('Continue the work under'), seed);
 });
 
 test('seed text runs the real claim command with no placeholder explanation', () => {
@@ -401,7 +492,7 @@ test('after-compaction pointer names the note created_at and the git checks', ()
   assert.ok(checkIndex > 0 && checkIndex < continueIndex, pointer);
   assert.deepEqual(
     lines.slice(1).map((line) => Number.parseInt(line, 10)),
-    [1, 2, 3, 4, 5],
+    [1, 2, 3, 4, 5, 6, 7, 8],
   );
 
   // A date the session pastes into its shell stays one quoted argument.
