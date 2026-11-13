@@ -125,6 +125,7 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 20 | 020-test-speed-followups/ | Retry a failed install, fix two racy test deadlines and stop five test files leaving temp folders | Complete: pull request 101 passed 39 checks with the hook deadline suite blocking again. The retry is proven against a stand-in npm only |
 | 21 | 021-test-db-temp-leak/ | Trace and fix the test database folders each spec-kit lane left behind | Complete: a full run leaves 0 new scratch folders and pull request 102 passed 37 checks after one rerun |
 | 22 | 022-ci-sparse-loop-state/ | Skip the research, review, scratch and archive folders in the checkout of seven workflows | Complete: checkout about 57 s down to about 33 s in seven workflows with equal test counts. Spec-Kit Check, deep-loop and sk-doc keep the full checkout |
+| 23 | 023-ci-sparse-big-suites/ | Map which tests in the big suites read loop state and narrow three more checkouts | Complete: six test files read loop state. The CLI, runtime and deep-loop vitest jobs check out in 32 to 37 s with equal test totals |
 
 ### Phase Transition Rules
 
@@ -157,6 +158,7 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 019-local-test-speedups | 020-test-speed-followups | Independent; phase 20 closes three follow-ups that phases 13 and 19 recorded | The earlier phase is on main |
 | 020-test-speed-followups | 021-test-db-temp-leak | Independent; phase 21 traces the one leak phase 20 left open | The earlier phase is on main |
 | 021-test-db-temp-leak | 022-ci-sparse-loop-state | Independent; phase 22 builds the operator's answer to phase 17 | The earlier phase is on main |
+| 022-ci-sparse-loop-state | 023-ci-sparse-big-suites | Phase 23 maps the suites phase 22 left on the full checkout | The earlier phase is on main |
 <!-- /ANCHOR:phase-map -->
 
 ---

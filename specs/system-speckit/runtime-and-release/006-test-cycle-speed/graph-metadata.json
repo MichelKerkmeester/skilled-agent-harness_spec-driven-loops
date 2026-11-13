@@ -25,7 +25,8 @@
     "system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups",
     "system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups",
     "system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak",
-    "system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state"
+    "system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state",
+    "system-speckit/runtime-and-release/006-test-cycle-speed/023-ci-sparse-big-suites"
   ],
   "manual": {
     "depends_on": [],
@@ -146,17 +147,17 @@
     ],
     "causal_summary": "The Skilled test suites took too long to run locally",
     "created_at": "2026-11-10T18:27:35Z",
-    "last_save_at": "2026-11-13T05:02:58.702Z",
+    "last_save_at": "2026-11-13T05:54:18.729Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:ac888ea1ceb746aac810b47c12948a8db6d7b4c1119a894856a7402479b9fd3c",
+    "source_fingerprint": "sha256:3e1864bb9dbd4b1a34bebae3bb62ca59d6ba989509043e6a108c2ee3db6e3952",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9d01a56de851923dc1dab4a539b5c759a7871ea349f7e0ae550550c63595af9d",
+      "spec.md": "8f5dc1fc1071868df7fda86dc139ce65c36fd3f1c3ab4a07db4552df6d3e20b0",
       "decision-record.md": "18a5a2e86105dba054bf1d9fb0533227722b18d35b9100772a639eb3bd8b55e9"
     },
     "last_active_child_id": "system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state",

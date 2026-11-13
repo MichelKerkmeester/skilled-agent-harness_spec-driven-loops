@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/023-ci-sparse-big-suites",
+  "description": "Phase 23: ci-sparse-big-suites",
+  "keywords": [
+    "phase",
+    "ci-sparse-big-suites"
+  ],
+  "lastUpdated": "2026-11-13T05:52:10.184Z",
+  "specId": "023",
+  "folderSlug": "ci-sparse-big-suites",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
