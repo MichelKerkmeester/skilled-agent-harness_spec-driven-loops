@@ -480,10 +480,13 @@ function preflight(rawEntries, refusals) {
   }
 
   const froms = new Map(entries.map((entry) => [entry.from, entry]));
+  const sources = new Map();
   const tos = new Map();
   for (const entry of entries) {
     if (tos.has(entry.to)) refusals.push(`to specs/${entry.to}: named by two entries (specs/${tos.get(entry.to).from} and specs/${entry.from})`);
     tos.set(entry.to, entry);
+    if (sources.has(entry.from)) refusals.push(`from specs/${entry.from}: named by two entries (to specs/${sources.get(entry.from).to} and to specs/${entry.to})`);
+    sources.set(entry.from, entry);
     if (froms.has(entry.to)) refusals.push(`to specs/${entry.to}: is another entry's source; a chain or swap makes a rerun ambiguous, split it into two maps`);
     if (entry.to.startsWith(`${entry.from}/`)) refusals.push(`to specs/${entry.to}: inside its own source specs/${entry.from}`);
     for (const other of entries) {

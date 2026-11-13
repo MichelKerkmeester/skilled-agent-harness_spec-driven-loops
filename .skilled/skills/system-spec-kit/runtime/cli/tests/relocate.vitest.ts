@@ -84,8 +84,18 @@ function relocate(args: string[]) {
   return spawnSync('node', [relocateScript, ...args], { cwd: repo, encoding: 'utf8' });
 }
 
-function readJson(relative: string): any {
-  return JSON.parse(fs.readFileSync(path.join(specs, relative), 'utf8'));
+// The fixture writers emit two metadata documents, and the cases read only a
+// handful of fields from whichever one they load. Naming those fields keeps the
+// parsed value typed without restating the whole generated document.
+interface FixtureMetadata {
+  specFolder: string;
+  packet_id: string;
+  spec_folder: string;
+  children_ids: string[];
+}
+
+function readJson(relative: string): FixtureMetadata {
+  return JSON.parse(fs.readFileSync(path.join(specs, relative), 'utf8')) as FixtureMetadata;
 }
 
 function children(relative: string): string[] {
@@ -199,6 +209,26 @@ describe('relocate move and renumber', () => {
     expect(graph.packet_id).toBe('beta/002-c');
     expect(graph.spec_folder).toBe('beta/002-c');
   });
+
+  // An archived packet still owns its number. Closing the gap it leaves must
+  // move the live packet that follows past it rather than onto its number.
+  it('renumbers a live packet past a number the archive still holds', () => {
+    track('beta', ['beta/001-a', 'beta/002-b', 'beta/005-e']);
+    packet('beta/z_archive/003-old');
+    commitFixture();
+
+    const result = relocate(['--renumber', 'beta', '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'beta', '005-e'))).toBe(false);
+    expect(fs.existsSync(path.join(specs, 'beta', '003-e'))).toBe(false);
+    expect(fs.existsSync(path.join(specs, 'beta', '004-e', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'beta', 'z_archive', '003-old', 'spec.md'))).toBe(true);
+    expect(readJson('beta/004-e/description.json').specFolder).toBe('beta/004-e');
+    const graph = readJson('beta/004-e/graph-metadata.json');
+    expect(graph.packet_id).toBe('beta/004-e');
+    expect(graph.spec_folder).toBe('beta/004-e');
+  });
 });
 
 describe('relocate re-parent', () => {
@@ -289,6 +319,28 @@ describe('relocate refusals', () => {
     expect(result.stderr).toContain('uncommitted changes');
     expect(snapshot()).toEqual(before);
   });
+
+  // Two destinations for one source leave no way to tell which move the map
+  // meant, so the run stops rather than picking one.
+  it('refuses a map that names the same source folder twice and changes nothing', () => {
+    track('nu', ['nu/001-a'], ['nu/sub']);
+    declaredSubtrack('nu/sub');
+    const map = writeMap([
+      { from: 'nu/001-a', to: 'nu/sub/001-a' },
+      { from: 'nu/001-a', to: 'nu/sub/002-a' },
+    ]);
+    commitFixture();
+    const before = snapshot();
+
+    const result = relocate(['--map', map, '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).not.toBe(0);
+    expect(result.stderr).toContain('from specs/nu/001-a: named by two entries');
+    expect(fs.existsSync(path.join(specs, 'nu', '001-a'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'nu', 'sub', '001-a'))).toBe(false);
+    expect(fs.existsSync(path.join(specs, 'nu', 'sub', '002-a'))).toBe(false);
+    expect(snapshot()).toEqual(before);
+  });
 });
 
 describe('relocate safety', () => {
@@ -352,5 +404,41 @@ describe('relocate safety', () => {
     expect(notes).toBe('old: specs/lambda/001-alpha\nlong: specs/kappa/001-alpha-two\n');
     expect(fs.existsSync(path.join(specs, 'kappa', '001-alpha'))).toBe(false);
     expect(fs.existsSync(path.join(specs, 'lambda', '001-alpha', 'spec.md'))).toBe(true);
+  });
+});
+
+describe('relocate declare sub-track', () => {
+  it('declares a sub-track on a track that holds no flat packets', () => {
+    track('rho', []);
+    commitFixture();
+
+    const result = relocate(['--declare-subtrack', 'rho/sub', '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    const description = readJson('rho/sub/description.json') as FixtureMetadata & { level: string };
+    expect(description.level).toBe('sub-track');
+    expect(description.specFolder).toBe('rho/sub');
+    const graph = readJson('rho/sub/graph-metadata.json');
+    expect(graph.packet_id).toBe('rho/sub');
+    expect(graph.spec_folder).toBe('rho/sub');
+    expect(graph.children_ids).toEqual([]);
+    expect(children('rho')).toEqual(['rho/sub']);
+    expect(fs.existsSync(path.join(specs, 'rho', 'sub', 'z_archive', '.gitkeep'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'rho', 'sub', 'spec.md'))).toBe(false);
+  });
+
+  // A mixed track has no single place to look for a packet, so the declaration
+  // is refused instead of splitting the track between two layouts.
+  it('refuses to declare a sub-track on a track that holds flat packets', () => {
+    track('sigma', ['sigma/001-a']);
+    commitFixture();
+    const before = snapshot();
+
+    const result = relocate(['--declare-subtrack', 'sigma/sub', '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(2);
+    expect(result.stderr).toContain('holds flat packets');
+    expect(fs.existsSync(path.join(specs, 'sigma', 'sub'))).toBe(false);
+    expect(snapshot()).toEqual(before);
   });
 });

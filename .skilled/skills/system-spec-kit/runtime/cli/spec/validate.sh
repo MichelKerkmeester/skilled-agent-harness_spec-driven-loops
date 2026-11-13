@@ -68,8 +68,8 @@ OPTIONS:
     --json         JSON output   --strict       Run strict-only rules
     --verbose      Detailed      --quiet, -q    Results only
     --recursive    Validate parent + all [0-9][0-9][0-9]-*/ child phase folders
-    --include-archive  With --recursive, also validate packets in each z_archive/ beside
-                       the folders a recursive run visits
+    --include-archive  With --recursive, also validate packets in the z_archive/ of the
+                       folder given and, for a track root, of each declared sub-track
     --no-recursive Disable auto-recursive validation when phase children exist
 
 ENVIRONMENT:

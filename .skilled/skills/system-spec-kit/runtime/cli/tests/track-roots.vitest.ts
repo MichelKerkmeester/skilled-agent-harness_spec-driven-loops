@@ -458,6 +458,87 @@ describe('refresh-track-roots', () => {
 
 });
 
+describe('refresh-track-roots.mjs seeds a sub-track archive', () => {
+  // The fixture always ships an archive, so dropping it is how a test stands at
+  // the moment a new sub-track has none.
+  function withoutArchive() {
+    const { entries } = buildSubtrackTree(repo);
+    fs.rmSync(entries.archive, { recursive: true });
+    return entries;
+  }
+
+  it('reports a missing sub-track archive without writing it in a dry run', () => {
+    const entries = withoutArchive();
+    const metadataPath = path.join(entries.sub, 'graph-metadata.json');
+    const before = fs.readFileSync(metadataPath, 'utf8');
+    const result = run(REFRESH, ['--track', 'demo/sub']);
+
+    expect({
+      status: result.status,
+      stdout: result.stdout,
+      archiveExists: fs.existsSync(entries.archive),
+      metadataBytes: fs.readFileSync(metadataPath, 'utf8'),
+    }).toEqual({
+      status: 1,
+      stdout: 'demo/sub: create z_archive/.gitkeep\ndemo/sub: up to date\n',
+      archiveExists: false,
+      metadataBytes: before,
+    });
+  });
+
+  // Git does not track an empty folder, so an archive without the keeper file
+  // would vanish on the next clone.
+  it('writes the keeper file when --apply creates a sub-track archive', () => {
+    const entries = withoutArchive();
+    const keepFile = path.join(entries.archive, '.gitkeep');
+    const result = run(REFRESH, ['--track', 'demo/sub', '--apply']);
+
+    expect({
+      status: result.status,
+      stdout: result.stdout,
+      keepBytes: fs.existsSync(keepFile) ? fs.readFileSync(keepFile, 'utf8') : null,
+    }).toEqual({
+      status: 0,
+      stdout: 'demo/sub: create z_archive/.gitkeep (written)\ndemo/sub: up to date\n',
+      keepBytes: '',
+    });
+  });
+
+  // The link may point into another repository, whose contents are not this
+  // sub-track's to write.
+  it('refuses a symlinked sub-track archive and leaves its target empty', () => {
+    const { entries } = buildSubtrackTree(repo);
+    const outside = path.join(repo, 'outside-archive');
+    fs.rmSync(entries.archive, { recursive: true });
+    fs.mkdirSync(outside);
+    fs.symlinkSync(outside, entries.archive);
+
+    const result = run(REFRESH, ['--track', 'demo/sub', '--apply']);
+
+    expect({
+      status: result.status,
+      stdout: result.stdout,
+      targetEntries: fs.readdirSync(outside),
+    }).toEqual({
+      status: 2,
+      stdout: 'demo/sub: z_archive is a symlink, not written\ndemo/sub: up to date\n',
+      targetEntries: [],
+    });
+  });
+
+  // A flat track has no sub-track archive, and seeding one would put an unowned
+  // folder in every existing repository.
+  it('creates no archive for a flat track under --apply', () => {
+    buildFlatTree(repo);
+    const result = run(REFRESH, ['--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(result.stdout).not.toContain('z_archive');
+    expect(fs.existsSync(path.join(specs, 'alpha', 'z_archive'))).toBe(false);
+    expect(fs.existsSync(path.join(specs, 'beta', 'z_archive'))).toBe(false);
+  });
+});
+
 describe('flat-tree refresh compatibility', () => {
   it('keeps flat-tree metadata byte-identical after refresh', () => {
     buildFlatTree(repo);
