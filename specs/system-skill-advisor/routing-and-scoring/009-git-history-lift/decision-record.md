@@ -42,6 +42,7 @@ _memory:
 | Q006 | Provision worktree 365 with sk-git's provision command so the metadata repair script could run. | Not stated. | None | implementation-summary.md, how-delivered |
 | Q007 | Merge the branch into main locally after the commit; the push followed once the suites passed on main. | Not stated. | None | implementation-summary.md, how-delivered |
 | Q008 | Record the session's unrecorded answers in the two packets through the spec-kit save. | Not stated. | None | decision-record.md |
+| Q009 | Leave the six answers the save queue did not hold out of the decision records. | Not stated. | None | decision-record.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -203,6 +204,26 @@ Skip
 Answer:
 ```text
 Record them (Recommended)
+```
+
+### Q009
+<!-- source: claude:af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45:toolu_01AAu9ibjsC3pE4u4wq4hAQw:0 -->
+
+Question:
+```text
+Six answers from the building session have no decision-record entry, because the save queue did not hold them: Gate 3 option B (two new packets), "Implement with luna xhigh fast", "Max paralization", the git worktree choice, one commit per packet, and removing the worktree. What should I do with them?
+```
+
+Options:
+```text
+Leave them out (Recommended)
+Add them by hand
+Add as a note only
+```
+
+Answer:
+```text
+Leave them out (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
