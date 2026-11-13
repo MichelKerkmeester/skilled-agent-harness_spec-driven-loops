@@ -8,7 +8,7 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.10.0
+version: 1.6.11.0
 ---
 
 # Folder Structure Reference
@@ -121,6 +121,31 @@ Numbering continues per folder, so each sub-track numbers its own packets from `
 A track's `children_ids` lists its direct numbered packets and its declared sub-tracks. A sub-track's `children_ids` lists only its own immediate numbered packets. A numbered phase parent counts as one entry, and its phases stay its own children.
 
 A sub-track has its own `z_archive/`. Any `z_` folder inside a track or sub-track is never a sub-track and is never discovered as content. A non-numbered folder without the declaration gets one diagnostic and is never promoted. A symlinked sub-track is skipped with one diagnostic in both the working-tree and the commit view. The sweep treats these diagnostics as advisory and does not change its exit code. `create.sh` uses sub-track diagnostics to explain invalid `--track` values and exits with status 1.
+
+### When to Propose a Sub-Track
+
+A sub-track is a proposal the operator approves, never a move made silently. Propose one at two moments.
+
+**When a packet is created.** `create.sh` prints one advisory line to stderr when the track has grown into clusters, when the new packet fits no existing sub-track, or when it fits a different sub-track better than the one named. The line never blocks the scaffold. Ask the same question directly with:
+
+```bash
+node .skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs --track <track> --describe "<what the packet is for>"
+```
+
+**When a flat track has grown.** A flat track with 8 or more live packets is a candidate. `--threshold <n>` changes that number. The tool clusters the track's packets by the terms their `description.json` and `graph-metadata.json` share and prints a whole-track map:
+
+```bash
+node .skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs --track <track> > map.json
+```
+
+The map names every live packet of the track exactly once, because a track holds either packets or sub-tracks and never both. Rename the candidate sub-track names when a clearer name exists, show the map to the operator, and apply the approved map with the relocation tool:
+
+```bash
+node .skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs --map map.json          # dry run, writes nothing
+node .skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs --map map.json --apply
+```
+
+`relocate.mjs` declares each new sub-track, moves and renumbers the packets and rewrites every store that records a packet path. Do not move a packet by hand.
 
 ---
 

@@ -303,7 +303,7 @@ test('Gate-3 delivery flag off preserves byte-identical baseline output', () => 
     'SPEC FOLDER QUESTION: this turn looks like it will mutate a file. Before any Write/Edit, pick one:',
     'A) Use an existing spec folder (reply with its path, e.g. specs/<track>/<NNN-name>)',
     'B) Create a new spec folder for new or unrelated work (reply with a new path, e.g. specs/<track>/<NNN-name>)',
-    'C) Use a related spec folder or phase child, or a series parent for a different change to the same artifact as an existing packet in the same track (reply with its path, e.g. specs/<track>/<NNN-name> or specs/<parent>/<NNN-phase>)',
+    'C) Use a related spec folder, phase child or sub-track (new or existing), or a series parent for a different change to the same artifact as an existing packet in the same track (reply with its path, e.g. specs/<track>/<NNN-name> or specs/<parent>/<NNN-phase>)',
     'D) Skip (no spec folder needed for this change)',
   ].join('\n');
   const mutationNotice = [
@@ -311,7 +311,7 @@ test('Gate-3 delivery flag off preserves byte-identical baseline output', () => 
     'Ask the operator once where this change should live. Recommend one option first and say why, never a neutral menu. Then continue:',
     'A) Use an existing spec folder - reply with its path, e.g. specs/<track>/<NNN-name>',
     'B) Create a new spec folder for new or unrelated work - reply with its path, e.g. specs/<track>/<NNN-name> (it does not have to exist yet)',
-    'C) A related folder, a phase child, or a series parent for a different change to the same artifact as an existing packet in the same track - reply with its path',
+    'C) A related folder, a phase child, a new or existing sub-track, or a series parent for a different change to the same artifact as an existing packet in the same track - reply with its path',
     'D) Skip - no spec folder needed for this change',
     'The answer holds for the rest of this session: do not ask this again on later turns.',
     'For a new folder, start /speckit:plan, or /speckit:complete when the operator asked for the build itself: read that command document in full and follow it without :auto.',
@@ -321,9 +321,9 @@ test('Gate-3 delivery flag off preserves byte-identical baseline output', () => 
   assert.deepEqual(Buffer.from(core.GATE_3_MUTATION_NOTICE, 'utf8'), Buffer.from(mutationNotice, 'utf8'));
   assert.equal(core.GATE_3_CHOICE_EXISTING, 'Use an existing spec folder');
   assert.equal(core.GATE_3_CHOICE_NEW, 'Create a new spec folder for new or unrelated work');
-  assert.equal(core.GATE_3_CHOICE_RELATED, 'Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track');
+  assert.equal(core.GATE_3_CHOICE_RELATED, 'Use a related folder, phase child, new or existing sub-track, or a series parent for a different change to the same artifact as an existing packet in the same track');
   assert.equal(core.GATE_3_CHOICE_SKIP, 'Skip - no spec folder needed for this change');
-  assert.equal(core.buildGate3ObservedReceipt().plannedHash, 'a180a01a7ea3ceda3a5557b0486b07d28a09d0b21edf5f985c058099006bbf29');
+  assert.equal(core.buildGate3ObservedReceipt().plannedHash, '7bfa6f48d565d916b9827c8f51e65cd9fc60a5be424901e833a810a3c46c8f2b');
   const seededRequest = observedGate3Request();
   core.observeGate3QuestionDelivery(seededRequest);
   const result = core.observeGate3QuestionDelivery({ ...seededRequest, env: { [core.CHILD_SESSION_ENV]: '0' } });

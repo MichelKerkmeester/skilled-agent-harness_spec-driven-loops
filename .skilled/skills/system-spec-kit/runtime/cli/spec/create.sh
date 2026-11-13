@@ -1591,11 +1591,43 @@ process.stderr.write(lines.join("\n") + "\n");
 ' "$SPECS_DIR" "$specs_label" || return 0
 }
 
+# Creating a packet is the cheapest moment to notice a track needs sub-tracks.
+# This advice must never block the scaffold.
+advise_sub_track() {
+    [[ -n "$TRACK" ]] || return 0
+    command -v node >/dev/null 2>&1 || return 0
+    [[ -f "$SCRIPT_DIR/suggest-subtracks.mjs" ]] || return 0
+    local track="${TRACK%%/*}"
+    local sub=""
+    if [[ "$TRACK" == */* ]]; then
+        sub="${TRACK#*/}"
+    fi
+    local tool_output
+    if [[ -z "$sub" ]]; then
+        tool_output="$(node "$SCRIPT_DIR/suggest-subtracks.mjs" --specs "$REPO_ROOT/specs" --track "$track" 2>/dev/null)" || return 0
+        if [[ "$tool_output" == "["* ]]; then
+            printf "[speckit] Track %s has grown into clusters. Consider sub-tracks: node .skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs --track %s\n" "$track" "$track" >&2
+        fi
+        return 0
+    fi
+    tool_output="$(node "$SCRIPT_DIR/suggest-subtracks.mjs" --specs "$REPO_ROOT/specs" --track "$track" --describe "$FEATURE_DESCRIPTION" 2>/dev/null)" || return 0
+    if [[ "$tool_output" == "none fits"* ]]; then
+        printf "[speckit] This packet fits no existing sub-track of %s. Consider proposing a new sub-track.\n" "$track" >&2
+    elif [[ "$tool_output" == "best fit: "* ]]; then
+        local named="${tool_output#best fit: }"
+        if [[ "$named" != "$track/$sub" ]]; then
+            printf "[speckit] This packet may fit %s better than %s/%s.\n" "$named" "$track" "$sub" >&2
+        fi
+    fi
+    return 0
+}
+
 # Extracted to avoid duplication between phase mode and normal mode.
 # Sets: BRANCH_SUFFIX, BRANCH_NUMBER, FEATURE_NUM, BRANCH_NAME
 # Creates git branch unless SKIP_BRANCH=true or no git.
 resolve_branch_name() {
     list_recent_track_packets
+    advise_sub_track
     if [[ -n "$SHORT_NAME" ]]; then
         BRANCH_SUFFIX=$(slugify_token "$SHORT_NAME")
     else

@@ -8,7 +8,7 @@ trigger_phrases:
   - "quick troubleshooting lookup"
 importance_tier: normal
 contextType: general
-version: 1.6.8.0
+version: 1.6.9.0
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting
@@ -136,6 +136,8 @@ Use `create.sh`. It numbers the packet from the highest number in use, and befor
 
 ```bash
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --track <track> --level <N> "<short description>"
+# In a declared sub-track, numbered from 001 inside it:
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --track <track>/<sub> --level <N> "<short description>"
 ```
 
 ### Template Composition (Maintainer)

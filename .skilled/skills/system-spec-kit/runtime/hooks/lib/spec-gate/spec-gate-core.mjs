@@ -151,14 +151,14 @@ export const DENY_CAPABLE_TOOLS = new Set(['write', 'edit']);
 // shown by a runtime dialog or relayed by hand (see GATE_3_MUTATION_NOTICE).
 export const GATE_3_CHOICE_EXISTING = 'Use an existing spec folder';
 export const GATE_3_CHOICE_NEW = 'Create a new spec folder for new or unrelated work';
-export const GATE_3_CHOICE_RELATED = 'Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track';
+export const GATE_3_CHOICE_RELATED = 'Use a related folder, phase child, new or existing sub-track, or a series parent for a different change to the same artifact as an existing packet in the same track';
 export const GATE_3_CHOICE_SKIP = 'Skip - no spec folder needed for this change';
 
 export const GATE_3_QUESTION = [
   'SPEC FOLDER QUESTION: this turn looks like it will mutate a file. Before any Write/Edit, pick one:',
   `A) ${GATE_3_CHOICE_EXISTING} (reply with its path, e.g. specs/<track>/<NNN-name>)`,
   `B) ${GATE_3_CHOICE_NEW} (reply with a new path, e.g. specs/<track>/<NNN-name>)`,
-  'C) Use a related spec folder or phase child, or a series parent for a different change to the same artifact as an existing packet in the same track (reply with its path, e.g. specs/<track>/<NNN-name> or specs/<parent>/<NNN-phase>)',
+  'C) Use a related spec folder, phase child or sub-track (new or existing), or a series parent for a different change to the same artifact as an existing packet in the same track (reply with its path, e.g. specs/<track>/<NNN-name> or specs/<parent>/<NNN-phase>)',
   'D) Skip (no spec folder needed for this change)',
 ].join('\n');
 
@@ -172,7 +172,7 @@ export const GATE_3_MUTATION_NOTICE = [
   'Ask the operator once where this change should live. Recommend one option first and say why, never a neutral menu. Then continue:',
   `A) ${GATE_3_CHOICE_EXISTING} - reply with its path, e.g. specs/<track>/<NNN-name>`,
   `B) ${GATE_3_CHOICE_NEW} - reply with its path, e.g. specs/<track>/<NNN-name> (it does not have to exist yet)`,
-  'C) A related folder, a phase child, or a series parent for a different change to the same artifact as an existing packet in the same track - reply with its path',
+  'C) A related folder, a phase child, a new or existing sub-track, or a series parent for a different change to the same artifact as an existing packet in the same track - reply with its path',
   `D) ${GATE_3_CHOICE_SKIP}`,
   'The answer holds for the rest of this session: do not ask this again on later turns.',
   'For a new folder, start /speckit:plan, or /speckit:complete when the operator asked for the build itself: read that command document in full and follow it without :auto.',
