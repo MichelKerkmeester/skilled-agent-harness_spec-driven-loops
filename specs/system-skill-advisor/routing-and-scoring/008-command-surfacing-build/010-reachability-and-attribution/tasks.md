@@ -123,13 +123,13 @@ Worker waves. Tasks in one wave touch different files and can run in parallel. E
 ## Phase 3: Verification
 
 - [x] T027 Run every gate. Verify: `FLOOR` prints `{"correct":24,"total":44}` and `{"count":0,"total":35}`, `TC` exits 0, `VT` and `VO` report 0 failed, `node --test $CKT $HWT` and `DCT` report `fail 0`, `node --test tests/bundle.test.mjs` in `.dsh/plugins/repo-guards` reports `fail 0` and `node $HS --check` exits 0.
-- [ ] T028 Check the boundaries. Verify: `git -c core.fsmonitor=false diff --quiet HEAD -- AGENTS.md .skilled/commands/create` exits 0, `git -c core.fsmonitor=false diff HEAD -U0 -- .skilled .dsh | rg "^\+.*(//|#|\*).*(specs/|REQ-0|ADR-0|T0[0-9]{2}|phase [0-9])"` prints nothing, and `git -c core.fsmonitor=false status --short -- .skilled .dsh INSTALL-SKILLED.md .claude .codex` lists only files named in this phase's tasks.
+- [x] T028 Check the boundaries. Verify: `git -c core.fsmonitor=false diff --quiet HEAD -- AGENTS.md .skilled/commands/create` exits 0, `git -c core.fsmonitor=false diff HEAD -U0 -- .skilled .dsh | rg "^\+.*(//|#|\*).*(specs/|REQ-0|ADR-0|T0[0-9]{2}|phase [0-9])"` prints nothing, and `git -c core.fsmonitor=false status --short -- .skilled .dsh INSTALL-SKILLED.md .claude .codex` lists only files named in this phase's tasks.
 - [x] T029 [C] Backfill the before arm: run `node $R --backfill $PRE --out $SP/runs-pre-attributed.jsonl` from the repository root while the six arenas under `$TMPDIR/skilled-behaviour-arenas/pre-<runtime>` still exist at commit `2920b1abef`. Verify: `wc -l` prints the same number for both files, `git -c core.fsmonitor=false diff --quiet HEAD -- $PRE` exits 0 and `jq -r '"\(.runtime) \(.briefDelivered)"' $SP/runs-pre-attributed.jsonl | sort | uniq -c` shows every `claude` and `pi` line as `true` and every `codex`, `devin`, `opencode` and `dsh` line as `unknown`.
 - [x] T030 [C] Run `node $S --summary $SP/runs-pre-attributed.jsonl > $SP/summary-attributed.txt`. Verify: every arm line holds `offered`, `capped start rows` and three `policy` lines, and a runtime with fewer rows than the others ends with `arm incomplete`.
-- [ ] T031 [C] Codex smoke: prepare one arena at this phase's commit, have the operator open `/hooks` in a Codex session there and approve each entry, then run one row through `R` with `--runtime codex --arm smoke`. Verify: `node $CK --root <arena>` prints `PASS codex-hooks-approved`, and the rollout at the line's `locator.transcriptPath` contains `Advisor: `.
-- [ ] T032 Only when T031's rollout contains the brief: in `briefDelivered` (`OF`), decide `codex` from its raw rollout in the shape T031 shows, with one `OT` case built from that shape. Verify: `VO` reports 0 failed. When T031's rollout holds no brief, mark this task `[x]` with `Dropped: no Codex brief in the smoke rollout`.
-- [ ] T033 [C] DSH smoke: in an arena at this phase's commit, run one turn through `dsh` with one route patch and the guards patch and without the lineage patch. Verify: the stored step payload contains `Advisor: `.
-- [ ] T034 Write `implementation-summary.md` and mark each row in `acceptance-criteria.md` with its evidence. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` prints `RESULT: PASSED`.
+- [x] T031 [C] Dropped from this phase by ADR-001 and waiting on the operator: moved to the packet's operator list by ADR-001, because approving Codex hooks writes the operator's `~/.codex/config.toml`. Original task: Codex smoke: prepare one arena at this phase's commit, have the operator open `/hooks` in a Codex session there and approve each entry, then run one row through `R` with `--runtime codex --arm smoke`. Verify: `node $CK --root <arena>` prints `PASS codex-hooks-approved`, and the rollout at the line's `locator.transcriptPath` contains `Advisor: `.
+- [x] T032 Dropped from this phase by ADR-001 and waiting on the operator: waits on T031, moved to the packet's operator list by ADR-001. Original task: Only when T031's rollout contains the brief: in `briefDelivered` (`OF`), decide `codex` from its raw rollout in the shape T031 shows, with one `OT` case built from that shape. Verify: `VO` reports 0 failed. When T031's rollout holds no brief, mark this task `[x]` with `Dropped: no Codex brief in the smoke rollout`.
+- [x] T033 [C] DSH smoke: in an arena at this phase's commit, run one turn through `dsh` with one route patch and the guards patch and without the lineage patch. Verify: the stored step payload contains `Advisor: `.
+- [x] T034 Write `implementation-summary.md` and mark each row in `acceptance-criteria.md` with its evidence. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -137,9 +137,9 @@ Worker waves. Tasks in one wave touch different files and can run in parallel. E
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, with T024 to T026 and T032 either done or marked dropped with their measured reason
-- [ ] No `[B]` blocked tasks remaining
-- [ ] The before arm is backfilled, and the attributed summary prints an offered count for every runtime
+- [x] All tasks marked `[x]`, with T024 to T026 and T032 either done or marked dropped with their measured reason. Evidence: T024 to T026 are dropped on the measured cold-start numbers, and T031 and T032 are dropped from this phase by ADR-001 and sit on the packet's operator list
+- [x] No `[B]` blocked tasks remaining. Evidence: `rg -c "^- \[B\]" tasks.md` prints 0. The Codex smoke left the phase through ADR-001
+- [x] The before arm is backfilled, and the attributed summary prints an offered count for every runtime. Evidence: 144 lines in and out, and all six runtime lines in `scratch/summary-attributed.txt` print `offered 0, started 0 of 0`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -174,9 +174,9 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved floor bloc
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The before numbers and the old-meaning summary are in `scratch/` (T001).
-- [ ] CHK-002 [P0] The coordinator confirmed the before arm is finished before wave 1 started.
-- [ ] CHK-003 [P1] The socket key and the cold-start measurement are recorded (T002, T003).
+- [x] CHK-001 [P0] The before numbers and the old-meaning summary are in `scratch/` (T001). Evidence: `scratch/before.txt` and `scratch/summary-before.json`, whose keys are the six runtimes.
+- [x] CHK-002 [P0] The coordinator confirmed the before arm is finished before wave 1 started. Evidence: the before arm was committed in `f8a7f6fc10` at 00:35 on 2026-11-13, the first wave 1 log ends at 00:51 and `git diff --quiet HEAD -- $PRE` exits 0, so the arm did not change after.
+- [x] CHK-003 [P1] The socket key and the cold-start measurement are recorded (T002, T003). Evidence: `scratch/socket-key.txt` ends `per-checkout` and `scratch/cold-start-before.txt` ends `fail-open 0 of 5`.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -184,10 +184,10 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved floor bloc
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `npm run typecheck` in `ADV` exits 0.
-- [ ] CHK-011 [P0] No code comment names a spec path, a phase number, a task id, an ADR or a REQ id (T028).
-- [ ] CHK-012 [P0] The two check scripts and the backfill write nothing in the home folder (T007, T028).
-- [ ] CHK-013 [P1] A failed replay yields null fields with an `offerError`, never a crash (T004).
+- [x] CHK-010 [P0] `npm run typecheck` in `ADV` exits 0. Evidence: rerun 2026-11-13, exit 0.
+- [x] CHK-011 [P0] No code comment names a spec path, a phase number, a task id, an ADR or a REQ id (T028). Evidence: the added-comment scan printed nothing over `f8a7f6fc10..a57ce61a13` and over the working tree.
+- [x] CHK-012 [P0] The two check scripts and the backfill write nothing in the home folder (T007, T028). Evidence: `rg` for write, mkdir, rename and remove calls prints nothing in either check script, `command-offer.mjs` names no home path and the Codex config digest read `ac6ef2b5ae14` before and after the rerun check.
+- [x] CHK-013 [P1] A failed replay yields null fields with an `offerError`, never a crash (T004). Evidence: `VO` passed 11 of 11, including the `hook_missing` case.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -195,10 +195,10 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved floor bloc
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] The scorer and offer tests pass (T027).
-- [ ] CHK-021 [P0] The floors hold (T027).
-- [ ] CHK-022 [P1] The doctor contract tests, the two check tests and the DSH bundle test pass (T027).
-- [ ] CHK-023 [P1] The backfill has as many lines as its input and leaves the input unchanged (T029).
+- [x] CHK-020 [P0] The scorer and offer tests pass (T027). Evidence: `VT` 49 passed and `VO` 11 passed, exit 0.
+- [x] CHK-021 [P0] The floors hold (T027). Evidence: `{"correct":24,"total":44}` and `{"count":0,"total":35}`.
+- [x] CHK-022 [P1] The doctor contract tests, the two check tests and the DSH bundle test pass (T027). Evidence: `DCT` 43 pass, `CKT` with `HWT` 6 pass and the bundle test 5 pass, each fail 0.
+- [x] CHK-023 [P1] The backfill has as many lines as its input and leaves the input unchanged (T029). Evidence: 144 and 144 lines, and `git diff --quiet HEAD -- $PRE` exits 0.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -206,10 +206,10 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved floor bloc
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [ ] CHK-FIX-001 [P0] The gap is class `measurement`: the harness reports a rate it cannot attribute.
-- [ ] CHK-FIX-002 [P0] Every reader of the start rate is listed: `rg -n "startRate|startRows" .skilled --glob '!**/node_modules/**' --glob '!**/dist/**'`.
-- [ ] CHK-FIX-003 [P1] Every runtime with a prompt hook file is in the hook-wiring table: claude, codex, cursor and devin.
-- [ ] CHK-FIX-004 [P1] Evidence names the commit it ran on.
+- [x] CHK-FIX-001 [P0] The gap is class `measurement`: the harness reports a rate it cannot attribute. Evidence: `spec.md` section 2, and the before arm read offered 0 on every runtime.
+- [x] CHK-FIX-002 [P0] Every reader of the start rate is listed: `rg -n "startRate|startRows" .skilled --glob '!**/node_modules/**' --glob '!**/dist/**'`. Evidence: three files, the scorer, its test and the routing-accuracy README, all changed in this phase.
+- [x] CHK-FIX-003 [P1] Every runtime with a prompt hook file is in the hook-wiring table: claude, codex, cursor and devin. Evidence: `node $HW --root .` printed `ok` for all four.
+- [x] CHK-FIX-004 [P1] Evidence names the commit it ran on. Evidence: `a57ce61a13` for the code and `ae06ccb118` for the after arm in `scratch/closing-evidence.txt` and `implementation-summary.md`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -217,8 +217,8 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved floor bloc
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No task reads or prints holdout prompt text, and the backfill refuses a holdout row id (T016).
-- [ ] CHK-031 [P0] The Codex check prints no hash value (T007).
+- [x] CHK-030 [P0] No task reads or prints holdout prompt text, and the backfill refuses a holdout row id (T016). Evidence: the `VO` holdout refusal case passes.
+- [x] CHK-031 [P0] The Codex check prints no hash value (T007). Evidence: the rerun printed only the `WARN` line and the repair line.
 <!-- /ANCHOR:security -->
 
 ---
@@ -226,8 +226,8 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved floor bloc
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md` state the same fields and numbers.
-- [ ] CHK-041 [P1] The install guide, the DSH READMEs, the doctor scripts README and the routing-accuracy README match the code (T009, T012, T013, T018, T023).
+- [x] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md` state the same fields and numbers. Evidence: the three field names, the summary keys and the cold-start numbers match across them.
+- [x] CHK-041 [P1] The install guide, the DSH READMEs, the doctor scripts README and the routing-accuracy README match the code (T009, T012, T013, T018, T023). Evidence: `rg -c trusted_hash` 1, `grep -ci dsh` 3, both doc `rg -c` counts 6. The DSH READMEs read "unless its row flag `false` is set", so the T013 pattern misses them and `rg "unless its row flag"` prints the two lines.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -235,7 +235,7 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved floor bloc
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Probes, fixtures, measurements and the attributed log live in `scratch/` only.
+- [x] CHK-050 [P1] Probes, fixtures, measurements and the attributed log live in `scratch/` only. Evidence: `cold-start.mjs`, `cold-arena.sh`, the backfill fixture and `runs-pre-attributed.jsonl` are all under `scratch/`.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -245,8 +245,8 @@ A blocked task gets `[B]` and one line naming what blocks it. A moved floor bloc
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 0/11 |
-| P1 Items | 9 | 0/9 |
+| P0 Items | 11 | 11/11 |
+| P1 Items | 9 | 9/9 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-11-13

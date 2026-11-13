@@ -15,7 +15,10 @@
       "phase 10 reachability and attribution",
       "reachability and attribution plan",
       "reachability and attribution tasks",
-      "reachability and attribution acceptance criteria"
+      "reachability and attribution acceptance criteria",
+      "reachability and attribution decision record",
+      "codex hook approval operator list",
+      "reachability and attribution implementation summary"
     ],
     "key_topics": [
       "reachability",
@@ -25,35 +28,35 @@
       "tasks",
       "acceptance",
       "criteria",
-      "arm",
-      "reports",
+      "decision",
+      "record",
       "codex",
-      "started",
-      "rows"
+      "hook",
+      "approval"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".dsh/plugins/repo-guards/index.mjs",
+      ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+      "scratch/closing-evidence.txt",
+      "scratch/cold-arena-result.txt",
+      "scratch/summary-attributed.txt",
       ".claude/settings.json",
       ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
       ".codex/hooks.json",
       ".cursor/hooks.json",
       ".devin/hooks.v1.json",
       ".skilled/commands/create/skill.md",
-      ".dsh/plugins/repo-guards/index.mjs",
-      ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
-      ".skilled/commands/doctor/scripts/README.markdown",
-      ".skilled/bin/system-skill-advisor-launcher.cjs",
-      "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl",
-      ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
-      ".dsh/plugins/repo-guards/tests/bundle.test.mjs",
-      ".dsh/plugins/repo-guards/README.md",
-      ".dsh/plugins/repo-guards/adapters/README.md",
-      ".skilled/commands/doctor/assets/doctor-symlink-check.yaml"
+      ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs",
+      ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      ".skilled/commands/doctor/scripts/README.markdown"
     ],
     "entities": [
       {
@@ -78,6 +81,48 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.mjs",
+        "kind": "file",
+        "path": ".dsh/plugins/repo-guards/index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-mirrors.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "closing-evidence.txt",
+        "kind": "file",
+        "path": "scratch/closing-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "cold-arena-result.txt",
+        "kind": "file",
+        "path": "scratch/cold-arena-result.txt",
+        "source": "derived"
+      },
+      {
+        "name": "summary-attributed.txt",
+        "kind": "file",
+        "path": "scratch/summary-attributed.txt",
         "source": "derived"
       },
       {
@@ -111,57 +156,21 @@
         "source": "derived"
       },
       {
-        "name": "index.mjs",
+        "name": "codex-hook-approval-check.cjs",
         "kind": "file",
-        "path": ".dsh/plugins/repo-guards/index.mjs",
+        "path": ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs",
         "source": "derived"
       },
       {
-        "name": "doctor-runtime-mirrors.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+        "name": "hook-wiring-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
         "source": "derived"
       },
       {
         "name": "README.markdown",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/README.markdown",
-        "source": "derived"
-      },
-      {
-        "name": "system-skill-advisor-launcher.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "runs-pre.jsonl",
-        "kind": "file",
-        "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "user-prompt-submit.js",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
-        "source": "derived"
-      },
-      {
-        "name": "bundle.test.mjs",
-        "kind": "file",
-        "path": ".dsh/plugins/repo-guards/tests/bundle.test.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".dsh/plugins/repo-guards/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-symlink-check.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-symlink-check.yaml",
         "source": "derived"
       },
       {
@@ -193,31 +202,29 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The before arm reports Codex at 0 of 12 started rows, but no Codex transcript in that arm carries an advisor brief, because Codex runs a project hook only after per-entry approval and the install guide never says so",
     "created_at": "2026-11-12T23:24:41Z",
-    "last_save_at": "2026-11-12T23:39:58.221Z",
+    "last_save_at": "2026-11-13T03:02:38.682Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05fb64edf817b9133ae5b34ad3f294879d40d2c0a5e264d6caa1e82b58e91c7b",
+    "source_fingerprint": "sha256:c09804c05a8432a9a420ab201ced5897e72731afd2aa15f1a4cea72dbefc8018",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "140083d43560e829bed39ec5cd55e7a12b4a8f5b7bcf4e5d87ece358d5308ca7",
-      "plan.md": "e29abe6773dd28db7154b3698dcd5e0ad0b33559c0a864bc224e78b052723d24",
-      "tasks.md": "8e5e7f9fb019f109d796899504a82f6c8d60f383e6d15c0216accbccced1c83e"
+      "spec.md": "2748af774ef5115adc656b83bb553781af79059b09bb8336f638965440f16f3b",
+      "plan.md": "15866f2f66b6a1c4101d9d3151390dfe9d96371bd10c98680b70d15fbe58616b",
+      "tasks.md": "70e9e099fe80edf0b952ea80aab4dd15ceb7e322a0226db0e6d73984d3197a06",
+      "decision-record.md": "c128e67f0984b9c68e051affcec2ed0a93c5bb266088b2dae18f7906b2036ba9",
+      "implementation-summary.md": "3ed474911a694c638fb755ada2167edc589e43ac63528ea8adf84531da0774c8"
     },
     "last_active_at": null
   }

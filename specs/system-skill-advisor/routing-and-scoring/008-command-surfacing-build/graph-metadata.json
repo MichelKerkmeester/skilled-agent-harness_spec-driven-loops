@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-13T00:41:00.138Z",
+    "last_save_at": "2026-11-13T03:07:50.965Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:7652af38c6d5d3ffadc5f685ecc50b220f939d4398933ee3899b9230fc01c5c4",
+    "source_fingerprint": "sha256:b85892a77de69dd4945d8be492ed2764d0d6a7cd2ec53dd97b9a339f74b45975",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fbf28328fd116a0d121a9b9a8fdaf362c3c9705707e8275500ba2f0ac7d7e81a",

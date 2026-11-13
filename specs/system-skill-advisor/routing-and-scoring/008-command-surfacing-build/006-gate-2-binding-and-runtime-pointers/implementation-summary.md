@@ -37,6 +37,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 006-gate-2-binding-and-runtime-pointers |
 | **Completed** | 2026-11-13. AC-001 to AC-009 are `Met` |
+| **Commit** | `ae06ccb118` landed the Gate 2 bullet and the rest of this phase on `worktrees/352-command-surfacing-research` |
 | **Level** | 2 |
 | **Verified on** | The uncommitted working tree over `HEAD` `a57ce61a13` (committed 2026-11-13 01:58). The scratch outputs are dated 02:17 to 02:24 the same night |
 <!-- /ANCHOR:metadata -->

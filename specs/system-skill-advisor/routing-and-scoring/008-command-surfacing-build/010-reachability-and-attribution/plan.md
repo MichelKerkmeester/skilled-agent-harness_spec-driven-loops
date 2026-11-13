@@ -37,13 +37,13 @@ A new module `command-offer.mjs` replays the Claude prompt hook inside a checkou
 ### Definition of Ready
 - [x] The research claims are read in code and each verdict is in `spec.md`.
 - [x] Every design question has an autonomous answer under the goal's D1, recorded in `spec.md` section 10.
-- [ ] The coordinator confirms phase 007's before arm is finished. No code task starts before it.
-- [ ] The before numbers, the socket key and the cold-start measurement are recorded (T001 to T003).
+- [x] The coordinator confirms phase 007's before arm is finished. No code task starts before it. The arm was committed in `f8a7f6fc10` before wave 1.
+- [x] The before numbers, the socket key and the cold-start measurement are recorded (T001 to T003).
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is `Met`.
-- [ ] The floors hold, the before arm is backfilled and the attributed summary prints an offered count per runtime.
-- [ ] `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md` agree.
+- [x] Every row in `acceptance-criteria.md` is `Met`, except AC-008, which is `Superseded` by ADR-001.
+- [x] The floors hold, the before arm is backfilled and the attributed summary prints an offered count per runtime.
+- [x] `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md` agree.
 <!-- /ANCHOR:quality-gates -->
 
 ---

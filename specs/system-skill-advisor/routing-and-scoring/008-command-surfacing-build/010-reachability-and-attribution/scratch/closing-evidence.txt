@@ -1,0 +1,47 @@
+Phase 010 closing evidence, gathered by the orchestrator on 2026-11-13. The phase code landed in commit a57ce61a13.
+The after arm of phase 007 ran 144 turns at commit ae06ccb118, which contains this phase, in arenas post-<runtime>.
+Log: ../007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl
+
+1. Run lines carry the three fields (replaces the T031 smoke line for AC-001):
+   every one of the 144 after-arm lines has the keys offeredCommand, offeredPolicy and briefDelivered,
+   including the 24 codex lines. Check: jq -c 'select(.runtime=="codex") | keys' on the log.
+
+2. Codex hook approval check, both states, nothing written (AC-008):
+   shasum of ~/.codex/config.toml before and after: c27a6a3a9d46 both times.
+   node .skilled/commands/doctor/scripts/codex-hook-approval-check.cjs --root <arena post-codex>
+     WARN codex-hooks-unapproved <arena>
+     repair: open /hooks in a Codex session at <arena> and approve each entry        (exit 1, rerun without a pipe. A first run reported 0, which was the exit of the pipe behind it)
+   node .skilled/commands/doctor/scripts/codex-hook-approval-check.cjs --root <main checkout, approved by the operator earlier>
+     PASS codex-hooks-approved                                                         (exit 0)
+   The before-after pair on one checkout was not run: approving hooks for a checkout writes the operator's
+   ~/.codex/config.toml, which is the operator's own security decision.
+
+3. T031 and T032 (Codex live smoke, and decoding a Codex brief from its rollout) did not run and wait on the operator.
+   Codex received no brief in any of the 24 before runs and any of the 24 after runs, because a fresh clone's project
+   hooks are unapproved. Decision taken autonomously under the packet goal's rule D1 ("Run autonomously and ask the
+   operator nothing. Take the recommended option and record it"): the two tasks leave this phase and go on the packet's
+   operator list ("approve the Codex hooks for an arena path, then run one Codex smoke row"). It is not an operator decision.
+
+4. DSH brief delivery (T033, AC-009): the raw DSH store holds a user message with source.kind "repo-guards" whose text
+   starts "Advisor: " before the first request in 23 of 23 stored after-arm sessions (one run, cmd-deep-review-plain-tune-01,
+   has no session id). Probe: a scratch script that decodes session.v4.jsonl.zstd with decodeSessionLog from
+   .skilled/hooks/shared/session-readers/dsh.mjs. The DSH runs passed one route patch and the guards patch and no lineage patch.
+
+5. Brief delivery on the other runtimes in the after arm: claude 24 of 24 (raw transcript attachment of type
+   hook_additional_context holding "Advisor: "), devin 24 of 24 (a role "system" node holding "Advisor: " in sessions.db),
+   pi 24 of 24, opencode plugin loaded on 24 runs with no store trace, codex 0 of 24.
+   Known limit found here: the shared session readers keep only user and assistant content and drop injected context, so
+   briefDelivered still reads "unknown" for devin, dsh and opencode in the run log. Deciding them from the raw store, and an
+   OpenCode marker, are follow-ups for the next phase.
+
+6. T028 boundaries: `git diff --quiet HEAD -- AGENTS.md .skilled/commands/create` exit 0 after phase 006 landed, the
+   added-comment scan over .skilled and .dsh printed nothing for the working tree and for the range f8a7f6fc10..a57ce61a13.
+
+7. Attribution numbers, after arm (score-command-transcripts.mjs --summary):
+   claude  start 4 of 12, offered 2, started 1 of 2, unsafe 0
+   codex   start 0 of 12, offered 2, started 0 of 2, unsafe 0
+   pi      start 2 of 10, capped start rows 2, offered 1, started 1 of 1, unsafe 1
+   devin   start 3 of 9,  capped start rows 3, offered 2, started 1 of 2, unsafe 1
+   opencode start 1 of 5, capped start rows 7, offered 0, started 0 of 0, unsafe 2
+   dsh     start 6 of 12, offered 2, started 2 of 2, unsafe 0, 1 unscored (locator_unavailable)
+   Before arm with the offer backfilled: see scratch/summary-attributed.txt.
