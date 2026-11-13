@@ -44,7 +44,7 @@ Frozen choices. Changing one is an amendment. Parent decisions bind here. The ch
 | D1 | Nothing is implemented until the operator gives the green light. |
 | D2 | Live checks come first. The event trace and the title call run in a throwaway clone, never in the working checkout, and every non-interactive `opencode run` passes `-m <provider/model>`. |
 | D3 | A change whose live check refutes it is dropped, and its evidence and a decision record replace its acceptance rows. |
-| D4 | Only `.opencode/plugins/session-relaunch.js` and `.opencode/plugins/tests/session-relaunch.test.cjs` change. A title that works only through a new `.opencode/plugins/lib/v2-bridge.js` method stops the phase for a scope question. |
+| D4 | `.opencode/plugins/session-relaunch.js` and `.opencode/plugins/tests/session-relaunch.test.cjs` change. Amended by the operator on 2026-11-13: `.opencode/plugins/lib/v2-bridge.js` gains one `session.update` method on its client, with a test in `.opencode/plugins/tests/v2-bridge.test.cjs`, and nothing else in the bridge changes. |
 | D5 | The title reads `SKILLED_LOOP_NAME`, because `consume` deletes the record before the receiver starts. Phase 012 may move the source, and this phase follows it. |
 | D6 | Test first. Each must-fail test holds a recorded failing run before its source edit. |
 
@@ -78,8 +78,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planning | Done | 2026-11-13: spec, plan, tasks, criteria and goal written from `../research/research.md` section 9 ranks 7 and 10. Baseline `node --test .opencode/plugins/tests/session-relaunch.test.cjs` printed pass 65, fail 0, exit 0 |
-| Child gate decision | Pending | Waits on the T001 trace |
-| Title decision | Pending | Waits on the T002 call |
+| Child gate decision | Build | 2026-11-13, live on OpenCode 2.2.7: the parent's bridged `session.idle` arrived at 10:02:06 while the child's `sleep 90` shell ran until 10:03:24 (`scratch/trace-child-idle.jsonl` lines 167 and 169, `Verdict: yes`). The child's `session.created` carries the parent id at `properties.parentID`, not at `properties.info.parentID` (lines 80 and 81, `Child parentID: yes`) |
+| Title decision | Build | 2026-11-13, live on OpenCode 2.2.7: `PATCH /api/session/{id}` returned 204 and the read-back showed the new title (`scratch/live-title.md`, `Title verdict: yes`). The bridged client has no `update` (`Client update: undefined`, trace line 2), while the native `ctx.session.update` is a function (trace line 1). The title needs one bridge method. The operator answered "Amend scope (Recommended)" on 2026-11-13: one `session.update` method on the bridge's client with a test in the bridge suite |
+| T001, T002 and T004 live checks | Done | 2026-11-13: run by an Opus sub-agent through `opencode serve` and HTTP in a `git clone --shared` copy, since a builder may not start an OpenCode session. The orchestrator opened every cited trace line, and confirmed the copy is deleted and server pid 88042 is gone |
 
 ### Deviations and findings
 
@@ -89,4 +90,8 @@ and findings belong here.
 | The plugin client on OpenCode 2 has no `update` | `dualPlugin` hands the server a v1 client with only `messages`, `promptAsync`, `create`, `prompt` and `delete` (`.opencode/plugins/lib/v2-bridge.js:218` to `:279`). The installed v2 SDK has `session.update` with a `title` body key (`.opencode/node_modules/@opencode-ai/sdk/dist/v2/gen/sdk.gen.js:2091`, `:2098`). Open question: if T002 shows the title works but `Client update: undefined`, may this phase add an `update` method to `.opencode/plugins/lib/v2-bridge.js`? |
 | A deferred arm needs a second trigger | Returning early at the parent idle alone would leave the hop unarmed until the parent's next idle, which may never come. The plan adds the arm at the last child idle |
 | Child detection on OpenCode 2 is unproven | The bridge wraps a v2 `session.*` event without `info` as `info: { id }` (`.opencode/plugins/lib/v2-bridge.js:421`, `:439`), so a child is recognised only if OpenCode puts `parentID` in the event data. T001 records it |
+| The plugin misses a 2.2.7 child today | `.opencode/plugins/session-relaunch.js` reads the parent id at `properties.info.parentID` only. OpenCode 2.2.7 sends it at the top level of the event data and the bridge builds `info: { id }`, so the sub-agent of the trace was not recognised as a child. The child gate has to read `properties.parentID` as well |
+| No `session.updated` or `session.status` on 2.2.7 | Neither event appeared in the plugin stream or in a parallel `GET /api/event` capture. A child's busy state shows as `session.execution.started` and its end as `session.execution.succeeded`, which the bridge also delivers as `session.idle`. T006 to T008 use those events, not a status event |
+| Routes in T001 and T002 | On 2.2.7 the API lives under `/api/session/...` with HTTP Basic auth. `POST /experimental/session/{id}/background` returned 405 and `PATCH /session/{id}` returned 405. The calls that worked were `POST /api/session/{id}/background` and `PATCH /api/session/{id}`, both 204 |
+| Model id for the trace | `llmgateway-providers/alibaba/deepseek-v4.1-flash-1017` failed with 403 on a coding plan. The trace ran on `llmgateway/deepseek-v4.1-flash-1017`, the same model under its gateway id |
 <!-- /ANCHOR:log -->

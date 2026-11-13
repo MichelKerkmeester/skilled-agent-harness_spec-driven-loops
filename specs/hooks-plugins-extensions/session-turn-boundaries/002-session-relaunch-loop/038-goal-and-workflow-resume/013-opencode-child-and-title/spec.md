@@ -98,7 +98,7 @@ Every child event returns at line 341, the idle arm at line 418 reads no child s
 
 ### Out of Scope
 - Every runtime other than OpenCode - the operator scoped this phase to the OpenCode plugin.
-- `.opencode/plugins/lib/v2-bridge.js` - its v1 client offers only `messages`, `promptAsync`, `create`, `prompt` and `delete` (`.opencode/plugins/lib/v2-bridge.js:218` to `:279`). If the title works on 2.2.7 only through a bridge method, the phase stops and asks for a scope amendment.
+- Every part of `.opencode/plugins/lib/v2-bridge.js` other than one `session.update` method on its client. The live call of 2026-11-13 showed the title works on 2.2.7 and the bridged client had no `update`, so the operator amended the scope by that one method.
 - How the name reaches the record or the environment - phase 012 owns it.
 - Children created before the plugin loaded - the plugin cannot see their creation event.
 - A name on the first launch - the change fires only at a claimed seed.
@@ -110,6 +110,8 @@ Every child event returns at line 341, the idle arm at line 418 reads no child s
 |-----------|-------------|-------------|
 | `.opencode/plugins/session-relaunch.js` | Modify | Keep child busy state and defer the parent arm while a child is busy. Set the session title from `SKILLED_LOOP_NAME` at the claim seed. |
 | `.opencode/plugins/tests/session-relaunch.test.cjs` | Modify | Add the failing tests for both changes and the guard cases. |
+| `.opencode/plugins/lib/v2-bridge.js` | Modify | Scope amendment of 2026-11-13: one `update` method on the client's `session`, which passes a title to the native `ctx.session.update`. |
+| `.opencode/plugins/tests/v2-bridge.test.cjs` | Modify | Scope amendment of 2026-11-13: the test for the bridged `session.update`. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -134,6 +136,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |----|-------------|
 | REQ-006 | Guards keep their assertions and pass. `a sub-agent session.idle never arms a pending record`, `a task sub-agent session never receives a nudge`, `a sub-agent never receives the claim seed`, every existing `session.idle` test and every other test in `.opencode/plugins/tests/session-relaunch.test.cjs` still pass. A new test `no title call without SKILLED_LOOP_NAME or a client update method` asserts no call and an intact seed in both cases, and `a rejected title call leaves the seed in place` asserts the seed text still reaches the system prompt. Both may pass at once, since they pin the fail-open path. |
 | REQ-007 | The plugin suites and the v2 bridge suite pass after the change: `node --test .opencode/plugins/tests/*.test.cjs` exits 0 with `fail 0`. |
+| REQ-008 | Scope amendment of 2026-11-13. The bridge's client offers `session.update({ path: { id }, body: { title } })`, which calls the native `ctx.session.update` with the session id and the title and throws the bridge's usual error when the runtime has no such method. Test `client session update passes the title to the native session update` in `.opencode/plugins/tests/v2-bridge.test.cjs` fails before the method exists. One live seed on OpenCode 2.2.7 confirms the native call's argument shape, recorded in `scratch/live-title-bridge.md`. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
