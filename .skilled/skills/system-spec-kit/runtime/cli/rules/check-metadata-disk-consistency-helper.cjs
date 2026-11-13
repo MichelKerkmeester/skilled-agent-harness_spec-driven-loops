@@ -56,6 +56,9 @@ function readContinuityPacketPointer(folderPath) {
     'plan.md',
     'tasks.md',
     'decision-record.md',
+    'goal.md',
+    'acceptance-criteria.md',
+    'resource-map.md',
   ];
   for (const candidate of candidates) {
     const filePath = path.join(folderPath, candidate);

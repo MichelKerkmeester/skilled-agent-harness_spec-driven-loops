@@ -101,7 +101,9 @@ const REDERIVABLE = new Set([
 
 const POINTER_LINE = /^([ \t]*packet_pointer:[ \t]*)(["']?)([^"'\r\n]*)(["']?)[ \t]*\r?$/m;
 const SPEC_FOLDER_ROW = /(\|[ \t]*\*\*Spec Folder\*\*[ \t]*\|[ \t]*)([^|\r\n]+?)([ \t]*\|)/;
-const DOCS = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'handover.md'];
+// Every document whose frontmatter can carry a packet_pointer. A move leaves each
+// one naming the folder it left, and a name missing here stays stale forever.
+const DOCS = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'handover.md', 'goal.md', 'acceptance-criteria.md', 'resource-map.md', 'decision-record.md'];
 const PACKET_MARKERS = new Set(['spec.md', 'implementation-summary.md']);
 
 // A marker alone is not enough: the metadata writer this script drives also
@@ -365,15 +367,24 @@ function specsSegments(folder) {
   }
 }
 
-// What parent_id the packet's current location implies, when a sub-track or an
-// archive is involved. Every other location is left to the re-derive and the
-// merge exactly as before: a flat packet's stored parent and its review flag wait
-// for a person, so this repair never decides them. A move into an undeclared
-// folder names nothing either, and the merge keeps the old parent flagged.
+// What parent_id the packet's current location implies, when a sub-track, an
+// archive or a move into a track root is involved. A packet directly in a track
+// root, or at the specs root, can only record its own track or nothing; any other
+// stored parent names a place it no longer sits, the path check rejects it, and
+// the re-derive cannot clear it because the merge keeps a stored parent over a
+// null one. A flat packet that stores its own track keeps it, review flag and
+// all: that one waits for a person. A move into an undeclared folder names
+// nothing either, and the merge keeps the old parent flagged.
 function expectedParentId(folder, recordedParent) {
   const resolved = specsSegments(folder);
   if (!resolved) return { known: false };
   const { root, segments } = resolved;
+  const recorded = typeof recordedParent === 'string'
+    ? recordedParent.trim().replace(/^(?:\.opencode\/)?specs\//, '').replace(/\/+$/, '')
+    : null;
+  if (segments.length === 1) {
+    return recorded ? { known: true, parentId: null } : { known: false };
+  }
   if (segments.length < 2) return { known: false };
   const parentLeaf = segments[segments.length - 2];
   const parentId = segments.slice(0, -1).join('/');
@@ -386,14 +397,11 @@ function expectedParentId(folder, recordedParent) {
   if (segments.length === 3 && declaresSubtrack(path.join(root, ...segments.slice(0, -1)))) {
     return { known: true, parentId };
   }
-  // A packet moved out of a sub-track into its track still names that sub-track.
-  // The recorded id is stored text, so it must be exactly "<track>/<sub>" before it
-  // names a folder to read.
-  const recordedSegments = typeof recordedParent === 'string' ? recordedParent.split('/') : [];
-  if (segments.length === 2 && recordedSegments.length === 2
-    && recordedSegments[0] === segments[0]
-    && recordedSegments.every((segment) => segment !== '' && segment !== '.' && segment !== '..')
-    && declaresSubtrack(path.join(root, ...recordedSegments))) {
+  // A packet moved into a track root from a sub-track, or from another track,
+  // still names where it came from. Only the track itself is a parent the path
+  // check accepts there, so anything else is cleared. The recorded id is compared
+  // as text and never read as a folder.
+  if (segments.length === 2 && isContainerName(segments[0]) && recorded && recorded !== segments[0]) {
     return { known: true, parentId: null };
   }
   return { known: false };
