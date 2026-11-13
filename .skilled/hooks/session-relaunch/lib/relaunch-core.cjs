@@ -975,9 +975,10 @@ function preparePending({
  * @param {Object} options - Loop state transition inputs.
  * @param {string} options.loopId - Wrapper process identifier.
  * @param {string} [options.cwd=process.cwd()] - Live working directory.
- * @param {{model?: string, provider?: string, effort?: string}} [options.settings] - The
- *   session's current model, provider and effort, from an adapter whose host exposes them;
- *   each non-empty value replaces what prepare recorded.
+ * @param {{model?: string, provider?: string, effort?: string, permissionMode?: string}}
+ *   [options.settings] - The session's current model, provider, effort and permission mode,
+ *   from an adapter whose host exposes them; each non-empty value replaces what prepare
+ *   recorded.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
  * @param {Date|number|string} [options.now] - Clock value for deterministic records.
  * @returns {Object|null} The armed record, or null when absent, unreadable, or not armable.
@@ -1008,7 +1009,7 @@ function armLocked({ loopId, cwd, settings = {}, env, now }) {
   // A signal stamp belongs to the arm its killer watched, so a new arm starts without one.
   const { signalledAt: _signalledAt, ...unsignalled } = record;
   const liveSettings = {};
-  for (const key of ['model', 'provider', 'effort']) {
+  for (const key of ['model', 'provider', 'effort', 'permissionMode']) {
     if (nonEmptyString(settings?.[key])) liveSettings[key] = settings[key];
   }
   // An effort belongs to the model it was chosen for, so a new model that brings no effort

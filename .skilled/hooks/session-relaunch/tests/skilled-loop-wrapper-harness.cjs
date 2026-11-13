@@ -146,6 +146,7 @@ const record = {
     SKILLED_LOOP_MODEL: process.env.SKILLED_LOOP_MODEL || "",
     SKILLED_LOOP_PROVIDER: process.env.SKILLED_LOOP_PROVIDER || "",
     SKILLED_LOOP_EFFORT: process.env.SKILLED_LOOP_EFFORT || "",
+    SKILLED_LOOP_PERMISSION_MODE: process.env.SKILLED_LOOP_PERMISSION_MODE || "",
     SKILLED_LOOP_LAUNCHED_AT: process.env.SKILLED_LOOP_LAUNCHED_AT || "",
     SKILLED_LOOP_MANUAL_TEMPLATE: process.env.SKILLED_LOOP_MANUAL_TEMPLATE || "",
     hasModel: Object.hasOwn(process.env, "SKILLED_LOOP_MODEL"),
@@ -189,6 +190,9 @@ if (markerPath && fs.existsSync(markerPath)) {
         : {}),
       ...(process.env.RECORD_MODEL ? { model: process.env.RECORD_MODEL } : {}),
       ...(process.env.RECORD_EFFORT ? { effort: process.env.RECORD_EFFORT } : {}),
+      ...(process.env.RECORD_PERMISSION_MODE
+        ? { permissionMode: process.env.RECORD_PERMISSION_MODE }
+        : {}),
       ...(process.env.RECORD_PROVIDER ? { provider: process.env.RECORD_PROVIDER } : {})
     };
     fs.writeFileSync(path.join(stateDir, "relaunch-" + loopId + ".json"), JSON.stringify(relaunch));

@@ -53,7 +53,7 @@ function assertHopReplaysArguments(t, runtime, args, expectedHopArgs) {
 test('Claude first launch arguments are replayed with --permission-mode and --add-dir', (t) => {
   assertHopReplaysArguments(t, 'claude', [
     '--add-dir', '/tmp', '--permission-mode', 'plan', 'first prompt',
-  ], (seed) => [seed, '--add-dir', '/tmp', '--permission-mode', 'plan']);
+  ], (seed) => ['--permission-mode', 'plan', seed, '--add-dir', '/tmp']);
 });
 
 test('Pi first launch arguments are replayed', (t) => {
@@ -93,7 +93,7 @@ test('Devin first launch arguments are replayed', (t) => {
 test('deny list flags are absent from a hop', (t) => {
   const cases = [
     ['claude', ['--permission-mode', 'plan', '--session-id', 's1', '--continue', '--cloud', 'first prompt'],
-      (seed) => [seed, '--permission-mode', 'plan']],
+      (seed) => ['--permission-mode', 'plan', seed]],
     ['pi', ['--no-mcp', '--session', 's1', '--continue', 'first prompt'],
       (seed) => [seed, '--no-mcp']],
     ['opencode', ['--auto', '--session', 's1', '--continue', 'first prompt'],
@@ -120,7 +120,7 @@ test('deny list flags are absent from a hop', (t) => {
 test('a hop keeps a dash-leading value and stops at the separator', (t) => {
   assertHopReplaysArguments(t, 'claude', [
     '--append-system-prompt', '-x', '--permission-mode', 'plan', '--', 'first prompt',
-  ], (seed) => [seed, '--append-system-prompt', '-x', '--permission-mode', 'plan']);
+  ], (seed) => ['--permission-mode', 'plan', seed, '--append-system-prompt', '-x']);
 });
 
 test('an optional value never swallows the next option', (t) => {

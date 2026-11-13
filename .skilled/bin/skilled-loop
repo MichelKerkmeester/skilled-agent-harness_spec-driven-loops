@@ -39,6 +39,7 @@ consumed_record_json=''
 consumed_live_model=''
 consumed_live_provider=''
 consumed_live_effort=''
+consumed_live_permission_mode=''
 
 # Prints the manual claim command on stdout, as the CLI does: it is the result an
 # operator copies, and stderr stays for diagnostics. The core fills the template, so the
@@ -218,6 +219,47 @@ effort_is_valid() {
   return 1
 }
 
+# Matches only the modes this Claude build lists, plus the default spelling its Stop payload
+# reports and its CLI accepts, so a record cannot inject a free string, or a mode the CLI
+# would reject, into the relaunch line.
+permission_mode_is_valid() {
+  case "$1" in
+    acceptEdits|auto|bypassPermissions|manual|dontAsk|plan|default)
+      return 0
+      ;;
+  esac
+  return 1
+}
+
+# The launch line is the only proof that the operator chose a bypass session, and the
+# wrapper never adds an unlocking flag of its own. Those flags are replayed as extra
+# arguments, so the launch line's own words are still here when the hop is built.
+launch_carries_permission_unlock() {
+  local argument
+  if [[ ${#replayed_extra_arguments[@]} -gt 0 ]]; then
+    for argument in "${replayed_extra_arguments[@]}"; do
+      case "$argument" in
+        --dangerously-skip-permissions|--allow-dangerously-skip-permissions) return 0 ;;
+      esac
+    done
+  fi
+  return 1
+}
+
+# A live mode replaces the launch mode only when the CLI accepts it and the wrapper can
+# carry it without granting a permission the operator never chose: plan would block the
+# receiver's first claim, and bypass needs the unlocking flag the launch line already had.
+permission_mode_is_replayable() {
+  local mode="$1"
+  [[ -n "$mode" ]] || return 1
+  permission_mode_is_valid "$mode" || return 1
+  [[ "$mode" != 'plan' ]] || return 1
+  if [[ "$mode" == 'bypassPermissions' ]] && ! launch_carries_permission_unlock; then
+    return 1
+  fi
+  return 0
+}
+
 # A model id the sender's own log reported becomes one argument of the relaunch, so it must
 # look like an id: no leading dash, no whitespace, a bounded length. Cursor's bracketed
 # parameters are part of an id.
@@ -251,28 +293,34 @@ live_model_voids_launch_effort() {
   [[ -z "$live_effort" ]] || ! effort_is_valid "$runtime_name" "$live_effort"
 }
 
-# Reads the consumed record's live model, provider and effort in one process, so a print
-# costs a single extra read however many of them the record holds.
+# Reads the consumed record's live model, provider, effort and permission mode in one
+# process, so a print costs a single extra read however many of them the record holds.
 read_consumed_live_settings() {
   consumed_live_model=''
   consumed_live_provider=''
   consumed_live_effort=''
+  consumed_live_permission_mode=''
   [[ -n "$consumed_record_json" ]] || return 0
   {
     IFS= read -r -d '' consumed_live_model \
       && IFS= read -r -d '' consumed_live_provider \
-      && IFS= read -r -d '' consumed_live_effort
+      && IFS= read -r -d '' consumed_live_effort \
+      && IFS= read -r -d '' consumed_live_permission_mode
   } < <(
     node -e '
       const fs = require("node:fs");
       const record = JSON.parse(fs.readFileSync(0, "utf8"));
       const text = (key) => (typeof record[key] === "string" ? record[key] : "");
-      process.stdout.write(text("model") + "\0" + text("provider") + "\0" + text("effort") + "\0");
+      process.stdout.write(
+        text("model") + "\0" + text("provider") + "\0" + text("effort") + "\0"
+          + text("permissionMode") + "\0",
+      );
     ' <<< "$consumed_record_json" 2>/dev/null
   ) || {
     consumed_live_model=''
     consumed_live_provider=''
     consumed_live_effort=''
+    consumed_live_permission_mode=''
   }
 }
 
@@ -302,6 +350,11 @@ apply_consumed_live_settings() {
   fi
   if [[ -n "$consumed_live_effort" ]] && effort_is_valid "$runtime" "$consumed_live_effort"; then
     SKILLED_LOOP_EFFORT="$consumed_live_effort"
+    changed=0
+  fi
+  if [[ "$runtime" == 'claude' ]] \
+    && permission_mode_is_replayable "$consumed_live_permission_mode"; then
+    SKILLED_LOOP_PERMISSION_MODE="$consumed_live_permission_mode"
     changed=0
   fi
   return "$changed"
@@ -590,7 +643,7 @@ skilled_loop_replay_denied() {
 # Identifies record-backed settings; the other option lists follow this runtime's --help.
 skilled_loop_replay_recorded() {
   case "$1:$2" in
-    claude:--model|claude:--effort|claude:-n|claude:--name|\
+    claude:--model|claude:--effort|claude:--permission-mode|claude:-n|claude:--name|\
       pi:--model|pi:--provider|pi:--thinking|pi:-n|pi:--name|pi:-e|\
       pi:--extension|pi:-ne|pi:--no-extensions|opencode:--model|opencode:-m|\
       opencode:-n|opencode:--name|codex:-m|codex:--model|codex:-n|codex:--name|\
@@ -611,6 +664,9 @@ build_relaunch_arguments() {
         launch_arguments+=(--model "$SKILLED_LOOP_MODEL")
       fi
       append_effort_arguments
+      if [[ -n "${SKILLED_LOOP_PERMISSION_MODE:-}" ]]; then
+        launch_arguments+=(--permission-mode "$SKILLED_LOOP_PERMISSION_MODE")
+      fi
       launch_arguments+=("$seed")
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       if [[ -n "${SKILLED_LOOP_NAME:-}" ]]; then
@@ -754,7 +810,7 @@ opencode_server_seen=0
 # The packet and the claim belong to one hop, so a value from an outer session never reaches a
 # first launch.
 unset SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER SKILLED_LOOP_EFFORT \
-  SESSION_RELAUNCH_GOAL_PACKET SKILLED_LOOP_CLAIM_SEED
+  SKILLED_LOOP_PERMISSION_MODE SESSION_RELAUNCH_GOAL_PACKET SKILLED_LOOP_CLAIM_SEED
 index=0
 option_scan_stopped=0
 skip_next_option=0
@@ -827,6 +883,19 @@ while ((index < original_argument_count)); do
           if [[ "${argument#*=}" != -* ]]; then
             SKILLED_LOOP_EFFORT="${argument#*=}"
             export SKILLED_LOOP_EFFORT
+          fi
+          ;;
+        claude:--permission-mode)
+          if ((index + 1 < original_argument_count)) && [[ "$next_argument" != -* ]]; then
+            SKILLED_LOOP_PERMISSION_MODE="$next_argument"
+            export SKILLED_LOOP_PERMISSION_MODE
+            skip_next_option=1
+          fi
+          ;;
+        claude:--permission-mode=*)
+          if [[ "${argument#--permission-mode=}" != -* ]]; then
+            SKILLED_LOOP_PERMISSION_MODE="${argument#--permission-mode=}"
+            export SKILLED_LOOP_PERMISSION_MODE
           fi
           ;;
         codex:-c|codex:--config)
@@ -1269,6 +1338,26 @@ while true; do
         printf 'warning: effort %s is not a level %s accepts; relaunching without it\n' \
           "$SKILLED_LOOP_EFFORT" "$runtime" >&2
         unset SKILLED_LOOP_EFFORT
+      fi
+      # The sender's live mode replaces the launch mode only when Claude accepts it and the
+      # hop grants nothing the launch line did not already carry. A receiver in plan mode
+      # would stall on the first claim, so that mode keeps the launch value with one note.
+      if [[ "$runtime" == 'claude' ]]; then
+        live_permission_mode=$(consumed_field permissionMode)
+        if [[ -n "$live_permission_mode" ]]; then
+          if [[ "$live_permission_mode" == 'plan' ]]; then
+            printf '%s\n' \
+              'note: the sender was in plan mode, the receiver starts in the launch mode' >&2
+          elif permission_mode_is_valid "$live_permission_mode" \
+            && { [[ "$live_permission_mode" != 'bypassPermissions' ]] \
+              || launch_carries_permission_unlock; }; then
+            SKILLED_LOOP_PERMISSION_MODE="$live_permission_mode"
+            export SKILLED_LOOP_PERMISSION_MODE
+          else
+            printf 'warning: ignoring the sender permission mode %s, relaunching on the launch mode\n' \
+              "$live_permission_mode" >&2
+          fi
+        fi
       fi
       # Every later manual command, the session's own hop-cap command among them, starts
       # from the settings this hop launches on, so a model an earlier hop switched to is not

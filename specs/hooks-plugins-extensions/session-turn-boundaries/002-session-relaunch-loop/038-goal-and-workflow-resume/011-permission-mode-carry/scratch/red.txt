@@ -1,0 +1,315 @@
+✖ stop-arm stamps the payload permission mode on the armed record (251.392542ms)
+✔ stop-arm arms without a permission mode when the payload has none (129.0645ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 441.722333
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:639:1
+✖ stop-arm stamps the payload permission mode on the armed record (251.392542ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'acceptEdits'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:643:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'acceptEdits',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+== T007 red: arm keeps a live permission mode ==
+✖ arm keeps a live permission mode and a later arm without one keeps it (11.28625ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 65.658708
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:707:1
+✖ arm keeps a live permission mode and a later arm without one keeps it (11.28625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'acceptEdits'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:729:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'acceptEdits',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit=1
+== T009 red: consume reports the permission mode ==
+✖ consume reports the permission mode the record holds (235.240708ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 453.241416
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2904:1
+✖ consume reports the permission mode the record holds (235.240708ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-VEspUi/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+      note: 'open',
+  -   permissionMode: 'acceptEdits',
+      spec_folder: 'specs/hooks/023-session-relaunch-loop'
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2917:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-VEspUi/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md', spec_folder: 'specs/hooks/023-session-relaunch-loop', note: 'open' },
+    expected: { handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-VEspUi/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md', spec_folder: 'specs/hooks/023-session-relaunch-loop', note: 'open', permissionMode: 'acceptEdits' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+exit=1
+== T012 red: six wrapper permission-mode tests ==
+✖ the sender live permission mode replaces the launch mode for that hop (754.578833ms)
+✖ a live permission mode the CLI would reject falls back to the launch mode (769.028417ms)
+✖ a live plan mode keeps the launch mode (865.192667ms)
+✖ a live bypass mode with no unlocking launch flag keeps the launch mode (642.106083ms)
+✖ a hop with no live permission mode replays the launch mode before the seed (749.353083ms)
+✖ manual command carries the live permission mode (366.601208ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 0
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4208.513417
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs:881:1
+✖ the sender live permission mode replaces the launch mode for that hop (754.578833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-AGkShf/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+      '--permission-mode',
+  +   'manual'
+  -   'acceptEdits',
+  -   '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-AGkShf/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs:894:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-AGkShf/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md', '--permission-mode', 'manual' ],
+    expected: [ '--permission-mode', 'acceptEdits', '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-AGkShf/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs:899:1
+✖ a live permission mode the CLI would reject falls back to the launch mode (769.028417ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /warning: ignoring the sender permission mode bogusMode, relaunching on the launch mode/. Input:
+  
+  'warning: the relaunched session ended before claiming /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-DNAg8g/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md; its handoff note was not claimed\n'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs:908:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'warning: the relaunched session ended before claiming /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-DNAg8g/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md; its handoff note was not claimed\n',
+    expected: /warning: ignoring the sender permission mode bogusMode, relaunching on the launch mode/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs:917:1
+✖ a live plan mode keeps the launch mode (865.192667ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /note: the sender was in plan mode, the receiver starts in the launch mode/. Input:
+  
+  'warning: the relaunched session ended before claiming /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-iXNz1n/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md; its handoff note was not claimed\n'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs:926:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'warning: the relaunched session ended before claiming /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-iXNz1n/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md; its handoff note was not claimed\n',
+    expected: /note: the sender was in plan mode, the receiver starts in the launch mode/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs:935:1
+✖ a live bypass mode with no unlocking launch flag keeps the launch mode (642.106083ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /warning: ignoring the sender permission mode bypassPermissions, relaunching on the launch mode/. Input:
+  
+  'warning: the relaunched session ended before claiming /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-owt4ft/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md; its handoff note was not claimed\n'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs:944:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'warning: the relaunched session ended before claiming /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-owt4ft/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md; its handoff note was not claimed\n',
+    expected: /warning: ignoring the sender permission mode bypassPermissions, relaunching on the launch mode/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs:953:1
+✖ a hop with no live permission mode replays the launch mode before the seed (749.353083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-7Fj5YV/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+      '--permission-mode',
+      'manual',
+  -   '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-7Fj5YV/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs:959:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-7Fj5YV/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md', '--permission-mode', 'manual' ],
+    expected: [ '--permission-mode', 'manual', '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-7Fj5YV/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs:964:1
+✖ manual command carries the live permission mode (366.601208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'skilled-loop claude "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-00omIk/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"'
+  - `skilled-loop claude '--permission-mode' 'acceptEdits' "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-00omIk/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"`
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs:979:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'skilled-loop claude "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-00omIk/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"',
+    expected: `skilled-loop claude '--permission-mode' 'acceptEdits' "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-00omIk/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"`,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit=1
+== T013 red: Claude first launch arguments ==
+✖ Claude first launch arguments are replayed with --permission-mode and --add-dir (795.583291ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 862.978041
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:53:1
+✖ Claude first launch arguments are replayed with --permission-mode and --add-dir (795.583291ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  -   '--permission-mode',
+  -   'plan',
+      '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-to54S3/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+      '--add-dir',
+      '/tmp',
+  +   '--permission-mode',
+  +   'plan'
+    ]
+  
+      at assertHopReplaysArguments (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:50:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:54:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-to54S3/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md', '--add-dir', '/tmp', '--permission-mode', 'plan' ],
+    expected: [ '--permission-mode', 'plan', '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-to54S3/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md', '--add-dir', '/tmp' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+exit=1
+
+## default spelling, run by the orchestrator after the live checks
+$ env -u AI_SESSION_CHILD node --test --test-name-pattern "a live default permission mode replaces" .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs
+✖ a live default permission mode replaces the launch mode (744.551584ms)
+ℹ pass 0
+ℹ fail 1
+✖ failing tests:
+✖ a live default permission mode replaces the launch mode (744.551584ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /ignoring the sender permission mode/. Input:
+  'warning: ignoring the sender permission mode default, relaunching on the launch mode\n' +
+    actual: 'warning: ignoring the sender permission mode default, relaunching on the launch mode\nwarning: the relaunched session ended before claiming /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-XJ6gG6/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md; its handoff note was not claimed\n',
+    expected: /ignoring the sender permission mode/,

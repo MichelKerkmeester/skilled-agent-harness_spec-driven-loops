@@ -34,7 +34,7 @@
       "claude"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -51,6 +51,9 @@
       ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs",
       ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
       ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-harness.cjs",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/live-checks.md",
       ".skilled/hooks/session-relaunch/README.md",
       ".skilled/hooks/session-relaunch/codex/stop-arm.mjs"
     ],
@@ -146,6 +149,24 @@
         "source": "derived"
       },
       {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "live-checks.md",
+        "kind": "doc",
+        "path": "scratch/live-checks.md",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/hooks/session-relaunch/README.md",
@@ -180,29 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Carry Claude",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A Claude session moved into another permission mode after launch, for example with Shift+Tab into `acceptEdits`, restarts in the launch mode after a hop",
     "created_at": "2026-11-13T08:49:33Z",
-    "last_save_at": "2026-11-13T09:17:52.764Z",
+    "last_save_at": "2026-11-13T11:05:32.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33044ff4b08a884f8a13565b393659149de0f1133016fef24b7f5aa080cb9920",
+    "source_fingerprint": "sha256:8756ba2334da6017228c4a4112f1ae619a26583c7d1239702faaa0663d7b5217",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5d6def044a3f3c3732bbeb9a60ad3602ca769ddd69215fc06faee2e6aab8fc07",
+      "spec.md": "d50ba6b32e73f14d47f07c440039893103a2a0d6e64c139d79ee95a19ea68f40",
       "plan.md": "7e308033cb4799e7f7c8ecc70054b3413ce10d0ff7f101e84b9047f7efbad3d0",
-      "tasks.md": "98bde7497a6737452f2c0817112ba43f90b596b3a4fc4b6a6ee80b301a2268df",
-      "implementation-summary.md": "76a26c10d5c6492ef45dbc68c4706456bca93a5e29f185637a5a63d990f54571"
+      "tasks.md": "56bb175008928531f6bf316ef69d71e664470f3502c6203df1d0537b02de9211",
+      "implementation-summary.md": "ba0423ca7cee8f0ef5eccb763f6afe4c8cc69c31951bc1e33f53096595244c4d"
     },
     "last_active_at": null
   }

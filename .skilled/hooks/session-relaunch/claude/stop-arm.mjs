@@ -149,7 +149,17 @@ async function armPendingRecord(payload, dependencies = {}) {
 
   let armed;
   try {
-    armed = arm({ loopId, cwd: payload.cwd || process.cwd(), env });
+    // The CLI's help has no spelling for the default mode, so only a value the payload
+    // actually named is stamped; an absent or empty one leaves the record untouched.
+    const permissionMode = payload.permission_mode;
+    armed = arm({
+      loopId,
+      cwd: payload.cwd || process.cwd(),
+      settings: typeof permissionMode === 'string' && permissionMode !== ''
+        ? { permissionMode }
+        : {},
+      env,
+    });
   } catch (error) {
     logEvent('stop-arm-error', { stage: 'arm', loopId, message: error.message }, env);
     return null;

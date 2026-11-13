@@ -607,6 +607,49 @@ test('stop-arm leaves a pending record alone when the relaunch concern is disabl
   }
 });
 
+async function armStopPayload(t, overrides = {}) {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  const { stateDir, recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  const transcriptPath = writeTranscript(sandbox, 10);
+  const target = startTarget(sandbox);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.CLAUDE_PID = String(target.pid);
+  const payload = {
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+    ...overrides,
+  };
+  try {
+    const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+    assert.equal(result.code, 0, result.stderr);
+    assert.equal(result.stdout, '');
+    return { record: JSON.parse(fs.readFileSync(recordPath, 'utf8')) };
+  } finally {
+    killChild(target);
+    await waitFor(() => !fs.existsSync(path.join(stateDir, `killer-${loopId}.lock`)), 2500);
+  }
+}
+
+test('stop-arm stamps the payload permission mode on the armed record', async (t) => {
+  const { record } = await armStopPayload(t, { permission_mode: 'acceptEdits' });
+
+  assert.equal(record.status, 'armed');
+  assert.equal(record.permissionMode, 'acceptEdits');
+});
+
+test('stop-arm arms without a permission mode when the payload has none', async (t) => {
+  const { record } = await armStopPayload(t);
+
+  assert.equal(record.status, 'armed');
+  assert.equal(Object.hasOwn(record, 'permissionMode'), false);
+});
+
 test("stop-arm leaves a nested run's pending record untouched", async (t) => {
   const sandbox = createSandbox(t);
   const loopId = String(process.pid);

@@ -704,6 +704,44 @@ test('arm with a new model and no effort clears the recorded effort', (t) => {
   assert.equal(Object.hasOwn(written, 'effort'), false);
 });
 
+test('arm keeps a live permission mode and a later arm without one keeps it', (t) => {
+  const sandbox = createSandbox(t);
+  writeRelaunchRecord(sandbox, {
+    version: 1,
+    status: 'pending',
+    loopId: LOOP_ID,
+    handoff: '/tmp/handoff.md',
+    sessionId: SESSION_ID,
+    runtime: 'claude',
+    name: null,
+    cwd: '/tmp/cwd',
+    hops: 0,
+    preparedAt: NOW.toISOString(),
+    model: 'model-a',
+  });
+  const first = arm({
+    loopId: LOOP_ID,
+    cwd: '/tmp/cwd',
+    settings: { permissionMode: 'acceptEdits' },
+    env: sandbox.env,
+    now: NOW,
+  });
+  assert.equal(first.permissionMode, 'acceptEdits');
+
+  // The model-switch rule owns the effort only; a hop onto another model without a mode
+  // must keep the mode the record already held.
+  const later = arm({
+    loopId: LOOP_ID,
+    cwd: '/tmp/cwd',
+    settings: { model: 'model-b' },
+    env: sandbox.env,
+    now: NOW,
+  });
+  assert.equal(later.model, 'model-b');
+  assert.equal(later.permissionMode, 'acceptEdits');
+  assert.equal(readRelaunchFile(LOOP_ID, sandbox.env).permissionMode, 'acceptEdits');
+});
+
 test('a re-arm makes an armed record older than the age limit relaunchable again', (t) => {
   const sandbox = createSandbox(t);
   writeRelaunchRecord(sandbox, {
