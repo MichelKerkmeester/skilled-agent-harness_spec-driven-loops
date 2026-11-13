@@ -6,7 +6,7 @@ trigger_phrases:
   - "claude user-prompt-submit"
   - "hookSpecificOutput claude"
   - "claude advisor hook"
-version: 0.11.4.0
+version: 0.11.5.0
 ---
 
 # Claude Code user-prompt-submit Hook
@@ -39,7 +39,7 @@ Directive-lifecycle dedup treats that fallback like a brief. In a known, confirm
 
 Hook diagnostics are prompt-safe rollups handled by `lib/metrics.ts`. The `spec_kit.<group>.<metric_name>` instrumentation namespace emits only when `SPECKIT_METRICS_ENABLED=true`. Default off is no emission and is byte-identical to the pre-instrumentation surface. Alert thresholds for the rolling cache-hit p95 are read from the environment with conservative defaults: `SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS` (default 75) and `SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_PAGE_MS` (default 150). Both flags are forwarded to the daemon child through the launcher `CHILD_ENV_ALLOWLIST` so the same thresholds reach every runtime.
 
-Each record carries `runtime`, taken from `SPECKIT_RUNTIME` when it names a known runtime and `claude` otherwise. Records carry optional `emittedBytes` and `directivesSuppressed`. The hook writes records only when `SKILL_ADVISOR_DEBUG` is set. Raw prompts never appear in diagnostics. Before exiting, the hook waits up to 100 ms for pending diagnostic writes.
+Each record carries `runtime`, taken from `SPECKIT_RUNTIME` when it names a known runtime and `claude` otherwise. Records carry optional `emittedBytes` and `directivesSuppressed`. The hook writes a health record to the diagnostics sink on every prompt and adds the skill label and the error text there only when `SKILL_ADVISOR_DEBUG` is set. A record whose answer came from the CLI's local scorer carries `degraded: true`. Raw prompts never appear in diagnostics. Before exiting, the hook waits up to 100 ms for pending diagnostic writes.
 
 ---
 

@@ -411,12 +411,11 @@ test('flag-off route rendering and plugin delivery remain byte-identical to the 
   });
   const output = await runPrompt(hooks);
 
-  assert.equal(output.system[1], baseline);
+  assert.equal(output.system.length, 1);
   assert.match(await status(hooks), /bounded_compiled_route_summary=false/);
 });
 
-test('bounded flag selects the bounded line in the OpenCode transform', async () => {
-  const renderHelpers = await loadRenderHelpers();
+test('bounding leaves the OpenCode transform with the head entry alone', async () => {
   const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'skilled', 'typescript']);
   const child = fakeChild({
     stdout: cliEnvelope({
@@ -432,11 +431,7 @@ test('bounded flag selects the bounded line in the OpenCode transform', async ()
   });
   const output = await runPrompt(hooks);
 
-  assert.equal(
-    output.system[1],
-    renderHelpers.renderCompiledRouteSummaryLine(summary, { bounded: true }),
-  );
-  assert.match(output.system[1], /\+2 more/);
+  assert.equal(output.system.length, 1);
 });
 
 test('target digest is stable for the same membership and changes for a changed omitted set', async () => {

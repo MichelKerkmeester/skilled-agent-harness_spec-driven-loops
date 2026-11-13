@@ -25,6 +25,7 @@ import {
   briefDelivered,
   codexHookApproval,
   parseOffer,
+  promptSessionId,
   replayOffer,
 } from '../scripts/routing-accuracy/command-offer.mjs';
 
@@ -89,6 +90,40 @@ describe('parseOffer', () => {
       offeredCommand: null,
       offeredPolicy: null,
     });
+  });
+});
+
+describe('promptSessionId', () => {
+  it('returns the one added session whose first user message is the prompt', async () => {
+    await expect(promptSessionId({
+      before: ['session-one'],
+      after: ['session-one', 'session-two', 'session-three'],
+      prompt: 'write a README for the ledger module',
+      firstUserText: async (id: string) => (
+        id === 'session-two' ? 'write a README for the ledger module' : 'a helper turn'
+      ),
+    })).resolves.toBe('session-two');
+  });
+
+  it('returns no session when two added sessions both hold the prompt', async () => {
+    await expect(promptSessionId({
+      before: ['session-one'],
+      after: ['session-one', 'session-two', 'session-three'],
+      prompt: 'write a README for the ledger module',
+      firstUserText: async () => 'write a README for the ledger module',
+    })).resolves.toBeNull();
+  });
+
+  it('treats a candidate whose first user message cannot be read as no match', async () => {
+    await expect(promptSessionId({
+      before: [],
+      after: ['session-torn', 'session-two'],
+      prompt: 'write a README for the ledger module',
+      firstUserText: async (id: string) => {
+        if (id === 'session-torn') throw new Error('unreadable session');
+        return 'write a README for the ledger module';
+      },
+    })).resolves.toBe('session-two');
   });
 });
 

@@ -28,6 +28,7 @@ vi.mock('../../lib/embedders/adapters/ollama.js', async (importOriginal) => {
 import { handleAdvisorStatus, readAdvisorStatus } from '../../handlers/advisor-status.js';
 import { computeAdvisorSourceSignature } from '../../lib/freshness.js';
 import {
+  advisorHookDiagnosticsPath,
   createAdvisorHookDiagnosticRecord,
   persistAdvisorHookDiagnosticRecord,
 } from '../../lib/metrics.js';
@@ -531,6 +532,86 @@ describe('advisor_status handler', () => {
       if (previousDebug === undefined) delete process.env.SKILL_ADVISOR_DEBUG;
       else process.env.SKILL_ADVISOR_DEBUG = previousDebug;
     }
+  });
+
+  it('writes a health record without the debug variable and keeps the skill label out', async () => {
+    const root = workspace('hook-health-default');
+    const previousDebug = process.env.SKILL_ADVISOR_DEBUG;
+    delete process.env.SKILL_ADVISOR_DEBUG;
+    try {
+      await persistAdvisorHookDiagnosticRecord(root, createAdvisorHookDiagnosticRecord({
+        runtime: 'claude',
+        status: 'ok',
+        freshness: 'live',
+        durationMs: 12,
+        cacheHit: true,
+        skillLabel: 'sk-doc',
+        errorDetails: 'probe detail',
+        degraded: true,
+      }));
+
+      const lines = readFileSync(advisorHookDiagnosticsPath(root), 'utf8').trimEnd().split('\n');
+      expect(lines).toHaveLength(1);
+      const record = JSON.parse(lines[0] ?? '{}') as Record<string, unknown>;
+      expect(record).not.toHaveProperty('skillLabel');
+      expect(record).not.toHaveProperty('errorDetails');
+      expect(record.degraded).toBe(true);
+      expect(readAdvisorStatus({ workspaceRoot: root }).hookHealth?.invocations).toBe(1);
+    } finally {
+      if (previousDebug === undefined) delete process.env.SKILL_ADVISOR_DEBUG;
+      else process.env.SKILL_ADVISOR_DEBUG = previousDebug;
+    }
+  });
+
+  it('trims the default health log to 200 records', async () => {
+    const root = workspace('hook-health-trim');
+    const previousDebug = process.env.SKILL_ADVISOR_DEBUG;
+    delete process.env.SKILL_ADVISOR_DEBUG;
+    try {
+      for (let index = 0; index < 301; index += 1) {
+        await persistAdvisorHookDiagnosticRecord(root, createAdvisorHookDiagnosticRecord({
+          runtime: 'claude',
+          status: 'ok',
+          freshness: 'live',
+          durationMs: index,
+          cacheHit: true,
+        }));
+      }
+
+      const lines = readFileSync(advisorHookDiagnosticsPath(root), 'utf8').trimEnd().split('\n');
+      expect(lines).toHaveLength(200);
+    } finally {
+      if (previousDebug === undefined) delete process.env.SKILL_ADVISOR_DEBUG;
+      else process.env.SKILL_ADVISOR_DEBUG = previousDebug;
+    }
+  });
+
+  it('reports the newest record time and the degraded share', async () => {
+    const root = workspace('hook-health-degraded');
+    await persistAdvisorHookDiagnosticRecord(root, createAdvisorHookDiagnosticRecord({
+      runtime: 'claude',
+      status: 'ok',
+      freshness: 'live',
+      durationMs: 10,
+      cacheHit: true,
+      timestamp: '2026-11-13T08:00:00.000Z',
+      degraded: true,
+    }));
+    await persistAdvisorHookDiagnosticRecord(root, createAdvisorHookDiagnosticRecord({
+      runtime: 'claude',
+      status: 'ok',
+      freshness: 'live',
+      durationMs: 30,
+      cacheHit: true,
+      timestamp: '2026-11-13T08:00:05.000Z',
+    }));
+
+    const status = readAdvisorStatus({ workspaceRoot: root });
+    const parsed = AdvisorStatusOutputSchema.parse(status);
+
+    expect(parsed.hookHealth?.invocations).toBe(2);
+    expect(parsed.hookHealth?.lastRecordAt).toBe('2026-11-13T08:00:05.000Z');
+    expect(parsed.hookHealth?.rollingDegradedRate).toBe(0.5);
   });
 
   it('omits hook health when no diagnostic records exist', () => {

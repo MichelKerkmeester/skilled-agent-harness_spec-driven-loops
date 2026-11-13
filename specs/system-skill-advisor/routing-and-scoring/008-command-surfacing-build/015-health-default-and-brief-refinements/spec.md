@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-13 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
@@ -201,12 +201,12 @@ Long outputs are condensed to one line per row. Every count in this spec quotes 
 | `$ADV/handlers/advisor-status.ts`, `$ADV/schemas/advisor-tool-schemas.ts` | Modify | `hookHealth` gains the two fields under its strict schema |
 | `$ADV/lib/command-attach.ts`, `$ADV/tests/command-attach.vitest.ts` | Modify | `routeNeedsMode` takes the named skills |
 | `$ADV/handlers/advisor-recommend.ts`, `$ADV/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts` | Modify | The caller passes the named skills, the top-only guard and their cases |
-| `$RA/capture-command-routing-baseline.mjs`, `$RA/command-routing-baseline.json` | Modify | `needs_mode_floor` and `needsModeRows`, recaptured twice |
-| `.opencode/plugins/system-skill-advisor.js`, `.opencode/plugins/tests/system-skill-advisor.test.cjs` | Modify | No compiled-route push and the two amended assertions |
+| `$RA/capture-command-routing-baseline.mjs`, `$RA/command-routing-baseline.json`, `$ADV/tests/command-routing-slice.vitest.ts` | Modify | `needs_mode_floor` and `needsModeRows`, recaptured twice, with no holdout id in the list and the slice test's holdout check over it |
+| `.opencode/plugins/system-skill-advisor.js`, `.opencode/plugins/tests/system-skill-advisor.test.cjs`, `$ADV/tests/compiled-routing-consumption.vitest.ts` | Modify | No compiled-route push, the two amended assertions and the consumption case held to the change |
 | `$ADV/scripts/measure-brief-cost.mjs`, `$ADV/tests/measure-brief-cost.vitest.ts` | Modify, Create | Live heads, the refusal and its fixture test |
 | `$RA/score-command-transcripts.mjs`, `$ADV/tests/command-transcript-score.vitest.ts` | Modify | `deliveryUnknown` per run line and `unsafeNoChangedPath` |
-| `$RA/command-offer.mjs`, `$RA/run-command-behaviour.mjs` | Modify | `promptSessionId` and its use for a DSH turn |
-| `.skilled/commands/doctor/assets/doctor-setup.yaml` | Modify | The advisor leg text |
+| `$RA/command-offer.mjs`, `$ADV/tests/command-offer.vitest.ts`, `$RA/run-command-behaviour.mjs` | Modify | `promptSessionId`, its unit cases and its use for a DSH turn |
+| `.skilled/commands/doctor/assets/doctor-setup.yaml`, `.skilled/commands/doctor/scripts/tests/doctor-setup-contract.test.cjs` | Modify | The advisor leg text and the reason its contract test pins |
 | `$HK/skill-advisor-hook.md`, `$HK/skill-advisor-hook-validation.md`, `.skilled/skills/system-skill-advisor/ARCHITECTURE.md`, `.skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/claude-hook.md`, `$RA/README.md` | Modify | The default record, the bounding option's remaining role, the new keys and the refusal |
 
 The restraint pass for the one new file: `measure-brief-cost.vitest.ts` is new because the script has no test and runs `main()` on load, so it is tested as a child process against a stub hook. No helper module, option or dependency is added. `promptSessionId` lives in the offer module because the runner runs `main()` on import and cannot be imported by a probe.
@@ -335,7 +335,7 @@ Each answer is an autonomous decision under the packet goal's D1, recorded on 20
 - Q6. Floor rows with the label after the rule: 0 or 1? Decision: 1, `nm-system-skill-advisor-01`, recorded as measured (Recommended). Its prompt names `sk-doc` and `sk-doc` tops it. Narrowing further to invocation phrasing would also drop the label from the two live-head prompts the draft wants kept.
 - Q7. Where does the DSH session choice live? Decision: an exported `promptSessionId` in the offer module (Recommended). The runner runs `main()` on import, so a helper there cannot be probed.
 - Q8. Which documents change? Decision: the five that state the debug-only rule or describe a changed key (Recommended). The manual playbooks that set `SKILL_ADVISOR_DEBUG=1` stay true and are unchanged. The changelogs are history.
-- Q9. Which test proves each change? Decision: only the test the draft's Verify column names, plus the two plugin assertions the line removal breaks (Recommended). The fallback flag and `promptSessionId` are proven by typecheck, an inline `node -e` check and a coordinator probe.
+- Q9. Which test proves each change? Decision: only the test the draft's Verify column names, plus the two plugin assertions the line removal breaks (Recommended). The fallback flag and `promptSessionId` are proven by typecheck, an inline `node -e` check and a coordinator probe. A verifier later named the missing `promptSessionId` cases, so T037 added three.
 
 ### Open
 

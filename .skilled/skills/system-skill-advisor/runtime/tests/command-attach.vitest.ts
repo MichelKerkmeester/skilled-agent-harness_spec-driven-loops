@@ -193,14 +193,15 @@ describe('typed command on the leading recommendation', () => {
 // not fire for a deferral that never named a mode in the first place.
 describe('a route that waits for a mode', () => {
   it('flags a defer or clarify on a hub whose modes map to commands', () => {
-    expect(routeNeedsMode('system-deep-loop', { action: 'defer' })).toBe(true);
-    expect(routeNeedsMode('sk-doc', { action: 'clarify' })).toBe(true);
+    expect(routeNeedsMode('system-deep-loop', { action: 'defer' }, ['system-deep-loop'])).toBe(true);
+    expect(routeNeedsMode('sk-doc', { action: 'clarify' }, ['sk-doc'])).toBe(true);
   });
 
   it('stays quiet for a routed mode, a hub outside the table and a shape that is no route', () => {
-    expect(routeNeedsMode('sk-doc', singleRoute('sk-create-readme'))).toBe(false);
-    expect(routeNeedsMode('sk-code', { action: 'defer' })).toBe(false);
-    expect(routeNeedsMode('sk-doc', undefined)).toBe(false);
-    expect(routeNeedsMode('sk-doc', ['defer'])).toBe(false);
+    expect(routeNeedsMode('sk-doc', singleRoute('sk-create-readme'), ['sk-doc'])).toBe(false);
+    expect(routeNeedsMode('sk-code', { action: 'defer' }, ['sk-code'])).toBe(false);
+    expect(routeNeedsMode('sk-doc', undefined, ['sk-doc'])).toBe(false);
+    expect(routeNeedsMode('sk-doc', ['defer'], ['sk-doc'])).toBe(false);
+    expect(routeNeedsMode('sk-doc', { action: 'clarify' }, [])).toBe(false);
   });
 });

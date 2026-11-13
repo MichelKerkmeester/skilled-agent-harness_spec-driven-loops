@@ -123,6 +123,7 @@ describe('command routing slice', () => {
     const attached = baseline.attachedMetrics as {
       readonly attachedRows: Readonly<Record<string, string>>;
       readonly typedRows: Readonly<Record<string, unknown>>;
+      readonly needsModeRows?: readonly string[];
     };
     const published = [
       ...new Set(
@@ -130,6 +131,7 @@ describe('command routing slice', () => {
           ...Object.keys(baseline.rows),
           ...Object.keys(attached.attachedRows),
           ...Object.keys(attached.typedRows),
+          ...(attached.needsModeRows ?? []),
         ].filter((id) => holdoutIds.has(id)),
       ),
     ];

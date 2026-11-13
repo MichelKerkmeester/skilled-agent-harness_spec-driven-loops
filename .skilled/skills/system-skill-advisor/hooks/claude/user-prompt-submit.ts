@@ -131,6 +131,7 @@ interface HookDiagnosticInput {
   readonly errorCode?: unknown;
   readonly errorDetails?: string;
   readonly skillLabel?: string | null;
+  readonly degraded?: boolean;
   readonly generation?: number;
   readonly emittedBytes?: number;
   readonly directivesSuppressed?: boolean;
@@ -422,6 +423,7 @@ export async function handleClaudeUserPromptSubmit(
       errorCode: result.diagnostics?.errorCode,
       errorDetails: result.diagnostics?.errorMessage ?? result.diagnostics?.policyReason ?? result.diagnostics?.staleReason,
       skillLabel: skillLabelFor(result),
+      degraded: result.metrics.degraded === true,
       emittedBytes: Buffer.byteLength(effectiveEmitted, 'utf8'),
       directivesSuppressed: effectiveEmitted !== emitted,
     }, writeDiagnostic);

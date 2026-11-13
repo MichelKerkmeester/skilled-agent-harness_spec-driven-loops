@@ -53,7 +53,7 @@ import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dshProjectKey, dshStoreRoot } from '../../../../../hooks/shared/session-readers/dsh.mjs';
 import { loadSession as loadSharedSession } from '../../../../../hooks/shared/session-readers/index.mjs';
-import { backfillRunLog, briefDelivered, codexHookApproval, replayOffer } from './command-offer.mjs';
+import { backfillRunLog, briefDelivered, codexHookApproval, promptSessionId, replayOffer } from './command-offer.mjs';
 import { restoreTurn, statusSnapshot } from './worktree-restore.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -368,6 +368,31 @@ function addedSessionId(before, after) {
   const known = new Set(before);
   const added = [...new Set(after.filter((id) => !known.has(id)))];
   return added.length === 1 ? added[0] : null;
+}
+
+// A DSH turn can add helper sessions beside its own, so a difference of several
+// entries names no single session. Only the session the prompt opened holds that
+// prompt as its first user message, so the prompt decides between them, and a
+// session the reader cannot open names no match rather than failing the turn.
+async function firstUserText(sessionId) {
+  let loaded;
+  try {
+    loaded = await loadSharedSession({
+      runtime: 'dsh',
+      sessionId,
+      dshHome: dshHome(),
+      projectDir: PROJECT_DIR,
+    });
+  } catch {
+    return null;
+  }
+  if (!loaded?.ok || !Array.isArray(loaded.records)) return null;
+  const record = loaded.records.find((entry) => entry?.role === 'user');
+  if (record === undefined) return null;
+  return (Array.isArray(record.content) ? record.content : [])
+    .filter((block) => block?.type === 'text' && typeof block.text === 'string')
+    .map((block) => block.text)
+    .join('\n');
 }
 
 // DSH keeps its session logs under DSH_HOME, which an operator can move, so the
@@ -1082,9 +1107,20 @@ async function runTurn(job, options, exempt, isFirst) {
   const turn = options.dryRun
     ? { exit: null, error: null, streamId: null }
     : await spawnTurn(job.runtime, argv, job.prompt, job.cap, job.ghConfig);
-  const reportedId = listed
-    ? addedSessionId(listingBefore, storeIds(job.runtime, job.ghConfig))
+  const listingAfter = listed ? storeIds(job.runtime, job.ghConfig) : null;
+  let reportedId = listed
+    ? addedSessionId(listingBefore, listingAfter)
     : turn.streamId;
+  // A DSH turn can add helper sessions to the store, so a difference of several
+  // entries names no single session. The one its prompt opened is the turn's own.
+  if (reportedId === null && job.runtime.locator.kind === 'store') {
+    reportedId = await promptSessionId({
+      before: listingBefore,
+      after: listingAfter,
+      prompt: job.prompt,
+      firstUserText,
+    });
+  }
 
   const after = { status: statusPaths(), ...gitSnapshot() };
   const headMoved = before.head !== after.head || before.stash !== after.stash;

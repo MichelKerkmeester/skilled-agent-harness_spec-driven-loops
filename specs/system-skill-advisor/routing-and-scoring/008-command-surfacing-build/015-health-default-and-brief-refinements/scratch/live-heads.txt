@@ -1,0 +1,4 @@
+cmd-create-agent-plain-tune-01: Advisor: live; use sk-doc → /create:agent (start) 0.82/0.16 pass.
+cmd-speckit-save-plain-tune-01: Advisor: live; use sk-doc 0.82/0.12 pass.
+use the sk-doc skill: Advisor: live; use sk-doc (needs a mode) 0.91/0.12 pass.
+use the system-deep-loop skill: Advisor: live; use system-deep-loop (needs a mode) 0.91/0.12 pass.

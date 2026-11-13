@@ -77,6 +77,9 @@ test('the setup mutation boundary names the socket directory outside the reposit
 
 test('the setup workflow and router both name the unrecorded hook health state', () => {
   assert.match(advisorStep, /hook health not recorded/);
-  assert.match(advisorStep, /SKILL_ADVISOR_DEBUG/);
+  assert.match(
+    advisorStep,
+    /When data\.hookHealth is absent, show hook health not recorded under the leg, because no prompt hook has written a record for this checkout yet: OpenCode has no prompt hook that writes one and an unapproved Codex hook never runs\./,
+  );
   assert.match(SETUP_ROUTER, /hook health not recorded/);
 });

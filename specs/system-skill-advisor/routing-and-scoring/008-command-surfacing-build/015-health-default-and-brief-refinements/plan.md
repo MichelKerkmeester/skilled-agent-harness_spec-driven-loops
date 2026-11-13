@@ -37,8 +37,8 @@ The diagnostic sink writes a health subset on every hook run and keeps the skill
 ### Definition of Ready
 - [ ] Each mechanism is read in code and recorded in `spec.md` section 2 with the probe that measured it.
 - [ ] Every coordinator scope decision has an answer in `spec.md` section 10.
-- [ ] T002 confirms phase 014 is committed and lists which of this phase's files it changed.
-- [ ] T001 recorded the before numbers in `scratch/before.txt`.
+- [ ] T001 confirms phase 014 is committed and lists which of this phase's files it changed.
+- [ ] T002 recorded the before numbers in `scratch/before.txt`.
 
 ### Definition of Done
 - [ ] Every row in `acceptance-criteria.md` is `Met`.
@@ -96,7 +96,7 @@ Same-class producers: `rg -n "requireDebug" $ADV/lib` lists the two sink callers
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Setup records every floor, the final-arm counts and phase 014's file list in `scratch/` (T001, T002). Implementation runs the waves in `tasks.md`: the capture, the plugin, the brief-cost script, the first scorer count and the documents first with no runtime source edit, then the sink, the metrics type, the label rule, the second scorer count and the session helper, then the fallback flag, the hook call, the status fields, the top-only guard and the runner, then a rebuild and a second capture. Verification runs the live hook checks, the arm summary and every floor, then checks the boundaries and writes the summary.
+Setup records every floor, the final-arm counts and phase 014's file list in `scratch/` (T001, T002). Implementation runs the waves in `tasks.md`: the capture, the plugin, the brief-cost script, the first scorer count and the documents first with no runtime source edit, then the sink, the metrics type, the label rule, the second scorer count and the session helper, then the fallback flag, the hook call, the status fields, the top-only guard and the runner, then a rebuild. Wave 4b (T035 to T039) follows the rebuild with the verifier follow-ups: no holdout id in the label list, the missing scorer and `promptSessionId` cases, the sink named in two doc sentences and the consumption case held to the OpenCode change. Then a second capture and the README. Verification runs the live hook checks, the arm summary and every floor, then checks the boundaries and writes the summary.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -118,7 +118,7 @@ Setup records every floor, the final-arm counts and phase 014's file list in `sc
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 014 committed | Internal | Open: planned beside this phase | Wave 1 waits. Seven shared files could collide |
+| Phase 014 committed | Internal | Done: committed as `b3b5ae8314` before wave 1 | Wave 1 waits. Seven shared files could collide |
 | A fresh `ADV` build | Internal | Green at `320e7b64d4` | T003 and T024 refuse to capture |
 | The final DSH arena store under the home folder | External | Present on 2026-11-13 | T029 cannot prove the session choice. T029 marks itself `[B]` and no code changes |
 | A worktree daemon on the rebuilt dist | Internal | Coordinator's to restart | T027 and T028 read an old build |

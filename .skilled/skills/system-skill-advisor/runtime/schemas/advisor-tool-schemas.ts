@@ -453,6 +453,8 @@ export const AdvisorStatusOutputSchema = z.object({
     rollingP95Ms: z.number().nonnegative(),
     rollingFailOpenRate: z.number().min(0).max(1),
     rollingCacheHitRate: z.number().min(0).max(1),
+    rollingDegradedRate: z.number().min(0).max(1),
+    lastRecordAt: z.string(),
   }).strict().optional(),
   daemonPid: z.number().int().positive().optional(),
   errors: z.array(z.string()).optional(),

@@ -9,7 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.8.0
+version: 3.6.9.0
 ---
 
 # Skill Advisor Hook Reference
@@ -173,7 +173,7 @@ The advisor is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` | Legacy alias for the OpenCode plugin. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 
-Additional controls: `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` (force local Python fallback where supported) and `--force-native` / `--force-local` / `--threshold` / `--stdin` (Python shim flags, default threshold `0.8`). `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` (default 3000) is owned by the `system-skill-advisor` hub: its live consumers are `runtime/lib/subprocess.ts`, `skill-advisor-brief.ts`, the OpenCode bridge and `skill_advisor.py`. On timeout the OpenCode bridge serves prompt-safe stale context with a timeout marker. OpenCode tuning: `SYSTEM_SKILL_ADVISOR_CACHE_TTL_MS` (default 5 min), `SYSTEM_SKILL_ADVISOR_MAX_TOKENS` (default 80), `SYSTEM_SKILL_ADVISOR_MAX_BRIEF_CHARS` (default 2 KiB), `SYSTEM_SKILL_ADVISOR_MAX_PROMPT_BYTES` (default 64 KiB, measured on the whole stdin request after JSON escaping), `SYSTEM_SKILL_ADVISOR_COMPILED_ROUTE_BOUNDING` (compiled-route summary bounding).
+Additional controls: `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` (force local Python fallback where supported) and `--force-native` / `--force-local` / `--threshold` / `--stdin` (Python shim flags, default threshold `0.8`). `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` (default 3000) is owned by the `system-skill-advisor` hub: its live consumers are `runtime/lib/subprocess.ts`, `skill-advisor-brief.ts`, the OpenCode bridge and `skill_advisor.py`. On timeout the OpenCode bridge serves prompt-safe stale context with a timeout marker. OpenCode tuning: `SYSTEM_SKILL_ADVISOR_CACHE_TTL_MS` (default 5 min), `SYSTEM_SKILL_ADVISOR_MAX_TOKENS` (default 80), `SYSTEM_SKILL_ADVISOR_MAX_BRIEF_CHARS` (default 2 KiB), `SYSTEM_SKILL_ADVISOR_MAX_PROMPT_BYTES` (default 64 KiB, measured on the whole stdin request after JSON escaping), `SYSTEM_SKILL_ADVISOR_COMPILED_ROUTE_BOUNDING` (kept for existing configs: the transform adds no compiled-route line, so it changes only the `bounded_compiled_route_summary` status field).
 
 Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.
 
@@ -188,7 +188,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 | Freshness | Freshness states `live`, `stale`, `absent`, `unavailable`. Status values `ok`, `skipped`, `degraded`, `fail_open`. Default confidence/uncertainty `0.8 / 0.35` unless overridden. |
 | Privacy | Raw prompt text is never persisted in diagnostics, cache metadata, status, or attribution. The OpenCode status tool sanitizes paths (`[configured-node]`, `[skill-advisor-bridge]`). |
 | Dedup | Directive-lifecycle dedup suppresses re-delivery of the same directive to the same session within its cadence. OpenCode adds transform-dedup across co-resident transforms. The plugin decides same-message transform dedup on the full advisor block before lifecycle reduction, so a repeated transform for the same message is suppressed. |
-| Diagnostics | Each hook record carries `runtime` (the Codex, Cursor and Devin adapters set `SPECKIT_RUNTIME` and Pi passes `pi`) plus `emittedBytes` and `directivesSuppressed`. Records are written only with `SKILL_ADVISOR_DEBUG` set, and the subprocess hook waits up to 100 ms for pending writes before exit. |
+| Diagnostics | Each hook record carries `runtime` (the Codex, Cursor and Devin adapters set `SPECKIT_RUNTIME` and Pi passes `pi`) plus `emittedBytes` and `directivesSuppressed`. Every prompt writes a health record to the diagnostics sink with no prompt, skill label or error text, and an answer from the CLI's local scorer carries `degraded: true`. `SKILL_ADVISOR_DEBUG` adds the skill label and the error text. The subprocess hook waits up to 100 ms for pending writes before exit. |
 | Bounded | Shims bound stdin (1 MiB), child stdio (1 MiB), child timeout (2.5s), and `SIGKILL` on timeout. OpenCode bounds bridge stdout (256 KiB) and uses grace termination. Pi bounds captured user text (32 KiB, 64-session LRU). |
 | Output | Native adapters emit one `additionalContext` JSON on stdout. OpenCode appends to `output.system`. Pi sends a model-visible message. No adapter writes to the TUI prompt line. |
 | Imports | Shims import Node builtins only and spawn the advisor by absolute path. The advisor core imports its `runtime/lib/*` siblings and the shared `hook-flags` resolver. Nothing outside the repo. |

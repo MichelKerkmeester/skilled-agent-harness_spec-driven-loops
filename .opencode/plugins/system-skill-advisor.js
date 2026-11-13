@@ -28,7 +28,6 @@ import * as messageIdentity from './lib/opencode-message-identity.js';
 import {
   FALLBACK_DIRECTIVE,
   SETUP_WORDING,
-  renderCompiledRouteSummaryLine,
   renderPluginFallbackDirective,
 } from './lib/skill-advisor-render.js';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
@@ -1583,24 +1582,9 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       if (advisorDecision.shouldDeliver) {
         await observeBlock(deliveredAdvisorBlock);
       }
-      const compiledLine = renderCompiledRouteSummaryLine(response.metadata?.compiledRouteSummary, {
-        bounded: options.boundedCompiledRouteSummary,
-      });
-      if (compiledLine) {
-        const compiledDecision = transformContributionDecision(
-          input,
-          options,
-          messageIdentity.POLICY_BLOCK_IDS.RUNTIME_OPENCODE_COMPILED_ROUTE,
-          compiledLine,
-          8,
-        );
-        deliverTransformContribution(compiledDecision, () => {
-          output.system.push(compiledLine);
-        });
-        if (compiledDecision.shouldDeliver) {
-          await observeBlock(compiledLine);
-        }
-      }
+      // The head entry already names the hub, its command and its policy. The
+      // route summary keeps string targets only while the routes carry objects,
+      // so a second entry repeated the head with `targets=none`.
     } catch {
       state.lastBridgeStatus = 'fail_open';
       state.lastErrorCode = 'UNEXPECTED_HOOK_ERROR';

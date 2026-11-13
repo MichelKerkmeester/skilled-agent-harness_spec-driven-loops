@@ -17,6 +17,10 @@
 // `--root` names a checkout the corpus and hook are read from, and defaults to
 // the current directory. `--rows` narrows the run to named corpus ids.
 //
+// A run with no live head is refused with `{"error":"degraded_brief",...}` and
+// exits 2, because a head that is not the live line is the fallback or outage
+// text and its bytes do not measure what a working install sends.
+//
 // A holdout row is refused before anything is spawned, and its prompt is never
 // printed. That keeps the held-out half of the corpus out of a measurement that
 // could otherwise leak it into a bug report.
@@ -42,6 +46,7 @@ const MAX_STDOUT_BYTES = 8 * 1024 * 1024;
 // The renderer budgets in tokens at four characters per token, so the byte
 // count is converted with the same divisor rather than a model-specific one.
 const BYTES_PER_TOKEN = 4;
+const LIVE_HEAD = 'Advisor: live';
 
 // ───────────────────────────────────────────────────────────────────
 // 3. ARGUMENT PARSING
@@ -164,8 +169,16 @@ function measureRow(row, root, socketDir, hookPath) {
     maxBuffer: MAX_STDOUT_BYTES,
   });
   const context = additionalContextFrom(result.stdout);
+  const head = context.split('\n')[0];
   const bytes = Buffer.byteLength(context, 'utf8');
-  return { id: row.id, bytes, estimatedTokens: Math.ceil(bytes / BYTES_PER_TOKEN) };
+  const headBytes = Buffer.byteLength(head, 'utf8');
+  return {
+    id: row.id,
+    bytes,
+    estimatedTokens: Math.ceil(bytes / BYTES_PER_TOKEN),
+    headBytes,
+    live: head.startsWith(LIVE_HEAD),
+  };
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -212,13 +225,21 @@ function median(values) {
   return sorted[rank];
 }
 
+// A head that is not live is the fallback or outage line, whose bytes are not
+// what a working install sends, so the cost is read from live heads alone and a
+// run with none says so.
 function summarise(rows) {
-  const values = rows.map((row) => row.bytes);
+  const live = rows.filter((row) => row.live);
+  const values = live.map((row) => row.bytes);
+  const headValues = live.map((row) => row.headBytes);
   return {
     rows,
+    liveRows: live.length,
     totalBytes: values.reduce((sum, value) => sum + value, 0),
     medianBytes: median(values),
     maxBytes: values.length === 0 ? 0 : Math.max(...values),
+    medianHeadBytes: median(headValues),
+    maxHeadBytes: headValues.length === 0 ? 0 : Math.max(...headValues),
   };
 }
 
@@ -240,7 +261,15 @@ function main() {
   try {
     const rows = [];
     for (const row of selected) rows.push(measureRow(row, options.root, socketDir, hookPath));
-    process.stdout.write(`${JSON.stringify(summarise(rows))}\n`);
+    const summary = summarise(rows);
+    if (summary.liveRows === 0) {
+      process.stdout.write(
+        `${JSON.stringify({ error: 'degraded_brief', rows: summary.rows.length, liveRows: 0 })}\n`,
+      );
+      process.exitCode = 2;
+    } else {
+      process.stdout.write(`${JSON.stringify(summary)}\n`);
+    }
   } finally {
     stopSandboxProcesses(socketDir);
     rmSync(socketDir, { recursive: true, force: true });

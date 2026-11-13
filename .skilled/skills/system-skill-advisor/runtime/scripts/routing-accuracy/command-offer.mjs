@@ -283,6 +283,44 @@ export async function briefDelivered({ runtime, locator, loadSession, codexConfi
   return 'unknown';
 }
 
+/**
+ * Pick the session a DSH prompt opened among the sessions a turn added.
+ *
+ * A DSH turn can add helper sessions beside its own, and only the session the
+ * prompt opened holds that prompt as its first user message, so the prompt
+ * decides between them and a tie names none.
+ *
+ * @param {object} options
+ * @param {string[]} options.before - Session ids the store held before the turn.
+ * @param {string[]} options.after - Session ids the store held after the turn.
+ * @param {string} options.prompt - The prompt the turn ran.
+ * @param {(id: string) => Promise<string | null>} options.firstUserText - Reads a
+ *   session's first user message.
+ * @returns {Promise<string | null>} The session the prompt opened, or null.
+ */
+export async function promptSessionId({ before, after, prompt, firstUserText }) {
+  if (!Array.isArray(before) || !Array.isArray(after)) return null;
+  if (typeof prompt !== 'string' || prompt.length === 0) return null;
+
+  const known = new Set(before);
+  const added = [...new Set(after)].filter((id) => !known.has(id));
+  const wanted = prompt.trim();
+  const matched = [];
+
+  for (const id of added) {
+    let text;
+    try {
+      text = await firstUserText(id);
+    } catch {
+      continue;
+    }
+    if (typeof text !== 'string') continue;
+    if (text.trim() === wanted) matched.push(id);
+  }
+
+  return matched.length === 1 ? matched[0] : null;
+}
+
 // ───────────────────────────────────────────────────────────────
 // Run-log backfill
 // ───────────────────────────────────────────────────────────────

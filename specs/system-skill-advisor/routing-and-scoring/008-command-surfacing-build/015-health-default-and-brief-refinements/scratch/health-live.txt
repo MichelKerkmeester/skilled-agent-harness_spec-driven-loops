@@ -1,0 +1,5 @@
+diagnostics file: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-skill-advisor-metrics/ede9344fd0f1eb33-diagnostics.jsonl
+lines before: 4
+lines after: 5
+tail record: [false,false,"claude","ok","2026-11-13T10:37:01.497Z"]
+hookHealth: {"invocations":5,"rollingP95Ms":68,"rollingFailOpenRate":0,"rollingCacheHitRate":0.4,"rollingDegradedRate":0,"lastRecordAt":"2026-11-13T10:37:01.497Z"}

@@ -1,0 +1,41 @@
+$ diff --quiet AGENTS.md create render.ts golden
+exit=0
+$ label scan
+rg-exit=1
+$ label scan MBCT
+rg-exit=1
+$ package diff stat
+$ playbooks that set SKILL_ADVISOR_DEBUG=1
+.skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md
+.skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
+$ status
+ M .opencode/plugins/system-skill-advisor.js
+ M .opencode/plugins/tests/system-skill-advisor.test.cjs
+ M .skilled/commands/doctor/assets/doctor-setup.yaml
+ M .skilled/commands/doctor/scripts/tests/doctor-setup-contract.test.cjs
+ M .skilled/skills/system-skill-advisor/ARCHITECTURE.md
+ M .skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/claude-hook.md
+ M .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+ M .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts
+ M .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md
+ M .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md
+ M .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts
+ M .skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts
+ M .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+ M .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts
+ M .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts
+ M .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts
+ M .skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+ M .skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts
+?? .skilled/skills/system-skill-advisor/runtime/tests/measure-brief-cost.vitest.ts

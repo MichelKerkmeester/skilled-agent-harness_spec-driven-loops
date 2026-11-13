@@ -63,6 +63,7 @@ const DIST = resolve(HERE, '../../dist/runtime');
 const FUSION_MODULE = resolve(DIST, 'lib/scorer/fusion.js');
 const WORKSPACE_ROOT_MODULE = resolve(DIST, 'lib/utils/workspace-root.js');
 const COMMAND_ATTACH_MODULE = resolve(DIST, 'lib/command-attach.js');
+const PROMPT_POLICY_MODULE = resolve(DIST, 'lib/prompt-policy.js');
 const COMPILED_ROUTING_FLAG_MODULE = resolve(DIST, 'lib/compiled-routing-flag.js');
 const SEMANTIC_SHADOW_MODULE = resolve(DIST, 'lib/scorer/lanes/semantic-shadow.js');
 const SKILL_GRAPH_DB_MODULE = resolve(DIST, 'lib/skill-graph/skill-graph-db.js');
@@ -392,7 +393,7 @@ export async function scoreCommandCorpus(options = {}) {
     if (!existsSync(FUSION_MODULE)) {
       throw new Error(`built scorer file missing: ${FUSION_MODULE}`);
     }
-    for (const modulePath of [COMMAND_ATTACH_MODULE, COMPILED_ROUTING_FLAG_MODULE]) {
+    for (const modulePath of [COMMAND_ATTACH_MODULE, COMPILED_ROUTING_FLAG_MODULE, PROMPT_POLICY_MODULE]) {
       if (!existsSync(modulePath)) {
         throw new Error(`built command-attach file missing: ${modulePath}`);
       }
@@ -403,7 +404,8 @@ export async function scoreCommandCorpus(options = {}) {
     // build is reported as such rather than as a module-resolution failure.
     const { scoreAdvisorPrompt } = await import(pathToFileURL(FUSION_MODULE).href);
     const { findAdvisorWorkspaceRoot } = await import(pathToFileURL(WORKSPACE_ROOT_MODULE).href);
-    const { attachCommand, typedCommandForTop, TRACKED_COMMANDS } = await import(pathToFileURL(COMMAND_ATTACH_MODULE).href);
+    const { attachCommand, typedCommandForTop, TRACKED_COMMANDS, routeNeedsMode } = await import(pathToFileURL(COMMAND_ATTACH_MODULE).href);
+    const { extractMetalinguisticSkillMentions } = await import(pathToFileURL(PROMPT_POLICY_MODULE).href);
     const { COMPILED_ROUTING_HUBS } = await import(pathToFileURL(COMPILED_ROUTING_FLAG_MODULE).href);
     const workspaceRoot = findAdvisorWorkspaceRoot(HERE, { maxDepth: 14, sentinel: SENTINEL });
 
@@ -474,6 +476,8 @@ export async function scoreCommandCorpus(options = {}) {
     const plainAttachedByFamily = new Map();
     const sameOwnerAmbiguous = [];
     let falseOfferAttached = 0;
+    const needsModeRows = [];
+    let needsModeFloor = 0;
 
     for (const row of corpus) {
       // The recommend path supplies the semantic lane's prompt vector through this
@@ -499,13 +503,21 @@ export async function scoreCommandCorpus(options = {}) {
       // A hub can name the slash command its route would take, which is reach a
       // reader otherwise gets only by translating the workflow mode by hand.
       const topId = ids[0];
-      const attached = topId !== undefined && COMPILED_ROUTING_HUBS.has(topId)
-        ? attachCommand(topId, readCompiledRoute(workspaceRoot, topId, row.prompt), row.prompt)
+      const route = topId !== undefined && COMPILED_ROUTING_HUBS.has(topId)
+        ? readCompiledRoute(workspaceRoot, topId, row.prompt)
         : undefined;
+      const attached = route !== undefined ? attachCommand(topId, route, row.prompt) : undefined;
       const attachedHit = attached !== undefined && attached === expected && !top1Hit;
       // A typed command is the reader's own wording, so it outranks the hub's
       // route in the delivered command, the same precedence the handler applies.
       const delivered = typedCommandForTop(topId, row.prompt)?.command ?? attached;
+      // A head shows that label only when nothing else names a command, so a row
+      // counts only when neither the typed command nor the route delivered one. A
+      // silent row that carries it shows a label nobody asked for.
+      const needsMode = route !== undefined && delivered === undefined && routeNeedsMode(topId, route, extractMetalinguisticSkillMentions(row.prompt));
+      // The list names rows with their outcome, so a holdout row stays out of it
+      // as it stays out of the row maps.
+      if (needsMode && publishRow) needsModeRows.push(row.id);
       const deliveredPolicy = delivered === undefined ? null : TRACKED_COMMANDS[delivered]?.policy ?? null;
       const deliveredHit = !top1Hit && delivered === expected && deliveredPolicy !== null;
 
@@ -553,6 +565,7 @@ export async function scoreCommandCorpus(options = {}) {
         falseOfferTotal += 1;
         if (offered) falseOfferCount += 1;
         if (attached !== undefined) falseOfferAttached += 1;
+        if (needsMode) needsModeFloor += 1;
       }
 
       if (isSlashVariant) {
@@ -642,6 +655,8 @@ export async function scoreCommandCorpus(options = {}) {
         typedRows,
         typed_same_owner_ambiguous: sameOwnerAmbiguous.sort(),
         attachedRows,
+        needs_mode_floor: { count: needsModeFloor, total: falseOfferTotal },
+        needsModeRows: needsModeRows.sort(),
       },
     };
   } finally {

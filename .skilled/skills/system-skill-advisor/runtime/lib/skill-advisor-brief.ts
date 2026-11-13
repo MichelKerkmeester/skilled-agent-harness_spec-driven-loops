@@ -97,6 +97,8 @@ export interface AdvisorHookMetrics {
   readonly retriesAttempted: number;
   readonly recommendationCount: number;
   readonly tokenCap: number;
+  // True when the CLI's local scorer produced the answer rather than the daemon, which freshness alone cannot tell apart.
+  readonly degraded?: boolean;
 }
 
 export interface AdvisorHookResult {

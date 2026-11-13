@@ -12,6 +12,7 @@ import { resolve } from 'node:path';
 
 import { TRACKED_COMMANDS, attachCommand, commandRowFor, routeNeedsMode, typedCommandForTop } from '../lib/command-attach.js';
 import { advisorPromptCache } from '../lib/prompt-cache.js';
+import { extractMetalinguisticSkillMentions } from '../lib/prompt-policy.js';
 import {
   resolveAdvisorThresholdConfig,
 } from '../lib/skill-advisor-brief.js';
@@ -446,6 +447,7 @@ function enrichCompiledRoutes(
   // returned unchanged.
   const anyEligible = output.recommendations.some((r) => compiledRoutingEnabledForHub(r.skillId));
   if (!anyEligible) return output;
+  const namedSkills = extractMetalinguisticSkillMentions(prompt);
   // A command row that already ranks in this result offers its command by itself,
   // so the owning hub must not offer the same one again and spend a second slot on it.
   const alreadyOffered = new Set<string>();
@@ -470,14 +472,17 @@ function enrichCompiledRoutes(
       // types to run it, so it rides along only when the route names exactly one mode
       // that has a command. A broader route leaves the key off rather than guessing.
       const command = attachCommand(recommendation.skillId, compiledRoute, prompt);
-      return command && !alreadyOffered.has(command)
+      // A caller that asks for the top pick alone renders that head and no row
+      // below it, so a command only a lower row carries would never reach the
+      // reader. The head keeps the command when it is the only row served.
+      return command && (!alreadyOffered.has(command) || (topOnly && index === 0))
         ? {
           ...recommendation,
           compiledRoute,
           command,
           ...(Object.hasOwn(TRACKED_COMMANDS, command) ? { policy: TRACKED_COMMANDS[command].policy } : {}),
         }
-        : { ...recommendation, compiledRoute, ...(!command && routeNeedsMode(recommendation.skillId, compiledRoute) ? { needsMode: true as const } : {}) };
+        : { ...recommendation, compiledRoute, ...(!command && routeNeedsMode(recommendation.skillId, compiledRoute, namedSkills) ? { needsMode: true as const } : {}) };
     }),
   });
 }

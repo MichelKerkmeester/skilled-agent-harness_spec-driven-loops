@@ -1,0 +1,7 @@
+command: node specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements/scratch/dsh-session-probe.mjs (from the repository root)
+chosen: session-ee6df6b3-bda7-4ec2-9a37-ebb1360794a1
+candidate: 03934404-14ae-4e4b-9285-9cf0ac1ff190 records=66
+candidate: 0ef36fa3-effa-4958-b145-a9ec18e14442 records=60
+candidate: e14d34d2-b630-49f4-8cd4-fd8e3ba0b319 records=64
+candidate: session-ee6df6b3-bda7-4ec2-9a37-ebb1360794a1 records=108
+exit=0

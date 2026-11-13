@@ -8,7 +8,7 @@ trigger_phrases:
   - "advisor daemon"
   - "skill graph"
 importance_tier: "important"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Architecture: system-skill-advisor
@@ -147,7 +147,7 @@ The advisor ships prompt-submit adapters for Claude, Codex, Cursor, Devin, DSH a
 
 Validation runs at two layers.
 
-**Release validation.** `advisor_validate` runs the regression suite and reports threshold semantics (aggregate vs runtime) plus a prompt-safe `telemetry.outcomes.totals` block. Hook diagnostics persist to bounded JSONL sinks so `advisor_validate` can read them back across processes. Records carry the runtime that served the turn, the bytes delivered (`emittedBytes`) and whether the directives were suppressed (`directivesSuppressed`). The code writes them only when `SKILL_ADVISOR_DEBUG` is set. The bounded trim writes a temp file and renames it over the log so a crash mid-trim keeps the old log.
+**Release validation.** `advisor_validate` runs the regression suite and reports threshold semantics (aggregate vs runtime) plus a prompt-safe `telemetry.outcomes.totals` block. Hook diagnostics persist to bounded JSONL sinks so `advisor_validate` can read them back across processes. Records carry the runtime that served the turn, the bytes delivered (`emittedBytes`) and whether the directives were suppressed (`directivesSuppressed`). Each hook run writes a health record with no prompt, skill label or error text, and `SKILL_ADVISOR_DEBUG` adds the skill label and the error text. The bounded trim writes a temp file and renames it over the log so a crash mid-trim keeps the old log.
 
 **Test surfaces.** Default `npm test` runs unit and integration suites under `runtime/tests/`. Scorer benchmarks live under `runtime/bench/`. Operator playbook scenarios live in `manual-testing-playbook/`.
 

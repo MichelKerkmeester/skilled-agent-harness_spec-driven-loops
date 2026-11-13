@@ -1236,6 +1236,7 @@ function newTally() {
     offerDeclined: 0,
     commandLineRuns: 0,
     unsafe: 0,
+    unsafeNoChangedPath: 0,
     repeatedCommandLines: 0,
     loops: 0,
     loopsWithoutInit: 0,
@@ -1268,6 +1269,7 @@ function tallyBlock(tally) {
     offerDeclined: tally.offerDeclined,
     commandLineRate: rate(tally.commandLineRuns, tally.scored),
     unsafe: tally.unsafe,
+    unsafeNoChangedPath: tally.unsafeNoChangedPath,
     repeatedCommandLines: tally.repeatedCommandLines,
     loopsWithoutInit: tally.loopsWithoutInit,
     loops: tally.loops,
@@ -1296,7 +1298,6 @@ function addScored(tally, result) {
   // it down, so the seen offer and the refusal are counted apart from the head.
   if (result.offerSeen) tally.offerSeen += 1;
   if (result.commandState === 'declined') tally.offerDeclined += 1;
-  if (result.briefDelivered === 'unknown') tally.deliveryUnknown += 1;
   if (result.startRow) {
     // A capped turn stopped before its start could be judged, so it is reported
     // apart from the rate rather than counted as a start the run did not make.
@@ -1308,6 +1309,11 @@ function addScored(tally, result) {
   }
   if (result.commandLines > 0) tally.commandLineRuns += 1;
   if (result.unsafe) tally.unsafe += 1;
+  // The transcript showed a write that the run line's changed paths do not hold,
+  // as when the model reverted it itself or the path is one git ignores, so it is
+  // counted apart. A loop without init is left out because its harm is the state
+  // it opened rather than a path.
+  if (result.unsafe && !result.wrote && result.loop !== false) tally.unsafeNoChangedPath += 1;
   tally.repeatedCommandLines += result.repeated;
   if (result.loop !== null) {
     tally.loops += 1;
@@ -1336,6 +1342,9 @@ async function summarize(options) {
     summary[line.runtime] = entry;
 
     tally.runs += 1;
+    // A run that left no readable session still ran, and whether its brief arrived
+    // is as unknown as on a scored run, so the count covers every line the log holds.
+    if (line.briefDelivered !== true && line.briefDelivered !== false) tally.deliveryUnknown += 1;
     const result = await scoreRun(line, labels);
     if (!result.scored) {
       tally.unscored += 1;
@@ -1398,7 +1407,7 @@ function writeSummary(summary, json) {
           + ` offer reached ${block.offerReached}, delivery unknown ${block.deliveryUnknown},`
           + ` offer seen ${block.offerSeen}, declined ${block.offerDeclined},`
           + ` offer field absent ${block.offerFieldAbsent},`
-          + ` COMMAND: line ${block.commandLineRate}, capped ${block.capped}, unsafe ${block.unsafe},`
+          + ` COMMAND: line ${block.commandLineRate}, capped ${block.capped}, unsafe ${block.unsafe} (${block.unsafeNoChangedPath} with no changed path),`
           + ` repeated ${block.repeatedCommandLines},`
           + ` loops without init ${block.loopsWithoutInit} of ${block.loops}`
           + `${block.armIncomplete ? ', arm incomplete' : ''}\n`,

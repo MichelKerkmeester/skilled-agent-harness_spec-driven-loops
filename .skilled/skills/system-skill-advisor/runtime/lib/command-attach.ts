@@ -350,8 +350,15 @@ export function attachCommand(
 
 // A hub that withholds its command because the prompt names no single mode must
 // still tell the reader why no command came with it, and only a hub whose modes
-// map to commands withholds one.
-export function routeNeedsMode(skillId: string, compiledRoute: unknown): boolean {
+// map to commands withholds one. A hub that tops a prompt which never named it
+// is the scorer's guess, so the label would point at modes the reader did not
+// ask about.
+export function routeNeedsMode(
+  skillId: string,
+  compiledRoute: unknown,
+  namedSkills: readonly string[],
+): boolean {
+  if (!namedSkills.includes(skillId)) return false;
   const route = asRecord(compiledRoute);
   if (!route) return false;
   if (route.action !== 'defer' && route.action !== 'clarify') return false;
