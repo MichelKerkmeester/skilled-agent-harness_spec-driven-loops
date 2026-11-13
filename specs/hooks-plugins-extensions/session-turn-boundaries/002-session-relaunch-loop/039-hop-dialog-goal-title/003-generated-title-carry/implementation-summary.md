@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-11-13T19:30:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Recorded the generated title fallback, its tests and the checks run in worktree 366"
-    next_safe_action: "Operator decides on merge and push of worktree 366"
+    next_safe_action: "None. Merged into main and pushed on 2026-11-13"
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/lib/context-usage.cjs", ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs", ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"]
     session_dedup:
@@ -81,7 +81,7 @@ The three tests were written before the source edit. `scratch/red.txt` shows 3 t
 
 Before the plan was built, the operator asked for a review by Fable 5.2 at medium effort through the second Claude account, read-only, with no implementing and no sub-agents. It found no defect for spaces in a title, because launch arguments are array-quoted. It found none for a title that changes between hops, because the stem in `SKILLED_LOOP_NAME` outranks the generated title from hop 2 on. It named one edge it could not confirm, recorded below as a limitation.
 
-The orchestrator ran the final checks in the worktree, and the code is committed as `7d6077678e` on branch `worktrees/366-hop-after-question-dialog`. It is not merged and not pushed. These documents are committed on the same branch.
+The orchestrator ran the final checks in the worktree, and the code is committed as `7d6077678e` on branch `worktrees/366-hop-after-question-dialog`. These documents are committed on the same branch, which was merged into main as `bc670ffc21` and pushed on 2026-11-13.
 
 The operator's answers on 2026-11-13, through the question tool: spec folder "C) Related: children 019 and 020 (Recommended)" and workspace "Same worktree 366 (Recommended)". The question stated the plan: fall back to Claude's generated title and reuse the existing numbering, so the next session is named `<title> (2)`, then `(3)`. The spec folder answer was replaced later that day by "Move to new packet 039 (Recommended)", because the goal of packet 038 was at 3,996 of its 4,000 characters and could not bind more children. These documents moved from `038-goal-and-workflow-resume/020-generated-title-carry` to this folder before they were committed, and the `Spec:` line of the code commit was reworded to match.
 <!-- /ANCHOR:how-delivered -->

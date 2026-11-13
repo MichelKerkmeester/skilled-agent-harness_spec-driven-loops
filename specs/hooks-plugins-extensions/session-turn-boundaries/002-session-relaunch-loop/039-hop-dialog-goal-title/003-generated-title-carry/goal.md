@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-11-13T19:30:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Recorded the generated title fallback, its tests and the checks run in worktree 366"
-    next_safe_action: "Operator decides on merge and push of worktree 366"
+    next_safe_action: "None. Merged into main and pushed on 2026-11-13"
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/lib/context-usage.cjs", ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"]
     session_dedup:
@@ -86,7 +86,7 @@ and findings belong here.
 | Packet documents | Done | 2026-11-13: spec, plan, tasks, criteria, summary and goal written from the diff and the saved evidence. Every criterion Met |
 | Validation | Done | 2026-11-13: `repair-derived.cjs --apply` re-derived the graph metadata, then `validate.sh ... --strict` printed `Errors: 0  Warnings: 0` and `RESULT: PASSED`. A first pass flagged AC-006 as an advisory for lacking a file:line citation, so the suite was rerun into `scratch/suite.txt` and cited |
 | Goal budget | Not applicable | `goal.cjs packet` prints `packet_durable_chars=2271` and `packet_budget=unknown`, as sibling 001 records for a phase child that is not itself a phase parent |
-| Merge and push | Not started | Waits on the operator. The documents are committed on the same branch |
+| Merge and push | Done | 2026-11-13: merged into main as `bc670ffc21` and pushed, on the operator's answers "Merge to main locally (Recommended)" and "Push after tests pass (Recommended)". The documents are committed on the same branch |
 
 ### Deviations and findings
 
