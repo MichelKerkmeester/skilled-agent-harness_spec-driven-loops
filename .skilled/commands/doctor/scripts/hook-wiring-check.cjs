@@ -237,7 +237,7 @@ function nodeFlagSkipsScript(flag) {
 }
 
 // Words that open a group or hand over the shell and leave the command after them.
-const COMMAND_PREFIXES = new Set(['{', 'exec']);
+const COMMAND_PREFIXES = new Set(['{', 'exec', 'command', 'nohup', 'time', 'then', 'do', 'else']);
 
 function isNodeExecutable(token) {
   return token === 'node' || token.endsWith('/node');

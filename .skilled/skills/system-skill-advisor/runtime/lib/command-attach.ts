@@ -289,7 +289,9 @@ const DEPTH_REQUEST = new RegExp(`\\b(?:${DEPTH_WORDING.map(escapePhrase).join('
 // Words alone cannot tell "make no changes to the files" from a change request
 // that says what to leave alone, so both read as no change: losing an offer
 // costs less than offering a mutating command on a prompt that ruled one out.
-export const NO_EDIT_REQUEST = /\b(no edits?|make no changes|no changes yet|without making changes|(?:do not|don't) (change|edit|modify|touch)|read-only only|no edits yet|only; do not|just show|just list)\b/;
+// A negated write verb counts only with an object that names nothing in
+// particular, because "don't add tools" limits a change and does not refuse it.
+export const NO_EDIT_REQUEST = /\b(no edits?|make no changes|no changes yet|without making changes|(?:do not|don't|dont) (?:make (?:any )?changes|change|edit|modify|touch|(?:create|write|add|delete|remove) (?:it|this|that|anything|any files?))|read-only only|no edits yet|only; do not|just show|just list)\b/;
 
 // Many keyboards type the contraction with a curly apostrophe, so the text is
 // folded to the straight form before the pattern reads it.

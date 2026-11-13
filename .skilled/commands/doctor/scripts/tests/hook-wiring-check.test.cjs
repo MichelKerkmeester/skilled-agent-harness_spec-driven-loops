@@ -230,6 +230,9 @@ for (const [label, build] of [
   ['the command runs in a subshell', (m) => `(node ${m})`],
   ['the command runs in a brace group', (m) => `{ node ${m}; }`],
   ['exec replaces the shell', (m) => `exec node ${m}`],
+  ['the command builtin starts node', (m) => `command node ${m}`],
+  ['node runs in a conditional', (m) => `if true; then node ${m}; fi`],
+  ['nohup starts node', (m) => `nohup node ${m}`],
   ['a background command comes first', (m) => `cd /tmp & node ${m}`],
   ['a backslash continues the line', (m) => `node \\\n${m}`],
 ]) {
