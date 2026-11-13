@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume"
     last_updated_at: "2026-11-13T09:07:30Z"
     last_updated_by: "orchestrator"
-    recent_action: "Planned children 009 to 017 from the hand-over gap research and bound them here"
-    next_safe_action: "Await the operator's greenlight, then build child 009"
+    recent_action: "Merged the packet into main and pushed it"
+    next_safe_action: "Ask the operator before removing worktree 363"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-038-goal-and-workflow-resume"
       parent_session_id: null
-    completion_pct: 47
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +45,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | One child per work package. Each code change lands with a test that failed first |
-| D2 | Children run one at a time in number order. `spec.md` lists the files several children change |
+| D2 | Children sharing a file run in number order, the rest in parallel. `spec.md` lists those files |
 | D3 | No child adds a module. Only 011, 012 and 015 touch the relaunch record, with optional keys |
 | D4 | The 2026-11-12 review's fixes for a cleared Claude goal, the shared goal off switch and the resend reminder are not applied |
 | D5 | Nothing is merged or pushed without the operator |
@@ -93,11 +93,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume --recursive --strict` prints `RESULT: PASSED` for the parent and all seventeen children
-- [ ] `rg -c '\| Unmet \|' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/*/acceptance-criteria.md` prints no line
-- [ ] `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0
-- [ ] `node --test .skilled/hooks/goal/**/*.test.cjs .skilled/hooks/goal/**/*.test.mjs` exits 0
-- [ ] `npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` exits 0
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume --recursive --strict` prints `RESULT: PASSED` for the parent and all seventeen children
+- [x] `rg -c '\| Unmet \|' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/*/acceptance-criteria.md` prints no line
+- [x] `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0
+- [x] `node --test .skilled/hooks/goal/**/*.test.cjs .skilled/hooks/goal/**/*.test.mjs` exits 0
+- [x] `npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` exits 0
 <!-- /ANCHOR:completion -->
 
 ---
@@ -132,7 +132,23 @@ and findings belong here.
 | Background worker across a hop (2026-11-13 live proof) | Done | 2026-11-13, live: a Claude sender started a node worker with an ampersand and ran prepare itself. Prepare exited 0 with the worker alive, the killer ended the sender 9 s later, and the worker ran on with parent pid 1 for 37 s more until the harness killed it. Evidence in scratch/live-hops-claude-2026-11-13/10-background-worker-orphaned |
 | Children 009 to 017 planned | Done | 2026-11-13: the operator asked for phases covering every recommendation, chose this packet as their home and said "Dont implement untill i give greenlight". `create.sh --phase --parent ... --with-goal --level 2` scaffolded nine children, and nine Opus sub-agents wrote spec, plan, tasks, criteria and goal, one child each. The orchestrator read every spec and task list, moved the harness note line into 009, gave research open question 2 to 014 and wrote the build order into `spec.md`. No code, hook, harness or playbook changed |
 | Operator answers for children 010, 011 and 015 | Done | 2026-11-13: "Refusal only" for a reused pid (010), "B: keep launch mode" for a live plan mode (011), "Accept the decline" for the descendant walk (015). Each child records its own answer |
-| Build of children 009 to 017 | Pending | Waits on the operator's greenlight |
+| Greenlight | Done | 2026-11-13, the operator's words: "Implement using deepseek v4.1 flash max cli opencode with opencode go provider, max parallel". The operator then chose "A) Create a git worktree" and "Parallel where no file is shared". Worktree `worktrees/363-hop-state-carry` from main `57411c2d6e`. Builders run on OpenCode 1.19.4 with `opencode-go/deepseek-v4.1-flash` at variant max, because OpenCode 2.2.7 lists no opencode-go provider |
+| Build of children 009 to 017 | Started | Three lanes: 009, 011, 012, 015, 016 in that order with 014 beside 012. 010 alone. 013 alone. 017 last |
+| Child 009 nudge and note lines | Done | 2026-11-13: built by DeepSeek V4.1 Flash max in two runs, the first cut off by a restart of the orchestrating session. Run by the orchestrator from the final tree: relaunch and OpenCode plugin suites 1489 of 1489, exit 0, 12 criteria Met, strict validation RESULT: PASSED. Commit 55e45b3cb2 |
+| Child 010 fan-out orphan liveness | Done | 2026-11-13: built by DeepSeek V4.1 Flash max in two runs, the first cut off by a restart of the orchestrating session. Run by the orchestrator from the final tree: the four named deep-loop suites 248 passed and 1 skipped, exit 0, the reproduction shows one live shim and the second runner at exit 3 with no `orphan_requeued` row, strict validation RESULT: PASSED. Commit 76f8260245 |
+| Child 013 live checks | Done | 2026-11-13, live on OpenCode 2.2.7 by an Opus sub-agent, every cited trace line opened by the orchestrator: a parent's `session.idle` arrives while its backgrounded sub-agent is busy, the child carries its parent id at the top level of the event, and a title can be set while the bridged client has no `update`. The operator answered "Amend scope (Recommended)": one `session.update` method on the bridge's client |
+| Child 011 permission mode carry | Done | 2026-11-13: built by DeepSeek V4.1 Flash max. The orchestrator ran the four live `claude -p` checks on Claude Code 2.1.323 and added the `default` spelling test first. The bypass rule stays the stricter one, because this machine's settings default to bypass. Commit 0e516a4ab6 |
+| Child 013 child gate and title | Done | 2026-11-13: built by DeepSeek V4.1 Flash max with the approved bridge method. A live claim seed on OpenCode 2.2.7 renamed a session through the bridged call. Commits 195f1d764c and fd8a5c38e0 |
+| Child 012 session name carry | Done | 2026-11-13: built by DeepSeek V4.1 Flash max in 75 minutes. A print-mode probe showed a launch name writes a custom title entry. Commit 76f1ebe1b6 |
+| Child 014 Stop notice and crons | Done | 2026-11-13: built by DeepSeek V4.1 Flash max. A live hop in a throwaway checkout confirmed that a scheduled task and the todo list end with the session. Commit 2b38c908a4 |
+| Suites after children 009 to 014 | Done | 2026-11-13, run by the orchestrator from the tree at 2b38c908a4: relaunch and OpenCode plugin suites 1521 of 1521, exit 0, twice in a row |
+| Builder route changed | Done | 2026-11-13: the operator said "Try llmgateway dsh" and "For deepseek flash". A trial brief for phase 016's harness copy ran through `dsh` on the LLM Gateway route in four minutes, exit 0 with a `completed` final event. Children 015 to 017 are built through dsh with one small change per brief |
+| Child 015 Pi mode and descendant walk | Done | 2026-11-13: built through five `dsh` briefs on DeepSeek V4.1 Flash, each diff read and the gates rerun by the orchestrator. One live Pi 1.5.2 launch with `--plan` started in Plan mode before the build. The descendant walk is declined as ADR-002. Pi adapter suite 62 of 62, relaunch and OpenCode plugin suites 1524 of 1524. Commit 10e61ef8d2 |
+| Child 016 receiver claim under a goal | Done | 2026-11-13: ten live hops on Claude Code 2.1.323 under a goal that allows other work, run by an Opus sub-agent and recounted by the orchestrator. Ten of ten counted receivers claimed and closed their note, so the gate closed the phase with no code change and the claim line is waived by ADR-001. Four further attempts never hopped because the sender opened a question dialog after `prepare`. Commit f7b6a3973c |
+| Closure statements of 011, 013 and 014 | Done | 2026-11-13: each read No while every row was Met. Corrected to Yes, strict validation passed for all three. Commit 1cb78d9b66 |
+| Child 017 hand-over docs and harness | Done | 2026-11-13: README sections and eight playbook checks written through `dsh` briefs and checked against the source, the harness late write fixed test first, two live checks on Claude Code 2.1.323 by an Opus sub-agent. The planned look with the old script did not reproduce the late write, and three of child 016's ten hops had shown it. Commits 06f67b755c and 02f7b9a494 |
+| Five criteria after children 009 to 017 | Done | 2026-11-13, run by the orchestrator from the worktree at 02f7b9a494 plus the parent's own rows: recursive strict validation `RESULT: PASSED` for the parent and all seventeen children, no `Unmet` row in any child, relaunch and OpenCode plugin suites 1524 of 1524, goal suites 200 of 200, Pi adapter suite 62 of 62, each exit 0. Nothing is merged or pushed |
+| Merge and push | Done | 2026-11-13: the operator answered "Merge to main and push". Branch `worktrees/363-hop-state-carry` merged into main as merge commit 65036f36ce. Rerun on the merged tree before the push: recursive strict validation `RESULT: PASSED` 18 times, no `Unmet` row, relaunch and OpenCode plugin suites 1524 of 1524, goal suites 200 of 200, Pi adapter suite 62 of 62, each exit 0. Main pushed to origin from 57411c2d6e to 65036f36ce, together with f151885f41 and 1ed484f3f6 from other sessions |
 
 ### Deviations and findings
 
@@ -145,4 +161,6 @@ and findings belong here.
 | Scope added by the review | Phase 003 gained one search per `prepare`, phase 006 the missing-checkout message and phase 004 a master switch guard test. Phase 005 gained the playbook suite count. None has a new requirement id. Each is recorded in its child's implementation summary |
 | Not run live | No hop was run on any runtime before 2026-11-13. The live rows above replace this for Claude Code |
 | Goal amended for children 009 to 017 | 2026-11-13: the objective gained the state a hop drops. D1 lost "no file is changed by two phases", because four sources are each changed by up to four children. D2 now orders all children by number. D3 allows three optional record keys. D5 no longer names worktree 358, which is removed. D6 is new. The five criteria are open again, and the first counts seventeen children |
+| D2 amended at the greenlight | 2026-11-13: the operator asked for max parallel and chose parallel lanes where no file is shared, so D2 no longer says one at a time |
+| Killer test failed once in a full run | 2026-11-13: `killer keeps the record armed when the target exits during its grace period` (`.skilled/hooks/session-relaunch/tests/killer.test.cjs:775`) failed once in one full run with a missing `target-signal` file, then passed five times alone and in two more full runs. Neither the test nor `lib/killer.cjs` is changed by any child. Suspected cause, not confirmed: its 450 ms timeout races the target under load. Out of scope here, left unchanged |
 <!-- /ANCHOR:log -->

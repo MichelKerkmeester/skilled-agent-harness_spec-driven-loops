@@ -1,0 +1,4 @@
+Baseline on the post-011 tree, 2026-11-13
+Command: env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/*.test.cjs
+Result: tests 915, pass 915, fail 0, cancelled 0, skipped 0, exit 0
+Duration: 137646 ms

@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/doc-validation-tooling/005-router-empty-block-capture",
+  "description": "Stop the router block patterns from capturing past a one-line empty INTENT_SIGNALS or RESOURCE_MAP block",
+  "keywords": [
+    "stop",
+    "router",
+    "block",
+    "patterns",
+    "capturing",
+    "past",
+    "one-line",
+    "empty"
+  ],
+  "lastUpdated": "2026-11-13T13:57:59.585Z",
+  "specId": "005",
+  "folderSlug": "router-empty-block-capture",
+  "parentChain": [
+    "sk-doc",
+    "doc-validation-tooling"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "13-11-26_13-03__replaced-the-lazy-router-block-pattern-at-seven.md",
+    "13-11-26_14-57__the-router-empty-block-capture-fix-was-committed.md",
+    "13-11-26_14-57__the-router-empty-block-capture-fix-was-committed.md"
+  ]
+}

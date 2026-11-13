@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers",
+  "description": "Let the route sync check, the route-gold check and one advisor test run in a host that has no Skilled spec tree",
+  "keywords": [
+    "let",
+    "route",
+    "sync",
+    "check",
+    "route-gold",
+    "one",
+    "advisor",
+    "test",
+    "run",
+    "host",
+    "skilled",
+    "spec",
+    "tree"
+  ],
+  "lastUpdated": "2026-11-13T18:46:08.257Z",
+  "specId": "007",
+  "folderSlug": "host-spec-tree-readers",
+  "parentChain": [
+    "sk-doc",
+    "hub-routing-and-surfaces"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -36,7 +36,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -53,7 +53,11 @@
       ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
       ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs",
       ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-decline-manual.test.cjs",
-      ".opencode/plugins/session-relaunch.js"
+      "scratch/red.txt",
+      "scratch/green.txt",
+      ".opencode/plugins/session-relaunch.js",
+      "scratch/baseline.txt",
+      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs"
     ],
     "entities": [
       {
@@ -147,9 +151,33 @@
         "source": "derived"
       },
       {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
         "name": "session-relaunch.js",
         "kind": "code",
         "path": ".opencode/plugins/session-relaunch.js",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "stop-arm.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
         "source": "derived"
       },
       {
@@ -175,35 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Claude",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A Claude session renamed with `/rename` loses that name on a hop",
     "created_at": "2026-11-13T08:49:34Z",
-    "last_save_at": "2026-11-13T08:59:08.197Z",
+    "last_save_at": "2026-11-13T11:45:44.995Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:054e170bc3d8fe2f1de9a01402f3e78c465e61b393f631e894b46ee6fb6d25fc",
+    "source_fingerprint": "sha256:4701819ea3fc3bf32a07c30d718766a82d5b7a1e9de7e5d10b871d84c63b4722",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0168ce6b14ccd1d496d463e55775dbe975e7b4b11c8b11a3051fc80b01bad4cc",
+      "spec.md": "f03405f29c060015e1416925e513638f66e4e4fce75e97205d858ff48a40e0cb",
       "plan.md": "406ac6aee3e29661829633f15e136cd14da409a255a63f910adb31ab17d4d5bd",
-      "tasks.md": "cb6ebf1f22b16f2f6d138dd1e9034f6749ae557e57aa6a219b200a54ea712891",
-      "implementation-summary.md": "d1137793f9e8788ba5cc3cc83b10d7baf1b1a7c0c179c9b419214ecd05f93d63"
+      "tasks.md": "60ae8b3ff6e5c492171edff3e0805d7b1d915aac9b1f6bd37cc77047cf9239a2",
+      "implementation-summary.md": "980040c66bc99df793c8cd923c4eb8d91b848d3011538294d9cb892ab77e1bdc"
     },
     "last_active_at": null
   }

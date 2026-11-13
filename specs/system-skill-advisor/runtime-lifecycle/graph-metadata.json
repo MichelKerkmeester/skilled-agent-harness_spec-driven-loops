@@ -8,7 +8,8 @@
     "system-skill-advisor/runtime-lifecycle/002-launcher-test-bootstrap-guard",
     "system-skill-advisor/runtime-lifecycle/003-model-server-lifecycle",
     "system-skill-advisor/runtime-lifecycle/004-defect-and-hardening-fixes",
-    "system-skill-advisor/runtime-lifecycle/005-build-freshness-record"
+    "system-skill-advisor/runtime-lifecycle/005-build-freshness-record",
+    "system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution"
   ],
   "manual": {
     "depends_on": [],

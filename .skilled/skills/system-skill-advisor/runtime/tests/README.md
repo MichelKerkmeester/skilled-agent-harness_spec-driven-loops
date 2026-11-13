@@ -58,7 +58,7 @@ tests/
 +-- cache/                   # Cache behavior coverage
 +-- compat/                  # Compatibility contract checks
 +-- fixtures/                # Prompt, graph and routing fixtures
-+-- helpers/                 # Test-only helpers (env snapshot and restore)
++-- helpers/                 # Test-only helpers (env snapshot, activation-matrix evidence)
 +-- handlers/                # Handler tests
 +-- hooks/                   # Hook integration tests
 +-- legacy/                  # Legacy compatibility coverage

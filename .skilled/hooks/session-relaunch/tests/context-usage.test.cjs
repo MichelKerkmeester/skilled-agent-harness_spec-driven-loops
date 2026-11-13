@@ -436,13 +436,13 @@ test('readClaudeSettings takes a later /model switch and drops the old turn effo
     claudeAssistant('claude-sonnet-5-5', 'low'),
     ...claudeLocalCommand('model', 'claude-opus-5-5', MODEL_SET),
   ]);
-  assert.deepEqual(readClaudeSettings(logPath), { model: 'claude-opus-5-5', effort: '' });
+  assert.deepEqual(readClaudeSettings(logPath), { model: 'claude-opus-5-5', effort: '', name: '' });
 
   const sameModel = writeClaudeLog(t, [
     claudeAssistant('claude-sonnet-5-5', 'low'),
     ...claudeLocalCommand('model', 'claude-sonnet-5-5', 'Set model to `Sonnet 5.5` and saved as your default for new sessions'),
   ]);
-  assert.deepEqual(readClaudeSettings(sameModel), { model: 'claude-sonnet-5-5', effort: 'low' });
+  assert.deepEqual(readClaudeSettings(sameModel), { model: 'claude-sonnet-5-5', effort: 'low', name: '' });
 });
 
 test('readClaudeSettings pairs a later /model with a later /effort, in either order', (t) => {
@@ -451,14 +451,14 @@ test('readClaudeSettings pairs a later /model with a later /effort, in either or
     ...claudeLocalCommand('model', 'claude-opus-5-5', MODEL_SET),
     ...claudeLocalCommand('effort', '', EFFORT_SET),
   ]);
-  assert.deepEqual(readClaudeSettings(modelFirst), { model: 'claude-opus-5-5', effort: 'medium' });
+  assert.deepEqual(readClaudeSettings(modelFirst), { model: 'claude-opus-5-5', effort: 'medium', name: '' });
 
   const effortFirst = writeClaudeLog(t, [
     claudeAssistant('claude-sonnet-5-5', 'low'),
     ...claudeLocalCommand('effort', 'medium', 'Set effort level to medium (this session only): Balanced approach'),
     ...claudeLocalCommand('model', 'claude-opus-5-5', MODEL_SET),
   ]);
-  assert.deepEqual(readClaudeSettings(effortFirst), { model: 'claude-opus-5-5', effort: 'medium' });
+  assert.deepEqual(readClaudeSettings(effortFirst), { model: 'claude-opus-5-5', effort: 'medium', name: '' });
 });
 
 test('readClaudeSettings lets a turn after the switch speak for itself', (t) => {
@@ -467,7 +467,7 @@ test('readClaudeSettings lets a turn after the switch speak for itself', (t) => 
     ...claudeLocalCommand('model', 'claude-opus-5-5', MODEL_SET),
     claudeAssistant('claude-opus-5-5', 'high'),
   ]);
-  assert.deepEqual(readClaudeSettings(logPath), { model: 'claude-opus-5-5', effort: 'high' });
+  assert.deepEqual(readClaudeSettings(logPath), { model: 'claude-opus-5-5', effort: 'high', name: '' });
 });
 
 test('readClaudeSettings ignores a cancelled switch and proves no model from a picker name', (t) => {
@@ -475,7 +475,7 @@ test('readClaudeSettings ignores a cancelled switch and proves no model from a p
     claudeAssistant('claude-sonnet-5-5', 'low'),
     ...claudeLocalCommand('effort', '', 'Cancelled'),
   ]);
-  assert.deepEqual(readClaudeSettings(cancelled), { model: 'claude-sonnet-5-5', effort: 'low' });
+  assert.deepEqual(readClaudeSettings(cancelled), { model: 'claude-sonnet-5-5', effort: 'low', name: '' });
 
   // The picker leaves the arguments empty and names the model for display only, so the
   // switch is proven but the new id is not, and the old pair no longer describes the session.
@@ -483,11 +483,96 @@ test('readClaudeSettings ignores a cancelled switch and proves no model from a p
     claudeAssistant('claude-sonnet-5-5', 'low'),
     ...claudeLocalCommand('model', '', MODEL_SET),
   ]);
-  assert.deepEqual(readClaudeSettings(picker), { model: '', effort: '' });
+  assert.deepEqual(readClaudeSettings(picker), { model: '', effort: '', name: '' });
 
   const pickerId = writeClaudeLog(t, [
     claudeAssistant('claude-sonnet-5-5', 'low'),
     ...claudeLocalCommand('model', '', 'Set model to `claude-opus-5-5` and saved as your default for new sessions'),
   ]);
-  assert.deepEqual(readClaudeSettings(pickerId), { model: 'claude-opus-5-5', effort: '' });
+  assert.deepEqual(readClaudeSettings(pickerId), { model: 'claude-opus-5-5', effort: '', name: '' });
+});
+
+// A /rename is written as a custom-title entry, and its position is independent of the
+// assistant turns: it can land before the last turn, so it needs its own tail search.
+test('readClaudeSettings returns the last custom title', (t) => {
+  const logPath = writeClaudeLog(t, [
+    { type: 'custom-title', customTitle: 'first title' },
+    claudeAssistant('claude-sonnet-5-5', 'low'),
+    { type: 'custom-title', customTitle: 'second title' },
+    claudeAssistant('claude-opus-5-5', 'high'),
+  ]);
+  assert.deepEqual(readClaudeSettings(logPath), {
+    model: 'claude-opus-5-5',
+    effort: 'high',
+    name: 'second title',
+  });
+
+  // A log that holds only a title still proves the name, so the caller gets an object.
+  const titleOnly = writeClaudeLog(t, [
+    { type: 'custom-title', customTitle: 'only title' },
+  ]);
+  assert.deepEqual(readClaudeSettings(titleOnly), {
+    model: '',
+    effort: '',
+    name: 'only title',
+  });
+});
+
+// A session nobody named still has the title Claude generated for it. That title is reported
+// apart from the name, so a caller can rank a launch name above it.
+test('readClaudeSettings returns the last generated title beside the name', (t) => {
+  const logPath = writeClaudeLog(t, [
+    { type: 'ai-title', aiTitle: 'first generated' },
+    claudeAssistant('claude-opus-5-5', 'high'),
+    { type: 'ai-title', aiTitle: 'second generated' },
+  ]);
+  assert.deepEqual(readClaudeSettings(logPath), {
+    model: 'claude-opus-5-5',
+    effort: 'high',
+    name: '',
+    generatedName: 'second generated',
+  });
+
+  const renamed = writeClaudeLog(t, [
+    { type: 'custom-title', customTitle: 'renamed' },
+    { type: 'ai-title', aiTitle: 'generated later' },
+  ]);
+  assert.deepEqual(readClaudeSettings(renamed), {
+    model: '',
+    effort: '',
+    name: 'renamed',
+    generatedName: 'generated later',
+  });
+
+  // A log that holds only a generated title still proves it, so the caller gets an object.
+  const titleOnly = writeClaudeLog(t, [
+    { type: 'ai-title', aiTitle: '  only generated  ' },
+    { type: 'ai-title', aiTitle: '   ' },
+  ]);
+  assert.deepEqual(readClaudeSettings(titleOnly), {
+    model: '',
+    effort: '',
+    name: '',
+    generatedName: 'only generated',
+  });
+});
+
+test('readClaudeSettings finds a custom title past the default tail', (t) => {
+  const logPath = writeClaudeLog(t, [
+    { type: 'custom-title', customTitle: 'early title' },
+    { type: 'user', message: { content: 'x'.repeat(400000) } },
+    claudeAssistant('claude-opus-5-5', 'high'),
+  ]);
+  assert.equal(readClaudeSettings(logPath).name, 'early title');
+});
+
+test('readClaudeSettings returns an empty name when the log holds no title', (t) => {
+  const logPath = writeClaudeLog(t, [
+    claudeAssistant('claude-opus-5-5', 'high'),
+  ]);
+  assert.deepEqual(readClaudeSettings(logPath), {
+    model: 'claude-opus-5-5',
+    effort: 'high',
+    name: '',
+  });
 });

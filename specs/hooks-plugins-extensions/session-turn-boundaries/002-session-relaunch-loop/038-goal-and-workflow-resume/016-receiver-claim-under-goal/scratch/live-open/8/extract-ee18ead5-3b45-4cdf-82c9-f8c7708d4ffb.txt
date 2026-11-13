@@ -1,0 +1,7 @@
+# ee18ead5-3b45-4cdf-82c9-f8c7708d4ffb
+line=15 ts=2026-11-13T12:33:09.041Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Open work keeper\n\nPacket: specs/"
+line=17 ts=2026-11-13T12:33:09.043Z user_prompt#1 chars=4118 head="<command-name>/goal</command-name>\n            <command-message>goal</command-me"
+line=18 ts=2026-11-13T12:33:09.043Z user_prompt#2 chars=4045 head="<local-command-stdout>Goal set: # Goal: Open work keeper\n\nPacket: specs/demo/001"
+line=19 ts=2026-11-13T12:33:09.042Z user_prompt#3 chars=4422 head="A session-scoped Stop hook is now active with condition: \"# Goal: Open work keep"
+line=41 ts=2026-11-13T12:33:21.743Z tool_use Bash {"command":"find . -name 'never-created-completion.flag' -not -path './node_modules/*' 2>/dev/null | head; echo \"exit=$?\"; pwd; ls specs/demo/001-demo 2>&1 | head","description":"Look for the comple
+line=71 ts=2026-11-13T12:33:30.797Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Open work keeper\n\nPacket: specs/"

@@ -109,6 +109,7 @@ function handoffText(
   status = 'open',
   specFolder = SPEC_FOLDER,
   claimedBy,
+  runningWorkersLine = 'Running workers: none',
 ) {
   return [
     '---',
@@ -129,6 +130,7 @@ function handoffText(
     'Implement the core and adapters.',
     '## In-flight state',
     'No child process is running.',
+    ...(runningWorkersLine === null ? [] : [runningWorkersLine]),
   ].join('\n');
 }
 
@@ -149,10 +151,11 @@ function writeHandoff(sandbox, {
   specFolder = SPEC_FOLDER,
   claimedBy,
   createSpecFolder = true,
+  runningWorkersLine = 'Running workers: none',
 } = {}) {
   const handoffPath = path.join(handoffDirectory(sandbox), fileName);
   fs.mkdirSync(path.dirname(handoffPath), { recursive: true });
-  fs.writeFileSync(handoffPath, handoffText(status, specFolder, claimedBy));
+  fs.writeFileSync(handoffPath, handoffText(status, specFolder, claimedBy, runningWorkersLine));
   // prepare and keep refuse a packet the repository does not hold, so a note names a real one.
   if (createSpecFolder && core.validSpecFolder(specFolder)) {
     fs.mkdirSync(path.join(sandbox.repoRoot, specFolder), { recursive: true });
@@ -658,6 +661,64 @@ test('prepare exits two for an invalid handoff note', (t) => {
   const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
   assert.equal(result.status, 2, result.stderr);
   assert.match(result.stderr, /handoff status must be open, found claimed/);
+});
+
+test('prepare exits two for a note with no Running workers line', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox, { runningWorkersLine: null });
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = String(process.pid);
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.equal(result.status, 2, result.stderr);
+  assert.match(result.stderr, /Running workers:/);
+  assert.equal(fs.existsSync(relaunchPath(sandbox)), false);
+});
+
+test('prepare refuses a Running workers line with neither none nor a pid', (t) => {
+  for (const runningWorkersLine of ['Running workers:', 'Running workers: some job']) {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox, { runningWorkersLine });
+    sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+    sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+    sandbox.env.CLAUDE_PID = String(process.pid);
+
+    const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+    assert.equal(result.status, 2, `${runningWorkersLine}: ${result.stdout}`);
+    assert.match(result.stderr, /Running workers:/);
+    assert.equal(fs.existsSync(relaunchPath(sandbox)), false);
+  }
+});
+
+test('prepare accepts Running workers none and a line that names a pid', (t) => {
+  for (const runningWorkersLine of [
+    'Running workers: none',
+    '- Running workers: pid 4242 log /tmp/w.log collect read the log',
+  ]) {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox, { runningWorkersLine });
+    sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+    sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+    sandbox.env.CLAUDE_PID = String(process.pid);
+
+    const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+    assert.equal(result.status, 0, `${runningWorkersLine}: ${result.stderr}`);
+    assert.equal(JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8')).status, 'pending');
+  }
+});
+
+test('keep accepts a note with no Running workers line', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox, { runningWorkersLine: null });
+
+  const result = runCli(sandbox, ['keep', '--handoff', handoffPath, '--session', SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /note kept/);
 });
 
 test('prepare exits two for an invalid CLAUDE_PID under the loop', (t) => {
@@ -2674,6 +2735,39 @@ test('prepare under the loop records the goal packet and still arms the record',
   assert.equal(JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8')).status, 'pending');
 });
 
+// A Claude sender that never had a goal set still hands on the unfinished goal of the packet
+// its note names, so the receiver starts on it without the operator typing it again.
+test('prepare gives a Claude sender with no goal the unfinished goal of the note packet', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const manifest = path.join(
+    sandbox.repoRoot, '.skilled/skills/system-spec-kit/templates/spec-kit-docs.json',
+  );
+  fs.mkdirSync(path.dirname(manifest), { recursive: true });
+  fs.writeFileSync(manifest, JSON.stringify({ goalDurableBudget: { errorChars: 4000 } }));
+  const goalPath = path.join(sandbox.repoRoot, GOAL_PACKET, 'goal.md');
+  const goalText = (box) => [
+    GOAL_HEADLINE, '', '<!-- ANCHOR:completion -->', `- [${box}] the suite exits 0`,
+    '<!-- /ANCHOR:completion -->', '', '<!-- ANCHOR:log -->', '<!-- /ANCHOR:log -->', '',
+  ].join('\n');
+  fs.writeFileSync(goalPath, goalText(' '));
+  writeClaudeGoalLog(sandbox, [{ type: 'user', message: { content: 'hello' } }]);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SKILLED_LOOP_RUNTIME = 'claude';
+  sandbox.env.CLAUDE_PID = String(process.pid);
+  const prepare = () => runCli(sandbox, ['prepare', '--handoff', handoffPath, '--session', SESSION_ID]);
+
+  const open = prepare();
+  assert.equal(open.status, 0, open.stderr);
+  assert.equal(noteGoalPacket(handoffPath), GOAL_PACKET);
+
+  // Once every criterion is ticked the packet has no work left to start a session on.
+  fs.writeFileSync(goalPath, goalText('x'));
+  const finished = prepare();
+  assert.equal(finished.status, 0, finished.stderr);
+  assert.equal(noteGoalPacket(handoffPath), undefined);
+});
+
 // The wrapper starts the receiver on the model and effort the sender was using, so the CLI
 // reads them from the sender's own session state when it prepares the hand-over and keeps
 // them on the relaunch record, never in the note a reader could edit.
@@ -2724,6 +2818,65 @@ test('prepare falls back to the response model when the Claude entry names no re
 
   assert.equal(record.model, 'claude-sonnet-5-5');
   assert.equal(Object.hasOwn(record, 'effort'), false);
+});
+
+// The live title is what the operator last called this session, so it beats the name the
+// wrapper exported at launch, which only repeats the launch line.
+test('prepare records the Claude custom title over SKILLED_LOOP_NAME', (t) => {
+  const sandbox = createSandbox(t);
+  writeClaudeGoalLog(sandbox, [
+    { type: 'assistant', requestedModel: 'claude-sonnet-5-5', effort: 'high' },
+    { type: 'custom-title', customTitle: 'renamed' },
+  ]);
+  sandbox.env.SKILLED_LOOP_NAME = 'launch';
+
+  const record = prepareUnderLoop(sandbox, 'claude');
+
+  assert.equal(record.name, 'renamed');
+});
+
+test('prepare keeps SKILLED_LOOP_NAME when the log holds no title', (t) => {
+  const sandbox = createSandbox(t);
+  writeClaudeGoalLog(sandbox, [
+    { type: 'assistant', requestedModel: 'claude-sonnet-5-5', effort: 'high' },
+  ]);
+  sandbox.env.SKILLED_LOOP_NAME = 'launch';
+
+  const record = prepareUnderLoop(sandbox, 'claude');
+
+  assert.equal(record.name, 'launch');
+});
+
+// A session started with no name and never renamed has only the title Claude generated.
+// Without it the receiver gets a new generated title and the operator loses track of which
+// session continues which.
+test('prepare falls back to the Claude generated title when nothing else names the session', (t) => {
+  const sandbox = createSandbox(t);
+  writeClaudeGoalLog(sandbox, [
+    { type: 'assistant', requestedModel: 'claude-sonnet-5-5', effort: 'high' },
+    { type: 'ai-title', aiTitle: 'hop state handoff' },
+  ]);
+
+  const record = prepareUnderLoop(sandbox, 'claude');
+
+  assert.equal(record.name, 'hop state handoff');
+});
+
+test('prepare ranks a launch name and a custom title above the generated title', (t) => {
+  const launched = createSandbox(t);
+  writeClaudeGoalLog(launched, [
+    { type: 'assistant', requestedModel: 'claude-sonnet-5-5', effort: 'high' },
+    { type: 'ai-title', aiTitle: 'generated' },
+  ]);
+  launched.env.SKILLED_LOOP_NAME = 'launch';
+  assert.equal(prepareUnderLoop(launched, 'claude').name, 'launch');
+
+  const renamed = createSandbox(t);
+  writeClaudeGoalLog(renamed, [
+    { type: 'custom-title', customTitle: 'renamed' },
+    { type: 'ai-title', aiTitle: 'generated' },
+  ]);
+  assert.equal(prepareUnderLoop(renamed, 'claude').name, 'renamed');
 });
 
 test('prepare records the Codex sender latest turn model and effort', (t) => {
@@ -2837,6 +2990,69 @@ test('consume reports the model and effort the record holds and nothing it lacks
     model: 'gpt-6-luna',
     provider: 'openai',
     effort: 'high',
+  });
+});
+
+test('consume reports the permission mode the record holds', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'armed',
+    handoff: handoffPath,
+    permissionMode: 'acceptEdits',
+  });
+
+  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout), {
+    handoff: handoffPath,
+    spec_folder: SPEC_FOLDER,
+    note: 'open',
+    permissionMode: 'acceptEdits',
+  });
+});
+
+test('consume prints the recorded Pi mode', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'armed',
+    handoff: handoffPath,
+    mode: 'plan',
+  });
+
+  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout), {
+    handoff: handoffPath,
+    spec_folder: SPEC_FOLDER,
+    note: 'open',
+    mode: 'plan',
+  });
+});
+
+test('consume reports the record name', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'armed',
+    handoff: handoffPath,
+    name: 'Work',
+  });
+
+  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout), {
+    handoff: handoffPath,
+    spec_folder: SPEC_FOLDER,
+    note: 'open',
+    name: 'Work',
   });
 });
 

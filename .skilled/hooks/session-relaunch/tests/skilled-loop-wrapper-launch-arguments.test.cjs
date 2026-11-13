@@ -10,7 +10,8 @@ const path = require('node:path');
 const { RUNTIMES } = require('../lib/relaunch-core.cjs');
 const {
   SEED, SPEC_FOLDER, SPEC_FOLDER_SUFFIX, SKIP_SPEC_FOLDER_SUFFIX, LOOP_ID_PATTERN,
-  expectedClaudeManualCommand, createSandbox, installRuntimeStub, writeSpecFolderNote,
+  RUNTIME_SOURCE, expectedClaudeManualCommand, createSandbox, installRuntimeStub,
+  writeSpecFolderNote,
   runWrapperScript, runWrapper, handOverLines, installWrapperCopyWithChangedSuffix,
   installWrapperWithThrowingSuffix, installMalformedConsumeStub, readRecords, readLog,
 } = require('./skilled-loop-wrapper-harness.cjs');
@@ -27,7 +28,7 @@ test('second invocation uses only the seed and name, recorded cwd, and the same 
   assert.deepEqual(records[1].args, [
     SEED + ` ${handoffPath}`,
     '--name',
-    'X',
+    'X (2)',
   ]);
   assert.equal(records[1].cwd, fs.realpathSync(sandbox.recordedCwd));
   assert.equal(records[0].env.SKILLED_LOOP_ID, records[1].env.SKILLED_LOOP_ID);
@@ -53,7 +54,7 @@ function assertHopReplaysArguments(t, runtime, args, expectedHopArgs) {
 test('Claude first launch arguments are replayed with --permission-mode and --add-dir', (t) => {
   assertHopReplaysArguments(t, 'claude', [
     '--add-dir', '/tmp', '--permission-mode', 'plan', 'first prompt',
-  ], (seed) => [seed, '--add-dir', '/tmp', '--permission-mode', 'plan']);
+  ], (seed) => ['--permission-mode', 'plan', seed, '--add-dir', '/tmp']);
 });
 
 test('Pi first launch arguments are replayed', (t) => {
@@ -93,7 +94,7 @@ test('Devin first launch arguments are replayed', (t) => {
 test('deny list flags are absent from a hop', (t) => {
   const cases = [
     ['claude', ['--permission-mode', 'plan', '--session-id', 's1', '--continue', '--cloud', 'first prompt'],
-      (seed) => [seed, '--permission-mode', 'plan']],
+      (seed) => ['--permission-mode', 'plan', seed]],
     ['pi', ['--no-mcp', '--session', 's1', '--continue', 'first prompt'],
       (seed) => [seed, '--no-mcp']],
     ['opencode', ['--auto', '--session', 's1', '--continue', 'first prompt'],
@@ -120,7 +121,7 @@ test('deny list flags are absent from a hop', (t) => {
 test('a hop keeps a dash-leading value and stops at the separator', (t) => {
   assertHopReplaysArguments(t, 'claude', [
     '--append-system-prompt', '-x', '--permission-mode', 'plan', '--', 'first prompt',
-  ], (seed) => [seed, '--append-system-prompt', '-x', '--permission-mode', 'plan']);
+  ], (seed) => ['--permission-mode', 'plan', seed, '--append-system-prompt', '-x']);
 });
 
 test('an optional value never swallows the next option', (t) => {
@@ -180,7 +181,7 @@ test('a hop replaces the start prompt and the record settings', (t) => {
   assert.equal(args.includes('first prompt'), false);
   assert.ok(args.includes('sonnet'));
   assert.ok(args.includes('high'));
-  assert.ok(args.includes('launch name'));
+  assert.ok(args.includes('launch name (2)'));
   assert.ok(args.includes('--permission-mode'));
 });
 
@@ -404,7 +405,7 @@ test('Claude carries --model value before the seed and name on relaunch', (t) =>
   const seed = `${SEED} ${handoffPath}`;
   assert.deepEqual(records[0].args, firstArguments);
   assert.deepEqual(records[1].args, [
-    '--model', 'selected-model', seed, '--name', 'named',
+    '--model', 'selected-model', seed, '--name', 'named (2)',
   ]);
   assert.equal(records[0].env.SKILLED_LOOP_MODEL, 'selected-model');
   assert.equal(records[1].env.SKILLED_LOOP_MODEL, 'selected-model');
@@ -516,7 +517,7 @@ test('pi relaunch carries provider and model before name and seed', (t) => {
   assert.deepEqual(records[0].args, firstArguments);
   assert.equal(records[1].runtime, 'pi');
   assert.deepEqual(records[1].args, [
-    '--provider', 'openai', '--model', 'm', '-ne', '-e', extensionPath, '--name', 'N', seed,
+    '--provider', 'openai', '--model', 'm', '-ne', '-e', extensionPath, '--name', 'N (2)', seed,
   ]);
   assert.equal(records[1].cwd, fs.realpathSync(sandbox.recordedCwd));
   assert.notEqual(records[1].cwd, path.resolve(sandbox.repoRoot));
@@ -557,4 +558,165 @@ test('Pi normalizes extension aliases and preserves selection order on relaunch'
     '-e', absoluteExtension,
     `${SEED} ${handoffPath}`,
   ]);
+});
+
+// The shared runtime stub arms a record from the fields its environment names. This adds the
+// consumed mode to that same stub, so each runtime invocation keeps a single Node process
+// inside the wrapper's launch window.
+function installPiModeStub(sandbox, mode) {
+  const stubPath = path.join(sandbox.binDir, 'pi');
+  const source = fs.readFileSync(stubPath, 'utf8').replace(
+    RUNTIME_SOURCE,
+    `${RUNTIME_SOURCE}
+if (process.env.RECORD_MODE) {
+  const modePath = path.join(
+    process.env.XDG_RUNTIME_DIR,
+    "skilled-relaunch",
+    "relaunch-" + process.env.SKILLED_LOOP_ID + ".json",
+  );
+  if (fs.existsSync(modePath)) {
+    const modeRecord = JSON.parse(fs.readFileSync(modePath, "utf8"));
+    modeRecord.mode = process.env.RECORD_MODE;
+    fs.writeFileSync(modePath, JSON.stringify(modeRecord));
+  }
+}
+`,
+  );
+  fs.writeFileSync(stubPath, source, { mode: 0o755 });
+  sandbox.env.RECORD_MODE = mode;
+}
+
+test('pi relaunch replaces the launch mode flag with the consumed mode', (t) => {
+  const cases = [
+    { consumedMode: 'plan', presentFlag: '--plan', absentFlag: '--build' },
+    { consumedMode: 'auto', presentFlag: '--build', absentFlag: '--plan' },
+  ];
+
+  for (const { consumedMode, presentFlag, absentFlag } of cases) {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+    installPiModeStub(sandbox, consumedMode);
+    const result = runWrapper(sandbox, ['pi', '--build', 'first prompt']);
+    assert.equal(result.status, 0, `${consumedMode}: ${result.stderr}`);
+
+    const records = readRecords(recordPath);
+    assert.equal(records.length, 2, consumedMode);
+    assert.deepEqual(records[0].args, ['--build', 'first prompt'], consumedMode);
+    const hopArguments = records[1].args;
+    const hopLine = hopArguments.join(' ');
+    assert.equal(
+      hopArguments.filter((argument) => argument === presentFlag).length,
+      1,
+      `${consumedMode}: ${hopLine}`,
+    );
+    assert.equal(
+      hopArguments.filter((argument) => argument === absentFlag).length,
+      0,
+      `${consumedMode}: ${hopLine}`,
+    );
+    assert.ok(hopArguments.includes(`${SEED} ${handoffPath}`), hopLine);
+  }
+});
+
+// A named loop hands the receiver the sender's live name plus the receiver's session
+// number, so the operator can tell the hop apart without the suffixes stacking.
+test('a Claude hop numbers the replayed name', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const result = runWrapper(sandbox, ['claude', '-n', 'X', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'X (2)']);
+  assert.equal(records[1].env.SKILLED_LOOP_NAME, 'X');
+  assert.deepEqual(records.map((record) => record.env.SKILLED_LOOP_HOPS), ['0', '1']);
+});
+
+test('a hop replays the sender\'s live name with the next number', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_NAME: 'Renamed',
+  });
+  const result = runWrapper(sandbox, ['claude', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'Renamed (2)']);
+  assert.equal(records[1].env.SKILLED_LOOP_NAME, 'Renamed');
+});
+
+test('a second hop replaces the sender\'s number instead of stacking it', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    SKILLED_LOOP_HOPS: '1',
+    RECORD_NAME: 'X (2)',
+  });
+  const result = runWrapper(sandbox, ['claude', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'X (3)']);
+  assert.equal(records[1].env.SKILLED_LOOP_NAME, 'X');
+  assert.deepEqual(records.map((record) => record.env.SKILLED_LOOP_HOPS), ['1', '2']);
+});
+
+test('a name that ends in another number keeps it', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_NAME: 'Phase (7)',
+  });
+  const result = runWrapper(sandbox, ['claude', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'Phase (7) (2)']);
+  assert.equal(records[1].env.SKILLED_LOOP_NAME, 'Phase (7)');
+});
+
+test('a consumed name that fails the check falls back to the launch name', (t) => {
+  for (const consumedName of ['-x', 'a\nb']) {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+      markers: '1',
+      RECORD_NAME: consumedName,
+    });
+    const result = runWrapper(sandbox, ['claude', '-n', 'X', 'initial prompt']);
+    assert.equal(result.status, 0, result.stderr);
+    const records = readRecords(recordPath);
+    assert.equal(records.length, 2);
+    assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'X (2)']);
+    assert.match(result.stderr, /warning: ignoring the sender name/);
+  }
+});
+
+test('a Pi hop numbers the replayed name', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const result = runWrapper(sandbox, ['pi', '-n', 'N', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, ['--name', 'N (2)', `${SEED} ${handoffPath}`]);
+  assert.equal(records[1].env.SKILLED_LOOP_NAME, 'N');
+});
+
+test('the manual command carries the name stem without a number', (t) => {
+  const sandbox = createSandbox(t);
+  installRuntimeStub(sandbox, {
+    markers: '1',
+    PENDING_ON_INVOCATION: '1',
+    RECORD_NAME: 'X',
+    STUB_EXIT_CODES: '7',
+  });
+  const result = runWrapper(sandbox, ['claude', 'initial prompt']);
+  assert.equal(result.status, 7, result.stderr);
+  const manualCommand = result.stdout
+    .split('\n')
+    .find((line) => line.startsWith('skilled-loop '));
+  assert.ok(manualCommand, result.stderr);
+  assert.match(manualCommand, /'--name' 'X'/, manualCommand);
+  assert.equal(manualCommand.includes('(2)'), false, manualCommand);
 });

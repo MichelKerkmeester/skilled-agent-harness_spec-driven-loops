@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution",
+  "spec_folder": "system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution",
+  "parent_id": "system-skill-advisor/runtime-lifecycle",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor native node resolution",
+      "start the skill advisor on the node",
+      "daemon launcher exited with code 1",
+      "advisor native node resolution plan",
+      "advisor native node resolution tasks",
+      "006-advisor-native-node-resolution operator decisions",
+      "advisor native node resolution implementation summary"
+    ],
+    "key_topics": [
+      "advisor",
+      "native",
+      "node",
+      "resolution",
+      "start",
+      "skill",
+      "daemon",
+      "launcher",
+      "exited",
+      "code",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/package.json",
+      ".skilled/bin/skill-advisor.cjs",
+      ".skilled/bin/tests/skill-advisor-node.test.cjs",
+      "scratch/baseline.txt",
+      ".skilled/bin/lib/node-engine-resolver.cjs",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".opencode/plugins/system-skill-advisor.js",
+      "runtime/package.json",
+      "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/scratch/baseline.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-node.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/skill-advisor-node.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "node-engine-resolver.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/node-engine-resolver.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Node",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Install",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.skilled/bin/skill-advisor.cjs` spawns the advisor CLI with `process.execPath`, and the CLI and the launcher pass that Node on to the daemon",
+    "created_at": "2026-11-13T16:02:55Z",
+    "last_save_at": "2026-11-13T18:11:46.521Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1eeefbad14f1029abaca16ece21e3ef293d503b28dcd099c467cddcdd2fe1b89",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "92255736f0c9b58aa552608e30af9a1660e7ae9b9f553975c9c7af1e71b8797b",
+      "plan.md": "47028a57f20387dc26f4ea6fa666c01959d21399eece5ae8af138fe252f8d0a4",
+      "tasks.md": "f17548e68a70b6f2a8a6e6121b5329e1040a091ccbbe7e41a72144bd04278405",
+      "decision-record.md": "d9f8752275509dd5ae9c52f3966d119f3b12c4633c9831fb9dcb327bc37e0cfd",
+      "implementation-summary.md": "fe8c7c427d695921023188b8d7f6ff5bf5679b4c61a03660525d4746b834e59d"
+    },
+    "last_active_at": null
+  }
+}

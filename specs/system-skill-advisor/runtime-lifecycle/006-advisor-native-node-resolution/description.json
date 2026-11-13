@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution",
+  "description": "Start the skill advisor on the Node its native database module was built for",
+  "keywords": [
+    "start",
+    "skill",
+    "advisor",
+    "node",
+    "native",
+    "database",
+    "module"
+  ],
+  "lastUpdated": "2026-11-13T18:11:46.521Z",
+  "specId": "006",
+  "folderSlug": "advisor-native-node-resolution",
+  "parentChain": [
+    "system-skill-advisor",
+    "runtime-lifecycle"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "13-11-26_17-11__planned-an-install-time-node-record-and-a-wrapper.md",
+    "13-11-26_17-58__built-the-install-time-node-record-and-the.md",
+    "13-11-26_19-11__the-node-record-landed-on-origin-main-as.md"
+  ]
+}

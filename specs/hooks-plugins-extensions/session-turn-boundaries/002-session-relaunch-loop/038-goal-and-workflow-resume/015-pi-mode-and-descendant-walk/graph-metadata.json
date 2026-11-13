@@ -17,6 +17,8 @@
       "pi mode and descendant walk tasks",
       "pi mode and descendant walk acceptance criteria",
       "pi mode and descendant walk goal",
+      "descendant walk decline",
+      "pi mode and descendant walk decisions",
       "pi mode and descendant walk implementation summary"
     ],
     "key_topics": [
@@ -29,20 +31,20 @@
       "acceptance",
       "criteria",
       "goal",
-      "implementation",
-      "summary",
-      "session"
+      "decline",
+      "decisions",
+      "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
-      ".pi/types/pi-coding-agent.d.ts",
       ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
       ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
@@ -50,7 +52,12 @@
       ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
       ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
       ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
-      ".skilled/hooks/session-relaunch/README.md"
+      ".skilled/hooks/session-relaunch/README.md",
+      "scratch/confirm-pi-mode.txt",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      ".pi/types/pi-coding-agent.d.ts",
+      "scratch/red-A.txt"
     ],
     "entities": [
       {
@@ -84,15 +91,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "pi-coding-agent.d.ts",
-        "kind": "code",
-        "path": ".pi/types/pi-coding-agent.d.ts",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -144,6 +151,36 @@
         "source": "derived"
       },
       {
+        "name": "confirm-pi-mode.txt",
+        "kind": "file",
+        "path": "scratch/confirm-pi-mode.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pi-coding-agent.d.ts",
+        "kind": "code",
+        "path": ".pi/types/pi-coding-agent.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "red-A.txt",
+        "kind": "file",
+        "path": "scratch/red-A.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -166,41 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pi Plan",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Rank",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A Pi session that switched to Plan or Build mode restarts in the mode its first launch named, because `liveSettings` returns only model, provider and effort (`.skilled/hooks/session-relaunch/pi/session-relaunch.ts:419`) and the arm keeps only those three keys (`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1011`)",
     "created_at": "2026-11-13T08:49:37Z",
-    "last_save_at": "2026-11-13T09:17:59.724Z",
+    "last_save_at": "2026-11-13T12:16:14.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,15 +216,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c105cbfc9084c3f2f92e9ee8572a9464942462815813cf299b64e05f9cd02d4d",
+    "source_fingerprint": "sha256:99085d2898cbb128d6a83d66c6e7254614519fecd8ce76f649808159fae5f353",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ebe520bc665be8b281f6fa2978e72c8f6b220d959313059fc0a6b85775321d49",
+      "spec.md": "03e36168821306c69e8572a9cfb3caffc4b661427f39cca1af9fc7bc1f269334",
       "plan.md": "a35466ba02581af5188e3a7ee10745ecd62edbe4bb0cb03d61d9f1dc73d860f6",
-      "tasks.md": "8728104d6fa98ee3838913efe7c4319c4734032fa163c5929bf418b48e21fb47",
-      "implementation-summary.md": "4c61bef09f10fa8aac77cac84ec4275d4600cdfb7d43b9f21aa212862c85c0f6"
+      "tasks.md": "422d7626894c18cc78c9e9a80aa2ea4f001b37c6c9aca41e3cefe0ca95f7c143",
+      "decision-record.md": "4be5b3c47657c1fc3165f77873b67acdcc701202fbd8a1d7964605ae99cb4027",
+      "implementation-summary.md": "b953c52fd1498c125763943d27308a6fb460e4eefd0c491b7997f173ed916008"
     },
     "last_active_at": null
   }

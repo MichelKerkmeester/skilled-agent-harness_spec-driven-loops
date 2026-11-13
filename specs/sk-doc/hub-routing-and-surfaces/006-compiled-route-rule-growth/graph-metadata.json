@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth",
+  "spec_folder": "sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth",
+  "parent_id": "sk-doc/hub-routing-and-surfaces",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compiled route rule growth",
+      "cap the mode subset size the hub registry",
+      "max bundle modes",
+      "compiled route rule growth plan",
+      "compiled route rule growth tasks",
+      "006-compiled-route-rule-growth operator decisions",
+      "compiled route rule growth implementation summary"
+    ],
+    "key_topics": [
+      "compiled",
+      "route",
+      "rule",
+      "growth",
+      "cap",
+      "mode",
+      "subset",
+      "size",
+      "hub",
+      "registry",
+      "max",
+      "bundle"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/bin/tests/compiled-route-rule-bound.test.cjs",
+      ".skilled/bin/lib/compiled-route-manifest.cjs",
+      "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/scratch/measure-rule-counts.cjs",
+      ".skilled/bin/compiled-route-sync.cjs",
+      ".skilled/bin/compiled-route.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-rule-bound.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-rule-bound.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-route-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "measure-rule-counts.cjs",
+        "kind": "file",
+        "path": "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/scratch/measure-rule-counts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Those Barter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Barter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The registry compilers of sk-code, mcp-tooling and sk-design emit one composition rule for every subset of two or more modes in the hub's tie-break order",
+    "created_at": "2026-11-13T16:02:54Z",
+    "last_save_at": "2026-11-13T18:11:43.023Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9eb6dda077130f1766ffbcf573c57e4ccad82d276e2c626c77fec75182abf3f8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b2b8d92e4ac3eef6420470a84fbb84bf56fcbf6ecec26bcbb0a8b273d19ae1e6",
+      "plan.md": "8cb0ec75ef88f43a025046f77a350ed6831103ccb3f3bf96d4228abd9f136b90",
+      "tasks.md": "52c9860e39d870f5ff1b9c44d34da7eebbfe04fa9d3d9820106a96a3a755a704",
+      "decision-record.md": "fbf11d88c2a8fb31c7b387728ec03e5f18afa84c64d754dc1a98fee4cb49bdee",
+      "implementation-summary.md": "e86f8a608708036d1ee0897414a319bae1a179564f2f4213a38725ffea5f77ec"
+    },
+    "last_active_at": null
+  }
+}

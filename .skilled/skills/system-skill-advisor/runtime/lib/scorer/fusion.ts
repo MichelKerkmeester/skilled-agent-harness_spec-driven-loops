@@ -735,6 +735,13 @@ export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection
   if (skillId === 'sk-code' && /\bgate-3-classifier\.ts\b/.test(promptLower)) {
     return true;
   }
+  // Reading history is a git task even though its verb reads as a read-only
+  // explainer. A lift applies to any prompt, so only a read-only question is
+  // lifted, and only when it names git, a commit-history object or a branch ref.
+  if (skillId === 'sk-git' && isReadOnlyExplainer(promptLower)
+    && /\b(git|commit (?:history|log)|(?:recent|latest) commits?|last (?:\w+ )?commits?|branch(?:es)? (?:main|master|develop))\b/.test(promptLower)) {
+    return true;
+  }
   return false;
 }
 

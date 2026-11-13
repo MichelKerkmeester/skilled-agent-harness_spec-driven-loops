@@ -1,0 +1,50 @@
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+⏺ I've acknowledged the goal: it's met only when never-created-completion.flag exists, and the packet is specs/demo/001-demo. I haven't created the flag.
+
+  The name reads as a deliberate "never met" condition, a keeper that holds the session open. Writing the file would only satisfy the stop hook and wouldn't be real work. If you do want it created,
+  say so and I'll write it.
+
+  If you do want it created, I need one answer first, because it would be a file write. Gate 3 asks which spec folder the write belongs to:
+
+  - A) Existing: use specs/demo/001-demo (recommended, since it's the packet named in the goal). Reply with the folder path.
+  - B) New: create a new top-level packet. Reply with a new folder path.
+  - C) Related: use another existing packet or a child of one. Reply with the folder path.
+  - D) Skip: no documentation. I'd have to warn you first.
+
+  If you have other work for me, send it and I'll do it. The hook will keep the session open until the flag exists or you clear the goal with /goal clear.
+
+◯ Goal not yet met… continuing
+
+✳ Orchestrating… (13s · ↓ 877 tokens)
+                                                                                                                                                                                  ◎ /goal active (13s)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)

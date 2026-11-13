@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers",
+  "spec_folder": "sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers",
+  "parent_id": "sk-doc/hub-routing-and-surfaces",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "host spec tree readers",
+      "let the route sync check the route gold",
+      "compiled route sync host skip",
+      "route gold host repository",
+      "host spec tree readers plan",
+      "host spec tree readers tasks",
+      "host spec tree readers implementation summary"
+    ],
+    "key_topics": [
+      "host",
+      "spec",
+      "tree",
+      "readers",
+      "let",
+      "route",
+      "sync",
+      "check",
+      "gold",
+      "compiled",
+      "skip",
+      "repository"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/bin/compiled-route-sync.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
+      ".skilled/bin/tests/compiled-route-sync-host.test.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/helpers/activation-matrix-evidence.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/policy-observation-sink.vitest.ts",
+      "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/helpers/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/host-index.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync-host.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-sync-host.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "activation-matrix-evidence.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/helpers/activation-matrix-evidence.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "policy-observation-sink.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/policy-observation-sink.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "activation-matrix.test.mjs",
+        "kind": "file",
+        "path": "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/helpers/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "host-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/host-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin-bridge-stress.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Skilled",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Both",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Lazy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skilled is vendored into host repositories",
+    "created_at": "2026-11-13T18:46:08Z",
+    "last_save_at": "2026-11-13T19:06:39.244Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a6071552684c4ed03f828f29770ecf196072951f8e58ee1091720d23c6c43ba0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4931c47c1bf30eb72147e43dfb160b96136bef1747461541f0503ee1cec927a8",
+      "plan.md": "bf1b7927910998fe17d82d5417233f9947cfc4152f996d6032b2317f0758e525",
+      "tasks.md": "45fd00e06f88bb5cde819682d35c7e9443240f5df4d0b138b83744f64d1e2fda",
+      "implementation-summary.md": "e17c69e5f9ed509fcf8d14d3d7d621977fb508d6012ce5bcecdd2d5f2b28350b"
+    },
+    "last_active_at": null
+  }
+}

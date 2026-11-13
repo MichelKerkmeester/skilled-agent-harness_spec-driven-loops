@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-12 |
 | **Branch** | `worktrees/358-handover-goal-resume` |
 | **Parent Spec** | `../spec.md` |
@@ -152,19 +152,19 @@ After a hop the receiver runs the sender's command again, reads the goal of the 
 | 6 | 006-skilled-loop-command/ | `skilled-loop` is a shell function, so the printed manual command runs as typed | Complete |
 | 7 | 007-goal-handover-docs/ | The README and the flags example describe the shipped goal carry-over, the known race and the child goal difference | Complete |
 | 8 | 008-review-advisories/ | The nine P2 advisories of the deep review are fixed, each with a test that failed first or a contract test | Complete |
-| 9 | 009-nudge-note-lines/ | Ranks 1, 3, 12 and the note half of 4. The nudge stops a fan-out runner before the lock release, the note names running workers, scheduled tasks and added directories, `prepare` refuses a note with no `Running workers:` line, and the seed makes the receiver check each pid first | Draft |
-| 10 | 010-fanout-orphan-liveness/ | Rank 2. After the double writer is reproduced, each spawn writes its pid to the ledger and a re-run exits 3 while a lineage of the earlier run is alive | Draft |
-| 11 | 011-permission-mode-carry/ | Rank 5, Claude only. The Stop payload's permission mode is stamped on the record and replayed as `--permission-mode`, after two live checks on the default spelling and the bypass rule | Draft |
-| 12 | 012-session-name-carry/ | Ranks 6, 9 and 11. A Claude `/rename` reaches the record and the receiver, a hop name carries the receiver's number without stacking, and the option comments say which runtimes have no name flag | Draft |
-| 13 | 013-opencode-child-and-title/ | Ranks 7 and 10. An event trace and a live title call on OpenCode 2.2.7 decide whether the plugin defers a parent arm under a busy child and sets the session title at the claim seed | Draft |
-| 14 | 014-claude-stop-notice-and-crons/ | Rank 8 and the adapter half of rank 4. A deferred Claude hop prints one notice with the task count and the cancel command, the log records the cron count, and one live hop records what happens to crons and the todo list | Draft |
-| 15 | 015-pi-mode-and-descendant-walk/ | Ranks 13 and 14. The Pi Plan or Build mode is read from the session branch and replayed on a hop. The descendant walk is declined by a decision record unless the operator asks for it | Draft |
-| 16 | 016-receiver-claim-under-goal/ | The receiver claim under a carried goal. Ten live hops under a goal that allows other work decide whether a claim line is appended after the goal slice | Draft |
-| 17 | 017-handover-docs-and-harness/ | The README and the Claude playbook describe what children 009 to 016 shipped or declined, and the harness leaves no sandbox session folder behind | Draft |
+| 9 | 009-nudge-note-lines/ | Ranks 1, 3, 12 and the note half of 4. The nudge stops a fan-out runner before the lock release, the note names running workers, scheduled tasks and added directories, `prepare` refuses a note with no `Running workers:` line, and the seed makes the receiver check each pid first | Complete |
+| 10 | 010-fanout-orphan-liveness/ | Rank 2. After the double writer is reproduced, each spawn writes its pid to the ledger and a re-run exits 3 while a lineage of the earlier run is alive | Complete |
+| 11 | 011-permission-mode-carry/ | Rank 5, Claude only. The Stop payload's permission mode is stamped on the record and replayed as `--permission-mode`, after two live checks on the default spelling and the bypass rule | Complete |
+| 12 | 012-session-name-carry/ | Ranks 6, 9 and 11. A Claude `/rename` reaches the record and the receiver, a hop name carries the receiver's number without stacking, and the option comments say which runtimes have no name flag | Complete |
+| 13 | 013-opencode-child-and-title/ | Ranks 7 and 10. An event trace and a live title call on OpenCode 2.2.7 decide whether the plugin defers a parent arm under a busy child and sets the session title at the claim seed | Complete |
+| 14 | 014-claude-stop-notice-and-crons/ | Rank 8 and the adapter half of rank 4. A deferred Claude hop prints one notice with the task count and the cancel command, the log records the cron count, and one live hop records what happens to crons and the todo list | Complete |
+| 15 | 015-pi-mode-and-descendant-walk/ | Ranks 13 and 14. The Pi Plan or Build mode is read from the session branch and replayed on a hop. The descendant walk is declined by a decision record unless the operator asks for it | Complete |
+| 16 | 016-receiver-claim-under-goal/ | The receiver claim under a carried goal. Ten live hops under a goal that allows other work decide whether a claim line is appended after the goal slice | Complete |
+| 17 | 017-handover-docs-and-harness/ | The README and the Claude playbook describe what children 009 to 016 shipped or declined, and the harness leaves no sandbox session folder behind | Complete |
 
 ### Build Order For Children 009 To 017
 
-Children 009 to 017 are planned and none is built. The operator's standing constraint of 2026-11-13 reads "Dont implement untill i give greenlight". After the greenlight they run one at a time in number order, each from the tree the one before it left, because these files are changed by more than one child:
+The greenlight came on 2026-11-13 with the words "max parallel", and the operator chose parallel lanes where no file is shared. Children that share a file run in number order, each from the tree the one before it left. The lanes are 009, 011, 012, 015 and 016 in that order with 014 beside 012 once 011 is done, 010 alone and 013 alone. 017 runs last. These files are changed by more than one child:
 
 - `bin/session-relaunch.cjs`: 009 (`prepare` check), then 011, 012 and 015 (`consume` keys), each in a different function.
 - `lib/relaunch-core.cjs`: 011, then 012, then 015.
@@ -215,7 +215,6 @@ Each child that rests on an inferred claim opens with the check that confirms it
 - Answered by the operator on 2026-11-13, child 010: a re-run refused because a pid was reused gets no override. The refusal names the label and the pid.
 - Answered by the operator on 2026-11-13, child 011: a live `plan` mode is not carried. The receiver starts in the launch mode and the wrapper prints one note (option B).
 - Answered by the operator on 2026-11-13, child 015: the decline of the descendant walk is accepted. Child 009's `Running workers:` line is the cover for a worker started with `&`.
-- Open: the greenlight to build children 009 to 017.
 - Under research: verify and deepen the hand-over gap report at `scratch/handover-gaps-research-2026-11-13.md`. For each claim about running workers at hand-over, session names across a hop and other state a hop drops, confirm or refute it against the code and each runtime's own help output, close the items it marks UNCONFIRMED and name the smallest change for each confirmed gap.
 
 **Research Context:** a deep-research run covered the topic above on 2026-11-13. `research/research.md` is the canonical source for its findings.

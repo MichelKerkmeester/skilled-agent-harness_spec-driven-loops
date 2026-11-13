@@ -115,6 +115,10 @@ created_at: <ISO-8601 UTC>
 <non-empty>
 ## In-flight state
 <non-empty>
+Active command: <command, mode and arguments, or none>
+Running workers: <pid <pid> log <path> collect <step>, or none>
+Scheduled: <each cron or wakeup with its schedule and prompt, or none>
+Added directories: <each directory added after launch, or none>
 ```
 
 Frontmatter is flat `key: value` lines only: no nesting, no lists.
@@ -131,8 +135,12 @@ Done records finished work.
 Remaining work lists the claimable tail.
 In-flight state preserves the active work the next session must not lose, including open files, half-applied edits, running processes and pending decisions.
 Under In-flight state, include an `Active command:` line with the command, mode and arguments; use `Active command: none` when no command runs. For Codex, also include an `Active goal:` line with the goal or packet path, or `Active goal: none` when no goal is active.
+Also include a `Running workers:` line: each worker as `pid <pid> log <path> collect <step>`, workers separated by ` | `, or `Running workers: none` when none runs. `prepare` refuses a note that has no `Running workers:` line.
+Also include a `Scheduled:` line for each cron or wakeup with its schedule and prompt, or `Scheduled: none`; and an `Added directories:` line for each directory added after launch, or `Added directories: none`.
 
 ### Step 4: Prepare
+
+If a `fanout-run.cjs` runner still runs, stop it with `kill -TERM <runner-pid>` and wait until `kill -0 <runner-pid>` fails, so its lineages end with it.
 
 If this command holds a deep-loop lock, release it before `prepare` with the captured values:
 

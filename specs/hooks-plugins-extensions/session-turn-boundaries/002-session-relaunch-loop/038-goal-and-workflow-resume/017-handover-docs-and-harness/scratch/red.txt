@@ -1,0 +1,3 @@
+$ bash specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/test-finish-run.sh
+FAIL: project folder still present
+exit=1

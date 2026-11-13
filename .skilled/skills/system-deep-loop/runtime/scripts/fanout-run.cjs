@@ -38,7 +38,9 @@ const FANOUT_FLAGS = [
 const {
   runCappedPool,
   appendStatusLedger,
+  detectLiveLineages,
   markOrphanedLineages,
+  readLedgerRecords,
   readRetryCountsFromLedger,
   createWavePlannerInterface,
   writeOrchestrationSummary,
@@ -3517,6 +3519,20 @@ async function main() {
   }
 
   fs.mkdirSync(lineagesDir, { recursive: true });
+  // A lineage that outlived its runner still holds the lineage directory and the
+  // stored session id. Dispatching under that same directory would put a second
+  // writer beside it, so refuse the whole run before any orphan mark or spawn and
+  // let the operator stop the surviving process first.
+  const liveLineages = detectLiveLineages(readLedgerRecords(ledgerPath));
+  if (liveLineages.length > 0) {
+    const running = liveLineages
+      .map((lineage) => `${lineage.label} (pid ${lineage.pid})`)
+      .join(', ');
+    throw inputError(
+      `fan-out refused: lineage still running from an earlier run: ${running}. `
+        + 'Stop it before re-running.',
+    );
+  }
   const orphanedLineages = markOrphanedLineages(ledgerPath);
   const initialRetryCounts = readRetryCountsFromLedger(ledgerPath);
 
@@ -3919,6 +3935,16 @@ async function main() {
           onOutput: markLineageEvent,
           onSpawn: ({ pid }) => {
             lineageProcessLiveness.set(livenessKey, { alive: true, pid });
+            // The in-memory map dies with this runner, so the pid a later run needs
+            // to prove this lineage is still alive has to reach the durable ledger.
+            appendFanoutStatusLedger(ledgerPath, {
+              event: 'spawned',
+              label: lineage.label,
+              attempt,
+              pid,
+              at: new Date().toISOString(),
+              status: 'running',
+            });
           },
           onExit: ({ pid, exitedAtMs }) => {
             lineageProcessLiveness.set(livenessKey, { alive: false, pid, exitedAtMs });

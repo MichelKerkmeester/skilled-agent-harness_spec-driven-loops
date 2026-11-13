@@ -237,13 +237,23 @@ function stdoutEnvelope(stdout: string): Record<string, unknown> {
   return JSON.parse(line) as Record<string, unknown>;
 }
 
-async function waitForCaptureCount(fixture: AdapterShimFixture, count: number): Promise<void> {
-  const deadline = Date.now() + 2_000;
+async function waitForCaptureCount(fixture: AdapterShimFixture, count: number, timeoutMs = 2_000): Promise<void> {
+  const deadline = Date.now() + timeoutMs;
   while (Date.now() < deadline) {
     if (readAdapterCaptures(fixture).length >= count) return;
     await new Promise((resolvePromise) => setTimeout(resolvePromise, 10));
   }
   throw new Error(`Timed out waiting for ${count} shim capture(s)`);
+}
+
+function waitForProcessExit(child: ReturnType<typeof spawn>): Promise<void> {
+  return new Promise((resolvePromise) => {
+    if (child.exitCode !== null || child.signalCode !== null) {
+      resolvePromise();
+      return;
+    }
+    child.once('close', () => resolvePromise());
+  });
 }
 
 async function waitUntilDead(pids: readonly number[]): Promise<void> {
@@ -835,6 +845,64 @@ describe.sequential('fan-out scheduler contracts', () => {
     expect(run.result.exitCode).toBe(3);
     expect(summary.failed).toBe(1);
     expect(results[0].error.message).toContain('did not produce expected artifact');
+  });
+
+  it('refuses a re-run while a lineage from the earlier run is alive', async () => {
+    const fixture = useShim('timeout');
+    const invocation = fanoutInvocation(fixture, 'rerun-live', {
+      executors: [{
+        label: 'rerun-live',
+        kind: 'cli-opencode',
+        model: 'anthropic/claude-opus-4-8',
+        reasoningEffort: 'high',
+        iterations: 1,
+      }],
+      concurrency: 1,
+      maxRetries: 0,
+    });
+
+    const firstRunner = spawn(process.execPath, [fanoutScript, ...invocation.args], {
+      cwd: fixture.root,
+      env: fixture.env,
+      detached: process.platform !== 'win32',
+      stdio: ['ignore', 'ignore', 'ignore'],
+    });
+    try {
+      await waitForCaptureCount(fixture, 1, 5_000);
+      const firstShimPid = readAdapterCaptures(fixture)[0]?.pid;
+      expect(firstShimPid).toBeTypeOf('number');
+      const firstRunnerPid = firstRunner.pid;
+      expect(firstRunnerPid).toBeTypeOf('number');
+      process.kill(process.platform === 'win32' ? firstRunnerPid as number : -(firstRunnerPid as number), 'SIGKILL');
+      await waitForProcessExit(firstRunner);
+      expect(processIsAlive(firstShimPid as number)).toBe(true);
+
+      const second = await spawnCjs(fanoutScript, [...invocation.args], {
+        cwd: fixture.root,
+        env: fixture.env,
+        timeoutMs: 10_000,
+      });
+
+      expect(second.exitCode).toBe(3);
+      expect(readAdapterCaptures(fixture)).toHaveLength(1);
+      const envelope = stdoutEnvelope(second.stdout);
+      expect(String(envelope.error)).toContain('rerun-live');
+      expect(String(envelope.error)).toContain(String(firstShimPid));
+      const events = ledgerEvents(invocation.baseArtifactDir);
+      expect(events.filter((event) => event.event === 'spawned')).toEqual([
+        expect.objectContaining({ label: 'rerun-live', attempt: 1, pid: firstShimPid }),
+      ]);
+      expect(events.filter((event) => event.event === 'orphan_requeued')).toEqual([]);
+    } finally {
+      const firstRunnerPid = firstRunner.pid;
+      if (firstRunnerPid !== undefined && processIsAlive(firstRunnerPid)) {
+        try {
+          process.kill(process.platform === 'win32' ? firstRunnerPid : -firstRunnerPid, 'SIGKILL');
+        } catch {
+          // The runner exited between the probe and the signal.
+        }
+      }
+    }
   });
 });
 

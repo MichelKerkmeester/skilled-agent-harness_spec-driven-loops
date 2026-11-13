@@ -7,7 +7,8 @@
     "sk-doc/doc-validation-tooling/001-doc-validation-off-switches",
     "sk-doc/doc-validation-tooling/002-readme-validation-debt",
     "sk-doc/doc-validation-tooling/003-reference-template-debt",
-    "sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend"
+    "sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend",
+    "sk-doc/doc-validation-tooling/005-router-empty-block-capture"
   ],
   "manual": {
     "depends_on": [],

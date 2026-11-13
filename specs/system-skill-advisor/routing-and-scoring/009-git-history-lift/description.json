@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/routing-and-scoring/009-git-history-lift",
+  "description": "Let read-only git history questions route to sk-git by lifting them off the advisor's read-only floor",
+  "keywords": [
+    "let",
+    "read-only",
+    "git",
+    "history",
+    "questions",
+    "route",
+    "sk-git",
+    "lifting",
+    "them",
+    "advisor",
+    "floor"
+  ],
+  "lastUpdated": "2026-11-13T18:11:49.444Z",
+  "specId": "009",
+  "folderSlug": "git-history-lift",
+  "parentChain": [
+    "system-skill-advisor",
+    "routing-and-scoring"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "13-11-26_13-03__added-one-guarded-sk-git-branch-to.md",
+    "13-11-26_14-57__the-sk-git-history-lift-was-committed-as.md",
+    "13-11-26_14-57__the-sk-git-history-lift-was-committed-as.md",
+    "13-11-26_17-11__recorded-that-six-answers-the-save-queue-did-not.md",
+    "13-11-26_19-11__marked-the-unrecorded-answers-decision-consumed.md"
+  ]
+}

@@ -18,12 +18,14 @@ description: "Test-only helper for the skill-advisor runtime tests, not product 
 | File | Purpose |
 |------|---------|
 | `env-snapshot.ts` | Exports `snapshotEnv(keys)`, which captures the current value of each given `process.env` key and returns a `restore()` function that re-sets or deletes each key back to its captured state. |
+| `activation-matrix-evidence.mjs` | Exports `evidenceBindsToCell(behavioralEvidence, deliveryEvidence, cell)`, which accepts an activated matrix cell only when its behavioral and delivery evidence agree and bind to that cell. |
 
 ---
 
 ## 3. CONSUMERS
 
 - `.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts`
+- `.skilled/skills/system-skill-advisor/runtime/tests/policy-observation-sink.vitest.ts`
 
 ---
 

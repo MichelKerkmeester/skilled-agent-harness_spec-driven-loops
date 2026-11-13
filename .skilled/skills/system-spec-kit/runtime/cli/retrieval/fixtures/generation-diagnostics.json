@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6750,
-    "ok": 18241,
+    "ok": 18295,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 26621,
+  "documentsScanned": 26675,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a9cd56233bf7d4d951ab4229c696f77aa3b8c0de7f50247ec4a097ac2f8ba440",
+  "manifestHash": "a72596399aae689069e119e2a141741b7184ac5b648bbdd14c6026dcfcfd522a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42894,
+      "ok": 42975,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -55454,6 +55454,18 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research/lineages",
       "reason": "excluded directory"
     },
@@ -56630,6 +56642,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/verification-guards/z_archive",
       "reason": "excluded directory"
     },
@@ -57634,6 +57650,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/doc-validation-tooling/z_archive",
       "reason": "excluded directory"
     },
@@ -58074,6 +58094,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/hub-routing-and-surfaces/z_archive",
       "reason": "excluded directory"
     },
@@ -58247,6 +58275,10 @@
     },
     {
       "path": "specs/sk-git/commit-standards/007-advisory-cd-prefix-env-steps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/scratch",
       "reason": "excluded directory"
     },
     {
@@ -59266,6 +59298,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/z_archive",
       "reason": "excluded directory"
     },
@@ -59307,6 +59343,10 @@
     },
     {
       "path": "specs/system-skill-advisor/runtime-lifecycle/005-build-freshness-record/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/scratch",
       "reason": "excluded directory"
     },
     {

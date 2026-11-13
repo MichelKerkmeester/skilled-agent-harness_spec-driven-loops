@@ -193,7 +193,13 @@ function bundleKindForModes(modeWorkflowModes, byMode) {
   return (actors === 1 && evidence === roles.length - 1) ? 'surfaceBundle' : 'orderedBundle';
 }
 
-// Every non-empty two-or-more subset of the tie-break order (not just the
+// The rule count doubles with every mode, and the whole list is built, hashed
+// and validated on each route call, so a bundle is capped at this many modes.
+// A tie across more modes finds no rule, the policy check rejects the bundle
+// and the front door answers with the legacy sentinel.
+const MAX_BUNDLE_MODES = 4;
+
+// Every subset of two to MAX_BUNDLE_MODES modes of the tie-break order (not just the
 // authored actor-plus-evidence-subset shapes): a near-tied keyword score can
 // legally land on any subset — two actors, evidence alone, or a mixed set —
 // so the router needs a valid, order-matching composition rule for each one,
@@ -207,7 +213,7 @@ function buildCompositionRules(destinations, tieBreak) {
     for (let index = 0; index < modes.length; index += 1) {
       if (mask & (1 << index)) bits.push(modes[index]);
     }
-    if (bits.length < 2) continue;
+    if (bits.length < 2 || bits.length > MAX_BUNDLE_MODES) continue;
     rules.push({
       kind: bundleKindForModes(bits, byMode),
       targetIds: bits.map((mode) => byMode.get(mode).id),
@@ -247,7 +253,7 @@ function buildBundleRules(tieBreak, destinations) {
     for (let index = 0; index < modes.length; index += 1) {
       if (mask & (1 << index)) bits.push(modes[index]);
     }
-    if (bits.length < 2) continue;
+    if (bits.length < 2 || bits.length > MAX_BUNDLE_MODES) continue;
     rules.push({ kind: bundleKindForModes(bits, byMode), targetWorkflowModes: bits });
   }
   return rules;

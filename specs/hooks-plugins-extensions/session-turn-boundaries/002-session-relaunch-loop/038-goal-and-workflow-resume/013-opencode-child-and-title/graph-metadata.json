@@ -34,7 +34,7 @@
       "plugin"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,10 +43,18 @@
       "goal.md",
       "implementation-summary.md",
       ".opencode/plugins/session-relaunch.js",
-      ".opencode/plugins/lib/v2-bridge.js",
       ".opencode/plugins/tests/session-relaunch.test.cjs",
+      ".opencode/plugins/lib/v2-bridge.js",
+      ".opencode/plugins/tests/v2-bridge.test.cjs",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/live-title-bridge.md",
+      "scratch/trace-child-idle.jsonl",
+      "scratch/trace-child-idle.md",
+      "scratch/live-title.md",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
-      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".opencode/plugins/tests/plugin-inventory.json"
     ],
     "entities": [
       {
@@ -92,15 +100,57 @@
         "source": "derived"
       },
       {
+        "name": "session-relaunch.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-relaunch.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "v2-bridge.js",
         "kind": "code",
         "path": ".opencode/plugins/lib/v2-bridge.js",
         "source": "derived"
       },
       {
-        "name": "session-relaunch.test.cjs",
+        "name": "v2-bridge.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/tests/session-relaunch.test.cjs",
+        "path": ".opencode/plugins/tests/v2-bridge.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "live-title-bridge.md",
+        "kind": "doc",
+        "path": "scratch/live-title-bridge.md",
+        "source": "derived"
+      },
+      {
+        "name": "trace-child-idle.jsonl",
+        "kind": "file",
+        "path": "scratch/trace-child-idle.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "trace-child-idle.md",
+        "kind": "doc",
+        "path": "scratch/trace-child-idle.md",
+        "source": "derived"
+      },
+      {
+        "name": "live-title.md",
+        "kind": "doc",
+        "path": "scratch/live-title.md",
         "source": "derived"
       },
       {
@@ -113,6 +163,12 @@
         "name": "session-relaunch.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-inventory.json",
+        "kind": "config",
+        "path": ".opencode/plugins/tests/plugin-inventory.json",
         "source": "derived"
       },
       {
@@ -144,59 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Live",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The plugin puts every sub-agent session in a skip set and returns before reading any later event for it (`.opencode/plugins/session-relaunch.js:335`, `:341`), and the parent arms at `session.idle` with no child check (`:418` to `:435`)",
     "created_at": "2026-11-13T08:49:35Z",
-    "last_save_at": "2026-11-13T08:57:21.905Z",
+    "last_save_at": "2026-11-13T12:18:19.798Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6bb5ebd6aaa42582f263a443e092bdf4284ca7578d8d801f7cfbb37bb527cf9f",
+    "source_fingerprint": "sha256:daf30de96b8f61d0d41db1fe2847a1270a6a54868b3defb07dd42235cfc6f9b4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "693699aa62c91a3bea0f8ab6c45b5a11dd42ca7119c3aa2c1321daa2cfa472db",
+      "spec.md": "5ca3de1c0bb29e389e0309d250daafd3ed57a993e7ddede26170f805f3c1fdf7",
       "plan.md": "bcb426d53318006ff00d7d0e9d718d434a64919669bbb3ac150feb38eeae1774",
-      "tasks.md": "418eb6e7b748a093dca24de0745b0cf65cb0ff7762bf724a09ce7163f146fdff",
-      "implementation-summary.md": "cdec8cd8291d26135dcb25c2db7a453d4e875adfe7171738f481a4dde3cf5589"
+      "tasks.md": "d5452383a3f736a1019b381cbb7cc34993b36b3daba1a41c3796da3df00f27cf",
+      "implementation-summary.md": "2cc45bc44aafc3f9c3edb6e4bc4d1a93de1f6ef2afeeb912c525c8e329c7b948"
     },
     "last_active_at": null
   }

@@ -1,0 +1,31 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "description": "A Claude Code hop refuses a question dialog after prepare, starts the receiver on the packet goal and keeps the generated session title",
+  "keywords": [
+    "claude",
+    "code",
+    "hop",
+    "refuses",
+    "question",
+    "dialog",
+    "prepare",
+    "starts",
+    "receiver",
+    "packet",
+    "goal",
+    "keeps",
+    "session",
+    "title"
+  ],
+  "lastUpdated": "2026-11-13T18:47:10.139Z",
+  "specId": "039",
+  "folderSlug": "hop-dialog-goal-title",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

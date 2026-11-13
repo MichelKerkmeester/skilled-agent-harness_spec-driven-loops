@@ -149,13 +149,14 @@ test('leg 1b routes nothing from a skill that declares its router twice', (t) =>
 
 // Leg 2 reads the surface inventory from the registry and the hub router's surface entries, so a
 // fixture declares both beside the packets it creates.
-function writeSurfaceRouting(hub, surfaces) {
+function writeSurfaceRouting(hub, surfaces, extra = {}) {
   write(path.join(hub, 'mode-registry.json'), JSON.stringify({
     modes: surfaces.map((surface) => ({ workflowMode: surface, packetKind: 'surface', packet: surface })),
   }));
   write(path.join(hub, 'hub-router.json'), JSON.stringify({
     routerPolicy: { tieBreak: surfaces },
     routerSignals: Object.fromEntries(surfaces.map((surface) => [surface, { weight: 4, classes: [] }])),
+    ...extra,
   }));
 }
 
@@ -245,6 +246,54 @@ test('leg 2 reports a registry surface whose path the hub union omits', (t) => {
   assert.doesNotMatch(out, /sk-code-demo\/references\/routed\.md/);
 });
 
+// A host hub that folds a surface's intents into one parent intent declares the fold in
+// hub-router.json. The surface child here carries two intents and the parent map one.
+function buildFoldHub(t, parentPaths) {
+  const { hub, guard } = buildHub(t);
+  write(path.join(hub, 'sk-code-demo', 'SKILL.md'), [
+    'RESOURCE_MAP = {',
+    '  "URL": ["references/routed.md"],',
+    '  "FORMS": ["references/forms.md"],',
+    '}',
+    '',
+  ].join('\n'));
+  write(path.join(hub, 'sk-code-demo', 'references', 'forms.md'), '# forms\n');
+  const cited = [...parentPaths, 'shared/references/control.md'].map((p) => `"${p}"`).join(', ');
+  write(path.join(hub, 'ROUTER.md'), [
+    'DEFAULT_RESOURCE = [',
+    ']',
+    'RESOURCE_MAP = {',
+    `  "DEMO": [${cited}],`,
+    '}',
+    'SHARED_CONTROL_RESOURCES = [',
+    '    "shared/references/control.md",',
+    ']',
+    '',
+  ].join('\n'));
+  return { hub, guard };
+}
+
+test('leg 2 accepts a declared fold whose parent intent holds every child path', (t) => {
+  const { hub, guard } = buildFoldHub(t, ['sk-code-demo/references/routed.md', 'sk-code-demo/references/forms.md']);
+  writeSurfaceRouting(hub, ['sk-code-demo']);
+  const unfolded = runGuard(guard, ['--checks', '2']);
+  assert.equal(unfolded.status, 1, unfolded.out);
+  assert.match(unfolded.out, /parent map URL is missing child path sk-code-demo\/references\/routed\.md/);
+  writeSurfaceRouting(hub, ['sk-code-demo'], { surfaceIntentFolds: { 'sk-code-demo': 'DEMO' } });
+  const { status, out } = runGuard(guard, ['--checks', '2']);
+  assert.equal(status, 0, out);
+  assert.match(out, /PASS check 2/);
+});
+
+test('leg 2 reports a folded child path the declared parent intent omits', (t) => {
+  const { hub, guard } = buildFoldHub(t, ['sk-code-demo/references/routed.md']);
+  writeSurfaceRouting(hub, ['sk-code-demo'], { surfaceIntentFolds: { 'sk-code-demo': 'DEMO' } });
+  const { status, out } = runGuard(guard, ['--checks', '2']);
+  assert.equal(status, 1, out);
+  assert.match(out, /parent map DEMO is missing child path sk-code-demo\/references\/forms\.md/);
+  assert.doesNotMatch(out, /parent map (URL|FORMS)/);
+});
+
 test('leg 3 skips archived gold for a mode the manifest no longer declares', (t) => {
   const { root, hub, guard } = buildHub(t);
   write(path.join(hub, 'sk-code-skilled', 'SKILL.md'), 'RESOURCE_MAP = {\n  "DEMO": ["references/o.md"],\n}\n');
@@ -279,4 +328,29 @@ test('leg 1a scans the prose maps from the first map heading when a map is absen
   const { out } = runGuard(guard, ['--checks', '1a']);
   assert.doesNotMatch(out, /section anchors not found/);
   assert.match(out, /prose path not routed: references\/unrouted\.md/);
+});
+
+// A host vendors Skilled under `.skilled` and keeps its own specs/, so leg 3 skips the absent
+// route gold there and still reports it when the vendored checkout runs on its own.
+test('leg 3 skips a missing route gold in a host and reports it in its own checkout', (t) => {
+  const { root, hub, guard } = buildHub(t);
+  const hostIndex = path.join('system-spec-kit', 'runtime', 'cli', 'retrieval', 'lib', 'host-index.mjs');
+  write(path.join(root, '.skilled', 'skills', hostIndex), fs.readFileSync(path.join(LIVE_SKILLS, hostIndex), 'utf8'));
+  write(path.join(hub, 'sk-code-skilled', 'SKILL.md'), 'RESOURCE_MAP = {\n  "DEMO": ["references/o.md"],\n}\n');
+  const manifest = { modes: [{ workflowMode: 'sk-code-skilled', packet: 'sk-code-skilled', leaves: ['references/o.md'] }] };
+  write(path.join(hub, 'leaf-manifest.json'), JSON.stringify(manifest));
+  const host = fs.mkdtempSync(path.join(os.tmpdir(), 'router-sync-host-'));
+  t.after(() => fs.rmSync(host, { recursive: true, force: true }));
+  for (const repo of [root, host]) assert.equal(spawnSync('git', ['init', '-q'], { cwd: repo }).status, 0);
+  fs.symlinkSync(path.join(root, '.skilled'), path.join(host, '.skilled'));
+
+  const hostGuard = path.join(host, path.relative(root, guard));
+  const inHost = spawnSync(process.execPath, [hostGuard, '--checks', '3'], { cwd: host, encoding: 'utf8' });
+  assert.equal(inHost.status, 0, inHost.stdout);
+  assert.match(inHost.stdout, /PASS check 3/);
+  assert.match(inHost.stdout, /skip: route-gold not checked: host repository/);
+
+  const own = spawnSync(process.execPath, [guard, '--checks', '3'], { cwd: root, encoding: 'utf8' });
+  assert.equal(own.status, 1, own.stdout);
+  assert.match(own.stdout, /route-gold not found/);
 });

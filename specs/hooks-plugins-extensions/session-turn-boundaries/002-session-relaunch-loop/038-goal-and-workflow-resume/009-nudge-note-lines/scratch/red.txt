@@ -1,0 +1,296 @@
+TAP version 13
+# Subtest: handoff text stops a running fan-out runner and waits for it before releasing the lock
+not ok 1 - handoff text stops a running fan-out runner and waits for it before releasing the lock
+  ---
+  duration_ms: 2.338584
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/nudge.test.cjs:212:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    missing the kill -TERM runner stop: [session-relaunch] Write a handoff note before auto-compaction.
+    1. Write the handoff note at '/tmp/session-relaunch/handoff-01a14869.md' in exactly this shape:
+       ---
+       status: open
+       session_id: 01a14869-0b90-74a9-8231-4d14477ec215
+       loop_id: handoff-text-loop
+       runtime: pi
+       cwd: /Users/michelkerkmeester/worktrees/public/363-hop-state-carry
+       spec_folder: specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters
+       created_at: 2026-11-13T09:45:19.104Z
+       ---
+       followed by ## Goal, ## Done, ## Remaining work, ## In-flight state, each non-empty.
+       Under ## Remaining work list only the task's own unfinished work. Never list these handoff steps (the note, the continuity save, prepare) there; this session does them now.
+       spec_folder is a repo-relative packet path, "none" for Gate 3 D) Skip, or empty if unanswered.
+       Under ## In-flight state include an `Active command:` line with the command, mode and arguments; use `Active command: none` when no command runs.
+    2. When a spec packet is bound to this session, save its continuity first: pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto 'specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters'`.
+    3. If this command holds a deep-loop lock, release it before prepare with `node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path <path> --owner-pid <pid> --nonce <nonce>`, using the values the command captured. The `release --owner-pid` form also requires the captured lock path and nonce.
+    4. Then run: node '/repo/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs' prepare --handoff '/tmp/session-relaunch/handoff-01a14869.md' --session '01a14869-0b90-74a9-8231-4d14477ec215' --runtime 'pi'
+    5. Stop once it exits 0; the loop ends this session and relaunches with a claim seed.
+    If the operator asks this session to stay after prepare, run: node '/repo/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs' cancel, then keep working.
+    Exception: skip these steps only when the operator has told this session not to hand off; then keep working, and auto-compaction stays the fallback.
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/nudge.test.cjs:225:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 51.668208
+TAP version 13
+# Subtest: handoff text asks for a Running workers line with none as the empty value
+not ok 1 - handoff text asks for a Running workers line with none as the empty value
+  ---
+  duration_ms: 2.036584
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/nudge.test.cjs:241:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    missing the Running workers: instruction: [session-relaunch] Write a handoff note before auto-compaction.
+    1. Write the handoff note at '/tmp/session-relaunch/handoff-01a14869.md' in exactly this shape:
+       ---
+       status: open
+       session_id: 01a14869-0b90-74a9-8231-4d14477ec215
+       loop_id: handoff-text-loop
+       runtime: pi
+       cwd: /Users/michelkerkmeester/worktrees/public/363-hop-state-carry
+       spec_folder: specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters
+       created_at: 2026-11-13T09:45:19.185Z
+       ---
+       followed by ## Goal, ## Done, ## Remaining work, ## In-flight state, each non-empty.
+       Under ## Remaining work list only the task's own unfinished work. Never list these handoff steps (the note, the continuity save, prepare) there; this session does them now.
+       spec_folder is a repo-relative packet path, "none" for Gate 3 D) Skip, or empty if unanswered.
+       Under ## In-flight state include an `Active command:` line with the command, mode and arguments; use `Active command: none` when no command runs.
+    2. When a spec packet is bound to this session, save its continuity first: pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto 'specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters'`.
+    3. If this command holds a deep-loop lock, release it before prepare with `node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path <path> --owner-pid <pid> --nonce <nonce>`, using the values the command captured. The `release --owner-pid` form also requires the captured lock path and nonce.
+    4. Then run: node '/repo/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs' prepare --handoff '/tmp/session-relaunch/handoff-01a14869.md' --session '01a14869-0b90-74a9-8231-4d14477ec215' --runtime 'pi'
+    5. Stop once it exits 0; the loop ends this session and relaunches with a claim seed.
+    If the operator asks this session to stay after prepare, run: node '/repo/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs' cancel, then keep working.
+    Exception: skip these steps only when the operator has told this session not to hand off; then keep working, and auto-compaction stays the fallback.
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/nudge.test.cjs:252:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 47.582375
+TAP version 13
+# Subtest: handoff text asks for Scheduled and Added directories lines
+not ok 1 - handoff text asks for Scheduled and Added directories lines
+  ---
+  duration_ms: 2.102375
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/nudge.test.cjs:258:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    missing the Scheduled: instruction: [session-relaunch] Write a handoff note before auto-compaction.
+    1. Write the handoff note at '/tmp/session-relaunch/handoff-01a14869.md' in exactly this shape:
+       ---
+       status: open
+       session_id: 01a14869-0b90-74a9-8231-4d14477ec215
+       loop_id: handoff-text-loop
+       runtime: pi
+       cwd: /Users/michelkerkmeester/worktrees/public/363-hop-state-carry
+       spec_folder: specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters
+       created_at: 2026-11-13T09:45:19.274Z
+       ---
+       followed by ## Goal, ## Done, ## Remaining work, ## In-flight state, each non-empty.
+       Under ## Remaining work list only the task's own unfinished work. Never list these handoff steps (the note, the continuity save, prepare) there; this session does them now.
+       spec_folder is a repo-relative packet path, "none" for Gate 3 D) Skip, or empty if unanswered.
+       Under ## In-flight state include an `Active command:` line with the command, mode and arguments; use `Active command: none` when no command runs.
+    2. When a spec packet is bound to this session, save its continuity first: pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto 'specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters'`.
+    3. If this command holds a deep-loop lock, release it before prepare with `node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path <path> --owner-pid <pid> --nonce <nonce>`, using the values the command captured. The `release --owner-pid` form also requires the captured lock path and nonce.
+    4. Then run: node '/repo/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs' prepare --handoff '/tmp/session-relaunch/handoff-01a14869.md' --session '01a14869-0b90-74a9-8231-4d14477ec215' --runtime 'pi'
+    5. Stop once it exits 0; the loop ends this session and relaunches with a claim seed.
+    If the operator asks this session to stay after prepare, run: node '/repo/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs' cancel, then keep working.
+    Exception: skip these steps only when the operator has told this session not to hand off; then keep working, and auto-compaction stays the fallback.
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/nudge.test.cjs:269:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 59.048
+TAP version 13
+# Subtest: seed text checks running workers before running the active command again
+not ok 1 - seed text checks running workers before running the active command again
+  ---
+  duration_ms: 1.333875
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/nudge.test.cjs:468:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    missing the Running workers: kill -0 step: [session-relaunch] This session was opened to continue a handoff note. Work it in order:
+    1. Run `node '/repo/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs' claim '/tmp/session-relaunch/handoff-01a14869.md' --session '01a14869-0b90-74a9-8231-4d14477ec215'`; it prints the note body.
+    2. Read the note. When its frontmatter spec_folder is set, run `/speckit:resume specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters`; skip that step when spec_folder is empty.
+    3. If the note has an `Active goal:` line other than `none`, use `create_goal` to bring that goal back into this session. On a runtime without `create_goal`, tell the operator which goal to set.
+    4. When specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/goal.md exists, read it before Remaining work; its durable directive binds the session goal.
+    5. When the note's `Active command:` line names a command, run it again with the same mode and arguments; the command's own state detection picks the step. Skip this when the line says `none`.
+    6. Continue the work under "Remaining work". Do not run prepare for this note; its handoff is already done. If Remaining work names only handoff steps, treat it as empty.
+    7. When the remaining work is done, run `node '/repo/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs' complete '/tmp/session-relaunch/handoff-01a14869.md'` to close the note.
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/nudge.test.cjs:483:12)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 77.002583
+TAP version 13
+# Subtest: seed text after a hop recreates scheduled tasks and re-adds directories, and a compaction pointer does not
+not ok 1 - seed text after a hop recreates scheduled tasks and re-adds directories, and a compaction pointer does not
+  ---
+  duration_ms: 1.260125
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/nudge.test.cjs:491:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    [session-relaunch] This session was opened to continue a handoff note. Work it in order:
+    1. Run `node '/repo/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs' claim '/tmp/session-relaunch/handoff-01a14869.md' --session '01a14869-0b90-74a9-8231-4d14477ec215'`; it prints the note body.
+    2. Read the note. When its frontmatter spec_folder is set, run `/speckit:resume specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters`; skip that step when spec_folder is empty.
+    3. If the note has an `Active goal:` line other than `none`, use `create_goal` to bring that goal back into this session. On a runtime without `create_goal`, tell the operator which goal to set.
+    4. When specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/goal.md exists, read it before Remaining work; its durable directive binds the session goal.
+    5. When the note's `Active command:` line names a command, run it again with the same mode and arguments; the command's own state detection picks the step. Skip this when the line says `none`.
+    6. Continue the work under "Remaining work". Do not run prepare for this note; its handoff is already done. If Remaining work names only handoff steps, treat it as empty.
+    7. When the remaining work is done, run `node '/repo/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs' complete '/tmp/session-relaunch/handoff-01a14869.md'` to close the note.
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    [session-relaunch] This session was opened to continue a handoff note. Work it in order:
+    1. Run `node '/repo/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs' claim '/tmp/session-relaunch/handoff-01a14869.md' --session '01a14869-0b90-74a9-8231-4d14477ec215'`; it prints the note body.
+    2. Read the note. When its frontmatter spec_folder is set, run `/speckit:resume specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters`; skip that step when spec_folder is empty.
+    3. If the note has an `Active goal:` line other than `none`, use `create_goal` to bring that goal back into this session. On a runtime without `create_goal`, tell the operator which goal to set.
+    4. When specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/goal.md exists, read it before Remaining work; its durable directive binds the session goal.
+    5. When the note's `Active command:` line names a command, run it again with the same mode and arguments; the command's own state detection picks the step. Skip this when the line says `none`.
+    6. Continue the work under "Remaining work". Do not run prepare for this note; its handoff is already done. If Remaining work names only handoff steps, treat it as empty.
+    7. When the remaining work is done, run `node '/repo/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs' complete '/tmp/session-relaunch/handoff-01a14869.md'` to close the note.
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/nudge.test.cjs:502:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 73.329333
+TAP version 13
+# Subtest: prepare exits two for a note with no Running workers line
+not ok 1 - prepare exits two for a note with no Running workers line
+  ---
+  duration_ms: 195.580583
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:666:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 2
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 2
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:675:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: prepare refuses a Running workers line with neither none nor a pid
+not ok 2 - prepare refuses a Running workers line with neither none nor a pid
+  ---
+  duration_ms: 74.584875
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:680:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Running workers:: [session-relaunch] handoff prepared; stop now and end this turn. The loop ends this session when it goes idle and a fresh session continues from /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-QY8BmD/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md.
+    
+    
+    0 !== 2
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 2
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:690:12)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 335.860375

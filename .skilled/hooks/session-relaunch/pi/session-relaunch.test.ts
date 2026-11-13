@@ -435,6 +435,101 @@ describe('session-relaunch Pi extension', () => {
     });
   });
 
+  it('agent_settled arms with the plan-build mode from the session branch', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-0004';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+    await emit(handlers, 'agent_settled', { aborted: false }, {
+      ...ctx,
+      sessionManager: {
+        ...ctx.sessionManager,
+        // The mode changes over a session, so the last state entry is the live one.
+        getBranch: () => [
+          { type: 'custom', customType: 'pi-plan-build-state', data: { selectedMode: 'build' } },
+          { type: 'message', message: { role: 'assistant' } },
+          { type: 'custom', customType: 'pi-plan-build-state', data: { selectedMode: 'plan' } },
+        ],
+      },
+    });
+
+    expect(readRelaunchFile(loopId, process.env)).toMatchObject({
+      status: 'armed',
+      mode: 'plan',
+    });
+  });
+
+  it('agent_settled arms without a plan-build mode when the branch holds no plan-build state', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-0005';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+    await emit(handlers, 'agent_settled', { aborted: false }, {
+      ...ctx,
+      sessionManager: {
+        ...ctx.sessionManager,
+        // A session that never changed mode has no state entry to read.
+        getBranch: () => [
+          { type: 'message', message: { role: 'assistant' } },
+          { type: 'custom', customType: 'some-other-entry' },
+        ],
+      },
+    });
+
+    const record = readRelaunchFile(loopId, process.env);
+    expect(record).toMatchObject({ status: 'armed' });
+    expect(record).not.toHaveProperty('mode');
+  });
+
+  it('agent_settled arms without a plan-build mode when getBranch throws', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-0006';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+    await emit(handlers, 'agent_settled', { aborted: false }, {
+      ...ctx,
+      sessionManager: {
+        ...ctx.sessionManager,
+        // An unreadable branch must not cost the hop its arm.
+        getBranch: () => { throw new Error('branch unavailable'); },
+      },
+    });
+
+    const record = readRelaunchFile(loopId, process.env);
+    expect(record).toMatchObject({ status: 'armed' });
+    expect(record).not.toHaveProperty('mode');
+  });
+
   it('agent_settled arms without live values when the host exposes none', async () => {
     setupEnv();
     const loopId = 'pi-loop-0003';

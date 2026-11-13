@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-git/commit-standards/008-doctor-host-hook-acceptance",
+  "description": "Let the doctor git check accept a hand-over hook and a hook the host declares omitted",
+  "keywords": [
+    "let",
+    "doctor",
+    "git",
+    "check",
+    "accept",
+    "hand-over",
+    "hook",
+    "host",
+    "declares",
+    "omitted"
+  ],
+  "lastUpdated": "2026-11-13T18:46:10.001Z",
+  "specId": "008",
+  "folderSlug": "doctor-host-hook-acceptance",
+  "parentChain": [
+    "sk-git",
+    "commit-standards"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

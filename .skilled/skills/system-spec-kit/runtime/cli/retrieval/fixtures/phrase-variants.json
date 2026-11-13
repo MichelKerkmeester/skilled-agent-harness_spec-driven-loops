@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a9cd56233bf7d4d951ab4229c696f77aa3b8c0de7f50247ec4a097ac2f8ba440",
+  "manifestHash": "a72596399aae689069e119e2a141741b7184ac5b648bbdd14c6026dcfcfd522a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1474,6 +1474,9 @@
     "005 review 015 pt 01": [
       "005 review 015 pt 01"
     ],
+    "005 router empty block capture operator decisions": [
+      "005-router-empty-block-capture operator decisions"
+    ],
     "005 skill advisor documentation changelog index": [
       "005-skill-advisor-documentation changelog index"
     ],
@@ -1543,6 +1546,9 @@
     "006 007 implementation summary": [
       "006/007 implementation summary"
     ],
+    "006 advisor native node resolution operator decisions": [
+      "006-advisor-native-node-resolution operator decisions"
+    ],
     "006 append lock stale reclaim operator decisions": [
       "006-append-lock-stale-reclaim operator decisions"
     ],
@@ -1566,6 +1572,9 @@
     ],
     "006 commands implementation summary": [
       "006-commands implementation summary"
+    ],
+    "006 compiled route rule growth operator decisions": [
+      "006-compiled-route-rule-growth operator decisions"
     ],
     "006 copilot wrapper schema fix": [
       "006-copilot-wrapper-schema-fix"
@@ -2302,6 +2311,9 @@
     ],
     "009 fp16 tasks": [
       "009 fp16 tasks"
+    ],
+    "009 git history lift operator decisions": [
+      "009-git-history-lift operator decisions"
     ],
     "009 implementation summary": [
       "009 implementation summary"
@@ -9142,6 +9154,18 @@
     "advisor name mention scoring tasks": [
       "advisor name mention scoring tasks"
     ],
+    "advisor native node resolution": [
+      "advisor native node resolution"
+    ],
+    "advisor native node resolution implementation summary": [
+      "advisor native node resolution implementation summary"
+    ],
+    "advisor native node resolution plan": [
+      "advisor native node resolution plan"
+    ],
+    "advisor native node resolution tasks": [
+      "advisor native node resolution tasks"
+    ],
     "advisor negated write": [
       "advisor negated write"
     ],
@@ -10919,6 +10943,9 @@
     ],
     "ai systems verification tasks": [
       "ai systems verification tasks"
+    ],
+    "ai title session name hop": [
+      "ai-title session name hop"
     ],
     "ai workflow spec upgrades": [
       "ai workflow spec upgrades"
@@ -12920,6 +12947,9 @@
     ],
     "askuserquestion capture": [
       "askuserquestion capture"
+    ],
+    "askuserquestion pending hand over": [
+      "askuserquestion pending hand-over"
     ],
     "aspirational threshold audit": [
       "aspirational threshold audit"
@@ -16417,6 +16447,9 @@
     "cap results": [
       "cap results"
     ],
+    "cap the mode subset size the hub registry": [
+      "cap the mode subset size the hub registry"
+    ],
     "capabilities subcommand": [
       "capabilities subcommand"
     ],
@@ -19885,6 +19918,9 @@
     "claim guard anchors": [
       "claim guard anchors"
     ],
+    "claim line not built": [
+      "claim line not built"
+    ],
     "claim relationship event tasks": [
       "claim relationship event tasks"
     ],
@@ -20404,6 +20440,9 @@
     ],
     "claude prompting best practices": [
       "claude prompting best practices"
+    ],
+    "claude receiver starts on packet goal": [
+      "claude receiver starts on packet goal"
     ],
     "claude relaunch acceptance criteria": [
       "Claude relaunch acceptance criteria"
@@ -28408,6 +28447,21 @@
     "compiled route re mint": [
       "compiled route re-mint"
     ],
+    "compiled route rule growth": [
+      "compiled route rule growth"
+    ],
+    "compiled route rule growth implementation summary": [
+      "compiled route rule growth implementation summary"
+    ],
+    "compiled route rule growth plan": [
+      "compiled route rule growth plan"
+    ],
+    "compiled route rule growth tasks": [
+      "compiled route rule growth tasks"
+    ],
+    "compiled route sync host skip": [
+      "compiled route sync host skip"
+    ],
     "compiled route target cap": [
       "compiled route target cap"
     ],
@@ -33264,6 +33318,9 @@
     ],
     "daemon ipc socket server": [
       "daemon IPC socket server"
+    ],
+    "daemon launcher exited with code 1": [
+      "daemon launcher exited with code 1"
     ],
     "daemon launcher lifecycle": [
       "daemon launcher lifecycle"
@@ -39649,6 +39706,9 @@
     "derivestatus tasks": [
       "deriveStatus tasks"
     ],
+    "descendant walk decline": [
+      "descendant walk decline"
+    ],
     "describe cdp domain": [
       "describe cdp domain"
     ],
@@ -42712,6 +42772,18 @@
     ],
     "doctor hint narrowed": [
       "doctor hint narrowed"
+    ],
+    "doctor host hook acceptance": [
+      "doctor host hook acceptance"
+    ],
+    "doctor host hook acceptance implementation summary": [
+      "doctor host hook acceptance implementation summary"
+    ],
+    "doctor host hook acceptance plan": [
+      "doctor host hook acceptance plan"
+    ],
+    "doctor host hook acceptance tasks": [
+      "doctor host hook acceptance tasks"
     ],
     "doctor install alignment": [
       "doctor install alignment"
@@ -53689,6 +53761,9 @@
     "generated metadata validator": [
       "generated metadata validator"
     ],
+    "generated session title across a hop": [
+      "generated session title across a hop"
+    ],
     "generated skill copy skip": [
       "generated skill copy skip"
     ],
@@ -53703,6 +53778,24 @@
     ],
     "generated surfaces": [
       "generated surfaces"
+    ],
+    "generated title carry": [
+      "generated title carry"
+    ],
+    "generated title carry acceptance criteria": [
+      "generated title carry acceptance criteria"
+    ],
+    "generated title carry goal": [
+      "generated title carry goal"
+    ],
+    "generated title carry implementation summary": [
+      "generated title carry implementation summary"
+    ],
+    "generated title carry plan": [
+      "generated title carry plan"
+    ],
+    "generated title carry tasks": [
+      "generated title carry tasks"
     ],
     "generatedocumentembedding catch swallow": [
       "generateDocumentEmbedding catch swallow"
@@ -53883,6 +53976,18 @@
     ],
     "git finish guided workflow": [
       "git-finish guided workflow"
+    ],
+    "git history lift": [
+      "git history lift"
+    ],
+    "git history lift implementation summary": [
+      "git history lift implementation summary"
+    ],
+    "git history lift plan": [
+      "git history lift plan"
+    ],
+    "git history lift tasks": [
+      "git history lift tasks"
     ],
     "git history reconciliation": [
       "git history reconciliation"
@@ -58352,6 +58457,9 @@
     "hop count name suffix": [
       "hop count name suffix"
     ],
+    "hop dialog goal title phase parent spec": [
+      "hop dialog goal title phase parent spec"
+    ],
     "hop history": [
       "hop history"
     ],
@@ -58417,6 +58525,18 @@
     ],
     "host root marker refresh tasks": [
       "host root marker refresh tasks"
+    ],
+    "host spec tree readers": [
+      "host spec tree readers"
+    ],
+    "host spec tree readers implementation summary": [
+      "host spec tree readers implementation summary"
+    ],
+    "host spec tree readers plan": [
+      "host spec tree readers plan"
+    ],
+    "host spec tree readers tasks": [
+      "host spec tree readers tasks"
     ],
     "host trigger index and repin generated": [
       "host trigger index and repin generated"
@@ -60535,6 +60655,12 @@
     ],
     "intent signals dictionary": [
       "intent signals dictionary"
+    ],
+    "intent signals generator empty block": [
+      "intent signals generator empty block"
+    ],
+    "intent signals one line block": [
+      "INTENT_SIGNALS one line block"
     ],
     "intent signals populate": [
       "intent signals populate"
@@ -63463,14 +63589,26 @@
     "let a host repository name its trigger index": [
       "let a host repository name its trigger index"
     ],
+    "let a hub declare that a surface folds": [
+      "let a hub declare that a surface folds"
+    ],
     "let a second pi cache optimizer copy stand": [
       "let a second pi cache optimizer copy stand"
+    ],
+    "let read only git history questions route": [
+      "let read only git history questions route"
     ],
     "let the continuity writer save into a research": [
       "let the continuity writer save into a research"
     ],
+    "let the doctor git check accept a hand": [
+      "let the doctor git check accept a hand"
+    ],
     "let the pi fast mode extension stand down": [
       "let the pi fast mode extension stand down"
+    ],
+    "let the route sync check the route gold": [
+      "let the route sync check the route gold"
     ],
     "level 1 smoke run brief": [
       "level 1 smoke run brief"
@@ -65870,6 +66008,9 @@
     ],
     "matrix runners stress test readme": [
       "matrix_runners stress_test readme"
+    ],
+    "max bundle modes": [
+      "max bundle modes"
     ],
     "max clients 64 plan": [
       "max clients 64 plan"
@@ -73623,6 +73764,9 @@
     "no go list": [
       "no-go list"
     ],
+    "no goal entry hop": [
+      "no goal entry hop"
+    ],
     "no match diagnostic plan": [
       "no match diagnostic plan"
     ],
@@ -78355,6 +78499,24 @@
     "packet goal blank": [
       "packet goal blank"
     ],
+    "packet goal fallback": [
+      "packet goal fallback"
+    ],
+    "packet goal fallback acceptance criteria": [
+      "packet goal fallback acceptance criteria"
+    ],
+    "packet goal fallback goal": [
+      "packet goal fallback goal"
+    ],
+    "packet goal fallback implementation summary": [
+      "packet goal fallback implementation summary"
+    ],
+    "packet goal fallback plan": [
+      "packet goal fallback plan"
+    ],
+    "packet goal fallback tasks": [
+      "packet goal fallback tasks"
+    ],
     "packet goal frontmatter": [
       "packet goal frontmatter"
     ],
@@ -80225,6 +80387,9 @@
     "phase 1 scenario contract": [
       "phase 1 scenario contract"
     ],
+    "phase 1 sender dialog after prepare": [
+      "phase 1 sender dialog after prepare"
+    ],
     "phase 1 shared and hub docs": [
       "phase 1 shared and hub docs"
     ],
@@ -80915,6 +81080,9 @@
     "phase 2 overlay engine": [
       "phase 2 overlay engine"
     ],
+    "phase 2 packet goal fallback": [
+      "phase 2 packet goal fallback"
+    ],
     "phase 2 parent goal budget": [
       "phase 2 parent goal budget"
     ],
@@ -81292,6 +81460,9 @@
     ],
     "phase 3 fsmonitor daemon lifecycle": [
       "phase 3 fsmonitor daemon lifecycle"
+    ],
+    "phase 3 generated title carry": [
+      "phase 3 generated title carry"
     ],
     "phase 3 goal criteria": [
       "phase 3 goal criteria"
@@ -83698,6 +83869,9 @@
     ],
     "pi mode and descendant walk acceptance criteria": [
       "pi mode and descendant walk acceptance criteria"
+    ],
+    "pi mode and descendant walk decisions": [
+      "pi mode and descendant walk decisions"
     ],
     "pi mode and descendant walk goal": [
       "pi mode and descendant walk goal"
@@ -88146,6 +88320,9 @@
     "question coverage convergence": [
       "question coverage convergence"
     ],
+    "question dialog blocks hop": [
+      "question dialog blocks hop"
+    ],
     "question entropy": [
       "question entropy"
     ],
@@ -89277,6 +89454,9 @@
     "readmes tone consistency": [
       "readmes tone consistency"
     ],
+    "readonlyrouteallowed sk git": [
+      "readOnlyRouteAllowed sk-git"
+    ],
     "ready once latch cache into reindex": [
       "ready-once latch cache-into-reindex"
     ],
@@ -89570,6 +89750,9 @@
     ],
     "receiver claim under goal acceptance criteria": [
       "receiver claim under goal acceptance criteria"
+    ],
+    "receiver claim under goal decisions": [
+      "receiver claim under goal decisions"
     ],
     "receiver claim under goal goal": [
       "receiver claim under goal goal"
@@ -97249,6 +97432,9 @@
     "route fallback": [
       "route fallback"
     ],
+    "route gold host repository": [
+      "route gold host repository"
+    ],
     "route guard": [
       "route guard"
     ],
@@ -97365,6 +97551,18 @@
     ],
     "router edit freshness": [
       "router edit freshness"
+    ],
+    "router empty block capture": [
+      "router empty block capture"
+    ],
+    "router empty block capture implementation summary": [
+      "router empty block capture implementation summary"
+    ],
+    "router empty block capture plan": [
+      "router empty block capture plan"
+    ],
+    "router empty block capture tasks": [
+      "router empty block capture tasks"
     ],
     "router fallback pattern": [
       "router fallback pattern"
@@ -97572,6 +97770,9 @@
     ],
     "router sync baseline tasks": [
       "router-sync baseline tasks"
+    ],
+    "router sync fold": [
+      "router sync fold"
     ],
     "router sync git timeout": [
       "router sync git timeout"
@@ -101485,6 +101686,24 @@
     ],
     "send chat message": [
       "send chat message"
+    ],
+    "sender dialog after prepare": [
+      "sender dialog after prepare"
+    ],
+    "sender dialog after prepare acceptance criteria": [
+      "sender dialog after prepare acceptance criteria"
+    ],
+    "sender dialog after prepare goal": [
+      "sender dialog after prepare goal"
+    ],
+    "sender dialog after prepare implementation summary": [
+      "sender dialog after prepare implementation summary"
+    ],
+    "sender dialog after prepare plan": [
+      "sender dialog after prepare plan"
+    ],
+    "sender dialog after prepare tasks": [
+      "sender dialog after prepare tasks"
     ],
     "sendsessionaffinityheaders opencode": [
       "sendSessionAffinityHeaders opencode"
@@ -112313,6 +112532,9 @@
     "skilled generator rebuild results": [
       "skilled generator rebuild results"
     ],
+    "skilled hook handover": [
+      "skilled-hook-handover"
+    ],
     "skilled house checklist": [
       "skilled house checklist"
     ],
@@ -112459,6 +112681,9 @@
     ],
     "skilled move verification rows": [
       "skilled move verification rows"
+    ],
+    "skilled omithook": [
+      "skilled.omitHook"
     ],
     "skilled placeholder removal": [
       "skilled placeholder removal"
@@ -116660,6 +116885,9 @@
     "start sh reaper allowlist": [
       "start.sh reaper allowlist"
     ],
+    "start the skill advisor on the node": [
+      "start the skill advisor on the node"
+    ],
     "start timer": [
       "start timer"
     ],
@@ -118200,6 +118428,21 @@
     ],
     "surface implementation standards": [
       "surface implementation standards"
+    ],
+    "surface intent fold declaration": [
+      "surface intent fold declaration"
+    ],
+    "surface intent fold declaration implementation summary": [
+      "surface intent fold declaration implementation summary"
+    ],
+    "surface intent fold declaration plan": [
+      "surface intent fold declaration plan"
+    ],
+    "surface intent fold declaration tasks": [
+      "surface intent fold declaration tasks"
+    ],
+    "surface intent folds key": [
+      "surface intent folds key"
     ],
     "surface marker kinds": [
       "surface marker kinds"

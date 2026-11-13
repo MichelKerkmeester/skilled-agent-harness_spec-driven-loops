@@ -218,22 +218,41 @@ function applyLocalSwitches(settings, entries) {
 }
 
 /**
- * Read the model and effort the main Claude session runs on now: the last main-chain
- * assistant turn, updated by any /model or /effort switch confirmed after it.
+ * Read the model, effort and name the main Claude session runs on now: the last main-chain
+ * assistant turn, updated by any /model or /effort switch confirmed after it, and the last
+ * /rename title. The title sits wherever the operator renamed, often before the last turn,
+ * so it needs a tail search of its own. The title Claude generated for the session is read
+ * the same way and reported apart, because it names the session only while nothing else does.
  *
  * @param {string} transcriptPath - Claude JSONL transcript path.
  * @param {{tailBytes?: number}} [options] - Maximum transcript bytes to read.
- * @returns {{model: string, effort: string}|null} The values, or null when neither an
- * assistant entry nor a switch exists or the transcript cannot be read.
+ * @returns {{model: string, effort: string, name: string, generatedName?: string}|null} The
+ * values, `''` for each one the log does not prove, with `generatedName` present only when
+ * the log holds a generated title, or null when neither an assistant entry nor a title
+ * exists, or the transcript cannot be read.
  */
 function readClaudeSettings(transcriptPath, { tailBytes = DEFAULT_TAIL_BYTES } = {}) {
   let found;
+  let name = '';
+  let generatedName = '';
   try {
     found = latestTailEntryWithTrail(
       transcriptPath,
       tailBytes,
       (entry) => entry.type === 'assistant' && entry.isSidechain !== true,
     );
+    const title = latestTailEntry(
+      transcriptPath,
+      tailBytes,
+      (entry) => entry.type === 'custom-title' && settingText(entry.customTitle) !== '',
+    );
+    if (title !== null) name = settingText(title.customTitle);
+    const generated = latestTailEntry(
+      transcriptPath,
+      tailBytes,
+      (entry) => entry.type === 'ai-title' && settingText(entry.aiTitle) !== '',
+    );
+    if (generated !== null) generatedName = settingText(generated.aiTitle);
   } catch {
     return null;
   }
@@ -250,8 +269,11 @@ function readClaudeSettings(transcriptPath, { tailBytes = DEFAULT_TAIL_BYTES } =
     };
   }
   const settings = applyLocalSwitches(fromTurn, found.trail);
-  if (lastAssistant === null && settings.model === '' && settings.effort === '') return null;
-  return settings;
+  if (lastAssistant === null && settings.model === '' && settings.effort === ''
+    && name === '' && generatedName === '') {
+    return null;
+  }
+  return { ...settings, name, ...(generatedName === '' ? {} : { generatedName }) };
 }
 
 /**

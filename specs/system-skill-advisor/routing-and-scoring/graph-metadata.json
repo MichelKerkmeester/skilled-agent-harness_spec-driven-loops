@@ -11,7 +11,8 @@
     "system-skill-advisor/routing-and-scoring/005-executor-workflow-owner-guard",
     "system-skill-advisor/routing-and-scoring/006-runtime-name-implementation-routing",
     "system-skill-advisor/routing-and-scoring/007-command-surfacing-and-workflow-enforcement",
-    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build"
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+    "system-skill-advisor/routing-and-scoring/009-git-history-lift"
   ],
   "manual": {
     "depends_on": [],

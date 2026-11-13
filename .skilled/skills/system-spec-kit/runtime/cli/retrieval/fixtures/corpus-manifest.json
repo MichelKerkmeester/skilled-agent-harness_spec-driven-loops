@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3a5cf2f792b9b4d135aab4baa1d294edd7a9884a59948fcc06785c2b27477dae",
+  "corpusHash": "a3c919aea95cfbf851976eba3ef7594dc718e4f49a5b4ca61214555e386a4396",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26621,
+  "includedPathCount": 26675,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11954,12 +11954,14 @@
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons/tasks.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk/decision-record.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk/plan.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk/tasks.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal/decision-record.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal/plan.md",
@@ -11984,6 +11986,26 @@
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/review/resource-map.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/review/review-report.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research/research.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
@@ -13715,6 +13737,10 @@
     "specs/sk-code/verification-guards/004-drift-guard-cleanup/plan.md",
     "specs/sk-code/verification-guards/004-drift-guard-cleanup/spec.md",
     "specs/sk-code/verification-guards/004-drift-guard-cleanup/tasks.md",
+    "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/implementation-summary.md",
+    "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/plan.md",
+    "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/spec.md",
+    "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/tasks.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/decision-record.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/implementation-summary.md",
@@ -14935,6 +14961,11 @@
     "specs/sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend/plan.md",
     "specs/sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend/spec.md",
     "specs/sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend/tasks.md",
+    "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/decision-record.md",
+    "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/implementation-summary.md",
+    "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/plan.md",
+    "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/spec.md",
+    "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/tasks.md",
     "specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract/acceptance-criteria.md",
     "specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract/implementation-summary.md",
     "specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract/inventory/consumer-inventory.md",
@@ -15395,6 +15426,15 @@
     "specs/sk-doc/hub-routing-and-surfaces/005-opencode-native-surfaces/plan.md",
     "specs/sk-doc/hub-routing-and-surfaces/005-opencode-native-surfaces/spec.md",
     "specs/sk-doc/hub-routing-and-surfaces/005-opencode-native-surfaces/tasks.md",
+    "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/decision-record.md",
+    "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/implementation-summary.md",
+    "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/plan.md",
+    "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/spec.md",
+    "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/tasks.md",
+    "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/implementation-summary.md",
+    "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/plan.md",
+    "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/spec.md",
+    "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/tasks.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/acceptance-criteria.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/implementation-summary.md",
@@ -15581,6 +15621,10 @@
     "specs/sk-git/commit-standards/007-advisory-cd-prefix-env-steps/plan.md",
     "specs/sk-git/commit-standards/007-advisory-cd-prefix-env-steps/spec.md",
     "specs/sk-git/commit-standards/007-advisory-cd-prefix-env-steps/tasks.md",
+    "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/implementation-summary.md",
+    "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/plan.md",
+    "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/spec.md",
+    "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/tasks.md",
     "specs/sk-git/live-sync-and-publishing/001-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/live-sync-and-publishing/001-live-sync-harden-default-on/plan.md",
     "specs/sk-git/live-sync-and-publishing/001-live-sync-harden-default-on/spec.md",
@@ -18024,6 +18068,11 @@
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/decision-record.md",
+    "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/tasks.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/implementation-summary.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/plan.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/spec.md",
@@ -18086,6 +18135,11 @@
     "specs/system-skill-advisor/runtime-lifecycle/005-build-freshness-record/plan.md",
     "specs/system-skill-advisor/runtime-lifecycle/005-build-freshness-record/spec.md",
     "specs/system-skill-advisor/runtime-lifecycle/005-build-freshness-record/tasks.md",
+    "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/decision-record.md",
+    "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/implementation-summary.md",
+    "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/plan.md",
+    "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/spec.md",
+    "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/acceptance-criteria.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/decision-record.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/goal.md",
@@ -26653,7 +26707,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a9cd56233bf7d4d951ab4229c696f77aa3b8c0de7f50247ec4a097ac2f8ba440",
+  "manifestHash": "a72596399aae689069e119e2a141741b7184ac5b648bbdd14c6026dcfcfd522a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30152,6 +30206,18 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research/lineages",
       "reason": "excluded directory"
     },
@@ -31328,6 +31394,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/verification-guards/z_archive",
       "reason": "excluded directory"
     },
@@ -32332,6 +32402,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/doc-validation-tooling/z_archive",
       "reason": "excluded directory"
     },
@@ -32772,6 +32846,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/hub-routing-and-surfaces/z_archive",
       "reason": "excluded directory"
     },
@@ -32945,6 +33027,10 @@
     },
     {
       "path": "specs/sk-git/commit-standards/007-advisory-cd-prefix-env-steps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/scratch",
       "reason": "excluded directory"
     },
     {
@@ -33964,6 +34050,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/z_archive",
       "reason": "excluded directory"
     },
@@ -34005,6 +34095,10 @@
     },
     {
       "path": "specs/system-skill-advisor/runtime-lifecycle/005-build-freshness-record/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/scratch",
       "reason": "excluded directory"
     },
     {

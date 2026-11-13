@@ -1,0 +1,28 @@
+✔ subagent-guard denies claim from a sub-agent (33.480625ms)
+✔ subagent-guard denies complete from a sub-agent (30.03225ms)
+✔ subagent-guard denies keep from a sub-agent (34.170708ms)
+✔ subagent-guard denies prepare from a sub-agent (30.998834ms)
+✔ subagent-guard denies cancel from a sub-agent (31.459583ms)
+✔ subagent-guard denies consume from a sub-agent (33.325167ms)
+✔ subagent-guard denies hand-over from a sub-agent (30.195292ms)
+✔ subagent-guard stays silent for the main session that carries no agent_id (29.314708ms)
+✔ subagent-guard stays silent for a whitespace-only agent_id (32.045584ms)
+✔ subagent-guard stays silent for a sub-agent reading the hop history (31.36275ms)
+✔ subagent-guard stays silent for an unrelated Bash command from a sub-agent (29.264041ms)
+✔ subagent-guard stays silent for a non-Bash tool call from a sub-agent (30.123166ms)
+✔ subagent-guard stays silent on stdin that is not valid JSON (30.980875ms)
+✔ subagent-guard stays silent when the relaunch concern is disabled (30.067708ms)
+✔ subagent-guard denies a question dialog while the session hand-over is pending (41.731084ms)
+✔ subagent-guard lets a question dialog through when no hand-over is prepared (29.55775ms)
+✔ subagent-guard lets a question dialog through over another session's pending record (37.397667ms)
+✔ subagent-guard lets a question dialog through once the record is armed (41.396542ms)
+✔ subagent-guard lets a question dialog through outside a relaunch loop (35.673542ms)
+✔ subagent-guard lets a question dialog through when the relaunch concern is disabled (32.731042ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 696.510417

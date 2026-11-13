@@ -85,6 +85,7 @@ async function spawnKiller(loopId, targetPid, transcriptPath, env, spawnProcess)
  * @param {number} [dependencies.pid=process.pid] - Pid the loop-child walk climbs from.
  * @param {string} [dependencies.processTable] - `pid ppid` pairs; the live table when omitted.
  * @param {Function} [dependencies.spawn] - Spawns the killer; child_process.spawn when omitted.
+ * @param {Function} [dependencies.write] - Writes the deferral notice; process.stdout.write when omitted.
  * @returns {Promise<Object|null>} The armed record, or null when nothing was armed.
  */
 async function armPendingRecord(payload, dependencies = {}) {
@@ -104,6 +105,18 @@ async function armPendingRecord(payload, dependencies = {}) {
   }
   const sessionId = payload?.session_id;
   if (!armableRecord(record, { loopId, sessionId, runtime: 'claude', env }).armable) return null;
+
+  // Session-scoped crons end with the session the hop replaces, so the log keeps how many
+  // were in flight once the hop became possible. Only the count is written: the list
+  // reaches the operator through the note `prepare` validated before this Stop ran.
+  const sessionCrons = payload.session_crons;
+  if (Array.isArray(sessionCrons) && sessionCrons.length > 0) {
+    logEvent('session-crons', {
+      loopId,
+      sessionId: record.sessionId,
+      crons: sessionCrons.length,
+    }, env);
+  }
 
   // The killer watches the transcript for idleness, so a payload without its
   // path can never finish arming: the record stays pending for the next Stop
@@ -131,6 +144,22 @@ async function armPendingRecord(payload, dependencies = {}) {
     } catch (error) {
       logEvent('stop-arm-error', { stage: 'defer', loopId, message: error.message }, env);
     }
+    // A deferred hop is otherwise silent, so the operator cannot tell the session is
+    // parked or how to call it off. The notice carries `systemMessage` and never a
+    // `decision` key: Claude shows it and still ends the turn instead of continuing it.
+    try {
+      const tasks = payload.background_tasks.length;
+      const write = dependencies.write || ((text) => process.stdout.write(text));
+      write(`${JSON.stringify({
+        systemMessage: `Session relaunch is waiting on ${tasks} background `
+          + `task${tasks === 1 ? '' : 's'}; the hop goes ahead at the first Stop after `
+          + 'they finish. Send a prompt or run '
+          + '`node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs cancel` '
+          + 'to call it off.',
+      })}\n`);
+    } catch (error) {
+      logEvent('stop-arm-error', { stage: 'notice', loopId, message: error.message }, env);
+    }
     return null;
   }
 
@@ -149,7 +178,17 @@ async function armPendingRecord(payload, dependencies = {}) {
 
   let armed;
   try {
-    armed = arm({ loopId, cwd: payload.cwd || process.cwd(), env });
+    // The CLI's help has no spelling for the default mode, so only a value the payload
+    // actually named is stamped; an absent or empty one leaves the record untouched.
+    const permissionMode = payload.permission_mode;
+    armed = arm({
+      loopId,
+      cwd: payload.cwd || process.cwd(),
+      settings: typeof permissionMode === 'string' && permissionMode !== ''
+        ? { permissionMode }
+        : {},
+      env,
+    });
   } catch (error) {
     logEvent('stop-arm-error', { stage: 'arm', loopId, message: error.message }, env);
     return null;

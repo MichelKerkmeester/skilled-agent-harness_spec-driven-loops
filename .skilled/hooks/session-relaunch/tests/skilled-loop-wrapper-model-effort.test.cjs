@@ -878,6 +878,129 @@ test("manual command after a model-switching hop carries the current hop's model
   assert.equal(command.includes('claude-sonnet-5-5'), false, command);
 });
 
+test('the sender live permission mode replaces the launch mode for that hop', (t) => {
+  const sandbox = createSandbox(t);
+  // An outer session's mode must not reach the first launch; only the record does.
+  sandbox.env.SKILLED_LOOP_PERMISSION_MODE = 'dontAsk';
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_PERMISSION_MODE: 'acceptEdits',
+  });
+  const result = runWrapper(sandbox, ['claude', '--permission-mode', 'manual', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  const args = records[1].args;
+  assert.equal(args.filter((argument) => argument === '--permission-mode').length, 1);
+  assert.deepEqual(args, ['--permission-mode', 'acceptEdits', `${SEED} ${handoffPath}`]);
+  assert.equal(records[1].env.SKILLED_LOOP_PERMISSION_MODE, 'acceptEdits');
+  assert.equal(records[0].env.SKILLED_LOOP_PERMISSION_MODE, 'manual');
+});
+
+test('a live permission mode the CLI would reject falls back to the launch mode', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_PERMISSION_MODE: 'bogusMode',
+  });
+  const result = runWrapper(sandbox, ['claude', '--permission-mode', 'manual', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(
+    result.stderr,
+    /warning: ignoring the sender permission mode bogusMode, relaunching on the launch mode/,
+  );
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--permission-mode', 'manual', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('a live default permission mode replaces the launch mode', (t) => {
+  const sandbox = createSandbox(t);
+  // The help lists no default choice, but the CLI accepts the spelling its Stop payload reports.
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_PERMISSION_MODE: 'default',
+  });
+  const result = runWrapper(sandbox, ['claude', '--permission-mode', 'acceptEdits', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.doesNotMatch(result.stderr, /ignoring the sender permission mode/);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--permission-mode', 'default', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('a live plan mode keeps the launch mode', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_PERMISSION_MODE: 'plan',
+  });
+  const result = runWrapper(sandbox, ['claude', '--permission-mode', 'manual', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(
+    result.stderr,
+    /note: the sender was in plan mode, the receiver starts in the launch mode/,
+  );
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--permission-mode', 'manual', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('a live bypass mode with no unlocking launch flag keeps the launch mode', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_PERMISSION_MODE: 'bypassPermissions',
+  });
+  const result = runWrapper(sandbox, ['claude', '--permission-mode', 'manual', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(
+    result.stderr,
+    /warning: ignoring the sender permission mode bypassPermissions, relaunching on the launch mode/,
+  );
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--permission-mode', 'manual', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('a hop with no live permission mode replays the launch mode before the seed', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const result = runWrapper(sandbox, ['claude', '--permission-mode', 'manual', 'p']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(readRecords(recordPath)[1].args, [
+    '--permission-mode', 'manual', `${SEED} ${handoffPath}`,
+  ]);
+});
+
+test('manual command carries the live permission mode', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    PENDING_ON_INVOCATION: '1',
+    STUB_EXIT_CODES: '7',
+    RECORD_PERMISSION_MODE: 'acceptEdits',
+    SYSTEM_SESSION_RELAUNCH_ENABLED: '1',
+  });
+  const result = runWrapper(sandbox, ['claude', '--permission-mode', 'manual', 'p']);
+
+  assert.equal(result.status, 7, result.stderr);
+  assert.equal(readRecords(recordPath).length, 1);
+  const template = `skilled-loop claude '--permission-mode' 'acceptEdits' ${MANUAL_SEED_TEMPLATE}`;
+  const command = printedManualCommand(result);
+  assert.equal(
+    command,
+    withManualTemplate(template, () => manualClaimCommand('claude', handoffPath)),
+  );
+  assert.equal(command.includes("'manual'"), false, command);
+});
+
 test('multi-hop relaunches carry each runtime model and provider on every invocation', (t) => {
   const cases = [
     {

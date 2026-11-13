@@ -22,6 +22,26 @@ const ROUTE_GOLD_CANDIDATES = [
   path.join(REPO_ROOT, 'specs', 'sk-doc', 'z_archive', ROUTE_GOLD_REL.replace(/^specs[\\/]sk-doc[\\/]/, '')),
   path.join(REPO_ROOT, ROUTE_GOLD_REL),
 ];
+const HOST_INDEX_MODULE = path.join(SKILLS_ROOT, 'system-spec-kit', 'runtime', 'cli', 'retrieval', 'lib', 'host-index.mjs');
+
+// The route gold lives in Skilled's own spec tree, so a host repository that vendors
+// Skilled under `.skilled` has none by design. The caller's git root decides, never
+// REPO_ROOT, because Node resolves this script's symlink and REPO_ROOT then names the
+// vendored checkout. The helper is an ES module loaded with require(), which an older
+// Node rejects, and a missing gold then stays a problem.
+function callerIsHostRepository() {
+  try {
+    const hostIndex = require(HOST_INDEX_MODULE);
+    const root = hostIndex.callerRepoRoot();
+    return Boolean(root) && hostIndex.isHostRepository(root);
+  } catch {
+    return false;
+  }
+}
+
+// A leg that skips part of its check leaves a note here, and main prints it under the
+// leg's status line.
+const skipNotes = [];
 
 // Each surface reaches the implement, debug and verify doctrine through a symlink, so the
 // symlinked copies stay unrouted. The hub ROUTER routes the canonical debug and verify paths
@@ -94,6 +114,36 @@ function surfaceSignalProblems(problems) {
     if (!tieBreak.includes(key)) problems.push(`surface ${key} has no hub-router.json tieBreak position`);
     if (!Object.prototype.hasOwnProperty.call(signals, key)) problems.push(`surface ${key} has no hub-router.json routerSignals entry`);
   }
+}
+
+// A host hub may fold every intent of one surface into a single parent intent, declared in
+// hub-router.json as surfaceIntentFolds, keyed by surface packet. Leg 2 then compares the whole
+// path set of that surface with the one parent intent. A declaration that names no registered
+// surface or no parent intent is reported and not applied, so a fold never empties the check.
+function surfaceIntentFolds(problems, parentMap) {
+  const folds = new Map();
+  let hub = null;
+  try {
+    hub = JSON.parse(fs.readFileSync(path.join(SKCODE, 'hub-router.json'), 'utf8'));
+  } catch {
+    return folds;
+  }
+  const declared = hub && typeof hub === 'object' ? hub.surfaceIntentFolds : undefined;
+  if (declared === undefined) return folds;
+  if (!declared || typeof declared !== 'object' || Array.isArray(declared)) {
+    problems.push('hub-router.json surfaceIntentFolds must map a surface packet to one parent map intent');
+    return folds;
+  }
+  for (const [surface, intent] of Object.entries(declared)) {
+    if (!SURFACE_PACKETS.has(surface)) {
+      problems.push(`surfaceIntentFolds names ${surface}, which is not a registered surface packet on disk`);
+    } else if (typeof intent !== 'string' || !Object.prototype.hasOwnProperty.call(parentMap, intent)) {
+      problems.push(`surfaceIntentFolds maps ${surface} to ${intent}, which is not a parent map intent`);
+    } else {
+      folds.set(surface, intent);
+    }
+  }
+  return folds;
 }
 
 function manifestLeavesByPacket() {
@@ -253,12 +303,17 @@ function legSurfaceMap() {
     const map = children[surface] || readSkillRouter(path.join(SKCODE, surface)).resourceMap || {};
     return new Set(Object.values(map).flat().map((p) => `${surface}/${norm(p)}`));
   };
-  const intents = new Set([...Object.keys(parentMap), ...SURFACES.flatMap((s) => Object.keys(children[s]))]);
+  // A folded surface joins the union of its declared parent intent as one path set, so its own
+  // intent keys never enter the per-intent walk.
+  const folds = surfaceIntentFolds(problems, parentMap);
+  const unfolded = SURFACES.filter((s) => !folds.has(s));
+  const intents = new Set([...Object.keys(parentMap), ...unfolded.flatMap((s) => Object.keys(children[s]))]);
   for (const it of intents) {
     const union = new Set();
-    for (const s of SURFACES) for (const p of children[s][it] || []) union.add(`${s}/${norm(p)}`);
+    for (const s of unfolded) for (const p of children[s][it] || []) union.add(`${s}/${norm(p)}`);
+    for (const [s, hubIntent] of folds) if (hubIntent === it) for (const p of declaredBy(s)) union.add(p);
     const parentPaths = new Set((parentMap[it] || []).map(norm));
-    const childOwnsIntent = SURFACES.some((s) => children[s][it]);
+    const childOwnsIntent = unfolded.some((s) => children[s][it]);
     for (const c of union) if (!parentPaths.has(c)) problems.push(`parent map ${it} is missing child path ${c}`);
     for (const p of parentPaths) {
       if (union.has(p)) continue;
@@ -290,7 +345,9 @@ function legBijection() {
     problems.push('a wrong packet resolves through qualifiedIdToLeaf (it must fail closed)');
   }
   const goldPath = ROUTE_GOLD_CANDIDATES.find((p) => fs.existsSync(p));
-  if (!goldPath) {
+  if (!goldPath && callerIsHostRepository()) {
+    skipNotes.push("route-gold not checked: host repository; the compiled route gold ships only in Skilled's own checkout");
+  } else if (!goldPath) {
     problems.push(`route-gold not found, tried: ${ROUTE_GOLD_CANDIDATES.map((p) => path.relative(REPO_ROOT, p)).join(', ')}`);
   } else {
     const gold = JSON.parse(fs.readFileSync(goldPath, 'utf8'));
@@ -412,6 +469,7 @@ function main(argv) {
       for (const p of problems.slice(0, 12)) console.log(`  - ${p}`);
       if (problems.length > 12) console.log(`  - ... ${problems.length - 12} more`);
     }
+    for (const note of skipNotes.splice(0)) console.log(`  skip: ${note}`);
   }
   console.log(`router-sync: ${legs.length - failed}/${legs.length} checks passed`);
   return failed === 0 ? 0 : 1;

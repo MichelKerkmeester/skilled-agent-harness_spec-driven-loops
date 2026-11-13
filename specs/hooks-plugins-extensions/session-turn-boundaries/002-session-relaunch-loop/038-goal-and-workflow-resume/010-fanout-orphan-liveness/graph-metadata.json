@@ -36,7 +36,7 @@
       "row"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,7 +47,13 @@
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-pool.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts"
+      ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts",
+      "scratch/repro-double-writer.cjs",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/repro-after.txt",
+      "scratch/repro.txt",
+      ".skilled/commands/speckit/handoff.md"
     ],
     "entities": [
       {
@@ -111,6 +117,42 @@
         "source": "derived"
       },
       {
+        "name": "repro-double-writer.cjs",
+        "kind": "file",
+        "path": "scratch/repro-double-writer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repro-after.txt",
+        "kind": "file",
+        "path": "scratch/repro-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repro.txt",
+        "kind": "file",
+        "path": "scratch/repro.txt",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -157,47 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Ledger",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`detectOrphanedLineages` counts a label as orphaned when it has a `started` row and no later `completed`, `failed` or `orphanrequeued` row, and it never asks whether the process is alive",
     "created_at": "2026-11-13T08:49:31Z",
-    "last_save_at": "2026-11-13T09:17:49.291Z",
+    "last_save_at": "2026-11-13T10:08:33.820Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b75f3f91efa5dfaa5186e748245cbbb7c9a9b779f6451ddb0ac5bcce9f897c33",
+    "source_fingerprint": "sha256:c494d053aaef441479b5f8a732a62bd433cf3e38249659a52b340d7f556b2c8a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f5b38e896e21ca87c964743f739efbd859c5f2d2eda7333467a59a29d1d2f82b",
+      "spec.md": "0bd1ecfc41d2ee9e155735bd6cca53b3a90b5d16c1b86518415beb3cc7fdbd86",
       "plan.md": "424b84643ac87749ff82553235574030e9539bade868b0405021845cd161cafb",
-      "tasks.md": "a8168fdf472e5e73798f8b6ea6c608798686cb0860701dd777a67389cfcb9899",
-      "implementation-summary.md": "26479fc5826f30460302914c66cfe0adbcaf70869281545b4b5c7be7a0c3fcc8"
+      "tasks.md": "6b0126beebdd148bd02272aa6e8f3233c36a317184c286bd9a36488ab1419d2d",
+      "implementation-summary.md": "3077495e1b9582985650ec75289457bd471ac555359bc60a79cab046b638f4e5"
     },
     "last_active_at": null
   }

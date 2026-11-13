@@ -150,6 +150,7 @@ The sender answered once.
 Run the shell command printenv SESSION_RELAUNCH_GOAL_PACKET and write its output into the file GOALENV.marker, or the single word EMPTY when it prints nothing. Then write the first line of any active goal block that appears in your context into the file GOALSEEN.marker, or the single word NONE when your context holds no goal block. Then reply with the single word PONG.
 ## In-flight state
 Nothing is running.
+Running workers: none
 NOTE
 ( cd "$sb" && env -u CLAUDECODE -u CLAUDE_CODE_SESSION_ID -u SKILLED_LOOP_MANUAL_TEMPLATE SYSTEM_SESSION_RELAUNCH_ENABLED=1 SKILLED_LOOP_RUNTIME="$runtime" SKILLED_LOOP_HOPS=0 SKILLED_LOOP_ID="$pane_pid" node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs prepare --handoff "$note" --session "$sender_id" --runtime "$runtime" ) > "$out/prepare.txt" 2>&1
 log "prepare exit=$? ; $(head -c 300 "$out/prepare.txt")"

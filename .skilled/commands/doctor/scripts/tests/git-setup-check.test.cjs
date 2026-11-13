@@ -845,6 +845,68 @@ test('hooks fails a linked hook that is not executable', (t) => {
   assert.ok(row.details.some((detail) => detail.startsWith(`${names[0]}: not executable`)), row.details.join(' | '));
 });
 
+// Lay out the repository's own hook sources and link every shipped hook to them,
+// except the names in `skip`, which the caller installs or leaves out itself.
+function linkOwnHooks(f, skip = []) {
+  const ownSources = path.join(f.repo, '.skilled', 'scripts', 'git-hooks');
+  fs.mkdirSync(ownSources, { recursive: true });
+  fs.mkdirSync(path.join(f.repo, '.skilled', 'skills', 'system-spec-kit'), { recursive: true });
+  fs.writeFileSync(path.join(f.repo, '.skilled', 'skills', 'system-spec-kit', 'SKILL.md'), 'sentinel\n');
+  const hooksDir = path.join(f.repo, '.git', 'hooks');
+  for (const entry of fs.readdirSync(HOOKS_SOURCE, { withFileTypes: true })) {
+    if (!entry.isFile() || entry.name === 'README.md') continue;
+    fs.writeFileSync(path.join(ownSources, entry.name), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+    if (!skip.includes(entry.name)) {
+      fs.symlinkSync(path.join(ownSources, entry.name), path.join(hooksDir, entry.name));
+    }
+  }
+  return { ownSources, hooksDir };
+}
+
+test('hooks accepts a host hook that hands over to a hook source through its marker line', (t) => {
+  const f = fixture(t);
+  const { ownSources, hooksDir } = linkOwnHooks(f, ['pre-commit']);
+  fs.writeFileSync(
+    path.join(hooksDir, 'pre-commit'),
+    '#!/bin/sh\n# skilled-hook-handover: ../../.skilled/scripts/git-hooks\nexec sh "$(dirname "$0")/../../.skilled/scripts/git-hooks/pre-commit" "$@"\n',
+    { mode: 0o755 },
+  );
+  const row = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(row.result, 'PASS', row.details.join(' | '));
+  const target = fs.realpathSync(path.join(ownSources, 'pre-commit'));
+  assert.deepEqual(row.details, [`pre-commit: hands over to ${target}`]);
+});
+
+test('hooks refuses a marker line that points at a folder without the hook source', (t) => {
+  const f = fixture(t);
+  const { hooksDir } = linkOwnHooks(f, ['pre-commit']);
+  const elsewhere = path.join(f.repo, 'elsewhere');
+  fs.mkdirSync(elsewhere);
+  fs.writeFileSync(path.join(elsewhere, 'pre-commit'), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+  const installed = path.join(hooksDir, 'pre-commit');
+  fs.writeFileSync(
+    installed,
+    '#!/bin/sh\n# skilled-hook-handover: ../../elsewhere\nexec sh "$(dirname "$0")/../../elsewhere/pre-commit" "$@"\n',
+    { mode: 0o755 },
+  );
+  const row = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(row.result, 'FAIL');
+  assert.deepEqual(row.details, [`pre-commit: resolves to ${fs.realpathSync(installed)}, not a hook source`]);
+});
+
+test('hooks passes a hook the local config declares omitted and fails it without the declaration', (t) => {
+  const f = fixture(t);
+  linkOwnHooks(f, ['post-commit']);
+  const missing = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(missing.result, 'FAIL');
+  assert.deepEqual(missing.details, ['post-commit: not installed']);
+
+  execFileSync('git', ['-C', f.repo, 'config', '--local', '--add', 'skilled.omitHook', 'post-commit'], { env: f.env });
+  const omitted = rowOf(reportOf(f.run(['--json'])), 'hooks');
+  assert.equal(omitted.result, 'PASS', omitted.details.join(' | '));
+  assert.deepEqual(omitted.details, ['post-commit: omitted by skilled.omitHook']);
+});
+
 test('hooks names this checkout\'s installer by absolute path when the inspected repository is the battery\'s own checkout', (t) => {
   const f = fixture(t);
 

@@ -1,0 +1,3 @@
+Advisor runtime suite, npx vitest run.
+No baseline was captured in this worktree before the edits. The figure used is the run on main at 1ed484f3f6 earlier on 2026-11-13: 1722 tests, 1716 passed, 0 failed, 6 pending.
+After the change: Test Files 179 passed (179). Tests 1716 passed | 6 skipped (1722).

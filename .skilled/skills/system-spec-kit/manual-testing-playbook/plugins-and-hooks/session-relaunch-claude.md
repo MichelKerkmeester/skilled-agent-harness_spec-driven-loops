@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.21.0
+version: 1.0.22.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -765,7 +765,7 @@ bash "$harness/run-hop.sh" claude "$sandbox" "$out" goal
 bash "$harness/finish-run.sh" claude "$out"
 ~~~
 
-`run-hop.sh` starts the sender on `/goal <slice>` under `skilled-loop`, writes a note, runs `prepare` and lets the wrapper relaunch. A sender under an unmet goal ends turns by itself, so Stop arms without a prompt. The script sends no prompt to such a sender, because a prompt over an armed record withdraws the hand-over, and it runs `prepare` about 10 seconds after launch, because Claude Code pauses a goal after nine blocked turn ends and a paused sender ends no further turn. A sender without a goal gets one prompt so Stop arms. It drops the host session's `SKILLED_LOOP_*`, `CLAUDE*` and `SESSION_RELAUNCH_GOAL*` variables, uses its own tmux socket and `XDG_RUNTIME_DIR`, and kills its tmux server on exit. `finish-run.sh` reduces the transcripts to an extract and deletes the raw files, which hold the operator's instruction files.
+`run-hop.sh` starts the sender on `/goal <slice>` under `skilled-loop`, writes a note, runs `prepare` and lets the wrapper relaunch. A sender under an unmet goal ends turns by itself, so Stop arms without a prompt. The script sends no prompt to such a sender, because a prompt over an armed record withdraws the hand-over, and it runs `prepare` about 10 seconds after launch, because Claude Code pauses a goal after nine blocked turn ends and a paused sender ends no further turn. A sender without a goal gets one prompt so Stop arms. It drops the host session's `SKILLED_LOOP_*`, `CLAUDE*` and `SESSION_RELAUNCH_GOAL*` variables, uses its own tmux socket and `XDG_RUNTIME_DIR`, and kills its tmux server on exit. `finish-run.sh` reduces the transcripts to an extract and deletes the raw files, which hold the operator's instruction files. `finish-run.sh` checks the project folder again for `FINISH_SETTLE_S` seconds, 15 by default, and removes it again when the runtime writes it back.
 
 Evidence, read from the receiver and not the sender:
 
@@ -839,6 +839,104 @@ Claude Code 2.1.323 with `claude-sonnet-5-5`, live in tmux with a private runtim
 
 Across the five goal runs with correct timing, the hop and the goal carried every time and the receiver claimed the note in two. The harness goal tells the session to reply `PONG` and do nothing else, which competes with the claim delivered as start context, so these runs do not show how a receiver behaves under a goal that allows other work.
 
+### Hand-Over State Checks
+
+These checks cover what a hop writes into its note or carries into the next session: the three In-flight lines, the runner stop before the deep-loop lock release, the fan-out re-run refusal, the Claude permission mode and session name, the deferred-hop notice and the session cron count. Each check runs its named cases by title and states the signal that separates a pass from a fail.
+
+#### HS-1 The nudge names the three In-flight note lines (Automatable)
+
+Run the nudge suite, `.skilled/hooks/session-relaunch/tests/nudge.test.cjs`. `handoff text asks for a Running workers line with none as the empty value` checks the `Running workers:` line, its `pid <pid> log <path> collect <step>` shape and its `none` value. `handoff text asks for Scheduled and Added directories lines` checks the `Scheduled:` and `Added directories:` lines and their `none` values.
+
+~~~bash
+env -u AI_SESSION_CHILD node --test --test-name-pattern 'handoff text asks for a Running workers line|handoff text asks for Scheduled and Added directories lines' .skilled/hooks/session-relaunch/tests/nudge.test.cjs
+~~~
+
+Evidence: exit code 0, `fail 0` and two tests pass. PASS when both cases pass. FAIL when the nudge omits a line or names a different empty value.
+
+#### HS-2 The nudge stops a live fan-out runner before the deep-loop lock release (Automatable)
+
+Run the nudge suite, `.skilled/hooks/session-relaunch/tests/nudge.test.cjs`. `handoff text stops a running fan-out runner and waits for it before releasing the lock` checks that the `kill -TERM <runner-pid>` step comes before the `kill -0 <runner-pid>` wait and that both come before `loop-lock.cjs release`.
+
+~~~bash
+env -u AI_SESSION_CHILD node --test --test-name-pattern 'handoff text stops a running fan-out runner' .skilled/hooks/session-relaunch/tests/nudge.test.cjs
+~~~
+
+Evidence: exit code 0, `fail 0` and one test passes. PASS when the step orders the signal, the wait and the release. FAIL when the release starts before the runner ends or the wait is missing.
+
+#### HS-3 A fan-out re-run is refused while an earlier lineage is alive (Automatable)
+
+Run the fan-out stress case, `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts`. `refuses a re-run while a lineage from the earlier run is alive` checks exit 3, one shim capture and no `orphan_requeued` row. This suite is a Vitest file, so `node --test` cannot load it and the command uses the runtime's Vitest runner.
+
+~~~bash
+env -u AI_SESSION_CHILD node .skilled/skills/system-deep-loop/runtime/node_modules/vitest/vitest.mjs run --no-coverage --configLoader runner --root .skilled/skills/system-deep-loop/runtime .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts -t 'refuses a re-run'
+~~~
+
+Evidence: exit code 0, `1 passed` and `20 skipped` of 21 tests. PASS when the case passes. FAIL when the second run dispatches another lineage or exits with a code other than 3.
+
+#### HS-4 The Claude permission mode is carried across a hop (Automatable)
+
+Run the wrapper cases, `.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs`. `the sender live permission mode replaces the launch mode for that hop` checks the carry. `a live plan mode keeps the launch mode` and `a live bypass mode with no unlocking launch flag keeps the launch mode` check the two safety rules.
+
+~~~bash
+env -u AI_SESSION_CHILD node --test --test-name-pattern 'the sender live permission mode replaces|a live plan mode keeps|a live bypass mode with no unlocking' .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs
+~~~
+
+Evidence: exit code 0, `fail 0` and three tests pass. PASS when all three pass. FAIL when the receiver keeps the launch mode for an accepted live mode or replays `plan` or a `bypassPermissions` without a launch unlocking flag.
+
+#### HS-5 The live session name is carried across a hop with the next number (Automatable)
+
+Run the wrapper cases, `.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs`. `a hop replays the sender's live name with the next number` checks the carry. `a second hop replaces the sender's number instead of stacking it` checks that the receiver's number replaces the sender's.
+
+~~~bash
+env -u AI_SESSION_CHILD node --test --test-name-pattern "a hop replays the sender's live name|a second hop replaces the sender's number" .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs
+~~~
+
+Evidence: exit code 0, `fail 0` and two tests pass. PASS when both cases pass. FAIL when the receiver keeps the sender's number, starts with no number or stacks a second suffix.
+
+#### HS-6 A deferred Claude hop prints its notice (Automatable)
+
+Run the Claude adapter suite, `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs`. `stop-arm defers pending state when background tasks exist and logs the reason` checks one `systemMessage` line that names the task count and the `cancel` command, keeps `decision` out, marks `deferredAt` on the record and logs `deferred-background-tasks`.
+
+~~~bash
+env -u AI_SESSION_CHILD node --test --test-name-pattern 'stop-arm defers pending state' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
+~~~
+
+Evidence: exit code 0, `fail 0` and one test passes. PASS when the notice, the mark and the log line all hold. FAIL when the deferred Stop stays silent, returns `decision` or arms the record.
+
+#### HS-7 Stop logs the session cron count (Automatable)
+
+Run the Claude adapter suite, `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs`. `stop-arm logs the cron count of a session whose hop is armable` checks one `session-crons` line that names the loop id, the session id and `crons=2`.
+
+~~~bash
+env -u AI_SESSION_CHILD node --test --test-name-pattern 'stop-arm logs the cron count' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
+~~~
+
+Evidence: exit code 0, `fail 0` and one test passes. PASS when the case passes. FAIL when the hop logs no count, logs more than one or names another session.
+
+The OpenCode hold while a sub-agent is busy, the OpenCode title carry-over and the Pi Plan or Build mode carry-over belong to the Pi and OpenCode playbook `session-relaunch-pi-opencode.md`. The receiver claim under a goal and the walk over the runtime's descendants were measured or considered and not built, so neither has a check.
+
+#### HS-8 A backgrounded worker outlives the hop (Live)
+
+Run from the repository root with `tmux`, `node` and `claude`. The check proves that a worker started with `&` before `prepare` outlives the sender and keeps writing while the receiver claims the note. It also shows that `prepare` accepts a note whose `Running workers:` line says `none` while that worker runs.
+
+~~~bash
+repo_root="$(git rev-parse --show-toplevel)"
+harness="$repo_root/specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness"
+diff="$repo_root/specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/scratch/live-hops-claude-2026-11-13/10-background-worker-orphaned/run-hop-variant.diff"
+sandbox="$(mktemp -d)/sandbox"; out="$(mktemp -d)"
+bash "$harness/build-sandbox.sh" claude "$sandbox" 3990 "$repo_root"
+patch -o "$out/run-hop-worker.sh" "$harness/run-hop.sh" "$diff"
+ln -s "$harness/goal-records.cjs" "$out/goal-records.cjs"
+NO_GOAL=1 bash "$out/run-hop-worker.sh" claude "$sandbox" "$out" worker
+bash "$harness/finish-run.sh" claude "$out"
+~~~
+
+`patch` writes the variant to `$out` and leaves `run-hop.sh` unchanged. The diff changes the note's Remaining work paragraph to the worker and prepare commands. It also replaces the fixed sender prompt with one that runs both commands and then replies `DONE`. The sender starts the worker in its first Bash tool call. The shell that started it exits, so the worker is reparented to pid `1`. The sender runs `prepare` in its next call. `run-hop.sh` sets `here` to the folder that holds the script and reads `goal-records.cjs` from that folder. The check links that helper from the harness folder into `$out`, so the patched script finds it beside itself. `build-sandbox.sh` and `finish-run.sh` read their helpers from the harness folder.
+
+The note's `Running workers:` line says `none` and names no worker while the `&` worker runs. `prepare` accepts it because `runningWorkersReason` reads only the note text and takes `none` as the answer, so the worker is invisible to that check. `PREPARE.exit` is `0` for this note.
+
+Evidence: the `RECEIVER.marker` line with the worker's pid and parent pid, the `PREPARE.exit` line, the `worker.log lines` count and the `note status` line in `$out/summary.txt`, plus the `claimed` line in `$out/history.txt`. PASS when `PREPARE.exit` is `0`, the worker's parent pid is `1` and the receiver claimed the note. FAIL when `prepare` refuses the note. FAIL also when the worker's parent pid is another pid. FAIL also when the receiver never claims the note.
+
 ### Expected
 
 During an eligible live handoff, prepare writes pending. Stop arms it only after the transcript path is present and background tasks have drained. The killer sends SIGTERM only for an armed record after transcript idle. skilled-loop starts a new process with the handoff path in its seed when the record is fresh and under both limits. The receiving session changes the note from open to claimed then done. On timeout, the killer disarms the record, logs `killer-timeout` and attempts the manual-claim notification. A transcript that stays unreadable for 1 s takes the same path. Every arm event restarts a killer for an armed record that has none. Each hop adds `handed-over`, `claimed` (with `by <id>`) and `done` lines to `.skilled/skills/.state/session-relaunch/hop-history.log`, a killer timeout adds `timed-out` and a called-off hand-over adds `withdrawn`. An operator prompt over a deferred or armed record, or `cancel` over a pending or armed one, disarms it with reason `user-message` or `cancelled`. `should-relaunch` then reports `withdrawn`, the killer stands down, the session gets one more nudge a step above its fill and the wrapper prints `warning: the prepared hand-over was withdrawn in the session; <note> stays open and out of date` with no manual claim command. A `<task-notification>` prompt withdraws nothing.
@@ -898,6 +996,8 @@ Capture each command exit code. Save the tmux pane, handoff note path and status
 | .skilled/hooks/session-relaunch/lib/goal-handover.cjs | Renders the goal slice a Claude receiver starts on, with the packet, budget and size checks. |
 | .skilled/hooks/session-relaunch/tests/goal-handover.test.cjs | Covers the slice helper against the real goal command. |
 | specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/ | The throwaway-checkout harness behind the goal carry-over checks and their recorded runs. |
+| specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/test-finish-run.sh | Tests that `finish-run.sh` removes the project folder again after a late write within `FINISH_SETTLE_S`. |
+| specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/scratch/live-hops-claude-2026-11-13/10-background-worker-orphaned/run-hop-variant.diff | Patches `run-hop.sh` so the sender starts the backgrounded worker and runs `prepare`, for the backgrounded-worker check. |
 
 Provenance: .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
 

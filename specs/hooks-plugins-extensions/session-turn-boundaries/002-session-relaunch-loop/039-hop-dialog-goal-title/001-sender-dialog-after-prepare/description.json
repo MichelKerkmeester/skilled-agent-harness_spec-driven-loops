@@ -1,0 +1,20 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare",
+  "description": "Phase 1: sender-dialog-after-prepare",
+  "keywords": [
+    "phase",
+    "sender-dialog-after-prepare"
+  ],
+  "lastUpdated": "2026-11-13T15:46:09.641Z",
+  "specId": "001",
+  "folderSlug": "sender-dialog-after-prepare",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
