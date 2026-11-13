@@ -28,6 +28,8 @@ const allowStale = process.env.SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE === '1'
   || process.env.SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE === '1';
 const EXIT_PROTOCOL = 69;
 const EXIT_RETRYABLE = 75;
+// Written by the runtime's postinstall script beside the native module it describes.
+const nodeRecordPath = path.join(mcpServerDir, 'node_modules', '.advisor-node');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. ARGUMENT PARSING HELPERS
@@ -95,22 +97,51 @@ function ensureSocketDir() {
   }
 }
 
+// The runtime's native database module is built for one Node ABI. A session on
+// another Node major cannot load it, and the daemon it starts exits at once, so
+// the CLI runs on the Node the install recorded whenever the ABI differs. An
+// install made before the record existed has none, and keeps the session's Node.
+// When the recorded binary is gone the session's Node is kept as well, and the
+// caller is told which ABI the module needs.
+function advisorNode(recordPath = nodeRecordPath, sessionAbi = process.versions.modules) {
+  let record;
+  try {
+    record = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  } catch {
+    return { execPath: process.execPath, warning: null };
+  }
+  if (typeof record.execPath !== 'string' || String(record.modules) === sessionAbi) {
+    return { execPath: process.execPath, warning: null };
+  }
+  if (fs.existsSync(record.execPath)) return { execPath: record.execPath, warning: null };
+  return {
+    execPath: process.execPath,
+    warning: `skill-advisor: the native module was built for Node ABI ${record.modules} at ${record.execPath}, which is gone, and this session runs ABI ${sessionAbi}. Reinstall .skilled/skills/system-skill-advisor/runtime under this Node.`,
+  };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. CLI ENTRYPOINT
 // ─────────────────────────────────────────────────────────────────────────────
 
-ensureSocketDir();
-ensureFreshDist();
+if (require.main === module) {
+  ensureSocketDir();
+  ensureFreshDist();
 
-const result = spawnSync(process.execPath, [cliDist, ...process.argv.slice(2)], {
-  cwd: path.dirname(opencodeDir),
-  env: process.env,
-  stdio: 'inherit',
-});
+  const node = advisorNode();
+  if (node.warning) process.stderr.write(`${node.warning}\n`);
+  const result = spawnSync(node.execPath, [cliDist, ...process.argv.slice(2)], {
+    cwd: path.dirname(opencodeDir),
+    env: process.env,
+    stdio: 'inherit',
+  });
 
-if (result.error) {
-  process.stderr.write(`${result.error.message}\n`);
-  process.exit(EXIT_RETRYABLE);
+  if (result.error) {
+    process.stderr.write(`${result.error.message}\n`);
+    process.exit(EXIT_RETRYABLE);
+  }
+
+  process.exit(result.status ?? 1);
 }
 
-process.exit(result.status ?? 1);
+module.exports = { advisorNode };
