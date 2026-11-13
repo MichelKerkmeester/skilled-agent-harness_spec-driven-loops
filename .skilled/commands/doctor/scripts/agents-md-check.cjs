@@ -795,12 +795,18 @@ function rowRouter(context, manifest, tools) {
     return row('A11', 'REPO RULES.md', UNKNOWN, 'the repo-rules checker could not run',
       { lines: [...lines, ...output.filter((line) => line.includes(REPO_RULES_TAG))] });
   }
+  // A malformed row makes this a finding with nothing missing, so the detail has to
+  // carry that count or it reads as a finding with no cause.
+  const malformedCount = lines.length - missing.length;
+  const counts = malformedCount === 0
+    ? `${missing.length} shipped row(s) missing`
+    : `${missing.length} shipped row(s) missing, ${malformedCount} malformed row(s)`;
   if (run.status !== 0) {
-    return row('A11', 'REPO RULES.md', FINDING, `${missing.length} shipped row(s) missing; the checker fails`,
+    return row('A11', 'REPO RULES.md', FINDING, `${counts}; the checker fails`,
       { lines: [...lines, summary] });
   }
   return row('A11', 'REPO RULES.md', lines.length === 0 ? PASS : FINDING,
-    `${missing.length} shipped row(s) missing; ${summary}`, { lines: [...lines, summary] });
+    `${counts}; ${summary}`, { lines: [...lines, summary] });
 }
 
 // The router's own table, read the same way the manifest's rows were derived. Comparing

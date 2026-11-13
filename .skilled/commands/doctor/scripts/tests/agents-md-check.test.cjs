@@ -760,6 +760,8 @@ test('A11 reports a router row of the wrong width as malformed', (t) => {
   assert.match(malformed, new RegExp(`^malformed trigger row at line ${at + 1}: 4 cells where the header has 3$`, 'u'));
   assert.ok(!routerRow.lines.some((line) => line.includes('missing trigger row for prevent-overengineering.md')),
     'the row still names its rule, so it is not reported missing');
+  assert.match(routerRow.detail, /^0 shipped row\(s\) missing, 1 malformed row\(s\); /u,
+    'the detail says why the row is a finding when nothing is missing');
 });
 
 test('A12 reports INFO outside the source repository and runs inside it', (t) => {
