@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "spec_folder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "parent_id": "system-speckit/spec-folder-tooling",
+  "children_ids": [
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/001-relocation-engine",
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/002-subtrack-proposal",
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering",
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json",
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "subtrack proposal and archive reach phase parent spec",
+      "deterministic packet relocation",
+      "opt-in archive search",
+      "z_archive on every subtrack",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "005-subtrack-proposal-and-archive-reach operator decisions"
+    ],
+    "key_topics": [
+      "subtrack",
+      "proposal",
+      "archive",
+      "reach",
+      "phase",
+      "parent",
+      "spec",
+      "deterministic",
+      "packet",
+      "relocation",
+      "opt-in",
+      "search"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "decision-record.md",
+      "runtime/cli/spec/repair-derived.cjs",
+      "runtime/cli/rules/check-metadata-disk-consistency-helper.cjs",
+      "runtime/cli/spec/archive.sh",
+      "runtime/cli/spec/create.sh",
+      "runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+      ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
+      "references/structure/folder-structure.md",
+      "references/structure/phase-definitions.md",
+      "references/workflows/quick-reference.md",
+      "runtime/cli/spec/refresh-track-roots.mjs",
+      "runtime/cli/spec/sweep-track-roots.mjs",
+      "runtime/cli/retrieval/rg-wrapper.mjs",
+      "runtime/cli/retrieval/lib/rg-lane.mjs",
+      "runtime/cli/spec/validate.sh",
+      ".skilled/commands/speckit/search.md",
+      "references/retrieval/retrieval-conventions.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-metadata-disk-consistency-helper.cjs",
+        "kind": "file",
+        "path": "runtime/cli/rules/check-metadata-disk-consistency-helper.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "archive.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/archive.sh",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "folder-structure.md",
+        "kind": "doc",
+        "path": "references/structure/folder-structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-definitions.md",
+        "kind": "doc",
+        "path": "references/structure/phase-definitions.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": "references/workflows/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "refresh-track-roots.mjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/refresh-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-track-roots.mjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/sweep-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "rg-wrapper.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/rg-wrapper.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "rg-lane.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/lib/rg-lane.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": "references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Subtracks exist in system-spec-kit only as a hand-written declaration, one level deep, and three gaps follow from that",
+    "created_at": "2026-11-13T10:07:28Z",
+    "last_save_at": "2026-11-13T10:29:58.446Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:5ce34140da544a5838730779a64d79c377daf0eb0ed8551f76c9d2cc5da847ff",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "06611571210f658c65e4123a3d99b587abd7ad741c56f0e2f95f9094441de231",
+      "decision-record.md": "dccf741a17b64413ef76b09a7c434fdf0a62a3fbe0c834e8465af27ab80f010c"
+    },
+    "last_active_child_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/001-relocation-engine",
+    "last_active_at": "2026-11-13T10:29:45.879Z"
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/001-relocation-engine",
+  "spec_folder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/001-relocation-engine",
+  "parent_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relocation engine",
+      "phase 1 relocation engine",
+      "relocate.mjs move renumber re-parent",
+      "relocation engine plan",
+      "relocation engine tasks",
+      "relocation engine acceptance criteria",
+      "relocation engine goal",
+      "relocation engine implementation summary"
+    ],
+    "key_topics": [
+      "relocation",
+      "engine",
+      "phase",
+      "relocate",
+      "mjs",
+      "move",
+      "renumber",
+      "re-parent",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      ".skilled/skills/sk-doc/shared/scripts/relocation-ledger.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      "scratch/baseline.txt",
+      "specs/descriptions.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+      "graph/migrate-generated-json.ts",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json",
+      "runtime/cli/lib/track-roots.mjs",
+      "retrieval/generate-trigger-index.mjs",
+      ".skilled/bin/lib/compiled-route-layout.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relocate.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-metadata-disk-consistency-helper.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "archive.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        "source": "derived"
+      },
+      {
+        "name": "relocation-ledger.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/scripts/relocation-ledger.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": "specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-generated-json.ts",
+        "kind": "code",
+        "path": "graph/migrate-generated-json.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-redirects.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": "retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-layout.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-route-layout.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A packet that moves or changes number keeps stale records in most of the stores that name it",
+    "created_at": "2026-11-13T10:07:29Z",
+    "last_save_at": "2026-11-13T11:40:26.166Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1447fac6aa7404a0dc12b27ce467a8a0ee7a323c625cc5d66a0fdf1ddcbbe043",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c96f5183b4cb65c8a2b136fe13cbfbde4198545b2f6200ecc73a5b7d86a2a0f3",
+      "plan.md": "6a77db9df7f6e229f718f55a634a4e8e814a57d707289534e8a9d7591034c194",
+      "tasks.md": "a9c0b68c62157cda71b1e062b26535e5dfa5ccd8a9064373f28f56fcd6e02006",
+      "implementation-summary.md": "6142660f24e10f76d3c73fdc9dde47d7559d15d1c6fe442c9532561d87bca578"
+    },
+    "last_active_at": null
+  }
+}

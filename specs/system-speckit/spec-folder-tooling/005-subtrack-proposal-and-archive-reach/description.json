@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "description": "Subtrack proposal, deterministic packet relocation, z_archive on every subtrack and opt-in archive search",
+  "keywords": [
+    "subtrack",
+    "proposal",
+    "deterministic",
+    "packet",
+    "relocation",
+    "every",
+    "opt-in",
+    "archive",
+    "search"
+  ],
+  "lastUpdated": "2026-11-13T10:29:45.834Z",
+  "specId": "005",
+  "folderSlug": "subtrack-proposal-and-archive-reach",
+  "parentChain": [
+    "system-speckit",
+    "spec-folder-tooling"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "13-11-26_11-29__analyze-system-speckit-and-its-subtrack-support.md"
+  ]
+}

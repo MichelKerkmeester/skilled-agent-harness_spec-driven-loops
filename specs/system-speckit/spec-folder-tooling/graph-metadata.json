@@ -7,7 +7,8 @@
     "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle",
     "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos",
     "system-speckit/spec-folder-tooling/003-upgrade-level-anchor-insert",
-    "system-speckit/spec-folder-tooling/004-create-path-track-refresh"
+    "system-speckit/spec-folder-tooling/004-create-path-track-refresh",
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach"
   ],
   "manual": {
     "depends_on": [],

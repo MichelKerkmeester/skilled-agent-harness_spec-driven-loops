@@ -1,0 +1,55 @@
+.skilled/hooks/injection-contract.md
+.skilled/skills/system-skill-advisor/runtime/lib/policy-plan.ts
+.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md
+.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md
+.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs
+.skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts
+.skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs
+.skilled/skills/system-spec-kit/runtime/tests/hooks/README.md
+.skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs
+.skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts
+
+# Notes, captured 2026-11-13 before the first edit
+# Command for the list above: rg -l "GATE_3_QUESTION|GATE_3_CHOICE_RELATED|GATE_3_MUTATION_NOTICE" .skilled | sort
+#
+# Which of them pin the wording byte for byte
+# - runtime/tests/hooks/spec-gate-core.test.mjs:306 pins GATE_3_QUESTION option C.
+# - runtime/tests/hooks/spec-gate-core.test.mjs:314 pins GATE_3_MUTATION_NOTICE option C.
+# - runtime/tests/hooks/spec-gate-core.test.mjs:324 pins GATE_3_CHOICE_RELATED.
+# - runtime/tests/hooks/spec-gate-core.test.mjs:326 pins plannedHash, which is derived from the question text.
+# - runtime/tests/hooks/gate-3-menu-parity.test.mjs:20-38 lists 17 menu files. Lines 46-57 require the
+#   "C) Related" line of each file to contain GATE_3_CHOICE_RELATED in full.
+#
+# The 17 menu files of the parity suite. The rg above does not find them, because they copy the text
+# and never name the constant.
+# - .skilled/commands/create/assets/create-agent-presentation.txt
+# - .skilled/commands/create/assets/create-command-presentation.txt
+# - .skilled/commands/create/assets/create-feature-catalog-presentation.txt
+# - .skilled/commands/create/assets/create-manual-testing-playbook-presentation.txt
+# - .skilled/commands/create/assets/create-skill-parent-presentation.txt
+# - .skilled/commands/create/assets/create-skill-presentation.txt
+# - .skilled/commands/deep/assets/deep-ai-council-presentation.txt
+# - .skilled/commands/deep/assets/deep-research-presentation.txt
+# - .skilled/commands/deep/assets/deep-review-presentation.txt
+# - .skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown
+# - .skilled/commands/deep/assets/compiled/deep-research.contract.markdown
+# - .skilled/commands/deep/assets/compiled/deep-review.contract.markdown
+# - .skilled/commands/speckit/assets/speckit-complete-presentation.txt   (in this phase's file table)
+# - .skilled/commands/speckit/assets/speckit-implement.yaml              (added by the orchestrator)
+# - .skilled/commands/speckit/assets/speckit-plan-presentation.txt       (in this phase's file table)
+# - .skilled/skills/system-spec-kit/references/memory/trigger-config.md
+# - .skilled/skills/system-spec-kit/references/workflows/worked-examples.md
+#
+# Where the suites run
+# - .github/workflows/advisory-checks.yml:112-150, job "Gate-critical node suites (blocking)", runs
+#   gate-3-menu-parity.test.mjs (line 144) and spec-gate-core.test.mjs (line 148).
+# - Neither suite is part of "npm test" in runtime/cli.
+#
+# Other copies of the question text
+# - .skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json:4
+# - .skilled/commands/doctor/assets/agents-md-manifest.json:856 and :1096 hold the AGENTS.md Gate 3 body.
+#   advisory-checks.yml:95-110 runs agents-md-manifest.cjs --check as a report-only step.
+#
+# Baseline of the parity suite before any edit
+# - node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs
+#   tests 17, pass 17, fail 0
