@@ -1,0 +1,50 @@
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+⏺ Goal acknowledged: it's an open-work keeper for specs/demo/001-demo, and it's met only when never-created-completion.flag exists.
+
+  I haven't created that file. Its name and the "Open work keeper" title suggest the goal is meant to stay open, and creating the flag would just close it without any work behind it. Nothing else in
+  the goal asks for work, so I have nothing to do right now.
+
+  Two things you may want to know:
+  - The spec-kit hooks printed "could not resolve; rebuild the spec-kit runtime or restore the missing adapter", and the Codex hooks report drift. I haven't touched either.
+  - Any task that writes a file will start with the Gate 3 spec-folder question.
+
+  What would you like me to work on? If you do want the goal closed, say so and I'll create the flag once you confirm the location.
+
+◯ Goal not yet met… continuing
+
+✢ Transmogrifying… (11s · ↓ 720 tokens)
+                                                                                                                                                                                  ◎ /goal active (11s)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)

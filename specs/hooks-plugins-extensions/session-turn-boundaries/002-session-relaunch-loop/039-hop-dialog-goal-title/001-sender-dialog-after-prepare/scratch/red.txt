@@ -1,0 +1,46 @@
+✔ subagent-guard denies claim from a sub-agent (30.310416ms)
+✔ subagent-guard denies complete from a sub-agent (28.218666ms)
+✔ subagent-guard denies keep from a sub-agent (28.612417ms)
+✔ subagent-guard denies prepare from a sub-agent (29.274792ms)
+✔ subagent-guard denies cancel from a sub-agent (29.425917ms)
+✔ subagent-guard denies consume from a sub-agent (27.555834ms)
+✔ subagent-guard denies hand-over from a sub-agent (30.637291ms)
+✔ subagent-guard stays silent for the main session that carries no agent_id (29.546292ms)
+✔ subagent-guard stays silent for a whitespace-only agent_id (29.639583ms)
+✔ subagent-guard stays silent for a sub-agent reading the hop history (29.949708ms)
+✔ subagent-guard stays silent for an unrelated Bash command from a sub-agent (30.368625ms)
+✔ subagent-guard stays silent for a non-Bash tool call from a sub-agent (28.483333ms)
+✔ subagent-guard stays silent on stdin that is not valid JSON (31.357667ms)
+✔ subagent-guard stays silent when the relaunch concern is disabled (28.33925ms)
+✖ subagent-guard denies a question dialog while the session hand-over is pending (40.319375ms)
+✔ subagent-guard lets a question dialog through when no hand-over is prepared (29.000583ms)
+✔ subagent-guard lets a question dialog through over another session's pending record (32.911208ms)
+✔ subagent-guard lets a question dialog through once the record is armed (37.068333ms)
+✔ subagent-guard lets a question dialog through outside a relaunch loop (33.039041ms)
+✔ subagent-guard lets a question dialog through when the relaunch concern is disabled (35.201ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 19
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 663.149208
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:284:1
+✖ subagent-guard denies a question dialog while the session hand-over is pending (40.319375ms)
+  AssertionError [ERR_ASSERTION]: expected a PreToolUse denial envelope
+      at assertQuestionDenied (/Users/michelkerkmeester/worktrees/public/366-hop-after-question-dialog/.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:271:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/366-hop-after-question-dialog/.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:288:3)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: '',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

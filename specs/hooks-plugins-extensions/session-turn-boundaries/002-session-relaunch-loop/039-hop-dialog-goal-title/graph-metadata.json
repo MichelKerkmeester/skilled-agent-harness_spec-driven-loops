@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop",
+  "children_ids": [
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hop dialog goal title phase parent spec",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "hop",
+      "dialog",
+      "goal",
+      "title",
+      "phase",
+      "parent",
+      "spec",
+      "packet",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".claude/settings.json",
+      ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
+      ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+      ".skilled/hooks/session-relaunch/claude/README.md",
+      ".skilled/hooks/README.md",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+      ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
+      "001-sender-dialog-after-prepare/acceptance-criteria.md",
+      "002-packet-goal-fallback/acceptance-criteria.md",
+      "001-sender-dialog-after-prepare/goal.md",
+      "002-packet-goal-fallback/goal.md",
+      "003-generated-title-carry/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "subagent-guard.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "subagent-guard.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/claude/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-cli.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-usage.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-usage.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "On Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "design",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three gaps showed on 2026-11-13 in Claude Code sessions that hand over near the context limit",
+    "created_at": "2026-11-13T18:47:10Z",
+    "last_save_at": "2026-11-13T18:59:29.949Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:844b9581d552cf96f46dc5b71b406541e9617280d69c2ec97acd0a7a87c607fa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b756ce545f8d3cb36ba4435c14cbc5393eef7974c0dfc174690bab09cac89e91"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,50 @@
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     Filler line that only pads this goal toward its size limit and asks for nothing.
+     xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+⏺ Remote Control disconnected — Session creation failed — see debug log — run /remote-control to reconnect
+
+✻ 503 credential validation failed · Retrying in 0s · attempt 3/10
+                                                                                                                Remote Control failed · Session creation failed — see debug log · ◎ /goal active (11s)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
