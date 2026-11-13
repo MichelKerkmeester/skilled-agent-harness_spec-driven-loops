@@ -1637,9 +1637,11 @@ resolve_branch_name() {
     if [[ -z "$BRANCH_NUMBER" ]]; then
         # Number after the highest packet folder in the root being written to,
         # whatever its name, so two packets in one root never share a number.
+        # Archived packets count too: a restored packet must never collide with
+        # a newer one.
         local highest=0
         if [[ -d "$SPECS_DIR" ]]; then
-            for dir in "$SPECS_DIR"/*; do
+            for dir in "$SPECS_DIR"/* "$SPECS_DIR"/z_archive/*; do
                 [[ -d "$dir" ]] || continue
                 local dirname
                 dirname=$(basename "$dir")

@@ -13,6 +13,11 @@
 // lists only its immediate numbered packets. Refreshing every track also
 // refreshes every sub-track; naming one track leaves its sub-tracks alone.
 //
+// Archiving moves a packet into its sub-track's own z_archive. Git does not
+// track an empty folder, so --apply seeds a sub-track's z_archive with an empty
+// .gitkeep when the sub-track has no z_archive at all, and a dry run reports it
+// as pending. A z_archive that is a symlink is refused rather than followed.
+//
 // Dry by default: it prints what each track would gain and lose. --apply writes.
 // A declared sub-track with missing metadata is a pending creation in dry-run;
 // --apply seeds its track-root record before updating children_ids. A metadata
@@ -33,6 +38,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
+import path from 'node:path';
 import {
   compareTrackChildren,
   expectedChildrenIds,
@@ -77,6 +83,31 @@ function describeChange(result) {
   return parts.join('; ');
 }
 
+function ensureArchive(track, apply) {
+  if (!track.name.includes('/')) return null;
+  const archiveDir = path.join(path.dirname(track.metadataPath), 'z_archive');
+  const keepFile = path.join(archiveDir, '.gitkeep');
+  const archiveStat = fs.lstatSync(archiveDir, { throwIfNoEntry: false });
+  if (archiveStat?.isSymbolicLink()) {
+    process.stdout.write(`${track.name}: z_archive is a symlink, not written\n`);
+    return 'failed';
+  }
+  if (archiveStat !== undefined) return null;
+  if (!apply) {
+    process.stdout.write(`${track.name}: create z_archive/.gitkeep\n`);
+    return 'pending';
+  }
+  try {
+    fs.mkdirSync(archiveDir, { recursive: true });
+    fs.writeFileSync(keepFile, '', 'utf8');
+    process.stdout.write(`${track.name}: create z_archive/.gitkeep (written)\n`);
+    return null;
+  } catch (error) {
+    process.stdout.write(`${track.name}: z_archive write failed: ${error instanceof Error ? error.message : String(error)}\n`);
+    return 'failed';
+  }
+}
+
 function main() {
   const { specs, tracks: wanted, apply } = parseArgs(process.argv.slice(2));
   const specsRoot = resolveSpecsRoot(specs, SCRIPT);
@@ -92,6 +123,9 @@ function main() {
   let failed = 0;
   for (const track of tracks) {
     if (wanted.length > 0 && !wanted.includes(track.name)) continue;
+    const archiveOutcome = ensureArchive(track, apply);
+    if (archiveOutcome === 'failed') failed += 1;
+    else if (archiveOutcome === 'pending') pending += 1;
     const metadataStat = fs.lstatSync(track.metadataPath, { throwIfNoEntry: false });
     if (metadataStat?.isSymbolicLink()) {
       process.stdout.write(`${track.name}: graph-metadata.json is a symlink, not written\n`);

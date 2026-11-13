@@ -80,6 +80,16 @@ describe('create.sh numbering at the specs root', () => {
     expect(create(['--short-name', 'next-packet', 'Next'])).toBe('008-next-packet');
   });
 
+  it('numbers after an archived packet so its number is not reused', () => {
+    fs.mkdirSync(path.join(workspace, 'specs', '001-live-packet'), { recursive: true });
+    const archived = path.join(workspace, 'specs', 'z_archive', '007-archived-work');
+    fs.mkdirSync(archived, { recursive: true });
+    fs.writeFileSync(path.join(archived, 'spec.md'), '# Archived work\n');
+
+    const created = create(['--short-name', 'after-archive', 'After archive']);
+    expect(created).toMatch(/^008-/);
+  });
+
   it('numbers after the highest numbered branch', () => {
     commit();
     execFileSync('git', ['branch', '012-other-work'], { cwd: workspace });
