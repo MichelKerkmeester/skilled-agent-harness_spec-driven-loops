@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6746,
-    "ok": 18215,
+    "ok": 18225,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 26591,
+  "documentsScanned": 26601,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "9c00899bc8b8e601655b3dc9f2177fa92b278bdb7134eedaa45193bb2b19aa07",
+  "manifestHash": "e836555da1541a7e97232f8da9a562d715245809ce48ff41dbb1acd0ff0284c7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42848,
+      "ok": 42862,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -57958,6 +57958,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/z_archive",
       "reason": "excluded directory"
     },
@@ -59155,6 +59159,10 @@
     },
     {
       "path": "specs/system-skill-advisor/runtime-lifecycle/005-build-freshness-record/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/scratch",
       "reason": "excluded directory"
     },
     {

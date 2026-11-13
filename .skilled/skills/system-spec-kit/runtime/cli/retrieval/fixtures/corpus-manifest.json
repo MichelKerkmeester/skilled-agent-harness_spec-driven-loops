@@ -1,5 +1,5 @@
 {
-  "corpusHash": "437180005f56528b62bf8ccc82faf4ab915f55fe9a4330f2547d79412b645787",
+  "corpusHash": "d19b1ef903881ceabd5847a798b37ca96ecf835e0cc092520cb97e96d7b6cdeb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26591,
+  "includedPathCount": 26601,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -15394,6 +15394,11 @@
     "specs/sk-doc/hub-routing-and-surfaces/005-opencode-native-surfaces/plan.md",
     "specs/sk-doc/hub-routing-and-surfaces/005-opencode-native-surfaces/spec.md",
     "specs/sk-doc/hub-routing-and-surfaces/005-opencode-native-surfaces/tasks.md",
+    "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/decision-record.md",
+    "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/implementation-summary.md",
+    "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/plan.md",
+    "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/spec.md",
+    "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/tasks.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/acceptance-criteria.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/implementation-summary.md",
@@ -18090,6 +18095,11 @@
     "specs/system-skill-advisor/runtime-lifecycle/005-build-freshness-record/plan.md",
     "specs/system-skill-advisor/runtime-lifecycle/005-build-freshness-record/spec.md",
     "specs/system-skill-advisor/runtime-lifecycle/005-build-freshness-record/tasks.md",
+    "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/decision-record.md",
+    "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/implementation-summary.md",
+    "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/plan.md",
+    "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/spec.md",
+    "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/acceptance-criteria.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/decision-record.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/goal.md",
@@ -26623,7 +26633,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9c00899bc8b8e601655b3dc9f2177fa92b278bdb7134eedaa45193bb2b19aa07",
+  "manifestHash": "e836555da1541a7e97232f8da9a562d715245809ce48ff41dbb1acd0ff0284c7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32650,6 +32660,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/z_archive",
       "reason": "excluded directory"
     },
@@ -33847,6 +33861,10 @@
     },
     {
       "path": "specs/system-skill-advisor/runtime-lifecycle/005-build-freshness-record/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/scratch",
       "reason": "excluded directory"
     },
     {
