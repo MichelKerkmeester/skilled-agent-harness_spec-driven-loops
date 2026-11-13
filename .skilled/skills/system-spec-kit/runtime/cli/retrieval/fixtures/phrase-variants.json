@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6c56dc075a672ad457f5a60f86ef4ad3b7f334987d327271f365568a027e9e45",
+  "manifestHash": "142cab1cc80fc1b1af6622a2ac8b22628fc0af583cde8bdae58cca10d45557b8",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2161,6 +2161,9 @@
     ],
     "008 review 002 verdict": [
       "008 review-002 verdict"
+    ],
+    "008 review advisories operator decisions": [
+      "008-review-advisories operator decisions"
     ],
     "008 routing and release alignment operator decisions": [
       "008-routing-and-release-alignment operator decisions"
