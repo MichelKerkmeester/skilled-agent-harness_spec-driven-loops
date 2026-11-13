@@ -34,7 +34,7 @@
       "plugin"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,6 +48,7 @@
       ".opencode/plugins/tests/v2-bridge.test.cjs",
       "scratch/red.txt",
       "scratch/green.txt",
+      "scratch/live-title-bridge.md",
       "scratch/trace-child-idle.jsonl",
       "scratch/trace-child-idle.md",
       "scratch/live-title.md",
@@ -129,6 +130,12 @@
         "source": "derived"
       },
       {
+        "name": "live-title-bridge.md",
+        "kind": "doc",
+        "path": "scratch/live-title-bridge.md",
+        "source": "derived"
+      },
+      {
         "name": "trace-child-idle.jsonl",
         "kind": "file",
         "path": "scratch/trace-child-idle.jsonl",
@@ -193,17 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The plugin puts every sub-agent session in a skip set and returns before reading any later event for it (`.opencode/plugins/session-relaunch.js:335`, `:341`), and the parent arms at `session.idle` with no child check (`:418` to `:435`)",
     "created_at": "2026-11-13T08:49:35Z",
-    "last_save_at": "2026-11-13T11:02:30.232Z",
+    "last_save_at": "2026-11-13T11:13:19.912Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +215,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:842662e3e130f4c3fecb817ebdd6dfac48ac3386438bdd1184bb69dc92468d65",
+    "source_fingerprint": "sha256:0b337965e7119c3babcd4101420ca22a0d0b56d830b4f2202cf0b608d0359622",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "007adfeb851f39d8c29d31f5757cf51900837d77c7d56138fb62a9c988853db6",
+      "spec.md": "5ca3de1c0bb29e389e0309d250daafd3ed57a993e7ddede26170f805f3c1fdf7",
       "plan.md": "bcb426d53318006ff00d7d0e9d718d434a64919669bbb3ac150feb38eeae1774",
-      "tasks.md": "aac9b0cf9d0ba605374ec13855b005f2c9f6bdcc1959a1c5807fcf490e8ac060",
+      "tasks.md": "d5452383a3f736a1019b381cbb7cc34993b36b3daba1a41c3796da3df00f27cf",
       "implementation-summary.md": "7cb4c4c2c972ef50c4bb70ad5a6869abd314e1811d41c58389f2e0c474b3afb1"
     },
     "last_active_at": null

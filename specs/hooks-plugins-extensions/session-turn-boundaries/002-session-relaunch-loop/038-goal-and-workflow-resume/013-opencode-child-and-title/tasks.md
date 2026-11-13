@@ -64,7 +64,7 @@ contextType: "general"
 
 - [x] T012 Run every plugin suite (`.opencode/plugins/tests/`). Verify: `node --test .opencode/plugins/tests/*.test.cjs` exits 0 with `fail 0`. Ran with the inherited `OPENCODE_DB` cleared (see `goal.md` section 4): `tests 593`, `pass 593`, `fail 0`.
 - [x] T013 Check the plugin parses and the diff holds only the two named files (`PLUGIN`). Verify: `node --check .opencode/plugins/session-relaunch.js` exits 0 and `git diff --name-only -- .opencode .skilled` lists only `PLUGIN`, `TESTS`, `.opencode/plugins/lib/v2-bridge.js` and `.opencode/plugins/tests/v2-bridge.test.cjs`. The `.opencode` diff is exactly those four files; the `.skilled` entries are the concurrent builder's work named in `goal.md` section 4.
-- [B] T017 Confirm the bridged title call live on OpenCode 2.2.7: a claim seed in a throwaway clone with `SKILLED_LOOP_NAME` set renames the session (`PHASE/scratch/live-title-bridge.md`). The orchestrator runs it, because a builder may not start an OpenCode session. Verify: `rg -n '^Bridge title verdict: (yes|no)' PHASE/scratch/live-title-bridge.md` prints 1 line. Blocked: a live OpenCode claim seed needs a session this builder may not start.
+- [x] T017 Confirm the bridged title call live on OpenCode 2.2.7: a claim seed in a throwaway clone with `SKILLED_LOOP_NAME` set renames the session (`PHASE/scratch/live-title-bridge.md`). The orchestrator runs it, because a builder may not start an OpenCode session. Verify: `rg -n '^Bridge title verdict: (yes|no)' PHASE/scratch/live-title-bridge.md` prints 1 line. Run on 2026-11-13 by an Opus sub-agent for the orchestrator: `Bridge title verdict: yes`.
 - [x] T014 Validate the phase (`PHASE`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh PHASE --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
@@ -73,9 +73,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, or skipped under a recorded Drop decision
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Both live verdicts are in `scratch/` and both decisions are in `goal.md`
+- [x] All tasks marked `[x]`, or skipped under a recorded Drop decision
+- [x] No `[B]` blocked tasks remaining
+- [x] Both live verdicts are in `scratch/` and both decisions are in `goal.md`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -131,7 +131,7 @@ A change dropped under a recorded live verdict counts as complete for its rows, 
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] Every acceptance row is Met or Superseded. Verify: `rg -c '\| Unmet \|' acceptance-criteria.md` prints 0. It prints 1 because AC-008 is Unmet by the blocked T017 live half.
+- [x] CHK-020 [P0] Every acceptance row is Met or Superseded. Verify: `rg -c '\| Unmet \|' acceptance-criteria.md` prints 0. It prints 0 after the live bridged title call closed AC-008.
 - [x] CHK-021 [P0] The plugin suites exit 0. Verify: `node --test .opencode/plugins/tests/*.test.cjs` exits 0 with `fail 0` after the inherited `OPENCODE_DB` is cleared; see `goal.md` section 4.
 - [x] CHK-022 [P1] Each built must-fail test holds a red run. Verify: `rg -c '^not ok' scratch/red.txt` prints the number of must-fail tests built. Node 26 uses the spec reporter, so the file holds 5 `test at` failing entries and 14 `✖` lines instead of TAP `not ok`.
 - [x] CHK-023 [P1] Each built change holds a green run. Verify: `rg -c '^# fail 0' scratch/green.txt` prints the number of changes built. Node 26 uses the spec reporter, so the file holds 6 `ℹ fail 0` runs instead of TAP `# fail 0`.
@@ -148,7 +148,7 @@ A change dropped under a recorded live verdict counts as complete for its rows, 
 - [x] CHK-FIX-004 [P0] The adversarial cases exist for two children with one busy, an unset name and a rejected call. Verify: `rg -n 'two sub-agents|SKILLED_LOOP_NAME|rejected title call' .opencode/plugins/tests/session-relaunch.test.cjs` prints at least 3 lines.
 - [x] CHK-FIX-005 [P1] The matrix axes are listed. Verify: `rg -n 'Matrix axes' plan.md` prints 1 line.
 - [x] CHK-FIX-006 [P1] The hostile env variant ran with `SKILLED_LOOP_NAME` empty. Verify: `node --test --test-name-pattern 'no title call without' .opencode/plugins/tests/session-relaunch.test.cjs` exits 0.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a commit. Verify: `git rev-parse HEAD` prints the change commit at close. HEAD is `f0b097bd4a`, the pre-change commit; the orchestrator commits and pins the change commit.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a commit. Verify: `git rev-parse HEAD` prints the change commit at close. The change commit is `195f1d764c`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
