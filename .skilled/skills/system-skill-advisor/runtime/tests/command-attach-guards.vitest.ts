@@ -136,6 +136,21 @@ describe('typed command boundaries', () => {
     expect(typedCommandIn('/create:skill-parent now')).toBe('/create:skill-parent');
   });
 
+  it('reads a command typed with its mode suffix', () => {
+    expect(typedCommandIn('/deep:review:auto review the diff')).toBe('/deep:review');
+    expect(typedCommandIn('/speckit:plan:confirm add a login page')).toBe('/speckit:plan');
+    expect(typedCommandIn('/speckit:implement:autopilot')).toBe('/speckit:implement');
+  });
+
+  it('does not read a command followed by an unknown suffix', () => {
+    expect(typedCommandIn('/deep:review:automation notes')).toBeUndefined();
+    expect(typedCommandIn('/create:readme:draft')).toBeUndefined();
+  });
+
+  it('attaches the deep-loop command typed with its mode suffix', () => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), '/deep:review:auto review the diff')).toBe('/deep:review');
+  });
+
   it('carries no command when the prompt only names a file', () => {
     expect(typedCommandForTop('sk-doc', 'open /create:readme.md and summarise it')).toBeUndefined();
   });

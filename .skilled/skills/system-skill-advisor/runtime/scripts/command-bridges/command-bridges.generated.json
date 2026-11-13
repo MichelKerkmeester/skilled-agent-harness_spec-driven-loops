@@ -1437,7 +1437,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
-      "embeddingText": "List every doctor target and run the read-only setup checks, naming the repair command for each failing leg. set up skilled. help me set up skilled. is my skilled install healthy. skilled setup check. run the doctor setup checks. getting started with skilled. overview of every doctor command. model server or helper process still running after the session closed. list every check this project has. tell me what to fix where it fails. which checks fail and what to fix. run every check in this project. show me every check and the fix",
+      "embeddingText": "List every doctor target and run the read-only setup checks, naming the repair command for each failing leg. set up skilled. help me set up skilled. is my skilled install healthy. skilled setup check. run the doctor setup checks. getting started with skilled. overview of every doctor command. model server or helper process still running after the session closed. list every check this project has. run every check in this project",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -1456,10 +1456,7 @@
             "overview of every doctor command",
             "model server or helper process still running after the session closed",
             "list every check this project has",
-            "tell me what to fix where it fails",
-            "which checks fail and what to fix",
-            "run every check in this project",
-            "show me every check and the fix"
+            "run every check in this project"
           ],
           "intentSignals": [
             "/doctor:setup"
@@ -2139,7 +2136,7 @@
       "skillId": "system-skilled-doctor",
       "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
-      "embeddingText": "Route check, align, apply, rollback, record-base or compat operations for a spec-kit release. doctor update command. update skills to latest release. skilled release update. update skilled to the latest release. check for skilled updates. is there a newer skilled release. update my project to a newer skilled release. move my project to the newer spec-kit release. is there a newer release of the toolkit. what changed in the newer release. are we on the latest release and what changed. check whether a newer version exists and what changed",
+      "embeddingText": "Route check, align, apply, rollback, record-base or compat operations for a spec-kit release. doctor update command. update skills to latest release. skilled release update. update skilled to the latest release. check for skilled updates. is there a newer skilled release. update my project to a newer skilled release. move my project to the newer spec-kit release. is there a newer release of the toolkit",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2157,10 +2154,7 @@
             "is there a newer skilled release",
             "update my project to a newer skilled release",
             "move my project to the newer spec-kit release",
-            "is there a newer release of the toolkit",
-            "what changed in the newer release",
-            "are we on the latest release and what changed",
-            "check whether a newer version exists and what changed"
+            "is there a newer release of the toolkit"
           ],
           "intentSignals": [
             "/doctor:update"

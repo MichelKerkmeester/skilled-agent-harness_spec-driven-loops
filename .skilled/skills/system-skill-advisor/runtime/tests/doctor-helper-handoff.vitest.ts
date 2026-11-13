@@ -12,7 +12,12 @@ import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
 
-import { doctorProblemCue, genericRepairCue, matchDoctorProblem } from '../lib/scorer/doctor-helper-handoff.js';
+import {
+  DOCTOR_HELPER_UNCUED_MIN_SCORE,
+  doctorProblemCue,
+  genericRepairCue,
+  matchDoctorProblem,
+} from '../lib/scorer/doctor-helper-handoff.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -45,6 +50,11 @@ describe('doctor problem cue', () => {
     expect(doctorProblemCue('the linter does not appear in the tool list')).toBe('strong');
     expect(doctorProblemCue("don't show line numbers in the diff")).toBeNull();
     expect(doctorProblemCue('show me how the advisor ranks skills')).toBeNull();
+  });
+
+  it('reads a contraction typed with a curly apostrophe', () => {
+    expect(doctorProblemCue('Code Mode tools aren’t showing up in my session')).toBe('strong');
+    expect(doctorProblemCue('my new agent isn’t appearing in the picker')).toBe('strong');
   });
 
   // A loop that stopped converging reports the same wrong state in the past
@@ -101,6 +111,20 @@ describe('doctor helper ranker bridge', () => {
 
   it('returns null for a prompt the helper does not match', () => {
     expect(matchDoctorProblem('write me a poem about cats', WORKSPACE)).toBeNull();
+  });
+
+  // The helper ranks on shared words, so a doctor route phrase built from
+  // everyday repair words pulls a code or release request onto a doctor command.
+  it('leaves a code repair request to the code skill', () => {
+    expect(matchDoctorProblem('tell me what to fix where the tests fail', WORKSPACE)).toBeNull();
+    expect(matchDoctorProblem('fix the failing tests', WORKSPACE)).toBeNull();
+  });
+
+  it('keeps a release notes request under the bar for a prompt with no problem cue', () => {
+    const prompt = 'summarize what changed in the newer release';
+    expect(doctorProblemCue(prompt)).toBeNull();
+    expect(matchDoctorProblem(prompt, WORKSPACE)?.score ?? 0).toBeLessThan(DOCTOR_HELPER_UNCUED_MIN_SCORE);
+    expect(matchDoctorProblem('what changed in the last release of our api', WORKSPACE)).toBeNull();
   });
 
   it('returns null when the workspace has no doctor helper', () => {

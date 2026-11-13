@@ -200,9 +200,12 @@ export function commandRowFor(id: string): CommandRow | undefined {
 // command, and the longest key wins so `/group:name-parent` is never reduced to
 // its `/group:name` prefix. A dot or a slash followed by a word character
 // continues a file name or a path, while a sentence-ending period does not.
+// A mode suffix is how the command documents say to type a command, so it ends
+// the command name the way a space does.
 const COMMAND_START_BOUNDARY = /[\s`'"(]/;
 const COMMAND_CONTINUATION = /[a-z0-9_:-]/;
 const WORD_CHARACTER = /[a-z0-9_]/;
+const MODE_SUFFIX = /^:(?:auto|confirm|autopilot)(?![a-z0-9_:-])/;
 
 export function typedCommandIn(prompt: string): string | undefined {
   const lowered = prompt.toLowerCase();
@@ -214,8 +217,10 @@ export function typedCommandIn(prompt: string): string | undefined {
       const after = lowered[index + key.length] ?? '';
       const next = lowered[index + key.length + 1] ?? '';
       const startsAtBoundary = before === '' || COMMAND_START_BOUNDARY.test(before);
+      const hasModeSuffix = MODE_SUFFIX.test(lowered.slice(index + key.length));
       const continuesName =
-        COMMAND_CONTINUATION.test(after) || ((after === '/' || after === '.') && WORD_CHARACTER.test(next));
+        !hasModeSuffix
+        && (COMMAND_CONTINUATION.test(after) || ((after === '/' || after === '.') && WORD_CHARACTER.test(next)));
       const endsAtBoundary = after === '' || !continuesName;
       if (startsAtBoundary && endsAtBoundary) {
         if (found === undefined || key.length > found.length) found = key;

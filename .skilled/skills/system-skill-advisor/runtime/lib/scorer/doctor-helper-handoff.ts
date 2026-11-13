@@ -143,8 +143,11 @@ function loadHelper(workspaceRoot: string): LoadedHelper | null {
 
 /** The strongest problem cue the prompt carries. */
 export function doctorProblemCue(prompt: string): 'strong' | 'weak' | null {
-  if (STRONG_PROBLEM_CUE.test(prompt)) return 'strong';
-  if (WEAK_PROBLEM_CUE.test(prompt)) return 'weak';
+  // Many keyboards type a contraction with a curly apostrophe, and the cue
+  // patterns spell it straight.
+  const folded = prompt.replace(/[‘’]/g, "'");
+  if (STRONG_PROBLEM_CUE.test(folded)) return 'strong';
+  if (WEAK_PROBLEM_CUE.test(folded)) return 'weak';
   return null;
 }
 

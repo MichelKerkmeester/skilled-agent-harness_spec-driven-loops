@@ -403,10 +403,7 @@ routes:
       - "overview of every doctor command"
       - "model server or helper process still running after the session closed"
       - "list every check this project has"
-      - "tell me what to fix where it fails"
-      - "which checks fail and what to fix"
       - "run every check in this project"
-      - "show me every check and the fix"
 
   - command: /doctor:ci
     target: report
@@ -807,9 +804,6 @@ standalone:
       - "update my project to a newer skilled release"
       - "move my project to the newer spec-kit release"
       - "is there a newer release of the toolkit"
-      - "what changed in the newer release"
-      - "are we on the latest release and what changed"
-      - "check whether a newer version exists and what changed"
 
   - command: /doctor:env
     file: .skilled/commands/doctor/env.md
