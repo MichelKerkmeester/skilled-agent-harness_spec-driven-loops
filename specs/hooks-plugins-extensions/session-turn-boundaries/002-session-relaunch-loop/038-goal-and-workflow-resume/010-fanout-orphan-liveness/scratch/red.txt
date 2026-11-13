@@ -1,0 +1,124 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/skills/system-deep-loop/runtime
+
+ ❯ |parallel| tests/unit/fanout-pool.vitest.ts (38 tests | 1 failed | 37 skipped) 3ms
+     × isLineageAlive reads ESRCH as dead and EPERM as alive 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |parallel| tests/unit/fanout-pool.vitest.ts > lineage liveness > isLineageAlive reads ESRCH as dead and EPERM as alive
+TypeError: isLineageAlive is not a function
+ ❯ tests/unit/fanout-pool.vitest.ts:1032:12
+    1030|     const probes: number[] = [];
+    1031|
+    1032|     expect(isLineageAlive(4321, { kill: () => undefined })).toBe(true);
+       |            ^
+    1033|     expect(isLineageAlive(4321, { kill: failingKill('EPERM') })).toBe(…
+    1034|     expect(isLineageAlive(4321, { kill: failingKill('ESRCH') })).toBe(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 37 skipped (38)
+   Start at  10:42:17
+   Duration  110ms (transform 24ms, setup 19ms, import 17ms, tests 3ms, environment 0ms)
+
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/skills/system-deep-loop/runtime
+
+ ❯ |parallel| tests/unit/fanout-pool.vitest.ts (39 tests | 1 failed | 38 skipped) 4ms
+     × detectLiveLineages returns a started label whose spawned pid is alive 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |parallel| tests/unit/fanout-pool.vitest.ts > lineage liveness > detectLiveLineages returns a started label whose spawned pid is alive
+TypeError: detectLiveLineages is not a function
+ ❯ tests/unit/fanout-pool.vitest.ts:1064:12
+    1062|     const alivePids = new Set([4101, 4300, 9001, 9002]);
+    1063|
+    1064|     expect(detectLiveLineages(rows, { isAlive: (pid) => alivePids.has(…
+       |            ^
+    1065|       { label: 'open', pid: 4101, started_at_iso: '2026-11-13T00:00:00…
+    1066|       { label: 'retried', pid: 9002, started_at_iso: '2026-11-13T00:00…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 38 skipped (39)
+   Start at  10:42:44
+   Duration  121ms (transform 26ms, setup 21ms, import 20ms, tests 4ms, environment 0ms)
+
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/skills/system-deep-loop/runtime
+
+ ❯ |parallel| tests/unit/fanout-pool.vitest.ts (40 tests | 1 failed | 39 skipped) 8ms
+     × markOrphanedLineages leaves a live lineage unmarked 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |parallel| tests/unit/fanout-pool.vitest.ts > lineage liveness > markOrphanedLineages leaves a live lineage unmarked
+AssertionError: expected [ { label: 'live', index: +0, …(1) } ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "index": 0,
++     "label": "live",
++     "started_at_iso": "2026-11-13T00:00:00.000Z",
++   },
++ ]
+
+ ❯ tests/unit/fanout-pool.vitest.ts:1125:87
+    1123|       });
+    1124|
+    1125|       expect(markOrphanedLineages(ledger, { now: () => '2026-11-13T00:…
+       |                                                                                       ^
+    1126|
+    1127|       const events = readFileSync(ledger, 'utf8').trim().split('\n').m…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 39 skipped (40)
+   Start at  10:43:25
+   Duration  121ms (transform 25ms, setup 20ms, import 19ms, tests 8ms, environment 0ms)
+
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/skills/system-deep-loop/runtime
+
+ ❯ |serial| tests/stress/cli-adapter/fanout.vitest.ts (21 tests | 1 failed | 20 skipped) 10992ms
+     × refuses a re-run while a lineage from the earlier run is alive 10990ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |serial| tests/stress/cli-adapter/fanout.vitest.ts > fan-out scheduler contracts > refuses a re-run while a lineage from the earlier run is alive
+AssertionError: expected 143 to be 3 // Object.is equality
+
+- Expected
++ Received
+
+- 3
++ 143
+
+ ❯ tests/stress/cli-adapter/fanout.vitest.ts:886:31
+    884|       });
+    885|
+    886|       expect(second.exitCode).toBe(3);
+       |                               ^
+    887|       expect(readAdapterCaptures(fixture)).toHaveLength(1);
+    888|       const envelope = stdoutEnvelope(second.stdout);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 20 skipped (21)
+   Start at  10:44:54
+   Duration  11.27s (transform 68ms, setup 19ms, import 187ms, tests 10.99s, environment 0ms)
+

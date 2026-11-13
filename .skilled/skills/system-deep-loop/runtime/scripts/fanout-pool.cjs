@@ -281,31 +281,125 @@ function readRetryCountsFromLedger(ledgerPath) {
   return counts;
 }
 
-function detectOrphanedLineages(records) {
+/**
+ * Probe whether a recorded lineage process still exists.
+ *
+ * The probe sends signal 0 only, so nothing is delivered: it just asks the kernel
+ * whether the target is there. Lineages spawn detached as process group leaders,
+ * so the group is probed first: a pid-only probe reports the leader dead once it
+ * exits while its group lives on, and the pid probe covers the reverse. EPERM
+ * proves the target exists under another owner; only ESRCH on both probes proves
+ * it is gone.
+ *
+ * @param {*} pid - Recorded process id.
+ * @param {Object} [options] - `kill` injects the probe for tests.
+ * @returns {boolean} True when the group or the process answers.
+ */
+function isLineageAlive(pid, options = {}) {
+  const numericPid = Number(pid);
+  if (!Number.isInteger(numericPid) || numericPid <= 0) {
+    return false;
+  }
+  const kill = typeof options.kill === 'function' ? options.kill : process.kill.bind(process);
+  const probe = (target) => {
+    try {
+      kill(target, 0);
+      return true;
+    } catch (error) {
+      if (error && error.code === 'EPERM') {
+        return true;
+      }
+      if (error && error.code === 'ESRCH') {
+        return false;
+      }
+      return true;
+    }
+  };
+  if (process.platform === 'win32') {
+    return probe(numericPid);
+  }
+  return probe(-numericPid) || probe(numericPid);
+}
+
+function collectOpenLineages(records) {
   const open = new Map();
+  const spawnedPids = new Map();
   for (const record of records) {
     if (!isRecord(record) || typeof record.label !== 'string' || !record.label) {
       continue;
     }
     if (record.event === 'started') {
       open.set(record.label, record);
+      // A new attempt invalidates the pid of the attempt before it, so only a
+      // spawned row after the latest started row may decide liveness.
+      spawnedPids.delete(record.label);
     } else if (
       record.event === 'completed'
       || record.event === 'failed'
       || record.event === 'orphan_requeued'
     ) {
       open.delete(record.label);
+      spawnedPids.delete(record.label);
+    } else if (record.event === 'spawned' && open.has(record.label)) {
+      spawnedPids.set(record.label, record);
     }
   }
-  return Array.from(open.values()).map((record) => ({
-    label: record.label,
-    index: Number.isFinite(Number(record.index)) ? Number(record.index) : null,
-    started_at_iso: typeof record.at === 'string' ? record.at : null,
-  }));
+  return { open, spawnedPids };
+}
+
+/**
+ * List started lineages whose recorded process still answers.
+ *
+ * A label with no spawned row is never live: a ledger written before the row
+ * existed cannot prove a process is still running, and treating it as live would
+ * block every re-run of an old run.
+ *
+ * @param {Array<Object>} records - Ledger rows in write order.
+ * @param {Object} [options] - `isAlive` injects the probe for tests.
+ * @returns {Array<Object>} { label, pid, started_at_iso } per live label.
+ */
+function detectLiveLineages(records, options = {}) {
+  const isAlive = typeof options.isAlive === 'function' ? options.isAlive : isLineageAlive;
+  const { open, spawnedPids } = collectOpenLineages(records);
+  const live = [];
+  for (const [label, started] of open) {
+    const spawned = spawnedPids.get(label);
+    if (!spawned) {
+      continue;
+    }
+    const pid = Number(spawned.pid);
+    if (!isAlive(pid)) {
+      continue;
+    }
+    live.push({
+      label,
+      pid,
+      started_at_iso: typeof started.at === 'string' ? started.at : null,
+    });
+  }
+  return live;
+}
+
+function detectOrphanedLineages(records, options = {}) {
+  const isAlive = typeof options.isAlive === 'function' ? options.isAlive : isLineageAlive;
+  const { open, spawnedPids } = collectOpenLineages(records);
+  const orphans = [];
+  for (const [label, started] of open) {
+    const spawned = spawnedPids.get(label);
+    if (spawned && isAlive(Number(spawned.pid))) {
+      continue;
+    }
+    orphans.push({
+      label,
+      index: Number.isFinite(Number(started.index)) ? Number(started.index) : null,
+      started_at_iso: typeof started.at === 'string' ? started.at : null,
+    });
+  }
+  return orphans;
 }
 
 function markOrphanedLineages(ledgerPath, options = {}) {
-  const orphans = detectOrphanedLineages(readLedgerRecords(ledgerPath));
+  const orphans = detectOrphanedLineages(readLedgerRecords(ledgerPath), { isAlive: options.isAlive });
   if (!orphans.length) {
     return [];
   }
@@ -948,6 +1042,9 @@ module.exports = {
   buildPoolGauges,
   classifyLineageFailure,
   detectOrphanedLineages,
+  detectLiveLineages,
+  isLineageAlive,
+  readLedgerRecords,
   createWavePlannerInterface,
   markOrphanedLineages,
   readRetryCountsFromLedger,
