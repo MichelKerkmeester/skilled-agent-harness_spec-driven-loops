@@ -47,6 +47,7 @@ const ENV_KEYS = [
   'SESSION_RELAUNCH_REPO_ROOT',
   'SKILLED_LOOP_ID',
   'SKILLED_LOOP_HOPS',
+  'SKILLED_LOOP_NAME',
   'SYSTEM_SPEC_FOLDER',
   'XDG_RUNTIME_DIR',
   'HOOK_FLAGS_CONFIG',
@@ -71,6 +72,7 @@ function setupEnv(t) {
   delete process.env.SESSION_RELAUNCH_WINDOW_TOKENS;
   delete process.env.SKILLED_LOOP_ID;
   delete process.env.SKILLED_LOOP_HOPS;
+  delete process.env.SKILLED_LOOP_NAME;
   delete process.env.SESSION_RELAUNCH_MAX_HOPS;
   delete process.env.SYSTEM_SPEC_FOLDER;
   t.after(() => {
@@ -138,6 +140,29 @@ function sessionCreatedEvent(sessionID, parentID) {
   const info = { id: sessionID };
   if (parentID !== undefined) info.parentID = parentID;
   return { event: { type: 'session.created', properties: { info } } };
+}
+
+// OpenCode 2 puts a child's parent id at the top of the event data and the bridge fills
+// info with only the id, so these events carry the shape the plugin really receives.
+function bridgedChildCreatedEvent(sessionID, parentID) {
+  return { event: {
+    type: 'session.created',
+    properties: { sessionID, parentID, info: { id: sessionID } },
+  } };
+}
+
+function sessionExecutionStartedEvent(sessionID) {
+  return { event: {
+    type: 'session.execution.started',
+    properties: { sessionID, info: { id: sessionID } },
+  } };
+}
+
+function sessionIdleEvent(sessionID) {
+  return { event: {
+    type: 'session.idle',
+    properties: { sessionID, info: { id: sessionID } },
+  } };
 }
 
 function notePathFromNudge(text) {
@@ -892,6 +917,127 @@ test('a different user message clears the pending seed', async (t) => {
   assert.deepEqual(await transform(hooks, sessionID), []);
 });
 
+test('the claim seed sets the session title to SKILLED_LOOP_NAME', async (t) => {
+  setupEnv(t);
+  stubSpawn(t);
+  process.env.SKILLED_LOOP_NAME = 'hop-title-check';
+  const calls = [];
+  const hooks = await loadPlugin({
+    directory: '/workspace/opencode',
+    client: {
+      session: {
+        update: async (input) => {
+          calls.push(input);
+        },
+      },
+    },
+  });
+  const sessionID = 'ses-seed-title-0001';
+
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID, info: { id: 'msg-seed-title', role: 'user' } },
+  } });
+  await hooks.event({ event: {
+    type: 'message.part.updated',
+    properties: {
+      sessionID,
+      part: {
+        messageID: 'msg-seed-title',
+        type: 'text',
+        text: '[session-relaunch] claim and continue handoff /workspace/title-note.md',
+      },
+    },
+  } });
+
+  assert.deepEqual(calls, [{
+    path: { id: sessionID },
+    body: { title: 'hop-title-check' },
+  }]);
+});
+
+test('no title call without SKILLED_LOOP_NAME or a client update method', async (t) => {
+  setupEnv(t);
+  stubSpawn(t);
+  const calls = [];
+  const titleUpdate = async (input) => {
+    calls.push(input);
+  };
+  const sendSeed = async (hooks, sessionID, messageID) => {
+    await hooks.event({ event: {
+      type: 'message.updated',
+      properties: { sessionID, info: { id: messageID, role: 'user' } },
+    } });
+    await hooks.event({ event: {
+      type: 'message.part.updated',
+      properties: {
+        sessionID,
+        part: {
+          messageID,
+          type: 'text',
+          text: `[session-relaunch] claim and continue handoff /workspace/${sessionID}.md`,
+        },
+      },
+    } });
+    return (await transform(hooks, sessionID)).join('\n');
+  };
+
+  const unnamedSession = 'ses-title-unnamed-0001';
+  const unnamedHooks = await loadPlugin({
+    directory: '/workspace/opencode',
+    client: { session: { update: titleUpdate } },
+  });
+  const unnamedSeed = await sendSeed(unnamedHooks, unnamedSession, 'msg-title-unnamed');
+  assert.ok(unnamedSeed.includes(`claim '/workspace/${unnamedSession}.md'`));
+  assert.equal(calls.length, 0);
+
+  process.env.SKILLED_LOOP_NAME = 'hop-title-check';
+  const methodlessSession = 'ses-title-methodless-0001';
+  const methodlessHooks = await loadPlugin({
+    directory: '/workspace/opencode',
+    client: { session: {} },
+  });
+  const methodlessSeed = await sendSeed(methodlessHooks, methodlessSession, 'msg-title-methodless');
+  assert.ok(methodlessSeed.includes(`claim '/workspace/${methodlessSession}.md'`));
+  assert.equal(calls.length, 0);
+});
+
+test('a rejected title call leaves the seed in place', async (t) => {
+  setupEnv(t);
+  stubSpawn(t);
+  process.env.SKILLED_LOOP_NAME = 'hop-title-check';
+  const hooks = await loadPlugin({
+    directory: '/workspace/opencode',
+    client: {
+      session: {
+        update: async () => {
+          throw new Error('title update rejected');
+        },
+      },
+    },
+  });
+  const sessionID = 'ses-title-rejected-0001';
+
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID, info: { id: 'msg-title-rejected', role: 'user' } },
+  } });
+  await hooks.event({ event: {
+    type: 'message.part.updated',
+    properties: {
+      sessionID,
+      part: {
+        messageID: 'msg-title-rejected',
+        type: 'text',
+        text: '[session-relaunch] claim and continue handoff /workspace/rejected-title.md',
+      },
+    },
+  } });
+
+  const [seedText] = await transform(hooks, sessionID);
+  assert.match(seedText, /claim '\/workspace\/rejected-title\.md'/);
+});
+
 test('interleaved sessions keep their own seed and nudge text', async (t) => {
   setupEnv(t);
   process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
@@ -1416,6 +1562,80 @@ test('a sub-agent session.idle never arms a pending record', async (t) => {
 
   assert.equal(core.readRelaunchFile(loopId, process.env).status, 'pending');
   assert.equal(spawn.calls.length, 0);
+});
+
+async function prepareChildBusyLoop(t, loopId, parent) {
+  const spawn = stubSpawn(t);
+  process.env.SKILLED_LOOP_ID = loopId;
+  core.preparePending({
+    loopId,
+    handoffPath: '/workspace/opencode/handoff.md',
+    sessionId: parent,
+    runtime: 'opencode',
+    cwd: '/workspace/opencode',
+    env: process.env,
+  });
+  return spawn;
+}
+
+test('a parent session.idle does not arm while its sub-agent is busy', async (t) => {
+  setupEnv(t);
+  const loopId = 'opencode-child-busy-loop-0001';
+  const parent = 'ses-child-busy-parent-0001';
+  const child = 'ses-child-busy-child-0001';
+  const spawn = await prepareChildBusyLoop(t, loopId, parent);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+
+  await hooks.event(bridgedChildCreatedEvent(child, parent));
+  await hooks.event(sessionExecutionStartedEvent(child));
+  await hooks.event(sessionIdleEvent(parent));
+
+  assert.equal(core.readRelaunchFile(loopId, process.env).status, 'pending');
+  assert.equal(spawn.calls.length, 0);
+});
+
+test('a deferred parent arm runs when its last busy sub-agent goes idle', async (t) => {
+  setupEnv(t);
+  const loopId = 'opencode-child-deferred-loop-0001';
+  const parent = 'ses-child-deferred-parent-0001';
+  const child = 'ses-child-deferred-child-0001';
+  const spawn = await prepareChildBusyLoop(t, loopId, parent);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+
+  await hooks.event(bridgedChildCreatedEvent(child, parent));
+  await hooks.event(sessionExecutionStartedEvent(child));
+  await hooks.event(sessionIdleEvent(parent));
+  assert.equal(core.readRelaunchFile(loopId, process.env).status, 'pending');
+
+  await hooks.event(sessionIdleEvent(child));
+
+  assert.equal(core.readRelaunchFile(loopId, process.env).status, 'armed');
+  assert.equal(spawn.calls.length, 1);
+});
+
+test('a parent with two sub-agents stays unarmed until both are idle', async (t) => {
+  setupEnv(t);
+  const loopId = 'opencode-child-two-loop-0001';
+  const parent = 'ses-child-two-parent-0001';
+  const firstChild = 'ses-child-two-first-0001';
+  const secondChild = 'ses-child-two-second-0001';
+  const spawn = await prepareChildBusyLoop(t, loopId, parent);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+
+  await hooks.event(bridgedChildCreatedEvent(firstChild, parent));
+  await hooks.event(bridgedChildCreatedEvent(secondChild, parent));
+  await hooks.event(sessionExecutionStartedEvent(firstChild));
+  await hooks.event(sessionExecutionStartedEvent(secondChild));
+  await hooks.event(sessionIdleEvent(parent));
+  await hooks.event(sessionIdleEvent(firstChild));
+
+  assert.equal(core.readRelaunchFile(loopId, process.env).status, 'pending');
+  assert.equal(spawn.calls.length, 0);
+
+  await hooks.event(sessionIdleEvent(secondChild));
+
+  assert.equal(core.readRelaunchFile(loopId, process.env).status, 'armed');
+  assert.equal(spawn.calls.length, 1);
 });
 
 test('a sub-agent never receives the claim seed', async (t) => {

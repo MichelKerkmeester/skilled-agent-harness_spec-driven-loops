@@ -43,14 +43,17 @@
       "goal.md",
       "implementation-summary.md",
       ".opencode/plugins/session-relaunch.js",
-      ".opencode/plugins/lib/v2-bridge.js",
       ".opencode/plugins/tests/session-relaunch.test.cjs",
+      ".opencode/plugins/lib/v2-bridge.js",
       ".opencode/plugins/tests/v2-bridge.test.cjs",
+      "scratch/red.txt",
+      "scratch/green.txt",
       "scratch/trace-child-idle.jsonl",
       "scratch/trace-child-idle.md",
       "scratch/live-title.md",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
-      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".opencode/plugins/tests/plugin-inventory.json"
     ],
     "entities": [
       {
@@ -96,21 +99,33 @@
         "source": "derived"
       },
       {
-        "name": "v2-bridge.js",
-        "kind": "code",
-        "path": ".opencode/plugins/lib/v2-bridge.js",
-        "source": "derived"
-      },
-      {
         "name": "session-relaunch.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/session-relaunch.test.cjs",
         "source": "derived"
       },
       {
+        "name": "v2-bridge.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/v2-bridge.js",
+        "source": "derived"
+      },
+      {
         "name": "v2-bridge.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/v2-bridge.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
         "source": "derived"
       },
       {
@@ -141,6 +156,12 @@
         "name": "session-relaunch.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-inventory.json",
+        "kind": "config",
+        "path": ".opencode/plugins/tests/plugin-inventory.json",
         "source": "derived"
       },
       {
@@ -178,29 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The plugin puts every sub-agent session in a skip set and returns before reading any later event for it (`.opencode/plugins/session-relaunch.js:335`, `:341`), and the parent arms at `session.idle` with no child check (`:418` to `:435`)",
     "created_at": "2026-11-13T08:49:35Z",
-    "last_save_at": "2026-11-13T10:29:22.950Z",
+    "last_save_at": "2026-11-13T11:02:30.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6cc157f537ab24b5e51c07a3fc15ab8584582904577063aaf6554e2f04c0319f",
+    "source_fingerprint": "sha256:842662e3e130f4c3fecb817ebdd6dfac48ac3386438bdd1184bb69dc92468d65",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "007adfeb851f39d8c29d31f5757cf51900837d77c7d56138fb62a9c988853db6",
       "plan.md": "bcb426d53318006ff00d7d0e9d718d434a64919669bbb3ac150feb38eeae1774",
-      "tasks.md": "d5511ee99b68b0e09deb7d5daeea0793be174a92a57f8e72fe9d9ee6659f646c",
-      "implementation-summary.md": "cdec8cd8291d26135dcb25c2db7a453d4e875adfe7171738f481a4dde3cf5589"
+      "tasks.md": "aac9b0cf9d0ba605374ec13855b005f2c9f6bdcc1959a1c5807fcf490e8ac060",
+      "implementation-summary.md": "7cb4c4c2c972ef50c4bb70ad5a6869abd314e1811d41c58389f2e0c474b3afb1"
     },
     "last_active_at": null
   }
