@@ -1,0 +1,141 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-doctor-install-2-1794570021136-noekp0",
+  "status": "complete",
+  "focus": "correctness and traceability",
+  "dimensions": ["correctness", "traceability"],
+  "filesReviewed": [
+    ".skilled/commands/doctor/scripts/agents-md-check.cjs:628",
+    ".skilled/commands/doctor/scripts/agents-md-check.cjs:713",
+    ".skilled/commands/doctor/scripts/agents-md-check.cjs:762",
+    ".skilled/commands/doctor/scripts/agents-md-check.cjs:803",
+    ".skilled/commands/doctor/scripts/agents-md-check.cjs:855",
+    ".skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:524",
+    ".skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:736",
+    ".skilled/commands/doctor/scripts/README.markdown:99"
+  ],
+  "findingsCount": 0,
+  "findingsSummary": { "P0": 0, "P1": 0, "P2": 0 },
+  "findingsNew": [],
+  "findingDetails": [],
+  "traceabilityChecks": {
+    "spec_code": "partial",
+    "checklist_evidence": "pending",
+    "skill_agent": "notApplicable",
+    "agent_cross_runtime": "partial",
+    "feature_catalog_code": "pending",
+    "playbook_capability": "notApplicable"
+  },
+  "newFindingsRatio": 0.0,
+  "noveltyJustification": "All five check-engine fixes hold; no new defect was found in the changed verdict branches or the README.",
+  "sessionId": "fanout-doctor-install-2-1794570021136-noekp0",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-13T12:02:41.000Z",
+  "durationMs": 88000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "the check engine's A10 and A11 verdicts changed and its README contract changed",
+    "evidenceRefs": [".skilled/commands/doctor/scripts/agents-md-check.cjs:713", ".skilled/commands/doctor/scripts/README.markdown:102"]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs",
+      ".skilled/commands/doctor/scripts/README.markdown"
+    ],
+    "selectionReason": "Every pass-one check-engine fix lives in these three files or their fixtures",
+    "discoveryMethods": ["direct_read", "exact_grep", "read_only_execution"],
+    "omittedHighRiskTargets": [],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [".skilled/commands/doctor/scripts/agents-md-check.cjs:649"]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": ["false_clean_diagnostic", "misleading_evidence", "pointer_count", "malformed_router_row", "readme_child_count"],
+    "covered": ["false_clean_diagnostic", "misleading_evidence", "pointer_count", "malformed_router_row", "readme_child_count"],
+    "ruledOut": ["false_clean_diagnostic", "misleading_evidence", "pointer_count", "malformed_router_row", "readme_child_count"],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/commands/doctor/scripts/agents-md-check.cjs"],
+      "bugClass": "false_clean_diagnostic",
+      "hypothesis": "a symlink at an absent-only path still passes A10",
+      "searchActions": [
+        { "method": "direct_read", "queryOrPath": ".skilled/commands/doctor/scripts/agents-md-check.cjs:713-719", "result": "expectsAbsent is read before the symlink pass and returns FINDING", "evidenceRefs": [".skilled/commands/doctor/scripts/agents-md-check.cjs:713"] }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the new test reports symlink where none belongs",
+      "ruledOutReason": "expectsAbsent precedes the symlink verdict"
+    },
+    {
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/commands/doctor/scripts/agents-md-check.cjs"],
+      "bugClass": "misleading_evidence",
+      "hypothesis": "the pointer verdict claims every line names the root document",
+      "searchActions": [
+        { "method": "direct_read", "queryOrPath": ".skilled/commands/doctor/scripts/agents-md-check.cjs:738-742", "result": "the detail now says names AGENTS.md and carries no shipped line", "evidenceRefs": [".skilled/commands/doctor/scripts/agents-md-check.cjs:740"] }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the printed claim matches namesRoot's some-line test",
+      "ruledOutReason": "wording matches the condition proved"
+    },
+    {
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [".skilled/commands/doctor/scripts/agents-md-check.cjs"],
+      "bugClass": "pointer_count",
+      "hypothesis": "a missing pointer is still counted among the copies as expected",
+      "searchActions": [
+        { "method": "direct_read", "queryOrPath": ".skilled/commands/doctor/scripts/agents-md-check.cjs:649-653", "result": "expected excludes pointerMissing and the detail names it separately", "evidenceRefs": [".skilled/commands/doctor/scripts/agents-md-check.cjs:650"] }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the count and the detail now agree",
+      "ruledOutReason": "pointerMissing is subtracted and named"
+    },
+    {
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/commands/doctor/scripts/agents-md-check.cjs"],
+      "bugClass": "malformed_router_row",
+      "hypothesis": "a width-mismatched router row is dropped and reported as missing",
+      "searchActions": [
+        { "method": "direct_read", "queryOrPath": ".skilled/commands/doctor/scripts/agents-md-check.cjs:803-826", "result": "the row is kept as an object with line and width; A11 prints malformed and FINDING", "evidenceRefs": [".skilled/commands/doctor/scripts/agents-md-check.cjs:824"] }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the new test names the malformed line and the rule is not reported missing",
+      "ruledOutReason": "malformed rows are kept and reported"
+    },
+    {
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [".skilled/commands/doctor/scripts/README.markdown"],
+      "bugClass": "readme_child_count",
+      "hypothesis": "the README still says three children while the check runs four",
+      "searchActions": [
+        { "method": "direct_read", "queryOrPath": ".skilled/commands/doctor/scripts/README.markdown:102", "result": "the row says four and names the A12 manifest generator", "evidenceRefs": [".skilled/commands/doctor/scripts/README.markdown:102"] }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the row and the module header agree with defaultTools",
+      "ruledOutReason": "the README says four children"
+    }
+  ],
+  "graphEvents": [
+    { "type": "node", "id": "dim-correctness-2", "kind": "DIMENSION", "label": "correctness iteration 2" },
+    { "type": "node", "id": "file-check", "kind": "FILE", "label": "agents-md-check.cjs" },
+    { "type": "edge", "id": "edge-003", "source": "dim-correctness-2", "target": "file-check", "relation": "COVERS" }
+  ]
+}

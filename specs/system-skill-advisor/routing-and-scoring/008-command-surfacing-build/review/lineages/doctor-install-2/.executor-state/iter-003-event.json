@@ -1,0 +1,155 @@
+{
+  "type": "iteration",
+  "iteration": 3,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-doctor-install-2-1794570021136-noekp0",
+  "status": "complete",
+  "focus": "correctness and security",
+  "dimensions": ["correctness", "security"],
+  "filesReviewed": [
+    ".skilled/commands/doctor/scripts/hook-wiring-check.cjs:39",
+    ".skilled/commands/doctor/scripts/hook-wiring-check.cjs:100",
+    ".skilled/commands/doctor/scripts/hook-wiring-check.cjs:133",
+    ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs:45",
+    ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs:169",
+    ".skilled/commands/doctor/assets/doctor-symlink-check.yaml:54",
+    ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml:150",
+    ".skilled/commands/doctor/assets/doctor-setup.yaml:56",
+    ".skilled/commands/doctor/scripts/tests/hook-wiring-check.test.cjs:57",
+    ".skilled/commands/doctor/scripts/tests/codex-hook-approval-check.test.cjs:108"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": { "P0": 0, "P1": 0, "P2": 1 },
+  "findingsNew": ["DR2-P2-005"],
+  "findingDetails": [
+    {
+      "id": "DR2-P2-005",
+      "severity": "P2",
+      "title": "The narrowed hook matcher reports a valid env node or bash -lc wrapper as hook-missing",
+      "file": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs:133"
+    }
+  ],
+  "traceabilityChecks": {
+    "spec_code": "partial",
+    "checklist_evidence": "pending",
+    "skill_agent": "notApplicable",
+    "agent_cross_runtime": "pass",
+    "feature_catalog_code": "pending",
+    "playbook_capability": "notApplicable"
+  },
+  "newFindingsRatio": 0.5,
+  "noveltyJustification": "One new P2 on the changed matcher against two active P2 findings; the four other hook and workflow fixes are clean.",
+  "sessionId": "fanout-doctor-install-2-1794570021136-noekp0",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-13T12:04:02.000Z",
+  "durationMs": 90000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "the hook matcher was rewritten and two workflow output contracts changed",
+    "evidenceRefs": [".skilled/commands/doctor/scripts/hook-wiring-check.cjs:133", ".skilled/commands/doctor/assets/doctor-symlink-check.yaml:69"]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs",
+      ".skilled/commands/doctor/assets/doctor-symlink-check.yaml",
+      ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+      ".skilled/commands/doctor/assets/doctor-setup.yaml"
+    ],
+    "selectionReason": "Every pass-one hook-check and workflow-contract fix in this area",
+    "discoveryMethods": ["direct_read", "exact_grep", "read_only_execution"],
+    "omittedHighRiskTargets": [],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [".skilled/commands/doctor/scripts/hook-wiring-check.cjs:144"]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": ["mention_as_wiring", "wrapper_false_negative", "absent_repair_routing", "symlink_exit_mapping", "flag_value_swallow"],
+    "covered": ["mention_as_wiring", "wrapper_false_negative", "absent_repair_routing", "symlink_exit_mapping", "flag_value_swallow"],
+    "ruledOut": ["mention_as_wiring", "absent_repair_routing", "symlink_exit_mapping", "flag_value_swallow"],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-010",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/commands/doctor/scripts/hook-wiring-check.cjs"],
+      "bugClass": "mention_as_wiring",
+      "hypothesis": "a marker in a description is still read as a wired hook",
+      "searchActions": [
+        { "method": "direct_read", "queryOrPath": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs:114-157", "result": "only type command entries are collected and only their command strings are matched", "evidenceRefs": [".skilled/commands/doctor/scripts/hook-wiring-check.cjs:114"] }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the description-only test reports hook-missing",
+      "ruledOutReason": "descriptions are never read as commands"
+    },
+    {
+      "id": "SL-011",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/commands/doctor/scripts/hook-wiring-check.cjs"],
+      "bugClass": "wrapper_false_negative",
+      "hypothesis": "a wrapper that starts node is reported missing",
+      "searchActions": [
+        { "method": "direct_read", "queryOrPath": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs:133-148", "result": "node must be at index 0 or after a recognised separator, and the next token must end with the marker", "evidenceRefs": [".skilled/commands/doctor/scripts/hook-wiring-check.cjs:133"] },
+        { "method": "negative_test_inspection", "queryOrPath": "temp .claude/settings.json with env node and bash -lc wrappers", "result": "both print hook-missing claude and exit 1", "evidenceRefs": [".skilled/commands/doctor/scripts/hook-wiring-check.cjs:144"] }
+      ],
+      "disposition": "finding",
+      "rationale": "a valid wrapper is a false diagnostic",
+      "linkedFindingId": "DR2-P2-005"
+    },
+    {
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs"],
+      "bugClass": "absent_repair_routing",
+      "hypothesis": "the absent Codex entry prints no repair",
+      "searchActions": [
+        { "method": "direct_read", "queryOrPath": ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs:171-183", "result": "the absent branch prints the copy-and-approve repair", "evidenceRefs": [".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs:171"] }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the repair exists and the setup text routes to it",
+      "ruledOutReason": "absent entry prints the repair line"
+    },
+    {
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [".skilled/commands/doctor/assets/doctor-symlink-check.yaml"],
+      "bugClass": "symlink_exit_mapping",
+      "hypothesis": "the symlink output block omits the hook exit",
+      "searchActions": [
+        { "method": "direct_read", "queryOrPath": ".skilled/commands/doctor/assets/doctor-symlink-check.yaml:66-72", "result": "WARN, FAIL and the worse-status rule are present", "evidenceRefs": [".skilled/commands/doctor/assets/doctor-symlink-check.yaml:69"] }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the output block maps all three hook exits",
+      "ruledOutReason": "the exit map is complete"
+    },
+    {
+      "id": "SL-014",
+      "dimension": "security",
+      "targetRefs": [".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs"],
+      "bugClass": "flag_value_swallow",
+      "hypothesis": "a flag standing where a value belongs is consumed as a root",
+      "searchActions": [
+        { "method": "direct_read", "queryOrPath": ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs:55-65", "result": "a value starting with - is refused", "evidenceRefs": [".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs:58"] }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "the new test exits 2 on --root --json",
+      "ruledOutReason": "flag-like values are refused"
+    }
+  ],
+  "graphEvents": [
+    { "type": "node", "id": "dim-security-1", "kind": "DIMENSION", "label": "security iteration 3" },
+    { "type": "node", "id": "file-hookcheck", "kind": "FILE", "label": "hook-wiring-check.cjs" },
+    { "type": "node", "id": "finding-DR2-P2-005", "kind": "FINDING", "label": "wrapper false negative" },
+    { "type": "edge", "id": "edge-004", "source": "dim-security-1", "target": "file-hookcheck", "relation": "COVERS" },
+    { "type": "edge", "id": "edge-005", "source": "finding-DR2-P2-005", "target": "file-hookcheck", "relation": "IN_FILE" }
+  ]
+}

@@ -1,0 +1,6 @@
+# git diff --name-only 0a6638f2ab..HEAD -- .skilled .opencode ; HEAD 860610d783cb75e496eb97cd0808355512e547a2
+# area<TAB>path ; area = lineage label without its -3 suffix
+doctor-docs	.skilled/commands/doctor/scripts/hook-wiring-check.cjs
+doctor-docs	.skilled/commands/doctor/scripts/tests/hook-wiring-check.test.cjs
+advisor-runtime	.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+advisor-runtime	.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts

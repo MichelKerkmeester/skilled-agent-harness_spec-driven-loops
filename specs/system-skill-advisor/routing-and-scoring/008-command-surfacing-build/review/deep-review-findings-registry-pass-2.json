@@ -1,0 +1,941 @@
+{
+  "mergedFrom": [
+    "accuracy-runner-2",
+    "doctor-install-2",
+    "render-hooks-plugin-2",
+    "scorer-attach-2"
+  ],
+  "lineageExecutors": {
+    "accuracy-runner-2": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "doctor-install-2": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "render-hooks-plugin-2": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "scorer-attach-2": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    }
+  },
+  "mergedVerdict": "PASS",
+  "openFindings": [
+    {
+      "findingId": "iter3-P2-backfill-log-code-execution",
+      "severity": "P2",
+      "title": "--backfill executes the hook and the advisor CLI from the directory a run-log line names",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs",
+      "line": 333,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "iter2-P2-backfill-fixture-mismatch",
+      "severity": "P2",
+      "title": "--backfill replays a started-command row with the default fixture path even when the run used a custom --fixture",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      "line": 1214,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "iter5-P2-quoted-path-restore",
+      "severity": "P2",
+      "title": "A file name git quotes cannot be restored, so one space in a created path stops the arm and leaves the file",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/worktree-restore.mjs",
+      "line": 54,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "iter2-P2-g2-row-id-arm-mislabel",
+      "severity": "P2",
+      "title": "A started-command row selected by --row-id is logged under the pre arm",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      "line": 974,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "DR2-P2-007",
+      "severity": "P2",
+      "title": "A10 counts report-only entries among the copies as expected",
+      "file": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      "line": 651,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install-2"
+      ]
+    },
+    {
+      "findingId": "iter2-P2-stderr-cap-hides-busy",
+      "severity": "P2",
+      "title": "Capping stderr at 1 MiB hides a SQLITE_BUSY marker written past the cap, so the busy retry no longer fires",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+      "line": 144,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin-2"
+      ]
+    },
+    {
+      "findingId": "iter4-P2-advisor-recommend-stale-line-refs",
+      "severity": "P2",
+      "title": "Five line citations in advisor-recommend.md point at unrelated code",
+      "file": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+      "line": 33,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin-2"
+      ]
+    },
+    {
+      "findingId": "SA2-P2-001",
+      "severity": "P2",
+      "title": "Gate assertion passes a table without the requested mode",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach.vitest.ts",
+      "line": 120,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-2"
+      ]
+    },
+    {
+      "findingId": "iter2-P2-cost-script-child-brief",
+      "severity": "P2",
+      "title": "measure-brief-cost.mjs measures the child-session brief when it runs from a dispatched worker",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/measure-brief-cost.mjs",
+      "line": 167,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "SA2-P2-002",
+      "severity": "P2",
+      "title": "NO_EDIT_REQUEST misses contractions and no-changes wording",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 289,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-2"
+      ]
+    },
+    {
+      "findingId": "SA2-P2-003",
+      "severity": "P2",
+      "title": "Privacy guard cannot fail because the fixture stores nothing private",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts",
+      "line": 493,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-2"
+      ]
+    },
+    {
+      "findingId": "SA2-P2-004",
+      "severity": "P2",
+      "title": "README row shape omits mutating",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md",
+      "line": 50,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-2"
+      ]
+    },
+    {
+      "findingId": "iter4-P2-tests-readme-description",
+      "severity": "P2",
+      "title": "runtime/tests/README.md describes the playbook inventory test as a routing-fixture test",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/README.md",
+      "line": 154,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "DR2-P2-006",
+      "severity": "P2",
+      "title": "setup.md names SKILL_ADVISOR_DEBUG as the switch that turns hook-health records on, but the hook records every prompt by default",
+      "file": ".skilled/commands/doctor/setup.md",
+      "line": 82,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install-2"
+      ]
+    },
+    {
+      "findingId": "iter2-P2-inert-bounded-summary-option",
+      "severity": "P2",
+      "title": "The bounded-route option now controls nothing the plugin emits",
+      "file": ".opencode/plugins/system-skill-advisor.js",
+      "line": 379,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin-2"
+      ]
+    },
+    {
+      "findingId": "iter2-P2-capture-env-not-restored",
+      "severity": "P2",
+      "title": "The capture leaves its environment projection installed after it returns",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
+      "line": 361,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "DR2-P2-008",
+      "severity": "P2",
+      "title": "The embed route names the backup folder timestamp while the engine names it by plan digest and may fall back outside the repository",
+      "file": ".skilled/commands/doctor/_routes.yaml",
+      "line": 536,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install-2"
+      ]
+    },
+    {
+      "findingId": "DR2-P2-004",
+      "severity": "P2",
+      "title": "The exit-3 contract has no branch for a restore that throws, so the route can misstate a partly written tree",
+      "file": ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml",
+      "line": 104,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install-2"
+      ]
+    },
+    {
+      "findingId": "DR2-P2-005",
+      "severity": "P2",
+      "title": "The narrowed hook matcher reports a valid env node or bash -lc wrapper as hook-missing",
+      "file": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "line": 133,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install-2"
+      ]
+    },
+    {
+      "findingId": "iter5-P2-field-pass-through-untested",
+      "severity": "P2",
+      "title": "The new CLI field pass-through has no test on either delivery path",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts",
+      "line": 49,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin-2"
+      ]
+    },
+    {
+      "findingId": "iter3-P2-phase007-open-evidence",
+      "severity": "P2",
+      "title": "The pass-one phase-map finding is only half fixed: the reason lives in the phase child, not in the map the finding named",
+      "file": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md",
+      "line": 122,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "iter4-P2-playbook-inventory-note",
+      "severity": "P2",
+      "title": "The playbook's coverage note names a file convention and a count the tree does not have",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 40,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "iter4-P2-playbook-persistence-path",
+      "severity": "P2",
+      "title": "The playbook's result-persistence contract names a folder the skill does not have",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 30,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "iter5-P2-orphaned-route-summary",
+      "severity": "P2",
+      "title": "The removed compiled-route line left its per-prompt summary computation and response field without a consumer",
+      "file": ".opencode/plugins/system-skill-advisor.js",
+      "line": 657,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin-2"
+      ]
+    },
+    {
+      "findingId": "iter4-P2-row-id-session-mode",
+      "severity": "P2",
+      "title": "The scorer README says --row-id narrows either mode, but single-session mode ignores it",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 112,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "iter5-P2-scorer-header-ordered-report",
+      "severity": "P2",
+      "title": "The transcript scorer's header promises an ordered read/write report the CLI does not print",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 5,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "SA2-P2-005",
+      "severity": "P2",
+      "title": "tsString does not escape line breaks",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+      "line": 957,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-2"
+      ]
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "findingId": "iter2-P2-hook-health-doc-scope",
+      "severity": "P2",
+      "title": "The validation playbook says every hook run writes a health record, but the OpenCode plugin never writes one",
+      "file": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md",
+      "line": 100,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin-2"
+      ]
+    }
+  ],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 27
+  },
+  "openFindingsCount": 27,
+  "resolvedFindingsCount": 1,
+  "activeP0": 0,
+  "activeP1": 0,
+  "activeP2": 27
+}

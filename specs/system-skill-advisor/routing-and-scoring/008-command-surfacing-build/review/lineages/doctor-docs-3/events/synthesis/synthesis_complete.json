@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"doctor-docs-3","sessionId":"doctor-docs-3"},"data":{"mode":"review","totalIterations":4,"activeP0":0,"activeP1":1,"activeP2":0,"dimensionCoverage":1,"verdict":"CONDITIONAL","releaseReadinessState":"converged","stopReason":"converged"}}
