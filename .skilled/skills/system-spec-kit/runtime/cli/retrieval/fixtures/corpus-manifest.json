@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ecd474e32144ce6645960e0767ce4224a38d4c6aafe0551ef3413307a24f0930",
+  "corpusHash": "5f3bbe693c612d79e89701e1f755be51a8f1d08682e7d3715b7b89d2f9744658",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26621,
+  "includedPathCount": 26633,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13729,6 +13729,10 @@
     "specs/sk-code/verification-guards/004-drift-guard-cleanup/plan.md",
     "specs/sk-code/verification-guards/004-drift-guard-cleanup/spec.md",
     "specs/sk-code/verification-guards/004-drift-guard-cleanup/tasks.md",
+    "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/implementation-summary.md",
+    "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/plan.md",
+    "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/spec.md",
+    "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/tasks.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/decision-record.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/implementation-summary.md",
@@ -15419,6 +15423,10 @@
     "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/plan.md",
     "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/spec.md",
     "specs/sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth/tasks.md",
+    "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/implementation-summary.md",
+    "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/plan.md",
+    "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/spec.md",
+    "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/tasks.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/acceptance-criteria.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/implementation-summary.md",
@@ -15605,6 +15613,10 @@
     "specs/sk-git/commit-standards/007-advisory-cd-prefix-env-steps/plan.md",
     "specs/sk-git/commit-standards/007-advisory-cd-prefix-env-steps/spec.md",
     "specs/sk-git/commit-standards/007-advisory-cd-prefix-env-steps/tasks.md",
+    "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/implementation-summary.md",
+    "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/plan.md",
+    "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/spec.md",
+    "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/tasks.md",
     "specs/sk-git/live-sync-and-publishing/001-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/live-sync-and-publishing/001-live-sync-harden-default-on/plan.md",
     "specs/sk-git/live-sync-and-publishing/001-live-sync-harden-default-on/spec.md",
@@ -26653,7 +26665,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "44e5dba94d25045be42ecb6172ebe2b5ff16ab74c02571f51c7e1b6bdaa06745",
+  "manifestHash": "b9dc75d09c76b3ac1c9ad3d259c66738af6c8f4e0a50a464235fa979a966bbbe",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31260,6 +31272,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/z_archive",
       "reason": "excluded directory"
     },
@@ -32696,6 +32712,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/z_archive",
       "reason": "excluded directory"
     },
@@ -32865,6 +32885,10 @@
     },
     {
       "path": "specs/sk-git/commit-standards/007-advisory-cd-prefix-env-steps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/scratch",
       "reason": "excluded directory"
     },
     {

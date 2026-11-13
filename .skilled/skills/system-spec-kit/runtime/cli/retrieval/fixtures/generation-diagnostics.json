@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6746,
-    "ok": 18245,
+    "ok": 18257,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 26621,
+  "documentsScanned": 26633,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "44e5dba94d25045be42ecb6172ebe2b5ff16ab74c02571f51c7e1b6bdaa06745",
+  "manifestHash": "b9dc75d09c76b3ac1c9ad3d259c66738af6c8f4e0a50a464235fa979a966bbbe",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42890,
+      "ok": 42911,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -56538,6 +56538,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/verification-guards/005-surface-intent-fold-declaration/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/z_archive",
       "reason": "excluded directory"
     },
@@ -57974,6 +57978,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/z_archive",
       "reason": "excluded directory"
     },
@@ -58143,6 +58151,10 @@
     },
     {
       "path": "specs/sk-git/commit-standards/007-advisory-cd-prefix-env-steps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/commit-standards/008-doctor-host-hook-acceptance/scratch",
       "reason": "excluded directory"
     },
     {

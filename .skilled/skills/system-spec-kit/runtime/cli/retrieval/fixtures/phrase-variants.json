@@ -1,5 +1,5 @@
 {
-  "manifestHash": "44e5dba94d25045be42ecb6172ebe2b5ff16ab74c02571f51c7e1b6bdaa06745",
+  "manifestHash": "b9dc75d09c76b3ac1c9ad3d259c66738af6c8f4e0a50a464235fa979a966bbbe",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -28432,6 +28432,9 @@
     "compiled route rule growth tasks": [
       "compiled route rule growth tasks"
     ],
+    "compiled route sync host skip": [
+      "compiled route sync host skip"
+    ],
     "compiled route target cap": [
       "compiled route target cap"
     ],
@@ -42736,6 +42739,18 @@
     ],
     "doctor hint narrowed": [
       "doctor hint narrowed"
+    ],
+    "doctor host hook acceptance": [
+      "doctor host hook acceptance"
+    ],
+    "doctor host hook acceptance implementation summary": [
+      "doctor host hook acceptance implementation summary"
+    ],
+    "doctor host hook acceptance plan": [
+      "doctor host hook acceptance plan"
+    ],
+    "doctor host hook acceptance tasks": [
+      "doctor host hook acceptance tasks"
     ],
     "doctor install alignment": [
       "doctor install alignment"
@@ -58478,6 +58493,18 @@
     "host root marker refresh tasks": [
       "host root marker refresh tasks"
     ],
+    "host spec tree readers": [
+      "host spec tree readers"
+    ],
+    "host spec tree readers implementation summary": [
+      "host spec tree readers implementation summary"
+    ],
+    "host spec tree readers plan": [
+      "host spec tree readers plan"
+    ],
+    "host spec tree readers tasks": [
+      "host spec tree readers tasks"
+    ],
     "host trigger index and repin generated": [
       "host trigger index and repin generated"
     ],
@@ -63526,6 +63553,9 @@
     "let a host repository name its trigger index": [
       "let a host repository name its trigger index"
     ],
+    "let a hub declare that a surface folds": [
+      "let a hub declare that a surface folds"
+    ],
     "let a second pi cache optimizer copy stand": [
       "let a second pi cache optimizer copy stand"
     ],
@@ -63535,8 +63565,14 @@
     "let the continuity writer save into a research": [
       "let the continuity writer save into a research"
     ],
+    "let the doctor git check accept a hand": [
+      "let the doctor git check accept a hand"
+    ],
     "let the pi fast mode extension stand down": [
       "let the pi fast mode extension stand down"
+    ],
+    "let the route sync check the route gold": [
+      "let the route sync check the route gold"
     ],
     "level 1 smoke run brief": [
       "level 1 smoke run brief"
@@ -97291,6 +97327,9 @@
     "route fallback": [
       "route fallback"
     ],
+    "route gold host repository": [
+      "route gold host repository"
+    ],
     "route guard": [
       "route guard"
     ],
@@ -97626,6 +97665,9 @@
     ],
     "router sync baseline tasks": [
       "router-sync baseline tasks"
+    ],
+    "router sync fold": [
+      "router sync fold"
     ],
     "router sync git timeout": [
       "router sync git timeout"
@@ -112379,6 +112421,9 @@
     "skilled generator rebuild results": [
       "skilled generator rebuild results"
     ],
+    "skilled hook handover": [
+      "skilled-hook-handover"
+    ],
     "skilled house checklist": [
       "skilled house checklist"
     ],
@@ -112525,6 +112570,9 @@
     ],
     "skilled move verification rows": [
       "skilled move verification rows"
+    ],
+    "skilled omithook": [
+      "skilled.omitHook"
     ],
     "skilled placeholder removal": [
       "skilled placeholder removal"
@@ -118218,6 +118266,21 @@
     ],
     "surface implementation standards": [
       "surface implementation standards"
+    ],
+    "surface intent fold declaration": [
+      "surface intent fold declaration"
+    ],
+    "surface intent fold declaration implementation summary": [
+      "surface intent fold declaration implementation summary"
+    ],
+    "surface intent fold declaration plan": [
+      "surface intent fold declaration plan"
+    ],
+    "surface intent fold declaration tasks": [
+      "surface intent fold declaration tasks"
+    ],
+    "surface intent folds key": [
+      "surface intent folds key"
     ],
     "surface marker kinds": [
       "surface marker kinds"
