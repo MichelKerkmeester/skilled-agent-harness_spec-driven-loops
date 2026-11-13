@@ -106,11 +106,11 @@ Run `/doctor:ci report` to see each switch state. Run `/doctor:ci toggle` to cha
 
 `opencode-dual-version.yml`, `opencode-plugin-tests.yml` and `routing-registry-drift.yml` use the action.
 
----
-
 ### Checkouts that skip loop state
 
-About two thirds of the tracked files are loop state under `specs/`: the `research/`, `review/`, `scratch/` and `z_archive/` folders. A full checkout fetches all of it and takes about a minute. Seven workflows whose suites read none of it skip those four folder kinds with a non-cone sparse checkout: `command-tree-parity.yml`, `hook-vitest-suites.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `playbook-operator-contract.yml`, `sk-git-script-tests.yml` and `skill-advisor-stress.yml`. A workflow that validates packets, checks links or reads recorded loop logs keeps the full checkout.
+About two thirds of the tracked files are loop state under `specs/`: the `research/`, `review/`, `scratch/` and `z_archive/` folders. A full checkout fetches all of it and takes about a minute. Seven workflows whose suites read none of it skip those four folder kinds with a non-cone sparse checkout: `command-tree-parity.yml`, `hook-vitest-suites.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `playbook-operator-contract.yml`, `sk-git-script-tests.yml` and `skill-advisor-stress.yml`. `opencode-plugin-tests.yml` names one archived packet again after the exclusions, because a plugin test reads it. A workflow that validates packets, checks links or reads recorded loop logs keeps the full checkout.
+
+---
 
 ## 3. GUARD ENTRYPOINTS
 
