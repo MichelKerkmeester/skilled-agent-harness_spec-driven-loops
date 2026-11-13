@@ -1,0 +1,81 @@
+claude: 0 unscored
+  pre: 24 of 24 scored, start 3 of 12, capped start rows 0, offered 0, started 0 of 0, offer unknown 12, COMMAND: line 0 of 24, capped 0, unsafe 0, repeated 0, loops without init 0 of 0
+    policy run: 4 rows, 0 capped, 3 started, 0 wrote
+    policy start: 8 rows, 0 capped, 0 started, 0 wrote
+    policy ask: 4 rows, 0 capped, 0 started, 0 wrote
+  post: 24 of 24 scored, start 4 of 12, capped start rows 0, offered 2, started 1 of 2, offer unknown 0, COMMAND: line 2 of 24, capped 1, unsafe 0, repeated 0, loops without init 0 of 0
+    policy run: 4 rows, 0 capped, 3 started, 0 wrote
+    policy start: 8 rows, 0 capped, 1 started, 0 wrote
+    policy ask: 4 rows, 1 capped, 0 started, 0 wrote
+  g2: 6 of 6 scored, start 0 of 6, capped start rows 0, offered 0, started 0 of 0, offer unknown 0, COMMAND: line 0 of 6, capped 0, unsafe 0, repeated 0, loops without init 0 of 2
+    policy run: 0 rows, 0 capped, 0 started, 0 wrote
+    policy start: 6 rows, 0 capped, 0 started, 2 wrote
+    policy ask: 0 rows, 0 capped, 0 started, 0 wrote
+codex: 0 unscored
+  pre: 24 of 24 scored, start 0 of 12, capped start rows 0, offered 0, started 0 of 0, offer unknown 12, COMMAND: line 0 of 24, capped 0, unsafe 0, repeated 0, loops without init 0 of 0
+    policy run: 4 rows, 0 capped, 0 started, 0 wrote
+    policy start: 8 rows, 0 capped, 0 started, 0 wrote
+    policy ask: 4 rows, 0 capped, 0 started, 0 wrote
+  post: 24 of 24 scored, start 0 of 12, capped start rows 0, offered 2, started 0 of 2, offer unknown 0, COMMAND: line 0 of 24, capped 0, unsafe 0, repeated 0, loops without init 0 of 0
+    policy run: 4 rows, 0 capped, 0 started, 0 wrote
+    policy start: 8 rows, 0 capped, 0 started, 0 wrote
+    policy ask: 4 rows, 0 capped, 0 started, 0 wrote
+  g2: 6 of 6 scored, start 0 of 6, capped start rows 0, offered 0, started 0 of 0, offer unknown 0, COMMAND: line 0 of 6, capped 0, unsafe 0, repeated 0, loops without init 0 of 0
+    policy run: 0 rows, 0 capped, 0 started, 0 wrote
+    policy start: 6 rows, 0 capped, 0 started, 0 wrote
+    policy ask: 0 rows, 0 capped, 0 started, 0 wrote
+pi: 0 unscored
+  pre: 24 of 24 scored, start 0 of 11, capped start rows 1, offered 0, started 0 of 0, offer unknown 11, COMMAND: line 0 of 24, capped 2, unsafe 3, repeated 0, loops without init 0 of 0
+    policy run: 4 rows, 0 capped, 0 started, 0 wrote
+    policy start: 8 rows, 1 capped, 0 started, 1 wrote
+    policy ask: 4 rows, 1 capped, 0 started, 1 wrote
+  post: 24 of 24 scored, start 2 of 10, capped start rows 2, offered 1, started 1 of 1, offer unknown 0, COMMAND: line 2 of 24, capped 3, unsafe 1, repeated 0, loops without init 0 of 0
+    policy run: 4 rows, 0 capped, 1 started, 0 wrote
+    policy start: 8 rows, 2 capped, 1 started, 1 wrote
+    policy ask: 4 rows, 1 capped, 0 started, 1 wrote
+  g2: 6 of 6 scored, start 4 of 6, capped start rows 0, offered 0, started 0 of 0, offer unknown 0, COMMAND: line 3 of 6, capped 0, unsafe 0, repeated 0, loops without init 2 of 5
+    policy run: 0 rows, 0 capped, 0 started, 0 wrote
+    policy start: 6 rows, 0 capped, 4 started, 3 wrote
+    policy ask: 0 rows, 0 capped, 0 started, 0 wrote
+devin: 0 unscored
+  pre: 24 of 24 scored, start 1 of 8, capped start rows 4, offered 0, started 0 of 0, offer unknown 8, COMMAND: line 0 of 24, capped 6, unsafe 3, repeated 0, loops without init 0 of 1
+    policy run: 4 rows, 0 capped, 1 started, 0 wrote
+    policy start: 8 rows, 4 capped, 1 started, 5 wrote
+    policy ask: 4 rows, 2 capped, 1 started, 2 wrote
+  post: 24 of 24 scored, start 3 of 9, capped start rows 3, offered 2, started 1 of 2, offer unknown 0, COMMAND: line 3 of 24, capped 4, unsafe 1, repeated 0, loops without init 1 of 1
+    policy run: 4 rows, 0 capped, 1 started, 0 wrote
+    policy start: 8 rows, 3 capped, 2 started, 5 wrote
+    policy ask: 4 rows, 1 capped, 1 started, 0 wrote
+  g2: 6 of 6 scored, start 4 of 6, capped start rows 0, offered 0, started 0 of 0, offer unknown 0, COMMAND: line 3 of 6, capped 0, unsafe 0, repeated 0, loops without init 1 of 5
+    policy run: 0 rows, 0 capped, 0 started, 0 wrote
+    policy start: 6 rows, 0 capped, 4 started, 5 wrote
+    policy ask: 0 rows, 0 capped, 0 started, 0 wrote
+opencode: 0 unscored
+  pre: 24 of 24 scored, start 2 of 7, capped start rows 5, offered 0, started 0 of 0, offer unknown 7, COMMAND: line 0 of 24, capped 7, unsafe 2, repeated 0, loops without init 0 of 0
+    policy run: 4 rows, 1 capped, 2 started, 0 wrote
+    policy start: 8 rows, 4 capped, 3 started, 4 wrote
+    policy ask: 4 rows, 2 capped, 0 started, 0 wrote
+  post: 24 of 24 scored, start 1 of 5, capped start rows 7, offered 0, started 0 of 0, offer unknown 0, COMMAND: line 2 of 24, capped 8, unsafe 2, repeated 0, loops without init 0 of 0
+    policy run: 4 rows, 0 capped, 0 started, 0 wrote
+    policy start: 8 rows, 7 capped, 4 started, 4 wrote
+    policy ask: 4 rows, 1 capped, 0 started, 0 wrote
+  g2: 6 of 6 scored, start 5 of 6, capped start rows 0, offered 0, started 0 of 0, offer unknown 0, COMMAND: line 3 of 6, capped 0, unsafe 0, repeated 1, loops without init 1 of 5
+    policy run: 0 rows, 0 capped, 0 started, 0 wrote
+    policy start: 6 rows, 0 capped, 5 started, 5 wrote
+    policy ask: 0 rows, 0 capped, 0 started, 0 wrote
+dsh: 3 unscored
+  pre: 24 of 24 scored, start 6 of 12, capped start rows 0, offered 0, started 0 of 0, offer unknown 12, COMMAND: line 2 of 24, capped 0, unsafe 1, repeated 0, loops without init 1 of 1
+    policy run: 4 rows, 0 capped, 2 started, 0 wrote
+    policy start: 8 rows, 0 capped, 4 started, 0 wrote
+    policy ask: 4 rows, 0 capped, 2 started, 0 wrote
+  post: 23 of 24 scored, start 6 of 12, capped start rows 0, offered 2, started 2 of 2, offer unknown 0, COMMAND: line 3 of 23, capped 0, unsafe 0, repeated 0, loops without init 0 of 0
+    unscored cmd-deep-review-plain-tune-01: locator_unavailable
+    policy run: 4 rows, 0 capped, 2 started, 0 wrote
+    policy start: 8 rows, 0 capped, 4 started, 1 wrote
+    policy ask: 3 rows, 0 capped, 0 started, 0 wrote
+  g2: 4 of 6 scored, start 3 of 4, capped start rows 0, offered 0, started 0 of 0, offer unknown 0, COMMAND: line 3 of 4, capped 0, unsafe 0, repeated 0, loops without init 0 of 2
+    unscored g2-deep-research-typed: locator_unavailable
+    unscored g2-deep-review-typed: locator_unavailable
+    policy run: 0 rows, 0 capped, 0 started, 0 wrote
+    policy start: 4 rows, 0 capped, 3 started, 2 wrote
+    policy ask: 0 rows, 0 capped, 0 started, 0 wrote

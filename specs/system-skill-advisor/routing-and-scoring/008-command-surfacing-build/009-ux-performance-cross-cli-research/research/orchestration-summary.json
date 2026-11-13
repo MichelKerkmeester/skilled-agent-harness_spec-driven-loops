@@ -1,5 +1,5 @@
 {
-  "run_id": "1794523629654-v541y3",
+  "run_id": "1794539443568-6stapj",
   "loop_type": "research",
   "spec_folder": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research",
   "base_artifact_dir": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research",
@@ -9,7 +9,7 @@
   "succeeded": 3,
   "failed": 0,
   "all_failed": false,
-  "completed_with_containment_advisory": 0,
+  "completed_with_containment_advisory": 3,
   "gauges": {
     "lag": 0,
     "pending": 0,
@@ -24,5 +24,30 @@
     "unattributed_state_log": 0,
     "needs_input": 0,
     "quota": 0
-  }
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "offer-reach",
+      "state_log": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-11-13T03:10:43.573Z",
+        "end_at_iso": "2026-11-13T03:29:35.721Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 6
+      },
+      "sample": [
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-11-13T03:38:00.000Z",
+          "deltaMs": 384279
+        }
+      ]
+    }
+  ]
 }

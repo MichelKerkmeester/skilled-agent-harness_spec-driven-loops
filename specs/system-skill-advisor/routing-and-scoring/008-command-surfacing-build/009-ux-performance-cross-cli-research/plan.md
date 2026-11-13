@@ -26,7 +26,7 @@ contextType: "research"
 | **Testing** | `validate.sh --strict` on this folder and the orchestrator's re-checks marked `[CHECKED]` in `research/research.md` |
 
 ### Overview
-A fan-out deep research runs one lineage per lane: `ux`, `performance` and `cross-cli`. Each lineage iterates until it converges or hits its cap and writes its own synthesis under `research/lineages/<label>/research.md`. The orchestrator merges, deduplicates and ranks them into `research/research.md`. Segment two repeats the run once phases 005 to 008 are built, so the list reflects what those phases actually changed.
+A fan-out deep research runs one lineage per lane: `ux`, `performance` and `cross-cli`. Each lineage iterates until it converges or hits its cap and writes its own synthesis under `research/lineages/<label>/research.md`. The orchestrator merges, deduplicates and ranks them into `research/research.md`. Segment two repeated the run on 2026-11-13 against the built phases, so the list reflects what those phases actually changed. Segment three continues the two lanes that stopped at their cap and reads the measured gains of phases 012 and 013.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -37,10 +37,12 @@ A fan-out deep research runs one lineage per lane: `ux`, `performance` and `cros
 ### Definition of Ready
 - [x] The research question and the three lanes are set (`spec.md` section 3).
 - [x] The research rules are set: no holdout rows, no CLI arm runs and read-only git (`research/research.md` section 2).
-- [ ] Segment two: phases 005 to 008 are built and phase 007 has recorded its after arm.
+- [x] Segment two: phases 005 to 008 are built and phase 007 has recorded its after arm.
+- [ ] Segment three: the branch is merged to main, by operator instruction of 2026-11-13.
 
 ### Definition of Done
-- [ ] Segment two has converged and its synthesis is merged under `research/`.
+- [x] Segment two is merged under `research/research-segment-2.md` with a disposition for each of its 18 ranked items.
+- [ ] The research has converged. Segment two did not: `offer-reach` and `cross-cli-2` stopped at their cap of 4 iterations. Segment three carries this.
 - [ ] Every row of the disposition table in `tasks.md` reads `built in <phase>` or `declined: <reason>`.
 - [ ] `validate.sh --strict` on this folder prints `RESULT: PASSED`.
 <!-- /ANCHOR:quality-gates -->
@@ -71,7 +73,7 @@ Fan-out, then merge. Each lineage owns one lane and its own state. The merge ste
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Segment one (done 2026-11-12) ran three lineages `ux`, `performance` and `cross-cli` with DeepSeek v4.1 flash at max effort through OpenCode Go, for 5, 5 and 3 iterations, merged into `research/research.md` (`research/deep-research-config.json`, `research/fanout-attribution.md`). Segment two (planned) reruns the same lanes against the built phases 005 to 008 and the phase 007 after-arm behaviour log until it converges. Disposition then records each of the 14 ranked recommendations as built in a named phase or declined with a reason. The ordered work is in `tasks.md`.
+Segment one (done 2026-11-12) ran three lineages `ux`, `performance` and `cross-cli` with DeepSeek v4.1 flash at max effort through OpenCode Go, for 5, 5 and 3 iterations, merged into `research/research.md` (`research/deep-research-config.json`, `research/fanout-attribution.md`). Segment two (done 2026-11-13) ran three lineages `offer-reach`, `cross-cli-2` and `ux-cost-2` with the same executor and a cap of 4 iterations, for 4, 4 and 3 iterations, against the built phases 005, 006, 008 and 010 and the phase 007 after arm. Its synthesis `research/research-segment-2.md` ranks 18 items: 13 are built in phases 012 and 013, both Complete, rank 14 waits on the operator and ranks 15 to 18 are declined with the reasons in its section 3. Two lineages stopped at their cap, so the segment did not converge. Segment three (prepared, not run) starts after the branch is merged to main, by operator instruction of 2026-11-13. Disposition records each of the 14 segment one recommendations as built in a named phase or declined with a reason. The ordered work is in `tasks.md`.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -93,9 +95,10 @@ Segment one (done 2026-11-12) ran three lineages `ux`, `performance` and `cross-
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phases 005 to 008 built | Internal | Pending | Segment two cannot start |
-| Phase 007 after arm (`../007-per-runtime-behaviour-proof/scratch/`) | Internal | Pending | Segment two cannot judge whether an offer moves a start |
-| OpenCode Go access for the executor | External | Green for segment one | Segment two waits or runs with an operator-approved executor |
+| Phases 005 to 008 built | Internal | Green | Segment two cannot start |
+| Phase 007 after arm (`../007-per-runtime-behaviour-proof/scratch/`) | Internal | Green | Segment two cannot judge whether an offer moves a start |
+| Phases 012 and 013 committed and the branch merged to main | Internal | Phases Complete, merge pending | Segment three cannot start |
+| OpenCode Go access for the executor | External | Green for segments one and two | Segment three waits or runs with an operator-approved executor |
 <!-- /ANCHOR:dependencies -->
 
 ---

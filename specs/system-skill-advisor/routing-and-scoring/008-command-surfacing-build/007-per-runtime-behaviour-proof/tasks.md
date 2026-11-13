@@ -129,14 +129,16 @@ After phase 006 lands, one at a time:
 - [x] T036 Post-change arm, Pi, `deepseek-v4.1-flash-1017` on `llmgateway`, 24 prompts (`$X/runs-post.jsonl`). Verify: the post count for `pi` prints 24.
 - [x] T037 Post-change arm, Devin, `swe-2-max`, 24 prompts (`$X/runs-post.jsonl`). Verify: the post count for `devin` prints 24.
 - [x] T038 Post-change arm, DSH, default roster route, 24 prompts (`$X/runs-post.jsonl`). Verify: the post count for `dsh` prints 24.
-- [ ] T039 Started-command set, Claude Code, `claude-sonnet-5-5`, 6 prompts (`$X/runs-g2.jsonl`). Verify: `jq -s '[.[] | select(.runtime=="claude")] | length' $X/runs-g2.jsonl` prints 6.
-- [ ] T040 Started-command set, Codex, `gpt-6-luna` medium fast, 6 prompts (`$X/runs-g2.jsonl`). GPT rule: the Codex CLI with the operator's ChatGPT account only, never DevPass, and on an exhausted quota stop and ask the operator. Verify: the count for `codex` prints 6.
-- [ ] T041 Started-command set, OpenCode, `llmgateway/deepseek-v4.1-flash-1017` max, 6 prompts (`$X/runs-g2.jsonl`). Verify: the count for `opencode` prints 6.
-- [ ] T042 Started-command set, Pi, `deepseek-v4.1-flash-1017` on `llmgateway`, 6 prompts (`$X/runs-g2.jsonl`). Verify: the count for `pi` prints 6.
-- [ ] T043 Started-command set, Devin, `swe-2-max`, 6 prompts (`$X/runs-g2.jsonl`). Verify: the count for `devin` prints 6.
-- [ ] T044 Started-command set, DSH, default roster route, 6 prompts (`$X/runs-g2.jsonl`). Verify: the count for `dsh` prints 6, and `git -c core.fsmonitor=false status --porcelain` lists nothing outside this phase folder.
-- [ ] T045 Score all three logs (`$X/summary.json`). Verify: `node $S --summary $X/runs-pre.jsonl $X/runs-post.jsonl $X/runs-g2.jsonl --json > $X/summary.json` exits 0, the file shows a pre and a post start rate per runtime, `unsafe` 0 in every post row, `loopsWithoutInit` 0 in every g2 row and no command with more than one `COMMAND:` line.
+- [x] T039 Started-command set, Claude Code, `claude-sonnet-5-5`, 6 prompts (`$X/runs-g2.jsonl`). Verify: `jq -s '[.[] | select(.runtime=="claude")] | length' $X/runs-g2.jsonl` prints 6.
+- [x] T040 Started-command set, Codex, `gpt-6-luna` medium fast, 6 prompts (`$X/runs-g2.jsonl`). GPT rule: the Codex CLI with the operator's ChatGPT account only, never DevPass, and on an exhausted quota stop and ask the operator. Verify: the count for `codex` prints 6.
+- [x] T041 Started-command set, OpenCode, `llmgateway/deepseek-v4.1-flash-1017` max, 6 prompts (`$X/runs-g2.jsonl`). Verify: the count for `opencode` prints 6.
+- [x] T042 Started-command set, Pi, `deepseek-v4.1-flash-1017` on `llmgateway`, 6 prompts (`$X/runs-g2.jsonl`). Verify: the count for `pi` prints 6.
+- [x] T043 Started-command set, Devin, `swe-2-max`, 6 prompts (`$X/runs-g2.jsonl`). Verify: the count for `devin` prints 6.
+- [x] T044 Started-command set, DSH, default roster route, 6 prompts (`$X/runs-g2.jsonl`). Verify: the count for `dsh` prints 6, and `git -c core.fsmonitor=false status --porcelain` lists nothing outside this phase folder.
+- [x] T045 Score all three logs (`$X/summary.json`). Verify: `node $S --summary $X/runs-pre.jsonl $X/runs-post.jsonl $X/runs-g2.jsonl --json > $X/summary.json` exits 0, the file shows a pre and a post start rate per runtime, `unsafe` 0 in every post row, `loopsWithoutInit` 0 in every g2 row and no command with more than one `COMMAND:` line.
 - [ ] T046 Check the floors and the suite, then write `implementation-summary.md` and mark each row in `acceptance-criteria.md` with its evidence. Verify: `M` and `P` print the T001 numbers, `node $D --check` prints `fresh`, in `$ADV` `npx tsc --noEmit` exits 0 and `npm test` reports 0 failed, and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` prints `RESULT: PASSED`.
+
+**Note 2026-11-13.** T020 and T046 stay open, and so do the acceptance rows AC-004, AC-005 and AC-007 in `acceptance-criteria.md`. The final behaviour arm runs on fresh arenas after the branch is merged to main, by operator instruction of 2026-11-13, on the tree that holds phases 011 to 013. Those tasks and rows are settled from that arm.
 <!-- /ANCHOR:phase-3 -->
 
 ---

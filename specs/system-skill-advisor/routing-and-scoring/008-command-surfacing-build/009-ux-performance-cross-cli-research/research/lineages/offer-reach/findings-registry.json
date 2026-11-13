@@ -1,0 +1,719 @@
+{
+  "sessionId": "fanout-offer-reach-1794539443568-6stapj",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 4,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-13T03:28:08.863Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-plain-tune-rows-get-no-offer-because-a-hub-returns-defer-or-routes-to-a-mo",
+      "inboxId": null,
+      "text": "Which plain tune rows get no offer because a hub returns `defer` (or routes to a mode with no command), and what is the smallest rule that turns a deferring hub prompt into an offer without adding a false offer?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-how-much-of-the-3-of-16-plain-offer-rate-is-score-placement-the-command-row-or-o",
+      "inboxId": null,
+      "text": "How much of the 3-of-16 plain offer rate is score placement (the command row or owner below the top-1 threshold) versus evidence absence (no lane, no phrase, no embedding text), measured per row?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-does-the-semantic-lane-contribute-to-the-plain-tune-rows-and-does-a-wording",
+      "inboxId": null,
+      "text": "What does the semantic lane contribute to the plain tune rows, and does a wording or weight change raise offers without moving the scorer floors?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-doctor-family-strings-can-ever-score-a-document-read-and-how-much-plain-re",
+      "inboxId": null,
+      "text": "Which doctor-family strings can ever score a document read, and how much plain recall is lost to the argued-route/document lookup rather than to scoring?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-threshold-or-ranking-constant-could-move-the-plain-offer-rate-and-what-is-",
+      "inboxId": null,
+      "text": "Which threshold or ranking constant could move the plain offer rate, and what is its measured risk to false offers 0 of 35 and typed recall 24 of 44?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-plain-tune-rows-get-no-offer-because-a-hub-returns-defer-or-routes-to-a-mo",
+      "inboxId": null,
+      "text": "Which plain tune rows get no offer because a hub returns `defer` (or routes to a mode with no command), and what is the smallest rule that turns a deferring hub prompt into an offer without adding a false offer?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-how-much-of-the-3-of-16-plain-offer-rate-is-score-placement-the-command-row-or-o",
+      "inboxId": null,
+      "text": "How much of the 3-of-16 plain offer rate is score placement (the command row or owner below the top-1 threshold) versus evidence absence (no lane, no phrase, no embedding text), measured per row?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-what-does-the-semantic-lane-contribute-to-the-plain-tune-rows-and-does-a-wording",
+      "inboxId": null,
+      "text": "What does the semantic lane contribute to the plain tune rows, and does a wording or weight change raise offers without moving the scorer floors?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-which-doctor-family-strings-can-ever-score-a-document-read-and-how-much-plain-re",
+      "inboxId": null,
+      "text": "Which doctor-family strings can ever score a document read, and how much plain recall is lost to the argued-route/document lookup rather than to scoring?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-which-threshold-or-ranking-constant-could-move-the-plain-offer-rate-and-what-is-",
+      "inboxId": null,
+      "text": "Which threshold or ranking constant could move the plain offer rate, and what is its measured risk to false offers 0 of 35 and typed recall 24 of 44?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Does a widened alias set keep false offers at 0 of 35 on the none rows, measured rather than reasoned?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How much of the remaining gap is score placement versus evidence absence on the 5 rows whose top skill is not the owner (create-command, create-goal, create-manual-playbook, deep-review, doctor-deep-loop)?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can the doctor family gain a deep-loop diagnostic route without breaking the deep hub's defer contract?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which of the proposed explicit anchors can be added without moving any none row, and what is each anchor's measured tune gain in the stand-in capture?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the measured row gain of the sk-doc alias and explicit-anchor proposals in the stand-in capture, and do any of them move a none row?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should the recommendations be ranked by gain per unit of risk, and which are safe to commit as one phase?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the five recommendations move their named rows in a real capture, and does any unseen paraphrase reach a none row?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which item does the operator want first if only one phase is funded: the data-only hub pair or the code-level doctor pair?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-every-one-of-the-5-delivered-offers-travels-through-a-compiled-hub-route-attache",
+      "text": "Every one of the 5 delivered offers travels through a compiled hub route attached to a skill in the top slot: the three create offers are the `sk-doc` hub's single-mode route (`sk-create-benchmark`, `sk-create-changelog`, `sk-create-feature-catalog`) attached by `enrichCompiledRoutes`, and the two doctor offers are the doctor-helper handoff. No delivered offer comes from a command row outranking its owner skill on a plain prompt. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:300] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:846]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows only)",
+        "`.skilled/skills/sk-doc/hub-router.json`",
+        "`.skilled/skills/system-deep-loop/hub-router.json`",
+        "`.skilled/bin/compiled-route.cjs`",
+        "`.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`"
+      ]
+    },
+    {
+      "id": "finding-1-3-on-the-9-create-family-chat-rows-the-sk-doc-hub-answers-route-single-with-a-comm",
+      "text": "On the 9 create-family chat rows, the `sk-doc` hub answers `route`/`single` with a command-mapped mode on 3 (benchmark, changelog, feature-catalog), `clarify` on 1 (create-agent-01, where `audit` also lifts sk-code), `defer` on 4 (create-agent-02, create-diff, create-goal, create-manual-playbook) and `route`/`single` to `sk-create-quality-control` on 1 (create-command, which has no command row). So the hub is the actual bottleneck for 6 of 9, not the attach layer. [SOURCE: .skilled/skills/sk-doc/hub-router.json] [SOURCE: .skilled/skills/sk-doc/hub-router.json:1] [INFERENCE: route results from `node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt-stdin` over the 9 readable tune prompts on 2026-11-13]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows only)",
+        "`.skilled/skills/sk-doc/hub-router.json`",
+        "`.skilled/skills/system-deep-loop/hub-router.json`",
+        "`.skilled/bin/compiled-route.cjs`",
+        "`.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-chat-set-has-16-plain-tune-rows-the-after-arm-delivered-a-command-on-5-of-th",
+      "text": "The chat set has 16 plain tune rows. The after arm delivered a command on 5 of them — `/create:benchmark`, `/create:changelog`, `/create:feature-catalog`, and `/doctor:helper` on the two doctor rows — and delivered nothing on the other 11. The committed capture marks 6 as `offered`, because its `offered` flag counts a command that lands anywhere in the top-3, while the renderer prints only the top recommendation plus a doctor companion line; `cmd-create-agent-plain-tune-01` is the difference (`/create:agent` is top-3, not top-1, and never reaches the brief). So capture `offered` is an upper bound, not a delivered offer, and only phase 010's `offeredCommand` is evidence. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:520] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:548]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows only)",
+        "`.skilled/skills/sk-doc/hub-router.json`",
+        "`.skilled/skills/system-deep-loop/hub-router.json`",
+        "`.skilled/bin/compiled-route.cjs`",
+        "`.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-deep-family-has-a-double-miss-both-plain-deep-prompts-cmd-deep-research-plai",
+      "text": "The deep family has a double miss. Both plain deep prompts (`cmd-deep-research-plain-tune-01`, `cmd-deep-review-plain-tune-01`) get no command: the deep hub defers on the research prompt, and on the review prompt the top skill is sk-code, whose single-mode route lands on `sk-code-review`, a mode with no row in `MODE_COMMANDS`. The doctor-deep-loop row does route to `research`, but `attachCommand`'s depth gate then suppresses `/deep:research` because the wording list holds effort phrases and not the failure vocabulary (\"stopped converging\"); the expected `/doctor:deep-loop` is never a candidate because the deep hub declares no doctor mode. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:252] [SOURCE: .skilled/skills/system-deep-loop/hub-router.json]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows only)",
+        "`.skilled/skills/sk-doc/hub-router.json`",
+        "`.skilled/skills/system-deep-loop/hub-router.json`",
+        "`.skilled/bin/compiled-route.cjs`",
+        "`.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-hub-vocabulary-is-paraphrase-blind-it-matches-the-phrasing-used-in-the-corpu",
+      "text": "The hub vocabulary is paraphrase-blind: it matches the phrasing used in the corpus rows that already pass and misses ordinary rewordings of the same task. \"new agent\" and \"agent persona\" are present but \"agent definition\" and \"persona file\" are not; \"before and after document\" is present but \"a document before and after my rewrite\" is not; \"front-page overview\" is present but \"overview page\" is not; \"skill hub\" is present but \"hub skill\" is not. Each miss is a literal phrase miss, so the route falls to defer even though the intent is unambiguous to a reader. [SOURCE: .skilled/skills/sk-doc/hub-router.json]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows only)",
+        "`.skilled/skills/sk-doc/hub-router.json`",
+        "`.skilled/skills/system-deep-loop/hub-router.json`",
+        "`.skilled/bin/compiled-route.cjs`",
+        "`.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-smallest-rule-that-covers-the-hub-caused-misses-without-touching-the-none-ro",
+      "text": "The smallest rule that covers the hub-caused misses without touching the none rows is two-part: (a) widen each hub's mode vocabulary with task-shaped paraphrase aliases that no none row contains (\"agent definition\", \"persona file\", \"overview page\", \"intent file for a spec packet\", \"test script package\", \"audit this codebase\", \"findings stop changing\"), and (b) on a `defer`/`clarify` result, offer the leading mode's command only when that command is `ask` (or read-only `run`), never a `start` command. Part (b) is a policy gate on the existing route result, not a second router. [INFERENCE: from findings 3-5 and the 31 readable none prompts, none of which contains those phrases]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune and none rows only)",
+        "`.skilled/skills/sk-doc/hub-router.json`",
+        "`.skilled/skills/system-deep-loop/hub-router.json`",
+        "`.skilled/bin/compiled-route.cjs`",
+        "`.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`"
+      ]
+    },
+    {
+      "id": "finding-2-2-a-command-may-pass-on-meaning-only-when-its-real-cosine-clears-0-72-and-leads-th",
+      "text": "A command may pass on meaning only when its real cosine clears 0.72 and leads the strongest other command by 0.02, and the semantic lane's weight is 0.05; the anchor then lifts the row to the confidence threshold. The embedded text per skill is the projection's name, description, domains, intent signals and derived triggers loaded from the skill-graph DB, so improving meaning for a command means enriching that row's metadata and re-embedding — there are no per-command paraphrase exemplars today. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:846] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:921] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:322] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:376]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/real-embedding-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/verification-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts`"
+      ]
+    },
+    {
+      "id": "finding-2-3-four-of-the-five-wrong-top-rows-are-evidence-absence-not-placement-create-comman",
+      "text": "Four of the five wrong-top rows are evidence absence, not placement: `create-command` has no `/create:command` phrase and the `prompt` token lifts sk-prompt; `create-goal` has no \"intent file\" evidence and system-spec-kit wins; `create-manual-testing-playbook`'s boost keys require the literal \"manual testing playbook\" or \"create a test playbook\" and the row says \"test script package\"; `deep-review`'s wording has `audit` lifting sk-code and no deep-loop phrase at all. Only `create-agent-01` is placement-like (its aliases fired, `/create:agent` sits in the top-3, but the hub answers `clarify`), and `doctor-deep-loop` is a hub gap rather than a score margin. A lower threshold therefore converts none of them. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:28] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:827] [INFERENCE: baseline top values crossed with the prompt text and the boost keys, tune rows only]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/real-embedding-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/verification-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts`"
+      ]
+    },
+    {
+      "id": "finding-2-4-generic-alias-widening-is-a-proven-dead-end-on-this-corpus-phase-003-added-perso",
+      "text": "Generic alias widening is a proven dead end on this corpus. Phase 003 added \"persona file\" to the sk-doc agent aliases and removed it again because it attached `/create:agent` to \"update the customer persona file for the marketing site\"; tune combined reach fell from 10 to 9 of 45. Any new alias has to be narrower than the generic noun phrase — \"specialist persona file\" or \"agent definition\", not \"persona file\". [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/implementation-summary.md:140]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/real-embedding-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/verification-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts`"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-cheapest-evidence-fix-that-does-not-depend-on-the-embedder-is-a-multi-word-e",
+      "text": "The cheapest evidence fix that does not depend on the embedder is a multi-word explicit anchor per row: \"agent definition\" and \"specialist persona file\" for `/create:agent`, \"prompt shortcut\" and \"argument-hint\" for `/create:command`, \"intent file\" for `/create:goal`, \"test script package\" and \"walk through by hand\" for `/create:manual-testing-playbook`, \"many passes\" and \"findings stop changing\" for `/deep:review`. Each phrase is absent from all 31 none rows, and each is literal, so the change is measurable with the stand-in capture. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl] [INFERENCE: phrase absence checked against the 31 readable none rows]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/real-embedding-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/verification-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts`"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-only-lever-that-generalizes-past-literal-phrasing-is-metadata-enrichment-plu",
+      "text": "The only lever that generalizes past literal phrasing is metadata enrichment plus re-embedding: add paraphrase exemplars to the command rows' intent signals in `command-metadata.json` and rebuild the skill-graph vectors, then measure with `--real-embedding`. It is also the only lever this lineage cannot verify, because running the embedder is out of scope; it belongs to the phase that owns the next capture. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:349]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/real-embedding-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/verification-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts`"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-real-embedder-lifts-plain-tune-recall-from-9-of-45-to-14-of-45-but-the-five-",
+      "text": "The real embedder lifts plain tune recall from 9 of 45 to 14 of 45, but the five gained rows are `cmd-doctor-env`, `cmd-doctor-git`, `cmd-doctor-symlink`, `cmd-speckit-handoff` and `cmd-speckit-plan` — none of them in the 16-row chat set. The chat set's five delivered offers are all attached (hub route or doctor handoff), and its own-row recall is 0. So the semantic lane's measured gain is orthogonal to the chat bottleneck: a weight or threshold change to that lane cannot explain or fix the 3-of-16. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/real-embedding-after.json] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/real-embedding-after.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/verification-evidence.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts`"
+      ]
+    },
+    {
+      "id": "finding-3-5-a-defer-time-default-offer-is-unsafe-on-this-corpus-the-near-miss-nm-system-deep",
+      "text": "A defer-time default offer is unsafe on this corpus. The near-miss `nm-system-deep-loop-01` (\"how does the research loop decide when it has enough\") already matches the deep hub's research vocabulary and must stay silent; a rule that offers the leading command whenever a hub defers would fire on it. The depth gate is the only thing keeping it silent, and a defer names no mode for the gate to qualify. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl] [INFERENCE: defer offer would bypass the depth-gated single-route path]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/doctor-helper-match.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-deep-loop/hub-router.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-deep-rows-do-not-need-a-defer-offer-they-need-vocabulary-that-lets-the-exist",
+      "text": "The deep rows do not need a defer offer; they need vocabulary that lets the existing single-route path work. Both plain prompts already carry depth wording that passes `attachCommand`'s gate (\"everything you can\" for research, \"many passes\" for review), but the deep hub's `review-aliases` lack \"audit this codebase\" and \"findings stop changing\", and `ai-council-aliases` lack \"several models\"/\"final verdict\"/\"debate the tradeoffs\", so the hub defers before the gate is reached. [SOURCE: .skilled/skills/system-deep-loop/hub-router.json] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:263]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/doctor-helper-match.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-deep-loop/hub-router.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-doctor-handoff-already-resolves-the-exact-right-command-and-then-deliberatel",
+      "text": "The doctor handoff already resolves the exact right command and then deliberately offers the generic helper instead. `matchDoctorProblem` returns `/doctor:agents-md` at 12.781 for the AGENTS.md row and `/doctor:ci` at 12.301 for the CI row, both above the uncued floor of 10, but `applyDoctorHelperHandoff` inserts `command-doctor-helper`. Offering the matched command when its row is a read-only `run` (resolved through `commandRowFor`) and keeping the helper only for `ask`/mutating matches converts both chat offers from `/doctor:helper` to the expected command without changing when the handoff fires. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts:143] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1103] [SOURCE: .skilled/commands/doctor/scripts/doctor-helper-match.cjs]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/doctor-helper-match.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-deep-loop/hub-router.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-doctor-helper-row-has-no-matcher-candidates-at-all-so-no-handoff-can-fire-it",
+      "text": "The doctor-helper row has no matcher candidates at all, so no handoff can fire; it needs a direct generic-repair cue or a row anchor rather than a better match. `doctor-helper-match.cjs` printed `{\"candidates\":[]}` for \"I have a problem and want the right repair path suggested with reasons\". [SOURCE: .skilled/commands/doctor/scripts/doctor-helper-match.cjs]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/doctor-helper-match.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-deep-loop/hub-router.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-safe-set-of-doctor-and-deep-phrases-is-small-and-specific-stopped-converging",
+      "text": "The safe set of doctor and deep phrases is small and specific: \"stopped converging\", \"repair path\", \"several models\", \"final verdict\", \"debate the tradeoffs\", \"audit this codebase\", \"findings stop changing\", \"find out everything\". None occurs in the 31 none rows; the only near-miss that shares deep vocabulary is already protected by depth wording. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/doctor-helper-match.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-deep-loop/hub-router.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-same-matcher-already-knows-the-deep-loop-diagnostic-doctor-deep-loop-scores-",
+      "text": "The same matcher already knows the deep-loop diagnostic: `/doctor:deep-loop` scores 16.249 on \"my research loop stopped converging and I cannot see why\". The row still gets nothing because the cue classifier has no phrase for \"stopped converging\", so with a passing skill (system-deep-loop) the handoff is skipped before the match is consulted. Adding a gerund form to the strong-cue list unlocks a command that already exists; no new route is needed. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts:52] [SOURCE: .skilled/commands/doctor/scripts/doctor-helper-match.cjs]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/doctor-helper-match.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-deep-loop/hub-router.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-4-2-an-sk-doc-vocabulary-change-is-a-two-artifact-change-the-hub-source-hub-router-j",
+      "text": "An sk-doc vocabulary change is a two-artifact change: the hub source (`hub-router.json`) and the compiled policy snapshot the runtime engine loads, and the 22-case canary already pins `one-turn-clarify` and `zero-signal-defer`, so the change must keep both and add paraphrase cases per widened mode. The doctor and deep changes are one-file changes by comparison. [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json] [SOURCE: .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:36]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json`",
+        "`.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`",
+        "`.skilled/commands/doctor/_routes.yaml`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-4-1-every-one-of-the-17-proposed-phrases-returns-0-matches-across-the-31-none-prompt",
+      "text": "Every one of the 17 proposed phrases returns 0 matches across the 31 none prompts: \"agent definition\", \"specialist persona file\", \"prompt shortcut\", \"argument-hint\", \"intent file\", \"test script package\", \"walk through by hand\", \"before and after my rewrite\", \"hub skill\", \"audit this codebase\", \"findings stop changing\", \"find out everything\", \"several models\", \"final verdict\", \"debate the tradeoffs\", \"stopped converging\", \"repair path\". So the pinned false-offer set cannot move by construction; the residual risk is an unseen paraphrase, which the next capture measures. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl] [INFERENCE: measured grep counts over the extracted none prompts]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json`",
+        "`.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`",
+        "`.skilled/commands/doctor/_routes.yaml`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-4-4-expected-exact-offers-over-the-16-chat-rows-from-today-s-3-exact-plus-2-helper-d",
+      "text": "Expected exact offers over the 16 chat rows, from today's 3 exact plus 2 helper: deep hub aliases +3 (ai-council, research, review), sk-doc aliases +3 (agent-01, agent-02, diff), explicit anchors +3 (command, goal, manual), doctor cluster +2 new (deep-loop, helper) and 2 conversions (agents-md, ci). That is 14 exact plus 2 converted, so the set covers all 11 currently missing rows on paper; each row must be proven by the capture, and a row that does not move is a finding rather than a silent omission. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl] [INFERENCE: row-by-row mechanism mapping from iterations 1-3]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json`",
+        "`.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`",
+        "`.skilled/commands/doctor/_routes.yaml`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-4-5-floor-exposure-is-asymmetric-false-offers-are-protected-by-the-measured-phrase-a",
+      "text": "Floor exposure is asymmetric. False offers are protected by the measured phrase absence (finding 1). Typed recall is exposed only through `PHRASE_BOOSTS`, which can reorder a typed row's owner against its command row, so the typed capture must be re-pinned. The scorer eval `[159,50,20,5]` is exposed by any phrase boost because full-corpus top-1 can move in either direction; the calibration override exists for a dry run before the constants are committed. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:254] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json`",
+        "`.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`",
+        "`.skilled/commands/doctor/_routes.yaml`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-4-6-ranking-by-expected-new-exact-offers-plus-half-a-conversion-divided-by-a-risk-we",
+      "text": "Ranking by expected new exact offers plus half a conversion, divided by a risk weight (1 low, 1.5 low-medium, 2 medium): deep hub aliases 3.0, doctor cluster 3.0, sk-doc aliases 2.0, explicit anchors 1.5, metadata re-embed unknown and last. The deep and doctor items lead because both are small, measured at the gate, and pinned by an existing canary or matcher; the sk-doc item is larger but data-only; the explicit anchors are the only scoring change and carry the phase 003 collision precedent. [INFERENCE: ranking formula applied to finding 4 and the risk notes in findings 1-5]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json`",
+        "`.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`",
+        "`.skilled/commands/doctor/_routes.yaml`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-matched-doctor-command-needs-its-default-invocation-not-the-bare-base-comman",
+      "text": "The matched doctor command needs its default invocation, not the bare base command: `_routes.yaml` marks `/doctor:agents-md` target `check` as `default_target: true` and read-only, `/doctor:ci` target `report` read-only, and `/doctor:deep-loop` add-only with policy `run`. Carrying the resolved default invocation on `DoctorProblemMatch` lets the caller read the policy from the generated tables and offer exactly the command the corpus expects. [SOURCE: .skilled/commands/doctor/_routes.yaml:512] [SOURCE: .skilled/commands/doctor/_routes.yaml:87]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`",
+        "`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json`",
+        "`.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`",
+        "`.skilled/commands/doctor/_routes.yaml`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-post-final.jsonl`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-00f201092258",
+      "text": "Asking the doctor helper handoff to cover doctor-deep-loop: the helper is chosen only for a \"problem\" prompt and the deep-loop row is a diagnostic request; extending the handoff would have to suppress the expected `/doctor:deep-loop`, which is worse.",
+      "contentHash": "00f201092258",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-7ad872f4e895",
+      "text": "Lowering `COMMAND_MEANING_MIN_COSINE` (0.72) to lift the create rows: the misses are explicit-lane and hub decides, and the meaning lane needs the real embedder, so a lower bar spends false-offer risk without touching a hub `defer`.",
+      "contentHash": "7ad872f4e895",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-97164fc30864",
+      "text": "Making `attachCommand` ignore `selectionKind` for a multi-target route: a bundle names several modes, so any single command would be a guess; that is exactly the defer case the hub reports.",
+      "contentHash": "97164fc30864",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-311a2624e6c0",
+      "text": "Ranking a top-3 command row into the brief instead of the top skill: the renderer deliberately prints one top label plus a doctor companion, and phase 005 froze that head shape; a second arbitrary line is a new brief surface, not a scoring fix.",
+      "contentHash": "311a2624e6c0",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-a8010cb173de",
+      "text": "Treating the capture's `offered` as delivered: shown false on create-agent-01 in finding 1.",
+      "contentHash": "a8010cb173de",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-a87e82face39",
+      "text": "A second meaning lane with a lower cosine bar: it would spend false-offer risk on the doctor and speckit rows that already pass, not on the chat rows.",
+      "contentHash": "a87e82face39",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-cbc946ed11d9",
+      "text": "Lowering `COMMAND_MEANING_MIN_COSINE` below 0.72: it cannot reach a row with no cosine evidence, and the 5 real-embedder gains are outside the chat set.",
+      "contentHash": "cbc946ed11d9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-367da44b85e6",
+      "text": "Raising the semantic lane weight: the lane is live at 0.05 and its gains are already counted; a weight change would reorder rows the floor depends on without adding evidence.",
+      "contentHash": "367da44b85e6",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e250d0807b06",
+      "text": "Re-adding \"persona file\": measured regression in phase 003 (finding 4).",
+      "contentHash": "e250d0807b06",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-7a41f9c077a6",
+      "text": "Threshold tuning as a substitute for evidence: four of five rows are below top-3, so no threshold reaches them.",
+      "contentHash": "7a41f9c077a6",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e4e93e09145b",
+      "text": "Treating `doctor-deep-loop` as a scoring miss: the deep hub declares no doctor mode, so there is no command candidate to rank.",
+      "contentHash": "e4e93e09145b",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-d14ede0c2034",
+      "text": "A generic \"problem\" cue for the doctor helper row: the none row \"what are the doctor commands actually used for\" is a question about the family, and a bare problem word is the weak cue that already must not fire when a skill passes.",
+      "contentHash": "d14ede0c2034",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-41220452b4f7",
+      "text": "Adding a new doctor mode to the deep hub: the command row and the matcher entry already exist, so a mode would duplicate a working lookup.",
+      "contentHash": "41220452b4f7",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6609e8e38eee",
+      "text": "An `ask`-only default command on a deferring hub (finding 5): it would fire on the deep-loop near-miss where the hub legitimately has no mode.",
+      "contentHash": "6609e8e38eee",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-207be3f0041e",
+      "text": "Treating `/doctor:deep-loop` as a scoring problem: the matcher ranks it first at 16.249; the blocker is the cue gate, not the score.",
+      "contentHash": "207be3f0041e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f149ea404d22",
+      "text": "A single \"one rule\" for all 11 rows: the causes split across three layers (hub vocabulary, doctor cue/matcher, scorer anchors), and each layer has its own verification surface.",
+      "contentHash": "f149ea404d22",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-81ae2fb05e2d",
+      "text": "Editing the compiled policy snapshot by hand: the deriver/compiler owns it; only `hub-router.json` is authored.",
+      "contentHash": "81ae2fb05e2d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a3f4568370a2",
+      "text": "Folding the metadata re-embed into the same phase: it needs a capture this lineage cannot run and would hide the smaller items' measured gains.",
+      "contentHash": "a3f4568370a2",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a2463378f65b",
+      "text": "Shipping a phrase that was not grepped against the none set: the measurement is cheap and the floor is pinned at 0 of 35.",
+      "contentHash": "a2463378f65b",
+      "addedAtIteration": 4
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 4,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 8,
+    "keyFindings": 24,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.7,
+    "coverageBySources": {
+      "other": 40
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/offer-reach/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

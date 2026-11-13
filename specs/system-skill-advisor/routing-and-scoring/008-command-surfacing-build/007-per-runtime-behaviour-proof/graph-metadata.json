@@ -38,7 +38,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -147,6 +147,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -166,12 +172,6 @@
       },
       {
         "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claude Code",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Every check this build has so far reads the advisor's output, never the model's behaviour",
     "created_at": "2026-11-12T12:27:38Z",
-    "last_save_at": "2026-11-12T23:26:56.237Z",
+    "last_save_at": "2026-11-13T05:56:24.619Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e885de0ea3002898aa4322a34258455413afe33b87fac306716a42a7b1b48fbd",
+    "source_fingerprint": "sha256:644f00f3a284c34a7b6700d062753bcb74df1bbc760b48f23ad4146e61e98347",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0fee6d70e999fc270642449e7a72ab000c09668e5ba33a35cbba2be0e979d45d",
+      "spec.md": "1e3b84b3c1ceee11dfa7bdc957e2af9ddfa02bffc50356be98956333690654a2",
       "plan.md": "59e666ba7da15ddd3bc9290f8b88f3df08651651d27e0c476ca103c06994f831",
-      "tasks.md": "e92c76a0842021546274eda570f2f653221eca41abf4e3c2b1e0be2a8c4bb537",
+      "tasks.md": "f729b8bf1a13610501c1d5d9ffe5e10645c5905266759d4ac7ee6aa0ef9bb33c",
       "implementation-summary.md": "a0c2ba05bc657547a2e6a5cf89a04236d748aeca7213674526464d1ca1f6524f"
     },
     "last_active_at": null

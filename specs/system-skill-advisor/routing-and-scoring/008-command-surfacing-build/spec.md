@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Build command surfacing in the skill advisor so every tracked slash command reaches the model with a run-or-ask policy and a chat-only request reaches a proper workflow"
-description: "Eight phases that make the skill advisor surface every tracked slash command with a run-or-ask policy and bring a chat-only request onto a proper workflow."
+description: "Thirteen phases that make the skill advisor surface every tracked slash command with a run-or-ask policy and bring a chat-only request onto a proper workflow."
 trigger_phrases:
   - "command surfacing build phase parent spec"
 importance_tier: "important"
@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-12 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | `../spec.md` |
@@ -117,13 +117,15 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 | 2 | 002-command-inventory-and-risk-metadata/ | One generated inventory, risk class and derived policy, private command excluded (R1, R4, G4) | Complete |
 | 3 | 003-plain-chat-command-reach/ | Attach commands to owner skills, authored phrases, one activation source (R2, L2, L3, R10 precedence) | Complete |
 | 4 | 004-command-meaning-matching/ | A vector per command and a meaning anchor, so a paraphrase reaches its command (operator decision, 2026-11-12) | Complete |
-| 5 | 005-recommendation-contract-and-brief/ | Recommendation fields, brief line, degraded path, retired ids (R3, L6, L12, G6, L1, L7) | Pending |
-| 6 | 006-gate-2-binding-and-runtime-pointers/ | Gate 2 sentence, typed override, static pointer, child authority (R6, L5, R5, L4, G1, G3, L10) | Pending |
-| 7 | 007-per-runtime-behaviour-proof/ | Transcript proof per runtime and the started-command-is-followed check (R8 transcripts, G2, G5) | Pending |
-| 8 | 008-embedder-setup-and-cost/ | The embedder for external repositories: visible state, a plan-first doctor route, the measured memory and latency cost in the install guides and defined absent, cold and slow behaviour (operator requirement, 2026-11-12) | Pending |
-| 9 | 009-ux-performance-cross-cli-research/ | Research only: further gains in user experience, performance and cross-CLI use after phases 005 to 008, 14 ranked recommendations each to be built in a new phase or declined with a reason (research/research.md section 9) | In Progress |
-| 10 | 010-reachability-and-attribution/ | Offer and brief delivery on every run line with a backfill of the before arm, an attributable scorer summary, the Codex and DSH install steps with read-only doctor checks and a measured cold first prompt (research ranks 1 to 6 and 10) | Pending |
-| 11 | 011-typed-command-delivery-and-guards/ | Every typed tracked command reaches the model on the top recommendation with its command and policy, measured as 44 of 44 typed rows in the command capture, plus a command visibility guard in the mirror check, hook health in the advisor status and a head length test with a brief cost script (research ranks 9, 12 and 14 in part) | Pending |
+| 5 | 005-recommendation-contract-and-brief/ | Recommendation fields, brief line, degraded path, retired ids (R3, L6, L12, G6, L1, L7) | Complete |
+| 6 | 006-gate-2-binding-and-runtime-pointers/ | Gate 2 sentence, typed override, static pointer, child authority (R6, L5, R5, L4, G1, G3, L10) | Complete |
+| 7 | 007-per-runtime-behaviour-proof/ | Transcript proof per runtime and the started-command-is-followed check (R8 transcripts, G2, G5) | In Progress |
+| 8 | 008-embedder-setup-and-cost/ | The embedder for external repositories: visible state, a plan-first doctor route, the measured memory and latency cost in the install guides and defined absent, cold and slow behaviour (operator requirement, 2026-11-12) | Complete |
+| 9 | 009-ux-performance-cross-cli-research/ | Research only: further gains in user experience, performance and cross-CLI use after phases 005 to 008, 14 ranked recommendations each to be built in a new phase or declined with a reason (research/research.md section 9). Segment two is merged with 18 ranked items (research/research-segment-2.md) and segment three follows the merge to main | In Progress |
+| 10 | 010-reachability-and-attribution/ | Offer and brief delivery on every run line with a backfill of the before arm, an attributable scorer summary, the Codex and DSH install steps with read-only doctor checks and a measured cold first prompt (research ranks 1 to 6 and 10) | Complete |
+| 11 | 011-typed-command-delivery-and-guards/ | Every typed tracked command reaches the model on the top recommendation with its command and policy, measured as 44 of 44 typed rows in the command capture, plus a command visibility guard in the mirror check, hook health in the advisor status and a head length test with a brief cost script (research ranks 9, 12 and 14 in part) | Complete |
+| 12 | 012-plain-offer-reach/ | A plain request gets its command: the doctor hand-off names the command its ranker put first, task-shaped aliases on the `sk-doc` and deep-loop hubs, deep and create anchors and a `(needs a mode)` label for a deferring hub, measured as plain tune offers 9 to 23 of 45 in the command capture (segment two ranks 1, 4, 6, 7 and 12) | Complete |
+| 13 | 013-attribution-and-install-reach/ | Brief delivery as a stored fact on five runtimes, offer accounting with loop-without-init in the safety floor and host-expanded typed starts counted, a Codex preflight and a restore to HEAD in the behaviour runner, a `CLAUDE.md` pointer on the default embed install, a delivery leg in `/doctor:setup` and an OpenCode brief that keeps the command fields (segment two ranks 2, 3, 5, 8 to 11 and 13) | Complete |
 
 ### Phase Transition Rules
 
@@ -143,6 +145,8 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 | 005-recommendation-contract-and-brief | 006-gate-2-binding-and-runtime-pointers | The recommendation and the brief carry the command and its policy | Schema test and golden briefs pass, and `save context` returns one entry |
 | 006-gate-2-binding-and-runtime-pointers | 007-per-runtime-behaviour-proof | The Gate 2 sentence and the generated pointer are in place | `/doctor:agents-md check` passes and the pointer generator's check exits 0 |
 | 007-per-runtime-behaviour-proof | 008-embedder-setup-and-cost | Phase 005 is merged and the per-runtime proof is recorded, so this phase edits the final recommendation handler and bridge activation list | `rg -n "ownerSkillId" .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` prints a line and phase 007 validates under `validate.sh --strict` |
+| 011-typed-command-delivery-and-guards | 012-plain-offer-reach | Phase 011 is committed, the command capture reads 44 of 44 typed rows and every pinned floor holds | `jq -c '.attachedMetrics.typed' .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json` prints `combined` 44 of 44 and phase 011 validates under `validate.sh --strict` |
+| 012-plain-offer-reach | 013-attribution-and-install-reach | Phase 012 is committed, its renderer prints `(needs a mode)` and its diff touches none of the files phase 013 edits | The committed command baseline reads `attachedMetrics.plain.tune.combined` above 9 of 45 and phase 012 validates under `validate.sh --strict` |
 <!-- /ANCHOR:phase-map -->
 
 ---

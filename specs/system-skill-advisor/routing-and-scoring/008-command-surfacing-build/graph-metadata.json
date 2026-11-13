@@ -14,7 +14,9 @@
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/010-reachability-and-attribution",
-    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards"
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach"
   ],
   "manual": {
     "depends_on": [],
@@ -99,6 +101,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -123,19 +131,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -197,7 +193,7 @@
     ],
     "causal_summary": "The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-13T03:07:50.965Z",
+    "last_save_at": "2026-11-13T05:56:24.621Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +201,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b85892a77de69dd4945d8be492ed2764d0d6a7cd2ec53dd97b9a339f74b45975",
+    "source_fingerprint": "sha256:cda40600439bbf7df41ec0109c409c63d286fad5947a29f3679acc7e1645a086",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fbf28328fd116a0d121a9b9a8fdaf362c3c9705707e8275500ba2f0ac7d7e81a",
+      "spec.md": "d2a57869e646a24bb0a084b9e999c034f6a69de5016b0cb27575c9796cc68858",
       "decision-record.md": "b1b6c95eb8cf4a0ececb8a27b3c092307e7d5f10cf663453493c894278245bce"
     },
     "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof",

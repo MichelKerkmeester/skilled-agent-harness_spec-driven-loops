@@ -41,10 +41,12 @@ This is **Phase 9** of the build that makes the skill advisor surface every trac
 **Scope Boundary**: Research only. This child reads the planned phases, their scratch evidence and the runtime surfaces, and writes findings under `research/`. It changes no code, no command, no hook and no other phase folder.
 
 **Dependencies**:
-- Segment two reruns the research against the built state, so it waits until phases 005 to 008 are built and phase 007 has recorded its after arm.
+- Segment two ran on 2026-11-13 against the built phases 005, 006, 008 and 010 and the after arm of phase 007.
+- Segment three reads the measured gains of phases 012 and 013. The operator decided on 2026-11-13 that it starts only after this branch is merged to main. Its launcher is prepared and has not run.
 
 **Deliverables**:
 - `research/research.md`, the merged synthesis with 14 ranked recommendations in section 9.
+- `research/research-segment-2.md`, the segment two synthesis with 18 ranked items and a disposition for each in section 3.
 - A disposition for each of those recommendations, recorded in `tasks.md`.
 <!-- /ANCHOR:phase-context -->
 
@@ -83,6 +85,26 @@ What the block settles:
 - Segment one ran three lineages with 5, 5 and 3 iterations, all three succeeded.
 - The executor was `opencode-go/deepseek-v4.1-flash` at `max` effort with a cap of 5 iterations per lineage.
 - The merged registry holds 67 key findings and `research/research.md` holds 14 ranked recommendation rows.
+
+Segment two, run from this folder on 2026-11-13 after its merge.
+
+```text
+$ for l in offer-reach cross-cli-2 ux-cost-2; do printf "%s: " $l; ls research/lineages/$l/iterations | wc -l | tr -d ' '; done
+offer-reach: 4
+cross-cli-2: 4
+ux-cost-2: 3
+$ jq -c '[.executors[] | {label, model, reasoningEffort, iterations}]' research/deep-research-config-segment-2.json
+[{"label":"offer-reach","model":"opencode-go/deepseek-v4.1-flash","reasoningEffort":"max","iterations":4},{"label":"cross-cli-2","model":"opencode-go/deepseek-v4.1-flash","reasoningEffort":"max","iterations":4},{"label":"ux-cost-2","model":"opencode-go/deepseek-v4.1-flash","reasoningEffort":"max","iterations":4}]
+$ rg -c '^\| [0-9]+ \| ' research/research-segment-2.md
+18
+$ rg -c 'Build in phase 01[23]' research/research-segment-2.md
+13
+```
+
+What the block settles:
+- Segment two ran three lineages with 4, 4 and 3 iterations against a cap of 4.
+- `research/research-segment-2.md` holds 18 ranked rows and 13 of them are built in phase 012 or 013.
+- Section 5 of that file records the stop: `offer-reach` and `cross-cli-2` hit the iteration cap and `ux-cost-2` converged, so the segment as a whole did not converge.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -101,7 +123,7 @@ After phases 005 to 008, which further changes raise how often a surfaced comman
 
 ### In Scope
 - Run a fan-out deep research over the three lanes and merge the lineages into one ranked list in `research/research.md`.
-- Rerun the research against the built state of phases 005 to 008 and the after arm of phase 007 until it converges.
+- Rerun the research against the built state of phases 005 to 008 and the after arm of phase 007 until it converges. Segment two did this once. Segment three continues after the merge to main.
 - Record a disposition for each ranked recommendation in `tasks.md`.
 
 ### Out of Scope
@@ -134,8 +156,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | Segment two reruns the research against the built phases 005 to 008 and the phase 007 after arm until it converges | A second merged synthesis under `research/` records its stop reason as converged, and the open questions in `research/research.md` section 12 are answered or carried forward with a reason |
-| REQ-004 | No document in this child reads or prints a holdout prompt row | `rg -n 'holdout' spec.md plan.md tasks.md` shows only rule text, never a prompt |
+| REQ-003 | Segment two, and segment three where segment two stops short, reruns the research against the built phases until it converges | A merged synthesis under `research/` records its stop reason as converged, and the open questions in `research/research.md` section 12 are answered or carried forward with a reason. Segment two stopped with two lineages at their cap, so segment three carries this requirement |
+| REQ-004 | No document in this child reads or prints a holdout prompt row | `rg -n 'holdout' spec.md plan.md tasks.md` shows only rule text and counts, never a prompt |
+| REQ-005 | Each of the 18 ranked items of segment two has a disposition | Every row of the segment two disposition table in `tasks.md` reads built in a named phase, waiting on the operator or declined with a reason |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -144,7 +167,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` prints `RESULT: PASSED`.
-- **SC-002**: The disposition table in `tasks.md` has 14 rows and none has an empty `Disposition` cell when this child closes.
+- **SC-002**: The segment one disposition table in `tasks.md` has 14 rows and none has an empty `Disposition` cell when this child closes.
+- **SC-003**: The segment two disposition table in `tasks.md` has 18 rows and none has an empty `Disposition` cell.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -154,7 +178,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phases 005 to 008 built and the phase 007 after arm recorded | Segment two has no built state to read until they land | Segment two stays open in `tasks.md` and starts only when phase 007 records its after arm |
+| Dependency | Phases 012 and 013 committed and the branch merged to main | Segment three has no measured gains to read until then | Segment three stays open in `tasks.md` and starts after the merge, by operator instruction of 2026-11-13 |
 | Risk | The executor is a flash model and some of its numbers carry only the lineage's citation | Med | `research/research.md` section 15 marks which claims the orchestrator re-checked. A phase that builds a recommendation measures its own baseline before it claims the gain |
 | Risk | The before arm grew while segment one ran | Low | Ranking uses the single snapshot in `research/research.md` section 3 |
 <!-- /ANCHOR:risks -->
@@ -164,5 +188,12 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- The six open questions in `research/research.md` section 12 carry into segment two. Question 6, whether the embed model should stay warm against the cold-by-design choice of phase 008, is an operator decision.
+- Segment two answered questions 2, 5 and 6 of `research/research.md` section 12 in `research/research-segment-2.md`: the cold first call measured 538.53 ms (rank 16), the brief reached Devin in 24 of 24 sessions (section 2) and the embed model stays cold by design (rank 18). Question 1 is carried as its open question 2 for Codex. The `offer-reach` lineage carried questions 3 and 4, and the segment two synthesis does not answer them.
+- Rank 14 of segment two, a Gate 2 clause for a brief that names a skill and no command, waits on the operator.
+- Carried into segment three:
+  - Plain reach on the holdout split is 1 of 44, while the tune split reads 23 of 45. The phase 012 gains do not transfer to unseen wording (`../012-plain-offer-reach/implementation-summary.md`).
+  - Hook health shows in `/doctor:setup` only after a run with `SKILL_ADVISOR_DEBUG=1`, because the hook writes diagnostic records only then (`../011-typed-command-delivery-and-guards/implementation-summary.md`).
+  - When the daemon is unreachable, the local fallback scorer keeps a typed command and loses the mode label, the doctor hand-off and plain offers (`../012-plain-offer-reach/scratch/live-heads.txt`).
+  - Claude Code sees 32 of 44 tracked commands. The mirror check prints `visibility claude 32/44, cursor 44/44` (`../011-typed-command-delivery-and-guards/implementation-summary.md`).
+  - Rank 15 of segment two, richer command intent signals with a re-embedded skill graph, was declined for this round and carried forward.
 <!-- /ANCHOR:questions -->

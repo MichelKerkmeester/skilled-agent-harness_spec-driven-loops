@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research",
   "description": "Phases 005 to 008 plan the recommendation contract, the Gate 2 binding, the per-runtime proof and the embedder setup",
   "keywords": [
@@ -13,7 +14,7 @@
     "embedder",
     "setup"
   ],
-  "lastUpdated": "2026-11-12T23:25:51.409Z",
+  "lastUpdated": "2026-11-12T23:26:34.780Z",
   "specId": "009",
   "folderSlug": "ux-performance-cross-cli-research",
   "parentChain": [
@@ -22,6 +23,5 @@
     "008-command-surfacing-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
