@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/006-feature-catalog",
   "description": "This packet still preserves important historical audit evidence, but downstream wrapper packets were reading its milestone counts as if they were",
   "keywords": [
@@ -16,7 +17,7 @@
     "milestone",
     "counts"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.162Z",
+  "lastUpdated": "2026-11-13T10:05:33.192Z",
   "specId": "006",
   "folderSlug": "feature-catalog",
   "parentChain": [
@@ -29,6 +30,5 @@
     "08-03-26_19-28__feature-catalog-comprehensive-audit-remediation.md",
     "25-03-26_18-33__deep-review-of-feature-catalog-alignment-224.md",
     "26-03-26_13-46__phase-h9-playbook-scenario-creation-16-manual.md"
-  ],
-  "level": "3"
+  ]
 }

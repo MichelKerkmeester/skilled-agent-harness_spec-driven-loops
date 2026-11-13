@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/020-preprogram-code-conformance",
   "description": "Fix the four code-conformance findings the audit raised against lines this program never touched — an ephemeral label in a code comment, a misplaced",
   "keywords": [
@@ -18,15 +19,15 @@
     "comment",
     "misplaced"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.388Z",
+  "lastUpdated": "2026-11-13T10:04:53.436Z",
   "specId": "020",
   "folderSlug": "preprogram-code-conformance",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "033-json-optimization-implementation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

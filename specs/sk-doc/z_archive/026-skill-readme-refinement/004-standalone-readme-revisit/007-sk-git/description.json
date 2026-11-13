@@ -18,11 +18,12 @@
     "voice",
     "rules"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.440Z",
+  "lastUpdated": "2026-11-13T10:04:53.850Z",
   "specId": "007",
   "folderSlug": "sk-git",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement",
     "004-standalone-readme-revisit"
   ],

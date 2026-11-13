@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/009-embedding-optimization",
   "description": "Before this phase, the scripts-side indexer embedded raw markdown via `generateEmbedding(content)`, while the MCP save path normalized content but",
   "keywords": [
@@ -17,7 +18,7 @@
     "path",
     "normalized"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.268Z",
+  "lastUpdated": "2026-11-13T10:05:33.395Z",
   "specId": "009",
   "folderSlug": "embedding-optimization",
   "parentChain": [
@@ -30,6 +31,5 @@
   "memoryNameHistory": [
     "16-03-26_20-38__implemented-weighted-document-embedding-input-for.md",
     "17-03-26_16-44__strict-closeout-evidence-refreshed.md"
-  ],
-  "level": "2"
+  ]
 }

@@ -15,11 +15,12 @@
     "issued",
     "fail"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.078Z",
+  "lastUpdated": "2026-11-13T10:04:42.735Z",
   "specId": "011",
   "folderSlug": "routing-remediation",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

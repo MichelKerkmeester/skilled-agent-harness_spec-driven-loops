@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/007-table-wording-experiment",
   "description": "Long replies carry a table 17.4% of the time before a `communication.md` read, 20.3% after it and 11.6% in sessions that never read it",
   "keywords": [
@@ -12,7 +13,7 @@
     "sessions",
     "never"
   ],
-  "lastUpdated": "2026-10-04T14:49:19.533Z",
+  "lastUpdated": "2026-11-13T10:04:35.319Z",
   "specId": "007",
   "folderSlug": "table-wording-experiment",
   "parentChain": [
@@ -21,6 +22,5 @@
     "002-repo-rule-advisor-surfacing"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

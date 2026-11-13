@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/009-sk-git",
-  "description": "Phase 9: sk-git",
+  "description": "The docs of `.skilled/skills/sk-git` were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "sk-git"
+    "docs",
+    "skilled",
+    "skills",
+    "sk-git",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:15:57.539Z",
+  "lastUpdated": "2026-11-13T10:04:51.452Z",
   "specId": "009",
   "folderSlug": "sk-git",
   "parentChain": [
@@ -14,6 +23,5 @@
     "005-skill-readability-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

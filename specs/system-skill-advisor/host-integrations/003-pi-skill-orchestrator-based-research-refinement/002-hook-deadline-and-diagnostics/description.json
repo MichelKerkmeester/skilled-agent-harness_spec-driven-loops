@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics",
-  "description": "Hook Deadline and Diagnostics",
+  "description": "The system-spec-kit Claude shim spawns the advisor hook with `CHILDTIMEOUTMS = 2500` and returns `{}` when it kills the child",
   "keywords": [
-    "phase",
-    "hook-deadline-and-diagnostics"
+    "system-spec-kit",
+    "claude",
+    "shim",
+    "spawns",
+    "advisor",
+    "hook",
+    "childtimeoutms",
+    "returns",
+    "kills",
+    "child"
   ],
-  "lastUpdated": "2026-09-26T10:05:44.818Z",
+  "lastUpdated": "2026-11-13T10:05:01.300Z",
   "specId": "002",
   "folderSlug": "hook-deadline-and-diagnostics",
   "parentChain": [
@@ -14,6 +23,5 @@
     "003-pi-skill-orchestrator-based-research-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

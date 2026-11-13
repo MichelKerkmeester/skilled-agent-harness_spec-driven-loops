@@ -16,11 +16,12 @@
     "advisory",
     "score"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.012Z",
+  "lastUpdated": "2026-11-13T10:04:53.294Z",
   "specId": "009",
   "folderSlug": "titlecase-config-and-closeout",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "016-documentation-quality-program"
   ],

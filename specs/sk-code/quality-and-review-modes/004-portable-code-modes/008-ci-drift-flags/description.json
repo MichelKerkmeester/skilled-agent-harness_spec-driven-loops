@@ -1,17 +1,17 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/004-portable-code-modes/008-ci-drift-flags",
-  "description": "Clear the five doctor:ci drift flags and decide Node 20 CI coverage",
+  "description": "`/doctor:ci report` raised five drift flags on this repository",
   "keywords": [
-    "clear",
-    "five",
     "doctor",
+    "report",
+    "raised",
+    "five",
     "drift",
     "flags",
-    "decide",
-    "node",
-    "coverage"
+    "repository"
   ],
-  "lastUpdated": "2026-10-27T21:49:41.128Z",
+  "lastUpdated": "2026-11-13T10:04:47.175Z",
   "specId": "008",
   "folderSlug": "ci-drift-flags",
   "parentChain": [
@@ -20,6 +20,5 @@
     "004-portable-code-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

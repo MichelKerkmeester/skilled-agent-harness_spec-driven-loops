@@ -11,11 +11,12 @@
     "typed-pair",
     "surface"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.372Z",
+  "lastUpdated": "2026-11-13T10:04:52.687Z",
   "specId": "011",
   "folderSlug": "sk-code-routing-research",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "001-research"
   ],

@@ -1,16 +1,13 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/029-p0-reread-order",
-  "description": "Test research R10 offline: count the archived P0 findings and their downgrades with zero calls, stop at the operator's label gate until 20 P0 negatives are labeled, then measure whether a Jev or Deem severity choice separates real P0s from false ones better than the recorded severity.",
+  "description": "A deep-review P0 blocks release",
   "keywords": [
-    "r10",
-    "jev",
-    "deem",
-    "offline",
-    "p0",
-    "reread",
-    "order"
+    "deep-review",
+    "blocks",
+    "release"
   ],
-  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "lastUpdated": "2026-11-13T10:04:36.360Z",
   "specId": "029",
   "folderSlug": "p0-reread-order",
   "parentChain": [
@@ -18,6 +15,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

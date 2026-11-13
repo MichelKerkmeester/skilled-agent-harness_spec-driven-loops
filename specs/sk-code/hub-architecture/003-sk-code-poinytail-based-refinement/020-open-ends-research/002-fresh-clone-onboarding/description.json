@@ -1,12 +1,22 @@
 {
   "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/020-open-ends-research/002-fresh-clone-onboarding",
-  "description": "Phase 2: fresh-clone-onboarding",
+  "description": "An external user who clones this framework meets several stumbles before the first routed request and the first spec packet",
   "keywords": [
-    "phase",
-    "fresh-clone-onboarding"
+    "external",
+    "user",
+    "clones",
+    "framework",
+    "meets",
+    "several",
+    "stumbles",
+    "first",
+    "routed",
+    "request",
+    "spec",
+    "packet"
   ],
-  "lastUpdated": "2026-10-11T17:40:10.505Z",
+  "lastUpdated": "2026-11-13T10:04:46.272Z",
   "specId": "002",
   "folderSlug": "fresh-clone-onboarding",
   "parentChain": [

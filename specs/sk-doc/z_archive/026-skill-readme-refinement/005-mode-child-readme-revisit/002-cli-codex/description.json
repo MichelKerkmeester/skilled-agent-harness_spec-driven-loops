@@ -15,11 +15,12 @@
     "reference-card",
     "style"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.462Z",
+  "lastUpdated": "2026-11-13T10:04:53.857Z",
   "specId": "002",
   "folderSlug": "cli-codex",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement",
     "005-mode-child-readme-revisit"
   ],

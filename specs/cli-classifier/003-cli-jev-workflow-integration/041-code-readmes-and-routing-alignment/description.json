@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment",
-  "description": "Phase 41: code-readmes-and-routing-alignment",
+  "description": "Eleven code folders this packet created or filled carry no `README.md`: `cli-classifier` `shared/scripts`, `shared/scripts/tests`, `cli-deem/scripts`,",
   "keywords": [
-    "phase",
-    "code-readmes-and-routing-alignment"
+    "eleven",
+    "code",
+    "folders",
+    "packet",
+    "filled",
+    "carry",
+    "readme",
+    "cli-classifier",
+    "shared",
+    "scripts",
+    "tests",
+    "cli-deem"
   ],
-  "lastUpdated": "2026-09-30T21:17:21.573Z",
+  "lastUpdated": "2026-11-13T10:04:36.546Z",
   "specId": "041",
   "folderSlug": "code-readmes-and-routing-alignment",
   "parentChain": [
@@ -13,6 +24,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

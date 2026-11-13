@@ -10,11 +10,12 @@
     "named",
     "deep"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.861Z",
+  "lastUpdated": "2026-11-13T10:05:00.760Z",
   "specId": "009",
   "folderSlug": "deep-router-agent-rename",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "030-deep-loop-unification"
   ],
   "memorySequence": 0,

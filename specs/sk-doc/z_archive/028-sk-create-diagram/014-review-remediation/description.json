@@ -12,11 +12,12 @@
     "returned",
     "conditional"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.883Z",
+  "lastUpdated": "2026-11-13T10:04:53.943Z",
   "specId": "014",
   "folderSlug": "review-remediation",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "028-sk-create-diagram"
   ],
   "memorySequence": 0,

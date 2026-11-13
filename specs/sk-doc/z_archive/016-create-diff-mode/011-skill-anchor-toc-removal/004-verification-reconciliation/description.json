@@ -16,11 +16,12 @@
     "anchor",
     "scaffolding"
   ],
-  "lastUpdated": "2026-08-29T12:13:21.096Z",
+  "lastUpdated": "2026-11-13T10:04:52.128Z",
   "specId": "004",
   "folderSlug": "verification-reconciliation",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode",
     "011-skill-anchor-toc-removal"
   ],

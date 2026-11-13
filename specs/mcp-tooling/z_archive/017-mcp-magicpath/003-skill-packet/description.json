@@ -8,11 +8,12 @@
     "reachable",
     "discoverable"
   ],
-  "lastUpdated": "2026-08-29T17:21:20.537Z",
+  "lastUpdated": "2026-11-13T10:04:43.265Z",
   "specId": "003",
   "folderSlug": "skill-packet",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "017-mcp-magicpath"
   ],
   "memorySequence": 0,

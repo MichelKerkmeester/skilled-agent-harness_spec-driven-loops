@@ -1,11 +1,17 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/006-deep-loop-single-executor-dispatch",
-  "description": "Phase 6: deep-loop-single-executor-dispatch",
+  "description": "Every single-executor `cli-opencode` deep-loop iteration fails before it starts",
   "keywords": [
-    "phase",
-    "deep-loop-single-executor-dispatch"
+    "every",
+    "single-executor",
+    "cli-opencode",
+    "deep-loop",
+    "iteration",
+    "fails",
+    "starts"
   ],
-  "lastUpdated": "2026-11-08T23:38:59.396Z",
+  "lastUpdated": "2026-11-13T10:05:23.460Z",
   "specId": "006",
   "folderSlug": "deep-loop-single-executor-dispatch",
   "parentChain": [
@@ -14,6 +20,5 @@
     "004-v4-release-line-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

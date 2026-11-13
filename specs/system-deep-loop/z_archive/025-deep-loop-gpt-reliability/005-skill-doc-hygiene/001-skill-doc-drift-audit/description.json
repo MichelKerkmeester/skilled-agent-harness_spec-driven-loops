@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/005-skill-doc-hygiene/001-skill-doc-drift-audit",
   "description": "Packet 031 (phases 008-013) changed real runtime behavior: `ai-council.md` converted from `mode: all` to `mode: subagent`, `orchestrate.md` gained",
   "keywords": [
@@ -15,7 +16,7 @@
     "orchestrate",
     "gained"
   ],
-  "lastUpdated": "2026-08-15T14:41:07.402Z",
+  "lastUpdated": "2026-11-13T10:04:59.729Z",
   "specId": "001",
   "folderSlug": "skill-doc-drift-audit",
   "parentChain": [
@@ -25,6 +26,5 @@
     "005-skill-doc-hygiene"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

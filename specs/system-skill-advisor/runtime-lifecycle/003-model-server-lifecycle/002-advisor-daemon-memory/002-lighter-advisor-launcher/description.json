@@ -1,11 +1,17 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/runtime-lifecycle/003-model-server-lifecycle/002-advisor-daemon-memory/002-lighter-advisor-launcher",
-  "description": "Phase 2: lighter-advisor-launcher",
+  "description": "The 2026-10-21 audit measured the launcher at about 53 MB and the advisor server at 62 to 100 MB (66 and 103 MB when measured again that afternoon)",
   "keywords": [
-    "phase",
-    "lighter-advisor-launcher"
+    "audit",
+    "measured",
+    "launcher",
+    "about",
+    "advisor",
+    "server",
+    "afternoon"
   ],
-  "lastUpdated": "2026-10-21T09:51:16.370Z",
+  "lastUpdated": "2026-11-13T10:05:02.455Z",
   "specId": "002",
   "folderSlug": "lighter-advisor-launcher",
   "parentChain": [
@@ -15,6 +21,5 @@
     "002-advisor-daemon-memory"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,12 +1,19 @@
 {
   "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/001-create-track-fixes",
-  "description": "Phase 1: create-track-fixes",
+  "description": "`create.sh --track <track>/<sub-track>/` with a trailing slash writes the packet and skips both track-root refreshes",
   "keywords": [
-    "phase",
-    "create-track-fixes"
+    "track",
+    "sub-track",
+    "trailing",
+    "slash",
+    "writes",
+    "packet",
+    "skips",
+    "track-root",
+    "refreshes"
   ],
-  "lastUpdated": "2026-11-08T14:48:46.647Z",
+  "lastUpdated": "2026-11-13T10:05:32.307Z",
   "specId": "001",
   "folderSlug": "create-track-fixes",
   "parentChain": [

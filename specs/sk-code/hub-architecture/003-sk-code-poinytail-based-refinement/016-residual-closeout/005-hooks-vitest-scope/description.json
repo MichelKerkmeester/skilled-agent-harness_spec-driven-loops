@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/016-residual-closeout/005-hooks-vitest-scope",
-  "description": "Phase 5: hooks-vitest-scope",
+  "description": "`.skilled/hooks/vitest.config.ts` sets `root` to the repository root so hook imports resolve, and it sets no `include`",
   "keywords": [
-    "phase",
-    "hooks-vitest-scope"
+    "skilled",
+    "hooks",
+    "vitest",
+    "config",
+    "sets",
+    "root",
+    "repository",
+    "hook",
+    "imports",
+    "resolve",
+    "include"
   ],
-  "lastUpdated": "2026-10-11T10:14:19.974Z",
+  "lastUpdated": "2026-11-13T10:04:46.157Z",
   "specId": "005",
   "folderSlug": "hooks-vitest-scope",
   "parentChain": [
@@ -15,6 +25,5 @@
     "016-residual-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -17,11 +17,12 @@
     "scope",
     "edits"
   ],
-  "lastUpdated": "2026-09-04T17:50:17.402Z",
+  "lastUpdated": "2026-11-13T10:04:52.183Z",
   "specId": "008",
   "folderSlug": "master-catalog-enrichment",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode",
     "012-feature-catalog-template-improvements"
   ],

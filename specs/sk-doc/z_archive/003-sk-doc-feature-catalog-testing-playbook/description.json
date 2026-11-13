@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/z_archive/003-sk-doc-feature-catalog-testing-playbook",
   "description": "The original spec packet captured only the first part of the work: refactoring manual testing playbooks toward a feature-catalog-like package shape",
   "keywords": [
@@ -19,7 +20,7 @@
     "package",
     "shape"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.044Z",
+  "lastUpdated": "2026-11-13T10:04:51.930Z",
   "specId": "003",
   "folderSlug": "sk-doc-feature-catalog-testing-playbook",
   "parentChain": [
@@ -27,6 +28,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

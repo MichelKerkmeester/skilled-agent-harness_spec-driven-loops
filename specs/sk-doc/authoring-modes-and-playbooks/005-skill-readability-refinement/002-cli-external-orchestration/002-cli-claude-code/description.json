@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration/002-cli-claude-code",
-  "description": "Phase 2: cli-claude-code",
+  "description": "The docs of the `.skilled/skills/cli-external-orchestration/cli-claude-code` mode were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "cli-claude-code"
+    "docs",
+    "skilled",
+    "skills",
+    "cli-external-orchestration",
+    "cli-claude-code",
+    "mode",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:22.286Z",
+  "lastUpdated": "2026-11-13T10:04:50.408Z",
   "specId": "002",
   "folderSlug": "cli-claude-code",
   "parentChain": [
@@ -15,6 +26,5 @@
     "002-cli-external-orchestration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

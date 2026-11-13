@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/005-mcp-tooling/002-mcp-aside-devtools",
-  "description": "Phase 2: mcp-aside-devtools",
+  "description": "The docs of the `.skilled/skills/mcp-tooling/mcp-aside-devtools` mode were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "mcp-aside-devtools"
+    "docs",
+    "skilled",
+    "skills",
+    "mcp-tooling",
+    "mcp-aside-devtools",
+    "mode",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:27.830Z",
+  "lastUpdated": "2026-11-13T10:04:51.048Z",
   "specId": "002",
   "folderSlug": "mcp-aside-devtools",
   "parentChain": [
@@ -15,6 +26,5 @@
     "005-mcp-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

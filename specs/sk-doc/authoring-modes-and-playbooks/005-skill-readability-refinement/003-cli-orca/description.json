@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/003-cli-orca",
-  "description": "Phase 3: cli-orca",
+  "description": "The docs of `.skilled/skills/cli-orca` were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "cli-orca"
+    "docs",
+    "skilled",
+    "skills",
+    "cli-orca",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:15:54.231Z",
+  "lastUpdated": "2026-11-13T10:04:51.022Z",
   "specId": "003",
   "folderSlug": "cli-orca",
   "parentChain": [
@@ -14,6 +23,5 @@
     "005-skill-readability-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

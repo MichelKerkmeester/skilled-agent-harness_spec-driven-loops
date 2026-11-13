@@ -1,24 +1,17 @@
 {
   "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling",
-  "description": "Spec folder tooling: canonical root, numbering, track roots and archive",
+  "description": "The scripts that create, number and archive spec packets disagreed with where packets live",
   "keywords": [
-    "spec",
-    "folder",
-    "tooling",
-    "canonical",
-    "root",
-    "numbering",
-    "track",
-    "roots",
+    "scripts",
+    "number",
     "archive",
-    "create.sh",
-    "archive.sh",
-    "lists",
-    "keep",
-    "packets"
+    "spec",
+    "packets",
+    "disagreed",
+    "live"
   ],
-  "lastUpdated": "2026-10-09T14:57:37.408Z",
+  "lastUpdated": "2026-11-13T10:05:32.260Z",
   "specId": "003",
   "folderSlug": "spec-folder-tooling",
   "parentChain": [

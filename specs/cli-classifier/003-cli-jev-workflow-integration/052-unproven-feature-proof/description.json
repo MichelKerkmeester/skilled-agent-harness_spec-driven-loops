@@ -1,11 +1,15 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/052-unproven-feature-proof",
-  "description": "Phase 52: unproven-feature-proof",
+  "description": "Spec-track narrowing kept once and stopped on its repeat",
   "keywords": [
-    "phase",
-    "unproven-feature-proof"
+    "spec-track",
+    "narrowing",
+    "kept",
+    "stopped",
+    "repeat"
   ],
-  "lastUpdated": "2026-10-05T04:56:52.973Z",
+  "lastUpdated": "2026-11-13T10:04:36.797Z",
   "specId": "052",
   "folderSlug": "unproven-feature-proof",
   "parentChain": [
@@ -13,6 +17,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

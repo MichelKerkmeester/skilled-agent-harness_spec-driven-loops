@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/011-rename-fallout-remediation",
   "description": "Close the three rename-fallout follow-ups the LUNA review surfaced: a stale pre-rename test import, sk-doc compiled-routing drift, and the blocked",
   "keywords": [
@@ -18,15 +19,15 @@
     "drift",
     "blocked"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.293Z",
+  "lastUpdated": "2026-11-13T10:04:53.396Z",
   "specId": "011",
   "folderSlug": "rename-fallout-remediation",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "030-mode-sk-prefix-rename"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/008-gate5-card-pilot",
   "description": "A plain card drops the operative bans in 6 of 13 rules",
   "keywords": [
@@ -9,7 +10,7 @@
     "bans",
     "rules"
   ],
-  "lastUpdated": "2026-10-04T14:49:19.540Z",
+  "lastUpdated": "2026-11-13T10:04:35.323Z",
   "specId": "008",
   "folderSlug": "gate5-card-pilot",
   "parentChain": [
@@ -18,6 +19,5 @@
     "002-repo-rule-advisor-surfacing"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

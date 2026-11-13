@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/005-persisted-hops-validation",
-  "description": "Phase 5: persisted-hops-validation",
+  "description": "`shouldRelaunch` reads `const hops = Number(record.hops)` and declines only when the result is not finite or reaches the limit",
   "keywords": [
-    "phase",
-    "persisted-hops-validation"
+    "shouldrelaunch",
+    "reads",
+    "const",
+    "hops",
+    "number",
+    "record",
+    "declines",
+    "only",
+    "result",
+    "finite",
+    "reaches",
+    "limit"
   ],
-  "lastUpdated": "2026-10-25T13:42:31.551Z",
+  "lastUpdated": "2026-11-13T10:04:41.784Z",
   "specId": "005",
   "folderSlug": "persisted-hops-validation",
   "parentChain": [
@@ -15,6 +26,5 @@
     "033-research-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/002-template-levels",
   "description": "The spec-kit template system today maintains 86 files (~13K LOC) split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern,",
   "keywords": [
@@ -18,7 +19,7 @@
     "level3-arch",
     "level3-plus-govern"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.236Z",
+  "lastUpdated": "2026-11-13T10:05:04.835Z",
   "specId": "002",
   "folderSlug": "template-levels",
   "parentChain": [
@@ -28,6 +29,5 @@
     "002-spec-kit-internals"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

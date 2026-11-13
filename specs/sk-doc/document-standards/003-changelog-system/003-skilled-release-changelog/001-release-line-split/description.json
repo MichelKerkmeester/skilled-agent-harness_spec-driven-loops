@@ -1,12 +1,17 @@
 {
   "level": "2",
   "specFolder": "sk-doc/document-standards/003-changelog-system/003-skilled-release-changelog/001-release-line-split",
-  "description": "Phase 1: release-line-split",
+  "description": "The system-spec-kit changelog folder had become the repository's release notes",
   "keywords": [
-    "phase",
-    "release-line-split"
+    "system-spec-kit",
+    "changelog",
+    "folder",
+    "become",
+    "repository",
+    "release",
+    "notes"
   ],
-  "lastUpdated": "2026-09-27T12:31:06.315Z",
+  "lastUpdated": "2026-11-13T10:04:51.666Z",
   "specId": "001",
   "folderSlug": "release-line-split",
   "parentChain": [

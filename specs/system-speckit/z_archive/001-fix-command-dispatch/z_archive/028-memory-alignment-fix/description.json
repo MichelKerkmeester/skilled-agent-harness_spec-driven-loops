@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/028-memory-alignment-fix",
   "description": "Memory saves were being directed to wrong spec folders due to:",
   "keywords": [
@@ -10,7 +11,7 @@
     "folders",
     "due"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.793Z",
+  "lastUpdated": "2026-11-13T10:05:32.510Z",
   "specId": "028",
   "folderSlug": "memory-alignment-fix",
   "parentChain": [
@@ -20,6 +21,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

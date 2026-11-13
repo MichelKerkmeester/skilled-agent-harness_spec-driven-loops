@@ -18,11 +18,12 @@
     "notion-mcp-server",
     "tools"
   ],
-  "lastUpdated": "2026-08-21T15:58:07.333Z",
+  "lastUpdated": "2026-11-13T10:04:42.893Z",
   "specId": "014",
   "folderSlug": "mcp-notion",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

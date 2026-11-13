@@ -19,11 +19,12 @@
     "per-section",
     "pointers"
   ],
-  "lastUpdated": "2026-08-31T16:07:07.066Z",
+  "lastUpdated": "2026-11-13T10:04:54.073Z",
   "specId": "040",
   "folderSlug": "create-repo-rules",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

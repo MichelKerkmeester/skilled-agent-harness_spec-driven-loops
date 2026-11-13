@@ -1,11 +1,17 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/002-quality-agnostic-gate/003-config-and-doctor",
-  "description": "Phase 3: config-and-doctor",
+  "description": "The quality gate reads only the rules this framework ships",
   "keywords": [
-    "phase",
-    "config-and-doctor"
+    "quality",
+    "gate",
+    "reads",
+    "only",
+    "rules",
+    "framework",
+    "ships"
   ],
-  "lastUpdated": "2026-10-25T23:21:50.380Z",
+  "lastUpdated": "2026-11-13T10:04:47.113Z",
   "specId": "003",
   "folderSlug": "config-and-doctor",
   "parentChain": [
@@ -14,6 +20,5 @@
     "002-quality-agnostic-gate"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

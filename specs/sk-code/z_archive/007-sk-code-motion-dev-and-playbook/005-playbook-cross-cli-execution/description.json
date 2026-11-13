@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution",
   "description": "Packet 069 now has Motion.dev peer references and manual playbook coverage, but it lacks a repeatable way to ask multiple AI runtimes how they would",
   "keywords": [
@@ -18,7 +19,7 @@
     "multiple",
     "runtimes"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.058Z",
+  "lastUpdated": "2026-11-13T10:04:47.262Z",
   "specId": "005",
   "folderSlug": "playbook-cross-cli-execution",
   "parentChain": [
@@ -27,6 +28,5 @@
     "007-sk-code-motion-dev-and-playbook"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

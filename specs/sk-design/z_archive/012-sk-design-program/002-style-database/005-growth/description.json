@@ -17,11 +17,12 @@
     "queries",
     "approach"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.966Z",
+  "lastUpdated": "2026-11-13T10:04:49.322Z",
   "specId": "005",
   "folderSlug": "growth",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program",
     "002-style-database"
   ],

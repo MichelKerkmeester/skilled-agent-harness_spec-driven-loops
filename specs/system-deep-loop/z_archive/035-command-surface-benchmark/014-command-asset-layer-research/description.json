@@ -19,11 +19,12 @@
     "iterations",
     "non-convergence"
   ],
-  "lastUpdated": "2026-08-15T14:41:03.200Z",
+  "lastUpdated": "2026-11-13T10:05:01.212Z",
   "specId": "014",
   "folderSlug": "command-asset-layer-research",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "035-command-surface-benchmark"
   ],
   "memorySequence": 0,

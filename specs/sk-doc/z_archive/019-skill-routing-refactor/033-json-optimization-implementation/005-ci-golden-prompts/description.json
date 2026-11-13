@@ -16,11 +16,12 @@
     "miss",
     "parent-hub"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.349Z",
+  "lastUpdated": "2026-11-13T10:04:53.419Z",
   "specId": "005",
   "folderSlug": "ci-golden-prompts",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "033-json-optimization-implementation"
   ],

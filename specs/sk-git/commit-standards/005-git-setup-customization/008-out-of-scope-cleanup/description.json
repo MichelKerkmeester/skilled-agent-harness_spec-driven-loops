@@ -1,12 +1,17 @@
 {
   "level": "1",
   "specFolder": "sk-git/commit-standards/005-git-setup-customization/008-out-of-scope-cleanup",
-  "description": "Phase 8: out-of-scope-cleanup",
+  "description": "The phase 7 build left four defects it found outside its scope",
   "keywords": [
     "phase",
-    "out-of-scope-cleanup"
+    "left",
+    "four",
+    "defects",
+    "found",
+    "outside",
+    "scope"
   ],
-  "lastUpdated": "2026-10-16T08:56:34.176Z",
+  "lastUpdated": "2026-11-13T10:04:54.264Z",
   "specId": "008",
   "folderSlug": "out-of-scope-cleanup",
   "parentChain": [

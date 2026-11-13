@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/010-deep-loop-parent-skill-alignment"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/010-deep-loop-parent-skill-alignment"
     last_updated_at: "2026-06-26T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "ADR-001 done; ADR-002 kept; ADR-003 keep-all earned; ADR-004 per-mode allowed-tools accepted"

@@ -1,12 +1,26 @@
 {
   "level": "3",
   "specFolder": "sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal",
-  "description": "Phase 2: hub-surface-removal",
+  "description": "The shipped `sk-code` hub advertises two example surfaces, Webflow and Obsidian, that exist only for the operator's own work: 1.5M and 504K of stack",
   "keywords": [
-    "phase",
-    "hub-surface-removal"
+    "shipped",
+    "sk-code",
+    "hub",
+    "advertises",
+    "two",
+    "example",
+    "surfaces",
+    "webflow",
+    "obsidian",
+    "exist",
+    "only",
+    "operator",
+    "own",
+    "work",
+    "504k",
+    "stack"
   ],
-  "lastUpdated": "2026-10-24T09:24:08.647Z",
+  "lastUpdated": "2026-11-13T10:04:46.956Z",
   "specId": "002",
   "folderSlug": "hub-surface-removal",
   "parentChain": [

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The operator physically moved and renamed `.opencode/skills/mcp-open-design/` to `.opencode/skills/sk-design/design-mcp-open-design/` via a raw `mv` (outside git)",
     "created_at": "2026-07-07T07:42:15.977Z",
-    "last_save_at": "2026-10-07T18:11:57.498Z",
+    "last_save_at": "2026-11-13T13:14:15.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d376eb9ab6f1f669f6ba3e09bcbff48ca26b55698e1e77ec7ce483fa9f87454",
+    "source_fingerprint": "sha256:f6b27a805ce9ea6e68965fa6de237cdbfe780e6b085ce191c1e0af3adae9acc3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9406d65e3ff39b5207836ade06b7d5c313d3e7c9b457c3b8de9dd83eba9f2569",
+      "spec.md": "15509991f4b27fb9508f7d34a8e4bac07ddf6f54a63d467b8bc046157bd453ea",
       "plan.md": "b9343b995c4314ac3558bc8cd61ba2a5400bd62d59bf8edf7032cda6220dde85",
       "tasks.md": "8f5f51b23d0e5a17481e6d38bd02509c207a152fd03df8441c6dcfffa628d1fb",
       "implementation-summary.md": "8312097e66a451e526e3f2f8543508b192e8db7688edd36ffb52a93ffd381cd6"

@@ -17,11 +17,12 @@
     "worked",
     "examples"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.714Z",
+  "lastUpdated": "2026-11-13T10:04:53.707Z",
   "specId": "009",
   "folderSlug": "create-changelog",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "003-sk-doc",

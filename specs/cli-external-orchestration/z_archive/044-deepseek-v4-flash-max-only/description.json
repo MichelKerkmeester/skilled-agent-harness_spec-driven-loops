@@ -19,11 +19,12 @@
     "low",
     "non-thinking"
   ],
-  "lastUpdated": "2026-08-16T18:07:20.917Z",
+  "lastUpdated": "2026-11-13T10:04:38.872Z",
   "specId": "044",
   "folderSlug": "deepseek-v4-flash-max-only",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

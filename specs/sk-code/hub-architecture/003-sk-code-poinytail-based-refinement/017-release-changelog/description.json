@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/017-release-changelog",
-  "description": "Phase 17: release-changelog",
+  "description": "Other sessions filled the v4.0.0.4 release entry with the spec tooling, deep-loop and security work",
   "keywords": [
-    "phase",
-    "release-changelog"
+    "sessions",
+    "filled",
+    "release",
+    "entry",
+    "spec",
+    "tooling",
+    "deep-loop",
+    "security",
+    "work"
   ],
-  "lastUpdated": "2026-10-11T13:36:06.042Z",
+  "lastUpdated": "2026-11-13T10:04:46.197Z",
   "specId": "017",
   "folderSlug": "release-changelog",
   "parentChain": [
@@ -14,6 +22,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,12 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/023-ci-sparse-big-suites",
-  "description": "Phase 23: ci-sparse-big-suites",
+  "description": "Phase 22 excluded the loop-state folders from seven workflows and left the largest suites alone",
   "keywords": [
     "phase",
-    "ci-sparse-big-suites"
+    "excluded",
+    "loop-state",
+    "folders",
+    "seven",
+    "workflows",
+    "left",
+    "largest",
+    "suites",
+    "alone"
   ],
-  "lastUpdated": "2026-11-13T05:55:22.951Z",
+  "lastUpdated": "2026-11-13T10:05:23.881Z",
   "specId": "023",
   "folderSlug": "ci-sparse-big-suites",
   "parentChain": [

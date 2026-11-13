@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research",
   "description": "The system-skill-advisor docs need a coordinated audit before any rewrite/alignment work begins",
   "keywords": [
@@ -12,7 +13,7 @@
     "work",
     "begins"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.151Z",
+  "lastUpdated": "2026-11-13T10:05:03.024Z",
   "specId": "001",
   "folderSlug": "documentation-quality-audit-research",
   "parentChain": [
@@ -22,6 +23,5 @@
     "004-documentation-quality-refactor"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

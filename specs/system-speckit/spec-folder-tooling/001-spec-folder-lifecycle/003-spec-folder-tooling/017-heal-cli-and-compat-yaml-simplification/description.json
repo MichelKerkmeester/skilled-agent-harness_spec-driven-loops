@@ -1,11 +1,17 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/017-heal-cli-and-compat-yaml-simplification",
-  "description": "Phase 17: heal-cli-and-compat-yaml-simplification",
+  "description": "The phase 16 build carries three optional surfaces that no requirement asks for",
   "keywords": [
     "phase",
-    "heal-cli-and-compat-yaml-simplification"
+    "carries",
+    "three",
+    "optional",
+    "surfaces",
+    "requirement",
+    "asks"
   ],
-  "lastUpdated": "2026-10-09T10:43:49.773Z",
+  "lastUpdated": "2026-11-13T10:05:31.885Z",
   "specId": "017",
   "folderSlug": "heal-cli-and-compat-yaml-simplification",
   "parentChain": [
@@ -15,6 +21,5 @@
     "003-spec-folder-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

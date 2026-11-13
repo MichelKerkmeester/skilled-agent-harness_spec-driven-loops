@@ -1,11 +1,25 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/032-epic-follow-up-review",
-  "description": "Phase 32: epic-follow-up-review",
+  "description": "The 030 review never read the Commit-Id hook helpers or the Pi Fast Mode source, because its scope list left them out, and it never checked the",
   "keywords": [
-    "phase",
-    "epic-follow-up-review"
+    "review",
+    "never",
+    "read",
+    "commit-id",
+    "hook",
+    "helpers",
+    "fast",
+    "mode",
+    "source",
+    "because",
+    "scope",
+    "list",
+    "left",
+    "them",
+    "checked"
   ],
-  "lastUpdated": "2026-10-14T18:34:04.562Z",
+  "lastUpdated": "2026-11-13T10:04:46.922Z",
   "specId": "032",
   "folderSlug": "epic-follow-up-review",
   "parentChain": [
@@ -14,6 +28,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

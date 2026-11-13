@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/057-transaction-nesting-fix",
   "description": "The memory_index_scan MCP tool fails with SQLite error",
   "keywords": [
@@ -8,7 +9,7 @@
     "sqlite",
     "error"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.859Z",
+  "lastUpdated": "2026-11-13T10:05:32.624Z",
   "specId": "057",
   "folderSlug": "transaction-nesting-fix",
   "parentChain": [
@@ -18,6 +19,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

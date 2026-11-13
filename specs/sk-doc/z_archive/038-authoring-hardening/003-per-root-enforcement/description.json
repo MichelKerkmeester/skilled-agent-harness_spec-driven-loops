@@ -19,11 +19,12 @@
     "behind",
     "green"
   ],
-  "lastUpdated": "2026-08-29T15:04:56.563Z",
+  "lastUpdated": "2026-11-13T10:04:54.024Z",
   "specId": "003",
   "folderSlug": "per-root-enforcement",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "038-authoring-hardening"
   ],
   "memorySequence": 0,

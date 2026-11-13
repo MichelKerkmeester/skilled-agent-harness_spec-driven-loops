@@ -12,11 +12,12 @@
     "against",
     "source"
   ],
-  "lastUpdated": "2026-08-30T07:16:19.504Z",
+  "lastUpdated": "2026-11-13T10:04:53.823Z",
   "specId": "001",
   "folderSlug": "code-readme-standard-and-enforcement",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "022-code-readme-coverage"
   ],
   "memorySequence": 0,

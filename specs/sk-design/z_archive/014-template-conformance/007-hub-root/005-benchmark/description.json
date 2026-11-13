@@ -16,11 +16,12 @@
     "overview",
     "directory"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.345Z",
+  "lastUpdated": "2026-11-13T10:04:49.503Z",
   "specId": "005",
   "folderSlug": "benchmark",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance",
     "007-hub-root"
   ],

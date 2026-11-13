@@ -1,22 +1,22 @@
 {
   "level": "1",
   "specFolder": "cli-classifier/002-cli-jev-hub-migration/004-compiled-fleet-onboarding",
-  "description": "Before this phase the hub resolved through the legacy path: it was absent from the engine's dispatch map, so `compiled-route.cjs --hub cli-jev` return",
+  "description": "Before this phase the hub resolved through the legacy path: it was absent from the engine's dispatch map, so `compiled-route.cjs --hub cli-jev`",
   "keywords": [
-    "before",
     "phase",
     "hub",
     "resolved",
-    "through",
     "legacy",
     "path",
     "absent",
-    "engine's",
+    "engine",
     "dispatch",
     "map",
-    "compiled-route.cjs"
+    "compiled-route",
+    "cjs",
+    "cli-jev"
   ],
-  "lastUpdated": "2026-09-20T14:45:46Z",
+  "lastUpdated": "2026-11-13T10:04:35.368Z",
   "specId": "004",
   "folderSlug": "compiled-fleet-onboarding",
   "parentChain": [

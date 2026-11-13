@@ -19,11 +19,12 @@
     "committed",
     "style"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.973Z",
+  "lastUpdated": "2026-11-13T10:04:49.324Z",
   "specId": "006",
   "folderSlug": "library-restructure",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program",
     "002-style-database"
   ],

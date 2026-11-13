@@ -1,11 +1,24 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/055-alignment-and-hook-parity",
-  "description": "Phase 55: alignment-and-hook-parity",
+  "description": "`ENV-REFERENCE.md` named the files that read each Jev switch before phase 54 moved them, and several READMEs described retired or moved code",
   "keywords": [
+    "env-reference",
+    "named",
+    "files",
+    "read",
+    "jev",
+    "switch",
     "phase",
-    "alignment-and-hook-parity"
+    "moved",
+    "them",
+    "several",
+    "readmes",
+    "described",
+    "retired",
+    "code"
   ],
-  "lastUpdated": "2026-10-05T09:05:05.138Z",
+  "lastUpdated": "2026-11-13T10:04:36.800Z",
   "specId": "055",
   "folderSlug": "alignment-and-hook-parity",
   "parentChain": [
@@ -13,6 +26,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "sk-doc/z_archive/003-sk-doc-feature-catalog-testing-playbook",
   "spec_folder": "sk-doc/z_archive/003-sk-doc-feature-catalog-testing-playbook",
-  "parent_id": "sk-doc/z_archive",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [],
   "manual": {
     "depends_on": [],

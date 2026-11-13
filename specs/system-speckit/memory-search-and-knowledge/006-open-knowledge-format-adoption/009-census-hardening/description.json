@@ -1,12 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/006-open-knowledge-format-adoption/009-census-hardening",
-  "description": "Phase 9: census-hardening",
+  "description": "The census classified 140,287 citations and showed 27,320 as moved, but its accuracy per class rests on 8 moved rows checked by hand",
   "keywords": [
-    "phase",
-    "census-hardening"
+    "census",
+    "classified",
+    "citations",
+    "showed",
+    "moved",
+    "accuracy",
+    "per",
+    "class",
+    "rests",
+    "rows",
+    "checked",
+    "hand"
   ],
-  "lastUpdated": "2026-10-06T04:47:45.373Z",
+  "lastUpdated": "2026-11-13T10:05:15.064Z",
   "specId": "009",
   "folderSlug": "census-hardening",
   "parentChain": [

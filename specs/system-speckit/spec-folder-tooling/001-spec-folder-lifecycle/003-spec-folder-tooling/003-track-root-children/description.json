@@ -1,19 +1,22 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/003-track-root-children",
-  "description": "Keep every track root's children_ids equal to its packets on disk, and block a push that breaks it",
+  "description": "A track root is a folder directly under `specs/`, such as `specs/sk-doc/`, that holds numbered packets and lists them in the `childrenids` of its",
   "keywords": [
-    "keep",
-    "every",
     "track",
     "root",
-    "equal",
+    "folder",
+    "directly",
+    "specs",
+    "sk-doc",
+    "holds",
+    "numbered",
     "packets",
-    "disk",
-    "block",
-    "push",
-    "breaks"
+    "lists",
+    "them",
+    "childrenids"
   ],
-  "lastUpdated": "2026-09-24T09:53:58.655Z",
+  "lastUpdated": "2026-11-13T10:05:31.442Z",
   "specId": "003",
   "folderSlug": "track-root-children",
   "parentChain": [
@@ -23,6 +26,5 @@
     "003-spec-folder-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

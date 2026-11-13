@@ -19,11 +19,12 @@
     "box",
     "header"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.190Z",
+  "lastUpdated": "2026-11-13T10:04:38.678Z",
   "specId": "010",
   "folderSlug": "hook-code-style-cross-runtime",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "030-cli-cursor-creation"
   ],
   "memorySequence": 0,

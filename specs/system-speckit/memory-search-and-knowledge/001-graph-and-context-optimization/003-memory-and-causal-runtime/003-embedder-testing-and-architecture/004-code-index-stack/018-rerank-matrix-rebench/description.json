@@ -7,6 +7,7 @@
     "BGE vs jina-v3 corrected pipeline",
     "COCOINDEX_RERANK_MODEL final"
   ],
+  "level": 2,
   "importance_tier": "important",
   "contextType": "research",
   "status": "in-progress",
@@ -27,7 +28,7 @@
     "fully-fixed",
     "candidate-set"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.793Z",
+  "lastUpdated": "2026-11-13T10:05:07.138Z",
   "specId": "018",
   "folderSlug": "rerank-matrix-rebench",
   "parentChain": [
@@ -39,6 +40,5 @@
     "004-code-index-stack"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

@@ -225,7 +225,7 @@
     ],
     "causal_summary": "The parity refactor can look correct at the router layer while still failing live design usefulness, procedure selection, proof discipline, anti-slop judgment, accessibility, hierarchy, interaction quality, polish, or md-generator preservation",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-10-07T18:11:39.924Z",
+    "last_save_at": "2026-11-13T13:14:11.153Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -235,13 +235,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:55f06b2c72c3348e5519fba0922a068c8c42d5923f86345a6b4dfffcf77bd09b",
+    "source_fingerprint": "sha256:ac90cad8ba308236d90723dc25bb1792545ee2c96d1d0f701980a30d533fc5d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c688770fde590cf4919e6865c6d1fd1334839f0a648eeb69be80493ccffcb0b4",
+      "spec.md": "1d842e2cf184195b8b9040624712dbd4973d64b14a99764535e47d8a6fa86b2d",
       "plan.md": "0014624720a16659e6b886e509072a7f05f24bc2e045fb4e1f49a277cfd3a226",
       "tasks.md": "d9eac213e8859d8b6b2c860fe38deac6d2f7891b0e9514c48b5d69d58e2d0b60",
-      "decision-record.md": "f22c093313c06a750e18016c29634318faf8b84f8fa5b7c90c51b9160bffec3b",
+      "decision-record.md": "a2edafb3a416d7d3310551d04c1ca3fb23b6000e51b15f6ae7effddd82d03afa",
       "implementation-summary.md": "c43300c54e863cdeaa4e658190361f03b8399b8c83fcb67a88062bf1281fa64e"
     },
     "last_active_child_id": null,

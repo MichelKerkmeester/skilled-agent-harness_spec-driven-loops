@@ -16,11 +16,12 @@
     "agent",
     "directories"
   ],
-  "lastUpdated": "2026-08-30T07:16:19.011Z",
+  "lastUpdated": "2026-11-13T10:04:53.770Z",
   "specId": "006",
   "folderSlug": "deep-improvement-verify",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "014-agents"

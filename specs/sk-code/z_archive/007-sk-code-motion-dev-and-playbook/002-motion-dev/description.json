@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev",
   "description": "The sk-code skill has empty peer folders for cross-stack motion.dev guidance",
   "keywords": [
@@ -12,7 +13,7 @@
     "dev",
     "guidance"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.043Z",
+  "lastUpdated": "2026-11-13T10:04:47.248Z",
   "specId": "002",
   "folderSlug": "motion-dev",
   "parentChain": [
@@ -21,6 +22,5 @@
     "007-sk-code-motion-dev-and-playbook"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -17,11 +17,12 @@
     "predates",
     "phases"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.478Z",
+  "lastUpdated": "2026-11-13T10:04:48.954Z",
   "specId": "009",
   "folderSlug": "readme-alignment",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 2,

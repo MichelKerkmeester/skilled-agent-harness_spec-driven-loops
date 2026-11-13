@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/023-deep-loop-workflows/004-command-surface-repoint",
   "description": "Seven /deep: commands plus roughly twelve YAML assets reference the five old skill paths and skill: keys (the heaviest YAML carry dozens of path",
   "keywords": [
@@ -21,7 +22,7 @@
     "dozens",
     "path"
   ],
-  "lastUpdated": "2026-08-15T14:41:06.940Z",
+  "lastUpdated": "2026-11-13T10:04:58.887Z",
   "specId": "004",
   "folderSlug": "command-surface-repoint",
   "parentChain": [
@@ -30,6 +31,5 @@
     "023-deep-loop-workflows"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

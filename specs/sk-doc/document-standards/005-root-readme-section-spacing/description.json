@@ -1,20 +1,24 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/document-standards/005-root-readme-section-spacing",
-  "description": "Root README uses forced blank lines instead of dividers, exempt from divider checks and auto-fix",
+  "description": "The operator wants the repository root README.md to separate H2 sections with `&nbsp;` forced blank lines instead of `---` horizontal rules",
   "keywords": [
+    "operator",
+    "wants",
+    "repository",
     "root",
     "readme",
+    "separate",
+    "sections",
+    "nbsp",
     "forced",
     "blank",
     "lines",
     "instead",
-    "dividers",
-    "exempt",
-    "divider",
-    "checks",
-    "auto-fix"
+    "horizontal",
+    "rules"
   ],
-  "lastUpdated": "2026-10-17T16:43:56.446Z",
+  "lastUpdated": "2026-11-13T10:04:51.692Z",
   "specId": "005",
   "folderSlug": "root-readme-section-spacing",
   "parentChain": [
@@ -22,6 +26,5 @@
     "document-standards"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

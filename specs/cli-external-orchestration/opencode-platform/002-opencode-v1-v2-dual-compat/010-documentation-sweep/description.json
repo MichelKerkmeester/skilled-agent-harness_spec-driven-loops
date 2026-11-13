@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/010-documentation-sweep",
-  "description": "Phase 10: documentation-sweep",
+  "description": "The build changes the cli-opencode dispatch shape, the install steps, the plugin layout and the agent and command trees",
   "keywords": [
-    "phase",
-    "documentation-sweep"
+    "changes",
+    "cli-opencode",
+    "dispatch",
+    "shape",
+    "install",
+    "steps",
+    "plugin",
+    "layout",
+    "agent",
+    "command",
+    "trees"
   ],
-  "lastUpdated": "2026-10-18T12:45:10.492Z",
+  "lastUpdated": "2026-11-13T10:04:37.275Z",
   "specId": "010",
   "folderSlug": "documentation-sweep",
   "parentChain": [
@@ -14,6 +24,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

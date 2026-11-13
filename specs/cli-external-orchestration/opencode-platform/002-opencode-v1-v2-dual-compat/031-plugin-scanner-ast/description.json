@@ -1,12 +1,23 @@
 {
   "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/031-plugin-scanner-ast",
-  "description": "Phase 31: plugin-scanner-ast",
+  "description": "`.opencode/plugins/tests/helpers/plugin-inventory.cjs` found event checks with regular expressions over comment-stripped text",
   "keywords": [
-    "phase",
-    "plugin-scanner-ast"
+    "opencode",
+    "plugins",
+    "tests",
+    "helpers",
+    "plugin-inventory",
+    "cjs",
+    "found",
+    "event",
+    "checks",
+    "regular",
+    "expressions",
+    "comment-stripped",
+    "text"
   ],
-  "lastUpdated": "2026-10-20T15:00:57.151Z",
+  "lastUpdated": "2026-11-13T10:04:37.496Z",
   "specId": "031",
   "folderSlug": "plugin-scanner-ast",
   "parentChain": [

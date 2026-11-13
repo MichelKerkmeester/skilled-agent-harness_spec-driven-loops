@@ -1,11 +1,20 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/008-round-two-recommendations",
-  "description": "Phase 8: round-two-recommendations",
+  "description": "The second Ponytail research round ranked 29 recommendations (`../001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/research.md` section",
   "keywords": [
-    "phase",
-    "round-two-recommendations"
+    "second",
+    "ponytail",
+    "research",
+    "round",
+    "ranked",
+    "recommendations",
+    "001-ponytail-deep-research",
+    "lineages",
+    "r2-dsflash-llmgw",
+    "section"
   ],
-  "lastUpdated": "2026-10-10T06:56:23.110Z",
+  "lastUpdated": "2026-11-13T10:04:45.478Z",
   "specId": "008",
   "folderSlug": "round-two-recommendations",
   "parentChain": [
@@ -14,6 +23,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

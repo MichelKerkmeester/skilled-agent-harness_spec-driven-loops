@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/012-command-alignment",
   "description": "The 012 spec pack previously described a command surface that is no longer true on disk:",
   "keywords": [
@@ -12,7 +13,7 @@
     "true",
     "disk"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.400Z",
+  "lastUpdated": "2026-11-13T10:05:34.130Z",
   "specId": "012",
   "folderSlug": "command-alignment",
   "parentChain": [
@@ -25,6 +26,5 @@
     "15-03-26_08-26__implemented-016-command-alignment-aligned-the.md",
     "15-03-26_11-13__implemented-sk-doc-dqi-alignment-across-all-8.md",
     "25-03-26_13-19__deep-review-of-spec-kit-8-commands-17-yaml-assets.md"
-  ],
-  "level": "2"
+  ]
 }

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/020-feature-flag-reference",
   "description": "The feature catalog for Feature Flag Reference has evolved significantly",
   "keywords": [
@@ -9,7 +10,7 @@
     "evolved",
     "significantly"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.213Z",
+  "lastUpdated": "2026-11-13T10:05:33.289Z",
   "specId": "020",
   "folderSlug": "feature-flag-reference",
   "parentChain": [
@@ -19,6 +20,5 @@
     "007-code-audit-per-feature-catalog"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

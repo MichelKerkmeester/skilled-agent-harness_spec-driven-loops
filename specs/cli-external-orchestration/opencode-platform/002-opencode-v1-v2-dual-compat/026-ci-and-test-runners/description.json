@@ -1,18 +1,16 @@
 {
   "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/026-ci-and-test-runners",
-  "description": "CI and test runners: run orphaned suites and add a SECURITY.md document type",
+  "description": "Several suites passed locally but blocked nothing",
   "keywords": [
-    "test",
-    "runners",
-    "run",
-    "orphaned",
+    "several",
     "suites",
-    "security",
-    "document",
-    "type"
+    "passed",
+    "locally",
+    "blocked",
+    "nothing"
   ],
-  "lastUpdated": "2026-10-20T08:12:19.928Z",
+  "lastUpdated": "2026-11-13T10:04:37.471Z",
   "specId": "026",
   "folderSlug": "ci-and-test-runners",
   "parentChain": [

@@ -19,11 +19,12 @@
     "new",
     "visual"
   ],
-  "lastUpdated": "2026-09-06T15:46:00.284Z",
+  "lastUpdated": "2026-11-13T10:04:49.542Z",
   "specId": "016",
   "folderSlug": "deprecate-sk-design-interface",
   "parentChain": [
-    "sk-design"
+    "sk-design",
+    "z_archive"
   ],
   "memorySequence": 7,
   "memoryNameHistory": [

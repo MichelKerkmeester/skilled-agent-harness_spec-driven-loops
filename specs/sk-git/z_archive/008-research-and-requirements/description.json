@@ -14,11 +14,12 @@
     "long-lived",
     "branch"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.166Z",
+  "lastUpdated": "2026-11-13T10:04:54.374Z",
   "specId": "008",
   "folderSlug": "research-and-requirements",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

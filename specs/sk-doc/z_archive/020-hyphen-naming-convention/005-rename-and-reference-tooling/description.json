@@ -17,11 +17,12 @@
     "disposition",
     "ledger"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.626Z",
+  "lastUpdated": "2026-11-13T10:04:53.646Z",
   "specId": "005",
   "folderSlug": "rename-and-reference-tooling",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention"
   ],
   "memorySequence": 0,

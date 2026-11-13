@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/005-optional-parent-decision-record",
-  "description": "Phase 5: optional-parent-decision-record",
+  "description": "Two reference documents told readers that a phase parent may never carry a decision record",
   "keywords": [
+    "two",
+    "reference",
+    "documents",
+    "told",
+    "readers",
     "phase",
-    "optional-parent-decision-record"
+    "parent",
+    "never",
+    "carry",
+    "decision",
+    "record"
   ],
-  "lastUpdated": "2026-11-01T06:06:15.934Z",
+  "lastUpdated": "2026-11-13T10:05:03.566Z",
   "specId": "005",
   "folderSlug": "optional-parent-decision-record",
   "parentChain": [
@@ -17,6 +27,5 @@
     "009-phase-parent-lean-trio-documentation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

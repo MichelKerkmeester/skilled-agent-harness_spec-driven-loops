@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/017-phase-reorg-and-renumber",
   "description": "026 accumulated 17 flat top-level phases through repeated ad-hoc restructures",
   "keywords": [
@@ -10,16 +11,16 @@
     "ad-hoc",
     "restructures"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.873Z",
+  "lastUpdated": "2026-11-13T10:05:09.930Z",
   "specId": "017",
   "folderSlug": "phase-reorg-and-renumber",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "z_archive",
     "wave-4-2026-05-26-reorg"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

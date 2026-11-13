@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/004-verification-and-standards",
   "description": "The parent review packet mandates that standards docs outside 023 remain deferred until the runtime verification matrix passes",
   "keywords": [
@@ -17,7 +18,7 @@
     "matrix",
     "passes"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.496Z",
+  "lastUpdated": "2026-11-13T10:05:34.302Z",
   "specId": "004",
   "folderSlug": "verification-and-standards",
   "parentChain": [
@@ -26,6 +27,5 @@
     "023-hybrid-rag-fusion-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,5 +1,6 @@
 {
   "title": "Feature Specification: 002-codesight Research Phase",
+  "level": 3,
   "migration": {
     "moved_at": "2026-04-21T12:00:00Z",
     "source_spec_folder": "system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/002-codesight",
@@ -34,7 +35,7 @@
     "context",
     "preservation"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.088Z",
+  "lastUpdated": "2026-11-13T10:05:04.674Z",
   "specId": "002",
   "folderSlug": "codesight",
   "parentChain": [
@@ -48,6 +49,5 @@
     "06-04-26_16-34__5-iteration-deep-research-session-investigating.md",
     "06-04-26_17-58__continuation-deep-research-run-for-002-codesight.md",
     "08-04-26_08-10__extended-the-002-codesight-deep-research-packet.md"
-  ],
-  "level": 3
+  ]
 }

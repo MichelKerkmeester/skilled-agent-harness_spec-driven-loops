@@ -9,11 +9,12 @@
     "scope",
     "isolation"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.182Z",
+  "lastUpdated": "2026-11-13T10:04:54.383Z",
   "specId": "005",
   "folderSlug": "verify-and-rollout",
   "parentChain": [
     "sk-git",
+    "z_archive",
     "014-gitkraken-mcp-integration"
   ],
   "memorySequence": 0,

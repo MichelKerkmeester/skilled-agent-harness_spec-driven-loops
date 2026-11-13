@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The larger 023 manual-playbook-execution packet needs every `manualtestingplaybook` scenario actually dispatched through the real `cli-opencode` orchestrator (not just read or reasoned about) and graded strictly against that scenario file's own Pass/Fail Criteria",
     "created_at": "2026-07-07T15:09:17.527Z",
-    "last_save_at": "2026-10-07T18:12:14.987Z",
+    "last_save_at": "2026-11-13T13:14:15.510Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:83105822166063cb2efb46e85718cd89fdb4eaeb15313116bc94d2a02f20f38d",
+    "source_fingerprint": "sha256:a351656f4a1a9273666150b3bdf2c5a70ae559eae5e4d4efa4cbc7bc2aac60fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1165bb1a4145670f29bcf9d78a6adc82b48b2de16bd242325437b03be002d3de",
+      "spec.md": "3b17abcc13a63d967bdc537860033e0bc79e6966159854ebcd92e5c800e605b3",
       "plan.md": "4feb14ec971119c6606eb6d6503f4c375fa09326d1f685d497e7597130d5784a",
       "tasks.md": "8968fde1736e7f103830b97ab290777ccf57f88f51d1177cb4b5a372e03ff7e9",
       "implementation-summary.md": "b1ab3187c6e5605122f895f816c34741d4aecf37bae56da2b75cee53d01e0815"

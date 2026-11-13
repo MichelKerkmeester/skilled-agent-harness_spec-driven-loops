@@ -1,15 +1,24 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes",
-  "description": "Fix the dispatch lint and audit findings held for the operator",
+  "description": "The Pi preflight decides with `inspectDispatch`, which returns `none` for `echo \"$(codex exec task)\"` (its expansion check wants a print flag Codex",
   "keywords": [
-    "dispatch",
-    "lint",
-    "audit",
-    "findings",
-    "held",
-    "operator"
+    "preflight",
+    "decides",
+    "inspectdispatch",
+    "returns",
+    "none",
+    "echo",
+    "codex",
+    "exec",
+    "task",
+    "expansion",
+    "check",
+    "wants",
+    "print",
+    "flag"
   ],
-  "lastUpdated": "2026-10-21T04:55:14.832Z",
+  "lastUpdated": "2026-11-13T10:04:37.569Z",
   "specId": "040",
   "folderSlug": "dispatch-lint-held-fixes",
   "parentChain": [
@@ -18,6 +27,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

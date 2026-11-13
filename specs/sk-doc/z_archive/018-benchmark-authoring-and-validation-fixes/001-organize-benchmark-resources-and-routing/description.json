@@ -14,11 +14,12 @@
     "references",
     "directories"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.128Z",
+  "lastUpdated": "2026-11-13T10:04:52.333Z",
   "specId": "001",
   "folderSlug": "organize-benchmark-resources-and-routing",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "018-benchmark-authoring-and-validation-fixes"
   ],
   "memorySequence": 0,

@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/001-unknowns-and-baseline",
-  "description": "Phase 1: unknowns-and-baseline",
+  "description": "The research record leaves eleven questions open, and phases 2 to 4 cannot start on a guess about them",
   "keywords": [
-    "phase",
-    "unknowns-and-baseline"
+    "research",
+    "record",
+    "leaves",
+    "eleven",
+    "questions",
+    "open",
+    "phases",
+    "cannot",
+    "start",
+    "guess",
+    "about",
+    "them"
   ],
-  "lastUpdated": "2026-10-18T12:45:01.122Z",
+  "lastUpdated": "2026-11-13T10:04:37.199Z",
   "specId": "001",
   "folderSlug": "unknowns-and-baseline",
   "parentChain": [
@@ -14,6 +25,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

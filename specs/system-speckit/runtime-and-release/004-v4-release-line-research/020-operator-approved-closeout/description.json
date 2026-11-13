@@ -1,11 +1,20 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/020-operator-approved-closeout",
-  "description": "Phase 20: operator-approved-closeout",
+  "description": "Devin keeps the first 16,384 bytes of AGENTS.md and the last binding clause ended at byte 16,379",
   "keywords": [
-    "phase",
-    "operator-approved-closeout"
+    "devin",
+    "keeps",
+    "first",
+    "bytes",
+    "agents",
+    "last",
+    "binding",
+    "clause",
+    "ended",
+    "byte"
   ],
-  "lastUpdated": "2026-11-09T07:49:55.416Z",
+  "lastUpdated": "2026-11-13T10:05:23.534Z",
   "specId": "020",
   "folderSlug": "operator-approved-closeout",
   "parentChain": [
@@ -14,6 +23,5 @@
     "004-v4-release-line-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

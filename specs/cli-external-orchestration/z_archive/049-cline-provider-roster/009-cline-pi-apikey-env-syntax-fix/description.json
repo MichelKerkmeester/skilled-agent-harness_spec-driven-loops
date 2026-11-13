@@ -10,11 +10,12 @@
     "cline-pass",
     "models"
   ],
-  "lastUpdated": "2026-08-25T05:03:28.912Z",
+  "lastUpdated": "2026-11-13T10:04:38.916Z",
   "specId": "009",
   "folderSlug": "cline-pi-apikey-env-syntax-fix",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "049-cline-provider-roster"
   ],
   "memorySequence": 0,

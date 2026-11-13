@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/012-memory-save-quality-pipeline",
   "description": "Structured memory saves (`--json`/`--stdin`) could degrade into poor outputs when normalization did not adequately feed downstream extraction/scoring",
   "keywords": [
@@ -17,7 +18,7 @@
     "extraction",
     "scoring"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.559Z",
+  "lastUpdated": "2026-11-13T10:05:34.436Z",
   "specId": "012",
   "folderSlug": "memory-save-quality-pipeline",
   "parentChain": [
@@ -29,6 +30,5 @@
   "memoryNameHistory": [
     "01-04-26_09-40__implemented-all-6-recommendations-from-phase-012.md",
     "01-04-26_11-36__deep-review-of-phase-012-implementation-five.md"
-  ],
-  "level": "3"
+  ]
 }

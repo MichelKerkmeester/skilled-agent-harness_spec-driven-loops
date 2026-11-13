@@ -1,11 +1,18 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/002-pins-imports-dual-export",
-  "description": "Phase 2: pins-imports-dual-export",
+  "description": "The 11 mechanical plugins export one default function, which is the v1 `server` entry",
   "keywords": [
-    "phase",
-    "pins-imports-dual-export"
+    "mechanical",
+    "plugins",
+    "export",
+    "one",
+    "default",
+    "function",
+    "server",
+    "entry"
   ],
-  "lastUpdated": "2026-10-18T12:45:02.160Z",
+  "lastUpdated": "2026-11-13T10:04:37.207Z",
   "specId": "002",
   "folderSlug": "pins-imports-dual-export",
   "parentChain": [
@@ -14,6 +21,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -21,11 +21,12 @@
     "parent",
     "hubs"
   ],
-  "lastUpdated": "2026-08-28T16:24:15.222Z",
+  "lastUpdated": "2026-11-13T10:04:52.027Z",
   "specId": "011",
   "folderSlug": "smart-router-alignment",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent"
   ],
   "memorySequence": 0,

@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures",
-  "description": "Clear the two other-session defects that kept sk-doc Script Tests red on main",
+  "description": "The session's `/goal` requires green CI on the final main commit, and sk-doc Script Tests was red on main",
   "keywords": [
-    "phase",
-    "sk-doc-ci-outside-failures"
+    "session",
+    "goal",
+    "requires",
+    "green",
+    "final",
+    "main",
+    "commit",
+    "sk-doc",
+    "script",
+    "tests",
+    "red"
   ],
-  "lastUpdated": "2026-10-21T17:36:21.996Z",
+  "lastUpdated": "2026-11-13T10:04:37.628Z",
   "specId": "050",
   "folderSlug": "sk-doc-ci-outside-failures",
   "parentChain": [
@@ -14,6 +24,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

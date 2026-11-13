@@ -1,11 +1,25 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/004-trigger-index-rebuild-hardening",
-  "description": "Phase 4: trigger-index-rebuild-hardening",
+  "description": "The generator writes four tracked files but `.github/workflows/trigger-index-rebuild.yml` diffs and stages only `trigger-index.json` (lines 53-61)",
   "keywords": [
-    "phase",
-    "trigger-index-rebuild-hardening"
+    "generator",
+    "writes",
+    "four",
+    "tracked",
+    "files",
+    "github",
+    "workflows",
+    "trigger-index-rebuild",
+    "yml",
+    "diffs",
+    "stages",
+    "only",
+    "trigger-index",
+    "json",
+    "lines"
   ],
-  "lastUpdated": "2026-10-08T04:22:42.183Z",
+  "lastUpdated": "2026-11-13T10:05:31.686Z",
   "specId": "004",
   "folderSlug": "trigger-index-rebuild-hardening",
   "parentChain": [
@@ -16,6 +30,5 @@
     "016-research-recommendations"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

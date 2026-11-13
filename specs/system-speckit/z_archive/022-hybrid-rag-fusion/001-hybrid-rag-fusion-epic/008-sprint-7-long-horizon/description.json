@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/008-sprint-7-long-horizon",
   "description": "Memory summaries are only valuable at scale (>5K memories) — implementing them prematurely adds overhead without benefit",
   "keywords": [
@@ -15,7 +16,7 @@
     "without",
     "benefit"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.072Z",
+  "lastUpdated": "2026-11-13T10:05:33.019Z",
   "specId": "008",
   "folderSlug": "sprint-7-long-horizon",
   "parentChain": [
@@ -25,6 +26,5 @@
     "001-hybrid-rag-fusion-epic"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/066-opencode-v2-default-name",
-  "description": "Phase 66: opencode-v2-default-name",
+  "description": "The repository expects OpenCode 2, but the side-by-side layout gave the bare `opencode` name to OpenCode 1 and reached OpenCode 2 only through an",
   "keywords": [
-    "phase",
-    "opencode-v2-default-name"
+    "repository",
+    "expects",
+    "opencode",
+    "side-by-side",
+    "layout",
+    "gave",
+    "bare",
+    "name",
+    "reached",
+    "only"
   ],
-  "lastUpdated": "2026-10-24T07:32:35.727Z",
+  "lastUpdated": "2026-11-13T10:04:37.702Z",
   "specId": "066",
   "folderSlug": "opencode-v2-default-name",
   "parentChain": [
@@ -14,6 +23,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

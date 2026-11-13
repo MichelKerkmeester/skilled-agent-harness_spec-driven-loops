@@ -1,21 +1,17 @@
 {
   "level": "3",
   "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/001-decision-capture-build",
-  "description": "Automatic decision capture: record every operator question and answer, AI-rewritten into the bound packet's decision record",
+  "description": "Operator answers to AI questions are not captured in a consistent decision record",
   "keywords": [
-    "automatic",
-    "decision",
-    "capture",
-    "record",
-    "every",
     "operator",
-    "question",
-    "answer",
-    "ai-rewritten",
-    "bound",
-    "packet"
+    "answers",
+    "questions",
+    "captured",
+    "consistent",
+    "decision",
+    "record"
   ],
-  "lastUpdated": "2026-11-01T22:56:34.884Z",
+  "lastUpdated": "2026-11-13T10:05:29.613Z",
   "specId": "001",
   "folderSlug": "decision-capture-build",
   "parentChain": [

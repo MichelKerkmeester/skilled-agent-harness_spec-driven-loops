@@ -1,18 +1,17 @@
 {
   "level": "1",
   "specFolder": "agents-md/instruction-surface-integrity/005-v4-0-1-0-rules-refresh",
-  "description": "Check whether the v4.0.1.0 release means AGENTS.md or the repo rules need updating",
+  "description": "The v4.0.1.0 release renamed, added and changed skills, commands, scripts and workflows",
   "keywords": [
-    "check",
-    "whether",
     "release",
-    "means",
-    "agents",
-    "repo",
-    "rules",
-    "need"
+    "renamed",
+    "changed",
+    "skills",
+    "commands",
+    "scripts",
+    "workflows"
   ],
-  "lastUpdated": "2026-11-05T20:33:38.732Z",
+  "lastUpdated": "2026-11-13T10:04:35.209Z",
   "specId": "005",
   "folderSlug": "v4-0-1-0-rules-refresh",
   "parentChain": [

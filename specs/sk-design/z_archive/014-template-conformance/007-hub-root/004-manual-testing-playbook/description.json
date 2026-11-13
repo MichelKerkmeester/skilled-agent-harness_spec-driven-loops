@@ -10,11 +10,12 @@
     "audited",
     "against"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.344Z",
+  "lastUpdated": "2026-11-13T10:04:49.502Z",
   "specId": "004",
   "folderSlug": "manual-testing-playbook",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance",
     "007-hub-root"
   ],

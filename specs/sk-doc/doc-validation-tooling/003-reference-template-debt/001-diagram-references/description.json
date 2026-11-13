@@ -1,11 +1,19 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/doc-validation-tooling/003-reference-template-debt/001-diagram-references",
-  "description": "Phase 1: diagram-references",
+  "description": "The 27 type files, the catalog, the three import and export procedures, the output spec",
   "keywords": [
-    "phase",
-    "diagram-references"
+    "type",
+    "files",
+    "catalog",
+    "three",
+    "import",
+    "export",
+    "procedures",
+    "output",
+    "spec"
   ],
-  "lastUpdated": "2026-10-29T21:27:28.080Z",
+  "lastUpdated": "2026-11-13T10:04:51.600Z",
   "specId": "001",
   "folderSlug": "diagram-references",
   "parentChain": [
@@ -14,6 +22,5 @@
     "003-reference-template-debt"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

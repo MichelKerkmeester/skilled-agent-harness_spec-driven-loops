@@ -11,11 +11,12 @@
     "engine",
     "exists"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.690Z",
+  "lastUpdated": "2026-11-13T10:04:52.095Z",
   "specId": "002",
   "folderSlug": "core-diff-and-snapshot-mvp",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode"
   ],
   "memorySequence": 0,

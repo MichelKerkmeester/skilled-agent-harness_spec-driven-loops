@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening",
   "description": "The fan-out runner snapshots dirty paths outside the lineage directory before dispatch, and after the lane it treats every tracked file that changed",
   "keywords": [
@@ -18,7 +19,7 @@
     "file",
     "changed"
   ],
-  "lastUpdated": "2026-09-20T08:32:53.535Z",
+  "lastUpdated": "2026-11-13T10:04:55.952Z",
   "specId": "010",
   "folderSlug": "fanout-write-containment-hardening",
   "parentChain": [
@@ -28,6 +29,5 @@
     "007-executor-and-cli-hardening"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

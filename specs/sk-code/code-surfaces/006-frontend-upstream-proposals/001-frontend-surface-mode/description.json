@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "sk-code/code-surfaces/006-frontend-upstream-proposals/001-frontend-surface-mode",
-  "description": "Phase 1: frontend-surface-mode",
+  "description": "The sk-code surface axis lists only `sk-code-ci` and `sk-code-skilled`, and `shared/references/` holds no frontend folder",
   "keywords": [
-    "phase",
-    "frontend-surface-mode"
+    "sk-code",
+    "surface",
+    "axis",
+    "lists",
+    "only",
+    "sk-code-ci",
+    "sk-code-skilled",
+    "shared",
+    "references",
+    "holds",
+    "frontend",
+    "folder"
   ],
-  "lastUpdated": "2026-11-03T08:33:53.561Z",
+  "lastUpdated": "2026-11-13T10:04:43.561Z",
   "specId": "001",
   "folderSlug": "frontend-surface-mode",
   "parentChain": [
@@ -14,6 +25,5 @@
     "006-frontend-upstream-proposals"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

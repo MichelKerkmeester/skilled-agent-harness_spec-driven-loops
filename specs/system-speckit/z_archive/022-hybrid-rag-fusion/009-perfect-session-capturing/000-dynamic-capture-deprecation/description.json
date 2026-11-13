@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation",
   "description": "Feature Specification: Dynamic Capture Deprecation Branch",
   "keywords": [
@@ -9,7 +10,7 @@
     "deprecation",
     "branch"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.256Z",
+  "lastUpdated": "2026-11-13T10:05:33.381Z",
   "specId": "000",
   "folderSlug": "dynamic-capture-deprecation",
   "parentChain": [
@@ -22,6 +23,5 @@
   "memoryNameHistory": [
     "27-04-26_15-35__retroactive-migration-by-worker-1.md",
     "27-04-26_15-38__retroactive-migration-by-worker-1.md"
-  ],
-  "level": "2"
+  ]
 }

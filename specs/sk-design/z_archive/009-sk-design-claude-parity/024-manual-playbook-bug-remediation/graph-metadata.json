@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 023's first-ever full manual execution of sk-design's `manualtestingplaybook` (56 real dispatches through `cli-opencode`, `openai/gpt-5.5-fast --variant medium`) produced a genuine `NOT READY` release verdict and catalogued 8 real bugs in `023-full-manual-playbook-execution/verdict-matrix.md`'s \"Real bugs found\" section — routing misses, a skipped ALWAYS-marked resource load, an unenforced excluded-alias rule, a router-precedence loss on a brief-only authoring-boundary scenario, an intake-before-routing violation, a weak-signal transform-verb prompt producing zero skill routing, and a",
     "created_at": "2026-07-07T19:18:48.068Z",
-    "last_save_at": "2026-10-07T18:12:32.317Z",
+    "last_save_at": "2026-11-13T13:14:16.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:989cbc69848295029c39756ed790815716df7f94a6591f202b577a577e7b0904",
+    "source_fingerprint": "sha256:9bfe07dc69b38f1a88f53dfd29a5a9faf3f31852b93a90fd2b3948120f4f0680",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9b5d6f5585875f4b7fa02c0a8511c95b65caba390c5eaf49e4ee419e6d60428e",
+      "spec.md": "cc6eedf1b2670946d2e7a3716a35fdabf29f7343a910e26798dc5d0f6161fa6d",
       "plan.md": "6795567156eccad1a1eea46acd463367bb8cb2951a22c03423a95d244e232c58",
       "tasks.md": "0f6b154a866f047374fdecb14c2f1c230979264db584e55703f35945ff53a149",
       "implementation-summary.md": "83e692a7184c4739e3360d1885c3b64b10526f40059d171789723f25ebeb6373"

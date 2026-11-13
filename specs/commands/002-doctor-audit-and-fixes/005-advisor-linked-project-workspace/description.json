@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace",
-  "description": "Phase 5: advisor-linked-project-workspace",
+  "description": "`.skilled/bin/system-skill-advisor-launcher.cjs` spawns the daemon with `cwd: root`, the realpath source tree",
   "keywords": [
-    "phase",
-    "advisor-linked-project-workspace"
+    "skilled",
+    "bin",
+    "system-skill-advisor-launcher",
+    "cjs",
+    "spawns",
+    "daemon",
+    "cwd",
+    "root",
+    "realpath",
+    "source",
+    "tree"
   ],
-  "lastUpdated": "2026-11-01T11:03:50.522Z",
+  "lastUpdated": "2026-11-13T10:04:39.418Z",
   "specId": "005",
   "folderSlug": "advisor-linked-project-workspace",
   "parentChain": [
@@ -13,6 +23,5 @@
     "002-doctor-audit-and-fixes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

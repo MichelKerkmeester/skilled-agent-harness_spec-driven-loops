@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/029-comprehensive-bug-fix",
   "description": "The skills and MCP server codebase had accumulated technical debt including:",
   "keywords": [
@@ -11,7 +12,7 @@
     "debt",
     "including"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.793Z",
+  "lastUpdated": "2026-11-13T10:05:32.513Z",
   "specId": "029",
   "folderSlug": "comprehensive-bug-fix",
   "parentChain": [
@@ -21,6 +22,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

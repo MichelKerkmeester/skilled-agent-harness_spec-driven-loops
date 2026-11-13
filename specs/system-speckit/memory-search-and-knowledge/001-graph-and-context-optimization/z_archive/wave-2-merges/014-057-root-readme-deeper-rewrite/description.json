@@ -20,12 +20,13 @@
     "phase",
     "missed"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.794Z",
+  "lastUpdated": "2026-11-13T10:05:09.724Z",
   "specId": "014",
   "folderSlug": "057-root-readme-deeper-rewrite",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "z_archive",
     "wave-2-merges"
   ],

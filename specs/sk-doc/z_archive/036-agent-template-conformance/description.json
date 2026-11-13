@@ -19,11 +19,12 @@
     "confirmed",
     "defects"
   ],
-  "lastUpdated": "2026-08-29T15:12:28.325Z",
+  "lastUpdated": "2026-11-13T10:04:54.013Z",
   "specId": "036",
   "folderSlug": "agent-template-conformance",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

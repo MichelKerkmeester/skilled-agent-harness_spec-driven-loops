@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`.opencode/agents/markdown.md` and `.claude/agents/markdown.md` are the two runtime mirrors of the markdown-authoring agent, and both cite `sk-doc` packet paths directly (template paths per `/create:` command, the required-reading table, and the resource inventory)",
     "created_at": "2026-07-07T04:51:45.089Z",
-    "last_save_at": "2026-10-07T18:12:32.490Z",
+    "last_save_at": "2026-11-13T13:14:54.471Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05fb0daacf2bc783000d30067870347ea8736568dc920bf3b34358d2eb342b84",
+    "source_fingerprint": "sha256:734e5b1014fc0c4996d3b485ce1829e30f72d03782ff84bb1a5f62c22dd4d952",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "50ff6bb02dabbaa70790854884d6c2611dda713ebc7002bffb13b40274930fa6",
+      "spec.md": "ce839719b73ccead9517d515aa80395e2d086c7575c610341680af347610f898",
       "plan.md": "259ad5beb8edcbc64453550ba9c4bd281fb1396ae7833bcf0c60fb41148e13f0",
       "tasks.md": "dc09c2bd03b9e9c521647720655844ef26fd22bda02423f98f997653eac5b18c",
       "implementation-summary.md": "6c6101ab75610e44b8e953474794b6007afa44ed64b53af11e6a4a06b9cb6b76"

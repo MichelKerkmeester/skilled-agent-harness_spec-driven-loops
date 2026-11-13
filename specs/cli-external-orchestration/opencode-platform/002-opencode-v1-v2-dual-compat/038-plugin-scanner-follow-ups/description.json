@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/038-plugin-scanner-follow-ups",
-  "description": "Phase 38: plugin-scanner-follow-ups",
+  "description": "The event guard in `plugin-inventory.cjs` reports a helper that receives the event type only when the call sits in a branch test, so `const ok =",
   "keywords": [
-    "phase",
-    "plugin-scanner-follow-ups"
+    "event",
+    "guard",
+    "plugin-inventory",
+    "cjs",
+    "reports",
+    "helper",
+    "receives",
+    "type",
+    "only",
+    "call",
+    "sits",
+    "branch",
+    "test",
+    "const"
   ],
-  "lastUpdated": "2026-10-20T22:53:32.038Z",
+  "lastUpdated": "2026-11-13T10:04:37.533Z",
   "specId": "038",
   "folderSlug": "plugin-scanner-follow-ups",
   "parentChain": [
@@ -14,6 +27,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

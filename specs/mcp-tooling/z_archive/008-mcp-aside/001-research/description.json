@@ -19,11 +19,12 @@
     "code",
     "mode"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.918Z",
+  "lastUpdated": "2026-11-13T10:04:42.614Z",
   "specId": "001",
   "folderSlug": "research",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "008-mcp-aside"
   ],
   "memorySequence": 0,

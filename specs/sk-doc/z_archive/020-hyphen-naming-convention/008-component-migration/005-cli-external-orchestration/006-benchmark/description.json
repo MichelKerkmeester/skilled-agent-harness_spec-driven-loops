@@ -17,11 +17,12 @@
     "surface",
     "fixtures"
   ],
-  "lastUpdated": "2026-08-30T08:03:52.756Z",
+  "lastUpdated": "2026-11-13T10:04:53.720Z",
   "specId": "006",
   "folderSlug": "benchmark",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "005-cli-external-orchestration"

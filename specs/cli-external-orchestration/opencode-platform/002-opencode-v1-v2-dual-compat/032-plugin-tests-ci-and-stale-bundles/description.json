@@ -1,12 +1,22 @@
 {
   "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles",
-  "description": "Phase 32: plugin-tests-ci-and-stale-bundles",
+  "description": "No workflow ran `.opencode/plugins/tests/`: a grep of every workflow at `origin/main` finds no reference to the folder",
   "keywords": [
-    "phase",
-    "plugin-tests-ci-and-stale-bundles"
+    "workflow",
+    "ran",
+    "opencode",
+    "plugins",
+    "tests",
+    "grep",
+    "every",
+    "origin",
+    "main",
+    "finds",
+    "reference",
+    "folder"
   ],
-  "lastUpdated": "2026-10-20T17:15:51.809Z",
+  "lastUpdated": "2026-11-13T10:04:37.504Z",
   "specId": "032",
   "folderSlug": "plugin-tests-ci-and-stale-bundles",
   "parentChain": [

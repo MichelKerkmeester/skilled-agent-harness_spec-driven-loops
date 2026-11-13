@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation",
   "description": "The 028 playbook run surfaced 5 key findings in the `system-skill-advisor` skill: a corpus accuracy regression, PC-005 bench failures + doc gap,",
   "keywords": [
@@ -18,7 +19,7 @@
     "doc",
     "gap"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.209Z",
+  "lastUpdated": "2026-11-13T10:05:03.075Z",
   "specId": "005",
   "folderSlug": "finding-remediation",
   "parentChain": [
@@ -29,6 +30,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "26-05-26_22-20__executed-all-46-playbook-scenarios-across-9.md"
-  ],
-  "level": "2"
+  ]
 }

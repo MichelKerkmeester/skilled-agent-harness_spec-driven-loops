@@ -14,11 +14,12 @@
     "section",
     "missing"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.134Z",
+  "lastUpdated": "2026-11-13T10:04:52.347Z",
   "specId": "006",
   "folderSlug": "fix-design-command-validation",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "018-benchmark-authoring-and-validation-fixes"
   ],
   "memorySequence": 0,

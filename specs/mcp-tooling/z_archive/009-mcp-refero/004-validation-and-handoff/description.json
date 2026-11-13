@@ -18,11 +18,12 @@
     "gates",
     "run"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.948Z",
+  "lastUpdated": "2026-11-13T10:04:42.692Z",
   "specId": "004",
   "folderSlug": "validation-and-handoff",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "009-mcp-refero"
   ],
   "memorySequence": 0,

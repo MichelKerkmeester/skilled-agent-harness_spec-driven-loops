@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-code/z_archive/015-sk-code-ponytail-based-refinement",
   "description": "Packet 146 bundles the external ponytail project (`external/ponytail-main/`) and asks how its logic, hooks, etc",
   "keywords": [
@@ -13,7 +14,7 @@
     "hooks",
     "etc"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.137Z",
+  "lastUpdated": "2026-11-13T10:04:47.328Z",
   "specId": "015",
   "folderSlug": "sk-code-ponytail-based-refinement",
   "parentChain": [
@@ -24,6 +25,5 @@
   "memoryNameHistory": [
     "13-06-26_12-19__orchestrated-waves-execution-orchestrator-owns.md",
     "13-06-26_16-52__closed-out-the-packet-146-ponytail-based.md"
-  ],
-  "level": "2"
+  ]
 }

@@ -11,11 +11,12 @@
     "fail",
     "validatedocument"
   ],
-  "lastUpdated": "2026-08-28T16:24:15.238Z",
+  "lastUpdated": "2026-11-13T10:04:52.040Z",
   "specId": "020",
   "folderSlug": "command-agent-template-conformance",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent"
   ],
   "memorySequence": 0,

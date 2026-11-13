@@ -1,12 +1,19 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/008-review-advisories",
-  "description": "Phase 8: review-advisories",
+  "description": "The Claude start claim can report `PostToolUse` when a startup payload carries no `hookeventname`",
   "keywords": [
-    "phase",
-    "review-advisories"
+    "claude",
+    "start",
+    "claim",
+    "report",
+    "posttooluse",
+    "startup",
+    "payload",
+    "carries",
+    "hookeventname"
   ],
-  "lastUpdated": "2026-11-13T05:44:30.354Z",
+  "lastUpdated": "2026-11-13T10:04:41.896Z",
   "specId": "008",
   "folderSlug": "review-advisories",
   "parentChain": [

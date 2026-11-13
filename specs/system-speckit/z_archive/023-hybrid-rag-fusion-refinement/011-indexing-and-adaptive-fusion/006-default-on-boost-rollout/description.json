@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/006-default-on-boost-rollout",
   "description": "Three retrieval quality features — session boost, causal boost, and deep query expansion — are each gated behind explicit opt-in environment variables",
   "keywords": [
@@ -19,7 +20,7 @@
     "environment",
     "variables"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.538Z",
+  "lastUpdated": "2026-11-13T10:05:34.395Z",
   "specId": "006",
   "folderSlug": "default-on-boost-rollout",
   "parentChain": [
@@ -32,6 +33,5 @@
   "memoryNameHistory": [
     "01-04-26_07-35__implemented-default-on-boost-rollout-for-session.md",
     "01-04-26_08-04__implemented-default-on-boost-rollout-26-tasks.md"
-  ],
-  "level": "2"
+  ]
 }

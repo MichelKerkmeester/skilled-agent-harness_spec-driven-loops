@@ -11,11 +11,12 @@
     "content",
     "exist"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.883Z",
+  "lastUpdated": "2026-11-13T10:04:42.527Z",
   "specId": "003",
   "folderSlug": "scaffold-hub",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "007-mcp-tooling-parent"
   ],
   "memorySequence": 0,

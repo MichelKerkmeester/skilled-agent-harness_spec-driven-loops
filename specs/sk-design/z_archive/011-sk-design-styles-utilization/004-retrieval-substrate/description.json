@@ -15,11 +15,12 @@
     "styles",
     "child"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.619Z",
+  "lastUpdated": "2026-11-13T10:04:49.093Z",
   "specId": "004",
   "folderSlug": "retrieval-substrate",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "011-sk-design-styles-utilization"
   ],
   "memorySequence": 0,

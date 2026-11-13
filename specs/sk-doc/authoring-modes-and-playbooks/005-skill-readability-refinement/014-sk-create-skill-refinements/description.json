@@ -1,21 +1,22 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements",
-  "description": "sk-create-skill readability refinements: render checks, strict gate, exempt map, rewrite guard and templates",
+  "description": "The 066 readability program found 1,764 findings across 57 consolidated findings files, and most of them repeat a few rule classes that no check",
   "keywords": [
-    "sk-create-skill",
     "readability",
-    "refinements",
-    "render",
-    "checks",
-    "strict",
-    "gate",
-    "exempt",
-    "map",
-    "rewrite",
-    "guard",
-    "templates"
+    "program",
+    "found",
+    "findings",
+    "across",
+    "consolidated",
+    "files",
+    "them",
+    "repeat",
+    "rule",
+    "classes",
+    "check"
   ],
-  "lastUpdated": "2026-11-05T06:39:42.608Z",
+  "lastUpdated": "2026-11-13T10:04:51.555Z",
   "specId": "014",
   "folderSlug": "sk-create-skill-refinements",
   "parentChain": [
@@ -24,6 +25,5 @@
     "005-skill-readability-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

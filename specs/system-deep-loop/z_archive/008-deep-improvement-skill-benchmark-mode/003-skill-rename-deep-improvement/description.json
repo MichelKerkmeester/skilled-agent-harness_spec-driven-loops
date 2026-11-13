@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement",
   "description": "Rename the deep-agent-improvement skill to deep-improvement across skill dir, SKILL.md, commands, agent + runtime mirrors, advisor graph,",
   "keywords": [
@@ -15,7 +16,7 @@
     "advisor",
     "graph"
   ],
-  "lastUpdated": "2026-08-15T14:41:05.860Z",
+  "lastUpdated": "2026-11-13T10:04:56.980Z",
   "specId": "003",
   "folderSlug": "skill-rename-deep-improvement",
   "parentChain": [
@@ -24,6 +25,5 @@
     "008-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

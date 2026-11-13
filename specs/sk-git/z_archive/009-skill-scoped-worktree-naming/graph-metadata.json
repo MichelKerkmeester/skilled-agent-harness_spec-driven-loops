@@ -202,7 +202,7 @@
     ],
     "causal_summary": "sk-git's numbered `wt/{NNNN}-{name}` branch namespace carries no owner, so a GitKraken tree of dozens of `wt/`, `work/`, `system-speckit/`, `wip/`, and `backup/` branches gives no signal of who owns what",
     "created_at": "2026-07-15T04:22:47.978Z",
-    "last_save_at": "2026-10-08T19:30:18.039Z",
+    "last_save_at": "2026-11-13T13:16:55.953Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b514f4624cec85073ae899f1113240ddb16cd1d9dc6890ed6ce86f53311fcb35",
+    "source_fingerprint": "sha256:e52148e3eaf1e5e6419667b72040e0ae0e8b9799422afbe1d2cefdd3693f18bb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5965b084ac9401f4e60e27abc652d739b47727249b379d273388348e2f89330d",
       "plan.md": "dd16503e3fba74d3e2523d75d3c5841e78eec2ec4cfa27e4e9fbcd7d0413f699",
       "tasks.md": "6f251adc4305fc18ed97a26551200e7968a6dc1ec4da10cf452d1c5b1e17cb06",
-      "decision-record.md": "8fbc5b09a4b5ffe6c988d710fb8e48544cf6b3f05a9d36874ddf17927cde9048",
+      "decision-record.md": "b158a8370d5f47769bb6ade379059c84b6b3975eb84223ec53fc25e52853a96a",
       "implementation-summary.md": "383a6fbc0f7db064aa0c05ab2902a74cf129a9a7fb719ac25cc57b0b52288bac"
     },
     "last_active_child_id": null,

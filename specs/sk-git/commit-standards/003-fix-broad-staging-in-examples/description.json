@@ -1,18 +1,24 @@
 {
+  "level": "1",
   "specFolder": "sk-git/commit-standards/003-fix-broad-staging-in-examples",
-  "description": "Replace broad git add examples that sweep a shared tree in the sk-git references",
+  "description": "The sk-git skill says never to run `git add -A`, `git add .` or a broad `git add <folder>` while the tree holds unrelated changes, and to stage",
   "keywords": [
-    "replace",
-    "broad",
-    "git",
-    "examples",
-    "sweep",
-    "shared",
-    "tree",
     "sk-git",
-    "references"
+    "skill",
+    "says",
+    "never",
+    "run",
+    "git",
+    "broad",
+    "folder",
+    "while",
+    "tree",
+    "holds",
+    "unrelated",
+    "changes",
+    "stage"
   ],
-  "lastUpdated": "2026-09-29T07:19:57.941Z",
+  "lastUpdated": "2026-11-13T10:04:54.148Z",
   "specId": "003",
   "folderSlug": "fix-broad-staging-in-examples",
   "parentChain": [
@@ -20,6 +26,5 @@
     "commit-standards"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

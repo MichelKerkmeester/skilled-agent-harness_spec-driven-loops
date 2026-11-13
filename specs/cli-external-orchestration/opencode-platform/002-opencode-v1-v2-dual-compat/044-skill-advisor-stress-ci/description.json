@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci",
-  "description": "Phase 44: skill-advisor-stress-ci",
+  "description": "`.github/workflows/skill-advisor-stress.yml` has failed every run since 2026-10-19, last green at `be234e6f94` and first red at `fe1f8a9a53`",
   "keywords": [
-    "phase",
-    "skill-advisor-stress-ci"
+    "github",
+    "workflows",
+    "skill-advisor-stress",
+    "yml",
+    "failed",
+    "every",
+    "run",
+    "since",
+    "last",
+    "green",
+    "be234e6f94",
+    "first",
+    "red",
+    "fe1f8a9a53"
   ],
-  "lastUpdated": "2026-10-21T07:18:04.907Z",
+  "lastUpdated": "2026-11-13T10:04:37.589Z",
   "specId": "044",
   "folderSlug": "skill-advisor-stress-ci",
   "parentChain": [
@@ -14,6 +27,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

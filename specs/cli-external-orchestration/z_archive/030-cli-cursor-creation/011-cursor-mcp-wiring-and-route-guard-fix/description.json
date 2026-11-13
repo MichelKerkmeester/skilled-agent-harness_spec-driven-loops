@@ -18,11 +18,12 @@
     "need",
     "credentials"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.193Z",
+  "lastUpdated": "2026-11-13T10:04:38.680Z",
   "specId": "011",
   "folderSlug": "cursor-mcp-wiring-and-route-guard-fix",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "030-cli-cursor-creation"
   ],
   "memorySequence": 0,

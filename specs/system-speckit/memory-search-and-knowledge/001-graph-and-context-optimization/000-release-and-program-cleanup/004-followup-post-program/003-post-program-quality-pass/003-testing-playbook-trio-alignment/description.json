@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/003-testing-playbook-trio-alignment",
   "description": "Packets 031-036 shipped or corrected operator-visible surfaces, but the reusable manual testing playbooks did not yet give operators copy-pasteable",
   "keywords": [
@@ -15,7 +16,7 @@
     "operators",
     "copy-pasteable"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.773Z",
+  "lastUpdated": "2026-11-13T10:05:03.952Z",
   "specId": "003",
   "folderSlug": "testing-playbook-trio-alignment",
   "parentChain": [
@@ -29,6 +30,5 @@
   "memorySequence": 2,
   "memoryNameHistory": [
     "29-04-26_19-38__resource-map-authored-and-memory-finalization.md"
-  ],
-  "level": 2
+  ]
 }

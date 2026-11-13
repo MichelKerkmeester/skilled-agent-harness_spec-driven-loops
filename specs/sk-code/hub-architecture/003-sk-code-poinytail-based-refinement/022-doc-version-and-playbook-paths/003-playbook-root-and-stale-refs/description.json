@@ -1,12 +1,24 @@
 {
   "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/003-playbook-root-and-stale-refs",
-  "description": "Phase 3: playbook-root-and-stale-refs",
+  "description": "`backtickPathChecks` in `validate-playbook-package.cjs` runs inside the operator scenario loop only, so a root playbook file can cite a path that no",
   "keywords": [
-    "phase",
-    "playbook-root-and-stale-refs"
+    "backtickpathchecks",
+    "validate-playbook-package",
+    "cjs",
+    "runs",
+    "inside",
+    "operator",
+    "scenario",
+    "loop",
+    "only",
+    "root",
+    "playbook",
+    "file",
+    "cite",
+    "path"
   ],
-  "lastUpdated": "2026-10-12T10:45:39.190Z",
+  "lastUpdated": "2026-11-13T10:04:46.582Z",
   "specId": "003",
   "folderSlug": "playbook-root-and-stale-refs",
   "parentChain": [

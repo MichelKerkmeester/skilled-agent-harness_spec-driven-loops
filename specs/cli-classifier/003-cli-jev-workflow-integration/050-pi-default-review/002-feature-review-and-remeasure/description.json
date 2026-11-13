@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/050-pi-default-review/002-feature-review-and-remeasure",
-  "description": "Phase 2: feature-review-and-remeasure",
+  "description": "The nine features with a measured gain or a near miss were last measured through the jev CLI, several on built rows, and 017 dropped from keep to stop",
   "keywords": [
-    "phase",
-    "feature-review-and-remeasure"
+    "nine",
+    "features",
+    "measured",
+    "gain",
+    "near",
+    "miss",
+    "last",
+    "jev",
+    "cli",
+    "several",
+    "rows",
+    "dropped",
+    "keep",
+    "stop"
   ],
-  "lastUpdated": "2026-10-03T17:39:28.447Z",
+  "lastUpdated": "2026-11-13T10:04:36.788Z",
   "specId": "002",
   "folderSlug": "feature-review-and-remeasure",
   "parentChain": [
@@ -14,6 +27,5 @@
     "050-pi-default-review"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

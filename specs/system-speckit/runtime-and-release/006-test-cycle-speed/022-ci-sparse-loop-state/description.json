@@ -1,12 +1,19 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state",
-  "description": "Phase 22: ci-sparse-loop-state",
+  "description": "88,151 of the 134,068 tracked files are loop state under `specs/`, and a full checkout fetches all of them",
   "keywords": [
-    "phase",
-    "ci-sparse-loop-state"
+    "tracked",
+    "files",
+    "loop",
+    "state",
+    "specs",
+    "full",
+    "checkout",
+    "fetches",
+    "them"
   ],
-  "lastUpdated": "2026-11-13T05:02:58.646Z",
+  "lastUpdated": "2026-11-13T10:05:23.871Z",
   "specId": "022",
   "folderSlug": "ci-sparse-loop-state",
   "parentChain": [

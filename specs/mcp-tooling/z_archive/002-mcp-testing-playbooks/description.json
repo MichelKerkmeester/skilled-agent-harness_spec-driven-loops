@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "mcp-tooling/z_archive/002-mcp-testing-playbooks",
   "description": "Three of the four MCP- skills (`mcp-chrome-devtools`, `mcp-clickup`, `mcp-code-mode`) ship without a manual testing playbook",
   "keywords": [
@@ -15,7 +16,7 @@
     "testing",
     "playbook"
   ],
-  "lastUpdated": "2026-08-30T05:43:10.233Z",
+  "lastUpdated": "2026-11-13T10:04:42.494Z",
   "specId": "002",
   "folderSlug": "mcp-testing-playbooks",
   "parentChain": [
@@ -25,6 +26,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "26-04-26_14-17__spec-049-complete-authored-3-new-mcp-testing.md"
-  ],
-  "level": "3"
+  ]
 }

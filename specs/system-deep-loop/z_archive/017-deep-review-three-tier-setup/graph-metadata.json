@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/017-deep-review-three-tier-setup",
   "spec_folder": "system-deep-loop/z_archive/017-deep-review-three-tier-setup",
-  "parent_id": "system-deep-loop/z_archive",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [],
   "manual": {
     "depends_on": [],

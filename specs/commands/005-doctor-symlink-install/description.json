@@ -1,26 +1,27 @@
 {
+  "level": "2",
   "specFolder": "commands/005-doctor-symlink-install",
-  "description": "Doctor symlink and install commands: link Skilled into user project repos and guide setup",
+  "description": "People who use Skilled in their own project repositories link the framework in by hand, and two link shapes have grown up side by side",
   "keywords": [
-    "doctor",
-    "symlink",
-    "install",
-    "commands",
-    "link",
+    "people",
     "skilled",
-    "user",
+    "own",
     "project",
-    "repos",
-    "guide",
-    "setup"
+    "repositories",
+    "link",
+    "framework",
+    "hand",
+    "two",
+    "shapes",
+    "grown",
+    "side"
   ],
-  "lastUpdated": "2026-10-31T13:38:32.181Z",
+  "lastUpdated": "2026-11-13T10:04:39.666Z",
   "specId": "005",
   "folderSlug": "doctor-symlink-install",
   "parentChain": [
     "commands"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

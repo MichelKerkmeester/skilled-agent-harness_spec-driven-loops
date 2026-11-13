@@ -9,11 +9,12 @@
     "dispatch",
     "targets"
   ],
-  "lastUpdated": "2026-08-29T12:13:37.122Z",
+  "lastUpdated": "2026-11-13T10:04:38.954Z",
   "specId": "056",
   "folderSlug": "roster-drop-deepseek-api-pro-terra",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

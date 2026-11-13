@@ -15,11 +15,12 @@
     "found",
     "mode"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.473Z",
+  "lastUpdated": "2026-11-13T10:04:42.837Z",
   "specId": "014",
   "folderSlug": "health-md-reference-remediation",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "013-mcp-obsidian"
   ],
   "memorySequence": 0,

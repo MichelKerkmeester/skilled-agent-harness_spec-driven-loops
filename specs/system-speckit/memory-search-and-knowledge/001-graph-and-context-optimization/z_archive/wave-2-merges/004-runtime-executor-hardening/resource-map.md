@@ -10,7 +10,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening"
+    packet_pointer: "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening"
     last_updated_at: "2026-04-27T15:03:58Z"
     last_updated_by: "copilot-gpt-5.4"
     recent_action: "Cataloged parent and direct phase-child artifacts in resource-map.md"

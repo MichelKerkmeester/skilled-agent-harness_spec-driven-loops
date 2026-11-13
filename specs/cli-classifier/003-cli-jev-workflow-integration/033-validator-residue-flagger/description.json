@@ -1,16 +1,22 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/033-validator-residue-flagger",
-  "description": "Test offline whether a Jev or Deem noul flags correctness and traceability defects in document passages better than the review table does today, which is not at all.",
+  "description": "A document can pass every validator and still hold a correctness or traceability defect, because no validator checks either (`research.md:475`)",
   "keywords": [
-    "r26",
-    "jev",
-    "deem",
-    "offline",
+    "document",
+    "pass",
+    "every",
     "validator",
-    "residue",
-    "flagger"
+    "still",
+    "hold",
+    "correctness",
+    "traceability",
+    "defect",
+    "because",
+    "checks",
+    "research"
   ],
-  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "lastUpdated": "2026-11-13T10:04:36.485Z",
   "specId": "033",
   "folderSlug": "validator-residue-flagger",
   "parentChain": [
@@ -18,6 +24,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

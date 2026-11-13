@@ -1,13 +1,24 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/004-portable-code-modes/007-ci-repo-profile",
-  "description": "CI repository profile for sk-code-ci and doctor ci",
+  "description": "`ci-report.cjs` reads switches only through the `SKILLEDCI` name pattern, lists runs on `main`, exempts `dependabot-auto-merge.yml` by name",
   "keywords": [
-    "repository",
-    "profile",
-    "sk-code-ci",
-    "doctor"
+    "ci-report",
+    "cjs",
+    "reads",
+    "switches",
+    "only",
+    "skilledci",
+    "name",
+    "pattern",
+    "lists",
+    "runs",
+    "main",
+    "exempts",
+    "dependabot-auto-merge",
+    "yml"
   ],
-  "lastUpdated": "2026-10-27T21:49:45.524Z",
+  "lastUpdated": "2026-11-13T10:04:47.173Z",
   "specId": "007",
   "folderSlug": "ci-repo-profile",
   "parentChain": [
@@ -16,6 +27,5 @@
     "004-portable-code-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

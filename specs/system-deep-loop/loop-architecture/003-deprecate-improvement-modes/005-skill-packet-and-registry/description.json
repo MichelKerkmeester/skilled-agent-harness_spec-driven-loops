@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/003-deprecate-improvement-modes/005-skill-packet-and-registry",
-  "description": "Phase 4: skill-packet-and-registry",
+  "description": "`mode-registry.json` is the single source the advisor maps, the drift guard, the compiled-routing compiler and both plugin guards read",
   "keywords": [
-    "phase",
-    "skill-packet-and-registry"
+    "mode-registry",
+    "json",
+    "single",
+    "source",
+    "advisor",
+    "maps",
+    "drift",
+    "guard",
+    "compiled-routing",
+    "compiler",
+    "plugin",
+    "guards",
+    "read"
   ],
-  "lastUpdated": "2026-10-10T18:23:52.245Z",
+  "lastUpdated": "2026-11-13T10:04:56.271Z",
   "specId": "005",
   "folderSlug": "skill-packet-and-registry",
   "parentChain": [
@@ -14,6 +26,5 @@
     "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -98,16 +98,16 @@
     ],
     "causal_summary": "`deep-loop-workflows` (the public, advisor-routable parent hub — 4 mode packets, ~1.1.0.0) and `deep-loop-runtime` (its \"frozen, MCP-free backend\" — v1.5.0.1, no MCP tools, own build tooling) are two separate top-level skills today, even though `051-deep-loop-parent-skill-alignment` already established that `deep-loop-workflows` is the canonical parent-skill hub example and explicitly deferred merging runtime in (\"R4: runtime reconciliation.",
     "created_at": "2026-07-08T04:36:15.214Z",
-    "last_save_at": "2026-10-07T18:15:17.061Z",
+    "last_save_at": "2026-11-13T13:18:27.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8f955d733b1810826ef5139c627d2929b35fb0af3395f6a241a2fe27867907bb",
+    "source_fingerprint": "sha256:8f7ff666cfd5e57abcad7df986d0a8d50d645c61e9cf7300580042db92657476",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eb5c0a2581b5c491ee9228871fb9c1dae8941cbd140f7b8ff488bc1e249274a2"
+      "spec.md": "88e2ba4710b29d0e860775964900e47b2c0d7355a4fc0610e492fb3efde9c659"
     },
     "last_active_child_id": "system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood",
     "last_active_at": "2026-07-11T08:51:13.833Z"

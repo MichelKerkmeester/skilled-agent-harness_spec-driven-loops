@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity",
-  "parent_id": "sk-design",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
     "sk-design/z_archive/009-sk-design-claude-parity/001-baseline-ownership-gate",
     "sk-design/z_archive/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",

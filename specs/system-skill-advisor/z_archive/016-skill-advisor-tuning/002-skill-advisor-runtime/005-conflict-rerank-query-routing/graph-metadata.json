@@ -146,7 +146,7 @@
     ],
     "causal_summary": "The Skill Advisor fuses five lanes, `explicitauthor 0.42 / lexical 0.28 / graphcausal 0.13 / derivedgenerated 0.12 / semanticshadow 0.05` (`lane-registry.ts:8-19`), via a raw-score weighted SUM by default, with an opt-in RRF spine behind `SPECKITADVISORRRFFUSION`",
     "created_at": "2026-06-19T06:06:27.154Z",
-    "last_save_at": "2026-10-07T18:16:06.022Z",
+    "last_save_at": "2026-11-13T13:19:06.094Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -155,10 +155,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b6c62d4ecb5407264aba1aec632fb8630a512bf79ca4d5f85ead55ea82968b75",
+    "source_fingerprint": "sha256:3082dcfc4ec99f360d40377af40047b0195b0f8578cdb92928c8a044c5e68920",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "28f18a93a7e3a08d6ecda454e3c1b1c988087d49d59f5854992818811351854c",
+      "spec.md": "299ec0f279d029372352f2a79e86e420ca6d1bba1e3407ef4a6e2c7728ef12f0",
       "plan.md": "b46042e9defd00c1c8f4e7a066fb907c8f69907f2a8fe29d47f5324015da6806",
       "tasks.md": "94b0fb1b3f92b291b9cc0403019d42ffbf0375abc20fe29a64ce6f20d205203d",
       "implementation-summary.md": "a187446b51e7eaebce5257c6c96cf97860dfef7fbf7392ae044d082f24931e0d"

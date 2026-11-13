@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/004-maintenance",
   "description": "The feature catalog for Maintenance has evolved significantly",
   "keywords": [
@@ -8,7 +9,7 @@
     "evolved",
     "significantly"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.177Z",
+  "lastUpdated": "2026-11-13T10:05:33.212Z",
   "specId": "004",
   "folderSlug": "maintenance",
   "parentChain": [
@@ -18,6 +19,5 @@
     "007-code-audit-per-feature-catalog"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

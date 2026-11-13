@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/009-sprint-8-deferred-features",
   "description": "Several lower-priority but still valuable items were deferred in earlier sprints to protect delivery of core retrieval correctness and performance",
   "keywords": [
@@ -17,7 +18,7 @@
     "correctness",
     "performance"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.074Z",
+  "lastUpdated": "2026-11-13T10:05:33.022Z",
   "specId": "009",
   "folderSlug": "sprint-8-deferred-features",
   "parentChain": [
@@ -27,6 +28,5 @@
     "001-hybrid-rag-fusion-epic"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

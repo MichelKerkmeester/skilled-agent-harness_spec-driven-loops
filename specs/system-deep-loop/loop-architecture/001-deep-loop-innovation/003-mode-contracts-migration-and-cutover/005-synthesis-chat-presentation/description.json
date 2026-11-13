@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/005-synthesis-chat-presentation",
   "description": "A run could spend twenty minutes producing a ranked set of findings and then report an iteration count, four file paths and a status token",
   "keywords": [
@@ -19,7 +20,7 @@
     "status",
     "token"
   ],
-  "lastUpdated": "2026-09-20T08:32:53.574Z",
+  "lastUpdated": "2026-11-13T10:04:55.531Z",
   "specId": "005",
   "folderSlug": "synthesis-chat-presentation",
   "parentChain": [
@@ -29,6 +30,5 @@
     "003-mode-contracts-migration-and-cutover"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

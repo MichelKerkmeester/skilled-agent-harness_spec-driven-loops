@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/022-align-system-spec-kit",
-  "description": "Phase 22: align-system-spec-kit",
+  "description": "The router move changed where the system-spec-kit machine router lives, but the docs and some scripts around it were written for the old place",
   "keywords": [
-    "phase",
-    "align-system-spec-kit"
+    "router",
+    "move",
+    "changed",
+    "system-spec-kit",
+    "machine",
+    "lives",
+    "docs",
+    "scripts",
+    "around",
+    "written",
+    "old",
+    "place"
   ],
-  "lastUpdated": "2026-10-29T17:20:41.391Z",
+  "lastUpdated": "2026-11-13T10:04:51.895Z",
   "specId": "022",
   "folderSlug": "align-system-spec-kit",
   "parentChain": [
@@ -16,6 +27,5 @@
     "014-skill-router-files"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/011-sk-create-repo-rule",
-  "description": "Phase 11: sk-create-repo-rule",
+  "description": "RRD-004's refusal invites the user to name a present-day failure, and the follow-up that makes the rule re-testable is unchecked",
   "keywords": [
-    "phase",
-    "sk-create-repo-rule"
+    "rrd-004",
+    "refusal",
+    "invites",
+    "user",
+    "name",
+    "present-day",
+    "failure",
+    "follow-up",
+    "rule",
+    "re-testable",
+    "unchecked"
   ],
-  "lastUpdated": "2026-11-02T18:33:54.596Z",
+  "lastUpdated": "2026-11-13T10:04:50.128Z",
   "specId": "011",
   "folderSlug": "sk-create-repo-rule",
   "parentChain": [
@@ -15,6 +25,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

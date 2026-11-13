@@ -13,11 +13,12 @@
     "lowercase",
     "files"
   ],
-  "lastUpdated": "2026-08-30T08:03:53.576Z",
+  "lastUpdated": "2026-11-13T10:04:53.778Z",
   "specId": "001",
   "folderSlug": "fix-shared-standard-and-wire-guards",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "014-naming-standard-hardening"
   ],

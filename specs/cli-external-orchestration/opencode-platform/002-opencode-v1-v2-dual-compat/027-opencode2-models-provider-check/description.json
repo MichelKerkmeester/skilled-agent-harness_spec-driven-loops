@@ -1,12 +1,19 @@
 {
   "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check",
-  "description": "Phase 27: opencode2-models-provider-check",
+  "description": "On OpenCode 2.0.32, `models` takes no positional argument: `opencode2 models opencode-go` exits 1 with `Unexpected positional argument: \"opencode-go\"`",
   "keywords": [
-    "phase",
-    "opencode2-models-provider-check"
+    "opencode",
+    "models",
+    "takes",
+    "positional",
+    "argument",
+    "opencode2",
+    "opencode-go",
+    "exits",
+    "unexpected"
   ],
-  "lastUpdated": "2026-10-20T13:26:59.737Z",
+  "lastUpdated": "2026-11-13T10:04:37.475Z",
   "specId": "027",
   "folderSlug": "opencode2-models-provider-check",
   "parentChain": [

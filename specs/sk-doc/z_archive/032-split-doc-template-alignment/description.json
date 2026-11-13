@@ -15,11 +15,12 @@
     "code-webflow",
     "code-quality"
   ],
-  "lastUpdated": "2026-08-29T15:04:55.418Z",
+  "lastUpdated": "2026-11-13T10:04:54.008Z",
   "specId": "032",
   "folderSlug": "split-doc-template-alignment",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "`glm-5.2` is registered in Phase 001 with a reasoned-but-unverified framework: `recommendedframeworks.primary` is `craft` and `status` is `default-unverified` (chosen from Z.AI prompting guidance, not a benchmark)",
     "created_at": "2026-06-28T10:15:17.430Z",
-    "last_save_at": "2026-08-30T15:39:08.834Z",
+    "last_save_at": "2026-11-13T13:13:05.612Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec8e94a9e5ed890ad61b537d19d6ff6e5f2267e6371150a0c800c9fe405ebb73",
+    "source_fingerprint": "sha256:d0163e0891f72ab0ebf88ba4100b4a0a6400dedf59b1281db69289930f098616",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "57355adc1305e61af0b208d0b0b14557d64a66b7c6f1e10d77f5a216d10a9e04",
+      "spec.md": "bf50f24fa51941c5b9e96ef7aa782f468344d3e6549856110cc724a1d79ae477",
       "plan.md": "b210ab204c334da332bb232579a6a60cec693eed799df1d28defaf1cad929cdc",
       "tasks.md": "2c870f1e4098927e1ee131dc26d9c661b66419c6ae87a5b2dd4db392b63c13c6",
       "implementation-summary.md": "9eb2af9d4d77a32d879979c42dc8238215dbb2e80771fc94f94b41bc6cfc3752"

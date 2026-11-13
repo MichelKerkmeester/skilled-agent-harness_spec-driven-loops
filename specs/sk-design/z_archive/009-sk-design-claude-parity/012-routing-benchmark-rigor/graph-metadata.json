@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The Phase 012 packet still described future work as \"Planned / Not Started\" even though a real benchmark run already exists and passed at `.opencode/skills/sk-design/benchmark/reports/2026-07-06--after-012-routing-rigor--router/report.{json,md}`",
     "created_at": "2026-07-06T04:40:02.795Z",
-    "last_save_at": "2026-10-07T18:11:40.313Z",
+    "last_save_at": "2026-11-13T13:14:11.102Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:11eea19f923810b6761014919d96d99181bed7262705b211fc37a7e2c9124927",
+    "source_fingerprint": "sha256:3151069912b26d765751c556f1cd26314af0a4a84d5216781ebf3b19234186e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0d4c52e01506e93485f120106e89b59becc0ed1cb1c444d3ed210f57a1b2b834",
+      "spec.md": "10d02c000e26ee3f9402d49ecf61daa1c3319dc7c06666a49ec6b3641eada6c5",
       "plan.md": "0e00130168db84a481eb92aadf512e1207604faede94a7bcda0df681bba6ff14",
       "tasks.md": "d01bcd32ab7600adb4230ad977909922926e193edd2bd8114efb1bc89894464f",
-      "decision-record.md": "6fb93260d0defbbc6582f30a6efe78b59c7248e2297c72cc997862cbfa793775",
+      "decision-record.md": "a13bb0bd03d619ab1b3b250e649a1dd4eaedf0c9543591571f9f9390a0ae676f",
       "implementation-summary.md": "7f8c2e18163f9dbe9ceaa4790e5ddbec99f68fc11fe1f1ed1d19d526eb6b9504"
     },
     "last_active_child_id": null,

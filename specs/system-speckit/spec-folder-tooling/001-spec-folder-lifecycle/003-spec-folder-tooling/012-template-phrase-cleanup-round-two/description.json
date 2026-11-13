@@ -1,11 +1,27 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/012-template-phrase-cleanup-round-two",
-  "description": "Phase 12: template-phrase-cleanup-round-two",
+  "description": "45 live files keep two or three template defaults beside an author phrase, because Phase 11 replaced only the exact four-line block",
   "keywords": [
+    "live",
+    "files",
+    "keep",
+    "two",
+    "three",
+    "template",
+    "defaults",
+    "beside",
+    "author",
+    "phrase",
+    "because",
     "phase",
-    "template-phrase-cleanup-round-two"
+    "replaced",
+    "only",
+    "exact",
+    "four-line",
+    "block"
   ],
-  "lastUpdated": "2026-10-07T14:47:33.400Z",
+  "lastUpdated": "2026-11-13T10:05:31.540Z",
   "specId": "012",
   "folderSlug": "template-phrase-cleanup-round-two",
   "parentChain": [
@@ -15,6 +31,5 @@
     "003-spec-folder-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

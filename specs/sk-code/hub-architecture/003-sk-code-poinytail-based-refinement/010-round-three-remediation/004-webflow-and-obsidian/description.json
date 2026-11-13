@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/010-round-three-remediation/004-webflow-and-obsidian",
-  "description": "Phase 4: webflow-and-obsidian",
+  "description": "The five copy-paste templates under `sk-code-webflow/assets/templates/` cite `references/webflow/...` in nine places, and that folder does not exist,",
   "keywords": [
-    "phase",
-    "webflow-and-obsidian"
+    "five",
+    "copy-paste",
+    "templates",
+    "sk-code-webflow",
+    "assets",
+    "cite",
+    "references",
+    "webflow",
+    "nine",
+    "places",
+    "folder",
+    "exist"
   ],
-  "lastUpdated": "2026-10-10T10:07:20.951Z",
+  "lastUpdated": "2026-11-13T10:04:45.675Z",
   "specId": "004",
   "folderSlug": "webflow-and-obsidian",
   "parentChain": [
@@ -15,6 +26,5 @@
     "010-round-three-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

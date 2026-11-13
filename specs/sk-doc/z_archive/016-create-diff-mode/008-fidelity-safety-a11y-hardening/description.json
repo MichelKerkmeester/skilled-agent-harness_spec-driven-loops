@@ -18,11 +18,12 @@
     "against",
     "source"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.704Z",
+  "lastUpdated": "2026-11-13T10:04:52.108Z",
   "specId": "008",
   "folderSlug": "fidelity-safety-a11y-hardening",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode"
   ],
   "memorySequence": 0,

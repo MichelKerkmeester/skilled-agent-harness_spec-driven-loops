@@ -14,11 +14,12 @@
     "real",
     "command"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.210Z",
+  "lastUpdated": "2026-11-13T10:04:54.403Z",
   "specId": "003",
   "folderSlug": "preflight-hook",
   "parentChain": [
     "sk-git",
+    "z_archive",
     "016-git-action-advisory-hook"
   ],
   "memorySequence": 1,

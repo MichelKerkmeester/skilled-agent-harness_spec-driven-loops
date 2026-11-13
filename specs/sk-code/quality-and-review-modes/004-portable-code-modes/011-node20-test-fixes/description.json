@@ -1,17 +1,18 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/004-portable-code-modes/011-node20-test-fixes",
-  "description": "Node 20 test fixes for the advisor plugin suite and the parallel node check helper",
+  "description": "Two test files fail on Node 20.19.5 and pass on Node 22.23.1 and 26.8.2, on unchanged main",
   "keywords": [
-    "node",
+    "two",
     "test",
-    "advisor",
-    "plugin",
-    "suite",
-    "parallel",
-    "check",
-    "helper"
+    "files",
+    "fail",
+    "node",
+    "pass",
+    "unchanged",
+    "main"
   ],
-  "lastUpdated": "2026-10-27T20:48:44.843Z",
+  "lastUpdated": "2026-11-13T10:04:47.184Z",
   "specId": "011",
   "folderSlug": "node20-test-fixes",
   "parentChain": [
@@ -20,6 +21,5 @@
     "004-portable-code-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

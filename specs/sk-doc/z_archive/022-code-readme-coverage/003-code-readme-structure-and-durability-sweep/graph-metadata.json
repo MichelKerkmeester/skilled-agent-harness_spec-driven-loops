@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Four shapes repeat, and their counts overlap because most files carry more than one:",
     "created_at": "2026-07-30T18:58:50.819Z",
-    "last_save_at": "2026-11-10T05:27:35.730Z",
+    "last_save_at": "2026-11-13T13:16:28.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:21ea517aaf9e43bc32eb82b1dd5715324b07708a23c21315722c897cf90cd02c",
+    "source_fingerprint": "sha256:f063dd48a579b7f8b31dfebe7a4fda87f97b5869451f074eb9efd38c8bdb2c87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0cb9a9215b8d543630f77206f82b20730711d0caf8db152043c4afae77d9a6c0",
       "plan.md": "51c4ec9971206229c0cede7e90442b25b74c9183e476fd61a3607b8071518b25",
-      "tasks.md": "fb7b6c1cd5ded641f1cc87fb21a2a38092c90180173483794ba6c417368dda91",
+      "tasks.md": "da1e7cc792f913c5b43f4addd25e79be8d17664dd372dde817ce19b1f892560e",
       "decision-record.md": "ce069ff0d161a98eb6e9bb271f43011d6d2585674e415522573abe2740fe9dd4"
     },
     "last_active_child_id": null,

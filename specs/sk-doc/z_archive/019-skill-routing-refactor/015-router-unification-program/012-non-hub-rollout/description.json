@@ -14,11 +14,12 @@
     "policy",
     "contract"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.695Z",
+  "lastUpdated": "2026-11-13T10:04:52.954Z",
   "specId": "012",
   "folderSlug": "non-hub-rollout",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program"
   ],

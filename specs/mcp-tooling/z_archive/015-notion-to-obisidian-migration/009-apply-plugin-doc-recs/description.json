@@ -18,11 +18,12 @@
     "never",
     "author"
   ],
-  "lastUpdated": "2026-08-23T05:57:12.791Z",
+  "lastUpdated": "2026-11-13T10:04:43.099Z",
   "specId": "009",
   "folderSlug": "apply-plugin-doc-recs",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "015-notion-to-obisidian-migration"
   ],
   "memorySequence": 0,

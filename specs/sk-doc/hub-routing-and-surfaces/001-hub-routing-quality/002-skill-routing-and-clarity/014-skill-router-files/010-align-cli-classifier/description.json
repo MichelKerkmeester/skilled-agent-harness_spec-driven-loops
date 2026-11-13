@@ -1,11 +1,15 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/010-align-cli-classifier",
-  "description": "Phase 10: align-cli-classifier",
+  "description": "The machine router of cli-classifier moved from SKILL.md to ROUTER.md",
   "keywords": [
-    "phase",
-    "align-cli-classifier"
+    "machine",
+    "router",
+    "cli-classifier",
+    "moved",
+    "skill"
   ],
-  "lastUpdated": "2026-10-29T17:20:34.352Z",
+  "lastUpdated": "2026-11-13T10:04:51.880Z",
   "specId": "010",
   "folderSlug": "align-cli-classifier",
   "parentChain": [
@@ -16,6 +20,5 @@
     "014-skill-router-files"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/002-skill-review-post-022",
   "description": "After the `022-hybrid-rag-fusion` root packet moved to a coordination-root model, the `system-spec-kit` documentation still taught older navigation,",
   "keywords": [
@@ -15,7 +16,7 @@
     "older",
     "navigation"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.389Z",
+  "lastUpdated": "2026-11-13T10:05:34.101Z",
   "specId": "002",
   "folderSlug": "skill-review-post-022",
   "parentChain": [
@@ -27,6 +28,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "25-03-26_16-24__deep-review-5-iterations-gpt-5-4-via-cli-copilot.md"
-  ],
-  "level": "2"
+  ]
 }

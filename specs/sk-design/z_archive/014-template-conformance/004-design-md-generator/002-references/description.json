@@ -18,11 +18,12 @@
     "vercel",
     "carrying"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.293Z",
+  "lastUpdated": "2026-11-13T10:04:49.474Z",
   "specId": "002",
   "folderSlug": "references",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance",
     "004-design-md-generator"
   ],

@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server",
   "description": "Independent gpt-5.5 deep-review audit of the system-spec-kit MCP server infrastructure OUTSIDE the search pipeline (scope A) and the",
   "keywords": [
@@ -15,18 +16,18 @@
     "pipeline",
     "scope"
   ],
-  "lastUpdated": "2026-08-15T14:41:12.883Z",
+  "lastUpdated": "2026-11-13T10:05:11.897Z",
   "specId": "",
   "folderSlug": "c-rest-of-server",
   "parentChain": [
     "system-speckit",
-    "027-xce-research-based-refinement",
+    "memory-search-and-knowledge",
+    "002-xce-research-based-refinement",
     "005-verification-and-remediation",
     "006-deep-review-017-021-remediation",
     "review-r2",
     "scopes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

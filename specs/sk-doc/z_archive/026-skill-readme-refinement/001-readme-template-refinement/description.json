@@ -15,11 +15,12 @@
     "mcp-obsidian",
     "pilot"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.409Z",
+  "lastUpdated": "2026-11-13T10:04:53.842Z",
   "specId": "001",
   "folderSlug": "readme-template-refinement",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement"
   ],
   "memorySequence": 0,

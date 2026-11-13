@@ -1,11 +1,24 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/011-spec-kit-doc-drift",
-  "description": "Phase 11: spec-kit-doc-drift",
+  "description": "The v4.0.0.0 note says the completion gate refuses a packet whose changed files fall outside its spec, driven by `SYSTEMSCOPECHANGEDFILES`",
   "keywords": [
-    "phase",
-    "spec-kit-doc-drift"
+    "note",
+    "says",
+    "completion",
+    "gate",
+    "refuses",
+    "packet",
+    "whose",
+    "changed",
+    "files",
+    "fall",
+    "outside",
+    "spec",
+    "driven",
+    "systemscopechangedfiles"
   ],
-  "lastUpdated": "2026-11-08T23:39:02.828Z",
+  "lastUpdated": "2026-11-13T10:05:23.493Z",
   "specId": "011",
   "folderSlug": "spec-kit-doc-drift",
   "parentChain": [
@@ -14,6 +27,5 @@
     "004-v4-release-line-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

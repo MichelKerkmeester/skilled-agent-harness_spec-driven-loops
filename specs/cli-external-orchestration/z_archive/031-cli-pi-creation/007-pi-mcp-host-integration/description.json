@@ -16,11 +16,12 @@
     "claude",
     "code"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.214Z",
+  "lastUpdated": "2026-11-13T10:04:38.704Z",
   "specId": "007",
   "folderSlug": "pi-mcp-host-integration",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "031-cli-pi-creation"
   ],
   "memorySequence": 0,

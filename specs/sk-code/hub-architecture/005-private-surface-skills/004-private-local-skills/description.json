@@ -1,11 +1,21 @@
 {
+  "level": "3",
   "specFolder": "sk-code/hub-architecture/005-private-surface-skills/004-private-local-skills",
-  "description": "Phase 4: private-local-skills",
+  "description": "The shipped sk-code hub carried two large evidence surfaces, `.skilled/skills/sk-code/sk-code-webflow/` (1.5M) and",
   "keywords": [
-    "phase",
-    "private-local-skills"
+    "shipped",
+    "sk-code",
+    "hub",
+    "carried",
+    "two",
+    "large",
+    "evidence",
+    "surfaces",
+    "skilled",
+    "skills",
+    "sk-code-webflow"
   ],
-  "lastUpdated": "2026-10-23T07:03:40.843Z",
+  "lastUpdated": "2026-11-13T10:04:46.963Z",
   "specId": "004",
   "folderSlug": "private-local-skills",
   "parentChain": [
@@ -14,6 +24,5 @@
     "005-private-surface-skills"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

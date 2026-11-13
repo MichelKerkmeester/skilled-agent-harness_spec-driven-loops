@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/001-documentation-code-alignment",
   "description": "Phase 020 shipped the skill-advisor hook surface across 4 runtimes (Claude/Gemini/Copilot/Codex) with 11 new lib files, 4 hook adapters, 11 test",
   "keywords": [
@@ -19,7 +20,7 @@
     "adapters",
     "test"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.134Z",
+  "lastUpdated": "2026-11-13T10:05:02.990Z",
   "specId": "001",
   "folderSlug": "documentation-code-alignment",
   "parentChain": [
@@ -28,6 +29,5 @@
     "008-skill-advisor-documentation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

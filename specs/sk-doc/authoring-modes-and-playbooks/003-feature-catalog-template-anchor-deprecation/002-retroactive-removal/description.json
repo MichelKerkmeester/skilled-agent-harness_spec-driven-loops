@@ -1,11 +1,20 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/003-feature-catalog-template-anchor-deprecation/002-retroactive-removal",
-  "description": "Phase 2: retroactive-removal",
+  "description": "A census before the sweep found 548 feature catalog files holding the comment: 529 with `skillassetfeaturecatalog` and 19 in `mcp-aside-devtools` with",
   "keywords": [
-    "phase",
-    "retroactive-removal"
+    "census",
+    "sweep",
+    "found",
+    "feature",
+    "catalog",
+    "files",
+    "holding",
+    "comment",
+    "skillassetfeaturecatalog",
+    "mcp-aside-devtools"
   ],
-  "lastUpdated": "2026-10-10T18:42:49.078Z",
+  "lastUpdated": "2026-11-13T10:04:49.847Z",
   "specId": "002",
   "folderSlug": "retroactive-removal",
   "parentChain": [
@@ -14,6 +23,5 @@
     "003-feature-catalog-template-anchor-deprecation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,12 +1,28 @@
 {
   "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping",
-  "description": "Phase 8: track-subtrack-regrouping",
+  "description": "Skilled's large spec tracks keep active packets in one flat folder list, so readers scan every folder name to find work on one subsystem",
   "keywords": [
-    "phase",
-    "track-subtrack-regrouping"
+    "skilled",
+    "large",
+    "spec",
+    "tracks",
+    "keep",
+    "active",
+    "packets",
+    "one",
+    "flat",
+    "folder",
+    "list",
+    "readers",
+    "scan",
+    "every",
+    "name",
+    "find",
+    "work",
+    "subsystem"
   ],
-  "lastUpdated": "2026-11-10T07:36:52.344Z",
+  "lastUpdated": "2026-11-13T10:05:32.339Z",
   "specId": "008",
   "folderSlug": "track-subtrack-regrouping",
   "parentChain": [

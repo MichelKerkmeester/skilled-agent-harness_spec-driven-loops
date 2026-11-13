@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/033-follow-up-review-fixes",
-  "description": "Phase 33: follow-up-review-fixes",
+  "description": "Every global hook pointed an untrusted repository at `$REPOROOT/.skilled-untrusted`, a folder inside that repository, so any clone could run its own",
   "keywords": [
-    "phase",
-    "follow-up-review-fixes"
+    "every",
+    "global",
+    "hook",
+    "pointed",
+    "untrusted",
+    "repository",
+    "reporoot",
+    "skilled-untrusted",
+    "folder",
+    "inside",
+    "clone",
+    "run",
+    "own"
   ],
-  "lastUpdated": "2026-10-14T19:32:46.837Z",
+  "lastUpdated": "2026-11-13T10:04:46.924Z",
   "specId": "033",
   "folderSlug": "follow-up-review-fixes",
   "parentChain": [
@@ -14,6 +26,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

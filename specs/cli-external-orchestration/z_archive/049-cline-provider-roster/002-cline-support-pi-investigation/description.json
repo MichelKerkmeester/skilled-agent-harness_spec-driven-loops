@@ -13,11 +13,12 @@
     "provider",
     "select"
   ],
-  "lastUpdated": "2026-08-18T14:02:52.872Z",
+  "lastUpdated": "2026-11-13T10:04:38.903Z",
   "specId": "002",
   "folderSlug": "cline-support-pi-investigation",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "049-cline-provider-roster"
   ],
   "memorySequence": 0,

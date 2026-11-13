@@ -1,11 +1,19 @@
 {
+  "level": "3",
   "specFolder": "system-skill-advisor/codebase-conformance/004-advisor-status-truthfulness/003-status-contract-and-docs",
-  "description": "Phase 3: status-contract-and-docs",
+  "description": "Five gaps were recorded by the doctor command audit and re-verified at planning time",
   "keywords": [
-    "phase",
-    "status-contract-and-docs"
+    "five",
+    "gaps",
+    "recorded",
+    "doctor",
+    "command",
+    "audit",
+    "re-verified",
+    "planning",
+    "time"
   ],
-  "lastUpdated": "2026-10-03T05:27:38.432Z",
+  "lastUpdated": "2026-11-13T10:05:01.232Z",
   "specId": "003",
   "folderSlug": "status-contract-and-docs",
   "parentChain": [
@@ -14,6 +22,5 @@
     "004-advisor-status-truthfulness"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

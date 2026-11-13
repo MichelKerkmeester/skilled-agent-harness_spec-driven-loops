@@ -1,11 +1,19 @@
 {
+  "level": "2",
   "specFolder": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/004-total-candidate-count",
-  "description": "Phase 4: total-candidate-count",
+  "description": "The trigger lookup reports only a `truncated` boolean when it cuts results to `--limit`",
   "keywords": [
-    "phase",
-    "total-candidate-count"
+    "trigger",
+    "lookup",
+    "reports",
+    "only",
+    "truncated",
+    "boolean",
+    "cuts",
+    "results",
+    "limit"
   ],
-  "lastUpdated": "2026-11-09T16:18:07.090Z",
+  "lastUpdated": "2026-11-13T10:04:41.485Z",
   "specId": "004",
   "folderSlug": "total-candidate-count",
   "parentChain": [
@@ -14,6 +22,5 @@
     "001-sweet-search-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

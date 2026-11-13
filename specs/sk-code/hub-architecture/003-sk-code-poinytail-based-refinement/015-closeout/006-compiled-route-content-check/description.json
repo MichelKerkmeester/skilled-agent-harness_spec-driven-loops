@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/015-closeout/006-compiled-route-content-check",
-  "description": "Phase 6: compiled-route-content-check",
+  "description": "`compiled-route-sync.cjs --check` traced the authored closure and listed its files, but never opened the served copies under",
   "keywords": [
-    "phase",
-    "compiled-route-content-check"
+    "compiled-route-sync",
+    "cjs",
+    "check",
+    "traced",
+    "authored",
+    "closure",
+    "listed",
+    "files",
+    "never",
+    "opened",
+    "served",
+    "copies"
   ],
-  "lastUpdated": "2026-10-11T04:49:36.659Z",
+  "lastUpdated": "2026-11-13T10:04:46.134Z",
   "specId": "006",
   "folderSlug": "compiled-route-content-check",
   "parentChain": [
@@ -15,6 +26,5 @@
     "015-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

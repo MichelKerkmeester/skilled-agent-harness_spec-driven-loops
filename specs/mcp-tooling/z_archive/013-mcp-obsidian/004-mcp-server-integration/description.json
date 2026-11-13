@@ -19,11 +19,12 @@
     "mcp-click-up",
     "routes"
   ],
-  "lastUpdated": "2026-09-07T16:14:41.986Z",
+  "lastUpdated": "2026-11-13T10:04:42.764Z",
   "specId": "004",
   "folderSlug": "mcp-server-integration",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "013-mcp-obsidian"
   ],
   "memorySequence": 0,

@@ -1,11 +1,16 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/022-linked-project-host-index",
-  "description": "Phase 22: linked-project-host-index",
+  "description": "`defaultIndexPath()` checks only `<caller root>/.speckit-index/`",
   "keywords": [
-    "phase",
-    "linked-project-host-index"
+    "defaultindexpath",
+    "checks",
+    "only",
+    "caller",
+    "root",
+    "speckit-index"
   ],
-  "lastUpdated": "2026-11-09T13:16:53.977Z",
+  "lastUpdated": "2026-11-13T10:05:23.542Z",
   "specId": "022",
   "folderSlug": "linked-project-host-index",
   "parentChain": [
@@ -14,6 +19,5 @@
     "004-v4-release-line-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

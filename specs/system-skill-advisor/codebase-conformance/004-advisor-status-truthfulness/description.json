@@ -1,16 +1,22 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/codebase-conformance/004-advisor-status-truthfulness",
-  "description": "Make the advisor's freshness, scan and routing reports match what is on disk",
+  "description": "The doctor command audit (`specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit`) recorded that several advisor reporting surfaces",
   "keywords": [
+    "doctor",
+    "command",
+    "audit",
+    "specs",
+    "commands",
+    "002-doctor-audit-and-fixes",
+    "001-doctor-command-audit",
+    "recorded",
+    "several",
     "advisor",
-    "freshness",
-    "scan",
-    "routing",
-    "reports",
-    "match",
-    "disk"
+    "reporting",
+    "surfaces"
   ],
-  "lastUpdated": "2026-10-03T05:27:36.132Z",
+  "lastUpdated": "2026-11-13T10:05:01.233Z",
   "specId": "004",
   "folderSlug": "advisor-status-truthfulness",
   "parentChain": [
@@ -18,6 +24,5 @@
     "codebase-conformance"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

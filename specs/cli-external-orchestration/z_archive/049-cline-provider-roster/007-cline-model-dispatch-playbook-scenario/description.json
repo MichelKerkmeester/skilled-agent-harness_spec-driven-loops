@@ -19,11 +19,12 @@
     "only",
     "file"
   ],
-  "lastUpdated": "2026-08-25T05:06:09.035Z",
+  "lastUpdated": "2026-11-13T10:04:38.911Z",
   "specId": "007",
   "folderSlug": "cline-model-dispatch-playbook-scenario",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "049-cline-provider-roster"
   ],
   "memorySequence": 0,

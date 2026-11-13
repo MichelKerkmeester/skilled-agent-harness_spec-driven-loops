@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin",
   "description": "Two research packets just shipped with 10+ concrete recommendations:",
   "keywords": [
@@ -10,7 +11,7 @@
     "concrete",
     "recommendations"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.061Z",
+  "lastUpdated": "2026-11-13T10:05:02.904Z",
   "specId": "003",
   "folderSlug": "smart-remediation-opencode-plugin",
   "parentChain": [
@@ -19,6 +20,5 @@
     "006-skill-advisor-routing-engine"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

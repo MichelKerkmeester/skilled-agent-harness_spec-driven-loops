@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/007-worktree-removal",
   "description": "The per-lineage worktree mechanism cost 1.6 GB and about 22 seconds per lane, existed only to make write attribution exact, and attribution is not a",
   "keywords": [
@@ -16,7 +17,7 @@
     "attribution",
     "exact"
   ],
-  "lastUpdated": "2026-09-20T08:32:53.503Z",
+  "lastUpdated": "2026-11-13T10:04:55.829Z",
   "specId": "007",
   "folderSlug": "worktree-removal",
   "parentChain": [
@@ -27,6 +28,5 @@
     "010-fanout-write-containment-hardening"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/047-diagram-corpus-ci",
-  "description": "Phase 47: diagram-corpus-ci",
+  "description": "`.github/workflows/diagram-corpus.yml` has failed since run `39165172090` at `be234e6f94` on 2026-10-18, last green at `d04df31790` on 2026-10-11, and",
   "keywords": [
-    "phase",
-    "diagram-corpus-ci"
+    "github",
+    "workflows",
+    "diagram-corpus",
+    "yml",
+    "failed",
+    "since",
+    "run",
+    "be234e6f94",
+    "last",
+    "green",
+    "d04df31790"
   ],
-  "lastUpdated": "2026-10-21T13:45:54.292Z",
+  "lastUpdated": "2026-11-13T10:04:37.615Z",
   "specId": "047",
   "folderSlug": "diagram-corpus-ci",
   "parentChain": [
@@ -14,6 +24,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

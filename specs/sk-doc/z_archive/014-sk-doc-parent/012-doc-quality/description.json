@@ -9,11 +9,12 @@
     "parent-hub",
     "conversion"
   ],
-  "lastUpdated": "2026-08-29T12:13:20.963Z",
+  "lastUpdated": "2026-11-13T10:04:52.028Z",
   "specId": "012",
   "folderSlug": "doc-quality",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent"
   ],
   "memorySequence": 0,

@@ -9,11 +9,12 @@
     "files",
     "stops"
   ],
-  "lastUpdated": "2026-08-29T12:13:21.088Z",
+  "lastUpdated": "2026-11-13T10:04:52.110Z",
   "specId": "009",
   "folderSlug": "cmd-create-changelog-and-releases",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode"
   ],
   "memorySequence": 0,

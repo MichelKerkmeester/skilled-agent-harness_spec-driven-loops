@@ -1,11 +1,27 @@
 {
+  "level": "1",
   "specFolder": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups",
-  "description": "Phase 7: search-routing-followups",
+  "description": "Phase 6 gave `rg-wrapper.mjs` one row per file and a 20-file cap, but `/speckit:search` kept running the raw Section 2.1 recipe",
   "keywords": [
     "phase",
-    "search-routing-followups"
+    "gave",
+    "rg-wrapper",
+    "mjs",
+    "one",
+    "row",
+    "per",
+    "file",
+    "20-file",
+    "cap",
+    "speckit",
+    "search",
+    "kept",
+    "running",
+    "raw",
+    "section",
+    "recipe"
   ],
-  "lastUpdated": "2026-11-10T07:13:04.801Z",
+  "lastUpdated": "2026-11-13T10:04:41.506Z",
   "specId": "007",
   "folderSlug": "search-routing-followups",
   "parentChain": [
@@ -14,6 +30,5 @@
     "001-sweet-search-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

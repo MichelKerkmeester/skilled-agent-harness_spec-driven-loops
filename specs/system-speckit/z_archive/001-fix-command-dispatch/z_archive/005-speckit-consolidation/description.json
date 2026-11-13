@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/005-speckit-consolidation",
   "description": "Enable users to update the SpecKit functionality by updating a single skill folder, eliminating the need to manage two separate directories",
   "keywords": [
@@ -16,7 +17,7 @@
     "separate",
     "directories"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.743Z",
+  "lastUpdated": "2026-11-13T10:05:32.407Z",
   "specId": "005",
   "folderSlug": "speckit-consolidation",
   "parentChain": [
@@ -26,6 +27,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

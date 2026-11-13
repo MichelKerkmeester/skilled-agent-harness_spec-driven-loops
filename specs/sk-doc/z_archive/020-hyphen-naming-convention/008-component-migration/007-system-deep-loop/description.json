@@ -17,11 +17,12 @@
     "manual-testing",
     "playbook"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.820Z",
+  "lastUpdated": "2026-11-13T10:04:53.735Z",
   "specId": "007",
   "folderSlug": "system-deep-loop",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration"
   ],

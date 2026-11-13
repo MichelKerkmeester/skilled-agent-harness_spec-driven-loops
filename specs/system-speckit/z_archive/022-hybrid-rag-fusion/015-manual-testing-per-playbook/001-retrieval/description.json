@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/001-retrieval",
   "description": "The retrieval feature category of the hybrid-RAG-fusion system requires structured manual verification against the official playbook",
   "keywords": [
@@ -15,7 +16,7 @@
     "official",
     "playbook"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.409Z",
+  "lastUpdated": "2026-11-13T10:05:34.147Z",
   "specId": "001",
   "folderSlug": "retrieval",
   "parentChain": [
@@ -25,6 +26,5 @@
     "015-manual-testing-per-playbook"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -24,7 +24,7 @@
     "durability",
     "surface"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.198Z",
+  "lastUpdated": "2026-11-13T10:05:08.114Z",
   "specId": "003",
   "folderSlug": "fix-deferred-p2s-for-filesystem-durability",
   "parentChain": [

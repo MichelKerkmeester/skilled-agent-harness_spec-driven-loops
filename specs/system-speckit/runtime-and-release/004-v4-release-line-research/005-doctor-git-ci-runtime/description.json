@@ -1,12 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/005-doctor-git-ci-runtime",
-  "description": "Phase 5: doctor-git-ci-runtime",
+  "description": "Every v4 release from v4.0.0.0 to v4.0.2.0 changed the doctor, git, CI and runtime layer: `.skilled/skills/system-skilled-doctor/` and `/doctor:`",
   "keywords": [
-    "phase",
-    "doctor-git-ci-runtime"
+    "every",
+    "release",
+    "changed",
+    "doctor",
+    "git",
+    "runtime",
+    "layer",
+    "skilled",
+    "skills",
+    "system-skilled-doctor"
   ],
-  "lastUpdated": "2026-11-08T22:35:40.437Z",
+  "lastUpdated": "2026-11-13T10:05:23.453Z",
   "specId": "005",
   "folderSlug": "doctor-git-ci-runtime",
   "parentChain": [

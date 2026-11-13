@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement",
   "description": "The deep research (spec `019-deep-research-rag-improvement`) produced 29 prioritized recommendations from 5 GPT 5.4 agents (1.35M tokens, ~52 web",
   "keywords": [
@@ -15,7 +16,7 @@
     "tokens",
     "web"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.080Z",
+  "lastUpdated": "2026-11-13T10:05:33.036Z",
   "specId": "011",
   "folderSlug": "research-based-refinement",
   "parentChain": [
@@ -29,6 +30,5 @@
     "21-03-26_18-29__created-phase-folder-011-research-based.md",
     "21-03-26_19-32__implemented-wave-1-phase-a-across-all-5.md",
     "27-04-26_15-33__retroactive-migration-by-worker-1.md"
-  ],
-  "level": "2"
+  ]
 }

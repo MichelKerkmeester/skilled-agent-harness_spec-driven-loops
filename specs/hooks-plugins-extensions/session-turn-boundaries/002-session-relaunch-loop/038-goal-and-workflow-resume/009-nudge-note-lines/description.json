@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/009-nudge-note-lines",
-  "description": "Phase 9: nudge-note-lines",
+  "description": "The nudge tells a session to release a held deep-loop lock before `prepare` and says nothing about the fan-out runner",
   "keywords": [
-    "phase",
-    "nudge-note-lines"
+    "nudge",
+    "tells",
+    "session",
+    "release",
+    "held",
+    "deep-loop",
+    "lock",
+    "prepare",
+    "says",
+    "nothing",
+    "about",
+    "fan-out",
+    "runner"
   ],
-  "lastUpdated": "2026-11-13T08:49:31.698Z",
+  "lastUpdated": "2026-11-13T10:04:41.900Z",
   "specId": "009",
   "folderSlug": "nudge-note-lines",
   "parentChain": [
@@ -15,6 +27,5 @@
     "038-goal-and-workflow-resume"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

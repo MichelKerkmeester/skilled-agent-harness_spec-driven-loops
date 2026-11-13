@@ -19,11 +19,12 @@
     "syntheses",
     "converged"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.031Z",
+  "lastUpdated": "2026-11-13T10:04:49.342Z",
   "specId": "002",
   "folderSlug": "evidence-envelopes",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program",
     "004-hallmark-design-system"
   ],

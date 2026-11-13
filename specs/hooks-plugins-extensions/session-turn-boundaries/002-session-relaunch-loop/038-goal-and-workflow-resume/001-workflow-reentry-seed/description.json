@@ -1,12 +1,20 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/001-workflow-reentry-seed",
-  "description": "Phase 1: workflow-reentry-seed",
+  "description": "A claim seed tells the receiver to continue the note's Remaining work and nothing else",
   "keywords": [
-    "phase",
-    "workflow-reentry-seed"
+    "claim",
+    "seed",
+    "tells",
+    "receiver",
+    "continue",
+    "note",
+    "remaining",
+    "work",
+    "nothing",
+    "else"
   ],
-  "lastUpdated": "2026-11-13T03:56:18.490Z",
+  "lastUpdated": "2026-11-13T10:04:41.875Z",
   "specId": "001",
   "folderSlug": "workflow-reentry-seed",
   "parentChain": [

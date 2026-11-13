@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/013-design-commands-asset-refactor"
     last_updated_at: "2026-07-06T10:00:05.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Moved ADR-001 and ADR-002 from Proposed to Accepted after the verification pass"

@@ -18,11 +18,12 @@
     "validated",
     "data"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.108Z",
+  "lastUpdated": "2026-11-13T10:04:53.338Z",
   "specId": "022",
   "folderSlug": "command-metadata-generalization",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,

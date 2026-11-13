@@ -1,11 +1,18 @@
 {
+  "level": "2",
   "specFolder": "sk-code/code-surfaces/006-frontend-upstream-proposals/003-design-handoffs",
-  "description": "Phase 3: design-handoffs",
+  "description": "sk-code names only `sk-design-md-generator` for design input (`sk-code/SKILL.md:64`, `sk-code/README.md:102`)",
   "keywords": [
-    "phase",
-    "design-handoffs"
+    "sk-code",
+    "names",
+    "only",
+    "sk-design-md-generator",
+    "design",
+    "input",
+    "skill",
+    "readme"
   ],
-  "lastUpdated": "2026-11-03T08:33:55.439Z",
+  "lastUpdated": "2026-11-13T10:04:43.582Z",
   "specId": "003",
   "folderSlug": "design-handoffs",
   "parentChain": [
@@ -14,6 +21,5 @@
     "006-frontend-upstream-proposals"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

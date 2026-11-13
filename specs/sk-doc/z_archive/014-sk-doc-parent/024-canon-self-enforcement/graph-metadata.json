@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Canon is declared once in each hub's `mode-registry.json` and then hand-copied into ~12 consumer dialects that must agree but are only kept in sync by discipline",
     "created_at": "2026-07-07T20:30:08.079Z",
-    "last_save_at": "2026-10-08T19:30:07.509Z",
+    "last_save_at": "2026-11-13T13:15:01.988Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:609b869ecf934264414cd39afdbde2e642c893ad709e6418b50cc301b9a816e1",
+    "source_fingerprint": "sha256:56ecd81ef9326cc744f4f194296c8e7037d3aa993049f7604cf49c8d98bb0e2f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "65f87b0f79f324f75969d0cb6adf59ced218700965a18f9a0f843439fb7db5d6",
+      "spec.md": "c9cb986b4d5dbdbba967a6ad75930d1ae5aeda8408cafe8acdb1e312c6d4881c",
       "plan.md": "6bd7f9e03b3e832d52cddcee2005b6999b28b8a12f6842e6ffd8399027d42cca",
       "tasks.md": "d50334c5a0526ec28a631663c5cedb3ac09f31d08d95cb4066669f50562b0bc2",
-      "decision-record.md": "96b7a8b637a29e2054bccbf8fcb5d46bae358120fbd66558bbe5a4473534a985",
+      "decision-record.md": "e6ec9fc0acacd801e022e49fd1947f519223d631709d445fd017922eac959e98",
       "implementation-summary.md": "92c8db6930246693fe05ea9377202590b3e06e8472edf460e76e685f26c98131"
     },
     "last_active_child_id": null,

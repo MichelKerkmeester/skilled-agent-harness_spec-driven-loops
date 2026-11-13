@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/002-scoring-and-filter",
   "description": "The extractors quality scorer (extractors/quality-scorer.ts:113-205) assigns bonuses of +0.05 for message count, +0.05 for tool usage, and +0.10 for",
   "keywords": [
@@ -13,7 +14,7 @@
     "tool",
     "usage"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.284Z",
+  "lastUpdated": "2026-11-13T10:05:33.421Z",
   "specId": "002",
   "folderSlug": "scoring-and-filter",
   "parentChain": [
@@ -27,6 +28,5 @@
   "memoryNameHistory": [
     "21-03-26_19-45__phase-002-scoring-and-filter-changes.md",
     "21-03-26_19-45__phase-002-scoring-and-filter-changes-1.md"
-  ],
-  "level": "3"
+  ]
 }

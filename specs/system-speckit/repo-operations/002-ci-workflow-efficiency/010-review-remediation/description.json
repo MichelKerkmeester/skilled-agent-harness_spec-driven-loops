@@ -1,11 +1,26 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/repo-operations/002-ci-workflow-efficiency/010-review-remediation",
-  "description": "Phase 10: review-remediation",
+  "description": "The deep review found a routing regression: the bare keyword `concurrency group` sent a worker-pool prompt to the CI surface and failed the guard test",
   "keywords": [
-    "phase",
-    "review-remediation"
+    "deep",
+    "review",
+    "found",
+    "routing",
+    "regression",
+    "bare",
+    "keyword",
+    "concurrency",
+    "group",
+    "sent",
+    "worker-pool",
+    "prompt",
+    "surface",
+    "failed",
+    "guard",
+    "test"
   ],
-  "lastUpdated": "2026-10-25T17:19:18.422Z",
+  "lastUpdated": "2026-11-13T10:05:16.680Z",
   "specId": "010",
   "folderSlug": "review-remediation",
   "parentChain": [
@@ -14,6 +29,5 @@
     "002-ci-workflow-efficiency"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

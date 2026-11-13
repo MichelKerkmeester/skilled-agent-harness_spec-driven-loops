@@ -1,12 +1,20 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/006-deep-review-2-remediation",
-  "description": "Phase 6: deep-review-2-remediation",
+  "description": "The round-2 deep review passed the session relaunch loop with twelve confirmed P2 advisories and no P0 or P1",
   "keywords": [
-    "phase",
-    "deep-review-2-remediation"
+    "round-2",
+    "deep",
+    "review",
+    "passed",
+    "session",
+    "relaunch",
+    "loop",
+    "twelve",
+    "confirmed",
+    "advisories"
   ],
-  "lastUpdated": "2026-10-19T10:05:59.042Z",
+  "lastUpdated": "2026-11-13T10:04:41.538Z",
   "specId": "006",
   "folderSlug": "deep-review-2-remediation",
   "parentChain": [

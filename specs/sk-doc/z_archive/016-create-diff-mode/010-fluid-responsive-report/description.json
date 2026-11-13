@@ -21,11 +21,12 @@
     "vary",
     "widely"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.726Z",
+  "lastUpdated": "2026-11-13T10:04:52.124Z",
   "specId": "010",
   "folderSlug": "fluid-responsive-report",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode"
   ],
   "memorySequence": 1,

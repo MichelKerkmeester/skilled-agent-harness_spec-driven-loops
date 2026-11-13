@@ -18,11 +18,12 @@
     "anchors",
     "live"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.016Z",
+  "lastUpdated": "2026-11-13T10:04:53.297Z",
   "specId": "012",
   "folderSlug": "fix-post-019-alignment-p1-findings-for-feature-catalog-accuracy",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "016-documentation-quality-program"
   ],

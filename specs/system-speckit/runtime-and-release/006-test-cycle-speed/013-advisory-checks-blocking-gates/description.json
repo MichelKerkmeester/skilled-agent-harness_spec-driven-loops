@@ -1,12 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/013-advisory-checks-blocking-gates",
-  "description": "Phase 13: advisory-checks-blocking-gates",
+  "description": "`.github/workflows/advisory-checks.yml` runs its four steps with `continue-on-error: true`, so the job is green even when a step fails",
   "keywords": [
-    "phase",
-    "advisory-checks-blocking-gates"
+    "github",
+    "workflows",
+    "advisory-checks",
+    "yml",
+    "runs",
+    "four",
+    "steps",
+    "continue-on-error",
+    "true",
+    "job",
+    "green",
+    "even",
+    "step",
+    "fails"
   ],
-  "lastUpdated": "2026-11-12T17:43:56.952Z",
+  "lastUpdated": "2026-11-13T10:05:23.827Z",
   "specId": "013",
   "folderSlug": "advisory-checks-blocking-gates",
   "parentChain": [

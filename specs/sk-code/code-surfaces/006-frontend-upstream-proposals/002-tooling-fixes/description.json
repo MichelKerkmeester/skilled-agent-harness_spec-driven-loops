@@ -1,11 +1,19 @@
 {
+  "level": "2",
   "specFolder": "sk-code/code-surfaces/006-frontend-upstream-proposals/002-tooling-fixes",
-  "description": "Phase 2: tooling-fixes",
+  "description": "`plan()` computes only the phrases missing from `intentsignals`, and `write()` appends them",
   "keywords": [
-    "phase",
-    "tooling-fixes"
+    "plan",
+    "computes",
+    "only",
+    "phrases",
+    "missing",
+    "intentsignals",
+    "write",
+    "appends",
+    "them"
   ],
-  "lastUpdated": "2026-11-03T08:33:54.482Z",
+  "lastUpdated": "2026-11-13T10:04:43.568Z",
   "specId": "002",
   "folderSlug": "tooling-fixes",
   "parentChain": [
@@ -14,6 +22,5 @@
     "006-frontend-upstream-proposals"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

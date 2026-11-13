@@ -19,11 +19,12 @@
     "no-destination",
     "minimal"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.650Z",
+  "lastUpdated": "2026-11-13T10:04:52.858Z",
   "specId": "005",
   "folderSlug": "decision-evaluator",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program"
   ],

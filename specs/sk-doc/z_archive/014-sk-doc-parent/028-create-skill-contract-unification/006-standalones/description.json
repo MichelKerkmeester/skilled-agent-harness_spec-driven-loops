@@ -17,11 +17,12 @@
     "luna",
     "max"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.597Z",
+  "lastUpdated": "2026-11-13T10:04:52.065Z",
   "specId": "006",
   "folderSlug": "standalones",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent",
     "028-create-skill-contract-unification"
   ],

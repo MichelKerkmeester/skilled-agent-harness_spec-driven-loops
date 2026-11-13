@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The five `/design:` commands remain flat single-file commands with routing logic and presentation content (Ask-first wording, STATUS templates, handoff grammar) mixed together",
     "created_at": "2026-07-06T18:57:35.656Z",
-    "last_save_at": "2026-10-07T18:11:39.715Z",
+    "last_save_at": "2026-11-13T13:14:10.695Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd13cfc1b0816c389ae44e99e754e3e4a4fa1b54c725f3ad783e33a91f4d6498",
+    "source_fingerprint": "sha256:193358120d1732c11dc6a580287a2f9a82390b4dd030dce96c619c0c12a4212f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0be1ef71909dc37703fd77452a1e38be835d1010cf86545bdaf0c2d3e46b4adf",
+      "spec.md": "48409d7ea193d20db84792e248288729bf6787a56bfd874c0100f49d1c8d2a3e",
       "plan.md": "70a079ecbdb42271bf690ffa77a08eeb858dad9cf87e5d9c685c90288c763c1f",
       "tasks.md": "f03fc2646d0f2c9765c1d1e0ac3f3925b0315df56ba27c3a18e7ddbbebd830f0",
       "implementation-summary.md": "9049a78c0f31e786953a10182cd82b41341f191393c054256d8247172965a34d"

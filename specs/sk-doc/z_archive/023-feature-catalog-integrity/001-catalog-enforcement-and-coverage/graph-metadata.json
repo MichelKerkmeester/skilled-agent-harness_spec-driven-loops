@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`validatecatalogpackage.py` builds its covered set from `expectedrootpackages()`, which returns",
     "created_at": "2026-07-30T19:29:14.546Z",
-    "last_save_at": "2026-10-08T19:30:10.571Z",
+    "last_save_at": "2026-11-13T13:16:29.537Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb57624a30c2a4c9ac9453b65ac4bf745d3c5a8878dfc7e1b208ebba4ae2a7a6",
+    "source_fingerprint": "sha256:bf145a87c2c5d0ee855ab2fe715425a9876240892e457f108edce0ddcb986b3f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8a9c191deb7afac2b9aae7d41286d124ae5378b2d1970bf5a86edab8994e7daf",
       "plan.md": "b5efa64db10aadd5815eeee978419d031765a167f209187ada73c9cbb47ac3a0",
-      "tasks.md": "c4727b8e2cca379e095e7d0bfc34e48aa2baacf4d6bd922c4bfb42185d67b651",
-      "decision-record.md": "78255dfe418281ca94f3dd0a4a86f889998ba31db6e718ef95ef1f3cf9f0d25c",
+      "tasks.md": "add8f1c9cf275c24a8c4f4ae4412643ed8e8e3cb5badc151126b4d220ef7bacb",
+      "decision-record.md": "0fc72ae983bd73b36dd674c9950dc6c7ffe4114ea1bf283a1684709c8c2e9f04",
       "implementation-summary.md": "ee631927b55f297b77b9af4ffc36542160288fba9c6c6fad83ea48689c6e59dc"
     },
     "last_active_child_id": null,

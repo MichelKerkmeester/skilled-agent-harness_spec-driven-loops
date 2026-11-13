@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/007-sk-design",
-  "description": "Phase 7: sk-design",
+  "description": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
-    "phase",
-    "sk-design"
+    "yourvaluehere",
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
   ],
-  "lastUpdated": "2026-11-04T07:15:56.441Z",
+  "lastUpdated": "2026-11-13T10:04:51.309Z",
   "specId": "007",
   "folderSlug": "sk-design",
   "parentChain": [
@@ -14,6 +22,5 @@
     "005-skill-readability-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

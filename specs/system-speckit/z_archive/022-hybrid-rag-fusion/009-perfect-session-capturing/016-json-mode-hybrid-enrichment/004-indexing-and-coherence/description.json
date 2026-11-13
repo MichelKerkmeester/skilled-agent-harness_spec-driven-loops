@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/004-indexing-and-coherence",
   "description": "The generate-context.js pipeline has no observable signal for embedding health: the retry manager runs a background job every 5 minutes with",
   "keywords": [
@@ -16,7 +17,7 @@
     "every",
     "minutes"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.286Z",
+  "lastUpdated": "2026-11-13T10:05:33.429Z",
   "specId": "004",
   "folderSlug": "indexing-and-coherence",
   "parentChain": [
@@ -27,6 +28,5 @@
     "016-json-mode-hybrid-enrichment"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

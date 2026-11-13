@@ -17,11 +17,12 @@
     "between",
     "numbered"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.851Z",
+  "lastUpdated": "2026-11-13T10:04:53.914Z",
   "specId": "011",
   "folderSlug": "reference-template-alignment",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "028-sk-create-diagram"
   ],
   "memorySequence": 0,

@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/005-content-additions-hvr-polish",
   "description": "The package has identifiable content gaps surfaced by audit: no lane-weight tuning guide, no skill-graph query cookbook, no validation baselines",
   "keywords": [
@@ -17,7 +18,7 @@
     "validation",
     "baselines"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.156Z",
+  "lastUpdated": "2026-11-13T10:05:03.032Z",
   "specId": "005",
   "folderSlug": "content-additions-hvr-polish",
   "parentChain": [
@@ -27,6 +28,5 @@
     "004-documentation-quality-refactor"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "completionPct": 0,
   "lastOutcome": "Authored Level 2 spec docs; awaiting cli-codex implementation dispatch.",
   "specFolder": "sk-code/z_archive/010-sk-code-review-playbook",
@@ -11,7 +12,7 @@
     "deep-review",
     "speckit"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.069Z",
+  "lastUpdated": "2026-11-13T10:04:47.288Z",
   "specId": "010",
   "folderSlug": "sk-code-review-playbook",
   "parentChain": [
@@ -19,6 +20,5 @@
     "z_archive"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

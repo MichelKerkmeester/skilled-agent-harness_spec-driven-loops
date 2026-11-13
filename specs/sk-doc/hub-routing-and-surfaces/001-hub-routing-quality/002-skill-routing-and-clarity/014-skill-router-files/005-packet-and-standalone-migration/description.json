@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/005-packet-and-standalone-migration",
-  "description": "Phase 5: packet-and-standalone-migration",
+  "description": "After phase 004, 47 of the 54 skills still carry their machine router inside `SKILL.md`: 41 mode packets and the six standalone skills",
   "keywords": [
     "phase",
-    "packet-and-standalone-migration"
+    "skills",
+    "still",
+    "carry",
+    "machine",
+    "router",
+    "inside",
+    "skill",
+    "mode",
+    "packets",
+    "six",
+    "standalone"
   ],
-  "lastUpdated": "2026-10-29T07:52:44.621Z",
+  "lastUpdated": "2026-11-13T10:04:51.851Z",
   "specId": "005",
   "folderSlug": "packet-and-standalone-migration",
   "parentChain": [
@@ -16,6 +27,5 @@
     "014-skill-router-files"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

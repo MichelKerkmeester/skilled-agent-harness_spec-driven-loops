@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/004-post-research-wave-1-governance-foundations",
   "description": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Post Research Wave 1 Governance",
   "keywords": [
@@ -15,7 +16,7 @@
     "wave",
     "governance"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.017Z",
+  "lastUpdated": "2026-11-13T10:05:32.907Z",
   "specId": "004",
   "folderSlug": "post-research-wave-1-governance-foundations",
   "parentChain": [
@@ -24,6 +25,5 @@
     "020-mcp-working-memory-hybrid-rag"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

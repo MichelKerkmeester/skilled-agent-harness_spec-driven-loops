@@ -194,7 +194,7 @@
     ],
     "causal_summary": "deep-review reference/asset frontmatter is inconsistent with the repo-wide contract: 3 of 10 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:29Z",
-    "last_save_at": "2026-10-07T18:15:01.739Z",
+    "last_save_at": "2026-11-13T13:18:29.294Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:48bbf80f7cb8138c2485b3be68ec0855fa3c7ebc2e74aa2fef4e222122c57365",
+    "source_fingerprint": "sha256:5c5ba89c8acb5a1a6926a10f0037fd1298d389a70f82d2120fe87a58cfec2b66",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9d9fc293e222e111cfd23135ae90078b5ee8275519fc04f46a53fa51ec7d628e",
+      "spec.md": "74fa05b0e693136cfa571caafe7aaa78964726e03a135c4157bec303664394b2",
       "plan.md": "9f481f9ef61fb49e7c8e6d477c2914dc21b4ebcf103c81cd3105bd85ce18a774",
       "tasks.md": "ba6a9eb4d4aabaa8ff6d2af14e14e8c418d3f63d05553cca87dd13e19edd2417",
       "implementation-summary.md": "49aa1be6e6249412b7fb3012ce656b9c011bf4ad92bb3335fe6f6b1937d2155a"

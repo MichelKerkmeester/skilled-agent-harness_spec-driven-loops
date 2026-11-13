@@ -191,7 +191,7 @@
     ],
     "causal_summary": "A four-reviewer audit (plugin code, documentation, spec packet, speckit integration) found that packet 032's own bookkeeping has drifted from reality across phases 007-014: three-way status disagreements, stale \"N of M\" phase-count labels contradicted by later phases, a false rename history repeated in four documents, an overstated \"packet-wide\" fingerprint fix, and dangling cross-references left behind when review/research folders were archived and their paths reused by later audits",
     "created_at": "2026-07-03T07:30:47Z",
-    "last_save_at": "2026-10-07T18:15:16.597Z",
+    "last_save_at": "2026-11-13T13:18:19.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cd0c6de311be5a804db649ee7db4ae662d6d50144382cda838e6bbc611a73fe1",
+    "source_fingerprint": "sha256:017123ae116079fffc316ef4fefeb127c4c8eeab90058b0557eb26c85c859183",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ef25f10e5ecc127e4585577e8e4b2b2f690e653d4cc9fd3b4c3d897268d5bc05",
+      "spec.md": "bb88de30b7154118d62b10af7fd482bbdb1c0552eed5ec5849dd937dd38c9f4e",
       "plan.md": "eaddbe0c908fb454153cbf98992b8b1463d3bac727dd2a948caaa87696afccf8",
       "tasks.md": "2c27633a024e2a64f35ab986522b78c689b72a7f929421c22fffb3d1563616b7",
       "implementation-summary.md": "85b9b90df18f24457187cc4efd0c5a80805c99cbb628adf250e79fe9ba092372"

@@ -15,11 +15,12 @@
     "skill",
     "folder"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.784Z",
+  "lastUpdated": "2026-11-13T10:05:00.591Z",
   "specId": "002",
   "folderSlug": "hub-rename-and-runtime-nesting",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "030-deep-loop-unification"
   ],
   "memorySequence": 0,

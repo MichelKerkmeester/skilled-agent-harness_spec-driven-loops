@@ -1,11 +1,21 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/006-fix-write-recipe-move-destination",
-  "description": "Phase 6: fix-write-recipe-move-destination",
+  "description": "Step 2 of `.skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` moves the scaffold into the selected track",
   "keywords": [
-    "phase",
-    "fix-write-recipe-move-destination"
+    "step",
+    "skilled",
+    "skills",
+    "system-spec-kit",
+    "references",
+    "workflows",
+    "spec-folder-write-recipe",
+    "moves",
+    "scaffold",
+    "selected",
+    "track"
   ],
-  "lastUpdated": "2026-10-23T11:49:00.778Z",
+  "lastUpdated": "2026-11-13T10:05:32.302Z",
   "specId": "006",
   "folderSlug": "fix-write-recipe-move-destination",
   "parentChain": [
@@ -15,6 +25,5 @@
     "004-write-recipe-fixes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

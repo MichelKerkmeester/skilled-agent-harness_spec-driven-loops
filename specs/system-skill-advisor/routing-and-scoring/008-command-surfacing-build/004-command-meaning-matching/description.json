@@ -1,12 +1,18 @@
 {
   "level": "2",
   "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching",
-  "description": "Phase 4: command-meaning-matching",
+  "description": "Phase 003 made a plain prompt reach its command when the prompt reuses the command's own words",
   "keywords": [
     "phase",
-    "command-meaning-matching"
+    "plain",
+    "prompt",
+    "reach",
+    "command",
+    "reuses",
+    "own",
+    "words"
   ],
-  "lastUpdated": "2026-11-12T19:56:55.527Z",
+  "lastUpdated": "2026-11-13T10:05:01.621Z",
   "specId": "004",
   "folderSlug": "command-meaning-matching",
   "parentChain": [

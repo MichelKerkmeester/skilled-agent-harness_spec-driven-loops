@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction",
   "description": "The pipeline uses 3 real extraction engines plus 1 wrapper, each with different stopwords, weighting, and placeholder rules:",
   "keywords": [
@@ -14,7 +15,7 @@
     "placeholder",
     "rules"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.266Z",
+  "lastUpdated": "2026-11-13T10:05:33.394Z",
   "specId": "008",
   "folderSlug": "signal-extraction",
   "parentChain": [
@@ -28,6 +29,5 @@
     "16-03-26_19-54__signal-extraction.md",
     "16-03-26_19-54__signal-extraction-1.md",
     "17-03-26_19-50__stateless-enrichment-validation-for-spec-folder.md"
-  ],
-  "level": "2"
+  ]
 }

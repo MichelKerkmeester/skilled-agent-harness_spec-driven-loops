@@ -1,11 +1,20 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/002-router-file-tooling",
-  "description": "Phase 2: router-file-tooling",
+  "description": "A skill's machine router sits at the end of its `SKILL.md`, and every reader that needs it reads that file",
   "keywords": [
-    "phase",
-    "router-file-tooling"
+    "skill",
+    "machine",
+    "router",
+    "sits",
+    "end",
+    "every",
+    "reader",
+    "needs",
+    "reads",
+    "file"
   ],
-  "lastUpdated": "2026-10-29T07:52:42.508Z",
+  "lastUpdated": "2026-11-13T10:04:51.841Z",
   "specId": "002",
   "folderSlug": "router-file-tooling",
   "parentChain": [
@@ -16,6 +25,5 @@
     "014-skill-router-files"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "3+",
   "specFolder": "system-speckit/z_archive/021-spec-kit-phase-system",
   "description": "Large, multi-session tasks (500+ LOC, 15+ files, cross-domain scope) currently produce monolithic spec folders whose documentation grows unwieldy and",
   "keywords": [
@@ -19,7 +20,7 @@
     "grows",
     "unwieldy"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.061Z",
+  "lastUpdated": "2026-11-13T10:05:32.997Z",
   "specId": "021",
   "folderSlug": "spec-kit-phase-system",
   "parentChain": [
@@ -30,6 +31,5 @@
   "memoryNameHistory": [
     "24-04-26_15-53__applied-cli-copilot-audit-fixes-removed-3.md",
     "24-04-26_15-54__fixed-bare-scripts-paths-in-tasks-md-plan-md-to.md"
-  ],
-  "level": "3+"
+  ]
 }

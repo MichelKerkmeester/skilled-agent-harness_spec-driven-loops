@@ -1,4 +1,5 @@
 {
+  "level": "3+",
   "specFolder": "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/004-agent-alignment",
   "description": "Audit agent configuration files across all 3 platforms (OpenCode, Claude Code, Codex) to ensure handover model assignment (spec 016), review",
   "keywords": [
@@ -19,7 +20,7 @@
     "spec",
     "review"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.997Z",
+  "lastUpdated": "2026-11-13T10:05:32.849Z",
   "specId": "004",
   "folderSlug": "agent-alignment",
   "parentChain": [
@@ -28,6 +29,5 @@
     "013-memory-overhaul-and-agent-upgrade-release"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3+"
+  "memoryNameHistory": []
 }

@@ -18,11 +18,12 @@
     "own",
     "in-skill"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.181Z",
+  "lastUpdated": "2026-11-13T10:04:54.382Z",
   "specId": "004",
   "folderSlug": "advisor-routing-update",
   "parentChain": [
     "sk-git",
+    "z_archive",
     "014-gitkraken-mcp-integration"
   ],
   "memorySequence": 0,

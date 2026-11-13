@@ -16,11 +16,12 @@
     "grader",
     "rather"
   ],
-  "lastUpdated": "2026-08-29T15:12:26.972Z",
+  "lastUpdated": "2026-11-13T10:04:54.016Z",
   "specId": "002",
   "folderSlug": "cli-and-mcp-transports",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "037-playbook-family-remediation"
   ],
   "memorySequence": 0,

@@ -1,5 +1,6 @@
 {
   "title": "Feature Specification: Cache-Warning Hook System [template:level_3/spec.md]",
+  "level": "3",
   "migration": {
     "moved_at": "2026-04-21T12:00:00Z",
     "source_spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-cache-warning-hooks",
@@ -31,7 +32,7 @@
     "userpromptsubmit",
     "behavior"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.244Z",
+  "lastUpdated": "2026-11-13T10:05:04.865Z",
   "specId": "001",
   "folderSlug": "cache-warning-hooks",
   "parentChain": [
@@ -44,6 +45,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "06-04-26_17-14__created-level-3-speckit-folder-002-implement.md"
-  ],
-  "level": "3"
+  ]
 }

@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/007-sk-design/005-sk-design-md-generator",
-  "description": "Phase 5: sk-design-md-generator",
+  "description": "The docs of the `sk-design-md-generator` mode were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "sk-design-md-generator"
+    "docs",
+    "sk-design-md-generator",
+    "mode",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:39.865Z",
+  "lastUpdated": "2026-11-13T10:04:51.309Z",
   "specId": "005",
   "folderSlug": "sk-design-md-generator",
   "parentChain": [
@@ -15,6 +23,5 @@
     "007-sk-design"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

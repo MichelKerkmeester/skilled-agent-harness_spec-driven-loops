@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/003-deprecate-improvement-modes/004-commands-and-runtime-mirrors",
-  "description": "Phase 3: commands-and-runtime-mirrors",
+  "description": "Each runtime reaches the two commands and the agent through its own copy: generated prompts in `.codex`, `.pi` and `.hermes`, a translated agent in",
   "keywords": [
-    "phase",
-    "commands-and-runtime-mirrors"
+    "runtime",
+    "reaches",
+    "two",
+    "commands",
+    "agent",
+    "own",
+    "copy",
+    "prompts",
+    "codex",
+    "hermes",
+    "translated"
   ],
-  "lastUpdated": "2026-10-10T18:23:51.022Z",
+  "lastUpdated": "2026-11-13T10:04:56.266Z",
   "specId": "004",
   "folderSlug": "commands-and-runtime-mirrors",
   "parentChain": [
@@ -14,6 +24,5 @@
     "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,12 +1,23 @@
 {
   "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci",
-  "description": "Phase 4: routing-parity-ci",
+  "description": "No workflow runs the divergence ratchet, so a new unledgered divergence between the Python and native scorers never fails a push",
   "keywords": [
-    "phase",
-    "routing-parity-ci"
+    "workflow",
+    "runs",
+    "divergence",
+    "ratchet",
+    "new",
+    "unledgered",
+    "between",
+    "python",
+    "native",
+    "scorers",
+    "never",
+    "fails",
+    "push"
   ],
-  "lastUpdated": "2026-10-11T20:21:02.602Z",
+  "lastUpdated": "2026-11-13T10:04:46.513Z",
   "specId": "004",
   "folderSlug": "routing-parity-ci",
   "parentChain": [

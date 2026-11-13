@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/z_archive/016-create-diff-mode/002-cmd-create-codex-compatibility",
   "description": "Codex misinterprets agent routing metadata in create command files in three ways:",
   "keywords": [
@@ -12,14 +13,14 @@
     "three",
     "ways"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.689Z",
+  "lastUpdated": "2026-11-13T10:04:52.094Z",
   "specId": "002",
   "folderSlug": "cmd-create-codex-compatibility",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

@@ -18,11 +18,12 @@
     "sk-code",
     "evidence"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.688Z",
+  "lastUpdated": "2026-11-13T10:04:52.935Z",
   "specId": "009",
   "folderSlug": "parent-hub-rollout",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program"
   ],

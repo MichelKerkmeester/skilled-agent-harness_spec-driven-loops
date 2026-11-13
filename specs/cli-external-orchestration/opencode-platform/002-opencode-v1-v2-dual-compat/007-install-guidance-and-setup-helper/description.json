@@ -1,11 +1,14 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper",
-  "description": "Phase 7: install-guidance-and-setup-helper",
+  "description": "The cli-opencode skill has no install guidance",
   "keywords": [
-    "phase",
-    "install-guidance-and-setup-helper"
+    "cli-opencode",
+    "skill",
+    "install",
+    "guidance"
   ],
-  "lastUpdated": "2026-10-18T12:45:07.235Z",
+  "lastUpdated": "2026-11-13T10:04:37.246Z",
   "specId": "007",
   "folderSlug": "install-guidance-and-setup-helper",
   "parentChain": [
@@ -14,6 +17,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

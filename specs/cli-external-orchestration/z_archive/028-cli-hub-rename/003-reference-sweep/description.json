@@ -14,11 +14,12 @@
     "old",
     "path"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.117Z",
+  "lastUpdated": "2026-11-13T10:04:38.564Z",
   "specId": "003",
   "folderSlug": "reference-sweep",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "028-cli-hub-rename"
   ],
   "memorySequence": 0,

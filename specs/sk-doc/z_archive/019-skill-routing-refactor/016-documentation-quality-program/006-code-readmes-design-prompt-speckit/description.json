@@ -17,11 +17,12 @@
     "sk-prompt",
     "system-spec-kit"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.009Z",
+  "lastUpdated": "2026-11-13T10:04:53.291Z",
   "specId": "006",
   "folderSlug": "code-readmes-design-prompt-speckit",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "016-documentation-quality-program"
   ],

@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/001-cli-classifier/001-hub-and-shared",
-  "description": "Phase 1: hub-and-shared",
+  "description": "The docs of the `cli-classifier` hub root files and `shared/` were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "hub-and-shared"
+    "docs",
+    "cli-classifier",
+    "hub",
+    "root",
+    "files",
+    "shared",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:20.167Z",
+  "lastUpdated": "2026-11-13T10:04:50.201Z",
   "specId": "001",
   "folderSlug": "hub-and-shared",
   "parentChain": [
@@ -15,6 +26,5 @@
     "001-cli-classifier"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

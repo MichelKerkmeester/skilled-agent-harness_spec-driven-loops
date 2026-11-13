@@ -20,11 +20,12 @@
     "current",
     "route-gold"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.292Z",
+  "lastUpdated": "2026-11-13T10:04:53.395Z",
   "specId": "010",
   "folderSlug": "luna-review-remediation",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "030-mode-sk-prefix-rename"
   ],

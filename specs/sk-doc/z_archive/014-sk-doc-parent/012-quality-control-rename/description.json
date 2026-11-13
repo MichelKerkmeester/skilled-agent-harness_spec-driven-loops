@@ -17,11 +17,12 @@
     "flag",
     "rather"
   ],
-  "lastUpdated": "2026-08-28T16:24:15.225Z",
+  "lastUpdated": "2026-11-13T10:04:52.030Z",
   "specId": "012",
   "folderSlug": "quality-control-rename",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent"
   ],
   "memorySequence": 0,

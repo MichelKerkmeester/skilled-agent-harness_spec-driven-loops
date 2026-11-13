@@ -1,17 +1,20 @@
 {
+  "level": "1",
   "specFolder": "agents-md/repo-rule-operations/004-router-file-rule-alignment",
-  "description": "Align the hub routing repo rule with the per-skill ROUTER.md layout",
+  "description": "The router-file move in `sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files` gave every hub",
   "keywords": [
-    "align",
-    "hub",
-    "routing",
-    "repo",
-    "rule",
-    "per-skill",
-    "router",
-    "layout"
+    "router-file",
+    "move",
+    "sk-doc",
+    "hub-routing-and-surfaces",
+    "001-hub-routing-quality",
+    "002-skill-routing-and-clarity",
+    "014-skill-router-files",
+    "gave",
+    "every",
+    "hub"
   ],
-  "lastUpdated": "2026-10-30T05:09:03.801Z",
+  "lastUpdated": "2026-11-13T10:04:35.340Z",
   "specId": "004",
   "folderSlug": "router-file-rule-alignment",
   "parentChain": [
@@ -19,6 +22,5 @@
     "repo-rule-operations"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

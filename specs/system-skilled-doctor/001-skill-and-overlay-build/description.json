@@ -1,14 +1,26 @@
 {
   "level": "3",
   "specFolder": "system-skilled-doctor/001-skill-and-overlay-build",
-  "description": "Build system-skilled-doctor and the doctor overlay command",
+  "description": "A project that vendors Skilled by archive, as Barter does, keeps its local changes across a new pin only through a private overlay engine, guard",
   "keywords": [
-    "system-skilled-doctor",
-    "doctor",
+    "project",
+    "vendors",
+    "skilled",
+    "archive",
+    "barter",
+    "keeps",
+    "local",
+    "changes",
+    "across",
+    "new",
+    "pin",
+    "only",
+    "private",
     "overlay",
-    "command"
+    "engine",
+    "guard"
   ],
-  "lastUpdated": "2026-11-12T20:27:59.805Z",
+  "lastUpdated": "2026-11-13T10:05:03.391Z",
   "specId": "001",
   "folderSlug": "skill-and-overlay-build",
   "parentChain": [

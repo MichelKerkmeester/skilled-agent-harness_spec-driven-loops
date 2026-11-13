@@ -1,12 +1,20 @@
 {
   "level": "2",
   "specFolder": "sk-doc/document-standards/003-changelog-system/005-concise-release-format",
-  "description": "Phase 5: concise-release-format",
+  "description": "The changelog template told the writer to copy the 535-line v4.0.0.0 entry and set every ceiling at or above what that entry did",
   "keywords": [
-    "phase",
-    "concise-release-format"
+    "changelog",
+    "template",
+    "told",
+    "writer",
+    "copy",
+    "535-line",
+    "entry",
+    "set",
+    "every",
+    "ceiling"
   ],
-  "lastUpdated": "2026-11-07T05:11:15.293Z",
+  "lastUpdated": "2026-11-13T10:04:51.689Z",
   "specId": "005",
   "folderSlug": "concise-release-format",
   "parentChain": [

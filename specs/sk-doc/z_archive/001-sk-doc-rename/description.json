@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/z_archive/001-sk-doc-rename",
   "description": "The Public repository previously contained legacy documentation-skill identifiers plus stale references to a removed visual skill across content,",
   "keywords": [
@@ -18,7 +19,7 @@
     "across",
     "content"
   ],
-  "lastUpdated": "2026-09-07T16:14:57.426Z",
+  "lastUpdated": "2026-11-13T10:04:51.928Z",
   "specId": "001",
   "folderSlug": "sk-doc-rename",
   "parentChain": [
@@ -26,6 +27,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

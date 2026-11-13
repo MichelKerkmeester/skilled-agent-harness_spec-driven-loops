@@ -1,11 +1,24 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/010-trigger-index-search-fixes",
-  "description": "Phase 10: trigger-index-search-fixes",
+  "description": "`node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` exits 1 with `refused: 2 document(s) carry an untrusted",
   "keywords": [
-    "phase",
-    "trigger-index-search-fixes"
+    "node",
+    "skilled",
+    "skills",
+    "system-spec-kit",
+    "runtime",
+    "cli",
+    "retrieval",
+    "generate-trigger-index",
+    "mjs",
+    "exits",
+    "refused",
+    "document",
+    "carry",
+    "untrusted"
   ],
-  "lastUpdated": "2026-09-27T11:50:17.047Z",
+  "lastUpdated": "2026-11-13T10:04:35.939Z",
   "specId": "010",
   "folderSlug": "trigger-index-search-fixes",
   "parentChain": [
@@ -13,6 +26,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/009-speckit-testing",
   "description": "Verify all SpecKit features work correctly after the recent rename and consolidation changes",
   "keywords": [
@@ -12,7 +13,7 @@
     "consolidation",
     "changes"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.749Z",
+  "lastUpdated": "2026-11-13T10:05:32.420Z",
   "specId": "009",
   "folderSlug": "speckit-testing",
   "parentChain": [
@@ -22,6 +23,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

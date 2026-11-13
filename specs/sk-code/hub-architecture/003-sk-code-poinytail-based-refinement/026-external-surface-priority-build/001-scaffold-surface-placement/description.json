@@ -1,13 +1,19 @@
 {
   "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/001-scaffold-surface-placement",
-  "description": "Scaffold surface placement",
+  "description": "`/create:skill-parent update --surfaces` writes `hub-router.json`, and its step4 activity (`create-skill-parent-confirm.yaml:462`,",
   "keywords": [
-    "scaffold",
-    "surface",
-    "placement"
+    "skill-parent",
+    "surfaces",
+    "writes",
+    "hub-router",
+    "json",
+    "step4",
+    "activity",
+    "create-skill-parent-confirm",
+    "yaml"
   ],
-  "lastUpdated": "2026-10-13T06:28:22.071Z",
+  "lastUpdated": "2026-11-13T10:04:46.745Z",
   "specId": "001",
   "folderSlug": "scaffold-surface-placement",
   "parentChain": [

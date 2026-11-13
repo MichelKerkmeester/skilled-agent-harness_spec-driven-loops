@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/005-mcp-tooling/007-mcp-notion",
-  "description": "Phase 7: mcp-notion",
+  "description": "The docs of the `.skilled/skills/mcp-tooling/mcp-notion` mode were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "mcp-notion"
+    "docs",
+    "skilled",
+    "skills",
+    "mcp-tooling",
+    "mcp-notion",
+    "mode",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:30.598Z",
+  "lastUpdated": "2026-11-13T10:04:51.117Z",
   "specId": "007",
   "folderSlug": "mcp-notion",
   "parentChain": [
@@ -15,6 +26,5 @@
     "005-mcp-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

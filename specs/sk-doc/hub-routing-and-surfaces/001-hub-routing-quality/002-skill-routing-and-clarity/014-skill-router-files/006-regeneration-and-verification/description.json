@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/006-regeneration-and-verification",
-  "description": "Phase 6: regeneration-and-verification",
+  "description": "The moves in phases 004 and 005 change authored bytes, and every derived artifact records those bytes",
   "keywords": [
-    "phase",
-    "regeneration-and-verification"
+    "moves",
+    "phases",
+    "change",
+    "authored",
+    "bytes",
+    "every",
+    "derived",
+    "artifact",
+    "records"
   ],
-  "lastUpdated": "2026-10-29T07:52:45.335Z",
+  "lastUpdated": "2026-11-13T10:04:51.855Z",
   "specId": "006",
   "folderSlug": "regeneration-and-verification",
   "parentChain": [
@@ -16,6 +24,5 @@
     "014-skill-router-files"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

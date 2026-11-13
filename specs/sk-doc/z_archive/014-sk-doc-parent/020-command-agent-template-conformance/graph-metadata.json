@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The sk-doc `/create` command routers and the `markdown` agents all fail `validatedocument.py`",
     "created_at": "2026-07-07T14:28:17.730Z",
-    "last_save_at": "2026-10-07T18:12:33.034Z",
+    "last_save_at": "2026-11-13T13:15:01.650Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a1fbff99a53b7224b317364c52a6d1b0f9726d03a3c6a03e1e9ed158784ab64a",
+    "source_fingerprint": "sha256:c343951e7b8e7a59c75fcccf7ab10822c493d4c6d810180539c24ce58fcb47f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a5b8ccfa8de3385ff6858544d6b705782f407791238492f9bd65ab969fe237f9",
+      "spec.md": "43691da88e1cc689a3d8116bd75ad4d924d41051cfffd28d7c2e4ee8351d5a9b",
       "plan.md": "c96626445011221f50a67a36acd751bac7c6fe605eeba289e756a6f5c20ef608",
       "tasks.md": "52e53da93b25e9532dfcdbd2c48731c1425bb6537ed7c9943bf37a13034ffb66",
       "implementation-summary.md": "4d948972a1f9c59f52d5f828f7c9e2b79f88eca58ea87eb9aff0c4fe35ebd5f6"

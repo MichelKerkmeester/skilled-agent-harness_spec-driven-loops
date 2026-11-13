@@ -1,12 +1,22 @@
 {
   "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/007-main-ci-repairs",
-  "description": "Phase 7: main-ci-repairs",
+  "description": "Three workflows failed on every push to main since 2026-11-01, so a real regression in any of them would have gone unnoticed",
   "keywords": [
-    "phase",
-    "main-ci-repairs"
+    "three",
+    "workflows",
+    "failed",
+    "every",
+    "push",
+    "main",
+    "since",
+    "real",
+    "regression",
+    "them",
+    "gone",
+    "unnoticed"
   ],
-  "lastUpdated": "2026-11-02T12:46:40.707Z",
+  "lastUpdated": "2026-11-13T10:04:39.426Z",
   "specId": "007",
   "folderSlug": "main-ci-repairs",
   "parentChain": [

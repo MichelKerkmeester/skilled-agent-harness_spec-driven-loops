@@ -18,11 +18,12 @@
     "delegatable",
     "agents"
   ],
-  "lastUpdated": "2026-08-28T16:24:15.267Z",
+  "lastUpdated": "2026-11-13T10:04:52.278Z",
   "specId": "002",
   "folderSlug": "cli-claude-code-readme",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode",
     "014-skill-readme-standardization"
   ],

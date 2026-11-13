@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/003-scripts-interop-refactor",
   "description": "`@spec-kit/scripts` is intentionally pinned to CommonJS (`\"type\": \"commonjs\"`) and owns 20 files that consume `@spec-kit/shared` and",
   "keywords": [
@@ -13,7 +14,7 @@
     "consume",
     "shared"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.490Z",
+  "lastUpdated": "2026-11-13T10:05:34.296Z",
   "specId": "003",
   "folderSlug": "scripts-interop-refactor",
   "parentChain": [
@@ -22,6 +23,5 @@
     "023-hybrid-rag-fusion-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

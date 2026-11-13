@@ -1,13 +1,20 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/002-doctor-guard-sync-messages",
-  "description": "Doctor guard and sync messages",
+  "description": "A user who deletes an example packet sees `3c: mode \"...\" packet \"...\" is not an existing sub-directory` (`parent-skill-check.cjs:496`) with no",
   "keywords": [
-    "doctor",
-    "guard",
-    "sync",
-    "messages"
+    "user",
+    "deletes",
+    "example",
+    "packet",
+    "sees",
+    "mode",
+    "existing",
+    "sub-directory",
+    "parent-skill-check",
+    "cjs"
   ],
-  "lastUpdated": "2026-10-13T04:45:53.069Z",
+  "lastUpdated": "2026-11-13T10:04:46.759Z",
   "specId": "002",
   "folderSlug": "doctor-guard-sync-messages",
   "parentChain": [
@@ -17,6 +24,5 @@
     "026-external-surface-priority-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

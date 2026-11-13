@@ -35,11 +35,12 @@
     "cadence",
     "mode"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.467Z",
+  "lastUpdated": "2026-11-13T10:04:48.944Z",
   "specId": "002",
   "folderSlug": "parent-hub-compatibility-shell",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 4,

@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/004-quality-obsidian-coverage",
-  "description": "Phase 4: quality-obsidian-coverage",
+  "description": "The `sk-code` hub detects three surfaces, WEBFLOW, OPENCODE and OBSIDIAN, but the quality mode's Target-Path Checklist Map",
   "keywords": [
-    "phase",
-    "quality-obsidian-coverage"
+    "sk-code",
+    "hub",
+    "detects",
+    "three",
+    "surfaces",
+    "webflow",
+    "opencode",
+    "obsidian",
+    "quality",
+    "mode",
+    "target-path",
+    "checklist",
+    "map"
   ],
-  "lastUpdated": "2026-10-10T14:44:45.247Z",
+  "lastUpdated": "2026-11-13T10:04:45.818Z",
   "specId": "004",
   "folderSlug": "quality-obsidian-coverage",
   "parentChain": [
@@ -15,6 +27,5 @@
     "011-round-four-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

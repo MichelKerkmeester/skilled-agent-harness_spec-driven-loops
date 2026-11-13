@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters",
   "description": "Wave 2 of the over-engineering removal program: delete the seven per-mode legacy-format converters (F1) — decide<Mode>Compatibility +",
   "keywords": [
@@ -15,7 +16,7 @@
     "mode",
     "compatibility"
   ],
-  "lastUpdated": "2026-08-24T19:07:02.562Z",
+  "lastUpdated": "2026-11-13T10:04:56.023Z",
   "specId": "002",
   "folderSlug": "legacy-compat-converters",
   "parentChain": [
@@ -26,6 +27,5 @@
     "011-delete-overengineering"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

@@ -1,12 +1,19 @@
 {
   "level": "2",
   "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test",
-  "description": "Phase 6: live-conversation-test",
+  "description": "The three decision-capture playbook scenarios feed a redacted fixture payload to the hook",
   "keywords": [
-    "phase",
-    "live-conversation-test"
+    "three",
+    "decision-capture",
+    "playbook",
+    "scenarios",
+    "feed",
+    "redacted",
+    "fixture",
+    "payload",
+    "hook"
   ],
-  "lastUpdated": "2026-11-03T06:48:41.588Z",
+  "lastUpdated": "2026-11-13T10:05:30.389Z",
   "specId": "006",
   "folderSlug": "live-conversation-test",
   "parentChain": [

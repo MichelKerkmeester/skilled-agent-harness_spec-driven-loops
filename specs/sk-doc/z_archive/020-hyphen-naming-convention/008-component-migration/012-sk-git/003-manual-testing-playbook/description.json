@@ -15,11 +15,12 @@
     "committed",
     "skilled"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.939Z",
+  "lastUpdated": "2026-11-13T10:04:53.758Z",
   "specId": "003",
   "folderSlug": "manual-testing-playbook",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "012-sk-git"

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "A fresh, independent Opus-max audit of sk-design's parent hub and all 6 subskills (dispatched after phase 024 closed its 8 bugs) cross-referenced the manual-testing playbook's remaining never-fixed items and confirmed `PB-002` still had two real, live defects: the advisor probe loses `sk-design` top-1 to `sk-code` for a design-scoped review prompt, and the live dispatch resolves a bundled `audit`+`foundations` instead of pure `foundations`, contradicting `sk-design/SKILL.md`'s own Mode Vocabulary Guardrails rule about which mode owns review framing",
     "created_at": "2026-07-07T20:49:01.958Z",
-    "last_save_at": "2026-10-07T18:12:29.647Z",
+    "last_save_at": "2026-11-13T13:14:16.495Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc4c4bcb42f6399bf06dcbf118c78161db4850db718d861af20df23aeabbc3d3",
+    "source_fingerprint": "sha256:815442eea335aa0096a433940beaa6ee750881e191fbfd567f58e21cd6b52a38",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dfd2b5e269ec0edb482da04c12034ffaf56006c548c18ff2df8dcdbdb4af876f",
+      "spec.md": "ed29f3320b4470718736943a83275742111abb58d416ee5249b9f9e72fb40f1c",
       "plan.md": "c57590b31c16929451ad905630057fd03ae7fa4e0496d629de43d766ec1b1de4",
       "tasks.md": "55c9802adcad4cc97feb6b897d4827d0d20b4e479801f6e6a1c369e7c18dbf71",
       "implementation-summary.md": "a7fbdbf0e10df2c4dc408c7552634281079b770263b1803927818beac1856609"

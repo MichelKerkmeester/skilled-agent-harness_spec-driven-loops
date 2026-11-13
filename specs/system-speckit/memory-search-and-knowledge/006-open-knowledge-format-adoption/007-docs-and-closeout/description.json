@@ -1,11 +1,25 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/006-open-knowledge-format-adoption/007-docs-and-closeout",
-  "description": "Phase 7: docs-and-closeout",
+  "description": "Behavior that ships without its contract text, catalog entry and changelog leaves two skills documenting different rules, which is the drift this",
   "keywords": [
-    "phase",
-    "docs-and-closeout"
+    "behavior",
+    "ships",
+    "without",
+    "contract",
+    "text",
+    "catalog",
+    "entry",
+    "changelog",
+    "leaves",
+    "two",
+    "skills",
+    "documenting",
+    "different",
+    "rules",
+    "drift"
   ],
-  "lastUpdated": "2026-10-04T08:04:54.668Z",
+  "lastUpdated": "2026-11-13T10:05:14.917Z",
   "specId": "007",
   "folderSlug": "docs-and-closeout",
   "parentChain": [
@@ -14,6 +28,5 @@
     "006-open-knowledge-format-adoption"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

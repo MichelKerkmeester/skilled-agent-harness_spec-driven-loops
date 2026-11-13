@@ -21,11 +21,12 @@
     "hooks",
     "opencode"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.095Z",
+  "lastUpdated": "2026-11-13T10:04:38.546Z",
   "specId": "009",
   "folderSlug": "codex-hook-install-robustness",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "027-cli-codex-revival"
   ],
   "memorySequence": 0,

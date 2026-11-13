@@ -31,11 +31,12 @@
     "refactored",
     "consume"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.469Z",
+  "lastUpdated": "2026-11-13T13:14:09.425Z",
   "specId": "004",
   "folderSlug": "mode-packet-refactor",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 6,

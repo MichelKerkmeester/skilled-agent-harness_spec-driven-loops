@@ -18,11 +18,12 @@
     "typed",
     "scorer"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.693Z",
+  "lastUpdated": "2026-11-13T10:04:52.942Z",
   "specId": "001",
   "folderSlug": "sk-git",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program",
     "012-non-hub-rollout"

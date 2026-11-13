@@ -1,18 +1,22 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/dispatch-surface-maintenance/004-pi-extension-brace-expansion",
-  "description": "Bump brace-expansion in two Pi extension lockfiles to close four Dependabot alerts",
+  "description": "GitHub reports four open Dependabot alerts, two high and two moderate, for `brace-expansion` 5.0.9 in the lockfiles of two Pi extensions",
   "keywords": [
-    "bump",
-    "brace-expansion",
-    "two",
-    "extension",
-    "lockfiles",
-    "close",
+    "github",
+    "reports",
     "four",
+    "open",
     "dependabot",
-    "alerts"
+    "alerts",
+    "two",
+    "high",
+    "moderate",
+    "brace-expansion",
+    "lockfiles",
+    "extensions"
   ],
-  "lastUpdated": "2026-10-05T07:28:02.740Z",
+  "lastUpdated": "2026-11-13T10:04:37.035Z",
   "specId": "004",
   "folderSlug": "pi-extension-brace-expansion",
   "parentChain": [
@@ -20,6 +24,5 @@
     "dispatch-surface-maintenance"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

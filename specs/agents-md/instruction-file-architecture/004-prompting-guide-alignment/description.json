@@ -1,18 +1,18 @@
 {
+  "level": "2",
   "specFolder": "agents-md/instruction-file-architecture/004-prompting-guide-alignment",
-  "description": "Align AGENTS.md, repo rules and sk-prompt with current vendor prompting guides",
+  "description": "The repository's instruction surfaces predate the current vendor prompting guides",
   "keywords": [
-    "align",
-    "agents",
-    "repo",
-    "rules",
-    "sk-prompt",
+    "repository",
+    "instruction",
+    "surfaces",
+    "predate",
     "current",
     "vendor",
     "prompting",
     "guides"
   ],
-  "lastUpdated": "2026-09-24T09:48:22.308Z",
+  "lastUpdated": "2026-11-13T10:04:35.153Z",
   "specId": "004",
   "folderSlug": "prompting-guide-alignment",
   "parentChain": [
@@ -20,6 +20,5 @@
     "instruction-file-architecture"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

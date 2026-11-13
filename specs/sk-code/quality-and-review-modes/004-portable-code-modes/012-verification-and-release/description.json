@@ -1,11 +1,27 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/004-portable-code-modes/012-verification-and-release",
-  "description": "Phase 12: verification-and-release",
+  "description": "The earlier phases changed how the three modes read a repository's rules, and every mode ships playbook scenarios a reader is expected to run by hand",
   "keywords": [
-    "phase",
-    "verification-and-release"
+    "earlier",
+    "phases",
+    "changed",
+    "three",
+    "modes",
+    "read",
+    "repository",
+    "rules",
+    "every",
+    "mode",
+    "ships",
+    "playbook",
+    "scenarios",
+    "reader",
+    "expected",
+    "run",
+    "hand"
   ],
-  "lastUpdated": "2026-10-28T07:05:33.646Z",
+  "lastUpdated": "2026-11-13T10:04:47.188Z",
   "specId": "012",
   "folderSlug": "verification-and-release",
   "parentChain": [
@@ -14,6 +30,5 @@
     "004-portable-code-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

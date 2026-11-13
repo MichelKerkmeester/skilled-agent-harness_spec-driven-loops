@@ -1,19 +1,21 @@
 {
+  "level": "2",
   "specFolder": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration",
-  "description": "Sweet-search integration: evaluate the local code-search tool and integrate it into Skilled where it earns its place",
+  "description": "Agents working in Skilled and in the project repos Skilled is installed into find code with grep and file reads",
   "keywords": [
-    "sweet-search",
-    "integration",
-    "evaluate",
-    "local",
-    "code-search",
-    "tool",
-    "integrate",
+    "agents",
+    "working",
     "skilled",
-    "earns",
-    "place"
+    "project",
+    "repos",
+    "installed",
+    "find",
+    "code",
+    "grep",
+    "file",
+    "reads"
   ],
-  "lastUpdated": "2026-11-09T11:30:04.163Z",
+  "lastUpdated": "2026-11-13T10:04:41.509Z",
   "specId": "001",
   "folderSlug": "sweet-search-integration",
   "parentChain": [
@@ -21,6 +23,5 @@
     "retrieval-integrations"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

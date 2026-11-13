@@ -13,11 +13,12 @@
     "reproduction",
     "asserted"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.212Z",
+  "lastUpdated": "2026-11-13T10:04:54.404Z",
   "specId": "004",
   "folderSlug": "pathspec-integrity",
   "parentChain": [
     "sk-git",
+    "z_archive",
     "016-git-action-advisory-hook"
   ],
   "memorySequence": 1,

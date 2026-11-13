@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research",
   "description": "The current template system at `.opencode/skills/system-spec-kit/templates/` has accumulated 83 .md template files (~13K LOC) across `core/`,",
   "keywords": [
@@ -16,7 +17,7 @@
     "across",
     "core"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.138Z",
+  "lastUpdated": "2026-11-13T10:05:04.706Z",
   "specId": "001",
   "folderSlug": "template-level-consolidation-research",
   "parentChain": [
@@ -27,6 +28,5 @@
     "002-template-levels"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

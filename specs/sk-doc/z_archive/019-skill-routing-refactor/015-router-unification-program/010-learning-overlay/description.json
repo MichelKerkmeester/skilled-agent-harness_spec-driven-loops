@@ -13,11 +13,12 @@
     "per",
     "generation"
   ],
-  "lastUpdated": "2026-09-06T16:47:51.435Z",
+  "lastUpdated": "2026-11-13T10:04:52.936Z",
   "specId": "010",
   "folderSlug": "learning-overlay",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program"
   ],

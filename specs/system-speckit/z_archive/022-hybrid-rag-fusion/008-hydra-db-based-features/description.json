@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features",
   "description": "Feature Specification: 008-hydra-db-based-features",
   "keywords": [
@@ -6,7 +7,7 @@
     "specification",
     "008-hydra-db-based-features"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.247Z",
+  "lastUpdated": "2026-11-13T10:05:33.355Z",
   "specId": "008",
   "folderSlug": "hydra-db-based-features",
   "parentChain": [
@@ -27,6 +28,5 @@
     "14-03-26_14-52__synced-the-017-markovian-architectures-spec.md",
     "27-04-26_15-34__retroactive-migration-by-worker-1.md",
     "27-04-26_15-35__retroactive-migration-by-worker-1.md"
-  ],
-  "level": "2"
+  ]
 }

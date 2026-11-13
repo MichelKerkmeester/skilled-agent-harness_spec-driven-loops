@@ -18,11 +18,12 @@
     "engine",
     "packet"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.751Z",
+  "lastUpdated": "2026-11-13T10:04:49.181Z",
   "specId": "001",
   "folderSlug": "research-style-database",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program",
     "001-research"
   ],

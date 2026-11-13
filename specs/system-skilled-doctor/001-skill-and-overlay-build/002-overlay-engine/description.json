@@ -1,12 +1,21 @@
 {
   "level": "3",
   "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/002-overlay-engine",
-  "description": "Phase 2: overlay-engine",
+  "description": "Barter's `replay.cjs` plans its apply and check without the accepted hashes that `sync.cjs` passes",
   "keywords": [
-    "phase",
-    "overlay-engine"
+    "barter",
+    "replay",
+    "cjs",
+    "plans",
+    "apply",
+    "check",
+    "without",
+    "accepted",
+    "hashes",
+    "sync",
+    "passes"
   ],
-  "lastUpdated": "2026-11-07T05:11:49.656Z",
+  "lastUpdated": "2026-11-13T10:05:03.330Z",
   "specId": "002",
   "folderSlug": "overlay-engine",
   "parentChain": [

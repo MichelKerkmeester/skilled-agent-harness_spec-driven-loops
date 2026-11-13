@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "commands/005-doctor-symlink-install/002-install-guide-router",
-  "description": "Phase 2: install-guide-router",
+  "description": "A user who wants Skilled in their own project repository has to read the README, work out which runtime folders to link",
   "keywords": [
-    "phase",
-    "install-guide-router"
+    "user",
+    "wants",
+    "skilled",
+    "own",
+    "project",
+    "repository",
+    "read",
+    "readme",
+    "work",
+    "runtime",
+    "folders",
+    "link"
   ],
-  "lastUpdated": "2026-10-31T13:38:33.649Z",
+  "lastUpdated": "2026-11-13T10:04:39.584Z",
   "specId": "002",
   "folderSlug": "install-guide-router",
   "parentChain": [
@@ -13,6 +24,5 @@
     "005-doctor-symlink-install"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -16,11 +16,12 @@
     "versus",
     "mcp"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.920Z",
+  "lastUpdated": "2026-11-13T10:04:42.617Z",
   "specId": "002",
   "folderSlug": "skill-authoring",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "008-mcp-aside"
   ],
   "memorySequence": 0,

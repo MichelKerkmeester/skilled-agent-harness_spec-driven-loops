@@ -1,12 +1,22 @@
 {
   "level": "3+",
   "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/002-command-inventory-and-risk-metadata",
-  "description": "Phase 2: command-inventory-and-risk-metadata",
+  "description": "The deriver builds its inventory from `command-metadata.json` files, an allow-list and the doctor manifest, and it never reads `.skilled/commands/`",
   "keywords": [
-    "phase",
-    "command-inventory-and-risk-metadata"
+    "deriver",
+    "inventory",
+    "command-metadata",
+    "json",
+    "files",
+    "allow-list",
+    "doctor",
+    "manifest",
+    "never",
+    "reads",
+    "skilled",
+    "commands"
   ],
-  "lastUpdated": "2026-11-12T14:06:31.734Z",
+  "lastUpdated": "2026-11-13T10:05:01.586Z",
   "specId": "002",
   "folderSlug": "command-inventory-and-risk-metadata",
   "parentChain": [

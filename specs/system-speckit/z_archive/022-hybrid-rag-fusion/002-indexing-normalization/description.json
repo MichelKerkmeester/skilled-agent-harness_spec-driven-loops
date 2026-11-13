@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/002-indexing-normalization",
   "description": "The index scan currently collects files from both `specs/` and `.opencode/specs/` roots",
   "keywords": [
@@ -11,7 +12,7 @@
     "opencode",
     "roots"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.108Z",
+  "lastUpdated": "2026-11-13T10:05:33.090Z",
   "specId": "002",
   "folderSlug": "indexing-normalization",
   "parentChain": [
@@ -20,6 +21,5 @@
     "022-hybrid-rag-fusion"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

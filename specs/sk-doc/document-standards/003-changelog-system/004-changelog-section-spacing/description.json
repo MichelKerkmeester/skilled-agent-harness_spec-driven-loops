@@ -1,18 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/document-standards/003-changelog-system/004-changelog-section-spacing",
-  "description": "Changelog section spacing: nbsp between top-level sections, none between items",
+  "description": "The changelog standard put a `---` rule between top-level sections and an `&nbsp;` line between the items inside a section",
   "keywords": [
     "changelog",
-    "section",
-    "spacing",
-    "nbsp",
+    "standard",
+    "put",
+    "rule",
     "between",
     "top-level",
     "sections",
-    "none",
-    "items"
+    "nbsp",
+    "line",
+    "items",
+    "inside",
+    "section"
   ],
-  "lastUpdated": "2026-10-05T09:56:58.850Z",
+  "lastUpdated": "2026-11-13T10:04:51.671Z",
   "specId": "004",
   "folderSlug": "changelog-section-spacing",
   "parentChain": [
@@ -21,6 +25,5 @@
     "003-changelog-system"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

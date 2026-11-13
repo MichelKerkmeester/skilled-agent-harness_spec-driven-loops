@@ -13,11 +13,12 @@
     "lane",
     "skill-benchmark"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.495Z",
+  "lastUpdated": "2026-11-13T10:04:48.969Z",
   "specId": "022",
   "folderSlug": "benchmark-rerun-and-coverage-fill",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 0,

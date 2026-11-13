@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The `semanticshadow` lane weight (0.05) had never been confirmed on the full 193-row corpus with real embeddings",
     "created_at": "2026-07-07T09:00:00.000Z",
-    "last_save_at": "2026-10-07T18:16:09.684Z",
+    "last_save_at": "2026-11-13T13:19:07.752Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80ff4ae47a848c07e54bd70191e6ac7c6280a10e4461e61ee930cf53a2989be3",
+    "source_fingerprint": "sha256:ac0275f320e46575b8ee1a1342444a324a49fd7ab47c762d3c0439c3f6b5d363",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2910c5ca99cf4f2d7c86a8de5172de912b595bc21170b8887abd3ae35669cf39",
+      "spec.md": "c186a327d41e4001423fc4cbfa33f0d5d73f8ec6011f8079f7b6989fc5bc4504",
       "plan.md": "7c1667c89e29e0aa2bfea6f0a02fba6db3eae01069c315ddb240cb5ef44a785d",
       "tasks.md": "771f06fdae9d563ff46ff843f86ea9d02c181e1eceefb0c8426cd071367e6fb9",
       "implementation-summary.md": "1ea163f7e52249f410b1268ee48fc3501af5afbf24d4a309431be459f498bb2c"

@@ -10,7 +10,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release"
+    packet_pointer: "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release"
     last_updated_at: "2026-04-27T15:03:58Z"
     last_updated_by: "copilot-gpt-5.4"
     recent_action: "Cataloged parent and direct phase-child artifacts in resource-map.md"

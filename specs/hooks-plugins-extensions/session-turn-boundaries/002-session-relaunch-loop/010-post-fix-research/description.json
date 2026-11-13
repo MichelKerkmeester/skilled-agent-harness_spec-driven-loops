@@ -1,18 +1,18 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/010-post-fix-research",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "Phase 009 moved shared decisions into the core and changed every adapter",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "phase",
+    "moved",
+    "shared",
+    "decisions",
+    "core",
+    "changed",
+    "every",
+    "adapter"
   ],
-  "lastUpdated": "2026-10-19T19:31:27.979Z",
+  "lastUpdated": "2026-11-13T10:04:41.570Z",
   "specId": "010",
   "folderSlug": "post-fix-research",
   "parentChain": [

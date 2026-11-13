@@ -1,12 +1,22 @@
 {
   "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research",
-  "description": "Phase 28: surface-setup-hardening-research",
+  "description": "Skilled assumes that every sk-code surface except sk-code-skilled and sk-code-review means nothing to an external user, and that any surface the user",
   "keywords": [
-    "phase",
-    "surface-setup-hardening-research"
+    "skilled",
+    "assumes",
+    "every",
+    "sk-code",
+    "surface",
+    "except",
+    "sk-code-skilled",
+    "sk-code-review",
+    "means",
+    "nothing",
+    "external",
+    "user"
   ],
-  "lastUpdated": "2026-10-13T18:32:19.408Z",
+  "lastUpdated": "2026-11-13T10:04:46.864Z",
   "specId": "028",
   "folderSlug": "surface-setup-hardening-research",
   "parentChain": [

@@ -18,11 +18,12 @@
     "predates",
     "pilot"
   ],
-  "lastUpdated": "2026-09-04T17:50:17.895Z",
+  "lastUpdated": "2026-11-13T10:04:53.866Z",
   "specId": "012",
   "folderSlug": "mcp-mobbin",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement",
     "005-mode-child-readme-revisit"
   ],

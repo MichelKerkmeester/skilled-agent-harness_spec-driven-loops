@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration/003-cli-codex",
-  "description": "Phase 3: cli-codex",
+  "description": "The docs of the `.skilled/skills/cli-external-orchestration/cli-codex` mode were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "cli-codex"
+    "docs",
+    "skilled",
+    "skills",
+    "cli-external-orchestration",
+    "cli-codex",
+    "mode",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:22.848Z",
+  "lastUpdated": "2026-11-13T10:04:50.441Z",
   "specId": "003",
   "folderSlug": "cli-codex",
   "parentChain": [
@@ -15,6 +26,5 @@
     "002-cli-external-orchestration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

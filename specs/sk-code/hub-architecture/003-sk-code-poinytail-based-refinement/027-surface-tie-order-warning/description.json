@@ -1,16 +1,19 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/027-surface-tie-order-warning",
-  "description": "Doctor reports a sk-code surface placed after sk-code-skilled in tieBreak",
+  "description": "`routerPolicy.tieBreak` decides a keyword tie: the mode listed first wins",
   "keywords": [
-    "doctor",
-    "reports",
-    "sk-code",
-    "surface",
-    "placed",
-    "sk-code-skilled",
-    "tiebreak"
+    "routerpolicy",
+    "tiebreak",
+    "decides",
+    "keyword",
+    "tie",
+    "mode",
+    "listed",
+    "first",
+    "wins"
   ],
-  "lastUpdated": "2026-10-13T15:21:06.644Z",
+  "lastUpdated": "2026-11-13T10:04:46.831Z",
   "specId": "027",
   "folderSlug": "surface-tie-order-warning",
   "parentChain": [
@@ -19,6 +22,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/z_archive/021-cli-gemini-deprecation",
   "description": "The project no longer supports a Gemini surface, yet active tooling still depends on one in two places: the checked-in project runtime directory and",
   "keywords": [
@@ -18,7 +19,7 @@
     "runtime",
     "directory"
   ],
-  "lastUpdated": "2026-08-30T05:43:10.050Z",
+  "lastUpdated": "2026-11-13T10:04:38.380Z",
   "specId": "021",
   "folderSlug": "cli-gemini-deprecation",
   "parentChain": [
@@ -26,6 +27,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

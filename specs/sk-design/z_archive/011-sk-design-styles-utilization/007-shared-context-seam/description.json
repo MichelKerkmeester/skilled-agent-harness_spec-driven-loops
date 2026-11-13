@@ -16,11 +16,12 @@
     "chooser",
     "top-ranked"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.624Z",
+  "lastUpdated": "2026-11-13T10:04:49.097Z",
   "specId": "007",
   "folderSlug": "shared-context-seam",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "011-sk-design-styles-utilization"
   ],
   "memorySequence": 0,

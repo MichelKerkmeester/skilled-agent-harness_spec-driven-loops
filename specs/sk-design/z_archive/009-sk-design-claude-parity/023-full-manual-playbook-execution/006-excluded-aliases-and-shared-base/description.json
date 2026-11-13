@@ -16,11 +16,12 @@
     "specific",
     "behavioral"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.512Z",
+  "lastUpdated": "2026-11-13T10:04:48.979Z",
   "specId": "006",
   "folderSlug": "excluded-aliases-and-shared-base",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity",
     "023-full-manual-playbook-execution"
   ],

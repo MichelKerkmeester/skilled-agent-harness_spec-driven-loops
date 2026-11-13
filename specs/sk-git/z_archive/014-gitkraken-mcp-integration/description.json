@@ -18,11 +18,12 @@
     "git",
     "operations"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.183Z",
+  "lastUpdated": "2026-11-13T10:04:54.383Z",
   "specId": "014",
   "folderSlug": "gitkraken-mcp-integration",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

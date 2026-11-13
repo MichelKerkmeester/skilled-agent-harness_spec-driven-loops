@@ -1,18 +1,22 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/runtime-lifecycle/005-build-freshness-record",
-  "description": "Record the advisor runtime dist build so a fresh build writes its own freshness attestation",
+  "description": "The advisor runtime package built with `tsc` and a `postbuild` that copied data, and it never wrote a dist freshness record",
   "keywords": [
-    "record",
     "advisor",
     "runtime",
+    "package",
+    "tsc",
+    "postbuild",
+    "copied",
+    "data",
+    "never",
+    "wrote",
     "dist",
-    "fresh",
-    "writes",
-    "own",
     "freshness",
-    "attestation"
+    "record"
   ],
-  "lastUpdated": "2026-10-30T17:20:26.745Z",
+  "lastUpdated": "2026-11-13T10:05:02.491Z",
   "specId": "005",
   "folderSlug": "build-freshness-record",
   "parentChain": [
@@ -20,6 +24,5 @@
     "runtime-lifecycle"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,27 @@
 {
+  "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/026-doctor-run-followups",
-  "description": "Phase 26: doctor-run-followups",
+  "description": "The test required every uncommented example line to turn its switch on, but `JEVFEATURE=0` lines are kill switches whose written value turns a feature",
   "keywords": [
-    "phase",
-    "doctor-run-followups"
+    "test",
+    "required",
+    "every",
+    "uncommented",
+    "example",
+    "line",
+    "turn",
+    "switch",
+    "jevfeature",
+    "lines",
+    "kill",
+    "switches",
+    "whose",
+    "written",
+    "value",
+    "turns",
+    "feature"
   ],
-  "lastUpdated": "2026-10-05T09:02:30.941Z",
+  "lastUpdated": "2026-11-13T10:04:39.365Z",
   "specId": "026",
   "folderSlug": "doctor-run-followups",
   "parentChain": [
@@ -14,6 +30,5 @@
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

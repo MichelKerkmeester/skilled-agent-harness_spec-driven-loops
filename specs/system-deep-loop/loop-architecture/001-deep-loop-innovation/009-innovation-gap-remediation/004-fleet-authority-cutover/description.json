@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation/004-fleet-authority-cutover",
   "description": "Plan the serial cutover of the seven remaining mode roots onto the typed ledger, prove five production boundaries per mode, preserve rollback windows,",
   "keywords": [
@@ -21,7 +22,7 @@
     "rollback",
     "windows"
   ],
-  "lastUpdated": "2026-08-17T08:29:24.531Z",
+  "lastUpdated": "2026-11-13T10:04:55.967Z",
   "specId": "004",
   "folderSlug": "fleet-authority-cutover",
   "parentChain": [
@@ -31,6 +32,5 @@
     "009-innovation-gap-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

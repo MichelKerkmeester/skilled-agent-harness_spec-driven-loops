@@ -16,11 +16,12 @@
     "follow-on",
     "workstreams"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.187Z",
+  "lastUpdated": "2026-11-13T10:04:38.676Z",
   "specId": "009",
   "folderSlug": "cursor-hooks-lifecycle",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "030-cli-cursor-creation"
   ],
   "memorySequence": 0,

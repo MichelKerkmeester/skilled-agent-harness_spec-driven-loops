@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag",
-  "description": "Phase 21: pi-fast-mode-trusted-flag",
+  "description": "In a plain run (no `-a`) of `pi --offline --help` in the trusted main checkout, `--fast` was missing",
   "keywords": [
-    "phase",
-    "pi-fast-mode-trusted-flag"
+    "plain",
+    "run",
+    "offline",
+    "help",
+    "trusted",
+    "main",
+    "checkout",
+    "fast",
+    "missing"
   ],
-  "lastUpdated": "2026-10-20T07:08:56.579Z",
+  "lastUpdated": "2026-11-13T10:04:37.454Z",
   "specId": "021",
   "folderSlug": "pi-fast-mode-trusted-flag",
   "parentChain": [
@@ -14,6 +22,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

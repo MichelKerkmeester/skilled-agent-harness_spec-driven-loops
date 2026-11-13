@@ -1,12 +1,24 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/008-alignment-findings",
-  "description": "Phase 8: alignment-findings",
+  "description": "`skilledlooprealpath` follows a symlink at the wrapper path with no hop bound, so a cyclic pair of links hangs the sourced shell with no output",
   "keywords": [
-    "phase",
-    "alignment-findings"
+    "skilledlooprealpath",
+    "follows",
+    "symlink",
+    "wrapper",
+    "path",
+    "hop",
+    "bound",
+    "cyclic",
+    "pair",
+    "links",
+    "hangs",
+    "sourced",
+    "shell",
+    "output"
   ],
-  "lastUpdated": "2026-11-12T19:55:12.645Z",
+  "lastUpdated": "2026-11-13T10:04:41.868Z",
   "specId": "008",
   "folderSlug": "alignment-findings",
   "parentChain": [

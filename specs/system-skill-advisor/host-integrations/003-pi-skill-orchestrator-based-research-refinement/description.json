@@ -1,14 +1,14 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement",
-  "description": "Pi skill orchestrator research for skill advisor refinement",
+  "description": "The skill advisor routes by push",
   "keywords": [
     "skill",
-    "orchestrator",
-    "research",
     "advisor",
-    "refinement"
+    "routes",
+    "push"
   ],
-  "lastUpdated": "2026-09-26T06:29:58.862Z",
+  "lastUpdated": "2026-11-13T10:05:01.422Z",
   "specId": "003",
   "folderSlug": "pi-skill-orchestrator-based-research-refinement",
   "parentChain": [
@@ -16,6 +16,5 @@
     "host-integrations"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

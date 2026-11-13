@@ -1,12 +1,13 @@
 {
   "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research",
-  "description": "Phase 11: changelog-v4003-research",
+  "description": "The v4.0.0.3 entry was last edited on 2026-10-02",
   "keywords": [
-    "phase",
-    "changelog-v4003-research"
+    "entry",
+    "last",
+    "edited"
   ],
-  "lastUpdated": "2026-10-04T08:38:47.384Z",
+  "lastUpdated": "2026-11-13T10:04:39.329Z",
   "specId": "011",
   "folderSlug": "changelog-v4003-research",
   "parentChain": [

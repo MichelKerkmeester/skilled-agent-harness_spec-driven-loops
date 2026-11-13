@@ -1,11 +1,9 @@
 {
   "level": "1",
   "specFolder": "cli-classifier/002-cli-jev-hub-migration/003-decouple-and-rewire",
-  "description": "After phase 002 two registries named one packet and the enforcement chain still read the retired path: `dispatch-audit.mjs` resolved the packet `SKILL",
+  "description": "After phase 002 two registries named one packet and the enforcement chain still read the retired path: `dispatch-audit.mjs` resolved the packet",
   "keywords": [
-    "after",
     "phase",
-    "002",
     "two",
     "registries",
     "named",
@@ -14,9 +12,14 @@
     "enforcement",
     "chain",
     "still",
-    "read"
+    "read",
+    "retired",
+    "path",
+    "dispatch-audit",
+    "mjs",
+    "resolved"
   ],
-  "lastUpdated": "2026-09-20T14:45:46Z",
+  "lastUpdated": "2026-11-13T10:04:35.366Z",
   "specId": "003",
   "folderSlug": "decouple-and-rewire",
   "parentChain": [

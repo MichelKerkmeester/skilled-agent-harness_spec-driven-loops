@@ -18,11 +18,12 @@
     "ollama",
     "disk-buffered"
   ],
-  "lastUpdated": "2026-08-19T19:21:31.124Z",
+  "lastUpdated": "2026-11-13T10:04:38.824Z",
   "specId": "042",
   "folderSlug": "improved-communication",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

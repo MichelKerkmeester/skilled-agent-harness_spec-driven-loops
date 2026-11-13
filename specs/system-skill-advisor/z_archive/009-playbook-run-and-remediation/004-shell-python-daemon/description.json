@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/004-shell-python-daemon",
   "description": "The remaining 32 scenarios span seven categories: compat/disable (CP), operator-H5 daemon states (OP), auto-update daemon (AU), auto-indexing (AI),",
   "keywords": [
@@ -15,7 +16,7 @@
     "auto-update",
     "auto-indexing"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.183Z",
+  "lastUpdated": "2026-11-13T10:05:03.060Z",
   "specId": "004",
   "folderSlug": "shell-python-daemon",
   "parentChain": [
@@ -26,6 +27,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "26-05-26_21-10__executed-all-46-playbook-scenarios-across-9.md"
-  ],
-  "level": "2"
+  ]
 }

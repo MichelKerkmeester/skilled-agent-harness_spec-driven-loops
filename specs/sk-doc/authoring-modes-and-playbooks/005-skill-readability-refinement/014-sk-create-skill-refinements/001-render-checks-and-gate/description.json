@@ -1,12 +1,17 @@
 {
   "level": "3",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate",
-  "description": "Phase 1: render-checks-and-gate",
+  "description": "The largest mechanical finding class in 066, overview without Purpose and When to Use",
   "keywords": [
-    "phase",
-    "render-checks-and-gate"
+    "largest",
+    "mechanical",
+    "finding",
+    "class",
+    "overview",
+    "without",
+    "purpose"
   ],
-  "lastUpdated": "2026-11-05T09:20:47.024Z",
+  "lastUpdated": "2026-11-13T10:04:51.540Z",
   "specId": "001",
   "folderSlug": "render-checks-and-gate",
   "parentChain": [

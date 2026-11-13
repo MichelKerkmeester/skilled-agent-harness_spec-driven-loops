@@ -19,11 +19,12 @@
     "syntax",
     "sample"
   ],
-  "lastUpdated": "2026-08-29T15:04:56.566Z",
+  "lastUpdated": "2026-11-13T10:04:54.022Z",
   "specId": "002",
   "folderSlug": "validator-false-positives",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "038-authoring-hardening"
   ],
   "memorySequence": 0,

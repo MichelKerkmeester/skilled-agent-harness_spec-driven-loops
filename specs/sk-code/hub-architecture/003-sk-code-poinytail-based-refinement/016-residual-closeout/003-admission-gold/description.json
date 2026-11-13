@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/016-residual-closeout/003-admission-gold",
-  "description": "Phase 3: admission-gold",
+  "description": "The system-deep-loop admission check reports one drift: DOC-331 (`doctor-deep-loop-lazy-init.md`) carries gold `UNKNOWN` and the prompt `Initialize",
   "keywords": [
-    "phase",
-    "admission-gold"
+    "system-deep-loop",
+    "admission",
+    "check",
+    "reports",
+    "one",
+    "drift",
+    "doc-331",
+    "doctor-deep-loop-lazy-init",
+    "carries",
+    "gold",
+    "unknown",
+    "prompt",
+    "initialize"
   ],
-  "lastUpdated": "2026-10-11T10:14:17.803Z",
+  "lastUpdated": "2026-11-13T10:04:46.152Z",
   "specId": "003",
   "folderSlug": "admission-gold",
   "parentChain": [
@@ -15,6 +27,5 @@
     "016-residual-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

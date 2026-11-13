@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes",
-  "description": "Phase 12: sk-doc-validator-and-reference-fixes",
+  "description": "`detectdocumenttype` in `.skilled/skills/sk-doc/shared/scripts/validatedocument.py` ended with `# Default to readme for general markdown` and `return",
   "keywords": [
-    "phase",
-    "sk-doc-validator-and-reference-fixes"
+    "detectdocumenttype",
+    "skilled",
+    "skills",
+    "sk-doc",
+    "shared",
+    "scripts",
+    "validatedocument",
+    "ended",
+    "default",
+    "readme",
+    "general",
+    "markdown",
+    "return"
   ],
-  "lastUpdated": "2026-09-27T11:50:19.108Z",
+  "lastUpdated": "2026-11-13T10:04:35.944Z",
   "specId": "012",
   "folderSlug": "sk-doc-validator-and-reference-fixes",
   "parentChain": [
@@ -13,6 +25,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

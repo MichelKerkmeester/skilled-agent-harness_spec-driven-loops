@@ -1,11 +1,18 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/019-routing-miss-fixes",
-  "description": "Phase 19: routing-miss-fixes",
+  "description": "DOC-331 says \"We just finished a deep-research run\" and asks for a diagnosis",
   "keywords": [
-    "phase",
-    "routing-miss-fixes"
+    "doc-331",
+    "says",
+    "just",
+    "finished",
+    "deep-research",
+    "run",
+    "asks",
+    "diagnosis"
   ],
-  "lastUpdated": "2026-10-11T16:00:28.242Z",
+  "lastUpdated": "2026-11-13T10:04:46.203Z",
   "specId": "019",
   "folderSlug": "routing-miss-fixes",
   "parentChain": [
@@ -14,6 +21,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

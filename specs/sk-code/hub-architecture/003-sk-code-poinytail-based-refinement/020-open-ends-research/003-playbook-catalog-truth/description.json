@@ -1,12 +1,17 @@
 {
   "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth",
-  "description": "Phase 3: playbook-catalog-truth",
+  "description": "Manual-testing playbooks and feature catalogs drift from reality silently",
   "keywords": [
-    "phase",
-    "playbook-catalog-truth"
+    "manual-testing",
+    "playbooks",
+    "feature",
+    "catalogs",
+    "drift",
+    "reality",
+    "silently"
   ],
-  "lastUpdated": "2026-10-11T17:33:28.488Z",
+  "lastUpdated": "2026-11-13T10:04:46.297Z",
   "specId": "003",
   "folderSlug": "playbook-catalog-truth",
   "parentChain": [

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity",
   "description": "Phase 016 had already landed its runtime behavior in the live code, but the phase folder still claimed completion without direct parity-specific proof",
   "keywords": [
@@ -18,7 +19,7 @@
     "parity-specific",
     "proof"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.252Z",
+  "lastUpdated": "2026-11-13T10:05:33.371Z",
   "specId": "003",
   "folderSlug": "multi-cli-parity",
   "parentChain": [
@@ -33,6 +34,5 @@
     "17-03-26_14-47__focused-phase-016-parity-proof-rerun.md",
     "17-03-26_16-44__strict-closeout-evidence-refreshed.md",
     "18-03-26_18-24__next-steps.md"
-  ],
-  "level": "2"
+  ]
 }

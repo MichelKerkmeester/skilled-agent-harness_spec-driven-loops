@@ -1,4 +1,5 @@
 {
+  "level": "3+",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/001-baseline-and-safety-rails",
   "description": "The Hydra roadmap cannot safely progress while the baseline runtime and documentation disagree about what exists",
   "keywords": [
@@ -15,7 +16,7 @@
     "about",
     "exists"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.232Z",
+  "lastUpdated": "2026-11-13T10:05:33.314Z",
   "specId": "001",
   "folderSlug": "baseline-and-safety-rails",
   "parentChain": [
@@ -27,6 +28,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "13-03-26_20-56__2026-03-13-verification-pass-confirmed-phase-1.md"
-  ],
-  "level": "3+"
+  ]
 }

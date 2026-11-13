@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/006-sk-code/002-sk-code-ci",
-  "description": "Phase 2: sk-code-ci",
+  "description": "The docs of the `sk-code-ci` mode were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "sk-code-ci"
+    "docs",
+    "sk-code-ci",
+    "mode",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:34.020Z",
+  "lastUpdated": "2026-11-13T10:04:51.178Z",
   "specId": "002",
   "folderSlug": "sk-code-ci",
   "parentChain": [
@@ -15,6 +23,5 @@
     "006-sk-code"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

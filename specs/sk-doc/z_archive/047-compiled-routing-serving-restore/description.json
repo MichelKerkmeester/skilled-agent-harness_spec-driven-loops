@@ -12,11 +12,12 @@
     "legacy",
     "cause"
   ],
-  "lastUpdated": "2026-09-01T06:20:02.671Z",
+  "lastUpdated": "2026-11-13T10:04:54.087Z",
   "specId": "047",
   "folderSlug": "compiled-routing-serving-restore",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

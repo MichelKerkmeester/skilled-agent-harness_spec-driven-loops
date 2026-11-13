@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/z_archive/016-create-diff-mode/001-cmd-create-emoji-enforcement",
   "description": "The `/create` command currently enforces emoji usage in documentation through validation logic and templates",
   "keywords": [
@@ -12,14 +13,14 @@
     "logic",
     "templates"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.654Z",
+  "lastUpdated": "2026-11-13T10:04:52.077Z",
   "specId": "001",
   "folderSlug": "cmd-create-emoji-enforcement",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

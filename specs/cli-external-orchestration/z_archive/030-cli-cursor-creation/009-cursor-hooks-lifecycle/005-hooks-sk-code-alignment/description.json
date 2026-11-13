@@ -16,11 +16,12 @@
     "surface",
     "packet"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.184Z",
+  "lastUpdated": "2026-11-13T10:04:38.673Z",
   "specId": "005",
   "folderSlug": "hooks-sk-code-alignment",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "030-cli-cursor-creation",
     "009-cursor-hooks-lifecycle"
   ],

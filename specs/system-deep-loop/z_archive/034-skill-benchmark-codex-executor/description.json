@@ -18,11 +18,12 @@
     "flag",
     "threaded"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.986Z",
+  "lastUpdated": "2026-11-13T10:05:00.967Z",
   "specId": "034",
   "folderSlug": "skill-benchmark-codex-executor",
   "parentChain": [
-    "system-deep-loop"
+    "system-deep-loop",
+    "z_archive"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

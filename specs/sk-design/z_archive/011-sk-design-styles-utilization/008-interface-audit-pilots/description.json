@@ -18,11 +18,12 @@
     "transformation",
     "fallback"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.626Z",
+  "lastUpdated": "2026-11-13T10:04:49.098Z",
   "specId": "008",
   "folderSlug": "interface-audit-pilots",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "011-sk-design-styles-utilization"
   ],
   "memorySequence": 0,

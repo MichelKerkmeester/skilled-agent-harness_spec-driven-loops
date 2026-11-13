@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/017-cli-devin",
-  "description": "Phase 17: cli-devin",
+  "description": "Devin injects the goal on SessionStart and UserPromptSubmit and says edits must appear next turn, and resume-continue checks flags",
   "keywords": [
-    "phase",
-    "cli-devin"
+    "devin",
+    "injects",
+    "goal",
+    "sessionstart",
+    "userpromptsubmit",
+    "says",
+    "edits",
+    "must",
+    "appear",
+    "next",
+    "turn",
+    "resume-continue",
+    "checks",
+    "flags"
   ],
-  "lastUpdated": "2026-11-02T18:33:58.650Z",
+  "lastUpdated": "2026-11-13T10:04:50.145Z",
   "specId": "017",
   "folderSlug": "cli-devin",
   "parentChain": [
@@ -15,6 +28,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

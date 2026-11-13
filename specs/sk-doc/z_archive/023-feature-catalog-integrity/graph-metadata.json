@@ -114,16 +114,16 @@
     ],
     "causal_summary": "Feature catalogs are the canonical inventory of what each skill does today, and agents read them to decide what",
     "created_at": "2026-07-30T19:29:15.340Z",
-    "last_save_at": "2026-10-07T18:13:26.980Z",
+    "last_save_at": "2026-11-13T13:16:29.170Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:be6d8d4984c76778d616be5cbfe416dea496146655a0a6ac89d908936a38abbe",
+    "source_fingerprint": "sha256:a2eeea79ef960640bd40803eaba9405c8d8c5d1e4a779aa61bfa3ae4c58b8d18",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f8aa4168f72d03988ed9e92c3bdf576c7749aa1b96d899c78da7f63e41fc82c2"
+      "spec.md": "240bdc756f2826d81752ca1dd49b3b1b3ab0c48d9a38d58c8aff935b023ad701"
     },
     "last_active_child_id": "sk-doc/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation",
     "last_active_at": null

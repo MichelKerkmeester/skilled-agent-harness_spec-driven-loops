@@ -1,18 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/064-cli-devin-cursor-dispatch-rules",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "ALWAYS rule 2 and the Execution Ownership section in cli-devin and cli-cursor told an orchestrator to delegate every orchestrated dispatch to",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "always",
+    "rule",
+    "execution",
+    "ownership",
+    "section",
+    "cli-devin",
+    "cli-cursor",
+    "told",
+    "orchestrator",
+    "delegate",
+    "every",
+    "orchestrated",
+    "dispatch"
   ],
-  "lastUpdated": "2026-09-24T09:20:29.591Z",
+  "lastUpdated": "2026-11-13T10:05:21.817Z",
   "specId": "064",
   "folderSlug": "cli-devin-cursor-dispatch-rules",
   "parentChain": [

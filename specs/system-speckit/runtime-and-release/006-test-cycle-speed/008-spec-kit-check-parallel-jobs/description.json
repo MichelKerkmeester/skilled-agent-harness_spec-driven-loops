@@ -1,12 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/008-spec-kit-check-parallel-jobs",
-  "description": "Phase 8: spec-kit-check-parallel-jobs",
+  "description": "The `check` job in `.github/workflows/spec-kit-check.yml` runs the `CLI vitest project`",
   "keywords": [
-    "phase",
-    "spec-kit-check-parallel-jobs"
+    "check",
+    "job",
+    "github",
+    "workflows",
+    "spec-kit-check",
+    "yml",
+    "runs",
+    "cli",
+    "vitest",
+    "project"
   ],
-  "lastUpdated": "2026-11-12T17:43:48.331Z",
+  "lastUpdated": "2026-11-13T10:05:23.804Z",
   "specId": "008",
   "folderSlug": "spec-kit-check-parallel-jobs",
   "parentChain": [

@@ -1,11 +1,19 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/003-deprecate-improvement-modes/009-existing-issue-fixes",
-  "description": "Phase 10: existing-issue-fixes",
+  "description": "`CITATIONRE` in `classifier-cite-drift-scan.mjs` leaves `+` out of its path characters, so a citation of `.skilled/changelog/skilled/v3+/v3.5.0.0.md`",
   "keywords": [
-    "phase",
-    "existing-issue-fixes"
+    "citationre",
+    "classifier-cite-drift-scan",
+    "mjs",
+    "leaves",
+    "path",
+    "characters",
+    "citation",
+    "skilled",
+    "changelog"
   ],
-  "lastUpdated": "2026-10-10T19:17:48.514Z",
+  "lastUpdated": "2026-11-13T10:04:56.295Z",
   "specId": "009",
   "folderSlug": "existing-issue-fixes",
   "parentChain": [
@@ -14,6 +22,5 @@
     "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

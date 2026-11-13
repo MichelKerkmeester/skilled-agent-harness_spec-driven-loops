@@ -16,11 +16,12 @@
     "maxskillmdwords",
     "nine"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.366Z",
+  "lastUpdated": "2026-11-13T10:04:49.520Z",
   "specId": "014",
   "folderSlug": "skill-word-cap-relief",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance"
   ],
   "memorySequence": 0,

@@ -14,11 +14,12 @@
     "flattened",
     "renumbered"
   ],
-  "lastUpdated": "2026-08-30T08:03:51.621Z",
+  "lastUpdated": "2026-11-13T10:04:53.262Z",
   "specId": "017",
   "folderSlug": "fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program",
     "019-routing-coverage-activation-verification"

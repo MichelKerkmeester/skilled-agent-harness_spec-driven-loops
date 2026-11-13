@@ -1,16 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/document-standards/001-frontmatter-and-description-budget/002-description-budget",
-  "description": "Bring skill and agent descriptions back under the description budget",
+  "description": "Seven authored descriptions sit over their soft target and the project total runs 1,251 characters over its 5,600 ceiling",
   "keywords": [
-    "bring",
-    "skill",
-    "agent",
+    "seven",
+    "authored",
     "descriptions",
-    "back",
-    "description",
-    "budget"
+    "sit",
+    "soft",
+    "target",
+    "project",
+    "total",
+    "runs",
+    "characters",
+    "ceiling"
   ],
-  "lastUpdated": "2026-10-03T05:27:42.958Z",
+  "lastUpdated": "2026-11-13T10:04:51.638Z",
   "specId": "002",
   "folderSlug": "description-budget",
   "parentChain": [
@@ -19,6 +24,5 @@
     "001-frontmatter-and-description-budget"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

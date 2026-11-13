@@ -1,19 +1,20 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation",
-  "description": "Remediate the eight findings of the in-session handover review of the session relaunch loop",
+  "description": "A code review of the session relaunch loop on 2026-11-12 read 18 files and returned eight findings",
   "keywords": [
-    "remediate",
-    "eight",
-    "findings",
-    "in-session",
-    "handover",
+    "code",
     "review",
     "session",
     "relaunch",
-    "loop"
+    "loop",
+    "read",
+    "files",
+    "returned",
+    "eight",
+    "findings"
   ],
-  "lastUpdated": "2026-11-12T19:15:08.408Z",
+  "lastUpdated": "2026-11-13T10:04:41.870Z",
   "specId": "036",
   "folderSlug": "review-remediation",
   "parentChain": [

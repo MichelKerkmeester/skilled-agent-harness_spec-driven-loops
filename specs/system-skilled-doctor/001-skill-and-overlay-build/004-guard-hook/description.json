@@ -1,12 +1,21 @@
 {
   "level": "3",
   "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook",
-  "description": "Phase 4: guard-hook",
+  "description": "Barter's rule says a file an overlay owns is edited in its overlay, but only Barter's private hooks enforce that",
   "keywords": [
-    "phase",
-    "guard-hook"
+    "barter",
+    "rule",
+    "says",
+    "file",
+    "overlay",
+    "owns",
+    "edited",
+    "only",
+    "private",
+    "hooks",
+    "enforce"
   ],
-  "lastUpdated": "2026-11-06T09:57:50.804Z",
+  "lastUpdated": "2026-11-13T10:05:03.335Z",
   "specId": "004",
   "folderSlug": "guard-hook",
   "parentChain": [

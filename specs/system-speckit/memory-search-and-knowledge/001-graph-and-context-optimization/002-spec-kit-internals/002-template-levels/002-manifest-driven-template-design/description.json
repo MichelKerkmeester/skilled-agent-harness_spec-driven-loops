@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design",
   "description": "The current template system maintains 86 files (~13K LOC) split across `core/`, `addendum/`, four materialized `levelN/` outputs, `phaseparent/`,",
   "keywords": [
@@ -19,7 +20,7 @@
     "outputs",
     "phaseparent"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.148Z",
+  "lastUpdated": "2026-11-13T10:05:04.723Z",
   "specId": "002",
   "folderSlug": "manifest-driven-template-design",
   "parentChain": [
@@ -30,6 +31,5 @@
     "002-template-levels"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

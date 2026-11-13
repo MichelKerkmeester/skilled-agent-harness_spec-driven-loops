@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/005-graph-impact-and-affordance",
   "description": "Deliver the external-project adoption uplift: a code-graph phase runner, edge-explanation and impact display, skill-advisor affordance evidence, and",
   "keywords": [
@@ -16,7 +17,7 @@
     "affordance",
     "evidence"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.392Z",
+  "lastUpdated": "2026-11-13T10:05:08.725Z",
   "specId": "005",
   "folderSlug": "graph-impact-and-affordance",
   "parentChain": [
@@ -25,6 +26,5 @@
     "001-graph-and-context-optimization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/002-cli-opencode",
-  "description": "Phase 2: cli-opencode",
+  "description": "The `[session-relaunch]` nudge appears on a later request, so one prompt cannot see it",
   "keywords": [
-    "phase",
-    "cli-opencode"
+    "session-relaunch",
+    "nudge",
+    "appears",
+    "later",
+    "request",
+    "one",
+    "prompt",
+    "cannot",
+    "see"
   ],
-  "lastUpdated": "2026-11-02T18:33:48.572Z",
+  "lastUpdated": "2026-11-13T10:04:50.122Z",
   "specId": "002",
   "folderSlug": "cli-opencode",
   "parentChain": [
@@ -15,6 +23,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

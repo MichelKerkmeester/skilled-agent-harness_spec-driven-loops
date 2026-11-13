@@ -1,11 +1,14 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/047-measure-every-jev-feature",
-  "description": "Phase 47: measure-every-jev-feature",
+  "description": "The parent integrated Jev into 23 features",
   "keywords": [
-    "phase",
-    "measure-every-jev-feature"
+    "parent",
+    "integrated",
+    "jev",
+    "features"
   ],
-  "lastUpdated": "2026-10-02T18:40:31.544Z",
+  "lastUpdated": "2026-11-13T10:04:36.569Z",
   "specId": "047",
   "folderSlug": "measure-every-jev-feature",
   "parentChain": [
@@ -13,6 +16,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

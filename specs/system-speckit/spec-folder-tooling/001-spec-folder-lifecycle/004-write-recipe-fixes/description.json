@@ -1,24 +1,18 @@
 {
   "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes",
-  "description": "Write recipe fixes: backfill flag, commit step, workspace bullet, post-checks and verification gate",
+  "description": "The spec folder write recipe is the checklist an author follows to write and commit a spec folder",
   "keywords": [
+    "spec",
+    "folder",
     "write",
     "recipe",
-    "fixes",
-    "backfill",
-    "flag",
-    "commit",
-    "step",
-    "workspace",
-    "bullet",
-    "post-checks",
-    "verification",
-    "gate",
-    "spec",
-    "folder"
+    "checklist",
+    "author",
+    "follows",
+    "commit"
   ],
-  "lastUpdated": "2026-10-06T19:00:00.000Z",
+  "lastUpdated": "2026-11-13T10:05:32.303Z",
   "specId": "004",
   "folderSlug": "write-recipe-fixes",
   "parentChain": [

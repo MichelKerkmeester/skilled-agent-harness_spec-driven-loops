@@ -1,12 +1,18 @@
 {
   "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep",
-  "description": "Phase 5: silent-input-sweep",
+  "description": "CLI scripts under `.skilled` can accept bad input without saying so",
   "keywords": [
-    "phase",
-    "silent-input-sweep"
+    "cli",
+    "scripts",
+    "skilled",
+    "accept",
+    "bad",
+    "input",
+    "without",
+    "saying"
   ],
-  "lastUpdated": "2026-10-11T18:02:10.487Z",
+  "lastUpdated": "2026-11-13T10:04:46.378Z",
   "specId": "005",
   "folderSlug": "silent-input-sweep",
   "parentChain": [

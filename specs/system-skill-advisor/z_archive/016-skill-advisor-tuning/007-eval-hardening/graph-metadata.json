@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The scorer's release gate measured only aggregate top-1 accuracy over the full corpus, plus a synthetic dead-tie stability check and a holdout selected by taking every fifth row of the same 193-row training corpus",
     "created_at": "2026-07-07T07:15:00.000Z",
-    "last_save_at": "2026-10-07T18:16:08.939Z",
+    "last_save_at": "2026-11-13T13:19:07.752Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a499ce476b730084794daa6bc2e767e86435884f082c7f5f6852f5014168bd2c",
+    "source_fingerprint": "sha256:d33277e440d853e2a83c489f04bb3c2be83ef9b7984287445ed74c56bd183cfe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c3d1f436dd22f155b7d9bf26882b13802c61aee3d74036b8eb24ee7a64db452c",
+      "spec.md": "412fe15c3d91e2c3132b800bc3605c37bbe7e13ce06e70f16c8af2904364453f",
       "plan.md": "205cd90486dd27b592d7a349bc1b244c851c3227bebe401c9484777b87c21471",
       "tasks.md": "807fd70dfaeb43fcf4254b908d20a12464d3c4b5ee2620c71518f6c1b5c79a0f",
-      "decision-record.md": "64112e2d2e91e1bf8c46cec7861ca06a4555cbb13743af08db2b9082c9f88198",
+      "decision-record.md": "10020178848497a0d3c341cd821551b0e05ccfd91b59fb170f4a1b73fc10a73f",
       "implementation-summary.md": "061a62bf418bc2364668b298ae4ab3e479b22a0af9858563463a9494b982f9cf"
     },
     "last_active_child_id": null,

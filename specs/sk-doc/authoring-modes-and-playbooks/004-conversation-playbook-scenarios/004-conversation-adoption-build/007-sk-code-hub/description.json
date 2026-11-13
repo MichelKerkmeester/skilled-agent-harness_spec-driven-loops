@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/007-sk-code-hub",
-  "description": "Phase 7: sk-code-hub",
+  "description": "SD-003 stops at the runtime and verification question that `ROUTER.md` requires, so the turn after the answer is unchecked",
   "keywords": [
-    "phase",
-    "sk-code-hub"
+    "sd-003",
+    "stops",
+    "runtime",
+    "verification",
+    "question",
+    "router",
+    "requires",
+    "turn",
+    "answer",
+    "unchecked"
   ],
-  "lastUpdated": "2026-11-02T18:33:52.010Z",
+  "lastUpdated": "2026-11-13T10:04:50.125Z",
   "specId": "007",
   "folderSlug": "sk-code-hub",
   "parentChain": [
@@ -15,6 +24,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

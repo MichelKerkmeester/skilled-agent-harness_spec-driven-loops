@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/012-program-closeout",
   "description": "Converge the 054 program: reconcile stale child statuses and refresh the parent rollup (children_ids + last_active_child_id), wire a Mode-A +",
   "keywords": [
@@ -14,14 +15,14 @@
     "wire",
     "mode-a"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.920Z",
+  "lastUpdated": "2026-11-13T10:05:00.831Z",
   "specId": "012",
   "folderSlug": "program-closeout",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "031-smart-routing-benchmark-program"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

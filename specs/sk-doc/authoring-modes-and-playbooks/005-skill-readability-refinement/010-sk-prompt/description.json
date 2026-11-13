@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/010-sk-prompt",
-  "description": "Phase 10: sk-prompt",
+  "description": "The docs of `.skilled/skills/sk-prompt` were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "sk-prompt"
+    "docs",
+    "skilled",
+    "skills",
+    "sk-prompt",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:15:58.081Z",
+  "lastUpdated": "2026-11-13T10:04:51.459Z",
   "specId": "010",
   "folderSlug": "sk-prompt",
   "parentChain": [
@@ -14,6 +23,5 @@
     "005-skill-readability-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

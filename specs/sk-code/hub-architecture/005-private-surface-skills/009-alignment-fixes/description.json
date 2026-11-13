@@ -1,12 +1,22 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/005-private-surface-skills/009-alignment-fixes",
-  "description": "Alignment fixes for private-skill guards",
+  "description": "The sk-code surface readers in `router-replay-lib.cjs` (`outsideSurfaces`) and in the advisor plugin (`declaredSurfaces`) list the skills root and",
   "keywords": [
-    "alignment",
-    "private-skill",
-    "guards"
+    "sk-code",
+    "surface",
+    "readers",
+    "router-replay-lib",
+    "cjs",
+    "outsidesurfaces",
+    "advisor",
+    "plugin",
+    "declaredsurfaces",
+    "list",
+    "skills",
+    "root"
   ],
-  "lastUpdated": "2026-10-27T19:51:43.321Z",
+  "lastUpdated": "2026-11-13T10:04:46.979Z",
   "specId": "009",
   "folderSlug": "alignment-fixes",
   "parentChain": [
@@ -15,6 +25,5 @@
     "005-private-surface-skills"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

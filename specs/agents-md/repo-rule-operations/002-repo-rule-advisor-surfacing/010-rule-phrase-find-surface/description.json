@@ -1,12 +1,16 @@
 {
   "level": "1",
   "specFolder": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/010-rule-phrase-find-surface",
-  "description": "Phase 10: rule-phrase-find-surface",
+  "description": "A rule's `triggerphrases` are the words a ripgrep search can find it by",
   "keywords": [
-    "phase",
-    "rule-phrase-find-surface"
+    "rule",
+    "triggerphrases",
+    "words",
+    "ripgrep",
+    "search",
+    "find"
   ],
-  "lastUpdated": "2026-10-05T10:38:45.428Z",
+  "lastUpdated": "2026-11-13T10:04:35.333Z",
   "specId": "010",
   "folderSlug": "rule-phrase-find-surface",
   "parentChain": [

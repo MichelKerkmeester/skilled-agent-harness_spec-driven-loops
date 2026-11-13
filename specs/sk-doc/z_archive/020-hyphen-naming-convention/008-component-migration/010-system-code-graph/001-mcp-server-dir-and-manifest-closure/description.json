@@ -12,11 +12,12 @@
     "ordinary",
     "direct"
   ],
-  "lastUpdated": "2026-08-30T08:03:53.424Z",
+  "lastUpdated": "2026-11-13T10:04:53.749Z",
   "specId": "001",
   "folderSlug": "mcp-server-dir-and-manifest-closure",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "010-system-code-graph"

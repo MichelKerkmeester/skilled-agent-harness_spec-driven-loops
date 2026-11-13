@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/003-writer-canonicalization",
   "description": "The automatic writers resolve legacy-first or re-materialize `specs/`: the Stop autosave, bare/new `generate-context`, the phase-pointer refresh",
   "keywords": [
@@ -16,7 +17,7 @@
     "phase-pointer",
     "refresh"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.623Z",
+  "lastUpdated": "2026-11-13T10:05:31.168Z",
   "specId": "003",
   "folderSlug": "writer-canonicalization",
   "parentChain": [
@@ -26,6 +27,5 @@
     "001-spec-root-resolution-hardening"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

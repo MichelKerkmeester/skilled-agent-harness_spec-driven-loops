@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/003-deprecate-improvement-modes/007-advisor-and-cross-skill-wiring",
-  "description": "Phase 5: advisor-and-cross-skill-wiring",
+  "description": "The advisor keeps hardcoded projection maps that its drift guard compares with the hub registry, and asserts that `agent-improvement` is the only",
   "keywords": [
-    "phase",
-    "advisor-and-cross-skill-wiring"
+    "advisor",
+    "keeps",
+    "hardcoded",
+    "projection",
+    "maps",
+    "drift",
+    "guard",
+    "compares",
+    "hub",
+    "registry",
+    "asserts",
+    "agent-improvement",
+    "only"
   ],
-  "lastUpdated": "2026-10-10T18:23:53.545Z",
+  "lastUpdated": "2026-11-13T10:04:56.289Z",
   "specId": "007",
   "folderSlug": "advisor-and-cross-skill-wiring",
   "parentChain": [
@@ -14,6 +26,5 @@
     "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

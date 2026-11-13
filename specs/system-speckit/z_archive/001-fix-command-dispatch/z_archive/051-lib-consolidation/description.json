@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/051-lib-consolidation",
   "description": "The system-spec-kit has shared JavaScript modules duplicated or re-exported across two separate lib folders, creating several issues:",
   "keywords": [
@@ -16,7 +17,7 @@
     "several",
     "issues"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.851Z",
+  "lastUpdated": "2026-11-13T10:05:32.605Z",
   "specId": "051",
   "folderSlug": "lib-consolidation",
   "parentChain": [
@@ -26,6 +27,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

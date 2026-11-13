@@ -1,14 +1,22 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/004-portable-code-modes",
-  "description": "Make sk-code quality, review and CI portable to any repository",
+  "description": "The three sk-code workflow modes carry this repository's house style into every repository they run in, and a repository has no way to say no",
   "keywords": [
+    "three",
     "sk-code",
-    "quality",
-    "review",
-    "portable",
-    "repository"
+    "workflow",
+    "modes",
+    "carry",
+    "repository",
+    "house",
+    "style",
+    "every",
+    "run",
+    "way",
+    "say"
   ],
-  "lastUpdated": "2026-10-27T20:47:57.604Z",
+  "lastUpdated": "2026-11-13T10:04:47.196Z",
   "specId": "004",
   "folderSlug": "portable-code-modes",
   "parentChain": [
@@ -16,6 +24,5 @@
     "quality-and-review-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

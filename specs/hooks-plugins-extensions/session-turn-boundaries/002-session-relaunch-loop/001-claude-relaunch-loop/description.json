@@ -1,12 +1,21 @@
 {
   "level": "3",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/001-claude-relaunch-loop",
-  "description": "Phase 1: claude-relaunch-loop",
+  "description": "Near the context limit, a Claude session needs a handoff note and a fresh session in the same terminal",
   "keywords": [
-    "phase",
-    "claude-relaunch-loop"
+    "near",
+    "context",
+    "limit",
+    "claude",
+    "session",
+    "needs",
+    "handoff",
+    "note",
+    "fresh",
+    "same",
+    "terminal"
   ],
-  "lastUpdated": "2026-10-18T11:56:53.393Z",
+  "lastUpdated": "2026-11-13T10:04:41.513Z",
   "specId": "001",
   "folderSlug": "claude-relaunch-loop",
   "parentChain": [

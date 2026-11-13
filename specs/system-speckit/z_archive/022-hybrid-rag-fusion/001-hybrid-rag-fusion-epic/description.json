@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic",
   "description": "The `001` parent packet had become a merged historical archive instead of a usable coordination document",
   "keywords": [
@@ -13,7 +14,7 @@
     "coordination",
     "document"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.099Z",
+  "lastUpdated": "2026-11-13T10:05:33.075Z",
   "specId": "001",
   "folderSlug": "hybrid-rag-fusion-epic",
   "parentChain": [
@@ -26,6 +27,5 @@
     "20-03-26_12-22__hybrid-rag-fusion-epic.md",
     "20-03-26_15-24__sprint-1-quick-wins-implemented-6-p0-p1-fixes-for.md",
     "27-04-26_15-33__retroactive-migration-by-worker-1.md"
-  ],
-  "level": "2"
+  ]
 }

@@ -18,11 +18,12 @@
     "hand",
     "refero"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.569Z",
+  "lastUpdated": "2026-11-13T10:04:49.038Z",
   "specId": "010",
   "folderSlug": "sk-design-styles-from-refero",
   "parentChain": [
-    "sk-design"
+    "sk-design",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

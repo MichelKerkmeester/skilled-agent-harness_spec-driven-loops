@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/002-docs-and-registries",
-  "description": "Phase 2: docs-and-registries",
+  "description": "Hermes was advertised everywhere: a seventh runtime in the root README, a mode in the hub, a persona paragraph in AGENTS.md",
   "keywords": [
-    "phase",
-    "docs-and-registries"
+    "hermes",
+    "advertised",
+    "everywhere",
+    "seventh",
+    "runtime",
+    "root",
+    "readme",
+    "mode",
+    "hub",
+    "persona",
+    "paragraph",
+    "agents"
   ],
-  "lastUpdated": "2026-11-07T10:34:40.543Z",
+  "lastUpdated": "2026-11-13T10:04:38.267Z",
   "specId": "002",
   "folderSlug": "docs-and-registries",
   "parentChain": [
@@ -14,6 +25,5 @@
     "003-cli-hermes-deprecation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

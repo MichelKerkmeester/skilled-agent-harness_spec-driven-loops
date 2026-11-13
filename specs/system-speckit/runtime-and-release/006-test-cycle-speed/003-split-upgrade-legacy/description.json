@@ -1,12 +1,14 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/003-split-upgrade-legacy",
-  "description": "Phase 3: split-upgrade-legacy",
+  "description": "`upgrade-legacy.vitest.ts` holds 65 tests",
   "keywords": [
-    "phase",
-    "split-upgrade-legacy"
+    "upgrade-legacy",
+    "vitest",
+    "holds",
+    "tests"
   ],
-  "lastUpdated": "2026-11-10T20:34:44.307Z",
+  "lastUpdated": "2026-11-13T10:05:23.706Z",
   "specId": "003",
   "folderSlug": "split-upgrade-legacy",
   "parentChain": [

@@ -1,11 +1,15 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/009-gate3-and-continuity-root",
-  "description": "Phase 9: gate3-and-continuity-root",
+  "description": "Gate 3 fires for \"Review the README and update it.\" but not for \"Update the README and review the result.\"",
   "keywords": [
-    "phase",
-    "gate3-and-continuity-root"
+    "gate",
+    "fires",
+    "review",
+    "readme",
+    "result"
   ],
-  "lastUpdated": "2026-11-08T23:39:01.430Z",
+  "lastUpdated": "2026-11-13T10:05:23.479Z",
   "specId": "009",
   "folderSlug": "gate3-and-continuity-root",
   "parentChain": [
@@ -14,6 +18,5 @@
     "004-v4-release-line-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "migration": {
     "consolidated_at": "2026-04-21T12:00:00Z",
     "old_top_level_phase_count": 29,
@@ -38,7 +39,7 @@
     "scattered",
     "one-off"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.746Z",
+  "lastUpdated": "2026-11-13T10:05:09.665Z",
   "specId": "001",
   "folderSlug": "graph-and-context-optimization",
   "parentChain": [
@@ -57,6 +58,5 @@
     "28-04-26_18-20__multi-hour-autonomous-deep-review-release.md",
     "19-05-26_18-43__m-005-worker-probe-test-outsourced-agent-memory.md",
     "19-05-26_18-44__m-005-worker-probe-test-outsourced-agent-memory.md"
-  ],
-  "level": "2"
+  ]
 }

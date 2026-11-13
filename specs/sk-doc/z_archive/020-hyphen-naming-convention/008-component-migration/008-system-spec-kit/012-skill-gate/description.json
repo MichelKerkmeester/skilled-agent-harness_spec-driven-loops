@@ -17,11 +17,12 @@
     "declared",
     "exemption"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.855Z",
+  "lastUpdated": "2026-11-13T10:04:53.743Z",
   "specId": "012",
   "folderSlug": "skill-gate",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "008-system-spec-kit"

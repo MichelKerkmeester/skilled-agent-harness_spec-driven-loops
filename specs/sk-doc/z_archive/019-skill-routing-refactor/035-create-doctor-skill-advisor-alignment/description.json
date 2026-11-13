@@ -15,11 +15,12 @@
     "independently",
     "commands"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.459Z",
+  "lastUpdated": "2026-11-13T10:04:53.473Z",
   "specId": "035",
   "folderSlug": "create-doctor-skill-advisor-alignment",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,

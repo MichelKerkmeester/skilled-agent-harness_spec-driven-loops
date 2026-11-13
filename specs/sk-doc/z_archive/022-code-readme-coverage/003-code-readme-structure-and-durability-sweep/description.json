@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/z_archive/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep",
   "description": "Four shapes repeat, and their counts overlap because most files carry more than one:",
   "keywords": [
@@ -12,14 +13,14 @@
     "carry",
     "one"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.434Z",
+  "lastUpdated": "2026-11-13T10:04:53.825Z",
   "specId": "003",
   "folderSlug": "code-readme-structure-and-durability-sweep",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "022-code-readme-coverage"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

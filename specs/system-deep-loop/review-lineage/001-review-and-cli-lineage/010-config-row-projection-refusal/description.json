@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/review-lineage/001-review-and-cli-lineage/010-config-row-projection-refusal",
-  "description": "Phase 10: config-row-projection-refusal",
+  "description": "A fan-out research run on 2026-10-19 rejected its cli-codex lineage with the failure class `projectionrefusal`, although all five iterations were",
   "keywords": [
-    "phase",
-    "config-row-projection-refusal"
+    "fan-out",
+    "research",
+    "run",
+    "rejected",
+    "cli-codex",
+    "lineage",
+    "failure",
+    "class",
+    "projectionrefusal",
+    "although",
+    "five",
+    "iterations"
   ],
-  "lastUpdated": "2026-10-19T18:42:59.416Z",
+  "lastUpdated": "2026-11-13T10:04:56.367Z",
   "specId": "010",
   "folderSlug": "config-row-projection-refusal",
   "parentChain": [
@@ -14,6 +25,5 @@
     "001-review-and-cli-lineage"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

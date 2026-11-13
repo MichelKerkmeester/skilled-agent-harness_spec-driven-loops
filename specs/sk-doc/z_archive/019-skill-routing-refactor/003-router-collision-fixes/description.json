@@ -18,11 +18,12 @@
     "existing-document",
     "quality"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.376Z",
+  "lastUpdated": "2026-11-13T10:04:52.691Z",
   "specId": "003",
   "folderSlug": "router-collision-fixes",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,

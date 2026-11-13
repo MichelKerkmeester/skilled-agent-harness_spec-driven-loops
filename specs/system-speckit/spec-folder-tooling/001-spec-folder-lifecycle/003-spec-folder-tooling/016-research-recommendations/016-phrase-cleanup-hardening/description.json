@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations/016-phrase-cleanup-hardening",
-  "description": "Phase 16: phrase-cleanup-hardening",
+  "description": "`template-phrase-cleanup.mjs:420` writes a file and then reads it back to record the hash, but uses in-place truncate-then-write, so a crash or error",
   "keywords": [
-    "phase",
-    "phrase-cleanup-hardening"
+    "template-phrase-cleanup",
+    "mjs",
+    "writes",
+    "file",
+    "reads",
+    "back",
+    "record",
+    "hash",
+    "in-place",
+    "truncate-then-write",
+    "crash",
+    "error"
   ],
-  "lastUpdated": "2026-10-08T04:22:50.927Z",
+  "lastUpdated": "2026-11-13T10:05:31.792Z",
   "specId": "016",
   "folderSlug": "phrase-cleanup-hardening",
   "parentChain": [
@@ -16,6 +27,5 @@
     "016-research-recommendations"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

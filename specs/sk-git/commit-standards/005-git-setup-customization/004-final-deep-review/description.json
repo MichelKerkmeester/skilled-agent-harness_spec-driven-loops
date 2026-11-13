@@ -1,12 +1,18 @@
 {
   "level": "1",
   "specFolder": "sk-git/commit-standards/005-git-setup-customization/004-final-deep-review",
-  "description": "Phase 4: final-deep-review",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
-    "phase",
-    "final-deep-review"
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
   ],
-  "lastUpdated": "2026-10-15T14:50:15.888Z",
+  "lastUpdated": "2026-11-13T10:04:54.237Z",
   "specId": "004",
   "folderSlug": "final-deep-review",
   "parentChain": [

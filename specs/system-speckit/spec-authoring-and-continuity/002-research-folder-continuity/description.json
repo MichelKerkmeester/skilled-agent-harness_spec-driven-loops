@@ -3,14 +3,19 @@
   "specFolder": "system-speckit/spec-authoring-and-continuity/002-research-folder-continuity",
   "description": "A full-auto save with continuity fields refused every research record and left its continuity block scaffolded",
   "keywords": [
-    "let",
-    "continuity",
-    "writer",
+    "full-auto",
     "save",
-    "research-level",
-    "folder"
+    "continuity",
+    "fields",
+    "refused",
+    "every",
+    "research",
+    "record",
+    "left",
+    "block",
+    "scaffolded"
   ],
-  "lastUpdated": "2026-10-19T22:06:11.036Z",
+  "lastUpdated": "2026-11-13T10:05:23.922Z",
   "specId": "002",
   "folderSlug": "research-folder-continuity",
   "parentChain": [

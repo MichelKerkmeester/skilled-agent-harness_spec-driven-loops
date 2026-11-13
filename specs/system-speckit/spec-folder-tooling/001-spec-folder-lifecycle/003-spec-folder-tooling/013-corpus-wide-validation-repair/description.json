@@ -1,11 +1,20 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/013-corpus-wide-validation-repair",
-  "description": "Phase 13: corpus-wide-validation-repair",
+  "description": "A baseline over all 4,371 packets found 2,046 failing strict validation: 1,935 of the 2,198 archived packets and 111 of the 2,173 live ones, besides",
   "keywords": [
-    "phase",
-    "corpus-wide-validation-repair"
+    "baseline",
+    "packets",
+    "found",
+    "failing",
+    "strict",
+    "validation",
+    "archived",
+    "live",
+    "ones",
+    "besides"
   ],
-  "lastUpdated": "2026-10-07T19:32:05.309Z",
+  "lastUpdated": "2026-11-13T10:05:31.543Z",
   "specId": "013",
   "folderSlug": "corpus-wide-validation-repair",
   "parentChain": [
@@ -15,6 +24,5 @@
     "003-spec-folder-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

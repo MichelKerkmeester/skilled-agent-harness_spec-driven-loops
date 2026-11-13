@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation",
   "description": "Phase C lands the budget engine in cli-devin only",
   "keywords": [
@@ -9,7 +10,7 @@
     "cli-devin",
     "only"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.436Z",
+  "lastUpdated": "2026-11-13T10:04:54.534Z",
   "specId": "006",
   "folderSlug": "budget-pattern-propagation",
   "parentChain": [
@@ -20,6 +21,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "18-05-26_13-42__phase-e-cross-skill-propagation-packet-authored.md"
-  ],
-  "level": "2"
+  ]
 }

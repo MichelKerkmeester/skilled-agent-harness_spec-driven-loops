@@ -1,12 +1,18 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/004-split-fanout-run",
-  "description": "Phase 4: split-fanout-run",
+  "description": "Twelve deep-loop files run one at a time after the rest, for about 265 s",
   "keywords": [
-    "phase",
-    "split-fanout-run"
+    "twelve",
+    "deep-loop",
+    "files",
+    "run",
+    "one",
+    "time",
+    "rest",
+    "about"
   ],
-  "lastUpdated": "2026-11-10T20:34:46.706Z",
+  "lastUpdated": "2026-11-13T10:05:23.708Z",
   "specId": "004",
   "folderSlug": "split-fanout-run",
   "parentChain": [

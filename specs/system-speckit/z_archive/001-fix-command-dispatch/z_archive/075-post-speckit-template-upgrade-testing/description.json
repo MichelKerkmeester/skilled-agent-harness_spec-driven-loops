@@ -1,4 +1,5 @@
 {
+  "level": "3+",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/075-post-speckit-template-upgrade-testing",
   "description": "The system-spec-kit has undergone a major template architecture upgrade to CORE+ADDENDUM v2.0",
   "keywords": [
@@ -11,7 +12,7 @@
     "core",
     "addendum"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.913Z",
+  "lastUpdated": "2026-11-13T10:05:32.703Z",
   "specId": "075",
   "folderSlug": "post-speckit-template-upgrade-testing",
   "parentChain": [
@@ -21,6 +22,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3+"
+  "memoryNameHistory": []
 }

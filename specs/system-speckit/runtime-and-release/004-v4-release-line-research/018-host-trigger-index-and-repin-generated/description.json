@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/018-host-trigger-index-and-repin-generated",
-  "description": "Phase 18: host-trigger-index-and-repin-generated",
+  "description": "`lookup-trigger-index.mjs` fixes `DEFAULTINDEXPATH` relative to the script, so from a host root the AGENTS.md Gate 1 command reads Skilled's packaged",
   "keywords": [
-    "phase",
-    "host-trigger-index-and-repin-generated"
+    "lookup-trigger-index",
+    "mjs",
+    "defaultindexpath",
+    "relative",
+    "script",
+    "host",
+    "root",
+    "agents",
+    "gate",
+    "command",
+    "reads",
+    "skilled",
+    "packaged"
   ],
-  "lastUpdated": "2026-11-09T06:27:48.712Z",
+  "lastUpdated": "2026-11-13T10:05:23.527Z",
   "specId": "018",
   "folderSlug": "host-trigger-index-and-repin-generated",
   "parentChain": [
@@ -14,6 +26,5 @@
     "004-v4-release-line-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

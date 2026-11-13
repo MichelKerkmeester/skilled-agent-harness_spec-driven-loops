@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests",
   "spec_folder": "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests",
-  "parent_id": "system-deep-loop/z_archive",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
     "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/001-deep-research-cp-scenarios",
     "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/002-deep-research-stress-runs",

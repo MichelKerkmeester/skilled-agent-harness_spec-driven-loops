@@ -1,12 +1,21 @@
 {
   "level": "3",
   "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move",
-  "description": "Phase 1: skill-and-tag-move",
+  "description": "`install`, `symlink`, `update`, `setup`, `helper`, `runtime-mirrors`, `env`, `speckit` and `mcp` carry `skillagent: system-spec-kit`",
   "keywords": [
-    "phase",
-    "skill-and-tag-move"
+    "install",
+    "symlink",
+    "setup",
+    "helper",
+    "runtime-mirrors",
+    "env",
+    "speckit",
+    "mcp",
+    "carry",
+    "skillagent",
+    "system-spec-kit"
   ],
-  "lastUpdated": "2026-11-07T05:11:47.653Z",
+  "lastUpdated": "2026-11-13T10:05:03.328Z",
   "specId": "001",
   "folderSlug": "skill-and-tag-move",
   "parentChain": [

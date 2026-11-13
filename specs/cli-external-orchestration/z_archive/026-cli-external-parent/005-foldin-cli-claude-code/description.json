@@ -17,11 +17,12 @@
     "json",
     "files"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.061Z",
+  "lastUpdated": "2026-11-13T10:04:38.417Z",
   "specId": "005",
   "folderSlug": "foldin-cli-claude-code",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "026-cli-external-parent"
   ],
   "memorySequence": 0,

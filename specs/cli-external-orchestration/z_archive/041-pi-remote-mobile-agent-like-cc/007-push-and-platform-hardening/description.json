@@ -18,11 +18,12 @@
     "mobile",
     "platforms"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.278Z",
+  "lastUpdated": "2026-11-13T10:04:38.783Z",
   "specId": "007",
   "folderSlug": "push-and-platform-hardening",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "041-pi-remote-mobile-agent-like-cc"
   ],
   "memorySequence": 0,

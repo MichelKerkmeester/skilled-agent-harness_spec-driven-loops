@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`sk-code` and `sk-doc` (the other two parent hubs in this repo) both carry two structural conventions in their `mode-registry.json`/`hub-router.json` that `sk-design`'s equivalents lack: (1) a per-mode `\"command\"` field recording the bound slash command, documented in `advisorRoutingContract`; (2) a `\"hub-identity\"` vocabulary class wired into every mode's `routerSignals.classes` array",
     "created_at": "2026-07-06T19:50:05.020Z",
-    "last_save_at": "2026-10-07T18:11:39.857Z",
+    "last_save_at": "2026-11-13T13:14:14.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:803a1e98b171aa15fe40c4688a7b1eba5cdff573e021e534e0071b1864e58dff",
+    "source_fingerprint": "sha256:f57251afaade16caf7685d7087772a9af0d325984bbef93794e481fd8910a17a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2d80e84ac6ffd6da27d161c4c3d6d3f13e18a85b2ab3ac5b251e44b73e413a52",
+      "spec.md": "ea3f77885dd183157081b900ad013d9323ca8b753be0a05cde73e5a75d0a2173",
       "plan.md": "109e82b7a64156e29080b38fc90c802bc43d721c2b7ce1762bb09db4b3ce889b",
       "tasks.md": "a307fc93ced5fea575bb4b941eeb6018b2996c5eb191dfa52b26b31cb6fa9976",
       "implementation-summary.md": "da847e412b425c40f16ec473c280ba6b926f91af0d1ce028edb1ce4f6c61577c"

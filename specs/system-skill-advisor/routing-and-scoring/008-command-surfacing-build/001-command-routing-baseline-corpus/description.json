@@ -1,12 +1,27 @@
 {
   "level": "3+",
   "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus",
-  "description": "Phase 1: command-routing-baseline-corpus",
+  "description": "The advisor is scored against three pinned skill corpora and one doctor slice, and none of them holds a gold label for a non-doctor command",
   "keywords": [
-    "phase",
-    "command-routing-baseline-corpus"
+    "advisor",
+    "scored",
+    "against",
+    "three",
+    "pinned",
+    "skill",
+    "corpora",
+    "one",
+    "doctor",
+    "slice",
+    "none",
+    "them",
+    "holds",
+    "gold",
+    "label",
+    "non-doctor",
+    "command"
   ],
-  "lastUpdated": "2026-11-12T13:18:05.729Z",
+  "lastUpdated": "2026-11-13T10:05:01.578Z",
   "specId": "001",
   "folderSlug": "command-routing-baseline-corpus",
   "parentChain": [

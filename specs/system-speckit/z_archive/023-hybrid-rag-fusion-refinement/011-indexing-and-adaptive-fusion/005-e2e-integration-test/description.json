@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/005-e2e-integration-test",
   "description": "The lifecycle suite existed, but the docs overstated what it covered",
   "keywords": [
@@ -9,7 +10,7 @@
     "overstated",
     "covered"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.535Z",
+  "lastUpdated": "2026-11-13T10:05:34.386Z",
   "specId": "005",
   "folderSlug": "e2e-integration-test",
   "parentChain": [
@@ -19,6 +20,5 @@
     "011-indexing-and-adaptive-fusion"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

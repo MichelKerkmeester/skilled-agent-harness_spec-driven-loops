@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/001-cli-classifier/002-cli-jev",
-  "description": "Phase 2: cli-jev",
+  "description": "The docs of the `cli-jev` mode were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "cli-jev"
+    "docs",
+    "cli-jev",
+    "mode",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:20.716Z",
+  "lastUpdated": "2026-11-13T10:04:50.334Z",
   "specId": "002",
   "folderSlug": "cli-jev",
   "parentChain": [
@@ -15,6 +23,5 @@
     "001-cli-classifier"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

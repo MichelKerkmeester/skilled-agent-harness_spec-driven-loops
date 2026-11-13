@@ -1,12 +1,27 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/doc-validation-tooling/002-readme-validation-debt",
-  "description": "README validation and reference debt",
+  "description": "The README and changelog audits reported broken references, template failures, count mismatches and prose findings about internal ids or test counts",
   "keywords": [
     "readme",
-    "validation",
-    "debt"
+    "changelog",
+    "audits",
+    "reported",
+    "broken",
+    "references",
+    "template",
+    "failures",
+    "count",
+    "mismatches",
+    "prose",
+    "findings",
+    "about",
+    "internal",
+    "ids",
+    "test",
+    "counts"
   ],
-  "lastUpdated": "2026-10-31T13:31:06.000Z",
+  "lastUpdated": "2026-11-13T10:04:51.579Z",
   "specId": "002",
   "folderSlug": "readme-validation-debt",
   "parentChain": [
@@ -14,6 +29,5 @@
     "doc-validation-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

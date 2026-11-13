@@ -1,11 +1,17 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/006-open-knowledge-format-adoption/004-citation-drift-detection",
-  "description": "Phase 4: citation-drift-detection",
+  "description": "`cite-drift-scan.mjs` reads tracked skill docs only",
   "keywords": [
-    "phase",
-    "citation-drift-detection"
+    "cite-drift-scan",
+    "mjs",
+    "reads",
+    "tracked",
+    "skill",
+    "docs",
+    "only"
   ],
-  "lastUpdated": "2026-10-04T08:04:52.501Z",
+  "lastUpdated": "2026-11-13T10:05:14.911Z",
   "specId": "004",
   "folderSlug": "citation-drift-detection",
   "parentChain": [
@@ -14,6 +20,5 @@
     "006-open-knowledge-format-adoption"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

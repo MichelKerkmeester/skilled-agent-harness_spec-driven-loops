@@ -13,11 +13,12 @@
     "metadata",
     "contract"
   ],
-  "lastUpdated": "2026-09-04T17:50:17.728Z",
+  "lastUpdated": "2026-11-13T10:04:53.340Z",
   "specId": "025",
   "folderSlug": "doctrine-coherence-sweep",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,

@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/010-sk-create-goal",
-  "description": "Phase 10: sk-create-goal",
+  "description": "SCG-005 refuses a goal with a leftover placeholder, and no scenario checks the goal passes once the decision is supplied",
   "keywords": [
-    "phase",
-    "sk-create-goal"
+    "scg-005",
+    "refuses",
+    "goal",
+    "leftover",
+    "placeholder",
+    "scenario",
+    "checks",
+    "passes",
+    "decision",
+    "supplied"
   ],
-  "lastUpdated": "2026-11-02T18:33:53.928Z",
+  "lastUpdated": "2026-11-13T10:04:50.127Z",
   "specId": "010",
   "folderSlug": "sk-create-goal",
   "parentChain": [
@@ -15,6 +24,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

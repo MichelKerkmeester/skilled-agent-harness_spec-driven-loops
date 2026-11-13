@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/015-closeout/009-open-items-ledger",
-  "description": "Phase 9: open-items-ledger",
+  "description": "The 012, 013, 014 and 066 trees list about fifty Known Limitations, many handed to the master orchestrator or a hub owner",
   "keywords": [
-    "phase",
-    "open-items-ledger"
+    "trees",
+    "list",
+    "about",
+    "fifty",
+    "known",
+    "limitations",
+    "many",
+    "handed",
+    "master",
+    "orchestrator",
+    "hub",
+    "owner"
   ],
-  "lastUpdated": "2026-10-11T04:49:39.695Z",
+  "lastUpdated": "2026-11-13T10:04:46.143Z",
   "specId": "009",
   "folderSlug": "open-items-ledger",
   "parentChain": [
@@ -15,6 +26,5 @@
     "015-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

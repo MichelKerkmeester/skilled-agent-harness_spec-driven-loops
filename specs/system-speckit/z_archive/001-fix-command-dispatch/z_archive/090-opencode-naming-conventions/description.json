@@ -1,4 +1,5 @@
 {
+  "level": "3+",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/090-opencode-naming-conventions",
   "description": "The `sk-code-skilled` skill enforces `snakecase` for JavaScript functions, parameters, and exports",
   "keywords": [
@@ -11,7 +12,7 @@
     "parameters",
     "exports"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.950Z",
+  "lastUpdated": "2026-11-13T10:05:32.774Z",
   "specId": "090",
   "folderSlug": "opencode-naming-conventions",
   "parentChain": [
@@ -21,6 +22,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3+"
+  "memoryNameHistory": []
 }

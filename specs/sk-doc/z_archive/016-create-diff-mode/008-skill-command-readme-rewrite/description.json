@@ -11,11 +11,12 @@
     "structure",
     "voice"
   ],
-  "lastUpdated": "2026-08-29T12:13:21.078Z",
+  "lastUpdated": "2026-11-13T10:04:52.109Z",
   "specId": "008",
   "folderSlug": "skill-command-readme-rewrite",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode"
   ],
   "memorySequence": 3,

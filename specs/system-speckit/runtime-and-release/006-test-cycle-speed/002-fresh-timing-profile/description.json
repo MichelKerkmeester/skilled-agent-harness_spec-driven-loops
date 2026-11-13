@@ -1,12 +1,15 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/002-fresh-timing-profile",
-  "description": "Phase 2: fresh-timing-profile",
+  "description": "The research could not assign seconds to any remaining cost",
   "keywords": [
-    "phase",
-    "fresh-timing-profile"
+    "research",
+    "assign",
+    "seconds",
+    "remaining",
+    "cost"
   ],
-  "lastUpdated": "2026-11-10T20:34:42.137Z",
+  "lastUpdated": "2026-11-13T10:05:23.703Z",
   "specId": "002",
   "folderSlug": "fresh-timing-profile",
   "parentChain": [

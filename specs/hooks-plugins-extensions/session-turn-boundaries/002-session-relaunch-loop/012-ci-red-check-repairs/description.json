@@ -1,12 +1,15 @@
 {
   "level": "1",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/012-ci-red-check-repairs",
-  "description": "Phase 12: ci-red-check-repairs",
+  "description": "Three CI checks failed on main before this phase",
   "keywords": [
-    "phase",
-    "ci-red-check-repairs"
+    "three",
+    "checks",
+    "failed",
+    "main",
+    "phase"
   ],
-  "lastUpdated": "2026-10-20T06:45:03.931Z",
+  "lastUpdated": "2026-11-13T10:04:41.579Z",
   "specId": "012",
   "folderSlug": "ci-red-check-repairs",
   "parentChain": [

@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/024-compact-code-graph/014-hook-durability-auto-enrichment",
   "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
   "keywords": [
@@ -12,7 +13,7 @@
     "tracked",
     "packet"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.630Z",
+  "lastUpdated": "2026-11-13T10:05:34.527Z",
   "specId": "014",
   "folderSlug": "hook-durability-auto-enrichment",
   "parentChain": [
@@ -21,6 +22,5 @@
     "024-compact-code-graph"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

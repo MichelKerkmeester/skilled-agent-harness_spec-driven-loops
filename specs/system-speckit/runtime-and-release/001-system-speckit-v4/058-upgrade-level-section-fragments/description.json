@@ -1,18 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/058-upgrade-level-section-fragments",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "`upgrade-level.sh` works out what a level adds by rendering each document template at the old and the new level and keeping every line `diff` marks as",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "upgrade-level",
+    "works",
+    "level",
+    "rendering",
+    "document",
+    "template",
+    "old",
+    "new",
+    "keeping",
+    "every",
+    "line",
+    "diff",
+    "marks"
   ],
-  "lastUpdated": "2026-09-24T05:26:00.819Z",
+  "lastUpdated": "2026-11-13T10:05:21.798Z",
   "specId": "058",
   "folderSlug": "upgrade-level-section-fragments",
   "parentChain": [

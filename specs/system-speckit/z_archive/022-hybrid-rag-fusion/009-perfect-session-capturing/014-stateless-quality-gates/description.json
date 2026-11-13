@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/014-stateless-quality-gates",
   "description": "Before this phase shipped, `node generate-context.js \"014-stateless-quality-gates\"` entered stateless mode and still applied file-mode assumptions to",
   "keywords": [
@@ -15,7 +16,7 @@
     "file-mode",
     "assumptions"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.274Z",
+  "lastUpdated": "2026-11-13T10:05:33.405Z",
   "specId": "014",
   "folderSlug": "stateless-quality-gates",
   "parentChain": [
@@ -25,6 +26,5 @@
     "009-perfect-session-capturing"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

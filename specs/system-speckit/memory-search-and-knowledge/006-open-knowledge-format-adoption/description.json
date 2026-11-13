@@ -1,18 +1,23 @@
 {
   "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/006-open-knowledge-format-adoption",
-  "description": "Open Knowledge Format adoption for system-spec-kit: research, design, implementation",
+  "description": "Google Cloud published the Open Knowledge Format (OKF) in June 2026 as an open, vendor-neutral way to package agent-readable knowledge as a directory",
   "keywords": [
+    "google",
+    "cloud",
+    "published",
     "open",
     "knowledge",
     "format",
-    "adoption",
-    "system-spec-kit",
-    "research",
-    "design",
-    "implementation"
+    "okf",
+    "june",
+    "vendor-neutral",
+    "way",
+    "package",
+    "agent-readable",
+    "directory"
   ],
-  "lastUpdated": "2026-10-05T13:07:15.158Z",
+  "lastUpdated": "2026-11-13T10:05:15.229Z",
   "specId": "006",
   "folderSlug": "open-knowledge-format-adoption",
   "parentChain": [

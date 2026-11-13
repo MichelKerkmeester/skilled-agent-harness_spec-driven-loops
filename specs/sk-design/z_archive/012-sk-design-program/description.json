@@ -17,11 +17,12 @@
     "design-system",
     "adoption"
   ],
-  "lastUpdated": "2026-09-08T04:49:12.990Z",
+  "lastUpdated": "2026-11-13T10:04:49.443Z",
   "specId": "012",
   "folderSlug": "sk-design-program",
   "parentChain": [
-    "sk-design"
+    "sk-design",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

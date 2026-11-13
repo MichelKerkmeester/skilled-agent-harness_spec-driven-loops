@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/004-memory-hook-cleanup",
   "description": "Remove misleading Claude Code Hook references from the workflows-memory skill documentation to ensure accuracy for OpenCode (which does not have",
   "keywords": [
@@ -15,7 +16,7 @@
     "accuracy",
     "opencode"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.740Z",
+  "lastUpdated": "2026-11-13T10:05:32.404Z",
   "specId": "004",
   "folderSlug": "memory-hook-cleanup",
   "parentChain": [
@@ -25,6 +26,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

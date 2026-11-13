@@ -1,12 +1,25 @@
 {
   "level": "1",
   "specFolder": "sk-git/commit-standards/005-git-setup-customization/010-open-ends-cleanup",
-  "description": "Phase 10: open-ends-cleanup",
+  "description": "The `/doctor:git setup` battery accepts an OpenCode or Pi adapter when the event name and a function sit anywhere in the file, so an unused object or",
   "keywords": [
-    "phase",
-    "open-ends-cleanup"
+    "doctor",
+    "git",
+    "setup",
+    "battery",
+    "accepts",
+    "opencode",
+    "adapter",
+    "event",
+    "name",
+    "function",
+    "sit",
+    "anywhere",
+    "file",
+    "unused",
+    "object"
   ],
-  "lastUpdated": "2026-10-17T09:03:17.318Z",
+  "lastUpdated": "2026-11-13T10:04:54.268Z",
   "specId": "010",
   "folderSlug": "open-ends-cleanup",
   "parentChain": [

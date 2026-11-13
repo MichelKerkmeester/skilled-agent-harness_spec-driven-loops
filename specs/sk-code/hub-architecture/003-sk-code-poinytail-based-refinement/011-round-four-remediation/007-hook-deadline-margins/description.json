@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins",
-  "description": "Phase 7: hook-deadline-margins",
+  "description": "`runtime/hooks/claude/user-prompt-submit.ts` reads stdin with a `readSync(0, ...)` loop, so a host that keeps stdin open holds it until the host kills",
   "keywords": [
-    "phase",
-    "hook-deadline-margins"
+    "runtime",
+    "hooks",
+    "claude",
+    "user-prompt-submit",
+    "reads",
+    "stdin",
+    "readsync",
+    "loop",
+    "host",
+    "keeps",
+    "open",
+    "holds",
+    "until",
+    "kills"
   ],
-  "lastUpdated": "2026-10-10T14:44:48.861Z",
+  "lastUpdated": "2026-11-13T10:04:45.865Z",
   "specId": "007",
   "folderSlug": "hook-deadline-margins",
   "parentChain": [
@@ -15,6 +28,5 @@
     "011-round-four-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

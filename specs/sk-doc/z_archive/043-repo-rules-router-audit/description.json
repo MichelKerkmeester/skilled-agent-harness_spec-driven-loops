@@ -1,21 +1,25 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/z_archive/043-repo-rules-router-audit",
-  "description": "repo-rules router and rule-set routing audit and optimisation",
+  "description": "The `REPO RULES.md` router and its nine rule files were suspected of carrying avoidable",
   "keywords": [
-    "repo-rules",
+    "repo",
+    "rules",
     "router",
-    "rule-set",
-    "routing",
-    "audit",
-    "optimisation"
+    "nine",
+    "rule",
+    "files",
+    "suspected",
+    "carrying",
+    "avoidable"
   ],
-  "lastUpdated": "2026-08-31T19:47:34.972Z",
+  "lastUpdated": "2026-11-13T10:04:54.076Z",
   "specId": "043",
   "folderSlug": "repo-rules-router-audit",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

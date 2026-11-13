@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter",
-  "description": "Phase 48: skilled-loop-shared-nudge-formatter",
+  "description": "`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs` owns the seed's spec-folder suffix in `specFolderSuffix`, and `nudge.cjs` already shares it",
   "keywords": [
-    "phase",
-    "skilled-loop-shared-nudge-formatter"
+    "skilled",
+    "hooks",
+    "session-relaunch",
+    "lib",
+    "relaunch-core",
+    "cjs",
+    "owns",
+    "seed",
+    "spec-folder",
+    "suffix",
+    "specfoldersuffix",
+    "nudge",
+    "already",
+    "shares"
   ],
-  "lastUpdated": "2026-10-21T14:18:25.114Z",
+  "lastUpdated": "2026-11-13T10:04:37.620Z",
   "specId": "048",
   "folderSlug": "skilled-loop-shared-nudge-formatter",
   "parentChain": [
@@ -14,6 +27,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

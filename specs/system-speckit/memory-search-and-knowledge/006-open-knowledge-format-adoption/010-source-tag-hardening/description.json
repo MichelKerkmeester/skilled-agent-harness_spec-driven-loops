@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/006-open-knowledge-format-adoption/010-source-tag-hardening",
-  "description": "Phase 10: source-tag-hardening",
+  "description": "With the cutoff lifted on the 20 comparison packets, 4,407 of 5,860 checked tags warn: 1,748 moved, 1,575 gone, 1,040 guessed and 44 past end",
   "keywords": [
-    "phase",
-    "source-tag-hardening"
+    "cutoff",
+    "lifted",
+    "comparison",
+    "packets",
+    "checked",
+    "tags",
+    "warn",
+    "moved",
+    "gone",
+    "guessed",
+    "past",
+    "end"
   ],
-  "lastUpdated": "2026-10-04T12:00:35.308Z",
+  "lastUpdated": "2026-11-13T10:05:15.189Z",
   "specId": "010",
   "folderSlug": "source-tag-hardening",
   "parentChain": [
@@ -14,6 +25,5 @@
     "006-open-knowledge-format-adoption"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/060-v4-0-0-13-changelog-rewrite",
   "description": "The v4.0.0.13 changelog described the release mostly as the handover, and the imbalance started at the top",
   "keywords": [
@@ -11,7 +12,7 @@
     "started",
     "top"
   ],
-  "lastUpdated": "2026-10-22T20:00:11.740Z",
+  "lastUpdated": "2026-11-13T10:04:37.695Z",
   "specId": "060",
   "folderSlug": "v4-0-0-13-changelog-rewrite",
   "parentChain": [
@@ -20,6 +21,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

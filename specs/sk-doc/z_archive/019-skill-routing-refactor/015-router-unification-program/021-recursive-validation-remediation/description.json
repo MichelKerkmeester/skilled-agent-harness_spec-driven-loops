@@ -14,11 +14,12 @@
     "publication",
     "completed"
   ],
-  "lastUpdated": "2026-08-17T08:29:24.170Z",
+  "lastUpdated": "2026-11-13T10:04:53.281Z",
   "specId": "021",
   "folderSlug": "recursive-validation-remediation",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program"
   ],

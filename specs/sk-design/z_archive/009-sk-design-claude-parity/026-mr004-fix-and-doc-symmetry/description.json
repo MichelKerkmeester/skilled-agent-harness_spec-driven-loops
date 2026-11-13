@@ -18,11 +18,12 @@
     "advisor",
     "conflict"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.528Z",
+  "lastUpdated": "2026-11-13T10:04:48.988Z",
   "specId": "026",
   "folderSlug": "mr004-fix-and-doc-symmetry",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 0,

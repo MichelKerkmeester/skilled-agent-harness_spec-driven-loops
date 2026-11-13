@@ -15,11 +15,12 @@
     "pilot",
     "standard"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.593Z",
+  "lastUpdated": "2026-11-13T10:04:53.893Z",
   "specId": "038",
   "folderSlug": "deep-research",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement",
     "005-mode-child-readme-revisit"
   ],

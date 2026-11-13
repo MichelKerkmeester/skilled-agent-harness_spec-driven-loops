@@ -1,12 +1,21 @@
 {
   "level": "2",
   "specFolder": "sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle",
-  "description": "Phase 3: fsmonitor-daemon-lifecycle",
+  "description": "Each git worktree that reads its index starts its own `git fsmonitor--daemon`, and macOS never retires one on its own",
   "keywords": [
-    "phase",
-    "fsmonitor-daemon-lifecycle"
+    "git",
+    "worktree",
+    "reads",
+    "index",
+    "starts",
+    "own",
+    "fsmonitor-daemon",
+    "macos",
+    "never",
+    "retires",
+    "one"
   ],
-  "lastUpdated": "2026-10-27T13:42:51.499Z",
+  "lastUpdated": "2026-11-13T10:04:54.329Z",
   "specId": "003",
   "folderSlug": "fsmonitor-daemon-lifecycle",
   "parentChain": [

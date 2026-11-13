@@ -16,11 +16,12 @@
     "enforce",
     "classify"
   ],
-  "lastUpdated": "2026-08-30T07:16:08.819Z",
+  "lastUpdated": "2026-11-13T10:04:38.575Z",
   "specId": "004",
   "folderSlug": "devin-hook-adapter-layer",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "029-cli-devin-revival"
   ],
   "memorySequence": 0,

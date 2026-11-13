@@ -11,11 +11,12 @@
     "command",
     "legtable"
   ],
-  "lastUpdated": "2026-08-15T14:41:03.204Z",
+  "lastUpdated": "2026-11-13T10:05:01.214Z",
   "specId": "002",
   "folderSlug": "scheduler-opencode-dispatch",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "035-command-surface-benchmark",
     "015-command-benchmark-cli-opencode-driver"
   ],

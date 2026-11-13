@@ -1,15 +1,11 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/011-docs-alignment",
-  "description": "[YOURVALUEHERE: One-sentence outcome statement describing what this achieves",
+  "description": "Not recorded",
   "keywords": [
-    "yourvaluehere",
-    "one-sentence",
-    "outcome",
-    "statement",
-    "describing",
-    "achieves"
+    "recorded"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.751Z",
+  "lastUpdated": "2026-11-13T10:05:32.424Z",
   "specId": "011",
   "folderSlug": "docs-alignment",
   "parentChain": [
@@ -19,6 +15,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

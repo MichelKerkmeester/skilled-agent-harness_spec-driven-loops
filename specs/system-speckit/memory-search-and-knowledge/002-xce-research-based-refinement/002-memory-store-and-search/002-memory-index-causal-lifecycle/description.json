@@ -1,4 +1,5 @@
 {
+  "level": "phase",
   "status": "phase-parent",
   "specFolder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle",
   "description": "Phase-parent control packet grouping the memory store's incremental-index and causal-graph write lifecycle: incremental index foundation, causal-edge",
@@ -18,7 +19,7 @@
     "foundation",
     "causal-edge"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.954Z",
+  "lastUpdated": "2026-11-13T10:05:10.084Z",
   "specId": "002",
   "folderSlug": "memory-index-causal-lifecycle",
   "parentChain": [
@@ -28,6 +29,5 @@
     "002-memory-store-and-search"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memoryNameHistory": []
 }

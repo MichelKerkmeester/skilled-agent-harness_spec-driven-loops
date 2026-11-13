@@ -15,11 +15,12 @@
     "succeed",
     "documented"
   ],
-  "lastUpdated": "2026-09-04T17:50:17.727Z",
+  "lastUpdated": "2026-11-13T10:04:53.340Z",
   "specId": "024",
   "folderSlug": "create-journey-gate-fixes",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,

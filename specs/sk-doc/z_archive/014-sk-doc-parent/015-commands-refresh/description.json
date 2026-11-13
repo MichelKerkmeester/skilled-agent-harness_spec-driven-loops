@@ -16,11 +16,12 @@
     "yamls",
     "cited"
   ],
-  "lastUpdated": "2026-08-28T16:24:15.231Z",
+  "lastUpdated": "2026-11-13T10:04:52.034Z",
   "specId": "015",
   "folderSlug": "commands-refresh",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent"
   ],
   "memorySequence": 0,

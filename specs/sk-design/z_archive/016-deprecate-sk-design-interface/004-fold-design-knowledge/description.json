@@ -18,11 +18,12 @@
     "design",
     "laws"
   ],
-  "lastUpdated": "2026-08-19T17:04:10.994Z",
+  "lastUpdated": "2026-11-13T10:04:49.536Z",
   "specId": "004",
   "folderSlug": "fold-design-knowledge",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "016-deprecate-sk-design-interface"
   ],
   "memorySequence": 3,

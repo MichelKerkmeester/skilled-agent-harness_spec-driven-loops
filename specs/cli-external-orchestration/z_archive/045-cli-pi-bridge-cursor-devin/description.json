@@ -13,11 +13,12 @@
     "provider",
     "roster"
   ],
-  "lastUpdated": "2026-08-17T11:48:04.528Z",
+  "lastUpdated": "2026-11-13T10:04:38.886Z",
   "specId": "045",
   "folderSlug": "cli-pi-bridge-cursor-devin",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

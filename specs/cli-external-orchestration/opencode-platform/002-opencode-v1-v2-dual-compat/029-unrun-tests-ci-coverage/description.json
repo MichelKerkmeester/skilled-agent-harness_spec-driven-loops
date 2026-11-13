@@ -1,12 +1,26 @@
 {
   "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage",
-  "description": "Phase 27: unrun-tests-ci-coverage",
+  "description": "A grep of every workflow and every runner they call, on `origin/main` at `7d55952975`, finds five suites that no blocking job runs, and clears a sixth",
   "keywords": [
-    "phase",
-    "unrun-tests-ci-coverage"
+    "grep",
+    "every",
+    "workflow",
+    "runner",
+    "call",
+    "origin",
+    "main",
+    "7d55952975",
+    "finds",
+    "five",
+    "suites",
+    "blocking",
+    "job",
+    "runs",
+    "clears",
+    "sixth"
   ],
-  "lastUpdated": "2026-10-20T12:41:51.936Z",
+  "lastUpdated": "2026-11-13T10:04:37.481Z",
   "specId": "029",
   "folderSlug": "unrun-tests-ci-coverage",
   "parentChain": [

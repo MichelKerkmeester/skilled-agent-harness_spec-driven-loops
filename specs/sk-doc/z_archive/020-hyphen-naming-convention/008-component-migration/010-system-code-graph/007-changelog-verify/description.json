@@ -13,11 +13,12 @@
     "migration",
     "recorded"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.900Z",
+  "lastUpdated": "2026-11-13T10:04:53.752Z",
   "specId": "007",
   "folderSlug": "changelog-verify",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "010-system-code-graph"

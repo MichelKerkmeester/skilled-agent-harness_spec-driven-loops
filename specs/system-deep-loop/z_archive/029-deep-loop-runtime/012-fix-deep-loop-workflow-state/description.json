@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/029-deep-loop-runtime/012-fix-deep-loop-workflow-state",
   "description": "Five findings flagged the deep-loop workflow state machine",
   "keywords": [
@@ -10,7 +11,7 @@
     "state",
     "machine"
   ],
-  "lastUpdated": "2026-09-07T16:14:44.157Z",
+  "lastUpdated": "2026-11-13T10:05:00.295Z",
   "specId": "012",
   "folderSlug": "fix-deep-loop-workflow-state",
   "parentChain": [
@@ -21,6 +22,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "01-05-26_06-55__five-surgical-fixes-closing-f-010-b5-01-04-and-f.md"
-  ],
-  "level": "2"
+  ]
 }

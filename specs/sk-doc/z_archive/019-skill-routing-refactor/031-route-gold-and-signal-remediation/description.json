@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/031-route-gold-and-signal-remediation",
   "description": "Take both hubs off BLOCKED with the minimal correct change: wire the folded vocabulary into",
   "keywords": [
@@ -12,14 +13,14 @@
     "folded",
     "vocabulary"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.334Z",
+  "lastUpdated": "2026-11-13T10:04:53.412Z",
   "specId": "031",
   "folderSlug": "route-gold-and-signal-remediation",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

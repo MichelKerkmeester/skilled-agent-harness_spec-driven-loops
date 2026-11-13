@@ -18,11 +18,12 @@
     "assets",
     "manual-testing"
   ],
-  "lastUpdated": "2026-08-23T05:57:08.859Z",
+  "lastUpdated": "2026-11-13T10:04:43.072Z",
   "specId": "007",
   "folderSlug": "excalidraw-deprecation",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "015-notion-to-obisidian-migration"
   ],
   "memorySequence": 0,

@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/005-parity-benchmark-release-gate"
     last_updated_at: "2026-07-06T01:30:00.000Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Recorded release owner authority, append-only baseline policy, and conditional gate decision."

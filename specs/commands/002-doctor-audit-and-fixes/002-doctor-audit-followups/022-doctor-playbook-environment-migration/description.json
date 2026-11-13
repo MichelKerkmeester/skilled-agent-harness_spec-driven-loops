@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/022-doctor-playbook-environment-migration",
-  "description": "Phase 22: doctor-playbook-environment-migration",
+  "description": "The /doctor:update scenarios described units no checkout has, and the other suites rebuilt a throwaway copy for every run",
   "keywords": [
-    "phase",
-    "doctor-playbook-environment-migration"
+    "doctor",
+    "scenarios",
+    "described",
+    "units",
+    "checkout",
+    "suites",
+    "rebuilt",
+    "throwaway",
+    "copy",
+    "every",
+    "run"
   ],
-  "lastUpdated": "2026-10-04T17:25:29.180Z",
+  "lastUpdated": "2026-11-13T10:04:39.361Z",
   "specId": "022",
   "folderSlug": "doctor-playbook-environment-migration",
   "parentChain": [
@@ -14,6 +24,5 @@
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

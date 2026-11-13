@@ -1,20 +1,24 @@
 {
   "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research",
-  "description": "During the 092 epic, authors repeatedly shipped generated artifacts that had drifted from their sources (leaf-manifest.json, hub-router.json,",
+  "description": "The sk-code refinement epic kept hitting the same skill-authoring errors: generated artifacts drifting from their sources, a hub version carried in",
   "keywords": [
+    "sk-code",
+    "refinement",
     "epic",
-    "authors",
-    "repeatedly",
-    "shipped",
+    "kept",
+    "hitting",
+    "same",
+    "skill-authoring",
+    "errors",
     "artifacts",
-    "drifted",
+    "drifting",
     "sources",
-    "leaf-manifest",
-    "json",
-    "hub-router"
+    "hub",
+    "version",
+    "carried"
   ],
-  "lastUpdated": "2026-10-10T18:40:53.991Z",
+  "lastUpdated": "2026-11-13T10:04:46.117Z",
   "specId": "014",
   "folderSlug": "skill-authoring-ux-research",
   "parentChain": [

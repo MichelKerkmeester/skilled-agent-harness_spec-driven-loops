@@ -1,18 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/061-worktree-build-provisioning",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "`opencode-plugins-folder-purity.vitest.ts` imports every plugin under `.skilled/plugins/`, and one of them imports the build output of",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "opencode-plugins-folder-purity",
+    "vitest",
+    "imports",
+    "every",
+    "plugin",
+    "skilled",
+    "plugins",
+    "one",
+    "them",
+    "output"
   ],
-  "lastUpdated": "2026-09-24T06:42:42.460Z",
+  "lastUpdated": "2026-11-13T10:05:21.807Z",
   "specId": "061",
   "folderSlug": "worktree-build-provisioning",
   "parentChain": [

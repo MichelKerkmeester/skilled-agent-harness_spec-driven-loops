@@ -12,11 +12,12 @@
     "earlier",
     "retirements"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.351Z",
+  "lastUpdated": "2026-11-13T10:04:49.510Z",
   "specId": "011",
   "folderSlug": "retirement-residue",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance"
   ],
   "memorySequence": 0,

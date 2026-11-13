@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-code/z_archive/003-cli-skill-removal-sk-code-merger-deprecated",
   "description": "The skills `sk-code-full-stack` and `sk-code-web` were soft-deprecated on 2026-04-30 by packet `054-sk-code-merger`, which created the new umbrella",
   "keywords": [
@@ -11,7 +12,7 @@
     "new",
     "umbrella"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.992Z",
+  "lastUpdated": "2026-11-13T10:04:47.230Z",
   "specId": "003",
   "folderSlug": "cli-skill-removal-sk-code-merger-deprecated",
   "parentChain": [
@@ -19,6 +20,5 @@
     "z_archive"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

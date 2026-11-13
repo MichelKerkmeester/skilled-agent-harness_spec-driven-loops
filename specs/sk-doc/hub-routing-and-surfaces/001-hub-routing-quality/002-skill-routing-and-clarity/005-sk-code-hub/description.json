@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/005-sk-code-hub",
-  "description": "Phase 5: sk-code-hub",
+  "description": "Routing prose fills 37 to 54 percent of the sk-code mode `SKILL.md` files, and three of its documents each claim a different routing authority",
   "keywords": [
-    "phase",
-    "sk-code-hub"
+    "routing",
+    "prose",
+    "fills",
+    "percent",
+    "sk-code",
+    "mode",
+    "skill",
+    "files",
+    "three",
+    "documents",
+    "claim",
+    "different",
+    "authority"
   ],
-  "lastUpdated": "2026-10-28T06:38:46.860Z",
+  "lastUpdated": "2026-11-13T10:04:51.779Z",
   "specId": "005",
   "folderSlug": "sk-code-hub",
   "parentChain": [
@@ -15,6 +27,5 @@
     "002-skill-routing-and-clarity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

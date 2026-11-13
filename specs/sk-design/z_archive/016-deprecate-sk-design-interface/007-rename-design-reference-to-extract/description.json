@@ -18,11 +18,12 @@
     "mirrors",
     "closes"
   ],
-  "lastUpdated": "2026-08-20T19:00:24.365Z",
+  "lastUpdated": "2026-11-13T10:04:49.541Z",
   "specId": "007",
   "folderSlug": "rename-design-reference-to-extract",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "016-deprecate-sk-design-interface"
   ],
   "memorySequence": 0,

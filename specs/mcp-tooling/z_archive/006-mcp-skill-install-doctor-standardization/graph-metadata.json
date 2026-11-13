@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The five mcp- skills had drifted out of a shared shape",
     "created_at": "2026-06-15T05:45:12Z",
-    "last_save_at": "2026-10-08T19:29:27.777Z",
+    "last_save_at": "2026-11-13T13:13:39.931Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c445a8d9c9700b7bb9e718293c7c13a677b2ae38ece635736c69cda7b2b3bea4",
+    "source_fingerprint": "sha256:2e41d3dbc469e3c617a9aacb9dd8c4e20ed833795e3427e2567129bddccfc97e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f5f18a3eb46adf880d306f2de5a678ed6b71c0b55ae9a0d1c06fdea543e4b9d7",
+      "spec.md": "6ab8673e08258692e18350d00289f85993af853ec38e56dcf192cc725f0dde9b",
       "plan.md": "0fd4bd9d996351104ca4dd6ef6f2f1e0d42159ef471f79847ed04e41d05e7499",
       "tasks.md": "c1630a1f8284b7fcc562db21d5d1462e501758710548323392960d00ff957089",
       "implementation-summary.md": "3aedb8d3803fcf25193a1834fb91a3c12f4ba540a0d0ad7e043910cf71e23406"

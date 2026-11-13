@@ -1,11 +1,18 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim",
-  "description": "Hook Path CLI Spawn Trim",
+  "description": "The advisorrecommend handler runs `enrichCompiledRoutes` on every result, cached or fresh",
   "keywords": [
-    "phase",
-    "hook-path-cli-spawn-trim"
+    "advisorrecommend",
+    "handler",
+    "runs",
+    "enrichcompiledroutes",
+    "every",
+    "result",
+    "cached",
+    "fresh"
   ],
-  "lastUpdated": "2026-09-26T10:05:45.470Z",
+  "lastUpdated": "2026-11-13T10:05:01.301Z",
   "specId": "003",
   "folderSlug": "hook-path-cli-spawn-trim",
   "parentChain": [
@@ -14,6 +21,5 @@
     "003-pi-skill-orchestrator-based-research-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

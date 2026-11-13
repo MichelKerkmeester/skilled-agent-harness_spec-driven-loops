@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/003-deprecate-improvement-modes/002-removal-plan",
-  "description": "Phase 2: removal-plan",
+  "description": "The two inventories overlap on shared surfaces such as the `deep-improvement` packet, the hub registry and the advisor maps, and some removals must",
   "keywords": [
-    "phase",
-    "removal-plan"
+    "two",
+    "inventories",
+    "overlap",
+    "shared",
+    "surfaces",
+    "deep-improvement",
+    "packet",
+    "hub",
+    "registry",
+    "advisor",
+    "maps",
+    "removals",
+    "must"
   ],
-  "lastUpdated": "2026-10-10T18:23:49.746Z",
+  "lastUpdated": "2026-11-13T10:04:56.260Z",
   "specId": "002",
   "folderSlug": "removal-plan",
   "parentChain": [
@@ -14,6 +26,5 @@
     "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

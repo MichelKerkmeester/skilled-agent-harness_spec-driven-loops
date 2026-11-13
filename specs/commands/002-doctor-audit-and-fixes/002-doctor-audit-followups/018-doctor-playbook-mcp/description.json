@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/018-doctor-playbook-mcp",
-  "description": "Phase 18: doctor-playbook-mcp",
+  "description": "`/doctor:mcp install` builds Code Mode and writes runtime configs, and `/doctor:mcp debug` diagnoses it, but the mcp-code-mode playbook has no",
   "keywords": [
-    "phase",
-    "doctor-playbook-mcp"
+    "doctor",
+    "mcp",
+    "install",
+    "code",
+    "mode",
+    "writes",
+    "runtime",
+    "configs",
+    "debug",
+    "diagnoses",
+    "mcp-code-mode",
+    "playbook"
   ],
-  "lastUpdated": "2026-10-04T11:02:50.970Z",
+  "lastUpdated": "2026-11-13T10:04:39.338Z",
   "specId": "018",
   "folderSlug": "doctor-playbook-mcp",
   "parentChain": [
@@ -14,6 +25,5 @@
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

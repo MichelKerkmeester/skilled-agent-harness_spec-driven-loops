@@ -1,4 +1,5 @@
 {
+  "level": 1,
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/028-deep-review-research-skill-contract-fixes",
   "description": "Two contract violations in the deep-review/deep-research skill output:",
   "keywords": [
@@ -10,7 +11,7 @@
     "skill",
     "output"
   ],
-  "lastUpdated": "2026-08-15T14:41:09.639Z",
+  "lastUpdated": "2026-11-13T10:05:04.360Z",
   "specId": "028",
   "folderSlug": "deep-review-research-skill-contract-fixes",
   "parentChain": [
@@ -22,6 +23,5 @@
     "003-fix-mcp-runtime-stress-findings"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

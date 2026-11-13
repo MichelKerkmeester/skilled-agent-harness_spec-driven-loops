@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/009-full-spec-doc-indexing",
   "description": "This archived folder captures work that indexed full spec folder documents",
   "keywords": [
@@ -11,7 +12,7 @@
     "spec",
     "documents"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.987Z",
+  "lastUpdated": "2026-11-13T10:05:32.820Z",
   "specId": "009",
   "folderSlug": "full-spec-doc-indexing",
   "parentChain": [
@@ -19,6 +20,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

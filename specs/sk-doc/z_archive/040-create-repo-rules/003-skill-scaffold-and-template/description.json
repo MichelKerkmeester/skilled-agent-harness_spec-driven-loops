@@ -9,11 +9,12 @@
     "nothing",
     "execute"
   ],
-  "lastUpdated": "2026-08-31T12:49:28.823Z",
+  "lastUpdated": "2026-11-13T10:04:54.066Z",
   "specId": "003",
   "folderSlug": "skill-scaffold-and-template",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "040-create-repo-rules"
   ],
   "memorySequence": 0,

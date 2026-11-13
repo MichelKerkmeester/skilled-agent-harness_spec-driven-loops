@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/024-compact-code-graph/029-review-remediation",
   "description": "The completed deep review for `024-compact-code-graph` found seven active issues that leave the packet internally inconsistent across runtime",
   "keywords": [
@@ -17,7 +18,7 @@
     "across",
     "runtime"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.650Z",
+  "lastUpdated": "2026-11-13T10:05:34.559Z",
   "specId": "029",
   "folderSlug": "review-remediation",
   "parentChain": [
@@ -26,6 +27,5 @@
     "024-compact-code-graph"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

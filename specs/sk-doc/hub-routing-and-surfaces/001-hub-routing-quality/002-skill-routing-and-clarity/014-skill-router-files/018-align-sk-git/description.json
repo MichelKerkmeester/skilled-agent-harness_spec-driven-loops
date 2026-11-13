@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/018-align-sk-git",
-  "description": "Phase 18: align-sk-git",
+  "description": "The router move changed where the sk-git machine router lives, but the docs around it were written for the old place",
   "keywords": [
-    "phase",
-    "align-sk-git"
+    "router",
+    "move",
+    "changed",
+    "sk-git",
+    "machine",
+    "lives",
+    "docs",
+    "around",
+    "written",
+    "old",
+    "place"
   ],
-  "lastUpdated": "2026-10-29T17:20:39.055Z",
+  "lastUpdated": "2026-11-13T10:04:51.890Z",
   "specId": "018",
   "folderSlug": "align-sk-git",
   "parentChain": [
@@ -16,6 +26,5 @@
     "014-skill-router-files"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,17 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/002-quality-agnostic-gate/006-measurement",
-  "description": "Phase 6: measurement",
+  "description": "The saved benchmark runs for `sk-code-quality` measure routing, not catching",
   "keywords": [
-    "phase",
-    "measurement"
+    "saved",
+    "benchmark",
+    "runs",
+    "sk-code-quality",
+    "measure",
+    "routing",
+    "catching"
   ],
-  "lastUpdated": "2026-10-25T23:21:54.784Z",
+  "lastUpdated": "2026-11-13T10:04:47.120Z",
   "specId": "006",
   "folderSlug": "measurement",
   "parentChain": [
@@ -14,6 +20,5 @@
     "002-quality-agnostic-gate"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,18 +1,25 @@
 {
+  "level": "2",
   "specFolder": "sk-git/commit-standards/005-git-setup-customization",
-  "description": "sk-git setup customization: a doctor-style setup check so users can adapt sk-git to their own repository",
+  "description": "sk-git has a dozen surfaces a repository can change, and several of them fail open: a missing contract, a rule naming an unknown check or an",
   "keywords": [
     "sk-git",
-    "setup",
-    "customization",
-    "doctor-style",
-    "check",
-    "users",
-    "adapt",
-    "own",
-    "repository"
+    "dozen",
+    "surfaces",
+    "repository",
+    "change",
+    "several",
+    "them",
+    "fail",
+    "open",
+    "missing",
+    "contract",
+    "rule",
+    "naming",
+    "unknown",
+    "check"
   ],
-  "lastUpdated": "2026-10-15T05:35:18.127Z",
+  "lastUpdated": "2026-11-13T10:04:54.271Z",
   "specId": "005",
   "folderSlug": "git-setup-customization",
   "parentChain": [
@@ -20,6 +27,5 @@
     "commit-standards"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,12 +1,22 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/003-launch-flag-replay",
-  "description": "Phase 3: launch-flag-replay",
+  "description": "A hop rebuilds its argument list from the carried model, effort, name, provider and Pi extension settings alone",
   "keywords": [
-    "phase",
-    "launch-flag-replay"
+    "hop",
+    "rebuilds",
+    "argument",
+    "list",
+    "carried",
+    "model",
+    "effort",
+    "name",
+    "provider",
+    "extension",
+    "settings",
+    "alone"
   ],
-  "lastUpdated": "2026-11-12T12:05:36.023Z",
+  "lastUpdated": "2026-11-13T10:04:41.850Z",
   "specId": "003",
   "folderSlug": "launch-flag-replay",
   "parentChain": [

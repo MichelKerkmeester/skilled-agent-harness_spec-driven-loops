@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/003-deprecate-improvement-modes/003-agent-mirror-checker-relocation",
-  "description": "Phase 8: agent-mirror-checker-relocation",
+  "description": "`check-agent-mirror-sync.cjs` sits in `deep-improvement/scripts/`, yet both pre-commit hooks, the `agent-mirror-sync.yml` workflow, the broken-move CI",
   "keywords": [
-    "phase",
-    "agent-mirror-checker-relocation"
+    "check-agent-mirror-sync",
+    "cjs",
+    "sits",
+    "deep-improvement",
+    "scripts",
+    "pre-commit",
+    "hooks",
+    "agent-mirror-sync",
+    "yml",
+    "workflow",
+    "broken-move"
   ],
-  "lastUpdated": "2026-10-10T19:17:43.347Z",
+  "lastUpdated": "2026-11-13T10:04:56.264Z",
   "specId": "003",
   "folderSlug": "agent-mirror-checker-relocation",
   "parentChain": [
@@ -14,6 +24,5 @@
     "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

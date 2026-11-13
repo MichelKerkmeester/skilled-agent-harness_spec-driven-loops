@@ -1,11 +1,25 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/002-template-and-example-defect-repair",
-  "description": "Phase 2: template-and-example-defect-repair",
+  "description": "The example docs a model imitates carry broken descriptions in 18 of 21 files, three of them still cite a `Checklist.md` that no longer exists",
   "keywords": [
-    "phase",
-    "template-and-example-defect-repair"
+    "example",
+    "docs",
+    "model",
+    "imitates",
+    "carry",
+    "broken",
+    "descriptions",
+    "files",
+    "three",
+    "them",
+    "still",
+    "cite",
+    "checklist",
+    "longer",
+    "exists"
   ],
-  "lastUpdated": "2026-10-23T11:27:20.964Z",
+  "lastUpdated": "2026-11-13T10:05:24.172Z",
   "specId": "002",
   "folderSlug": "template-and-example-defect-repair",
   "parentChain": [
@@ -14,6 +28,5 @@
     "003-weak-model-spec-authoring"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

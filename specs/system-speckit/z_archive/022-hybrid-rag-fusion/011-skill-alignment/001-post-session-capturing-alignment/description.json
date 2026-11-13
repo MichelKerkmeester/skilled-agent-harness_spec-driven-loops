@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/001-post-session-capturing-alignment",
   "description": "Several completed packets under `009-perfect-session-capturing` introduced documentation drift in `system-spec-kit` guidance that had not yet been",
   "keywords": [
@@ -12,7 +13,7 @@
     "system-spec-kit",
     "guidance"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.382Z",
+  "lastUpdated": "2026-11-13T10:05:34.023Z",
   "specId": "001",
   "folderSlug": "post-session-capturing-alignment",
   "parentChain": [
@@ -22,6 +23,5 @@
     "011-skill-alignment"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

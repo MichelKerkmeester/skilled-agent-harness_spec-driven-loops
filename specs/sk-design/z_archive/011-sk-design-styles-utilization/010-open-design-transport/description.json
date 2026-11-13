@@ -17,11 +17,12 @@
     "way",
     "carry"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.629Z",
+  "lastUpdated": "2026-11-13T10:04:49.101Z",
   "specId": "010",
   "folderSlug": "open-design-transport",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "011-sk-design-styles-utilization"
   ],
   "memorySequence": 0,

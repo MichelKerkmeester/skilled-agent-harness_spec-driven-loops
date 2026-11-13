@@ -12,11 +12,12 @@
     "none",
     "part"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.295Z",
+  "lastUpdated": "2026-11-13T10:04:49.475Z",
   "specId": "003",
   "folderSlug": "assets",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance",
     "004-design-md-generator"
   ],

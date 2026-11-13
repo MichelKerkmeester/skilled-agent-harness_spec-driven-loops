@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/006-open-knowledge-format-adoption/005-source-resolver",
-  "description": "Phase 5: source-resolver",
+  "description": "About 1,919 files use `[SOURCE:]` tags and 1,186 delta files hold structured `evidence` lists, yet nothing resolves the tags",
   "keywords": [
-    "phase",
-    "source-resolver"
+    "about",
+    "files",
+    "source",
+    "tags",
+    "delta",
+    "hold",
+    "structured",
+    "evidence",
+    "lists",
+    "nothing",
+    "resolves"
   ],
-  "lastUpdated": "2026-10-04T08:04:53.217Z",
+  "lastUpdated": "2026-11-13T10:05:14.915Z",
   "specId": "005",
   "folderSlug": "source-resolver",
   "parentChain": [
@@ -14,6 +24,5 @@
     "006-open-knowledge-format-adoption"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

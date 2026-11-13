@@ -1,19 +1,15 @@
 {
   "level": "2",
   "specFolder": "system-skill-advisor/routing-and-scoring/003-doctor-command-surfacing/002-doctor-command-routing",
-  "description": "Doctor command routing: the skill advisor surfaces runnable /doctor:x target lines",
+  "description": "The skill advisor has no path to the `/doctor:` commands",
   "keywords": [
-    "doctor",
-    "command",
-    "routing",
     "skill",
     "advisor",
-    "surfaces",
-    "runnable",
-    "target",
-    "lines"
+    "path",
+    "doctor",
+    "commands"
   ],
-  "lastUpdated": "2026-10-16T21:02:01.559Z",
+  "lastUpdated": "2026-11-13T10:05:01.505Z",
   "specId": "002",
   "folderSlug": "doctor-command-routing",
   "parentChain": [

@@ -15,11 +15,12 @@
     "prompts",
     "hub"
   ],
-  "lastUpdated": "2026-08-21T15:51:53.978Z",
+  "lastUpdated": "2026-11-13T10:04:42.891Z",
   "specId": "004",
   "folderSlug": "hub-registration-and-advisor",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "014-mcp-notion"
   ],
   "memorySequence": 0,

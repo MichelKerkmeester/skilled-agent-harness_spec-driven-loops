@@ -18,11 +18,12 @@
     "multi-model",
     "review"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.881Z",
+  "lastUpdated": "2026-11-13T10:04:53.942Z",
   "specId": "013",
   "folderSlug": "deep-review-grok-deepseek",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "028-sk-create-diagram"
   ],
   "memorySequence": 0,

@@ -1,13 +1,24 @@
 {
   "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/004-router-version-parity",
-  "description": "Router version parity",
+  "description": "`checkVersionParity` in `.skilled/commands/doctor/scripts/parent-skill-check.cjs` (around line 1839) lists `ROUTER.md` among the routing artifacts",
   "keywords": [
+    "checkversionparity",
+    "skilled",
+    "commands",
+    "doctor",
+    "scripts",
+    "parent-skill-check",
+    "cjs",
+    "around",
+    "line",
+    "lists",
     "router",
-    "version",
-    "parity"
+    "among",
+    "routing",
+    "artifacts"
   ],
-  "lastUpdated": "2026-10-13T07:44:55.955Z",
+  "lastUpdated": "2026-11-13T10:04:46.789Z",
   "specId": "004",
   "folderSlug": "router-version-parity",
   "parentChain": [

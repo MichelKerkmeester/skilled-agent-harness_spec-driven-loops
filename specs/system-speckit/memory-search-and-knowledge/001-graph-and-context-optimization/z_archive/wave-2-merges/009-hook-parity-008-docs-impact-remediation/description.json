@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation",
   "description": "Update 13 external documentation files flagged by the 009 impact analysis (10 HIGH + 3 MED) to reflect the hook, advisor, plugin-loader, renderer, and",
   "keywords": [
@@ -16,16 +17,16 @@
     "plugin-loader",
     "renderer"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.786Z",
+  "lastUpdated": "2026-11-13T10:05:09.682Z",
   "specId": "009",
   "folderSlug": "hook-parity-008-docs-impact-remediation",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "z_archive",
     "wave-2-merges"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

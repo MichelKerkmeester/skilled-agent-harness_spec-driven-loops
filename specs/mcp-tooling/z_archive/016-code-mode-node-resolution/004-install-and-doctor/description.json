@@ -17,11 +17,12 @@
     "regardless",
     "cutover"
   ],
-  "lastUpdated": "2026-08-28T18:08:12.592Z",
+  "lastUpdated": "2026-11-13T10:04:43.188Z",
   "specId": "004",
   "folderSlug": "install-and-doctor",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "016-code-mode-node-resolution"
   ],
   "memorySequence": 0,

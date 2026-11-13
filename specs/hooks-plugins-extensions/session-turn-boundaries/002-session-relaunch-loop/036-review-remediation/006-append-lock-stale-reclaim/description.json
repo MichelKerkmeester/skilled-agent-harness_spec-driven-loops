@@ -1,12 +1,24 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/006-append-lock-stale-reclaim",
-  "description": "Phase 6: append-lock-stale-reclaim",
+  "description": "`withAppendLock` at `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1397` reclaims a stale append lock by reading its age and then calling",
   "keywords": [
-    "phase",
-    "append-lock-stale-reclaim"
+    "withappendlock",
+    "skilled",
+    "hooks",
+    "session-relaunch",
+    "lib",
+    "relaunch-core",
+    "cjs",
+    "reclaims",
+    "stale",
+    "append",
+    "lock",
+    "reading",
+    "age",
+    "calling"
   ],
-  "lastUpdated": "2026-11-12T15:11:25.754Z",
+  "lastUpdated": "2026-11-13T10:04:41.862Z",
   "specId": "006",
   "folderSlug": "append-lock-stale-reclaim",
   "parentChain": [

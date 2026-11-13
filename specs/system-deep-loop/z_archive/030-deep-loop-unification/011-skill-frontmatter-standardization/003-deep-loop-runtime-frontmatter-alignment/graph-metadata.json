@@ -194,7 +194,7 @@
     ],
     "causal_summary": "deep-loop-runtime reference/asset frontmatter is inconsistent with the repo-wide contract: 4 of 4 references and 0 of 0 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:27Z",
-    "last_save_at": "2026-10-07T18:15:14.115Z",
+    "last_save_at": "2026-11-13T13:18:29.269Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5dfdc31aa8e6c2fc4fc15caac1f6cff510184bc734e605c072d804cb4d33f05c",
+    "source_fingerprint": "sha256:64da5eb3a2297c7c76ec9b53a27675f161c1d820989a20a9404fd985faf6ead0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1e89fa004809de6dc68fe913567c702b77d0d790f0d6c95f02e6f7918dc1a67f",
+      "spec.md": "7d68ec44741c357bea8f1ea1e25b3695a765bc4185f2a3c850b5efa763c5abd2",
       "plan.md": "44aae10230833f3fd7b0989386394999d648d1c3c1cd2deabcc6496544aa5186",
       "tasks.md": "ffd4b3732e9aaf5f7e995858a8e428575f79d0ade2db0e114d47f3eee183c4a3",
       "implementation-summary.md": "82e4bbbca973035244c2012e8c7566980ff9492b082b5c1d6e8b611a45442daa"

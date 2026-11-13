@@ -1,18 +1,17 @@
 {
   "level": "1",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/019-fork-compact-pointer-research",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "On 2026-10-21 the compact-pointer hook fired six times for session `0b9dc60c`",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "compact-pointer",
+    "hook",
+    "fired",
+    "six",
+    "times",
+    "session",
+    "0b9dc60c"
   ],
-  "lastUpdated": "2026-10-21T18:45:04.910Z",
+  "lastUpdated": "2026-11-13T10:04:41.649Z",
   "specId": "019",
   "folderSlug": "fork-compact-pointer-research",
   "parentChain": [

@@ -1,21 +1,23 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build",
-  "description": "External surface priority build",
+  "description": "An external user who deletes the Webflow and Obsidian example surfaces from sk-code, or adds a surface of their own, today ends on 113 doctor",
   "keywords": [
     "external",
+    "user",
+    "deletes",
+    "webflow",
+    "obsidian",
+    "example",
+    "surfaces",
+    "sk-code",
     "surface",
-    "priority",
-    "implement",
-    "verified",
-    "final",
-    "recommendations",
-    "drop",
-    "router",
-    "doctor",
-    "check",
-    "13a"
+    "own",
+    "today",
+    "ends",
+    "doctor"
   ],
-  "lastUpdated": "2026-10-13T04:45:50.762Z",
+  "lastUpdated": "2026-11-13T10:04:46.811Z",
   "specId": "026",
   "folderSlug": "external-surface-priority-build",
   "parentChain": [
@@ -24,6 +26,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

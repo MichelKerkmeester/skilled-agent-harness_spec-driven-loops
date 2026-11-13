@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation",
   "description": "A spec folder with phase children carries duplicate state at the parent level: `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`,",
   "keywords": [
@@ -16,7 +17,7 @@
     "checklist",
     "decision-record"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.618Z",
+  "lastUpdated": "2026-11-13T10:05:03.568Z",
   "specId": "009",
   "folderSlug": "phase-parent-lean-trio-documentation",
   "parentChain": [
@@ -33,6 +34,5 @@
     "27-04-26_11-18__restructured-010-into-nested-phase-parent-moved.md",
     "27-04-26_12-56__p3-follow-on-shipped-extended-phase-parent-early.md",
     "27-04-26_16-56__closed-packet-010-phase-parent-documentation.md"
-  ],
-  "level": "2"
+  ]
 }

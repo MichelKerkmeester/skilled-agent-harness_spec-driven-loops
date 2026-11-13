@@ -15,11 +15,12 @@
     "graph-metadata",
     "nested"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.457Z",
+  "lastUpdated": "2026-11-13T10:04:52.043Z",
   "specId": "022",
   "folderSlug": "parent-skill-logic-review",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent"
   ],
   "memorySequence": 0,

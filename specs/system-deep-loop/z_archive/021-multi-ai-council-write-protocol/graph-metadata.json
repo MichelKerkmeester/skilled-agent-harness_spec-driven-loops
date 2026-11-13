@@ -2,14 +2,8 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/021-multi-ai-council-write-protocol",
   "spec_folder": "system-deep-loop/z_archive/021-multi-ai-council-write-protocol",
-  "parent_id": "system-deep-loop/z_archive",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
-    "system-deep-loop/z_archive/022-multi-ai-council-write-protocol/001-multi-ai-council-output-protocol",
-    "system-deep-loop/z_archive/022-multi-ai-council-write-protocol/002-multi-ai-council-persistence",
-    "system-deep-loop/z_archive/022-multi-ai-council-write-protocol/003-multi-ai-council-deferrals",
-    "system-deep-loop/z_archive/022-multi-ai-council-write-protocol/004-multi-ai-council-write-authority",
-    "system-deep-loop/z_archive/022-multi-ai-council-write-protocol/005-multi-ai-council-main-agent-write-enforcement",
     "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/001-multi-ai-council-output-protocol",
     "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/002-multi-ai-council-persistence",
     "system-deep-loop/z_archive/021-multi-ai-council-write-protocol/003-multi-ai-council-deferrals",
@@ -92,16 +86,16 @@
     ],
     "causal_summary": "The Multi-AI Council write protocol spans multiple historical phases: council deliberations need a stable output structure, persistence machinery, deferral handling, write authority, and main-agent enforcement so council runs can produce durable `ai-council/` artifacts rather than chat-only reports",
     "created_at": "2026-07-08T05:55:51.548Z",
-    "last_save_at": "2026-08-30T15:39:24.261Z",
+    "last_save_at": "2026-11-13T13:17:46.189Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:faeb70a9f07524d0cbc3dadb19cb17a9ee7d43e55f82e0de644e63adfcc9377e",
+    "source_fingerprint": "sha256:4500f39efe7a2cd18a11b19b7d3624023866db0909927836078b146e07c8ed08",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c353aa4e3ad5057ef89eda92df00716fd37cfe20b66eb6703417c2957fa90eff"
+      "spec.md": "d8a235d425b4e2345372a0c500fee82b079998b4a5844b3957a3d1a880b6a51c"
     },
     "last_active_child_id": "system-deep-loop/z_archive/022-multi-ai-council-write-protocol/005-multi-ai-council-main-agent-write-enforcement",
     "last_active_at": "2026-06-23T03:49:50.182Z"

@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/004-webflow-checker-fix",
-  "description": "Phase 4: webflow-checker-fix",
+  "description": "Stand-in `setTimeout`, `requestAnimationFrame` and `Webflow.push` run callbacks inside empty catch blocks, and `addEventListener` is a no-op, so a",
   "keywords": [
-    "phase",
-    "webflow-checker-fix"
+    "stand-in",
+    "settimeout",
+    "requestanimationframe",
+    "webflow",
+    "push",
+    "run",
+    "callbacks",
+    "inside",
+    "empty",
+    "catch",
+    "blocks",
+    "addeventlistener",
+    "no-op"
   ],
-  "lastUpdated": "2026-10-09T16:00:50.696Z",
+  "lastUpdated": "2026-11-13T10:04:45.288Z",
   "specId": "004",
   "folderSlug": "webflow-checker-fix",
   "parentChain": [
@@ -14,6 +26,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

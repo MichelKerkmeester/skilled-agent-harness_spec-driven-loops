@@ -1,11 +1,18 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/015-closeout/008-advisor-residuals-and-surface-hint",
-  "description": "Phase 8: advisor-residuals-and-surface-hint",
+  "description": "The sk-code advisor batteries stop at 15 of 17 (native) and 14 of 17 (CLI): P4 and P15 miss on both, P7 on the CLI",
   "keywords": [
-    "phase",
-    "advisor-residuals-and-surface-hint"
+    "sk-code",
+    "advisor",
+    "batteries",
+    "stop",
+    "native",
+    "cli",
+    "p15",
+    "miss"
   ],
-  "lastUpdated": "2026-10-11T04:49:38.684Z",
+  "lastUpdated": "2026-11-13T10:04:46.139Z",
   "specId": "008",
   "folderSlug": "advisor-residuals-and-surface-hint",
   "parentChain": [
@@ -15,6 +22,5 @@
     "015-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

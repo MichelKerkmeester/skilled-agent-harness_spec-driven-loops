@@ -15,11 +15,12 @@
     "namespace",
     "commands"
   ],
-  "lastUpdated": "2026-08-19T17:04:10.995Z",
+  "lastUpdated": "2026-11-13T10:04:49.539Z",
   "specId": "005",
   "folderSlug": "delete-hub-and-interface-commands",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "016-deprecate-sk-design-interface"
   ],
   "memorySequence": 0,

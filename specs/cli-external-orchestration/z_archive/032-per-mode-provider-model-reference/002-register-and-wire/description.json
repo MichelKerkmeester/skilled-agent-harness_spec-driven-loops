@@ -17,11 +17,12 @@
     "docs",
     "link"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.239Z",
+  "lastUpdated": "2026-11-13T10:04:38.735Z",
   "specId": "002",
   "folderSlug": "register-and-wire",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "032-per-mode-provider-model-reference"
   ],
   "memorySequence": 0,

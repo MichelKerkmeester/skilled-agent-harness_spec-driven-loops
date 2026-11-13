@@ -1,21 +1,31 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/z_archive/042-sk-doc-shared-audit",
-  "description": "Audit sk-doc shared references and assets for integration, utilisation and usefulness",
+  "description": "`sk-doc/shared/` accumulated a standards backbone over many packets without anyone re-asking whether each file still has consumers, still sits in the",
   "keywords": [
-    "audit",
     "sk-doc",
     "shared",
-    "references",
-    "assets",
-    "integration",
-    "utilisation",
-    "usefulness"
+    "accumulated",
+    "standards",
+    "backbone",
+    "many",
+    "packets",
+    "without",
+    "anyone",
+    "re-asking",
+    "whether",
+    "file",
+    "still",
+    "consumers",
+    "sits"
   ],
-  "lastUpdated": "2026-08-31T19:49:30.518Z",
+  "lastUpdated": "2026-11-13T10:04:54.075Z",
   "specId": "042",
   "folderSlug": "sk-doc-shared-audit",
-  "parentChain": [],
+  "parentChain": [
+    "sk-doc",
+    "z_archive"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,22 +1,23 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/004-portable-code-modes/009-integration-fixes",
-  "description": "Integration fixes: doctor quality shows applied rules, implement dashboard uses runner verdicts, outside-repository surface rules documented",
+  "description": "`/doctor:sk-code quality` status reports the config, its trust and its tools, and nothing about what the gate would apply in the repository",
   "keywords": [
-    "integration",
     "doctor",
+    "sk-code",
     "quality",
-    "shows",
-    "applied",
-    "rules",
-    "implement",
-    "dashboard",
-    "runner",
-    "verdicts",
-    "outside-repository",
-    "surface",
-    "documented"
+    "status",
+    "reports",
+    "config",
+    "trust",
+    "tools",
+    "nothing",
+    "about",
+    "gate",
+    "apply",
+    "repository"
   ],
-  "lastUpdated": "2026-10-27T23:43:08.318Z",
+  "lastUpdated": "2026-11-13T10:04:47.178Z",
   "specId": "009",
   "folderSlug": "integration-fixes",
   "parentChain": [
@@ -25,6 +26,5 @@
     "004-portable-code-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

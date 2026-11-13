@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/008-sk-doc/011-sk-create-quality-control",
-  "description": "Phase 11: sk-create-quality-control",
+  "description": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
-    "phase",
-    "sk-create-quality-control"
+    "yourvaluehere",
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
   ],
-  "lastUpdated": "2026-11-04T07:16:46.867Z",
+  "lastUpdated": "2026-11-13T10:04:51.400Z",
   "specId": "011",
   "folderSlug": "sk-create-quality-control",
   "parentChain": [
@@ -15,6 +23,5 @@
     "008-sk-doc"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

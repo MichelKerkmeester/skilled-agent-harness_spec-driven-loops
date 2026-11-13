@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/055-command-support-into-commands",
-  "description": "Phase 55: command-support-into-commands",
+  "description": "Phase 004 solved a real problem: both OpenCode versions scan `{command,commands}//.md` and registered all 12 non-command markdown files as commands",
   "keywords": [
     "phase",
-    "command-support-into-commands"
+    "solved",
+    "real",
+    "problem",
+    "opencode",
+    "versions",
+    "scan",
+    "command",
+    "commands",
+    "registered",
+    "non-command",
+    "markdown",
+    "files"
   ],
-  "lastUpdated": "2026-10-22T10:42:29.802Z",
+  "lastUpdated": "2026-11-13T10:04:37.669Z",
   "specId": "055",
   "folderSlug": "command-support-into-commands",
   "parentChain": [
@@ -14,6 +26,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,17 +1,17 @@
 {
   "level": "2",
   "specFolder": "sk-doc/document-standards/003-changelog-system/003-skilled-release-changelog",
-  "description": "Skilled release changelog: the framework release line and findable changelogs",
+  "description": "The system-spec-kit changelog was serving as the repository's global release notes",
   "keywords": [
-    "skilled",
-    "release",
+    "system-spec-kit",
     "changelog",
-    "framework",
-    "line",
-    "findable",
-    "changelogs"
+    "serving",
+    "repository",
+    "global",
+    "release",
+    "notes"
   ],
-  "lastUpdated": "2026-09-27T18:34:16.206Z",
+  "lastUpdated": "2026-11-13T10:04:51.669Z",
   "specId": "003",
   "folderSlug": "skilled-release-changelog",
   "parentChain": [

@@ -1,12 +1,16 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/005-opencode-continuation-hop",
-  "description": "Phase 5: opencode-continuation-hop",
+  "description": "A prepared OpenCode hop can be withdrawn by the goal continuation",
   "keywords": [
-    "phase",
-    "opencode-continuation-hop"
+    "prepared",
+    "opencode",
+    "hop",
+    "withdrawn",
+    "goal",
+    "continuation"
   ],
-  "lastUpdated": "2026-11-13T03:56:26.719Z",
+  "lastUpdated": "2026-11-13T10:04:41.884Z",
   "specId": "005",
   "folderSlug": "opencode-continuation-hop",
   "parentChain": [

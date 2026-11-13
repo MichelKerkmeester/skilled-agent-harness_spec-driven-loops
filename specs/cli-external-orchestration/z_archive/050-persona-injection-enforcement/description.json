@@ -15,11 +15,12 @@
     "cli-opencode",
     "cli-cursor"
   ],
-  "lastUpdated": "2026-08-19T17:04:10.638Z",
+  "lastUpdated": "2026-11-13T10:04:38.934Z",
   "specId": "050",
   "folderSlug": "persona-injection-enforcement",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 11,
   "memoryNameHistory": [

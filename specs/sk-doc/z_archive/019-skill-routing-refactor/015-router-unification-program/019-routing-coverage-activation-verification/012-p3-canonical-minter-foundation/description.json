@@ -11,11 +11,12 @@
     "per-hub",
     "harnesses"
   ],
-  "lastUpdated": "2026-08-30T08:03:51.221Z",
+  "lastUpdated": "2026-11-13T10:04:53.223Z",
   "specId": "012",
   "folderSlug": "p3-canonical-minter-foundation",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program",
     "019-routing-coverage-activation-verification"

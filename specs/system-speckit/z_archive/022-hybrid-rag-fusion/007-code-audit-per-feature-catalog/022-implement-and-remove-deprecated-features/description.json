@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/022-implement-and-remove-deprecated-features",
   "description": "The final audit phase identified a small set of deprecated-feature decisions that sat between documentation cleanup and runtime release readiness",
   "keywords": [
@@ -18,7 +19,7 @@
     "release",
     "readiness"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.217Z",
+  "lastUpdated": "2026-11-13T10:05:33.293Z",
   "specId": "022",
   "folderSlug": "implement-and-remove-deprecated-features",
   "parentChain": [
@@ -28,6 +29,5 @@
     "007-code-audit-per-feature-catalog"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

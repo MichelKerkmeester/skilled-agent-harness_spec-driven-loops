@@ -18,11 +18,12 @@
     "packet",
     "domain"
   ],
-  "lastUpdated": "2026-08-28T16:24:15.240Z",
+  "lastUpdated": "2026-11-13T10:04:52.042Z",
   "specId": "021",
   "folderSlug": "flatten-asset-subfolders",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent"
   ],
   "memorySequence": 0,

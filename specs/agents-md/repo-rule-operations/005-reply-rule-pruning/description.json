@@ -1,19 +1,21 @@
 {
   "level": "1",
   "specFolder": "agents-md/repo-rule-operations/005-reply-rule-pruning",
-  "description": "Retire three low-value reply rules and fold their unique clauses into the surviving rules",
+  "description": "Gate 6 in `AGENTS.md` named five reply rules, and a session that followed it read all five around its replies",
   "keywords": [
-    "retire",
-    "three",
-    "low-value",
+    "gate",
+    "agents",
+    "named",
+    "five",
     "reply",
     "rules",
-    "fold",
-    "unique",
-    "clauses",
-    "surviving"
+    "session",
+    "followed",
+    "read",
+    "around",
+    "replies"
   ],
-  "lastUpdated": "2026-11-12T09:00:00.103Z",
+  "lastUpdated": "2026-11-13T10:04:35.341Z",
   "specId": "005",
   "folderSlug": "reply-rule-pruning",
   "parentChain": [

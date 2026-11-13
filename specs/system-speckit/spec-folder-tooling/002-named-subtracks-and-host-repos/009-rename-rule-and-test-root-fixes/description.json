@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/009-rename-rule-and-test-root-fixes",
-  "description": "Phase 9: rename-rule-and-test-root-fixes",
+  "description": "Phase 8 moved 174 packets, and the rename rule prevented historical spec docs from updating live locator paths",
   "keywords": [
     "phase",
-    "rename-rule-and-test-root-fixes"
+    "moved",
+    "packets",
+    "rename",
+    "rule",
+    "prevented",
+    "historical",
+    "spec",
+    "docs",
+    "live",
+    "locator",
+    "paths"
   ],
-  "lastUpdated": "2026-11-10T08:08:37.292Z",
+  "lastUpdated": "2026-11-13T10:05:32.342Z",
   "specId": "009",
   "folderSlug": "rename-rule-and-test-root-fixes",
   "parentChain": [
@@ -14,6 +25,5 @@
     "002-named-subtracks-and-host-repos"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -18,11 +18,12 @@
     "non-averaged",
     "axes"
   ],
-  "lastUpdated": "2026-08-15T14:41:03.210Z",
+  "lastUpdated": "2026-11-13T10:05:01.215Z",
   "specId": "035",
   "folderSlug": "command-surface-benchmark",
   "parentChain": [
-    "system-deep-loop"
+    "system-deep-loop",
+    "z_archive"
   ],
   "memorySequence": 17,
   "memoryNameHistory": [

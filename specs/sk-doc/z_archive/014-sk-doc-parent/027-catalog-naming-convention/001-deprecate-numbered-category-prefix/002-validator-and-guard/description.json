@@ -7,11 +7,12 @@
     "numbered-prefix",
     "deprecation"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.462Z",
+  "lastUpdated": "2026-11-13T10:04:52.047Z",
   "specId": "002",
   "folderSlug": "validator-and-guard",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent",
     "027-catalog-naming-convention",
     "001-deprecate-numbered-category-prefix"

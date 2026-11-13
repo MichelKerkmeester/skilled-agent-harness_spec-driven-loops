@@ -1,11 +1,19 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/003-deprecate-improvement-modes/008-docs-and-readmes",
-  "description": "Phase 6: docs-and-readmes",
+  "description": "Readers and models follow the root README and BARTER.md to commands that will no longer exist",
   "keywords": [
-    "phase",
-    "docs-and-readmes"
+    "readers",
+    "models",
+    "follow",
+    "root",
+    "readme",
+    "barter",
+    "commands",
+    "longer",
+    "exist"
   ],
-  "lastUpdated": "2026-10-10T18:23:54.785Z",
+  "lastUpdated": "2026-11-13T10:04:56.291Z",
   "specId": "008",
   "folderSlug": "docs-and-readmes",
   "parentChain": [
@@ -14,6 +22,5 @@
     "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,12 +1,26 @@
 {
   "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/020-open-ends-research/001-doc-version-contract",
-  "description": "Phase 1: doc-version-contract",
+  "description": "`node .skilled/skills/sk-doc/scripts/frontmatter-version.mjs verify --skill <name>` exits 1 on every skill checked: 340 files flagged in sk-code, 320",
   "keywords": [
-    "phase",
-    "doc-version-contract"
+    "node",
+    "skilled",
+    "skills",
+    "sk-doc",
+    "scripts",
+    "frontmatter-version",
+    "mjs",
+    "verify",
+    "skill",
+    "name",
+    "exits",
+    "every",
+    "checked",
+    "files",
+    "flagged",
+    "sk-code"
   ],
-  "lastUpdated": "2026-10-11T17:40:22.619Z",
+  "lastUpdated": "2026-11-13T10:04:46.246Z",
   "specId": "001",
   "folderSlug": "doc-version-contract",
   "parentChain": [

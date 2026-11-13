@@ -18,11 +18,12 @@
     "numbered",
     "paths"
   ],
-  "lastUpdated": "2026-08-28T16:24:15.261Z",
+  "lastUpdated": "2026-11-13T10:04:52.200Z",
   "specId": "006",
   "folderSlug": "reference-sweep-validation-guard",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode",
     "013-catalog-playbook-snippet-denumbering"
   ],

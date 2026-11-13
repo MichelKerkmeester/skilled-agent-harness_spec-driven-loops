@@ -17,11 +17,12 @@
     "community",
     "plugin"
   ],
-  "lastUpdated": "2026-08-22T11:40:15.697Z",
+  "lastUpdated": "2026-11-13T10:04:42.919Z",
   "specId": "003",
   "folderSlug": "notion-bases-plugin-tie-in",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "015-notion-to-obisidian-migration"
   ],
   "memorySequence": 0,

@@ -1,12 +1,22 @@
 {
   "level": "2",
   "specFolder": "sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression/004-push-gate-git-timeout",
-  "description": "Phase 4: push-gate-git-timeout",
+  "description": "The pre-push skill gate runs `git check-ignore` with no time limit and no opt-out from the file system monitor",
   "keywords": [
-    "phase",
-    "push-gate-git-timeout"
+    "pre-push",
+    "skill",
+    "gate",
+    "runs",
+    "git",
+    "check-ignore",
+    "time",
+    "limit",
+    "opt-out",
+    "file",
+    "system",
+    "monitor"
   ],
-  "lastUpdated": "2026-10-27T11:17:15.534Z",
+  "lastUpdated": "2026-11-13T10:04:54.331Z",
   "specId": "004",
   "folderSlug": "push-gate-git-timeout",
   "parentChain": [

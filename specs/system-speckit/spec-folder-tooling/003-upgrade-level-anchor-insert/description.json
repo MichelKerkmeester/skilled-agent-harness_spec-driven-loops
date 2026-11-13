@@ -1,15 +1,15 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/003-upgrade-level-anchor-insert",
-  "description": "Insert Level 2 sections above the questions anchor on upgrade",
+  "description": "`upgrade-level.sh` inserted the Level 2 sections directly above the `## N",
   "keywords": [
-    "insert",
+    "upgrade-level",
+    "inserted",
     "level",
     "sections",
-    "questions",
-    "anchor",
-    "upgrade"
+    "directly"
   ],
-  "lastUpdated": "2026-11-08T08:54:39.767Z",
+  "lastUpdated": "2026-11-13T10:05:32.389Z",
   "specId": "003",
   "folderSlug": "upgrade-level-anchor-insert",
   "parentChain": [
@@ -17,6 +17,5 @@
     "spec-folder-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

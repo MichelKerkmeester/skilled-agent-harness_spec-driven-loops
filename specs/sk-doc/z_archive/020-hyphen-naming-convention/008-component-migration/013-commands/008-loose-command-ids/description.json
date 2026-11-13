@@ -16,11 +16,12 @@
     "form",
     "kebab-case"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.988Z",
+  "lastUpdated": "2026-11-13T10:04:53.765Z",
   "specId": "008",
   "folderSlug": "loose-command-ids",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "013-commands"

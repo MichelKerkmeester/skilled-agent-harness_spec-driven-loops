@@ -1,12 +1,22 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/023-relaunch-cancel-and-test-isolation",
-  "description": "Phase 23: relaunch-cancel-and-test-isolation",
+  "description": "Run from inside a looped session, the relaunch suite inherits the wrapper's `SKILLEDLOOP` variables and 13 of 682 tests fail",
   "keywords": [
-    "phase",
-    "relaunch-cancel-and-test-isolation"
+    "run",
+    "inside",
+    "looped",
+    "session",
+    "relaunch",
+    "suite",
+    "inherits",
+    "wrapper",
+    "skilledloop",
+    "variables",
+    "tests",
+    "fail"
   ],
-  "lastUpdated": "2026-10-24T16:22:52.504Z",
+  "lastUpdated": "2026-11-13T10:04:41.655Z",
   "specId": "023",
   "folderSlug": "relaunch-cancel-and-test-isolation",
   "parentChain": [

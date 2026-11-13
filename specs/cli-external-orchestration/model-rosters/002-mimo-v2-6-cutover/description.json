@@ -1,16 +1,17 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/model-rosters/002-mimo-v2-6-cutover",
-  "description": "MiMo v2.5 to v2.6 cutover across skills settings and deep-loop allowlists",
+  "description": "The operator directed that the MiMo model ids move from the v2.5 to the v2.6 generation",
   "keywords": [
+    "operator",
+    "directed",
     "mimo",
-    "cutover",
-    "across",
-    "skills",
-    "settings",
-    "deep-loop",
-    "allowlists"
+    "model",
+    "ids",
+    "move",
+    "generation"
   ],
-  "lastUpdated": "2026-09-22T07:12:09.980Z",
+  "lastUpdated": "2026-11-13T10:04:37.054Z",
   "specId": "002",
   "folderSlug": "mimo-v2-6-cutover",
   "parentChain": [
@@ -18,6 +19,5 @@
     "model-rosters"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

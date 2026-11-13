@@ -9,11 +9,12 @@
     "parent-hub",
     "conversion"
   ],
-  "lastUpdated": "2026-08-30T07:16:13.778Z",
+  "lastUpdated": "2026-11-13T10:04:52.001Z",
   "specId": "009",
   "folderSlug": "create-manual-testing-playbook",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent"
   ],
   "memorySequence": 0,

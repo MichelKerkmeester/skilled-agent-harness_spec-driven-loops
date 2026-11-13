@@ -1,11 +1,26 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/016-residual-closeout/002-hooks-readme-voice",
-  "description": "Phase 2: hooks-readme-voice",
+  "description": "The 015 ledger recorded seven HVR hard blockers in `.skilled/skills/system-spec-kit/runtime/hooks/README.md` and left them, because they predated that",
   "keywords": [
-    "phase",
-    "hooks-readme-voice"
+    "ledger",
+    "recorded",
+    "seven",
+    "hvr",
+    "hard",
+    "blockers",
+    "skilled",
+    "skills",
+    "system-spec-kit",
+    "runtime",
+    "hooks",
+    "readme",
+    "left",
+    "them",
+    "because",
+    "predated"
   ],
-  "lastUpdated": "2026-10-11T10:14:16.613Z",
+  "lastUpdated": "2026-11-13T10:04:46.151Z",
   "specId": "002",
   "folderSlug": "hooks-readme-voice",
   "parentChain": [
@@ -15,6 +30,5 @@
     "016-residual-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

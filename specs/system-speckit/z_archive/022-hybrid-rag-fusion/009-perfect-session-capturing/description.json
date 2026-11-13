@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
   "description": "The parent `009-perfect-session-capturing` pack had already been reconciled through phase `017`, but the recommendation follow-through after that",
   "keywords": [
@@ -11,7 +12,7 @@
     "recommendation",
     "follow-through"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.377Z",
+  "lastUpdated": "2026-11-13T10:05:33.908Z",
   "specId": "009",
   "folderSlug": "perfect-session-capturing",
   "parentChain": [
@@ -42,6 +43,5 @@
     "17-03-26_19-49__bimodal-quality-distribution-in-historical-memory.md",
     "18-03-26_11-46__test-nextsteps-persistence.md",
     "27-04-26_15-35__retroactive-migration-by-worker-1.md"
-  ],
-  "level": "2"
+  ]
 }

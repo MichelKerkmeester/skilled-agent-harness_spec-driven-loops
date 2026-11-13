@@ -15,11 +15,12 @@
     "catalogs",
     "playbooks"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.799Z",
+  "lastUpdated": "2026-11-13T10:04:53.728Z",
   "specId": "003",
   "folderSlug": "deep-research",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "007-system-deep-loop"

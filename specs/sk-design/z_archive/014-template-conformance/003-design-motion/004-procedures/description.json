@@ -14,11 +14,12 @@
     "seed",
     "sample"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.240Z",
+  "lastUpdated": "2026-11-13T10:04:49.465Z",
   "specId": "004",
   "folderSlug": "procedures",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance",
     "003-design-motion"
   ],

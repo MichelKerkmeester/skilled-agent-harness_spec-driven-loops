@@ -16,11 +16,12 @@
     "carry",
     "detailed"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.874Z",
+  "lastUpdated": "2026-11-13T10:05:00.770Z",
   "specId": "001",
   "folderSlug": "deep-ai-council-frontmatter-alignment",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "030-deep-loop-unification",
     "011-skill-frontmatter-standardization"
   ],

@@ -16,11 +16,12 @@
     "clis",
     "exist"
   ],
-  "lastUpdated": "2026-09-07T16:14:41.991Z",
+  "lastUpdated": "2026-11-13T10:04:42.760Z",
   "specId": "001",
   "folderSlug": "deep-research",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "013-mcp-obsidian"
   ],
   "memorySequence": 0,

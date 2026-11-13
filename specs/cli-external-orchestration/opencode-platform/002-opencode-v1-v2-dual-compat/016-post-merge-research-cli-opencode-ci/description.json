@@ -1,17 +1,22 @@
 {
   "level": "research",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci",
-  "description": "cli-opencode, doctor battery and dual-version CI drift research after the merge",
+  "description": "Four branches reached main on 2026-10-19: the OpenCode dual-compat build, the Pi fast-mode copy claim, worktree dependency provisioning and the",
   "keywords": [
-    "cli-opencode",
-    "doctor",
-    "battery",
-    "dual-version",
-    "drift",
-    "research",
-    "merge"
+    "four",
+    "branches",
+    "reached",
+    "main",
+    "opencode",
+    "dual-compat",
+    "fast-mode",
+    "copy",
+    "claim",
+    "worktree",
+    "dependency",
+    "provisioning"
   ],
-  "lastUpdated": "2026-10-19T21:51:04.748Z",
+  "lastUpdated": "2026-11-13T10:04:37.425Z",
   "specId": "016",
   "folderSlug": "post-merge-research-cli-opencode-ci",
   "parentChain": [

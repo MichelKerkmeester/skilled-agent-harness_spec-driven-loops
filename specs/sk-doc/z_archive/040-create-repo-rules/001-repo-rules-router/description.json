@@ -16,11 +16,12 @@
     "one",
     "file"
   ],
-  "lastUpdated": "2026-08-31T11:37:28.957Z",
+  "lastUpdated": "2026-11-13T10:04:54.062Z",
   "specId": "001",
   "folderSlug": "repo-rules-router",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "040-create-repo-rules"
   ],
   "memorySequence": 0,

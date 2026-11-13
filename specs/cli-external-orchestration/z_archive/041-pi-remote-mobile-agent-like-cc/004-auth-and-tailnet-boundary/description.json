@@ -16,11 +16,12 @@
     "remote",
     "api"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.262Z",
+  "lastUpdated": "2026-11-13T10:04:38.768Z",
   "specId": "004",
   "folderSlug": "auth-and-tailnet-boundary",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "041-pi-remote-mobile-agent-like-cc"
   ],
   "memorySequence": 0,

@@ -1,12 +1,20 @@
 {
   "level": "2",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes",
-  "description": "Phase 4: alignment-fixes",
+  "description": "Two doctor test suites failed in CI because their fixture routers did not open with OVERVIEW",
   "keywords": [
-    "phase",
-    "alignment-fixes"
+    "two",
+    "doctor",
+    "test",
+    "suites",
+    "failed",
+    "because",
+    "fixture",
+    "routers",
+    "open",
+    "overview"
   ],
-  "lastUpdated": "2026-11-05T19:19:56.364Z",
+  "lastUpdated": "2026-11-13T10:04:51.555Z",
   "specId": "004",
   "folderSlug": "alignment-fixes",
   "parentChain": [

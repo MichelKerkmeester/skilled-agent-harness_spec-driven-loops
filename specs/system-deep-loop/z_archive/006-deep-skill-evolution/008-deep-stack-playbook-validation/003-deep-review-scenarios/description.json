@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/003-deep-review-scenarios",
   "description": "`deep-review` is the autonomous iterative code-review loop built on the shared `deep-loop-runtime`: it owns review entry points and modes, canonical",
   "keywords": [
@@ -16,7 +17,7 @@
     "modes",
     "canonical"
   ],
-  "lastUpdated": "2026-08-15T14:41:05.599Z",
+  "lastUpdated": "2026-11-13T10:04:56.667Z",
   "specId": "003",
   "folderSlug": "deep-review-scenarios",
   "parentChain": [
@@ -26,6 +27,5 @@
     "008-deep-stack-playbook-validation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -18,11 +18,12 @@
     "plus",
     "real"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.586Z",
+  "lastUpdated": "2026-11-13T10:04:53.607Z",
   "specId": "002",
   "folderSlug": "root-name-consumer-migration",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention"
   ],
   "memorySequence": 0,

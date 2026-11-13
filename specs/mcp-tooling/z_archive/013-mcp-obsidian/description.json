@@ -14,11 +14,12 @@
     "mcp-tooling",
     "hub"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.541Z",
+  "lastUpdated": "2026-11-13T10:04:42.878Z",
   "specId": "013",
   "folderSlug": "mcp-obsidian",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

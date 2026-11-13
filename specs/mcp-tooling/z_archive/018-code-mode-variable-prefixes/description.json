@@ -15,11 +15,12 @@
     "reached",
     "server"
   ],
-  "lastUpdated": "2026-08-29T14:33:53.772Z",
+  "lastUpdated": "2026-11-13T10:04:43.299Z",
   "specId": "018",
   "folderSlug": "code-mode-variable-prefixes",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

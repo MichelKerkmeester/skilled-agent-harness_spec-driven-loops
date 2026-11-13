@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution",
   "description": "007 deferred-decisions.md documented 5 Tier D items (F4, F6, F35, F36, F37) with rationale",
   "keywords": [
@@ -11,7 +12,7 @@
     "f37",
     "rationale"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.160Z",
+  "lastUpdated": "2026-11-13T10:05:03.039Z",
   "specId": "008",
   "folderSlug": "tier-d-documentation-execution",
   "parentChain": [
@@ -21,6 +22,5 @@
     "004-documentation-quality-refactor"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

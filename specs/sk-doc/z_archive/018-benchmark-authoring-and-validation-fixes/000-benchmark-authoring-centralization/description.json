@@ -16,11 +16,12 @@
     "benchmark",
     "families"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.127Z",
+  "lastUpdated": "2026-11-13T10:04:52.331Z",
   "specId": "000",
   "folderSlug": "benchmark-authoring-centralization",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "018-benchmark-authoring-and-validation-fixes"
   ],
   "memorySequence": 0,

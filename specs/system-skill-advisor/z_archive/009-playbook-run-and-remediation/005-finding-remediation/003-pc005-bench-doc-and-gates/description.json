@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/003-pc005-bench-doc-and-gates",
   "description": "PC-005 fails two ways that are not a scorer regression (the native scorer bench passes at 3.69/6.71 ms)",
   "keywords": [
@@ -12,7 +13,7 @@
     "bench",
     "passes"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.187Z",
+  "lastUpdated": "2026-11-13T10:05:03.063Z",
   "specId": "003",
   "folderSlug": "pc005-bench-doc-and-gates",
   "parentChain": [
@@ -24,6 +25,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "26-05-26_22-20__executed-all-46-playbook-scenarios-across-9.md"
-  ],
-  "level": "1"
+  ]
 }

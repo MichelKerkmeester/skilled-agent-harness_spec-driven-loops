@@ -1,12 +1,23 @@
 {
   "level": "2",
   "specFolder": "sk-git/commit-standards/005-git-setup-customization/005-setup-check-hardening",
-  "description": "Phase 5: setup-check-hardening",
+  "description": "The battery promises that a PASS row means the sk-git surface works, yet several rows pass on evidence they never checked",
   "keywords": [
-    "phase",
-    "setup-check-hardening"
+    "battery",
+    "promises",
+    "pass",
+    "row",
+    "means",
+    "sk-git",
+    "surface",
+    "works",
+    "several",
+    "rows",
+    "evidence",
+    "never",
+    "checked"
   ],
-  "lastUpdated": "2026-10-15T18:52:55.321Z",
+  "lastUpdated": "2026-11-13T10:04:54.239Z",
   "specId": "005",
   "folderSlug": "setup-check-hardening",
   "parentChain": [

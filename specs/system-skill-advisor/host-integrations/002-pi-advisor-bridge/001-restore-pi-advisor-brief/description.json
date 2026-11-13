@@ -1,16 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-skill-advisor/host-integrations/002-pi-advisor-bridge/001-restore-pi-advisor-brief",
-  "description": "The pi skill advisor hook stopped delivering its brief because its CLI probe misses the renamed root; probe either root and key the dedup receipt on the full contribution",
+  "description": "Since the source-root migration, the pi prompt-advisor hook fails on every prompt in ~2 ms without contacting anything: its warm-CLI fallback probe",
   "keywords": [
-    "advisor",
+    "since",
+    "source-root",
+    "migration",
+    "prompt-advisor",
     "hook",
-    "brief",
-    "probe",
-    "root",
-    "dedup"
+    "fails",
+    "every",
+    "prompt",
+    "without",
+    "contacting",
+    "anything",
+    "warm-cli",
+    "fallback",
+    "probe"
   ],
-  "lastUpdated": "2026-09-22T07:10:00.000Z",
+  "lastUpdated": "2026-11-13T10:05:01.284Z",
   "specId": "001",
   "folderSlug": "restore-pi-advisor-brief",
   "parentChain": [

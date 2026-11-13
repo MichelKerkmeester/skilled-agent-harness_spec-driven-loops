@@ -1,11 +1,16 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/014-goal-no-budget-stop",
-  "description": "Phase 14: goal-no-budget-stop",
+  "description": "The OpenCode goal plugin stopped a goal three ways",
   "keywords": [
-    "phase",
-    "goal-no-budget-stop"
+    "opencode",
+    "goal",
+    "plugin",
+    "stopped",
+    "three",
+    "ways"
   ],
-  "lastUpdated": "2026-10-24T16:29:49.757Z",
+  "lastUpdated": "2026-11-13T10:04:49.839Z",
   "specId": "014",
   "folderSlug": "goal-no-budget-stop",
   "parentChain": [
@@ -14,6 +19,5 @@
     "002-create-goal-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -13,11 +13,12 @@
     "thin",
     "transport"
   ],
-  "lastUpdated": "2026-08-21T15:53:59.799Z",
+  "lastUpdated": "2026-11-13T10:04:42.889Z",
   "specId": "003",
   "folderSlug": "knowledge-references",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "014-mcp-notion"
   ],
   "memorySequence": 0,

@@ -1,12 +1,24 @@
 {
   "level": "1",
   "specFolder": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/001-sweet-search-research",
-  "description": "Phase 1: sweet-search-research",
+  "description": "sweet-search claims cheaper and faster agent runs through a local code index, but its value for Skilled's own workflows is unmeasured",
   "keywords": [
-    "phase",
-    "sweet-search-research"
+    "sweet-search",
+    "claims",
+    "cheaper",
+    "faster",
+    "agent",
+    "runs",
+    "local",
+    "code",
+    "index",
+    "value",
+    "skilled",
+    "own",
+    "workflows",
+    "unmeasured"
   ],
-  "lastUpdated": "2026-11-09T13:02:45.308Z",
+  "lastUpdated": "2026-11-13T10:04:41.431Z",
   "specId": "001",
   "folderSlug": "sweet-search-research",
   "parentChain": [

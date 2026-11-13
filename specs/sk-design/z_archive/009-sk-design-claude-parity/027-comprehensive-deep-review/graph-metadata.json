@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The `009-sk-design-claude-parity` packet built sk-design to Claude-parity and was closed complete on 2026-07-06, with its own 10-iteration review covering only the spec-folder documentation of packet 009 itself (`009/review/`, status complete, 8 P1 findings recommending a `010-...-remediation` follow-up)",
     "created_at": "2026-07-09T05:17:37.332Z",
-    "last_save_at": "2026-10-07T18:12:20.020Z",
+    "last_save_at": "2026-11-13T13:14:16.856Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a50f6bfa890313effa5b4cebe647a2ef0975b6e9706c7d6c74685b972cf7c4dd",
+    "source_fingerprint": "sha256:6ed04b1000134c61a360c9b5131429d7c1b1839d0d20a10ed8aee3bee18b9f35",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "52e11b656cb4eafdfedd6edfe94972ce6fff2386faa12df52787a74c7b94dbc6",
+      "spec.md": "c9df9b1d8ef7074ad51797acef11e3f1b2d531114febcab0cabfd0abb6be86ba",
       "plan.md": "f0df6a8d642eac60ac7757034d23055a2a475b9ee7e906fdab4a38406910f281",
       "tasks.md": "16411b72d618a38ce71d759b423775b5fb36f7fecd593cc09d7c917a70bb9389",
       "implementation-summary.md": "36e4baee18fc03b9cc4a037e30241d64e3a75f4d357d3ab02005e4be1cfae1c2"

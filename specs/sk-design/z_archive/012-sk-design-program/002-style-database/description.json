@@ -19,11 +19,12 @@
     "structured",
     "dataset"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.994Z",
+  "lastUpdated": "2026-11-13T10:04:49.331Z",
   "specId": "002",
   "folderSlug": "style-database",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program"
   ],
   "memorySequence": 0,

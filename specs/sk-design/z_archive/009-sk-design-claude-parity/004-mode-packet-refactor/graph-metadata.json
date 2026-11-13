@@ -219,7 +219,7 @@
     ],
     "causal_summary": "The five `sk-design` mode packets currently provide the public execution lanes for design work, but they have not yet been refactored to consume the Claude-like private procedure strategy from the parent/procedure model",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-10-07T18:11:38.143Z",
+    "last_save_at": "2026-11-13T13:14:10.655Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,14 +229,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2bc3f627335357fddab5c8c261ca302fe0f33cbc6822f1a944b99e6d8b15093e",
+    "source_fingerprint": "sha256:bfc629c00e368165aed979e28f0efdbb4e75b3c6c5177beace891baf31e08918",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bf731c8935e4a566f88fc93e15074742fc8923216895737ef50fd42912b319b2",
+      "spec.md": "e9e815592ea364eb0827ca21cc88a82c030861190599060c40bcad03c412a83b",
       "plan.md": "aa8ba04e9d1e564ddafced5e1735380d1c6842e311ecceac5698a1daf25da406",
       "tasks.md": "71d3db9579792280d5170818229d2ffbbdf9454291ec5e068a4db2b7bccaae58",
-      "decision-record.md": "5e279ba57b9d911268f8167defb7ab1e57a23df94c16fd512dfe5085959cced8",
-      "implementation-summary.md": "6bd558e0895e08e46a91924b142c3b87f04fc29d41eb767a61c8305c8b01f92f"
+      "decision-record.md": "d11781b252a1a16fd5e164aeaa58bc879457a400f5a8e1c5955e500202ba610c",
+      "implementation-summary.md": "1455422345c6d4fe51e1eb9250f9448b10e33350e383f8f8038dae80f716b7fc"
     },
     "last_active_child_id": null,
     "last_active_at": null

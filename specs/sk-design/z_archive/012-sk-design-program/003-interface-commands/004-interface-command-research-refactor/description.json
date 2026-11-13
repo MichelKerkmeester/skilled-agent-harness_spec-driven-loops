@@ -19,11 +19,12 @@
     "design",
     "commands"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.000Z",
+  "lastUpdated": "2026-11-13T10:04:49.335Z",
   "specId": "004",
   "folderSlug": "interface-command-research-refactor",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program",
     "003-interface-commands"
   ],

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/010-integration-testing",
   "description": "The runtime gap is now closed: `workflow-e2e.vitest.ts` exercises the real save path with temp-repo isolation, real markdown writes, real",
   "keywords": [
@@ -17,7 +18,7 @@
     "markdown",
     "writes"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.269Z",
+  "lastUpdated": "2026-11-13T10:05:33.397Z",
   "specId": "010",
   "folderSlug": "integration-testing",
   "parentChain": [
@@ -30,6 +31,5 @@
   "memoryNameHistory": [
     "17-03-26_14-47__focused-phase-010-proof-rerun.md",
     "17-03-26_16-44__strict-closeout-evidence-refreshed.md"
-  ],
-  "level": "2"
+  ]
 }

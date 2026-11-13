@@ -17,11 +17,12 @@
     "refinement",
     "program"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.416Z",
+  "lastUpdated": "2026-11-13T10:04:53.844Z",
   "specId": "003",
   "folderSlug": "creation-workflow-update",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement"
   ],
   "memorySequence": 0,

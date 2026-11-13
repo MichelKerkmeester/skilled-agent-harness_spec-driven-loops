@@ -18,11 +18,12 @@
     "readme",
     "files"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.612Z",
+  "lastUpdated": "2026-11-13T10:04:52.073Z",
   "specId": "001",
   "folderSlug": "hub-doc-conformance-review",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "015-hub-doc-conformance-fixes"
   ],
   "memorySequence": 0,

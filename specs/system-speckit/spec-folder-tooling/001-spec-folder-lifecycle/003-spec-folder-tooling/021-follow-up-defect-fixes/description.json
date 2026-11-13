@@ -1,12 +1,21 @@
 {
   "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/021-follow-up-defect-fixes",
-  "description": "Phase 21: follow-up-defect-fixes",
+  "description": "Four spec-folder tools still follow a link at a step that writes, reads or moves a file",
   "keywords": [
-    "phase",
-    "follow-up-defect-fixes"
+    "four",
+    "spec-folder",
+    "tools",
+    "still",
+    "follow",
+    "link",
+    "step",
+    "writes",
+    "reads",
+    "moves",
+    "file"
   ],
-  "lastUpdated": "2026-10-11T12:16:56.590Z",
+  "lastUpdated": "2026-11-13T10:05:32.208Z",
   "specId": "021",
   "folderSlug": "follow-up-defect-fixes",
   "parentChain": [

@@ -1,12 +1,19 @@
 {
   "level": "3+",
   "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/003-plain-chat-command-reach",
-  "description": "Phase 3: plain-chat-command-reach",
+  "description": "The advisor reaches a plain-chat prompt with a skill and never with the command that owns the job",
   "keywords": [
-    "phase",
-    "plain-chat-command-reach"
+    "advisor",
+    "reaches",
+    "plain-chat",
+    "prompt",
+    "skill",
+    "never",
+    "command",
+    "owns",
+    "job"
   ],
-  "lastUpdated": "2026-11-12T18:28:28.782Z",
+  "lastUpdated": "2026-11-13T10:05:01.604Z",
   "specId": "003",
   "folderSlug": "plain-chat-command-reach",
   "parentChain": [

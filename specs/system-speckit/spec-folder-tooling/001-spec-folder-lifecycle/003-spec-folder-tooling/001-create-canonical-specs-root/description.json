@@ -1,15 +1,20 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/001-create-canonical-specs-root",
-  "description": "Make create.sh write new packets under the canonical specs root",
+  "description": "Packet `032-relocate-specs-folder` moved the real spec tree to `specs/` on 2026-08-08 and left `.opencode/specs -> ../specs` as a back-link",
   "keywords": [
-    "write",
-    "new",
-    "packets",
-    "canonical",
+    "packet",
+    "032-relocate-specs-folder",
+    "moved",
+    "real",
+    "spec",
+    "tree",
     "specs",
-    "root"
+    "left",
+    "opencode",
+    "back-link"
   ],
-  "lastUpdated": "2026-09-23T18:46:18.248Z",
+  "lastUpdated": "2026-11-13T10:05:31.437Z",
   "specId": "001",
   "folderSlug": "create-canonical-specs-root",
   "parentChain": [
@@ -19,6 +24,5 @@
     "003-spec-folder-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

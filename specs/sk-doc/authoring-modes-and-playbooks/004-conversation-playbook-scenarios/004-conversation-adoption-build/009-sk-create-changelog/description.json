@@ -1,11 +1,18 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/009-sk-create-changelog",
-  "description": "Phase 9: sk-create-changelog",
+  "description": "CHG-007 asks for a component when the evidence is ambiguous, and the answer-dependent write is unchecked",
   "keywords": [
-    "phase",
-    "sk-create-changelog"
+    "chg-007",
+    "asks",
+    "component",
+    "evidence",
+    "ambiguous",
+    "answer-dependent",
+    "write",
+    "unchecked"
   ],
-  "lastUpdated": "2026-11-02T18:33:53.291Z",
+  "lastUpdated": "2026-11-13T10:04:50.126Z",
   "specId": "009",
   "folderSlug": "sk-create-changelog",
   "parentChain": [
@@ -15,6 +22,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

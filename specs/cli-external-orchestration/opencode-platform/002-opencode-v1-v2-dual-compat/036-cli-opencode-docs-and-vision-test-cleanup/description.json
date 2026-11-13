@@ -1,20 +1,14 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/036-cli-opencode-docs-and-vision-test-cleanup",
-  "description": "Close the cli-opencode provider-listing doc follow-ups and the sk-vision kill-switch test and plugin playbook snippet follow-ups",
+  "description": "Phase 027 left three gaps",
   "keywords": [
-    "close",
-    "cli-opencode",
-    "provider-listing",
-    "doc",
-    "follow-ups",
-    "sk-vision",
-    "kill-switch",
-    "test",
-    "plugin",
-    "playbook",
-    "snippet"
+    "phase",
+    "left",
+    "three",
+    "gaps"
   ],
-  "lastUpdated": "2026-10-20T21:30:26.814Z",
+  "lastUpdated": "2026-11-13T10:04:37.522Z",
   "specId": "036",
   "folderSlug": "cli-opencode-docs-and-vision-test-cleanup",
   "parentChain": [
@@ -23,6 +17,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

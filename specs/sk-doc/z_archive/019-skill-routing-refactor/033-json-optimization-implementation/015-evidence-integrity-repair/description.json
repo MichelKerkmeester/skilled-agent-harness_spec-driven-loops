@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/015-evidence-integrity-repair",
   "description": "Rewrite the rubber-stamped rollout checklist with per-item evidence, re-open the three items that certify a regression as absent, reconcile the",
   "keywords": [
@@ -16,15 +17,15 @@
     "absent",
     "reconcile"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.380Z",
+  "lastUpdated": "2026-11-13T10:04:53.431Z",
   "specId": "015",
   "folderSlug": "evidence-integrity-repair",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "033-json-optimization-implementation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

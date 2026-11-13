@@ -13,11 +13,12 @@
     "them",
     "checked"
   ],
-  "lastUpdated": "2026-08-30T07:16:19.968Z",
+  "lastUpdated": "2026-11-13T10:04:53.831Z",
   "specId": "001",
   "folderSlug": "playbook-standard-and-fleet-normalization",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "024-playbook-scenario-coverage"
   ],
   "memorySequence": 8,

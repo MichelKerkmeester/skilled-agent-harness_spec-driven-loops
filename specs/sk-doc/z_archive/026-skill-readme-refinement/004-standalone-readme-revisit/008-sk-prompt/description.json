@@ -17,11 +17,12 @@
     "outcome",
     "tooling"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.443Z",
+  "lastUpdated": "2026-11-13T10:04:53.852Z",
   "specId": "008",
   "folderSlug": "sk-prompt",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement",
     "004-standalone-readme-revisit"
   ],

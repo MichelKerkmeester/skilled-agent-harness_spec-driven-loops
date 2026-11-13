@@ -35,11 +35,12 @@
     "public",
     "modes"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.565Z",
+  "lastUpdated": "2026-11-13T10:04:49.028Z",
   "specId": "009",
   "folderSlug": "sk-design-claude-parity",
   "parentChain": [
-    "sk-design"
+    "sk-design",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

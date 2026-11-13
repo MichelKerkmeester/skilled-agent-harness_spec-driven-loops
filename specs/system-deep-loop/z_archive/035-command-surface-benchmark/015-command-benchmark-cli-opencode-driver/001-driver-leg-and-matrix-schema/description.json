@@ -7,11 +7,12 @@
     "behavior",
     "matrix"
   ],
-  "lastUpdated": "2026-08-15T14:41:03.202Z",
+  "lastUpdated": "2026-11-13T10:05:01.213Z",
   "specId": "001",
   "folderSlug": "driver-leg-and-matrix-schema",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "035-command-surface-benchmark",
     "015-command-benchmark-cli-opencode-driver"
   ],

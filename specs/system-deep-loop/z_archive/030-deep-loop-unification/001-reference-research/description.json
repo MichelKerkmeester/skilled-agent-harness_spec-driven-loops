@@ -18,11 +18,12 @@
     "merging",
     "deep-loop-workflows"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.777Z",
+  "lastUpdated": "2026-11-13T10:05:00.589Z",
   "specId": "001",
   "folderSlug": "reference-research",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "030-deep-loop-unification"
   ],
   "memorySequence": 0,

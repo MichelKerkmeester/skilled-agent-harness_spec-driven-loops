@@ -190,7 +190,7 @@
     ],
     "causal_summary": "If phase 2 saturates, the registry holds a TIE-driven `default-unverified` placeholder and dispatch guidance is still a guess",
     "created_at": "2026-06-28T10:15:17.987Z",
-    "last_save_at": "2026-08-30T15:39:08.849Z",
+    "last_save_at": "2026-11-13T13:13:06.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53715894df93aa4fe10bee47b46a13e56692b33fa8a95c318e794b47f5ad8d0b",
+    "source_fingerprint": "sha256:6d214a771357a318c43a66e868f49847fe70038c23219ac37de60b49e9894abb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d08b79c6ba7e3db4a8d61000b8d49de8f9b1e7f5dab5331c71f6cebc9e31c81c",
+      "spec.md": "4825bdabcc748c791ea3a8ce61c2a2f16d948b3620c40816526205cc15455377",
       "plan.md": "c2e3d8b1f69341c9b1e4bf3aa5773fd16b2e8a23e4be7bf695780f2c19cb4867",
       "tasks.md": "669ce6981a34453c3212a34d9c8d44793175321d86b95014805918817c94cfbd",
       "implementation-summary.md": "6fd10c2389f5d2325a9531fbeb9776bccd0ef9abb5fa9b45def90be18b45ce65"

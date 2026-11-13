@@ -18,11 +18,12 @@
     "version",
     "skill"
   ],
-  "lastUpdated": "2026-08-28T16:24:15.270Z",
+  "lastUpdated": "2026-11-13T10:04:52.282Z",
   "specId": "004",
   "folderSlug": "cli-devin-readme",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode",
     "014-skill-readme-standardization"
   ],

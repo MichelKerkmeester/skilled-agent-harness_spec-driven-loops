@@ -139,17 +139,17 @@
     ],
     "causal_summary": "sk-design's `manualtestingplaybook` (37 scenarios, 8 categories) has only ever been exercised by the automated Lane C skill-benchmark harness, which structurally cannot reach the whole corpus (`PB-004..007`, `HM-`, `FR-` are never dispatched at all; every `MR-` scenario is force-classified `browser` and routed out) and which deliberately wraps every dispatched prompt into a \"state what you'd do, don't do it\" routing-analysis-only request specifically to avoid real side effects",
     "created_at": "2026-07-07T14:55:39.959Z",
-    "last_save_at": "2026-10-07T18:11:49.697Z",
+    "last_save_at": "2026-11-13T13:14:15.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:88c9d24c8e924d77a5164712236d112886ad01e411ce85061afed1edbfcb4b55",
+    "source_fingerprint": "sha256:78f30ddb98164af3637b06ff00a70ce608c4a26f85f3f3c449b63ff0e67f2d56",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f387a325fc69240e4cdb2eeab0976d79614d8b4668829c1aee2b912abf06dfe4",
+      "spec.md": "aa28faa8bfc9ea9a1fd1bcbeadf71a0d7e961dc3f5c07cab3463df173dd901eb",
       "implementation-summary.md": "a39b76fd39ceb548d224428747981199df7042e54c77b8aa4e6ffa1db253ad85"
     },
     "last_active_child_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/010-md-generator-serial-pipeline",

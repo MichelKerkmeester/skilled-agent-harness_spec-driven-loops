@@ -1,12 +1,18 @@
 {
   "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/007-series-parent-review-and-hardening-research",
-  "description": "Phase 7: series-parent-review-and-hardening-research",
+  "description": "Phase 6 was built by DeepSeek workers and checked by one orchestrator, so it has had one review lens",
   "keywords": [
     "phase",
-    "series-parent-review-and-hardening-research"
+    "deepseek",
+    "workers",
+    "checked",
+    "one",
+    "orchestrator",
+    "review",
+    "lens"
   ],
-  "lastUpdated": "2026-10-07T07:55:17.861Z",
+  "lastUpdated": "2026-11-13T10:05:31.518Z",
   "specId": "007",
   "folderSlug": "series-parent-review-and-hardening-research",
   "parentChain": [

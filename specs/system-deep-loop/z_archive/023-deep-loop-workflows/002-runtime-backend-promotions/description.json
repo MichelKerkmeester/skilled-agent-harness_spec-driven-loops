@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/023-deep-loop-workflows/002-runtime-backend-promotions",
   "description": "The five skills duplicate generic plumbing — a byte-identical runtime-capabilities resolver in deep-research and deep-review, a loop-lock CLI adapter",
   "keywords": [
@@ -16,7 +17,7 @@
     "cli",
     "adapter"
   ],
-  "lastUpdated": "2026-08-15T14:41:06.937Z",
+  "lastUpdated": "2026-11-13T10:04:58.883Z",
   "specId": "002",
   "folderSlug": "runtime-backend-promotions",
   "parentChain": [
@@ -25,6 +26,5 @@
     "023-deep-loop-workflows"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

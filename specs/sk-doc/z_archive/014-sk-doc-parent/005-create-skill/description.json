@@ -9,11 +9,12 @@
     "parent-hub",
     "conversion"
   ],
-  "lastUpdated": "2026-08-29T12:13:20.936Z",
+  "lastUpdated": "2026-11-13T10:04:51.996Z",
   "specId": "005",
   "folderSlug": "create-skill",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent"
   ],
   "memorySequence": 0,

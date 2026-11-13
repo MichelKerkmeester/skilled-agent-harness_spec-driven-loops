@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/023-deep-loop-workflows/006-advisor-graph-mode-routing",
   "description": "Collapsing five advisor skill IDs into one risks a routing precision/recall regression from unioning the trigger phrases (risk R2)",
   "keywords": [
@@ -18,7 +19,7 @@
     "phrases",
     "risk"
   ],
-  "lastUpdated": "2026-08-15T14:41:06.944Z",
+  "lastUpdated": "2026-11-13T10:04:58.890Z",
   "specId": "006",
   "folderSlug": "advisor-graph-mode-routing",
   "parentChain": [
@@ -27,6 +28,5 @@
     "023-deep-loop-workflows"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

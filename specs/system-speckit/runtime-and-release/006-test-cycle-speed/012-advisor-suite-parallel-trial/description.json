@@ -1,11 +1,26 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/012-advisor-suite-parallel-trial",
-  "description": "Phase 12: advisor-suite-parallel-trial",
+  "description": "All 161 advisor test files run one at a time, because `.skilled/skills/system-skill-advisor/runtime/vitest.config.ts:40` sets `fileParallelism: false`",
   "keywords": [
-    "phase",
-    "advisor-suite-parallel-trial"
+    "advisor",
+    "test",
+    "files",
+    "run",
+    "one",
+    "time",
+    "because",
+    "skilled",
+    "skills",
+    "system-skill-advisor",
+    "runtime",
+    "vitest",
+    "config",
+    "sets",
+    "fileparallelism",
+    "false"
   ],
-  "lastUpdated": "2026-11-12T08:21:59.422Z",
+  "lastUpdated": "2026-11-13T10:05:23.822Z",
   "specId": "012",
   "folderSlug": "advisor-suite-parallel-trial",
   "parentChain": [
@@ -14,6 +29,5 @@
     "006-test-cycle-speed"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

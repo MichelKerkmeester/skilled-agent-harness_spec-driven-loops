@@ -1,11 +1,16 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/016-residual-closeout/001-package-strict",
-  "description": "Phase 1: package-strict",
+  "description": "Thirteen units failed `packageskill.py --check --strict`",
   "keywords": [
-    "phase",
-    "package-strict"
+    "thirteen",
+    "units",
+    "failed",
+    "packageskill",
+    "check",
+    "strict"
   ],
-  "lastUpdated": "2026-10-11T10:14:15.322Z",
+  "lastUpdated": "2026-11-13T10:04:46.148Z",
   "specId": "001",
   "folderSlug": "package-strict",
   "parentChain": [
@@ -15,6 +20,5 @@
     "016-residual-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

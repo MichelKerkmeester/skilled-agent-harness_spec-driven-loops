@@ -12,11 +12,12 @@
     "cli-cursor",
     "still"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.177Z",
+  "lastUpdated": "2026-11-13T10:04:38.661Z",
   "specId": "001",
   "folderSlug": "cursor-hooks-catalog-and-playbook-coverage",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "030-cli-cursor-creation",
     "009-cursor-hooks-lifecycle"
   ],

@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/024-compact-code-graph/034-workflow-split-and-token-insight-contracts",
   "description": "The research left the workflow split and token-insight surfaces as later work because they depend on already-stable measurement, continuity, and",
   "keywords": [
@@ -16,7 +17,7 @@
     "measurement",
     "continuity"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.657Z",
+  "lastUpdated": "2026-11-13T10:05:34.571Z",
   "specId": "034",
   "folderSlug": "workflow-split-and-token-insight-contracts",
   "parentChain": [
@@ -25,6 +26,5 @@
     "024-compact-code-graph"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

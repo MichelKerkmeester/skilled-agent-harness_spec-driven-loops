@@ -1,12 +1,22 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/005-subagent-guard-cancel-consume",
-  "description": "Phase 5: subagent-guard-cancel-consume",
+  "description": "The Claude sub-agent guard builds `LIFECYCLECOMMAND` at `.skilled/hooks/session-relaunch/claude/subagent-guard.mjs:18` from four subcommands only",
   "keywords": [
-    "phase",
-    "subagent-guard-cancel-consume"
+    "claude",
+    "sub-agent",
+    "guard",
+    "lifecyclecommand",
+    "skilled",
+    "hooks",
+    "session-relaunch",
+    "subagent-guard",
+    "mjs",
+    "four",
+    "subcommands",
+    "only"
   ],
-  "lastUpdated": "2026-11-12T13:02:39.136Z",
+  "lastUpdated": "2026-11-13T10:04:41.859Z",
   "specId": "005",
   "folderSlug": "subagent-guard-cancel-consume",
   "parentChain": [

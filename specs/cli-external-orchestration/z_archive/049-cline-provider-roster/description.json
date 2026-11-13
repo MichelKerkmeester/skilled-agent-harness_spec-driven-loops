@@ -13,11 +13,12 @@
     "cline-pass",
     "exposes"
   ],
-  "lastUpdated": "2026-08-25T05:02:32.534Z",
+  "lastUpdated": "2026-11-13T10:04:38.917Z",
   "specId": "049",
   "folderSlug": "cline-provider-roster",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

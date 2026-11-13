@@ -1,11 +1,15 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/003-hard-plugins",
-  "description": "Phase 3: hard-plugins",
+  "description": "Five plugins need more than a wrapper to run on v2",
   "keywords": [
-    "phase",
-    "hard-plugins"
+    "five",
+    "plugins",
+    "need",
+    "wrapper",
+    "run"
   ],
-  "lastUpdated": "2026-10-18T12:45:03.159Z",
+  "lastUpdated": "2026-11-13T10:04:37.212Z",
   "specId": "003",
   "folderSlug": "hard-plugins",
   "parentChain": [
@@ -14,6 +18,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -17,11 +17,12 @@
     "still",
     "cannot"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.233Z",
+  "lastUpdated": "2026-11-13T10:04:38.719Z",
   "specId": "012",
   "folderSlug": "pi-runtime-compatibility",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "031-cli-pi-creation"
   ],
   "memorySequence": 0,

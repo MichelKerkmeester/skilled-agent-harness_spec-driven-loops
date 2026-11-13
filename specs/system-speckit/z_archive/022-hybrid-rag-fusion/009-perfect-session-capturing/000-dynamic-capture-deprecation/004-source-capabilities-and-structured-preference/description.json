@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/004-source-capabilities-and-structured-preference",
   "description": "The session-capturing pipeline still expressed source-aware policy with a raw source-name exception",
   "keywords": [
@@ -12,7 +13,7 @@
     "source-name",
     "exception"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.253Z",
+  "lastUpdated": "2026-11-13T10:05:33.374Z",
   "specId": "004",
   "folderSlug": "source-capabilities-and-structured-preference",
   "parentChain": [
@@ -23,6 +24,5 @@
     "000-dynamic-capture-deprecation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

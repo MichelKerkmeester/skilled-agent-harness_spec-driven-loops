@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/088-speckit-known-limitations-remediation",
   "description": "The 087-speckit-deep-analysis remediation identified and fixed 3 critical bugs and 15+ moderate misalignments, but deferred 4 known limitations that",
   "keywords": [
@@ -13,7 +14,7 @@
     "known",
     "limitations"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.947Z",
+  "lastUpdated": "2026-11-13T10:05:32.764Z",
   "specId": "088",
   "folderSlug": "speckit-known-limitations-remediation",
   "parentChain": [
@@ -23,6 +24,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -16,11 +16,12 @@
     "claude",
     "opencode"
   ],
-  "lastUpdated": "2026-08-30T07:16:08.839Z",
+  "lastUpdated": "2026-11-13T10:04:38.581Z",
   "specId": "008",
   "folderSlug": "devin-hook-parity",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "029-cli-devin-revival"
   ],
   "memorySequence": 0,

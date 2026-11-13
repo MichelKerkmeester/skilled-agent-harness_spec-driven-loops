@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/z_archive/012-cli-skill-removal-mcp-clickup",
   "description": "The `mcp-clickup` skill is being decommissioned",
   "keywords": [
@@ -6,7 +7,7 @@
     "skill",
     "decommissioned"
   ],
-  "lastUpdated": "2026-08-30T05:43:09.725Z",
+  "lastUpdated": "2026-11-13T10:04:38.299Z",
   "specId": "012",
   "folderSlug": "cli-skill-removal-mcp-clickup",
   "parentChain": [
@@ -14,6 +15,5 @@
     "z_archive"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

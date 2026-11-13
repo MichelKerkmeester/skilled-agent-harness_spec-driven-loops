@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`findMaxIterationsPolicyViolation` (fanout-run.cjs:~619) rejects a lineage whenever `synthesis.stopReason !== 'maxIterationsReached'`",
     "created_at": "2026-07-04T10:55:58.324Z",
-    "last_save_at": "2026-10-07T18:15:16.855Z",
+    "last_save_at": "2026-11-13T13:18:12.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1fc92c2cd4f0cd2402c8be0160fa112008a85e84c6ada9dc347c20209365c1af",
+    "source_fingerprint": "sha256:4fe738f33b89da3ddff7b95ba77184f6f0ef76641716c1f3c457c83ce8ce463b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "275d3172ee8afffec275e2d5050bfab936705c1c1be6cb378de1d53c3311a916",
+      "spec.md": "7698a5885e20ccbb6555a4aca47eb120433394ccbfa368477db649faaf3c5347",
       "plan.md": "518c8c509e71dbff9693dee7f8da4f5a9a2428f85216ebb005d647f28f160749",
       "tasks.md": "d5bf8cc21cc228691f9a4d63dfecfbcc64e879dbcb096094c0efece1f11b812e",
       "implementation-summary.md": "292676d76906d9d28ca95650ed850b4d7bdb1b191707890c4b4309786ca5c501"

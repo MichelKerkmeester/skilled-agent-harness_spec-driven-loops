@@ -1,14 +1,19 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/034-live-plugin-playbook",
-  "description": "Live plugin utilization playbook on OpenCode v1 and v2",
+  "description": "The doctor's version battery reports all 17 files in `.opencode/plugins/` as loaded on OpenCode 1.19.3 and active on OpenCode 2.0.32",
   "keywords": [
-    "live",
-    "plugin",
-    "utilization",
-    "playbook",
-    "opencode"
+    "doctor",
+    "version",
+    "battery",
+    "reports",
+    "files",
+    "opencode",
+    "plugins",
+    "loaded",
+    "active"
   ],
-  "lastUpdated": "2026-10-20T16:42:45.968Z",
+  "lastUpdated": "2026-11-13T10:04:37.510Z",
   "specId": "034",
   "folderSlug": "live-plugin-playbook",
   "parentChain": [
@@ -17,6 +22,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

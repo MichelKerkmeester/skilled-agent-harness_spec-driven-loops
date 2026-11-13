@@ -175,7 +175,7 @@
     ],
     "causal_summary": "Phase 023's parent scoped this child wave to 5 dispatches spanning two different playbook categories: the Open Design transport mode's routing contract (`MR-007`) and four advisor-integration boundary checks (`AI-002`, `AI-003`, `AI-004`, `SR-001`) that prove `sk-design` neither false-fires on pure-code/documentation/backend-review prompts nor skips its own mandatory shared-resource loading contract when it does legitimately win",
     "created_at": "2026-07-07T15:18:40.673Z",
-    "last_save_at": "2026-10-07T18:12:15.703Z",
+    "last_save_at": "2026-11-13T13:14:15.248Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -184,13 +184,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47faf83bf04b160fbaa02bd579b2e5fad3850d2fd649519eda17618c8860104f",
+    "source_fingerprint": "sha256:1476098cc2c6267b48bcd3092ef3477acac3264492bbfbe5023d8c10cd42d423",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9ab56bc161ede6c3687053b5b9d7f4b19b0bb1f4186a1a097e083aeeba5dd418",
+      "spec.md": "90eee7a951447bf067d0eed9bc4f3893c8f269817dff0057c972332507f95dc7",
       "plan.md": "1cb89afd7b8efc87f11c292e2e12ddab430b58b6c131190aab2dad320b8d9a36",
       "tasks.md": "6b499a1a8edce0166f535d6c6470433356760bdd100bb6f61e224f4d5206a1a1",
-      "implementation-summary.md": "8ee2c3842da1f7536aa49ab8192a05e51879621d824fd5ffe50f1d22687212f2"
+      "implementation-summary.md": "d62d8f9ba3e4bfa71dc5186f1dffc0c49509680a3165f11c2d0222e8fdf34f7d"
     },
     "last_active_child_id": null,
     "last_active_at": null

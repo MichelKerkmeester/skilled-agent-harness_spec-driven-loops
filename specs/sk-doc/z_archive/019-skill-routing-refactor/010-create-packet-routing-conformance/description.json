@@ -16,11 +16,12 @@
     "contract",
     "check"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.386Z",
+  "lastUpdated": "2026-11-13T10:04:52.702Z",
   "specId": "010",
   "folderSlug": "create-packet-routing-conformance",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,

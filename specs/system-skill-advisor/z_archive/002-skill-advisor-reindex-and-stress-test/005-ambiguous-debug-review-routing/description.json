@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "completionPct": 100,
   "lastOutcome": "CP-100 now routes to sk-code-review top-1 at confidence 0.82; clear implementation prompts still route to sk-code.",
   "specFolder": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/005-ambiguous-debug-review-routing",
@@ -20,7 +21,7 @@
     "without",
     "overconfidence"
   ],
-  "lastUpdated": "2026-08-15T14:41:07.745Z",
+  "lastUpdated": "2026-11-13T10:05:02.545Z",
   "specId": "005",
   "folderSlug": "ambiguous-debug-review-routing",
   "parentChain": [
@@ -29,6 +30,5 @@
     "002-skill-advisor-reindex-and-stress-test"
   ],
   "memorySequence": 5,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

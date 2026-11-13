@@ -1,12 +1,22 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak",
-  "description": "Phase 21: test-db-temp-leak",
+  "description": "The spec-kit vitest setup file creates a scratch database folder per test file and removes it in an `afterAll` hook",
   "keywords": [
-    "phase",
-    "test-db-temp-leak"
+    "spec-kit",
+    "vitest",
+    "setup",
+    "file",
+    "scratch",
+    "database",
+    "folder",
+    "per",
+    "test",
+    "removes",
+    "afterall",
+    "hook"
   ],
-  "lastUpdated": "2026-11-12T22:50:30.784Z",
+  "lastUpdated": "2026-11-13T10:05:23.859Z",
   "specId": "021",
   "folderSlug": "test-db-temp-leak",
   "parentChain": [

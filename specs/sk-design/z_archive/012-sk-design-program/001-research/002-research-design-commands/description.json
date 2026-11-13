@@ -16,11 +16,12 @@
     "routers",
     "resolves"
   ],
-  "lastUpdated": "2026-08-30T07:16:11.159Z",
+  "lastUpdated": "2026-11-13T10:04:49.194Z",
   "specId": "002",
   "folderSlug": "research-design-commands",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program",
     "001-research"
   ],

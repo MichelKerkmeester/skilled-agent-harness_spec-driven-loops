@@ -15,7 +15,7 @@
     "checkpoints-v2-create",
     "restore"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.330Z",
+  "lastUpdated": "2026-11-13T10:05:08.570Z",
   "specId": "004",
   "folderSlug": "stress-test-durability-domain",
   "parentChain": [

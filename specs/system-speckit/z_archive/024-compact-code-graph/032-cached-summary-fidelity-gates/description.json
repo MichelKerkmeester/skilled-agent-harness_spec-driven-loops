@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/024-compact-code-graph/032-cached-summary-fidelity-gates",
   "description": "The research kept cached startup value only under fidelity and freshness gates",
   "keywords": [
@@ -12,7 +13,7 @@
     "freshness",
     "gates"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.653Z",
+  "lastUpdated": "2026-11-13T10:05:34.566Z",
   "specId": "032",
   "folderSlug": "cached-summary-fidelity-gates",
   "parentChain": [
@@ -21,6 +22,5 @@
     "024-compact-code-graph"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

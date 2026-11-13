@@ -1,25 +1,25 @@
 {
+  "level": "1",
   "specFolder": "commands/003-local-command-support",
-  "description": "Support git-ignored local-* commands in every runtime",
+  "description": "An operator who keeps a private command under `.skilled/commands/` breaks this checkout in three ways",
   "keywords": [
-    "local",
-    "command",
-    "support",
-    "git-ignored",
+    "operator",
+    "keeps",
     "private",
-    "runtime",
-    "mirrors",
-    "pre-commit",
-    "guard",
-    "catalog"
+    "command",
+    "skilled",
+    "commands",
+    "breaks",
+    "checkout",
+    "three",
+    "ways"
   ],
-  "lastUpdated": "2026-10-26T22:10:00.000Z",
+  "lastUpdated": "2026-11-13T10:04:39.432Z",
   "specId": "003",
   "folderSlug": "local-command-support",
   "parentChain": [
     "commands"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

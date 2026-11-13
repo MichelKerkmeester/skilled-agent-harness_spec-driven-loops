@@ -12,11 +12,12 @@
     "component",
     "subtree"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.643Z",
+  "lastUpdated": "2026-11-13T10:04:53.668Z",
   "specId": "007",
   "folderSlug": "shared-and-cross-cutting-closures",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention"
   ],
   "memorySequence": 0,

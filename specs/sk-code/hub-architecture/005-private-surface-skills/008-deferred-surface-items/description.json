@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/005-private-surface-skills/008-deferred-surface-items",
-  "description": "Phase 8: deferred-surface-items",
+  "description": "An external sk-code family skill can declare a broken `surfacedetection` block today",
   "keywords": [
-    "phase",
-    "deferred-surface-items"
+    "external",
+    "sk-code",
+    "family",
+    "skill",
+    "declare",
+    "broken",
+    "surfacedetection",
+    "block",
+    "today"
   ],
-  "lastUpdated": "2026-10-25T20:22:42.343Z",
+  "lastUpdated": "2026-11-13T10:04:46.976Z",
   "specId": "008",
   "folderSlug": "deferred-surface-items",
   "parentChain": [
@@ -14,6 +22,5 @@
     "005-private-surface-skills"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/003-system-spec-kit",
-  "description": "Phase 3: system-spec-kit",
+  "description": "Directive delivery, the OpenCode goal plugin and the session-cleanup guard all change on a later turn or after compaction",
   "keywords": [
-    "phase",
-    "system-spec-kit"
+    "directive",
+    "delivery",
+    "opencode",
+    "goal",
+    "plugin",
+    "session-cleanup",
+    "guard",
+    "change",
+    "later",
+    "turn",
+    "compaction"
   ],
-  "lastUpdated": "2026-11-02T18:33:49.283Z",
+  "lastUpdated": "2026-11-13T10:04:50.122Z",
   "specId": "003",
   "folderSlug": "system-spec-kit",
   "parentChain": [
@@ -15,6 +25,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

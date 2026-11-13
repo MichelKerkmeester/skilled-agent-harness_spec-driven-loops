@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-design/018-sk-design-parent-v2/013-fix-sk-design-for-compiled-routing",
   "description": "`sk-design` is a live parent hub with four registered workflows, five root-router intents, and a populated leaf manifest",
   "keywords": [
@@ -16,7 +17,7 @@
     "leaf",
     "manifest"
   ],
-  "lastUpdated": "2026-09-22T15:44:28.522Z",
+  "lastUpdated": "2026-11-13T10:04:48.737Z",
   "specId": "013",
   "folderSlug": "fix-sk-design-for-compiled-routing",
   "parentChain": [
@@ -24,6 +25,5 @@
     "018-sk-design-parent-v2"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

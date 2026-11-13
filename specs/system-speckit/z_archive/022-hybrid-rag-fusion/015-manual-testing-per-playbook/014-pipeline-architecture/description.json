@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/014-pipeline-architecture",
   "description": "The pipeline architecture category (14--pipeline-architecture) contains 22 features spanning the 4-stage pipeline refactor, chunk-to-memory",
   "keywords": [
@@ -13,7 +14,7 @@
     "refactor",
     "chunk-to-memory"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.430Z",
+  "lastUpdated": "2026-11-13T10:05:34.180Z",
   "specId": "014",
   "folderSlug": "pipeline-architecture",
   "parentChain": [
@@ -23,6 +24,5 @@
     "015-manual-testing-per-playbook"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

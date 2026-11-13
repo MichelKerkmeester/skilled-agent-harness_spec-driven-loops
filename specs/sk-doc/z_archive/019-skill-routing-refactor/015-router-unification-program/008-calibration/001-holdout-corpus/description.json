@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/008-calibration/001-holdout-corpus",
   "description": "The unified router treats advisor rank and score margin as evidence, never as authority, and explicitly forbids promoting them to a calibrated",
   "keywords": [
@@ -18,16 +19,16 @@
     "them",
     "calibrated"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.655Z",
+  "lastUpdated": "2026-11-13T10:04:52.879Z",
   "specId": "001",
   "folderSlug": "holdout-corpus",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program",
     "008-calibration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

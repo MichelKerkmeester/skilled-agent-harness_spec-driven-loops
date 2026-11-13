@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/025-goal-binding-record-and-launcher",
-  "description": "Phase 25: goal-binding-record-and-launcher",
+  "description": "The hand-over note already carries `specfolder`, but the receiver cannot tell whether the sending session had a goal, and whether that goal came from",
   "keywords": [
-    "phase",
-    "goal-binding-record-and-launcher"
+    "hand-over",
+    "note",
+    "already",
+    "carries",
+    "specfolder",
+    "receiver",
+    "cannot",
+    "tell",
+    "whether",
+    "sending",
+    "session",
+    "goal",
+    "came"
   ],
-  "lastUpdated": "2026-10-24T19:03:12.967Z",
+  "lastUpdated": "2026-11-13T10:04:41.671Z",
   "specId": "025",
   "folderSlug": "goal-binding-record-and-launcher",
   "parentChain": [
@@ -14,6 +26,5 @@
     "002-session-relaunch-loop"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -13,11 +13,12 @@
     "compiled-contract",
     "path"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.883Z",
+  "lastUpdated": "2026-11-13T10:05:00.779Z",
   "specId": "001",
   "folderSlug": "pipeline-command-parity",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "030-deep-loop-unification",
     "012-deep-command-family-parity"
   ],

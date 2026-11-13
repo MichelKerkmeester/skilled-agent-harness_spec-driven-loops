@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/016-local-test-timing-profile",
-  "description": "Phase 16: local-test-timing-profile",
+  "description": "The three local `npm test` commands are what an operator waits on before a push, and no one has timed them since the latest changes",
   "keywords": [
-    "phase",
-    "local-test-timing-profile"
+    "three",
+    "local",
+    "npm",
+    "test",
+    "commands",
+    "operator",
+    "waits",
+    "push",
+    "one",
+    "timed",
+    "them",
+    "since",
+    "latest",
+    "changes"
   ],
-  "lastUpdated": "2026-11-12T08:22:02.285Z",
+  "lastUpdated": "2026-11-13T10:05:23.837Z",
   "specId": "016",
   "folderSlug": "local-test-timing-profile",
   "parentChain": [
@@ -14,6 +27,5 @@
     "006-test-cycle-speed"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

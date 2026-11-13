@@ -1,11 +1,26 @@
 {
+  "level": "3",
   "specFolder": "sk-code/hub-architecture/005-private-surface-skills/007-shared-references-and-detection-order",
-  "description": "Phase 7: shared-references-and-detection-order",
+  "description": "The shared references folder held material that belonged to no hub mode: two checklists that repeated the workflow docs and still named Lighthouse",
   "keywords": [
-    "phase",
-    "shared-references-and-detection-order"
+    "shared",
+    "references",
+    "folder",
+    "held",
+    "material",
+    "belonged",
+    "hub",
+    "mode",
+    "two",
+    "checklists",
+    "repeated",
+    "workflow",
+    "docs",
+    "still",
+    "named",
+    "lighthouse"
   ],
-  "lastUpdated": "2026-10-25T19:19:00.780Z",
+  "lastUpdated": "2026-11-13T10:04:46.975Z",
   "specId": "007",
   "folderSlug": "shared-references-and-detection-order",
   "parentChain": [
@@ -14,6 +29,5 @@
     "005-private-surface-skills"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

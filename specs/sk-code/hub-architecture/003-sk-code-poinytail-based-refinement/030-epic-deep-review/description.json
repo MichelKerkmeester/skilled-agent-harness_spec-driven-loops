@@ -1,12 +1,17 @@
 {
   "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/030-epic-deep-review",
-  "description": "Phase 30: epic-deep-review",
+  "description": "The epic shipped across 28 children, and each child was reviewed alone",
   "keywords": [
-    "phase",
-    "epic-deep-review"
+    "epic",
+    "shipped",
+    "across",
+    "children",
+    "child",
+    "reviewed",
+    "alone"
   ],
-  "lastUpdated": "2026-10-14T17:46:29.624Z",
+  "lastUpdated": "2026-11-13T10:04:46.907Z",
   "specId": "030",
   "folderSlug": "epic-deep-review",
   "parentChain": [

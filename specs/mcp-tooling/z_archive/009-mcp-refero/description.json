@@ -17,11 +17,12 @@
     "flows",
     "patterns"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.951Z",
+  "lastUpdated": "2026-11-13T10:04:42.694Z",
   "specId": "009",
   "folderSlug": "mcp-refero",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

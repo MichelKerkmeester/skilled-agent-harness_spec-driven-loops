@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/001-clone-path-and-messages",
-  "description": "Phase 1: clone-path-and-messages",
+  "description": "In a fresh clone, `parent-skill-check.cjs` and `ci-skill-root-metadata.cjs` exit 1 on a missing `@spec-kit/shared` build, the second with a raw",
   "keywords": [
-    "phase",
-    "clone-path-and-messages"
+    "fresh",
+    "clone",
+    "parent-skill-check",
+    "cjs",
+    "ci-skill-root-metadata",
+    "exit",
+    "missing",
+    "spec-kit",
+    "shared",
+    "second",
+    "raw"
   ],
-  "lastUpdated": "2026-10-13T18:45:42.957Z",
+  "lastUpdated": "2026-11-13T10:04:46.878Z",
   "specId": "001",
   "folderSlug": "clone-path-and-messages",
   "parentChain": [
@@ -15,6 +25,5 @@
     "029-surface-setup-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

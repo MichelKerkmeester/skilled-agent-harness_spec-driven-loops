@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync",
   "description": "Packets 1 and 2 created motion.dev playbook coverage and a populated cross-stack `motiondev/` reference package, but existing Webflow docs still",
   "keywords": [
@@ -17,7 +18,7 @@
     "docs",
     "still"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.044Z",
+  "lastUpdated": "2026-11-13T10:04:47.250Z",
   "specId": "003",
   "folderSlug": "cross-ref-metadata-sync",
   "parentChain": [
@@ -26,6 +27,5 @@
     "007-sk-code-motion-dev-and-playbook"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -14,11 +14,12 @@
     "exemption-aware",
     "reference-closed"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.633Z",
+  "lastUpdated": "2026-11-13T10:04:53.666Z",
   "specId": "001",
   "folderSlug": "root-and-opencode-infra-strays",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "007-shared-and-cross-cutting-closures"
   ],

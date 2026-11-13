@@ -1,15 +1,23 @@
 {
+  "level": "2",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups",
-  "description": "Fix the spec-kit defects the doctor command audit recorded",
+  "description": "The doctor command audit (packet 048) inspected every doctor target against the current checkout and applied its verdicts, but it deliberately",
   "keywords": [
-    "spec-kit",
-    "defects",
     "doctor",
     "command",
     "audit",
-    "recorded"
+    "packet",
+    "inspected",
+    "every",
+    "target",
+    "against",
+    "current",
+    "checkout",
+    "applied",
+    "verdicts",
+    "deliberately"
   ],
-  "lastUpdated": "2026-10-03T05:27:39.835Z",
+  "lastUpdated": "2026-11-13T10:04:39.391Z",
   "specId": "002",
   "folderSlug": "doctor-audit-followups",
   "parentChain": [
@@ -17,6 +25,5 @@
     "002-doctor-audit-and-fixes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

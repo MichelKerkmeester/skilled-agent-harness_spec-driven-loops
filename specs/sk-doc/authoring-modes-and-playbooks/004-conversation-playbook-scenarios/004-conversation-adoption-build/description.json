@@ -1,12 +1,20 @@
 {
   "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build",
-  "description": "Phase 4: conversation-adoption-build",
+  "description": "The adoption research in `../003-conversation-adoption-research/research/research.md` found 30 playbook scenarios across 17 skills and modes whose",
   "keywords": [
-    "phase",
-    "conversation-adoption-build"
+    "adoption",
+    "research",
+    "003-conversation-adoption-research",
+    "found",
+    "playbook",
+    "scenarios",
+    "across",
+    "skills",
+    "modes",
+    "whose"
   ],
-  "lastUpdated": "2026-11-03T11:44:30.668Z",
+  "lastUpdated": "2026-11-13T10:04:50.147Z",
   "specId": "004",
   "folderSlug": "conversation-adoption-build",
   "parentChain": [

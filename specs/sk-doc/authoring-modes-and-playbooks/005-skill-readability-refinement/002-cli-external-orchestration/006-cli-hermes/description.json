@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration/006-cli-hermes",
-  "description": "Phase 6: cli-hermes",
+  "description": "The docs of the `.skilled/skills/cli-external-orchestration/cli-hermes` mode were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "cli-hermes"
+    "docs",
+    "skilled",
+    "skills",
+    "cli-external-orchestration",
+    "cli-hermes",
+    "mode",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:24.536Z",
+  "lastUpdated": "2026-11-13T10:04:50.870Z",
   "specId": "006",
   "folderSlug": "cli-hermes",
   "parentChain": [
@@ -15,6 +26,5 @@
     "002-cli-external-orchestration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -13,11 +13,12 @@
     "canonical",
     "card"
   ],
-  "lastUpdated": "2026-08-19T17:04:10.637Z",
+  "lastUpdated": "2026-11-13T10:04:38.932Z",
   "specId": "005",
   "folderSlug": "verification",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "050-persona-injection-enforcement"
   ],
   "memorySequence": 0,

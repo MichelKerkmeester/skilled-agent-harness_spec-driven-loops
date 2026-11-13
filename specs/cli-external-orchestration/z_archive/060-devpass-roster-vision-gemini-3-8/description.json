@@ -16,11 +16,12 @@
     "about",
     "dispatch"
   ],
-  "lastUpdated": "2026-09-05T07:05:31.052Z",
+  "lastUpdated": "2026-11-13T10:04:38.968Z",
   "specId": "060",
   "folderSlug": "devpass-roster-vision-gemini-3-8",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

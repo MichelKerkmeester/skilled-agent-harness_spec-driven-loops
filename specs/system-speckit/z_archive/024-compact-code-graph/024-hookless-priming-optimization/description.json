@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/024-compact-code-graph/024-hookless-priming-optimization",
   "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
   "keywords": [
@@ -12,7 +13,7 @@
     "tracked",
     "packet"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.649Z",
+  "lastUpdated": "2026-11-13T10:05:34.556Z",
   "specId": "024",
   "folderSlug": "hookless-priming-optimization",
   "parentChain": [
@@ -21,6 +22,5 @@
     "024-compact-code-graph"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

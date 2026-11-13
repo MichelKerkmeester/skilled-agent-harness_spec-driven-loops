@@ -11,11 +11,12 @@
     "document",
     "states"
   ],
-  "lastUpdated": "2026-08-31T12:35:24.922Z",
+  "lastUpdated": "2026-11-13T10:04:54.064Z",
   "specId": "002",
   "folderSlug": "inventory-and-skill-contract",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "040-create-repo-rules"
   ],
   "memorySequence": 0,

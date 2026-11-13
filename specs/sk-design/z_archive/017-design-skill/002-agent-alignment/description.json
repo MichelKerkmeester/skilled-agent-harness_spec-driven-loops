@@ -11,11 +11,12 @@
     "surviving",
     "capability"
   ],
-  "lastUpdated": "2026-08-28T16:24:15.216Z",
+  "lastUpdated": "2026-11-13T10:04:49.544Z",
   "specId": "002",
   "folderSlug": "agent-alignment",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "017-design-skill"
   ],
   "memorySequence": 0,

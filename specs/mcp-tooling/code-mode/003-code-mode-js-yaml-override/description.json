@@ -1,14 +1,21 @@
 {
+  "level": "2",
   "specFolder": "mcp-tooling/code-mode/003-code-mode-js-yaml-override",
-  "description": "Code Mode fresh install fix",
+  "description": "A fresh npm ci of the mcp-code-mode server builds a server that crashes at start-up, because the global js-yaml ^4.3.2 override forces",
   "keywords": [
-    "code",
-    "mode",
-    "js",
-    "yaml",
-    "override"
+    "fresh",
+    "npm",
+    "mcp-code-mode",
+    "server",
+    "crashes",
+    "start-up",
+    "because",
+    "global",
+    "js-yaml",
+    "override",
+    "forces"
   ],
-  "lastUpdated": "2026-10-21T18:00:00.000Z",
+  "lastUpdated": "2026-11-13T10:04:42.393Z",
   "specId": "003",
   "folderSlug": "code-mode-js-yaml-override",
   "parentChain": [
@@ -16,6 +23,5 @@
     "code-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

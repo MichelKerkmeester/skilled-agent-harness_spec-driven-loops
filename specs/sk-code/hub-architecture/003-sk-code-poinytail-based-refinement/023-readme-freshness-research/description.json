@@ -1,12 +1,22 @@
 {
   "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/023-readme-freshness-research",
-  "description": "Phase 23: readme-freshness-research",
+  "description": "The v4.0.0.4 release note, `.skilled/changelog/skilled/v4.0.0.4.md`, lists changes to install steps and Node 24, per-doc versions, unknown-option",
   "keywords": [
-    "phase",
-    "readme-freshness-research"
+    "release",
+    "note",
+    "skilled",
+    "changelog",
+    "lists",
+    "changes",
+    "install",
+    "steps",
+    "node",
+    "per-doc",
+    "versions",
+    "unknown-option"
   ],
-  "lastUpdated": "2026-10-12T15:34:36.913Z",
+  "lastUpdated": "2026-11-13T10:04:46.607Z",
   "specId": "023",
   "folderSlug": "readme-freshness-research",
   "parentChain": [

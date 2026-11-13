@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/002-quality-agnostic-gate/005-consumers-and-routing",
-  "description": "Phase 5: consumers-and-routing",
+  "description": "The @code agent has no quality step, and its RETURN has no field for a gate result, so a change can come back as done with no gate evidence",
   "keywords": [
-    "phase",
-    "consumers-and-routing"
+    "code",
+    "agent",
+    "quality",
+    "step",
+    "return",
+    "field",
+    "gate",
+    "result",
+    "change",
+    "come",
+    "back",
+    "done",
+    "evidence"
   ],
-  "lastUpdated": "2026-10-25T23:21:53.309Z",
+  "lastUpdated": "2026-11-13T10:04:47.118Z",
   "specId": "005",
   "folderSlug": "consumers-and-routing",
   "parentChain": [
@@ -14,6 +26,5 @@
     "002-quality-agnostic-gate"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

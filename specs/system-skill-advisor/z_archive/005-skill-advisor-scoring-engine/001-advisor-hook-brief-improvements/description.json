@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements",
   "description": "The skill-advisor system has already passed through sibling sub-phases `001`, `008`, and `009`, plus targeted parity closure in",
   "keywords": [
@@ -13,7 +14,7 @@
     "parity",
     "closure"
   ],
-  "lastUpdated": "2026-08-15T14:41:07.968Z",
+  "lastUpdated": "2026-11-13T10:05:02.791Z",
   "specId": "001",
   "folderSlug": "advisor-hook-brief-improvements",
   "parentChain": [
@@ -22,6 +23,5 @@
     "005-skill-advisor-scoring-engine"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

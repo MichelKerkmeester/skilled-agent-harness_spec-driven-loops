@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/008-code-skilled-other-references",
-  "description": "Nine `code-skilled` docs exceed 500 lines: the typescript trio (865/714/562), the shell trio (625/538/501), javascript qualitystandards (605), and",
+  "description": "Nine `code-skilled` docs exceed 500 lines: the typescript trio (865/714/562), the shell trio (625/538/501), javascript qualitystandards (605), and the",
   "keywords": [
     "nine",
     "code-skilled",
@@ -14,7 +14,7 @@
     "javascript",
     "qualitystandards"
   ],
-  "lastUpdated": "2026-08-29T15:04:31.389Z",
+  "lastUpdated": "2026-11-13T10:04:45.084Z",
   "specId": "008",
   "folderSlug": "code-skilled-other-references",
   "parentChain": [

@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "sk-design/021-deprecate-fundamentals/001-frontend-upgrade",
-  "description": "Phase 1: frontend-upgrade",
+  "description": "The sk-code frontend surface writes web UI but owns no spacing, type, colour, hierarchy or motion values",
   "keywords": [
-    "phase",
-    "frontend-upgrade"
+    "sk-code",
+    "frontend",
+    "surface",
+    "writes",
+    "web",
+    "owns",
+    "spacing",
+    "type",
+    "colour",
+    "hierarchy",
+    "motion",
+    "values"
   ],
-  "lastUpdated": "2026-11-05T08:27:37.117Z",
+  "lastUpdated": "2026-11-13T10:04:48.891Z",
   "specId": "001",
   "folderSlug": "frontend-upgrade",
   "parentChain": [
@@ -13,6 +24,5 @@
     "021-deprecate-fundamentals"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

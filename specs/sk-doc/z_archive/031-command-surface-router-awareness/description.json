@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/z_archive/031-command-surface-router-awareness",
   "description": "The root `ROUTER.md` parent-skill standard is functionally live: all seven class-H hubs carry a conformant `routerstate: active` root `ROUTER.md`, the",
   "keywords": [
@@ -16,7 +17,7 @@
     "routerstate",
     "active"
   ],
-  "lastUpdated": "2026-10-07T22:08:36.200Z",
+  "lastUpdated": "2026-11-13T10:04:53.953Z",
   "specId": "031",
   "folderSlug": "command-surface-router-awareness",
   "parentChain": [
@@ -24,6 +25,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

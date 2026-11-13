@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/006-sk-code/005-sk-code-review",
-  "description": "Phase 5: sk-code-review",
+  "description": "The docs of the `sk-code-review` mode were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "sk-code-review"
+    "docs",
+    "sk-code-review",
+    "mode",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:35.656Z",
+  "lastUpdated": "2026-11-13T10:04:51.203Z",
   "specId": "005",
   "folderSlug": "sk-code-review",
   "parentChain": [
@@ -15,6 +23,5 @@
     "006-sk-code"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

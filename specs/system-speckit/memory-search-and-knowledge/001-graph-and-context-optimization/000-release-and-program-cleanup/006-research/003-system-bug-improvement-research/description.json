@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/006-research/003-system-bug-improvement-research",
   "description": "After packets 042-045 closed the documented stress-coverage backlog and known drift findings, the next layer of risk is unknowns: latent",
   "keywords": [
@@ -16,7 +17,7 @@
     "unknowns",
     "latent"
   ],
-  "lastUpdated": "2026-08-15T14:41:09.694Z",
+  "lastUpdated": "2026-11-13T10:05:04.407Z",
   "specId": "003",
   "folderSlug": "system-bug-improvement-research",
   "parentChain": [
@@ -30,6 +31,5 @@
   "memoryNameHistory": [
     "01-05-26_04-52__spec-scaffold-for-20-iteration-deep-research.md",
     "01-05-26_05-46__20-iteration-deep-research-complete-82-findings-0.md"
-  ],
-  "level": "2"
+  ]
 }

@@ -1,11 +1,16 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/012-post-merge-deep-review/003-drift-guard-warning-count",
-  "description": "Phase 3: drift-guard-warning-count",
+  "description": "`run-all-drift-guards.sh` runs the alignment leg without `--fail-on-warn`",
   "keywords": [
-    "phase",
-    "drift-guard-warning-count"
+    "run-all-drift-guards",
+    "runs",
+    "alignment",
+    "leg",
+    "without",
+    "fail-on-warn"
   ],
-  "lastUpdated": "2026-10-10T20:17:50.267Z",
+  "lastUpdated": "2026-11-13T10:04:45.891Z",
   "specId": "003",
   "folderSlug": "drift-guard-warning-count",
   "parentChain": [
@@ -15,6 +20,5 @@
     "012-post-merge-deep-review"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

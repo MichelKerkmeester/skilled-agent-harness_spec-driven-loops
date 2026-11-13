@@ -1,13 +1,24 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/document-standards/001-frontmatter-and-description-budget",
-  "description": "Frontmatter contract owner and the description budget",
+  "description": "Six modes emitted frontmatter without one mode owning the rules, leaving the shared contract without a clear maintainer",
   "keywords": [
+    "six",
+    "modes",
+    "emitted",
     "frontmatter",
-    "and",
-    "description",
-    "budget"
+    "without",
+    "one",
+    "mode",
+    "owning",
+    "rules",
+    "leaving",
+    "shared",
+    "contract",
+    "clear",
+    "maintainer"
   ],
-  "lastUpdated": "2026-10-31T13:31:06.000Z",
+  "lastUpdated": "2026-11-13T10:04:51.638Z",
   "specId": "001",
   "folderSlug": "frontmatter-and-description-budget",
   "parentChain": [
@@ -15,6 +26,5 @@
     "document-standards"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

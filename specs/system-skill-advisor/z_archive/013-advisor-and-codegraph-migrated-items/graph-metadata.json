@@ -90,16 +90,16 @@
     ],
     "causal_summary": "The advisor's cross-session reconnect hardening, test-suite repair, spec-folder-leak fix, and 5 shared-feature-adoption items (observability, provenance guard, packed BM25 lexical lane, BFS consolidation, feedback calibration) needed one home",
     "created_at": "2026-07-07T11:51:52.950Z",
-    "last_save_at": "2026-10-07T18:15:29.642Z",
+    "last_save_at": "2026-11-13T13:19:03.455Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:eb49eacffce53c8876c82438dea5c02b3b210ef185dac7feba89474331b9e77e",
+    "source_fingerprint": "sha256:94e542a7e54b07beeba95afd4100ea3dc5683c63413ebbed7eeca07de68ecf77",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "878f4ce8ceec08ff8b976eff05b6cd282bc165ce2b9344be44ad962aa60b424d"
+      "spec.md": "56c98eb47b3a9c06f502abe6ec3ef9422c87049c83d55e0c7423a6e5843a94ba"
     },
     "last_active_child_id": "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/008-advisor-feedback-calibration",
     "last_active_at": null

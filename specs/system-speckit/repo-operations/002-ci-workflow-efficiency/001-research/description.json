@@ -1,11 +1,13 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/repo-operations/002-ci-workflow-efficiency/001-research",
-  "description": "Phase 1: research",
+  "description": "The repository runs 33 workflows",
   "keywords": [
-    "phase",
-    "research"
+    "repository",
+    "runs",
+    "workflows"
   ],
-  "lastUpdated": "2026-10-23T06:38:06.406Z",
+  "lastUpdated": "2026-11-13T10:05:15.376Z",
   "specId": "001",
   "folderSlug": "research",
   "parentChain": [
@@ -14,6 +16,5 @@
     "002-ci-workflow-efficiency"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

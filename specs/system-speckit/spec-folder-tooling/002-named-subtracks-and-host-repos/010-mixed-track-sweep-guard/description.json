@@ -1,12 +1,25 @@
 {
   "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/010-mixed-track-sweep-guard",
-  "description": "Phase 10: mixed-track-sweep-guard",
+  "description": "Phase 008 regrouped ten spec tracks into 39 sub-tracks but left two packets flat because another session was editing them",
   "keywords": [
     "phase",
-    "mixed-track-sweep-guard"
+    "regrouped",
+    "ten",
+    "spec",
+    "tracks",
+    "sub-tracks",
+    "left",
+    "two",
+    "packets",
+    "flat",
+    "because",
+    "another",
+    "session",
+    "editing",
+    "them"
   ],
-  "lastUpdated": "2026-11-10T08:48:51.141Z",
+  "lastUpdated": "2026-11-13T10:05:32.344Z",
   "specId": "010",
   "folderSlug": "mixed-track-sweep-guard",
   "parentChain": [

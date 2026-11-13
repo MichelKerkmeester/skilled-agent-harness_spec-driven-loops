@@ -1,11 +1,19 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/021-host-root-marker-refresh",
-  "description": "Phase 21: host-root-marker-refresh",
+  "description": "`upgrade-legacy.mjs` sets its repository to three levels above the skill folder it was loaded from",
   "keywords": [
-    "phase",
-    "host-root-marker-refresh"
+    "upgrade-legacy",
+    "mjs",
+    "sets",
+    "repository",
+    "three",
+    "levels",
+    "skill",
+    "folder",
+    "loaded"
   ],
-  "lastUpdated": "2026-11-09T11:36:04.334Z",
+  "lastUpdated": "2026-11-13T10:05:23.538Z",
   "specId": "021",
   "folderSlug": "host-root-marker-refresh",
   "parentChain": [
@@ -14,6 +22,5 @@
     "004-v4-release-line-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

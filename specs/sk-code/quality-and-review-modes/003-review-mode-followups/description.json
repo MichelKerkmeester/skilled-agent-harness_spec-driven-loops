@@ -1,29 +1,21 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/003-review-mode-followups",
-  "description": "sk-code-review follow-ups: cache-key fallback, quality-evidence header, user-mode review contract, final-line contradiction check, live finding-accura",
+  "description": "The sk-code-review research left six recommendations open after the operator closed the repo review profile",
   "keywords": [
     "sk-code-review",
-    "follow-ups",
-    "cache-key",
-    "fallback",
-    "quality-evidence",
-    "header",
-    "user-mode",
+    "research",
+    "left",
+    "six",
+    "recommendations",
+    "open",
+    "operator",
+    "closed",
+    "repo",
     "review",
-    "contract",
-    "final-line",
-    "contradiction",
-    "check",
-    "live",
-    "finding-accuracy",
-    "benchmark",
-    "repo-neutral",
-    "examples",
-    "path-only",
-    "workflow",
-    "routing"
+    "profile"
   ],
-  "lastUpdated": "2026-10-27T06:26:55.266Z",
+  "lastUpdated": "2026-11-13T10:04:47.148Z",
   "specId": "003",
   "folderSlug": "review-mode-followups",
   "parentChain": [
@@ -31,6 +23,5 @@
     "quality-and-review-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,18 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/repo-operations/002-ci-workflow-efficiency/012-alignment-fixes",
-  "description": "Phase 12: alignment-fixes",
+  "description": "The alignment audit found seven places where CI or its tests disagreed with the tree",
   "keywords": [
-    "phase",
-    "alignment-fixes"
+    "alignment",
+    "audit",
+    "found",
+    "seven",
+    "places",
+    "tests",
+    "disagreed",
+    "tree"
   ],
-  "lastUpdated": "2026-10-27T19:53:13.902Z",
+  "lastUpdated": "2026-11-13T10:05:16.686Z",
   "specId": "012",
   "folderSlug": "alignment-fixes",
   "parentChain": [
@@ -14,6 +21,5 @@
     "002-ci-workflow-efficiency"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

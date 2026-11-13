@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs",
-  "description": "Phase 13: sk-prompt-framework-docs",
+  "description": "`sk-prompt/SKILL.md` promises seven frameworks (lines 3, 12 and 38, rechecked 2026-09-27), and its selection matrix routes to CRISPE and CRAFT (lines",
   "keywords": [
-    "phase",
-    "sk-prompt-framework-docs"
+    "sk-prompt",
+    "skill",
+    "promises",
+    "seven",
+    "frameworks",
+    "lines",
+    "rechecked",
+    "selection",
+    "matrix",
+    "routes",
+    "crispe",
+    "craft"
   ],
-  "lastUpdated": "2026-09-27T11:50:20.007Z",
+  "lastUpdated": "2026-11-13T10:04:35.947Z",
   "specId": "013",
   "folderSlug": "sk-prompt-framework-docs",
   "parentChain": [
@@ -13,6 +24,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

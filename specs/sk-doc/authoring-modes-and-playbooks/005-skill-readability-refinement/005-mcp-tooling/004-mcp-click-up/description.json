@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/005-mcp-tooling/004-mcp-click-up",
-  "description": "Phase 4: mcp-click-up",
+  "description": "The docs of the `.skilled/skills/mcp-tooling/mcp-click-up` mode were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "mcp-click-up"
+    "docs",
+    "skilled",
+    "skills",
+    "mcp-tooling",
+    "mcp-click-up",
+    "mode",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:28.946Z",
+  "lastUpdated": "2026-11-13T10:04:51.081Z",
   "specId": "004",
   "folderSlug": "mcp-click-up",
   "parentChain": [
@@ -15,6 +26,5 @@
     "005-mcp-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

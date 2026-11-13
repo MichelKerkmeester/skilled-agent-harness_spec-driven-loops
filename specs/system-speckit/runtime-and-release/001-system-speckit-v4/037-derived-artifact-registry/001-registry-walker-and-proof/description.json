@@ -1,14 +1,16 @@
 {
   "level": "3",
   "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/037-derived-artifact-registry/001-registry-walker-and-proof",
-  "description": "Freshness is defended per artifact",
+  "description": "Freshness is defended per artifact, and the artifacts are not unproved",
   "keywords": [
     "freshness",
     "defended",
     "per",
-    "artifact"
+    "artifact",
+    "artifacts",
+    "unproved"
   ],
-  "lastUpdated": "2026-09-11T09:39:58.581Z",
+  "lastUpdated": "2026-11-13T10:05:19.585Z",
   "specId": "001",
   "folderSlug": "registry-walker-and-proof",
   "parentChain": [

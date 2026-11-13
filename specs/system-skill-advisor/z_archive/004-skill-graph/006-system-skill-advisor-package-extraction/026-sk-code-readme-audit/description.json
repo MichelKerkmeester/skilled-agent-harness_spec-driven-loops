@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/026-sk-code-readme-audit",
   "description": "The 19-skill tree contains many first-party code folders, but not every code-bearing folder has local README coverage",
   "keywords": [
@@ -16,7 +17,7 @@
     "readme",
     "coverage"
   ],
-  "lastUpdated": "2026-08-15T14:41:07.931Z",
+  "lastUpdated": "2026-11-13T10:05:02.760Z",
   "specId": "026",
   "folderSlug": "sk-code-readme-audit",
   "parentChain": [
@@ -26,6 +27,5 @@
     "006-system-skill-advisor-package-extraction"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

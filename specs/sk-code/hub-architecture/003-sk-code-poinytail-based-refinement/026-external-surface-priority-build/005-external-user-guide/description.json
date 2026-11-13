@@ -1,13 +1,23 @@
 {
   "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide",
-  "description": "External user guide",
+  "description": "The first thing a user reads, `README.md:800`, presents three equal surfaces, and the adaptation block (`README.md:1384`, `:1447`) tells them to",
   "keywords": [
-    "external",
+    "first",
+    "thing",
     "user",
-    "guide"
+    "reads",
+    "readme",
+    "presents",
+    "three",
+    "equal",
+    "surfaces",
+    "adaptation",
+    "block",
+    "tells",
+    "them"
   ],
-  "lastUpdated": "2026-10-13T10:09:54.838Z",
+  "lastUpdated": "2026-11-13T10:04:46.810Z",
   "specId": "005",
   "folderSlug": "external-user-guide",
   "parentChain": [

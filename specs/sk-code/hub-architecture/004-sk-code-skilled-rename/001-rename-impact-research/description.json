@@ -1,12 +1,22 @@
 {
   "level": "1",
   "specFolder": "sk-code/hub-architecture/004-sk-code-skilled-rename/001-rename-impact-research",
-  "description": "Phase 1: rename-impact-research",
+  "description": "The name `sk-code-opencode` is wired into the skill folder, the sk-code hub registry and router, the system-skill-advisor DB and compiled routes,",
   "keywords": [
-    "phase",
-    "rename-impact-research"
+    "name",
+    "sk-code-opencode",
+    "wired",
+    "skill",
+    "folder",
+    "sk-code",
+    "hub",
+    "registry",
+    "router",
+    "system-skill-advisor",
+    "compiled",
+    "routes"
   ],
-  "lastUpdated": "2026-10-18T18:05:51.641Z",
+  "lastUpdated": "2026-11-13T10:04:46.937Z",
   "specId": "001",
   "folderSlug": "rename-impact-research",
   "parentChain": [

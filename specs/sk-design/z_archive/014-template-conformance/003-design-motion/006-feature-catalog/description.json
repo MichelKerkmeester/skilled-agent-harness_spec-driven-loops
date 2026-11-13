@@ -13,11 +13,12 @@
     "motion-fill-in-cards",
     "procedure-cards"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.288Z",
+  "lastUpdated": "2026-11-13T10:04:49.467Z",
   "specId": "006",
   "folderSlug": "feature-catalog",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance",
     "003-design-motion"
   ],

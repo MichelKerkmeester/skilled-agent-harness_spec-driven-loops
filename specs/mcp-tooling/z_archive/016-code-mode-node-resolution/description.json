@@ -18,11 +18,12 @@
     "v24",
     "bin"
   ],
-  "lastUpdated": "2026-08-28T18:08:53.501Z",
+  "lastUpdated": "2026-11-13T10:04:43.236Z",
   "specId": "016",
   "folderSlug": "code-mode-node-resolution",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

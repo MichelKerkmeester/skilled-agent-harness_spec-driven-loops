@@ -1,21 +1,17 @@
 {
   "level": "2",
   "specFolder": "sk-code/hub-architecture/004-sk-code-skilled-rename",
-  "description": "Rename the sk-code-opencode surface to sk-code-skilled across the skill, advisor DB, routers and every markdown reference",
+  "description": "The sk-code hub exposes a surface packet named `sk-code-opencode`",
   "keywords": [
-    "rename",
-    "sk-code-opencode",
+    "sk-code",
+    "hub",
+    "exposes",
     "surface",
-    "sk-code-skilled",
-    "across",
-    "skill",
-    "advisor",
-    "routers",
-    "every",
-    "markdown",
-    "reference"
+    "packet",
+    "named",
+    "sk-code-opencode"
   ],
-  "lastUpdated": "2026-10-18T20:30:05.291Z",
+  "lastUpdated": "2026-11-13T10:04:46.951Z",
   "specId": "004",
   "folderSlug": "sk-code-skilled-rename",
   "parentChain": [

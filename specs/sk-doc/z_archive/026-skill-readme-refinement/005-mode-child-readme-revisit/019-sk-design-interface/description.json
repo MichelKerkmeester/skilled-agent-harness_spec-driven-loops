@@ -17,11 +17,12 @@
     "style",
     "predates"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.522Z",
+  "lastUpdated": "2026-11-13T10:04:53.874Z",
   "specId": "019",
   "folderSlug": "sk-design-interface",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement",
     "005-mode-child-readme-revisit"
   ],

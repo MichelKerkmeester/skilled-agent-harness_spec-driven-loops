@@ -1,17 +1,23 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route",
-  "description": "Remove the llmgateway GPT-6 Luna route from Pi, OpenCode and Hermes rosters",
+  "description": "The operator rule of 2026-10-28 says GPT models run only on the GPT provider: cli-codex, or Pi's `openai` route, never through DevPass",
   "keywords": [
-    "remove",
-    "llmgateway",
-    "gpt-6",
-    "luna",
+    "operator",
+    "rule",
+    "says",
+    "gpt",
+    "models",
+    "run",
+    "only",
+    "provider",
+    "cli-codex",
+    "openai",
     "route",
-    "opencode",
-    "hermes",
-    "rosters"
+    "never",
+    "devpass"
   ],
-  "lastUpdated": "2026-10-28T08:35:42.895Z",
+  "lastUpdated": "2026-11-13T10:04:37.094Z",
   "specId": "006",
   "folderSlug": "remove-llmgateway-luna-route",
   "parentChain": [
@@ -19,6 +25,5 @@
     "model-rosters"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

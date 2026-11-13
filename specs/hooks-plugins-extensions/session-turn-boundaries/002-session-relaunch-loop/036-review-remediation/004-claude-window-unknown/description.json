@@ -1,12 +1,14 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/004-claude-window-unknown",
-  "description": "Phase 4: claude-window-unknown",
+  "description": "When a Claude checkout has neither `SESSIONRELAUNCHWINDOWTOKENS` nor `autoCompactWindow`",
   "keywords": [
-    "phase",
-    "claude-window-unknown"
+    "claude",
+    "checkout",
+    "sessionrelaunchwindowtokens",
+    "autocompactwindow"
   ],
-  "lastUpdated": "2026-11-12T12:39:36.040Z",
+  "lastUpdated": "2026-11-13T10:04:41.855Z",
   "specId": "004",
   "folderSlug": "claude-window-unknown",
   "parentChain": [

@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/016-doctor-playbook-deep-loop",
-  "description": "Phase 16: doctor-playbook-deep-loop",
+  "description": "The three `/doctor:deep-loop` scenarios live in the system-spec-kit playbook, away from the skill they check, and none of them tests how `--scope`",
   "keywords": [
-    "phase",
-    "doctor-playbook-deep-loop"
+    "three",
+    "doctor",
+    "deep-loop",
+    "scenarios",
+    "live",
+    "system-spec-kit",
+    "playbook",
+    "away",
+    "skill",
+    "check",
+    "none",
+    "them",
+    "tests",
+    "scope"
   ],
-  "lastUpdated": "2026-10-04T11:02:49.505Z",
+  "lastUpdated": "2026-11-13T10:04:39.335Z",
   "specId": "016",
   "folderSlug": "doctor-playbook-deep-loop",
   "parentChain": [
@@ -14,6 +27,5 @@
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

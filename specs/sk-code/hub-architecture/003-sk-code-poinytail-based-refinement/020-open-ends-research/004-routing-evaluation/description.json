@@ -1,12 +1,15 @@
 {
   "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/020-open-ends-research/004-routing-evaluation",
-  "description": "Phase 4: routing-evaluation",
+  "description": "The advisor batteries are 17 prompts plus 5 negatives",
   "keywords": [
-    "phase",
-    "routing-evaluation"
+    "advisor",
+    "batteries",
+    "prompts",
+    "plus",
+    "negatives"
   ],
-  "lastUpdated": "2026-10-11T17:38:02.342Z",
+  "lastUpdated": "2026-11-13T10:04:46.338Z",
   "specId": "004",
   "folderSlug": "routing-evaluation",
   "parentChain": [

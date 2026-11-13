@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/008-round-two-recommendations/002-review-contract",
-  "description": "Phase 2: review-contract",
+  "description": "A review finding needs no reproducing case, so a reader cannot tell a proven defect from a worry",
   "keywords": [
-    "phase",
-    "review-contract"
+    "review",
+    "finding",
+    "needs",
+    "reproducing",
+    "case",
+    "reader",
+    "cannot",
+    "tell",
+    "proven",
+    "defect",
+    "worry"
   ],
-  "lastUpdated": "2026-10-10T06:56:30.265Z",
+  "lastUpdated": "2026-11-13T10:04:45.387Z",
   "specId": "002",
   "folderSlug": "review-contract",
   "parentChain": [
@@ -15,6 +25,5 @@
     "008-round-two-recommendations"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

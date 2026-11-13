@@ -43,10 +43,8 @@
       ".opencode/skills/system-deep-loop/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/lib/profile-resolve.cjs"
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
       {
@@ -83,12 +81,6 @@
         "name": "parent-skill-check.cjs",
         "kind": "file",
         "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "profile-resolve.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/lib/profile-resolve.cjs",
         "source": "derived"
       },
       {
@@ -192,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Audited",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Following the deep-loop-workflows + deep-loop-runtime merge into `system-deep-loop` (phases 001-005 of this parent packet), no pass had specifically verified that every SKILL.md under the new `system-deep-loop` tree (the hub itself, plus its 4 workflow packets — `deep-research`, `deep-review`, `deep-improvement`, `deep-ai-council`) actually conforms to the canonical templates defined in `sk-doc`'s `create-skill` module (`skillmdtemplate.md` for leaf/packet skills, `parentskillhubtemplate.md` for the two-axis hub)",
     "created_at": "2026-07-08T16:18:08.385Z",
-    "last_save_at": "2026-10-07T18:15:18.332Z",
+    "last_save_at": "2026-11-13T13:18:28.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13cf8bc50b03978a41d39cc11cf3f1a999ad89be49169216b59b53b378125682",
+    "source_fingerprint": "sha256:3e4b2e8c0c2cd3e01718f760bf21860fc630fca9b0839174bef1d5aa5273bbee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "af6b30b1cdaed5e505ff1dc42236cb094f62d9b2de5bb7f9b5d05bd61f3c5556",
+      "spec.md": "9884ad3158c99f4b55bd98ac899f3ff323fb616e958cad4632a30c972658edfc",
       "plan.md": "b557bead29ba8ece0f710d8dbbc0ae609708d5d60d2f5dc10320658e08b5b55f",
       "tasks.md": "1eae3fdbf75c2ada85d1311c70eac8abdc9c9c0cc07b48367735918e421a9155",
       "implementation-summary.md": "a17b7aba6d8b18f1c4b263048e512dc81caec6ffae79efd8d5c961d296385e99"

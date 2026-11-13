@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/005-model-profiles-and-fallback",
   "description": "Today cli- skills repeat model-selection guidance per skill (cli-devin §3, cli-opencode §3, sk-prompt clipromptqualitycard.md)",
   "keywords": [
@@ -15,7 +16,7 @@
     "sk-prompt",
     "clipromptqualitycard"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.434Z",
+  "lastUpdated": "2026-11-13T10:04:54.532Z",
   "specId": "005",
   "folderSlug": "model-profiles-and-fallback",
   "parentChain": [
@@ -26,6 +27,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "18-05-26_13-40__phase-d-shared-intelligence-packet-covers-three.md"
-  ],
-  "level": "3"
+  ]
 }

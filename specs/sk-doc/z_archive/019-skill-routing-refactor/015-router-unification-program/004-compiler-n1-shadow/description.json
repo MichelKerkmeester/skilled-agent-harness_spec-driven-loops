@@ -10,11 +10,12 @@
     "routing",
     "policy"
   ],
-  "lastUpdated": "2026-07-24T13:05:44.398Z",
+  "lastUpdated": "2026-11-13T10:04:52.852Z",
   "specId": "004",
   "folderSlug": "compiler-n1-shadow",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program"
   ],

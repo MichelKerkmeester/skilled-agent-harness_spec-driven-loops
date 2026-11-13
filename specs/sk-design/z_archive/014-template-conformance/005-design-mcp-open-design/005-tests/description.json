@@ -11,11 +11,12 @@
     "audited",
     "against"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.312Z",
+  "lastUpdated": "2026-11-13T10:04:49.486Z",
   "specId": "005",
   "folderSlug": "tests",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance",
     "005-design-mcp-open-design"
   ],

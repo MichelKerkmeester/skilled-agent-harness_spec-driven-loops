@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/010-round-three-remediation/002-review-mode",
-  "description": "Phase 2: review-mode",
+  "description": "The review mode's `detectsurfaceevidence` (`sk-code-review/SKILL.md:220-230`) returns Webflow for any changed path containing `package.json` or",
   "keywords": [
-    "phase",
-    "review-mode"
+    "review",
+    "mode",
+    "detectsurfaceevidence",
+    "sk-code-review",
+    "skill",
+    "returns",
+    "webflow",
+    "changed",
+    "path",
+    "containing",
+    "package",
+    "json"
   ],
-  "lastUpdated": "2026-10-10T10:07:19.004Z",
+  "lastUpdated": "2026-11-13T10:04:45.663Z",
   "specId": "002",
   "folderSlug": "review-mode",
   "parentChain": [
@@ -15,6 +26,5 @@
     "010-round-three-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

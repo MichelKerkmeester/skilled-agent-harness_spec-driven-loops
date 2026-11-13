@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/041-post-merge-refinement-4",
   "description": "Following the system-memory to system-spec-kit merger (specs 035-040), a comprehensive 10-agent analysis revealed 75+ issues across documentation,",
   "keywords": [
@@ -15,7 +16,7 @@
     "across",
     "documentation"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.816Z",
+  "lastUpdated": "2026-11-13T10:05:32.549Z",
   "specId": "041",
   "folderSlug": "post-merge-refinement-4",
   "parentChain": [
@@ -25,6 +26,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

@@ -20,11 +20,12 @@
     "mcp",
     "knowledge"
   ],
-  "lastUpdated": "2026-09-07T16:16:59.234Z",
+  "lastUpdated": "2026-11-13T10:04:42.820Z",
   "specId": "009",
   "folderSlug": "community-plugin-support",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "013-mcp-obsidian"
   ],
   "memorySequence": 3,

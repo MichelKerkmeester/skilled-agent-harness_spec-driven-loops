@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/020-open-ends-research/006-ci-truth-checks",
-  "description": "Phase 6: ci-truth-checks",
+  "description": "No workflow runs the feature-catalog package validator, and its fixture test sits outside the folder the sk-doc test runner globs",
   "keywords": [
-    "phase",
-    "ci-truth-checks"
+    "workflow",
+    "runs",
+    "feature-catalog",
+    "package",
+    "validator",
+    "fixture",
+    "test",
+    "sits",
+    "outside",
+    "folder",
+    "sk-doc",
+    "runner",
+    "globs"
   ],
-  "lastUpdated": "2026-10-11T17:45:25.238Z",
+  "lastUpdated": "2026-11-13T10:04:46.384Z",
   "specId": "006",
   "folderSlug": "ci-truth-checks",
   "parentChain": [
@@ -15,6 +27,5 @@
     "020-open-ends-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

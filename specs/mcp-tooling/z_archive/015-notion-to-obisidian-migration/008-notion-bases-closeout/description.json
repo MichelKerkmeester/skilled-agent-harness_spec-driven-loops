@@ -15,11 +15,12 @@
     "pointed",
     "phantom"
   ],
-  "lastUpdated": "2026-08-23T05:55:22.975Z",
+  "lastUpdated": "2026-11-13T10:04:43.091Z",
   "specId": "008",
   "folderSlug": "notion-bases-closeout",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "015-notion-to-obisidian-migration"
   ],
   "memorySequence": 0,

@@ -16,11 +16,12 @@
     "baseline",
     "run"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.477Z",
+  "lastUpdated": "2026-11-13T10:04:48.953Z",
   "specId": "008",
   "folderSlug": "smart-routing-optimization",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 1,

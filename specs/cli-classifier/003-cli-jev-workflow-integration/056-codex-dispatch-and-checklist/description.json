@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/056-codex-dispatch-and-checklist",
-  "description": "Phase 56: codex-dispatch-and-checklist",
+  "description": "Codex task dispatch was marked `unverified` because its `spawnagent` hook payload had never been read",
   "keywords": [
-    "phase",
-    "codex-dispatch-and-checklist"
+    "codex",
+    "task",
+    "dispatch",
+    "marked",
+    "unverified",
+    "because",
+    "spawnagent",
+    "hook",
+    "payload",
+    "never",
+    "read"
   ],
-  "lastUpdated": "2026-10-05T15:41:55.479Z",
+  "lastUpdated": "2026-11-13T10:04:36.802Z",
   "specId": "056",
   "folderSlug": "codex-dispatch-and-checklist",
   "parentChain": [
@@ -13,6 +23,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

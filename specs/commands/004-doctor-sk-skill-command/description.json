@@ -1,24 +1,30 @@
 {
+  "level": "2",
   "specFolder": "commands/004-doctor-sk-skill-command",
-  "description": "Doctor skill command: check and convert a skill to the Skilled format and wire it into the advisor",
+  "description": "An adopter who brings a plain agent skill, or a Skilled skill whose machine router still sits inside `SKILL.md`, has no command that says how far the",
   "keywords": [
-    "doctor",
+    "adopter",
+    "brings",
+    "plain",
+    "agent",
     "skill",
-    "command",
-    "check",
-    "convert",
     "skilled",
-    "format",
-    "wire",
-    "advisor"
+    "whose",
+    "machine",
+    "router",
+    "still",
+    "sits",
+    "inside",
+    "command",
+    "says",
+    "far"
   ],
-  "lastUpdated": "2026-10-30T05:21:11.693Z",
+  "lastUpdated": "2026-11-13T10:04:39.535Z",
   "specId": "004",
   "folderSlug": "doctor-sk-skill-command",
   "parentChain": [
     "commands"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

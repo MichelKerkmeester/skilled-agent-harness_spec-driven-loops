@@ -1,4 +1,5 @@
 {
+  "level": 1,
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/005-sk-doc-rename",
   "description": "Move all eleven create-* packets to sk-create-* and twelve routing keys including the shared-packet pair sk-create-skill and sk-create-skill-parent,",
   "keywords": [
@@ -15,15 +16,15 @@
     "sk-create-skill",
     "sk-create-skill-parent"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.285Z",
+  "lastUpdated": "2026-11-13T10:04:53.389Z",
   "specId": "005",
   "folderSlug": "sk-doc-rename",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "030-mode-sk-prefix-rename"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break",
-  "description": "Phase 8: session-aware-tie-break",
+  "description": "The front door passes only the prompt to `resolveRoute(hub, prompt)` (`.skilled/bin/compiled-route.cjs:42`)",
   "keywords": [
-    "phase",
-    "session-aware-tie-break"
+    "front",
+    "door",
+    "passes",
+    "only",
+    "prompt",
+    "resolveroute",
+    "hub",
+    "skilled",
+    "bin",
+    "compiled-route",
+    "cjs"
   ],
-  "lastUpdated": "2026-10-10T16:18:06.774Z",
+  "lastUpdated": "2026-11-13T10:04:45.881Z",
   "specId": "008",
   "folderSlug": "session-aware-tie-break",
   "parentChain": [
@@ -15,6 +25,5 @@
     "011-round-four-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

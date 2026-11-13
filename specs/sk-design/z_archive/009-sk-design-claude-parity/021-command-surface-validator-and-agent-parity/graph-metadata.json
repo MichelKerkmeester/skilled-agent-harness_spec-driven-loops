@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The 020 deep-research audit (`../020-drift-and-improvement-audit/research/research.md`) found `design-command-surface-check.mjs` reporting `STATUS=INVALID STAGE=metadata` with 10 errors, attributed to `:auto|:confirm` modeled as a flag and missing `design-mcp-open-design` sibling coverage",
     "created_at": "2026-07-07T09:58:04.406Z",
-    "last_save_at": "2026-10-07T18:12:19.587Z",
+    "last_save_at": "2026-11-13T13:14:14.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db34209d478895a2ac5ee2650aa20a339a5e08ea26baa56e8d1e51d37c4c6235",
+    "source_fingerprint": "sha256:1c1caeb2a0fc01d1d5447f0fa13465eb25f6db9460d1753fbb201674f22e72de",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "adfc308e233df2ece75060f4151ed2a3384d04bbe1ecf098735b4b4f289c666a",
+      "spec.md": "4424b82528c8bc195be6e6fd6d225914d9788410bfea07e3fc8a2a30b4f6812c",
       "plan.md": "d4c28ad4b6fffbb3a4444aef233d413be40c55f0a18f74e833374d1995f05cc3",
       "tasks.md": "3297166396349793ae34df170ed6e215b4ceefca9f9fb72a6f3ec6cb1a1971c4",
       "implementation-summary.md": "f48eaeb7cc2ef8162e7d3ca87a5ba279cfd035dbf9f91adbb6debef61d9e9b4e"

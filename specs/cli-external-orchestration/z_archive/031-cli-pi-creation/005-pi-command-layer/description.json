@@ -15,11 +15,12 @@
     "nested",
     "markdown"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.211Z",
+  "lastUpdated": "2026-11-13T10:04:38.699Z",
   "specId": "005",
   "folderSlug": "pi-command-layer",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "031-cli-pi-creation"
   ],
   "memorySequence": 0,

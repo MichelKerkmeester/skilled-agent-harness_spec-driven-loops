@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The `creation.md` reference dissection split each sk-doc packet's authoring doctrine into its own creation-guideline reference (`skillcreation.md`, `readmecreation.md`, `agentcreation.md`, `commandcreation.md`, `featurecatalogcreation.md`, `manualtestingplaybookcreation.md`, `benchmarkcreation.md`, `flowchartcreation.md`, `changelogcreation.md`, plus `doc-quality`'s `workflows.md`/`optimization.md`)",
     "created_at": "2026-07-07T04:51:44.516Z",
-    "last_save_at": "2026-10-07T18:12:13.577Z",
+    "last_save_at": "2026-11-13T13:14:54.333Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:227f5f2fe3e3a82e6d57961b9ea78bd6d733f1ddde352439f7f8a5096b1800ea",
+    "source_fingerprint": "sha256:9786f8b5ec67d53488f779ab35fd3b0ac9c51b2db795051600d5f0fe1b0a3f06",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "baad0ae9fa84f2fe1760e0afcf206d4cb50388db3ed589a8736363cd0733a9c2",
+      "spec.md": "4c9b5ca37eb4c5e2dc97209211e602ca14dcc2823054ea14cac08da526821f85",
       "plan.md": "0ab13882f2f08e383b62947c316eb11b426c4d664a28509b6d9f198ce16578c4",
       "tasks.md": "419ceac9c57aa236eb73b4c8d50533845d55d7657c0cfc84c6ecdeb444be38b2",
       "implementation-summary.md": "e639595d2ca65111b3d17a0b130f587feb84f897763383d79755db47b2920cec"

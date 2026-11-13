@@ -1,12 +1,19 @@
 {
   "level": "1",
   "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide",
-  "description": "Phase 6: setup-guide",
+  "description": "The root README held about 160 lines of setup detail written as reference",
   "keywords": [
-    "phase",
-    "setup-guide"
+    "root",
+    "readme",
+    "held",
+    "about",
+    "lines",
+    "setup",
+    "detail",
+    "written",
+    "reference"
   ],
-  "lastUpdated": "2026-11-08T16:05:32.680Z",
+  "lastUpdated": "2026-11-13T10:05:03.364Z",
   "specId": "006",
   "folderSlug": "setup-guide",
   "parentChain": [

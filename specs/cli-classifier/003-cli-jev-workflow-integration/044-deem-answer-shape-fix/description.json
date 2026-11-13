@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/044-deem-answer-shape-fix",
-  "description": "Phase 44: deem-answer-shape-fix",
+  "description": "The local Deem server answers `noul` with `{\"noul\": <number>}` and `score` with a numeric `score`, index-keyed `probabilities` and a `legend`",
   "keywords": [
-    "phase",
-    "deem-answer-shape-fix"
+    "local",
+    "deem",
+    "server",
+    "answers",
+    "noul",
+    "number",
+    "score",
+    "numeric",
+    "index-keyed",
+    "probabilities",
+    "legend"
   ],
-  "lastUpdated": "2026-10-02T06:02:32.528Z",
+  "lastUpdated": "2026-11-13T10:04:36.556Z",
   "specId": "044",
   "folderSlug": "deem-answer-shape-fix",
   "parentChain": [
@@ -13,6 +23,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

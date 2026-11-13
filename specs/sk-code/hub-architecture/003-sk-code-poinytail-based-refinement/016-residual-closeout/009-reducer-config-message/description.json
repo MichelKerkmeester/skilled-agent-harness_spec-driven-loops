@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/016-residual-closeout/009-reducer-config-message",
-  "description": "Phase 9: reducer-config-message",
+  "description": "A review folder with a state log and no `deep-review-config.json` fails strict reduction with `parseJsonl detected 1 corrupt line(s) in <state log>`",
   "keywords": [
-    "phase",
-    "reducer-config-message"
+    "review",
+    "folder",
+    "state",
+    "log",
+    "deep-review-config",
+    "json",
+    "fails",
+    "strict",
+    "reduction",
+    "parsejsonl",
+    "detected",
+    "corrupt",
+    "line"
   ],
-  "lastUpdated": "2026-10-11T11:28:06.427Z",
+  "lastUpdated": "2026-11-13T10:04:46.187Z",
   "specId": "009",
   "folderSlug": "reducer-config-message",
   "parentChain": [
@@ -15,6 +27,5 @@
     "016-residual-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

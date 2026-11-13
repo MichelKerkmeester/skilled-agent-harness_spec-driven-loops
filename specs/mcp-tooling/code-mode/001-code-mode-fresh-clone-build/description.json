@@ -1,17 +1,23 @@
 {
+  "level": "1",
   "specFolder": "mcp-tooling/code-mode/001-code-mode-fresh-clone-build",
-  "description": "Make Code Mode buildable from a fresh clone and validate its UTCP config",
+  "description": "A fresh clone or worktree cannot build Code Mode, and the config preflight reports the shipped UTCP configuration wrongly",
   "keywords": [
-    "code",
-    "mode",
-    "buildable",
     "fresh",
     "clone",
-    "validate",
+    "worktree",
+    "cannot",
+    "code",
+    "mode",
+    "config",
+    "preflight",
+    "reports",
+    "shipped",
     "utcp",
-    "config"
+    "configuration",
+    "wrongly"
   ],
-  "lastUpdated": "2026-10-03T05:27:35.399Z",
+  "lastUpdated": "2026-11-13T10:04:42.390Z",
   "specId": "001",
   "folderSlug": "code-mode-fresh-clone-build",
   "parentChain": [
@@ -19,6 +25,5 @@
     "code-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

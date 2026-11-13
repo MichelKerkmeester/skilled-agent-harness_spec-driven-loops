@@ -18,11 +18,12 @@
     "checkgeneratedpaths",
     "blocking"
   ],
-  "lastUpdated": "2026-08-30T08:03:53.602Z",
+  "lastUpdated": "2026-11-13T10:04:53.779Z",
   "specId": "002",
   "folderSlug": "per-mode-naming-conformance",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "014-naming-standard-hardening"
   ],

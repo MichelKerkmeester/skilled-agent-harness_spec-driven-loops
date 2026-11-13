@@ -15,11 +15,12 @@
     "far",
     "often"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.388Z",
+  "lastUpdated": "2026-11-13T10:04:52.710Z",
   "specId": "012",
   "folderSlug": "skill-advisor-routing-fixes",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,

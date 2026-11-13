@@ -1,11 +1,17 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/006-hook-late-write-test",
-  "description": "Phase 6: hook-late-write-test",
+  "description": "The hooks whose host allows 3 seconds read stdin for 500 ms",
   "keywords": [
-    "phase",
-    "hook-late-write-test"
+    "hooks",
+    "whose",
+    "host",
+    "allows",
+    "seconds",
+    "read",
+    "stdin"
   ],
-  "lastUpdated": "2026-10-10T19:27:07.799Z",
+  "lastUpdated": "2026-11-13T10:04:45.969Z",
   "specId": "006",
   "folderSlug": "hook-late-write-test",
   "parentChain": [
@@ -15,6 +21,5 @@
     "013-root-cause-and-ux-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

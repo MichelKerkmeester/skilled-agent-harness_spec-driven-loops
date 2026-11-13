@@ -17,11 +17,12 @@
     "warnings",
     "whole"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.895Z",
+  "lastUpdated": "2026-11-13T10:04:42.560Z",
   "specId": "008",
   "folderSlug": "cutover-and-rollout",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "007-mcp-tooling-parent"
   ],
   "memorySequence": 0,
