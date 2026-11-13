@@ -41,6 +41,8 @@ _memory:
 | Q005 | Renumbering is done by a deterministic tool that updates every store, with no hand edits and no AI fix-up work. Counting archived packets in next-number allocation was carried as a stated assumption in the plan the operator then approved. | Not stated. | None | spec.md Operator Decisions, goal.md D3 and D4, 001-relocation-engine, 003-subtrack-archive-and-numbering |
 | Q006 | The planning documents are written by one Fable 5.2 worker at medium effort, dispatched through the operator's claude2 account. | Not stated. | None | scratch/dispatch-brief.md |
 | Q007 | Packet 005 gets a goal: a phase-parent goal.md binding five child goals, offered to the operator to set. | Not stated. | None | goal.md |
+| Q008 | Code is implemented by DeepSeek V4.1 Flash at max reasoning through the dsh harness (or Pi with the OpenCode Go provider), never by Fable. Fable through claude2 stays allowed for documents. | Not stated. | None | scratch/dispatch-brief-002-docs.md, 002-subtrack-proposal/implementation-summary.md |
+| Q009 | Restoring an archived packet onto a live folder with the same name stays refused. The engine renumbers only when a differently named packet holds the number. | Not stated. | None | 001-relocation-engine REQ-014, archive.sh |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -184,6 +186,45 @@ Skip
 Answer:
 ```text
 Offer a goal (Recommended)
+```
+
+### Q008
+<!-- source: claude:af8d5552-c79a-45e0-acf2-f076146fb351:toolu_019h1GrnnyC9nB3uZEdVq1Q7:0 -->
+
+Question:
+```text
+Phase 002 is running on Fable 5.2 through claude2 at high effort; I picked high because it writes code, while you named medium for the planning docs. Which effort should the build workers for phases 003 to 005 use?
+```
+
+Options:
+```text
+High (Recommended)
+Medium
+Xhigh
+```
+
+Answer:
+```text
+We dont want fable for coding, for implementing utilize deepseek v4.1 flash max cli dsh or pi withj opencode go provider
+```
+
+### Q009
+<!-- source: claude:af8d5552-c79a-45e0-acf2-f076146fb351:toolu_019h1GrnnyC9nB3uZEdVq1Q7:2 -->
+
+Question:
+```text
+Restoring an archived packet when a live folder with the exact same name already exists: phase 001 keeps the existing refusal (existing tests require it) and renumbers only when a differently named packet holds the number. Is that the behavior you want?
+```
+
+Options:
+```text
+Keep the refusal (Recommended)
+Renumber anyway
+```
+
+Answer:
+```text
+Keep the refusal (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

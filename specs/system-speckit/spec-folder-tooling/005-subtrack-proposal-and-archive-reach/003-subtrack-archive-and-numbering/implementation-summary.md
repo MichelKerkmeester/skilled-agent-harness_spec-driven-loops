@@ -8,17 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering"
-    last_updated_at: "2026-11-13T10:07:34Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-13T12:20:41Z"
+    last_updated_by: "generate-context"
+    recent_action: "Built archive-aware numbering with its test for phase 003"
+    next_safe_action: "Run the dsh dispatch that seeds z_archive in refresh-track-roots.mjs"
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering/tasks.md"
+      - ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
+      - ".skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-003-subtrack-archive-and-numbering"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "af8d5552-c79a-45e0-acf2-f076146fb351"
+      workspace: "/Users/michelkerkmeester/worktrees/public/364-subtrack-proposal-archive-reach"
+      savedAt: "2026-11-13T12:20:41Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 20
     open_questions: []
     answered_questions: []
 ---

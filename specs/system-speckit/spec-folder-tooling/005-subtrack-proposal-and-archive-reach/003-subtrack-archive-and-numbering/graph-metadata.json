@@ -206,8 +206,8 @@
     ],
     "causal_summary": "`archive.sh` moves a subtrack's packet into that subtrack's own `zarchive/`, but no script creates the folder, so this worktree holds 40 declared subtracks and no subtrack archive folder",
     "created_at": "2026-11-13T10:07:33Z",
-    "last_save_at": "2026-11-13T10:27:20.845Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-13T12:20:41.534Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02f54a9aae1d57d46fd9ca35e4e3f18a0c14e697ef593982aa0e7192360a9e6b",
+    "source_fingerprint": "sha256:53d9efc65d81c680f48588e540f5050f1f5345839bf62ec701d742b4af4c05ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d10b69df56a615f3308e2b23dba47c312e4ed62874f8557f9cea5761d3090cab",
       "plan.md": "3211012abb22123f03820433af2722f67c5ca64d94e1082171208ec2df1c7349",
       "tasks.md": "fbd41f588cf7336ecb925180a03740173d15bca45e94b5ffe9700a273d8d6d43",
-      "implementation-summary.md": "66d0092bc718fcb6f04f99750ac69c7f6c54792dd5f73679590af72663f5c7ee"
+      "implementation-summary.md": "613d235afc32963ba98da5e39de44a3f155071e97d4831f77e029087e5dd805e"
     },
     "last_active_at": null
   }

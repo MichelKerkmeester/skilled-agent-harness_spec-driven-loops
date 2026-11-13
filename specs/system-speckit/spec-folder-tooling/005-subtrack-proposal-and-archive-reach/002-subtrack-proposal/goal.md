@@ -78,6 +78,8 @@ and findings belong here.
 |------|-------|----------|
 | Planning documents authored | Done | `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` in this folder |
 | Implementation | Pending | Not started |
+| Build: suggest-subtracks.mjs, advise_sub_track and option C wording | Done | suggest-subtracks.mjs created and advise_sub_track added to create.sh by DeepSeek V4.1 Flash through the dsh harness. Option C changed on every surface by operator decision, speckit-implement.yaml included. Real tree: git status identical around every run. npm test exit 0, equal to the phase 001 baseline. Gate suites 124 pass 0 fail. Open: AC-007 has no recorded create.sh --json run |
+| Finding: FLAT track is a fixture | Done | No real flat track holds 8 or more live packets, the largest is cli-classifier with 6. Fixture demo, 10 packets, in a throwaway clone under /private/tmp: map exit 0 with 10 entries, relocate.mjs dry run exit 1 moves=10 moved=0 |
 
 ### Deviations and findings
 

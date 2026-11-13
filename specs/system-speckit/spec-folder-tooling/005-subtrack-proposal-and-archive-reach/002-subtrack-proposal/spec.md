@@ -38,7 +38,7 @@ contextType: "general"
 
 This is **Phase 2** of the Subtrack proposal, deterministic packet relocation, z_archive on every subtrack and opt-in archive search specification.
 
-**Scope Boundary**: The proposal tool, one advisory line in `create.sh`, one clause in the spec-folder question and the structure docs. The tool never moves a packet.
+**Scope Boundary**: The proposal tool, one advisory line in `create.sh`, one clause in the spec-folder question on every surface that carries option C, and the structure docs. The tool never moves a packet.
 
 **Dependencies**:
 - Phase 001 `relocate.mjs`, whose `--map` format and preflight the proposed map must satisfy
@@ -46,8 +46,8 @@ This is **Phase 2** of the Subtrack proposal, deterministic packet relocation, z
 
 **Deliverables**:
 - `.skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs`
-- An advisory stderr line in `create.sh` `list_recent_track_packets`
-- A subtrack clause in `spec-gate-core.mjs`, the two presentation assets and `AGENTS.md` option C
+- An advisory stderr line in `create.sh`, printed by `advise_sub_track` right after `list_recent_track_packets`
+- A subtrack clause in `spec-gate-core.mjs`, `AGENTS.md` option C and every menu file, compiled contract, manifest and fixture that copies option C
 - A "when to propose a subtrack" section in `folder-structure.md` and the `--track <track>/<sub>` docs
 <!-- /ANCHOR:phase-context -->
 
@@ -82,27 +82,36 @@ $ grep -c -i "sub-track\|subtrack" .skilled/skills/system-spec-kit/runtime/hooks
 - Create `suggest-subtracks.mjs`, read-only, with a retroactive mode and a present mode.
 - Emit, for a flat track at or above the threshold of 8 live packets, a complete whole-track map in the `relocate.mjs` format with candidate subtrack names.
 - Name the best-fitting existing subtrack for a track and a description, or say that none fits.
-- Add one advisory stderr line to `create.sh` and one subtrack clause to the spec-folder question wording.
+- Add one advisory stderr line to `create.sh` and one subtrack clause to the spec-folder question wording, on every surface that carries option C. The operator widened this during the build from the five files first listed.
 - Document when to propose a subtrack and the `--track <track>/<sub>` form.
 
 ### Out of Scope
 - Moving packets - `relocate.mjs --map <file> --apply` does that after the operator approves.
 - Partial maps - mixed tracks stay forbidden, so a proposal covers the whole track.
-- Changing `.skilled/commands/speckit/assets/speckit-implement.yaml` line 71 - the approved plan names only the plan and complete assets. It is raised as an open question.
 - Blocking a scaffold - the `create.sh` line is advisory and never changes the exit code.
+- A vitest suite for the tool - phase 005 writes it.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs` | Create | Retroactive whole-track map and present-time fit, read-only |
-| `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` | Modify | `list_recent_track_packets` at line 1552 gains one advisory stderr line |
-| `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` | Modify | `GATE_3_CHOICE_RELATED` at line 154, option C at line 161 and option C at line 175 gain a subtrack clause |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` | Modify | New `advise_sub_track`, called from `resolve_branch_name` right after `list_recent_track_packets`, prints one advisory stderr line and always returns 0 |
+| `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` | Modify | `GATE_3_CHOICE_RELATED`, `GATE_3_QUESTION` option C and `GATE_3_MUTATION_NOTICE` option C gain `new or existing sub-track` |
+| `.skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs` | Modify | The three pinned strings and `plannedHash` follow the new wording |
 | `.skilled/commands/speckit/assets/speckit-plan-presentation.txt` | Modify | Option C at line 73 |
 | `.skilled/commands/speckit/assets/speckit-complete-presentation.txt` | Modify | Option C at line 71 |
+| `.skilled/commands/speckit/assets/speckit-implement.yaml` | Modify | Option C in `standard_question` at line 71 |
+| `.skilled/commands/create/assets/create-agent-presentation.txt`, `create-command-presentation.txt`, `create-feature-catalog-presentation.txt`, `create-manual-testing-playbook-presentation.txt`, `create-skill-parent-presentation.txt`, `create-skill-presentation.txt` | Modify | Option C in six create menus |
+| `.skilled/commands/deep/assets/deep-ai-council-presentation.txt`, `deep-research-presentation.txt`, `deep-review-presentation.txt` | Modify | Option C in three deep menus |
+| `.skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown`, `deep-research.contract.markdown`, `deep-review.contract.markdown` | Modify | Regenerated with `compile-command-contracts.cjs --write`, never by hand |
 | `AGENTS.md` | Modify | Gate 3 option C at line 80 |
-| `.skilled/skills/system-spec-kit/references/structure/folder-structure.md` | Modify | New section beside "Sub-Track Folders", lines 97 to 123 |
-| `.skilled/skills/system-spec-kit/references/structure/phase-definitions.md` | Modify | Pointer from section 2 |
+| `.skilled/commands/doctor/assets/agents-md-manifest.json` | Modify | Regenerated from `AGENTS.md`, never by hand |
+| `.skilled/skills/system-spec-kit/references/memory/trigger-config.md` | Modify | Its copy of option C |
+| `.skilled/skills/system-spec-kit/references/workflows/worked-examples.md` | Modify | Its copy of option C |
+| `.skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json` | Modify | The parity fixture's copy of the question text |
+| `.skilled/skills/system-spec-kit/references/structure/folder-structure.md` | Modify | New section "When to Propose a Sub-Track" |
+| `.skilled/skills/system-spec-kit/references/structure/phase-definitions.md` | Modify | Pointer to that section |
 | `.skilled/skills/system-spec-kit/SKILL.md` | Modify | Document `--track <track>/<sub>` |
 | `.skilled/skills/system-spec-kit/references/workflows/quick-reference.md` | Modify | Document `--track <track>/<sub>` |
 <!-- /ANCHOR:scope -->
@@ -128,9 +137,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-007 | `create.sh` prints one advisory stderr line when the target track crosses the threshold or the new packet fits no subtrack. Its exit code and stdout are unchanged |
+| REQ-007 | `create.sh` prints one advisory stderr line when the target track yields a map, when the new packet fits no subtrack, or when it fits a different subtrack better than the one named. Its exit code and stdout are unchanged |
 | REQ-008 | `spec-gate-core.mjs` names a new subtrack as a choice in `GATE_3_CHOICE_RELATED`, `GATE_3_QUESTION` option C and `GATE_3_MUTATION_NOTICE` option C |
-| REQ-009 | `speckit-plan-presentation.txt`, `speckit-complete-presentation.txt` and `AGENTS.md` option C carry the same subtrack clause |
+| REQ-009 | `speckit-plan-presentation.txt`, `speckit-complete-presentation.txt` and `AGENTS.md` option C carry the subtrack clause, and so does every other file that copies option C, as listed in Files to Change |
 | REQ-010 | `folder-structure.md` holds a "when to propose a subtrack" section, `phase-definitions.md` section 2 points to it, and `SKILL.md` and `quick-reference.md` document `--track <track>/<sub>` |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
@@ -142,7 +151,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: On a real flat track with more than eight packets, `suggest-subtracks.mjs --track <track>` exits 0 and its map passes `relocate.mjs --map` preflight.
+- **SC-001**: On a flat track with 8 or more live packets, `suggest-subtracks.mjs --track <track>` exits 0 and its map passes `relocate.mjs --map` preflight. No real flat track is that large, the largest being `cli-classifier` with 6, so the track is a 10-packet fixture named `demo` in a throwaway clone.
 - **SC-002**: `git status --porcelain` prints the same lines before and after every `suggest-subtracks.mjs` run.
 <!-- /ANCHOR:success-criteria -->
 
@@ -156,7 +165,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Dependency | Phase 001 `relocate.mjs` preflight | REQ-002 cannot be checked without it | Phase 001 hands off first |
 | Risk | A cluster of one packet, or a packet that fits no cluster | Med: a map that names a one-packet subtrack reads as noise | Put unmatched packets in one named remainder cluster, so the map still covers the whole track |
 | Risk | The advisory line corrupts a `--json` payload | High: callers parse stdout | Write to stderr only, as `list_recent_track_packets` already does, and return 0 on any failure |
-| Risk | The spec gate wording is pinned by tests | Med: a wording change fails a suite | Run `rg -l "GATE_3_QUESTION" .skilled` first and update each pinned string in the same change |
+| Risk | The spec gate wording is pinned by tests | Med: a wording change fails a suite | Run `rg -l "GATE_3_QUESTION" .skilled` first and update each pinned string in the same change. The parity suite also pins 17 menu files that copy the text without naming the constant, listed in `scratch/gate-consumers.txt` |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -183,7 +192,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - Empty input: a track with no packets prints that the track is below the threshold and exits 0.
 - Maximum input: a track of several hundred packets still yields one whole-track map.
-- Failure path: a track that does not exist, or one that already holds subtracks in retroactive mode, exits 2 with the track name.
+- Failure path: a track that does not exist exits 2 with the track name.
+- Grouped track in retroactive mode: as the source reads, the tool prints that the track is already grouped and no map, and exits 0. No run of this case is on record.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -193,7 +203,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 16/25 | One new script and nine modified files, mostly wording |
+| Scope | 16/25 | One new script and 27 modified files, mostly one clause of wording |
 | Risk | 10/25 | Read-only tool. The gate wording is shared |
 | Research | 10/20 | The clustering rule needs tuning on real tracks |
 | **Total** | **36/70** | **Level 2** |
@@ -204,8 +214,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- `.skilled/commands/speckit/assets/speckit-implement.yaml` line 71 carries the same option C wording. Should it gain the clause too? The approved plan does not name it.
-- The approved plan says a flag overrides the threshold and does not name the flag. This spec names it `--threshold <n>`, and names the present-mode flag `--describe`.
+- Answered: `speckit-implement.yaml` line 71 gained the clause. The operator decided during the build that option C changes on every surface that carries it, not only the five files this spec first listed.
+- Answered: the flags are `--threshold <n>` and `--describe "<text>"`, as built.
+- Answered: no real flat track holds 8 or more live packets. The largest is `cli-classifier` with 6. The whole-track proof ran on a 10-packet fixture track in a throwaway clone.
+- Open: AC-007 has no recorded `create.sh --json --skip-branch` run. It needs one run in a scratch tree that records the exit code, the parsed stdout and the stderr line.
 <!-- /ANCHOR:questions -->
 
 ---

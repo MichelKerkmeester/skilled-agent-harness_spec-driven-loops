@@ -43,18 +43,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/commands/speckit/assets/speckit-implement.yaml",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
       ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
       ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
       ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
+      ".skilled/commands/speckit/assets/speckit-implement.yaml",
+      ".skilled/commands/doctor/assets/agents-md-manifest.json",
+      ".skilled/skills/system-spec-kit/references/memory/trigger-config.md",
+      ".skilled/skills/system-spec-kit/references/workflows/worked-examples.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
       ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
       ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
-      ".skilled/skills/system-spec-kit/SKILL.md",
-      ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
-      "runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
-      "runtime/cli/spec/create.sh",
-      "runtime/cli/lib/track-roots.mjs"
+      ".skilled/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
@@ -94,9 +96,9 @@
         "source": "derived"
       },
       {
-        "name": "speckit-implement.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+        "name": "suggest-subtracks.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs",
         "source": "derived"
       },
       {
@@ -112,6 +114,12 @@
         "source": "derived"
       },
       {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
         "name": "speckit-plan-presentation.txt",
         "kind": "file",
         "path": ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
@@ -121,6 +129,36 @@
         "name": "speckit-complete-presentation.txt",
         "kind": "file",
         "path": ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-implement.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-config.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/memory/trigger-config.md",
+        "source": "derived"
+      },
+      {
+        "name": "worked-examples.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/worked-examples.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-contexts.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
         "source": "derived"
       },
       {
@@ -139,18 +177,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "quick-reference.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "track-roots.mjs",
-        "kind": "file",
-        "path": "runtime/cli/lib/track-roots.mjs",
         "source": "derived"
       },
       {
@@ -176,35 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement An",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An operator learns that a flat track should be grouped only by noticing it",
     "created_at": "2026-11-13T10:07:31Z",
-    "last_save_at": "2026-11-13T10:27:13.352Z",
+    "last_save_at": "2026-11-13T12:24:47.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3bc028d483b17d6db8e96e5f3f761c69fc8683deabcfb98c49d853aefa794115",
+    "source_fingerprint": "sha256:86b438c1b11d127d6a7f7e90a7c62609fb76827ac411246f0a137ff285aa9e7d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "420dfa91fbb69c8f53f208fbd9e4dfe987d3ce8b8eb03c2dc3e8c78637930e4c",
-      "plan.md": "b98a8b260a44a00168c1e62d797b879b03f7367a5ef9e29b8bb1631e6debe4eb",
-      "tasks.md": "716acbbaaff401f21e127a9e05ceeb2ed5b8e42da00f4a80a6a13432970cc9d8",
-      "implementation-summary.md": "40f45a73071cc1548420b76a805d02d7a00b4cd17a3ba5a67e1a1e82c8e4525a"
+      "spec.md": "f0d8e75cebffa8230d390aef1d4843f5a1ad98c1b9e3558ae29ba34e77028ad1",
+      "plan.md": "3e71f96f6da1675493c288cd0c8e779c0d760c177a9d3474ab868689b8437051",
+      "tasks.md": "a3f3bce0f32c18296b0dfce9717823dd3e4c083165975a00986228611bd41038",
+      "implementation-summary.md": "d8bba41b7b048437e534a1101083cdc6eeb9ed3fe7e02bd8e3d03306aae669ec"
     },
     "last_active_at": null
   }

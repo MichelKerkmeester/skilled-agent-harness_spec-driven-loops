@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | vitest, run with `npm test` in `.skilled/skills/system-spec-kit/runtime/cli` |
 
 ### Overview
-This phase adds `suggest-subtracks.mjs` in `.skilled/skills/system-spec-kit/runtime/cli/spec/`. It then wires three prompts to it: the `create.sh` stderr hint, the spec-folder question wording and the structure docs. Proof is a map from a real flat track that passes the `relocate.mjs` preflight, with an unchanged `git status`.
+This phase adds `suggest-subtracks.mjs` in `.skilled/skills/system-spec-kit/runtime/cli/spec/`. It then wires three prompts to it: the `create.sh` stderr hint, the spec-folder question wording and the structure docs. Proof is a whole-track map that passes the `relocate.mjs` preflight, with an unchanged `git status`. The map comes from a 10-packet fixture track in a throwaway clone, because the largest real flat track holds 6 live packets.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -35,14 +35,14 @@ This phase adds `suggest-subtracks.mjs` in `.skilled/skills/system-spec-kit/runt
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] `cd .skilled/skills/system-spec-kit/runtime/cli && npm test` exits 0 with no failure that the baseline run did not have
-- [ ] Docs updated (spec/plan/tasks)
+- [x] `cd .skilled/skills/system-spec-kit/runtime/cli && npm test` exits 0 with no failure that the baseline run did not have
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -55,12 +55,23 @@ Read-only proposal CLI
 
 ### Key Components
 - **`suggest-subtracks.mjs`** (new file): reads a track, clusters its packets and prints a map or a fit. Extending `create.sh` in place fails, because the retroactive proposal runs when no packet is being created and `create.sh` has no entry point for that.
-- **`create.sh` `list_recent_track_packets`** (extended in place): prints one more stderr line.
-- **`spec-gate-core.mjs`** (extended in place): three strings gain one clause.
-- **Docs and assets** (extended in place): `AGENTS.md`, two presentation assets, `folder-structure.md`, `phase-definitions.md`, `SKILL.md` and `quick-reference.md`.
+- **`create.sh` `advise_sub_track`** (new function): called from `resolve_branch_name` right after `list_recent_track_packets`. It prints one stderr line and returns 0 on every path, so the scaffold never depends on it.
+- **`spec-gate-core.mjs`** (extended in place): three strings gain the clause `new or existing sub-track`.
+- **Docs and assets** (extended in place): `AGENTS.md` and its regenerated manifest, the speckit, create and deep menu assets, the three compiled deep contracts, `speckit-implement.yaml`, `trigger-config.md`, `worked-examples.md`, the skill-advisor parity fixture, `folder-structure.md`, `phase-definitions.md`, `SKILL.md` and `quick-reference.md`.
 
 ### Data Flow
-The tool reads each live packet's `description.json` keywords and `graph-metadata.json` `trigger_phrases` and `key_topics`. Packets that share terms form a cluster, and the shared terms give the candidate subtrack name. Retroactive mode prints one `from` and `to` pair per live packet. Present mode scores one description against the existing subtracks and prints the best fit or none.
+The tool reads each live packet's `description.json` keywords and `graph-metadata.json` `trigger_phrases` and `key_topics`, and splits them into lowercase terms. Retroactive mode prints one `from` and `to` pair per live packet. Present mode scores one description against the existing subtracks and prints the best fit or none.
+
+### Clustering Constants
+
+| Constant | Value as built |
+|----------|----------------|
+| Default threshold | 8 live packets, changed with `--threshold <n>` |
+| Track-wide terms | A term found in more than 60 percent of the track's packets is dropped before clustering |
+| Merge rule | Two packets merge when their Jaccard similarity is 0.2 or more, joined by union-find |
+| Remainder | Every packet left alone goes to one remainder subtrack named `general` |
+| Cluster name | The two terms most shared inside the cluster, joined by a hyphen |
+| Present-mode fit | A subtrack fits at a score of 0.2 or more with at least 2 matched terms. Otherwise the answer is `none fits` |
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -75,8 +86,11 @@ This phase changes shared prompt wording, so the surfaces are listed.
 | `runtime/hooks/lib/spec-gate/spec-gate-core.mjs` | Producer: exports `GATE_3_CHOICE_RELATED`, `GATE_3_QUESTION` and `GATE_3_MUTATION_NOTICE` | update | `rg -c -i "subtrack\|sub-track" runtime/hooks/lib/spec-gate/spec-gate-core.mjs` prints 3 or more |
 | Tests and hooks that pin those strings | Consumer: assert or relay the wording | update each pinned copy | `rg -l "GATE_3_QUESTION\|GATE_3_CHOICE_RELATED" .skilled` lists them |
 | `AGENTS.md` Gate 3 option C | Docs: the human-readable copy of the option | update | `rg -c -i "sub-track\|subtrack" AGENTS.md` prints 1 or more |
-| `runtime/cli/spec/create.sh` `list_recent_track_packets` | Producer: stderr hint before numbering | update | `create.sh --json` stdout still parses with `node -e` |
-| `.skilled/commands/speckit/assets/speckit-implement.yaml` line 71 | Docs: same option C wording | unchanged, open question | `rg -n "series parent" .skilled/commands/speckit/assets/speckit-implement.yaml` prints line 71 |
+| `runtime/cli/spec/create.sh` `advise_sub_track` | Producer: stderr hint before numbering | add | `create.sh --json` stdout still parses with `node -e`. Not yet observed |
+| `.skilled/commands/speckit/assets/speckit-implement.yaml` line 71 | Docs: same option C wording | update, by operator decision | `rg -n "sub-track" .skilled/commands/speckit/assets/speckit-implement.yaml` prints line 71 |
+| 17 menu files of the parity suite: 6 create assets, 3 deep assets, 3 compiled deep contracts, 3 speckit assets, `trigger-config.md` and `worked-examples.md` | Consumer: each copies option C in full | update. The compiled contracts are regenerated with `compile-command-contracts.cjs --write` | `gate-3-menu-parity.test.mjs` passes |
+| `.skilled/commands/doctor/assets/agents-md-manifest.json` | Consumer: holds the `AGENTS.md` Gate 3 body | regenerate | `agents-md-manifest.cjs --check` prints PASS |
+| `system-skill-advisor` parity fixture `baseline-contexts.json` | Consumer: holds the question text | update | The policy-plan parity tests pass |
 
 Required inventories:
 - Same-class producers: `rg -n "series parent" .skilled AGENTS.md --glob '!**/node_modules/**'`.
@@ -92,7 +106,7 @@ Required inventories:
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-Setup picks a real flat track with more than eight packets and inventories the pinned gate strings. Implementation builds `suggest-subtracks.mjs` and edits `create.sh`, `spec-gate-core.mjs`, the assets and the docs. Verification feeds the emitted map to `relocate.mjs --map` and checks that `git status` is unchanged.
+Setup looks for a flat track with 8 or more live packets, finds none and builds the 10-packet fixture track `demo` in a throwaway clone, then inventories the pinned gate strings. Implementation builds `suggest-subtracks.mjs` and edits `create.sh`, `spec-gate-core.mjs`, the assets and the docs. Verification feeds the fixture map to `relocate.mjs --map` in the clone and checks that `git status` on the real tree is unchanged.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -103,8 +117,8 @@ Setup picks a real flat track with more than eight packets and inventories the p
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | Clustering, threshold and present-time fit in `suggest-subtracks.mjs`. Phase 005 writes the suite | vitest |
-| Integration | Suites that pin the spec gate wording and `create.sh` output stay green | vitest |
-| Manual | `suggest-subtracks.mjs --track <real flat track>` piped to `relocate.mjs --map` | `node`, `git status --porcelain` |
+| Integration | Suites that pin the spec gate wording and `create.sh` output stay green: `npm test`, the spec-gate-core and gate-3-menu-parity node tests, the agents-md tests, the skill-advisor policy-plan parity tests and the deep-loop contract tests | vitest, `node --test` |
+| Manual | `suggest-subtracks.mjs --track demo` in the throwaway clone, fed to `relocate.mjs --map`. Threshold and present-mode runs on the real tree | `node`, `git status --porcelain` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -114,7 +128,7 @@ Setup picks a real flat track with more than eight packets and inventories the p
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `runtime/cli/spec/relocate.mjs` from phase 001 | Internal | Yellow | The map cannot be checked against preflight |
+| `runtime/cli/spec/relocate.mjs` from phase 001 | Internal | Green | The map cannot be checked against preflight |
 | `runtime/cli/lib/track-roots.mjs` `readWorkingTreeTracks` and `trackLayout` | Internal | Green | The tool would need its own track reader |
 <!-- /ANCHOR:dependencies -->
 

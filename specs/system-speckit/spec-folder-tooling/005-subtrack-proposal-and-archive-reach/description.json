@@ -13,15 +13,16 @@
     "archive",
     "search"
   ],
-  "lastUpdated": "2026-11-13T10:29:45.834Z",
+  "lastUpdated": "2026-11-13T12:20:41.534Z",
   "specId": "005",
   "folderSlug": "subtrack-proposal-and-archive-reach",
   "parentChain": [
     "system-speckit",
     "spec-folder-tooling"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "13-11-26_11-29__analyze-system-speckit-and-its-subtrack-support.md"
+    "13-11-26_11-29__analyze-system-speckit-and-its-subtrack-support.md",
+    "13-11-26_13-20__subtrack-proposal-and-archive-reach.md"
   ]
 }
