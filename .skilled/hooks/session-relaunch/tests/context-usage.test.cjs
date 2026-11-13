@@ -518,6 +518,45 @@ test('readClaudeSettings returns the last custom title', (t) => {
   });
 });
 
+// A session nobody named still has the title Claude generated for it. That title is reported
+// apart from the name, so a caller can rank a launch name above it.
+test('readClaudeSettings returns the last generated title beside the name', (t) => {
+  const logPath = writeClaudeLog(t, [
+    { type: 'ai-title', aiTitle: 'first generated' },
+    claudeAssistant('claude-opus-5-5', 'high'),
+    { type: 'ai-title', aiTitle: 'second generated' },
+  ]);
+  assert.deepEqual(readClaudeSettings(logPath), {
+    model: 'claude-opus-5-5',
+    effort: 'high',
+    name: '',
+    generatedName: 'second generated',
+  });
+
+  const renamed = writeClaudeLog(t, [
+    { type: 'custom-title', customTitle: 'renamed' },
+    { type: 'ai-title', aiTitle: 'generated later' },
+  ]);
+  assert.deepEqual(readClaudeSettings(renamed), {
+    model: '',
+    effort: '',
+    name: 'renamed',
+    generatedName: 'generated later',
+  });
+
+  // A log that holds only a generated title still proves it, so the caller gets an object.
+  const titleOnly = writeClaudeLog(t, [
+    { type: 'ai-title', aiTitle: '  only generated  ' },
+    { type: 'ai-title', aiTitle: '   ' },
+  ]);
+  assert.deepEqual(readClaudeSettings(titleOnly), {
+    model: '',
+    effort: '',
+    name: '',
+    generatedName: 'only generated',
+  });
+});
+
 test('readClaudeSettings finds a custom title past the default tail', (t) => {
   const logPath = writeClaudeLog(t, [
     { type: 'custom-title', customTitle: 'early title' },

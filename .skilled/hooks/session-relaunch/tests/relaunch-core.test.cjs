@@ -2718,6 +2718,121 @@ test('resolveGoalPacket follows the Claude session log goal entries', (t) => {
   })], 'none'), GOAL_PARENT, 'a packet the text names');
 });
 
+// A sender whose log holds no goal entry never had a goal set, so the receiver would wait
+// for the operator to type one. The packet the note names already says what the work is
+// for, and its goal.md is carried while a completion criterion is still open.
+function packetGoalText({ open = 1, done = 0, logOpen = 0 } = {}) {
+  const criteria = [
+    ...Array.from({ length: done }, (_, index) => `- [x] finished criterion ${index}`),
+    ...Array.from({ length: open }, (_, index) => `- [ ] open criterion ${index}`),
+  ];
+  return [
+    GOAL_HEADLINE,
+    '',
+    '<!-- ANCHOR:completion -->',
+    '## 3. COMPLETION CRITERIA',
+    '',
+    ...criteria,
+    '<!-- /ANCHOR:completion -->',
+    '',
+    '<!-- ANCHOR:log -->',
+    '## 4. LOG',
+    ...Array.from({ length: logOpen }, (_, index) => `- [ ] a note in the log ${index}`),
+    '<!-- /ANCHOR:log -->',
+    '',
+  ].join('\n');
+}
+
+// The slice budget lives in the spec kit's manifest, and a goal is only sent while its
+// slice is within it.
+function writeGoalBudget(root, errorChars = 4000) {
+  const manifest = path.join(root, '.skilled/skills/system-spec-kit/templates/spec-kit-docs.json');
+  fs.mkdirSync(path.dirname(manifest), { recursive: true });
+  fs.writeFileSync(manifest, JSON.stringify({ goalDurableBudget: { errorChars } }));
+}
+
+test('resolveGoalPacket gives a Claude sender with no goal entry the nearest unfinished packet goal', (t) => {
+  const sandbox = createSandbox(t);
+  const roots = [sandbox.repoRoot];
+  writeGoalBudget(sandbox.repoRoot);
+  const noGoal = [{ type: 'user', message: { content: 'hello' } }];
+  const claude = (entries = noGoal, specFolder = GOAL_PACKET) => resolveGoalPacket({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder,
+    roots,
+    env: writeClaudeLog(sandbox, entries),
+  });
+
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT, packetGoalText());
+  assert.equal(claude(), GOAL_PARENT, 'the parent holds the only goal.md');
+  assert.equal(claude(noGoal, GOAL_PARENT), GOAL_PARENT, 'the note names the parent itself');
+
+  writeGoalPacket(sandbox.repoRoot, GOAL_PACKET, packetGoalText());
+  assert.equal(claude(), GOAL_PACKET, 'the phase goal is nearer than its parent');
+
+  writeGoalPacket(sandbox.repoRoot, GOAL_PACKET, packetGoalText({ open: 0, done: 2 }));
+  assert.equal(claude(), GOAL_PARENT, 'a finished phase goal gives way to the open parent');
+
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT, packetGoalText({ open: 0, done: 2 }));
+  assert.equal(claude(), '', 'every goal in the lineage is finished');
+
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT, packetGoalText({ open: 0, done: 1, logOpen: 1 }));
+  assert.equal(claude(), '', 'an unticked box in the log is not a criterion');
+
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT, `${GOAL_HEADLINE}\n`);
+  assert.equal(claude(), '', 'a goal.md with no criteria');
+
+  assert.equal(claude(noGoal, 'none'), '', 'a note with no spec folder');
+
+  // A leaf phase goal binds through its parent and has no slice budget, so the receiver
+  // could not be started on it.
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT, packetGoalText());
+  writeGoalPacket(sandbox.repoRoot, GOAL_PACKET, packetGoalText());
+  fs.writeFileSync(path.join(sandbox.repoRoot, GOAL_PARENT, 'spec.md'), '# Parent\n');
+  assert.equal(claude(), GOAL_PARENT, 'a phase child goal gives way to its parent');
+
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT, `${'x'.repeat(4100)}\n${packetGoalText()}`);
+  assert.equal(claude(), '', 'a slice over the budget cannot be sent');
+});
+
+test('resolveGoalPacket leaves an ended or unreadable Claude goal uncarried', (t) => {
+  const sandbox = createSandbox(t);
+  const roots = [sandbox.repoRoot];
+  writeGoalBudget(sandbox.repoRoot);
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT, packetGoalText());
+  const claude = (entries) => resolveGoalPacket({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder: GOAL_PACKET,
+    roots,
+    env: writeClaudeLog(sandbox, entries),
+  });
+  const condition = `${GOAL_HEADLINE}\n\nbody`;
+
+  assert.equal(claude([goalStatus({ met: true, condition })]), '', 'a met goal stays ended');
+  assert.equal(claude([goalStatus({ met: false, failed: true, condition })]), '', 'a failed goal');
+  assert.equal(claude([goalStatus({ met: false, condition }), {
+    type: 'system',
+    subtype: 'local_command',
+    content: '<command-name>/goal</command-name><command-args>clear</command-args>',
+  }]), '', 'a cleared goal');
+  assert.equal(claude([goalStatus({ met: false, condition: '# Goal: A different goal\n' })]), '',
+    'a goal the sender set outranks the packet goal, even when no packet carries it');
+
+  // Past the tail cap an older goal entry cannot be ruled out, so nothing is assumed.
+  const filler = { type: 'user', message: { content: 'x'.repeat(1024 * 1024) } };
+  assert.equal(claude(Array.from({ length: 17 }, () => filler)), '', 'a log read only in part');
+
+  assert.equal(resolveGoalPacket({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder: GOAL_PACKET,
+    roots,
+    env: { ...sandbox.env, CLAUDE_CONFIG_DIR: path.join(sandbox.root, 'no-such-config') },
+  }), '', 'no log at all');
+});
+
 test('resolveGoalPacket answers empty when no Claude log can be read', (t) => {
   const sandbox = createSandbox(t);
   writeGoalPacket(sandbox.repoRoot, GOAL_PARENT);

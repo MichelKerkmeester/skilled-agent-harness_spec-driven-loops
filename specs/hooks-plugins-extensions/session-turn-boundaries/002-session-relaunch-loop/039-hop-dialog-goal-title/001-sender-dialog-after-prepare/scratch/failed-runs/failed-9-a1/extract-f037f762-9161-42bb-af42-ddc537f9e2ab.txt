@@ -1,0 +1,7 @@
+# f037f762-9161-42bb-af42-ddc537f9e2ab
+line=15 ts=2026-11-13T12:34:24.442Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Open work keeper\n\nPacket: specs/"
+line=17 ts=2026-11-13T12:34:24.443Z user_prompt#1 chars=4118 head="<command-name>/goal</command-name>\n            <command-message>goal</command-me"
+line=18 ts=2026-11-13T12:34:24.443Z user_prompt#2 chars=4045 head="<local-command-stdout>Goal set: # Goal: Open work keeper\n\nPacket: specs/demo/001"
+line=19 ts=2026-11-13T12:34:24.443Z user_prompt#3 chars=4422 head="A session-scoped Stop hook is now active with condition: \"# Goal: Open work keep"
+line=49 ts=2026-11-13T12:34:36.847Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Open work keeper\n\nPacket: specs/"
+line=57 ts=2026-11-13T12:34:43.295Z tool_use AskUserQuestion {"questions":[{"question":"The goal is met only when `never-created-completion.flag` exists, and its name suggests it is meant to stay uncreated. Do you want me to create it, and if so, under which sp

@@ -92,7 +92,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] All 38 phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
+- [x] All 39 phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
 - [x] `validate.sh` on this packet with `--recursive --strict` prints `RESULT: PASSED`
 - [x] A live Claude Code relaunch through `skilled-loop` is recorded with its `relaunch.log` hop line
 - [x] `sync-hook-registrations.cjs --check`, `sync-runtime-mirrors.cjs --check` and `run-all-drift-guards.sh` all exit 0
@@ -123,6 +123,7 @@ and findings belong here.
 | Phase 011 complete | Done | 011 acceptance-criteria 6/6 Met; node 566/566, Pi 39/39; red swap 82 and 2; recursive strict PASSED |
 | Phase 007 complete | Done | 007 acceptance-criteria 9/9 Met. Live run 10 on Claude, Pi and OpenCode with zero operator prompts (`007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/`). Recursive strict PASSED |
 | Criterion 1 count | Done | 2026-11-12: the alignment report on phase 036 found the criterion still said eleven phase folders while the folder holds 36. It now says 36. The slice is 3,993 characters at packet_budget=ok and changed, so it is printed for the operator with goal.cjs packet |
+| Phase 039 added | Done | 2026-11-13: packet `039-hop-dialog-goal-title` with three Complete children joins as phase 39. Criterion 1 now says 39 phase folders, which keeps the slice at 3,993 characters |
 
 ### Deviations and findings
 
@@ -147,4 +148,5 @@ and findings belong here.
 | D6 amendment 2 | Operator, 2026-10-25: "Amend D6". Phases 033 to 035 ran on main with operator approval, so D6 now allows main when the operator approves. D7's wording was shortened to keep the slice within budget, with no change of meaning |
 | Binding row 036 | 2026-11-12: phase 036 was added with a `goal.md`, so its row is in the binding table. The row took the slice to 4,043 characters. Decision prose was shortened in the budget-and-handoff section 3 order (step 5): D3 says "the seed" for "the claim seed" and drops "in the seed", D4 joins its two sentences, D5 shortens its last clause, and D1, D2, D6 and D7 lose their closing full stop. No decision or criterion was removed or changed in meaning. The binding exception below still holds, so the chat slice is not resent |
 | Binding exception | Operator, 2026-10-25: "Record as exception". Children 012 to 032 predate goal files and hold no `goal.md`, so `check-goal.cjs` keeps reporting missing binding rows for them. That finding is a recorded exception, not a defect, and because it stays open the chat slice is not resent |
+| Binding rows 037 to 039 | 2026-11-13: phases 038 and 039 each hold a `goal.md` and have no row in the binding table, and phase 037 holds none. A row for 039 alone costs about 70 characters and the slice has 7 to spare, so adding it means shortening decisions again. The operator chose on 2026-11-13 not to squeeze the goal of packet 038 for the same reason, so no row is added here without their word. `check-goal.cjs` reports the three rows as missing |
 <!-- /ANCHOR:log -->

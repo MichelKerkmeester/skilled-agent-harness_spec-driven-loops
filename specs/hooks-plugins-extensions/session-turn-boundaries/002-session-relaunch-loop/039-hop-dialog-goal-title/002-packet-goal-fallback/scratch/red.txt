@@ -1,0 +1,45 @@
+✔ resolveGoalPacket reads the opencode goal record (7.864667ms)
+✔ resolveGoalPacket reads the pi goal record (4.034792ms)
+✔ resolveGoalPacket reads the devin goal record (3.014459ms)
+✔ resolveGoalPacket reads the cursor goal record (2.796292ms)
+✔ resolveGoalPacket keys a record by the session, so another session finds nothing (2.407ms)
+✔ resolveGoalPacket gives a Codex sender no packet, whatever the spec folder holds (1.411667ms)
+✔ resolveGoalPacket follows the Claude session log goal entries (3.626958ms)
+✖ resolveGoalPacket gives a Claude sender with no goal entry the nearest unfinished packet goal (2.259375ms)
+✔ resolveGoalPacket leaves an ended or unreadable Claude goal uncarried (17.544459ms)
+✔ resolveGoalPacket answers empty when no Claude log can be read (2.421167ms)
+✔ resolveGoalPacket widens the Claude log tail past one large entry (2.88675ms)
+✔ resolveGoalPacket answers empty for an unknown runtime or a missing session (1.454042ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 11
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 98.273375
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2746:1
+✖ resolveGoalPacket gives a Claude sender with no goal entry the nearest unfinished packet goal (2.259375ms)
+  AssertionError [ERR_ASSERTION]: the parent holds the only goal.md
+  + actual - expected
+  
+  + ''
+  - 'specs/hooks/023-session-relaunch-loop'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/366-hop-after-question-dialog/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2759:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: 'specs/hooks/023-session-relaunch-loop',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

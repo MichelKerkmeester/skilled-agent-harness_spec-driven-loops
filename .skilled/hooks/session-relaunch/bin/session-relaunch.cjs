@@ -587,7 +587,9 @@ function prepare(args) {
     handoffPath,
     sessionId,
     runtime,
-    name: settings.name || process.env.SKILLED_LOOP_NAME || null,
+    // A rename is the operator's latest word and the launch name their first. The title the
+    // runtime generated only stands in while neither exists, so the receiver is not renamed.
+    name: settings.name || process.env.SKILLED_LOOP_NAME || settings.generatedName || null,
     cwd: process.cwd(),
     hops,
     model: settings.model,

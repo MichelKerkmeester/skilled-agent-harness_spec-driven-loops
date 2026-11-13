@@ -1176,6 +1176,16 @@
             "script": ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
             "timeout": 5,
             "fallback": "envelope"
+          },
+          {
+            "event": "PreToolUse",
+            "group": 7,
+            "slot": 0,
+            "matcher": "AskUserQuestion",
+            "runner": "node",
+            "script": ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
           }
         ],
         "codex": [

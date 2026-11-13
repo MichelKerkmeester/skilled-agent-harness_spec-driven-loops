@@ -141,6 +141,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 36 | 036-review-remediation/ | Seven children fix the eight findings of the 2026-11-12 code review: the shim runs only a trusted wrapper, record reads check the state directory, a hop replays the launch flags, an unconfigured Claude window is unknown, the sub-agent guard denies `cancel`, `consume` and `hand-over`, a stale append lock is reclaimed once and the wrapper clears its leftover record | Complete |
 | 37 | 037-relaunch-test-speed/ | The wrapper test file is split into four files with one shared harness, so the relaunch suite runs the same 868 tests in about 40 seconds instead of 130, and one nudge test no longer reads the loop id of the session that runs it | Complete |
 | 38 | 038-goal-and-workflow-resume/ | Seven children make goals and running workflows survive a hop: the note names the active command, Cursor and Devin keep a handed-over goal, `prepare` says why a goal was not carried, Pi binds once per process, a Claude claim is delivered with the switch off, the OpenCode continuation leaves a prepared hop alone and `skilled-loop` runs as typed | Complete |
+| 39 | 039-hop-dialog-goal-title/ | Three children close gaps seen on Claude Code after phase 38: a pending hand-over refuses a question dialog so the hop is not parked behind it, a sender that set no goal hands on the unfinished goal of its packet, and a session with only a generated title keeps it after a hop | Complete |
 
 ### Phase Transition Rules
 
@@ -190,6 +191,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 035-known-gap-fixes | 036-review-remediation | Phase 35 is Complete and the code review of 2026-11-12 has a report with eight findings | `validate.sh 035-known-gap-fixes --strict` RESULT: PASSED, and `036-review-remediation/scratch/handover-review.md` holds the findings |
 | 036-review-remediation | 037-relaunch-test-speed | Phase 36 is Complete and the relaunch suite passes with 868 tests | `validate.sh 036-review-remediation --recursive --strict` RESULT: PASSED, and `037-relaunch-test-speed/scratch/before-relaunch.txt` holds the baseline run |
 | 037-relaunch-test-speed | 038-goal-and-workflow-resume | Phase 37 is Complete and the review of goal and workflow carry-over is verified | `validate.sh 037-relaunch-test-speed --strict` RESULT: PASSED, and `038-goal-and-workflow-resume/scratch/verify-1.md` holds the verified findings |
+| 038-goal-and-workflow-resume | 039-hop-dialog-goal-title | Phase 38 is Complete and the four failed runs of its child 016 are saved for the opening check | `validate.sh 038-goal-and-workflow-resume --recursive --strict` RESULT: PASSED, and `039-hop-dialog-goal-title/001-sender-dialog-after-prepare/scratch/failed-runs/` holds the four runs |
 <!-- /ANCHOR:phase-map -->
 
 ---

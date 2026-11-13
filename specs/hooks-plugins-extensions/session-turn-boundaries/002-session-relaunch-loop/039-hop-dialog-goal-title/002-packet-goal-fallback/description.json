@@ -1,0 +1,20 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback",
+  "description": "Phase 2: packet-goal-fallback",
+  "keywords": [
+    "phase",
+    "packet-goal-fallback"
+  ],
+  "lastUpdated": "2026-11-13T16:59:14.405Z",
+  "specId": "002",
+  "folderSlug": "packet-goal-fallback",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

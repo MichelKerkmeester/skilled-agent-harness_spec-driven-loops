@@ -1,0 +1,59 @@
+✖ readClaudeSettings returns the last generated title beside the name (2.672875ms)
+✖ prepare falls back to the Claude generated title when nothing else names the session (75.409375ms)
+✔ prepare ranks a launch name and a custom title above the generated title (138.58625ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 253.066541
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/context-usage.test.cjs:523:1
+✖ readClaudeSettings returns the last generated title beside the name (2.672875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      effort: 'high',
+  -   generatedName: 'second generated',
+      model: 'claude-opus-5-5',
+      name: ''
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/366-hop-after-question-dialog/.skilled/hooks/session-relaunch/tests/context-usage.test.cjs:529:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { model: 'claude-opus-5-5', effort: 'high', name: '' },
+    expected: { model: 'claude-opus-5-5', effort: 'high', name: '', generatedName: 'second generated' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2853:1
+✖ prepare falls back to the Claude generated title when nothing else names the session (75.409375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + null
+  - 'hop state handoff'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/366-hop-after-question-dialog/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2862:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 'hop state handoff',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

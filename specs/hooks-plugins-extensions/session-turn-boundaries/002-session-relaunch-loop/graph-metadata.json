@@ -41,7 +41,8 @@
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/035-known-gap-fixes",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/037-relaunch-test-speed",
-    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume"
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title"
   ],
   "manual": {
     "depends_on": [],
@@ -243,7 +244,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-13T08:36:01.556Z",
+    "last_save_at": "2026-11-13T18:57:04.708Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -251,10 +252,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:59c0308d8c244761078958b5ee6e53574703b8184ef0156a913674d59da3bcfc",
+    "source_fingerprint": "sha256:a495a629a21e1b22e40dcba74dea96ca0920956c8075412d544414198e521233",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "50f08c6b86b120b23fa53472ca211881098cae3b8dc76fa1e40df95da657a114",
+      "spec.md": "57e29f80546143c5ad2533f21ac5cbdcf89c169ba49a0c414f172ef409b4c645",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
     "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
