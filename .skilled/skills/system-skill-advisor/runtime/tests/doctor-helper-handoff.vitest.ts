@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
 
-import { doctorProblemCue, matchDoctorProblem } from '../lib/scorer/doctor-helper-handoff.js';
+import { doctorProblemCue, genericRepairCue, matchDoctorProblem } from '../lib/scorer/doctor-helper-handoff.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -34,6 +34,12 @@ describe('doctor problem cue', () => {
     expect(doctorProblemCue('the git hooks are not triggering on commit')).toBe('strong');
   });
 
+  // A loop that stopped converging reports the same wrong state in the past
+  // tense, which the "never <verb>" form does not cover.
+  it('reads a loop that stopped converging as a strong cue', () => {
+    expect(doctorProblemCue('my research loop stopped converging and I cannot see why')).toBe('strong');
+  });
+
   it('reads a bare problem word as a weak cue', () => {
     expect(doctorProblemCue('Fix the broken JSON example and revalidate the packet.')).toBe('weak');
     expect(doctorProblemCue('my AGENTS.md is out of date with the template')).toBe('weak');
@@ -42,6 +48,19 @@ describe('doctor problem cue', () => {
   it('finds no cue in a plain request', () => {
     expect(doctorProblemCue('Start a deep review loop over the packet docs.')).toBeNull();
     expect(doctorProblemCue('my doctor update came in')).toBeNull();
+  });
+});
+
+describe('generic repair request cue', () => {
+  // A repair route asked for in these words names no problem the ranker knows,
+  // and the helper lists every route with its reason.
+  it('reads a request for a repair route as a doctor request', () => {
+    expect(genericRepairCue('I have a problem and want the right repair path suggested with reasons')).toBe(true);
+  });
+
+  // The same words in a remark about resolved work describe no open problem.
+  it('ignores the same words once the problem is fixed', () => {
+    expect(genericRepairCue('much appreciated, that fixed the problem completely')).toBe(false);
   });
 });
 
@@ -58,6 +77,13 @@ describe('doctor helper ranker bridge', () => {
     const match = matchDoctorProblem('my hooks are not firing, what do I run', WORKSPACE);
     expect(match?.command).toBe('/doctor:git');
     expect(match?.score).toBeGreaterThanOrEqual(6);
+  });
+
+  // The ranker names the runnable with its subcommand, so a hand-off can offer
+  // the exact command that runs instead of the helper that lists it.
+  it('returns the ranked runnable with its subcommand', () => {
+    expect(matchDoctorProblem('confirm the AGENTS.md sections in this repo have not drifted', WORKSPACE)?.runnable).toBe('/doctor:agents-md check');
+    expect(matchDoctorProblem('show me every GitHub Actions workflow and whether each is enabled', WORKSPACE)?.runnable).toBe('/doctor:ci report');
   });
 
   it('returns null for a prompt the helper does not match', () => {

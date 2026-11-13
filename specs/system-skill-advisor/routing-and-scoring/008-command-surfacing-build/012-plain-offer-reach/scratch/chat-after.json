@@ -1,0 +1,130 @@
+[
+  {
+    "id": "cmd-create-agent-plain-tune-01",
+    "top": "sk-doc",
+    "top1": false,
+    "top3": true,
+    "attached": "/create:agent",
+    "carried": true
+  },
+  {
+    "id": "cmd-create-agent-plain-tune-02",
+    "top": "sk-doc",
+    "top1": false,
+    "top3": false,
+    "attached": "/create:agent",
+    "carried": true
+  },
+  {
+    "id": "cmd-create-benchmark-plain-tune-01",
+    "top": "sk-doc",
+    "top1": false,
+    "top3": false,
+    "attached": "/create:benchmark",
+    "carried": true
+  },
+  {
+    "id": "cmd-create-changelog-plain-tune-01",
+    "top": "sk-doc",
+    "top1": false,
+    "top3": false,
+    "attached": "/create:changelog",
+    "carried": true
+  },
+  {
+    "id": "cmd-create-command-plain-tune-01",
+    "top": "sk-doc",
+    "top1": false,
+    "top3": false,
+    "attached": "/create:command",
+    "carried": true
+  },
+  {
+    "id": "cmd-create-diff-plain-tune-01",
+    "top": "sk-doc",
+    "top1": false,
+    "top3": false,
+    "attached": "/create:diff",
+    "carried": true
+  },
+  {
+    "id": "cmd-create-feature-catalog-plain-tune-01",
+    "top": "sk-doc",
+    "top1": false,
+    "top3": false,
+    "attached": "/create:feature-catalog",
+    "carried": true
+  },
+  {
+    "id": "cmd-create-goal-plain-tune-01",
+    "top": "sk-doc",
+    "top1": false,
+    "top3": false,
+    "attached": "/create:goal",
+    "carried": true
+  },
+  {
+    "id": "cmd-create-manual-testing-playbook-plain-tune-01",
+    "top": "create:manual-testing-playbook",
+    "top1": true,
+    "top3": true,
+    "attached": null,
+    "carried": true
+  },
+  {
+    "id": "cmd-doctor-agents-md-plain-tune-01",
+    "top": "command-doctor-agents-md-check",
+    "top1": true,
+    "top3": true,
+    "attached": null,
+    "carried": true
+  },
+  {
+    "id": "cmd-doctor-ci-plain-tune-01",
+    "top": "command-doctor-ci-report",
+    "top1": true,
+    "top3": true,
+    "attached": null,
+    "carried": true
+  },
+  {
+    "id": "cmd-doctor-deep-loop-plain-tune-01",
+    "top": "system-deep-loop",
+    "top1": false,
+    "top3": true,
+    "attached": null,
+    "carried": true
+  },
+  {
+    "id": "cmd-doctor-helper-plain-tune-01",
+    "top": "command-doctor-helper",
+    "top1": true,
+    "top3": true,
+    "attached": null,
+    "carried": true
+  },
+  {
+    "id": "cmd-deep-ai-council-plain-tune-01",
+    "top": "system-deep-loop",
+    "top1": false,
+    "top3": false,
+    "attached": "/deep:ai-council",
+    "carried": true
+  },
+  {
+    "id": "cmd-deep-research-plain-tune-01",
+    "top": "system-deep-loop",
+    "top1": false,
+    "top3": false,
+    "attached": "/deep:research",
+    "carried": true
+  },
+  {
+    "id": "cmd-deep-review-plain-tune-01",
+    "top": "system-deep-loop",
+    "top1": false,
+    "top3": false,
+    "attached": "/deep:review",
+    "carried": true
+  }
+]

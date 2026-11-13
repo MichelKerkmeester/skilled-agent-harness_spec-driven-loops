@@ -1,0 +1,25 @@
+BLD: exit 0
+FLOOR: {"correct":24,"total":44}
+FLOOR: {"count":0,"total":35}
+TYPED: {"count":0,"total":35}
+TYPED: {"own":24,"attached":20,"combined":44,"total":44}
+PLAIN: {"own":7,"attached":13,"combined":20,"total":45}
+PLAIN: {"own":1,"attached":0,"combined":1,"total":44}
+EVAL: [160,50,21,5]
+TC: exit 0
+PY: exit 0
+PAR: Tests 2 passed (2) exit 0
+RS: Tests 4 passed (4) exit 0
+VDS: Tests 2 passed (2) exit 0
+BINT: ℹ pass 104 ℹ fail 0 exit 0
+GUARD: 0
+HUBOK-sk-doc: fresh
+HUBOK-system-deep-loop: fresh
+SYNC: all 55 served copies match their authored files
+SUITE: Test Files 178 passed (178)
+SUITE: Tests 1691 passed | 6 skipped (1697)
+SUITE: exit 0
+RESULT: green
+# Segments B, C and D were built side by side and measured by this one capture and floor check
+# (operator instruction 2026-11-13: increase parallelism). It stands in for after-B, after-C and after-D.
+# Wave E decision: the FLOOR, TYPED and EVAL lines are identical to after-A.txt, so wave E runs.

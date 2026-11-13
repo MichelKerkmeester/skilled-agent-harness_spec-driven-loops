@@ -22,6 +22,7 @@ import {
   attachCommand,
   DEPTH_WORDING,
   MODE_COMMANDS,
+  routeNeedsMode,
   typedCommandForTop,
   typedCommandIn,
 } from '../lib/command-attach.js';
@@ -184,5 +185,22 @@ describe('typed command on the leading recommendation', () => {
     expect(typedCommandForTop('system-spec-kit', '/speckit:resume cache work')).toEqual(expected);
     expect(typedCommandForTop('command-speckit-resume', '/speckit:resume cache work')).toEqual(expected);
     expect(typedCommandForTop('sk-doc', '/speckit:resume cache work')).toBeUndefined();
+  });
+});
+
+// A route that holds back its command for want of a single mode is worth saying
+// out loud, but only for a hub that had a command to withhold, so the flag does
+// not fire for a deferral that never named a mode in the first place.
+describe('a route that waits for a mode', () => {
+  it('flags a defer or clarify on a hub whose modes map to commands', () => {
+    expect(routeNeedsMode('system-deep-loop', { action: 'defer' })).toBe(true);
+    expect(routeNeedsMode('sk-doc', { action: 'clarify' })).toBe(true);
+  });
+
+  it('stays quiet for a routed mode, a hub outside the table and a shape that is no route', () => {
+    expect(routeNeedsMode('sk-doc', singleRoute('sk-create-readme'))).toBe(false);
+    expect(routeNeedsMode('sk-code', { action: 'defer' })).toBe(false);
+    expect(routeNeedsMode('sk-doc', undefined)).toBe(false);
+    expect(routeNeedsMode('sk-doc', ['defer'])).toBe(false);
   });
 });

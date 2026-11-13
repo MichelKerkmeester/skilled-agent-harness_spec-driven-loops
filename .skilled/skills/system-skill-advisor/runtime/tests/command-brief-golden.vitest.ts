@@ -18,6 +18,7 @@ interface RecommendationInput {
   readonly command?: string;
   readonly policy?: 'run' | 'start' | 'ask';
   readonly ownerSkillId?: string;
+  readonly needsMode?: boolean;
   readonly confidence: number;
   readonly uncertainty: number;
 }
@@ -137,6 +138,30 @@ const HEAD_CASES: readonly HeadCase[] = [
       uncertainty: 0.2,
     },
     expectedHead: 'Advisor: live; use sk-code → /doctor:review gate 0.77/0.20 pass.',
+  },
+  {
+    name: 'a hub that needs a mode says so instead of naming a command',
+    recommendation: {
+      skill: 'system-deep-loop',
+      needsMode: true,
+      confidence: 0.82,
+      uncertainty: 0.2,
+    },
+    expectedHead: 'Advisor: live; use system-deep-loop (needs a mode) 0.82/0.20 pass.',
+  },
+  {
+    name: 'a command on the hub wins over the mode flag',
+    recommendation: {
+      skill: 'system-deep-loop',
+      kind: 'command',
+      command: '/deep:review',
+      policy: 'ask',
+      ownerSkillId: 'system-deep-loop',
+      needsMode: true,
+      confidence: 0.82,
+      uncertainty: 0.16,
+    },
+    expectedHead: 'Advisor: live; use system-deep-loop → /deep:review (ask) 0.82/0.16 pass.',
   },
 ];
 

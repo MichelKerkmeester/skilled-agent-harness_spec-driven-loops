@@ -1,0 +1,27 @@
+# wave D anchors: tops before and after
+63c63
+< cmd-deep-ai-council-plain-tune-01	
+---
+> cmd-deep-ai-council-plain-tune-01	system-deep-loop:0.82
+65c65
+< cmd-deep-research-plain-tune-01	
+---
+> cmd-deep-research-plain-tune-01	system-deep-loop:0.82
+67c67
+< cmd-deep-review-plain-tune-01	sk-code:0.82
+---
+> cmd-deep-review-plain-tune-01	system-deep-loop:0.82
+# wave D plus E anchors: tops after D and after E
+9c9
+< cmd-create-command-plain-tune-01	sk-prompt:0.82
+---
+> cmd-create-command-plain-tune-01	sk-doc:0.82 sk-prompt:0.82
+15c15
+< cmd-create-goal-plain-tune-01	system-spec-kit:0.84 sk-doc:0.82 mcp-tooling:0.82
+---
+> cmd-create-goal-plain-tune-01	sk-doc:0.92 system-spec-kit:0.84 mcp-tooling:0.82
+17c17
+< cmd-create-manual-testing-playbook-plain-tune-01	sk-code:0.82
+---
+> cmd-create-manual-testing-playbook-plain-tune-01	create:manual-testing-playbook:0.82 sk-code:0.82
+# eval corpora tops after D plus E (no line means no change)

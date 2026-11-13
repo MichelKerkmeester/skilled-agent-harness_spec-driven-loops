@@ -10,7 +10,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync, realpathSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-import { TRACKED_COMMANDS, attachCommand, commandRowFor, typedCommandForTop } from '../lib/command-attach.js';
+import { TRACKED_COMMANDS, attachCommand, commandRowFor, routeNeedsMode, typedCommandForTop } from '../lib/command-attach.js';
 import { advisorPromptCache } from '../lib/prompt-cache.js';
 import {
   resolveAdvisorThresholdConfig,
@@ -477,7 +477,7 @@ function enrichCompiledRoutes(
           command,
           ...(Object.hasOwn(TRACKED_COMMANDS, command) ? { policy: TRACKED_COMMANDS[command].policy } : {}),
         }
-        : { ...recommendation, compiledRoute };
+        : { ...recommendation, compiledRoute, ...(!command && routeNeedsMode(recommendation.skillId, compiledRoute) ? { needsMode: true as const } : {}) };
     }),
   });
 }

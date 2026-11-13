@@ -19,7 +19,7 @@ const prompt = 'Implement a TypeScript feature with focused tests.';
 type RecommendResponse = Awaited<ReturnType<typeof handleAdvisorRecommend>>;
 type ResponsePayload = {
   data?: {
-    recommendations?: Array<{ skillId: string; command?: string }>;
+    recommendations?: Array<{ skillId: string; command?: string; needsMode?: boolean }>;
     cache?: { hit: boolean };
   };
 };
@@ -149,6 +149,39 @@ describe('advisor_recommend compiled-route option', () => {
     })).data?.recommendations ?? [];
     expect(hubOnly.map((row) => row.skillId)).not.toContain('create:agent');
     expect(hubOnly.find((row) => row.skillId === 'sk-doc')?.command).toBe(command);
+  });
+
+  it('marks a hub that needs a mode without marking a hub that has none', async () => {
+    mockedChild.execFileSync.mockReturnValue(JSON.stringify({
+      action: 'defer',
+      hubId: 'sk-doc',
+      selectionKind: null,
+      targets: [],
+    }));
+
+    const withModeFlag = responseData(await handleAdvisorRecommend({
+      prompt: 'Write a README for the ledger module',
+      options: { includeCompiledRoute: true },
+    })).data?.recommendations ?? [];
+    const skDoc = withModeFlag.find((row) => row.skillId === 'sk-doc');
+    expect(skDoc, 'sk-doc ranks for the request').toBeDefined();
+    expect(skDoc?.needsMode).toBe(true);
+    expect(skDoc?.command).toBeUndefined();
+
+    mockedChild.execFileSync.mockReturnValue(JSON.stringify({
+      action: 'defer',
+      hubId: 'sk-code',
+      selectionKind: null,
+      targets: [],
+    }));
+
+    const withoutModeFlag = responseData(await handleAdvisorRecommend({
+      prompt: 'Implement a TypeScript feature with focused tests for the ledger.',
+      options: { includeCompiledRoute: true },
+    })).data?.recommendations ?? [];
+    const skCode = withoutModeFlag.find((row) => row.skillId === 'sk-code');
+    expect(skCode, 'sk-code ranks for the request').toBeDefined();
+    expect(skCode).not.toHaveProperty('needsMode');
   });
 
   it('recognizes only a front door that reads the prompt from stdin', () => {

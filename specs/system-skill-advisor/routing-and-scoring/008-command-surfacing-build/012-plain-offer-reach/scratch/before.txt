@@ -1,0 +1,35 @@
+# phase 012 before numbers, 2026-11-13, at 99b68d8b3d
+# VGT and VHFT run with AI_SESSION_CHILD unset, because the renderer reads it for child labels
+FLOOR: {"correct":24,"total":44}
+FLOOR: {"count":0,"total":35}
+TYPED: {"count":0,"total":35}
+TYPED: {"own":24,"attached":20,"combined":44,"total":44}
+PLAIN: {"own":2,"attached":7,"combined":9,"total":45}
+PLAIN: {"own":0,"attached":0,"combined":0,"total":44}
+EVAL: [160,50,21,5]
+TC: exit 0
+PY: exit 0
+PAR: Tests  2 passed (2)
+RS: Tests  4 passed (4)
+VDS: Tests  2 passed (2)
+VCA: Tests  8 passed (8)
+VGT: Tests  130 passed (130)
+VDHT: Tests  8 passed (8)
+VARC: Tests  5 passed (5)
+VHFT: Tests  2 passed (2)
+VSCH: Tests  20 passed (20)
+VEX: Tests  8 passed (8)
+DBC: fresh
+BINT: ℹ fail 0
+SUITE: Test Files  177 passed (177)
+SUITE: Tests  1672 passed | 6 skipped (1678)
+GUARD: 0
+SYNC: all 55 served copies match their authored files
+HUBOK sk-doc freshness: fresh
+HUBOK sk-doc cmp: identical
+HUBOK sk-doc sync: all 55 served copies match their authored files
+HUBOK sk-doc parent-skill-check: OK: parent-skill-check — all hard invariants passed, 0 warnings
+HUBOK system-deep-loop freshness: fresh
+HUBOK system-deep-loop cmp: identical
+HUBOK system-deep-loop sync: all 55 served copies match their authored files
+HUBOK system-deep-loop parent-skill-check: OK: parent-skill-check — all hard invariants passed, 0 warnings

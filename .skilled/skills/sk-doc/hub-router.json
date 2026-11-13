@@ -265,7 +265,9 @@
         "create an agent",
         "author an agent",
         "scaffold an agent",
-        "/create:agent"
+        "/create:agent",
+        "agent definition",
+        "specialist persona file"
       ]
     },
     "create-command-aliases": {
@@ -281,7 +283,9 @@
         "presentation contract",
         "$ARGUMENTS",
         "paired /create",
-        "/create:command"
+        "/create:command",
+        "prompt shortcut",
+        "confirm flag"
       ]
     },
     "create-feature-catalog-aliases": {
@@ -367,7 +371,8 @@
         "before/after document diff",
         "review document edits",
         "docx diff",
-        "pdf diff"
+        "pdf diff",
+        "before and after my rewrite"
       ]
     },
     "create-quality-control-aliases": {
@@ -490,7 +495,8 @@
         "child-phase goal",
         "binding table",
         "goal chat slice",
-        "/create:goal"
+        "/create:goal",
+        "intent file"
       ]
     },
     "hub-identity": {

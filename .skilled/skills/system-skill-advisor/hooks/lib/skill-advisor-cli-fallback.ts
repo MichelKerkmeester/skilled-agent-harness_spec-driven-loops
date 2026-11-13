@@ -384,6 +384,9 @@ function recommendationFromCli(value: unknown, thresholds: { readonly confidence
     // is kept only when its value is one a renderer knows how to print.
     ...(value.policy === 'run' || value.policy === 'start' || value.policy === 'ask' ? { policy: value.policy } : {}),
     ...(typeof value.ownerSkillId === 'string' && value.ownerSkillId.trim() !== '' ? { ownerSkillId: value.ownerSkillId } : {}),
+    // A hub that held back its command for want of a mode keeps that signal, so
+    // the head can say why no command came with it.
+    ...(value.needsMode === true ? { needsMode: true } : {}),
   };
 }
 

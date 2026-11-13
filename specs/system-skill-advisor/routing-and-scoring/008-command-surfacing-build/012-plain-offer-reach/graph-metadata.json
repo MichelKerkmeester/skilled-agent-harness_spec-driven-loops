@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "plain offer reach",
+      "phase 12 plain offer reach",
+      "plain offer reach plan",
+      "plain offer reach tasks",
+      "plain offer reach acceptance criteria",
+      "plain offer reach implementation summary"
+    ],
+    "key_topics": [
+      "plain",
+      "offer",
+      "reach",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "request",
+      "rarely"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/before.txt",
+      "scratch/after-final.txt",
+      "scratch/after-final-policy.txt",
+      ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
+      ".skilled/skills/sk-doc/hub-router.json",
+      ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      ".skilled/skills/system-deep-loop/hub-router.json",
+      "scratch/floorcheck.sh",
+      "scratch/chat-after.json",
+      "scratch/plain-before.json",
+      "scratch/live-heads.txt",
+      "scratch/after-BCD.txt",
+      "scratch/planning/sim-hub-aliases.txt",
+      ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-final.txt",
+        "kind": "file",
+        "path": "scratch/after-final.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-final-policy.txt",
+        "kind": "file",
+        "path": "scratch/after-final-policy.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-command-routing.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-fallback.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "floorcheck.sh",
+        "kind": "script",
+        "path": "scratch/floorcheck.sh",
+        "source": "derived"
+      },
+      {
+        "name": "chat-after.json",
+        "kind": "config",
+        "path": "scratch/chat-after.json",
+        "source": "derived"
+      },
+      {
+        "name": "plain-before.json",
+        "kind": "config",
+        "path": "scratch/plain-before.json",
+        "source": "derived"
+      },
+      {
+        "name": "live-heads.txt",
+        "kind": "file",
+        "path": "scratch/live-heads.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-BCD.txt",
+        "kind": "file",
+        "path": "scratch/after-BCD.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sim-hub-aliases.txt",
+        "kind": "file",
+        "path": "scratch/planning/sim-hub-aliases.txt",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A plain request rarely gets its command: the committed capture offers the expected command on 9 of 45 plain tune rows, and in the after arm of phase 007 the brief carried a command on 5 of the 16 plain chat rows, 2 of them the generic `/doctor:helper`",
+    "created_at": "2026-11-13T03:31:05Z",
+    "last_save_at": "2026-11-13T05:06:45.220Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f42d91fe43a4c3cdd91866081f8f59d172bfec048a1dbabda38837a2ad2b617d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ef00953f03f279f242976504240516b50b66bfa4df3863cfa7c365405c997de4",
+      "plan.md": "16b5f8b00ba578cbc5de8cf3d73a32fdcb175e49a8d414c2a96548ff473c33fa",
+      "tasks.md": "3f5f1e09ddc734b3e5b3b4c8fe87b0bf17dbc7b3b61ae5f01fdb6f77b4e50d04",
+      "implementation-summary.md": "9c275f1a85c44396de5ce270493c7c37cdd3ecb2410c74997fe03de0ebbfa706"
+    },
+    "last_active_at": null
+  }
+}

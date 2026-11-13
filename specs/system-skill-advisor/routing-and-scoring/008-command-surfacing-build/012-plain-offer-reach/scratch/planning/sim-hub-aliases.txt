@@ -1,0 +1,15 @@
+cmd-create-agent-plain-tune-01	plain	/create:agent	clarify -> route:single:sk-create-agent
+cmd-create-agent-plain-tune-02	plain	/create:agent	defer -> route:single:sk-create-agent
+cmd-create-command-plain-tune-01	plain	/create:command	route:single:sk-create-quality-control -> route:single:sk-create-command
+cmd-create-diff-plain-tune-01	plain	/create:diff	defer -> route:single:sk-create-diff
+cmd-create-goal-plain-tune-01	plain	/create:goal	defer -> route:single:sk-create-goal
+changed 5
+# keywords
+{"create-agent-aliases":["agent definition","specialist persona file"],"create-diff-aliases":["before and after my rewrite"],"create-goal-aliases":["intent file"],"create-command-aliases":["prompt shortcut","confirm flag"]}
+
+cmd-deep-ai-council-plain-tune-01	plain	/deep:ai-council	defer -> route:single:ai-council
+cmd-deep-research-plain-tune-01	plain	/deep:research	defer -> route:single:research
+cmd-deep-review-plain-tune-01	plain	/deep:review	defer -> route:single:review
+changed 3
+# keywords
+{"research-aliases":["find out everything"],"review-aliases":["findings stop changing"],"ai-council-aliases":["several models"]}

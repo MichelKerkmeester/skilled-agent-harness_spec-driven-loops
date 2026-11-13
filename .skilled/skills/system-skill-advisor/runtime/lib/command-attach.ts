@@ -387,3 +387,13 @@ export function attachCommand(
 
   return commands[workflowMode];
 }
+
+// A hub that withholds its command because the prompt names no single mode must
+// still tell the reader why no command came with it, and only a hub whose modes
+// map to commands withholds one.
+export function routeNeedsMode(skillId: string, compiledRoute: unknown): boolean {
+  const route = asRecord(compiledRoute);
+  if (!route) return false;
+  if (route.action !== 'defer' && route.action !== 'clarify') return false;
+  return Object.prototype.hasOwnProperty.call(MODE_COMMANDS, skillId);
+}

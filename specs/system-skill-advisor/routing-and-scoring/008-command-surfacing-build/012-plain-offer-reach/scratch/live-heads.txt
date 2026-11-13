@@ -1,0 +1,25 @@
+Advisor: live; use sk-doc (needs a mode) 0.91/0.12 pass.
+Advisor: prompt skipped.
+Advisor: live; use system-skilled-doctor → /doctor:agents-md check (run) 0.80/0.26 pass.
+# Line 2 above is the task's exact prompt "use the system-deep-loop skill". The prompt policy skipped it:
+# shouldFireAdvisor returned {"fire":false,"reason":"below_prompt_policy_threshold","metalinguisticMentions":[]},
+# where "use the sk-doc skill" returns {"fire":true,"reason":"explicit_skill_or_governance_marker","metalinguisticMentions":["sk-doc"]}.
+# The policy knows sk-* names as explicit skill markers and not system-* names. That file (prompt-policy.ts) is outside this phase.
+# Same check with a longer prompt, "please use the system-deep-loop skill for this work":
+Advisor: live; use system-deep-loop (needs a mode) 0.89/0.12 pass.
+# And "use the system-deep-loop skill on this packet" gave:
+Advisor: live; ambiguous: system-spec-kit 0.91/0.16 vs system-deep-loop 0.91/0.12 pass.
+
+# AFTER THE PROMPT POLICY FIX, 2026-11-13 (prompt-policy.ts now reads sk-, system-, cli- and mcp- skill names).
+# The task's three exact prompts, read through the worktree's own advisor daemon:
+Advisor: live; use system-deep-loop (needs a mode) 0.91/0.12 pass.
+Advisor: live; use sk-doc (needs a mode) 0.91/0.12 pass.
+Advisor: live; use system-skilled-doctor → /doctor:agents-md check (run) 0.80/0.26 pass.
+# The same prompts with SPECKIT_IPC_SOCKET_DIR set to a fresh folder while that daemon was running could not
+# start a second daemon, and the hook answered from the local fallback scorer:
+#   "use the system-deep-loop skill"  -> Advisor: stale; use system-deep-loop 0.95/0.15 pass.
+#   "use the sk-doc skill"            -> Advisor: stale; use sk-doc 0.95/0.15 pass.
+#   the doctor prompt                 -> Advisor: no skill matched.
+#   "/create:readme for the utils folder" -> Advisor: stale; use sk-doc → /create:readme (start) 0.95/0.15 pass.
+#   "write a readme for the utils folder" -> Advisor: stale; use system-spec-kit 0.95/0.20 pass.   (live: use sk-doc → /create:readme (start))
+# So the fallback path keeps a typed command and loses the mode label, the doctor hand-off and plain offers.

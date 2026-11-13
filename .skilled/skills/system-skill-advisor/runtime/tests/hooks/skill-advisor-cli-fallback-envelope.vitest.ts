@@ -56,4 +56,23 @@ describe('skill advisor CLI fallback envelope', () => {
     expect(rendered).not.toBeNull();
     expect(rendered?.split('\n')[0]).toContain('system-spec-kit → /speckit:save (start)');
   });
+
+  it('keeps a hub that needs a mode from the CLI row', () => {
+    const result = resultFromCliData({
+      data: {
+        freshness: 'live',
+        recommendations: [
+          { skillId: 'system-deep-loop', confidence: 0.89, uncertainty: 0.12, needsMode: true },
+        ],
+      },
+      options: { maxTokens: 80 } as never,
+      startedAt: 0,
+      now: () => 1,
+    });
+
+    const rendered = renderAdvisorBrief(result);
+
+    expect(rendered).not.toBeNull();
+    expect(rendered?.split('\n')[0]).toContain('use system-deep-loop (needs a mode)');
+  });
 });

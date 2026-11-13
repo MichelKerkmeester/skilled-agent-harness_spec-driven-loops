@@ -30,6 +30,16 @@ describe('skill advisor prompt policy', () => {
       fire: true,
       reason: 'explicit_skill_or_governance_marker',
     });
+    // A skill outside the sk- family is named just as explicitly, and a short prompt must not skip it.
+    for (const name of ['system-deep-loop', 'cli-orca', 'mcp-tooling']) {
+      expect(shouldFireAdvisor(`use the ${name} skill`)).toMatchObject({
+        fire: true,
+        reason: 'explicit_skill_or_governance_marker',
+        metalinguisticMentions: [name],
+      });
+    }
+    // A bare family word without a name after the hyphen is not a skill mention.
+    expect(shouldFireAdvisor('fix the system').fire).toBe(false);
     expect(shouldFireAdvisor('/speckit:resume now').fire).toBe(true);
     expect(shouldFireAdvisor('spec kit packet alignment').fire).toBe(true);
   });

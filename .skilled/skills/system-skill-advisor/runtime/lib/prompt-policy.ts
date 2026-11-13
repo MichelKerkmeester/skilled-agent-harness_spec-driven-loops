@@ -54,6 +54,8 @@ const CASUAL_ACKNOWLEDGEMENTS = new Set(policyConfig.sets.CASUAL_ACKNOWLEDGEMENT
 const WORK_INTENT_VERBS = new Set(policyConfig.sets.WORK_INTENT_VERBS);
 const STOP_WORDS = new Set(policyConfig.sets.STOP_WORDS);
 const GOVERNANCE_MARKERS = policyConfig.sets.GOVERNANCE_MARKERS;
+// Every skill family prefix, so a short prompt that names a skill outside the sk- family still fires.
+const SKILL_NAME_PATTERN = /\b(?:sk|system|cli|mcp)-[a-z0-9][a-z0-9-]*\b/g;
 
 function resolveNumericThreshold(envName: string, defaultValue: number): number {
   const raw = process.env[envName];
@@ -101,7 +103,7 @@ function meaningfulTokens(tokens: string[]): string[] {
 }
 
 function hasExplicitMarker(canonicalLower: string): boolean {
-  return /\bsk-[a-z0-9][a-z0-9-]*\b/.test(canonicalLower)
+  return canonicalLower.search(SKILL_NAME_PATTERN) !== -1
     || /(?:^|\s)\/[a-z][a-z0-9:_-]*/.test(canonicalLower)
     || GOVERNANCE_MARKERS.some((marker) => canonicalLower.includes(marker));
 }
@@ -114,10 +116,10 @@ function hasWorkIntentVerb(tokens: string[]): boolean {
 // 6. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
 
-/** Extract explicit `sk-*` mentions used for prompt-policy diagnostics. */
+/** Extract explicit skill-name mentions used for prompt-policy diagnostics. */
 export function extractMetalinguisticSkillMentions(prompt: string): string[] {
   const canonicalLower = normalizePrompt(prompt).toLowerCase();
-  return [...new Set(canonicalLower.match(/\bsk-[a-z0-9][a-z0-9-]*\b/g) ?? [])].sort();
+  return [...new Set(canonicalLower.match(SKILL_NAME_PATTERN) ?? [])].sort();
 }
 
 /** Decide whether a user prompt should invoke the advisor producer. */

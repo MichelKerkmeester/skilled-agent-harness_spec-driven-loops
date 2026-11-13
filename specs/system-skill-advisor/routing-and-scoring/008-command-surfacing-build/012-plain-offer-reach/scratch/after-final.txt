@@ -1,0 +1,27 @@
+# phase 012 final numbers, 2026-11-13, working tree on 99b68d8b3d. Before line beside each after line where one exists.
+BLD: exit 0    # before: n/a
+FLOOR: {"correct":24,"total":44}    # before: FLOOR: {"correct":24,"total":44}|FLOOR: {"count":0,"total":35}
+FLOOR: {"count":0,"total":35}    # before: FLOOR: {"correct":24,"total":44}|FLOOR: {"count":0,"total":35}
+TYPED: {"count":0,"total":35}    # before: TYPED: {"count":0,"total":35}|TYPED: {"own":24,"attached":20,"combined":44,"total":44}
+TYPED: {"own":24,"attached":20,"combined":44,"total":44}    # before: TYPED: {"count":0,"total":35}|TYPED: {"own":24,"attached":20,"combined":44,"total":44}
+PLAIN: {"own":8,"attached":15,"combined":23,"total":45}    # before: PLAIN: {"own":2,"attached":7,"combined":9,"total":45}|PLAIN: {"own":0,"attached":0,"combined":0,"total":44}
+PLAIN: {"own":1,"attached":0,"combined":1,"total":44}    # before: PLAIN: {"own":2,"attached":7,"combined":9,"total":45}|PLAIN: {"own":0,"attached":0,"combined":0,"total":44}
+EVAL: [160,50,21,5]    # before: EVAL: [160,50,21,5]
+TC: exit 0    # before: TC: exit 0
+PY: exit 0    # before: PY: exit 0
+PAR: Tests 2 passed (2) exit 0    # before: PAR: Tests  2 passed (2)
+RS: Tests 4 passed (4) exit 0    # before: RS: Tests  4 passed (4)
+VDS: Tests 2 passed (2) exit 0    # before: VDS: Tests  2 passed (2)
+BINT: ℹ pass 104 ℹ fail 0 exit 0    # before: BINT: ℹ fail 0
+GUARD: 0    # before: GUARD: 0
+HUBOK-sk-doc: fresh    # before: n/a
+HUBOK-system-deep-loop: fresh    # before: n/a
+SYNC: all 55 served copies match their authored files    # before: SYNC: all 55 served copies match their authored files
+SUITE: Test Files 178 passed (178)    # before: SUITE: Test Files  177 passed (177)|SUITE: Tests  1672 passed | 6 skipped (1678)
+SUITE: Tests 1691 passed | 6 skipped (1697)    # before: SUITE: Test Files  177 passed (177)|SUITE: Tests  1672 passed | 6 skipped (1678)
+SUITE: exit 0    # before: SUITE: Test Files  177 passed (177)|SUITE: Tests  1672 passed | 6 skipped (1678)
+RESULT: green    # before: n/a
+VCA+VGT+VDHT+VFHT+VARC+VHFT+VSCH+VEX:  Test Files 9 passed (9); Tests 200 passed (200);
+DBC: fresh
+HUBOK sk-doc: fresh; cmp identical; OK: parent-skill-check — all hard invariants passed, 0 warnings
+HUBOK system-deep-loop: fresh; cmp identical; OK: parent-skill-check — all hard invariants passed, 0 warnings

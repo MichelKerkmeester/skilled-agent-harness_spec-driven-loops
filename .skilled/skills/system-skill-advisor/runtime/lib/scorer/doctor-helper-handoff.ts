@@ -6,8 +6,8 @@
 // described in other words reaches no doctor command at all. /doctor:helper
 // already ranks free-text problems against every doctor route by word overlap.
 // When no doctor bridge passes, this module asks that same ranker whether the
-// prompt describes a doctor problem, and if it does the advisor offers
-// /doctor:helper, which then names the command.
+// prompt describes a doctor problem, and if it does the advisor offers the command the ranker named, or
+// /doctor:helper when that command asks before it runs.
 //
 // Two durable design choices:
 //   1. The ranker is the helper's own script, loaded from the workspace at run
@@ -51,6 +51,7 @@ export const DOCTOR_HELPER_UNCUED_MIN_SCORE = 10;
 const STRONG_PROBLEM_CUE = new RegExp([
   "\\b(?:not|isn'?t|aren'?t|doesn'?t|don'?t|won'?t|can'?t) (?:\\w+ )?(?:work|working|registered|found|load|loading|run|running|active|linked|fir(?:e|es|ing)|trigger(?:s|ing)?|converg\\w*)\\b",
   '\\bnever (?:converg\\w*|finish\\w*|stops?|works?|loads?|runs?)\\b',
+  '\\bstopped converg\\w*\\b',
   '\\breturns? nothing\\b',
   '\\b(?:healthy|health|diagnos\\w*)\\b',
   '\\bturn(?:ed)? (?:on|off)\\b',
@@ -62,12 +63,18 @@ const WEAK_PROBLEM_CUE = new RegExp([
   '\\bout of (?:date|sync)\\b',
 ].join('|'), 'i');
 
+// A request for a repair route that names no problem the ranker knows still
+// belongs to /doctor:helper, which lists the routes and their reasons. The two
+// phrases are exact, so ordinary work requests never carry them.
+const GENERIC_REPAIR_CUE = /\b(?:repair path|i have a problem)\b/i;
+
 // ───────────────────────────────────────────────────────────────────
 // 3. TYPES
 // ───────────────────────────────────────────────────────────────────
 
 interface HelperCandidate {
   readonly command: string;
+  readonly runnable?: string;
   readonly score: number;
 }
 
@@ -89,6 +96,8 @@ interface LoadedHelper {
 /** The doctor command the helper ranked first, with its rank score. */
 export interface DoctorProblemMatch {
   readonly command: string;
+  /** The command with its subcommand, such as `/doctor:agents-md check`. */
+  readonly runnable: string;
   readonly score: number;
 }
 
@@ -136,6 +145,11 @@ export function doctorProblemCue(prompt: string): 'strong' | 'weak' | null {
   return null;
 }
 
+/** True when the prompt asks for a repair route without naming the problem. */
+export function genericRepairCue(prompt: string): boolean {
+  return GENERIC_REPAIR_CUE.test(prompt);
+}
+
 /**
  * Ranks the prompt with /doctor:helper's own matcher and returns its first
  * candidate when that candidate reaches the hand-off score, or null.
@@ -146,7 +160,13 @@ export function matchDoctorProblem(prompt: string, workspaceRoot: string): Docto
   try {
     const first = loaded.module.rankProblem(loaded.entries, prompt, { top: 1 }).candidates?.[0];
     if (!first || typeof first.command !== 'string' || typeof first.score !== 'number') return null;
-    return first.score >= DOCTOR_HELPER_MIN_SCORE ? { command: first.command, score: first.score } : null;
+    return first.score >= DOCTOR_HELPER_MIN_SCORE
+      ? {
+          command: first.command,
+          runnable: typeof first.runnable === 'string' && first.runnable !== '' ? first.runnable : first.command,
+          score: first.score,
+        }
+      : null;
   } catch {
     return null;
   }

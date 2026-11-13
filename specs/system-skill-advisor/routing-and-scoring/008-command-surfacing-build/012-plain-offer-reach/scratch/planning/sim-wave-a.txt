@@ -1,0 +1,34 @@
+# wave A simulation: scorer tops (passing ids) before and after, non-holdout command corpus rows
+29c29
+< cmd-doctor-agents-md-plain-tune-01	command-doctor-helper:0.8
+---
+> cmd-doctor-agents-md-plain-tune-01	command-doctor-agents-md-check:0.8
+31c31
+< cmd-doctor-ci-plain-tune-01	command-doctor-helper:0.8
+---
+> cmd-doctor-ci-plain-tune-01	command-doctor-ci-report:0.8
+33c33
+< cmd-doctor-deep-loop-plain-tune-01	system-deep-loop:0.88
+---
+> cmd-doctor-deep-loop-plain-tune-01	system-deep-loop:0.88 command-doctor-deep-loop:0.8
+39c39
+< cmd-doctor-helper-plain-tune-01	
+---
+> cmd-doctor-helper-plain-tune-01	command-doctor-helper:0.8
+45c45
+< cmd-doctor-overlay-plain-tune-01	command-doctor-helper:0.8
+---
+> cmd-doctor-overlay-plain-tune-01	command-doctor-overlay-status:0.82
+47c47
+< cmd-doctor-runtime-mirrors-plain-tune-01	command-doctor-helper:0.8
+---
+> cmd-doctor-runtime-mirrors-plain-tune-01	command-doctor-runtime-mirrors:0.8
+# wave A simulation: scorer eval and doctor slice tops
+360c360
+< doctor-prompts.jsonl:doctor-b-helper-handoff-01	command-doctor-helper
+---
+> doctor-prompts.jsonl:doctor-b-helper-handoff-01	command-doctor-agents-md-check
+363c363
+< doctor-prompts.jsonl:doctor-b-helper-handoff-04	command-doctor-helper
+---
+> doctor-prompts.jsonl:doctor-b-helper-handoff-04	command-doctor-setup

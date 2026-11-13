@@ -17,7 +17,7 @@ import {
   speckitMetrics,
 } from '../metrics.js';
 import { normalize } from '../affordance-normalizer.js';
-import { TRACKED_COMMANDS, typedCommandIn } from '../command-attach.js';
+import { COMMAND_ROWS, TRACKED_COMMANDS, typedCommandIn } from '../command-attach.js';
 import { scoreDerivedLane } from './lanes/derived.js';
 import { scoreExplicitLane } from './lanes/explicit.js';
 import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
@@ -28,6 +28,7 @@ import {
   DOCTOR_HELPER_BRIDGE_ID,
   DOCTOR_HELPER_UNCUED_MIN_SCORE,
   doctorProblemCue,
+  genericRepairCue,
   matchDoctorProblem,
 } from './doctor-helper-handoff.js';
 import { loadAdvisorProjection } from './projection.js';
@@ -1097,10 +1098,23 @@ export function rankMeaningPassedCommandFirst(
   ];
 }
 
+// The ranker names a runnable such as /doctor:agents-md check, so this returns
+// that bridge when it runs without asking and the projection holds it.
+export function runnableDoctorBridgeId(runnable: string, projection: AdvisorProjection): string | undefined {
+  for (const [id, row] of Object.entries(COMMAND_ROWS)) {
+    if (!id.startsWith(DOCTOR_BRIDGE_PREFIX)) continue;
+    if (row.command !== runnable || row.policy !== 'run') continue;
+    if (projection.skills.some((skill) => skill.id === id)) return id;
+  }
+  return undefined;
+}
+
 // A doctor problem described in other words than a bridge's own phrases reaches
 // no doctor bridge. When none passes and none was typed, /doctor:helper's ranker
-// decides whether the prompt is a doctor problem, and if it is the helper bridge
-// passes so the operator is offered the command that names the right one.
+// decides whether the prompt is a doctor problem. If it is, the command it ranks
+// first passes when that command runs without asking, and the helper passes
+// otherwise. A plain request for a repair route with no ranked command and no
+// passing skill also gets the helper.
 export function applyDoctorHelperHandoff(
   ranked: readonly AdvisorScoredRecommendation[],
   context: {
@@ -1129,24 +1143,28 @@ export function applyDoctorHelperHandoff(
   const helperSkill = context.projection.skills.find((skill) => skill.id === DOCTOR_HELPER_BRIDGE_ID);
   if (!helperSkill) return [...ranked];
   const match = matchDoctorProblem(context.prompt, context.workspaceRoot);
-  if (!match) return [...ranked];
-  if (cue === null && match.score < DOCTOR_HELPER_UNCUED_MIN_SCORE) return [...ranked];
+  if (!match && (skillPasses || !genericRepairCue(context.prompt))) return [...ranked];
+  if (match && cue === null && match.score < DOCTOR_HELPER_UNCUED_MIN_SCORE) return [...ranked];
 
-  const existing = ranked.find((recommendation) => recommendation.skill === DOCTOR_HELPER_BRIDGE_ID);
+  const handoffId = (match ? runnableDoctorBridgeId(match.runnable, context.projection) : undefined) ?? DOCTOR_HELPER_BRIDGE_ID;
+  const handoffSkill = context.projection.skills.find((skill) => skill.id === handoffId) ?? helperSkill;
+  const existing = ranked.find((recommendation) => recommendation.skill === handoffId);
   const handoff: AdvisorScoredRecommendation = {
-    skill: DOCTOR_HELPER_BRIDGE_ID,
+    skill: handoffId,
     kind: 'command',
     confidence: Math.max(existing?.confidence ?? 0, context.confidenceThreshold),
     uncertainty: Math.min(existing?.uncertainty ?? context.uncertaintyThreshold, context.uncertaintyThreshold),
     passes_threshold: true,
-    reason: `doctor helper hand-off: /doctor:helper ranks ${match.command} first for this problem`,
+    reason: match
+      ? `doctor helper hand-off: /doctor:helper ranks ${match.runnable} first for this problem`
+      : 'doctor helper hand-off: a repair request with no matched doctor route',
     score: existing?.score ?? 0,
     laneContributions: existing?.laneContributions ?? [],
     dominantLane: existing?.dominantLane ?? null,
-    lifecycleStatus: helperSkill.lifecycleStatus,
+    lifecycleStatus: handoffSkill.lifecycleStatus,
   };
   const withHandoff = [
-    ...ranked.filter((recommendation) => recommendation.skill !== DOCTOR_HELPER_BRIDGE_ID),
+    ...ranked.filter((recommendation) => recommendation.skill !== handoffId),
     handoff,
   ];
   return keepPassingSkillsAboveDoctorBridges(withHandoff, context.promptLower, context.leadPhrasesById);

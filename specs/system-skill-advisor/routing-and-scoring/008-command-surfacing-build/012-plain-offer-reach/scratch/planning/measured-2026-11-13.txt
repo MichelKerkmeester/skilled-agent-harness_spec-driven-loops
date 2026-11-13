@@ -1,0 +1,27 @@
+$ git rev-parse --short HEAD
+731967bc25
+$ node $ADV/scripts/routing-accuracy/capture-command-routing-baseline.mjs > live.json; jq -c ".metrics.typed_recall_at_1, .metrics.false_offer, .attachedMetrics.false_offer_attached, .attachedMetrics.typed, .attachedMetrics.plain.tune" live.json
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"count":0,"total":35}
+{"own":24,"attached":20,"combined":44,"total":44}
+{"own":2,"attached":7,"combined":9,"total":45}
+$ EVAL
+[160,50,21,5]
+$ jq -r "[.rowId, .offeredCommand] | @tsv" runs-post-final.jsonl | grep plain-tune | sort -u
+   6 cmd-create-agent-plain-tune-01	-
+   6 cmd-create-agent-plain-tune-02	-
+   6 cmd-create-benchmark-plain-tune-01	/create:benchmark
+   6 cmd-create-changelog-plain-tune-01	/create:changelog
+   6 cmd-create-command-plain-tune-01	-
+   6 cmd-create-diff-plain-tune-01	-
+   6 cmd-create-feature-catalog-plain-tune-01	/create:feature-catalog
+   6 cmd-create-goal-plain-tune-01	-
+   6 cmd-create-manual-testing-playbook-plain-tune-01	-
+   6 cmd-deep-ai-council-plain-tune-01	-
+   6 cmd-deep-research-plain-tune-01	-
+   6 cmd-deep-review-plain-tune-01	-
+   6 cmd-doctor-agents-md-plain-tune-01	/doctor:helper
+   6 cmd-doctor-ci-plain-tune-01	/doctor:helper
+   6 cmd-doctor-deep-loop-plain-tune-01	-
+   6 cmd-doctor-helper-plain-tune-01	-

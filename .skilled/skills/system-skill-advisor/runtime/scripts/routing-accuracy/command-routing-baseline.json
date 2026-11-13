@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "731967bc25",
+  "capturedAtSha": "99b68d8b3d",
   "corpusSha256": "sha256:698da57b02159a756dbba5d6a2c9a3c6d14588d07e96be268567835cf36448b8",
   "bridgeCounts": {
     "commandMetadata": 27,
@@ -21,21 +21,21 @@
     },
     "plain_recall_at_1": {
       "tune": {
-        "correct": 2,
+        "correct": 8,
         "total": 45
       },
       "holdout": {
-        "correct": 0,
+        "correct": 1,
         "total": 44
       }
     },
     "plain_reach_top3": {
       "tune": {
-        "correct": 3,
+        "correct": 10,
         "total": 45
       },
       "holdout": {
-        "correct": 0,
+        "correct": 1,
         "total": 44
       }
     },
@@ -50,8 +50,8 @@
       "partial_total": 4
     },
     "agreement": {
-      "correct": 7,
-      "total": 9
+      "correct": 8,
+      "total": 10
     }
   },
   "unreachable": [
@@ -216,8 +216,8 @@
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
@@ -444,13 +444,13 @@
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         }
       }
     },
@@ -463,8 +463,8 @@
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
@@ -483,7 +483,7 @@
         "tune": {
           "rows": 1,
           "top1": 0,
-          "top3": 0
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
@@ -539,8 +539,8 @@
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
@@ -596,8 +596,8 @@
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
@@ -615,8 +615,8 @@
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
@@ -991,7 +991,7 @@
     },
     "cmd-create-command-plain-tune-01": {
       "expected_command": "/create:command",
-      "top": "sk-prompt",
+      "top": "sk-doc",
       "top1": false,
       "top3": false,
       "offered": false
@@ -1054,7 +1054,7 @@
     },
     "cmd-create-goal-plain-tune-01": {
       "expected_command": "/create:goal",
-      "top": "system-spec-kit",
+      "top": "sk-doc",
       "top1": false,
       "top3": false,
       "offered": false
@@ -1075,10 +1075,10 @@
     },
     "cmd-create-manual-testing-playbook-plain-tune-01": {
       "expected_command": "/create:manual-testing-playbook",
-      "top": "sk-code",
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "create:manual-testing-playbook",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-create-manual-testing-playbook-plain-holdout-01": {
       "expected_command": "/create:manual-testing-playbook",
@@ -1201,16 +1201,16 @@
     },
     "cmd-doctor-agents-md-plain-tune-01": {
       "expected_command": "/doctor:agents-md",
-      "top": "command-doctor-helper",
-      "top1": false,
-      "top3": false,
+      "top": "command-doctor-agents-md-check",
+      "top1": true,
+      "top3": true,
       "offered": true
     },
     "cmd-doctor-agents-md-plain-holdout-01": {
       "expected_command": "/doctor:agents-md",
-      "top": "command-doctor-helper",
-      "top1": false,
-      "top3": false,
+      "top": "command-doctor-agents-md-check",
+      "top1": true,
+      "top3": true,
       "offered": true
     },
     "cmd-doctor-ci-typed-01": {
@@ -1222,9 +1222,9 @@
     },
     "cmd-doctor-ci-plain-tune-01": {
       "expected_command": "/doctor:ci",
-      "top": "command-doctor-helper",
-      "top1": false,
-      "top3": false,
+      "top": "command-doctor-ci-report",
+      "top1": true,
+      "top3": true,
       "offered": true
     },
     "cmd-doctor-ci-plain-holdout-01": {
@@ -1245,8 +1245,8 @@
       "expected_command": "/doctor:deep-loop",
       "top": "system-deep-loop",
       "top1": false,
-      "top3": false,
-      "offered": false
+      "top3": true,
+      "offered": true
     },
     "cmd-doctor-deep-loop-plain-holdout-01": {
       "expected_command": "/doctor:deep-loop",
@@ -1306,10 +1306,10 @@
     },
     "cmd-doctor-helper-plain-tune-01": {
       "expected_command": "/doctor:helper",
-      "top": null,
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-doctor-helper",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-doctor-helper-plain-holdout-01": {
       "expected_command": "/doctor:helper",
@@ -1369,9 +1369,9 @@
     },
     "cmd-doctor-overlay-plain-tune-01": {
       "expected_command": "/doctor:overlay",
-      "top": "command-doctor-helper",
-      "top1": false,
-      "top3": false,
+      "top": "command-doctor-overlay-status",
+      "top1": true,
+      "top3": true,
       "offered": true
     },
     "cmd-doctor-overlay-plain-holdout-01": {
@@ -1390,9 +1390,9 @@
     },
     "cmd-doctor-runtime-mirrors-plain-tune-01": {
       "expected_command": "/doctor:runtime-mirrors",
-      "top": "command-doctor-helper",
-      "top1": false,
-      "top3": false,
+      "top": "command-doctor-runtime-mirrors",
+      "top1": true,
+      "top3": true,
       "offered": true
     },
     "cmd-doctor-runtime-mirrors-plain-holdout-01": {
@@ -1558,7 +1558,7 @@
     },
     "cmd-deep-ai-council-plain-tune-01": {
       "expected_command": "/deep:ai-council",
-      "top": null,
+      "top": "system-deep-loop",
       "top1": false,
       "top3": false,
       "offered": false
@@ -1579,7 +1579,7 @@
     },
     "cmd-deep-research-plain-tune-01": {
       "expected_command": "/deep:research",
-      "top": null,
+      "top": "system-deep-loop",
       "top1": false,
       "top3": false,
       "offered": false
@@ -1600,7 +1600,7 @@
     },
     "cmd-deep-review-plain-tune-01": {
       "expected_command": "/deep:review",
-      "top": "sk-code",
+      "top": "system-deep-loop",
       "top1": false,
       "top3": false,
       "offered": false
@@ -2148,24 +2148,24 @@
   "attachedMetrics": {
     "plain": {
       "tune": {
-        "own": 2,
-        "attached": 7,
-        "combined": 9,
+        "own": 8,
+        "attached": 15,
+        "combined": 23,
         "total": 45
       },
       "holdout": {
-        "own": 0,
+        "own": 1,
         "attached": 0,
-        "combined": 0,
+        "combined": 1,
         "total": 44
       }
     },
     "plain_by_family": {
       "create": {
         "tune": {
-          "own": 0,
-          "attached": 4,
-          "combined": 4,
+          "own": 1,
+          "attached": 9,
+          "combined": 10,
           "total": 14
         },
         "holdout": {
@@ -2178,8 +2178,8 @@
       "deep": {
         "tune": {
           "own": 0,
-          "attached": 0,
-          "combined": 0,
+          "attached": 3,
+          "combined": 3,
           "total": 3
         },
         "holdout": {
@@ -2205,15 +2205,15 @@
       },
       "doctor": {
         "tune": {
-          "own": 0,
+          "own": 5,
           "attached": 0,
-          "combined": 0,
+          "combined": 5,
           "total": 17
         },
         "holdout": {
-          "own": 0,
+          "own": 1,
           "attached": 0,
-          "combined": 0,
+          "combined": 1,
           "total": 17
         }
       },
@@ -2568,15 +2568,20 @@
     },
     "typed_same_owner_ambiguous": [],
     "attachedRows": {
+      "cmd-create-agent-plain-tune-01": "/create:agent",
+      "cmd-create-agent-plain-tune-02": "/create:agent",
       "cmd-create-benchmark-typed-01": "/create:benchmark",
       "cmd-create-benchmark-plain-tune-01": "/create:benchmark",
       "cmd-create-changelog-typed-01": "/create:changelog",
       "cmd-create-changelog-plain-tune-01": "/create:changelog",
       "cmd-create-command-typed-01": "/create:command",
+      "cmd-create-command-plain-tune-01": "/create:command",
       "cmd-create-diff-typed-01": "/create:diff",
+      "cmd-create-diff-plain-tune-01": "/create:diff",
       "cmd-create-feature-catalog-typed-01": "/create:feature-catalog",
       "cmd-create-feature-catalog-plain-tune-01": "/create:feature-catalog",
       "cmd-create-goal-typed-01": "/create:goal",
+      "cmd-create-goal-plain-tune-01": "/create:goal",
       "cmd-create-readme-typed-01": "/create:readme",
       "cmd-create-repo-rule-typed-01": "/create:repo-rule",
       "cmd-create-skill-parent-typed-01": "/create:skill-parent",
@@ -2584,6 +2589,9 @@
       "cmd-create-skill-plain-tune-01": "/create:skill",
       "cmd-create-with-human-voice-typed-01": "/create:with-human-voice",
       "cmd-deep-ai-council-typed-01": "/deep:ai-council",
+      "cmd-deep-ai-council-plain-tune-01": "/deep:ai-council",
+      "cmd-deep-research-plain-tune-01": "/deep:research",
+      "cmd-deep-review-plain-tune-01": "/deep:review",
       "cmd-design-chart-typed-01": "/design:chart",
       "cmd-design-chart-plain-tune-01": "/design:chart",
       "cmd-design-diagram-typed-01": "/design:diagram",

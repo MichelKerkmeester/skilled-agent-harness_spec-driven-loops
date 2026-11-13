@@ -545,6 +545,12 @@ export function renderAdvisorBrief(
     return null;
   }
 
+  // A hub that withheld its command because the prompt names no single mode says
+  // so, so the reader asks for the mode instead of improvising one.
+  const headLabel = top.needsMode === true && top.command === undefined && commandRowFor(top.skill) === undefined
+    ? `${topLabel} (needs a mode)`
+    : topLabel;
+
   const companion = isDoctorBridgeId(top.skill)
     ? undefined
     : recommendations.slice(1).find((recommendation) => doctorCommandString(recommendation.skill) !== null);
@@ -572,7 +578,7 @@ export function renderAdvisorBrief(
       return null;
     }
     if (vsLabel) {
-      const head = `Advisor: ${result.freshness}; ambiguous: ${topLabel} `
+      const head = `Advisor: ${result.freshness}; ambiguous: ${headLabel} `
         + `${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${vsLabel} `
         + `${formatScore(vs.confidence)}/${formatScore(vs.uncertainty)} pass.`;
       const rendered = capWithCompanion(
@@ -585,7 +591,7 @@ export function renderAdvisorBrief(
     }
   }
 
-  const head = `Advisor: ${result.freshness}; use ${topLabel} `
+  const head = `Advisor: ${result.freshness}; use ${headLabel} `
     + `${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.`;
   const rendered = capWithCompanion(
     head,

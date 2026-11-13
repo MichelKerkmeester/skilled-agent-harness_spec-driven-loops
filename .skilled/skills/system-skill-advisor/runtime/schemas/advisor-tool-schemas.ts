@@ -325,6 +325,9 @@ export const AdvisorRecommendationSchema = z.object({
   kind: z.enum(['skill', 'command']).optional(),
   policy: z.enum(['run', 'start', 'ask']).optional(),
   ownerSkillId: z.string().min(1).optional(),
+  // Set only when a hub held back its command because the prompt names no
+  // single mode, so the head can say so.
+  needsMode: z.literal(true).optional(),
 }).strict();
 
 export const AdvisorRecommendOutputSchema = z.object({

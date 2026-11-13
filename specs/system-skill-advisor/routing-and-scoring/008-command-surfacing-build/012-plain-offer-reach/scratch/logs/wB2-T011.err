@@ -1,0 +1,2 @@
+shutdown did not finish within 10s; exiting. Still pending:
+  31.8s  child 57239 running: /Users/michelkerkmeester/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe serve --stdio --port 0

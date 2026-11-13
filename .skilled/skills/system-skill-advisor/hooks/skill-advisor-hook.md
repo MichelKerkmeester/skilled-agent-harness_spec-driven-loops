@@ -9,7 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.7.0
+version: 3.6.8.0
 ---
 
 # Skill Advisor Hook Reference
@@ -59,6 +59,14 @@ Advisor: live; use system-spec-kit → /speckit:save (start) 0.89/0.12 pass.
 ```
 
 The ambiguous head applies the same label to both sides: `Advisor: <freshness>; ambiguous: <label> <confidence>/<uncertainty> vs <label> <confidence>/<uncertainty> pass.` Each label part passes `sanitizeSkillLabel`, so a control character, a line break or an instruction-shaped label renders nothing rather than reaching the model. The `Also:` line still names a doctor command by its runnable string.
+
+A hub whose compiled route defers or asks to clarify, and whose modes have commands, renders as `<hub> (needs a mode)` with no command, for example:
+
+```text
+Advisor: live; use system-deep-loop (needs a mode) 0.82/0.20 pass.
+```
+
+The recommendation carries `needsMode: true`. A command on the same recommendation wins and the label is dropped.
 
 ### Degraded contract
 

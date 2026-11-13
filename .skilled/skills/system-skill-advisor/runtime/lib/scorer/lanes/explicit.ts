@@ -147,6 +147,10 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   'persist council artifacts': [['system-deep-loop', 1.2]],
   'ai-council artifacts': [['system-deep-loop', 1.2]],
   'multi-ai-council': [['system-deep-loop', 1.2]],
+  // Plain wording for a deep run: each phrase asks for the effort a deep loop exists for.
+  'find out everything': [['system-deep-loop', 1]],
+  'findings stop changing': [['system-deep-loop', 1.2], ['sk-code', -0.6]],
+  'several models': [['system-deep-loop', 1]],
   'gate 3': [['system-spec-kit', 0.35], ['sk-code', 0.25]],
   'gate-3-classifier': [['sk-code', 1]],
   'generate implementation-summary': [['system-spec-kit', 1]],
@@ -171,6 +175,10 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   'create new agent': [['create:agent', 1.6], ['sk-doc', 0.45]],
   'create test playbook': [['create:manual-testing-playbook', 1.8], ['command-create-manual-testing-playbook', 1.2], ['sk-doc', 0.2]],
   'create testing playbook': [['create:manual-testing-playbook', 1.8], ['command-create-manual-testing-playbook', 1.2], ['sk-doc', 0.2]],
+  // Plain wording for three create modes whose rival skills share their words.
+  'prompt shortcut': [['sk-doc', 1]],
+  'intent file': [['sk-doc', 1]],
+  'test script package': [['create:manual-testing-playbook', 1.8], ['command-create-manual-testing-playbook', 1.2], ['sk-doc', 0.2]],
   'save context': [['command-speckit-save', 1.6], ['system-spec-kit', 0.45]],
   'save memory': [['command-speckit-save', 1.6], ['system-spec-kit', 0.45]],
   'source-type mix': [['system-spec-kit', 0.35]],

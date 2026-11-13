@@ -42,6 +42,8 @@ export interface AdvisorRecommendation {
   readonly command?: string;
   readonly policy?: string;
   readonly ownerSkillId?: string;
+  // True when a hub held back its command because the prompt names no single mode.
+  readonly needsMode?: boolean;
   readonly confidence: number;
   readonly uncertainty: number;
   readonly passes_threshold?: boolean;
