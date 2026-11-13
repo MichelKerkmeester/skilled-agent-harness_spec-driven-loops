@@ -159,7 +159,7 @@ After a hop the receiver runs the sender's command again, reads the goal of the 
 | 13 | 013-opencode-child-and-title/ | Ranks 7 and 10. An event trace and a live title call on OpenCode 2.2.7 decide whether the plugin defers a parent arm under a busy child and sets the session title at the claim seed | Complete |
 | 14 | 014-claude-stop-notice-and-crons/ | Rank 8 and the adapter half of rank 4. A deferred Claude hop prints one notice with the task count and the cancel command, the log records the cron count, and one live hop records what happens to crons and the todo list | Complete |
 | 15 | 015-pi-mode-and-descendant-walk/ | Ranks 13 and 14. The Pi Plan or Build mode is read from the session branch and replayed on a hop. The descendant walk is declined by a decision record unless the operator asks for it | Complete |
-| 16 | 016-receiver-claim-under-goal/ | The receiver claim under a carried goal. Ten live hops under a goal that allows other work decide whether a claim line is appended after the goal slice | Draft |
+| 16 | 016-receiver-claim-under-goal/ | The receiver claim under a carried goal. Ten live hops under a goal that allows other work decide whether a claim line is appended after the goal slice | Complete |
 | 17 | 017-handover-docs-and-harness/ | The README and the Claude playbook describe what children 009 to 016 shipped or declined, and the harness leaves no sandbox session folder behind | Draft |
 
 ### Build Order For Children 009 To 017

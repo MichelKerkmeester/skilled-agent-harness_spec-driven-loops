@@ -144,6 +144,8 @@ and findings belong here.
 | Suites after children 009 to 014 | Done | 2026-11-13, run by the orchestrator from the tree at 2b38c908a4: relaunch and OpenCode plugin suites 1521 of 1521, exit 0, twice in a row |
 | Builder route changed | Done | 2026-11-13: the operator said "Try llmgateway dsh" and "For deepseek flash". A trial brief for phase 016's harness copy ran through `dsh` on the LLM Gateway route in four minutes, exit 0 with a `completed` final event. Children 015 to 017 are built through dsh with one small change per brief |
 | Child 015 Pi mode and descendant walk | Done | 2026-11-13: built through five `dsh` briefs on DeepSeek V4.1 Flash, each diff read and the gates rerun by the orchestrator. One live Pi 1.5.2 launch with `--plan` started in Plan mode before the build. The descendant walk is declined as ADR-002. Pi adapter suite 62 of 62, relaunch and OpenCode plugin suites 1524 of 1524. Commit 10e61ef8d2 |
+| Child 016 receiver claim under a goal | Done | 2026-11-13: ten live hops on Claude Code 2.1.323 under a goal that allows other work, run by an Opus sub-agent and recounted by the orchestrator. Ten of ten counted receivers claimed and closed their note, so the gate closed the phase with no code change and the claim line is waived by ADR-001. Four further attempts never hopped because the sender opened a question dialog after `prepare`. Commit f7b6a3973c |
+| Closure statements of 011, 013 and 014 | Done | 2026-11-13: each read No while every row was Met. Corrected to Yes, strict validation passed for all three. Commit 1cb78d9b66 |
 
 ### Deviations and findings
 
