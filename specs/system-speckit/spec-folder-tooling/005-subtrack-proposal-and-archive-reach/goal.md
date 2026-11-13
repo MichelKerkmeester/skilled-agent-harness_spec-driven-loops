@@ -123,6 +123,7 @@ and findings belong here.
 | Criterion 6 npm test against the baseline | Done | At f1cfed3d20: exit 0, 211 files passed and 3 skipped, 2558 tests passed and 20 skipped, 0 failed in every legacy stage, in 005-tests-and-closeout/scratch/final-npm-test.txt. Baseline 206 files and 2524 tests passed. Delta 5 files and 34 tests more, 0 failures in both |
 | Criterion 7 strict recursive validation | Done | validate.sh on this folder with --strict --recursive printed RESULT: PASSED six times, run by the final closeout worker after the last document edit and the last repair-derived.cjs --apply |
 | Final state 2026-11-13 | Complete | All five phases and the parent spec.md say Complete and every acceptance-criteria.md says Closeable: Yes. No Unmet row is left. Trigger index regenerated in f1cfed3d20 and its check exited 0 with 0 untrusted docs, not rerun after the final closeout edits. Answered: the fixture question is closed by Q003 and ADR-001. Later commits 5fefd819e1, 36b3a68ab7, c21b0cc040 and f1cfed3d20. The final closeout edits are uncommitted. Nothing is pushed or merged |
+| Criterion 5 re-proof | Done | The first phrase stopped being archive-only once these documents quoted it. A title phrase from an archived sk-doc packet that no live document holds exits 1 by default and 0 with --include-archive, 4 of 4 lines labeled archived. search.md no longer states a dated result for its example phrase |
 
 ### Deviations and findings
 
