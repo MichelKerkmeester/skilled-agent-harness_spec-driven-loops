@@ -764,7 +764,7 @@ function safeDirectory(directory) {
  * for the rest, and the live session name when the log carries one.
  */
 function resolveSessionSettings({ runtime, sessionId, env = process.env } = {}) {
-  const none = { model: '', effort: '', name: '' };
+  const none = { model: '', effort: '', name: '', generatedName: '' };
   try {
     if (!nonEmptyString(sessionId)) return none;
     const usage = require('./context-usage.cjs');
@@ -783,6 +783,7 @@ function resolveSessionSettings({ runtime, sessionId, env = process.env } = {}) 
       model: found.model ?? '',
       effort: found.effort ?? '',
       name: typeof found.name === 'string' ? found.name : '',
+      generatedName: typeof found.generatedName === 'string' ? found.generatedName : '',
     };
   } catch {
     return none;

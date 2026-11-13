@@ -2847,6 +2847,38 @@ test('prepare keeps SKILLED_LOOP_NAME when the log holds no title', (t) => {
   assert.equal(record.name, 'launch');
 });
 
+// A session started with no name and never renamed has only the title Claude generated.
+// Without it the receiver gets a new generated title and the operator loses track of which
+// session continues which.
+test('prepare falls back to the Claude generated title when nothing else names the session', (t) => {
+  const sandbox = createSandbox(t);
+  writeClaudeGoalLog(sandbox, [
+    { type: 'assistant', requestedModel: 'claude-sonnet-5-5', effort: 'high' },
+    { type: 'ai-title', aiTitle: 'hop state handoff' },
+  ]);
+
+  const record = prepareUnderLoop(sandbox, 'claude');
+
+  assert.equal(record.name, 'hop state handoff');
+});
+
+test('prepare ranks a launch name and a custom title above the generated title', (t) => {
+  const launched = createSandbox(t);
+  writeClaudeGoalLog(launched, [
+    { type: 'assistant', requestedModel: 'claude-sonnet-5-5', effort: 'high' },
+    { type: 'ai-title', aiTitle: 'generated' },
+  ]);
+  launched.env.SKILLED_LOOP_NAME = 'launch';
+  assert.equal(prepareUnderLoop(launched, 'claude').name, 'launch');
+
+  const renamed = createSandbox(t);
+  writeClaudeGoalLog(renamed, [
+    { type: 'custom-title', customTitle: 'renamed' },
+    { type: 'ai-title', aiTitle: 'generated' },
+  ]);
+  assert.equal(prepareUnderLoop(renamed, 'claude').name, 'renamed');
+});
+
 test('prepare records the Codex sender latest turn model and effort', (t) => {
   const sandbox = createSandbox(t);
   writeCodexRollout(sandbox, [
